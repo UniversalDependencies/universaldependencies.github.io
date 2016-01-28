@@ -1,0 +1,377 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>DET</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/#language-cs">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/cs/pos">cs/pos</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-pos/DET.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>DET</code>: determiner</h2>
+
+<h3 id="definition">Definition</h3>
+
+<p>Determiners are words that modify <a href="NOUN">nouns</a> or noun phrases and
+express the reference of the noun phrase in context. That is, a
+determiner may indicate whether the noun is referring to a definite or
+indefinite element of a class, to a closer or more distant element, to
+an element belonging to a specified person or thing, to a particular
+number or quantity, etc.</p>
+
+<p>An important point to note is that the traditional grammar of Czech does not
+define determiners as a separate word class. Czech does not have articles.
+Most determiners are traditionally called pronouns; that is, an UD-conformant
+annotation of Czech must distinguish between substantive pronouns (UD tag <a href="">PRON</a>)
+and attributive pronouns (UD tag <code>DET</code>).</p>
+
+<p>Also note that the <code>DET</code> tag includes (pronominal) <em>quantifiers</em> (words
+like <em>mnoho, málo </em> “many, few”), which the traditional grammar classifies
+as a special subclass of numerals. However,
+<em>cardinal numerals</em> in the narrow sense <em>(jeden, pět, sto)</em> are not
+tagged <code>DET</code> even though some authors would include them in
+quantifiers. Cardinal numbers have their own tag <a href="">NUM</a>.</p>
+
+<h3 id="conversion-from-the-prague-dependency-treebank">Conversion from the Prague Dependency Treebank</h3>
+
+<p>Since the PDT tagset (like all other Czech tagsets) does not distinguish
+substantive and attributive pronouns, morphological tags alone are not enough
+to find the correct universal POS tag.
+Morphological rules could help, as the inflection patterns of some pronouns
+bear similarities to adjectival inflection; nevertheless, there will be other
+cases that cannot be solved this way.
+We have to examine the dependency tree.
+If a pronoun modifies a noun, it should be tagged <code>DET</code>.
+Otherwise it is <code>PRON</code>.
+As a result, all words that can be tagged <code>DET</code> can also be tagged <code>PRON</code>,
+but some words can only be tagged <code>PRON</code>.
+(We cannot recognize cases where the pronoun is in fact attributive, but the
+modified noun has been elided and is not represented in the tree.)</p>
+
+<p>For instance, <em>tohle </em> “this” is either pronoun
+<em>(<b>Tohle</b> jsem viděl včera. </em> “I saw <b>this</b> yesterday.”)
+or determiner
+<em>(<b>Tohle</b> auto jsem viděl včera. </em> “I saw <b>this</b> car yesterday.”)</p>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li>possessive determiners: <em>můj, tvůj, jeho, její, náš, váš, jejich </em> “my, your, his, her, our, your, their”</li>
+  <li>reflexive possessive determiner: <em>svůj </em> “one’s own”</li>
+  <li>demonstrative determiners: <em>tohle </em> as in <em><b>Tohle</b> auto jsem viděl včera. </em> “I saw <b>this</b> car yesterday.”</li>
+  <li>interrogative determiners: <em>který </em> as in <em><b>Které</b> auto se ti líbí? </em> “<b>Which</b> car do you like?”</li>
+  <li>relative determiners: <em>který </em> as in <em>Zajímá mě, <b>které</b> auto se ti líbí. </em> “I wonder <b>which</b> car you like.”</li>
+  <li>relative possessive determiner: <em>jehož </em> “whose”</li>
+  <li>indefinite determiners: <em>nějaký, některý</em></li>
+  <li>total determiners: <em>každý, všechen</em></li>
+  <li>negative determiners: <em>žádný </em> as in <em>Nemáme <b>žádná</b> auta. </em> “We have <b>no</b> cars available.”</li>
+</ul>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="http://www-01.sil.org/linguistics/GlossaryOfLinguisticTerms/WhatIsADeterminer.htm">Loos, Eugene E., et al. 2003. Glossary of linguistic terms: What is a determiner?</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Determiner">Wikipedia</a></li>
+</ul>
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+
+<hr />
+
+<h2 id="treebank-statistics-udczech">Treebank Statistics (UD_Czech)</h2>
+
+<p>There are 55 <code>DET</code> lemmas (0%), 325 <code>DET</code> types (0%) and 27813 <code>DET</code> tokens (2%).
+Out of 17 observed tags, the rank of <code>DET</code> is: 10 in number of lemmas, 8 in number of types and 11 in number of tokens.</p>
+
+<p>The 10 most frequent <code>DET</code> lemmas: <em>tento, jeho, svůj, můj, ten, některý, několik, takový, žádný, jenž</em></p>
+
+<p>The 10 most frequent <code>DET</code> types:  <em>jeho, jejich, své, této, její, tento, tohoto, svou, tato, těchto</em></p>
+
+<p>The 10 most frequent ambiguous lemmas: <em>tento</em> (<a href="">DET</a> 6202, <a href="">PRON</a> 99), <em>jeho</em> (<a href="">DET</a> 5790, <a href="">PRON</a> 46), <em>svůj</em> (<a href="">DET</a> 4767, <a href="">PRON</a> 113, <a href="">ADJ</a> 4), <em>můj</em> (<a href="">DET</a> 2581, <a href="">PRON</a> 71), <em>ten</em> (<a href="">PRON</a> 11968, <a href="">DET</a> 1312), <em>některý</em> (<a href="">DET</a> 1096, <a href="">PRON</a> 234), <em>několik</em> (<a href="">DET</a> 871, <a href="">PRON</a> 26), <em>takový</em> (<a href="">DET</a> 866, <a href="">PRON</a> 169), <em>žádný</em> (<a href="">DET</a> 744, <a href="">PRON</a> 87), <em>jenž</em> (<a href="">PRON</a> 2211, <a href="">DET</a> 648)</p>
+
+<p>The 10 most frequent ambiguous types:  <em>jeho</em> (<a href="">DET</a> 2456, <a href="">PRON</a> 33), <em>jejich</em> (<a href="">DET</a> 1697, <a href="">PRON</a> 12), <em>své</em> (<a href="">DET</a> 1366, <a href="">PRON</a> 40, <a href="">ADJ</a> 1), <em>této</em> (<a href="">DET</a> 993, <a href="">PRON</a> 3), <em>její</em> (<a href="">DET</a> 711, <a href="">PRON</a> 8), <em>tento</em> (<a href="">DET</a> 585, <a href="">PRON</a> 10), <em>svou</em> (<a href="">DET</a> 607, <a href="">PRON</a> 7), <em>tato</em> (<a href="">DET</a> 377, <a href="">PRON</a> 7), <em>těchto</em> (<a href="">DET</a> 581, <a href="">PRON</a> 8), <em>tyto</em> (<a href="">DET</a> 432, <a href="">PRON</a> 1)</p>
+
+<ul>
+  <li><em>jeho</em>
+    <ul>
+      <li><a href="">DET</a> 2456: <em>Trh nový výrobek uvítal a celá <b>jeho</b> produkce se prodá .</em></li>
+      <li><a href="">PRON</a> 33: <em>Proto od <b>jeho</b> použití na zákaznické kartě upustili .</em></li>
+    </ul>
+  </li>
+  <li><em>jejich</em>
+    <ul>
+      <li><a href="">DET</a> 1697: <em>Firma , která si je vyžádá , platí pouze náklady na <b>jejich</b> pobyt .</em></li>
+      <li><a href="">PRON</a> 12: <em>Nechme firmám , co je <b>jejich</b> .</em></li>
+    </ul>
+  </li>
+  <li><em>své</em>
+    <ul>
+      <li><a href="">DET</a> 1366: <em>A čeho si má při <b>své</b> návštěvě především všímat ?</em></li>
+      <li><a href="">PRON</a> 40: <em>Stále převažující nabídka nad poptávkou dělá <b>své</b> .</em></li>
+      <li><a href="">ADJ</a> 1: <em>Jinak samozřejmě nevíme , co všechno vzalo za <b>své</b> v plamenech žároviště , a nemůžeme proto jednoznačně odpovědět na otázku , zda šlo skutečně o natolik chudé obyvatelstvo , že jedinou výbavou jejich hrobů byly rozbité nádoby .</em></li>
+    </ul>
+  </li>
+  <li><em>této</em>
+    <ul>
+      <li><a href="">DET</a> 993: <em>Nejzajímavější dotazy najdete zodpovězené pravidelně na <b>této</b> stránce .</em></li>
+      <li><a href="">PRON</a> 3: <em>Jeho výše v ostatních zemích se od <b>této</b> příliš neliší , je spíše nižší .</em></li>
+    </ul>
+  </li>
+  <li><em>její</em>
+    <ul>
+      <li><a href="">DET</a> 711: <em>Proto nás zajímalo , jaký je <b>její</b> pohled na působení Američanů .</em></li>
+      <li><a href="">PRON</a> 8: <em>svůj versus jeho , <b>její</b> , jejich</em></li>
+    </ul>
+  </li>
+  <li><em>tento</em>
+    <ul>
+      <li><a href="">DET</a> 585: <em>Že se pod <b>tento</b> plášť schová leccos dalšího , netřeba připomínat .</em></li>
+      <li><a href="">PRON</a> 10: <em>Postup selekce je <b>tento</b> .</em></li>
+    </ul>
+  </li>
+  <li><em>svou</em>
+    <ul>
+      <li><a href="">DET</a> 607: <em>I tím vykreslí <b>svou</b> vizitku .</em></li>
+      <li><a href="">PRON</a> 7: <em>Buď si hráči prosadí <b>svou</b> , nebo zvítězí správní rada , nebo dojde k nějakému kompromisu .</em></li>
+    </ul>
+  </li>
+  <li><em>tato</em>
+    <ul>
+      <li><a href="">DET</a> 377: <em>Je <b>tato</b> nedůvěra oprávněná a jak se vlastně mezi nimi zorientovat ?</em></li>
+      <li><a href="">PRON</a> 7: <em>Právě <b>tato</b> toho mnoho o příbuzenských svazcích dinosaurů neprozradí .</em></li>
+    </ul>
+  </li>
+  <li><em>těchto</em>
+    <ul>
+      <li><a href="">DET</a> 581: <em>Ostravský distributor tepla má na starosti na 3600 <b>těchto</b> měřičů .</em></li>
+      <li><a href="">PRON</a> 8: <em>Po <b>těchto</b> dvou přišla dlouhá řada dalších , kteří zbraní v ráně ještě pořádně a s chutí zacloumali .</em></li>
+    </ul>
+  </li>
+  <li><em>tyto</em>
+    <ul>
+      <li><a href="">DET</a> 432: <em>Zájem o <b>tyto</b> jednotky se v ČR zvyšuje pomalu .</em></li>
+      <li><a href="">PRON</a> 1: <em>* Podle 691 občanského zákoníku má právo - po předchozím upozornění pronajímatele na závady - <b>tyto</b> v nezbytné míře odstranit a požadovat od pronajímatele náhradu účelně vynaložených nákladů .</em></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<p>The form / lemma ratio of <code>DET</code> is 5.909091 (the average of all parts of speech is 2.195970).</p>
+
+<p>The 1st highest number of forms (27) was observed with the lemma “můj”: <em>Mí, moje, moji, mojí, mou, má, mé, mého, mém, mému, mých, mýho, mým, mými, můj, n, naše, našeho, našem, našemu, naši, našich, našim, našimi, naší, naším, náš</em></p>
+
+<p>The 2nd highest number of forms (19) was observed with the lemma “jakýkoliv”: <em>jakoukoli, jakoukoliv, jakákoli, jakákoliv, jakéhokoli, jakéhokoliv, jakékoli, jakékoliv, jakémkoli, jakémkoliv, jakémukoli, jakémukoliv, jakýchkoli, jakýchkoliv, jakýkoli, jakýkoliv, jakýmikoliv, jakýmkoli, jakýmkoliv</em></p>
+
+<p>The 3rd highest number of forms (16) was observed with the lemma “ten”: <em>ta, ten, ti, to, toho, tom, tomu, tou, tu, ty, té, tím, těch, těm, těma, těmi</em></p>
+
+<p><code>DET</code> occurs with 16 features: <a href="">cs-feat/PronType</a> (27813; 100% instances), <a href="">cs-feat/Case</a> (22385; 80% instances), <a href="">cs-feat/Number</a> (21264; 76% instances), <a href="">cs-feat/Gender</a> (17996; 65% instances), <a href="">cs-feat/Poss</a> (14044; 50% instances), <a href="">cs-feat/Number[psor]</a> (9276; 33% instances), <a href="">cs-feat/Person</a> (9276; 33% instances), <a href="">cs-feat/Reflex</a> (4768; 17% instances), <a href="">cs-feat/Gender[psor]</a> (4331; 16% instances), <a href="">cs-feat/Animacy</a> (2621; 9% instances), <a href="">cs-feat/NumType</a> (1552; 6% instances), <a href="">cs-feat/Negative</a> (744; 3% instances), <a href="">cs-feat/Abbr</a> (15; 0% instances), <a href="">cs-feat/Style</a> (14; 0% instances), <a href="">cs-feat/Foreign</a> (1; 0% instances), <a href="">cs-feat/NameType</a> (1; 0% instances)</p>
+
+<p><code>DET</code> occurs with 40 feature-value pairs: <code>Abbr=Yes</code>, <code>Animacy=Anim</code>, <code>Animacy=Inan</code>, <code>Case=Acc</code>, <code>Case=Dat</code>, <code>Case=Gen</code>, <code>Case=Ins</code>, <code>Case=Loc</code>, <code>Case=Nom</code>, <code>Case=Voc</code>, <code>Foreign=Foreign</code>, <code>Gender=Fem</code>, <code>Gender=Fem,Neut</code>, <code>Gender=Masc</code>, <code>Gender=Masc,Neut</code>, <code>Gender=Neut</code>, <code>Gender[psor]=Fem</code>, <code>Gender[psor]=Masc,Neut</code>, <code>NameType=Oth</code>, <code>Negative=Neg</code>, <code>NumType=Card</code>, <code>NumType=Ord</code>, <code>Number=Dual</code>, <code>Number=Plur</code>, <code>Number=Sing</code>, <code>Number[psor]=Plur</code>, <code>Number[psor]=Sing</code>, <code>Person=1</code>, <code>Person=2</code>, <code>Person=3</code>, <code>Poss=Yes</code>, <code>PronType=Dem</code>, <code>PronType=Dem,Ind</code>, <code>PronType=Ind</code>, <code>PronType=Int,Rel</code>, <code>PronType=Neg</code>, <code>PronType=Prs</code>, <code>PronType=Rel</code>, <code>Reflex=Yes</code>, <code>Style=Coll</code></p>
+
+<p><code>DET</code> occurs with 273 feature combinations.
+The most frequent feature combination is <code>Gender[psor]=Masc,Neut|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs</code> (2718 tokens).
+Examples: <em>jeho</em></p>
+
+<h2 id="relations">Relations</h2>
+
+<p><code>DET</code> nodes are attached to their parents using 8 different relations: <a href="">cs-dep/det</a> (26231; 94% instances), <a href="">cs-dep/det:numgov</a> (978; 4% instances), <a href="">cs-dep/det:nummod</a> (564; 2% instances), <a href="">cs-dep/advcl</a> (24; 0% instances), <a href="">cs-dep/acl</a> (9; 0% instances), <a href="">cs-dep/nmod</a> (3; 0% instances), <a href="">cs-dep/ccomp</a> (2; 0% instances), <a href="">cs-dep/csubj</a> (2; 0% instances)</p>
+
+<p>Parents of <code>DET</code> nodes belong to 6 different parts of speech: <a href="">NOUN</a> (27483; 99% instances), <a href="">PROPN</a> (108; 0% instances), <a href="">ADJ</a> (106; 0% instances), <a href="">PRON</a> (97; 0% instances), <a href="">NUM</a> (16; 0% instances), <a href="">DET</a> (3; 0% instances)</p>
+
+<p>27203 (98%) <code>DET</code> nodes are leaves.</p>
+
+<p>370 (1%) <code>DET</code> nodes have one child.</p>
+
+<p>181 (1%) <code>DET</code> nodes have two children.</p>
+
+<p>59 (0%) <code>DET</code> nodes have three or more children.</p>
+
+<p>The highest child degree of a <code>DET</code> node is 12.</p>
+
+<p>Children of <code>DET</code> nodes are attached using 18 different relations: <a href="">cs-dep/advmod:emph</a> (180; 19% instances), <a href="">cs-dep/punct</a> (130; 13% instances), <a href="">cs-dep/conj</a> (117; 12% instances), <a href="">cs-dep/cc</a> (99; 10% instances), <a href="">cs-dep/case</a> (93; 10% instances), <a href="">cs-dep/acl</a> (90; 9% instances), <a href="">cs-dep/advmod</a> (62; 6% instances), <a href="">cs-dep/advcl</a> (34; 4% instances), <a href="">cs-dep/mark</a> (30; 3% instances), <a href="">cs-dep/nmod</a> (28; 3% instances), <a href="">cs-dep/amod</a> (26; 3% instances), <a href="">cs-dep/appos</a> (26; 3% instances), <a href="">cs-dep/cop</a> (17; 2% instances), <a href="">cs-dep/dep</a> (12; 1% instances), <a href="">cs-dep/nsubj</a> (12; 1% instances), <a href="">cs-dep/xcomp</a> (4; 0% instances), <a href="">cs-dep/det:nummod</a> (2; 0% instances), <a href="">cs-dep/neg</a> (1; 0% instances)</p>
+
+<p>Children of <code>DET</code> nodes belong to 13 different parts of speech: <a href="">ADV</a> (175; 18% instances), <a href="">PUNCT</a> (130; 13% instances), <a href="">CONJ</a> (129; 13% instances), <a href="">VERB</a> (114; 12% instances), <a href="">ADP</a> (92; 10% instances), <a href="">ADJ</a> (88; 9% instances), <a href="">NOUN</a> (73; 8% instances), <a href="">PRON</a> (67; 7% instances), <a href="">PART</a> (46; 5% instances), <a href="">SCONJ</a> (30; 3% instances), <a href="">PROPN</a> (12; 1% instances), <a href="">NUM</a> (4; 0% instances), <a href="">DET</a> (3; 0% instances)</p>
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+DET in other languages:
+
+[<a href="../../bg/pos/DET.html">bg</a>]
+
+[<a href="../../cs/pos/DET.html">cs</a>]
+
+[<a href="../../de/pos/DET.html">de</a>]
+
+[<a href="../../el/pos/DET.html">el</a>]
+
+[<a href="../../en/pos/DET.html">en</a>]
+
+[<a href="../../es/pos/DET.html">es</a>]
+
+[<a href="../../eu/pos/DET.html">eu</a>]
+
+[<a href="../../fa/pos/DET.html">fa</a>]
+
+[<a href="../../fi/pos/DET.html">fi</a>]
+
+[<a href="../../fr/pos/DET.html">fr</a>]
+
+[<a href="../../ga/pos/DET.html">ga</a>]
+
+[<a href="../../he/pos/DET.html">he</a>]
+
+[<a href="../../hu/pos/DET.html">hu</a>]
+
+[<a href="../../it/pos/DET.html">it</a>]
+
+[<a href="../../ja/pos/DET.html">ja</a>]
+
+[<a href="../../ko/pos/DET.html">ko</a>]
+
+[<a href="../../sv/pos/DET.html">sv</a>]
+
+[<a href="../../u/pos/DET.html">u</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+        // standard jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false
+	});
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'cs-pos';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.github.io/docs/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

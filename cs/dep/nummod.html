@@ -1,0 +1,609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>nummod</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/#language-cs">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/cs/dep">cs/dep</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/nummod.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>nummod</code>: numeric modifier</h2>
+
+<p>A numeric modifier of a noun is any <a href="cs-pos/NUM">number</a> phrase
+that serves to modify the meaning of the noun with a quantity.</p>
+
+<pre><code class="language-sdparse">Jan snědl tři řízky . \n Jan ate three steaks .
+nummod(řízky, tři)
+nummod(steaks, three)
+</code></pre>
+
+<h2 id="agreement-and-government-with-czech-quantifiers">Agreement and government with Czech quantifiers</h2>
+
+<p>The morphological and syntactic behavior of Czech numerals is a complex matter.
+Small cardinal numerals <em>jeden</em> “one”, <em>dva</em> “two”, <em>tři</em> “three” and <em>čtyři</em> “four” agree with the counted
+noun in <a href="">cs-feat/Case</a> (<em>jeden</em> also agrees in <a href="">cs-feat/Gender</a> and <a href="">cs-feat/Number</a>;
+<em>dva</em> also agrees in <a href="">cs-feat/Gender</a>).
+They behave as if they modify the counted noun; they are similar to adjectives in this respect.
+Examples:</p>
+
+<ul>
+  <li><em><b>Jeden</b> muž spal, <b>dva</b> muži hráli karty.</em> “One man slept, two men played cards.”</li>
+  <li><em><b>Jedna</b> žena spala, <b>dvě</b> ženy hrály karty.</em> “One woman slept, two women played cards.”</li>
+  <li><em><b>Jedno</b> kotě spalo, <b>dvě</b> koťata si hrála.</em> “One kitten slept, two kittens played.”</li>
+</ul>
+
+<p>In PDT, these numerals are attached to their counted nouns as <code>Atr</code> (attribute).
+It is straightforward to convert such dependencies to <code>nummod</code>:</p>
+
+<pre><code class="language-sdparse">Jedno kotě spalo . \n One kitten slept .
+nummod(kotě, Jedno)
+nsubj(spalo, kotě)
+punct(spalo, .-4)
+nummod(kitten, One)
+nsubj(slept, kitten)
+punct(slept, .-9)
+</code></pre>
+
+<p>Larger cardinals behave differently.
+They require that the counted noun be in the genitive case; this indicates that they actually govern the noun.
+Such constructions are parallel to nouns modified by other noun phrases in genitive.
+The whole phrase (numeral + counted noun) behaves as a noun phrase in neuter gender and singular number
+(which is important for subject-verb agreement).</p>
+
+<ul>
+  <li><em><b>Pět</b> mužů hrálo karty.</em> “Five men played cards.”</li>
+  <li><em>Skupina mužů hrála karty.</em> “A group of men played cards.”</li>
+</ul>
+
+<p>In PDT, these numerals are analyzed as heads of the counted nouns, which are attached to the numeral as <code>Atr</code>:</p>
+
+<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
+# visual-style nodes yellow
+# visual-style arcs blue
+1   Pět     pět     NUM     _   Case=Nom                           3   Sb     _   Five
+2   mužů    muž     NOUN    _   Case=Gen|Gender=Masc|Number=Plur   1   Atr    _   men
+3   hrálo   hrát    VERB    _   Gender=Neut|Number=Sing            0   Pred   _   played
+4   karty   karta   NOUN    _   Case=Acc|Gender=Fem|Number=Plur    3   Obj    _   cards
+5   .       .       PUNCT   _   _                                  0   AuxK   _   .
+</code></pre>
+
+<p>There are both advantages and drawbacks to this solution.
+On the one hand, it reflects well the agreement in case, gender and number.
+On the other hand, it is confusing that there are two different analyses of counted noun constructions,
+depending on the numeric value.</p>
+
+<p>Moreover, the numeral does not govern the noun in all morphological cases.
+The following table shows the case of the whole phrase (numeral + noun; first column)
+and the consequences for the case of the parts (note that these numerals have only
+two distinct morphological forms, resulting in homonymy).</p>
+
+<table>
+<tr><th>Phrase Case</th><th>Example</th><th>Numeral Case</th><th>Noun Case</th></tr>
+<tr><td>Nom</td><td>pět mužů</td>   <td>Nom</td><td>Gen</td></tr>
+<tr><td>Gen</td><td>pěti mužů</td>  <td>Gen</td><td>Gen</td></tr>
+<tr><td>Dat</td><td>pěti mužům</td> <td>Dat</td><td>Dat</td></tr>
+<tr><td>Acc</td><td>pět mužů</td>   <td>Acc</td><td>Gen</td></tr>
+<tr><td>Voc</td><td>pět mužů</td>   <td>Voc</td><td>Gen</td></tr>
+<tr><td>Loc</td><td>pěti mužích</td><td>Loc</td><td>Loc</td></tr>
+<tr><td>Ins</td><td>pěti muži</td>  <td>Ins</td><td>Ins</td></tr>
+</table>
+
+<p>We can say that the noun has the case of the whole phrase if it is dative, locative or instrumental.
+The numeral then agrees with the noun in case.
+The numeral forces the noun to the genitive case if the whole phrase is nominative, accusative or vocative
+(but the vocative usage is rather hypothetical).
+In genitive, the noun and the numeral agree with each other; but note that the numeral uses its
+inflected form, as in the other cases where it agrees with the noun.</p>
+
+<p>In PDT, the genitive, dative, locative and instrumental cases are analyzed in parallel to the low-value numerals,
+i.e. the noun governs the numeral:</p>
+
+<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
+# visual-style nodes yellow
+# visual-style arcs blue
+1   Hrál      hrát    VERB    _   Gender=Masc|Number=Sing            0   Pred   _   He-played
+2   karty     karta   NOUN    _   Case=Acc|Gender=Fem|Number=Plur    1   Obj    _   cards
+3   s         s       ADP     _   _                                  1   AuxP   _   with
+4   pěti      pět     NUM     _   Case=Ins                           6   Atr    _   five
+5   dalšími   další   ADJ     _   Case=Ins|Gender=Masc|Number=Plur   6   Atr    _   other
+6   muži      muž     NOUN    _   Case=Ins|Gender=Masc|Number=Plur   3   Obj    _   men
+7   .         .       PUNCT   _   _                                  0   AuxK   _   .
+</code></pre>
+
+<p>High-value numerals where the lowest-order digit is more than zero and less than five (e.g. 21, 22, 23, 24) may behave both ways:</p>
+
+<ul>
+  <li><em>dvacet <b>dva</b> muži</em> (noun governs numeral)</li>
+  <li><em>dvacet <b>dva</b> mužů</em> (numeral governs noun)</li>
+  <li><em><b>dvaadvacet</b> mužů</em> (alternative form; it does not end with <em>dva</em>, thus the numeral governs the noun)</li>
+  <li><em><b>22</b> muži</em> (assuming the reader will pronounce <em>22</em> as <em>dvacet dva,</em> not <em>dvaadvacet</em>)</li>
+  <li><em><b>22</b> mužů</em> (pronounced either way)</li>
+</ul>
+
+<p>Pronominal quantifiers behave as high-value numerals and govern the quantifed nouns:</p>
+
+<ul>
+  <li><em><b>Kolik</b> mužů hrálo karty?</em> “How many men played cards?”</li>
+  <li><em><b>Několik</b> (<b>mnoho</b>, <b>málo</b>) mužů hrálo karty.</em> “Several (many, few) men played cards.”</li>
+  <li><em><b>Tolik</b> mužů hrát karty jsem ještě neviděl.</em> “I have never seen so many men playing cards.”</li>
+</ul>
+
+<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
+# visual-style nodes yellow
+# visual-style arcs blue
+1   Kolik   kolik   NUM     _   Case=Nom                           3   Sb     _   How-many
+2   mužů    muž     NOUN    _   Case=Gen|Gender=Masc|Number=Plur   1   Atr    _   men
+3   hrálo   hrát    VERB    _   Gender=Neut|Number=Sing            0   Pred   _   played
+4   karty   karta   NOUN    _   Case=Acc|Gender=Fem|Number=Plur    3   Obj    _   cards
+5   ?       ?       PUNCT   _   _                                  0   AuxK   _   ?
+</code></pre>
+
+<p>The UD conversion of the PDT data unifies analyses of counted noun phrases
+and uses a structure that is parallel among all the above cases,
+and also with universal dependencies in other languages.
+The counted noun is always the head and the numeral is always attached as its modifier.
+Nevertheless, we use different relation labels to mark situations where the numeral (or quantifier)
+actually governs the morphological case of the noun.
+There are four labels used:</p>
+
+<table>
+<tr><td></td><td><strong>Numeric</strong></td><td><strong>Pronominal</strong></td></tr>
+<tr><td><strong>Noun governs</strong></td><td><tt>nummod</tt></td><td><tt><a href="det-nummod.html">det:nummod</a></tt></td></tr>
+<tr><td><strong>Numeral governs</strong></td><td><tt><a href="nummod-gov.html">nummod:gov</a></tt></td><td><tt><a href="det-numgov.html">det:numgov</a></tt></td></tr>
+</table>
+
+<pre><code class="language-sdparse">Tři muži hráli karty . \n Three men played cards .
+nummod(muži, Tři)
+nsubj(hráli, muži)
+dobj(hráli, karty)
+punct(hráli, .-5)
+nummod(men, Three)
+nsubj(played, men)
+dobj(played, cards)
+punct(played, .-11)
+</code></pre>
+
+<pre><code class="language-sdparse">Pět mužů hrálo karty . \n Five men played cards .
+nummod:gov(mužů, Pět)
+nsubj(hrálo, mužů)
+dobj(hrálo, karty)
+punct(hrálo, .-5)
+nummod:gov(men, Five)
+nsubj(played, men)
+dobj(played, cards)
+punct(played, .-11)
+</code></pre>
+
+<pre><code class="language-sdparse">Kolik mužů hrálo karty ? \n How-many men played cards ?
+det:numgov(mužů, Kolik)
+nsubj(hrálo, mužů)
+dobj(hrálo, karty)
+punct(hrálo, ?-5)
+det:numgov(men, How-many)
+nsubj(played, men)
+dobj(played, cards)
+punct(played, ?-11)
+</code></pre>
+
+<pre><code class="language-sdparse">Hrál jsem karty s pěti muži . \n Played I-have cards with five men .
+aux(Hrál, jsem)
+dobj(Hrál, karty)
+iobj(Hrál, muži)
+case(muži, s)
+nummod(muži, pěti)
+punct(Hrál, .-7)
+aux(Played, I-have)
+dobj(Played, cards)
+iobj(Played, men)
+case(men, with)
+nummod(men, five)
+punct(Played, .-15)
+</code></pre>
+
+<pre><code class="language-sdparse">Nepamatuji si , s kolika muži jsem hrál karty . \n I-do-not-remember myself , with how-many men I-have played cards .
+ccomp(Nepamatuji, hrál)
+compound:reflex(Nepamatuji, si)
+punct(hrál, ,-3)
+aux(hrál, jsem)
+dobj(hrál, karty)
+iobj(hrál, muži)
+case(muži, s)
+det:nummod(muži, kolika)
+punct(Nepamatuji, .-10)
+ccomp(I-do-not-remember, played)
+compound:reflex(I-do-not-remember, myself)
+punct(played, ,-14)
+aux(played, I-have)
+dobj(played, cards)
+iobj(played, men)
+case(men, with)
+det:nummod(men, how-many)
+punct(I-do-not-remember, .-21)
+</code></pre>
+
+<h2 id="additional-remarks">Additional remarks</h2>
+
+<p>In PDT the words <em>milión</em> “million”, <em>miliarda</em> “billion” and higher are usually tagged as <a href="cs-pos/NOUN">nouns</a>,
+not as <a href="cs-pos/NUM">numerals</a>.
+In the typical case, the million is in genitive, it is preceded by a smaller number,
+and it is not followed by smaller numerals (as it is in <em>million five hundred thousand</em>).
+It is followed by the counted noun.
+Thus the following examples receive parallel analyses:</p>
+
+<pre><code class="language-sdparse">50 miliónů korun \n 50 millions of-crowns
+nummod:gov(miliónů, 50-1)
+nummod:gov(millions, 50-5)
+nmod(miliónů, korun)
+nmod(millions, of-crowns)
+</code></pre>
+
+<pre><code class="language-sdparse">50 pytlů bankovek \n 50 sacks of-bills
+nummod:gov(pytlů, 50-1)
+nummod:gov(sacks, 50-5)
+nmod(pytlů, bankovek)
+nmod(sacks, of-bills)
+</code></pre>
+
+<p>On the other hand the word <em>tisíc</em> “thousand” may be a noun
+(<em>na náměstí byly tisíce lidí</em> “there were thousands of people in the square”)
+or a numeral:</p>
+
+<pre><code class="language-sdparse">nanejvýš 50 tisíc korun \n at-most 50 thousand crowns
+advmod:emph(korun, nanejvýš)
+nummod:gov(korun, tisíc)
+compound(tisíc, 50-2)
+advmod:emph(crowns, at-most)
+nummod:gov(crowns, thousand)
+compound(thousand, 50-7)
+</code></pre>
+
+<p>Note that the two numeral words in the above example are joined using the <a href="">compound</a> relation.
+Also note that the <a href="advmod:emph">intensifier</a> <em>nanejvýš</em> is attached to the head of the phrase <em>(korun)</em> and not to the number.
+This is in accord both with the UD guidelines
+and with the original PDT annotation of agreeing numerals (e.g. <em>jen čtyři firmy, jen několik procent</em>).</p>
+
+<p>Similarly there may be other nodes (such as punctuation) that are attached to the head of the phrase
+and they are related to the whole phrase rather than directly to the head noun:</p>
+
+<pre><code class="language-sdparse">( 9 dní ) \n ( 9 days )
+punct(dní, (-1)
+nummod:gov(dní, 9-2)
+punct(dní, )-4)
+punct(days, (-6)
+nummod:gov(days, 9-7)
+punct(days, )-9)
+</code></pre>
+
+<pre><code class="language-sdparse">5 minut včetně seřízení \n 5 minutes including adjustment
+nummod:gov(minut, 5-1)
+nmod(minut, seřízení)
+case(seřízení, včetně)
+nummod:gov(minutes, 5-6)
+nmod(minutes, adjustment)
+case(adjustment, including)
+</code></pre>
+
+<h2 id="dates">Dates</h2>
+
+<!-- mf920922_027.a.gz (3/19) -->
+<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
+# visual-style nodes yellow
+# visual-style arcs blue
+1    Ředitel         ředitel         NOUN    _   _   2   Sb     _   The-director
+2    navrhl          navrhnout       VERB    _   _   0   Pred   _   proposed
+3    zrušit          zrušit          VERB    _   _   2   Obj    _   to-disband
+4    profesionální   profesionální   ADJ     _   _   5   Atr    _   the-professional
+5    scénu           scéna           NOUN    _   _   3   Obj    _   scene
+6    k               k               ADP     _   _   3   AuxP   _   towards
+7    31              31              NUM     _   _   9   Atr    _   the-31
+8    .               .               PUNCT   _   _   7   AuxG   _   th
+9    12              12              NUM     _   _   6   Adv    _   December
+10   .               .               PUNCT   _   _   9   AuxG   _   .
+</code></pre>
+
+<pre><code class="language-sdparse">Ředitel navrhl zrušit profesionální scénu k 31 . 12 . \n Director proposed to-disband professional scene towards 31 st December .
+advmod(zrušit, 12)
+case(12, k)
+punct(12, .-10)
+nummod(12, 31-7)
+punct(31-7, .-8)
+advmod(to-disband, December)
+case(December, towards)
+punct(December, .-21)
+nummod(December, 31-18)
+punct(31-18, st)
+</code></pre>
+
+<p>Numerals expressed using digits are labeled <code>nummod</code> even if they represent ordinal numerals,
+which would be labeled <code>amod</code>:</p>
+
+<!-- ln95045_123.a.gz (8/8) -->
+<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
+# visual-style nodes yellow
+# visual-style arcs blue
+1    Letošní     letošní      ADJ     _   _   2   Atr    _   This-year's
+2    veletrh     veletrh      NOUN    _   _   4   Sb     _   fair
+3    se          se           PRON    _   _   4   AuxR   _   itself
+4    uskuteční   uskutečnit   VERB    _   _   0   Pred   _   will-take-place
+5    od          od           ADP     _   _   4   AuxP   _   from
+6    9           9            NUM     _   _   5   ExD    _   9
+7    .           .            PUNCT   _   _   6   AuxG   _   th
+8    do          do           ADP     _   _   4   AuxP   _   to
+9    12          12           NUM     _   _   11  Atr    _   12
+10   .           .            PUNCT   _   _   9   AuxG   _   th
+11   března      březen       NOUN    _   _   8   Adv    _   March
+12   .           .            PUNCT   _   _   0   AuxK   _   .
+</code></pre>
+<pre><code class="language-sdparse">Letošní veletrh se uskuteční od 9 . do 12 . března . \n This-year's fair itself will-take-place from 9 th to 12 th March .
+advmod(uskuteční, března)
+case(března, do)
+nummod(března, 12-9)
+remnant(12-9, 9-6)
+remnant(do, od)
+advmod(will-take-place, March)
+case(March, to)
+nummod(March, 12-22)
+remnant(12-22, 9-19)
+remnant(to, from)
+</code></pre>
+
+<h2 id="numbered-objects">Numbered objects</h2>
+
+<p>House number in address is attached as <code>nummod</code> to the name of the street:</p>
+
+<pre><code class="language-sdparse">v budově Na poříčí 12 \n in the-building Na poříčí 12
+nmod(budově, poříčí-4)
+case(poříčí-4, Na-3)
+nummod(poříčí-4, 12-5)
+nmod(the-building, poříčí-10)
+case(poříčí-10, Na-9)
+nummod(poříčí-10, 12-11)
+</code></pre>
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+
+<hr />
+
+<h2 id="treebank-statistics-udczech">Treebank Statistics (UD_Czech)</h2>
+
+<p>This relation is universal.
+There are 1 language-specific subtypes of <code>nummod</code>: <a href="">nummod:gov</a>.</p>
+
+<p>19668 nodes (1%) are attached to their parents as <code>nummod</code>.</p>
+
+<p>11411 instances of <code>nummod</code> (58%) are right-to-left (child precedes parent).
+Average distance between parent and child is 1.57982509660362.</p>
+
+<p>The following 11 pairs of parts of speech are connected with <code>nummod</code>: <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/NUM</a> (17449; 89% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/NUM</a> (1624; 8% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/NUM</a> (260; 1% instances), <a href="">cs-pos/SYM</a>-<a href="">cs-pos/NUM</a> (152; 1% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/NUM</a> (99; 1% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/NUM</a> (30; 0% instances), <a href="">cs-pos/CONJ</a>-<a href="">cs-pos/NUM</a> (28; 0% instances), <a href="">cs-pos/PUNCT</a>-<a href="">cs-pos/NUM</a> (10; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/NUM</a> (10; 0% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/NUM</a> (5; 0% instances), <a href="">cs-pos/INTJ</a>-<a href="">cs-pos/NUM</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 1 3 nummod	color:blue
+1	Obrázek	obrázek	NOUN	NNIS1-----A----	Animacy=Inan|Case=Nom|Gender=Masc|Negative=Pos|Number=Sing	0	root	_	SpaceAfter=No
+2	:	:	PUNCT	Z:-------------	_	3	punct	_	_
+3	3	3	NUM	C=-------------	NumForm=Digit|NumType=Card	1	nummod	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
+# visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+# visual-style 7 9 nummod	color:blue
+1	Výrobce	výrobce	NOUN	NNMS1-----A----	Animacy=Anim|Case=Nom|Gender=Masc|Negative=Pos|Number=Sing	0	root	_	_
+2	-	-	PUNCT	Z:-------------	_	1	punct	_	_
+3	typ	typ	NOUN	NNIS1-----A----	Animacy=Inan|Case=Nom|Gender=Masc|Negative=Pos|Number=Sing	1	conj	_	SpaceAfter=No
+4	:	:	PUNCT	Z:-------------	_	5	punct	_	_
+5	PANASONIC	Panasonic	PROPN	NNIS1-----A----	Animacy=Inan|Case=Nom|Gender=Masc|NameType=Com,Pro|Negative=Pos|Number=Sing	3	nmod	_	_
+6	PANAFAX	Panafax	PROPN	NNIS1-----A----	Animacy=Inan|Case=Nom|Gender=Masc|NameType=Pro|Negative=Pos|Number=Sing	5	nmod	_	_
+7	UF	UF	PROPN	NNXXX-----A---8	Abbr=Yes|NameType=Pro|Negative=Pos	6	nmod	_	SpaceAfter=No|LId=UF-98
+8	-	-	PUNCT	Z:-------------	_	9	punct	_	SpaceAfter=No
+9	311	311	NUM	C=-------------	NumForm=Digit|NumType=Card	7	nummod	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 8	bgColor:blue
+# visual-style 8	fgColor:white
+# visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
+# visual-style 9 8 nummod	color:blue
+1	The	the	ADJ	AAXXX----1A----	Degree=Pos|Foreign=Foreign|Negative=Pos	11	foreign	_	LId=the-1|LGloss=(obv._souč._anglických_názvů,_urč._člen)
+2	Black	Black	ADJ	AAXXX----1A----	Degree=Pos|Foreign=Foreign|NameType=Com,Oth|Negative=Pos	11	foreign	_	_
+3	Box	Box	ADJ	AAXXX----1A----	Degree=Pos|Foreign=Foreign|NameType=Com,Oth|Negative=Pos	11	foreign	_	_
+4	Summer	Summer	ADJ	AAXXX----1A----	Degree=Pos|Foreign=Foreign|NameType=Oth|Negative=Pos	11	foreign	_	_
+5	Festival	Festival	PROPN	NNIXX-----A----	Animacy=Inan|Foreign=Foreign|Gender=Masc|NameType=Oth|Negative=Pos	11	foreign	_	_
+6	of	of	ADP	RR--X----------	AdpType=Prep|Foreign=Foreign	11	foreign	_	LId=of-1|LGloss=(obv._souč._anglických_názvů,_předl._2._p.)
+7	Czech	Czech	ADJ	AAXXX----1A----	Degree=Pos|Foreign=Foreign|Negative=Pos	11	foreign	_	LId=Czech-2
+8	20	20	NUM	C=-------------	NumForm=Digit|NumType=Card	9	nummod	_	SpaceAfter=No
+9	th	th	ADJ	AAXXX----1A----	Degree=Pos|Foreign=Foreign|Negative=Pos	11	foreign	_	LId=th-2
+10	Century	Century	ADJ	AAXXX----1A----	Degree=Pos|Foreign=Foreign|NameType=Oth|Negative=Pos	11	foreign	_	_
+11	Plays	Plays	PROPN	NNFPX-----A----	Foreign=Foreign|Gender=Fem|NameType=Oth|Negative=Pos|Number=Plur	0	root	_	SpaceAfter=No
+12	-	-	PUNCT	Z:-------------	_	11	punct	_	_
+
+</code></pre>
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+nummod in other languages:
+
+[<a href="../../bg/dep/nummod.html">bg</a>]
+
+[<a href="../../cs/dep/nummod.html">cs</a>]
+
+[<a href="../../de/dep/nummod.html">de</a>]
+
+[<a href="../../el/dep/nummod.html">el</a>]
+
+[<a href="../../en/dep/nummod.html">en</a>]
+
+[<a href="../../es/dep/nummod.html">es</a>]
+
+[<a href="../../eu/dep/nummod.html">eu</a>]
+
+[<a href="../../fa/dep/nummod.html">fa</a>]
+
+[<a href="../../fi/dep/nummod.html">fi</a>]
+
+[<a href="../../fr/dep/nummod.html">fr</a>]
+
+[<a href="../../ga/dep/nummod.html">ga</a>]
+
+[<a href="../../he/dep/nummod.html">he</a>]
+
+[<a href="../../hu/dep/nummod.html">hu</a>]
+
+[<a href="../../it/dep/nummod.html">it</a>]
+
+[<a href="../../ja/dep/nummod.html">ja</a>]
+
+[<a href="../../ko/dep/nummod.html">ko</a>]
+
+[<a href="../../sv/dep/nummod.html">sv</a>]
+
+[<a href="../../u/dep/nummod.html">u</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+        // standard jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false
+	});
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'cs-dep';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.github.io/docs/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

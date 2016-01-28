@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>expl</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/#language-u">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/u/dep">u/dep</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/expl.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>expl</code>: expletive</h2>
+
+<p>This relation captures expletive or pleonastic nominals. These are nominals that appear in an argument position of a predicate but which do not themselves satisfy any of the semantic roles of the predicate. The main predicate of the clause (the verb or predicate adjective or noun) is the governor. In English, this is the case for some uses of <em>it</em> and <em>there</em>: the existential <em>there</em>, and <em>it</em> when used in extraposition constructions.  (Note that both <em>it</em> and <em>there</em> also have non-expletive uses.)</p>
+
+<pre><code class="language-sdparse">There is a ghost in the room
+expl(is, There)
+</code></pre>
+
+<pre><code class="language-sdparse">It is clear that we should decline .
+expl(clear, It)
+</code></pre>
+
+<p>Some languages do not have expletives of the English sort, including most languages with free pro-drop (the ability to use zero anaphora rather than over pronouns). In languages with expletives of this sort, they can be positioned where normally a core argument appears: the subject and direct object (and even indirect object) slots, as in the examples below. Note that in the analysis of these examples, we treat the postposed subject or clausal argument as a regular core argument, and mark the expletive with <code>expl</code>.</p>
+
+<pre><code class="language-sdparse">There is a ghost in the room
+expl(is, There)
+nsubj(is, ghost)
+nmod(is, room)
+</code></pre>
+
+<pre><code class="language-sdparse">I believe there to be a ghost in the room
+nsubj(believe, I)
+expl(believe, there)
+xcomp(believe, be)
+nsubj(be, ghost)
+nmod(be, room)
+</code></pre>
+
+<pre><code class="language-sdparse">It is clear that we should decline .
+expl(clear, It)
+csubj(clear, decline)
+</code></pre>
+
+<pre><code class="language-sdparse">That we should decline is clear .
+csubj(clear, decline)
+</code></pre>
+
+<pre><code class="language-sdparse">I mentioned it to Mary that Sue is leaving
+nsubj(mentioned, I)
+expl(mentioned, it)
+nmod(mentioned, Mary)
+ccomp(mentioned, leaving)
+</code></pre>
+
+<p>A second, related, use of the <code>expl</code> relation is for cases of true clitic doubling.  For languages in which clitics and lexical nominals are ususally in complementary distribution – languages, such as French, which obey “Kayne’s generalization” – then whichever of a clitic or a lexical nominal occurs will get the appropriate role, such as <code>dobj</code> or <code>iobj</code>. In such languages, when doubling does occur, such as in spoken French, the right analysis is to regard the lexical nominal as <a href="">dislocated</a> (see the examples there). However, other languages, such as Greek and Bulgarian, standardly allow doubling of a lexical nominal and a pronominal clitic, with the former still appearing in its regular role as an argument of the predicate. In these cases, if only one of the lexical nominal and the clitic appear in a clause, then whichever appears will be given the grammatical role of <code>dobj</code>, <code>iobj</code>, etc. – parallel to the treatment of lexical nominals and pronouns in other languages, modulo the clitic pronoun having a different position in the sentence.  However, if both occur, the lexical nominal will be given the grammatical role of <code>dobj</code>, <code>iobj</code>, etc., and the clitic will be treated as a pronominal copy, which does not receive its own semantic role, and hence will get the role <code>expl</code>. Modulo the different word order, this is fairly parallel to the treatment of <em>it</em> and <em>there</em> in English mentioned above, where another phrase satisfies the semantic role of the predicate. Examples from Greek and Bulgarian follow:</p>
+
+<pre><code class="language-sdparse">Της τον έδωσε της Καίτης τον αναπτήρα \n PRON.Fem.Gen PRON.Masc.Acc gave ART.Fem.Gen Keti.Gen ART.Masc.Acc lighter.Acc
+expl(έδωσε, Της-1)
+iobj(έδωσε, Καίτης)
+det(Καίτης, της-4)
+expl(έδωσε, τον-2)
+dobj(έδωσε, αναπτήρα)
+det(αναπτήρα, τον-6)
+</code></pre>
+
+<pre><code class="language-sdparse">Marija mu izprati pismo na rabotnika \n Maria 3.S.M.IO sent letter to the.worker
+expl(izprati, mu)
+dobj(izprati, pismo)
+iobj(izprati, rabotnika)
+case(rabotnika, na)
+</code></pre>
+
+<p>The expletive relation is also used for reflexive pronouns (see the feature <a href="">u-feat/Reflex</a>)
+attached to inherently reflexive verbs, i.e. verbs that cannot occur without the reflexive
+pronoun and thus the pronoun does not play the role of a normal object
+(otherwise it would be possible to substitute it with an irreflexive pronoun or other nominal).
+A Czech example:</p>
+
+<pre><code class="language-sdparse">Martin se bojí zvířat . \n Martin REFLEX fears animals .
+expl(bojí, se)
+expl(fears, REFLEX)
+</code></pre>
+
+<p>Further general discussion of expletives can be found in Postal, P. M., and G. K. Pullum (1988) “Expletive Noun Phrases in Subcategorized Positions,” <em>Linguistic Inquiry</em> 19(4): 635–670. The status of clitic doubling, and arguments for the lexical nominal being an argument with the clitic a kind of pronominal copy, appear inter alia in Boris Harizanov (2014) <a href="http://stanford.edu/~bharizan/pdfs/Harizanov_2014_NLLT.pdf">Clitic doubling at the syntax-morphology interface: A-movement and morphological merger in Bulgarian</a>. <em>Natural Language and Linguistic Theory</em>.</p>
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+expl in other languages:
+
+[<a href="../../bg/dep/expl.html">bg</a>]
+
+[<a href="../../cs/dep/expl.html">cs</a>]
+
+[<a href="../../de/dep/expl.html">de</a>]
+
+[<a href="../../el/dep/expl.html">el</a>]
+
+[<a href="../../en/dep/expl.html">en</a>]
+
+[<a href="../../es/dep/expl.html">es</a>]
+
+[<a href="../../eu/dep/expl.html">eu</a>]
+
+[<a href="../../fa/dep/expl.html">fa</a>]
+
+[<a href="../../fi/dep/expl.html">fi</a>]
+
+[<a href="../../fr/dep/expl.html">fr</a>]
+
+[<a href="../../ga/dep/expl.html">ga</a>]
+
+[<a href="../../he/dep/expl.html">he</a>]
+
+[<a href="../../hu/dep/expl.html">hu</a>]
+
+[<a href="../../it/dep/expl.html">it</a>]
+
+[<a href="../../ja/dep/expl.html">ja</a>]
+
+[<a href="../../ko/dep/expl.html">ko</a>]
+
+[<a href="../../sv/dep/expl.html">sv</a>]
+
+[<a href="../../u/dep/expl.html">u</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+        // standard jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false
+	});
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'u-dep';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.github.io/docs/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

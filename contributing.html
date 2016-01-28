@@ -1,0 +1,470 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Contributing</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hint.css"/>
+    <script type="text/javascript" src="lib/ext/head.load.min.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/#language-">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/contributing.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="how-to-contribute">How to contribute</h1>
+
+<p>This page describes how to contribute to these online materials.</p>
+
+<p>Contents:</p>
+
+<ul>
+  <li><a href="#preliminaries">Preliminaries</a></li>
+  <li><a href="#editing">Editing</a>
+    <ul>
+      <li><a href="#style-guidelines">Style guidelines</a></li>
+      <li><a href="#file-format">File format</a></li>
+      <li><a href="#editing-online">Editing online</a></li>
+      <li><a href="#using-git">Using Git</a></li>
+    </ul>
+  </li>
+  <li><a href="#filing-issues">Filing issues</a></li>
+  <li><a href="#non-members">Non-members</a></li>
+  <li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+
+<p>Quick links:</p>
+
+<ul>
+  <li><a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a></li>
+  <li><a href="visualization.html">Embedded visualization of dependencies</a></li>
+  <li><a href="release_checklist.html">Release checklist</a></li>
+</ul>
+
+<h2 id="preliminaries">Preliminaries</h2>
+
+<p>Before starting, you may want to have a quick look at the
+<a href="visualization.html">documentation and visualization system introduction</a>.</p>
+
+<p>The online documentation is stored on GitHub, a service for projects
+using the Git version control system. To contribute, you need a GitHub
+account.</p>
+
+<p>If you already have a GitHub account, just make sure you are logged in
+before moving on. If you do not, please go to
+<a href="https://github.com/join">https://github.com/join</a> and create an
+account first. (It’s free, only takes a minute, and there’s a
+reasonable <a href="https://help.github.com/articles/github-privacy-policy">privacy
+policy</a> in
+place.)</p>
+
+<p>After logging in to GitHub, see the following:</p>
+
+<ul>
+  <li><a href="#editing">How to edit the documentation</a></li>
+  <li><a href="#filing-issues">How to file bug reports, feature requests, etc.</a></li>
+</ul>
+
+<h2 id="editing">Editing</h2>
+
+<p>(Note: the following instructions are for project members. If you are
+not a member, see <a href="#non-members">here</a>.)</p>
+
+<p>To get started with editing the materials, first read the brief <a href="#style-guidelines">style
+guidelines</a> and the <a href="#file-format">file
+format description</a> below. Then, the easiest way to edit
+the materials is to use the <a href="#editing-online">online editing features</a>
+provided by GitHub. If you prefer to use your own text editor or need
+to make larger changes, you may wish to <a href="#using-git">use the git version control
+system</a> and work on the files on your own computer.</p>
+
+<h3 id="style-guidelines">Style guidelines</h3>
+
+<p>See also the <a href="contributing_language_specific.html">guidelines for language-specific documentation</a>.
+To maintain the consistency of the documentation, please follow these guidelines:</p>
+
+<ul>
+  <li>All types / labels (POS tags, feature names/values, relation labels) are in
+<code>constant width font</code>. To achieve this, use either a documentation link (see
+below), or backticks in Markdown (e.g. `nsubj`) or <code>&lt;code&gt;</code> in HTML
+(e.g. <code>&lt;code&gt;nsubj&lt;/code&gt;</code>).</li>
+  <li>The first mention of any type other than the one that is the focus of the page
+(the titular one) is linked to the relevant page of documentation. For example,
+on the page for <code>nsubj</code>, write “`nsubj`” and “[case]()”. Repeated mentions of
+the same type may be optionally be linked (if they are too far apart, it makes
+sense to hyperlink again, but it does not make sense to highlight several
+occurrences in the same paragraph)</li>
+  <li>Examples in a foreign language should be followed by an English translation, which is not italicized but it is enclosed in quotes, e.g. <em>der Mann</em> “the man”.
+    <ul>
+      <li>Note that Markdown processing converts straight ASCII quotes (") to typographic (directional) quotation marks (“”), which should be used for all quotes.</li>
+    </ul>
+  </li>
+  <li>Examples given in a foreign script are only italicized if it is Cyrillic or Greek. (In some scripts Italics don’t look nice and the foreign script highlights the word anyway.) They should be immediately followed by a Latin-based transliteration, which is in italics. The transliteration is separated from the original script by a slash, which is not italics.
+    <ul>
+      <li><em>Иван лучший танцор</em> / <em>Ivan lučšij tancor</em> “Ivan is the best dancer”</li>
+      <li>राम इवान से भी बेहतर है / <em>rāma ivāna se bhī behatara hai</em> “Ram is even better than Ivan”</li>
+    </ul>
+  </li>
+  <li>To emphasize part of an example, use the <code>&lt;b&gt;</code> tag. For example, <code>_&lt;b&gt;Which&lt;/b&gt; car_</code> renders as follows: <em><b>Which</b> car</em>.
+    <ul>
+      <li>To emphasize text that is not part of an example, use <code>_light emphasis_</code> (rendering as <em>light emphasis</em>) or <code>**heavy emphasis**</code> (<strong>heavy emphasis</strong>), but <em>not</em> the <code>&lt;b&gt;</code> tag.</li>
+    </ul>
+  </li>
+  <li>If an in-line example shall contain a verbose translation, it is also italics and without quotes, separated by the non-italics abbreviation “lit.” Multi-word expressions that correspond to one token in the original language are joined by a hyphen. The verbose translation is followed by a fluent English translation in its usual format.
+    <ul>
+      <li><em>Seděla na lavičce pod mostem.</em> lit. <em>She-sat on bench under bridge.</em> “She was sitting on a bench under the bridge.”</li>
+    </ul>
+  </li>
+  <li>If it is necessary / expedient to identify the language of the example, it is either identified in plain English (such as German <em>ich bin gekommen</em> “I have come”) or the ISO 639 language code in square brackets is used as shortcut (such as [de] <em>ich bin gekommen</em> “I have come”).</li>
+</ul>
+
+<h3 id="file-format">File format</h3>
+
+<p>The online documentation is generated from a simple format that
+largely resembles plain text. Similarly, the embedded visualizations
+are generated from representations in the Stanford Dependency or
+CoNLL-X formats, each of which can be created and edited manually or
+copied in from the output of relevant tools.</p>
+
+<p>For example, the following:</p>
+
+<div class="example">
+
+  <p>A copula is the relation between the complement of a copular verb and
+the copular verb <em>to be</em> (only).  (We normally take a copula as a dependent of its
+complement.)</p>
+
+  <pre><code class="language-sdparse">Bill is an honest man
+cop(man, is)
+</code></pre>
+
+  <pre><code class="language-sdparse">Ivan is the best dancer
+nsubj(dancer-5, Ivan-1)
+cop(dancer-5, is-2)
+det(dancer-5, the-3)
+amod(dancer-5, best-4)
+</code></pre>
+
+  <p>The copula <em>be</em> is not treated as the
+head of a clause, but rather the dependent of a lexical predicate, as exemplified above.</p>
+
+</div>
+
+<p>is generated from this input:</p>
+
+<pre><code>A copula is the relation between the complement of a copular verb and
+the copular verb *to be* (only).  (We normally take a copula as a dependent of its
+complement.)
+
+~~~ sdparse
+Bill is an honest man
+cop(man, is)
+~~~
+
+~~~ sdparse
+Ivan is the best dancer
+nsubj(dancer-5, Ivan-1)
+cop(dancer-5, is-2)
+det(dancer-5, the-3)
+amod(dancer-5, best-4)
+~~~
+
+The copula *be* is not treated as the
+head of a clause, but rather the dependent of a lexical predicate, as exemplified above.
+</code></pre>
+
+<p>The input is primarily in the
+<a href="http://daringfireball.net/projects/markdown/">Markdown</a> format
+(see also <a href="https://help.github.com/articles/markdown-basics">GitHub Markdown Basics</a> and
+<a href="https://help.github.com/articles/github-flavored-markdown">GitHub Flavored Markdown</a>), which
+can be mostly written like plain text and mixed freely with inline
+HTML. The only exception is the format used for embedding
+visualizations, which is supported as an extension specific to this
+project. To embed a visualization represented in the Stanford
+Dependency format, simply wrap it in lines with <code>~~~ sdparse</code> and
+<code>~~~</code>, as in the example above. (Or, correspondingly, wrap in HTML
+tags <code>&lt;div class="sd-parse"&gt;</code> and <code>&lt;/div&gt;</code>)</p>
+
+<p>The documentation system also supports linking of pages in collections
+using a compact syntax: for example, <code>[u-dep/aux]()</code> expands into
+the following link: <a href="">u-dep/aux</a></p>
+
+<p>For more detail, you can see the documentation for the <a href="http://daringfireball.net/projects/markdown/syntax">Markdown
+syntax</a> and
+<a href="visualization.html">embedded visualizations</a>. However, we believe that the
+formats are simple enough to learn by example and by doing, and
+suggest to proceed directly to the next section (editing).</p>
+
+<h3 id="editing-online">Editing online</h3>
+
+<p>GitHub provides basic online editing functionality. The interface
+looks something like this:</p>
+
+<p><img style="border: 1px solid lightgray" src="img/gh-edit.png" /></p>
+
+<p>To get started, the only relevant parts are the large black edit area
+and the “Cancel” and “Commit changes” buttons at the bottom.</p>
+
+<p>To give this a quick try, click on the following link: <a href="https://github.com/universaldependencies/docs/edit/pages-source/sandbox.md" target="#">edit sandbox document</a>. This opens a “sandbox” document
+in a new tab. After testing it out, feel free to either cancel without
+saving your changes, or save them into the version control system
+using the “Commit changes” button. You can see the resulting document
+<a href="http://universaldependencies.github.io/docs/sandbox.html">here</a>
+(reload to see changes, and please note it may take some time for the
+changes to show up.)</p>
+
+<p>For experimenting with the system, we recommend using the sandbox
+document instead of the “real” documents.</p>
+
+<p>To edit the actual documentation, first find the page you’re
+interested in. For example, to navigate to the documentation for the
+English language <code>dobj</code> (direct object) dependency:</p>
+
+<ul>
+  <li>Start from the homepage (<a href="http://universaldependencies.github.io/docs/">http://universaldependencies.github.io/docs/</a>)</li>
+  <li>Click on the “English relations index” link (go to <a href="http://universaldependencies.github.io/docs/en/dep/index.html">http://universaldependencies.github.io/docs/en/dep/index.html</a>)</li>
+  <li>Click on the “dobj” link (go to <a href="http://universaldependencies.github.io/docs/en/dep/dobj.html">http://universaldependencies.github.io/docs/en/dep/dobj.html</a>)</li>
+</ul>
+
+<p>Then, edit and save your changes:</p>
+
+<ul>
+  <li>Click on the “edit page” link on the top</li>
+  <li>Make your changes in the GitHub editor</li>
+  <li>(Optional: add a message describing your changes in the “Commit changes” box)</li>
+  <li>Click on “Commit changes”</li>
+</ul>
+
+<p>Finally, wait a moment for your revisions to the documentation to be
+compiled (normally no more than 10 seconds) and reload the
+documentation page to make sure they look right.</p>
+
+<p>That’s all you need to get started. If you have any issues using the
+system, please see the <a href="#troubleshooting">troubleshooting</a> section
+below.</p>
+
+<h3 id="using-git">Using Git</h3>
+
+<p>As an alternative to using the <a href="#editing-online">online editing
+features</a>, you can also edit the materials using the
+Git version control system as described in this section.</p>
+
+<p>If you are not previously familiar with Git, please see <a href="https://help.github.com/articles/set-up-git">GitHub
+instructions</a> on setup
+and basic use. The rest of this section assumes that you have git set
+up and are working on a terminal in a unix-like environment. For other
+use cases, please see GitHub documentation.</p>
+
+<p>The project materials are found in the repository
+<a href="https://github.com/universaldependencies/docs">https://github.com/universaldependencies/docs</a>.
+To check out these materials from GitHub, run the following command:</p>
+
+<pre><code>git clone git@github.com:UniversalDependencies/docs.git
+</code></pre>
+
+<p>If successful, this will create the subdirectory <code>docs/</code> containing
+the data of the repository in your current directory. You can then
+edit the files in the repository normally, using your favorite text
+editor. After completing a set of changes, you can commit the changes
+with the command</p>
+
+<pre><code>git commit -a
+</code></pre>
+
+<p>and push them to the shared online repository with</p>
+
+<pre><code>git push
+</code></pre>
+
+<p>if you see the error <code>error: failed to push some refs</code>, it’s likely
+that others pushed changes to the shared online repository while you
+were working. You can retrieve these changes and merge them with
+yours with the command</p>
+
+<pre><code>git pull
+</code></pre>
+
+<p>This covers the very basics only. Please see the extensive materials
+available online at GitHub and elsewhere for details.</p>
+
+<p>Technical note: please <strong>do not</strong> commit anything into the <code>gh-pages</code>
+branch of the repository. The files in this branch are autogenerated
+and will be overwritten on any changes to the repository. (If this
+note makes no sense to you, don’t worry – you cannot do this by
+accident.)</p>
+
+<h2 id="filing-issues">Filing issues</h2>
+
+<p>To file bug reports, feature requests, suggestions for improvement,
+etc., you can use the project issue tracker: <a href="https://github.com/universaldependencies/docs/issues">https://github.com/universaldependencies/docs/issues</a>.</p>
+
+<p>The issue tracker is open to members and non-members alike, and can be
+used to let (other) project members know of any issue with the online
+documentation, including technical problems, mistakes in the
+descriptions or examples, or suggestions for how to improve any aspect
+of the project.</p>
+
+<h2 id="non-members">Non-members</h2>
+
+<p>Although only members of this project can directly edit the online
+materials, you do not need to be a member to contribute. Non-members
+can either <a href="#filing-issues">file issues</a> on the project bug tracker,
+or submit proposed changes as <a href="https://help.github.com/articles/using-pull-requests">pull
+requests</a>.</p>
+
+<h2 id="links">Links</h2>
+
+<ul>
+  <li><a href="http://universaldependencies.github.io/docs/">Home page</a></li>
+  <li><a href="https://github.com/universaldependencies/docs">GitHub repository</a></li>
+  <li><a href="https://github.com/universaldependencies/docs/issues">Issue tracker</a></li>
+</ul>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>Issue: when running locally, the system gives the error message
+<em>cannot load such file – <code>jekyll-redirect-from</code></em>.</p>
+
+<ul>
+  <li>Solution: install the ruby gem
+<a href="https://github.com/jekyll/jekyll-redirect-from"><code>jekyll-redirect-from</code></a>,
+for example with <code>gem install jekyll-redirect-from</code>.</li>
+</ul>
+
+<p>Issue: when running locally, the system gives the error message
+<em>CodeRay::Scanners could not load plugin</em>.</p>
+
+<ul>
+  <li>Solution: check that CodeRay is not running. The <code>_config.yml</code>
+option <code>kramdown: enable_coderay: false</code> should disable coderay.</li>
+</ul>
+
+<p>If you have any trouble with the system, just ask Sampo
+(sampo.pyysalo@gmail.com) or Filip (ginter@cs.utu.fi) or open an issue
+at <a href="http://github.com/universaldependencies/docs/issues">http://github.com/universaldependencies/docs/issues</a>.</p>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = ''; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+        // standard jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false
+	});
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = '';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.github.io/docs/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Visualisation</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hint.css"/>
+    <script type="text/javascript" src="lib/ext/head.load.min.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/#language-">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/visualization.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="quick-introduction-test">Quick introduction (test)</h1>
+
+<p>This online repository contains dependency annotation documentation
+and visualizations, built using a combination of Jekyll, GitHub pages
+and embedded brat visualizations. Here’s a minimal example:</p>
+
+<div class="example">
+
+  <p>An adjectival complement of a verb is an adjectival phrase which functions as the complement (see <a href="">ADJ</a>).</p>
+
+  <pre><code class="language-sdparse">She looks very beautiful
+acomp(looks, beautiful)
+</code></pre>
+
+</div>
+
+<p>The text is <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>
+(with optional inline HTML) and the data for the visualizations is
+represented in either the Stanford Dependency or CoNLL-X format. For
+example, the above visualization is generated from this input:</p>
+
+<pre><code>An adjectival complement of a verb is an adjectival phrase which functions as the complement (see [ADJ]()).
+
+~~~ sdparse
+She looks very beautiful
+acomp(looks, beautiful)
+~~~
+</code></pre>
+
+<p>See the <a href="#more-information">links below</a> for more information.</p>
+
+<h2 id="how-to-contribute">How to contribute</h2>
+
+<p>See <a href="contributing.html">here</a> for instructions on how to contribute to
+this online documentation. See below for details
+on how the visualized examples are created.</p>
+
+<h2 id="more-information">More information:</h2>
+
+<p>The following sources of documentation provide further details:</p>
+
+<ul>
+  <li><a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a></li>
+  <li><a href="https://pages.github.com/">Github pages</a></li>
+  <li><a href="http://brat.nlplab.org/embed.html">Embedded brat</a></li>
+  <li><a href="http://nlp.stanford.edu/software/stanford-dependencies.shtml">Stanford Dependencies</a></li>
+</ul>
+
+<p>Further details are provided below.</p>
+
+<h1 id="automatic-parse-visualization">Automatic parse visualization</h1>
+
+<h2 id="simple-examples">Simple examples</h2>
+
+<p>A single tree in the Stanford Dependency format can be embedded using
+the following syntax:</p>
+
+<pre><code>~~~ sdparse
+Dogs run
+nsubj(run, Dogs)
+~~~
+</code></pre>
+
+<p>which results in this embedded visualization:</p>
+
+<pre><code class="language-sdparse">Dogs run
+nsubj(run, Dogs)
+</code></pre>
+
+<p>The CoNLL-X format is also supported. For example,</p>
+
+<pre><code>~~~ conllx
+1    Dogs   dog    _    NNS    _    2    nsubj
+2    run    run    _    VBP    _    0    ROOT
+~~~
+</code></pre>
+
+<p>gives</p>
+
+<pre><code class="language-conllx">1    Dogs   dog    _    NNS    _    2    nsubj
+2    run    run    _    VBP    _    0    ROOT
+</code></pre>
+
+<p>Similarly, the new <a href="format.html">CoNLL-U format</a> is now supported as well:</p>
+
+<pre><code>~~~ conllu
+# I wrote the letter with a quill.
+1   Я         ja         PRON   _   Case=Nom|Number=Sing|Person=1|PronType=Prs        2   nsubj   _   I
+2   написал   napisat'   VERB   _   Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act   0   root    _   wrote
+3   письмо    pis'mo     NOUN   _   Case=Acc|Gender=Neut|Number=Sing                  2   dobj    _   the-letter
+4   пером     pero       NOUN   _   Case=Ins|Gender=Neut|Number=Sing                  2   nmod    _   with-a-quill
+~~~
+</code></pre>
+
+<pre><code class="language-conllu"># I wrote the letter with a quill.
+1   Я         ja         PRON   _   Case=Nom|Number=Sing|Person=1|PronType=Prs        2   nsubj   _   I
+2   написал   napisat'   VERB   _   Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act   0   root    _   wrote
+3   письмо    pis'mo     NOUN   _   Case=Acc|Gender=Neut|Number=Sing                  2   dobj    _   the-letter
+4   пером     pero       NOUN   _   Case=Ins|Gender=Neut|Number=Sing                  2   nmod    _   with-a-quill
+</code></pre>
+
+<p>The comment lines in the CoNLL-U format can be used to change styles, e.g.
+to highlight a node / arc or to distinguish tree that does not adhere to
+the UD standard:</p>
+
+<pre><code>~~~ conllu
+# This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
+# visual-style nodes yellow
+# visual-style arcs blue
+1   Na        na        ADP     _   _   4   AuxP   _   at
+2   Hlavním   hlavní    ADJ     _   _   3   Atr    _   Main
+3   nádraží   nádraží   NOUN    _   _   1   Adv    _   Station
+4   došlo     dojít     VERB    _   _   0   Pred   _   there-was
+5   k         k         ADP     _   _   4   AuxP   _   to
+6   nehodě    nehoda    NOUN    _   _   5   Obj    _   accident
+7   .         .         PUNCT   _   _   0   AuxK   _   .
+~~~
+</code></pre>
+
+<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
+# visual-style nodes yellow
+# visual-style arcs blue
+1   Na        na        ADP     _   _   4   AuxP   _   at
+2   Hlavním   hlavní    ADJ     _   _   3   Atr    _   Main
+3   nádraží   nádraží   NOUN    _   _   1   Adv    _   Station
+4   došlo     dojít     VERB    _   _   0   Pred   _   there-was
+5   k         k         ADP     _   _   4   AuxP   _   to
+6   nehodě    nehoda    NOUN    _   _   5   Obj    _   accident
+7   .         .         PUNCT   _   _   0   AuxK   _   .
+</code></pre>
+
+<p>(See also <a href="http://spyysalo.github.io/conllu.js/">http://spyysalo.github.io/conllu.js/</a>.)</p>
+
+<p>You can have any number of visualizations on a page, and any
+standard HTML content can be freely mixed with the visualizations.</p>
+
+<h2 id="alternative-form">Alternative form</h2>
+
+<p>As an alternative to the <code>~~~</code> syntax, you can use the equivalent HTML
+tag form:</p>
+
+<pre><code>&lt;div class="sd-parse"&gt;
+Dogs run
+nsubj(run, Dogs)
+&lt;/div&gt;
+</code></pre>
+
+<p>This form is more flexible in allowing e.g. additional attributes
+to control aspects of the visualization. For example,</p>
+
+<pre><code>&lt;div class="sd-parse" id="simple-example-parse" tabs="yes"&gt;
+Dogs run
+nsubj(run, Dogs)
+&lt;/div&gt;
+</code></pre>
+
+<p>gives</p>
+
+<div class="sd-parse" id="simple-example-parse" tabs="yes">
+Dogs run
+nsubj(run, Dogs)
+</div>
+
+<h2 id="ambiguous-tokens">Ambiguous tokens</h2>
+
+<p>If your example has several instances of the same token, you can use their position to refer to the exact token. In the following example <code>can-5</code> refers to the fifth token of the sentence, <code>can</code>.</p>
+
+<pre><code>~~~ sdparse
+I can can the can .
+nsubj(can-3, I)
+aux(can-3, can-2)
+det(can-5,the)
+dobj(can-3,can-5)
+punct(can-3,.)
+~~~
+</code></pre>
+
+<p>will result in this visualization</p>
+
+<pre><code class="language-sdparse">I can can the can .
+nsubj(can-3, I)
+aux(can-3, can-2)
+det(can-5,the)
+dobj(can-3,can-5)
+punct(can-3,.)
+</code></pre>
+
+<h2 id="pos-tags">POS tags</h2>
+
+<p>POS tags are optional and use the format “text/POS”.</p>
+
+<pre><code>~~~ sdparse
+POS/NNP tags/NNS can/MD be/VB attached/VBN to/TO ( any part of ) the/DT sentence/NN text/NN ./.
+dep(tags-2, POS-1)
+nsubjpass(attached-5, tags-2)
+aux(attached-5, can-3)
+auxpass(attached-5, be-4)
+prep(attached-5, to-6)
+det(text-14, the-12)
+nn(text-14, sentence-13)
+pobj(to-6, text-14)
+det(part, any)
+prep(part, of)
+~~~
+</code></pre>
+
+<pre><code class="language-sdparse">POS/NNP tags/NNS can/MD be/VB attached/VBN to/TO ( any part of ) the/DT sentence/NN text/NN ./.
+dep(tags-2, POS-1)
+nsubjpass(attached-5, tags-2)
+aux(attached-5, can-3)
+auxpass(attached-5, be-4)
+prep(attached-5, to-6)
+det(text-14, the-12)
+nn(text-14, sentence-13)
+pobj(to-6, text-14)
+det(part, any)
+prep(part, of)
+</code></pre>
+
+<p>Any literal slashes (“/”) can be escaped using backslash.</p>
+
+<pre><code> ~~~ sdparse
+ \\/\\ escapes/VBZ :/: \\o\//\\o\/
+ nsubj(escapes, \)
+ ~~~
+</code></pre>
+
+<pre><code class="language-sdparse">\\/\\ escapes/VBZ :/: \\o\//\\o\/
+nsubj(escapes, \)
+</code></pre>
+
+<h2 id="features">Features</h2>
+
+<p>Features can be specified using the syntax “text/POS[Name=Value]”.
+Multiple features for a single word are separated by a bar (“|”).</p>
+
+<pre><code>~~~ sdparse
+Token/TAG[Feat1=Val1|Feat2=Val2]
+~~~
+</code></pre>
+
+<pre><code class="language-sdparse">Token/TAG[Feat1=Val1|Feat2=Val2]
+</code></pre>
+
+<h2 id="multiple-lines-of-text">Multiple lines of text</h2>
+
+<p>The literal sequence <code>\n</code> in the SD input text is interpreted as a
+newline. (This sequence should be separated by space from the rest of
+the input.)</p>
+
+<pre><code>~~~ sdparse
+One line \n and another.
+~~~
+</code></pre>
+
+<p>gives:</p>
+
+<pre><code class="language-sdparse">One line \n and another.
+</code></pre>
+
+<h2 id="editing">Editing</h2>
+
+<p>Controls for visualization editing and information is accessible in
+elements with the attribute <code>tabs="yes"</code> (or any other non-empty
+value):</p>
+
+<pre><code>&lt;div class="sd-parse" id="simple-example-parse" tabs="yes"&gt;
+Dogs run
+nsubj(run, Dogs)
+&lt;/div&gt;
+</code></pre>
+
+<p>This gives:</p>
+
+<div class="sd-parse" id="simple-example-parse" tabs="yes">
+Dogs run
+nsubj(run, Dogs)
+</div>
+
+<p>You can click on the tab on the top right to edit the visualization,
+but note that the edits are not saved anywhere as there’s no
+server. This is mostly useful to build and debug examples.</p>
+
+<h2 id="unicode">Unicode</h2>
+
+<p>Everything is unicode-compliant.</p>
+
+<pre><code>~~~ sdparse
+ロボットは 東大に 入れる か 。
+nsubj(入れる, ロボットは)
+nommod(入れる, 東大に)
+~~~
+</code></pre>
+
+<pre><code class="language-sdparse">ロボットは 東大に 入れる か 。
+nsubj(入れる, ロボットは)
+nommod(入れる, 東大に)
+</code></pre>
+
+<h2 id="links-to-documentation">Links to documentation</h2>
+
+<p>The system supports a simplified syntax for linking documentation
+pages that are part of a <em>collection</em> (e.g. universal dependency
+types, POS tags, etc.).</p>
+
+<p>The basic syntax is <code>[COLL/DOC]()</code>, where <code>COLL</code> is the collection
+name and <code>DOC</code> the document title. For example, <code>[u-dep/aux]()</code> is
+linked as follows: <a href="">u-dep/aux</a>.</p>
+
+<p>The shorter form <code>[DOC]()</code> (omitting the collection) can be used when
+referring to another document in the current collection (e.g. linking
+between different documents in the <code>u-dep</code> collection) or when the
+document title is unique. For example, <code>[nmod:own]()</code> can be assured
+to link to <a href="">nmod:own</a> as the type is unique to the Finnish
+annotation.</p>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = ''; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+        // standard jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false
+	});
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = '';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.github.io/docs/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

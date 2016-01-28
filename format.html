@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Format</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hint.css"/>
+    <script type="text/javascript" src="lib/ext/head.load.min.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/#language-">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/format.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="conll-u-format">CoNLL-U Format</h1>
+
+<p>We use a revised version of <a href="http://ilk.uvt.nl/conll/#dataformat">the CoNLL-X format</a> called CoNLL-U. 
+Annotations are encoded in plain text files (UTF-8, using only the LF character as line break) with three types of lines:</p>
+
+<ol>
+  <li>Word lines containing the annotation of a word/token in 10 fields separated by single tab characters; see below.</li>
+  <li>Blank lines marking sentence boundaries.</li>
+  <li>Comment lines starting with hash (#).</li>
+</ol>
+
+<p>Sentences consist of one or more word lines, and word lines contain the following fields:</p>
+
+<ol>
+  <li>ID: Word index, integer starting at 1 for each new sentence; may be a range for tokens with multiple words.</li>
+  <li>FORM: Word form or punctuation symbol.</li>
+  <li>LEMMA: Lemma or stem of word form.</li>
+  <li>UPOSTAG: <a href="u/pos/index.html">Universal part-of-speech tag</a> drawn from our revised version of the Google universal POS tags.</li>
+  <li>XPOSTAG: Language-specific part-of-speech tag; underscore if not available.</li>
+  <li>FEATS: List of morphological features from the <a href="u/feat/index.html">universal feature inventory</a> or from a defined <a href="ext-feat-index.html">language-specific extension</a>; underscore if not available.</li>
+  <li>HEAD: Head of the current token, which is either a value of ID or zero (0).</li>
+  <li>DEPREL: <a href="u/dep/index.html">Universal Stanford dependency relation</a> to the HEAD (root iff HEAD = 0) or a defined language-specific subtype of one.</li>
+  <li>DEPS: List of secondary dependencies (head-deprel pairs).</li>
+  <li>MISC: Any other annotation.</li>
+</ol>
+
+<p>The fields DEPS and MISC replace the obsolete fields PHEAD and PDEPREL of the CoNLL-X format. 
+In addition, we have modified the usage of the ID, FORM, LEMMA, XPOSTAG, FEATS and HEAD fields as explained below.</p>
+
+<p>The fields must additionally meet the following constraints:</p>
+
+<ul>
+  <li>Fields must not be empty.</li>
+  <li>Fields must not contain space characters.</li>
+  <li>Underscore (_) is used to denote unspecified values in all fields except ID. Note that no format-level distinction is made for the rare cases where the FORM or LEMMA is the literal underscore – processing in such cases is application-dependent. Further, in UD treebanks the UPOSTAG, HEAD, and DEPREL columns are not allowed to be left unspecified.</li>
+</ul>
+
+<h1 id="words-and-tokens">Words and Tokens</h1>
+
+<p>To accommodate the representation of both words and (multiword) tokens (see <a href="u/overview/tokenization.html">Tokenization</a>), 
+we adopt an extension of the original CoNLL-X token indexing scheme, where words are indexed with integers 1, 2, 3, …, 
+while (multiword) tokens are indexed with integer ranges like 1-2 or 3-5. 
+Lines representing such tokens are inserted before the first word in the range.
+These ranges must be nonempty and must not overlap.
+They have a FORM value – the string that occurs in the sentence – but have an underscore in all the remaining fields
+(because the token represents multiple words, each with its own lemma, part-of-speech tag, syntactic head, and so on). 
+This is illustrated in the following annotation snippet,
+showing only the first three fields for the Spanish sentence <em>vámonos al mar</em> (let’s go to the sea):</p>
+
+<pre><code>1-2    vámonos   _
+1      vamos     ir
+2      nos       nosotros
+3-4    al        _
+3      a         a
+4      el        el
+5      mar       mar		
+</code></pre>
+
+<p>We extract the word sequence by skipping all range IDs:</p>
+
+<pre><code>1      vamos     ir
+2      nos       nosotros
+3      a         a
+4      el        el
+5      mar       mar		
+</code></pre>
+
+<p>We extract the raw token sequence by skipping all integer IDs that are included in a preceding range ID:</p>
+
+<pre><code>1-2    vámonos   _
+3-4    al        _
+5      mar       mar		
+</code></pre>
+
+<p>To facilitate the use of CoNLL-U treebanks, we provide a script that extracts either the annotated <em>word</em> sequence (with
+the original integer IDs) or the raw <em>token</em> sequence with a heuristic mapping of morphological and syntactic annotation and plain integer indexing (like <a href="http://ilk.uvt.nl/conll/#dataformat">the traditional CoNLL-X format</a>). Moreover, to 
+facilitate parser evaluation for languages with nondeterministic word segmentation, we also provide a mapping to a format
+where tokens are indexed with integers and words (if needed) with decimals. We refer to this scheme as <em>token indexing,</em>
+in contrast to the <em>word indexing</em> scheme used as the offical treebank representation. Our running example looks as follows with token indexing:</p>
+
+<pre><code>1      vámonos   _
+1.1    vamos     ir
+1.2    nos       nosotros
+2      al        _
+2.1    a         a
+2.2    el        el
+3      mar       mar		
+</code></pre>
+
+<h1 id="morphological-annotation">Morphological Annotation</h1>
+
+<p>The UPOSTAG field contains a part-of-speech tag from the <a href="u/pos/index.html">universal POS tag</a> set, while the XPOSTAG optionally contains a language-specific part-of-speech tag, normally from a traditional, more fine-grained tagset. If the XPOSTAG field is used, the treebank-specific documentation should define a mapping from XPOSTAG to UPOSTAG values (which may be context-sensitive 
+and refer to other fields as well). If no language-specific tags are available, the XPOSTAG field should contain an underscore for all words.</p>
+
+<p>The FEATS field contains a list
+of morphological features, with vertical bar (|) as list separator and with underscore to represent the empty list.
+All features should be represented as attribute-value pairs, with an equals sign (=) separating the attribute from the value. In addition, features should as far as possible be selected from the <a href="u/feat/index.html">universal feature inventory</a> and be sorted alphabetically by attribute names. It is possible to declare that a feature has two or more values for a given word: <code>Case=Acc,Dat</code>. In this case, the values are sorted alphabetically. In sorting, uppercase letters are considered identical to their lowercase counterparts. Feature names must have the form <code>[A-Z0-9][A-Z0-9a-z]*(\[[a-z0-9]+\])?</code> and feature values must have the form <code>[A-Z0-9][a-zA-Z0-9]*</code>.</p>
+
+<p>Here is an example, showing only the first five fields for the 
+Swedish sentence <em>Då var han elva år</em> (Then he was eleven years old):</p>
+
+<pre><code>1    Då      då     ADV      AB                    _
+2    var     vara   VERB     VB.PRET.ACT           Tense=Past|Voice=Act
+3    han     han    PRON     PN.UTR.SIN.DEF.NOM    Case=Nom|Definite=Def|Gender=Com|Number=Sing
+4    elva    elva   NUM      RG.NOM                Case=Nom|NumType=Card
+5    år      år     NOUN     NN.NEU.PLU.IND.NOM    Case=Nom|Definite=Ind|Gender=Neut|Number=Plur
+6    .       .      PUNCT    DL.MAD                _
+</code></pre>
+
+<p>Morphological annotation is only provided for words. 
+Tokens that are not words have an underscore in the UPOSTAG, XPOSTAG and FEATS fields.</p>
+
+<h1 id="syntactic-annotation">Syntactic Annotation</h1>
+
+<p>The HEAD and DEPREL fields are used to encode a dependency tree over words. The DEPREL value should be a <a href="u/dep/index.html">universal Stanford dependency relation</a> or a language-specific subtype of such a relation (defined in the language-specific documentation). 
+As in the case of morphology, syntactic annotation is only provided for words.
+Tokens that are not words have an underscore in both the HEAD and DEPREL fields. However, the script that extracts the token sequence optionally provides a heuristic mapping of the morphological and syntactic annotation to non-word tokens. For example, given the following annotation of the English sentence <em>I haven’t a clue</em>:</p>
+
+<pre><code>1     I         I      PRON    PRP   Case=Nom|Number=Sing|Person=1     2   nsubj
+2-3   haven't   _      _       _     _                                 _   _
+2     have      have   VERB    VBP    Number=Sing|Person=1|Tense=Pres   0   root
+3     not       not    PART    RB    Negative=Neg                      2   neg
+4     a         a      DET     DT    Definite=Ind|PronType=Art         5   det
+5     clue      clue   NOUN    NN    Number=Sing                       2   dobj
+6     .         .      PUNCT   .     _                                 2   punct
+</code></pre>
+
+<p>We can extract the following approximation at the token level (with token indexing):</p>
+
+<pre><code>1     I         I      PRON    PRP   Case=Nom|Number=Sing|Person=1                  2   nsubj
+2     haven't   _      VERB    _     Negative=Neg|Number=Sing|Person=1|Tense=Pres   0   root
+3     a         a      DET     DT    Definite=Ind|PronType=Art                      4   det
+4     clue      clue   NOUN    NN    Number=Sing                                    2   dobj
+5     .         .      PUNCT   .     _                                              2   punct
+</code></pre>
+
+<p>The usefulness of this approximate representation will vary from language to language, depending on the divergence between tokens and words and on the arbitrariness of the heuristic mapping.</p>
+
+<p>The HEAD and DEPREL values define the basic dependencies which must be strictly a tree. However, in addition to these basic dependencies, enhanced representations may require additional dependency relations, for example, when dependencies propagate over coordinate structures. Such dependencies can be specified in the DEPS field, using a list of head-relation pairs. We use colon (:) to separate the head and relation and (as usual) vertical bar (|) to separate list items and underscore for the empty list. The list is to be sorted by the index of the head: <code>4:nsubj|11:nsubj</code>.</p>
+
+<p>Here is an example, showing the first nine fields for the English sentence <em>They buy and sell books</em>:</p>
+
+<pre><code>1    They     they    PRON    PRP    Case=Nom|Number=Plur               2    nsubj    4:nsubj
+2    buy      buy     VERB    VBP    Number=Plur|Person=3|Tense=Pres    0    root     _
+3    and      and     CONJ    CC     _                                  2    cc       _
+4    sell     sell    VERB    VBP    Number=Plur|Person=3|Tense=Pres    2    conj     0:root
+5    books    book    NOUN    NNS    Number=Plur                        2    dobj     4:dobj
+6    .        .       PUNCT   .      _                                  2    punct    _
+</code></pre>
+
+<p>The dependency relations in both DEPREL and DEPS must have the form <code>[a-z][a-z_-]*(:[a-z][a-z_-]*)?</code>,
+and use of the dash (<code>-</code>) character instead of underscore (<code>_</code>) is encouraged.</p>
+
+<h1 id="miscellaneous">Miscellaneous</h1>
+
+<p>The final MISC field is for storing any additional information that does not fit into any of the other fields, such as language-specific annotation, any information about other linguistic levels such as discourse,
+or projective heads and dependency relations (cf. the old PHEAD and PDEPREL fields of 
+the CoNLL-X format). The exact format used in this field should be specified in the
+treebank-specific documentation, but it is recommended to use a list of attribute-value pairs as in the FEATS field. 
+If the MISC field is not used, it should contain an underscore.</p>
+
+<h2 id="untokenized-text">Untokenized text</h2>
+
+<p>To facilitate reconstruction of original (pre-tokenization) text, the information on original word segmentation should be kept if available. Every token after which there was no space in the original text should contain <code>SpaceAfter=No</code> in its MISC field. Note that this feature applies to the token level, not to the word level. Syntactic words that are just part of surface tokens will be ignored during detokenization and thus do not need the feature. In the example below, the line indexed 1 does not contain the <code>SpaceAfter</code> feature even though there was no space between <em>He</em> and <em>‘s</em> in the underlying sentence. However, if there was no space between <em>He’s</em> and the third token, the 1-2 line would have <code>SpaceAfter=No</code>.</p>
+
+<pre><code>1-2   He's      _         _       _       _                                 _   _       _   _
+1     He        he        PRON    PRP     Case=Nom|Number=Sing|Person=3     2   nsubj   _   _
+2     is        be        VERB    VBZ     Number=Sing|Person=3|Tense=Pres   0   root    _   _
+3     in        in        ADP     IN      _                                 6   case    _   _
+4     the       the       DET     DT      Definite=Def|PronType=Art         6   det     _   _
+5     United    unite     VERB    VBD     Tense=Past|VerbForm=Part          6   amod    _   _
+6     Kingdom   kingdom   NOUN    NN      Number=Sing                       2   nmod    _   _
+7     (         (         PUNCT   -LRB-   _                                 8   punct   _   SpaceAfter=No
+8     UK        UK        PROPN   NNP     Number=Sing                       6   appos   _   SpaceAfter=No
+9     )         )         PUNCT   -RRB-   _                                 8   punct   _   SpaceAfter=No
+10    .         .         PUNCT   .       _                                 2   punct   _   _
+</code></pre>
+
+<h1 id="sentence-boundaries-and-comments">Sentence Boundaries and Comments</h1>
+
+<p>There must be exactly one blank line <em>after</em> every sentence, including the last sentence in the file.
+Empty sentences are not allowed.</p>
+
+<p>Lines starting with the <code>#</code> character and preceding a sentence are considered as carrying metadata relevant to the following sentence. These lines are an integral part of the format as they give the ability to embed metadata together with the sentences. Consequently, any tools compatible with the CoNLL-U format should carry these lines over into their output (unless specifically designed to process them in some way). The contents of the comments and metadata is left unrestricted and will vary depending on the application. Comment and metadata lines inside sentences (i.e., between the token lines) are disallowed.</p>
+
+<pre><code># sent_id 1
+# ...
+1    They     they    PRON    PRP    Case=Nom|Number=Plur              2   nsubj   4:nsubj   _
+2    buy      buy     VERB    VBP     Number=Plur|Person=3|Tense=Pres   0   root    _         _
+3    and      and     CONJ    CC     _                                 2   cc      _         _
+4    sell     sell    VERB    VBP     Number=Plur|Person=3|Tense=Pres   2   conj    0:root    _
+5    books    book    NOUN    NNS    Number=Plur                       2   dobj    4:dobj    SpaceAfter=No
+6    .        .       PUNCT   .      _                                 2   punct   _         _
+
+# sent_id 2
+# ...
+1     I         I      PRON    PRP   Case=Nom|Number=Sing|Person=1     2   nsubj   _   _
+2-3   haven't   _      _       _     _                                 _   _       _   _
+2     have      have   VERB    VBP    Number=Sing|Person=1|Tense=Pres   0   root    _   _
+3     not       not    PART    RB    Negative=Neg                      2   neg     _   _
+4     a         a      DET     DT    Definite=Ind|PronType=Art         4   det     _   _
+5     clue      clue   NOUN    NN    Number=Sing                       2   dobj    _   SpaceAfter=No
+6     .         .      PUNCT   .     _                                 2   punct   _   _
+</code></pre>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = ''; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+        // standard jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false
+	});
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = '';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.github.io/docs/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

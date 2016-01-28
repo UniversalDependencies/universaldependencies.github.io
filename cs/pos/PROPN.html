@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>PROPN</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/#language-cs">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/cs/pos">cs/pos</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-pos/PROPN.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>PROPN</code>: proper noun</h2>
+
+<h3 id="definition">Definition</h3>
+
+<p>A proper noun is a noun that is the name
+of a specific individual, place, or object.
+Czech proper nouns are always written starting with an uppercase letter.
+Note that names of days of week
+<em>(pondělí, úterý, středa, čtvrtek, pátek, sobota, neděle) </em>
+and names of months
+<em>(leden, únor, březen, duben, květen, červen, červenec, srpen, září, říjen, listopad, prosinec) </em>
+are not written capitalized (unlike in English)
+and are not considered proper nouns.</p>
+
+<p>Single-word named entities should be tagged <code>PROPN</code> even if they originate
+from a common noun <em>(Zajíc, Huť) </em> or an adjective <em>(Veselý, Teplá). </em>
+Even if they were originally adjectives and inflect according to adjectival
+paradigms, they behave syntactically as nouns. For instance, <em>Teplá </em>
+(a river and city in western Bohemia) is originally feminine form of the
+adjective <em>teplý </em> “warm” but as a geographical name, it is a noun.
+It denotes a concrete location (rather than a property of somebody/something)
+and its feminine gender is fixed (while adjectives have forms in all three
+genders).</p>
+
+<p>Note that names of languages <em>(čeština, angličtina)</em>
+and adjectives derived from geographical names <em>(český, anglický </em> “Czech, English”)
+are written in lowercase and are not tagged <code>PROPN</code>.</p>
+
+<p>Personal names are typically treated as a sequence of proper nouns
+(one or more given names and one or more surnames).
+If the name contains prepositions, conjunctions or articles (foreign names
+and old Czech names), these are tagged as <code>ADP</code>, <code>CONJ</code> and <code>DET</code>,
+respectively.</p>
+
+<p>Czech (and other Slavic) multi-word named entities have internal syntactic
+structure, which is preserved in the annotation. The headword is always noun
+and there may be other nouns involved. They will be tagged either <code>PROPN</code> or
+<code>NOUN</code> and possible ambiguities must be resolved individually.
+Modifying adjectives are never tagged <code>PROPN</code>. Even if an adjective is the
+first word of a multi-word name, and thus it starts with an uppercase letter,
+it is still tagged <code>ADJ</code>.
+Similarly, function words in named entities retain their normal tags.
+These rules are less strict for foreign named entities where the original
+part of speech is hidden for a Czech speaker.</p>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li><em><b>Bečov</b></em>.<code>PROPN</code> <em>nad</em>.<code>ADP</code> <em><b>Teplou</b></em>.<code>PROPN</code> is a city. <em>Bečov </em> is the head
+and the <em>nad Teplou </em> part refers to the river flowing through the city,
+to distinguish it from other Bečovs.</li>
+  <li><em>Červený</em>.<code>ADJ</code> <em><b>Újezd</b></em>.<code>PROPN</code> is a village. <em>Újezd </em> is the head and it is
+tagged <code>PROPN</code> although it originates in the common noun <em>újezd </em> “district, riding”.
+There are many locations named <em>Újezd </em> and the noun is perceived as a proper
+noun in current Czech. <em>Červený </em> is an adjective meaning “red” and it is
+tagged <code>ADJ</code>.</li>
+  <li><em>Červená</em>.<code>ADJ</code> <em>řeka</em>.<code>NOUN</code> “Red River”. Even though the two words
+together are a name of a particular river, <em>řeka</em> is a common noun and is
+tagged as such.</li>
+  <li><em>Organizace</em>.<code>NOUN</code> <em>spojených</em>.<code>ADJ</code> <em>národů</em>.<code>NOUN</code> “United Nations Organization”
+consists of three words, none of which is proper noun. However, the acronym
+<em><b>OSN</b> </em> “UNO” is a single-token name and is tagged <code>PROPN</code>.</li>
+</ul>
+
+<h3 id="conversion-from-the-prague-dependency-treebank">Conversion from the Prague Dependency Treebank</h3>
+
+<p>The PDT set of morphological (part-of-speech) tags does not distinguish
+common and proper nouns. However, lemmas in PDT contain additional features
+that also encode types of named entities. When converting the PDT annotation
+to UD, these lemma features are removed, the <code>PROPN</code> tag is used and the feature
+<a href="">cs-feat/NameType</a> is added to the universal features to preserve the type.
+Only nouns are treated this way.
+Foreign adjectives are not converted to <code>PROPN</code> despite the fact
+that they entered Czech as parts of foreign names and their lemmas contain
+the name type feature.</p>
+
+<p>The following table lists the name types together with the most frequent examples.
+See <a href="http://ufal.mff.cuni.cz/techrep/tr27.pdf">http://ufal.mff.cuni.cz/techrep/tr27.pdf</a>,
+page 8, section 2.1 (Lemma structure) for more details.</p>
+
+<table>
+<tr><td><tt>_;Y</tt></td><td>given name</td><td><em>Jan, Jiří, Václav, Petr, Josef</em></td><td>“Jan, Jiří, Václav, Petr, Josef”</td></tr>
+<tr><td><tt>_;S</tt></td><td>surname</td><td><em>Klaus, Havel, Němec, Jelcin, Svoboda</em></td><td>“Klaus, Havel, Němec, Yeltsin, Svoboda”</td></tr>
+<tr><td><tt>_;E</tt></td><td>member of a particular nation, inhabitant of a particular territory</td><td><em>Němec, Čech, Srb, Američan, Slovák</em></td><td>“German, Czech, Serbian, American, Slovak”</td></tr>
+<tr><td><tt>_;G</tt></td><td>geographical name</td><td><em>Praha, ČR, Evropa, Německo, Brno</em></td><td>“Prague, CR, Europe, Germany, Brno”</td></tr>
+<tr><td><tt>_;K</tt></td><td>company, organization, institution</td><td><em>ODS, OSN, Sparta, ODA, Slavia</em></td><td>“ODS, UN, Sparta, ODA, Slavia”</td></tr>
+<tr><td><tt>_;R</tt></td><td>product</td><td><em>LN, Mercedes, Tatra, PC, MF</em></td><td>“LN, Mercedes, Tatra, PC, MF”</td></tr>
+<tr><td><tt>_;m</tt></td><td>other proper name: names of mines, stadiums, guerilla bases etc.</td><td><em>US, PVP, Prix, Rapaport, Tour</em></td><td>“US, PVP, Prix, Rapaport, Tour”</td></tr>
+</table>
+
+<h2 id="diffs">Diffs</h2>
+
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+
+<p>Articles in foreign names <em>(the, die, le) </em> are tagged <a href="">ADJ</a>, not <a href="">DET</a>.
+Otherwise, the morphological analysis usually includes the original part of speech of foreign words.</p>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="http://www-01.sil.org/linguistics/GlossaryOfLinguisticTerms/WhatIsAProperNoun.htm">Loos, Eugene E., et al. 2003. Glossary of linguistic terms: What is a proper noun?</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Proper_noun">Wikipedia</a></li>
+</ul>
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+
+<hr />
+
+<h2 id="treebank-statistics-udczech">Treebank Statistics (UD_Czech)</h2>
+
+<p>There are 15254 <code>PROPN</code> lemmas (26%), 21954 <code>PROPN</code> types (17%) and 84031 <code>PROPN</code> tokens (6%).
+Out of 17 observed tags, the rank of <code>PROPN</code> is: 2 in number of lemmas, 4 in number of types and 6 in number of tokens.</p>
+
+<p>The 10 most frequent <code>PROPN</code> lemmas: <em>Praha, ČR, Evropa, LN, Jan, Jiří, Německo, Brno, ODS, USA</em></p>
+
+<p>The 10 most frequent <code>PROPN</code> types:  <em>Praha, ČR, Praze, LN, ODS, USA, J, Jiří, Jan, OSN</em></p>
+
+<p>The 10 most frequent ambiguous lemmas: <em>J</em> (<a href="">PROPN</a> 422, <a href="">ADJ</a> 30), <em>M</em> (<a href="">PROPN</a> 244, <a href="">NOUN</a> 8, <a href="">ADJ</a> 1), <em>V</em> (<a href="">PROPN</a> 210, <a href="">NUM</a> 23, <a href="">NOUN</a> 7, <a href="">ADJ</a> 5), <em>A</em> (<a href="">PROPN</a> 172, <a href="">NOUN</a> 8, <a href="">ADJ</a> 8), <em>York</em> (<a href="">PROPN</a> 165, <a href="">ADJ</a> 5), <em>P</em> (<a href="">PROPN</a> 136, <a href="">ADJ</a> 4, <a href="">NOUN</a> 2), <em>S</em> (<a href="">PROPN</a> 116, <a href="">ADJ</a> 12, <a href="">NOUN</a> 2), <em>Washington</em> (<a href="">PROPN</a> 111, <a href="">ADJ</a> 1), <em>r</em> (<a href="">NOUN</a> 55, <a href="">ADV</a> 1, <a href="">PROPN</a> 1), <em>F</em> (<a href="">PROPN</a> 99, <a href="">NOUN</a> 12, <a href="">ADJ</a> 10)</p>
+
+<p>The 10 most frequent ambiguous types:  <em>J</em> (<a href="">PROPN</a> 422, <a href="">ADJ</a> 30, <a href="">NOUN</a> 3), <em>M</em> (<a href="">PROPN</a> 244, <a href="">NOUN</a> 51, <a href="">X</a> 3, <a href="">ADJ</a> 1), <em>V</em> (<a href="">ADP</a> 3736, <a href="">PROPN</a> 210, <a href="">NUM</a> 23, <a href="">NOUN</a> 15, <a href="">ADJ</a> 6, <a href="">ADV</a> 2), <em>A</em> (<a href="">CONJ</a> 1042, <a href="">PROPN</a> 172, <a href="">NOUN</a> 93, <a href="">ADJ</a> 19, <a href="">X</a> 4), <em>Rusko</em> (<a href="">PROPN</a> 163, <a href="">ADJ</a> 3), <em>Německo</em> (<a href="">PROPN</a> 144, <a href="">ADJ</a> 2), <em>P</em> (<a href="">PROPN</a> 136, <a href="">NOUN</a> 124, <a href="">ADJ</a> 17, <a href="">ADP</a> 1), <em>S</em> (<a href="">ADP</a> 470, <a href="">PROPN</a> 117, <a href="">NOUN</a> 38, <a href="">ADJ</a> 14, <a href="">X</a> 3), <em>r</em> (<a href="">NOUN</a> 433, <a href="">ADV</a> 1, <a href="">PROPN</a> 1), <em>F</em> (<a href="">PROPN</a> 99, <a href="">NOUN</a> 27, <a href="">ADJ</a> 10)</p>
+
+<ul>
+  <li><em>J</em>
+    <ul>
+      <li><a href="">PROPN</a> 422: <em>Úvodní slovo přednese <b>J</b> . Gebhard .</em></li>
+      <li><a href="">ADJ</a> 30: <em><b>J</b> - klub :</em></li>
+      <li><a href="">NOUN</a> 3: <em>na “ rozbití “ Země je zapotřebí 10 33 <b>J</b> ) .</em></li>
+    </ul>
+  </li>
+  <li><em>M</em>
+    <ul>
+      <li><a href="">PROPN</a> 244: <em><b>M</b> . Singer , Národohospodářský ústav AV ČR a CERGE Praha</em></li>
+      <li><a href="">NOUN</a> 51: <em>” Nesnesu soucit , “ řekla mi na rozloučenou Jana <b>M</b> .</em></li>
+      <li><a href="">X</a> 3: <em>Nenápadný půvab <b>M</b> . A . S . H .</em></li>
+      <li><a href="">ADJ</a> 1: <em>Známá je již předskokanka R . E . <b>M</b> . , kteří se objeví ve Sportovní hale 26 . března příštího roku .</em></li>
+    </ul>
+  </li>
+  <li><em>V</em>
+    <ul>
+      <li><a href="">ADP</a> 3736: <em><b>V</b> mnoha směrech dochází k obratu .</em></li>
+      <li><a href="">PROPN</a> 210: <em>K . <b>V</b> . M . : Rozšiřování je obtížné hlavně z politického hlediska .</em></li>
+      <li><a href="">NUM</a> 23: <em>ALEŠ <b>V</b> .</em></li>
+      <li><a href="">NOUN</a> 15: <em>R . <b>V</b> .</em></li>
+      <li><a href="">ADJ</a> 6: <em>Cook ( <b>V</b> . Brit . ) 1 : 58 : 44 , 2 .</em></li>
+      <li><a href="">ADV</a> 2: <em>S <b>V</b> . I . P . prostory však prý byla na obou stadionech spokojenost . . .</em></li>
+    </ul>
+  </li>
+  <li><em>A</em>
+    <ul>
+      <li><a href="">CONJ</a> 1042: <em><b>A</b> skutečně přišel s návrhem na zjednodušený model řízení .</em></li>
+      <li><a href="">PROPN</a> 172: <em>Přenosová rychlost : ( <b>A</b> 4 / sec ) 12</em></li>
+      <li><a href="">NOUN</a> 93: <em>Buďte <b>A</b> , B paty kolmic spuštěných z bodů <b>A</b> , B na přímku q .</em></li>
+      <li><a href="">ADJ</a> 19: <em><b>A</b> O Travel se srazit nedala</em></li>
+      <li><a href="">X</a> 4: <em>Nenápadný půvab M . <b>A</b> . S . H .</em></li>
+    </ul>
+  </li>
+  <li><em>Rusko</em>
+    <ul>
+      <li><a href="">PROPN</a> 163: <em><b>Rusko</b> a Čína vymezí hranice</em></li>
+      <li><a href="">ADJ</a> 3: <em><b>Rusko</b> - lotyšské rozhovory o stažení jednotek bývalé sovětské armády skončilo ve středu v lotyšském letovisku Jurmala .</em></li>
+    </ul>
+  </li>
+  <li><em>Německo</em>
+    <ul>
+      <li><a href="">PROPN</a> 144: <em><b>Německo</b></em></li>
+      <li><a href="">ADJ</a> 2: <em><b>Německo</b> - českou péčí vznikla letos v létě v Jihlavě zajímavá muzejní expozice : objevně si všímá mládí skladatele a dirigenta Gustava Mahlera .</em></li>
+    </ul>
+  </li>
+  <li><em>P</em>
+    <ul>
+      <li><a href="">PROPN</a> 136: <em><b>P</b> . L . , Ostrava</em></li>
+      <li><a href="">NOUN</a> 124: <em>S V . I . <b>P</b> . prostory však prý byla na obou stadionech spokojenost . . .</em></li>
+      <li><a href="">ADJ</a> 17: <em>Velký úspěch má v poslední době také program S . <b>P</b> . Z .</em></li>
+      <li><a href="">ADP</a> 1: <em><b>P</b> . S .</em></li>
+    </ul>
+  </li>
+  <li><em>S</em>
+    <ul>
+      <li><a href="">ADP</a> 470: <em><b>S</b> velkou pravděpodobností u jednoho pobytu naše spolupráce neskončila .</em></li>
+      <li><a href="">PROPN</a> 117: <em>P . <b>S</b> . : Souhlasím .</em></li>
+      <li><a href="">NOUN</a> 38: <em>Buď <b>S</b> bod v němž k tomuto rozlomení dochází ( viz obr . 9 ) .</em></li>
+      <li><a href="">ADJ</a> 14: <em>Velký úspěch má v poslední době také program <b>S</b> . P . Z .</em></li>
+      <li><a href="">X</a> 3: <em>Nenápadný půvab M . A . <b>S</b> . H .</em></li>
+    </ul>
+  </li>
+  <li><em>r</em>
+    <ul>
+      <li><a href="">NOUN</a> 433: <em>Skutečnost <b>r</b> . 1992</em></li>
+      <li><a href="">ADV</a> 1: <em>Uwe Fink z Arizonské univerzity zkoumal spektra Yamakovy komety ( 1988 <b>r</b> ) a zjistil , že prakticky neobsahuje molekulární uhlík a kyan , čímž se výrazně liší od běžných komet .</em></li>
+      <li><a href="">PROPN</a> 1: <em>( <b>r</b> ) ( ČT 1 - 20.30 )</em></li>
+    </ul>
+  </li>
+  <li><em>F</em>
+    <ul>
+      <li><a href="">PROPN</a> 99: <em><b>F</b> . Castro : Za kubánský exodus nesou vinu Spojené státy</em></li>
+      <li><a href="">NOUN</a> 27: <em>Mansell se vrací do <b>F</b> 1</em></li>
+      <li><a href="">ADJ</a> 10: <em><b>F</b> - INVEST se stal majitelem Fosfy</em></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<p>The form / lemma ratio of <code>PROPN</code> is 1.439229 (the average of all parts of speech is 2.195970).</p>
+
+<p>The 1st highest number of forms (11) was observed with the lemma “Čech”: <em>ČECH, ČEŠI, Čech, Čecha, Čechem, Čechovi, Čechy, Čechů, Čechům, Češi, Češích</em></p>
+
+<p>The 2nd highest number of forms (10) was observed with the lemma “Jan”: <em>JAN, JANA, Jan, Jana, Janem, Janovi, Janové, Janu, Jany, Janů</em></p>
+
+<p>The 3rd highest number of forms (10) was observed with the lemma “Němec”: <em>NĚMCI, NĚMCŮ, NĚMEC, Němce, Němcem, Němci, Němcích, Němců, Němcům, Němec</em></p>
+
+<p><code>PROPN</code> occurs with 9 features: <a href="">cs-feat/NameType</a> (84031; 100% instances), <a href="">cs-feat/Negative</a> (84031; 100% instances), <a href="">cs-feat/Gender</a> (82083; 98% instances), <a href="">cs-feat/Number</a> (68761; 82% instances), <a href="">cs-feat/Case</a> (66478; 79% instances), <a href="">cs-feat/Animacy</a> (48949; 58% instances), <a href="">cs-feat/Abbr</a> (13042; 16% instances), <a href="">cs-feat/Foreign</a> (3684; 4% instances), <a href="">cs-feat/Style</a> (28; 0% instances)</p>
+
+<p><code>PROPN</code> occurs with 44 feature-value pairs: <code>Abbr=Yes</code>, <code>Animacy=Anim</code>, <code>Animacy=Inan</code>, <code>Case=Acc</code>, <code>Case=Dat</code>, <code>Case=Gen</code>, <code>Case=Ins</code>, <code>Case=Loc</code>, <code>Case=Nom</code>, <code>Case=Voc</code>, <code>Foreign=Foreign</code>, <code>Gender=Fem</code>, <code>Gender=Masc</code>, <code>Gender=Neut</code>, <code>NameType=Com</code>, <code>NameType=Com,Geo</code>, <code>NameType=Com,Giv</code>, <code>NameType=Com,Giv,Sur</code>, <code>NameType=Com,Nat</code>, <code>NameType=Com,Pro</code>, <code>NameType=Com,Sur</code>, <code>NameType=Geo</code>, <code>NameType=Geo,Giv</code>, <code>NameType=Geo,Giv,Sur</code>, <code>NameType=Geo,Oth</code>, <code>NameType=Geo,Pro</code>, <code>NameType=Geo,Sur</code>, <code>NameType=Giv</code>, <code>NameType=Giv,Nat</code>, <code>NameType=Giv,Oth</code>, <code>NameType=Giv,Pro</code>, <code>NameType=Giv,Pro,Sur</code>, <code>NameType=Giv,Sur</code>, <code>NameType=Nat</code>, <code>NameType=Nat,Sur</code>, <code>NameType=Oth</code>, <code>NameType=Pro</code>, <code>NameType=Pro,Sur</code>, <code>NameType=Sur</code>, <code>Negative=Pos</code>, <code>Number=Plur</code>, <code>Number=Sing</code>, <code>Style=Arch</code>, <code>Style=Coll</code></p>
+
+<p><code>PROPN</code> occurs with 561 feature combinations.
+The most frequent feature combination is <code>Animacy=Anim|Case=Nom|Gender=Masc|NameType=Sur|Negative=Pos|Number=Sing</code> (14100 tokens).
+Examples: <em>Klaus, Havel, Svoboda, Mečiar, Jelcin, John, Zeman, Němec, Novák, Benda</em></p>
+
+<h2 id="relations">Relations</h2>
+
+<p><code>PROPN</code> nodes are attached to their parents using 23 different relations: <a href="">cs-dep/nmod</a> (33485; 40% instances), <a href="">cs-dep/nsubj</a> (14788; 18% instances), <a href="">cs-dep/name</a> (13598; 16% instances), <a href="">cs-dep/conj</a> (8164; 10% instances), <a href="">cs-dep/root</a> (5363; 6% instances), <a href="">cs-dep/dep</a> (2877; 3% instances), <a href="">cs-dep/dobj</a> (2690; 3% instances), <a href="">cs-dep/appos</a> (1372; 2% instances), <a href="">cs-dep/iobj</a> (712; 1% instances), <a href="">cs-dep/foreign</a> (432; 1% instances), <a href="">cs-dep/nsubjpass</a> (278; 0% instances), <a href="">cs-dep/advcl</a> (155; 0% instances), <a href="">cs-dep/xcomp</a> (32; 0% instances), <a href="">cs-dep/vocative</a> (21; 0% instances), <a href="">cs-dep/cc</a> (18; 0% instances), <a href="">cs-dep/case</a> (13; 0% instances), <a href="">cs-dep/ccomp</a> (8; 0% instances), <a href="">cs-dep/amod</a> (6; 0% instances), <a href="">cs-dep/parataxis</a> (6; 0% instances), <a href="">cs-dep/acl</a> (5; 0% instances), <a href="">cs-dep/advmod</a> (4; 0% instances), <a href="">cs-dep/csubj</a> (3; 0% instances), <a href="">cs-dep/punct</a> (1; 0% instances)</p>
+
+<p>Parents of <code>PROPN</code> nodes belong to 15 different parts of speech: <a href="">NOUN</a> (26250; 31% instances), <a href="">PROPN</a> (26071; 31% instances), <a href="">VERB</a> (23717; 28% instances), <a href="">ROOT</a> (5363; 6% instances), <a href="">ADJ</a> (1700; 2% instances), <a href="">NUM</a> (381; 0% instances), <a href="">ADV</a> (311; 0% instances), <a href="">PRON</a> (179; 0% instances), <a href="">PART</a> (16; 0% instances), <a href="">ADP</a> (15; 0% instances), <a href="">DET</a> (12; 0% instances), <a href="">PUNCT</a> (5; 0% instances), <a href="">SYM</a> (5; 0% instances), <a href="">CONJ</a> (4; 0% instances), <a href="">INTJ</a> (2; 0% instances)</p>
+
+<p>38237 (46%) <code>PROPN</code> nodes are leaves.</p>
+
+<p>23490 (28%) <code>PROPN</code> nodes have one child.</p>
+
+<p>11473 (14%) <code>PROPN</code> nodes have two children.</p>
+
+<p>10831 (13%) <code>PROPN</code> nodes have three or more children.</p>
+
+<p>The highest child degree of a <code>PROPN</code> node is 57.</p>
+
+<p>Children of <code>PROPN</code> nodes are attached using 29 different relations: <a href="">cs-dep/punct</a> (19453; 21% instances), <a href="">cs-dep/case</a> (16393; 18% instances), <a href="">cs-dep/name</a> (13612; 15% instances), <a href="">cs-dep/nmod</a> (13449; 15% instances), <a href="">cs-dep/conj</a> (8380; 9% instances), <a href="">cs-dep/amod</a> (5156; 6% instances), <a href="">cs-dep/cc</a> (3943; 4% instances), <a href="">cs-dep/dep</a> (3366; 4% instances), <a href="">cs-dep/acl</a> (1649; 2% instances), <a href="">cs-dep/nummod</a> (1624; 2% instances), <a href="">cs-dep/foreign</a> (1383; 2% instances), <a href="">cs-dep/appos</a> (1299; 1% instances), <a href="">cs-dep/advmod:emph</a> (1230; 1% instances), <a href="">cs-dep/xcomp</a> (388; 0% instances), <a href="">cs-dep/mark</a> (324; 0% instances), <a href="">cs-dep/det</a> (100; 0% instances), <a href="">cs-dep/parataxis</a> (81; 0% instances), <a href="">cs-dep/cop</a> (67; 0% instances), <a href="">cs-dep/nsubj</a> (62; 0% instances), <a href="">cs-dep/nummod:gov</a> (40; 0% instances), <a href="">cs-dep/advmod</a> (33; 0% instances), <a href="">cs-dep/advcl</a> (10; 0% instances), <a href="">cs-dep/dobj</a> (10; 0% instances), <a href="">cs-dep/neg</a> (7; 0% instances), <a href="">cs-dep/det:numgov</a> (5; 0% instances), <a href="">cs-dep/aux</a> (3; 0% instances), <a href="">cs-dep/det:nummod</a> (3; 0% instances), <a href="">cs-dep/ccomp</a> (2; 0% instances), <a href="">cs-dep/expl</a> (1; 0% instances)</p>
+
+<p>Children of <code>PROPN</code> nodes belong to 16 different parts of speech: <a href="">PROPN</a> (26071; 28% instances), <a href="">PUNCT</a> (19453; 21% instances), <a href="">ADP</a> (16533; 18% instances), <a href="">NOUN</a> (12715; 14% instances), <a href="">ADJ</a> (6485; 7% instances), <a href="">CONJ</a> (4268; 5% instances), <a href="">NUM</a> (2561; 3% instances), <a href="">VERB</a> (2061; 2% instances), <a href="">ADV</a> (1075; 1% instances), <a href="">SCONJ</a> (337; 0% instances), <a href="">PRON</a> (198; 0% instances), <a href="">PART</a> (176; 0% instances), <a href="">DET</a> (108; 0% instances), <a href="">SYM</a> (21; 0% instances), <a href="">INTJ</a> (8; 0% instances), <a href="">AUX</a> (3; 0% instances)</p>
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+PROPN in other languages:
+
+[<a href="../../bg/pos/PROPN.html">bg</a>]
+
+[<a href="../../cs/pos/PROPN.html">cs</a>]
+
+[<a href="../../de/pos/PROPN.html">de</a>]
+
+[<a href="../../el/pos/PROPN.html">el</a>]
+
+[<a href="../../en/pos/PROPN.html">en</a>]
+
+[<a href="../../es/pos/PROPN.html">es</a>]
+
+[<a href="../../eu/pos/PROPN.html">eu</a>]
+
+[<a href="../../fa/pos/PROPN.html">fa</a>]
+
+[<a href="../../fi/pos/PROPN.html">fi</a>]
+
+[<a href="../../fr/pos/PROPN.html">fr</a>]
+
+[<a href="../../ga/pos/PROPN.html">ga</a>]
+
+[<a href="../../he/pos/PROPN.html">he</a>]
+
+[<a href="../../hu/pos/PROPN.html">hu</a>]
+
+[<a href="../../it/pos/PROPN.html">it</a>]
+
+[<a href="../../ja/pos/PROPN.html">ja</a>]
+
+[<a href="../../ko/pos/PROPN.html">ko</a>]
+
+[<a href="../../sv/pos/PROPN.html">sv</a>]
+
+[<a href="../../u/pos/PROPN.html">u</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+        // standard jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false
+	});
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'cs-pos';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.github.io/docs/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

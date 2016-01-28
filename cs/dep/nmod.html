@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>nmod</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/#language-cs">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/cs/dep">cs/dep</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/nmod.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>nmod</code>: nominal modifier</h2>
+
+<p>The <code>nmod</code> relation is used for nominal modifiers. They depend either
+on another noun (group “noun dependents”) or on a predicate (group
+“non-core dependents of clausal predicates”).</p>
+
+<p><code>nmod</code> is a <a href="cs-pos/NOUN">noun</a> (or noun phrase) functioning as a
+non-core (oblique) argument or adjunct.
+This means that it functionally corresponds to an adverbial when it attaches to a verb, adjective or other adverb.
+But when attaching to a noun, it usually corresponds to a non-agreeing attribute <em>(přívlastek neshodný)</em>
+in genitive. (See below for an example of an agreeing attribute, <em>přívlastek shodný</em>.)</p>
+
+<p>In Czech the <code>nmod</code> relation covers only those possessives that are expressed using the genitive <a href="">cs-feat/Case</a>.
+If a possessive adjective is used, the relation is labeled <a href="">amod</a>.</p>
+
+<pre><code class="language-sdparse">kancelář ředitele \n office of-the-director
+nmod(kancelář, ředitele)
+nmod(office, of-the-director)
+</code></pre>
+
+<pre><code class="language-sdparse">ředitelova kancelář \n director's office
+amod(kancelář, ředitelova)
+amod(office, director's)
+</code></pre>
+
+<pre><code class="language-sdparse">jeho kancelář \n his office
+det(kancelář, jeho)
+det(office, his)
+</code></pre>
+
+<p><code>nmod</code> is also used for temporal nominal modifiers:</p>
+
+<pre><code class="language-sdparse">Potkal jsem ho minulý čtvrtek . \n Met I-have him last Thursday .
+nmod(Potkal, čtvrtek)
+nmod(Met, Thursday)
+</code></pre>
+
+<h2 id="agreeing-attribute-of-a-noun">Agreeing attribute of a noun</h2>
+
+<p><code>nmod</code> noun phrases attached to nouns are usually in the genitive <a href="">cs-feat/Case</a> and follow the modified noun.
+However, there is also a different kind of <code>nmod</code> that precedes the modified noun and agrees with it in case and number.
+A typical example is a title attached to a name of a person. The relation is similar to the <a href="">name</a> relation
+that links the first and the last name, but it is not labeled <code>name</code> because the title is not part of the name:</p>
+
+<pre><code class="language-sdparse">český prezident Václav Havel
+amod(prezident, český)
+nmod(Havel, prezident)
+name(Havel, Václav)
+</code></pre>
+
+<p>Note that the same thing can be also expressed using an <a href="appos">apposition</a>.
+In the case of apposition, the title follows the modified name and is separated by a punctuation symbol:</p>
+
+<pre><code class="language-sdparse">Václav Havel , český prezident
+name(Havel, Václav)
+punct(prezident, ,-3)
+amod(prezident, český)
+appos(Havel, prezident)
+</code></pre>
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+
+<hr />
+
+<h2 id="treebank-statistics-udczech">Treebank Statistics (UD_Czech)</h2>
+
+<p>This relation is universal.</p>
+
+<p>235159 nodes (16%) are attached to their parents as <code>nmod</code>.</p>
+
+<p>184905 instances of <code>nmod</code> (79%) are left-to-right (parent precedes child).
+Average distance between parent and child is 2.621889870258.</p>
+
+<p>The following 91 pairs of parts of speech are connected with <code>nmod</code>: <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/NOUN</a> (111544; 47% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/NOUN</a> (57242; 24% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/PROPN</a> (22799; 10% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/NOUN</a> (9389; 4% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/NOUN</a> (6122; 3% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/PROPN</a> (5921; 3% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/PRON</a> (4957; 2% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/PROPN</a> (3761; 2% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/NOUN</a> (3214; 1% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/PRON</a> (3055; 1% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/NOUN</a> (1624; 1% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/SYM</a> (783; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/PROPN</a> (780; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/ADV</a> (740; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/PRON</a> (569; 0% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/NOUN</a> (452; 0% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/PRON</a> (278; 0% instances), <a href="">cs-pos/SYM</a>-<a href="">cs-pos/NOUN</a> (267; 0% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/PRON</a> (230; 0% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/PRON</a> (207; 0% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/ADP</a> (188; 0% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/PROPN</a> (80; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/SYM</a> (79; 0% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/PROPN</a> (78; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/PART</a> (76; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/NUM</a> (76; 0% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/ADV</a> (57; 0% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/ADV</a> (54; 0% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/ADV</a> (53; 0% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/PROPN</a> (47; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/CONJ</a> (35; 0% instances), <a href="">cs-pos/ADP</a>-<a href="">cs-pos/NOUN</a> (32; 0% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/PRON</a> (31; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/ADP</a> (30; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/NUM</a> (30; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/INTJ</a> (27; 0% instances), <a href="">cs-pos/DET</a>-<a href="">cs-pos/NOUN</a> (18; 0% instances), <a href="">cs-pos/PUNCT</a>-<a href="">cs-pos/NOUN</a> (17; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/ADV</a> (15; 0% instances), <a href="">cs-pos/SYM</a>-<a href="">cs-pos/PRON</a> (14; 0% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/SYM</a> (10; 0% instances), <a href="">cs-pos/PART</a>-<a href="">cs-pos/PRON</a> (10; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/NUM</a> (9; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/ADJ</a> (9; 0% instances), <a href="">cs-pos/PART</a>-<a href="">cs-pos/NOUN</a> (9; 0% instances), <a href="">cs-pos/X</a>-<a href="">cs-pos/X</a> (9; 0% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/INTJ</a> (8; 0% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/CONJ</a> (7; 0% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/NUM</a> (7; 0% instances), <a href="">cs-pos/SYM</a>-<a href="">cs-pos/ADV</a> (7; 0% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/PART</a> (6; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/ADV</a> (6; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/ADP</a> (5; 0% instances), <a href="">cs-pos/ADP</a>-<a href="">cs-pos/PROPN</a> (5; 0% instances), <a href="">cs-pos/SYM</a>-<a href="">cs-pos/PROPN</a> (5; 0% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/ADV</a> (4; 0% instances), <a href="">cs-pos/DET</a>-<a href="">cs-pos/ADV</a> (4; 0% instances), <a href="">cs-pos/DET</a>-<a href="">cs-pos/PRON</a> (4; 0% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/CONJ</a> (4; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/PART</a> (4; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/ADJ</a> (3; 0% instances), <a href="">cs-pos/ADP</a>-<a href="">cs-pos/PRON</a> (3; 0% instances), <a href="">cs-pos/CONJ</a>-<a href="">cs-pos/NOUN</a> (3; 0% instances), <a href="">cs-pos/INTJ</a>-<a href="">cs-pos/PRON</a> (3; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/X</a> (3; 0% instances), <a href="">cs-pos/PART</a>-<a href="">cs-pos/PROPN</a> (3; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/ADJ</a> (3; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/ADP</a> (3; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/DET</a> (2; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/PART</a> (2; 0% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/CONJ</a> (2; 0% instances), <a href="">cs-pos/CONJ</a>-<a href="">cs-pos/PROPN</a> (2; 0% instances), <a href="">cs-pos/DET</a>-<a href="">cs-pos/PROPN</a> (2; 0% instances), <a href="">cs-pos/INTJ</a>-<a href="">cs-pos/NOUN</a> (2; 0% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/ADP</a> (2; 0% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/PART</a> (2; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/SCONJ</a> (2; 0% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/PART</a> (1; 0% instances), <a href="">cs-pos/INTJ</a>-<a href="">cs-pos/PROPN</a> (1; 0% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/PART</a> (1; 0% instances), <a href="">cs-pos/PART</a>-<a href="">cs-pos/NUM</a> (1; 0% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/DET</a> (1; 0% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/NUM</a> (1; 0% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/SYM</a> (1; 0% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/VERB</a> (1; 0% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/SCONJ</a> (1; 0% instances), <a href="">cs-pos/PUNCT</a>-<a href="">cs-pos/PROPN</a> (1; 0% instances), <a href="">cs-pos/SCONJ</a>-<a href="">cs-pos/NOUN</a> (1; 0% instances), <a href="">cs-pos/SCONJ</a>-<a href="">cs-pos/PRON</a> (1; 0% instances), <a href="">cs-pos/SYM</a>-<a href="">cs-pos/PART</a> (1; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/CONJ</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 2 4 nmod	color:blue
+1	|	|	PUNCT	Z:-------------	_	2	punct	_	_
+2	Rady	rada	NOUN	NNFP1-----A----	Case=Nom|Gender=Fem|Negative=Pos|Number=Plur	0	root	_	LId=rada-1|LGloss=(př._dát_někomu_dobrou_radu)
+3	na	na	ADP	RR--4----------	AdpType=Prep|Case=Acc	4	case	_	LId=na-1
+4	telefon	telefon	NOUN	NNIS4-----A----	Animacy=Inan|Case=Acc|Gender=Masc|Negative=Pos|Number=Sing	2	nmod	_	_
+5	|	|	PUNCT	Z:-------------	_	2	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 5 9 nmod	color:blue
+1	Chci	chtít	VERB	VB-S---1P-AA---	Mood=Ind|Negative=Pos|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	_
+2	uzavřít	uzavřít	VERB	Vf--------A----	Negative=Pos|VerbForm=Inf	1	xcomp	_	_
+3	pojištění	pojištění	NOUN	NNNS4-----A----	Case=Acc|Gender=Neut|Negative=Pos|Number=Sing	2	dobj	_	LDeriv=pojistit
+4	a	a	CONJ	J^-------------	_	1	cc	_	LId=a-1
+5	dostal	dostat	VERB	VpYS---XR-AA---	Gender=Masc|Negative=Pos|Number=Sing|Tense=Past|VerbForm=Part|Voice=Act	1	conj	_	_
+6	jsem	být	AUX	VB-S---1P-AA---	Mood=Ind|Negative=Pos|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act	5	aux	_	_
+7	proto	proto	CONJ	J^-------------	_	1	cc	_	LId=proto-1|LGloss=(proto;_a_proto,_ale_proto,...)
+8	k	k	ADP	RR--3----------	AdpType=Prep|Case=Dat	9	case	_	LId=k-1
+9	vyplnění	vyplnění	NOUN	NNNS3-----A----	Case=Dat|Gender=Neut|Negative=Pos|Number=Sing	5	nmod	_	LDeriv=vyplnit
+10	dotazník	dotazník	NOUN	NNIS4-----A----	Animacy=Inan|Case=Acc|Gender=Masc|Negative=Pos|Number=Sing	5	dobj	_	SpaceAfter=No
+11	.	.	PUNCT	Z:-------------	_	1	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 3 5 nmod	color:blue
+1	Výrobce	výrobce	NOUN	NNMS1-----A----	Animacy=Anim|Case=Nom|Gender=Masc|Negative=Pos|Number=Sing	0	root	_	_
+2	-	-	PUNCT	Z:-------------	_	1	punct	_	_
+3	typ	typ	NOUN	NNIS1-----A----	Animacy=Inan|Case=Nom|Gender=Masc|Negative=Pos|Number=Sing	1	conj	_	SpaceAfter=No
+4	:	:	PUNCT	Z:-------------	_	5	punct	_	_
+5	PANASONIC	Panasonic	PROPN	NNIS1-----A----	Animacy=Inan|Case=Nom|Gender=Masc|NameType=Com,Pro|Negative=Pos|Number=Sing	3	nmod	_	_
+6	PANAFAX	Panafax	PROPN	NNIS1-----A----	Animacy=Inan|Case=Nom|Gender=Masc|NameType=Pro|Negative=Pos|Number=Sing	5	nmod	_	_
+7	UF	UF	PROPN	NNXXX-----A---8	Abbr=Yes|NameType=Pro|Negative=Pos	6	nmod	_	SpaceAfter=No|LId=UF-98
+8	-	-	PUNCT	Z:-------------	_	9	punct	_	SpaceAfter=No
+9	311	311	NUM	C=-------------	NumForm=Digit|NumType=Card	7	nummod	_	_
+
+</code></pre>
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+nmod in other languages:
+
+[<a href="../../bg/dep/nmod.html">bg</a>]
+
+[<a href="../../cs/dep/nmod.html">cs</a>]
+
+[<a href="../../de/dep/nmod.html">de</a>]
+
+[<a href="../../el/dep/nmod.html">el</a>]
+
+[<a href="../../en/dep/nmod.html">en</a>]
+
+[<a href="../../es/dep/nmod.html">es</a>]
+
+[<a href="../../eu/dep/nmod.html">eu</a>]
+
+[<a href="../../fa/dep/nmod.html">fa</a>]
+
+[<a href="../../fi/dep/nmod.html">fi</a>]
+
+[<a href="../../fr/dep/nmod.html">fr</a>]
+
+[<a href="../../ga/dep/nmod.html">ga</a>]
+
+[<a href="../../he/dep/nmod.html">he</a>]
+
+[<a href="../../hu/dep/nmod.html">hu</a>]
+
+[<a href="../../it/dep/nmod.html">it</a>]
+
+[<a href="../../ja/dep/nmod.html">ja</a>]
+
+[<a href="../../ko/dep/nmod.html">ko</a>]
+
+[<a href="../../sv/dep/nmod.html">sv</a>]
+
+[<a href="../../u/dep/nmod.html">u</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+        // standard jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false
+	});
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'cs-dep';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.github.io/docs/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

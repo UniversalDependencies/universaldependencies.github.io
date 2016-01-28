@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>cop</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/#language-cs">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/cs/dep">cs/dep</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/cop.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>cop</code>: copula</h2>
+
+<p>A copula is the relation between the nominal predicate <em>(přísudek jmenný)</em> and
+the copular verb <em><b>být</b></em> “to be” (or its variants <em>bývat, bývávat</em>).
+The verb <em>stát se</em> “to become”, despite being counted among copular verbs by some authors,
+is not analyzed as <code>cop</code>.</p>
+
+<p>We normally take a copula as a dependent of its complement (the nominal predicate).
+The nominal predicate is usually a <a href="cs-pos/NOUN">noun</a>, an <a href="cs-pos/ADJ">adjective</a>
+or a <a href="../feat/VerbForm.html#part-participle">participle</a>.</p>
+
+<pre><code class="language-sdparse">Ondřej je čestný muž . \n Ondřej is honest man .
+cop(muž, je)
+cop(man, is)
+</code></pre>
+
+<pre><code class="language-sdparse">Ondřej je čestný . \n Ondřej is honest .
+cop(čestný, je)
+cop(honest, is)
+</code></pre>
+
+<p>Note that the passive participle may be also used as nominal predicate with copula.
+Hence it may be difficult to distinguish a passive construction from a copula construction.
+The former focuses on the process while the latter emphasizes the result.</p>
+
+<ul>
+  <li>Passive: <em>Smlouva <b>byla</b>.<code>AUX</code> podepsána v Bílém domě.</em>   “The contract was signed in the White House.”</li>
+  <li>Copula: <em>Smlouva <b>byla</b>.<code>VERB</code> podepsána červeným inkoustem.</em>   “The contract was signed in red ink.”</li>
+</ul>
+
+<pre><code class="language-sdparse">Smlouva byla podepsána v Bílém domě . \n Contract was signed in White House .
+auxpass(podepsána, byla)
+auxpass(signed, was)
+</code></pre>
+
+<pre><code class="language-sdparse">Smlouva byla podepsána červeným inkoustem . \n Contract was signed in-red ink .
+cop(podepsána, byla)
+cop(signed, was)
+</code></pre>
+
+<p>The nominal predicate may also be expressed using a prepositional phrase.
+However, not every occurrence of <em>být</em> “to be” with a prepositional phrase is a copula with a nominal predicate.
+Phrases expressing the state of the subject are predicates, e.g. <em>Lenka je v kondici</em> “Lenka is in shape”.
+In contrast, prepositional phrases specifying location are not predicates.
+The verb <em>být</em> is understood as the existential “to be” in such cases, and thus it itself is the predicate, not just a copula.</p>
+
+<p>Thus the following two sentences receive parallel analyses:</p>
+
+<ul>
+  <li><em>Lenka je skvělá.</em> “Lenka is brilliant.”</li>
+  <li><em>Lenka je v kondici.</em> “Lenka is in shape.”</li>
+</ul>
+
+<p>The following two will be parallel, too:</p>
+
+<ul>
+  <li><em>Lenka je v kuchyni.</em> “Lenka is in the kitchen.”</li>
+  <li><em>Lenka zůstala v kuchyni.</em> “Lenka stayed in the kitchen.”</li>
+</ul>
+
+<pre><code class="language-sdparse">Lenka je v kondici . \n Lenka is in shape .
+cop(kondici, je)
+cop(shape, is)
+case(kondici, v)
+case(shape, in)
+nsubj(kondici, Lenka-1)
+nsubj(shape, Lenka-7)
+</code></pre>
+
+<pre><code class="language-sdparse">Lenka je v kuchyni . \n Lenka is in kitchen .
+nsubj(je, Lenka-1)
+nsubj(is, Lenka-7)
+nmod(je, kuchyni)
+nmod(is, kitchen)
+case(kuchyni, v)
+case(kitchen, in)
+</code></pre>
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+
+<hr />
+
+<h2 id="treebank-statistics-udczech">Treebank Statistics (UD_Czech)</h2>
+
+<p>This relation is universal.</p>
+
+<p>20711 nodes (1%) are attached to their parents as <code>cop</code>.</p>
+
+<p>17342 instances of <code>cop</code> (84%) are right-to-left (child precedes parent).
+Average distance between parent and child is 2.36217468977838.</p>
+
+<p>The following 19 pairs of parts of speech are connected with <code>cop</code>: <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/VERB</a> (9162; 44% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/VERB</a> (7522; 36% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/VERB</a> (2509; 12% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/VERB</a> (737; 4% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/VERB</a> (467; 2% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/VERB</a> (192; 1% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/VERB</a> (67; 0% instances), <a href="">cs-pos/PART</a>-<a href="">cs-pos/VERB</a> (18; 0% instances), <a href="">cs-pos/DET</a>-<a href="">cs-pos/VERB</a> (17; 0% instances), <a href="">cs-pos/SYM</a>-<a href="">cs-pos/VERB</a> (4; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/NOUN</a> (3; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/ADJ</a> (2; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/NOUN</a> (2; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/SYM</a> (2; 0% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/SYM</a> (2; 0% instances), <a href="">cs-pos/PART</a>-<a href="">cs-pos/PART</a> (2; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/PRON</a> (1; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/ADJ</a> (1; 0% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/ADJ</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 3 2 cop	color:blue
+1	Změny	změna	NOUN	NNFP1-----A----	Case=Nom|Gender=Fem|Negative=Pos|Number=Plur	3	nsubj	_	_
+2	jsou	být	VERB	VB-P---3P-AA---	Mood=Ind|Negative=Pos|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	3	cop	_	_
+3	citelné	citelný	ADJ	AAFP1----1A----	Case=Nom|Degree=Pos|Gender=Fem|Negative=Pos|Number=Plur	0	root	_	SpaceAfter=No
+4	,	,	PUNCT	Z:-------------	_	3	punct	_	_
+5	je	být	VERB	VB-S---3P-AA---	Mood=Ind|Negative=Pos|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	6	cop	_	_
+6	třeba	třeba	ADJ	ACNS------A----	Gender=Neut|Negative=Pos|Number=Sing|Variant=Short	3	conj	_	LId=třeba-1
+7	je	on	PRON	PPXP4--3-------	Case=Acc|Number=Plur|Person=3|PronType=Prs	9	dobj	_	LId=on-1|LGloss=(oni/ono)
+8	lépe	dobře	ADV	Dg-------2A----	Degree=Cmp|Negative=Pos	9	advmod	_	_
+9	prezentovat	prezentovat	VERB	Vf--------A----	Negative=Pos|VerbForm=Inf	6	csubj	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+# visual-style 6 4 cop	color:blue
+1	BESO	Beso	PROPN	NNNS1-----A----	Case=Nom|Gender=Neut|NameType=Com|Negative=Pos|Number=Sing	6	nsubj	_	_
+2	a	a	CONJ	J^-------------	_	1	cc	_	LId=a-1
+3	SES	SES	PROPN	NNXXX-----A---8	Abbr=Yes|NameType=Com|Negative=Pos	1	conj	_	_
+4	jsou	být	VERB	VB-P---3P-AA---	Mood=Ind|Negative=Pos|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	6	cop	_	_
+5	dvě	dva	NUM	ClHP1----------	Case=Nom|Gender=Fem,Neut|Number=Plur|NumForm=Word|NumType=Card|NumValue=1,2,3	6	nummod	_	LNumValue=2
+6	organizace	organizace	NOUN	NNFP1-----A----	Case=Nom|Gender=Fem|Negative=Pos|Number=Plur	0	root	_	_
+7	se	s	ADP	RV--7----------	AdpType=Voc|Case=Ins	9	case	_	LId=s-1
+8	stejným	stejný	ADJ	AANS7----1A----	Case=Ins|Degree=Pos|Gender=Neut|Negative=Pos|Number=Sing	9	amod	_	_
+9	posláním	poslání	NOUN	NNNS7-----A----	Case=Ins|Gender=Neut|Negative=Pos|Number=Sing	6	nmod	_	SpaceAfter=No|LDeriv=poslat
+10	.	.	PUNCT	Z:-------------	_	6	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 3 2 cop	color:blue
+1	Většinou	většina	NOUN	NNFS7-----A----	Case=Ins|Gender=Fem|Negative=Pos|Number=Sing	3	nmod	_	_
+2	byly	být	VERB	VpTP---XR-AA---	Animacy=Inan|Gender=Fem,Masc|Negative=Pos|Number=Plur|Tense=Past|VerbForm=Part|Voice=Act	3	cop	_	_
+3	určeny	určit	VERB	VsTP---XX-AP---	Animacy=Inan|Gender=Fem,Masc|Negative=Pos|Number=Plur|VerbForm=Part|Voice=Pass	0	root	_	_
+4	na	na	ADP	RR--4----------	AdpType=Prep|Case=Acc	5	case	_	LId=na-1
+5	vývoz	vývoz	NOUN	NNIS4-----A----	Animacy=Inan|Case=Acc|Gender=Masc|Negative=Pos|Number=Sing	3	nmod	_	SpaceAfter=No
+6	.	.	PUNCT	Z:-------------	_	3	punct	_	_
+
+</code></pre>
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+cop in other languages:
+
+[<a href="../../bg/dep/cop.html">bg</a>]
+
+[<a href="../../cs/dep/cop.html">cs</a>]
+
+[<a href="../../de/dep/cop.html">de</a>]
+
+[<a href="../../el/dep/cop.html">el</a>]
+
+[<a href="../../en/dep/cop.html">en</a>]
+
+[<a href="../../es/dep/cop.html">es</a>]
+
+[<a href="../../eu/dep/cop.html">eu</a>]
+
+[<a href="../../fa/dep/cop.html">fa</a>]
+
+[<a href="../../fi/dep/cop.html">fi</a>]
+
+[<a href="../../fr/dep/cop.html">fr</a>]
+
+[<a href="../../ga/dep/cop.html">ga</a>]
+
+[<a href="../../he/dep/cop.html">he</a>]
+
+[<a href="../../hu/dep/cop.html">hu</a>]
+
+[<a href="../../it/dep/cop.html">it</a>]
+
+[<a href="../../ja/dep/cop.html">ja</a>]
+
+[<a href="../../ko/dep/cop.html">ko</a>]
+
+[<a href="../../sv/dep/cop.html">sv</a>]
+
+[<a href="../../u/dep/cop.html">u</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+        // standard jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false
+	});
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'cs-dep';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.github.io/docs/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Unresolved Issues</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hint.css"/>
+    <script type="text/javascript" src="lib/ext/head.load.min.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.github.io/docs/#language-">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/issues.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2 id="issues-to-discuss-at-the-uppsala-meeting">Issues to discuss at the Uppsala meeting</h2>
+
+<p>The main goal for the next UD release is to improve consistency across languages in the application of the UD guidelines. This will require resolving a number of issues where the guidelines are not specific enough to prescribe a unique analysis and where treebanks are known to diverge (or can be expected to diverge). Below we list a number of such issues that are suitable for discussion at the Uppsala meeting and where guidelines may need to be modified in future versions of the UD standard.</p>
+
+<p>This list does not replace the Github <a href="https://github.com/universaldependencies/docs/issues">issue tracker</a>. It is rather a subset of open issues from the issue tracker, with main points emphasized here. The relevant issues in the issue tracker should be referenced from here; comments and on-line discussion should remain there.</p>
+
+<ol>
+  <li>
+    <p>Coordination. The guidelines specify that the first conjunct should be the head, but there are languages and constructions where, for example, inflection indicates that another conjunct (usually the final one) is the head. Examples from Turkish and Kazakh are found in issue <a href="https://github.com/UniversalDependencies/docs/issues/189">#189</a>. Should we insist that the first conjunct is always the head? Should we allow languages to choose a single consistent head-direction for coordination? Or should we allow this to vary within languages as well?</p>
+  </li>
+  <li>
+    <p>Copula sentences. The guidelines say that the copula verb should not be the root of a clause, but how do we draw the line between the copula verb and other uses of existential verbs like “be”? This is discussed in issue <a href="https://github.com/UniversalDependencies/docs/issues/170">#170</a>. While everyone agrees that “is” is a copula in “She is nice” and “She is in shape”, there is disagreement about “She is in London” and “The problem is that copulas are tricky”. In addition, there is the issue of whether this treatment should be extended to other verbs, for example, inchoative copula verbs (English “become”, French “devenir”, Swedish “bli”).</p>
+  </li>
+  <li>
+    <p>Cleft sentences. These are closely linked to copula sentences (at least in the case of Irish). Also, in Irish, there is no equivalent to the English expletive “it”, which may lead to a different analysis from those of other languages. See issue <a href="https://github.com/UniversalDependencies/docs/issues/162">#162</a></p>
+  </li>
+  <li>
+    <p>Determiners and pronouns. Many languages have words that can be used both as determiners (“this book”) and full noun phrases (“this”). Should these words be tagged <a href="">u-pos/DET</a> or <a href="">u-pos/PRON</a>? Or should they be tagged <a href="">u-pos/DET</a> when used as determiners and <a href="">u-pos/PRON</a> when used as full noun phrases? See issue <a href="https://github.com/UniversalDependencies/docs/issues/159">#159</a>.</p>
+  </li>
+  <li>
+    <p>Ellipsis.
+  See the
+  <a href="http://universaldependencies.github.io/docs/cs/overview/specific-syntax.html#ellipsis">Czech documentation</a>
+  for an overview of possibilities. 
+  A related issue is <a href="https://github.com/UniversalDependencies/docs/issues/164">#164</a> (multiple root trees).
+  Questions: 
+  Are we satisfied with the <a href="">u-dep/remnant</a> analysis in cases where function word promotion by head elision is not   applicable?
+  Even if we are, what do we do in cases where it cannot be applied (such as two orphaned verb arguments, no coordination)?
+  Do we still believe that <code>NULL</code> nodes are evil?
+  Ideally, we should collect all examples related to ellipsis and provide guidelines how they should be analyzed.</p>
+  </li>
+  <li>
+    <p>Light-verb constructions. A recent poster at PARSEME has surveyed the annotation of LVCs in v1.1 and found three different approaches. The abstract of the poster will soon be available <a href="http://typo.uni-konstanz.de/parseme/index.php/2-general/138-admitted-posters-iasi-23-24-september-2015">here</a> (poster #13).</p>
+  </li>
+  <li>
+    <p>Multi-word expressions. A recent poster at PARSEME has surveyed the annotation of MWEs in v1.1 and found a number of   inconsistencies. The abstract of the poster will soon be available <a href="http://typo.uni-konstanz.de/parseme/index.php/2-general/138-admitted-posters-iasi-23-24-september-2015">here</a> (poster #5).</p>
+  </li>
+  <li>
+    <p>Multi-word abbreviations (<a href="https://github.com/UniversalDependencies/docs/issues/181">#181</a>). Some treebanks may split them to syntactic words? Others keep them together.
+  The issue is also related to how different treebanks tokenize abbreviations and their punctuation.</p>
+  </li>
+  <li>
+    <p>Names. The guidelines say that multi-word names should be given an ordinary, compositional syntactic structure whenever possible, and otherwise analyzed as head-initial structures with the <a href="">u-dep/name</a> relation. A typical example of the latter case is firstname-lastname expressions like “Sherlock Holmes”. However, there are many languages where there is morphological evidence that the last name is the head in this kind of structure (for example, Hungarian). Should these languages still use the <a href="">u-dep/name</a> relation? Are they allowed to take the last element as the head? Is this a parameter that varies across languages? A related issue is whether names with a compositional structure should still somehow be annotated as names is the enhanced dependency structure.</p>
+  </li>
+  <li>
+    <p>Particles. There is a special part-of-speech tag for grammatical particles, but it is often unclear what dependency  relation to assign to particles, for example, question particles (<a href="https://github.com/UniversalDependencies/docs/issues/178">#178</a>). The relations <a href="">u-dep/aux</a>, <a href="">u-dep/compound</a>, <a href="">u-dep/discourse</a>, <a href="">u-dep/expl</a>, and <a href="">u-dep/mark</a> have all been proposed for various types of particles.</p>
+  </li>
+  <li>
+    <p>Tokenisation. In some languages (such as Kazakh and Turkish) it may be necessary to have dependency relations between sub-word units (often called inflectional groups, IGs), as discussed, for example, in <a href="https://github.com/UniversalDependencies/docs/issues/125">#125</a>. e.g. In the phrase “mavi arabadakiler”, it is clear that the car (araba) is blue (mavi), not the people in it (-dakiler).</p>
+  </li>
+  <li>
+    <p>Clitics and clitic doubling. Should the clitics get assigned different relations with respect to whether they are used alone (obj or iobj) or in a doubling (expl)?</p>
+  </li>
+  <li>
+    <p>Conversion best practices: available software, documentation,
+discussion of difficult constructions (in particular UD constructions
+that require information that is not necessarily present in source
+treebanks, e.g. control, the core vs non-core distinction, etc.), as
+well as chosen solutions for different languages.</p>
+  </li>
+  <li>
+    <p>Future of UD: semantics?</p>
+  </li>
+  <li>
+    <p>Tool development. It would be very useful to have annotation and visualization software tailored for the UD scheme. It would also be nice to have a baseline processing pipeline for tokenization, tagging and parsing that could be trained on any UD treebank.</p>
+  </li>
+  <li>
+    <p>Adpositions (<a href="https://github.com/UniversalDependencies/docs/issues/203">#203</a>). They are sometimes attached as <code>case</code>, sometimes as <code>mark</code> or <code>aux</code>, and the rules are not consistent across languages. More details are in <a href="http://github.com/UniversalDependencies/docs/files/1437/Adpositions.in.Universal.Dependencies.pdf">this document</a>. (Note that there is a slight overlap with the issue 10 above – Particles.)</p>
+  </li>
+  <li>
+    <p>Reflexive pronouns (<a href="https://github.com/UniversalDependencies/docs/issues/204">#204</a>). They are sometimes attached as <code>dobj</code>, sometimes as <code>compound:reflex</code> or <code>expl</code>, and the rules are not consistent across languages. More details are in <a href="http://github.com/UniversalDependencies/docs/files/1438/Inherently.reflexive.verbs.in.Universal.Dependencies.pdf">this document</a>.</p>
+  </li>
+</ol>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = ''; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+        // standard jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false
+	});
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = '';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.github.io/docs/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
