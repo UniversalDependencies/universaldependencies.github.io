@@ -630,32 +630,102 @@ for <code>punct</code>.</p>
 <p><a id="al-ru-dep/remnant" class="al-dest"></a></p>
 <h2><code>remnant</code>: remnant in ellipsis</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>remnant</code>.</p>
+<p>The <code>remnant</code> relation is used to provide a satisfactory treatment of certain instances of
+<a href="http://universaldependencies.org/cs/overview/specific-syntax.html#ellipsis">ellipsis</a>
+(in the case of gapping and stripping, where a predicational or verbal
+head gets elided).</p>
+
+<pre><code class="language-sdparse">Паша заказал говядину , а Маша свинину . \n Pavel himself ordered beef and Markéta pork .
+nsubj(заказал, Паша-1)
+nsubj(ordered, Pavel-10)
+dobj(заказал, говядину)
+dobj(ordered, beef)
+remnant(Паша-1, Маша-6)
+remnant(Pavel-10, Markéta-15)
+remnant(говядину, свинину)
+remnant(beef, pork)
+</code></pre>
+
+<h2 id="diffs">Diffs</h2>
+
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+
+<p>At present the conversion of the PDT data to UD does not handle ellipsis properly
+and the <code>remnant</code> relation is not used.</p>
+
+<p>In the analytical layer of PDT, ellipsis
+(together with some other issues, such as the <a href="">vocative</a>) is signalled by the
+dependency relation <code>ExD</code> (ex-dependent).
+All the <code>ExD</code> relations that are not vocatives or comparatives are currently just re-labeled <a href="">dep</a>
+or <a href="">root</a>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/remnant.md" target="#">edit remnant</a></p>
 
 <p><a id="al-ru-dep/reparandum" class="al-dest"></a></p>
 <h2><code>reparandum</code>: overridden disfluency</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>reparandum</code>.</p>
+<p>We use <code>reparandum</code> to indicate disfluencies overridden in a speech
+repair. The disfluency is the dependent of the repair.</p>
+
+<pre><code class="language-sdparse">Идите напра- налево . \n Go to-the-righ- to-the-left .
+reparandum(налево, напра-)
+reparandum(to-the-left, to-the-righ-)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/reparandum.md" target="#">edit reparandum</a></p>
 
 <p><a id="al-ru-dep/root" class="al-dest"></a></p>
 <h2><code>root</code>: root</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>root</code>.</p>
+<p>The <code>root</code> grammatical relation points to the root of the sentence. A
+fake node <code>ROOT</code> is used as the governor. The <code>ROOT</code> node is indexed
+with 0, since the indexing of real words in the sentence starts at 1.</p>
+
+<pre><code class="language-sdparse">ROOT Люблю индийскую еду . \n ROOT I-love Indian food .
+root(ROOT-1, Люблю)
+root(ROOT-7, I-love)
+</code></pre>
+
+<p>Since release 1.2 of the Czech UD treebank,
+there is just one node with the <code>root</code> dependency relation in every
+tree. If the main predicate is not present (due to
+<a href="http://universaldependencies.org/cs/overview/specific-syntax.html#ellipsis">ellipsis</a>)
+and there are
+multiple orphaned dependents, the leftmost dependent is promoted to
+the head (root) position and the other orphans are attached to it.</p>
+
+<p>An example sentence-like segment that lacks the main verb:
+<em>И что на это MF?</em>
+“And what [does] MF [say] to it?”</p>
+
+<pre><code class="language-sdparse">ROOT И что на это MF ? \n ROOT And what to it MF ?
+root(ROOT-1, И)
+root(ROOT-9, And)
+dobj(И, что)
+dobj(And, what)
+nmod(И, это-5)
+nmod(And, it)
+case(это-5, на)
+case(it, to-12)
+nsubj(И, MF-6)
+nsubj(And, MF-14)
+punct(И, ?-7)
+punct(And, ?-15)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/root.md" target="#">edit root</a></p>
 
 <p><a id="al-ru-dep/vocative" class="al-dest"></a></p>
 <h2><code>vocative</code>: vocative</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>vocative</code>.</p>
+<p>The <code>vocative</code> relation is used to mark dialogue participant addressed in text.
+The relation links the addressee’s name to its host sentence.
+In Russian, the addressee’s name can also appear in the vocative <a href="">cs-feat/Case</a> form.</p>
+
+<pre><code class="language-sdparse">Мужчина , Вы дурак ! \n Sir , you-are a-fool !
+vocative(Вы, Мужчина)
+vocative(you-are, Sir)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/vocative.md" target="#">edit vocative</a></p>
 
@@ -698,7 +768,7 @@ ccomp(ordered, to-dig)
 <p>Pro-drop languages have clauses where the subject is not present as a separate word,
 yet it is inherently present (and often deducible from the form of the verb)
 and it does not depend on arguments from a higher clause.
-Thus in neither of the following two Czech examples is there any overt subject,
+Thus in neither of the following two Russian examples is there any overt subject,
 yet only the second example contains an <code>xcomp</code>.</p>
 
 <pre><code class="language-sdparse">Пишу , потому что я это обещал . \n I-write , because I-have it promised .
