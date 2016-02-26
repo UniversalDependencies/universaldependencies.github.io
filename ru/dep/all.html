@@ -755,40 +755,184 @@ for <code>mark</code>.</p>
 <p><a id="al-ru-dep/mwe" class="al-dest"></a></p>
 <h2><code>mwe</code>: multi-word expression</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>mwe</code>.</p>
+<p>The multi-word expression (modifier) relation is one of the
+relations for compounding and it is intended for function words.
+In Czech it is used for multi-word prepositions.
+The leftmost word is the head and all the other words are attached as its <code>mwe</code> modifiers.</p>
+
+<pre><code class="language-sdparse">Na rozdíl od tebe já se nemám zač stydět . \n In contrast to you I myself have-not of-what to-be-ashamed .
+mwe(Na, rozdíl)
+mwe(Na, od)
+case(tebe, Na)
+mwe(In, contrast)
+mwe(In, to)
+case(you, In)
+</code></pre>
+
+<p>Multi-word prepositions usually form a contiguous span of the sentence. In exceptional cases however, they can be interrupted
+by emphasizers and other words:</p>
+
+<pre><code class="language-sdparse">ve srovnání například s úvěry \n in comparison for-example to loans
+mwe(ve, srovnání)
+mwe(ve, s)
+case(úvěry, ve)
+advmod:emph(úvěry, například)
+mwe(in, comparison)
+mwe(in, to)
+case(loans, in)
+advmod:emph(loans, for-example)
+</code></pre>
+
+<p>Another type of interruption is caused by a possessive determiner. For instance, <em>na základě něčeho</em> “based on something”
+contains the multi-word preposition <em>na základě</em> “based on”, lit. <em>on the-basis-of</em>. This expression is etymologically
+a combination of a proper preposition <em>na</em> “on” and the noun <em>základ</em> “basis”; the argument <em>něčeho</em> “something” is in
+genitive. If the phrase <em>na základě</em> were not analyzed as a multi-word expression, we would have a normal genitive
+modification between two nominals: <em>základ něčeho</em> “basis of-something”. A genitive modifier can be substituted by
+a possessive determiner, and this is possible even within the partially frozen multi-word preposition, as with the
+relative possessive determiner in the following example:</p>
+
+<pre><code class="language-sdparse">zákon , na jehož základě byl zřízen fond \n law , on whose basis was created fund
+nmod(zřízen, jehož)
+nmod(created, whose)
+case(jehož, na)
+case(whose, on)
+mwe(na, základě)
+mwe(on, basis)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/mwe.md" target="#">edit mwe</a></p>
 
 <p><a id="al-ru-dep/name" class="al-dest"></a></p>
 <h2><code>name</code>: name</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>name</code>.</p>
+<p><code>name</code> is one of the relations for compounding in UD.
+In Czech it is used to join the first (or middle) and the last name of a person.</p>
+
+<p>The leftmost name is always the head and the other name(s) are attached to it.
+In most cases this is the opposite to PDT where family names are heads and given names are dependents,
+and the family name is usually the last name.</p>
+
+<p>The relation is not used to attach adjectives to nouns within multi-word names of places, organizations etc.
+(e.g. <em>Český Krumlov</em>).</p>
+
+<pre><code class="language-sdparse">Prezident Václav Havel včera navštívil Český Krumlov . \n President Václav Havel yesterday visited Český Krumlov .
+name(Václav-2, Havel-3)
+name(Václav-11, Havel-12)
+nmod(Václav-2, Prezident)
+nmod(Václav-11, President)
+amod(Krumlov-7, Český-6)
+amod(Krumlov-16, Český-15)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/name.md" target="#">edit name</a></p>
 
 <p><a id="al-ru-dep/neg" class="al-dest"></a></p>
 <h2><code>neg</code>: negation modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>neg</code>.</p>
+<p>The negation modifier is the relation between the negation word <em>ne</em> and the
+word it modifies.</p>
+
+<p>Negation in Czech is most of the time expressed using a bound morpheme (the prefix <em>ne-</em>).
+Occurrences of the morpheme as a separate word are rare in comparison to other languages,
+yet they exist.</p>
+
+<pre><code class="language-sdparse">Potřeboval čtyřnohého a ne dvounohého přítele . \n He-needed quadrupedal and not bipedal friend .
+neg(dvounohého, ne)
+neg(bipedal, not)
+</code></pre>
+
+<p>Note that the negative determiners (pronouns) are attached as <a href="">det</a>, not <code>neg</code>:</p>
+
+<pre><code class="language-sdparse">Premiér není žádný hlupák . \n The-Prime-Minister is-not no fool .
+det(hlupák, žádný)
+det(fool, no)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/neg.md" target="#">edit neg</a></p>
 
 <p><a id="al-ru-dep/nmod" class="al-dest"></a></p>
 <h2><code>nmod</code>: nominal modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nmod</code>.</p>
+<p>The <code>nmod</code> relation is used for nominal modifiers. They depend either
+on another noun (group “noun dependents”) or on a predicate (group
+“non-core dependents of clausal predicates”).</p>
+
+<p><code>nmod</code> is a <a href="cs-pos/NOUN">noun</a> (or noun phrase) functioning as a
+non-core (oblique) argument or adjunct.
+This means that it functionally corresponds to an adverbial when it attaches to a verb, adjective or other adverb.
+But when attaching to a noun, it usually corresponds to a non-agreeing attribute <em>(přívlastek neshodný)</em>
+in genitive. (See below for an example of an agreeing attribute, <em>přívlastek shodný</em>.)</p>
+
+<p>In Czech the <code>nmod</code> relation covers only those possessives that are expressed using the genitive <a href="">cs-feat/Case</a>.
+If a possessive adjective is used, the relation is labeled <a href="">amod</a>.</p>
+
+<pre><code class="language-sdparse">kancelář ředitele \n office of-the-director
+nmod(kancelář, ředitele)
+nmod(office, of-the-director)
+</code></pre>
+
+<pre><code class="language-sdparse">ředitelova kancelář \n director's office
+amod(kancelář, ředitelova)
+amod(office, director's)
+</code></pre>
+
+<pre><code class="language-sdparse">jeho kancelář \n his office
+det(kancelář, jeho)
+det(office, his)
+</code></pre>
+
+<p><code>nmod</code> is also used for temporal nominal modifiers:</p>
+
+<pre><code class="language-sdparse">Potkal jsem ho minulý čtvrtek . \n Met I-have him last Thursday .
+nmod(Potkal, čtvrtek)
+nmod(Met, Thursday)
+</code></pre>
+
+<h2 id="agreeing-attribute-of-a-noun">Agreeing attribute of a noun</h2>
+
+<p><code>nmod</code> noun phrases attached to nouns are usually in the genitive <a href="">cs-feat/Case</a> and follow the modified noun.
+However, there is also a different kind of <code>nmod</code> that precedes the modified noun and agrees with it in case and number.
+A typical example is a title attached to a name of a person. The relation is similar to the <a href="">name</a> relation
+that links the first and the last name, but it is not labeled <code>name</code> because the title is not part of the name:</p>
+
+<pre><code class="language-sdparse">český prezident Václav Havel
+amod(prezident, český)
+nmod(Havel, prezident)
+name(Havel, Václav)
+</code></pre>
+
+<p>Note that the same thing can be also expressed using an <a href="appos">apposition</a>.
+In the case of apposition, the title follows the modified name and is separated by a punctuation symbol:</p>
+
+<pre><code class="language-sdparse">Václav Havel , český prezident
+name(Havel, Václav)
+punct(prezident, ,-3)
+amod(prezident, český)
+appos(Havel, prezident)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/nmod.md" target="#">edit nmod</a></p>
 
 <p><a id="al-ru-dep/nsubj" class="al-dest"></a></p>
 <h2><code>nsubj</code>: nominal subject</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nsubj</code>.</p>
+<p>A nominal subject is a nominal phrase which is the syntactic subject of a clause;
+in Czech, the phrase is in the nominative <a href="">cs-feat/Case</a>.
+(See <a href="">csubj</a> for when the subject is clausal.
+See <a href="">nsubjpass</a> and <a href="">csubjpass</a> for when the subject is not the proto-agent argument due to valence changing operations.)
+The governor of the <code>nsubj</code> relation might not always be a verb: when
+the verb is a copular verb, the root of the clause is the complement
+of the copular verb, which can be an adjective or noun.</p>
+
+<pre><code class="language-sdparse">Novosvětskou symfonii napsal Antonín Dvořák . \n From-the-New-World Symphony wrote Antonín Dvořák .
+nsubj(napsal, Dvořák-5)
+nsubj(wrote, Dvořák-12)
+</code></pre>
+
+<pre><code class="language-sdparse">Auto je červené . \n Car is red .
+nsubj(červené, Auto)
+nsubj(red, Car)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/nsubj.md" target="#">edit nsubj</a></p>
 
