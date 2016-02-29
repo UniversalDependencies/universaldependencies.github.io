@@ -707,48 +707,182 @@ directly affected object <em>(patient).</em> The one exception is when there is 
 <p><a id="al-ru-dep/expl" class="al-dest"></a></p>
 <h2><code>expl</code>: expletive</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>expl</code>.</p>
+<p>Reflexive pronouns (see the feature <a href="">cs-feat/Reflex</a>) usually replace objects of verbs.
+However, some verbs are inherently reflexive, i.e. the verb always occurs with a reflexive
+prounoun, and the pronoun cannot be replaced by a non-reflexive pronoun.</p>
+
+<p>With these verbs, the reflexive pronoun is attached as <code>expl</code> instead of <a href="">dobj</a>.
+(Note that the <code>expl</code> relation is first used for this purpose in the UD release 1.2,
+to increase parallelism with other languages. In the previous releases this usage of
+reflexive <em>se/si</em> was labeled <code>compound:reflex</code>.)</p>
+
+<pre><code class="language-sdparse">Martin se bojí zvířat . \n Martin REFLEX fears animals .
+expl(bojí, se)
+expl(fears, REFLEX)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/expl.md" target="#">edit expl</a></p>
 
 <p><a id="al-ru-dep/foreign" class="al-dest"></a></p>
 <h2><code>foreign</code>: foreign words</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>foreign</code>.</p>
+<p>We use <code>foreign</code> to label sequences of foreign words. These are given
+a linear analysis: the head is the <strong>last</strong> token in the foreign phrase.</p>
+
+<p><code>foreign</code> does not apply to loanwords or to foreign <a href="name">names</a>. 
+It applies to quoted foreign text incorporated in a sentence/discourse
+of the host language (unless we want to and know how to annotate the
+internal structure according to the syntax of the foreign language).</p>
+
+<pre><code class="language-sdparse">Jarmusch se objevil ve Wangově snímku Modrá ve tváři ( Blue in the Face ) .
+foreign(Face, Blue)
+foreign(Face, in)
+foreign(Face, the)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/foreign.md" target="#">edit foreign</a></p>
 
 <p><a id="al-ru-dep/goeswith" class="al-dest"></a></p>
 <h2><code>goeswith</code>: goes with</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>goeswith</code>.</p>
+<p>This relation links two parts of a word that are separated in text
+that is not well edited.
+The head is in some sense the “main” part, often the second part.</p>
+
+<pre><code class="language-sdparse">Zastavil a z těžka oddychoval .
+goeswith(těžka, z)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/goeswith.md" target="#">edit goeswith</a></p>
 
 <p><a id="al-ru-dep/iobj" class="al-dest"></a></p>
 <h2><code>iobj</code>: indirect object</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>iobj</code>.</p>
+<p>The indirect object of a verb is any nominal phrase that is a core
+argument of the verb but is not its subject or <a href="dobj">direct object</a>.
+The prototypical example is the recipient of ditransitive verbs of
+exchange:</p>
+
+<pre><code class="language-sdparse">Pavel dal Petrovi dvě hrušky . \n Pavel gave Petr two pears .
+iobj(dal, Petrovi)
+iobj(gave, Petr)
+</code></pre>
+
+<p>However, Czech allows other semantic roles as additional objects.
+The morphological <a href="">cs-feat/Case</a> of the objects is dictated by verb valency.</p>
+
+<p>In the following Czech example, the verb takes two arguments, both are nouns in the accusative case. One of them is direct object (patient), the other is indirect (addressee). It is parallel to how the English translation would be annotated (where there is no morphological case marking) and also to verbs of giving (consider a similar sentence, <em>he gave my daughter a class of maths</em>).</p>
+
+<pre><code class="language-sdparse">On učí mou dceru matematiku . \n He teaches my daughter.Acc maths.Acc .
+dobj(učí, matematiku)
+iobj(učí, dceru)
+dobj(teaches, maths.Acc)
+iobj(teaches, daughter.Acc)
+</code></pre>
+
+<p>In general, if there is just one object, it should be labeled
+<a href="">dobj</a>, regardless of the morphological case or semantic role.
+For example, <em>učit</em> “to teach” can take either the subject matter or the recipient as the only object,
+and in both cases it would be analyzed as the <a href="">dobj</a>:</p>
+
+<pre><code class="language-sdparse">Učí úvod do logiky . \n He-teaches introduction to logic .
+dobj(Učí, úvod)
+dobj(He-teaches, introduction)
+</code></pre>
+
+<pre><code class="language-sdparse">Učí studenty prvního ročníku . \n He-teaches students of-first year .
+dobj(Učí, studenty)
+dobj(He-teaches, students)
+</code></pre>
+
+<p>The one exception is when there is a clausal complement.
+Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an iobj, parallel to
+the simple ditransitive case:</p>
+
+<pre><code class="language-sdparse">Řekla studentům , že dnes večer musí studovat . \n She-told students , that today evening they-needed to-study .
+iobj(Řekla, studentům)
+ccomp(Řekla, musí)
+iobj(She-told, students)
+ccomp(She-told, they-needed)
+</code></pre>
+
+<pre><code class="language-sdparse">Řekla studentům svůj plán . \n She-told students her plan .
+iobj(Řekla, studentům)
+dobj(Řekla, plán)
+iobj(She-told, students)
+dobj(She-told, plan)
+</code></pre>
+
+<p>If there are two or
+more objects, one of them should be <a href="">dobj</a> and the others should be
+<code>iobj</code>. In such cases it is necessary to decide what is the
+most directly affected object <em>(patient).</em></p>
+
+<h2 id="diffs">Diffs</h2>
+
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+
+<p>The manual annotation of the PDT does not distinguish direct and indirect objects.
+Therefore all non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>dobj</code>
+in the converted data, even if it results in two or more direct objects attached to one verb.
+In future, the valency lexicon <a href="http://ufal.mff.cuni.cz/vallex">Vallex</a>
+could be used to identify the main object.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/iobj.md" target="#">edit iobj</a></p>
 
 <p><a id="al-ru-dep/list" class="al-dest"></a></p>
 <h2><code>list</code>: list</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>list</code>.</p>
+<p>The <code>list</code> relation is used for chains of comparable items.
+In lists with more than two items, all items of the list should modify the first one.
+Informal and web text often contains passages which are meant to be interpreted as lists but are parsed as single sentences.
+Email signatures often contain these structures, in the form of contact information:
+the different contact information items are labeled as <code>list</code>; the key-value pair relations are labeled as <a href="">appos</a>.</p>
+
+<p>However, <code>list</code> should not be over-used. If a construction can be easily analyzed
+using the grammatical relations of standard sentences, such as when there is overt coordination,
+then it should be analyzed with these more standard relations, even if it is laid out as a list typographically.</p>
+
+<pre><code class="language-sdparse">Steve Jones tel.: 555-9814 e-mail: jones@abc.edf
+name(Steve-1, Jones-2)
+list(Steve-1, tel.:-3)
+list(Steve-1, e-mail:-5)
+appos(tel.:-3, 555-9814-4)
+appos(e-mail:-5, jones@abc.edf-6)
+</code></pre>
+
+<h2 id="diffs">Diffs</h2>
+
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+
+<p>The <code>list</code> relation is not used in the current conversion of the PDT data to UD.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/list.md" target="#">edit list</a></p>
 
 <p><a id="al-ru-dep/mark" class="al-dest"></a></p>
 <h2><code>mark</code>: marker</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>mark</code>.</p>
+<p>A marker is the subordinating conjunction introducing a finite clause subordinate to another clause.
+The mark is a dependent of the subordinate clause head.</p>
+
+<pre><code class="language-sdparse">Nevěděl jsem , že umíš německy . \n Not-know I-did , that you-can-speak German .
+mark(umíš, že)
+mark(you-can-speak, that)
+</code></pre>
+
+<pre><code class="language-sdparse">Zboží odešleme , jakmile peníze dorazí na náš účet . \n Goods we-will-dispatch , as-soon-as money arrive at our account .
+mark(dorazí, jakmile)
+mark(arrive, as-soon-as)
+</code></pre>
+
+<p>Note that the subordinating conjunction should not be confused with relative pronouns and adverbs.
+These fill a valency slot in the frame of the subordinate predicate,
+and are labeled according to their role in the frame, they are not <code>mark</code>:</p>
+
+<pre><code class="language-sdparse">Rád bych věděl , kdy peníze dorazí na náš účet . \n Like-to I-would know , when money arrive at our account .
+advmod(dorazí, kdy)
+advmod(arrive, when)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/mark.md" target="#">edit mark</a></p>
 
