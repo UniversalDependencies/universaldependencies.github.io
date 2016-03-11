@@ -43,54 +43,54 @@ argument of the verb but is not its subject or <a href="dobj">direct object</a>.
 The prototypical example is the recipient of ditransitive verbs of
 exchange:</p>
 
-<pre><code class="language-sdparse">Pavel dal Petrovi dvě hrušky . \n Pavel gave Petr two pears .
-iobj(dal, Petrovi)
+<pre><code class="language-sdparse">Павел дал Петру две груши \n Pavel gave Petr two pears .
+iobj(дал, Петру)
 iobj(gave, Petr)
 </code></pre>
 
-<p>However, Czech allows other semantic roles as additional objects.
+<p>However, Russian allows other semantic roles as additional objects.
 The morphological <a href="">cs-feat/Case</a> of the objects is dictated by verb valency.</p>
 
-<p>In the following Czech example, the verb takes two arguments, both are nouns in the accusative case. One of them is direct object (patient), the other is indirect (addressee). It is parallel to how the English translation would be annotated (where there is no morphological case marking) and also to verbs of giving (consider a similar sentence, <em>he gave my daughter a class of maths</em>).</p>
+<p>In the following Russian example, the verb takes two argumentse. One of them is direct object (patient), the other is indirect (addressee). It is parallel to how the English translation would be annotated (where there is no morphological case marking) and also to verbs of giving (consider a similar sentence, <em>he gave my daughter a class of maths</em>).</p>
 
-<pre><code class="language-sdparse">On učí mou dceru matematiku . \n He teaches my daughter.Acc maths.Acc .
-dobj(učí, matematiku)
-iobj(učí, dceru)
+<pre><code class="language-sdparse">Он преподает моей дочери математику. \n He teaches my daughter.Dat maths.Acc .
+dobj(преподает, математику)
+iobj(преподает, дочери)
 dobj(teaches, maths.Acc)
-iobj(teaches, daughter.Acc)
+iobj(teaches, daughter.Dat)
 </code></pre>
 
 <p>In general, if there is just one object, it should be labeled
 <a href="">dobj</a>, regardless of the morphological case or semantic role.
-For example, <em>učit</em> “to teach” can take either the subject matter or the recipient as the only object,
+For example, <em>преподавать</em> “to teach” can take either the subject matter or the recipient as the only object,
 and in both cases it would be analyzed as the <a href="">dobj</a>:</p>
 
-<pre><code class="language-sdparse">Učí úvod do logiky . \n He-teaches introduction to logic .
-dobj(Učí, úvod)
-dobj(He-teaches, introduction)
+<pre><code class="language-sdparse">Он преподает математику . \n He teaches maths .
+dobj(преподает, математику)
+dobj(teaches, maths)
 </code></pre>
 
-<pre><code class="language-sdparse">Učí studenty prvního ročníku . \n He-teaches students of-first year .
-dobj(Učí, studenty)
-dobj(He-teaches, students)
+<pre><code class="language-sdparse">Он преподает студентам . \n He teaches students.
+dobj(преподает, студентам)
+dobj(teaches, students)
 </code></pre>
 
 <p>The one exception is when there is a clausal complement.
 Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an iobj, parallel to
 the simple ditransitive case:</p>
 
-<pre><code class="language-sdparse">Řekla studentům , že dnes večer musí studovat . \n She-told students , that today evening they-needed to-study .
-iobj(Řekla, studentům)
-ccomp(Řekla, musí)
-iobj(She-told, students)
-ccomp(She-told, they-needed)
+<pre><code class="language-sdparse">Она сказала студентам, что сегодня вечером нужно учиться . \n She told students , that today evening they-needed to-study .
+iobj(говорит, студентам)
+ccomp(говорит, нужно)
+iobj(told, students)
+ccomp(told, they-needed)
 </code></pre>
 
-<pre><code class="language-sdparse">Řekla studentům svůj plán . \n She-told students her plan .
-iobj(Řekla, studentům)
-dobj(Řekla, plán)
-iobj(She-told, students)
-dobj(She-told, plan)
+<pre><code class="language-sdparse">Она рассказала студентам свой план . \n She told students her plan .
+iobj(рассказала, студентам)
+dobj(рассказала, план)
+iobj(told, students)
+dobj(told, plan)
 </code></pre>
 
 <p>If there are two or
@@ -98,15 +98,6 @@ more objects, one of them should be <a href="">dobj</a> and the others should be
 <code>iobj</code>. In such cases it is necessary to decide what is the
 most directly affected object <em>(patient).</em></p>
 
-<h2 id="diffs">Diffs</h2>
-
-<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
-
-<p>The manual annotation of the PDT does not distinguish direct and indirect objects.
-Therefore all non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>dobj</code>
-in the converted data, even if it results in two or more direct objects attached to one verb.
-In future, the valency lexicon <a href="http://ufal.mff.cuni.cz/vallex">Vallex</a>
-could be used to identify the main object.</p>
 
 
 <!-- "automatic stats" -->
