@@ -422,28 +422,6 @@ auxpass(убитым, быть)
 auxpass(killed, to-be)
 </code></pre>
 
-<p>Note that the passive participle may be also used as nominal predicate with <a href="cop">copula</a>.
-Hence it may be difficult to distinguish a passive construction from a copula construction.
-The former focuses on the process while the latter emphasizes the result.</p>
-
-<ul>
-  <li>Passive:</li>
-</ul>
-
-<pre><code class="language-sdparse">Контракт был подписан в Белом Доме. \n Contract was signed in White House .
-auxpass(подписан, был)
-auxpass(signed, was)
-</code></pre>
-
-<ul>
-  <li>Copula:</li>
-</ul>
-
-<pre><code class="language-sdparse">Контракт был подписан красными чернилами . \n Contract was signed in-red ink .
-cop(подписан, был)
-cop(signed, was)
-</code></pre>
-
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/auxpass.md" target="#">edit auxpass</a></p>
 
 <p><a id="al-ru-dep/case" class="al-dest"></a></p>
@@ -490,7 +468,7 @@ cc(ушли, И)
 cc(left, And)
 </code></pre>
 
-<pre><code class="language-sdparse">У нас есть яблоки , груши, апельсины a бананы . \n We-have apples , pears , oranges and bananas .
+<pre><code class="language-sdparse">У нас есть яблоки , груши , апельсины a бананы . \n We have apples , pears , oranges and bananas .
 dobj(есть, яблоки)
 dobj(We-have, apples)
 conj(яблоки, груши)
@@ -501,10 +479,10 @@ conj(apples, oranges)
 conj(apples, bananas)
 cc(яблоки, и)
 cc(apples, and)
-punct(яблоки, ,-3)
 punct(яблоки, ,-5)
-punct(apples, ,-13)
-punct(apples, ,-15)
+punct(яблоки, ,-6)
+punct(apples, ,-16)
+punct(apples, ,-18)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/cc.md" target="#">edit cc</a></p>
@@ -581,7 +559,7 @@ conj(старый, мудрый)
 conj(old, wise)
 </code></pre>
 
-<pre><code class="language-sdparse">У нас есть яблоки , груши, апельсины a бананы . \n We-have apples , pears , oranges and bananas .
+<pre><code class="language-sdparse">У нас есть яблоки , груши , апельсины a бананы . \n We have apples , pears , oranges and bananas .
 dobj(есть, яблоки)
 dobj(We-have, apples)
 conj(яблоки, груши)
@@ -592,21 +570,21 @@ conj(apples, oranges)
 conj(apples, bananas)
 cc(яблоки, и)
 cc(apples, and)
-punct(яблоки, ,-3)
 punct(яблоки, ,-5)
-punct(apples, ,-13)
-punct(apples, ,-15)
+punct(яблоки, ,-7)
+punct(apples, ,-16)
+punct(apples, ,-18)
 </code></pre>
 
 <p>Coordinate clauses are treated the same way as coordination of other constituent types:</p>
 
-<pre><code class="language-sdparse">Он пришел домой , помылся и пошел в кровать . \n He-came home , showered himself and immediately went to bed .
+<pre><code class="language-sdparse">Он пришел домой , помылся и пошел в кровать . \n He came home , showered himself and immediately went to bed .
 conj(пришел, помылся)
-conj(пришел, šel)
+conj(пришел, пошел)
 conj(came, пошел)
 conj(came, went)
 punct(пришел, ,-4)
-punct(came, ,-14)
+punct(came, ,-15)
 cc(пришел, и)
 cc(came, and)
 </code></pre>
@@ -621,7 +599,7 @@ coordination.</p>
 <h2><code>cop</code>: copula</h2>
 
 <p>A copula is the relation between the nominal predicate and
-the copular verb <em><b>,быть</b></em> “to be” (or its variants <em>бывал, был</em>).
+the copular verb <em><b>быть</b></em> “to be” (or its variants <em>бывал, был</em>).
 The verb <em>становиться</em> “to become”, despite being counted among copular verbs by some authors,
 is not analyzed as <code>cop</code>.</p>
 
@@ -639,8 +617,23 @@ cop(man, was)
 <p><a id="al-ru-dep/csubj" class="al-dest"></a></p>
 <h2><code>csubj</code>: clausal subject</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>csubj</code>.</p>
+<p>A clausal subject is a clausal syntactic subject of a clause, i.e.,
+the subject is itself a clause. The governor of this relation might
+not always be a verb: when the verb is a copular verb, the root of the
+clause is the complement of the copular verb. The dependent is the main lexical verb or other 
+predicate of the subject clause.</p>
+
+<pre><code class="language-sdparse">Obžalovanému přitížilo , že neměl alibi . \n To-indictee did-a-disservice , that he-did-not-have alibi .
+csubj(přitížilo, neměl)
+csubj(did-a-disservice, he-did-not-have)
+</code></pre>
+
+<pre><code class="language-sdparse">Podstatou těchto vazeb je , že se děj rozloží na dvě složky . \n The-essence of-these constructions is , that one the-action splits to two parts .
+csubj(Podstatou, rozloží)
+cop(Podstatou, je)
+csubj(The-essence, splits)
+cop(The-essence, is)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/csubj.md" target="#">edit csubj</a></p>
 
@@ -659,8 +652,21 @@ csubjpass(recommended, weigh)
 <p><a id="al-ru-dep/dep" class="al-dest"></a></p>
 <h2><code>dep</code>: unspecified dependency</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>dep</code>.</p>
+<p>A dependency is labeled as <code>dep</code> when a system is unable to
+determine a more precise dependency relation between two words.  This
+may be because of a weird grammatical construction, a limitation in
+software, a parser error, or
+because of an unresolved long distance dependency.</p>
+
+<p>Most <code>dep</code> instances in the current conversion of the PDT 3.0 data
+correspond to the PDT label <code>ExD</code>, which marks ellipsis.
+The current conversion software cannot produce the annotation conforming
+to the UD standard and using the <a href="">remnant</a> relation.</p>
+
+<pre><code class="language-sdparse">K čemu ovšem , to nebylo jasné . \n For what however , that was-not clear .
+dep(jasné, čemu)
+dep(clear, what)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/dep.md" target="#">edit dep</a></p>
 
@@ -675,9 +681,14 @@ Non-pronominal adjectives are tagged <a href="">cs-pos/ADJ</a> and the relation 
 <p>Pronominal quantifiers are tagged <code>DET</code> but their relation to their head is a subtype of the <code>det</code> relation:
 either <a href="">cs-dep/det:numgov</a> or <a href="">cs-dep/det:nummod</a>.</p>
 
-<pre><code class="language-sdparse">Тот человек уже здесь. \n The man already is here .
+<pre><code class="language-sdparse">Тот человек уже здесь . \n The man already is here .
 det(человек, Тот)
 det(man, The)
+</code></pre>
+
+<pre><code class="language-sdparse">Это моя ошибка . \n This is my mistake .
+det(ошибка, моя)
+det(mistake, my)
 </code></pre>
 
 <pre><code class="language-sdparse">Какая книга тебе нравится больше всего ? \n Which book is to-you nice the-most ?
@@ -690,8 +701,14 @@ det(book, Which)
 <p><a id="al-ru-dep/discourse" class="al-dest"></a></p>
 <h2><code>discourse</code>: discourse element</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>discourse</code>.</p>
+<p>At present we use the <code>discourse</code> relation for what is labeled <code>AuxO</code> in the Prague Dependency Treebank:
+redundant or emotional items, redundant coreferential pronoun.</p>
+
+<pre><code class="language-sdparse">čemu že se to zpronevěřily \n what that themselves it they-betrayed
+discourse(zpronevěřily, to)
+discourse(they-betrayed, it)
+</code></pre>
+<p>(meaning “… what they betrayed”)</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/discourse.md" target="#">edit discourse</a></p>
 
@@ -777,10 +794,9 @@ It applies to quoted foreign text incorporated in a sentence/discourse
 of the host language (unless we want to and know how to annotate the
 internal structure according to the syntax of the foreign language).</p>
 
-<pre><code class="language-sdparse">Jarmusch se objevil ve Wangově snímku Modrá ve tváři ( Blue in the Face ) .
-foreign(Face, Blue)
-foreign(Face, in)
-foreign(Face, the)
+<pre><code class="language-sdparse">Он придет , когда полетят свиньи ( When pigs fly ) .
+foreign(fly, When)
+foreign(fly, pigs)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/foreign.md" target="#">edit foreign</a></p>
@@ -792,8 +808,8 @@ foreign(Face, the)
 that is not well edited.
 The head is in some sense the “main” part, often the second part.</p>
 
-<pre><code class="language-sdparse">Zastavil a z těžka oddychoval .
-goeswith(těžka, z)
+<pre><code class="language-sdparse">Он остановился чтобы о тдышаться .
+goeswith(тдышаться, о)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/goeswith.md" target="#">edit goeswith</a></p>
@@ -921,10 +937,10 @@ relations for compounding and it is intended for function words.
 In Czech it is used for multi-word prepositions.
 The leftmost word is the head and all the other words are attached as its <code>mwe</code> modifiers.</p>
 
-<pre><code class="language-sdparse">Na rozdíl od tebe já se nemám zač stydět . \n In contrast to you I myself have-not of-what to-be-ashamed .
-mwe(Na, rozdíl)
-mwe(Na, od)
-case(tebe, Na)
+<pre><code class="language-sdparse">В отличие от тебя мне нечего стыдиться . \n In contrast to you I myself have-not of-what to-be-ashamed .
+mwe(В, отличие)
+mwe(В, от)
+case(тебя, В)
 mwe(In, contrast)
 mwe(In, to)
 case(you, In)
