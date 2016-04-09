@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/style-vis.css"/>
     <link rel="stylesheet" type="text/css" href="css/hint.css"/>
     <script type="text/javascript" src="lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="lib/ext/jquery.timeago.js.js"></script>
 <!--     <link rel="shortcut icon" href="favicon.ico"/> -->
 
 
@@ -297,6 +298,7 @@ In <a href="http://www2.lingfil.uu.se/SLTC2014/"><em>SLTC 2014</em></a>.</p>
         root + 'lib/ext/jquery.min.js',
         root + 'lib/ext/jquery.svg.min.js',
         root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
         root + 'lib/ext/jquery-ui.min.js',
         root + 'lib/ext/waypoints.min.js',
         root + 'lib/ext/jquery.address.min.js',
@@ -360,6 +362,10 @@ In <a href="http://www2.lingfil.uu.se/SLTC2014/"><em>SLTC 2014</em></a>.</p>
 	}
     };
 
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
     var setupTabs = function() {
         // standard jQuery UI "tabs" element initialization
         $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
@@ -381,6 +387,7 @@ In <a href="http://www2.lingfil.uu.se/SLTC2014/"><em>SLTC 2014</em></a>.</p>
         // set up UI tabs on page
         setupTabs();
         setupAccordions();
+        setupTimeago();
 
         // mark current collection (filled in by Jekyll)
         Collections.listing['_current'] = '';

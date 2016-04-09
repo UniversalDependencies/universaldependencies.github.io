@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
     <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js.js"></script>
 <!--     <link rel="shortcut icon" href="favicon.ico"/> -->
 
 
@@ -941,30 +942,13 @@ case(loans, to)
 advmod:emph(loans, for-example)
 </code></pre>
 
-<p>Another type of interruption is caused by a possessive determiner. For instance, <em>на основе чего-то</em> “based on something”
-contains the multi-word preposition <em>на основе</em> “based on”, lit. <em>on the-basis-of</em>. This expression is etymologically
-a combination of a proper preposition <em>на</em> “on” and the noun <em>основа</em> “basis”; the argument <em>чего-то</em> “something” is in
-genitive. If the phrase <em>на основе</em> were not analyzed as a multi-word expression, we would have a normal genitive
-modification between two nominals: <em>основа чего-то</em> “basis of-something”. A genitive modifier can be substituted by
-a possessive determiner, and this is possible even within the partially frozen multi-word preposition, as with the
-relative possessive determiner in the following example:</p>
-
-<pre><code class="language-sdparse">zákon , na jehož základě byl zřízen fond \n law , on whose basis was created fund
-nmod(zřízen, jehož)
-nmod(created, whose)
-case(jehož, na)
-case(whose, on)
-mwe(на, основе)
-mwe(on, basis)
-</code></pre>
-
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/mwe.md" target="#">edit mwe</a></p>
 
 <p><a id="al-ru-dep/name" class="al-dest"></a></p>
 <h2><code>name</code>: name</h2>
 
 <p><code>name</code> is one of the relations for compounding in UD.
-In Russian it is used to join the first (or middle) and the last name of a person.</p>
+In Russian it is used to join the first (or patronymic) and the last name of a person.</p>
 
 <p>The leftmost name is always the head and the other name(s) are attached to it.
 In most cases this is the opposite to PDT where family names are heads and given names are dependents,
@@ -973,9 +957,11 @@ and the family name is usually the last name.</p>
 <p>The relation is not used to attach adjectives to nouns within multi-word names of places, organizations etc.
 (e.g. <em>Владимир Путин</em>).</p>
 
-<pre><code class="language-sdparse">Президент Владимир Путин вчера посетил Минеральные Воды . \n President Vladimir Putin yesterday visited Mineralnye Vody .
+<pre><code class="language-sdparse">Президент Владимир Владимирович Путин вчера посетил Минеральные Воды . \n President Vladimir Putin yesterday visited Mineralnye Vody .
 name(Владимир, Путин)
 name(Vladimir, Putin)
+name(Владимирович, Владимир)
+name(Vladimirovich, Vladimir)
 nmod(Владимир, Президент)
 nmod(Vladimir, President)
 amod(Минеральные, Воды)
@@ -1040,9 +1026,9 @@ det(card, his)
 
 <p><code>nmod</code> is also used for temporal nominal modifiers:</p>
 
-<pre><code class="language-sdparse">Potkal jsem ho minulý čtvrtek . \n Met I-have him last Thursday .
-nmod(Potkal, čtvrtek)
-nmod(Met, Thursday)
+<pre><code class="language-sdparse">Последний раз мы разговаривали зимой. \n Last time we have-talked in-winter .
+nmod(разговаривали, зимой)
+nmod(have-talked, in-winter)
 </code></pre>
 
 <h2 id="agreeing-attribute-of-a-noun">Agreeing attribute of a noun</h2>
@@ -1052,20 +1038,25 @@ However, there is also a different kind of <code>nmod</code> that precedes the m
 A typical example is a title attached to a name of a person. The relation is similar to the <a href="">name</a> relation
 that links the first and the last name, but it is not labeled <code>name</code> because the title is not part of the name:</p>
 
-<pre><code class="language-sdparse">český prezident Václav Havel
-amod(prezident, český)
-nmod(Havel, prezident)
-name(Havel, Václav)
+<pre><code class="language-sdparse">российский президент Владимир Владимироваич Путин \n russian president Vladimir Vladimirovich Putin
+amod(президент, российский)
+amod(president, russian)
+nmod(Владимир, президент)
+nmod(Vladimir, president)
+name(Владимир, Путин)
+name(Vladimir, Putin)
+name(Владимирович, Владимир)
+name(Vladimirovich, Vladimir)
 </code></pre>
 
 <p>Note that the same thing can be also expressed using an <a href="appos">apposition</a>.
 In the case of apposition, the title follows the modified name and is separated by a punctuation symbol:</p>
 
-<pre><code class="language-sdparse">Václav Havel , český prezident
-name(Havel, Václav)
-punct(prezident, ,-3)
-amod(prezident, český)
-appos(Havel, prezident)
+<pre><code class="language-sdparse">Владимир Путин , российский президент
+name(Владимир, Путин)
+punct(президент, ,-3)
+amod(президент, российский)
+appos(Путин, президент)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/nmod.md" target="#">edit nmod</a></p>
@@ -1749,6 +1740,7 @@ xcomp(have-promised, to-write)
         root + 'lib/ext/jquery.min.js',
         root + 'lib/ext/jquery.svg.min.js',
         root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
         root + 'lib/ext/jquery-ui.min.js',
         root + 'lib/ext/waypoints.min.js',
         root + 'lib/ext/jquery.address.min.js',
@@ -1812,6 +1804,10 @@ xcomp(have-promised, to-write)
 	}
     };
 
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
     var setupTabs = function() {
         // standard jQuery UI "tabs" element initialization
         $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
@@ -1833,6 +1829,7 @@ xcomp(have-promised, to-write)
         // set up UI tabs on page
         setupTabs();
         setupAccordions();
+        setupTimeago();
 
         // mark current collection (filled in by Jekyll)
         Collections.listing['_current'] = 'ru-overview';
