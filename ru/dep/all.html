@@ -1107,38 +1107,38 @@ nsubjpass(will-be-solved, This)
 <p><a id="al-ru-dep/nummod" class="al-dest"></a></p>
 <h2><code>nummod</code>: numeric modifier</h2>
 
-<p>A numeric modifier of a noun is any <a href="cs-pos/NUM">number</a> phrase
+<p>A numeric modifier of a noun is any [number] phrase
 that serves to modify the meaning of the noun with a quantity.</p>
 
-<pre><code class="language-sdparse">Jan snědl tři řízky . \n Jan ate three steaks .
-nummod(řízky, tři)
+<pre><code class="language-sdparse">Ян съел три стейка . \n Jan ate three steaks .
+nummod(стейка, три)
 nummod(steaks, three)
 </code></pre>
 
-<h2 id="agreement-and-government-with-czech-quantifiers">Agreement and government with Czech quantifiers</h2>
+<h2 id="agreement-and-government-with-russian-quantifiers">Agreement and government with Russian quantifiers</h2>
 
-<p>The morphological and syntactic behavior of Czech numerals is a complex matter.
-Small cardinal numerals <em>jeden</em> “one”, <em>dva</em> “two”, <em>tři</em> “three” and <em>čtyři</em> “four” agree with the counted
-noun in <a href="">cs-feat/Case</a> (<em>jeden</em> also agrees in <a href="">cs-feat/Gender</a> and <a href="">cs-feat/Number</a>;
-<em>dva</em> also agrees in <a href="">cs-feat/Gender</a>).
+<p>The morphological and syntactic behavior of Russian numerals is a complex matter.
+Small cardinal numerals <em>один</em> “one”, <em>два</em> “two”, <em>три</em> “three” and <em>четыре</em> “four” agree with the counted
+noun in case (<em>один</em> also agrees in gender and number;
+<em>два</em> also agrees in gender).
 They behave as if they modify the counted noun; they are similar to adjectives in this respect.
 Examples:</p>
 
 <ul>
-  <li><em><b>Jeden</b> muž spal, <b>dva</b> muži hráli karty.</em> “One man slept, two men played cards.”</li>
-  <li><em><b>Jedna</b> žena spala, <b>dvě</b> ženy hrály karty.</em> “One woman slept, two women played cards.”</li>
-  <li><em><b>Jedno</b> kotě spalo, <b>dvě</b> koťata si hrála.</em> “One kitten slept, two kittens played.”</li>
+  <li><em><b>Один</b> мужчина спал,, <b>два</b> мужчины играли в карты.</em> “One man slept, two men played cards.”</li>
+  <li><em><b>Одна</b> женщина спала, <b>две</b> женщины играли в карты.</em> “One woman slept, two women played cards.”</li>
+  <li><em><b>Одно</b> чудовище спало, <b>два</b> чудовища играли в карты.</em> “One monster slept, two monsters played.”</li>
 </ul>
 
 <p>In PDT, these numerals are attached to their counted nouns as <code>Atr</code> (attribute).
 It is straightforward to convert such dependencies to <code>nummod</code>:</p>
 
-<pre><code class="language-sdparse">Jedno kotě spalo . \n One kitten slept .
-nummod(kotě, Jedno)
-nsubj(spalo, kotě)
-punct(spalo, .-4)
-nummod(kitten, One)
-nsubj(slept, kitten)
+<pre><code class="language-sdparse">Одно чудовище спало . \n One kitten slept .
+nummod(чудовище, Одно)
+nsubj(спало, чудовище)
+punct(спало, .-4)
+nummod(monster, One)
+nsubj(slept, monster)
 punct(slept, .-9)
 </code></pre>
 
@@ -1149,23 +1149,11 @@ The whole phrase (numeral + counted noun) behaves as a noun phrase in neuter gen
 (which is important for subject-verb agreement).</p>
 
 <ul>
-  <li><em><b>Pět</b> mužů hrálo karty.</em> “Five men played cards.”</li>
-  <li><em>Skupina mužů hrála karty.</em> “A group of men played cards.”</li>
+  <li><em><b>Пять</b> мужчин играло в карты.</em> “Five men played cards.”</li>
+  <li><em>Группа мужчин играла в карты.</em> “A group of men played cards.”</li>
 </ul>
 
-<p>In PDT, these numerals are analyzed as heads of the counted nouns, which are attached to the numeral as <code>Atr</code>:</p>
-
-<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
-# visual-style nodes yellow
-# visual-style arcs blue
-1   Pět     pět     NUM     _   Case=Nom                           3   Sb     _   Five
-2   mužů    muž     NOUN    _   Case=Gen|Gender=Masc|Number=Plur   1   Atr    _   men
-3   hrálo   hrát    VERB    _   Gender=Neut|Number=Sing            0   Pred   _   played
-4   karty   karta   NOUN    _   Case=Acc|Gender=Fem|Number=Plur    3   Obj    _   cards
-5   .       .       PUNCT   _   _                                  0   AuxK   _   .
-</code></pre>
-
-<p>There are both advantages and drawbacks to this solution.
+<p>This also can be mapped as <code>Atr</code>, but there are both advantages and drawbacks to this solution.
 On the one hand, it reflects well the agreement in case, gender and number.
 On the other hand, it is confusing that there are two different analyses of counted noun constructions,
 depending on the numeric value.</p>
@@ -1177,13 +1165,13 @@ two distinct morphological forms, resulting in homonymy).</p>
 
 <table>
 <tr><th>Phrase Case</th><th>Example</th><th>Numeral Case</th><th>Noun Case</th></tr>
-<tr><td>Nom</td><td>pět mužů</td>   <td>Nom</td><td>Gen</td></tr>
-<tr><td>Gen</td><td>pěti mužů</td>  <td>Gen</td><td>Gen</td></tr>
-<tr><td>Dat</td><td>pěti mužům</td> <td>Dat</td><td>Dat</td></tr>
-<tr><td>Acc</td><td>pět mužů</td>   <td>Acc</td><td>Gen</td></tr>
-<tr><td>Voc</td><td>pět mužů</td>   <td>Voc</td><td>Gen</td></tr>
-<tr><td>Loc</td><td>pěti mužích</td><td>Loc</td><td>Loc</td></tr>
-<tr><td>Ins</td><td>pěti muži</td>  <td>Ins</td><td>Ins</td></tr>
+<tr><td>Nom</td><td>пять мужчин</td>   <td>Nom</td><td>Gen</td></tr>
+<tr><td>Gen</td><td>пяти мужчин</td>  <td>Gen</td><td>Gen</td></tr>
+<tr><td>Dat</td><td>пяти мужчинам</td> <td>Dat</td><td>Dat</td></tr>
+<tr><td>Acc</td><td>пять мужчин</td>   <td>Acc</td><td>Gen</td></tr>
+<tr><td>Voc</td><td>пять мужчин</td>   <td>Voc</td><td>Gen</td></tr>
+<tr><td>Loc</td><td>пяти мужчинах</td><td>Loc</td><td>Loc</td></tr>
+<tr><td>Ins</td><td>пятью мужчинами</td>  <td>Ins</td><td>Ins</td></tr>
 </table>
 
 <p>We can say that the noun has the case of the whole phrase if it is dative, locative or instrumental.
@@ -1193,51 +1181,15 @@ The numeral forces the noun to the genitive case if the whole phrase is nominati
 In genitive, the noun and the numeral agree with each other; but note that the numeral uses its
 inflected form, as in the other cases where it agrees with the noun.</p>
 
-<p>In PDT, the genitive, dative, locative and instrumental cases are analyzed in parallel to the low-value numerals,
-i.e. the noun governs the numeral:</p>
-
-<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
-# visual-style nodes yellow
-# visual-style arcs blue
-1   Hrál      hrát    VERB    _   Gender=Masc|Number=Sing            0   Pred   _   He-played
-2   karty     karta   NOUN    _   Case=Acc|Gender=Fem|Number=Plur    1   Obj    _   cards
-3   s         s       ADP     _   _                                  1   AuxP   _   with
-4   pěti      pět     NUM     _   Case=Ins                           6   Atr    _   five
-5   dalšími   další   ADJ     _   Case=Ins|Gender=Masc|Number=Plur   6   Atr    _   other
-6   muži      muž     NOUN    _   Case=Ins|Gender=Masc|Number=Plur   3   Obj    _   men
-7   .         .       PUNCT   _   _                                  0   AuxK   _   .
-</code></pre>
-
-<p>High-value numerals where the lowest-order digit is more than zero and less than five (e.g. 21, 22, 23, 24) may behave both ways:</p>
-
-<ul>
-  <li><em>dvacet <b>dva</b> muži</em> (noun governs numeral)</li>
-  <li><em>dvacet <b>dva</b> mužů</em> (numeral governs noun)</li>
-  <li><em><b>dvaadvacet</b> mužů</em> (alternative form; it does not end with <em>dva</em>, thus the numeral governs the noun)</li>
-  <li><em><b>22</b> muži</em> (assuming the reader will pronounce <em>22</em> as <em>dvacet dva,</em> not <em>dvaadvacet</em>)</li>
-  <li><em><b>22</b> mužů</em> (pronounced either way)</li>
-</ul>
-
 <p>Pronominal quantifiers behave as high-value numerals and govern the quantifed nouns:</p>
 
 <ul>
-  <li><em><b>Kolik</b> mužů hrálo karty?</em> “How many men played cards?”</li>
-  <li><em><b>Několik</b> (<b>mnoho</b>, <b>málo</b>) mužů hrálo karty.</em> “Several (many, few) men played cards.”</li>
-  <li><em><b>Tolik</b> mužů hrát karty jsem ještě neviděl.</em> “I have never seen so many men playing cards.”</li>
+  <li><em><b>Сколько</b> мужчин играло в карты?</em> “How many men played cards?”</li>
+  <li><em><b>Несколько</b> (<b>много</b>, <b>мало</b>) мужчин играло в карты.</em> “Several (many, few) men played cards.”</li>
+  <li><em><b>Столько</b> мужчин, играющих в карты, я никогда не видел.</em> “I have never seen so many men playing cards.”</li>
 </ul>
 
-<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
-# visual-style nodes yellow
-# visual-style arcs blue
-1   Kolik   kolik   NUM     _   Case=Nom                           3   Sb     _   How-many
-2   mužů    muž     NOUN    _   Case=Gen|Gender=Masc|Number=Plur   1   Atr    _   men
-3   hrálo   hrát    VERB    _   Gender=Neut|Number=Sing            0   Pred   _   played
-4   karty   karta   NOUN    _   Case=Acc|Gender=Fem|Number=Plur    3   Obj    _   cards
-5   ?       ?       PUNCT   _   _                                  0   AuxK   _   ?
-</code></pre>
-
-<p>The UD conversion of the PDT data unifies analyses of counted noun phrases
-and uses a structure that is parallel among all the above cases,
+<p>The UD conversion uses a structure that is parallel among all the above cases,
 and also with universal dependencies in other languages.
 The counted noun is always the head and the numeral is always attached as its modifier.
 Nevertheless, we use different relation labels to mark situations where the numeral (or quantifier)
@@ -1250,132 +1202,119 @@ There are four labels used:</p>
 <tr><td><strong>Numeral governs</strong></td><td><tt><a href="nummod-gov.html">nummod:gov</a></tt></td><td><tt><a href="det-numgov.html">det:numgov</a></tt></td></tr>
 </table>
 
-<pre><code class="language-sdparse">Tři muži hráli karty . \n Three men played cards .
-nummod(muži, Tři)
-nsubj(hráli, muži)
-dobj(hráli, karty)
-punct(hráli, .-5)
+<pre><code class="language-sdparse">Три мужчина играли в-карты . \n Three men played cards .
+nummod(мужчины, Три)
+nsubj(играли, мужчины)
+iobj(играли, в-карты)
+punct(играли, .-5)
 nummod(men, Three)
 nsubj(played, men)
-dobj(played, cards)
+iobj(played, cards)
 punct(played, .-11)
 </code></pre>
 
-<pre><code class="language-sdparse">Pět mužů hrálo karty . \n Five men played cards .
-nummod:gov(mužů, Pět)
-nsubj(hrálo, mužů)
-dobj(hrálo, karty)
-punct(hrálo, .-5)
+<pre><code class="language-sdparse">Пять мужчин играло в-карты . \n Five men played cards .
+nummod:gov(мужчин, Пять)
+nsubj(играло, мужчин)
+iobj(играло, в-карты)
+punct(играло, .-5)
 nummod:gov(men, Five)
 nsubj(played, men)
-dobj(played, cards)
+iobj(played, cards)
 punct(played, .-11)
 </code></pre>
 
-<pre><code class="language-sdparse">Kolik mužů hrálo karty ? \n How-many men played cards ?
-det:numgov(mužů, Kolik)
-nsubj(hrálo, mužů)
-dobj(hrálo, karty)
-punct(hrálo, ?-5)
+<pre><code class="language-sdparse">Сколько мужчин играло в-карты ? \n How-many men played cards ?
+det:numgov(мужчин, Сколько)
+nsubj(играло, мужчин)
+iobj(играло, в-карты)
+punct(играло, ?-5)
 det:numgov(men, How-many)
 nsubj(played, men)
-dobj(played, cards)
+iobj(played, cards)
 punct(played, ?-11)
 </code></pre>
 
-<pre><code class="language-sdparse">Hrál jsem karty s pěti muži . \n Played I-have cards with five men .
-aux(Hrál, jsem)
-dobj(Hrál, karty)
-iobj(Hrál, muži)
-case(muži, s)
-nummod(muži, pěti)
-punct(Hrál, .-7)
-aux(Played, I-have)
-dobj(Played, cards)
+<pre><code class="language-sdparse">Играл я в-карты с пятью мужчинами Hrál jsem karty s pěti muži . \n Played I cards with five men .
+nsubj(Играл, я)
+iobj(Играл, в-карты)
+iobj(Играл, мужчинами)
+case(мужчинами, с)
+nummod(мужчинами, пятью)
+punct(Играл, .-7)
+nsubj(Played, I)
+iobj(Played, cards)
 iobj(Played, men)
 case(men, with)
 nummod(men, five)
 punct(Played, .-15)
 </code></pre>
 
-<pre><code class="language-sdparse">Nepamatuji si , s kolika muži jsem hrál karty . \n I-do-not-remember myself , with how-many men I-have played cards .
-ccomp(Nepamatuji, hrál)
-compound:reflex(Nepamatuji, si)
-punct(hrál, ,-3)
-aux(hrál, jsem)
-dobj(hrál, karty)
-iobj(hrál, muži)
-case(muži, s)
-det:nummod(muži, kolika)
-punct(Nepamatuji, .-10)
+<pre><code class="language-sdparse">Не-помню , со сколькими мужчинами я играл в-карты . \n I-do-not-remember , with how-many men I played cards .
+ccomp(Не-помню, играл)
+punct(hrál, ,-2)
+nsubj(играл, я)
+iobj(играл, в-карты)
+iobj(играл, мужчинами)
+case(мужчинами, с)
+det:nummod(мужчинами, сколькими)
+punct(Не-помню, .-9)
 ccomp(I-do-not-remember, played)
-compound:reflex(I-do-not-remember, myself)
-punct(played, ,-14)
-aux(played, I-have)
-dobj(played, cards)
+punct(played, ,-12)
+nsubj(played, I)
+iobj(played, cards)
 iobj(played, men)
 case(men, with)
 det:nummod(men, how-many)
-punct(I-do-not-remember, .-21)
+punct(I-do-not-remember, .-19)
 </code></pre>
 
 <h2 id="additional-remarks">Additional remarks</h2>
 
-<p>In PDT the words <em>milión</em> “million”, <em>miliarda</em> “billion” and higher are usually tagged as <a href="cs-pos/NOUN">nouns</a>,
-not as <a href="cs-pos/NUM">numerals</a>.
-In the typical case, the million is in genitive, it is preceded by a smaller number,
+<p>In the typical case, the million is in genitive, it is preceded by a smaller number,
 and it is not followed by smaller numerals (as it is in <em>million five hundred thousand</em>).
 It is followed by the counted noun.
 Thus the following examples receive parallel analyses:</p>
 
-<pre><code class="language-sdparse">50 miliónů korun \n 50 millions of-crowns
-nummod:gov(miliónů, 50-1)
+<pre><code class="language-sdparse">50 миллионов корон \n 50 millions of-crowns
+nummod:gov(миллионов, 50-1)
 nummod:gov(millions, 50-5)
-nmod(miliónů, korun)
+nmod(миллионов, корон)
 nmod(millions, of-crowns)
 </code></pre>
 
-<pre><code class="language-sdparse">50 pytlů bankovek \n 50 sacks of-bills
-nummod:gov(pytlů, 50-1)
-nummod:gov(sacks, 50-5)
-nmod(pytlů, bankovek)
-nmod(sacks, of-bills)
-</code></pre>
-
 <p>On the other hand the word <em>tisíc</em> “thousand” may be a noun
-(<em>na náměstí byly tisíce lidí</em> “there were thousands of people in the square”)
+(<em>на площади были тысячи людей</em> “there were thousands of people in the square”)
 or a numeral:</p>
 
-<pre><code class="language-sdparse">nanejvýš 50 tisíc korun \n at-most 50 thousand crowns
-advmod:emph(korun, nanejvýš)
-nummod:gov(korun, tisíc)
-compound(tisíc, 50-2)
+<pre><code class="language-sdparse">максимум 50 тысяч корон \n at-most 50 thousand crowns
+advmod:emph(корон, максимум)
+nummod:gov(корон, тысяч)
+compound(тысяч, 50-2)
 advmod:emph(crowns, at-most)
 nummod:gov(crowns, thousand)
 compound(thousand, 50-7)
 </code></pre>
 
 <p>Note that the two numeral words in the above example are joined using the <a href="">compound</a> relation.
-Also note that the <a href="advmod:emph">intensifier</a> <em>nanejvýš</em> is attached to the head of the phrase <em>(korun)</em> and not to the number.
-This is in accord both with the UD guidelines
-and with the original PDT annotation of agreeing numerals (e.g. <em>jen čtyři firmy, jen několik procent</em>).</p>
+Also note that the <a href="advmod:emph">intensifier</a> <em>nanejvýš</em> is attached to the head of the phrase <em>(korun)</em> and not to the number.</p>
 
 <p>Similarly there may be other nodes (such as punctuation) that are attached to the head of the phrase
 and they are related to the whole phrase rather than directly to the head noun:</p>
 
-<pre><code class="language-sdparse">( 9 dní ) \n ( 9 days )
-punct(dní, (-1)
-nummod:gov(dní, 9-2)
-punct(dní, )-4)
+<pre><code class="language-sdparse">( 9 дней ) \n ( 9 days )
+punct(дней, (-1)
+nummod:gov(дней, 9-2)
+punct(дней, )-4)
 punct(days, (-6)
 nummod:gov(days, 9-7)
 punct(days, )-9)
 </code></pre>
 
-<pre><code class="language-sdparse">5 minut včetně seřízení \n 5 minutes including adjustment
-nummod:gov(minut, 5-1)
-nmod(minut, seřízení)
-case(seřízení, včetně)
+<pre><code class="language-sdparse">5 минут с установкой \n 5 minutes including adjustment
+nummod:gov(минут, 5-1)
+nmod(минут, установкой)
+case(установкой, с)
 nummod:gov(minutes, 5-6)
 nmod(minutes, adjustment)
 case(adjustment, including)
@@ -1383,74 +1322,25 @@ case(adjustment, including)
 
 <h2 id="dates">Dates</h2>
 
-<!-- mf920922_027.a.gz (3/19) -->
-<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
-# visual-style nodes yellow
-# visual-style arcs blue
-1    Ředitel         ředitel         NOUN    _   _   2   Sb     _   The-director
-2    navrhl          navrhnout       VERB    _   _   0   Pred   _   proposed
-3    zrušit          zrušit          VERB    _   _   2   Obj    _   to-disband
-4    profesionální   profesionální   ADJ     _   _   5   Atr    _   the-professional
-5    scénu           scéna           NOUN    _   _   3   Obj    _   scene
-6    k               k               ADP     _   _   3   AuxP   _   towards
-7    31              31              NUM     _   _   9   Atr    _   the-31
-8    .               .               PUNCT   _   _   7   AuxG   _   th
-9    12              12              NUM     _   _   6   Adv    _   December
-10   .               .               PUNCT   _   _   9   AuxG   _   .
-</code></pre>
-
-<pre><code class="language-sdparse">Ředitel navrhl zrušit profesionální scénu k 31 . 12 . \n Director proposed to-disband professional scene towards 31 st December .
-advmod(zrušit, 12)
-case(12, k)
-punct(12, .-10)
-nummod(12, 31-7)
-punct(31-7, .-8)
+<pre><code class="language-sdparse">Директор предложил расформировать персонал к 31 . 12 . \n Director proposed to-disband the-staff towards 31 st December .
+advmod(расформировать, 12)
+case(12, к)
+punct(12, .-9)
+nummod(12, 31-6)
+punct(31-6, .-7)
 advmod(to-disband, December)
 case(December, towards)
-punct(December, .-21)
-nummod(December, 31-18)
-punct(31-18, st)
-</code></pre>
-
-<p>Numerals expressed using digits are labeled <code>nummod</code> even if they represent ordinal numerals,
-which would be labeled <code>amod</code>:</p>
-
-<!-- ln95045_123.a.gz (8/8) -->
-<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
-# visual-style nodes yellow
-# visual-style arcs blue
-1    Letošní     letošní      ADJ     _   _   2   Atr    _   This-year's
-2    veletrh     veletrh      NOUN    _   _   4   Sb     _   fair
-3    se          se           PRON    _   _   4   AuxR   _   itself
-4    uskuteční   uskutečnit   VERB    _   _   0   Pred   _   will-take-place
-5    od          od           ADP     _   _   4   AuxP   _   from
-6    9           9            NUM     _   _   5   ExD    _   9
-7    .           .            PUNCT   _   _   6   AuxG   _   th
-8    do          do           ADP     _   _   4   AuxP   _   to
-9    12          12           NUM     _   _   11  Atr    _   12
-10   .           .            PUNCT   _   _   9   AuxG   _   th
-11   března      březen       NOUN    _   _   8   Adv    _   March
-12   .           .            PUNCT   _   _   0   AuxK   _   .
-</code></pre>
-<pre><code class="language-sdparse">Letošní veletrh se uskuteční od 9 . do 12 . března . \n This-year's fair itself will-take-place from 9 th to 12 th March .
-advmod(uskuteční, března)
-case(března, do)
-nummod(března, 12-9)
-remnant(12-9, 9-6)
-remnant(do, od)
-advmod(will-take-place, March)
-case(March, to)
-nummod(March, 12-22)
-remnant(12-22, 9-19)
-remnant(to, from)
+punct(December, .-19)
+nummod(December, 31-16)
+punct(31-16, st)
 </code></pre>
 
 <h2 id="numbered-objects">Numbered objects</h2>
 
 <p>House number in address is attached as <code>nummod</code> to the name of the street:</p>
 
-<pre><code class="language-sdparse">v budově Na poříčí 12 \n in the-building Na poříčí 12
-nmod(budově, poříčí-4)
+<pre><code class="language-sdparse">в здании Na poříčí 12 \n in the-building Na poříčí 12
+nmod(здании, poříčí-4)
 case(poříčí-4, Na-3)
 nummod(poříčí-4, 12-5)
 nmod(the-building, poříčí-10)
