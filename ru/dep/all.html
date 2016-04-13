@@ -242,9 +242,9 @@ acl(man, talked)
 The adjective is taken to modify the nominal of which it provides a secondary predication.
 See <a href="">u-dep/xcomp</a> for further discussion of resultatives and depictives.</p>
 
-<pre><code class="language-sdparse">Алена вошла в комнату грустой . \n Alena entered to room sad .
-acl(Алена, грустной)
-acl(Alena, sad)
+<pre><code class="language-sdparse">Алена вошла в комнату незамеченной . \n Alena entered to room unnoticed .
+acl(Алена, незамеченной)
+acl(Alena, unnoticed)
 </code></pre>
 
 <pre><code class="language-sdparse">Он нарисовал свою жену обнаженной . \n He painted his wife naked .
@@ -261,7 +261,7 @@ acl(wife, naked)
 as a modifier not as a core complement. This includes things such as a temporal clause, consequence, conditional clause, purpose
 clause, etc. The dependent must be clausal (or else it is an <a href="">advmod</a>) and the dependent is the main predicate of the clause.</p>
 
-<pre><code class="language-sdparse">Если вы знаете , кто это сделал, вы должны сказать учителю . \n If you know , who it did , should you it tell teacher .
+<pre><code class="language-sdparse">Если вы знаете , кто это сделал, вы должны сказать учителю . \n If you know , who made this , you have to tell the-teacher .
 advcl(должны, знаете)
 advcl(should, know)
 </code></pre>
@@ -298,29 +298,33 @@ advmod(often, less)
 <p><a id="al-ru-dep/amod" class="al-dest"></a></p>
 <h2><code>amod</code>: adjectival modifier</h2>
 
-<p>An adjectival modifier of a noun is any adjectival phrase that serves
-to modify the meaning of the noun.</p>
+<p>An adjectival modifier of an NP is any adjectival phrase that serves to modify the meaning of the NP.</p>
 
-<p>Exception: if the modifying adjectival word is pronominal (i.e. tagged <a href="">cs-pos/DET</a>),
-the relation is <a href="">det</a> instead of <code>amod</code>.</p>
-
-<pre><code class="language-sdparse">Василий ест свиное мясо . \n Vasily eats pork meat .
-amod(мясо, свиное)
-amod(meat, pork)
+<pre><code class="language-sdparse">Василий ест куриную лапшу . \n Vasily eats chicken noodles .
+amod(лапшу, куриную)
+amod(noodles, chicken)
 </code></pre>
 
-<pre><code class="language-sdparse">Первый гонщик был быстрым . \n First racer was fast .
-amod(гонщик, Первый)
-amod(racer, First)
-nsubj(быстрым, гонщик)
-nsubj(fast, racer)
+<pre><code class="language-sdparse">Первое впечатление было хорошим . \n First impression was positive .
+amod(впечатление, Первое)
+amod(impression, First)
+nsubj(хорошим, впечатление)
+nsubj(positive, impression)
 </code></pre>
 
-<pre><code class="language-sdparse">Быстрый гонщик был первым . \n Fast racer was first .
-amod(гонщик, Быстрый)
-amod(racer, Fast)
-nsubj(первым, гонщик)
-nsubj(first, racer)
+<p>Exception: if the modifying adjectival word is pronominal (i.e. tagged <a href="">ru-pos/DET</a>), the relation is <a href="">det</a> instead of <code>amod</code>.</p>
+
+<pre><code class="language-sdparse">Какие-то все эти ваши новые группы . \n Somewhat all these your new groups .
+amod(группы, новые)
+amod(groups, new)
+det(группы, ваши)
+det(groups, your)
+det(группы, эти)
+det(groups, these)
+det(группы, все)
+det(groups, all)
+det(группы, какие-то)
+det(groups, somewhat)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/amod.md" target="#">edit amod</a></p>
@@ -328,21 +332,18 @@ nsubj(first, racer)
 <p><a id="al-ru-dep/appos" class="al-dest"></a></p>
 <h2><code>appos</code>: appositional modifier</h2>
 
-<p>An appositional modifier of a noun is a nominal immediately following
-the first noun that serves to define or modify that noun. It includes
-parenthesized examples, as well as defining abbreviations in one of
-these structures.</p>
+<p>An appositional modifier of a noun is a nominal immediately following the first noun that serves to define or modify that noun. It includes parenthesized examples, as well as defining abbreviations in one of these structures.</p>
 
-<pre><code class="language-sdparse">Чарльз IV . , римский империтор и чешский король, властвовал в 14 веке . \n Charles IV . , Roman Emperor and Czech king , ruled in 14 th century .
-appos(Чарльз, император)
+<pre><code class="language-sdparse">Карл Четвертый , римский император и чешский король, царствовал в XIV веке . \n Charles IV , Roman Emperor and Czech king , ruled in 14th century .
+appos(Карл, император)
 appos(Charles, Emperor)
 conj(император, король)
 conj(Emperor, king)
 </code></pre>
 
-<pre><code class="language-sdparse">Гражданская Демократическая Партия ( ODS ) \n Civic Democratic Party ( ODS )
-appos(Партия, ГДП)
-appos(Party, ODS)
+<pre><code class="language-sdparse">Польская Социалистическая Партия ( ППС ) \n Polish Socialist Party ( PSP )
+appos(Партия, ППС)
+appos(Party, PSP)
 </code></pre>
 
 <p>There is a slight deviation from the <a href="u-dep/appos">universal</a> standard in case of more than one appositive nominal.
@@ -350,7 +351,7 @@ Instead of attaching them all to the first noun, all the appositive modifiers ar
 then attached as <code>appos</code> to the modified noun.
 This is done regardless whether the appositives are joined by a coordinating conjunction or just a comma.</p>
 
-<pre><code class="language-sdparse">Пришел Михаил, мой брат и кузен Давида . \n Came Michal , my brother and David's cousin .
+<pre><code class="language-sdparse">Пришел Михаил, мой брат и кузен Давида . \n Came Michail , my brother and David's cousin .
 appos(Михаил, брат)
 appos(Michal, brother)
 conj(брат, кузен)
@@ -405,8 +406,7 @@ aux(missed, wouldn't have)
 <p><a id="al-ru-dep/auxpass" class="al-dest"></a></p>
 <h2><code>auxpass</code>: passive auxiliary</h2>
 
-<p>A passive auxiliary of a clause is a form of the <a href="cs-pos/AUX">auxiliary verb</a> <em>быть</em> “to be”
-used to construct the periphrastic passive voice (in any tense or in the infinitive).</p>
+<p>A passive auxiliary of a clause is a form of the <a href="cs-pos/AUX">auxiliary verb</a> <em>быть</em> “to be” used to construct the periphrastic passive voice (in the past or future tense, in the infinitive, imperative or conditional mood).</p>
 
 <pre><code class="language-sdparse">Кеннеди был убит . \n Kennedy was killed .
 auxpass(убит, был)
@@ -418,7 +418,7 @@ auxpass(убит, будет)
 auxpass(killed, will-be)
 </code></pre>
 
-<pre><code class="language-sdparse">Кеннеди не знал , что его судьба быть убитым . \n Kennedy did-not-anticipate that his fate is to-be killed .
+<pre><code class="language-sdparse">Кеннеди не знал , что ему суждено быть убитым . \n Kennedy did-not-anticipate that his fate is to-be killed .
 auxpass(убитым, быть)
 auxpass(killed, to-be)
 </code></pre>
@@ -429,13 +429,12 @@ auxpass(killed, to-be)
 <h2><code>case</code>: case marking</h2>
 
 <p>Russian uses a combination of oblique morphological cases and prepositions to express semantic case.
-Prepositions in UD are treated as dependents
-of the noun they attach to. The relation between the noun and the preposition is labeled <code>case</code>.</p>
+Prepositions in UD are treated as dependents of the noun they attach to. The relation between the noun and the preposition is labeled <code>case</code>.</p>
 
-<pre><code class="language-sdparse">В пятницу.Acc по дороге до деревни.Gen мы разговаривали о событии.Loc . \n On Friday during-the-journey to the village we-have-talked about the event .
+<pre><code class="language-sdparse">В пятницу.Acc по дороге к деревне.Dat мы разговаривали о событии.Loc . \n On Friday during-the-journey to the village we-have-talked about the event .
 case(пятницу.Acc, В)
 case(Friday, On)
-case(деревни.Gen, до)
+case(деревне.Dat, к)
 case(village, to)
 case(событии.Loc, o)
 case(event, about)
@@ -643,9 +642,9 @@ cop(The-essence, is)
 
 <p>A clausal passive subject is a clausal syntactic subject of a passive clause.</p>
 
-<pre><code class="language-sdparse">Мне было посоветовано , чтобы я все хорошо взвесил . \n It-has-been to-me recommended , that-I it very well weigh .
-csubjpass(посоветовано, взвесил)
-csubjpass(recommended, weigh)
+<pre><code class="language-sdparse">Мне было сказано , чтобы я все хорошо взвесил . \n To-me it-has-been told , that I it very-well weigh .
+csubjpass(сказано, взвесил)
+csubjpass(told, weigh)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/csubjpass.md" target="#">edit csubjpass</a></p>
@@ -674,13 +673,9 @@ dep(clear, what)
 <p><a id="al-ru-dep/det" class="al-dest"></a></p>
 <h2><code>det</code>: determiner</h2>
 
-<p>The relation determiner (<code>det</code>) holds between a nominal head and its
-<a href="cs-pos/DET">determiner</a>.
-This relation is used for pronominal adjectival modifiers of noun phrases; the <code>det</code> modifier has the POS tag <a href="">cs-pos/DET</a> and vice versa.
-Non-pronominal adjectives are tagged <a href="">cs-pos/ADJ</a> and the relation is labeled <a href="">amod</a>.</p>
-
-<p>Pronominal quantifiers are tagged <code>DET</code> but their relation to their head is a subtype of the <code>det</code> relation:
-either <a href="">cs-dep/det:numgov</a> or <a href="">cs-dep/det:nummod</a>.</p>
+<p>The relation determiner (<code>det</code>) holds between a nominal head and its <a href="ru-pos/DET">determiner</a>.
+This relation is used for pronominal adjectival modifiers of noun phrases.
+Non-pronominal adjectives are tagged <a href="">ru-pos/ADJ</a> and the relation is labeled <a href="">amod</a>.</p>
 
 <pre><code class="language-sdparse">Тот человек уже здесь . \n The man already is here .
 det(человек, Тот)
@@ -696,6 +691,9 @@ det(mistake, my)
 det(книга, Какая)
 det(book, Which)
 </code></pre>
+
+<p>NB: The relation of the pronominal quantifiers сколько, столько to their head is a subtype of the <code>det</code> relation:
+either <a href="">ru-dep/det:numgov</a> or <a href="">ru-dep/det:nummod</a>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/det.md" target="#">edit det</a></p>
 
@@ -1064,20 +1062,16 @@ appos(Путин, президент)
 <p><a id="al-ru-dep/nsubj" class="al-dest"></a></p>
 <h2><code>nsubj</code>: nominal subject</h2>
 
-<p>A nominal subject is a nominal phrase which is the syntactic subject of a clause;
-in Czech, the phrase is in the nominative <a href="">Case</a>.
-(See <a href="">csubj</a> for when the subject is clausal.
-See <a href="">nsubjpass</a> and <a href="">csubjpass</a> for when the subject is not the proto-agent argument due to valence changing operations.)
-The governor of the <code>nsubj</code> relation might not always be a verb: when
-the verb is a copular verb, the root of the clause is the complement
-of the copular verb, which can be an adjective or noun.</p>
+<p>A nominal subject is a NP which is the syntactic subject of a clause; in Russian, the phrase is in the Nominative <a href="">Case</a>.
+(See <a href="">csubj</a> for when the subject is clausal. See <a href="">nsubjpass</a> and <a href="">csubjpass</a> for when the subject is not the proto-agent argument due to valence changing operations.)
+The governor of the <code>nsubj</code> relation might not always be a verb: when the verb is a copular verb, the root of the clause is the complement of the copular verb, which can be an adjective or noun.</p>
 
 <pre><code class="language-sdparse">Ленинградскую симфонию написал Дмитрий Шостакович . \n Leningrad Symphony wrote Dmitri Shostakovich .
 nsubj(написал, Шостакович)
 nsubj(wrote, Shostakovich)
 </code></pre>
 
-<pre><code class="language-sdparse">Автомобиль красный . \n Car-is red .
+<pre><code class="language-sdparse">Автомобиль красный . \n Car is-red .
 nsubj(красный, Автомобиль)
 nsubj(red, Car)
 </code></pre>
