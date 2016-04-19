@@ -341,7 +341,7 @@ conj(император, король)
 conj(Emperor, king)
 </code></pre>
 
-<pre><code class="language-sdparse">Польская Социалистическая Партия ( ППС ) \n Polish Socialist Party ( PSP )
+<pre><code class="language-sdparse">Польская Социалистическая Партия ( ПСП ) \n Polish Socialist Party ( PSP )
 appos(Партия, ППС)
 appos(Party, PSP)
 </code></pre>
@@ -559,12 +559,12 @@ conj(старый, мудрый)
 conj(old, wise)
 </code></pre>
 
-<pre><code class="language-sdparse">У нас есть яблоки , груши , апельсины a бананы . \n We have apples , pears , oranges and bananas .
+<pre><code class="language-sdparse">У нас есть яблоки , груши , апельсины и бананы . \n We have apples , pears , oranges and bananas .
 dobj(есть, яблоки)
 dobj(We-have, apples)
 conj(яблоки, груши)
 conj(яблоки, апельсины)
-conj(ялоки, бананы)
+conj(яблоки, бананы)
 conj(apples, pears)
 conj(apples, oranges)
 conj(apples, bananas)
@@ -589,9 +589,7 @@ cc(пришел, и)
 cc(came, and)
 </code></pre>
 
-<p>See <a href="u-dep/conj">universal/conj</a> for more details on various coordination-related issues.
-Note that the present conversion procedure loses some annotations of shared modifiers and nested
-coordination.</p>
+<p>See <a href="u-dep/conj">universal/conj</a> for more details on various coordination-related issues.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/conj.md" target="#">edit conj</a></p>
 
@@ -802,15 +800,15 @@ argument of the verb but is not its subject or <a href="dobj">direct object</a>.
 The prototypical example is the recipient of ditransitive verbs of
 exchange:</p>
 
-<pre><code class="language-sdparse">Павел дал Петру две груши \n Pavel gave Petr two pears .
+<pre><code class="language-sdparse">Павел дал Петру две груши \n Pavel gave Peter two pears .
 iobj(дал, Петру)
-iobj(gave, Petr)
+iobj(gave, Peter)
 </code></pre>
 
 <p>However, Russian allows other semantic roles as additional objects.
-The morphological <a href="">cs-feat/Case</a> of the objects is dictated by verb valency.</p>
+The morphological <a href="">ru-feat/Case</a> of the objects is dictated by verb valency.</p>
 
-<p>In the following Russian example, the verb takes two argumentse. One of them is direct object (patient), the other is indirect (addressee). It is parallel to how the English translation would be annotated (where there is no morphological case marking) and also to verbs of giving (consider a similar sentence, <em>he gave my daughter a class of maths</em>).</p>
+<p>In the following Russian example, the verb takes two argumentse. One of them is direct object (patient), the other is indirect (addressee). It is parallel to how the English translation would be annotated (where there is no morphological case marking) and also to verbs of giving (cf. a similar sentence, <em>he gave my daughter a class of maths</em>).</p>
 
 <pre><code class="language-sdparse">Он преподает моей дочери математику. \n He teaches my daughter.Dat maths.Acc .
 dobj(преподает, математику)
@@ -839,8 +837,8 @@ Then the clausal complement is regarded as a “clausal direct object” and an 
 the simple ditransitive case:</p>
 
 <pre><code class="language-sdparse">Она сказала студентам, что сегодня вечером нужно учиться . \n She told students , that today evening they-needed to-study .
-iobj(говорит, студентам)
-ccomp(говорит, нужно)
+iobj(сказала, студентам)
+ccomp(сказала, нужно)
 iobj(told, students)
 ccomp(told, they-needed)
 </code></pre>
@@ -852,10 +850,7 @@ iobj(told, students)
 dobj(told, plan)
 </code></pre>
 
-<p>If there are two or
-more objects, one of them should be <a href="">dobj</a> and the others should be
-<code>iobj</code>. In such cases it is necessary to decide what is the
-most directly affected object <em>(patient).</em></p>
+<p>If there are two or more objects, one of them should be <a href="">dobj</a> and the others should be <code>iobj</code>. In such cases it is necessary to decide what is the most directly affected object <em>(patient)</em>, and the Accusative <a href="">ru-feat/Case</a> has priority over the Dative, Instrumental, and Genitive cases.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/iobj.md" target="#">edit iobj</a></p>
 
@@ -948,9 +943,7 @@ advmod:emph(loans, for-example)
 <p><code>name</code> is one of the relations for compounding in UD.
 In Russian it is used to join the first (or patronymic) and the last name of a person.</p>
 
-<p>The leftmost name is always the head and the other name(s) are attached to it.
-In most cases this is the opposite to PDT where family names are heads and given names are dependents,
-and the family name is usually the last name.</p>
+<p>The leftmost name is always the head and the other name(s) are attached to it.</p>
 
 <p>The relation is not used to attach adjectives to nouns within multi-word names of places, organizations etc.
 (e.g. <em>Владимир Путин</em>).</p>
@@ -1124,8 +1117,7 @@ Examples:</p>
   <li><em><b>Одно</b> чудовище спало, <b>два</b> чудовища играли в карты.</em> “One monster slept, two monsters played.”</li>
 </ul>
 
-<p>In PDT, these numerals are attached to their counted nouns as <code>Atr</code> (attribute).
-It is straightforward to convert such dependencies to <code>nummod</code>:</p>
+<p>It is straightforward to convert such dependencies to <code>nummod</code>:</p>
 
 <pre><code class="language-sdparse">Одно чудовище спало . \n One kitten slept .
 nummod(чудовище, Одно)
@@ -1291,7 +1283,7 @@ compound(thousand, 50-7)
 </code></pre>
 
 <p>Note that the two numeral words in the above example are joined using the <a href="">compound</a> relation.
-Also note that the <a href="advmod:emph">intensifier</a> <em>nanejvýš</em> is attached to the head of the phrase <em>(korun)</em> and not to the number.</p>
+Also note that the <a href="advmod:emph">intensifier</a> <em>максимум</em> is attached to the head of the phrase <em>(корон)</em> and not to the number.</p>
 
 <p>Similarly there may be other nodes (such as punctuation) that are attached to the head of the phrase
 and they are related to the whole phrase rather than directly to the head noun:</p>
@@ -1333,13 +1325,13 @@ punct(31-16, st)
 
 <p>House number in address is attached as <code>nummod</code> to the name of the street:</p>
 
-<pre><code class="language-sdparse">в здании Na poříčí 12 \n in the-building Na poříčí 12
-nmod(здании, poříčí-4)
-case(poříčí-4, Na-3)
-nummod(poříčí-4, 12-5)
-nmod(the-building, poříčí-10)
-case(poříčí-10, Na-9)
-nummod(poříčí-10, 12-11)
+<pre><code class="language-sdparse">в доме на Тверской 12 \n in the-house at Tverskaya 12
+nmod(доме, Тверской-4)
+case(Тверской-4, на-3)
+nummod(Тверской-4, 12-5)
+nmod(the-house, Tverskaya -10)
+case(Tverskaya-10, at-9)
+nummod(Tverskaya-10, 12-11)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/nummod.md" target="#">edit nummod</a></p>
@@ -1359,27 +1351,22 @@ coordination, subordination, or argument relation with the head word. Parataxis 
 
 <p>For this reported speech example:</p>
 
-<pre><code class="language-sdparse">Тот парень , сказал Вася , ушёл рано утром  . \n The guy , said Honza , left early in-the-morning .
+<pre><code class="language-sdparse">Тот парень , сказал Вася , ушёл рано утром  . \n The guy , said Vasya , left early in-the-morning .
 parataxis(ушёл, сказал)
 parataxis(left, said)
 </code></pre>
 
-<p>There are paraphrases that convey essentially the same meaning but
-with a different syntactic structure. When the reported speech is embedded in a subordinate clause (with or 
-without an overt complementizer <em>что</em> “that”), the subordinate clause is a <a href="">ccomp</a> of the speech verb. When the
-reported speech follows the speech verb and is separated by a colon, the reported speech forms a main clause
-that attaches to the preceding main clause with a <a href="">parataxis</a> relation, hence with the speech verb as its head.
-However, when the speech verb occurs as a medial or final parenthetical, the relation is reversed and the speech
-verb is treated as a <a href="">parataxis</a> of the reported speech. 
+<p>There are paraphrases that convey essentially the same meaning but with a different syntactic structure. When the reported speech is embedded in a subordinate clause (with or without an overt complementizer <em>что</em> “that”), the subordinate clause is a <a href="">ccomp</a> of the speech verb. When the reported speech follows the speech verb and is separated by a colon, the reported speech forms a main clause that attaches to the preceding main clause with a <a href="">parataxis</a> relation, hence with the speech verb as its head.
+However, when the speech verb occurs as a medial or final parenthetical, the relation is reversed and the speech verb is treated as a <a href="">parataxis</a> of the reported speech. 
 This analysis is not uncontroversial but follows many authorities, such as Huddleston and Pullum (2002),
 <em>The Cambridge Grammar of the English Language</em> (see chapter 11, section 9).</p>
 
-<pre><code class="language-sdparse">Вася сказал , что тот парень ушёл рано утром . \n Honza said , that the guy left early in-the-morning .
+<pre><code class="language-sdparse">Вася сказал , что тот парень ушёл рано утром . \n Vasya said , that the guy left early in-the-morning .
 ccomp(сказал, ушёл)
 ccomp(said, left)
 </code></pre>
 
-<pre><code class="language-sdparse">Вася сказал : " Тот парень ушёл рано утром . " \n Honza said : " The guy left early in-the-morning . "
+<pre><code class="language-sdparse">Вася сказал : " Тот парень ушёл рано утром . " \n Vasya said : " The guy left early in-the-morning . "
 parataxis(сказал, ушёл)
 parataxis(said, left)
 </code></pre>
@@ -1389,13 +1376,13 @@ parataxis(ушёл, сказал)
 parataxis(left, said)
 </code></pre>
 
-<pre><code class="language-sdparse">" Тот парень , " сказал Вася , " ушёл рано утром . " \n " The guy , " said Honza , " left early in-the-morning . "
+<pre><code class="language-sdparse">" Тот парень , " -- сказал Вася , -- " ушёл рано утром . " \n " The guy , " -- said Vasya , -- " left early in-the-morning . "
 parataxis(ушёл, сказал)
 parataxis(left, said)
 </code></pre>
 
-<p>An argument for this analysis is that in the cases analyzed as embedding, the entire clause
-can be further embedded (<em>I was taken aback when John said the guy left early in the morning.</em>),
+<p>An argument for this analysis is that in the cases analyzed as embedding, the entire clause can be further embedded 
+(<em>I was taken aback when John said the guy left early in the morning.</em>),
 while this is not possible with medial or final placement of the speech verb 
 (<em>*I was taken aback when the guy left early this morning, John said.</em>).</p>
 
