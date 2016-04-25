@@ -431,12 +431,15 @@ punct(osatzen-15, .-19)
 <p><a id="al-eu-dep/ccomp" class="al-dest"></a></p>
 <h2><code>ccomp</code>: clausal complement</h2>
 
-<p>A clausal complement of a verb (((or adjective))) (<code>ccomp</code>) is a dependent clause which is a core argument, that is, it functions like an object of the verb, (((or adjective))). Such clausal complements need to be finite (the relation that corresponds to non finite clausal complements is xcomp).</p>
+<p>A clausal complement of a verb (((or adjective))) is a dependent clause which is a core argument, that is, it functions like an object of the verb, (((or adjective))). Such clausal complements need to be finite (the relation that corresponds to non finite clausal complements is xcomp).</p>
 
-<p>Arazoa da ez daudela instituzioak arau horiek betetzen diren bermatzeko .
-The problem is that there are not institutions to guarantee whether those rules are observed .</p>
+<p><em>Arazoa da ez <strong>daudela</strong> instituzioak arau horiek <strong>betetzen</strong> diren bermatzeko</em></p>
 
-<pre><code class="language-sdparse">Arazoa da ez daudela instituzioak arau horiek betetzen diren bermatzeko .\n The problem is that there are not institutions to guarantee whether those rules are observed .
+<p><em>The problem is not there are <strong>that</strong> institutions those rules to guarantee <strong>whether</strong> are observed</em></p>
+
+<p><em>The problem is <strong>that</strong> there are not institutions to guarantee <strong>whether</strong> those rules are observed</em></p>
+
+<pre><code class="language-sdparse">Arazoa da ez daudela instituzioak arau horiek betetzen diren bermatzeko \n The problem is that there are not institutions to guarantee whether those rules are observed
 
 nsubj(da-2, Arazoa-1)
 neg(daudela-4, ez-3)
@@ -542,8 +545,34 @@ aux(tolesten-7, dira-8)
 <p><a id="al-eu-dep/csubj" class="al-dest"></a></p>
 <h2><code>csubj</code>: clausal subject</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>csubj</code>.</p>
+<p>A clausal subject (<code>csubj</code>) is a clausal syntactic subject of a clause, i.e., the subject is itself a clause. The governor of this relation might not always be a verb: when the verb is a copular verb, the root of the clause is the complement of the copular verb. The dependent is the main lexical verb or other predicate of the subject clause.</p>
+
+<p><em>Orain ezinezkoa da engainatzea</em></p>
+
+<p><em>now impossible  is  to deceive</em></p>
+
+<p><em>it is now impossible to deceive</em></p>
+
+<pre><code class="language-sdparse">Orain ezinezkoa da engainatzea \n it is now impossible to deceive 
+
+advmod(da-3, Orain-1)
+csubj(ezinezkoa-2,engainatzea-4)
+</code></pre>
+
+<p><em>Hemen <strong>inor etxekotzat hartzea</strong> zail egiten da</em></p>
+
+<p><em>Here someone as a relative <strong>to take</strong> is difficult</em></p>
+
+<p><em>Here it is difficult <strong>to take someone as a relative</strong></em></p>
+
+<pre><code class="language-sdparse">Hemen inor etxekotzat hartzea zail egiten da \n Here it is difficult to take someone as a relative 
+
+adv(egiten-6, Hemen-1)
+dobj(hartzea-4,inor-2)
+xcomp(hartzea-4,etxekotzat-3)
+xcomp(egiten-6, zail-5)
+aux(egiten-6, da-7)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/csubj.md" target="#">edit csubj</a></p>
 
@@ -592,11 +621,13 @@ for <code>dislocated</code>.</p>
 
 <p>The direct object (<code>dobj</code>) of a verb is the noun phrase that denotes the entity acted upon. Basque is a morphologically ergative language , and the direct object is always marked with the accusative case.</p>
 
-<p>Euskal	gizarteak Konstituzioa-ABS errefusatu zuela oroitarazi zuen.
-Basque society   Constitution-ABS   refused  that      reminded    (he/she - elided subject)
-He/she reminded that Basque society refused the Constitution-ABS.</p>
+<p><em>Euskal	gizarteak <strong>Konstituzioa-ABS</strong> errefusatu zuela oroitarazi zuen</em></p>
 
-<pre><code class="language-sdparse">Euskal	gizarteak Konstituzioa errefusatu zuela oroitarazi zuen .\n He reminded that Basque_society refused the_Constitution-ABS . 
+<p><em>Basque society   <strong>Constitution-ABS</strong>   refused   that     reminded</em>     (elided subject)</p>
+
+<p><em>He/she reminded that Basque society refused <strong>the Constitution-ABS</strong></em></p>
+
+<pre><code class="language-sdparse">Euskal	gizarteak Konstituzioa errefusatu zuela oroitarazi zuen \n He reminded that Basque society refused the Constitution-ABS 
 
 nmod(Euskal-1, gizarteak-2)
 nsubj(errefusatu-4, gizarteak-2)
@@ -635,12 +666,16 @@ for <code>goeswith</code>.</p>
 <p><a id="al-eu-dep/iobj" class="al-dest"></a></p>
 <h2><code>iobj</code>: indirect object</h2>
 
-<p>The indirect object of a verb is any nominal phrase that is a core argument of the verb but is not its subject or direct object. As Basque is a language that distinguishes morphological cases, the indirect object is marked by the dative case.</p>
+<p>The indirect object (<code>iobj</code>) of a verb is any nominal phrase that is a core argument of the verb but is not its subject or direct object. 
+As Basque is a language that distinguishes morphological cases, the indirect object is marked by the dative case.</p>
 
-<p>Djukanovicek aldaketa handia eman dio bere ildo politikoari .
-Djukanovic has given a big change to his political course .</p>
+<p><em>Djukanovicek aldaketa handia eman dio <strong>bere ildo politikoari</strong></em></p>
 
-<pre><code class="language-sdparse">Djukanovicek aldaketa handia eman dio bere ildo politikoari-IOBJ .\n Djukanovic has given a big change to his political course-IOBJ .
+<p><em>Djukanovic      a big change   has given  <strong>to his political course</strong></em></p>
+
+<p><em>Djukanovic has given a big change <strong>to his political course-DAT</strong></em></p>
+
+<pre><code class="language-sdparse">Djukanovicek aldaketa handia eman dio bere ildo politikoari-IOBJ \n Djukanovic has given a big change to his political course-IOBJ 
 
 nsubj(eman-8, Djukanovicek-5)
 dobj(eman-8, aldaketa-6)
@@ -651,10 +686,13 @@ amod(ildo-11, politikoari-12)
 iobj(eman-8, ildo-11)
 </code></pre>
 
-<p>Ahalegin haundia egin du guri geografia pittin bat irakasten .
-(he/she) has made a great effort teaching us a geography .</p>
+<p><em>Ahalegin haundia egin du <strong>guri</strong> geografia   irakasten</em></p>
 
-<pre><code class="language-sdparse">Ahalegin haundia egin du guri-IOBJ geografia pittin bat irakasten .\n (he/she) has made a great effort teaching us-IOBJ a geography .
+<p><em>a great effort       has made <strong>us</strong>  geography  teaching</em></p>
+
+<p><em>(He/she) has made a great effort teaching <strong>us</strong> geography</em></p>
+
+<pre><code class="language-sdparse">Ahalegin haundia egin du guri-IOBJ geografia pittin bat irakasten \n (he/she) has made a great effort teaching us-IOBJ a geography 
 
 amod(ahalegin-5, haundia-6)
 dobj(egin-7, ahalegin-5)
@@ -664,9 +702,15 @@ dobj(irakasten-13, geografia-10)
 iobj(irakasten-13, guria-9)
 </code></pre>
 
-<pre><code class="language-sdparse">Ikasleei esan zien arratsaldean ikasi behar zutela .\n She told the students that they needed to study this evening
-iobj(esan, Ikasleei)
-ccomp(esan, behar_zutela)
+<p><em><strong>Ikasleei</strong>     esan zien arratsaldean  ikasi  behar zutela</em></p>
+
+<p><em><strong>the students</strong>   told   in the evening to study  needed that</em></p>
+
+<p><em>She told <strong>the students</strong> that they needed to study in the evening</em></p>
+
+<pre><code class="language-sdparse">Ikasleei esan zien arratsaldean ikasi behar zutela \n She told the students that they needed to study this evening
+iobj(esan-2, Ikasleei-1)
+ccomp(esan-2, behar_zutela-6)
 
 iobj(told, students)
 ccomp(told, needed)
