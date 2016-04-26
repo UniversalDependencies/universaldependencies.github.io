@@ -52,6 +52,61 @@ and its original (non-UD) version can be downloaded from
 conversion of PADT data. The conversion procedure has been designed by Dan Zeman.
 The main coordinator of the original PADT project was Otakar Smrž.</p>
 
+<h2 id="source-of-annotations">Source of annotations</h2>
+
+<p>This table summarizes the origins and checking of the various columns of the CoNLL-U data.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ID</td>
+      <td>Sentence-level units in PADT often correspond to entire paragraphs and they were obtained automatically. Low-level tokenization (whitespace and punctuation) was done automatically and then hand-corrected. Splitting of fused tokens into syntactic words in Arabic is part of morphological analysis. <a href="http://elixir-fm.sf.net/">ElixirFM</a> was used to provide context-independent options, then these results were disambiguated manually.</td>
+    </tr>
+    <tr>
+      <td>FORM</td>
+      <td>The unvocalized surface form is used. Fully vocalized counterpart can be found in the MISC column as Vform attribute.</td>
+    </tr>
+    <tr>
+      <td>LEMMA</td>
+      <td>Plausible analyses provided by ElixirFM, manual disambiguation. Lemmas are vocalized. Part of the selection of lemmas was also word sense disambiguation of the lexemes, providing English equivalents (see the Gloss attribute of the MISC column).</td>
+    </tr>
+    <tr>
+      <td>UPOSTAG</td>
+      <td>Converted automatically from XPOSTAG (via <a href="https://ufal.mff.cuni.cz/interset">Interset</a>); human checking of patterns revealed by automatic consistency tests.</td>
+    </tr>
+    <tr>
+      <td>XPOSTAG</td>
+      <td>Manual selection from possibilities provided by ElixirFM.</td>
+    </tr>
+    <tr>
+      <td>FEATS</td>
+      <td>Converted automatically from XPOSTAG (via Interset); human checking of patterns revealed by automatic consistency tests.</td>
+    </tr>
+    <tr>
+      <td>HEAD</td>
+      <td>Original PADT annotation is manual. Automatic conversion to UD; human checking of patterns revealed by automatic consistency tests.</td>
+    </tr>
+    <tr>
+      <td>DEPREL</td>
+      <td>Original PDT annotation is manual. Automatic conversion to UD; human checking of patterns revealed by automatic consistency tests.</td>
+    </tr>
+    <tr>
+      <td>DEPS</td>
+      <td>— (currently unused)</td>
+    </tr>
+    <tr>
+      <td>MISC</td>
+      <td>Information about token spacing taken from PADT annotation. Additional word attributes provided by morphological analysis (i.e. ElixirFM rules + manual disambiguation): Vform (fully vocalized Arabic form), Translit (Latin transliteration of word form), LTranslit (Latin transliteration of lemma), Root (word root), Gloss (English translation of lemma).</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="acknowledgments">Acknowledgments</h2>
 
 <p>We wish to thank all of the contributors to the original PADT annotation effort, including
