@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Dependencies</title>
+    <title>nummod:gov</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -22,8 +22,8 @@
       <div id="hp-header">
 	
           <span class="header-text"><a href="http://universaldependencies.org/#language-ru">home</a></span>
-
-
+          <span class="header-text"><a href="http://universaldependencies.org/ru/dep">ru/dep</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/nummod-gov.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
@@ -37,239 +37,51 @@
 	  </div>
 	</noscript>
 
-          <h1 id="dependencies">Dependencies</h1>
+          <h2><code>nummod:gov</code>: numeric modifier governing the case of the noun</h2>
 
-<p>Note: <i>nmod</i>, <i>neg</i>, and <i>punct</i> appear
-in two places.</p>
+<p><code>nummod:gov</code> differs from <a href="">nummod</a>
+in that the numeral requires the counted noun to be in its genitive form.
+The whole phrase (numeral + noun) is treated as a singular neuter noun phrase
+and it can fill roles where nominative, accusative or vocative noun phrases are expected.</p>
 
-<table class="typeindex">
-  <tr>
-    <td>
+<p>Such situations are analyzed in PDT so that the numeral is the head and the noun depends on it.
+In UD the dependency direction is reversed and the <code>nummod:gov</code> label is used to preserve
+the information about case conditions.</p>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Core dependents of clausal predicates</strong></td></tr>
-	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Predicate dep</i></td>
-	</tr>
-	<tr>
-	  <td><a>nsubj</a></td>
-	  <td><a>csubj</a></td>
-	</tr>
-	<tr>
-	  <td><a>nsubjpass</a></td>
-	  <td><a>csubjpass</a></td>
-	</tr>
-	<tr>
-	  <td><a>dobj</a></td>
-	  <td><a>ccomp</a></td>
-	  <td><a>xcomp</a></td>
-	</tr>
-	<tr>
-	  <td><a>iobj</a></td>
-	</tr>
-      </table>
+<pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
+# visual-style nodes yellow
+# visual-style arcs blue
+1   Pět     pět     NUM     _   Case=Nom                           3   Sb     _   Five
+2   mužů    muž     NOUN    _   Case=Gen|Gender=Masc|Number=Plur   1   Atr    _   men
+3   hrálo   hrát    VERB    _   Gender=Neut|Number=Sing            0   Pred   _   played
+4   karty   karta   NOUN    _   Case=Acc|Gender=Fem|Number=Plur    3   Obj    _   cards
+5   .       .       PUNCT   _   _                                  0   AuxK   _   .
+</code></pre>
 
-    </td>
-    <td>
+<pre><code class="language-sdparse">Pět mužů hrálo karty . \n Five men played cards .
+nummod:gov(mužů, Pět)
+nsubj(hrálo, mužů)
+dobj(hrálo, karty)
+punct(hrálo, .-5)
+nummod:gov(men, Five)
+nsubj(played, men)
+dobj(played, cards)
+punct(played, .-11)
+</code></pre>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Non-core dependents of clausal predicates</strong></td></tr>
-	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Predicate dep</i></td>
-	  <td><i>Modifier word</i></td>
-	</tr>
-	<tr>
-	  <td><a>nmod</a></td>
-	  <td><a>advcl</a></td>
-	  <td><a>advmod</a></td>
-	</tr>
-	<tr>
-	  <td>&nbsp;</td>
-	  <td>&nbsp;</td>
-	  <td><a>neg</a></td>
-	</tr>
-      </table>
+<p>See <a href="">nummod</a> for a broader discussion of the various situations with quantifiers.</p>
 
-    </td>
-    <td>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Special clausal dependents</strong></td></tr>
-	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Auxiliary</i></td>
-	  <td><i>Other</i></td>
-	</tr>
-	<tr>
-	  <td><a>vocative</a></td>
-	  <td><a>aux</a></td>
-	  <td><a>mark</a></td>
-	</tr>
-	<tr>
-	  <td><a>discourse</a></td>
-	  <td><a>auxpass</a></td>
-	  <td><a>punct</a></td>
-	</tr>
-	<tr>
-	  <td><a>expl</a></td>
-	  <td><a>cop</a></td>
-	</tr>
-      </table>
+<!-- "automatic stats" -->
 
-    </td>
-  </tr>
-  <tr>
-    <td>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Noun dependents</strong></td></tr>
-	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Predicate dep</i></td>
-	  <td><i>Modifier word</i></td>
-	</tr>
-	<tr>
-	  <td><a>nummod</a></td>
-	  <td><a>acl</a></td>
-	  <td><a>amod</a></td>
-	</tr>
-	<tr>
-	  <td><a>appos</a></td>
-	  <td>&nbsp;</td>
-	  <td><a>det</a></td>
-	</tr>
-	<tr>
-	  <td><a>nmod</a></td>
-	  <td>&nbsp;</td>
-	  <td><a>neg</a></td>
-	</tr>
-      </table>
 
-    </td>
-    <td>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Compounding and unanalyzed</strong></td></tr>
-	<tr>
-	  <td><a>compound</a></td>
-	  <td><a>mwe</a></td>
-	  <td><a>goeswith</a></td>
-	</tr>
-	<tr>
-	  <td><a>name</a></td>
-	  <td><a>foreign</a></td>
-	</tr>
-      </table>
 
-    </td>
-    <td>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Coordination</strong></td></tr>
-	<tr>
-	  <td><a>conj</a></td>
-	  <td><a>cc</a></td>
-	  <td><a>punct</a></td>
-	</tr>
-      </table>
+<!-- "in other languages" links -->
+<hr/>
 
-    </td>
-  </tr>
-  <tr>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Case-marking, prepositions, possessive</strong></td></tr>
-	<tr>
-	  <td><a>case</a></td>
-	</tr>
-      </table>
-
-    </td>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Loose joining relations</strong></td></tr>
-	<tr>
-	  <td><a>list</a></td>
-	  <td><a>parataxis</a></td>
-	  <td><a>remnant</a></td>
-	</tr>
-	<tr>
-	  <td><a>dislocated</a></td>
-	  <td></td><td><a>reparandum</a></td>
-	</tr>
-      </table>
-
-    </td>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Other</strong></td></tr>
-	<tr>
-	  <td><i>Sentence head</i></td>
-	  <td colspan="2"><i>Unspecified dependency</i></td>
-	</tr>
-	<tr>
-	  <td><a>root</a></td>
-	  <td><a>dep</a></td>
-	</tr>
-      </table>
-
-    </td>
-  </tr>
-</table>
-
-<hr />
-
-<p>Alphabetical listing</p>
-
-<ul>
-  <li><a href="">acl</a>: clausal modifier of noun</li>
-  <li><a href="">advcl</a>: adverbial clause modifier</li>
-  <li><a href="">advmod</a>: adverbial modifier</li>
-  <li><a href="">amod</a>: adjectival modifier</li>
-  <li><a href="">appos</a>: appositional modifier</li>
-  <li><a href="">aux</a>: auxiliary</li>
-  <li><a href="">auxpass</a>: passive auxiliary</li>
-  <li><a href="">case</a>: case marking</li>
-  <li><a href="">cc</a>: coordinating conjunction</li>
-  <li><a href="">ccomp</a>: clausal complement</li>
-  <li><a href="">compound</a>: compound</li>
-  <li><a href="">conj</a>: conjunct</li>
-  <li><a href="">cop</a>: copula</li>
-  <li><a href="">csubj</a>: clausal subject</li>
-  <li><a href="">csubjpass</a>: clausal passive subject</li>
-  <li><a href="">dep</a>: unspecified dependency</li>
-  <li><a href="">det</a>: determiner</li>
-  <li><a href="">det:numgov</a>: pronominal quantifier governing the case of the noun</li>
-  <li><a href="">det:nummod</a>: pronominal quantifier agreeing in case with the noun</li>
-  <li><a href="">discourse</a>: discourse element</li>
-  <li><a href="">dislocated</a>: dislocated elements</li>
-  <li><a href="">dobj</a>: direct object</li>
-  <li><a href="">foreign</a>: foreign words</li>
-  <li><a href="">goeswith</a>: goes with</li>
-  <li><a href="">iobj</a>: indirect object</li>
-  <li><a href="">list</a>: list</li>
-  <li><a href="">mark</a>: marker</li>
-  <li><a href="">mwe</a>: multi-word expression</li>
-  <li><a href="">name</a>: name</li>
-  <li><a href="">neg</a>: negation modifier</li>
-  <li><a href="">nmod</a>: nominal modifier</li>
-  <li><a href="">nsubj</a>: nominal subject</li>
-  <li><a href="">nsubjpass</a>: passive nominal subject</li>
-  <li><a href="">nummod</a>: numeric modifier</li>
-  <li><a href="">nummod:gov</a>: numeric modifier governing the case of the noun</li>
-  <li><a href="">parataxis</a>: parataxis</li>
-  <li><a href="">punct</a>: punctuation</li>
-  <li><a href="">remnant</a>: remnant in ellipsis</li>
-  <li><a href="">reparandum</a>: overridden disfluency</li>
-  <li><a href="">root</a>: root</li>
-  <li><a href="">vocative</a>: vocative</li>
-  <li><a href="">xcomp</a>: open clausal complement</li>
-</ul>
 
 
       </div>
@@ -374,7 +186,7 @@ in two places.</p>
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'ru-overview';
+        Collections.listing['_current'] = 'ru-dep';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
