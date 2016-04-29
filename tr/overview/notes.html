@@ -1,0 +1,586 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Notes</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.org/#language-tr">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_tr-overview/notes.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="introduction">Introduction</h1>
+
+<p>This is an unorganized collection of notes that should be
+documented in proper sections later.</p>
+
+<h2 id="some-special-constructions">Some special constructions</h2>
+
+<ul>
+  <li>
+    <p>In some cases when noun phrases are coordinated with suffix <em>-lA</em>
+it is not clear whether it is a conjunction or simply
+‘commutative/instrumental’ case marking.</p>
+
+    <p><code>
+(1) Annem-le     babam     eve       gitmiş
+    My_mother-lA my_father house.DAT go.PAST.EVID
+    `My mother and my father went home.'
+ or `My father went home with my mother.'
+(2) Annem     babam-la     eve       gitmiş.
+    My_mother my_father-lA house.DAT go.PAST.EVID
+    `My mother went home with my mother.'
+</code></p>
+
+    <p>Coordination is only possible and more likely when the -lA suffix is
+between the coordinated noun. Case-marking is possible in both
+configurations (e.g., <em>Diş fırçam-la kardeşim lavaboyu temizlemiş</em>
+‘apparently my sister/brother cleaned the sink with my toothbrush’).
+In some cases it is difficult, or impossible without additional
+context to disambiguate, <em>Ali-yle Ayşe evlendi</em> can mean ‘Ali and
+Ayşe got married’ but also ‘Ayşe (but not Leyla) married Ali’.
+In the first case the relation is <code>coord</code> (without a <code>cc</code>) and in
+the second <code>nmod</code> modifying either the predicate or another noun
+phrase. If the <em>-lA</em> phrase modifies the subject (and it is clearly
+not a conjunction), we always attach it to the predicate. This
+avoids <code>remnant</code> relations where subject is not expressed in the sentence (see below for other missing heads).</p>
+
+    <p>Note that as in English PP attachment ambiguity, the <code>nmod</code> case can be ambiguous:</p>
+
+    <p><code>
+Ali Ahmet'i    teleskopla  gördü.
+Ali Ahmet.ACC  telecope-lA see.
+`Ali saw Ahmet with a telescope'.
+</code>
+With the right context, it is possible that the noun modified with 
+the phrase with <em>-lA</em> is omitted in the sentence.</p>
+
+    <p><code>
+Dün       bir arkadaşı-yla   gördüm.
+Yesterday a   friend.P3S-lA  see.PAST.1SG
+`I saw (him/her) with a friend (of him/her)'.
+</code>
+In this case, we connect the phrase with <em>-lA</em> to the predicate with <code>remnant</code> relation.</p>
+
+    <p>In case of coordination, if the second conjunct is a pronoun, it can
+be omitted.</p>
+
+    <p><code>
+Annem-le      eve         gittik.
+My mother-lA  house.DAT   go.PAST.1PL
+'My mother and I went home'/'I went home with my mother'
+</code>
+<em>-lA</em> in these cases is almost always ambiguous between a case
+marker and conjunction. If the second component is missing, and the context
+does not clearly indicate a conjunction, we use <code>nmod</code>. Otherwise, we
+use <code>remnant</code>.</p>
+  </li>
+  <li>
+    <p>Modal adverbs like <em>acaba</em> ‘I wonder’, <em>bakalım</em> ‘let’s see’,
+<em>yoksa</em> ‘if not’ are linked to the main predicate using <code>discourse</code>
+relation.</p>
+
+    <p>The relation should also cover <em>yani</em>, <em>işte</em>, <em>şey</em>.</p>
+  </li>
+</ul>
+
+<h2 id="pos-tagging-related">POS tagging related</h2>
+
+<ul>
+  <li>
+    <p>The time adverbs, <em>dün</em> ‘yesterday’, <em>bugün</em> ‘today’, <em>akşam</em> (in
+the) evening, and so on are marked as nouns in MS treebank, and
+corresponding words seem to be marked as nouns in English UD too.
+This conflicts with words with similar usage, e.g., <em>şimdi</em> ‘now’.</p>
+
+    <p><strong>Suggestion:</strong> Mark <em>dün/bugün/yarın</em> as <code>NOUN</code> but use the
+relation label <code>nmod:tmod</code>. This should also cover nominal phrases
+locative marking referring to time, e.g., <em>eve vardığımda</em> ‘when I
+arrived home’.</p>
+  </li>
+  <li>
+    <p>In Turkish, a (rather large) number of postpositions are constructed
+by a regular process, where a set of nouns (mostly indicating place
+or some sort of abstract relation) are combined with possessive
+and case (also with <em>-lA</em> and <em>-CA</em>) suffixes to form postpositions. For
+example:
+<code>
+(1) Kitapların ara-sı-nda           bulabilirsin.
+    Book.GEN   between.POS3SG.LOC   find.ABIL.AOR.P2SG
+    `You can find (it/him/her) *between* the books.'
+(2) Dolabın       arka-sı-na      düştü
+    Cupboard.GEN  back-POS3SG.LOC fall.PAST
+    `It fell *behind* the cupboard.'
+</code></p>
+
+    <p>Analyzing these as <code>ADP</code> seems reasonable, and would be parallel to
+the analyses in English, and possibly in other languages. However,
+things get a bit tricky, as the noun that is modified by the
+postposition may disappear. As in,
+<code>
+(3) (Bizim) ön-ümüz-den       gidiyor.
+    We.GEN  front.POS1PL.ABL  go.PAST.PROG
+    `he/she/it is going *in front of* us'
+(4) (Senin) yer-in-e          onu     atamışlar.
+    You.GEN place-POS2SG.DAT  he.DAT  appoint.EVID.P3PL
+    `they appointed him *instead of* you.
+</code>
+Note that the information about the (pro)noun being modified is
+recoverable from the postposition (using the possessive agreement 
+marker) but the noun phrase is missing.</p>
+
+    <p>Alternatives are (1) treating these as regular nouns (METU-Sabancı
+does so),  (2) marking them as the head of the phrase when the noun
+phrase is missing, and (3) make sure the case marker introduces a
+new IG, and mark the noun component of the postposition as the 
+head of the postpositional phrase. This is somewhat similar to 
+the noun phrase analysis).</p>
+
+    <p><strong>Suggestion:</strong> (tentative) follow METU-Sabancı analysis.</p>
+  </li>
+  <li>
+    <p>UD does not seem to have a clear way of marking onomatopoeia.
+In most cases <code>X</code> seems to be a good option.</p>
+
+    <p>In Turkish, onomatopoeic words may get some suffixes. Most common
+case is the <em>-lA</em> suffix which derives a noun meaning making a sound
+like it, e.g., <em>kedi miyav-la-r</em> ‘cat meows’.</p>
+
+    <p>In a rather infrequent usage, these words may also get copular
+suffixes (An example from the web: <em>Gitsin çay falan demlesin, ne o
+öyle yok havmış da yok miyavmış da bilmemneymiş.</em>. This also affects
+the analysis of foreign phrases, e.g., <em>Bunun İngilizce orjinali ‘to
+be or not to be’dir</em> ‘Original English (version) of this is “to be
+or not to be” (quoting the foreign expressions is common, but not
+necessarily a standard practice).</p>
+
+    <p><strong>Suggestion:</strong> <code>X</code>, for the case of verb derivation, we don not
+need to keep the derivation history, so derived verbs will show up as verbs.</p>
+  </li>
+  <li>
+    <p>A particular class of complex “pronominals” are formed by possessive
+suffixes attached to adjectives, determiners and numerals. For
+example, <em>üç-ü</em> ‘three of them’, <em>sarı-ları</em> ‘the yellow parts (of
+it)’/’the ones that are yellow’, <em>hiçbir-imiz</em> ‘none of us’. These
+words behave a lot like a normal pronouns. METU-Sabancı treebank
+marks these as adjectives that are promoted to nouns, followed by a
+possessive suffix. TRmorph analyzes as dervied pronouns.</p>
+
+    <p>Marking them as pronouns may be interesting as their referrents may
+potentially be resolved in the linguistic context. On the other hand
+this seems to be against the current UD classification that lists
+pronouns as closed class words. (On a related note, one can stretch
+this to verbal nouns too, e.g., <em>Bu hafta bir sürü kısa öykü yazdım. 
+Daha sonradan yaztıklarım daha guzel oldu.</em> 
+‘I wrote many short stories today. The ones I wrote later were better’.)</p>
+
+    <p><strong>Suggestion:</strong> (tentative) Follow METU-Sabancı analysis, unless the
+resulting pronoun is a lexicalized one.</p>
+  </li>
+</ul>
+
+<h2 id="features">Features</h2>
+
+<ul>
+  <li>
+    <p>With the same set of TAM markers, tense/aspect/modality changes 
+in subordinated predicates.</p>
+
+    <p><strong>Suggestion:</strong> keep the features as they are predicted for the
+predicates of the non-subordinate clauses (it likely that these
+could be adjusted automatically).</p>
+  </li>
+</ul>
+
+<h2 id="notes-on-annotation-of-specific-words">Notes on annotation of specific words</h2>
+
+<ul>
+  <li>
+    <p><em>eğer</em> an <em>şayet</em> signal a conditional clause, but they are
+redundant since they always coexist with the compulsoray mood
+marker on conditional clauses. We mark them as <code>SCONJ</code> (following
+TRmorph), but attach to the head of the conditional clause using the
+<code>discourse</code> relation.</p>
+  </li>
+  <li>
+    <p>The words <em>var</em> ‘(something) exists’ and <em>yok</em> ‘(something) does not exist’ 
+are used for formimg “existential sentences”. In this function, these words
+behave like nominal predicates. Although they do not function like
+adjectives in general, METU-Sabancı marks them as adjectives.</p>
+
+    <p><strong>Suggestion:</strong> Follow METU-Sabancı analysis.</p>
+  </li>
+  <li>
+    <p>Another special word is negative particle ‘değil’. It mainly allows
+negating the nominal predicates. In this function, it behaves
+similar to copular verbs (<em>ol-</em>, <em>bulun-</em>). METU-Sabancı marks it as
+a verb, and uses a special relation <code>NEGATIVE.PARTICLE</code>.</p>
+
+    <p>If değil is used as a predicate, we treat it similar to <em>ol-</em>, it is
+marked as <code>VERB</code> with feature assignment <code>Negative=neg</code>. If it is used 
+in a copular construction, we use the relation <code>cop</code> to connect it to 
+the nominal predicate. 
+~~~~ sdparse
+Arabam mavi değil .\n My car is not blue .
+cop(mavi, değil)
+~~~~</p>
+
+    <p><em>değil</em> can also be used with verbal predicates, acting as an
+auxiliary, in this case we relate it to the main verb with relating
+<code>aux</code>.</p>
+  </li>
+</ul>
+
+<pre><code class="language-sdparse">Öldürecek değiller . \n They are not going to kill (someone) .
+aux(öldürecek, değiller)
+</code></pre>
+
+<pre><code>If *değil* is used to negate a non-predicate, we mark it as `PART`
+(again with feature `Negative=neg`), and attach it to the content
+word with relation `neg`. (???)
+</code></pre>
+
+<pre><code class="language-sdparse">
+</code></pre>
+
+<ul>
+  <li>
+    <p><em>olarak</em> (copula <em>ol-</em> + suffix <em>-ArAk</em>) is somewhat different than 
+other uses of the copula. It forms adverbial phrases.</p>
+  </li>
+  <li>
+    <p>Clitic <em>dA</em> (<em>de/da</em>)</p>
+
+    <p>In its common use, <em>dA</em> is a discourse connective. In this case, 
+we mark it as <code>ADV</code> and attach it to the word/phrase that it modifies 
+(typically the preceding word), and mark as <code>advmod:emph</code>, which 
+seems to be used in Czech.</p>
+
+    <p>When <em>dA</em> is attached to a subordinate predicate, it may look like a
+subordinating conjunction, <em>Okuyup da anla(ma)mış</em> ‘she
+did (not) understand (because/although) she read (it)’. Note that in
+this usage, the suffix <em>-(y)Ip</em> functions as the subordinator.
+Hence, we mark <em>dA</em> as above.</p>
+
+    <p><em>dA</em> also functions as a coordinating conjunction. If it is used in
+a construction like <em>Ahmet de Ali de aradı</em> ‘Ahmet and Ali both
+called’, we still attach the clitic to the preceding word, but mark
+coordination without a conjunction, in this case the POS tag is
+<code>CONJ</code>.</p>
+
+    <p>If it is used with the meaning of ‘but’, e.g., <em>içerim de,
+arabayı kim kullanacak?</em> ‘I would/can drink, but (then) who will
+drive?’. In this case, it is connected to head of the conjunction
+with relation <code>cc</code>.</p>
+
+    <p>A infrequent, but interesting usage of <em>dA</em> is with
+compound verb forms including suffix <em>-abil</em>. A word/utterance like
+<em>ara-yabilirim de</em> ‘I may also call’ can alternatively be expressed
+like <em>araya da bilirim</em>. Note that the first word include part of
+the suffix ‘-(y)Abil’, and while the last word contains related free
+morpheme <em>bil-</em> ‘to know’ the expression has nothing to do with the verb
+<em>bil-</em>. In this case, we analyze second part of the verb as an
+auxiliary, and attach <em>dA</em> to the first part.</p>
+  </li>
+</ul>
+
+<pre><code class="language-sdparse">araya da bilirim \n I could call too.
+advmod:emph(araya, da)
+aux(araya, bilirim)
+</code></pre>
+
+<ul>
+  <li>
+    <p>Clitic <em>ki</em></p>
+
+    <p>Either subordinating conjunction or a discourse connective (mark
+  with <code>advmod:emph</code> or <code>discourse</code>). (<strong>expand this</strong>)</p>
+  </li>
+  <li>
+    <p><em>-(y)sA</em> and <em>ise</em></p>
+
+    <p>The suffix <em>-(y)sA</em> or its clictic form <em>ise</em> behave like the
+  copular suffixes or clitics. It mianly forms conditional clauses.
+  <em>Kitabın tamamını okudu<b>ysa</b> şaşarım</em> ‘I’d be surprised if she read all of the book’. We treat this case as subordination, mark the relation with <code>advmod:cond</code>.
+~~~~ sdparse
+Kitabın tamamını okuduysa şaşarım .
+advcl:cond(şaşarım, okuduysa)
+~~~~</p>
+  </li>
+</ul>
+
+<pre><code class="language-sdparse">Evde yse yemek yapmıştır . \n He'd have cooked if he is at home.
+advcl:cond(yapmıştır, evde)
+cop(evde, yse)
+</code></pre>
+
+<pre><code>When attached to nouns, both forms can also be used as a discouse
+connective with the meaning 'as for NOUN'. In this case (following
+English UD), we mark the copular suffix/clitic with `case` and use
+appropriate relation (likely `nmod`) to relate it to the head.
+</code></pre>
+
+<pre><code class="language-sdparse">Arabam sa henüz satılmadı . \ As for my car, it wasn't sold yet.
+case(arabam, sa)
+nsubjpass(satılmadı, arabam)
+</code></pre>
+
+<ul>
+  <li>
+    <p><em>hani</em> is a word that forms (mostly rhetorical) ‘where’ questions.
+G&amp;K define it as an interjection. In most cases, there is no other word 
+that indicate that the sentence is a question. Furthermore, it fills
+in a (pro)noun slot in this usage. In this case, we mark it as 
+<code>PRON</code> (with <code>PronType=Int</code>). In some cases it co-occurs with
+<em>nerede</em> ‘where’. In that case, it is loosely connected to the
+sentence structure, so, we mark it as <code>ADV</code> and connect to the
+predicate with relation <code>discourse</code>. It may also occur without
+<em>nerede</em> but with a weak connection to the sentence structure.
+We also mark it as a discourse connective in this usage. (???)</p>
+  </li>
+  <li>
+    <p>The reflexive pronoun (<em>kendi</em> and its other forms) is normally
+complementary to the reflexive verbs. If a verb is reflexive, there
+normally ‘kendi’ is not needed. However, in some cases it is used,
+likely for emphasis. In these cases, we mark it as if it is the
+object of the reflexive ….</p>
+  </li>
+</ul>
+
+<h2 id="derivations">Derivations</h2>
+
+<ul>
+  <li>
+    <p><strong>-lA</strong> is a productive suffix that derives verbs from nouns
+and onomatopoeia, e.g., <em>model</em> ‘model-N’, <em>modelle</em> ‘model-V’.
+It does not seem to be possible for the derived noun to have any
+dependents, the whole word acts as a single unit.</p>
+
+    <p><strong>Suggestion:</strong> collapse</p>
+  </li>
+  <li>
+    <p><strong>-lAn</strong> is a another productive suffix that derives verbs:
+<em>hoş-lan</em>, <em>silah-lan</em>, <em>ağaç-lan</em>.</p>
+
+    <p><strong>Suggestion:</strong> collapse</p>
+  </li>
+  <li>
+    <p><strong>-lIk</strong> nominals from nominals. Besides lexicalized forms <em>tuz-luk</em>
+‘salt container/shaker’, it is also quite productive. The nominal
+modified by <em>-lIk</em> may be modified by other words in rare cases,
+e.g., <em>üç (büyük) araç-lık park yeri</em> ‘parking spot for three big vehicles’.</p>
+
+    <p><strong>Suggestion:</strong> split. We keep the first IG as the head, and mark it
+with relation <code>case</code>.</p>
+  </li>
+  <li>
+    <p><strong>-CI</strong> derives nouns from nouns, typically it derives “occupation
+nouns”, e.g. <em>şarap-çı</em> ‘the wine maker/seller’ but also someone who
+has a taste/preference for something, so the example could also mean
+‘person who prefers wine (over beer)’. Although not very frequent,
+the non-derived noun can be modified by other words: 
+<em>[kırmızı şarap]-çı</em> ‘person preferring red wine (over white wine)’/’red wine seller’.
+Similarly, <em>iki [[yağlı güreş]-çi]</em> ‘lit: two [[oil(y) wrestle]-r]’
+(the sport is called ‘oil(y) wrestling’ not that the wrestlers are
+oily (at least not always). Cf. <em>[iki [güçlü [güreş-çi]]]</em> ‘two
+strong wrestlers’.</p>
+
+    <p><strong>Suggestion:</strong> split, and mark the final IG as the head of the
+phrase. We currently use <code>nmod</code> between two IGs.</p>
+  </li>
+  <li>
+    <p><strong>-DIr</strong> attached to time expressions create time adverbials with
+the approximate meaning of ‘since’ or ‘for’, as in <em>asır-dır</em>
+‘for/since centuries’, <em>üç haftadır</em> ‘for three weeks’, 
+<em>uzun yıllar-dır</em> ‘for many years’. In the last two examples the number
+and the adjective modifies the noun, not the resulting adverbial.</p>
+
+    <p><strong>Suggestion:</strong> split. We keep the first IG as head, and relate them
+with <code>case</code>, this is somewhat in line with the English UD where 
+‘since/for’ would be linked with <code>case</code> as well.</p>
+  </li>
+  <li>
+    <p><strong>-lArI</strong> attaches to time expressions, indicating repeating events,
+<em>hafta sonları kitap okurum</em>
+‘I read books <em>in the weekends</em>’,
+<em>kış geceleri çok üşürdü</em> 
+‘(s)he used to be/feel very cold <em>in the winter nights</em>’.
+The construction is ambiguous between noun-phrase and time adverb.
+That is, <em>geceleri araştıyorum</em> could mean ‘I research (something)
+at nights’ or ‘I research <em>nights</em>/I do research about nights’. 
+TRmorph has a special (derivational) tag for this construction.</p>
+
+    <p><strong>Suggestion:</strong> analyze these as normal noun (phrase) but mark with
+<code>nmod:tmod</code>.</p>
+  </li>
+  <li>
+    <p><strong>-CA</strong> is a multi-functional derivational suffix. When attached to
+nouns, it forms adverbial phrases: <em>[güvenlik kuvvetleri]-nce</em> ‘by the
+security forces’. In this usage, <em>-CA</em> may scope over the whole
+phrase headed by the noun it is attached to. In this usage we split
+-CA, and connect to the noun with <code>case</code> relation (the noun bing the
+head).</p>
+  </li>
+</ul>
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'tr-overview';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

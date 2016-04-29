@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Syntax</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.org/#language-tr">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_tr-overview/specific-syntax.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="specific-constructions">Specific constructions</h1>
+
+<h2 id="existential-sentences">Existential sentences</h2>
+
+<p>In Turkish, existential sentences are (primarily) formed using <em>var</em> ‘there is/are’ and its negative counterpart <em>yok</em>. Although they do not exactly function like adjectives, following METU-Sabancı treebank, we mark them as <code>ADJ</code> and treat them like other nominals that require a copular suffix to function as predicates.  Note that, in the most common use, the 3rd person singular present copular marker is null. In general, we indicate this wit an additional IG, which marks the “predicatehood” of the verb, and also is in parallel with the other copular constructions.</p>
+
+<p>We analyze this constructions like nominal predicates. <em>var</em> and <em>yok</em>
+act as the head of the predicate, the thing that “exists” is the
+subject:</p>
+
+<pre><code class="language-sdparse">Evde bira var -0 . \n There is beer at home.
+cop(var, -0)
+nsubj(var, beer)
+nmod(var, evde)
+</code></pre>
+
+<p>The same construction is used for expressing someone ‘have/has’ something or not. In this case, we mark the possessor with <code>nmod:own</code> (not to be confused with ``nmod:poss` used for nominal compounds with possessive marking).</p>
+
+<pre><code class="language-sdparse">Benim hiç param yok -tu . \n I did not have any money (lit: there was no money of mine)
+cop(yok, -tu)
+nsubj(yok, param)
+advmod(yok, hiç)
+nmod:own(yok, benim)
+</code></pre>
+
+<p>Note that when possessor is not expressed, whether the sentence is an
+existential (‘there is/are’) or a possession statement (‘something
+has’) can be understood from the possessive marking (or lack of it) on
+the subject. (<strong>Q: should this be indicated by the dependency
+relations</strong>)</p>
+
+<p>In subordinate clauses the copula <em>ol-</em> is used in existential predicates. In this case, we mark <em>ol-</em> as the head of the subordinate (existential) clause.</p>
+
+<pre><code class="language-sdparse">Evde ekmek olma -dığını bilmiyordum \n I did not know that there was no bread at home
+nsubj(olma, ekmek)
+nmod(olma, evde)
+mark(olma, -dığını)
+ccomp(bilmiyordum, olma)
+</code></pre>
+
+<pre><code class="language-sdparse">Ali'nin parası ol -duğu gün \n the day that Ali has/had money
+nsubj(ol, parası)
+nmod:own(ol, Ali'nin)
+mark(ol, -düğü)
+acl(gün, ol)
+</code></pre>
+
+<p>Besides subordinate clauses, the copula <em>ol-</em> can be used in a similar
+way (the meaning is slightly different than the cases where <em>var</em> or
+<em>yok</em> is used). Again, in these cases, we mark <em>ol-</em> as the head of
+the clause.</p>
+
+<pre><code class="language-sdparse">Bunun bir bedeli olur. \n This would have a consequence
+nsubj(olur, bedeli)
+det(bedeli, bir)
+nmod:own(olur, bunun)
+</code></pre>
+
+<h2 id="noun-compounds">Noun compounds</h2>
+
+<p>Turkish noun compounds are generally classified into three classes:</p>
+
+<ol>
+  <li><strong>Bare compounds:</strong> <em>tahta kapı</em> ‘wooden door’, 
+<em>kadın subay</em> ‘woman army officer’, 
+<em>İspanyol ressam</em> ‘Spanish painter’, 
+<em>Güniz Sokak</em> ‘Güniz street’</li>
+  <li><strong>-(s)I compounds</strong>, possessive marked head with bare complements:
+<em>otobüs bileti</em> ‘bus ticket’,
+<em>Tuz Gölü</em> ‘Salt Lake’,
+<em>Asya ülkesi</em> ‘Asian country’.</li>
+  <li><strong>genitive-posssessive</strong> construction:
+<em>arabanın motoru</em> ‘engine of the car/car’s engine’,
+<em>babamın işi</em> ‘my father’s job’,
+<em>Ali’nin arabası</em> ‘Ali’s car’,
+<em>Benim arkadaşlarım</em> ‘My friends’.</li>
+</ol>
+
+<p>We link the first kind with <code>compound</code>, while the other two are linked
+with <code>nmod:poss</code>.</p>
+
+<p>Note that the compounds can be complex with arbitrary structure, as in
+‘[[İstanbul üniversites-i]-nin [tahta kapı]-sı]’.</p>
+
+<p>Furthermore, the nominals can include subordinate clauses, like
+<em>[Ali’nin henüz görmediği] film</em> ‘the movie (that) Ali hasn’t seen
+yet’. In these cases, the relation is <code>ccomp</code> <code>xcomp</code>.</p>
+
+<p><strong>We need more specific guidelines</strong>, or maybe a new relation for marking compounds with subordinate clauses.</p>
+
+<h2 id="yesno-questions-an-the-question-particle">Yes/no questions an the question particle</h2>
+
+<p>Yes-no questions in Turkish is formed by question particle -mI
+(mı/mi/mu/mü). UD currently does not have a clear way of marking
+question particles.</p>
+
+<p>We mark question particles as <code>AUX</code>, and (for now) introduce a new
+feature <code>Question</code> that is set for question particles as well as
+other words that introduce questions (<code>PronType=Int</code> is also used, but
+likely it is not sufficient/suitable in this case).</p>
+
+<p>The relation between the main predicate and the question mark is <code>aux</code>
+(although we may want to subtype the relation and use <code>aux:q</code> in the future).</p>
+
+<p>(<strong>??</strong>) If the <em>-mI</em> is attached to a copula, we chain the relations (the
+question particle is headed by the copula, not the main predicate).</p>
+
+<p>Besides forming general yes/no questions by attaching to a predicate,
+question particle also attaches to the other constituents in a
+sentence. For example,</p>
+
+<p>Declarative sentence</p>
+
+<pre><code class="language-sdparse">Yarın siz Ankara'ya gideceksiniz. \n You will go to Ankara tomorrow.
+</code></pre>
+
+<pre><code class="language-sdparse">Yarın siz Ankara'ya gidecek misiniz. \n Will you go to Ankara tomorrow?
+</code></pre>
+
+<pre><code class="language-sdparse">Siz Ankara'ya yarın mı gideceksiniz. \n Will you go to Ankara TOMORROW? 
+</code></pre>
+
+<pre><code class="language-sdparse">Siz yarın Ankara'ya mı gideceksiniz. \n Will you go TO ANKARA tomorrow?
+</code></pre>
+
+<pre><code class="language-sdparse">Yarın Ankara'ya siz mi gideceksiniz. \n Will YOU go to Ankara tomorrow?
+</code></pre>
+
+<p>Although there is a preference to place the question particle and the
+word modifies close to the verb, other word orders are also possible:</p>
+
+<pre><code class="language-sdparse">Yarın siz mi Ankara'ya gideceksiniz. \n Will YOU go to Ankara tomorrow?
+</code></pre>
+<p>or, 
+~~~~ sdparse
+Siz mi yarın Ankara’ya gideceksiniz. \n Will YOU go to Ankara tomorrow?
+~~~~</p>
+
+<p>In these cases, we attach the question particle to the word/phrase it
+modifies, not to the predicate. Currently, we keep the same POS tag
+and relation label.</p>
+
+<p>Above covers the use of <em>-mI</em> as question particle. <em>-mI</em> may also be
+used as a subordinating conjunction as in <em>Okulu bitirdin mi işin
+hazız</em> ‘when/if you finish the school, your job is waiting for you’.
+In this case, we treat it like a <code>SCONJ</code> introducing a conditional
+adverbial clause. It is attached to the head of the clause with
+<code>mark</code>.</p>
+
+<p>Another use of <em>-mI</em> is in emphatic reduplication, such as <em>güzel mi
+güzel</em> ‘very beautiful’, <em>hızlı mı hızlı</em> ‘very fast’. In these cases
+it is attached to the preceding word with relation <code>advmod:emph</code>.</p>
+
+<h2 id="person-names-and-honorifics">Person names and honorifics</h2>
+
+<p>The person names are linked with <code>name</code> relation, and headed by the last part of the name.</p>
+
+<p>Turkish honorifics normally follow the (first) name, <em>Ahmet Bey</em>
+‘Mr. Ahmet’, <em>Necla Hanım</em> ‘Ms. Necla’, <em>Ayşe öğretmen</em> ‘Teacher
+Ayşe’, <em>Mustafa Kemal Paşa</em> ‘general Mustafa Kemal’. 
+A few others introduced later, <em>Sayın</em>/<em>Bay</em>/<em>Bayan</em>, precede the last name or first and last name.
+We use the relation <code>compound</code> and always mark the proper name as the head of the compound (although it is tempting to mark the title as head in the first case).</p>
+
+<h2 id="noun-verb-compounds--light-verbs">Noun-verb compounds / light verbs</h2>
+
+<p>A number of verbs in Turkish combine with nouns or adjectives to form predicates.
+Most common verbs used in constructions are verbs, <em>et-</em>, <em>yap-</em> and <em>ol-</em>, but others such as <em>gel-</em>, <em>dur-</em>, <em>kal-</em>, <em>çık-</em>, <em>düş-</em>, <em>çek-</em> may be used to form compound verbs.
+The usage of these verbs is not restricted to this ‘light’ usage,
+they may also be used as normal (heavy) verbs.
+For example, <em>çek-</em> ‘pull’ is used as a light verb in <em>fotoğraf çek-</em> ‘take photo’, but as a ‘heavy’ verb in <em>saç çek-</em> ‘pull hair’.</p>
+
+<p>The copula/auxiliary  <em>ol-</em> should only marked as part of a light-verb compound in clear lexicalized cases, e.g., <em>sebep ol-</em> ‘cause’ but not <em>hasta ol-</em> ‘be/become ill’.</p>
+
+<p>The relation between a light verb and the noun it modifies noun is <code>compound</code>.
+The noun should be marked as the head of the compound.</p>
+
+<pre><code class="language-sdparse">Ali Ahmet'e yardım etti. \n Ali helped ahmet
+compound(yardım, etti)
+nsubj(yardim, Ali)
+dobj(yardim, Ahmet)
+</code></pre>
+
+<h2 id="numbers">Numbers</h2>
+
+<p>If numbers are spelled out completely, we use a combination of <code>conj</code>
+and <code>coord</code> to mark it in a head-final fashion.</p>
+
+<pre><code class="language-sdparse">iki yüz otuz üç 
+comp(yüz, iki)
+conj(üç, otuz)
+conj(üç, yüz)
+
+</code></pre>
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'tr-overview';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

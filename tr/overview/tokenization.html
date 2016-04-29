@@ -21,9 +21,9 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-kk">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-tr">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_kk-overview/tokenization.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_tr-overview/tokenization.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
@@ -37,11 +37,183 @@
 	  </div>
 	</noscript>
 
-          <h1 id="tokenisation">Tokenisation</h1>
+          <h1 id="tokenization">Tokenization</h1>
 
 <p><strong>This document is a work-in-progress proposal. See http://universaldependencies.org for current/accepted specification</strong></p>
 
-<p>Word tokenisation of Kazakh is similar to the other languages written using the Cyrillic alphabet.</p>
+<p>Word tokenization of Turkish is similar to the other languages writting using Latin alphabet. However, syntactic analysis of Turkish requires sub-word units as syntactic tokens. These tokens are called <em>inflectional groups</em> (IGs), and typically determined at the time of morphological analysis.</p>
+
+<h2 id="inflectional-groups">Inflectional Groups</h2>
+
+<p>In Turkish (and some/all other Turkic languages), the POS of a word may change with suffixation a way that diverge from derivational morphology observed in other lanuages. The important difference is that parts of the word may refer to different entities and/or predicates that carry their own inflectional features and participate in different syntactic relations.</p>
+
+<p>A typical example is the following sentence:
+<code>
+Mavi arabadakiler   gazete    okuyor.
+blue car-LOC-KI-PLU newspaper read-PROG
+`the ones in the blue car are reading newspapers'
+</code>
+In this example, the suffix <em>-ki</em> in word <em>arabadakiler</em> creates a new IG. The first IG refers to a car, while the second IG refers to people (in the car). The set of inflections attached to these two IG’s are different. <em>araba</em> ‘car’ is singular (not marked for plural) and marked for locative case, while <em>arabadaki</em> ‘the one/person in the car’ is not marked for case, and receives the plural suffix. In other words, the locative marker only applies to the first IG, and plural marker to the second. Furhermore, the adjective <em>mavi</em> ‘blue’ modifies <em>araba</em>, the car is blue not not the people inside. And the subject of the verb <em>oku</em> ‘read’ is the second IG.</p>
+
+<p>During tokenization, we introduce two syntactic words, and tokenize the above sentence in CoNLL-U as follows:</p>
+
+<p><code>
+1   Mavi            mavi
+2-3 arabadakiler    _
+2   _               araba
+3   _               ki
+4   gazete          gazete
+5   okuyor          oku
+6   .               .
+</code>
+In principle, instead of introducing null surface form for the parts, the word can be segmented. However, this is non-trivial in some cases. Given that lemma, POS tag and features are set correctly, the surface information for the parts of the word can be recovered if needed.</p>
+
+<p>METU-Sabancı treebank makes excessive use of IGs. In UD, we limit the suffixes/cases that introduce a new IG to the following.</p>
+
+<h4 id="ki">-ki</h4>
+
+<p>The suffix <em>-ki</em> attaches to a genitive- or locative-marked noun and derives adjectivals. The scope of <em>-ki</em> is the whole noun phrase headed by the nominal it attaches (the noun may be modified by any other means nouns can be modified, including complex relative clauses). The adjectival, like any adjective in Turkish, can act as a (pro)noun. We treat the adjective and noun usage separately. In both cases we split the original word and introduce a new IG starting with <em>-ki</em>.</p>
+
+<h4 id="adjective-case">Adjective case</h4>
+
+<p>In this usage, <em>-ki</em>’s function is similar to English ‘that’ or ‘which’,
+<em>Evde<b>ki</b> kitap</em> ‘the book <b>that</b> is at home’.</p>
+
+<p>In this usage, we mark the IG with <em>-ki</em> as <code>ADJ</code>. The head of the word in this case is a <code>NOUN</code>, and the <em>-ki</em> is attached to the noun using the <code>case</code> relation. Although the resulting phrase functions as an adjective, since we mark the noun as the head, we also mark the relation between the <em>-ki</em> phrase and the noun it modifies as <code>nmod</code>. We do not use an subtypes since the necessary information can be recovered from the IG with <em>-ki</em>.</p>
+
+<pre><code class="language-sdparse">Evde -ki kitap
+nmod(kitap, evde)
+case(evde, ki)
+</code></pre>
+
+<h4 id="noun-case">Noun case</h4>
+
+<p>In this case <em>-ki</em> refers to the person/thing that is defined by the stem, <em>evdeki</em> ‘the one at home’, <em>annem-ler-in-ki</em> ‘the one that belongs to my parents’.  In this usage, we mark the IG with <em>-ki</em> as noun (without the intervening adjective IG). In this case the head is the IG with  <em>-ki</em>, and relation is <code>nmod</code>. We do not sub-categorize this relation, but other <code>nmod</code> subcategories apply.</p>
+
+<pre><code class="language-sdparse">Akşam yedide -ki  altyazılı \n the one at seven is with subtitles
+nmod(yedide, akşam)
+nmod:tmod(-ki, yedide)
+nsubj(altyazılı, -ki)
+</code></pre>
+
+<h4 id="copular-markers">Copular markers</h4>
+
+<p>Copular suffixes attached to nouns an adjectives
+create predicates. For example, the word/sentence <em>arabadaydım</em>
+<code>
+Arabada -ydık.
+car-LOC -is.PAST.1PL
+I was in the car.
+</code>
+Note that the <code>Number</code> feature on the noun is <code>Sing</code>, while the
+predicate agrees with a <code>Plur</code> subject. If both IGs are combined
+resulting feature values would be confusing. Furthermore, in
+combination with the plural markers, we end up with situations with
+multiple subjects (see below for an example).</p>
+
+<h4 id="subordinating-suffixes">Subordinating suffixes</h4>
+
+<p>A set of suffixes in Turksih form subordinated clauses that functin as nouns, adjectives or adverbs.
+<code>
+(Benim) eve        dün        götür-düklerimden 
+I.GEN   house.DAT  yesterday  take.PAST.1SG-VN.PLU.ABL
+Some of the things I took home yesterday.
+</code>
+Here, if we do not split off the subordinating suffix, we end up an
+<code>Case</code> feature (<code>Abl</code>) on a verb, or <code>Tense</code> feature on a noun (which
+may be fine if the noun was a predicate, but not in this case).
+Also note that predicate <em>götür</em> ‘take’ needs <code>Number=Sing</code>, while the resulting nominal phrase is plural.</p>
+
+<p>This becomes even more complicated if a copula is attached to the verbal noun:
+<code>
+(O)    (benim) eve       dün        götür-düklerimden-miş.
+It     I.GEN   house.DAT yesterday  take.PAST.1SG-VN.PLU.ABL-cop.EVID.3SG
+It was (aparently) one of those I took home yesterday.
+</code>
+Now, not only that all sorts of feature conflicts between two predicates and the intervening nominal are possible, 
+the two predicates have different subjects.</p>
+
+<p>Splitting these suffixes also makes syntactic relation parallel to other languages, where the word that causes the subordination marked with relation <code>mark</code>.</p>
+
+<h3 id="some-other-derivational-suffixes">Some other (derivational) suffixes</h3>
+
+<p>Some (derivational) suffixes in Turkish scope over complete phrases/clauses rather than a single word.
+Not splitting these suffixes results in dependencies relating wrong words.
+The following lists the suffixes that should be split.</p>
+
+<p>Some of these suffixes have multiple functions/meanings,
+and in some these functions it splitting may not be necessary.
+However, this decision is generally difficult to make.
+We always split the suffixes listed below,
+with the exception when the derived form is lexicalized.
+For example the suffix -lIk in <em>çantamda üç kitap<b>lık</b> yer var</em> ‘I have
+space for three books in my bag’ should be split, 
+but not in <em>bir kitap<b>lık</b> aldım</em> ‘I bought a book shelf’.</p>
+
+<h5 id="the-suffix--li">The suffix -lI</h5>
+
+<p>This is a productive derivational suffix that derives adjectives and nouns from nouns. It has multiple functions. In some of these functions we can perfectly do without splitting, but for the sake of ease of annotation we split all, except clearly lexicalized cases, e.g., <em>akıl<b>lı</b></em> ‘mind-lI = clever’, <em>köy<b>lü</b></em> ‘village-lI = villager’, <em>üç-lü</em> ‘three-lI = trio’.</p>
+
+<h6 id="examples">Examples</h6>
+
+<ul>
+  <li>
+    <p><em>üç yatak odalı ev</em> ‘a/the house with three bedrooms’.
+The correct bracketing is <em>[üç [yatak oda]]-lı ev</em> not</p>
+  </li>
+  <li>
+    <p><em>nefis çikolata-lı kek</em> ‘delicious chocolate cake’ but
+<em>siyah çikolata-lı kek</em> ‘dark-chocolate cake’. And further,
+<em>nefis siyah çikolata-lı kek</em> ‘delicious dark-chocolate cake’</p>
+  </li>
+  <li>
+    <p><em>kırmızı çiçek-li kumaş</em> ‘fabric with red flowers’ or (unlikely)
+‘red fabric with flowers’.</p>
+  </li>
+</ul>
+
+<h5 id="the-suffix--siz">The suffix -sIz</h5>
+
+<p>This suffix affects noun phrases, roughly meaning ‘without’. It can
+also be attached to inflected nouns.</p>
+
+<p><em>spor arabam<b>sız</b> yapamam</em> ‘I cannot do without [my sports car]’.</p>
+
+<h5 id="the-suffix--ci">The suffix -CI</h5>
+
+<p><strong>-CI</strong> derives nouns from nouns, typically it derives “occupation nouns”, e.g.
+<em>şarap-çı</em> ‘the wine maker/seller’ but also someone who has a taste/preference
+for something, so the example could also mean ‘person who prefers wine (over
+beer)’. Although not very frequent, the non-derived noun can be modified by
+other words: <em>[kırmızı şarap]-çı</em> ‘person preferring red wine (over white
+wine)’/’red wine seller’.</p>
+
+<h5 id="the-suffix--lik">The suffix -lIk</h5>
+
+<p>This adds the meaning of ‘sufficient/suitable for’.</p>
+
+<p>Repeating the example above: <em>çantamda üç kitap<b>lık</b> yer var</em> ‘I have
+<b>space for</b> [three books] in my bag’.</p>
+
+<h5 id="the-suffix--dir-forming-time-adverbials">The suffix -DIr forming time adverbials</h5>
+
+<p>Suffix -DIr has a number of different functions, one of which is
+deriving adverbials from time expressions, e.g., <em>yıllar-dır</em>
+‘for/since years’. If the time expression is modified, this
+modification is local. For example <em>üç yıl-dır</em> ‘for/since three
+years’ be analyzed as <em>[üç yıl]-dır</em> ‘for [three years]’.</p>
+
+<h3 id="what-we-do-not-split">What we do not split</h3>
+
+<p>As much as what to split, it may be useful to know what not to.</p>
+
+<h4 id="zero-derivation-from-an-adj-to-noun">Zero derivation from an ADJ to NOUN</h4>
+
+<p>In Turkish any adjective functions a (pro)noun referring to a thing
+with the property described by the adjective, <em><b>Mavi</b>-yi ver.</em> ‘hand me
+<b>the blue one</b>’. This is typically analyzed as adjective becoming
+a noun with a zero derivation. We do not introduce multiple IGs in
+this case, we just mark the adjective as a noun.</p>
 
 
       </div>
@@ -146,7 +318,7 @@
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'kk-overview';
+        Collections.listing['_current'] = 'tr-overview';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
