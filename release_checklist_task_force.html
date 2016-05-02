@@ -49,8 +49,9 @@ This step cannot be automated (unless you write a script that queries Github abo
   <li>Make sure you have the most current content of all the repositories: <code>for i in UD_* ; do pushd $i ; git pull --no-edit ; popd ; done</code>.</li>
   <li>NEW in UD 1.3: some languages have the new data in <code>dev</code> branch. After this release, all languages will have to use the <code>dev</code> branch.
 So we should create the branch in repositories that do not have it.
-<code>for i in UD_* ; do pushd $i ; git pull --no-edit ; git checkout -b dev ; git checkout dev ; git push --set-upstream origin dev ; popd ; done</code>
-For all repositories we should make sure that the <code>dev</code> branch is checked out.</li>
+<code>for i in UD_* ; do pushd $i ; git pull --no-edit ; git checkout -b dev ; git checkout dev ; git push --set-upstream origin dev ; popd ; done</code></li>
+  <li>For all repositories we should make sure that the <code>dev</code> branch is checked out:
+<code>for i in UD_* ; do pushd $i ; git checkout dev ; git pull --no-edit ; popd ; done</code></li>
   <li>Make sure that all CoNLL-U files are formally valid (results of the validator are available on-line but make sure that no repository is missing there).</li>
   <li>Run <code>check_files.pl</code> from the tools repository (if there are new languages, you may need to add their codes in the source code first).
 It will visit all UD_* repositories and report any missing files, unexpected or unexpectedly named files.
