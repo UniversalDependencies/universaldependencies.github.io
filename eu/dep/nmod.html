@@ -39,8 +39,54 @@
 
           <h2><code>nmod</code>: nominal modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nmod</code>.</p>
+<p>The nmod relation (<code>nmod</code>) is used for nominal modifiers. They depend either on another noun (group “noun dependents”) or on a predicate (group “non-core dependents of clausal predicates”).
+nmod is a noun (or noun phrase) functioning as a non-core (oblique) argument or adjunct. This means that it functionally corresponds to an adverbial when it attaches to a verb, adjective or other adverb. But when attaching to a noun, it corresponds to an attribute, or genitive complement.</p>
+
+<p><em>Hegazkin <strong>txiki</strong> bat zain zegoen <strong>Findeleko</strong> <strong>aireportuan</strong> .</em></p>
+
+<p><em>A <strong>small</strong> plane was waiting <strong>in the airport</strong> <strong>of Findel</strong> .</em></p>
+
+<pre><code class="language-sdparse">Hegazkin txiki bat zain zegoen Findeleko aireportuan . n\ Plane small_a waiting was Findel_of airport_the_in .
+
+nmod(Hegazkin-1, txiki-2)
+nummod(Hegazkin-1, bat-3)
+advmod(zegoen-5, zain-4)
+nsubj(zegoen-5, Hegazkin-1)
+nmod(aireportuan-7, Findeleko-6)
+nmod(zegoen-5, aireportuan-7)
+punct(zegoen-5, .-8)
+</code></pre>
+
+<p><em>Partidutxoa egin zuten <strong>hamarreko</strong> bi <strong>taldetan</strong> .</em></p>
+
+<p><em>They played a match in two <strong>groups</strong> <strong>of ten</strong> .</em></p>
+
+<pre><code class="language-sdparse">Partidutxoa egin zuten hamarreko bi taldetan . \n Match_a played ten_of two match_in  .
+
+dobj(egin-2, Partidutxoa)
+aux(egin-2, zuten-3)
+nmod(taldetan-6, hamarreko-4)
+nummod(taldetan-6, bi-5)
+nmod(egin-2, taldetan-6)
+punct(egin-2, .-7)
+</code></pre>
+
+<ul>
+  <li>Possessive determiners, are not tagged with det but with nmod.</li>
+</ul>
+
+<p><em>Hori izango da <strong>gure</strong> zigorra .</em></p>
+
+<p><em>That will be our punishment .</em></p>
+
+<pre><code class="language-sdparse">Hori izango da gure zigorra . n\ That will be our punishment . 
+
+nsubj(zigorra-5, Hori-1)
+cop(zigorra-5, izango-2)
+aux(izango-2, da-3)
+nmod(zigorra-5, gure-4)
+punct(zigorra-5, .-6)
+</code></pre>
 
 
 <!-- "automatic stats" -->
