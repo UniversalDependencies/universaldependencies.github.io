@@ -340,8 +340,79 @@ punct(osatu-6, .-10)
 <p><a id="al-eu-dep/appos" class="al-dest"></a></p>
 <h2><code>appos</code>: appositional modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>appos</code>.</p>
+<p>An appositional modifier of a noun (<code>appos</code>) is a nominal immediately following the first noun that serves to define or modify that noun. It includes parenthesized examples, as well as defining abbreviations in one of these structures.</p>
+
+<p><em>Bikote bat hil zuten Chinanin, Taref <strong>probintzian</strong> .</em></p>
+
+<p><em>They killed a couple in Chinani, in the Taref <strong>province</strong> .</em></p>
+
+<pre><code class="language-sdparse">Bikote bat hil zuten Chinanin, Taref probintzian . \n Couple a killed Chinani_in, Taref province_the_in . 
+
+dobj(hil-3, Bikote-1)
+nummod(Bikote-1, bat-2)
+aux(hil-3, zuten-4)
+nmod(hil-3, Chinanin-5)
+punct(hil-3, ,-6)
+nmod(probintzian-8, Taref-7)
+appos(Chinanin-5, probintzian-8)
+punct(hil-3, .-9)
+</code></pre>
+
+<p><em>Azkenengo asanbladan, martxoaren 10ean <strong>eginikoa</strong>, adierazi zuten .</em></p>
+
+<p>*They explained it in the last assembly, in <strong>the one made</strong> in the 10th march . *</p>
+
+<p>amod(asanbladan-2, Azkenengo-1)
+punct(asanbladan-2, ,-3)
+nmod(adierazi-8, asanbladan-2)
+nmod(10ean-5, martxoaren-4)
+nmod(eginikoa-6, 10ean-5)
+appos(asanbladan-2, eginikoa-6)
+punct(asanbladan-2, ,-7)
+aux(adierazi-8, zuten-9) 
+punct(adierazi-8, .-10)
+~~~</p>
+
+<p><em>Nekazaritza eta abeltzaintza <strong>(esnea, haragia eta txerriak)</strong> dira bertako iharduera ekonomiko nagusiak .</em></p>
+
+<p><em>Agriculture and stockbreeding <strong>(milk, meat and pork)</strong> are the main autochthonous economic activities .</em></p>
+
+<pre><code class="language-sdparse">Nekazaritza eta abeltzaintza (esnea, haragia eta txerriak) dira bertako iharduera ekonomiko nagusiak .   n\  Agriculture and stockbreeding (milk, meat and pork) are autochthonous activities economic main_the .
+
+nsubj(iharduera-13, Nekazaritza)
+cc(Nekazaritza-1, eta-2)
+conj(Nekazaritza-1, abeltzaintza-3)
+appos(abeltzaintza-3, esnea-4)
+punct(esnea-4, ,-6)
+conj(esnea-4, haragia-6)
+cc(esnea-4, eta-7)
+conj(esnea-4, txerriak-8)
+appos(abeltzaintza-3, esnea-4)
+cop(iharduera-11, dira-9)
+amod(iharduera-11, bertako-10)
+amod(iharduera-11, ekonomiko-12)
+amod(iharduera-11, nagusiak-13)
+punct(iharduera-11, .-14)
+</code></pre>
+
+<p><em>Francesco Casagrandre italiarrak Nazioarteko Txirrindularitza Elkarteko <strong>(UCI)</strong> lehen postuan jarraitzen du .</em></p>
+
+<p><em>The italian Francesco Casagrandre continues in the first position of the Union Cycliste Internationale <strong>(UCI)</strong> .</em></p>
+
+<pre><code class="language-sdparse">Francesco Casagrandre italiarrak Nazioarteko Txirrindularitza Elkarteko (UCI) lehen postuan jarraitzen du . n\ Francesco Casagrandre italian_the Internationale_the_of Cycliste Union (UCI) first position_the_in continues .  
+
+nmod(italiarrak-3, Francesco-1)
+name(Francesco-1,  Casagrandre-2)
+nsubj(jarraitzen-9, italiarrak-3)
+amod(lehen-8, Nazioarteko-4)
+name(Nazioarteko-4, Txirrindularitza-5)
+name(Txirrindularitza-5, Elkarteko-6)
+appos(Elkarteko-6, UCI-7)
+det(postuan-9, lehen-8)
+nmod(jarraitzen-11, postuan)
+aux(jarraitzen-11, du-12)
+punct(jarraitzen-11, .-13)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/appos.md" target="#">edit appos</a></p>
 
@@ -631,8 +702,99 @@ for <code>dep</code>.</p>
 <p><a id="al-eu-dep/det" class="al-dest"></a></p>
 <h2><code>det</code>: determiner</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>det</code>.</p>
+<p>The relation determiner (<code>det</code>) holds between a nominal head and its determiner.</p>
+
+<ul>
+  <li>Cardinal and ordinal numbers and quantifiers are considered det in Basque:</li>
+</ul>
+
+<p><em><strong>3.000</strong> pezeta kostatzen da .</em></p>
+
+<p><em>It costs <strong>3.000</strong> pesetas .</em></p>
+
+<pre><code class="language-sdparse">3.000 pezeta kostatzen da . \n 3.000 pesetas costs . 
+
+det(pezeta-2, 3.000-1)
+aux(kostatzen-3, da-4)
+dobj(kostatzen-3, pezeta-2)
+punct(kostatzen-3, .-5)
+</code></pre>
+
+<p><em><strong>Bost</strong> minutu jokatuta pozik egongo nintzateke .</em></p>
+
+<p><em>I would be happy playing <strong>five</strong> minutes .</em></p>
+
+<pre><code class="language-sdparse">Bost minutu jokatuta pozik egongo nintzateke . \n Five minutes playing happy would be  .
+
+det(minutu-2, Bost-1)
+dobj(jokatuta-3, minutu-2)
+advcl(egongo-5, jokatuta-3)
+advmod(egongo-5, pozik-4)
+aux(egongo-5, nintzateke-6)
+punct(egongo-5, .-7)
+</code></pre>
+
+<p><em><strong>Lehen</strong> partiduan hiru puntuak eskuratzea ez da ezinbestekoa .</em></p>
+
+<p><em>To get the three points in the <strong>first</strong> match is not essential .</em></p>
+
+<pre><code class="language-sdparse">Lehen partiduan hiru puntuak eskuratzea ez da ezinbestekoa . \n First match_the_in three points_the     to_get not is essential . 
+
+det(partiduan-2, Lehen-1)
+nmod(eskuratzea-5, partiduan-2)
+nummod(puntuak-4, hiru-3)
+dobj(eskuratzea-5, puntuak-4)
+neg(da-7, ez-6)
+cop(ezinbestekoa-8, da-7)
+csubj(ezinbestekoa-8, eskuratzea-5)
+punct(ezinbestekoa-8, .-9)
+</code></pre>
+
+<ul>
+  <li>Indefinite quantifiers (such as few and many) are also tagged as det.</li>
+</ul>
+
+<p><em>Hortxe biltzen da mota <strong>guztietako</strong> jendea .</em></p>
+
+<p><em><strong>All</strong> kind of people are met there .</em></p>
+
+<pre><code class="language-sdparse">Hortxe biltzen da mota guztietako jendea . \n There met are kind all_of people .
+
+advmod(biltzen-2, Hortxe-1)
+aux(biltzen-2, da-3)
+det(mota-4, guztietako-5)
+nmod(jendea-6, mota-4)
+ncubj(biltzen-2, jendea-6)
+punct(biltzen-2, .-7)
+</code></pre>
+
+<p><em>Aukera <strong>asko</strong> daude .</em></p>
+
+<p><em>There are <strong>many</strong> options .</em></p>
+
+<pre><code class="language-sdparse">Aukera asko daude . \n Options many there_are .
+
+det(Aukera-1, asko-2)
+cop(Aukera-1, daude-3)
+punct(Aukera-1-2, .-4)
+</code></pre>
+
+<p><em>Oso harreman <strong>gutxi</strong> dute gurekin .</em></p>
+
+<p><em>They have very <strong>few</strong> relation with us .</em></p>
+
+<pre><code class="language-sdparse">Oso harreman gutxi dute gurekin . n\ Very relation few have us_with .
+
+advmod(harreman-2, Oso-1)
+det(harreman-2, gutxi-3)
+dobj(dute-4, harreman-2)
+nmod(dute-4, gurekin-5)
+punct(dute-4, .-6)
+</code></pre>
+
+<ul>
+  <li>Possessive determiners, are not tagged with det but with nmod (see nmod section).</li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/det.md" target="#">edit det</a></p>
 
@@ -840,8 +1002,54 @@ punct(bizi_dira-4, .-6)
 <p><a id="al-eu-dep/nmod" class="al-dest"></a></p>
 <h2><code>nmod</code>: nominal modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nmod</code>.</p>
+<p>The nmod relation (<code>nmod</code>) is used for nominal modifiers. They depend either on another noun (group “noun dependents”) or on a predicate (group “non-core dependents of clausal predicates”).
+nmod is a noun (or noun phrase) functioning as a non-core (oblique) argument or adjunct. This means that it functionally corresponds to an adverbial when it attaches to a verb, adjective or other adverb. But when attaching to a noun, it corresponds to an attribute, or genitive complement.</p>
+
+<p><em>Hegazkin <strong>txiki</strong> bat zain zegoen <strong>Findeleko</strong> <strong>aireportuan</strong> .</em></p>
+
+<p><em>A <strong>small</strong> plane was waiting <strong>in the airport</strong> <strong>of Findel</strong> .</em></p>
+
+<pre><code class="language-sdparse">Hegazkin txiki bat zain zegoen Findeleko aireportuan . n\ Plane small_a waiting was Findel_of airport_the_in .
+
+nmod(Hegazkin-1, txiki-2)
+nummod(Hegazkin-1, bat-3)
+advmod(zegoen-5, zain-4)
+nsubj(zegoen-5, Hegazkin-1)
+nmod(aireportuan-7, Findeleko-6)
+nmod(zegoen-5, aireportuan-7)
+punct(zegoen-5, .-8)
+</code></pre>
+
+<p><em>Partidutxoa egin zuten <strong>hamarreko</strong> bi <strong>taldetan</strong> .</em></p>
+
+<p><em>They played a match in two <strong>groups</strong> <strong>of ten</strong> .</em></p>
+
+<pre><code class="language-sdparse">Partidutxoa egin zuten hamarreko bi taldetan . \n Match_a played ten_of two match_in  .
+
+dobj(egin-2, Partidutxoa)
+aux(egin-2, zuten-3)
+nmod(taldetan-6, hamarreko-4)
+nummod(taldetan-6, bi-5)
+nmod(egin-2, taldetan-6)
+punct(egin-2, .-7)
+</code></pre>
+
+<ul>
+  <li>Possessive determiners, are not tagged with det but with nmod.</li>
+</ul>
+
+<p><em>Hori izango da <strong>gure</strong> zigorra .</em></p>
+
+<p><em>That will be our punishment .</em></p>
+
+<pre><code class="language-sdparse">Hori izango da gure zigorra . n\ That will be our punishment . 
+
+nsubj(zigorra-5, Hori-1)
+cop(zigorra-5, izango-2)
+aux(izango-2, da-3)
+nmod(zigorra-5, gure-4)
+punct(zigorra-5, .-6)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/nmod.md" target="#">edit nmod</a></p>
 
@@ -911,8 +1119,63 @@ for <code>nsubjpass</code>.</p>
 <p><a id="al-eu-dep/nummod" class="al-dest"></a></p>
 <h2><code>nummod</code>: numeric modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nummod</code>.</p>
+<p>A numeric modifier of a noun (<code>nummod</code>) is any number phrase that serves to modify the meaning of the noun with a quantity.</p>
+
+<p><em>Urrezko domina irabazi zuen atletak <strong>23</strong> urte ditu .</em></p>
+
+<p><em>The athlete who won the gold medal is <strong>23</strong> years old .</em></p>
+
+<pre><code class="language-sdparse">Urrezko domina irabazi zuen atletak 23 urte ditu . n\ Gold medal_the won_who athlete_the 23 years is .
+
+nmod(domina-2, Urrezko-1)
+dobj(irabazi-3, domina-2)
+aux(irabazi-3, zuen-4)
+acl(atletak-5, irabazi-3)
+nsubj(ditu-8, atletak-5)
+nummod(urte-7, 23-6)
+dobj(ditu-8, urte-7)
+punct(ditu-8, .-9)
+</code></pre>
+
+<p><em><strong>Hiru</strong> puntuak lortu ditugu .</em></p>
+
+<p><em>We have got the <strong>three</strong> points .</em></p>
+
+<pre><code class="language-sdparse">Hiru puntuak lortu ditugu . n\ Three points_the got have .
+
+nummod(puntuak-2, Hiru-1)
+dobj(lortu-3, puntuak-2)
+aux(lortu-3, ditugu-4)
+punct(lortu-3, .-5)
+</code></pre>
+
+<p><em>Festa <strong>bat</strong> ospatu zuten .</em></p>
+
+<p><em>They celebreated <strong>one</strong> party .</em></p>
+
+<pre><code class="language-sdparse">Festa bat ospatu zuten . n\ Party one celebreated .
+
+dobj(ospatu-3, Festa-1)
+nummod(Festa-1, bat-2)
+aux(ospatu-3, zuten-4)
+punct(ospatu-3, .-5)
+</code></pre>
+
+<p><em>Saiatuko naiz <strong>bi</strong> maratoi egiten .</em></p>
+
+<p><em>I will try to run <strong>two</strong> maratons .</em></p>
+
+<pre><code class="language-sdparse">Saiatuko naiz bi maratoi egiten .
+I will try to run two maratons .
+
+aux(Saiatuko-1, naiz-2)
+nummod(maratoi-4, bi-3)
+dobj(egiten-5, maratoi-4)
+advcl(Saiatuko-1, egiten-5)
+punct(Saiatuko-1, .-6)
+</code></pre>
+
+<p>Note that indefinite quantifiers such as few, many are tagged DET rather than NUM. Therefore their relation to the quantified noun is not nummod but DET (see DET section).</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/nummod.md" target="#">edit nummod</a></p>
 
