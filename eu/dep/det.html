@@ -39,43 +39,21 @@
 
           <h2><code>det</code>: determiner</h2>
 
-<p>The relation determiner (<code>det</code>) holds between a nominal head and its determiner.</p>
+<p>The relation determiner (<code>det</code>) holds between a nominal head and its
+[determiner]. 
+Determiners are words that modify nouns or noun phrases and express the reference of the noun phrase in context. That is, a determiner may indicate whether the noun is referring to a definite or indefinite element of a class, to a closer or more distant element, to an element belonging to a specified person or thing, to a particular number or quantity, etc.</p>
+
+<p>Note that cardinal numerals (one, five, hundred) are not tagged DET but nummod.</p>
 
 <ul>
-  <li>Cardinal and ordinal numbers and quantifiers are considered det in Basque:</li>
+  <li>Ordinal numbers are considered det in Basque:</li>
 </ul>
-
-<p><em><strong>3.000</strong> pezeta kostatzen da .</em></p>
-
-<p><em>It costs <strong>3.000</strong> pesetas .</em></p>
-
-<pre><code class="language-sdparse">3.000 pezeta kostatzen da . \n 3.000 pesetas costs . 
-
-det(pezeta-2, 3.000-1)
-aux(kostatzen-3, da-4)
-dobj(kostatzen-3, pezeta-2)
-punct(kostatzen-3, .-5)
-</code></pre>
-
-<p><em><strong>Bost</strong> minutu jokatuta pozik egongo nintzateke .</em></p>
-
-<p><em>I would be happy playing <strong>five</strong> minutes .</em></p>
-
-<pre><code class="language-sdparse">Bost minutu jokatuta pozik egongo nintzateke . \n Five minutes playing happy would be  .
-
-det(minutu-2, Bost-1)
-dobj(jokatuta-3, minutu-2)
-advcl(egongo-5, jokatuta-3)
-advmod(egongo-5, pozik-4)
-aux(egongo-5, nintzateke-6)
-punct(egongo-5, .-7)
-</code></pre>
 
 <p><em><strong>Lehen</strong> partiduan hiru puntuak eskuratzea ez da ezinbestekoa .</em></p>
 
 <p><em>To get the three points in the <strong>first</strong> match is not essential .</em></p>
 
-<pre><code class="language-sdparse">Lehen partiduan hiru puntuak eskuratzea ez da ezinbestekoa . \n First match_the_in three points_the     to_get not is essential . 
+<pre><code class="language-sdparse">Lehen partiduan hiru puntuak eskuratzea ez da ezinbestekoa . \n First match_the_in three points_the to_get not is essential . 
 
 det(partiduan-2, Lehen-1)
 nmod(eskuratzea-5, partiduan-2)
@@ -88,7 +66,7 @@ punct(ezinbestekoa-8, .-9)
 </code></pre>
 
 <ul>
-  <li>Indefinite quantifiers (such as few and many) are also tagged as det.</li>
+  <li>Quantifiers (such as <em>all</em>, <em>many</em>, <em>few</em>…) are also tagged as det:</li>
 </ul>
 
 <p><em>Hortxe biltzen da mota <strong>guztietako</strong> jendea .</em></p>
@@ -129,6 +107,10 @@ nmod(dute-4, gurekin-5)
 punct(dute-4, .-6)
 </code></pre>
 
+<ul>
+  <li>Interrogative determiners:</li>
+</ul>
+
 <p><em><strong>Zeintzu</strong> proiektu dituzu epe laburrera ?</em></p>
 
 <p><em><strong>Which</strong> projects do you have in the near future ?</em></p>
@@ -140,6 +122,26 @@ dobj(dituzu-3, proiektu-2)
 nmod(dituzu-3, epe-4)
 amod(epe-4, laburrera-5)
 punct(dituzu-3, ?-6)
+</code></pre>
+
+<ul>
+  <li>Demonstrative determiners are also det:</li>
+</ul>
+
+<p><em>Euroaren kotizazio <strong>hau</strong> azken lau asteetako altuena da .</em></p>
+
+<p><em><strong>This</strong> cotization of the euro is the highest one in the last four weeks .</em></p>
+
+<pre><code class="language-sdparse">Euroaren kotizazio hau azken lau asteetako altuena da . \n Euro_the_of cotization this last four week_the_of highest_the is .*
+
+nmod(kotizazio-2, Euroaren-1)
+det(kotizazio-2, hau-3)
+nsubj(altuena-7, kotizazio-2)
+det(lau-5, azken-4)
+nummod(asteetako-6, lau-5)
+nmod(altuena-7, asteetako-6)
+cop(altuena-7, da-8)
+punct(altuena-7, .-9)
 </code></pre>
 
 <ul>
