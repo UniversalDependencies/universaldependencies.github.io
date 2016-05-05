@@ -224,6 +224,76 @@ in two places.</p>
 
 <hr />
 
+<p><a id="al-eu-dep/" class="al-dest"></a></p>
+<h2><code></code>: </h2>
+
+<p>layout: relation
+title: ‘punct’
+shortdef: ‘punctuation’
+—</p>
+
+<p><code>punct</code> relation is used to annotate punctuation marks.</p>
+
+<p>Two kinds of punctuations can be distinguished:</p>
+
+<ul>
+  <li>Punctuation acting as a conjunction in coordinations</li>
+  <li>The rest of the punctuation marks</li>
+</ul>
+
+<ol>
+  <li>Punctuation in coordination</li>
+</ol>
+
+<p>Coordination in the Basque UD annotation follows the general schema where the first element of the conjunction is the head, and each conjunct, conjunction complementizer or puntuation mark acting as a conjunction should be attached to the first conjunct:</p>
+
+<p><em><strong>Zidane, Henry, Barthez, Deschamps, Blanc eta enparauek</strong> Europako Talde sendoena osatzen dute aditu gehienentzat .</em></p>
+
+<p><em><strong>Zidane, Henry, Barthez, Deschamps, Blanc and the rest</strong>form the most robust team of Europe according to most experts .</em></p>
+
+<pre><code class="language-sdparse">Zidane, Henry, Barthez, Deschamps, Blanc eta enparauek Europako Talde sendoena osatzen dute aditu gehienentzat . \n Zidane, Henry, Barthez, Deschamps, Blanc and rest_the Europe_of team robust_the_most experts most_according_to .
+
+Zidane , Henry , Barthez , Deschamps , Blanc eta enparauek Europako talde sendoena osatzen dute aditu gehienentzat .
+punct(Zidane-1, ,-2)
+conj(Zidane-1, Henry-3)
+punct(Zidane-1, ,-4)
+conj(Zidane-1, Barthez-5)
+punct(Zidane-1, ,-6)
+conj(Zidane-1, Deschamps-7)
+conj(Zidane-1, ,-8)
+conj(Zidane-1, Blanc-9)
+cc(Zidane-1, eta-10)
+conj(Zidane-1, enparauek-11)
+nmod(talde-13, Europako-12)
+dobj(osatzen-15, talde-13)
+amod(talde-13, sendoena-14)
+aux(osatzen-15, dute-16)
+nmod(osatzen-15, aditu-17)
+det(aditu-17, gehienentzat-18)
+punct(osatzen-15, .-19)
+</code></pre>
+
+<ol>
+  <li>The rest of the punctuation marks</li>
+</ol>
+
+<p>Full stop is linked to the head of the sentence.</p>
+
+<p><em>Eztabaida handia sortu du <strong>aldaketak</strong> .</em></p>
+
+<p><em>The <strong>change</strong> has caused a huge discussion .</em></p>
+
+<pre><code class="language-sdparse">Eztabaida handia sortu du aldaketak .\n Discussion huge_a caused has change_the .  
+
+amod(Eztabaida-1, handia-2)
+nobj(sortu-3, Eztabaida-1)
+aux(sortu-3, du-4)
+nsubj(sortu-3, aldaketak-5)
+punct(sortu-3, .-6)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/punct.md" target="#">edit </a></p>
+
 <p><a id="al-eu-dep/acl" class="al-dest"></a></p>
 <h2><code>acl</code>: clausal modifier of noun</h2>
 
@@ -471,27 +541,31 @@ punct(jarraitzen-11, .-13)
 <p><a id="al-eu-dep/aux" class="al-dest"></a></p>
 <h2><code>aux</code>: auxiliary</h2>
 
+<hr />
+
+<p>layout: relation
+title: ‘aux’
+shortdef: ‘auxiliary’
+# The filename “aux” is not allowed on Windows, so we redirect instead
+# (see https://github.com/UniversalDependencies/docs/issues/20)
+redirect_from: “eu/dep/aux.html”
+—</p>
+
 <p>The <code>aux</code> relation occurs between a verb and and auxiliary. In general, Basque verbs encode only aspect, while temporal and agreement features show up in the auxiliary, as well as transitivity.</p>
 
-<p>There are mainly two auxiliary lemmas <em>izan</em> corresponding to intransitives and <em>ukan</em> corresponding to transitives.</p>
+<p>There are mainly two auxiliary lemmas <em>izan</em> (<em>to be</em>) corresponding to intransitives and <em>ukan</em> (<em>to have</em>) corresponding to transitives.</p>
 
 <p>Even if Basque word order is quite free, the auxiliary can only appear right after the verb in non-negative sentences, and right after the negation in negative sentences.</p>
 
 <ul>
-  <li>English (example of an intransitive):</li>
+  <li>Example of an auxiliary in an intransitive sentence (auxiliary lemma <em>izan</em>/<em>to be</em>):</li>
 </ul>
 
-<p>These two parts fold by the places that are marked .</p>
+<p><em>Bi zati hauek markaturik dauden tokietatik tolesten <strong>dira</strong> .</em></p>
 
-<ul>
-  <li>Basque:</li>
-</ul>
+<p><em>These two parts fold by the places that are marked .</em></p>
 
-<p>Bi zati hauek markaturik dauden tokietatik tolesten dira .</p>
-
-<p><em>Two parts these marked are-that places  aux-intrans-present .</em></p>
-
-<pre><code class="language-sdparse">Bi zati hauek markaturik dauden tokietatik tolesten dira .
+<pre><code class="language-sdparse">Bi zati hauek markaturik dauden tokietatik tolesten dira .\n Two parts these marked are_that sites_the_by fold .
 
 det(zati-2, Bi-1)
 nsubj(tolesten-7, zati-2)
@@ -500,28 +574,24 @@ acl(tokietatik-6, markaturik-4)
 cop(markaturik-4, dauden-5)
 nmod(tolesten-7, tokietatik-6)
 aux(tolesten-7, dira-8)
+punct(tolesten-7, .-9)
 </code></pre>
 
 <ul>
-  <li>English (example of a transitive):</li>
+  <li>Example of an auxiliary in a transitive sentence (auxiliary lemma <em>ukan</em>/<em>to have</em>):</li>
 </ul>
 
-<p>The change has caused huge discussions .</p>
+<p><em>Eztabaida handia sortu <strong>du</strong> aldaketak .</em></p>
 
-<ul>
-  <li>Basque:</li>
-</ul>
+<p><em>The change has caused a huge discussion .</em></p>
 
-<p>Eztabaida handiak sortu ditu aldaketak .</p>
+<pre><code class="language-sdparse">Eztabaida handia sortu du aldaketak .\n Discussion huge_a caused has change_the .  
 
-<p><em>Discussion huge-pl cause aux-trans-present change-erg.</em></p>
-
-<pre><code class="language-sdparse">Eztabaida handiak sortu ditu aldaketak .
-
-amod(Eztabaida-1, handiak-2)
+amod(Eztabaida-1, handia-2)
 nobj(sortu-3, Eztabaida-1)
-aux(sortu-3, ditu-4)
+aux(sortu-3, du-4)
 nsubj(sortu-3, aldaketak-5)
+punct(sortu-3, .-6)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/aux_.md" target="#">edit aux</a></p>
@@ -545,30 +615,17 @@ for <code>case</code>.</p>
 <p><a id="al-eu-dep/cc" class="al-dest"></a></p>
 <h2><code>cc</code>: coordinating conjunction</h2>
 
-<p>cc relation is used to annotate the relation between the conjunction complementizer and the head of the coordination structure.</p>
+<p><code>cc</code> relation is used to annotate the relation between the conjunction complementizer and the head of the coordination structure.</p>
 
 <p>Coordination in the Basque UD annotation follows the general schema where the first element of the conjunction is the head, and each conjunct, conjunction complementizer or puntuation mark acting as a conjunction should be attached to the first conjunct::</p>
 
-<p>Example:</p>
+<p><em><strong>Zidane, Henry, Barthez, Deschamps, Blanc eta enparauek</strong> Europako Talde sendoena osatzen dute aditu gehienentzat .</em></p>
 
-<ul>
-  <li>English:</li>
-</ul>
+<p><em><strong>Zidane, Henry, Barthez, Deschamps, Blanc and the rest</strong>form the most robust team of Europe according to most experts .</em></p>
 
-<p>Zidane, Henry, Barthez, Deschamps, Blanc and the rest form the most robust team according to most experts.</p>
+<pre><code class="language-sdparse">Zidane, Henry, Barthez, Deschamps, Blanc eta enparauek Europako Talde sendoena osatzen dute aditu gehienentzat . \n Zidane, Henry, Barthez, Deschamps, Blanc and rest_the Europe_of team robust_the_most experts most_according_to .
 
-<ul>
-  <li>Basque:</li>
-</ul>
-
-<p>Zidane, Henry, Barthez, Deschamps, Blanc eta enparauek Europako Talde sendoena osatzen dute aditu gehienentzat.</p>
-
-<p><em>Zidane, Henry, Barthez, Deschamps, Blanc and rest-the-erg Europe-gen team robust-the-most form aux-they-transtive-present 
-expert most-for.</em></p>
-
-<p>Note that it is the last conjunct the element showing the ergative case. The ergative case corresponds to subjects of transitive verbs. In this case <em>to form</em></p>
-
-<pre><code class="language-sdparse">Zidane , Henry , Barthez , Deschamps , Blanc eta enparauek Europako talde sendoena osatzen dute aditu gehienentzat .
+Zidane , Henry , Barthez , Deschamps , Blanc eta enparauek Europako talde sendoena osatzen dute aditu gehienentzat .
 punct(Zidane-1, ,-2)
 conj(Zidane-1, Henry-3)
 punct(Zidane-1, ,-4)
@@ -587,6 +644,8 @@ nmod(osatzen-15, aditu-17)
 det(aditu-17, gehienentzat-18)
 punct(osatzen-15, .-19)
 </code></pre>
+
+<p>Note that it is the last conjunct the element showing the ergative case. The ergative case corresponds to subjects of transitive verbs. In this case <em>to form</em></p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/cc.md" target="#">edit cc</a></p>
 
@@ -617,8 +676,43 @@ advcl(daudela-4,  bermatzeko-10)
 <p><a id="al-eu-dep/compound" class="al-dest"></a></p>
 <h2><code>compound</code>: compound</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>compound</code>.</p>
+<p><code>compound</code> is one of the three relations in UD for compounding. It is used for noun compounds (e.g., <em>phone book</em>), but also for verb and adjective compounds as well as for “phrasal verb” constructions (e.g., <em>throw up</em>), which in Basque are expressions such as <em>gora egin</em> (<em>go up</em>), for example:</p>
+
+<p><em>Kazetariak aztoratuta ibili ziren atzo <strong>Euskadi Fundazioak</strong> Derion duen egoitzaren atarian .</em></p>
+
+<p><em>Journalists were rowdy yesterday in the entrace of the officce that <strong>Euskadi Foundation</strong> has in Derio .</em></p>
+
+<pre><code class="language-sdparse">Kazetariak aztoratuta ibili ziren atzo Euskadi Fundazioak Derion duen egoitzaren atarian .\n Journalists rowdy were yesterday Euskadi Foundation Derio_in has_that officce_of entrace_the_in . 
+
+nsubj(aztoratuta-2, Kazetariak-1)
+cop(aztoratuta-2, ibili-3)
+aux(ibili-3, ziren-4)
+advmod(ibili-3, atzo-5)
+compound(Fundazioak-7, Euskadi-6)
+nsubj(duen-9, Fundazioak-7)
+nmod(duen-9, Derion-8)
+acl(egoitzaren-10, duen-9)
+nmod(atarian-11, egoitzaren-10)
+nmo(ibili-3, atarian-11)
+punct(ibili-3, .-12)
+</code></pre>
+
+<p><em><strong>Izan ere</strong> zerbait gehiago behar da nirekin bukatzeko .</em></p>
+
+<p><em><strong>In fact</strong> something esle is needed in order to end with me .</em></p>
+
+<pre><code class="language-sdparse">Izan ere zerbait gehiago behar da nirekin bukatzeko .
+In fact something esle needed is me_with end_in_order_to  . 
+
+compound(ere-2, Izan-1)
+nmod(da-6, ere-2)
+det(zerbait-3, gehiago-4)
+nsubj(da-6, zerbait-3)
+compound(da-6, behar-5)
+nmod(bukatzeko-8, nirekin-7)
+advcl(da-6, bukatzeko-8)
+punct(da-6, .-)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/compound.md" target="#">edit compound</a></p>
 
@@ -754,43 +848,21 @@ for <code>dep</code>.</p>
 <p><a id="al-eu-dep/det" class="al-dest"></a></p>
 <h2><code>det</code>: determiner</h2>
 
-<p>The relation determiner (<code>det</code>) holds between a nominal head and its determiner.</p>
+<p>The relation determiner (<code>det</code>) holds between a nominal head and its
+[determiner]. 
+Determiners are words that modify nouns or noun phrases and express the reference of the noun phrase in context. That is, a determiner may indicate whether the noun is referring to a definite or indefinite element of a class, to a closer or more distant element, to an element belonging to a specified person or thing, to a particular number or quantity, etc.</p>
+
+<p>Note that cardinal numerals (one, five, hundred) are not tagged DET but nummod.</p>
 
 <ul>
-  <li>Cardinal and ordinal numbers and quantifiers are considered det in Basque:</li>
+  <li>Ordinal numbers are considered det in Basque:</li>
 </ul>
-
-<p><em><strong>3.000</strong> pezeta kostatzen da .</em></p>
-
-<p><em>It costs <strong>3.000</strong> pesetas .</em></p>
-
-<pre><code class="language-sdparse">3.000 pezeta kostatzen da . \n 3.000 pesetas costs . 
-
-det(pezeta-2, 3.000-1)
-aux(kostatzen-3, da-4)
-dobj(kostatzen-3, pezeta-2)
-punct(kostatzen-3, .-5)
-</code></pre>
-
-<p><em><strong>Bost</strong> minutu jokatuta pozik egongo nintzateke .</em></p>
-
-<p><em>I would be happy playing <strong>five</strong> minutes .</em></p>
-
-<pre><code class="language-sdparse">Bost minutu jokatuta pozik egongo nintzateke . \n Five minutes playing happy would be  .
-
-det(minutu-2, Bost-1)
-dobj(jokatuta-3, minutu-2)
-advcl(egongo-5, jokatuta-3)
-advmod(egongo-5, pozik-4)
-aux(egongo-5, nintzateke-6)
-punct(egongo-5, .-7)
-</code></pre>
 
 <p><em><strong>Lehen</strong> partiduan hiru puntuak eskuratzea ez da ezinbestekoa .</em></p>
 
 <p><em>To get the three points in the <strong>first</strong> match is not essential .</em></p>
 
-<pre><code class="language-sdparse">Lehen partiduan hiru puntuak eskuratzea ez da ezinbestekoa . \n First match_the_in three points_the     to_get not is essential . 
+<pre><code class="language-sdparse">Lehen partiduan hiru puntuak eskuratzea ez da ezinbestekoa . \n First match_the_in three points_the to_get not is essential . 
 
 det(partiduan-2, Lehen-1)
 nmod(eskuratzea-5, partiduan-2)
@@ -803,7 +875,7 @@ punct(ezinbestekoa-8, .-9)
 </code></pre>
 
 <ul>
-  <li>Indefinite quantifiers (such as few and many) are also tagged as det.</li>
+  <li>Quantifiers (such as <em>all</em>, <em>many</em>, <em>few</em>…) are also tagged as det:</li>
 </ul>
 
 <p><em>Hortxe biltzen da mota <strong>guztietako</strong> jendea .</em></p>
@@ -844,6 +916,10 @@ nmod(dute-4, gurekin-5)
 punct(dute-4, .-6)
 </code></pre>
 
+<ul>
+  <li>Interrogative determiners:</li>
+</ul>
+
 <p><em><strong>Zeintzu</strong> proiektu dituzu epe laburrera ?</em></p>
 
 <p><em><strong>Which</strong> projects do you have in the near future ?</em></p>
@@ -855,6 +931,26 @@ dobj(dituzu-3, proiektu-2)
 nmod(dituzu-3, epe-4)
 amod(epe-4, laburrera-5)
 punct(dituzu-3, ?-6)
+</code></pre>
+
+<ul>
+  <li>Demonstrative determiners are also det:</li>
+</ul>
+
+<p><em>Euroaren kotizazio <strong>hau</strong> azken lau asteetako altuena da .</em></p>
+
+<p><em><strong>This</strong> price of the euro is the highest one in the last four weeks .</em></p>
+
+<pre><code class="language-sdparse">Euroaren kotizazio hau azken lau asteetako altuena da . \n Euro_the_of price this last four week_the_of highest_the is .*
+
+nmod(kotizazio-2, Euroaren-1)
+det(kotizazio-2, hau-3)
+nsubj(altuena-7, kotizazio-2)
+det(lau-5, azken-4)
+nummod(asteetako-6, lau-5)
+nmod(altuena-7, asteetako-6)
+cop(altuena-7, da-8)
+punct(altuena-7, .-9)
 </code></pre>
 
 <ul>
@@ -995,16 +1091,98 @@ for <code>mark</code>.</p>
 <p><a id="al-eu-dep/mwe" class="al-dest"></a></p>
 <h2><code>mwe</code>: multi-word expression</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>mwe</code>.</p>
+<p><code>mwe</code>, the multi-word expression (modifier) relation, is one of the three relations (compound, mwe, name) for compounding. It is used for certain fixed grammaticized expressions that behave like function words or short adverbials.</p>
+
+<p><em>Eskolatik irten ondoren, beste hainbat gauza ikasten dituzte, <strong>besteak beste</strong> pianoa eta artea .</em></p>
+
+<p><em>After leaving school, he/she learns some other things, <strong>among others</strong> piano and art .</em></p>
+
+<pre><code class="language-sdparse">Eskolatik irten ondoren, beste hainbat gauza ikasten dituzte, besteak beste pianoa eta artea . \n After leaving school, he/she also learns some other things, among others piano and art .
+
+nmod(irten-2, Eskolatik-1)
+advcl(ikasten-7, irten-2)
+advcl(irten-2, ondoren-3)
+det(hainbat-5, beste-4)
+det(gauza-6, hainbat-5)
+dobj(ikasten-7, gauza-6)
+aux(ikasten-7, dituzte-8)
+advmod(besteak-9, ikasten-7)
+mwe(besteak-9, beste-10)
+conj(beste-10, pianoa-11)
+cc(pianoa-11, eta-12)
+conj(pianoa-11, artea-13)
+punct(besteak-9, .-14)
+</code></pre>
+
+<p><em>Hakkinen baino sendoago ari da, <strong>argi eta garbi</strong> .</em></p>
+
+<p><em>He/she is stronger than Hakkinen, <strong>as clear as water</strong> .</em></p>
+
+<pre><code class="language-sdparse">Hakkinen baino sendoago ari da, argi eta garbi . \n Hakkinen than stronger is, as clear as water .
+
+nsubj(baino-2, Hakkinen-1)
+advmod(da-5, baino-2)
+aux(da-5, ari-4)
+cop(sendoago-3, da-5)
+advmod(da-5, argi-6)
+mwe(argi-6, eta-7)
+mwe(argi-6, garbi-8)
+punct(sendoago-3, .-9)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/mwe.md" target="#">edit mwe</a></p>
 
 <p><a id="al-eu-dep/name" class="al-dest"></a></p>
 <h2><code>name</code>: name</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>name</code>.</p>
+<p><code>name</code> is one of the three relations for compounding in UD (together with <a href="">compound</a> and <a href="">mwe</a>). It is used for proper nouns constituted of multiple nominal elements. 
+Words joined by <code>name</code> should all be part of a minimal noun phrase; otherwise, regular syntactic relations should be used.<br />
+In general, names are annotated in a flat, head-initial structure, in which all words in the name modify the first one using the <code>name</code> label.</p>
+
+<p><em><strong>Scottie Pippenek</strong> polemika artean ekin zion norgehiagokari .</em></p>
+
+<p><em><strong>Scottie Pippene</strong> attacked to the competition among polemics .</em></p>
+
+<pre><code class="language-sdparse">Scottie Pippenek polemika artean ekin zion norgehiagokari . /n  Scottie Pippene polemic among attacked competition_the_to . 
+
+nsubj(ekin-5, Scottie-1)
+name(Scottie-1, Pippenek-2)
+nmod(ekin-5, polemika-3)
+case(polemika-3, artean-4)
+aux(ekin-5, zion-6)
+iobj(ekin-5, norgehiagokari-7)
+punct(ekin-5, .-8)
+</code></pre>
+
+<p><em><strong>Dan Eggen</strong> gustora zegoen atzo .</em></p>
+
+<p><em><strong>Dan Eggen</strong> was comfortably yesterday .</em></p>
+
+<pre><code class="language-sdparse">Dan Eggen gustora zegoen atzo . \n Dan Eggen comfortably was yesterday .
+
+nsubj(zegoen-4, Dan-1)
+name(Dan-1, Eggen-2)
+advmod(zegoen-4, gustora-3)
+advmod(zegoen-4, atzo-5)
+punct(zegoen-4, .-6)
+</code></pre>
+
+<p><em>Hego Koreako gobernuak <strong>Hyundai Motor</strong> enpresaren salmenta baimendu du .</em></p>
+
+<p><em>South Korea’s government has authorized the sale of <strong>Hyundai Motor</strong> enterprise .</em></p>
+
+<pre><code class="language-sdparse">Hego Koreako gobernuak Hyundai Motor enpresaren salmenta baimendu du . \n South Korea's government Hyundai Motor enterprise_of sale_the authorized has . 
+
+compound(Koreako-2, Hego-1)
+nmod(gobernuak-3, Koreako-2)
+subj(baimendu-8, gobernuak-3)
+nmod(enpresaren-6, Motor-5)
+name(Motor-5, Hyundai-4)
+nmod(salmenta-7, enpresaren-6)
+dobj(baimendu-8, salmenta-7)
+aux(baimendu-8, du-9)
+punct(baimendu-8, .-10)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/name.md" target="#">edit name</a></p>
 
@@ -1127,9 +1305,9 @@ punct(zigorra-5, .-6)
 
 <p><em>Bi <strong>zati</strong> hauek markaturik dauden tokietatik tolesten dira .</em></p>
 
-<p><em>These two <strong>parts</strong> are folded by the sites that are marked .</em></p>
+<p><em>These two <strong>parts</strong> fold by the sites that are marked .</em></p>
 
-<pre><code class="language-sdparse">Bi zati hauek markaturik dauden tokietatik tolesten dira .\n Two parts these marked are_that sites_the_by folded are .
+<pre><code class="language-sdparse">Bi zati hauek markaturik dauden tokietatik tolesten dira .\n Two parts these marked are_that sites_the_by fold .
 
 det(zati-2, Bi-1)
 nsubj(tolesten-7, zati-2)
@@ -1251,70 +1429,6 @@ punct(Saiatuko-1, .-6)
 for <code>parataxis</code>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/parataxis.md" target="#">edit parataxis</a></p>
-
-<p><a id="al-eu-dep/punct" class="al-dest"></a></p>
-<h2><code>punct</code>: punctuation</h2>
-
-<p>punct relation is used to annotate tpunctuation marks.</p>
-
-<p>Two kinds of punctuations can be distinguished:</p>
-
-<ul>
-  <li>Puntuation acting as a conjunction in coordinations</li>
-  <li>The rest of the punctuation marks</li>
-</ul>
-
-<ol>
-  <li>Punctuation in coordination</li>
-</ol>
-
-<p>Coordination in the Basque UD annotation follows the general schema where the first element of the conjunction is the head, and each conjunct, conjunction complementizer or puntuation mark acting as a conjunction should be attached to the first conjunct::</p>
-
-<p>Example:</p>
-
-<ul>
-  <li>English:</li>
-</ul>
-
-<p>Zidane, Henry, Barthez, Deschamps, Blanc and the rest form the most robust team according to most experts.</p>
-
-<ul>
-  <li>Basque:</li>
-</ul>
-
-<p>Zidane, Henry, Barthez, Deschamps, Blanc eta enparauek Europako Talde sendoena osatzen dute aditu gehienentzat.</p>
-
-<p><em>Zidane, Henry, Barthez, Deschamps, Blanc and rest-the-erg Europe-gen team robust-the-most form aux-they-transtive-present 
-expert most-for.</em></p>
-
-<p>Note that it is the last conjunct the element showing the ergative case. The ergative case corresponds to subjects of transitive verbs. In this case <em>to form</em></p>
-
-<p>~~~ sdparse
-Zidane , Henry , Barthez , Deschamps , Blanc eta enparauek Europako talde sendoena osatzen dute aditu gehienentzat .
-punct(Zidane-1, ,-2)
-conj(Zidane-1, Henry-3)
-punct(Zidane-1, ,-4)
-conj(Zidane-1, Barthez-5)
-punct(Zidane-1, ,-6)
-conj(Zidane-1, Deschamps-7)
-conj(Zidane-1, ,-8)
-conj(Zidane-1, Blanc-9)
-cc(Zidane-1, eta-10)
-conj(Zidane-1, enparauek-11)
-nmod(talde-13, Europako-12)
-dobj(osatzen-15, talde-13)
-amod(talde-13, sendoena-14)
-aux(osatzen-15, dute-16)
-nmod(osatzen-15, aditu-17)
-det(aditu-17, gehienentzat-18)
-punct(osatzen-15, .-19)
-~~~ .</p>
-
-<ol>
-  <li>The rest of the punctuations</li>
-</ol>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/punct.md" target="#">edit punct</a></p>
 
 <p><a id="al-eu-dep/remnant" class="al-dest"></a></p>
 <h2><code>remnant</code>: remnant in ellipsis</h2>
