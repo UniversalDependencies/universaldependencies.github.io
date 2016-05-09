@@ -61,7 +61,7 @@ It will also collect information such as the list of contributors (we need this 
 Send the new list to Lindat so they add it to their menu (they like to get it as a diff file against the previous license;
 they can be reached at lindat-help@ufal.mff.cuni.cz).</li>
   <li>Update statistics in the <code>stats.xml</code> file in each repository:
-<code>for i in UD_* ; do pushd $i ; ( cat *.conllu | ../tools/conllu-stats.pl &gt; stats.xml ) ; git commit -a -m 'Updated statistics.' ; git push ; popd ; echo ; done</code></li>
+<code>for i in UD_* ; do pushd $i ; ( cat *.conllu | ../tools/conllu-stats.pl &gt; stats.xml ) ; git add stats.xml ; git commit -m 'Updated statistics.' ; git push ; popd ; echo ; done</code></li>
   <li>Run the same script again (but with different settings) and generate the long statistics that are displayed in the docs:
 This time the script is run for every language (not every treebank):
 <code>perl tools/conllu-stats.pl --detailed --data . --docs docs --lang pt</code></li>
