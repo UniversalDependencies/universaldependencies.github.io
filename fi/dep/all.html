@@ -368,6 +368,11 @@ punct(kolahti-2, .-8)
 
 <p>The governor can also be a verb, when the dependent refers to the entire action described in the main sentence.</p>
 
+<h3 id="finntreebank">FinnTreeBank</h3>
+
+<p>FI_FTB applies the universal relation <a href=""><code>acl</code></a> instead
+of the language-specific relation <a href=""><code>acl:relcl</code></a>.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/acl-relcl.md" target="#">edit acl:relcl</a></p>
 
 <p><a id="al-fi-dep/advcl" class="al-dest"></a></p>
@@ -568,6 +573,15 @@ punct(lähteä-3, .-5)
   <li><a href="http://scripta.kotus.fi/visk/sisallys.php?p=1562">http://scripta.kotus.fi/visk/sisallys.php?p=1562</a> (in Finnish)</li>
 </ul>
 
+<h4 id="diffs">Diffs</h4>
+
+<p>In FinnTreeBank (FI_FTB), a wide list of verbs which are
+modal or otherwise abstract by nature have been counted
+among the auxiliaries. Also a limited set of verbal
+compound constructions has been annotated using the
+relation <a href=""><code>aux</code></a>. See the full lists at
+<a href="http://www.ling.helsinki.fi/kieliteknologia/tutkimus/treebank/sources/FinnTreeBankManual.pdf">FTB Annotation Manual: 16.2 Auxiliary verb</a>.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/aux_.md" target="#">edit aux</a></p>
 
 <p><a id="al-fi-dep/auxpass" class="al-dest"></a></p>
@@ -596,6 +610,11 @@ aux(tehdä-3, voidaan-2)
 dobj(tehdä-3, muutoksia-4)
 punct(tehdä-3, .-5)
 </code></pre>
+
+<h3 id="diffs">Diffs</h3>
+
+<p>FinnTreeBank (FI_FTB) does not use the <a href=""><code>auxpass</code></a> relation,
+but uses <a href=""><code>aux</code></a> instead.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/auxpass.md" target="#">edit auxpass</a></p>
 
@@ -715,6 +734,18 @@ nsubj(suututti-9, Se-1)
 dobj(suututti-9, äitiä-10)
 punct(suututti-9, .-11)
 </code></pre>
+
+<h3 id="diffs">Diffs</h3>
+
+<p>In FinnTreeBank (FI_FTB), if a clausal complement modifies
+a word other than a verb, the reason is most likely
+a verb-derived noun
+(eg. <em>ei käy <strong>kieltäminen</strong>, etteikö olisi mennyt</em>(<code>ccomp</code>)
+“no denying that ∅ wouldn’t have gone”).
+Clauses modifying regular nouns get marked as <code>acl</code>:
+<em>semmonen <strong>kampaus</strong> et se kestää</em>(<code>ccomp</code>)
+lit. “the kind of hairstyle that it lasts”
+(according to <a href="http://universaldependencies.org/u/dep/all.html#al-u-dep/acl">Universal dependency relations: acl</a>).</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/ccomp.md" target="#">edit ccomp</a></p>
 
@@ -1222,6 +1253,17 @@ dobj(sanonut-3, mitään-4)
 punct(sanonut-3, .-5)
 </code></pre>
 
+<h3 id="diffs">Diffs</h3>
+
+<p>FinnTreeBank (FI_FTB) is tokenized differently:
+it treats <em>ettei</em> the same as <em>että ei</em> (“that not”),
+<em>miksei</em> as <em>miksi ei</em> (“why not”) and so on,
+as if they were two separate words.
+Consequently, <em>ei</em> (“not”) represents a normal negation verb
+in these combinations and gets annotated <code>neg</code>.
+On the other hand, <em>eikä</em> (“and+not”) is treated as a single
+token with a clitic particle (and also marked as <code>neg</code>).</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/neg.md" target="#">edit neg</a></p>
 
 <p><a id="al-fi-dep/nmod" class="al-dest"></a></p>
@@ -1340,6 +1382,12 @@ punct(on-2, .-6)
 nmod:poss(moottori-5, litran-4)
 nummod(litran-4, kahden-3)
 </code></pre>
+
+<h3 id="diffs">Diffs</h3>
+
+<p>FinnTreeBank (FI_FTB) applies
+the universal relation <a href="http://universaldependencies.org/u/dep/all.html#al-u-dep/nmod"><code>nmod</code></a>
+instead of the language-specific <code>nmod:poss</code>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/nmod-poss.md" target="#">edit nmod:poss</a></p>
 
@@ -1461,6 +1509,14 @@ punct(Tulen-1, .-8)
 
 <p>If the clauses are separated by a comma and there is no coordinating conjunction, TDT does not use <code>parataxis</code> but <code>conj</code>.</p>
 
+<h3 id="finntreebank">FinnTreeBank</h3>
+
+<p>FI_FTB does not apply the <code>parataxis</code> relation.
+Instead, the phenomena of implicit coordination,
+parenthetical clauses, interjected clauses and direct speech
+have been described using some other, most applicable
+relation available (usually <a href=""><code>conj</code></a> or <a href=""><code>dobj</code></a>).</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/parataxis.md" target="#">edit parataxis</a></p>
 
 <p><a id="al-fi-dep/punct" class="al-dest"></a></p>
@@ -1489,6 +1545,13 @@ nsubj(palasi-7, hän-6)
 
 <!-- TODO Attaching punctuation correctly is described more closely in Section [punctspecial](#sec-punctspecial). -->
 
+<h3 id="diffs">Diffs</h3>
+
+<p>By the current release FI_FTB (FinnTreeBank), the manual annotation of
+punctuation marks has not been completed. Instead the automatic
+annotation links the punctuation marks to the closest token
+available (usually the previous one).</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/punct.md" target="#">edit punct</a></p>
 
 <p><a id="al-fi-dep/remnant" class="al-dest"></a></p>
@@ -1503,6 +1566,12 @@ that do not postulate empty nodes.</p>
 remnant(Maija, Mirja)
 remnant(Pariisiin, Prahaan)
 </code></pre>
+
+<h3 id="diffs">Diffs</h3>
+
+<p>FinnTreeBank (FI_FTB) does not apply the relation <code>remnant</code>.
+Instead, in elliptical cases the relation <a href=""><code>conj</code></a> has been
+chosen to correspond to its correlate in a preceding clause.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/remnant.md" target="#">edit remnant</a></p>
 
@@ -1520,6 +1589,11 @@ repair. The disfluency is the dependent of the repair.</p>
 
 <p><code>reparandum</code> is not annotated in TDT and is not used in
 the current version of the UD Finnish corpus.</p>
+
+<h3 id="finntreebank">FinnTreeBank</h3>
+
+<p>The relation <code>reparandum</code> is used in FI_FTB
+for the clearest cases of speech repair.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/reparandum.md" target="#">edit reparandum</a></p>
 
@@ -1589,6 +1663,16 @@ punct(oli, .)
 <p>Note: Adjectival complements correspond to <code>acomp</code> (adjectival complement) in
 the original Stanford Dependencies and the Turku Dependency
 Treebank.</p>
+
+<h4 id="diffs">Diffs</h4>
+
+<p>Secondary predication is not recognized in FinnTreeBank (FI_FTB).
+Therefore <code>xcomp</code> is always a non-finite verb
+(or a predicative of a non-finite copular clause) in FTB.
+As the examples above represent types of result and state clauses
+(<a href="http://scripta.kotus.fi/visk/sisallys.php?p=891">ISK § 891</a>),
+in FTB they have been annotated as predicatives
+(see chapter Copulas in <a href="http://universaldependencies.org/fi/overview/specific-syntax.html">Specific constructions</a>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/xcomp.md" target="#">edit xcomp</a></p>
 
