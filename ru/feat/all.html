@@ -103,24 +103,231 @@
 <p><a id="al-ru-feat/Animacy" class="al-dest"></a></p>
 <h2><code>Animacy</code>: animacy</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>Animacy</code>.</p>
+<p>Similarly to <a href="">Gender</a>, animacy is
+a lexical feature of <a href="ru-pos/NOUN">nouns</a> and inflectional
+feature of other parts of speech that mark agreement with nouns. It is
+independent of gender, therefore it is encoded separately in some
+tagsets (e.g. all the Multext-East tagsets).</p>
+
+<h3 id="anim-animate"><code>Anim</code>: animate</h3>
+
+<p>Human beings, animals, fictional characters, names of professions
+etc. are all animate. Even nouns that are normally inanimate can be
+inflected as animate if they are personified. For instance, consider a
+children’s story about cars where cars live and talk as people; then
+the cars may become and be inflected as animates.</p>
+
+<p>PDT examples of masculine animate nouns:</p>
+
+<ul>
+  <li><em>человек </em> “man”, <em>министр </em> “minister”, <em>президент </em> “president”, <em>председатель </em> “chairman”, <em>режиссёр </em> “director”</li>
+</ul>
+
+<h3 id="inan-inanimate"><code>Inan</code>: inanimate</h3>
+
+<p>Nouns that are not animate are inanimate.</p>
+
+<p>RNC (Russian Narional Corpus) examples of masculine inanimate nouns:</p>
+
+<ul>
+  <li><em>род </em> “year”, <em>закон </em> “law”, <em>состояние </em> “state”, <em>падеж </em> “case”, <em>миллион </em> “million”</li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-feat/Animacy.md" target="#">edit Animacy</a></p>
 
 <p><a id="al-ru-feat/Aspect" class="al-dest"></a></p>
 <h2><code>Aspect</code>: aspect</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>Aspect</code>.</p>
+<p>Aspect is a feature that specifies duration of the action in time,
+whether the action has been completed etc.</p>
+
+<p>In Czech, aspect is considered a lexical feature of <a href="cs-pos/VERB">verbs</a>.
+While many imperfective verbs have morphologically related perfective counterparts,
+it is not a regular system
+and the two verbs are represented by different lemmas.</p>
+
+<h3 id="imp-imperfect-aspect"><code>Imp</code>: imperfect aspect</h3>
+
+<p>The action took / takes / will take some time span and there is no
+information whether and when it was / will be completed.</p>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li><em>péci </em> “to bake” (Imp); <em><b>pekl</b> chleba </em> “he baked / was
+baking a bread”</li>
+</ul>
+
+<h3 id="perf-perfect-aspect"><code>Perf</code>: perfect aspect</h3>
+
+<p>The action has been / will have been completed. Since there is
+emphasis on one point on the time scale (the point of completion),
+this aspect does not work well with the present tense.
+Czech morphology can create present forms of perfective verbs but
+these actually have a future meaning.</p>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li><em>upéci </em> “to bake” (Perf); <em><b>upekl</b> chleba </em> “he baked / has
+baked a bread”</li>
+</ul>
+
+<h2 id="diffs">Diffs</h2>
+
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+
+<p>The PDT tagset does not encode aspect. However, verb lemmas in PDT contain their own features
+that encode the aspect: <code>_:T</code> = <code>Imp</code> and <code>_:W</code> = <code>Perf</code>. These lemma features were removed
+during conversion, and the <code>Aspect</code> feature was introduced instead.</p>
+
+<p>Unfortunately the morphological lexicon underlying the PDT annotation is incomplete and numerous
+verbs lack the aspect information. Without this imperfection there would be only a tiny group
+of verbs that work with both aspects.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-feat/Aspect.md" target="#">edit Aspect</a></p>
 
 <p><a id="al-ru-feat/Case" class="al-dest"></a></p>
 <h2><code>Case</code>: case</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>Case</code>.</p>
+<p>Case is an inflectional feature of <a href="cs-pos/NOUN">nouns</a> and
+other parts of speech (<a href="cs-pos/ADJ">adjectives</a>,
+<a href="cs-pos/NUM">numerals</a>) that mark agreement with nouns.
+It is also valency feature of <a href="cs-pos/ADP">prepositions</a> (saying that
+the preposition requires its argument to be in that case).</p>
+
+<p>Case helps specify the role of the noun phrase in the sentence.
+For example, the nominative
+and accusative cases often distinguish subject and object of the verb,
+while in fixed-word-order languages these functions would be
+distinguished merely by the positions of the nouns in the sentence.</p>
+
+<p>Czech morphology distinguishes seven cases:
+<code>Nom</code>, <code>Gen</code>, <code>Dat</code>, <code>Acc</code>, <code>Voc</code>, <code>Loc</code> and <code>Ins</code>
+(this ordering is fixed in the grammar and the cases are also referred to by numbers 1–7).</p>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li>singular nominative <em>matka </em> “mother”, genitive <em>matky ,</em> dative <em>matce, </em>
+accusative <em>matku, </em> vocative <em>matko, </em> locative <em>matce, </em> instrumental <em>matkou</em></li>
+  <li>plural nominative <em>matky, </em> genitive <em>matek, </em> dative <em>matkám, </em>
+accusative <em>matky, </em> vocative <em>matky, </em> locative <em>matkách, </em> instrumental <em>matkami</em></li>
+</ul>
+
+<p>The descriptions of the individual case values below include semantic
+hints about the prototypical meaning of the case. Bear in mind that
+quite often a case will be used for a meaning that is totally
+unrelated to the meaning mentioned here. Valency of verbs,
+adpositions and other words will determine that the noun phrase must
+be in a particular grammatical case to fill a particular valency slot
+(semantic role).</p>
+
+<h3 id="nom-nominative"><code>Nom</code>: nominative</h3>
+
+<p>The base form of the noun, also used as citation form (lemma).
+This is the word form used for subjects of clauses.</p>
+
+<h3 id="gen-genitive"><code>Gen</code>: genitive</h3>
+
+<p>Prototypical meaning of genitive is that the noun phrase somehow
+belongs to its governor; it would often be translated by the English
+preposition <em>of.</em></p>
+
+<p>Note that despite considerable semantic overlap, the genitive case is
+not the same as the feature of possessivity (<a href="">Poss</a>). Possessivity
+is a lexical feature, i.e. it applies to lemma and its whole
+paradigm. Genitive is a feature of just a subset of word forms of the
+lemma. Semantics of possessivity is much more clearly defined while
+the genitive (as many other cases) may be required in situations that
+have nothing to do with possessing. For example, <em>bez
+prezidentovy dcery </em> “without the president’s daughter” is a
+prepositional phrase containing the preposition <em>bez </em> “without”, the
+possessive adjective <em>prezidentovy </em> “president’s” and the noun <em>dcery </em>
+“daughter”. The possessive adjective is derived from the noun
+<em>prezident </em> but it is really an adjective (with separate lemma and
+paradigm), not just a form of the noun. In addition, both the
+adjective and the noun are in their genitive forms (the nominative
+would be <em>prezidentova dcera</em>).  There is nothing possessive about
+this particular occurrence of the genitive. It is there because the
+preposition <em>bez </em> always requires its argument to be in genitive.</p>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li><em>Praha je hlavní město <b>České republiky</b>. </em> “Prague is the
+capital <b>of the Czech Republic</b>.”</li>
+</ul>
+
+<h3 id="dat-dative"><code>Dat</code>: dative</h3>
+
+<p>This is the word form often used for indirect objects of verbs.</p>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li><em>Dal jsem dárek <b>svému bratrovi</b>. </em> “I gave my brother a present.”
+(<em>svému bratrovi </em> “my brother” is dative and
+<em>dárek </em> “present” is accusative.)</li>
+</ul>
+
+<h3 id="acc-accusative"><code>Acc</code>: accusative</h3>
+
+<p>Perhaps the second most widely spread morphological case.
+This is the word form most frequently used for direct objects of verbs.</p>
+
+<h3 id="voc-vocative"><code>Voc</code>: vocative</h3>
+
+<p>The vocative case is a special form of noun used to address
+someone. Thus it predominantly appears with animate nouns (see the
+feature of <a href="">Animacy</a>). Nevertheless this is not a grammatical
+restriction and inanimate things can be addressed as well.</p>
+
+<h4 id="examples-3">Examples</h4>
+
+<ul>
+  <li><em>Co myslíš, <b>Filipe</b>? </em> “What do you think,
+<b>Filip</b>?”</li>
+</ul>
+
+<h3 id="loc-locative"><code>Loc</code>: locative</h3>
+
+<p>The locative case often expresses location in space or time, which
+gave it its name. As elsewhere, non-locational meanings also exist and
+they are not rare. On the other hand, some location roles
+may be expressed using other cases (e.g. because those cases are
+required by a preposition).</p>
+
+<p>This is the only Czech case that is used exclusively in
+combination with prepositions.</p>
+
+<h4 id="examples-4">Examples</h4>
+
+<ul>
+  <li><em>V <b>červenci</b> jsem byl ve <b>Švédsku</b>. </em> “In <b>July</b>
+I was in <b>Sweden</b>.”</li>
+  <li><em>Mluvili jsme tam o <b>morfologii</b>. </em> “We talked there about
+<b>morphology</b>.” (Non-locational non-temporal example)</li>
+</ul>
+
+<h3 id="ins-instrumental"><code>Ins</code>: instrumental</h3>
+
+<p>The role from which the name of the instrumental case is derived is
+that the noun is used as instrument to do something (as in <em>psát
+<b>perem</b> </em> “to write <b>using a pen</b>”).  Many other meanings are
+possible, for example the instrumental is required by the
+preposition <em>s </em> “with” and thus it includes the meaning expressed in
+other languages by the comitative case.</p>
+
+<p>In Czech the instrumental is also used for the agent-object in passive
+constructions (cf. the English preposition <em>by</em>).</p>
+
+<h4 id="examples-5">Examples</h4>
+
+<ul>
+  <li><em>Tento zákon byl schválen <b>vládou</b>. </em> “This bill has been
+approved <b>by the government</b>.” (Passive example)</li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-feat/Case.md" target="#">edit Case</a></p>
 
@@ -135,16 +342,101 @@ for <code>Definite</code>.</p>
 <p><a id="al-ru-feat/Degree" class="al-dest"></a></p>
 <h2><code>Degree</code>: degree of comparison</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>Degree</code>.</p>
+<p>Degree of comparison is inflectional feature of some
+<a href="cs-pos/ADJ">adjectives</a> and <a href="cs-pos/ADV">adverbs</a>.</p>
+
+<h3 id="pos-positive-first-degree"><code>Pos</code>: positive, first degree</h3>
+
+<p>This is the base form that merely states a quality of something,
+without comparing it to qualities of others. Note that although this
+degree is traditionally called “positive”, negative properties can be
+compared, too.</p>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li><em><b>mladý</b> muž </em> “<b>young</b> man”</li>
+</ul>
+
+<h3 id="cmp-comparative-second-degree"><code>Cmp</code>: comparative, second degree</h3>
+
+<p>The quality of one object is compared to the same quality of another
+object.</p>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li><em>ten muž je <b>mladší</b> než já </em> “the man is <b>younger</b> than me”</li>
+</ul>
+
+<h3 id="sup-superlative-third-degree"><code>Sup</code>: superlative, third degree</h3>
+
+<p>The quality of one object is compared to the same quality of all other
+objects within a set.</p>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li><em>toto je <b>nejmladší</b> muž v našem týmu </em> “this is the <b>youngest</b> man in our team”</li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-feat/Degree.md" target="#">edit Degree</a></p>
 
 <p><a id="al-ru-feat/Gender" class="al-dest"></a></p>
 <h2><code>Gender</code>: gender</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>Gender</code>.</p>
+<p>Gender is a lexical feature of <a href="cs-pos/NOUN">nouns</a> and inflectional feature
+of other parts of speech (<a href="cs-pos/ADJ">adjectives</a>, <a href="cs-pos/VERB">verbs</a>) that mark agreement with
+nouns. There are three values of gender: masculine, feminine, and neuter.</p>
+
+<p>See also the related feature of <a href="">Animacy</a>.</p>
+
+<h3 id="masc-masculine-gender"><code>Masc</code>: masculine gender</h3>
+
+<p>Nouns denoting male persons are masculine. Other nouns may be also
+grammatically masculine, without any relation to sex.</p>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li><em><b>pán</b> </em> “gentleman”</li>
+  <li><em><b>hrad</b> </em> “castle”</li>
+  <li><em><b>muž</b> </em> “man”</li>
+  <li><em><b>stroj</b> </em> “machine”</li>
+  <li><em><b>předseda</b> </em> “chairman”</li>
+  <li><em><b>soudce</b> </em> “judge”</li>
+</ul>
+
+<h3 id="fem-feminine-gender"><code>Fem</code>: feminine gender</h3>
+
+<p>Nouns denoting female persons are feminine. Other nouns may be also
+grammatically feminine, without any relation to sex.</p>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li><em><b>žena</b> </em> “woman”</li>
+  <li><em><b>růže</b> </em> “rose”</li>
+  <li><em><b>píseň</b> </em> “song”</li>
+  <li><em><b>kost</b> </em> “bone”</li>
+</ul>
+
+<h3 id="neut-neuter-gender"><code>Neut</code>: neuter gender</h3>
+
+<p>This third gender is for nouns that are neither
+masculine nor feminine (grammatically).
+Nouns whose nominative suffix is <em>-o </em> or <em>-í </em>
+(including a large group of deverbative nouns denoting actions)
+are usually neuter.</p>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li><em><b>město</b> </em> “city”</li>
+  <li><em><b>moře</b> </em> “sea”</li>
+  <li><em><b>kuře</b> </em> “chicken”</li>
+  <li><em><b>stavení</b> </em> “building”</li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-feat/Gender.md" target="#">edit Gender</a></p>
 
