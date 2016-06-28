@@ -77,6 +77,26 @@
   <li>Perhaps the most difficult part are ambiguous function words that do not inflect (i.e. morphology does not help us), yet they perform two or more significantly different syntactic functions, which we normally associate with different parts of speech. The two functions may not be equally frequent but each of them is more frequent than what could be labeled as a mere exception (i.e. the <em>wait for his ‘yes’</em> example is exceptional). Disambiguating such pairs clearly depends on the context of the given sentence where the word is used. We should minimize this sort of ambiguity (because we want to decide as much as possible with dictionary). But I don’t think we can avoid it. So how do we know that the difference is “significant enough”? One clue is that the word, when translated to another language, gets two different translations with different POS tags (e.g. the English <em>no</em> example above). Another clue comes from contrasting the UD relations used for the two functions. For example, distinguishing <code>PRON</code> from <code>SCONJ</code> ([en] <em>that</em>, [es] <em>que</em>, [ru] <em>что</em> / <em>čto</em>) is important because pronouns, unlike conjunctions, may become core arguments and fill valency slots of verbs. Distinguishing <code>SCONJ</code> and <code>ADP</code> (or the corresponding relations <code>mark</code> and <code>case</code>) seems less crucial and we can probably keep just one POS tag for each such word, based on prototypical usage. Distinguishing between <code>PRON</code> and <code>DET</code> lies on the importance scale somewhere inbetween; but the nature of both these categories is nominal and we can probably live with pre-categorizing most of these words in dictionary.</li>
 </ul>
 
+<h2 id="revised-guidelines-for-pronominal-words">Revised guidelines for pronominal words</h2>
+
+<p>Pronominal words are pronouns, determiners (articles and pronominal adjectives), pronominal adverbs <em>(where, when, how)</em>, and in traditional grammars of some languages also pronominal numerals <em>(how much)</em>.</p>
+
+<ul>
+  <li>In most cases it is straightforward to determine whether a word is pronominal (see also the <a href="/u/feat/PronType.html">PronType</a> feature) but the borderline between indefinite determiners and adjectives is slightly fuzzy. Related languages should synchronize the lists of words they treat as pronominal. The rest of these guidelines demarcate borders within the pronominal group.</li>
+  <li>Pronominal adverbs are tagged <code>ADV</code>. Their pronominality is encoded using the <code>PronType</code> feature.</li>
+  <li>Pronominal numerals (quantifiers) are tagged <code>DET</code>.</li>
+  <li>Words that behave similar to adjectives are <code>DET</code>. Similar behavior means:
+    <ul>
+      <li>They are more likely to be used attributively (modifying a noun phrase) than substantively (replacing a noun phrase). They may occur alone, though. If they do, it is either because of ellipsis, or because the hypothetical modified noun is something unspecified and general, as in <em>All [visitors] must pay.</em></li>
+      <li>Their inflection is similar to that of adjectives, and distinct from nouns. They agree with the nouns they modify. Especially the ability to inflect for gender is typical for adjectives and determiners. (Gender of nouns is determined lexically and determiners may be required by the grammar to agree with their nouns in gender; therefore they need to inflect for gender.)</li>
+    </ul>
+  </li>
+  <li>Non-possessive personal, reflexive or reciprocal pronouns are always tagged <code>PRON</code>.</li>
+  <li>Possessives vary across languages. In some languages the above tests put them in the <code>DET</code> category. In others, they are more like a normal personal pronoun in a specific case (often the genitive), or a personal pronoun with an adposition; they are tagged <code>PRON</code>.</li>
+  <li>When in doubt, the category should be based on the traditional grammar of the language.</li>
+  <li>Ideally, language-specific documentation should list pronominal words and their category. These are all closed classes.</li>
+</ul>
+
 
       </div>
 
