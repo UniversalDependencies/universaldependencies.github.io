@@ -152,9 +152,11 @@ in two places.</p>
 	</tr>	
 	<tr>
 	  <td><a>appos</a></td>
+	  <td>&nbsp;</td>
 	  <td><a>det</a></td>
 	</tr>
 	<tr>
+	  <td>&nbsp;</td>
 	  <td>&nbsp;</td>
 	  <td>↳<a>det:predet</a></td>
 	</tr>	
@@ -343,8 +345,9 @@ advmod(often, less)
 <p><a id="al-en-dep/amod" class="al-dest"></a></p>
 <h2><code>amod</code>: adjectival modifier</h2>
 
-<p>An adjectival modifier of an NP is any adjectival phrase that serves
-to modify the meaning of the NP.</p>
+<p>An adjectival modifier of a nominal is any adjective or adjectival phrase that serves
+to modify the meaning of the nominal. This includes always or sometimes postposed 
+modifiers, such as <em>else</em> and <em>nice</em> in the examples below.</p>
 
 <pre><code class="language-sdparse">Sam eats red meat
 amod(meat, red)
@@ -356,6 +359,14 @@ amod(loan, dollar)
 
 <pre><code class="language-sdparse">Sam took out  a $ 3 million loan
 amod(loan, $)
+</code></pre>
+
+<pre><code class="language-sdparse">Anything else for me ?
+amod(Anything, else)
+</code></pre>
+
+<pre><code class="language-sdparse">We can go somewhere nice .
+amod(somewhere, nice)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/amod.md" target="#">edit amod</a></p>
@@ -494,10 +505,10 @@ mark(did, that)
 <p><a id="al-en-dep/compound" class="al-dest"></a></p>
 <h2><code>compound</code>: compound</h2>
 
-<p><em>compound</em> is used for</p>
+<p><em>compound</em> is used for:</p>
 
 <ul>
-  <li>noun compounds (Note that in the current system for dependency extraction, all nouns modify the rightmost noun of the noun phrase – there is no intelligent noun compound analysis.  This is likely to be fixed once the Penn Treebank represents the branching structure of noun phrases.)</li>
+  <li>noun compounds. (These should show the correct modification structure of noun compounds, and do - or should - in the English UD treebank. Note, however, that the current automatic Stanford UD converter still makes all nouns modify the rightmost noun of the noun phrase when run on corpora like the 1999 Penn Treebank 3 which do not show noun compound structure - there is no intelligent noun compound analysis.  The correct results are achieved when run on corpora like OntoNotes which do represent the branching structure of noun phrases.)</li>
 </ul>
 
 <pre><code class="language-sdparse">phone book
@@ -505,7 +516,20 @@ compound(book, phone)
 </code></pre>
 
 <pre><code class="language-sdparse">oil price futures
-nn(futures, oil)
+compound(price, oil)
+compound(futures, price)
+</code></pre>
+
+<p>This includes proper names that use regular syntactic relations—contrast with <a href="">name</a>:</p>
+
+<pre><code class="language-sdparse">Wall Street
+compound(Street, Wall)
+</code></pre>
+
+<pre><code class="language-sdparse">Natural Resources Conservation Service
+amod(Resources-2, Natural-1)
+compound(Conservation-3, Resources-2)
+compound(Service-4, Conservation-3)
 </code></pre>
 
 <ul>
@@ -520,8 +544,37 @@ compound(thousand, four)
 compound(billion, 3.2)
 </code></pre>
 
+<ul>
+  <li>adjectival compounds</li>
+</ul>
+
+<pre><code class="language-sdparse">a medium - large company
+amod (company, large)
+compound(large, medium)
+punct(large, -)
+</code></pre>
+
+<pre><code class="language-sdparse">a self - driven research strategy
+compound(strategy, research)
+amod(strategy, driven)
+compound(driven, self)
+punct(driven, -)
+</code></pre>
+
+<ul>
+  <li>imitative reduplication</li>
+</ul>
+
 <pre><code class="language-sdparse">Does he go oink oink ?
-compound(oink-2, oink-1)
+compound(oink-5, oink-4)
+</code></pre>
+
+<ul>
+  <li>idiomatic phrasal verbs are analyzed as a language-specific subrelation of <em>compound</em></li>
+</ul>
+
+<pre><code class="language-sdparse">She just made up the answer .
+compound:prt(made, up)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/compound.md" target="#">edit compound</a></p>
@@ -529,8 +582,8 @@ compound(oink-2, oink-1)
 <p><a id="al-en-dep/compound:prt" class="al-dest"></a></p>
 <h2><code>compound:prt</code>: phrasal verb particle</h2>
 
-<p>The phrasal verb particle relation identifies a phrasal verb, and
-holds between the verb and its particle. It is a subtype of the
+<p>The phrasal verb particle relation identifies an idiomatic phrasal verb, and
+holds between the verb and its particle (tagged as <a href="">ADP</a>). It is a subtype of the
 <a href="">compound</a> relation.</p>
 
 <pre><code class="language-sdparse">They shut down the station
@@ -539,6 +592,17 @@ compound:prt(shut, down)
 
 <pre><code class="language-sdparse">They shut the station down
 compound:prt(shut, down)
+</code></pre>
+
+<p>This relation excludes literal/directional uses of prepositions/particles, such as <em>up</em>, <em>down</em>, <em>in</em>, <em>out</em>, etc.
+These would typically become an ADV with the relation <a href="">advmod</a>:</p>
+
+<pre><code class="language-sdparse">The dentist pulled out the tooth
+advmod(pulled, out)
+</code></pre>
+
+<pre><code class="language-sdparse">The dentist pulled the tooth out
+advmod(pulled, out)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/compound-prt.md" target="#">edit compound:prt</a></p>
@@ -716,6 +780,12 @@ det(man, The)
 
 <pre><code class="language-sdparse">Which book do you prefer ?
 det(book, Which)
+</code></pre>
+
+<pre><code class="language-sdparse">You 've all won !
+nsubj(won, You)
+det(You, all)
+aux(won, 've)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/det.md" target="#">edit det</a></p>
@@ -1327,7 +1397,7 @@ predicates. <code>nmod</code> is a noun functioning as a non-core (oblique)
 argument or adjunct. In English, <code>nmod</code> is used</p>
 
 <ul>
-  <li>for prepositional complements:</li>
+  <li>for prepositional complements (including datives and partitives):</li>
 </ul>
 
 <pre><code class="language-sdparse">the office of the Chair
@@ -1343,6 +1413,12 @@ nmod(give, children)
 case(children, to)
 </code></pre>
 
+<pre><code class="language-sdparse">some of the toys
+nmod(some, toys)
+case(toys, of)
+det(toys, the)
+</code></pre>
+
 <p>The <code>nmod</code> relation holds between the noun/predicate modified by the
 prepositional complement and the noun introduced by the preposition.</p>
 
@@ -1356,7 +1432,7 @@ nmod(office-4, Chair-2)
 case(Chair-2, 's-3)
 </code></pre>
 
-<p>Nominal modifiers not introduced by a preposition or not ‘s genitives
+<p>Nominal modifiers not marked by a preposition or ‘s genitive
 are tagged <a href="">nmod:npmod</a>, a subtype of <code>nmod</code>. Temporal nominal
 modifiers are also marked with a separate relation <a href="">nmod:tmod</a>. See
 the definitions of these relations.</p>
