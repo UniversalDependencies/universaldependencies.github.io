@@ -310,8 +310,42 @@ for <code>advmod</code>.</p>
 <p><a id="al-urj-dep/amod" class="al-dest"></a></p>
 <h2><code>amod</code>: adjectival modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>amod</code>.</p>
+<p>Nouns may take adjectival modifiers, which are marked with the
+dependency type <code>amod</code>. It is also possible for an adjective to take
+another adjective as a modifier. (These adjectival modifiers are
+generally expressed with <em>-ly</em> adverbs in English.)</p>
+
+<!-- fname:amod_noun.pdf -->
+<pre><code class="language-sdparse">Tien vieressä on suuri kivi . \n Road next_to is large rock .
+nmod(on-3, Tien-1)
+case(Tien-1, vieressä-2)
+nsubj(on-3, kivi-5)
+amod(kivi-5, suuri-4)
+punct(on-3, .-6)
+</code></pre>
+
+<pre><code class="language-conllu">1       See     see     PRON    P       Case=Nom|Number=Sing|PronType=Dem       4       nsubj:cop       _       _
+2       oli     olema   VERB    V       Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act 4       cop     _       _
+3       suur    suur    ADJ     A       Case=Nom|Degree=Pos|Number=Sing 4       amod    _       _
+4       muutus  muutus  NOUN    S       Case=Nom|Number=Sing    0       root    _       _
+5       .       .       PUNCT   Z       _       4       punct   _       _
+</code></pre>
+
+<!-- TODO: HUNGARIAN -->
+
+<!-- fname:amod_adjective.pdf -->
+<pre><code class="language-sdparse">poikkeuksellisen suuri kivi \n exceptional(ly) large rock
+amod(suuri-2, poikkeuksellisen-1)
+amod(kivi-3, suuri-2)
+</code></pre>
+
+<!-- TODO: ESTONIAN AND HUNGARIAN -->
+
+<h2 id="open-questions">Open questions</h2>
+
+<ul>
+  <li>Should ordinal numerals also receive <code>amod</code> ?</li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_urj-dep/amod.md" target="#">edit amod</a></p>
 
@@ -558,8 +592,57 @@ for <code>parataxis</code>.</p>
 <p><a id="al-urj-dep/punct" class="al-dest"></a></p>
 <h2><code>punct</code>: punctuation</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>punct</code>.</p>
+<p>The dependency type <code>punct</code> is used to mark punctuation. The dependent is the punctuation symbol, and the governor is the element which the punctuation symbol delimits. For instance, with coordination, the first coordinated element is the head of all <code>punct</code> dependencies in the coordination, and with subordinate clauses, the head of the subordinate clause is the governor of the <code>punct</code>.</p>
+
+<!-- fname:punct_coord.pdf -->
+<pre><code class="language-sdparse">kerrostaloja , rivitaloja ja omakotitaloja \n blockhouses , rowhouses and one_family_houses
+punct(kerrostaloja-1, ,-2)
+conj(kerrostaloja-1, rivitaloja-3)
+cc(kerrostaloja-1, ja-4)
+conj(kerrostaloja-1, omakotitaloja-5)
+</code></pre>
+
+<pre><code class="language-conllu">1       Kõik    kõik    PRON    P       Case=Nom|Number=Sing|PronType=Tot       2       nsubj   _       _
+2       oleneb  olenema VERB    V       Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act 0       root    _       _
+3       otstarbest      ots_tarve       NOUN    S       Case=Ela|Number=Sing    2       nmod    _       _
+4       ,       ,       PUNCT   Z       _       3       punct   _       _
+5       ümbrusest       ümbrus  NOUN    S       Case=Ela|Number=Sing    3       conj    _       _
+6       ja      ja      CONJ    J       _       3       cc      _       _
+7       kasutajast      kasutaja        NOUN    S       Case=Ela|Number=Sing    3       conj    _       _
+8       .       .       PUNCT   Z       _       2       punct   _       _
+</code></pre>
+
+<!-- TODO: HUNGARIAN -->
+
+<!-- fname:punct_subord.pdf -->
+<pre><code class="language-sdparse">Kotona oli hiljaista , kun hän palasi . \n At_home was quiet , when he returned .
+advmod(oli-2, Kotona-1)
+xcomp(oli-2, hiljaista-3)
+advcl(oli-2, palasi-7)
+punct(palasi-7, ,-4)
+punct(oli-2, .-8)
+mark(palasi-7, kun-5)
+nsubj(palasi-7, hän-6)
+</code></pre>
+
+<pre><code class="language-conllu">1       See     see     PRON    P       Case=Nom|Number=Sing|PronType=Dem       3       nsubj:cop       _       _
+2       oli     olema   VERB    V       Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act 3       cop     _       _
+3       tuba    tuba    NOUN    S       Case=Nom|Number=Sing    0       root    _       _
+4       ,       ,       PUNCT   Z       _       6       punct   _       _
+5       kus     kus     ADV     D       _       6       mark    _       _
+6       elas    elama   VERB    V       Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act 3       advcl   _       _
+7       Jooga   Jooga   PROPN   S       Case=Nom|Number=Sing    6       nsubj   _       _
+8       .       .       PUNCT   Z       _       3       punct   _       _
+</code></pre>
+
+<!-- TODO: HUNGARIAN -->
+
+<h3 id="diffs">Diffs</h3>
+
+<p>By the current release of FI_FTB (FinnTreeBank), the manual annotation of
+punctuation marks has not been completed. Instead the automatic
+annotation links the punctuation marks to the closest token
+available (usually the previous one).</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_urj-dep/punct.md" target="#">edit punct</a></p>
 
@@ -606,6 +689,12 @@ punct(tulisitko-3, ?-5)
 <pre><code class="language-sdparse">Mine ära , Ronald ! \n Go away , Ronald !
 vocative(Mine-1, Ronald-4)
 compound-prt(Mine-1, ära-2)
+</code></pre>
+
+<pre><code class="language-sdparse">Te nyisd ki az ablakot , Sam ! \n You open out the window , Sam !
+vocative(nyisd-2, Sam-7)
+det(ablakot-5, az-4)
+nsubj(nyisd-2, Te-1)
 </code></pre>
 
 <h2 id="discussion">Discussion</h2>
