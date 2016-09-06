@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Prague Meeting</title>
+    <title>POS tags</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
@@ -23,7 +23,7 @@
 	
           <span class="header-text"><a href="http://universaldependencies.org/#language-2016">home</a></span>
           <span class="header-text"><a href="http://universaldependencies.org/2016/prague">2016/prague</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_2016-09-05--06-prague/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_2016-09-05--06-prague/postags.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
@@ -37,30 +37,44 @@
 	  </div>
 	</noscript>
 
-          <h1 id="ud-meeting-in-prague-september-5-6-2016">UD meeting in Prague, September 5-6, 2016</h1>
+          <h1 id="part-of-speech-tags-in-ud-v2">Part-of-speech tags in UD v2</h1>
 
-<p><em>(Marie-Catherine de Marneffe, Filip Ginter, Jan Hajič, Joakim Nivre, Sebastian Schuster, Fran Tyers, Dan Zeman)</em></p>
+<p>Tentative conclusion for part-of-speech tags:
+We recommend keeping PROPN and PART.</p>
 
-<p>We discussed changes that should be incorporated in the upcoming version 2 of the UD guidelines.
-Prior to the meeting, ideas were collected <a href="../v2/index.html">here</a>.</p>
+<h2 id="rename-conj-to-cconj">Rename CONJ to CCONJ</h2>
 
-<p>Per-issue reports and proposals:</p>
+<p>We propose to rename the <code>CONJ</code> tag to <code>CCONJ</code> <em>(coordinating conjunction)</em>
+and thus make it analogous to <code>SCONJ</code> <em>(subordinating conjunction).</em>
+That will hopefully reduce the confusion that we observed in v1:
+people have assumed that the <code>CONJ</code> tag would correspond to the <code>conj</code> relation,
+while in fact it usually went with the relation <code>cc</code> and practically never with <code>conj</code>.</p>
 
-<ol>
-  <li>Core dependents (Joakim)</li>
-  <li>Ellipsis (Sebastian)</li>
-  <li>Functional relations, especially copula (Fran)</li>
-  <li><a href="segmentation.html">Word segmentation</a> (Fran)</li>
-  <li><a href="coordination.html">Coordination</a> (Marie)</li>
-  <li>Sentence mood (Joakim)</li>
-  <li>Language-specific subtypes (Joakim)</li>
-  <li>Multiword expressions (Marie)</li>
-  <li>Enhanced dependencies (Sebastian)</li>
-  <li><a href="postags.html">Part-of-speech tags</a> (Dan)</li>
-  <li>Features (Dan)</li>
-  <li>Semantic categories (Marie)</li>
-  <li>CoNLL-U format (Filip)</li>
-</ol>
+<h2 id="borderline-between-categories">Borderline between categories</h2>
+
+<p>We should move away from completely functional guidelines for part-of-speech tags that make the tag completely predictable from the syntactic function.
+In addition to the obvious argument that such guidelines make (some) tags uninformative, they also make it harder to find interesting cross-lingual differences.
+For example, language X allows words of category A to have syntactic function b, but language Y doesn’t.</p>
+
+<p>We admit that there are ambiguous words that cannot be tagged without considering the context.
+However, we prefer distinctions based on word form, dictionary and <em>prevailing</em> syntactic behavior.
+We should avoid the extreme where (almost) all ambiguities between two categories are resolved
+solely by syntactic structure.
+We have identified two such extremes in the v1 guidelines:</p>
+
+<ul>
+  <li>Pronouns vs. determiners. Here the current definition of <code>PRON</code> and <code>DET</code> should be loosened.
+It will be possible in many languages to enumerate words in both classes, and preferably
+the lists should be based on morphological properties and prevailing syntactic function,
+rather than the actual context in each sentence.
+The functional approach is not banned though, if there is no better way (reportedly Turkic languages).
+See below for more details.</li>
+  <li>Main verbs vs. auxiliary verbs. In many languages, (some of) the auxiliary verbs may also
+be used as main verbs. Their form usually does not differ, so the <code>AUX</code> tag can only be
+inferred from the syntactic relation <code>aux</code>.
+There is no reasonable solution similar to the <code>PRON</code>/<code>DET</code> proposal, therefore we propose
+remove the <code>AUX</code> tag from v2.</li>
+</ul>
 
 
       </div>
