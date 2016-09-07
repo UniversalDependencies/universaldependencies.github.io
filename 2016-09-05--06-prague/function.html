@@ -47,11 +47,18 @@
 
 <!-- Some languages have very many copula verbs -->
 
+<ul>
+  <li>Languages are inconsistent with how they treat copula constructions. Some languages are very permissive with copula verbs (e.g. French has over 50 finite verbs with the <code>cop</code> relation).</li>
+</ul>
+
+<!-- Lasai nago | pozik nago -->
+
 <h3 id="principles">Principles</h3>
 
 <ul>
   <li>For copulas, we should be maximally restrictive with respect to which verbs can be copulas (only one verb in most languages) but maximally permissive when it comes to treating this verb as cop. Basically, the copula verb should never be the root, except through promotion (“he is not happy, but she is”). 
-** For languages where more copulas are used (e.g. Spanish, Basque, Catalan, Turkish, Kazakh), these are permitted.</li>
+** That is: Any situation where we link a subject to “more information” should be considered copula 
+** For languages where more copulas are used (e.g. Spanish, Basque, Catalan, Turkish, Kazakh), these are permitted, but only the copulas that are equivalent to English ‘be’. That is, English “become” and Swedish “ble” are out.</li>
   <li>We need to give more detailed guidelines for choosing the predicate in copula sentences when it is not one of the obvious cases (noun, adjective). Idea: use obliqueness hierarchy.</li>
   <li>We may want to add the subtype <code>nsubj:cop</code> to avoid having to flip dependencies when the predicate is a clause. It may also be used more generally to signal that the subject in copula constructions is special.</li>
 </ul>
@@ -95,6 +102,11 @@ Se on opiskelija .
 Ella és estudiant .
 ~~~</p>
 
+<p>Basque:
+~~~ sdparse 
+Ainhoa ikaslea da .
+~~~</p>
+
 <p>It also improves intra-language consistency, as can be seen if we put the example 
 into the past tense. In both Russian and Turkish the structure remains the same, but 
 would be different if we had the copula verb as the head.</p>
@@ -127,8 +139,34 @@ Ella fue estudiante .
 <p>Note also that in Turkish (and other Turkic languages) the copula verb can alternate 
 between tenses, here the future is expressed with ol- instead of i-:</p>
 
-<pre><code class="language-sdparse">O öğrenci olacak . \n She student will.be
+<pre><code class="language-sdparse">O öğrenci olacak . \n She student will.be .
 </code></pre>
+
+<p>There may be other alternations, for example between state and essence:</p>
+
+<p>Spanish:
+~~~ sdparse 
+Ella es buena . \n She is good .
+~~~</p>
+
+<pre><code class="language-sdparse">Ella está buena . \n She is attractive .
+</code></pre>
+
+<p>Or:</p>
+
+<p>Basque:
+~~~ sdparse 
+Ni ikaslea naiz . \n I student am .
+~~~</p>
+
+<pre><code class="language-sdparse">Ni pozik nago . \n I happy am .
+</code></pre>
+
+<p>A similar thing can happen in Swedish:</p>
+
+<pre><code class="language-sdparse">Men jag är bara 21 och du blev 23 . \n But I am only 21 and you were 23 .
+</code></pre>
+<!-- FMT: Check, is 'blev' here "were" or "had become" -->
 
 <h4 id="predication-with-attributive-like-nps">Predication with attributive-like NPs</h4>
 
@@ -145,14 +183,18 @@ She is in great shape .
 Esa canción está de puta madre . 
 ~~~</p>
 
-<h4 id="adverbials-time-and-location">Adverbials, time and location</h4>
+<h4 id="adverbials-time-and-location">Adverbials: time and location</h4>
 
-<p>Having the copula as a head is slightly less accepted for constructions where there is some kind of compositional prepositional phrase or adverbial.</p>
+<p>Having the copula as a head was slightly less accepted for constructions where there is some kind of compositional prepositional phrase or adverbial.</p>
 
 <p>Issues with this analysis are:
-* Which adverbial should become the head in expressions with more than one adverbial ?</p>
+* Which adverbial should become the head in expressions with more than one adverbial ?
+** Should we make a technical decision and simply choose the first (or last?)</p>
 
 <pre><code class="language-sdparse">She is here . 
+</code></pre>
+
+<pre><code class="language-sdparse">Hemen dago .
 </code></pre>
 
 <pre><code class="language-sdparse">She is in Prague with her friends . 
@@ -200,9 +242,6 @@ Esa canción está de puta madre .
 <pre><code class="language-sdparse">Dom ställena du gick till, det är dit jag brukar gå .
 </code></pre>
 
-<pre><code class="language-sdparse">Men jag är bara 21 och du blev 23 . 
-</code></pre>
-
 <h4 id="existential-constructions">Existential constructions</h4>
 
 <p>Currently, existential constructions have a special structure in English:</p>
@@ -219,6 +258,8 @@ Esa canción está de puta madre .
 
 <pre><code class="language-sdparse">Была книга в столе .
 </code></pre>
+
+<p>However, this quickly becomes awkward:</p>
 
 <pre><code class="language-sdparse">For the last few years there have been problems with the programme .
 </code></pre>
@@ -268,7 +309,7 @@ Esa canción está de puta madre .
 <pre><code class="language-sdparse">En nödvändig förutsättning är att männen är helt med på saken
 </code></pre>
 
-<h4 id="copula-verbs-as-an-auxiliary">Copula verbs as an “auxiliary”</h4>
+<h4 id="ambiguities-with-auxiliary-verbs">Ambiguities with auxiliary verbs</h4>
 
 <p>The following uses should not be considered copula.</p>
 
@@ -305,7 +346,7 @@ Esa canción está de puta madre .
 <pre><code class="language-sdparse">I have been to Prague .
 </code></pre>
 
-<h2 id="other-constructions">Other constructions</h2>
+<h2 id="other-functional-relations">Other functional relations</h2>
 
 <ul>
   <li>The other functional relations are less problematic, but more detailed guidelines will be useful.</li>
