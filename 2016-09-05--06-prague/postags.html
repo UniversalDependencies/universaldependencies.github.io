@@ -39,8 +39,15 @@
 
           <h1 id="part-of-speech-tags-in-ud-v2">Part-of-speech tags in UD v2</h1>
 
-<p>Tentative conclusion for part-of-speech tags:
-We recommend keeping PROPN and PART.</p>
+<p>For related discussion see</p>
+
+<ul>
+  <li><a href="../u/pos/index.html">Current guidelines for POS tags</a></li>
+  <li><a href="../v2/form_vs_function.html">Form vs. function in POS tags</a></li>
+  <li><a href="http://github.com/UniversalDependencies/docs/issues/159">Issue 259</a> (<code>PRON</code> vs. <code>DET</code>) and the <a href="../2015-08-23-uppsala/determiners.html">Uppsala report on determiners</a></li>
+  <li><a href="http://github.com/UniversalDependencies/docs/issues/237">Issue 237</a> (<code>ADV</code> vs. <code>CONJ</code>)</li>
+  <li><a href="http://github.com/UniversalDependencies/docs/issues/275">Issue 275</a> (copula <code>VERB</code> vs. <code>AUX</code>)</li>
+</ul>
 
 <h2 id="rename-conj-to-cconj">Rename CONJ to CCONJ</h2>
 
@@ -63,6 +70,25 @@ while in fact it usually went with the relation <code>cc</code> and practically 
 2. the reasons above do not seem strong enough to remove it;
 3. we are not going to have named entity annotation in UD v2.</p>
 
+<h2 id="keep-part-but-minimize-its-usage">Keep PART but minimize its usage</h2>
+
+<p>We considered removing <code>PART</code> because it is a very small category, which is defined mostly negatively (it is particle if it is not anything else). We decided to keep it because
+1. we would have to take the current particles one-by-one in each language and decide where to put them;
+2. in some instances it would still be hard to find a suitable category;
+3. which may actually lead to creation of several new and even smaller categories.</p>
+
+<p>However, the lists of particles in individual languages should be reviewed anyways. Language-specific documentation must list all particles in the language, and ideally also explain why they are particles.</p>
+
+<p>Note that the current guidelines say that [en] <em>not</em>, [de] <em>nicht</em> etc. are negative particles (but negative determiners like <em>no</em>, or negative auxiliary verbs like [cs] <em>není</em> are not particles). This is the only positive part of the current <code>PART</code> definition at the language-universal level, because such words were traditionally tagged as adverbs in some languages, and they could be adverbs in the other languages too, had we decided to remove <code>PART</code>.</p>
+
+<h2 id="remove-aux">Remove AUX</h2>
+
+<p>For justification see below.</p>
+
+<p>Removing the tag means changing it to <code>VERB</code> in data, removing all the <code>AUX</code> pages from the documentation, and also remove references to it from other parts of the documentation (probably from <code>VERB</code>, <code>aux</code> and <code>auxpass</code>; quite likely also from elsewhere).</p>
+
+<p>(NB: If this proposal is not approved by the core group, we should consider re-classifying copula verbs as auxiliaries.)</p>
+
 <h2 id="borderline-between-categories">Borderline between categories</h2>
 
 <p>We should move away from completely functional guidelines for part-of-speech tags that make the tag completely predictable from the syntactic function.
@@ -83,11 +109,16 @@ rather than the actual context in each sentence.
 The functional approach is not banned though, if there is no better way (reportedly Turkic languages).
 See below for more details.</li>
   <li>Main verbs vs. auxiliary verbs. In many languages, (some of) the auxiliary verbs may also
-be used as main verbs. Their form usually does not differ, so the <code>AUX</code> tag can only be
+be used as main verbs. Their paradigm may be defective but the forms they have usually do
+not distinguish auxiliary usage from full-verb usage, so the <code>AUX</code> tag can only be
 inferred from the syntactic relation <code>aux</code>.
 There is no reasonable solution similar to the <code>PRON</code>/<code>DET</code> proposal, therefore we propose
-remove the <code>AUX</code> tag from v2.</li>
+to remove the <code>AUX</code> tag from v2.
+If it is desirable to keep the morphological distinction in a treebank
+(e.g. because a verb is <em>only</em> auxiliary in a language, and it differs morphologically from normal verbs),
+the language-specific feature <code>VerbType=Aux</code> (or <code>Mod</code> or <code>Cop</code>) can be used, but there will be no dedicated POS tag.</li>
 </ul>
+
 
 
       </div>
