@@ -122,6 +122,104 @@ If it is desirable to keep the morphological distinction in a treebank
 the language-specific feature <code>VerbType=Aux</code> (or <code>Mod</code> or <code>Cop</code>) can be used, but there will be no dedicated POS tag.</li>
 </ul>
 
+<p>There are many pairs of categories with unclear border zones, although not all of them in all languages:</p>
+
+<ul>
+  <li><code>NOUN</code> can be confused with <code>PROPN</code>, <code>PRON</code>, <code>ADJ</code> and some forms of <code>VERB</code> (gerunds, infinitives)</li>
+  <li><code>PROPN</code> can be confused with <code>NOUN</code> and <code>X</code> (foreign names)</li>
+  <li><code>ADJ</code> can be confused with <code>DET</code>, <code>NUM</code> (ordinals) and some forms of <code>VERB</code> (participles)</li>
+  <li><code>PRON</code> can be confused with <code>DET</code>, <code>NUM</code> (pronominal quantifiers), <code>ADV</code> (pronominal adverbs) and possibly <code>NOUN</code></li>
+  <li><code>DET</code> can be confused with <code>PRON</code>, <code>NUM</code> (pronominal quantifiers), <code>ADV</code> (pronominal adverbs) and possibly <code>ADJ</code></li>
+  <li><code>NUM</code> can be confused with <code>ADJ</code> (ordinals), <code>NOUN</code> (high-value cardinals, e.g. “million”), <code>PRON</code>, <code>DET</code> (pronominal quantifiers) and <code>ADV</code> (adverbs of degree/quantity, multiplicative numerals like [cs] <em>sedmkrát</em> “seven times” etc.)</li>
+  <li><code>ADV</code> can be confused with <code>ADJ</code>, <code>PRON</code>, <code>DET</code> (pronominal adverbs), <code>NUM</code> (adverbial numerals and adverbs of degree/quantity) and some forms of <code>VERB</code> (transgressives/converbs); furthermore, some are on the border to <code>ADP</code>, <code>SCONJ</code> and <code>CCONJ</code></li>
+  <li><code>VERB</code> can be confused with <code>AUX</code> (but we are proposing to remove <code>AUX</code>), <code>NOUN</code> (gerunds), <code>ADJ</code> (participles), <code>ADV</code> (transgressives/converbs)</li>
+  <li><code>ADP</code> can be confused with <code>SCONJ</code>, <code>ADV</code>, some secondary prepositions also with <code>NOUN</code> and other categories</li>
+  <li><code>SCONJ</code> can be confused with <code>ADP</code>, <code>ADV</code> and <code>CCONJ</code></li>
+  <li><code>CCONJ</code> can be confused with <code>ADV</code> and <code>SCONJ</code></li>
+  <li><code>PART</code> should in theory not be confused with anything because then it should not be <code>PART</code>; nevertheless, at least some traditional particles are now <code>ADP</code>, <code>ADV</code>, <code>SCONJ</code> or <code>CCONJ</code>, and the particle <em>not</em> would be traditionally <code>ADV</code> in some languages</li>
+  <li><code>INTJ</code> can sometimes be confused with <code>NOUN</code>, <code>ADJ</code>, <code>VERB</code> or <code>ADV</code> if they are used like exclamations; but arguably these could then not be tagged <code>INTJ</code></li>
+  <li><code>PUNCT</code> can be confused with <code>SYM</code></li>
+  <li><code>SYM</code> can be confused with <code>PUNCT</code></li>
+  <li><code>X</code> as a tag for foreign word can be confused with <code>PROPN</code> when the word itself is not a proper noun in the foreign language, but is a part of a longer book/movie title</li>
+</ul>
+
+<p>Some pairs are less problematic than others because some categories are functionally more compatible than others.
+It is acceptable if <code>PRON</code> and <code>DET</code> are pre-categorized and distinguished mostly by word list or morphology,
+because they can be seen as two subcategories of a broader category of nominals; if a word is classified as <code>DET</code>
+but it occurs in place of a noun phrase, it can be explained by ellipsis and it we do not have to switch the tag
+to <code>PRON</code> in such contexts. However, some categories are not compatible and if a word occurs in both, it has to
+be taken as two separate lemmas; consequently it has to be disambiguated according to sentence context.
+A good example is [en] <em>that</em> and [es] <em>que</em> which can be both a relative pronoun and a subordinating conjunction
+(complementizer). We cannot say that all occurrences are either <code>PRON</code> or <code>SCONJ</code> because a pronoun can
+act as a core argument of a predicate, while complementizer cannot. So we have to distinguish the two functions,
+although historically the complementizer may actually come from a grammaticalized pronoun.</p>
+
+<p>It would be useful if the proposal for UD v2 also includes a list of category pairs that are considered incompatible
+but we did not discuss this in detail in Prague.</p>
+
+<h2 id="proposed-principles-for-ud-v2">Proposed principles for UD v2</h2>
+
+<p>This text could be added to the <a href="../u/overview/morphology.html">morphology overview page</a>, section on POS tags:</p>
+
+<ul>
+  <li>A word’s category should be primarily determined by dictionary rather than by context of a particular sentence.
+Syntax still plays an important role, especially in cross-linguistic mapping of same-named categories.
+However, prototypical (expected) syntactic behavior is of more importance than function performed in exceptional contexts.</li>
+  <li>Morphological behavior may be a good indicator in some languages.
+If, for example, a language uses distinct inflection patterns for nouns and adjectives, then morphology can be used
+to distinguish these two categories. Exceptions cannot be excluded but they should be really exceptional and well grounded;
+when in doubt, use the category determined by morphology.</li>
+  <li>Ambiguous words (belonging to two or more categories) do exist. Sometimes by pure coincidence
+([en] <em>the can</em> vs. <em>can = to be able to</em>). Sometimes the two words are related but differ morphologically
+([en] <em>the book(s)</em> vs. <em>to book, booked, booking</em>).</li>
+  <li>Perhaps the most difficult part are ambiguous function words that do not inflect (i.e. morphology does not help us),
+yet they perform two or more <em>significantly</em> different syntactic functions, which we normally associate with different
+parts of speech. The two functions may not be equally frequent but each of them is more frequent than what could be labeled
+as a mere exception (i.e. the <em>wait for his ‘yes’</em> example is exceptional).
+Disambiguating such pairs clearly depends on the context of the given sentence where the word is used.
+This sort of ambiguity should be minimized (because we want to decide as much as possible with dictionary) but it cannot be avoided.
+So how do we know that the difference is “significant enough”?
+One clue is that the word, when translated to another language, gets two different translations with different POS tags
+(e.g. the English <em>no</em> as response interjection, vs. negative determiner).
+Another clue comes from contrasting the UD relations used for the two functions.
+For example, distinguishing <code>PRON</code> from <code>SCONJ</code> ([en] <em>that</em>, [es] <em>que</em>, [ru] <em>что</em> / <em>čto</em>) is important because pronouns,
+unlike conjunctions, may become core arguments and fill valency slots of verbs.
+Distinguishing <code>SCONJ</code> from <code>ADP</code>, or <code>CCONJ</code> from <code>ADV</code> seems less crucial and we can probably
+keep just one POS tag for each such word, based on prototypical usage.</li>
+</ul>
+
+<h2 id="revised-guidelines-for-pronominal-words">Revised guidelines for pronominal words</h2>
+
+<p>This text could be added to the <a href="../u/overview/morphology.html">morphology overview page</a>, section on POS tags,
+and it should also be reflected in the documentation of individual POS tags:</p>
+
+<p>Pronominal words are <a href="/u/pos/PRON.html">pronouns</a>, <a href="/u/pos/DET.html">determiners</a> (articles and pronominal adjectives),
+pronominal <a href="/u/pos/ADV.html">adverbs</a> <em>(where, when, how)</em>, and in traditional grammars of some languages also pronominal <a href="/u/pos/NUM.html">numerals</a> <em>(how much)</em>.</p>
+
+<ul>
+  <li>In most cases it is straightforward to determine whether a word is pronominal (see also the <a href="/u/feat/PronType.html">PronType</a> feature)
+but the borderline between indefinite determiners and adjectives is slightly fuzzy. Related languages should synchronize the lists of words
+they treat as pronominal. The rest of these guidelines demarcate borders within the pronominal group.</li>
+  <li>Pronominal adverbs are tagged <code>ADV</code>. Their pronominality is encoded using the <code>PronType</code> feature. Their typical syntactic function is to modify verbs.</li>
+  <li>Articles <em>(the, a, an)</em> are always tagged <code>DET</code>; their <code>PronType</code> is <code>Art</code>.</li>
+  <li>Pronominal numerals (quantifiers) are tagged <code>DET</code>; besides <code>PronType</code>, they also use the <a href="/u/feat/NumType.html">NumType</a> feature.</li>
+  <li>Words that behave similar to adjectives are <code>DET</code>.
+(We understand the <code>DET</code> class as pro-adjectives, which is a slightly broader sense than what is usually regarded as determiners in English.
+In particular, it is possible that one nominal is modified by more than one determiner.) Similar behavior means:
+    <ul>
+      <li>They are more likely to be used attributively (modifying a noun phrase) than substantively (replacing a noun phrase). They may occur alone, though.
+If they do, it is either because of ellipsis, or because the hypothetical modified noun is something unspecified and general, as in <em>All [visitors] must pay.</em></li>
+      <li>Their inflection is similar to that of adjectives, and distinct from nouns. They agree with the nouns they modify.
+Especially the ability to inflect for gender is typical for adjectives and determiners.
+(Gender of nouns is determined lexically and determiners may be required by the grammar to agree with their nouns in gender; therefore they need to inflect for gender.)</li>
+    </ul>
+  </li>
+  <li>Non-possessive personal, reflexive or reciprocal pronouns are always tagged <code>PRON</code>.</li>
+  <li>Possessives vary across languages. In some languages the above tests put them in the <code>DET</code> category.
+In others, they are more like a normal personal pronoun in a specific case (often the genitive), or a personal pronoun with an adposition; they are tagged <code>PRON</code>.</li>
+  <li>When the above rules do not help, the category should be based on what the traditional grammar of the language says.</li>
+  <li>Ideally, language-specific documentation should list pronominal words and their category. These are all closed classes so it should not be difficult.</li>
+</ul>
 
 
       </div>
