@@ -62,11 +62,11 @@
 <h3 id="principles">Principles</h3>
 
 <ul>
-  <li>For copulas, we should be maximally restrictive with respect to which verbs can be copulas (only one verb in most languages) but maximally permissive when it comes to treating this verb as cop. Basically, the copula verb should never be the root, except through promotion (“he is not happy, but she is”). 
+  <li>For copulas, we should be maximally restrictive with respect to which words can be copulas (only one word in most languages) but maximally permissive when it comes to treating this word as a copula. Basically, the copula should never be the root, except through promotion (“he is not happy, but she is”). 
 ** That is: Any situation where we link a subject to “more information” should be considered copula 
-** For languages where more copulas are used (e.g. Spanish, Basque, Catalan, Turkish, Kazakh), these are permitted, but only the copulas that are equivalent to English ‘be’. That is, English “become” and Swedish “ble” are out.</li>
+** For languages where more copulas are used (e.g. Spanish, Basque, Catalan, Turkish, Kazakh), these are permitted, but only the copulas that are equivalent to English ‘be’. That is, English “become” and Swedish “bli” are out.</li>
   <li>We need to give more detailed guidelines for choosing the predicate in copula sentences when it is not one of the obvious cases (noun, adjective). Idea: use obliqueness hierarchy.</li>
-  <li>We may want to add the subtype <code>nsubj:cop</code> to avoid having to flip dependencies when the predicate is a clause. It may also be used more generally to signal that the subject in copula constructions is special.</li>
+  <li>We should add the subtype <code>nsubj:cop</code> to avoid having to flip dependencies when the predicate is a clause. It should also be used more generally to signal that the subject in copula constructions is special.</li>
 </ul>
 
 <!-- Fran: -->
@@ -333,10 +333,24 @@ nsubj(is, book)
 
 <p>….</p>
 
+<p>In some languages, there can be ambiguities between something being a “bare” copula and an existential copula,</p>
+
+<p>Finnish:
+~~~ sdparse
+Kirja on pöytässä . \n Book on table .
+~~~</p>
+
+<p>Could mean either “(The) book is on (the) table.” or “There is (a) book on (the) table.”</p>
+
 <pre><code class="language-sdparse">Есть книга в столе . \n There.is book on table .
 </code></pre>
 
-<pre><code class="language-sdparse">Была книга в столе . \n Was book on table .
+<p>It can sometimes be disambiguated by the case of the predicate:</p>
+
+<pre><code class="language-sdparse">Был студент в факультете . \n There.was student in faculty .
+</code></pre>
+
+<pre><code class="language-sdparse">Был студентом в факультете . \n Was as.student in faculty .
 </code></pre>
 
 <pre><code class="language-sdparse">C' è un libro sopra il tavolo . \n There is a book on the table .
@@ -468,6 +482,7 @@ punct(Трудно, .)
 <!-- Compare with  "Det finns två viktiga ting att säga om svårigheter i äktenskap ." -->
 
 <pre><code class="language-sdparse">En nödvändig förutsättning är att männen är helt med på saken . \n An important precondition is that the.man is totally onboard about the.thing .
+
 </code></pre>
 
 <h4 id="ambiguities-with-auxiliary-verbs">Ambiguities with auxiliary verbs</h4>
