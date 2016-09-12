@@ -49,7 +49,7 @@
   <li>TO DISCUSS: <code>VerbForm=Trans</code>: Transgressive is a term that comes from Slavic languages and even there it is rare (Czech and Sorbian; other Slavic languages have the form too, but do not call it transgressive). English literature on Slavic languages sometimes uses the term <em>gerund</em> but it is absolutely confusing and unsuitable because it is similar neither in form nor in function to the form we mark <code>VerbForm=Ger</code> in English and Spanish (and BTW these are also quite different from each other, but at least Spanish has the term <em>gerundio</em> as its own, not only as English translation). More neutral terms are adverbial participle or <em>converb</em>, so I would suggest to rename it to <code>VerbForm=Conv</code>.</li>
 </ul>
 
-<h2 id="adding-new-values-to-existing-features">Adding new values to existing features</h2>
+<h2 id="addingremoving-values-tofrom-existing-features">Adding/removing values to/from existing features</h2>
 
 <ul>
   <li>TO DISCUSS: <code>Aspect</code>: DurPerf (tr), DurPerfProg (tr), DurProg (tr), Freq (hu), ProgRapid (tr), Rapid (tr), Res (cu)</li>
@@ -66,6 +66,8 @@
   <li>TO DISCUSS: <code>VerbForm=Stem</code> currently only one occurrence in Swedish. Verb stems also occur regularly in Hindi but they have the function of adverbial participles (converbs, transgressives) there.</li>
   <li>TO DISCUSS: <code>Voice=Auto</code> (ga), CauPass (tr)</li>
   <li><code>Voice=Mid</code> middle voice, currently used in fo, grc, grc_proiel, sa.</li>
+  <li>Remove <code>Tense=Nar</code>. It has not been used anywhere yet. In Turkish, for which it was intended, the renarrative past is encoded as
+<code>Evidentiality=Nfh|Tense=Past</code>. And we are proposing to adopt evidentiality as a new universal feature.</li>
 </ul>
 
 <h2 id="adding-new-features">Adding new features</h2>
@@ -145,7 +147,7 @@ It is questionable whether we want to keep it in UD but I would keep it because 
       <li>Do they have
 temporal <code>Case=Tem</code> (hu);
 distributive <code>Case=Dis</code> (hu)?</li>
-      <li>We should add <code>Case=Equ</code> to the universal features. We already use it in Turkish
+      <li>We should add <code>Case=Equ</code> to the universal features. We already use it in Turkish.
 Similarly, we should add <code>Case=Cmp</code> for comparative (“than X”), occurring in Dravidian and Northeast-Caucasian languages.
 <code>Case=Prp</code> for proprietive (“having X”), a positive counterpart of abessive, occurring in Australian languages.
 <code>Case=Avr</code> for aversive (“fearing X”).
@@ -181,6 +183,25 @@ This feature sometimes overlaps with distance and sometimes is explicitly separa
       <li><code>Verticality</code>, values: <code>ABV</code> (above the level plane of the speaker), <code>EVEN</code> (at the same level), <code>BEL</code> (below the level of the speaker).</li>
     </ul>
   </li>
+  <li><code>Evidentiality</code>, values: <code>FH</code> (firsthand), <code>DRCT</code> (direct), <code>SEN</code> (sensory), <code>VISU</code> (visual), <code>NVSEN</code> (non-visual sensory), <code>AUD</code> (auditory),
+<code>NFH</code> (non-firsthand), <code>QUOT</code> (quotative), <code>RPRT</code> (reported), <code>HRSY</code> (hearsay), <code>INFER</code> (inferred), <code>ASSUM</code> (assumed).
+UD v1 does not have this feature, although we have <code>Mood=Qot</code> (et, lv) and <code>Tense=Nar</code> (re-narrative past tense; the value was intended
+for Turkish but in the end it was not used there, and language-specific <code>Evidentiality=Nfh</code> was introduced instead.
+We propose to make <code>Evidentiality</code> a universal feature in UD v2. Maybe we can just adopt the values used in UniMorph.
+We will have to check how it interacts with the quotative mood in Estonian and Latvian.</li>
+  <li><code>Finiteness</code>, values: <code>FIN</code> (finite), <code>NFIN</code> (nonfinite). We have <code>VerbForm=Fin</code> for finite, any other verbform is nonfinite.</li>
+  <li><code>Gender and Noun Class</code>, values: <code>MASC</code> (masculine), <code>FEM</code> (feminine), <code>NEUT</code> (neuter), <code>BANTU1-23</code> (noun classes in Bantu languages),
+<code>NAKH1-8</code> (noun classes in Nakh-Daghestanian languages). We have <code>Gender=Masc</code>, <code>Fem</code>, <code>Neut</code> for the three genders;
+in addition, we have <code>Gender=Com</code> for the common gender in Scandinavian languages, which only distinguish <em>neutrum</em> (<code>Neut</code>) and <em>utrum</em> (<code>Com</code>).
+At present we do not cover any Bantu or Nakh-Daghestanian language.</li>
+  <li><code>Information Structure</code>, values: <code>TOP</code> (topic), <code>FOC</code> (focus).
+We do not have a feature for information structure but there are not many languages where it is marked via overt affixal morphology.</li>
+  <li><code>Interrogativity</code>, values: <code>DECL</code> (declarative), <code>INT</code> (interrogative). Used for verbs.
+We do not have a feature for this. <code>PronType=Int</code> could be possibly abused to encode verbs with interrogative morpheme,
+but it would be much better not to mix the feature with pronominal types; we also don’t mix <code>Negative=Neg</code> with <code>PronType=Neg</code>.</li>
+  <li>Language-specific features <code>LGSPEC1</code>, <code>LGSPEC2</code> etc. UniMorph uses them to distinguish alternating forms whose selection is not
+tied to meaning. For example, genitive of German <em>Buch</em> is either <em>Buchs</em> or <em>Buches</em>. One form will be <code>LGSPEC1</code> and the other
+<code>LGSPEC2</code>. We do not have anything similar in UD.</li>
 </ul>
 
 <h2 id="stuff-to-check">Stuff to check</h2>
