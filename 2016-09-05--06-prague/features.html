@@ -87,10 +87,18 @@
 <p>General differences:</p>
 
 <ul>
-  <li>We work “bottom-up”. We wait for a feature to appear in a language (or source treebank), then we think about where to put it in the schema. They work “top-down”. They surveyed literature on language typology and collected all features that could possibly occur in any natural language.</li>
-  <li>Their schema “is responsible for capturing only the meanings of overt inflectional morphemes, which considerably limits the semantic space that must be formally described by the UniMorph Schema features.” In contrast, we also include some features that are not inflectional but they provide a more fine-grained partitioning of the part-of-speech space, e.g. <code>PronType</code>.</li>
-  <li>They build upon the Leipzig Glossing Rules and their labels can be applied, if needed, to words, morphemes or phrases. We focus on individual words and don’t mark some complex forms that can be expressed only periphrastically.</li>
-  <li>We need fully qualified feature+value pair to get a unique string, e.g. <code>Degree=Sup</code> is something else than <code>Mood=Sup</code> or <code>Case=Sup</code>. They distinguish “dimensions” (our features) but their values are globally unique even without dimension name.</li>
+  <li>We work “bottom-up”. We wait for a feature to appear in a language (or source treebank), then we think about where to put it in the schema.
+They work “top-down”. They surveyed literature on language typology and collected all features that could possibly occur in any natural language.</li>
+  <li>Their schema “is responsible for capturing only the meanings of overt inflectional morphemes, which considerably limits the semantic space
+that must be formally described by the UniMorph Schema features.”
+In contrast, we also include some features that are not inflectional but they provide a more fine-grained partitioning of the part-of-speech space, e.g. <code>PronType</code>.</li>
+  <li>They build upon the Leipzig Glossing Rules and their labels can be applied, if needed, to words, morphemes or phrases.
+We focus on individual words and don’t mark some complex forms that can be expressed only periphrastically.</li>
+  <li>We need fully qualified feature+value pair to get a unique string, e.g. <code>Degree=Sup</code> is something else than <code>Mood=Sup</code> or <code>Case=Sup</code>.
+They distinguish “dimensions” (our features) but their values are globally unique even without dimension name.
+They also have templatic features (combined of several atoms), and they often rely on feature (value) combinations.
+We have combined values too (e.g. <code>Gender=Masc,Neut</code>) but for us it expresses disjunction, used when we cannot select just one of the values.
+They have disjunction too, but they also mark conjunction of features, or elaboration, e.g. <code>IN+ABL</code>.</li>
 </ul>
 
 <h3 id="unimorph-dimensions-draft-v2">UniMorph dimensions (draft v2)</h3>
@@ -153,6 +161,26 @@ On the other hand, we do not have the equative degree (note that it marks the ad
 the standard of comparison). One of the examples in UniMorph is Estonian <em><b>pikkune</b> (pikkus+ne)</em> “as tall as”.
 UD Estonian contains 6 occurrences of <em>pikkune</em> but it does not define equative as a language-specific feature; it uses simply <code>Degree=Pos</code> here.
 We may want to define the value <code>Degree=Equ</code> and see if anyone uses it.</li>
+  <li><code>Definiteness</code>, values: <code>DEF</code> (definite), <code>INDF</code> (indefinite), <code>SPEC</code> (specific), <code>NSPEC</code> (non-specific).
+The last two are elaboration of indefinite. Specific indefinite: <em>a certain stick</em>; non-specific indefinite: <em>any stick but still only one, not many</em>.
+We have <code>Definite=Def</code> and <code>Definite=Ind</code>.
+If we include the distinction of specificity, it will be just one value cutting off the current <code>Ind</code>, maybe <code>Definite=Spec</code>.
+On the other hand, we have two peculiar values coming from the Prague Arabic Dependency Treebank.
+<code>Definite=Red</code> (reduced) is used for noun that is modified by another noun in genitive and has neither definite nor indefinite morpheme.
+This is also called the <em>construct state</em> and appears in other Semitic languages, e.g. Hebrew.
+<code>Definite=Com</code> (complex) is used in <em>improper annexation / false iḍāfa</em> (related to the construct state but more complex) in Arabic.</li>
+  <li><code>Deixis</code> subclassifies demonstrative pronouns, which in some languages are also used instead of 3rd person pronouns.
+We have only <code>PronType=Dem</code> (or <code>Prs</code>) but we do not distinguish the other dimensions at present.
+At least distance would make sense for the languages we already have in UD, but the original tagsets did not care about it.
+    <ul>
+      <li><code>Distance</code>, values: <code>PROX</code> (proximate), <code>MED</code> (medial), <code>REMT</code> (remote).</li>
+      <li><code>Reference Point</code>, values: <code>REF1</code> (speaker), <code>REF2</code> (addressee), <code>NOREF</code> (distal, i.e. neither speaker nor addressee),
+<code>PHOR</code> (phoric, i.e. either anaphoric or cataphoric; previously mentioned or to be disambiguated).
+This feature sometimes overlaps with distance and sometimes is explicitly separated.</li>
+      <li><code>Visibility</code>, values: <code>VIS</code> (visible), <code>NVIS</code> (not visible).</li>
+      <li><code>Verticality</code>, values: <code>ABV</code> (above the level plane of the speaker), <code>EVEN</code> (at the same level), <code>BEL</code> (below the level of the speaker).</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="stuff-to-check">Stuff to check</h2>
