@@ -81,7 +81,10 @@
 
 <h2 id="valency-changing-operations">Valency-changing operations</h2>
 
-<p>Copy from old proposal.</p>
+<p>The current guidelines distinguish <a href="">u-dep/nsubjpass</a>, <a href="">u-dep/csubjpass</a>, and <a href="">u-dep/auxpass</a> from <a href="">u-dep/nsubj</a>, <a href="">u-dep/csubj</a> and <a href="">u-dep/aux</a> to capture the fact that the subject of a passive has a different role than the subject of the corresponding active verb. While this is useful for many NLP applications of UD, it seems to go against the general spirit in UD of annotating syntactic functions rather than semantic roles. A possible counterargument is that passive is a grammaticalized process and therefore part of syntax, but it seems we should then treat other valency-changing operations like causative and antipassive in the same way. Not only would this lead to a proliferation of grammatical relations, it would also go against the lexicalist stance in UD, which seems to favor a lexicalist analysis of these operations (as in LFG, for example).</p>
+
+<p>Our proposal is therefore that we get rid of the core argument relations <a href="">u-dep/nsubjpass</a> and <a href="">u-dep/csubjpass</a> and instead encode information about valency-changing operations only on the predicate. If the valency-changing operation is encoded morphologically (either as inflection or as derivation), it can be encoded using a morphological feature like Voice=Pass or Voice=Caus. If it is encoded periphrastically, this option is not directly applicable and we therefore
+propose to preserve the information encoded in the <a href="">u-dep/auxpass</a> relation, but to make it a language-specific option, hence <em>aux:pass</em>. This also opens up for relations like <em>aux:caus</em> for languages that has a periphrastic causative construction.</p>
 
 <h2 id="splitting-the-nmod-relation">Splitting the nmod relation</h2>
 
