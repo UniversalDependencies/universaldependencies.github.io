@@ -137,8 +137,22 @@ It is questionable whether we want to keep it in UD but I would keep it because 
       <li>Do they have
 temporal <code>Case=Tem</code> (hu);
 distributive <code>Case=Dis</code> (hu)?</li>
+      <li>We should add <code>Case=Equ</code> to the universal features. We already use it in Turkish
+Similarly, we should add <code>Case=Cmp</code> for comparative (“than X”), occurring in Dravidian and Northeast-Caucasian languages.
+<code>Case=Prp</code> for proprietive (“having X”), a positive counterpart of abessive, occurring in Australian languages.
+<code>Case=Avr</code> for aversive (“fearing X”).
+As for the local cases, there are too many possible combinations and we should probably wait until the need for one of them arises.</li>
     </ul>
   </li>
+  <li><code>Comparison</code>, values: <code>CMPR</code> (comparative), <code>SPRL</code> (superlative), <code>AB</code> (absolute for superlatives), <code>RL</code> (relative for superlatives), <code>EQT</code> (equative).
+We have <code>Degree=Cmp</code> for comparative, <code>Degree=Sup</code> for relative superlative (<code>SPRL+RL</code>) and <code>Degree=Abs</code> for absolute superlative (<code>SPRL+AB</code>).
+We also have <code>Degree=Pos</code> (positive) that denotes the basic degree, i.e. adjective that is not compared.
+This comes from traditional grammars of various languages, although it would be possible to tag such adjectives by omitting the <code>Degree</code> feature.
+We could not distinguish adjectives that cannot take the comparative/superlative morphemes, but in fact we avoid that distinction with most features.
+On the other hand, we do not have the equative degree (note that it marks the adjective and it is distinct from the equative case, which marks
+the standard of comparison). One of the examples in UniMorph is Estonian <em><b>pikkune</b> (pikkus+ne)</em> “as tall as”.
+UD Estonian contains 6 occurrences of <em>pikkune</em> but it does not define equative as a language-specific feature; it uses simply <code>Degree=Pos</code> here.
+We may want to define the value <code>Degree=Equ</code> and see if anyone uses it.</li>
 </ul>
 
 <h2 id="stuff-to-check">Stuff to check</h2>
