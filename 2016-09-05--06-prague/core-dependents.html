@@ -142,7 +142,7 @@ case(John, to)
 <p>Our proposal is therefore that we get rid of the core argument relations <a href="">u-dep/nsubjpass</a> and <a href="">u-dep/csubjpass</a> and instead encode information about valency-changing operations only on the predicate. If the valency-changing operation is encoded morphologically (either as inflection or as derivation), it can be encoded using a morphological feature like Voice=Pass or Voice=Caus. If it is encoded periphrastically, this option is not directly applicable and we therefore
 propose to preserve the information encoded in the <a href="">u-dep/auxpass</a> relation, but to make it a language-specific option, hence <strong>aux:pass</strong>. This also opens up for relations like <strong>aux:caus</strong> for languages that has a periphrastic causative construction.</p>
 
-<div id="s7" class="sd-parse">
+<div id="s8" class="sd-parse">
 she was invited to the party
 nsubj(invited, she)
 aux:pass(invited, was)
@@ -153,7 +153,7 @@ case(party, to)
 
 <h2 id="split-the-nmod-relation-into-anom-and-advnom">Split the nmod relation into anom and advnom</h2>
 
-<p>One of the cornerstones of the UD taxonomy of syntactic relations is the distinction between three main types of linguistic structures: clauses, nominals and modifier words. These structures can in turn be used to modify either predicates or nominals and for modifier words and clauses we use different syntactic relations for these two cases:</p>
+<p>One of the cornerstones of the UD taxonomy of syntactic relations is the distinction between three main types of linguistic structures: clauses, nominals and modifier words. These structures can in turn be used to modify either predicates or nominals. For modifier words and clauses we use different syntactic relations for these two cases:</p>
 
 <ul>
   <li><a href="">u-dep/amod</a>/<a href="">u-dep/acl</a> is used for a modifier/clause that attaches to a nominal</li>
@@ -161,18 +161,55 @@ case(party, to)
 </ul>
 
 <p>But in the case of nominals, the <a href="">u-dep/nmod</a> has to double duty and cover both adnominal and adverbial uses of 
-nominals. This is problematic especially in nominal clauses, where the category of the head does not disambiguate 
-between the two uses. We therefore propose that the <a href="">u-dep/nmod</a> relation is replaced by two relations called 
-<em>anom</em> and <em>advnom</em> to complete the following naming schema:</p>
+nominals. Compare the following examples:</p>
+
+<div id="s9" class="sd-parse">
+amod(car, red)
+</div>
+
+<div id="s10" class="sd-parse">
+the car that is red
+acl(car, red)
+</div>
+
+<div id="s11" class="sd-parse">
+the car in the street
+nmod(car, street)
+</div>
+
+<div id="s12" class="sd-parse">
+they ran quickly 
+advmod(ran, quickly)
+</div>
+
+<div id="s13" class="sd-parse">
+they ran when the bell sounded 
+advcl(ran, sounded)
+</div>
+
+<div id="s14" class="sd-parse">
+they ran to the forest 
+nmod(ran, forest)
+</div>
+
+<p>This is problematic especially in nominal clauses, where the category of the head does not disambiguate 
+between the two uses.</p>
+
+<div id="s15" class="sd-parse">
+she is a doctor of medicine  
+nmod(doctor, medicine)
+</div>
+
+<div id="s16" class="sd-parse">
+she is a doctor at the hospital  
+nmod(doctor, hospital)
+</div>
+
+<p>We therefore propose that the <a href="">u-dep/nmod</a> relation is split into two relations, one for adnominal and one for adverbial modification. We propose the names <strong>anom</strong> for the former and <strong>advnom</strong> for the latter. In this way, all modifier relations will satisfy the following pattern:</p>
 
 <ul>
-  <li>aX = an X modifying a nominal</li>
-  <li>
-    <p>advX = an X modifying a predicate (or adjective or adverb)</p>
-  </li>
-  <li>Ycl = a clause with function Y</li>
-  <li>Ynom = a nominal with function Y</li>
-  <li>Ymod = a modifier word with function Y</li>
+  <li>Adnominal modifiers are named aX, where X is cl (clause), nom (nominal) or modifier word (mod).</li>
+  <li>Adverbial modifiers are named advX, where X is cl (clause), nom (nominal) or modifier word (mod).</li>
 </ul>
 
 <h2 id="to-discuss">To discuss</h2>
