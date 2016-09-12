@@ -100,6 +100,36 @@
   <li><code>Animacy</code>, values: <code>ANIM</code> (animate), <code>INAN</code> (inanimate), <code>HUM</code> (human), <code>NHUM</code> (non-human). In UD we don’t have human but we do have the other three. We treat animacy as a scale of either two values (animate, inanimate), or three values (animate, non-human, inanimate). In the latter case (which so far appears only in UD Polish), the animate value is interpreted as human-only, while in other languages it includes animals. We could add the human value but note that this is not the only feature where a value has shifting semantic contents. For example, <code>Number=Plur</code> normally means “more than one”, but in languages with dual it means “more than two”.</li>
   <li><code>Argument Marking</code> for head-marking languages. UniMorph uses templatic features <code>ARG</code>+<code>Case</code>+<code>Person</code>+<code>Number</code>, e.g. <code>ARGNO1S</code> means that the nominative argument of the current verb is 1st person singular. Available cases are nominative, accusative, absolutive, ergative, dative, benefactive. We mostly only need to annotate agreement of the verb with its subject, i.e. the nominative argument, and we use the <code>Person</code> and <code>Number</code> features of the verb for this. So far only Basque needs more, as the verbs may agree there with up to three arguments (absolutive, ergative and dative). We use the layered features, i.e. <code>Person[abs]</code>, <code>Person[erg]</code>, <code>Person[dat]</code>, <code>Number[abs]</code> etc.</li>
   <li><code>Aspect</code>, values: <code>IPFV</code> (imperfective), <code>PFV</code> (perfective), <code>PRF</code> (perfect), <code>PROG</code> (progressive), <code>PROSP</code> (prospective), <code>ITER</code> (iterative), <code>HAB</code> (habitual). Their aspect + aktionsart is not compatible with our aspect, although we have a few values in common (perfect/ive, imperfective, progressive, prospective). We also mix aspect with tense by allowing <code>Tense=Imp</code> or <code>Pqp</code>.</li>
+  <li><code>Case</code>
+    <ul>
+      <li>Core case: can be defined in terms of three “meta-arguments,” S (subject), A (agent), and P (patient). Values:
+<code>NOM</code> (nominative; <code>Case=Nom</code>), <code>ACC</code> (accusative; <code>Case=Acc</code>), <code>ERG</code> (ergative; <code>Case=Erg</code>), <code>ABS</code> (absolutive; <code>Case=Abs</code>), <code>NOMS</code> (nominative, subject only).
+We have all these values, except that we do not distinguish <code>NOMS</code> from <code>NOM</code>.</li>
+      <li>Non-core, non-local case: <code>DAT</code> (dative; <code>Case=Dat</code>), <code>BEN</code> (benefactive; <code>Case=Ben</code>), <code>PRP</code> (purposive),
+<code>GEN</code> (genitive; <code>Case=Gen</code>), <code>REL</code> (relative), <code>PRT</code> (partitive; <code>Case=Par</code>),
+<code>INS</code> (instrumental; <code>Case=Ins</code>), <code>COM</code> (comitative; <code>Case=Com</code>), <code>VOC</code> (vocative; <code>Case=Voc</code>),
+<code>COMPV</code> (comparative), <code>EQTV</code> (equative), <code>PRIV</code> (privative), <code>PROPR</code> (proprietive),
+<code>AVR</code> (aversive), <code>FRML</code> (formal), <code>TRANS</code> (translative; <code>Case=Tra</code>), <code>BYWAY</code> (essive modal).
+We currently lack values of 9 cases in this category, although equative seems to already occur in our Turkish data (if it is what <code>Case=Equ</code> refers to).</li>
+      <li>Local / place: <code>INTER</code> (“among”), <code>AT</code> (“at”), <code>POST</code> (“behind”), <code>IN</code> (“in”), <code>CIRC</code> (“near”), <code>ANTE</code> (“near, in front of”), <code>APUD</code> (“next to”),
+<code>ON</code> (“on”), <code>ONHR</code> (“on” horizontal), <code>ONVR</code> (“on” vertical), <code>SUB</code> (“under”).</li>
+      <li>Local / distance: <code>REM</code> (distal), <code>PROX</code> (proximate).</li>
+      <li>Local / motion: <code>ESS</code> (essive), <code>ALL</code> (allative), <code>ABL</code> (ablative).</li>
+      <li>Local / aspect: <code>APPRX</code> (approximative), <code>TERM</code> (terminative), <code>PROL</code> (prolative/translative), <code>VERS</code> (versative).</li>
+      <li>UD has <code>Case=Loc</code>, which is used in a number of Indo-European languages (especially Slavic) but also in Basque, Turkish and others.
+It has mostly a locative meaning, where the placement and direction are not precisely specified. It can also have a non-locative meaning.
+There does not seem to be a direct counterpart of the locative case in UniMorph.</li>
+      <li>The UniMorph draft accounts for compositionality of locative morphemes in some languages: “from [the place] between us” could be encoded as <em>we</em> + <code>INTER</code> + <code>ABL</code>.
+In contrast, we use established terms for some of the combinations but definitely cannot encode all possible combinations in all languages.
+Our local cases are:
+inessive (<code>Case=Ine</code>; <code>IN+ESS</code>); illative (<code>Case=Ill</code>; <code>IN+ALL</code>); elative (<code>Case=Ela</code>; <code>IN+ABL</code>);
+adessive (<code>Case=Ade</code>; <code>ON/AT+ESS</code>); allative (<code>Case=All</code>; <code>ON/AT+ALL</code>); ablative (<code>Case=Abl</code>; <code>ON/AT+ABL</code>);
+superessive (<code>Case=Sup</code>; <code>ON/ONVR+ESS</code>); sublative (<code>Case=Sub</code>; <code>ON+ALL</code>); delative (<code>Case=Del</code>; <code>ON/ONVR+ABL</code>);
+lative (<code>Case=Lat</code>; <code>ALL</code>, i.e. it says it’s motion towards something, without distinguishing on/at/in/under).</li>
+      <li>Do they have abessive <code>Case=Abe</code>; additive <code>Case=Add</code>; temporal <code>Case=Tem</code>; terminative / terminal allative (<code>Case=Ter</code>);
+causative <code>Case=Cau</code>?</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="stuff-to-check">Stuff to check</h2>
