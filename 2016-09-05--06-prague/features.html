@@ -202,6 +202,29 @@ but it would be much better not to mix the feature with pronominal types; we als
   <li>Language-specific features <code>LGSPEC1</code>, <code>LGSPEC2</code> etc. UniMorph uses them to distinguish alternating forms whose selection is not
 tied to meaning. For example, genitive of German <em>Buch</em> is either <em>Buchs</em> or <em>Buches</em>. One form will be <code>LGSPEC1</code> and the other
 <code>LGSPEC2</code>. We do not have anything similar in UD.</li>
+  <li><code>Mood</code>, values: <code>IND</code> (indicative, <code>Mood=Ind</code>), <code>SBJV</code> (subjunctive, <code>Mood=Sub</code>), <code>REAL</code> (realis), <code>IRR</code> (irrealis), <code>AUPRP</code> (Australian purposive),
+<code>AUNPRP</code> (Australian non-purposive), <code>IMP</code> (imperative-jussive, <code>Mood=Imp</code>, <code>Mood=Jus</code>), <code>COND</code> (conditional, <code>Moos=Cnd</code>),
+<code>PURP</code> (general purposive, “in order to”), <code>INTEN</code> (intentive), <code>POT</code> (potential, <code>Mood=Pot</code>), <code>LKLY</code> (likely),
+<code>ADM</code> (admirative), <code>OBLIG</code> (obligative, <code>Mood=Nec</code>), <code>DEB</code> (debitive, <code>Mood=Nec</code>), <code>PERM</code> (permissive), <code>DED</code> (deductive), <code>SIM</code> (simulative, “as if”),
+<code>OPT</code> (optative-desiderative, <code>Mood=Opt</code>, <code>Mood=Des</code>).
+    <ul>
+      <li>We do not have realis and irrealis but I wonder whether we actually have to distinguish them from indicative and subjunctive, respectively.</li>
+      <li>There are no Australian languages in UD at present, and we do not encode the Australian purposive vs. non-purposive.
+The discussion in UniMorph suggests that the non-purposive vs. purposive opposition can be viewed as on par with
+the realis vs. irrealis and indicative vs. subjunctive oppositions.</li>
+      <li>Imperatives are direct commands for the addressee while hortatives and jussives include more suggestive forms,
+such as “let them/us X”. They just conflate all three to <code>IMP</code> (imperative-jussive).
+We have a separate label for jussive but we only use it in Arabic. Nevertheless, Arabic also has the imperative, so it makes sense to distinguish the two values.</li>
+      <li>UniMorph conflates optative and desiderative into one mood, <code>OPT</code>, while we have both <code>Mood=Opt</code> and <code>Mood=Des</code>.
+UD Turkish uses both values but the Turkish documentation says that desiderative is morphologically identical to conditional, so it is questionable whether we want to keep <code>Des</code> there.
+In addition, optative is used in Finnish, Gothic, Ancient Greek and Sanskrit.</li>
+      <li>UniMorph distinguishes debitive from obligative while we have only one corresponding value, necessitative.</li>
+      <li>Other moods that are used in UD Turkish: <code>Abil</code>, <code>AbilCnd</code>, <code>AbilDes</code>, <code>AbilGen</code>, <code>AbilGenNec</code>, <code>AbilImp</code>, <code>AbilNec</code>, <code>AbilPrs</code>,
+<code>Gen</code>, <code>GenNec</code>, <code>Prs</code>. The <code>Abil</code> should probably be replaced by the universal feature <code>Mood=Pot</code> (potential).
+<code>Prs</code> means persuasive, reportedly related to imperative but different in that we try to persuade the addressee to do something instead of just commanding.</li>
+      <li>We currently lack values for purposive, intentive, admirative, permissive, deductive and simulative, and we may want to add them.</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="stuff-to-check">Stuff to check</h2>
