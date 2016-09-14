@@ -225,6 +225,62 @@ In addition, optative is used in Finnish, Gothic, Ancient Greek and Sanskrit.</l
       <li>We currently lack values for purposive, intentive, admirative, permissive, deductive and simulative, and we may want to add them.</li>
     </ul>
   </li>
+  <li><code>Number</code>, values: <code>SG</code> (singular, <code>Number=Sing</code>), <code>PL</code> (plural, <code>Number=Plur</code>), <code>DU</code> (dual, <code>Number=Dual</code>), <code>TRI</code> (trial), <code>PAUC</code> (paucal),
+<code>GPAUC</code> (greater paucal), <code>GRPL</code> (greater plural), <code>INVN</code> (inverse).
+    <ul>
+      <li>We may want to add values <code>Number=Tri</code>, <code>Pauc</code>, <code>Grpa</code>, <code>Grpl</code>, <code>Inv</code>.</li>
+      <li>We have two additional values, <code>Ptan</code> (plurale tantum) and <code>Coll</code> (singulare tantum), which may be viewed as elaboration of <code>Sing</code> and <code>Plur</code>, respectively,
+and which encode an inherent property of nouns rather than inflection. Agreeing adjectives and verbs never take this value, they use <code>Sing</code> and <code>Plur</code> instead.</li>
+    </ul>
+  </li>
+  <li><code>Part of Speech</code>, values: <code>N</code> (noun), <code>PROPN</code> (proper name), <code>ADJ</code> (adjective), <code>PRO</code> (pronoun), <code>CLF</code> (classifier), <code>ART</code> (article),
+<code>DET</code> (determiner), <code>V</code> (verb), <code>ADV</code> (adverb), <code>AUX</code> (auxiliary), <code>V.PTCP</code> (participle, verbal adjective), <code>V.MSDR</code> (masdar, verbal noun), <code>V.CVB</code> (converb, verbal adverb),
+<code>ADP</code> (adposition), <code>COMP</code> (complementizer), <code>CONJ</code> (conjunction), <code>NUM</code> (numeral), <code>PART</code> (particle), <code>INTJ</code> (interjection)
+    <ul>
+      <li>We do not have a separate tag for classifiers. I believe that we subsume them under nouns in UD Chinese.</li>
+      <li>We subsume articles within determiners but we distinguish them by <code>PronType=Art</code>.</li>
+      <li>We do not treat participles, verbal nouns and verbal adverbs as separate parts of speech.
+We distinguish them by the <code>VerbForm</code> feature and we allow language-specific guidelines to put them under <code>VERB</code>, or under <code>ADJ/NOUN/ADV</code>.
+Our v1 guidelines propose to call verbal nouns gerunds (<code>VerbForm=Ger</code>). This is motivated by the English gerunds but it should
+probably be revised because the term has quite different meaning in different languages, which causes confusion.
+On the other hand, I do not quite like the term <em>masdar</em> used in UniMorph, which is taken from Arabic but not widely understood elsewhere.
+Perhaps <code>VerbForm=Vnoun</code> would be enough? (Note that infinitives can also be used like nouns in some languages; these would keep <code>VerbForm=Inf</code>.)
+In contrast, I find the term <em>converb</em> (Haspelmath, 1995) quite appropriate and language-neutral. We currently use <code>VerbForm=Trans</code> (transgressive)
+but this term turned out to be known only in a few Slavic languages. So we may either rename it to <code>VerbForm=Conv</code>, or maybe `VerbForm=Vadv (verbal adverb, adverbial participle).</li>
+      <li>They have a tag for auxiliary verbs while we are now proposing to get rid of it.</li>
+      <li>Unlike us, they conflate coordinating and subordinating conjunctions in one tag <code>CONJ</code>.
+However, they have a separate tag for complementizers while we include them in <code>SCONJ</code>.</li>
+      <li>Like us, they distinguish <code>NUM</code>, <code>PART</code> and <code>INTJ</code>. They actually refer to us when explaining why they include these categories.</li>
+    </ul>
+  </li>
+  <li><code>Person</code>, values: <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>INCL</code> (inclusive <em>we</em>), <code>EXCL</code> (exclusive <em>we</em>), <code>PRX</code> (proximate), <code>OBV</code> (obviative).
+We have only the classical 1st–3rd persons. Zero person is for impersonal statements, appears in Finnish as well as in Santa Ana Pueblo Keres.
+The fourth person is used in some languages to describe an otherwise third-person referent that is differentiated from other third-person referents.
+Clusivity could be encoded as a separate language-specific feature, which would be in line with UniMorph, which combines <code>1+INCL</code> or <code>1+EXCL</code>.</li>
+  <li><code>Polarity</code>, values: <code>NEG</code> (negative), <code>POS</code> (positive, affirmative). We have been calling the feature <code>Negative(ness)</code> but we propose to rename it to <code>Polarity</code> in UD v2.</li>
+  <li><code>Politeness</code>: ve have it only as a language-specific feature, used rarely.
+    <ul>
+      <li>Speaker-Referent Axis (whether or not the referent happens to also be the addressee).
+<code>INFM</code> (informal; the <em>tu</em> 2nd person singular pronoun in Indo-European languages.
+<code>FORM</code> (formal; the <em>vous</em> 2nd person singular pronoun in Indo-European languages.
+Sublevels of the formal level:
+<code>FORM+ELEV</code> (referent elevating; sonkeigo forms in Japanese).
+<code>FORM+HUMB</code> (speaker humbling; kenjougo forms in Japanese).</li>
+      <li>Speaker-Addressee Axis (not referring to the addressee).
+Japanese teineigo is an example of an addressee honorific system.
+<code>POL</code> (polite), <code>MPOL</code> (medium polite).</li>
+      <li>Speaker-Bystander Axis.
+<code>AVOID</code> (avoidance style, taboo language = used in the presence of anyone to whom the avoidance relationship applies, e.g. mother-in-law),
+<code>LOW</code> (low status = language used in the presence of only those having a low status),
+<code>HIGH</code> (high status = in the presence of the secondary chief(tess)),
+<code>STELV</code> (elevated status = in the presence of the primary chieftess),
+<code>STSUPR</code> (supreme status = in the presence of the primary chief).
+The neutral level is unspecified.</li>
+      <li>Speaker-Setting Axis; referred to as <em>register</em> in sociolinguistics.
+<code>LIT</code> (literary, <code>Style=Form</code>), <code>FOREG</code> (formal register, <code>Style=Form</code>), <code>COL</code> (colloquial, <code>Style=Coll</code>).
+We have corresponding features in the section of language-specific extensions but they are currently used only in a few treebanks (cs, da, fi).</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="stuff-to-check">Stuff to check</h2>
