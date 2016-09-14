@@ -125,7 +125,7 @@ nsubj(does-6, Peter-5)
 advmod(does-6, too-8)
 </code></pre>
 
-<p><strong>Open questions:</strong></p>
+<p><strong>To discuss:</strong></p>
 
 <p>Should we also promote adverbial modifiers as in the following example? (<strong>Sebastian</strong>: I think we should not because of the weird <code>nsubj</code> relation between the subject and the adverb, and instead treat such examples the same way we treat predicate ellipsis.)</p>
 
@@ -145,19 +145,24 @@ nsubj(too-11, Peter-9)
 nsubj(will-2, They-1)
 aux(do-3, will-2)
 dobj(it-4, do-3)
-advcl(want-7, they-6)
+advcl(do-3, want-7)
+nsubj(want-7, they-6)
 xcomp(want-7, to-8)
 </code></pre>
 
-<h3 id="modifiers">Modifiers</h3>
+<h2 id="predicate-ellipsis-in-basic-ud-v2">Predicate ellipsis in <em>Basic</em> UD v2</h2>
 
-<p>If the head of a modifier phrase is elided, we promote if there is an <code>advmod</code> (or equivalent).</p>
+<p>In more complicated cases where a predicate is elided but no <code>aux</code> or <code>cop</code> is present, promotion would lead to very unnatural and confusing relations. For example, in the following sentence, <em>you</em> would be the subject of <em>coffee</em>, suggesting that the second clause contains a copular construction rather than an elided predicate.</p>
 
-<p>@Joakim: Did you have an example in mind when you wrote that? I couldn’t think of one in English or German.</p>
+<pre><code class="language-sdparse">I like tea and you coffee .
 
-<h2 id="predicate-ellipsis-in-basic-ud-v2">Predicate ellipsis in Basic UD v2</h2>
+nsubj(like-2, I-1)
+dobj(like-2, tea-3)
+nsubj(coffee-6, you-5)
+conj(like-2, coffee-6)
+</code></pre>
 
-<p>In more complicated cases where a predicate is elided but no <code>aux</code> or <code>cop</code> is present, we attach orphans to their grandparent with a composite relation of the form <code>headrel&gt;orphanrel</code>.</p>
+<p>We therefore propose to attach orphans to their grandparent with a composite relation of the form <code>headrel&gt;orphanrel</code>.</p>
 
 <p>Example:</p>
 
@@ -171,16 +176,16 @@ conj&gt;dobj(like-2, coffee-6)
 
 <p>If the grandparent is also elided, the relation is composed of all three relations and the orphan is attached to its great-grandparent.</p>
 
-<p>Example:
-~~~ sdparse
-Mary wants to buy a book and Jenny a CD .</p>
+<p>Example:</p>
 
-<p>nsubj(wants-2, Mary-1)
+<pre><code class="language-sdparse">Mary wants to buy a book and Jenny a CD .
+
+nsubj(wants-2, Mary-1)
 xcomp(wants-2, buy-4)
 dobj(buy-4, book-6)
 conj&gt;nsubj(wants-2, Jenny-8)
 conj&gt;xcomp&gt;dobj(wants-2, CD-10)
-~~~</p>
+</code></pre>
 
 <p>Unlike the analysis using the <code>remnant</code> relation, this proposal also allows us to analyze sentences in which the second clause contains additional modifiers.</p>
 
@@ -192,7 +197,45 @@ conj&gt;nsubj(left, many)
 conj&gt;nmod(left, good)
 </code></pre>
 
-<h2 id="predicate-ellipsis-in-enhanced-ud-v2">Predicate ellipsis in Enhanced UD v2</h2>
+<h2 id="predicate-ellipsis-in-enhanced-ud-v2">Predicate ellipsis in <em>Enhanced</em> UD v2</h2>
+
+<p>While we hold on to the principle that <em>basic</em> UD trees have to be strict surface syntax trees, we propose to relax this requirement in the <em>enhanced</em> representation and to allow special null nodes for sentences with elided predicates. These nodes have special word indices of the form <em>a.b</em>, where <em>a</em> is the index of the token that would precede the elided word and <em>b</em> is a counter. (See also the description of the <a href="conll-u.html">proposed changes</a> to the CoNLL-U file format.) Whenever the <em>basic</em> representation contains a composite relation, the <em>enhanced</em> representation contains additional null nodes to resolve all composite relations into simple relations.</p>
+
+<p>For example, the sentences from the previous section are analyzed as following in the <em>enhanced</em> representation. (The special null nodes are labelled with <em>Ea.b</em> .)</p>
+
+<pre><code class="language-sdparse">I like tea and you E5.1 coffee .
+
+nsubj(like-2, I-1)
+dobj(like-2, tea-3)
+nsubj(E5.1-6, you-5)
+conj(like-2, E5.1-6)
+dobj(E5.1-6, coffee-7)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book and Jenny E8.1 E8.2 a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+dobj(buy-4, book-6)
+conj(wants-2, E8.1-9)
+nsubj(E8.1-9, Jenny-8)
+xcomp(E8.1-9, E8.2-10)
+dobj(wants-2, CD-12)
+</code></pre>
+
+<pre><code class="language-sdparse">They had left the company , many E7.1 for good .
+
+nsubj(left, They)
+dobj(left, company)
+conj&gt;nsubj(left, many)
+conj&gt;nmod(left, good)
+</code></pre>
+
+<p>In the first example, the node <em>E5.1</em> is added for the elided predicate <em>like</em>. In the second example, we add one node for the elided matrix verb <em>wants</em> (<em>E8.1</em>) and one node for the elided embedded verb <em>buy</em> (<em>E8.2</em>). As the elided marker <em>to</em> does not have any dependents, we do not add a null node for it.</p>
+
+<p><strong>To discuss:</strong></p>
+
+<p>Should we also have a link between the null nodes and their corresponding surface forms in the sentence (e.g., linking <em>E5.1</em> to <em>like</em> in the first example)? (<strong>Sebastian</strong>: I think we should have this information somewhere. If the maintainers of a treebank actually go through all examples of predicate ellipsis to add null nodes, then it wouldn’t be much more work to specify the corresponding surface form in the sentence and this information could potentially be very useful.)</p>
 
 
 
