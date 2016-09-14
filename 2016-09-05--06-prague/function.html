@@ -39,550 +39,1073 @@
 
           <h1 id="function-words-in-ud-v2">Function words in UD v2</h1>
 
-<!-- Background -->
+<h2 id="general-guidelines">General guidelines</h2>
 
-<h2 id="references">References</h2>
-
-<h1 id="httpuniversaldependenciesorgudepcophtml">http://universaldependencies.org/u/dep/cop.html</h1>
-<p>#  https://github.com/UniversalDependencies/docs/issues/329
-# http://universaldependencies.org/2015-08-23-uppsala/copula.html
-# https://github.com/UniversalDependencies/docs/issues/256</p>
-
-<h2 id="copula-constructions">Copula constructions</h2>
-
-<h3 id="status-quo">Status quo</h3>
-
-<!-- Some languages have very many copula verbs -->
+<p>However, if there are no clear guidelines, then we should follow the following principles:</p>
 
 <ul>
-  <li>Languages are inconsistent with how they treat copula constructions. Some languages are very permissive with copula verbs (e.g. French has over 50 finite verbs with the <code>cop</code> relation).</li>
+  <li>There should be only one copula in a language. In languages such as those of the Iberian Romance group, Basque etc. where there is a “state” copula and “essence” copula, then the state one should get the <code>cop</code> relation. This will cause minor between group differences, between e.g. Spanish and Catalan ({spa} <em>Ella está en Barcelona</em>, {cat} <em>Ella és a Barcelona</em>), but these show real differences. However, if the copula is defective and is filled with different verbs in different tenses (e.g. Turkish, Kazakh), this is fine.
+    <ul>
+      <li>Subjects of copulas should receive a special label, either <code>nsubjcop</code> or <code>nsubj:cop</code>. This has several benefits, including solving the problem of double subjects. “My baking cakes is your making soup.”</li>
+    </ul>
+  </li>
+  <li>In general, with the meaning <code>is of type</code> or <code>has quality</code>, we have the type/quality as the head and the copula as the dependent.
+    <ul>
+      <li>For languages without state/essence distinction, then there is inherent ambiguity with being “X” and being in a state of “X”, this is most clear with PPs, where “She is on the ball” will have different meaning if it’s state or essence, consider “She is really on the ball”.</li>
+    </ul>
+  </li>
+  <li>If it isn’t <code>is of type</code> or <code>has quality</code>, such as with most PPs in English, and case-marked nouns in Finnish then we have the verb as head, and the subject is with <code>nsubj</code>.
+    <ul>
+      <li>This is also extended to “existential” constructions in English, with the verb as head, “There” as <code>expl</code> and the thing existing as <code>nsubj</code>.</li>
+    </ul>
+  </li>
+  <li>If the copula is not present, then we have two options, the first is to use the new system for ellipsis (see <a href="ellipsis.html">ellipsis</a>, for these languages this would entail basic sentences having two (or more) dependents of the root node, “Она в деревне.” root&gt;nsubj(Она) + root&gt;nmod(деревне) The alternative is to have a new language-specific category of nsubj which would indicate that this is a specific kind of subject, or that we have some missing matter. “Она в деревне.” root(деревне) + nsubj:loc(деревне,Она)</li>
+  <li>In languages where the copula is a verb, for verbs other than the prototypical copula (e.g. be), the argument should be <code>xcomp</code>.</li>
+  <li>We should have a way of distinguishing <code>nmod</code> when it attaches to clauses and nominals, see <a href="core-dependents.html">core dependents</a></li>
 </ul>
 
-<!-- Lasai nago | pozik nago -->
+<h2 id="language-specific-examples">Language-specific examples</h2>
 
-<h3 id="from-the-meeting">From the meeting</h3>
+<p>For the purposes of demonstrating the new classification system a number of examples have been prepared for a range of UD languages. The examples are in English, but where they are ambiguous in a given language both variants will be given.</p>
 
-<ul>
-  <li>For copulas, we should be maximally restrictive with respect to which words can be copulas (only one word in most languages) but maximally permissive when it comes to treating this word as a copula. Basically, the copula should never be the root, except through promotion (“he is not happy, but she is”). 
-** That is: Any situation where we link a subject to “more information” should be considered copula 
-** For languages where more copulas are used (e.g. Spanish, Basque, Catalan, Turkish, Kazakh), these are permitted, but only the copulas that are equivalent to English ‘be’. That is, English “become” and Swedish “bli” are out.</li>
-  <li>We need to give more detailed guidelines for choosing the predicate in copula sentences when it is not one of the obvious cases (noun, adjective). Idea: use obliqueness hierarchy.</li>
-  <li>We should add the subtype <code>nsubj:cop</code> to avoid having to flip dependencies when the predicate is a clause. It should also be used more generally to signal that the subject in copula constructions is special.</li>
-</ul>
+<p>01) She is a student
+02) I am a student
+03) She was a student
+04) I was a student
+05) She is happy
+06) I am happy
+07) She is in shape
+08) She is in the house
+09) I am in the house
+10) She was in the house
+11) There is a house in the village
+12) The house is in the village
+13) There was a house in the village
+14) The house was in the village</p>
 
-<!-- Fran: -->
+<p>These are examples where both sides are nominals, but they could be extended to clausals, e.g.</p>
 
-<ul>
-  <li>We may want to be able to distinguish <code>nmod</code> when it attaches to clauses and when it attaches to nominals (e.g. “I am a teacher this morning”, “I am a teacher in the university.”)</li>
-</ul>
+<p>15) To be free is to be capable of thinking one’s own thoughts
+16) This period is when Aristotle is believed to have lived</p>
 
-<h3 id="examples-and-recommendation">Examples and recommendation</h3>
+<p>The analysis of (15) will follow (05) and (06), while the analysis of (16) will follow (12).</p>
 
-<p>Copulas are often used for:</p>
+<h3 id="english">English</h3>
 
-<ul>
-  <li>Simple predication
-** This includes nominals (nouns, adjectives) and also nominal like/more fixed PPs (in shape)</li>
-  <li>Indicating location in time or space of something</li>
-  <li>Existential constructions, indicating that something exists</li>
-</ul>
+<p>The English analysis more or less follows the analysis in the <code>UD_English</code> treebank, with the addition of the relation <code>nsubj:cop</code> for subjects of copula constructions.</p>
 
-<p>Recommendation:</p>
-
-<ul>
-  <li>Use the <code>cop</code> relation for predication and location, this maximises similarity between languages 
-** All subjects of in these constructions should receive <code>nsubj:cop</code></li>
-  <li>Use copula as <code>root</code> for existential structures “There is a book on the table”
-** The subject should be a simple <code>nsubj</code></li>
-</ul>
-
-<h4 id="simple-predication">Simple predication</h4>
-
-<p>People are generally happy with the copula being a dependent of the predicating 
-element where it is a noun or an adjective. As mentioned in the documentation this improves 
-crosslingual consistency.</p>
-
-<p>English: 
+<p>(1)
 ~~~ sdparse
-She is a student .
-cop(student, is)
-det(student, a)
+She is a student
+root(student)
 nsubj:cop(student, She)
-punct(student, .)
+cop(student, is)
 ~~~</p>
 
-<p>Russian:
+<p>(2)
 ~~~ sdparse
-Она студент . \n She student .
-nsubj:cop(студент, Она)
-punct(студент, .)
+I am a student
+root(student)
+nsubj:cop(student, I)
+cop(student, am)
 ~~~</p>
 
-<p>Turkish (and Turkic):
+<p>(3)
 ~~~ sdparse
-O öğrenci . \n She student .
-nsubj:cop(öğrenci, O)
-punct(öğrenci, .)
+She was a student
+root(student)
+nsubj:cop(student, She)
+cop(student, was)
 ~~~</p>
 
-<p>Finnish (and Balto-Finnic, Samic):
+<p>(4)
 ~~~ sdparse
-Se on opiskelija . \n She is student .
+I was a student
+root(student)
+nsubj:cop(student, I)
+cop(student, was)
+~~~</p>
+
+<p>(5) 
+~~~ sdparse
+She is happy
+root(happy)
+nsubj:cop(happy, She)
+cop(happy, is)
+~~~</p>
+
+<p>(6)
+~~~ sdparse
+I am happy
+root(happy)
+nsubj:cop(happy, I)
+cop(happy, am)
+~~~</p>
+
+<p>(7)
+~~~ sdparse
+She is in shape
+root(shape)
+nsubj:cop(shape, She)
+cop(shape, is)
+~~~</p>
+
+<p>(8)
+~~~ sdparse
+She is in the house
+root(is)
+nsubj(is, She)
+nmod(is, house)
+~~~</p>
+
+<p>(9)
+~~~ sdparse
+I am in the house
+root(am)
+nsubj(am, I)
+nmod(am, house)
+~~~</p>
+
+<p>(10)
+~~~ sdparse
+She was in the house
+root(was)
+nsubj(was, She)
+nmod(was, house)
+~~~</p>
+
+<p>(11)
+~~~ sdparse
+There is a house in the village
+root(is)
+expl(is, There)
+nsubj(is, house)
+nmod(is, village)
+~~~</p>
+
+<p>(12)
+~~~ sdparse
+The house is in the village
+root(is)
+nsubj(is, house)
+nmod(is, village)
+~~~</p>
+
+<p>(13)
+~~~ sdparse
+There was a house in the village
+root(was)
+expl(was, There)
+nsubj(was, house)
+nmod(was, village)
+~~~</p>
+
+<p>(14)
+~~~ sdparse
+The house was in the village
+root(was)
+nsubj(was, house)
+nmod(was, village)
+~~~</p>
+
+<h3 id="swedish">Swedish</h3>
+
+<p>The current <code>UD_Swedish</code> treebank considers all uses of “vara” to take the <code>cop</code> relation. Under the new guidelines, 8–14 will be analysed differently.</p>
+
+<p>(1)
+~~~ sdparse
+Hon är en student 
+root(student)
+nsubj:cop(student, Hon)
+cop(student, är)
+~~~</p>
+
+<p>(2)
+~~~ sdparse
+Jag är en student
+root(student)
+nsubj:cop(student, Jag)
+cop(student, är)
+~~~</p>
+
+<p>(3)
+~~~ sdparse
+Hon var en student 
+root(student)
+nsubj:cop(student, Hon)
+cop(student, var)
+~~~</p>
+
+<p>(4)
+~~~ sdparse
+Jag var en student 
+root(student)
+nsubj:cop(student, Jag)
+cop(student, var)
+~~~</p>
+
+<p>(5) 
+~~~ sdparse
+Hon är glad
+root(glad)
+nsubj:cop(glad, Hon)
+cop(glad, är)
+~~~</p>
+
+<p>(6)
+~~~ sdparse
+Jag är glad
+root(glad)
+nsubj:cop(glad, Jag)
+cop(glad, är)
+~~~</p>
+
+<p>(7)</p>
+
+<p><em>Example needed</em></p>
+
+<p>(8)</p>
+
+<p>This analysis is a departure from the existing Swedish analysis where “huset” would be considered <code>root</code> of the whole sentence.</p>
+
+<pre><code class="language-sdparse">Hon är i huset
+root(är)
+nsubj(är, Hon)
+nmod(är, huset)
+</code></pre>
+
+<p>(9)
+~~~ sdparse
+Jag är i huset
+root(är)
+nsubj(är, Jag)
+nmod(är, huset)
+~~~</p>
+
+<p>(10)
+~~~ sdparse
+Hon var i huset
+root(var)
+nsubj(var, Hon)
+nmod(var, huset)
+~~~</p>
+
+<p>(11)</p>
+
+<p>Existential constructions,  in Swedish do not use the copula verb.</p>
+
+<pre><code class="language-sdparse">Det finns et hus i byen 
+root(finns)
+expl(finns, Det)
+nsubj(finns, hus)
+nmod(finns, byen)
+</code></pre>
+
+<p>(12)
+~~~ sdparse
+Huset är i byen
+root(är)
+nsubj(är, huset)
+nmod(är, byen)
+~~~</p>
+
+<p>(13)
+~~~ sdparse
+Det fanns et hus i byen 
+root(fanns)
+expl(fanns, Det)
+nsubj(fanns, hus)
+nmod(fanns, byen)
+~~~</p>
+
+<p>(14)
+~~~ sdparse
+Huset var i byen
+root(var)
+nsubj(var, huset)
+nmod(var, byen)
+~~~</p>
+
+<h3 id="spanish">Spanish</h3>
+
+<p>The <code>UD_Spanish</code> treebank has very many verbs classified as copula. We propose reducing it to the single verb “ser”.</p>
+
+<p>(1)
+~~~ sdparse
+Ella es estudiante
+root(estudiante)
+nsubj:cop(estudiante, es)
+cop(estudiante, es)
+~~~</p>
+
+<p>(2)
+~~~ sdparse
+Yo soy estudiante
+root(estudiante)
+nsubj:cop(student, Yo)
+cop(estudiante, soy)
+~~~</p>
+
+<p>(3)
+~~~ sdparse
+Ella fue estudiante
+root(estudiante)
+nsubj:cop(estudiante, Ella)
+cop(estudiante, fue)
+~~~</p>
+
+<p>(4)
+~~~ sdparse
+Yo fui estudiante
+root(estudiante)
+nsubj:cop(estudiante, Yo)
+cop(estudiante, fui)
+~~~</p>
+
+<p>(5)</p>
+
+<p>In Spanish you can say either <em>Soy feliz</em> “I am happy” or <em>Estoy feliz</em> “I am happy”/”I feel happy”. In the following examples, the subject pronouns are expressed to illustrate the difference in relation for the subject. They may equally well be dropped.</p>
+
+<pre><code class="language-sdparse">Ella es feliz
+root(feliz)
+nsubj:cop(feliz, Ella)
+cop(feliz, es)
+</code></pre>
+
+<pre><code class="language-sdparse">Ella está feliz
+root(está)
+nsubj(está, Ella)
+xcomp(está, feliz)
+</code></pre>
+
+<p>(6)</p>
+
+<pre><code class="language-sdparse">Yo soy feliz
+root(feliz)
+nsubj:cop(feliz, Yo)
+cop(feliz, soy)
+</code></pre>
+
+<pre><code class="language-sdparse">Yo estoy feliz
+root(estoy)
+nsubj(estoy, Yo)
+xcomp(estoy, feliz)
+</code></pre>
+
+<p>(7)</p>
+
+<p>Instead of “in shape” we’ll use “de puta madre” which means “really great”,</p>
+
+<pre><code class="language-sdparse">Esta canción es de puta madre
+root(madre)
+nsubj:cop(madre, canción)
+cop(madre, es)
+</code></pre>
+
+<pre><code class="language-sdparse">Esta canción está de puta madre
+root(está)
+nsubj(está, canción)
+xcomp(está, madre)
+</code></pre>
+
+<p>(8)</p>
+
+<p>In Spanish position uses the verb <em>estar</em> and not <em>ser</em>.</p>
+
+<pre><code class="language-sdparse">Ella está en la casa
+root(está)
+nsubj(está, Ella)
+nmod(está, casa)
+</code></pre>
+
+<p>(9)
+~~~ sdparse
+Yo estoy en la casa
+root(estoy)
+nsubj(estoy, Ella)
+nmod(estoy, casa)
+~~~</p>
+
+<p>(10)
+~~~ sdparse
+Ella estaba en la casa
+root(estaba)
+nsubj(estaba, Ella)
+nmod(estaba, casa)
+~~~</p>
+
+<p>(11)</p>
+
+<p>Existential constructions,  in Spanish do not use the copula verb.</p>
+
+<pre><code class="language-sdparse">Hay una casa en el pueblo
+root(Hay)
+obj:dir(Hay, casa)
+nmod(Hay, pueblo)
+</code></pre>
+
+<p>(12)
+~~~ sdparse
+La casa está en el pueblo
+root(está)
+nsubj(está, casa)
+nmod(está, pueblo)
+~~~</p>
+
+<p>(13)
+~~~ sdparse
+Había una casa en el pueblo 
+root(Había)
+obj:dir(Había, casa)
+nmod(Había, pueblo)
+~~~</p>
+
+<p>(14)
+~~~ sdparse
+La casa estaba en el pueblo
+root(estaba)
+nsubj(estaba, casa)
+nmod(estaba, pueblo)
+~~~</p>
+
+<h3 id="russian">Russian</h3>
+
+<p>In Russian, there is no copula verb in the present tense, in the future tense, the verb <em>быть</em> “be” is used. Note that when the copula verb is used, the complement can be either in nominative or instrumental case. When it is instrumental it is <code>is type of</code> and when it is nominative it is more like <code>has quality of</code>. We propose using the same structure for both.</p>
+
+<p>(1)
+~~~ sdparse
+Она студентка
+root(студентка)
+nsubj:cop(студентка, Она)
+~~~</p>
+
+<p>(2)
+~~~ sdparse
+Я студентка
+root(студентка)
+nsubj:cop(студентка, Я)
+~~~</p>
+
+<p>(3)
+~~~ sdparse
+Она была студентка
+root(студентка)
+nsubj:cop(студентка, Она)
+cop(студентка, была)
+~~~</p>
+
+<pre><code class="language-sdparse">Она была студенткой
+root(студенткой)
+nsubj:cop(студенткой, Она)
+cop(студенткой, была)
+</code></pre>
+
+<p>(4)
+~~~ sdparse
+Я была студентка
+root(студентка)
+nsubj:cop(студентка, Я)
+cop(студентка, была)
+~~~</p>
+
+<pre><code class="language-sdparse">Я была студенткой
+root(студенткой)
+nsubj:cop(студенткой, Я)
+cop(студенткой, была)
+</code></pre>
+
+<p>(5)</p>
+
+<p>The same goes with adjectival uses:</p>
+
+<pre><code class="language-sdparse">Она счастлива
+root(счастлива)
+nsubj:cop(счастлива, Она)
+</code></pre>
+
+<p>(6)</p>
+
+<pre><code class="language-sdparse">Я счастлива
+root(счастлива)
+nsubj:cop(счастлива, Я)
+</code></pre>
+
+<p>(7)</p>
+
+<p>Instead of “in shape”, we’ll use “в курсе” which means “on the ball”</p>
+
+<pre><code class="language-sdparse">Она в курсе
+root(курсе)
+nsubj:cop(курсе, Она)
+</code></pre>
+
+<p>(8)</p>
+
+<p>In Russian, there is no verb used for locative predication in the present tense, this presents a problem for both inter-language and intra-language consistency. There are two main ways to deal with it. The first is to use promotion and promote the PP to be the root of the sentence. This will allow the distinction of case (7) and case (8) by the relation of the subject.</p>
+
+<pre><code class="language-sdparse">Она в дому
+root(дому)
+nsubj(дому, Она)
+</code></pre>
+
+<p>The second would be to take advantage of the new system for ellipsis and use ellipsis to deal with it:</p>
+
+<pre><code class="language-sdparse">Она в дому
+root&gt;nmod(дому)
+root&gt;nsubj(Она)
+</code></pre>
+
+<p>(9)</p>
+
+<p>As with (8),</p>
+
+<pre><code class="language-sdparse">Я в дому
+root(дому)
+nsubj(дому, Я)
+</code></pre>
+
+<pre><code class="language-sdparse">Я в дому
+root&gt;nmod(дому)
+root&gt;nsubj(Я)
+</code></pre>
+
+<p>(10)</p>
+
+<p>In the past tense we have the verb and we can use that as the root:</p>
+
+<pre><code class="language-sdparse">Она была в дому
+root(была)
+nsubj(была, Она)
+nmod(была, дому)
+</code></pre>
+
+<p>(11)</p>
+
+<p>In Russian, in the present tense, existential constructions use “есть” which is sometimes described as a “predicative”.</p>
+
+<pre><code class="language-sdparse">Есть дом в деревне
+root(Есть)
+nsubj(Есть, дом)
+nmod(Есть, деревне)
+</code></pre>
+
+<p>(12)
+~~~ sdparse
+Дом в деревне 
+root(está)
+nsubj(está, casa)
+nmod(está, pueblo)
+~~~</p>
+
+<p>(13)</p>
+
+<p>In the past tense (and future tense), the verb быть is employed. As far as I am able to ascertain, syntactically (13) and (14) are equivalent in Russian aside from the word order considerations.</p>
+
+<pre><code class="language-sdparse">Был дом в деревне 
+root(Был)
+nsubj(Был, дом)
+nmod(Был, деревне)
+</code></pre>
+
+<p>(14)
+~~~ sdparse
+Дом был в деревне
+root(был)
+nsubj(был, дом)
+nmod(был, деревне)
+~~~</p>
+
+<h3 id="finnish">Finnish</h3>
+
+<p>In Finnish the copula verb is <em>olla</em> “to be”. Its omplement is typically in the nominative, although it may also be in the essive case -nA.</p>
+
+<p>(1)
+~~~ sdparse
+Se on opiskelija
+root(opiskelija)
 nsubj:cop(opiskelija, Se)
 cop(opiskelija, on)
-punct(opiskelija, .)
 ~~~</p>
 
-<p>Spanish (and other Romance):
+<p>(2)
 ~~~ sdparse
-Ella es estudiante .
-cop(estudiante, es)
-nsubj:cop(estudiante, Ella)
-punct(estudiante, .)
+Mä oon opiskelija
+root(opiskelija)
+nsubj:cop(opiskelija, Mä)
+cop(opiskelija, oon)
 ~~~</p>
 
-<p>Basque:
-~~~ sdparse 
-Ainhoa ikaslea da . \n Ainhoa student.ART is .
-cop(ikaslea, da)
-nsubj:cop(ikaslea, Ainhoa)
-punct(ikaslea, .)
-~~~</p>
-
-<p>It also improves intra-language consistency, as can be seen if we put the example 
-into the past tense. In both Russian and Turkish the structure remains the same, but 
-would be different if we had the copula verb as the head.</p>
-
-<p>English (Finnish, Spanish function the same):
+<p>(3)
 ~~~ sdparse
-She was a student .
-cop(student, was)
-nsubj:cop(student, She)
+Se oli opiskelija
+root(opiskelija)
+nsubj:cop(opiskelija, Se)
+cop(opiskelija, oli)
 ~~~</p>
 
-<p>Russian:
+<p>(4)
 ~~~ sdparse
-Она была студент . \n She was student .
-cop(студент, была)
-nsubj:cop(студент, Она)
+Mä olin opiskelija
+root(opiskelija)
+nsubj:cop(opiskelija, Mä)
+cop(opiskelija, olin)
 ~~~</p>
 
-<p>Turkish (and Turkic):
+<p>(5) 
 ~~~ sdparse
-O öğrenci -di . \n She student was .
-cop(öğrenci, -di)
-punct(öğrenci, .)
+Se on iloinen
+root(iloinen)
+nsubj:cop(iloinen, Se)
+cop(iloinen, on)
+~~~</p>
+
+<p>(6)
+~~~ sdparse
+Mä oon iloinen
+root(iloinen)
+nsubj:cop(iloinen, Mä)
+cop(iloinen, oon)
+~~~</p>
+
+<p>(7)
+~~~ sdparse
+Se on kunnossa
+root(kunnossa)
+nsubj:cop(kunnossa, Se)
+cop(kunnossa, on)
+~~~</p>
+
+<p>(8)
+~~~ sdparse
+Se on talossa
+root(on)
+nsubj(on, Se)
+nmod(on, talossa)
+~~~</p>
+
+<p>(9)
+~~~ sdparse
+Mä oon talossa
+root(oon)
+nsubj(oon, Mä)
+nmod(oon, talossa)
+~~~</p>
+
+<p>(10)
+~~~ sdparse
+She was in the house
+root(was)
+nsubj(was, She)
+nmod(was, house)
+~~~</p>
+
+<p>(11)</p>
+
+<p>In Finnish, existential and non-existential are identical aside from word order.</p>
+
+<pre><code class="language-sdparse">Kylässä on talo
+root(on)
+nsubj(on, talo)
+nmod(on, kylässä)
+</code></pre>
+
+<p>(12)
+~~~ sdparse
+Talo on kylässä
+root(on)
+nsubj(on, talo)
+nmod(on, kylässä)
+~~~</p>
+
+<p>(13)
+~~~ sdparse
+Kylässä oli talo
+root(oli)
+nsubj(oli, talo)
+nmod(oli, kylässä)
+~~~</p>
+
+<p>(14)
+~~~ sdparse
+Talo oli kylässä
+root(oli)
+nsubj(oli, talo)
+nmod(oli, kylässä)
+~~~</p>
+
+<h3 id="turkish">Turkish</h3>
+
+<p>In Turkish, there are two copula verbs, <em>i-</em> and <em>ol-</em>. The “true” copula is <em>i-</em> which is defective, only having a limited number of tense forms (aorist and past), and cliticising. When a copula is needed in another tense, <em>ol-</em> is employed. However, if there is a form of <em>i-</em> then the equivalent form of <em>ol-</em> takes on the meaning “become”.</p>
+
+<p>(1)</p>
+
+<p>In the present tense, third person singular aorist non-assumptive then there is no overt suffix for third person singular. Unlike Russian, where the copula verb does not appear in any part of the present tense paradigm, in Turkish it appears in all persons except third person. This means that it is more like the nominative case in the paradigm (which also has a -Ø suffix, than like the Russian copula).</p>
+
+<p>In the following examples the hyphen is used to separate cliticised syntactic words.</p>
+
+<pre><code class="language-sdparse">O öğrenci -Ø
+root(öğrenci)
 nsubj:cop(öğrenci, O)
+cop(öğrenci, -Ø)
+</code></pre>
+
+<p>(2)
+~~~ sdparse
+Ben öğrenci -yim.
+root(öğrenci)
+nsubj:cop(öğrenci, Ben)
+cop(öğrenci, -yim)
 ~~~</p>
 
-<p>Note also that in Turkish (and other Turkic languages) the copula verb can alternate 
-between tenses, here the future is expressed with ol- instead of i-:</p>
-
-<pre><code class="language-sdparse">O öğrenci olacak . \n She student will.be .
-cop(öğrenci, olacak)
+<p>(3)
+~~~ sdparse
+O öğrenci -di
+root(öğrenci)
 nsubj:cop(öğrenci, O)
-</code></pre>
-
-<p>There may be other alternations, for example between state and essence:</p>
-
-<p>Spanish:
-~~~ sdparse 
-Ella es buena . \n She is good .
-cop(buena, es)
-nsubj:cop(buena, Ella)
+cop(öğrenci, di)
 ~~~</p>
 
-<pre><code class="language-sdparse">Ella está buena . \n She is attractive .
-cop(buena, está)
-nsubj:cop(buena, Ella)
-</code></pre>
-
-<p>Or:</p>
-
-<p>Basque:
-~~~ sdparse 
-Ni ikaslea naiz . \n I student am .
-cop(ikaslea, naiz)
-nsubj:cop(ikaslea, Ni)
-~~~</p>
-
-<pre><code class="language-sdparse">Ni pozik nago . \n I happy am .
-cop(pozik, nago)
-nsubj:cop(pozik, Ni)
-</code></pre>
-
-<p>In Irish, there is a distinction between the copula and the existential verb:</p>
-
-<!-- Wikipedia 
-Both the existential verb and the copula may take a nominal predicate, but the two constructions have slightly different meanings:  -->
-
-<pre><code class="language-sdparse">Is dochtúir é Seán \n COP doctor he Seán 
-cop(dochtúir, Is)
-nsubj:cop(dochtúir, Seán)
-
-</code></pre>
-
-<!--
-sounds more permanent: it represents something absolute about Seán; it is a permanent characteristic of Seán that he is a doctor. That is known as an individual-level predicate. In the sentence: -->
-
-<pre><code class="language-sdparse">Tá Seán ina dhochtúir \n EXIST Sean in.his doctor  
-</code></pre>
-<!-- one says rather that Seán performs the job of a doctor, he is a doctor at the moment, or he has become a doctor. That is known as a stage-level predicate. -->
-
-<p>Currently in the Irish treebank only “is”-style copulas get <code>cop</code>, “tá”-style are verb rooted with <code>xcomp:pred</code></p>
-
-<p>A similar thing can happen in Swedish with an alternation between state and change of state:</p>
-
-<pre><code class="language-sdparse">Men jag är bara 21 och du blev 23 . \n But I am only 21 and you had.become 23 .
-cop(21, är)
-nsubj:cop(21, jag)
-nsubj(blev, du)
-conj(21, blev)
-cc(21, och)
-xcomp(blev, 23)
-</code></pre>
-<!-- FMT: Check, is 'blev' here "were" or "had become" -->
-
-<h4 id="predication-with-attributive-like-nps">Predication with attributive-like NPs</h4>
-
-<p>People are also generally happy with using the same structure for prepositional phrases that have some kind 
-of non-compositional attributive-like meaning:</p>
-
-<p>English:
+<p>(4)
 ~~~ sdparse
-She is in great shape . 
-cop(shape, is)
-amod(shape, great)
-case(shape, in)
-nsubj:cop(shape, She)
-punct(shape, .)
+Ben öğrenci -dim.
+root(öğrenci)
+nsubj:cop(öğrenci, Ben)
+cop(öğrenci, -dim)
 ~~~</p>
 
-<pre><code class="language-sdparse">She is really on the ball with this .
-</code></pre>
-
-<p>Spanish:
+<p>(5) 
 ~~~ sdparse
-Esa canción está de puta madre . 
-det(canción, Esa)
-nsubj:cop(madre, canción)
-cop(madre, está)
-case(madre, de)
-amod(madre, puta)
-punct(madre, .)
+O mutlu -Ø
+root(mutlu)
+nsubj:cop(mutlu, O)
+cop(mutlu, -Ø)
 ~~~</p>
 
-<p>Irish: 
-~~~ sdparse 
-Tá sí ar meisce . \n EXIST she in drunkenness .
-~~~</p>
-
-<h4 id="adverbials-time-and-location">Adverbials: time and location</h4>
-
-<p>Having the copula as a head was slightly less accepted for constructions where there is some kind of compositional prepositional phrase or adverbial.</p>
-
-<p>Issues with this analysis are:
-* Which adverbial should become the head in expressions with more than one adverbial ?
-** Should we make a technical decision and simply choose the first (or last?)</p>
-
-<pre><code class="language-sdparse">She is here . 
-</code></pre>
-
-<pre><code class="language-sdparse">Hemen dago . \n Here she.is
-</code></pre>
-
-<pre><code class="language-sdparse">She is in Prague with her friends . 
-</code></pre>
-
-<pre><code class="language-sdparse">I am on my way . 
-</code></pre>
-
-<p>But in many languages with “dropped”/”empty” copula, this also applies to adverbials:</p>
-
-<pre><code class="language-sdparse">Она в Праге с друзьями . \n She in Prague with friends .
-</code></pre>
-
-<pre><code class="language-sdparse">O arkadaşıla Praga'da . \n She with.her.friends in.Prague .
-</code></pre>
-
-<pre><code class="language-sdparse">Se on Prahassa kaverinkaa . 
-</code></pre>
-
-<pre><code class="language-sdparse">Ella és a Praga amb els amics . \n She is in Prague with the friends . 
-</code></pre>
-
-<pre><code class="language-sdparse">She was in Prague with her friends . 
-</code></pre>
-
-<pre><code class="language-sdparse">Tá sí i bPrág le cairde . \n EXIST her in Prague with friends .
-</code></pre>
-
-<pre><code class="language-sdparse">Она была в Праге с друзьями . \n She was in Prague with friends .
-</code></pre>
-
-<pre><code class="language-sdparse">O arkadaşıla Praga'da -dı . \n She with.her.friends in.Prague was .
-</code></pre>
-
-<pre><code class="language-sdparse">Ella estava a Praga amb els amics . \n She was in Prague with the friends .
-</code></pre>
-
-<pre><code class="language-sdparse">Se oli Prahassa kaverinkaa . \n She was in.Prague with.friends .
-</code></pre>
-
-<pre><code class="language-sdparse">The gods were not with us on that one . 
-</code></pre>
-
-<pre><code class="language-sdparse">She walked in and was out of there in 10 minutes . 
-</code></pre>
-
-<pre><code class="language-sdparse">Det var i förrgår när jag stod och väntade på dig . \n It was last year when I stood and waited for you .
-</code></pre>
-
-<pre><code class="language-sdparse">Dom ställena du gick till , det är dit jag brukar gå . \n The places you went to , it is to.there i usually go .
-</code></pre>
-
-<h4 id="existential-constructions">Existential constructions</h4>
-
-<p>Currently, existential constructions have a special structure in English, where the copula verb is head:</p>
-
-<pre><code class="language-sdparse">There is a book on the table .
-expl(is, There)
-nsubj(is, book)
-</code></pre>
-
-<p>….</p>
-
-<p>In some languages, there can be ambiguities between something being a “bare” copula and an existential copula,</p>
-
-<p>Finnish:
+<p>(6)
 ~~~ sdparse
-Kirja on pöydällä . \n Book on table .
+Ben mutluyum
+root(mutlu)
+nsubj:cop(mutlu, Ben)
+cop(mutlu, -yum)
 ~~~</p>
 
-<p>Could mean either “(The) book is on (the) table.” or “There is (a) book on (the) table.”</p>
+<p>(7)</p>
 
-<pre><code class="language-sdparse">Есть книга в столе . \n There.is book on table .
+<p><em>Example needed</em></p>
+
+<p>(8)</p>
+
+<p>The lack of suffix for third person singular present tense non-assumptive means that it will look like the head of locative predicates is empty, but see argumentation about nominative above. If the parser can guess that something is nominative, it can guess that it’s third person singular present tense.</p>
+
+<pre><code class="language-sdparse">O evde -Ø
+root(-Ø)
+nsubj(-Ø, O)
+nmod(-Ø, evde)
 </code></pre>
 
-<p>It can sometimes be disambiguated by the case of the predicate:</p>
+<p>(9)</p>
 
-<pre><code class="language-sdparse">Был студент в факультете . \n There.was student in faculty .
+<pre><code class="language-sdparse">Ben evde -yim
+root(-yim)
+nsubj(-yim, Ben)
+nmod(-yim, evde)
 </code></pre>
 
-<pre><code class="language-sdparse">Был студентом в факультете . \n Was as.student in faculty .
+<p>(10)
+~~~ sdparse
+O evde -di
+root(-di)
+nsubj(-di, O)
+nmod(-di, evde)
+~~~</p>
+
+<p>(11)</p>
+
+<p>In Turkish (and indeed in most Turkic languages), existence is a different structure, using an adjective <em>var</em> “existent”, and so gets a different structure.</p>
+
+<pre><code class="language-sdparse">Köyde ev var -Ø
+root(var)
+nsubj:cop(var, ev)
+cop(var, -Ø)
+nmod(var, Köyde)
 </code></pre>
 
-<pre><code class="language-sdparse">C' è un libro sopra il tavolo . \n There is a book on the table .
-</code></pre>
+<p>(12)
+~~~ sdparse
+Ev köyde -Ø
+root(-Ø)
+nsubj(-Ø, Ev)
+nmod(-Ø, köyde)
+~~~</p>
 
-<p>However, this quickly becomes awkward:</p>
-
-<pre><code class="language-sdparse">For the last few years there have been problems with the programme .
-case(years, For)
-expl(been, there)
-aux(been, have)
-nmod(been, years)
-nsubj(been, problems)
-case(with, programme)
-nmod(been, programme)
-</code></pre>
-
-<pre><code class="language-sdparse">There is a lot to learn about Chernobyl . 
-case(Chernobyl, case)
-nmod(learn, Chernobyl)
-mark(learn, to)
-expl(is, There)
-</code></pre>
-
-<pre><code class="language-sdparse">Tá leabhar ann . \n EXIST book in.it .
-</code></pre>
-
-<pre><code class="language-sdparse">Tá leabhar ar an mbord . \n EXIST book on the table .
-</code></pre>
-
-<p>There is no problem however for Turkic languages, where existential constructions are similar to simple predication with an adjective like var “existing”, and yok “not.existing” .</p>
-
-<pre><code class="language-sdparse">Masada kitap var . \n On.table book existing .
-nsubj:cop(var, kitap)
-nmod(var, Masada)
-punct(var, .)
-</code></pre>
-
-<pre><code class="language-sdparse">Masada kitap var -dı . \n On.table book existing was .
-nsubj:cop(var, kitap)
+<p>(13)
+~~~ sdparse
+Köyde ev var -dı
+root(var)
+nsubj:cop(var, ev)
 cop(var, -dı)
-nmod(var, Masada)
-punct(var, .)
-</code></pre>
+nmod(var, Köyde)
+~~~</p>
 
-<p>There is also no problem for Western Romance languages where a different structure is used:</p>
+<p>(14)
+~~~ sdparse
+Ev köyde -di
+root(-di)
+nsubj(-di, Ev)
+nmod(-di, köyde)
+~~~</p>
 
-<pre><code class="language-sdparse">Hay un libro en la mesa . \n There.is a book on the table .
-dobj(Hay, libro)
-nmod(Hay, mesa)
-</code></pre>
+<h3 id="irish">Irish</h3>
 
-<p>And Serbo-Croatian:</p>
+<p>Irish has a difference between a <em>copula</em> verb “is” and what is called a substantive verb “bí”. Only the copula verb receives the <code>cop</code> relation. The substantive verb is head and takes an argument with <code>xcomp</code>.</p>
 
-<pre><code class="language-sdparse">Međutim , ima i dobrih vesti . \n But, have too good news .
-amod(vesti, dobrih)
-advmod(ima, i)
-x(ima, vesti)
-</code></pre>
+<p>(1)</p>
 
-<p>This also goes for Scandinavian languages:</p>
+<p>(2)</p>
 
-<pre><code class="language-sdparse">Hur många invandrare finns det i Sverige ? \n How many immigrants are there in Sweden ?
-advmod(många, Hur)
-amod(invandrare, många)
-nsubj(finns, invandrare)
-expl(finns, det)
-case(Sverige, i)
-nmod(finns, Sverige)
-</code></pre>
+<p>(3)
+~~~ sdparse
+Ba dhalta í</p>
 
-<h4 id="clausal-arguments">Clausal arguments</h4>
-
-<pre><code class="language-sdparse">Being well-informed will give you certainty .
-cop(well-informed, Being)
-aux(give, will)
-iobj(give, you)
-dobj(give, certainty)
-csubj(give, well-informed)
-</code></pre>
-
-<p>When we have copula clauses as both subject and predicate, then the predicate will receive two copulas:</p>
-
-<pre><code class="language-sdparse">To be free is to be capable of thinking one's own thoughts .
-cop(free, be-2)
-mark(free, To)
-cop(capable, be-6)
-csubj:cop(capable, free)
-mark(capable, to)
-dobj(thinking, thoughts)
-amod(thoughts, own)
-det(thoughts, one's)
-cop(capable, is)
-mark(thinking, of)
-advcl(capable, thinking)
-</code></pre>
-
-<p>We may want to distinguish the “external” copula relation from the “internal” one.</p>
-
-<pre><code class="language-sdparse">The main thing is that the device works . 
-amod(thing, main)
-det(thing, The)
-det(device, the)
-nsubj(works, device)
-mark(works, that)
-cop(works, is)
-nsubj:cop(works, thing)
-</code></pre>
-
-<pre><code class="language-sdparse">Is é an príomhrud ná go bhfeidhmíonn an gléas . \n COP it the main.thing that PART works the device .
-</code></pre>
-
-<pre><code class="language-sdparse">Трудно быть богом . \n Hard to.be god 
-cop(богом, быть)
-csubj:cop(Трудно, богом)
-punct(Трудно, .)
-</code></pre>
-
-<pre><code class="language-sdparse">Трудно было быть богом . \n Hard was to.be god 
-cop(Трудно, было)
-cop(богом, быть)
-csubj:cop(Трудно, богом)
-punct(Трудно, .)
-</code></pre>
-
-<pre><code class="language-sdparse">Tá sé deacair a bheith i do Dhia .
-</code></pre>
-
-<pre><code class="language-sdparse">Två viktiga ting är att säga om svårigheter i äktenskap . \n Two important things are to say about difficulties in marriage .
-</code></pre>
-<!-- Compare with  "Det finns två viktiga ting att säga om svårigheter i äktenskap ." -->
-
-<pre><code class="language-sdparse">En nödvändig förutsättning är att männen är helt med på saken . \n An important precondition is that the.man is totally onboard about the.thing .
+<pre><code>
+~~~ sdparse
+Bhí sí ina dalta .
 
 </code></pre>
 
-<h4 id="ambiguities-with-auxiliary-verbs">Ambiguities with auxiliary verbs</h4>
+<p>(4)</p>
 
-<p>The following uses should not be considered copula, the “to be” verb should be labelled with <code>aux</code> or <code>aux:pass</code>:</p>
+<p>Not applicable.</p>
 
-<pre><code class="language-sdparse">I am reading these examples . 
-aux(reading, am)
-</code></pre>
+<p>(5)</p>
 
-<pre><code class="language-sdparse">The following criteria are considered .
-aux:pass(considered, are)
-</code></pre>
+<p>Not applicable.</p>
 
-<pre><code class="language-sdparse">Книга была прочитанно . 
-aux:pass(прочитанно, была)
-</code></pre>
+<p>(6)</p>
 
-<pre><code class="language-sdparse">Se oli nähnyt kirjan . \n She has seen book .
-aux(nähnyt, oli)
-</code></pre>
+<p>(7)</p>
 
-<pre><code class="language-sdparse">El consumo de carne humano es considerado aceptable . \n The consumption of flesh human is considered acceptable .
-aux:pass(considerado, es)
-</code></pre>
+<p>(8)</p>
 
-<pre><code class="language-sdparse">Det är skrivet till mig själv . \n It is written to my self .
-aux:pass(skrivet, är)
-</code></pre>
+<p>(9)</p>
 
-<h4 id="other-types">Other types</h4>
+<p>(10)</p>
 
-<p>When you have a clause introduced by a relative adverb in the current English treebank the copula is the head.</p>
+<p>(11)</p>
 
-<pre><code class="language-sdparse">This period in Athens , between 335 and 400 , is when Aristotle is believed to have lived .
-mark(when, believed)
-advcl(is-11, believed)
-aux(believed, is-14)
-</code></pre>
+<p>(12)</p>
 
-<p>But there is no reason this could not be done with content word head:</p>
+<p>(13)</p>
 
-<pre><code class="language-sdparse">This period in Athens , between 335 and 400 , is when Aristotle is believed to have lived .
-det(period, This)
-case(Athens, in)
-nmod(period, Athens)
-appos(period, 335)
-conj(335, 400)
-cc(335, and)
-case(335, between)
-nsubj:cop(period, believed)
-cop(believed, is-11)
-aux(believed, is-14)
-nsubj(believed, Aristotle)
-aux(lived, have)
-mark(lived, to)
-xcomp(believed, lived)
-</code></pre>
+<p>(14)</p>
 
-<h4 id="imperatives">Imperatives</h4>
+<h2 id="status-quo">Status quo</h2>
 
-<pre><code>Be quiet ! 
-cop(quiet, Be)
-punct(quiet, !)
-</code></pre>
+<p>The languages in UD with the tokens which have the <code>cop</code> relation. If we adopt the above recommendations, the vast majority will need converting.</p>
 
-<h4 id="idiomatic-expressions">Idiomatic expressions</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Treebank</th>
+      <th>Unique <code>cop</code></th>
+      <th>Top-5 lemmas[POS] with <code>cop</code> relation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>UD_Galician</td>
+      <td>1112</td>
+      <td>121/de[ADP], 40/necesario[ADJ], 38/como[PRON], 24/posible[ADJ], 23/importante[ADJ]</td>
+    </tr>
+    <tr>
+      <td>UD_Dutch</td>
+      <td>253</td>
+      <td>2491/ben[AUX], 283/word[AUX], 91/vind[VERB], 73/blijf[AUX], 67/maak[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Spanish</td>
+      <td>229</td>
+      <td>5136/ser[VERB], 353/estar[VERB], 78/llamado[VERB], 66/encontrar[VERB], 48/hacer[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Arabic</td>
+      <td>216</td>
+      <td>384/كَان[VERB], 75/لَيس[VERB], 31/عَدّ[VERB], 27/اِعتَبَر[VERB], 25/زَال[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Portuguese</td>
+      <td>135</td>
+      <td>2120/ser[VERB], 370/estar[VERB], 176/como[ADV], 91/ficar[VERB], 38/parecer[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_French</td>
+      <td>99</td>
+      <td>4878/être[VERB], 232/devenir[VERB], 91/appeler[VERB], 70/nommer[VERB], 51/rester[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Greek</td>
+      <td>67</td>
+      <td>531/είμαι[VERB], 86/αποτελώ[VERB], 34/θεωρώ[VERB], 27/γίνομαι[VERB], 20/καθίσταμαι[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Catalan</td>
+      <td>57</td>
+      <td>3609/ser[AUX], 810/estar[VERB], 722/ser[VERB], 136/cop[NOUN], 53/semblar[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Polish</td>
+      <td>18</td>
+      <td>764/być[VERB], 98/to[VERB], 42/być[AUX], 17/stać[VERB], 12/stawać[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Basque</td>
+      <td>15</td>
+      <td>1993/izan[VERB], 266/egon[VERB], 124/ukan[VERB], 31/izan[AUX], 20/ibili[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_German</td>
+      <td>11</td>
+      <td>4698/<em>[VERB], 86/</em>[NOUN], 31/<em>[ADJ], 27/</em>[ADP], 23/_[PROPN]</td>
+    </tr>
+    <tr>
+      <td>UD_Estonian</td>
+      <td>9</td>
+      <td>3373/olema[VERB], 37/ole[VERB], 29/tunduma[VERB], 5/paistma[VERB], 4/näima[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Czech</td>
+      <td>6</td>
+      <td>20480/být[VERB], 110/bývat[VERB], 3/stát[VERB], 3/bývávat[VERB], 1/moci[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_English</td>
+      <td>6</td>
+      <td>5593/be[VERB], 8/`s[VERB], 5/be[AUX], 3/cop[NOUN], 1/’[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Hungarian</td>
+      <td>6</td>
+      <td>92/van[VERB], 61/lesz[VERB], 11/lehet[VERB], 3/marad[VERB], 1/hoz[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Bulgarian</td>
+      <td>5</td>
+      <td>1940/съм[VERB], 3/съм[AUX], 1/стана[VERB], 1/разпространявам-(се)[VERB], 1/докосна-(се)[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Buryat</td>
+      <td>5</td>
+      <td>70/байха[VERB], 22/болохо[VERB], 2/ябаха[VERB], 2/үнгэхэ[VERB], 2/байха[AUX]</td>
+    </tr>
+    <tr>
+      <td>UD_Croatian</td>
+      <td>5</td>
+      <td>1236/biti[AUX], 1/željeti[VERB], 1/težiti[VERB], 1/davati[VERB], 1/bivati[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Kazakh</td>
+      <td>4</td>
+      <td>131/е[VERB], 42/бол[VERB], 1/тұр[VERB], 1/атан[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Uyghur</td>
+      <td>4</td>
+      <td>66/<em>[VERB], 4/</em>[NOUN], 3/<em>[ADJ], 1/</em>[PART]</td>
+    </tr>
+    <tr>
+      <td>UD_Hindi</td>
+      <td>3</td>
+      <td>3014/है[VERB], 497/था[VERB], 1/बशर्ते[SCONJ]</td>
+    </tr>
+    <tr>
+      <td>UD_Irish</td>
+      <td>3</td>
+      <td>369/is[VERB], 3/is[PART], 1/má[SCONJ]</td>
+    </tr>
+    <tr>
+      <td>UD_Russian</td>
+      <td>3</td>
+      <td>538/<em>[VERB], 5/</em>[NOUN], 1/_[ADP]</td>
+    </tr>
+    <tr>
+      <td>UD_Russian-SynTagRus</td>
+      <td>3</td>
+      <td>4457/БЫТЬ[AUX], 622/ЭТО[NOUN], 4/ВОТ[PART]</td>
+    </tr>
+    <tr>
+      <td>UD_Chinese</td>
+      <td>2</td>
+      <td>1795/<em>[VERB], 8/</em>[ADJ]</td>
+    </tr>
+    <tr>
+      <td>UD_Coptic</td>
+      <td>2</td>
+      <td>30/ⲡⲉ[PART], 2/ⲡ[DET]</td>
+    </tr>
+    <tr>
+      <td>UD_Danish</td>
+      <td>2</td>
+      <td>1576/være[AUX], 185/blive[AUX]</td>
+    </tr>
+    <tr>
+      <td>UD_Hebrew</td>
+      <td>2</td>
+      <td>387/<em>[VERB], 7/</em>[PRON]</td>
+    </tr>
+    <tr>
+      <td>UD_Persian</td>
+      <td>2</td>
+      <td>4662/<em>[VERB], 3/</em>[ADJ]</td>
+    </tr>
+    <tr>
+      <td>UD_Turkish</td>
+      <td>2</td>
+      <td>751/i[AUX], 113/değil[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Faroese</td>
+      <td>1</td>
+      <td>1081/vera[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Finnish</td>
+      <td>1</td>
+      <td>3279/olla[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Indonesian</td>
+      <td>1</td>
+      <td>1055/_[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Italian</td>
+      <td>1</td>
+      <td>2767/essere[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Slovenian</td>
+      <td>1</td>
+      <td>2820/biti[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Swedish</td>
+      <td>1</td>
+      <td>1629/vara[VERB]</td>
+    </tr>
+    <tr>
+      <td>UD_Tamil</td>
+      <td>1</td>
+      <td>1/முயல்[VERB]</td>
+    </tr>
+  </tbody>
+</table>
 
-<pre><code class="language-sdparse">Let there be light ! 
-</code></pre>
-
-<pre><code class="language-sdparse">I have been to Prague .
-</code></pre>
-
-<h2 id="other-functional-relations">Other functional relations</h2>
+<h2 id="further-reading">Further reading</h2>
 
 <ul>
-  <li>The other functional relations are less problematic, but more detailed guidelines will be useful.</li>
+  <li>Leon Stassen (2003) “Intransitive predication” (Oxford: OUP)</li>
 </ul>
+
 
 
       </div>
