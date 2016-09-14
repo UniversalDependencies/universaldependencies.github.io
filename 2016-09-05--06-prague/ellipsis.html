@@ -57,7 +57,7 @@
 nsubj(left, They)
 dobj(left, company)
 remnant(They, many)
-nmod(good, many)
+nmod(many, good)
 </code></pre>
 
 <p>In this example, <em>for good</em> is modifying the elided <em>left</em> of the second clause. However, as no similar modifier exists in the first clause, <em>for good</em> cannot be attached with a <em>remnant</em> relation and no reasonable analysis of this sentence is possible. In practice, annotators attached the extra modifier to the subject of the second clause, which incorrectly suggests that <em>for good</em> is modifying the subject <em>many</em>.</p>
@@ -79,7 +79,7 @@ nmod(good, many)
 
 <p>Examples:</p>
 
-<pre><code class="language-sdparse">Er kauft sich ein grünes Auto und sie kauft sich ein rotes .\nHe buys himself a green car and she buys herself a red .
+<pre><code class="language-sdparse">Er kauft sich ein grünes Auto und sie kauft sich ein rotes . \nHe buys himself a green car and she buys herself a red .
 
 nsubj(kauft-2, Er-1)
 det(Auto-6, ein-4)
@@ -156,6 +156,41 @@ xcomp(want-7, to-8)
 <p>@Joakim: Did you have an example in mind when you wrote that? I couldn’t think of one in English or German.</p>
 
 <h2 id="predicate-ellipsis-in-basic-ud-v2">Predicate ellipsis in Basic UD v2</h2>
+
+<p>In more complicated cases where a predicate is elided but no <code>aux</code> or <code>cop</code> is present, we attach orphans to their grandparent with a composite relation of the form <code>headrel&gt;orphanrel</code>.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee .
+
+nsubj(like-2, I-1)
+dobj(like-2, tea-3)
+conj&gt;nsubj(like-2, you-5)
+conj&gt;dobj(like-2, coffee-6)
+</code></pre>
+
+<p>If the grandparent is also elided, the relation is composed of all three relations and the orphan is attached to its great-grandparent.</p>
+
+<p>Example:
+~~~ sdparse
+Mary wants to buy a book and Jenny a CD .</p>
+
+<p>nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+dobj(buy-4, book-6)
+conj&gt;nsubj(wants-2, Jenny-8)
+conj&gt;xcomp&gt;dobj(wants-2, CD-10)
+~~~</p>
+
+<p>Unlike the analysis using the <code>remnant</code> relation, this proposal also allows us to analyze sentences in which the second clause contains additional modifiers.</p>
+
+<pre><code class="language-sdparse">They had left the company , many for good .
+
+nsubj(left, They)
+dobj(left, company)
+conj&gt;nsubj(left, many)
+conj&gt;nmod(left, good)
+</code></pre>
 
 <h2 id="predicate-ellipsis-in-enhanced-ud-v2">Predicate ellipsis in Enhanced UD v2</h2>
 
