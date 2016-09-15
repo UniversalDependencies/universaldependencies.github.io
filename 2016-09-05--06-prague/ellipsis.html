@@ -79,7 +79,7 @@ nmod(many, good)
 
 <p>Examples:</p>
 
-<pre><code class="language-sdparse">Er kauft sich ein grünes Auto und sie kauft sich ein rotes . \nHe buys himself a green car and she buys herself a red .
+<pre><code class="language-sdparse">Er kauft sich ein grünes Auto und sie kauft sich ein rotes . \n He buys himself a green car and she buys herself a red .
 
 nsubj(kauft-2, Er-1)
 det(Auto-6, ein-4)
@@ -199,6 +199,17 @@ nsubj(left, They)
 dobj(left, company)
 conj&gt;nsubj(left, many)
 conj&gt;nmod(left, good)
+</code></pre>
+
+<p>This approach can also be used when the antecedent of the elided node is in another sentence. The artificial ROOT node is now allowed to have more than one child, but only if all are attached via composite relations, starting with <code>root&gt;</code>.</p>
+
+<pre><code class="language-sdparse">Mary wants to buy a book . ROOT And Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+dobj(buy-4, book-6)
+root&gt;nsubj(ROOT, Jenny)
+root&gt;xcomp&gt;dobj(ROOT, CD)
 </code></pre>
 
 <h2 id="predicate-ellipsis-in-enhanced-ud-v2">Predicate ellipsis in <em>Enhanced</em> UD v2</h2>
