@@ -140,7 +140,7 @@ case(John, to)
 <p>The current guidelines distinguish <a href="">u-dep/nsubjpass</a>, <a href="">u-dep/csubjpass</a>, and <a href="">u-dep/auxpass</a> from <a href="">u-dep/nsubj</a>, <a href="">u-dep/csubj</a> and <a href="">u-dep/aux</a> to capture the fact that the subject of a passive has a different role than the subject of the corresponding active verb. While this is useful for many NLP applications of UD, it seems to go against the general spirit in UD of annotating syntactic functions rather than semantic roles. A possible counterargument is that passive is a grammaticalized process and therefore part of syntax, but it seems we should then treat other valency-changing operations like causative and antipassive in the same way. Not only would this lead to a proliferation of grammatical relations, it would also go against the lexicalist stance in UD, which seems to favor a lexicalist analysis of these operations (as in LFG, for example).</p>
 
 <p>Our proposal is therefore that we get rid of the core argument relations <a href="">u-dep/nsubjpass</a> and <a href="">u-dep/csubjpass</a> and instead encode information about valency-changing operations only on the predicate. If the valency-changing operation is encoded morphologically (either as inflection or as derivation), it can be encoded using a morphological feature like Voice=Pass or Voice=Caus. If it is encoded periphrastically, this option is not directly applicable and we therefore
-propose to preserve the information encoded in the <a href="">u-dep/auxpass</a> relation, but to make it a language-specific option, hence <strong>aux:pass</strong>. This also opens up for relations like <strong>aux:caus</strong> for languages that has a periphrastic causative construction.</p>
+propose to preserve the information encoded in the <a href="">u-dep/auxpass</a> relation, but to make it a language-specific option, hence <strong>aux:pass</strong>. This also opens up for relations like <strong>aux:caus</strong> for languages that have a periphrastic causative construction.</p>
 
 <div id="s8" class="sd-parse">
 she was invited to the party
@@ -160,7 +160,7 @@ case(party, to)
   <li><a href="">u-dep/advmod</a>/<a href="">u-dep/advcl</a> is used for a modifier/clause dependent to a predicate (or adjective or adverb)</li>
 </ul>
 
-<p>But in the case of nominals, the <a href="">u-dep/nmod</a> has to double duty and cover both adnominal and adverbial uses of 
+<p>But in the case of nominals, the <a href="">u-dep/nmod</a> has to double duty and cover both adnominal and adverbial uses of
 nominals. Compare the following examples:</p>
 
 <div id="s9" class="sd-parse">
@@ -179,30 +179,30 @@ nmod(car, street)
 </div>
 
 <div id="s12" class="sd-parse">
-they ran quickly 
+they ran quickly
 advmod(ran, quickly)
 </div>
 
 <div id="s13" class="sd-parse">
-they ran when the bell sounded 
+they ran when the bell sounded
 advcl(ran, sounded)
 </div>
 
 <div id="s14" class="sd-parse">
-they ran to the forest 
+they ran to the forest
 nmod(ran, forest)
 </div>
 
-<p>This is problematic especially in nominal clauses, where the category of the head does not disambiguate 
+<p>This is problematic especially in nominal clauses, where the category of the head does not disambiguate
 between the two uses.</p>
 
 <div id="s15" class="sd-parse">
-she is a doctor of medicine  
+she is a doctor of medicine
 nmod(doctor, medicine)
 </div>
 
 <div id="s16" class="sd-parse">
-she is a doctor at the hospital  
+she is a doctor at the hospital
 nmod(doctor, hospital)
 </div>
 
