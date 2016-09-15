@@ -391,6 +391,36 @@ case(Maria, pe)
 case(masă, pe)
 </code></pre>
 
+<p>When a preposition is used with non-finite verbs, it is analysed as <code>mark</code>:</p>
+
+<pre><code class="language-sdparse">Plecăm devreme pentru a nu întârzia . \n Leave-we early for to not be_late .
+mark(întârzia, pentru)
+</code></pre>
+
+<p>Prepositions linking numerals to their nominal heads are dependents of the numerals.</p>
+
+<pre><code class="language-sdparse">30 de copii \n 30 of children
+nummod(copii, 30)
+case(30, de)
+</code></pre>
+<p>Compare this with numerals from 0 to 19 which take no preposition when modifying nouns:</p>
+
+<pre><code class="language-sdparse">3 copii \n 3 children
+nummod(copii, 3)
+</code></pre>
+
+<p>Prepositions linking adverbs to their post-poned adjective or adverb heads are also <code>mark</code> on the modifying adverb:</p>
+
+<pre><code class="language-sdparse">incredibil de bun \n incredibly of good
+advmod(bun, incredibil)
+case(incredibil, de)
+</code></pre>
+
+<pre><code class="language-sdparse">incredibil de bine \n incredibly of well
+advmod(bine, incredibil)
+case(incredibil, de)
+</code></pre>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ro-dep/case.md" target="#">edit case</a></p>
 
 <p><a id="al-ro-dep/cc" class="al-dest"></a></p>
@@ -837,8 +867,25 @@ nsubjpass(compus, Cântecul)
 <p><a id="al-ro-dep/nummod" class="al-dest"></a></p>
 <h2><code>nummod</code>: numeric modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nummod</code>.</p>
+<p>A numeric modifier of a noun is any number phrase that serves to modify the meaning of the noun with a quantity.</p>
+
+<p>When analysing dates, only the day is marked as a nummod for the month, whereas the year is an nmod for the month:</p>
+
+<pre><code class="language-sdparse">3 august 1957
+nummod(august, 3)
+nmod(august, 1957)
+</code></pre>
+
+<p>Regarding the analysis of years, we show two ways in which they are analysed: (i) in strings such as ‘În anul 2000 am absolvit facultatea.’ (In year-the 2000 have-I graduated faculty-the.), the year is an nummod for ‘anul’; (ii) in strings such as ‘În 2000 am absolvit facultatea’ (In 2000 have-I graduated faculty-the.), the year is an nmod for the verb.</p>
+
+<pre><code class="language-sdparse">În anul 2000 am absolvit facultatea .
+nummod(anul, 2000)
+nmod(absolvit, anul)
+</code></pre>
+
+<pre><code class="language-sdparse">În 2000 am absolvit facultatea .
+nmod(absolvit, 2000)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ro-dep/nummod.md" target="#">edit nummod</a></p>
 
