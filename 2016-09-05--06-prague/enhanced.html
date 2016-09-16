@@ -39,6 +39,189 @@
 
           <h1 id="enhanced-dependencies-in-ud-v2">Enhanced Dependencies in UD v2</h1>
 
+<p>The first version of the guidelines provided very little guidance regarding the <em>enhanced</em> representation and so far only very few treebanks contain additional dependencies. For v2, we propose the following guidelines for the <em>enhanced</em> representation:</p>
+
+<ul>
+  <li>We provide guidelines for the following additions:</li>
+  <li>Null nodes for elided predicates</li>
+  <li>Additional subject relations for control and raising constructions</li>
+  <li>Propagation of conjuncts</li>
+  <li>Arguments of passive verbs</li>
+  <li>Relative clauses</li>
+  <li>The <em>enhanced</em> graph is not necessarily a supergraph of the basic tree, i.e., it is not required to contain all the relations of the original</li>
+  <li>We leave it up to the treebank maintainers to decided whether and to what extent they want to add relations for the enhanced representation</li>
+</ul>
+
+<h2 id="ellipsis">Ellipsis</h2>
+
+<p>(See also the notes on <a href="ellipsis.html">ellipsis</a>)</p>
+
+<p>In the <em>enhanced</em> representation, we add special null nodes in clauses in which a predicate is elided.</p>
+
+<pre><code class="language-sdparse">I like tea and you E5.1 coffee .
+
+nsubj(like-2, I-1)
+dobj(like-2, tea-3)
+nsubj(E5.1-6, you-5)
+conj(like-2, E5.1-6)
+dobj(E5.1-6, coffee-7)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book and Jenny E8.1 E8.2 a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+dobj(buy-4, book-6)
+conj(wants-2, E8.1-9)
+nsubj(E8.1-9, Jenny-8)
+xcomp(E8.1-9, E8.2-10)
+dobj(E8.2-10, CD-12)
+</code></pre>
+
+<p>Note that this is a case in which the <em>enhanced</em> UD graph is not a supergraph of the <em>basic</em> tree as the <em>basic</em> tree contains composite relations (e.g., <code>conj&gt;nsubj</code> between <em>wants</em> and <em>Jenny</em>), which are not present in the <em>enhanced</em> UD graph.</p>
+
+<h2 id="controlledraised-subjects">Controlled/raised subjects</h2>
+
+<p>TODO</p>
+
+<h2 id="propagation-of-conjuncts">Propagation of Conjuncts</h2>
+
+<p>In the <em>basic</em> representation, the governor and dependents of a conjoined phrase are all attached to the first conjunct. The <em>enhanced</em> representation also contains dependencies between the other conjuncts and the governor and dependents of the phrase.</p>
+
+<h3 id="conjoined-verbs-and-verb-phrases">Conjoined verbs and verb phrases</h3>
+
+<p>When two verbs are conjoined, the subject and the object of the conjoined verbs are attached to every conjunct.</p>
+
+<pre><code class="language-sdparse">The store buys and sells cameras .
+
+nsubj(buys, store)
+nsubj(sells, store)
+conj(buys, sells)
+dobj(buys, cameras)
+dobj(sells, cameras)
+</code></pre>
+
+<p>When two verb phrases are conjoined, only the subject is attached to every conjunct.</p>
+
+<pre><code class="language-sdparse">She was reading or watching a movie .
+
+nsubj(reading, She)
+nsubj(watching, She)
+conj(reading, watching)
+dobj(watching, movie)
+</code></pre>
+
+<h3 id="conjoined-subjects-and-objects">Conjoined subjects and objects</h3>
+
+<p>When the subject is a conjoined noun phrase, each of the conjuncts is attached to the predicate.</p>
+
+<pre><code class="language-sdparse">Paul and Mary are running .
+
+nsubj(running, Paul)
+nsubj(running, Mary)
+conj(Paul, Mary)
+</code></pre>
+
+<p>The same is true for conjoined objects.</p>
+
+<pre><code class="language-sdparse">Paul bought apples and oranges .
+
+nsubj(bought, Paul)
+dobj(bought, apples)
+dobj(bought, oranges)
+conj(apples, oranges)
+</code></pre>
+
+<p>However, in case of unambiguous collective subjects or objects, no additional relations should be added.</p>
+
+<pre><code class="language-sdparse">Paul and Mary are meeting .
+
+nsubj(meeting, Paul)
+conj(Paul, Mary)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary is eating mac and cheese .
+
+nsubj(eating, Mary)
+dobj(eating, mac)
+conj(mac, cheese)
+</code></pre>
+
+<p>When the subject is attached to a control or raising predicate, there is a dependency between the matrix verb and each conjunct and between the embedded verb and each conjunct.</p>
+
+<pre><code class="language-sdparse">Mary and John wanted to buy a hat .
+
+nsubj(wanted, Mary)
+nsubj(wanted, John)
+conj(Mary, John)
+xcomp(wanted, buy)
+nsubj(buy, Mary)
+nsubj(buy, John)
+</code></pre>
+
+<h3 id="conjoined-modifiers">Conjoined modifiers</h3>
+
+<p>Each conjunct in a conjoined modifier phrase gets attached to the governor of the modifier phrase. For example, the following phrase contains a conjoined adjectival phrase that modifies a noun. In the enhanced representation, there is an additional <code>amod</code> relation between the noun <em>river</em> and the second conjunct <em>wide</em>.</p>
+
+<pre><code class="language-sdparse">a long and wide river
+
+amod(river, long)
+amod(river, wide)
+conj(long, wide)
+</code></pre>
+
+<h2 id="arguments-of-passive-verbs">Arguments of passive verbs</h2>
+
+<p>(See also the notes on <a href="core-dependents.html">core dependents</a> for a detailed discussion of the new analysis of passive constructions in the <em>basic</em> representation.)</p>
+
+<p>We propose that we no longer use a special <code>nsubjpass</code> relation in the <em>basic</em> representation. However, the distiction between regular subjects and subjects in passive constructions is still highly useful for many NLP tasks. We therefore propose to use the relations <code>dobj:prom</code>, <code>iobj:prom</code>, and <code>nmod:agent</code> for the arguments of a passivized verb.</p>
+
+<pre><code>The book was written by the author .
+
+dobj:prom(written, book)
+nmod:agent(written, author)
+</code></pre>
+
+<pre><code>She was given the book.
+
+iobj:prom(given, she)
+dobj(given, book)
+
+</code></pre>
+
+<h3 id="to-discuss">To discuss</h3>
+
+<ul>
+  <li>Should the <em>enhanced</em> UD graph still contain the original subject dependencies or should we only have <code>[di]obj:prom</code>?</li>
+</ul>
+
+<h2 id="relative-clauses">Relative clauses</h2>
+
+<p>TODO</p>
+
+<p>acl:relcl
+add additional subject or object relation</p>
+
+<p>note: introduces a cycle</p>
+
+<h2 id="recommended-order-of-annotations">Recommended order of annotations</h2>
+
+<p>We are aware that adding all of the discussed relations for the <em>enhanced</em> representation will require a significant amount of work. Further, many treebanks have been automatically converted from existing treebanks and many of them might contain only some of the information that is needed to add the relations for the <em>enhanced</em> representation. At the same time, we believe that having some of the additional relations is better than not having any additional relations at all. We therefore leave it up to the treebank maintainers how much of this proposal they want to implement.</p>
+
+<p>However, maintainers should be aware that the different types of relations are not completely independent of each other and adding one type of information (e.g., null nodes) might require changes to existing additional relations. If the additional relations are added manually, we recommend the following order of annotations:</p>
+
+<ul>
+  <li>Null nodes</li>
+  <li>Propagation of conjuncts</li>
+  <li>Controllers and raised subjects</li>
+  <li>Relative clauses and passive arguments</li>
+</ul>
+
+<h2 id="additional-enhancements">Additional enhancements</h2>
+
+<p>Some postprocessing steps such as adding case makers to the relation names of nominal modifiers (as described in <a href="http://www.lrec-conf.org/proceedings/lrec2016/pdf/779_Paper.pdf">this paper</a>) can improve the usability of the dependency graphs for downstream applications. However, as most of these additions are hightly language-specific, we do not provide any universal guidelines for such a representation and anything beyond the above additions is not part of the UD standard and should not be added to the officially released treebanks.</p>
+
+
 
       </div>
 
