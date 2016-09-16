@@ -54,7 +54,7 @@
 
 <h2 id="ellipsis">Ellipsis</h2>
 
-<p>(See also the notes on <a href="ellipsis.html">ellipsis</a>)</p>
+<p>(See also the notes on <a href="ellipsis.html">ellipsis</a>.)</p>
 
 <p>In the <em>enhanced</em> representation, we add special null nodes in clauses in which a predicate is elided.</p>
 
@@ -82,7 +82,27 @@ dobj(E8.2-10, CD-12)
 
 <h2 id="controlledraised-subjects">Controlled/raised subjects</h2>
 
-<p>TODO</p>
+<p>The <em>basic</em> trees lack a subject dependency between a controlled verb and its controller or between an embedded verb and its raised subject. In the <em>enhanced</em> graph, there is an additional dependency between the embedded verb and the subject of the matrix clause.</p>
+
+<pre><code class="language-sdparse">Mary wants to buy a book .
+
+nsubj(wants, Mary)
+xcomp(wants, buy)
+nsubj(buy, Mary)
+</code></pre>
+
+<pre><code class="language-sdparse">She seems to be reading a book .
+
+nsubj(seems, She)
+xcomp(seems, reading)
+nsubj(reading, She)
+</code></pre>
+
+<h3 id="to-discuss">To discuss</h3>
+
+<ul>
+  <li>Should we use a special relation (e.g., <code>nsubj:xsubj</code>) for these additional relations?</li>
+</ul>
 
 <h2 id="propagation-of-conjuncts">Propagation of Conjuncts</h2>
 
@@ -188,7 +208,7 @@ iobj:prom(given, She)
 dobj(given, book)
 </code></pre>
 
-<h3 id="to-discuss">To discuss</h3>
+<h3 id="to-discuss-1">To discuss</h3>
 
 <ul>
   <li>Should the <em>enhanced</em> UD graph still contain the original subject dependencies or should we only have <code>[di]obj:prom</code>?</li>
@@ -196,12 +216,59 @@ dobj(given, book)
 
 <h2 id="relative-clauses">Relative clauses</h2>
 
-<p>TODO</p>
+<p>In <em>basic</em> trees, relative pronouns are attached to the main predicate of the relative clause (typically with a <code>nsubj</code> or <code>dobj</code> relation). In the corresponding <em>enhanced</em> graphs, the relative pronoun is attached to what it is referring to with the special <code>ref</code> relation and the governor of the relative clause is attached as an argument to the main predicate of the relative clause. Note that such graphs contain a cycle, as there is a dependenct</p>
 
-<p>acl:relcl
-add additional subject or object relation</p>
+<p><em>Basic</em> tree:</p>
 
-<p>note: introduces a cycle</p>
+<pre><code class="language-sdparse">The boy who lived .
+
+acl:relcl(boy, lived)
+nsubj(lived, who)
+</code></pre>
+
+<p><em>Enhanced</em> graph:</p>
+
+<pre><code class="language-sdparse">The boy who lived .
+
+acl:relcl(boy, lived)
+ref(boy, who)
+nsubj(lived, boy)
+</code></pre>
+
+<p><em>Basic</em> tree:</p>
+
+<pre><code class="language-sdparse">The book that I read .
+
+acl:relcl(book, read)
+dobj(read, that)
+</code></pre>
+
+<p><em>Enhanced</em> graph:</p>
+
+<pre><code class="language-sdparse">The book that I read .
+
+acl:relcl(book, read)
+ref(book, that)
+dobj(read, book)
+</code></pre>
+
+<h3 id="to-discuss-2">To discuss</h3>
+
+<p>Should this also be applied to relative pronouns that refer to adnominal or adverbial modifiers? And what should we do with dependents of the relative pronoun such as case markers?</p>
+
+<p>Examples:
+~~~ sdparse
+The house in which I used to live .</p>
+
+<p>acl:relcl(house, used)
+nmod(live, house)
+~~~</p>
+
+<pre><code class="language-sdparse">The city where I used to live .
+
+acl:relcl(city, used)
+nmod???(live, city)
+</code></pre>
 
 <h2 id="recommended-order-of-annotations">Recommended order of annotations</h2>
 
