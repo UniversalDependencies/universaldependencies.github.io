@@ -44,17 +44,21 @@
 <h2 id="negation-u-depneg">Negation <a href="">u-dep/neg</a></h2>
 <p>We suggest getting rid of the <a href="">u-dep/neg</a> relation which is not syntactic. Instead we will use</p>
 
-<p>*ordinary syntactic relations like <a href="">u-dep/advmod</a>, <a href="">u-dep/aux</a>, etc.
-*a feature Negative=Neg on the negative word to preserve the information about negation</p>
+<ul>
+  <li>ordinary syntactic relations like <a href="">u-dep/advmod</a>, <a href="">u-dep/aux</a>, etc.</li>
+  <li>a feature Negative=Neg on the negative word to preserve the information about negation</li>
+</ul>
 
 <h2 id="names-u-depname">Names <a href="">u-dep/name</a></h2>
 <p>We suggest keeping a distinction for <a href="">u-dep/name</a> but relabeling the relation as <code>flat</code>. The <code>name</code> label was another one that led to confusion. It was not intended to be used for all <em>named entities</em>, but only for proper nouns constituted of multiple nominal elements.</p>
 
 <p>The changes proposed are:</p>
 
-<p>*Relabel <code>name</code> to <code>flat</code> (on the basis that such proper nouns constitued of multiple nominal elements do not have a clear head but are just in a flat structure)
-*Include titles in the <code>flat</code> expressions
-*Make the head the last element of the expression by default. Languages for which a head in the <code>flat</code> expression can be identified (because of morphology, such as in Finnish or Czech for instance) are allowed to choose another element as the head.</p>
+<ul>
+  <li>Relabel <code>name</code> to <code>flat</code> (on the basis that such proper nouns constitued of multiple nominal elements do not have a clear head but are just in a flat structure)</li>
+  <li>Include titles in the <code>flat</code> expressions</li>
+  <li>Make the head the last element of the expression by default. Languages for which a head in the <code>flat</code> expression can be identified (because of morphology, such as in Finnish or Czech for instance) are allowed to choose another element as the head.</li>
+</ul>
 
 <pre><code class="language-sdparse">Hillary Rohdam Clinton
 flat(Clinton, Hillary)
@@ -67,9 +71,9 @@ flat(Pignon, Louis)
 </code></pre>
 
 <h2 id="changes-in-the-direction-of-arrows">Changes in the direction of arrows</h2>
-<p>For consistency, we also suggest changing the head in <code>fixed</code> (currently <a href="">u-dep/mwe</a>) and <a href="">u-dep/foreign</a>. Insteand of having structures in which all the elements depend on the first one, all the elements will depend on the last one.</p>
+<p>For consistency, we also suggest changing the head in <code>fixed</code> (currently <a href="">u-dep/mwe</a>) and <a href="">u-dep/foreign</a>. Instead of having structures in which all the elements depend on the first one, all the elements will depend on the last one.</p>
 
-<p>However we do not extend this change to the <a href="">u-dep/reparandum</a> relation. In repairs, the material to the right will be the “correct” material, and it would seem strange to have something that the speaker of the utterance wanted to discard as a direct dependent of the other words in the sentence while the corrected word is buried down in the dependency graph.
+<p>However we do not extend this change to the <a href="">u-dep/reparandum</a> relation. In repairs, the material to the right will be the “correct” material, and it would seem strange to have something that the speaker of the utterance wants to discard as a direct dependent of the other words in the sentence while the corrected word is buried down in the dependency graph.
 As noted by Gerdes &amp; Kahane (2016), there are of course borderline cases between elaboration and disfluency such as <em>I saw a room, a bright room, a room with red lights</em>, but it doesn’t seem wrong to us to take the last element <em>a room with red ligths</em> as the governor of <em>a room</em> and <em>a bright room</em>.</p>
 
 
