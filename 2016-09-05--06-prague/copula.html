@@ -43,6 +43,16 @@
 
 <p>Because of the variability in how copulas are treated, it is hard to come up with a consistent scheme that can be applied totally cross-linguistically. There are also many cases, such as copulas with clausal arguments that require more in-depth investigation. However, we hope that by the following guidelines the treebanks released under UD v2.0 will be more consistent in their treatment of the copula both cross-linguistically and within a single language.</p>
 
+<h2 id="summary">Summary</h2>
+
+<ul>
+  <li>For copulas, we should be maximally restrictive with respect to which words can be copulas (only one word in most languages) but maximally permissi
+ve when it comes to treating this word as a copula.</li>
+  <li>The copula word should never be the root, except through promotion (“he is not happy, but she is”).</li>
+  <li>We should add the subtype <code>nsubj:cop</code> to avoid having to flip dependencies when the predicate is a clause. It should also be used more generally to
+ signal that the subject in copula constructions is special.</li>
+</ul>
+
 <h2 id="general-guidelines-and-overview">General guidelines and overview</h2>
 
 <p>If a language (e.g. Irish) has its own clear guidelines, they are in the spirit of UD, and they don’t conflict, then we see no
@@ -51,42 +61,26 @@ reason to change them. However, if there are no clear guidelines, then we should
 <ul>
   <li>There should be only one copula in a language.[1]
     <ul>
-      <li>Subjects of copula constructions should receive a special label, either <code>nsubjcop</code> or <code>nsubj:cop</code>. This has several benefits, including solving the problem of double subjects. “The idea is you first find the general case.”, <code>nsubj:cop(find, idea)</code>, <code>nsubj(find, you)</code></li>
+      <li>Subjects of copula constructions should receive a special label, either <code>nsubjcop</code> or <code>nsubj:cop</code>. This has several benefits, including solving the problem of double subjects when the predicate is a clause. “The idea is you first find the general case.”, <code>nsubj:cop(find, idea)</code>, <code>nsubj(find, you)</code></li>
       <li>In languages where the copula is a verb, for verbs that are sometimes called “copula” (e.g. {eng} <em>become</em>, {swe} <em>bli</em>, {spa} <em>estar</em>) other than the prototypical copula (e.g. {eng} <em>be</em>, {swe} <em>vara</em>, {spa} <em>ser</em>), the nominal complement should be <code>xcomp</code>.</li>
     </ul>
   </li>
 </ul>
 
-<p>We propose keeping with current practice in UD v1.x for the following copula constructions:</p>
+<p>We propose keeping with current practice in UD v1.x for copula constructions, that is we always have the copula as a dependent. Where the predicate is an NP or AP, this is straightforward as there is usually only a single predicate. The treebanks currently implement this.</p>
 
-<ul>
-  <li>with the meaning <code>is of category</code> (where <code>category</code> is typically an NP), the category should be the head, and the copula word dependent on it with the relation <code>cop</code>.</li>
-  <li>with the meaning <code>has quality</code> (where <code>quality</code> is typically an AP), we have the quality as the head and the copula as the dependent.</li>
-</ul>
-
-<p>These are largely consistent across the current UD languages.</p>
-
-<p>The next type we’ll consider is <code>has location</code> (where <code>location</code> [in time, space, company, capacity etc.] is typically a PP or case-marked NP). Current practice in UD v1.x for prepositional phrases/case-marked NPs is inconsistent and we propose changing it. Currently some treebanks (English, Swedish, …) have the PP as head and the copula depending on it, and others (Finnish, Spanish, …) have the verb as head and the PP as <code>nmod</code></p>
-
-<ul>
-  <li>We propose making the copula the head in these constructions.
-    <ul>
-      <li>It is difficult to establish the root in sentences with multiple adverbials/PPs, e.g. “She is in Prague today with her friends on a school trip”.</li>
-      <li>It is related to “existential” constructions that use the copula. Currently in English there is a very different analysis for “The book is on the table here.” and “There is a book on the table here.”</li>
-    </ul>
-  </li>
-</ul>
+<p>When the predicate is one of several PPs, for example in “She is in Prague today with her friends on a school trip”, then there should be language specific guidelines on how to decide on the most adequate head or main predicate. This will require a change in some treebanks, English and Swedish currently have the PP as head, while Finnish and Spanish have the copula verb as head.</p>
 
 <p>What to do if there is “zero copula”:</p>
 
 <ul>
-  <li>If the copula is not present, then we have two options:
-    <ol>
-      <li>the first is to use the new system for ellipsis (see <a href="ellipsis.html">ellipsis</a>, for these languages this would entail basic sentences having two (or more) dependents of the root node, “Она в деревне.” <code>root&gt;nsubj(Она)</code>, <code>root&gt;nmod(деревне)</code></li>
-      <li>Use simple promotion, “Она в деревне.” <code>root(деревне)</code> + <code>nsubj(деревне, Она)</code></li>
-    </ol>
-  </li>
+  <li>If the copula is not present in some tenses or persons, then we use promotion:</li>
 </ul>
+
+<pre><code class="language-sdparse">Она в деревне.
+root(деревне)
+nsubj:cop(деревне, Она)
+</code></pre>
 
 <p>What to do with clausal arguments:</p>
 
@@ -202,7 +196,7 @@ En nödvändig förutsättning är att männen är helt med på saken .
 
 <h3 id="english">English</h3>
 
-<p>The English analysis more or less follows the analysis in the <code>UD_English</code> treebank, with the addition of the relation <code>nsubj:cop</code> for subjects of copula constructions. There is a difference however with how (8–10) are treated.</p>
+<p>The English analysis more or less follows the analysis in the <code>UD_English</code> treebank, with the addition of the relation <code>nsubj:cop</code> for subjects of copula constructions. There is a difference however with how (11) and (13) are treated.</p>
 
 <p>(1)</p>
 
@@ -255,60 +249,56 @@ cop(shape, is)
 
 <p>(8)</p>
 
-<p>This analysis differs from how it is currently analysed in the <code>UD_English</code> treebank,</p>
-
 <pre><code class="language-sdparse">She is in the house
-nsubj(is, She)
-nmod(is, house)
+nsubj:cop(house, She)
+cop(house, is)
 </code></pre>
 
 <p>(9)</p>
 
 <pre><code class="language-sdparse">I am in the house
-nsubj(am, I)
-nmod(am, house)
+nsubj:cop(house, I)
+cop(house, am)
 </code></pre>
 
 <p>(10)</p>
 
 <pre><code class="language-sdparse">She was in the house
-nsubj(was, She)
-nmod(was, house)
+nsubj:cop(house, She)
+cop(house, was)
 </code></pre>
 
 <p>(11)</p>
 
 <pre><code class="language-sdparse">There is a house in the village
-expl(is, There)
-nsubj(is, house)
-nmod(is, village)
+expl(village, There)
+nsubj:cop(village, house)
+cop(village, is)
 </code></pre>
 
 <p>(12)</p>
 
 <pre><code class="language-sdparse">The house is in the village
-nsubj(is, house)
-nmod(is, village)
+nsubj:cop(village, house)
+cop(village, is)
 </code></pre>
 
 <p>(13)</p>
 
 <pre><code class="language-sdparse">There was a house in the village
-expl(was, There)
-nsubj(was, house)
-nmod(was, village)
+expl(village, There)
+nsubj:cop(village, house)
+cop(village, was)
 </code></pre>
 
 <p>(14)</p>
 
 <pre><code class="language-sdparse">The house was in the village
-nsubj(was, house)
-nmod(was, village)
+nsubj:cop(village, house)
+cop(village, was)
 </code></pre>
 
 <h3 id="swedish">Swedish</h3>
-
-<p>The current <code>UD_Swedish</code> treebank considers all uses of “vara” to take the <code>cop</code> relation. Under the new guidelines, 8–14 will be analysed differently.</p>
 
 <p>(1)</p>
 
@@ -358,25 +348,23 @@ cop(glad, är)
 
 <p>(8)</p>
 
-<p>This analysis is a departure from the existing Swedish analysis where “huset” would be considered <code>root</code> of the whole sentence.</p>
-
 <pre><code class="language-sdparse">Hon är i huset
-nsubj(är, Hon)
-nmod(är, huset)
+nsubj:cop(huset, Hon)
+cop(huset, är)
 </code></pre>
 
 <p>(9)</p>
 
 <pre><code class="language-sdparse">Jag är i huset
-nsubj(är, Jag)
-nmod(är, huset)
+nsubj:cop(huset, Jag)
+cop(huset, är)
 </code></pre>
 
 <p>(10)</p>
 
 <pre><code class="language-sdparse">Hon var i huset
-nsubj(var, Hon)
-nmod(var, huset)
+nsubj:cop(huset, Hon)
+cop(huset, var)
 </code></pre>
 
 <p>(11)</p>
@@ -392,8 +380,8 @@ nmod(finns, byen)
 <p>(12)</p>
 
 <pre><code class="language-sdparse">Huset är i byen
-nsubj(är, Huset)
-nmod(är, byen)
+nsubj:cop(byen, Huset)
+cop(byen, är)
 </code></pre>
 
 <p>(13)</p>
@@ -407,8 +395,8 @@ nmod(fanns, byen)
 <p>(14)</p>
 
 <pre><code class="language-sdparse">Huset var i byen
-nsubj(var, Huset)
-nmod(var, byen)
+nsubj:cop(byen, Huset)
+cop(byen, var)
 </code></pre>
 
 <h3 id="spanish">Spanish</h3>
@@ -485,7 +473,7 @@ xcomp(está, madre)
 
 <p>(8)</p>
 
-<p>In Spanish position uses the verb <em>estar</em> and not <em>ser</em>.</p>
+<p>In Spanish location/position uses the verb <em>estar</em> and not <em>ser</em>.</p>
 
 <pre><code class="language-sdparse">Ella está en la casa
 nsubj(está, Ella)
@@ -495,8 +483,8 @@ nmod(está, casa)
 <p>Note that in Catalan, this would be “Ella és a la casa”, using the <em>ser</em> verb, not the <em>estar</em> verb. This would be analysed as:</p>
 
 <pre><code class="language-sdparse">Ella és a la casa
-nsubj(és, Ella)
-nmod(és, casa)
+nsubj:cop(casa, Ella)
+cop(casa, és)
 </code></pre>
 
 <p>(9)</p>
@@ -607,17 +595,10 @@ nsubj:cop(курсе, Она)
 
 <p>(8)</p>
 
-<p>In Russian, there is no verb used for locative predication in the present tense, this presents a problem for both inter-language and intra-language consistency. There are two main ways to deal with it. The first is to use promotion and promote the PP to be the root of the sentence. This will allow the distinction of case (7) and case (8) by the relation of the subject.</p>
+<p>In Russian, there is no verb used for locative predication in the present tense.</p>
 
 <pre><code class="language-sdparse">Она в дому
-nsubj(дому, Она)
-</code></pre>
-
-<p>The second would be to take advantage of the new system for ellipsis and use ellipsis to deal with it:</p>
-
-<pre><code class="language-sdparse">ROOT Она в дому
-root&gt;nmod(ROOT, дому)
-root&gt;nsubj(ROOT, Она)
+nsubj:cop(дому, Она)
 </code></pre>
 
 <p>(9)</p>
@@ -625,54 +606,47 @@ root&gt;nsubj(ROOT, Она)
 <p>As with (8),</p>
 
 <pre><code class="language-sdparse">Я в дому
-nsubj(дому, Я)
-</code></pre>
-
-<pre><code class="language-sdparse">ROOT Я в дому
-root&gt;nmod(ROOT, дому)
-root&gt;nsubj(ROOT, Я)
+nsubj:cop(дому, Я)
 </code></pre>
 
 <p>(10)</p>
 
-<p>In the past tense we have the verb and we can use that as the root:</p>
+<p>In the past tense we have the verb and we make it a dependent:</p>
 
 <pre><code class="language-sdparse">Она была в дому
-nsubj(была, Она)
-nmod(была, дому)
+nsubj:cop(дому, Она)
+cop(дому, была)
 </code></pre>
 
 <p>(11)</p>
 
-<p>In Russian, in the present tense, existential constructions use “есть” which is sometimes described as a “predicative”,
-but in fact it is the 3rd person present form of the verb <em>быть</em> “to be”.</p>
+<p>In Russian, in the present tense, existential constructions use “есть” which is sometimes described as a “predicative”:</p>
 
 <pre><code class="language-sdparse">Есть дом в деревне
-nsubj(Есть, дом)
-nmod(Есть, деревне)
+nsubj:cop(деревне, дом)
+cop(деревне, Есть
 </code></pre>
 
 <p>(12)</p>
 
-<pre><code class="language-sdparse">ROOT Дом в деревне
-root&gt;nmod(ROOT, деревне)
-root&gt;nsubj(ROOT, Дом)
+<pre><code class="language-sdparse">Дом в деревне
+nsubj:cop(деревне, Дом)
 </code></pre>
 
 <p>(13)</p>
 
-<p>In the past tense (and future tense), the verb быть is employed. As far as I am able to ascertain, syntactically (13) and (14) are equivalent in Russian aside from the word order considerations.</p>
+<p>In the past tense (and future tense), the verb быть is employed. Syntactically (13) and (14) are equivalent in Russian aside from the word order considerations.</p>
 
 <pre><code class="language-sdparse">Был дом в деревне
-nsubj(Был, дом)
-nmod(Был, деревне)
+nsubj:cop(деревне, дом)
+cop(деревне, Был)
 </code></pre>
 
 <p>(14)</p>
 
 <pre><code class="language-sdparse">Дом был в деревне
-nsubj(был, Дом)
-nmod(был, деревне)
+nsubj:cop(деревне, Дом)
+cop(деревне, был)
 </code></pre>
 
 <h3 id="finnish">Finnish</h3>
@@ -731,22 +705,22 @@ cop(kunnossa, on)
 <p>(8)</p>
 
 <pre><code class="language-sdparse">Se on talossa
-nsubj(on, Se)
-nmod(on, talossa)
+nsubj:cop(talossa, Se)
+cop(talossa, on)
 </code></pre>
 
 <p>(9)</p>
 
 <pre><code class="language-sdparse">Mä oon talossa
-nsubj(oon, Mä)
-nmod(oon, talossa)
+nsubj:cop(talossa, Mä)
+cop(talossa, oon)
 </code></pre>
 
 <p>(10)</p>
 
 <pre><code class="language-sdparse">Se oli talossa
-nsubj(oli, Se)
-nmod(oli, talossa)
+nsubj:cop(talossa, Se)
+cop(talossa, oli)
 </code></pre>
 
 <p>(11)</p>
@@ -754,29 +728,29 @@ nmod(oli, talossa)
 <p>In Finnish, existential and non-existential are identical aside from word order.</p>
 
 <pre><code class="language-sdparse">Kylässä on talo
-nsubj(on, talo)
-nmod(on, Kylässä)
+cop(Kylässä, on)
+nsubj:cop(Kylässä, talo)
 </code></pre>
 
 <p>(12)</p>
 
 <pre><code class="language-sdparse">Talo on kylässä
-nsubj(on, Talo)
-nmod(on, kylässä)
+cop(kylässä, on)
+nsubj:cop(kylässä, Talo)
 </code></pre>
 
 <p>(13)</p>
 
 <pre><code class="language-sdparse">Kylässä oli talo
-nsubj(oli, talo)
-nmod(oli, Kylässä)
+cop(Kylässä, oli)
+nsubj:cop(Kylässä, talo)
 </code></pre>
 
 <p>(14)</p>
 
 <pre><code class="language-sdparse">Talo oli kylässä
-nsubj(oli, Talo)
-nmod(oli, kylässä)
+cop(kylässä, oli)
+nsubj:cop(kylässä, Talo)
 </code></pre>
 
 <h3 id="turkish">Turkish</h3>
@@ -842,42 +816,37 @@ cop(mutlu, -yum)
 
 <p>(8)</p>
 
-<p>The lack of suffix for third person singular present tense non-formal means that it will look like the head of locative predicates is empty, but see argumentation about nominative above. If the parser can guess that something is nominative, it can guess that it’s third person singular present tense.</p>
-
-<pre><code class="language-sdparse">O evde -Ø
-nsubj(-Ø, O)
-nmod(-Ø, evde)
+<pre><code class="language-sdparse">O evde 
+nsubj:cop(evde, O)
 </code></pre>
 
 <p>(9)</p>
 
 <pre><code class="language-sdparse">Ben evde -yim
-nsubj(-yim, Ben)
-nmod(-yim, evde)
+nsubj:cop(evde, Ben)
+cop(evde, -yim)
 </code></pre>
 
 <p>(10)</p>
 
 <pre><code class="language-sdparse">O evde -ydi
-nsubj(-ydi, O)
-nmod(-ydi, evde)
+nsubj:cop(evde, O)
+cop(evde, -ydi)
 </code></pre>
 
 <p>(11)</p>
 
-<p>In Turkish (and indeed in most Turkic languages), existence is a different structure, using an adjective <em>var</em> “existent”, and so gets a different structure.</p>
+<p>In Turkish (and indeed in most Turkic languages), existence is a syntactically different, using an adjective <em>var</em> “existent”, and so gets a different structure.</p>
 
-<pre><code class="language-sdparse">Köyde ev var -Ø
+<pre><code class="language-sdparse">Köyde ev var 
 nsubj:cop(var, ev)
-cop(var, -Ø)
 nmod(var, Köyde)
 </code></pre>
 
 <p>(12)</p>
 
-<pre><code class="language-sdparse">Ev köyde -Ø
-nsubj(-Ø, Ev)
-nmod(-Ø, köyde)
+<pre><code class="language-sdparse">Ev köyde 
+nsubj:cop(köyde, Ev)
 </code></pre>
 
 <p>(13)</p>
@@ -891,8 +860,8 @@ nmod(var, Köyde)
 <p>(14)</p>
 
 <pre><code class="language-sdparse">Ev köyde -ydi
-nsubj(-ydi, Ev)
-nmod(-ydi, köyde)
+nsubj:cop(köyde, Ev)
+cop(köyde, -ydi)
 </code></pre>
 
 <h3 id="irish">Irish</h3>
