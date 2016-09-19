@@ -39,9 +39,15 @@
 
           <h1 id="semantic-categories-in-ud-v2">Semantic Categories in UD v2</h1>
 
-<p>Some of our current relations (i.e., <a href="">u-dep/name</a> and <a href="">u-dep/neg</a>) seem to primarily encode semantic distinctions (rather than syntactic). The question is whether we should eliminate these from the annotation scheme and encode the distinctions with features.</p>
+<p>Some of our current relations (i.e., <a href="">u-dep/name</a> and <a href="">u-dep/neg</a>) seem to primarily encode semantic distinctions (rather than syntactic). We propose the following changes for v2:</p>
 
-<h2 id="negation-u-depneg">Negation <a href="">u-dep/neg</a></h2>
+<ul>
+  <li>Remove <a href="">u-dep/neg</a> and instead encode negation as a feature</li>
+  <li>Rename <a href="">u-dep/name</a> to <strong>flat</strong> and extend its usage beyond names</li>
+</ul>
+
+<h2 id="remove-neg">Remove neg</h2>
+
 <p>We suggest getting rid of the <a href="">u-dep/neg</a> relation which is not syntactic. Instead we will use</p>
 
 <ul>
@@ -49,18 +55,9 @@
   <li>a feature Negative=Neg on the negative word to preserve the information about negation</li>
 </ul>
 
-<h2 id="names-u-depname">Names <a href="">u-dep/name</a></h2>
-<p>We suggest keeping a distinction for <a href="">u-dep/name</a> but relabeling the relation as <code>flat</code>. The <code>name</code> label was another one that led to confusion. It was not intended to be used for all <em>named entities</em>, but only for proper nouns constituted of multiple nominal elements.</p>
+<h2 id="rename-name-and-modify-its-use">Rename name and modify its use</h2>
 
-<p>The changes proposed are:</p>
-
-<ul>
-  <li>Relabel <code>name</code> to <code>flat</code> (on the basis that such proper nouns constitued of multiple nominal elements do not have a clear head but are just in a flat structure)</li>
-  <li>Include titles in the <code>flat</code> expressions</li>
-  <li>Make the head the last element of the expression by default. Languages for which a head in the <code>flat</code> expression can be identified (because of morphology, such as in Finnish or Czech for instance) are allowed to choose another element as the head.</li>
-</ul>
-
-<p><strong>Discuss: Dan points out that the last point, which is what I remember from our Prague meeting, contradicts the “flat” structure with no clear head, and would indicate that another relation is more appropriate. Do we want to revisit this? (i.e., no choice in head for <code>flat</code>).</strong></p>
+<p>The <code>name</code> label is another one that has led to confusion. It was not intended to be used for all <strong>named entities</strong>, but only for names consisting of multiple nominal elements. We suggest keeping the relation but renaming it to <code>flat</code> to (a) avoid the impression that it should capture named entities in general, and (b) indicate that the relation is only appropriate when there is no clear syntactic head. After we have dropped the direct association with names, we can also extend the use of this relation to titles (“Mrs.”, “President”, etc.) in languages where they do not show clear head or dependent properties. Finally, consistent with the proposed changes for other headless constructions, we propose that arrows should be drawn from righ to left (see <a href="mwe.html">multiword expressions</a>).</p>
 
 <pre><code class="language-sdparse">Hillary Rodham Clinton
 flat(Clinton, Hillary)
@@ -81,12 +78,6 @@ foreign(sorciers, l')
 foreign(sorciers, école)
 foreign(sorciers, des)
 </code></pre>
-
-<h2 id="changes-in-the-direction-of-arrows">Changes in the direction of arrows</h2>
-<p>For consistency, we also suggest changing the head in <code>fixed</code> (currently <a href="">u-dep/mwe</a>) and <a href="">u-dep/foreign</a>. Instead of having structures in which all the elements depend on the first one, all the elements will depend on the last one.</p>
-
-<p>However we do not extend this change to the <a href="">u-dep/reparandum</a> relation. In repairs, the material to the right will be the “correct” material, and it would seem strange to have something that the speaker of the utterance wants to discard as a direct dependent of the other words in the sentence while the corrected word is buried down in the dependency graph.
-As noted by Gerdes &amp; Kahane (2016), there are of course borderline cases between elaboration and disfluency such as <em>I saw a room, a bright room, a room with red lights</em>, but it doesn’t seem wrong to us to take the last element <em>a room with red ligths</em> as the governor of <em>a room</em> and <em>a bright room</em>.</p>
 
 
 
