@@ -113,7 +113,7 @@ nsubj(reading, She)
 
 <h3 id="conjoined-verbs-and-verb-phrases">Conjoined verbs and verb phrases</h3>
 
-<p>When two verbs are conjoined, the subject and the object of the conjoined verbs are attached to every conjunct.</p>
+<p>When two verbs share their objects (or other complements), the subject and the object of the conjoined verbs are attached to every conjunct.</p>
 
 <pre><code class="language-sdparse">The store buys and sells cameras .
 
@@ -124,7 +124,7 @@ dobj(buys, cameras)
 dobj(sells, cameras)
 </code></pre>
 
-<p>When two verb phrases are conjoined, only the subject is attached to every conjunct.</p>
+<p>However, if the complements of the second verb are not shared, only the subject is attached to every conjunct.</p>
 
 <pre><code class="language-sdparse">She was reading or watching a movie .
 
@@ -155,11 +155,12 @@ dobj(bought, oranges)
 conj(apples, oranges)
 </code></pre>
 
-<p>However, in case of unambiguous collective subjects or objects, no additional relations should be added.</p>
+<p>This leads to slightly strange dependencies in the case of collective subjects or objects:</p>
 
 <pre><code class="language-sdparse">Paul and Mary are meeting .
 
 nsubj(meeting, Paul)
+nsubj(meeting, Mary)
 conj(Paul, Mary)
 </code></pre>
 
@@ -168,7 +169,10 @@ conj(Paul, Mary)
 nsubj(eating, Mary)
 dobj(eating, mac)
 conj(mac, cheese)
+dobj(eating, cheese)
 </code></pre>
+
+<p>However, as the distinction between distributive and collective readings is often context-dependent, we propose to take the simplest approach and to always attach all conjuncts to the predicate.</p>
 
 <p>When the subject is attached to a control or raising predicate, there is a dependency between the matrix verb and each conjunct and between the embedded verb and each conjunct.</p>
 
@@ -197,26 +201,35 @@ conj(long, wide)
 
 <p>(See also the notes on <a href="core-dependents.html">core dependents</a> for a detailed discussion of the new analysis of passive constructions in the <em>basic</em> representation.)</p>
 
-<p>We propose that we no longer use a special <code>nsubjpass</code> relation in the <em>basic</em> representation. However, the distiction between regular subjects and subjects in passive constructions is still highly useful for many NLP tasks. We therefore propose to use the relations <code>dobj:prom</code>, <code>iobj:prom</code>, and <code>nmod:agent</code> for the arguments of a passivized verb.</p>
+<p>We propose that we no longer use a special <code>nsubjpass</code> relation in the <em>basic</em> representation. However, the distiction between regular subjects and subjects in passive constructions is still highly useful for many NLP tasks. We therefore propose to use the relations <code>nsubj:pass</code> (for languages without <code>dobj</code>/<code>iobj</code> distinction), <code>nsubj:passdir</code>, <code>nsubj:passind</code>, and <code>nmod:agent</code> for the arguments of a passivized verb.</p>
 
 <pre><code class="language-sdparse">The book was written by the author .
 
-dobj:prom(written, book)
+nsubj:passdir(written, book)
 nmod:agent(written, author)
 </code></pre>
 
 <pre><code class="language-sdparse">She was given the book .
 
-iobj:prom(given, She)
+nsubj:passind(given, She)
 dobj(given, book)
 </code></pre>
 
 <h3 id="to-discuss-1">To discuss</h3>
 
 <ul>
-  <li>Should the <em>enhanced</em> UD graph still contain the original subject dependencies or should we only have <code>[di]obj:prom</code>?</li>
+  <li>Should the <em>enhanced</em> UD graph still contain the original subject dependencies or should we only have <code>nsubj:pass(dir|ind)</code>?</li>
   <li>Should this treatment be extended to other valency-changing constructions like causatives and antipassives?</li>
 </ul>
+
+<p>Example [tr]:</p>
+
+<pre><code class="language-sdparse">Bilge arabayı Denize yıkattı . \n Bilge the.car Deniz made.wash .
+
+nsubj:cau(yıkattı, Denize)
+dobj(yıkattı, arabayı)
+nsubj(yıkattı, Bilge)
+</code></pre>
 
 <h2 id="relative-clauses">Relative clauses</h2>
 
@@ -270,12 +283,13 @@ dobj(read, book)
 
 acl:relcl(house, used)
 nmod(live, house)
+case(which, in)
 </code></pre>
 
 <pre><code class="language-sdparse">The city where I used to live .
 
 acl:relcl(city, used)
-nmod???(live, city)
+nmod(live, city)
 </code></pre>
 
 <h2 id="recommended-order-of-annotations">Recommended order of annotations</h2>
