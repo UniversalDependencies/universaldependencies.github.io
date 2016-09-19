@@ -39,6 +39,15 @@
 
           <h1 id="coordination-in-ud-v2">Coordination in UD v2</h1>
 
+<p>Coordination is analyzed by having direct <a href="">ud-dep/conj</a> relations between conjuncts in accordance with the general principle of prioritizing relations between content word. In v1, the first conjunct was taken to be the head not only of all following conjuncts but also of any intervening coordinating conjunctions and punctuation. For v2, we propose the following changes:</p>
+
+<ul>
+  <li>Attach coordinating conjunctions and punctuation to the immediately succeding conjunct (instead of the first)</li>
+  <li>Treat coordination as a right-headed structure that consistently allow gapping (only) in earlier conjuncts</li>
+</ul>
+
+<h2 id="attachment-of-coordinating-conjunctions-and-punctuation">Attachment of coordinating conjunctions and punctuation</h2>
+
 <p>We suggest changing the guidelines for coordination, following the proposal of Gerdes &amp; Kahane (LAW 2016).</p>
 
 <ul>
@@ -59,6 +68,30 @@ cc(bananas,and)
 cc(left,And)
 </code></pre>
 
+<h2 id="right-headed-coordination">Right-headed coordination</h2>
+
+<p>One of the arguments for analyzing coordination as a left-headed structure is that it facilitates the analysis of ellipsis, in particular gapping, in most languages:</p>
+
+<pre><code class="language-sdparse">Mary won gold and Sue won bronze
+nsubj(won-2, Mary)
+dobj(won-2, gold)
+conj(won-2, won-6)
+cc(won-6, and)
+nsubj(won-6, Sue)
+dobj(won-6, bronze)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary won gold and Sue bronze
+nsubj(won, Mary)
+dobj(won, gold)
+conj/cc(won, and)
+conj/nsubj(won, Sue)
+conj/dobj(won, bronze)
+</code></pre>
+
+<p>If the verb of the rightmost clause was treated as the root in the first sentence, there would be no parallel analysis of the second sentence.</p>
+
+<p>For the same reason, if a language consistently exhibits gapping in preceding (rather than following) clauses, this may be an argument for treating coordination structures as right-headed in that languages. If, on the other hand, the language allows gapping in both preceding and succeeding clauses, the default assumption of left-headedness should be maintained for coordination.</p>
 
 
       </div>
