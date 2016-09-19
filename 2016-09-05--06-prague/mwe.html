@@ -43,7 +43,7 @@
 
 <ul>
   <li>Rename <a href="">u-dep/mwe</a> to <strong>fixed</strong> and make clear that this should only be used for completely fixed expressions</li>
-  <li>Change the direction of arrows (right-to-left instead of left-to-right) for consistency with other non-dependency relations (see <a href="semantic-categories.html">semantic categories</a>)</li>
+  <li>Change the direction of arrows (right-to-left instead of left-to-right) for this relation as well as the other non-dependency relations <a href="">u-dep/name</a> and <a href="">u-dep/foreign</a> (see also <a href="semantic-categories.html">semantic categories</a>)</li>
 </ul>
 
 <h2 id="rename-mwe-to-fixed">Rename mwe to fixed</h2>
@@ -55,7 +55,7 @@
 
 <h2 id="change-arrow-direction">Change arrow direction</h2>
 
-<p>For consistency with other relations (see <a href="semantic-categories.html">semantic categories</a> ), we also suggest changing the direction of the arrows. We will keep a flat structure but all the words in the expression will modify the last word (instead of the first one). For example:</p>
+<p>For non-dependency relations, it was (more or less) arbitrarily decided in v1 to draw arrows from left to right out of the first word. With hindsight, a more harmonious choice for most languages would have been to instead draw arrows from right to left out of the last word. We propose to make this change for <code>fixed</code> (currently <a href="">u-dep/mwe</a>), <a href="">u-dep/foreign</a> and <code>flat</code> (currently <a href="">u-dep/mwe</a>). Examples:</p>
 
 <pre><code class="language-sdparse">I like dogs as well as cats
 fixed(as-6, well-5)
@@ -69,6 +69,21 @@ fixed(of, because)
 <pre><code class="language-sdparse">Je préfère prendre un dessert plutôt qu' une entrée \n I prefer getting a dessert rather than an appetizer
 fixed(qu', plutôt)
 </code></pre>
+
+<pre><code class="language-sdparse">She said : aaa bbb ccc
+parataxis(said, ccc)
+foreign(ccc, bbb)
+foreign(ccc, aaa)
+</code></pre>
+
+<pre><code class="language-sdparse">Usain Bolt won the race
+nsubj(won, Bolt)
+flat(Bolt, Usain)
+</code></pre>
+
+<p>However we do not extend this change to the <a href="">u-dep/reparandum</a> relation. In repairs, the material to the right will be the “correct” material, and it would seem strange to have something that the speaker of the utterance wants to discard as a direct dependent of the other words in the sentence while the corrected word is buried down in the dependency graph.
+As noted by Gerdes &amp; Kahane (2016), there are of course borderline cases between elaboration and disfluency such as <em>I saw a room, a bright room, a room with red lights</em>, but it doesn’t seem wrong to us to take the last element <em>a room with red ligths</em> as the governor of <em>a room</em> and <em>a bright room</em>.</p>
+
 
 
       </div>
