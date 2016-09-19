@@ -69,19 +69,23 @@
 
 </code></pre>
 
+<p>If a language allows spaces inside words on a language-wide basis, this must be declared in the language-specific documentation.</p>
+
 <h3 id="other-cases">Other cases</h3>
 
-<p>There was a general consensus that for the remainder of the languages, we should maintain the ban on spaces in tokens. However, we propose that for a highly restricted closed class of orthographic phenomena (with prior approval), there may be some exceptions, for example:</p>
+<p>There was a general consensus that, for the remainder of the languages, we should essentially maintain the ban on spaces in words. However, we propose that for a highly restricted closed class of orthographic phenomena, we may make exceptions (with prior approval).</p>
 
 <h4 id="spaces-as-numeral-separators">Spaces as numeral separators</h4>
 
 <p>In the existing French treebank, space delimited numerals, e.g. “100 000” are collapsed into a single numeral, “… de 8 500 à 20 000 euros.” becomes:</p>
 
-<pre><code class="language-conllu">1	de	de	ADP	_	_	2	case	_	_
+<pre><code class="language-conllu">
+1	de	de	ADP	_	_	2	case	_	_
 2	8500	8500	NUM	_	_	0	nmod	_	_
 3	à	à	ADP	_	_	5	case	_	_
 4	20000	20000	NUM	_	_	5	nummod	_	_
 5	euros	euro	NOUN	_	Gender=Masc|Number=Plur	0	nmod	_	_
+
 </code></pre>
 
 <p>We do not see that this is an improvement over simply allowing the space, and the alternative (to have each 000 as a 
@@ -90,7 +94,9 @@ orthographic error, but rather orthographically normative, and neither is it a f
 
 <p>The new tokenisation would be:</p>
 
-<pre><code class="language-sdparse">de 8⎵500 à 20⎵000 euros \n from 8,500 to 20,000 euros
+<pre><code class="language-sdparse">
+de 8⎵500 à 20⎵000 euros \n from 8,500 to 20,000 euros
+
 </code></pre>
 
 <h4 id="spaces-in-normalising-abbreviations">Spaces in normalising abbreviations</h4>
@@ -99,22 +105,28 @@ orthographic error, but rather orthographically normative, and neither is it a f
 
 <p>With space “t ex”:</p>
 
-<pre><code class="language-sdparse">Idrottsmateriel t_ex spikskor , kompass , kartfodral \n Sporting.goods e.⎵g. spiked.shoes , compass , map.holder
+<pre><code class="language-sdparse">
+Idrottsmateriel t_ex spikskor , kompass , kartfodral \n Sporting.goods e.⎵g. spiked.shoes , compass , map.holder
+
 </code></pre>
 
 <p>Without space “t.ex.”:</p>
 
-<pre><code class="language-sdparse">Det gäller t.ex. säsongarbetslösa byggnadsarbetare . \n This applies.to e.g. seasonally.unemployed building.workers .
+<pre><code class="language-sdparse">
+Det gäller t.ex. säsongarbetslösa byggnadsarbetare . \n This applies.to e.g. seasonally.unemployed building.workers .
+
 </code></pre>
 
 <h4 id="spaces-between-a-syntactic-word-and-a-bound-morpheme">Spaces between a syntactic word and a bound morpheme</h4>
 
 <p>In Tuvan, in some tenses, the person/number agreement is written separate from the verbal morpheme. We propose allowing these to be tokenised as one unit</p>
 
-<pre><code class="language-sdparse">Мен Кызылга чурттап турган⎵мен .  \n I Kyzyl.to living standing.am
+<pre><code class="language-sdparse">
+Мен Кызылга чурттап турган⎵мен .  \n I Kyzyl.to living standing.am
 nsubj(чурттап, Мен)
 aux(чурттап, турган⎵мен)
 nmod(чурттап, Кызылга)
+
 </code></pre>
 
 
