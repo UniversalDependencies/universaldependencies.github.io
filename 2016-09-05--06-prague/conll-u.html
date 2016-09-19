@@ -52,30 +52,17 @@
 
 <h2 id="enhanced-representation-in-the-deps-field">Enhanced representation in the DEPS field</h2>
 
-<p>The <code>deps</code> field holds the <em>enhanced</em> representation. Unlike
-  previously thought, it seems a better idea for the <code>DEPS</code> field
-  to hold the entire enhanced parsed graph, not only a smaller set
-  of relations on top of the base layer in <code>HEAD+DEPREL</code>. The primary
-  reason is that minimally the <em>ellipsis</em> relations and in future undoubtedly
-  many others are not a part of the enhanced graph but are rather replaced
-  by some relations in it.</p>
+<p>The <code>deps</code> field holds the <em>enhanced</em> representation. Unlike previously thought, it seems a better idea for the <code>DEPS</code> field to hold the entire enhanced parsed graph, not only a smaller set of relations on top of the base layer in <code>HEAD+DEPREL</code>. The primary reason is that minimally the <em>ellipsis</em> relations and in future undoubtedly many others are not a part of the enhanced graph but are rather replaced by some relations in it. See <a href="enhanced.html">enhanced dependencies</a>.</p>
 
 <h2 id="empty-nodes-in-the-enhanced-representation">Empty nodes in the enhanced representation</h2>
 
-<p>A mechanism is needed for empty nodes in the enhanced representation
-(the base representation will always be empty-node-free). These will
-be on their separate lines indexed as <code>E2.1</code> which means “the first
-empty node after the syntactic word indexed 2”. This line would be
-placed right after the word 2. Naturally, these empty nodes can be
+<p>A mechanism is needed for empty nodes in the enhanced representation (the base representation will always be empty-node-free). These will be on their separate lines indexed as <code>E2.1</code> which means “the first empty node after the syntactic word indexed 2”. This line would be placed right after the word 2. Naturally, these empty nodes can be
 referred to only from the <code>DEPS</code> field.</p>
 
-<p>There doesn’t seem to be a clear idea of whether the empty nodes
-should receive any values in the <code>FORM, LEMMA, UPOS, FEAT</code>
+<p>There doesn’t seem to be a clear idea of whether the empty nodes should receive any values in the <code>FORM, LEMMA, UPOS, FEAT</code>
 fields. Probably <code>UPOS</code> could be somehow realistically filled.</p>
 
-<p>Grepping out all lines which start with E is now sufficient to obtain
-a CoNLL-U file without empty nodes whose <code>HEAD</code> and <code>DEPREL</code> fields behave
-as usual.</p>
+<p>Grepping out all lines which start with E is now sufficient to obtain a CoNLL-U file without empty nodes whose <code>HEAD</code> and <code>DEPREL</code> fields behave as usual.</p>
 
 <pre>
 1	Mary	_	_	_	_	2	nsubj	2:nsubj	_
@@ -89,31 +76,17 @@ E5.1	_	_	_	_	_	2	conj	2:conj	_
 
 <h2 id="phrase-level-features">Phrase-level features</h2>
 
-<ul>
-  <li>Phrase-level features are features which apply to the whole phrase
-rathen than a single word. These might include phrase-level negation,
-etc. In the CoNLL-U file, phrase-level features are prefixed with the
-<code>~</code> character but otherwise treated as usual. This will have the
-advantage of them sorting after any standard features.</li>
-</ul>
+<p>Phrase-level features are features which apply to the whole phrase rather than a single word. These might include phrase-level negation, etc. In the CoNLL-U file, phrase-level features are prefixed with the <code>~</code> character but otherwise treated as usual. This will have the advantage of them sorting after any standard features.</p>
 
 <h2 id="sentence-level-metadata">Sentence-level metadata</h2>
 
-<ul>
-  <li>Sentence-level metadata can be provided as before and all tools are required to pass it through, as before. No particular requirements are put on these fields other than “no trailing whitespace”.</li>
-  <li>Several recognized key = value pairs are standardized:
-    <ul>
-      <li>sentence_id = global_sentence_id</li>
-      <li>text = sentence text</li>
-    </ul>
-  </li>
-</ul>
+<p>Sentence-level metadata can be provided as before and all tools are required to pass it through, as before. No particular requirements are put on these fields other than “no trailing whitespace”. Several recognized key = value pairs should be standardized:
+  * sentence_id = global_sentence_id
+  * text = sentence text</p>
 
 <h2 id="misc-field">MISC field</h2>
-<ul>
-  <li>The only global requirement on the <code>MISC</code> field is that it can be split on the <code>|</code> (bar) character without any complex processing of escaping. The requirement of <code>MISC</code> containing zero whitespace characters is dropped. Of course no TAB characters are allowed and no trailing whitespace is allowed.</li>
-  <li>It is likely that <code>spacesBefore</code> and <code>spacesAfter</code> will be standardized as a part of the <code>MISC</code> field.</li>
-</ul>
+
+<p>The only global requirement on the <code>MISC</code> field is that it can be split on the <code>|</code> (bar) character without any complex processing of escaping. The requirement of <code>MISC</code> containing zero whitespace characters is dropped. Of course no TAB characters are allowed and no trailing whitespace is allowed. It is likely that <code>spacesBefore</code> and <code>spacesAfter</code> will be standardized as a part of the <code>MISC</code> field.</p>
 
 
 
