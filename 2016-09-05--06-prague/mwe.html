@@ -39,12 +39,23 @@
 
           <h1 id="multiword-expressions-in-ud-v2">Multiword Expressions in UD v2</h1>
 
-<p>The proposed change is to change the label <code>mwe</code> (multiword expressions) to <code>fixed</code>, keeping the guidelines as they are (namely, <a href="u-dep/mwe">fixed</a> is used for certain fixed grammaticized expressions that behave like function words or short adverbials).</p>
+<p>Since UD does not allow “words with spaces” (but see a partly new proposal under <a href="word-segmentation.html">word segmentation</a>), even completely fixed multiword expressions must be annotated with (dummy) dependency labels. To improve annotation consistency, we propose the following changes for v2:</p>
 
-<p>It seems that the label <code>mwe</code> (multiword expressions) led to a lot of confusion. It was never intended for multiword expressions like “kick the bucket”, or Fr. “pomme de terre” (potato). It has always been restricted to the <em>fixed expressions</em> category of
+<ul>
+  <li>Rename <a href="">u-dep/mwe</a> to <strong>fixed</strong> and make clear that this should only be used for completely fixed expressions</li>
+  <li>Change the direction of arrows (right-to-left instead of left-to-right) for consistency with other non-dependency relations (see <a href="semantic-categories.html">semantic categories</a>)</li>
+</ul>
+
+<h2 id="rename-mwe-to-fixed">Rename mwe to fixed</h2>
+
+<p>It seems that the label <code>mwe</code> (multiword expression) has led to a lot of confusion. It was never intended for multiword expressions like “kick the bucket”, or Fr. “pomme de terre” (potato). It has always been restricted to the <em>fixed expressions</em> category of
 <a href="http://lingo.stanford.edu/pubs/WP-2001-03.pdf">Sag et al.</a>, excluding any relations in scope of <a href="">u-dep/name</a> or <a href="">u-dep/compound</a>. The label <code>fixed</code> might reflect this fact better.</p>
 
-<p>For consistency with other relations (see <a href="semantic-categories.html">Semantic categories</a> ), we also suggest changing the direction of the arrows. We will keep a flat structure but all the words in the expression will modify the last word (instead of the first one). For example:</p>
+<p>The proposed change is therefore to change the label <code>mwe</code> (multiword expression) to <code>fixed</code>, and making the guidelines more restrictive (namely, <a href="u-dep/mwe">fixed</a> is used <strong>only</strong> for completely fixed grammaticized expressions that behave like function words or short adverbials).</p>
+
+<h2 id="change-arrow-direction">Change arrow direction</h2>
+
+<p>For consistency with other relations (see <a href="semantic-categories.html">semantic categories</a> ), we also suggest changing the direction of the arrows. We will keep a flat structure but all the words in the expression will modify the last word (instead of the first one). For example:</p>
 
 <pre><code class="language-sdparse">I like dogs as well as cats
 fixed(as-6, well-5)
