@@ -42,7 +42,7 @@
 <p>Some of the proposed changes will require modifications to the CoNLL-U format. Whenever possible, we want to do this in the least disruptive fashion possible, keeping backward compatibility as far as we can. In particular, we strongly recommend not changing the number of fields and/or their meaning for fear of breaking people’s tools. We recommend the following changes for v2:</p>
 
 <ul>
-  <li>Allow spaces in the <code>FORM</code> field (see <a href="word-segmentation.html">word segmentation</a>)</li>
+  <li>Allow spaces in the <code>FORM</code> and <code>LEMMA</code> fields (see <a href="word-segmentation.html">word segmentation</a>)</li>
   <li>Let the <code>DEPS</code> field contain the entire enhanced dependency graph (not only additional relations on top of the basic trees)</li>
   <li>Allow empty nodes with an indexing scheme distinct from both tokens and words and with relations in the <code>DEPS</code> field</li>
   <li>Allow phrase-level features in the <code>FEATS</code> field</li>
@@ -83,9 +83,11 @@ E5.1	_	_	_	_	_	2	conj	2:conj	_
 <p>Sentence-level metadata can be provided as before and all tools are required to pass it through, as before. No particular requirements are put on these fields other than “no trailing whitespace”. Several recognized key = value pairs should be standardized:</p>
 
 <ul>
-  <li>sentence_id = global_sentence_id</li>
+  <li>sent_id = global_sentence_id</li>
   <li>text = sentence text</li>
 </ul>
+
+<p><code>sent_id</code> is compulsory and as per (#321)[https://github.com/UniversalDependencies/docs/issues/321] it should not contain the <code>/</code> (slash) character.</p>
 
 <h2 id="misc-field">MISC field</h2>
 
