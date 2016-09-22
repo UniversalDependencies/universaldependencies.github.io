@@ -136,8 +136,11 @@ for <code>CONJ</code>.</p>
 <p><a id="al-sla-pos/DET" class="al-dest"></a></p>
 <h2><code>DET</code>: determiner</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>DET</code>.</p>
+<p>Traditional grammars of Slavic languages do not distinguish pronouns (<code>PRON</code>) from pro-adjectives (determiners, <code>DET</code>),
+hence it is important to define a consistent borderline here. (Some authors, e.g. Sussex and Cubberley (2006) do use
+the term <em>determiner</em> in Slavic languages but they rely on common understanding without precisely delimiting them.)</p>
+
+<p>In order to provide the broader picture, we describe both pronouns and determiners on one page: <a href="">sla-pos/PRON</a>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_sla-pos/DET.md" target="#">edit DET</a></p>
 
@@ -176,8 +179,169 @@ for <code>PART</code>.</p>
 <p><a id="al-sla-pos/PRON" class="al-dest"></a></p>
 <h2><code>PRON</code>: pronoun</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>PRON</code>.</p>
+<p>Traditional grammars of Slavic languages do not distinguish pronouns from pro-adjectives (determiners, <a href="">sla-pos/DET</a>),
+hence it is important to define a consistent borderline here. (Some authors, e.g. Sussex and Cubberley (2006) do use
+the term <em>determiner</em> in Slavic languages but they rely on common understanding without precisely delimiting them.)</p>
+
+<p>In order to provide the broader picture, we describe both pronouns and determiners here;
+the page <a href="">sla-pos/DET</a> is empty.</p>
+
+<h2 id="personal-pronouns">Personal pronouns</h2>
+
+<p>Non-possessive personal pronouns are tagged <code>PRON PronType=Prs</code> (see also the <a href="">sla-feat/PronType</a> feature).
+Third-person pronouns are formed as inflections on one stem and should have one lemma, the masculine singular nominative form.
+(In fact there are two stems: one for the nominative and the other for the remaining cases. But the point is that the stems
+do not change with gender or number.)
+The first and second person pronouns are formed from different stems in singular and plural. However, to be consistent,
+the singular nominative form should be used as lemma for both (all) numbers in the given person. Thus in [cs], the lemma
+of <em>my</em> is <em>já</em> and the lemma of <em>vy</em> is <em>ty.</em>
+Reflexive pronouns have their own lemma (one lemma for both clitic and non-clitic forms).
+Since they lack the nominative form, the lemma should be the clitic accusative form, which is arguably the most frequent one.</p>
+
+<p>List of nominative forms of personal pronouns (accusative for reflexives) in various languages:</p>
+
+<ul>
+  <li>[cs] <em>já, ty, on, ona, ono, my, vy, oni, ony, ona, se</em></li>
+  <li>[sk] <em>ja, ty, on, ona, ono, my, vy, oni, ony, sa</em></li>
+  <li>[hsb] <em>ja, ty, wón, wona, wono/wone, mój, wój, wonaj, wonej, my, wy, woni, wone, so</em></li>
+  <li>[pl] <em>ja, ty, on, ona, ono, my, wy, oni, one, się</em></li>
+  <li>[ru] <em>я, ты, он, она, оно, мы, вы, они, ся</em></li>
+  <li>[sl] <em>jaz, ti, on, ona, ono, midva, vidva, onadva, mi, vi, oni, one, ona, se</em></li>
+  <li>[hr] <em>ja, ti, on, ona, ono, mi, vi, oni, one, ona, se</em></li>
+  <li>[bg] <em>аз, ти, той, тя, то, ние, вие, те, се</em></li>
+  <li>[cu] <em>азъ, тꙑ, мꙑ, вꙑ, и, сѧ</em></li>
+</ul>
+
+<h2 id="possessive-pronouns">Possessive pronouns</h2>
+
+<p>The words that are traditionally called possessive pronouns are in fact possessive determiners and should be tagged
+<code>DET Poss=Yes | PronType=Prs</code>. First and second person possessives, and the reflexive possessive, function like adjectives.
+They precede the modified (possessed) noun and concord with it in gender, number and case.
+In the South Slavic languages the same can be said also about third person possessives.
+In the north, third person possessives evolved from (or are still identical to) the genitive form of the personal pronoun,
+and they do not inflect.
+However, they are traditionally distinguished from the personal pronoun, they are placed before the possessed noun
+(unlike nominal genitive modifiers), and for consistency we tag them <code>DET</code> as well.
+Similar to adjectives, one lemma covers all <em>inflections</em> for gender, number and case, governed by the modified noun.
+Inherent gender, number and person of the possessor do not play a role, i.e. <em>můj</em> “my” and <em>náš</em> “our” are two distinct lemmas.</p>
+
+<ul>
+  <li>[cs] <em>můj, tvůj, jeho, její, náš, váš, jejich, svůj</em></li>
+  <li>[sk] <em>môj, tvoj, jeho, jej, náš, váš, ich, svoj</em></li>
+  <li>[hsb] <em>mój, twój, jeho, jeje, naš, waš, jich, swój</em></li>
+  <li>[pl] <em>mój, twój, jego, jej, nasz, wasz, ich, swój</em></li>
+  <li>[ru] <em>мой, твой, его, её, наш, ваш, их, свой</em></li>
+  <li>[sl] <em>moj, tvoj, njegov, njen, najin, vajin, njun, naš, vaš, njihov, svoj</em></li>
+  <li>[hr] <em>moj, tvoj, njegov, njezin/njen, naš, vaš, njihov, svoj</em></li>
+  <li>[bg] <em>мой, твой, негов, неин, наш, ваш, техен, свой</em></li>
+  <li>[cu] <em>мои, твои, его, еѩ, ею, нашь, вашь, ихъ, свои</em></li>
+</ul>
+
+<h2 id="demonstratives">Demonstratives</h2>
+
+<p>All demonstrative “pronouns” inflect for gender and can modify nouns, which places them in the <code>DET</code> category.
+If the noun phrase is missing, it can be explained by ellipsis, at least for the masculine and feminine forms.
+Certain neuter singular forms ([cs] <em>to, toto, tohle, tamto</em>)
+are also frequently used to refer to unspecified or general entities, that is, they are used in these situations more
+like pronouns than like determiners.</p>
+
+<p>There are two possible solutions:</p>
+
+<ol>
+  <li>Tag all demonstratives <code>DET PronType=Dem</code>. The lemma is always masculine singular nominative.</li>
+  <li>As 1., with the exception that selected neuter singular forms are ambiguous and may also appear as <code>PRON PronType=Dem</code>.
+Then the lemma is neuter singular nominative. Disambiguation has to be done by context: if it pre-modifies
+a noun phrase and concords with it in gender, number and case, it is determiner; otherwise it is pronoun.</li>
+</ol>
+
+<ul>
+  <li>[cs] <em>ten, tento, tenhle, tamten, onen, takový, týž, tentýž</em></li>
+</ul>
+
+<h2 id="pronouns-derived-from-who-what">Pronouns derived from “who, what”</h2>
+
+<p>These are always <code>PRON</code> and never <code>DET</code>. They fall into various pronominal types:
+interrogatives, relatives (“who, what”), indefinites (“somebody, something, anybody, anything”) and negatives (“nobody, nothing”).
+They inflect for case but not for gender and number;
+“who” functions as singular masculine,
+“what” as singular neuter.</p>
+
+<p>(TO CHECK: Even in Bulgarian?)</p>
+
+<ul>
+  <li>[cs] <em>kdo, co, což, někdo, něco, kdokoli, cokoli, nikdo, nic</em></li>
+  <li>[sk] <em>kto, čo, niekto, niečo, nikto, nič</em></li>
+  <li>[hsb] <em>štó, što, štóž, štož, kiž, něchtó, něšto, něchtóžkuli, něštožkuli, nichtó, ničo</em></li>
+  <li>[pl] <em>kto, co, ktoś, coś, nikt, nic</em></li>
+  <li>[ru] <em>кто, что, кто-нибудь, что-нибудь, никто, ничто</em></li>
+  <li>[sl] <em>kdo, kaj, nekdo, nekaj, nihče, nič</em></li>
+  <li>[hr] <em>tko, što, neki, nešto, nitko, ništa</em></li>
+  <li>[bg] <em>кой, кое, някой, нещо, никой, нищо</em></li>
+  <li>[cu] <em>къто, чьто, нѣкъто, нѣчьто, никътоже, ничьтоже</em></li>
+</ul>
+
+<h2 id="determiners-derived-from-which-whose-total-and-other-determiners">Determiners derived from “which, whose”, total and other determiners</h2>
+
+<p>In some Slavic languages there are two interrogative pronouns/determiners corresponding to [en] “which”:
+one that represents a selection, “which one” ([cs] <em>který</em>);
+and one that queries a quality, “what kind of” ([cs] <em>jaký</em>).
+Both can be used as relative pronouns/determiners, too.
+Their inflection is fully adjectival, therefore they should be tagged <code>DET</code>,
+despite the fact that when they are used as relative determiners,
+the modified noun is not there and its absence cannot be explained by ellipsis
+(but it is the noun modified by the entire relative clause).</p>
+
+<p>In addition, there is a possessive interrogative determiner corresponding to [en] “whose” ([cs] <em>čí</em>).</p>
+
+<p>There are also derived indefinite and negative determiners, using the same affixes as with “who, what”;
+only the negative determiner “no” corresponding to “which” contains a different stem ([cs] <em>žádný</em>).</p>
+
+<p>We also include the total determiner “every” ([cs] <em>každý</em>) here, although it is quite frequently used
+without the modified noun, with the meaning “everybody, everyone”; the decisive factor here is its
+undoubtedly adjectival inflection.
+In contrast, we do not include the total pronoun “all / everything” ([cs] <em>všichni / všechno</em>),
+see below.</p>
+
+<ul>
+  <li>[cs] <em>který, jaký, čí, některý, nějaký, něčí, kterýkoli, jakýkoli, každý, nijaký, ničí, žádný</em></li>
+  <li>[sk] <em>ktorý, aký, čí, niektorý, nejaký, niečí, ktorýkoľvek, akýkoľvek, každý, nijaký, ničí, žiaden/žiadny</em></li>
+  <li>[hsb] <em>kotry, kajki, čeji, kotryž, kajkiž, čejiž, někotry, někajki, něčeji, někotryžkuli, někajkižkuli, něčejižkuli, kóždy, ničeji, žadyn</em></li>
+  <li>[pl] <em>który, jaki, któryś, jakiś, każdy, żaden</em></li>
+  <li>[ru] <em>который, какой, чей, некоторый, который-нибудь, какой-нибудь, чей-нибудь, каждый, никакой, ничей</em></li>
+  <li>[sl] <em>kateri, kak, čigav, kakršen, nekateri, nek, nekakšen, nikakršen, noben</em></li>
+  <li>[hr] <em>koji, kakav, čiji, nekakav, nikakav</em></li>
+  <li>[bg] <em>кой, какъв, чий, който, какъвто, чийто, някой, някакъв, нечий, никой, никакъв</em></li>
+  <li>[cu] <em>которꙑи, кꙑи, каковъ, чии, нѣкꙑи, никоторꙑиже, никꙑиже</em></li>
+</ul>
+
+<p>Note: In [sl], the pronoun <em>kar</em> corresponds to [cs] <em>který</em>. Its inflection is not adjectival
+(the treebank contains only four forms: <em>kar</em> (<code>Nom</code>, <code>Acc</code>), <em>česar</em> (<code>Gen</code>), <em>čemer</em> (<code>Loc</code>) and <em>čimer</em> (<code>Ins</code>)),
+hence it is pronoun and not determiner.</p>
+
+<h2 id="pronominal-quantifiers">Pronominal quantifiers</h2>
+
+<p>Note that the meaning of [pl] <em>tylko</em> has shifted towards “only”, which makes it an adverb rather than a demonstrative quantifier.
+A similar shift may have happened in some of the other languages, too.
+The interrogative <em>kolik</em> may be used as relative, except in [hsb] and [bg].
+Occasionally it may be also used as indefinite ([pl] <em>kilka</em>).</p>
+
+<ul>
+  <li>[cs] <em>kolik, tolik, několik</em></li>
+  <li>[sk] <em>koľko, toľko, niekoľko</em></li>
+  <li>[hsb] <em>kelko, kelkož, telko</em></li>
+  <li>[pl] <em>kilka</em></li>
+  <li>[ru] <em>сколько, столько, несколько</em></li>
+  <li>[sl] <em>koliko</em></li>
+  <li>[hr] <em>koliko</em></li>
+  <li>[bg] <em>колко, колкото</em></li>
+  <li>[cu] <em>колико</em></li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li>Roland Sussex, Paul Cubberley. 2006. <em>The Slavic Languages.</em> Cambridge: Cambridge University Press.</li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_sla-pos/PRON.md" target="#">edit PRON</a></p>
 
