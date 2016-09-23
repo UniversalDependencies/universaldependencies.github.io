@@ -320,6 +320,10 @@ hence it is pronoun and not determiner.</p>
 
 <h2 id="pronominal-quantifiers">Pronominal quantifiers</h2>
 
+<p>All pronominal quantifiers are tagged <code>DET</code>.
+They are morphologically and syntactically different from adjectives and other determiners.
+They are much closer to cardinal numerals but they cannot get the <code>NUM</code> tag, which is reserved for definite quantities.</p>
+
 <p>Note that the meaning of [pl] <em>tylko</em> has shifted towards “only”, which makes it an adverb rather than a demonstrative quantifier.
 A similar shift may have happened in some of the other languages, too.
 The interrogative <em>kolik</em> may be used as relative, except in [hsb] and [bg].
@@ -336,6 +340,64 @@ Occasionally it may be also used as indefinite ([pl] <em>kilka</em>).</p>
   <li>[bg] <em>колко, колкото</em></li>
   <li>[cu] <em>колико</em></li>
 </ul>
+
+<h2 id="indefinite-quantifiers-and-adverbs-of-degree">Indefinite quantifiers and adverbs of degree</h2>
+
+<p>There is a relatively small group of words that lie on the borderland between <a href="sla-pos/ADV">adverbs</a>, <a href="sla-pos/NUM">numerals</a>
+and pronouns/determiners: [cs] <em>mnoho</em> “many”, <em>hodně</em> “much”, <em>málo</em> “little, few”. They may denote the degree of
+an adjective or verb, and they can be compared: <em>více</em> “more”, <em>nejvíce</em> “most”, <em>méně</em> “less, fewer”, <em>nejméně</em> “least, fewest”.
+These are typical properties of adverbs.
+However, they can also denote an indefinite quantity when they take a genitive nominal argument.
+This follows the typical behavior of numerals. The whole phrase (numeral + noun) works like a noun phrase, can become
+argument of a verb and some of the numerals even inflect for case: <em>s mnoha body</em> “with many points” (<code>Case=Ins</code>).
+When it acts as subject, it is regarded as neuter singular for subject-verb agreement.</p>
+
+<pre><code class="language-sdparse">Trenér sázel mnohem více na herní stránku než na kondici .
+advmod(více, mnohem)
+advmod(sázel, více)
+dobj(sázel, stránku)
+nmod(více, kondici)
+</code></pre>
+
+<p>As adverb, <em>více</em> is comparative form of lemma <em>hodně</em>.
+As indefinite numeral, it is its own lemma (but I found only two occurrences in UD Czech).</p>
+
+<pre><code class="language-sdparse">Bude vybráno více zájemců .
+nsubjpass(vybráno, zájemců)
+det:numgov(zájemců, více)
+</code></pre>
+
+<p>The two syntactic functions are not compatible.
+The words in this group should thus receive two different tags, disambiguated by context.
+When they denote quantity, their tag will be <code>DET NumType=Card | PronType=Ind</code>.
+When they denote degree, their tag will be <code>ADV</code>.</p>
+
+<ul>
+  <li>[cs] <em>mnoho, moc, dost, příliš, hodně, více, nejvíce, málo, méně, nejméně, nemnoho, nemálo</em></li>
+  <li>[sk] <em>veľa, viac, najviac, málo, menej, najmenej</em></li>
+  <li>[pl] <em>dużo, wiele, więcej, najwięcej, mało, mniej, najmniej</em></li>
+  <li>[sl] <em>mnogo, veliko, več, največ, malo, manj, najmanj, zelo, bolj, najbolj, dosti</em></li>
+  <li>[hr] <em>mnogo, više, najviše, malo, manje, najmanje, vrlo, dosta</em></li>
+  <li>[bg] <em>много, повече, най-вече</em></li>
+</ul>
+
+<pre><code class="language-sdparse">[sl] Kolesca morajo biti mnogo večja od tistih
+advmod(večja, mnogo)
+nmod(večja, tistih)
+case(tistih, od)
+</code></pre>
+
+<pre><code class="language-sdparse">[sl] skozi mnogo let
+case(let, skozi)
+det(let, mnogo)
+</code></pre>
+
+<pre><code class="language-sdparse">[sl] Slovenija potrebuje več urejenih informacij na internetu
+advmod(urejenih, več)
+amod(informacij, urejenih)
+</code></pre>
+
+<p>več truda</p>
 
 <h2 id="references">References</h2>
 
