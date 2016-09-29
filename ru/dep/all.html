@@ -876,7 +876,7 @@ directly affected object <em>(patient).</em> The one exception is when there is 
 
 <pre><code class="language-sdparse">Это мама звонит . \n This-is my-mother calls .
 expl(звонит, Это)
-expl(calles, This-is)
+expl(calls, This-is)
 nsubj(звонит, мама)
 nsubj(calls, my-mother)
 </code></pre>
@@ -1172,11 +1172,15 @@ name(Vladimir, Vladimirovich)
 <p>Note that the same thing can be also expressed using an <a href="appos">apposition</a>.
 In the case of apposition, the title follows the modified name and is separated by a punctuation symbol:</p>
 
-<pre><code class="language-sdparse">Владимир Путин , российский президент
+<pre><code class="language-sdparse">Владимир Путин , российский президент \n Vladimir Putin , Russian president 
 name(Владимир, Путин)
+name(Vladimir, Putin)
 punct(президент, ,-3)
+punct(president, ,-9)
 amod(президент, российский)
-appos(Путин, президент)
+amod(president, Russian)
+appos(Владимир, президент)
+appos(Vladimir, president)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/nmod.md" target="#">edit nmod</a></p>
@@ -1254,7 +1258,7 @@ Examples:</p>
   <li><em><b>Одно</b> чудовище спало, <b>два</b> чудовища играли в карты.</em> “One monster slept, two monsters played cards.”</li>
 </ul>
 
-<p>It is straightforward to convert such dependencies to <code>nummod</code>:</p>
+<p>Such dependencies are labeled as <code>nummod</code>:</p>
 
 <pre><code class="language-sdparse">Одно чудовище спало . \n One monster slept .
 nummod(чудовище, Одно)
@@ -1401,10 +1405,10 @@ nmod(millions, of-crowns)
 or a numeral:</p>
 
 <pre><code class="language-sdparse">максимум 50 тысяч крон \n at-most 50 thousand crowns
-advmod:emph(крон, максимум)
+advmod(крон, максимум)
 nummod:gov(крон, тысяч)
 compound(тысяч, 50-2)
-advmod:emph(crowns, at-most)
+advmod(crowns, at-most)
 nummod:gov(crowns, thousand)
 compound(thousand, 50-7)
 </code></pre>

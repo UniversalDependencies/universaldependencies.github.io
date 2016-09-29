@@ -256,6 +256,14 @@ a noun phrase and concords with it in gender, number and case, it is determiner;
 
 <ul>
   <li>[cs] <em>ten, tento, tenhle, tamten, onen, takový, týž, tentýž</em></li>
+  <li>[sk] <em>ten, tento, tamten, onen, taký, takýto</em></li>
+  <li>[hsb] <em>tón, tutón, tónle, tamny, wony, tajki</em></li>
+  <li>[pl] <em>ten, tamten, taki</em></li>
+  <li>[ru] <em>этот, тот, такой</em></li>
+  <li>[sl] <em>tisti, ta, oni, takšen</em></li>
+  <li>[hr] <em>taj, ovaj, onaj, takav</em></li>
+  <li>[bg] <em>този, онзи, такъв</em></li>
+  <li>[cu] <em>тъ, онъ, такъ, таковъ</em></li>
 </ul>
 
 <h2 id="pronouns-derived-from-who-what">Pronouns derived from “who, what”</h2>
@@ -266,7 +274,11 @@ They inflect for case but not for gender and number;
 “who” functions as singular masculine,
 “what” as singular neuter.</p>
 
-<p>(TO CHECK: Even in Bulgarian?)</p>
+<p>Note: Bulgarian is exception. Instead of the <em>kt/čt</em> roots found in the other languages, Bulgarian uses <em>кой / koj,</em>
+which inflects for gender and number like adjectives, and while it predominantly occurs in pronoun position, it can be used as
+determiner too: <em>Кой текст четете? / Koj tekst četete?</em> “What text are you reading?” The substantive root survives
+in Bulgarian <em>нещо / nešto</em> “something” and <em>нищо / ništo</em> “nothing”; even relative <em>що / što</em> “what” exists but it
+is very rare.</p>
 
 <ul>
   <li>[cs] <em>kdo, co, což, někdo, něco, kdokoli, cokoli, nikdo, nic</em></li>
@@ -276,7 +288,7 @@ They inflect for case but not for gender and number;
   <li>[ru] <em>кто, что, кто-нибудь, что-нибудь, никто, ничто</em></li>
   <li>[sl] <em>kdo, kaj, nekdo, nekaj, nihče, nič</em></li>
   <li>[hr] <em>tko, što, neki, nešto, nitko, ništa</em></li>
-  <li>[bg] <em>кой, кое, някой, нещо, никой, нищо</em></li>
+  <li>[bg] <em>що, нещо, нищо</em></li>
   <li>[cu] <em>къто, чьто, нѣкъто, нѣчьто, никътоже, ничьтоже</em></li>
 </ul>
 
@@ -290,6 +302,11 @@ Their inflection is fully adjectival, therefore they should be tagged <code>DET<
 despite the fact that when they are used as relative determiners,
 the modified noun is not there and its absence cannot be explained by ellipsis
 (but it is the noun modified by the entire relative clause).</p>
+
+<p>Bulgarian <em>кой / koj</em> etymologically corresponds to the “what kind of” determiner in other languages.
+As noted above, it can be used as a determiner but it is much more likely to <em>replace</em> a noun phrase,
+i.e. to be used as a pronoun. It seems to be a good candidate to allow both tags and disambiguate by
+context.</p>
 
 <p>In addition, there is a possessive interrogative determiner corresponding to [en] “whose” ([cs] <em>čí</em>).</p>
 
@@ -318,7 +335,46 @@ see below.</p>
 (the treebank contains only four forms: <em>kar</em> (<code>Nom</code>, <code>Acc</code>), <em>česar</em> (<code>Gen</code>), <em>čemer</em> (<code>Loc</code>) and <em>čimer</em> (<code>Ins</code>)),
 hence it is pronoun and not determiner.</p>
 
+<h2 id="all-everything">All, everything</h2>
+
+<p>The total pronouns with the root <em>vs/vš</em> are another problematic group.</p>
+
+<p>In Czech, <em>všechen</em> can be used adjectively and has forms for different genders and numbers but usually only a subset of the forms is used,
+and quite often they are used without a modified noun:</p>
+
+<ul>
+  <li><em>všichni</em> (masculine animate plural), meaning “all, everybody,” may include non-masculine referents</li>
+  <li><em>všechno</em> (neuter singular), meaning “everything”</li>
+</ul>
+
+<p>The plural forms can be used as determiners, including forms of other genders, if it is known that the group of referents
+has only that gender: <em>všichni lidé</em> “all people”, <em>všechny domy</em> “all houses” (masculine inanimate), <em>všechny ženy</em>
+“all women” (feminine), <em>všechna ujednání</em> “all provisions” (neuter). Much more rarely, even singular forms can be used,
+in the sense “all / entire”.</p>
+
+<p>In UD Czech, 717 instances may be determiners (the heuristic we use: they must agree with their parent in gender and case,
+and they must not be labeled as subjects—which would mean that the parent is a non-verbal predicate).
+In addition there are 113 instances of two-pronoun expressions like <em>to všechno</em> “all this” and <em>kdo/co všechno</em> “who/what all”,
+where one may argue for a determiner analysis as well. This contrasts with the total number of occurrences of lemma <em>všechen,</em>
+2520.
+If we limit the search to singular neuters, and exclude the two-pronoun expressions, there are only 8 instances where
+<em>všechno</em> is a determiner, mostly with mass nouns (<em>všechno světlo</em> “all light”);
+this contrasts with the total number of singual neuter occurrences, 600.</p>
+
+<p>To summarize, we may want to grant this lemma special treatment. At least the singular neuter form, <em>všechno,</em> would
+deserve the <code>PRON</code> tag, unless it occurs in a clearly attributive position.</p>
+
+<p>It remains to be determined how the cognate words in the other Slavic languages behave.</p>
+
+<ul>
+  <li>[cs] <em>všechen, všecek, všichni, všechno, všecko, vše</em></li>
+</ul>
+
 <h2 id="pronominal-quantifiers">Pronominal quantifiers</h2>
+
+<p>Terminological note: For the purpose of this chapter, the term <em>quantifier</em> does not include words with adjectival declension,
+even if their meaning has to do with quantity ([cs] <em>každý, mnohý, nejeden, žádný</em>). We now focus on words that resemble high-value
+numerals (5 and above) or nouns like <em>group, batch</em> and combine with a quantified noun in the genitive.</p>
 
 <p>All pronominal quantifiers are tagged <code>DET</code>.
 They are morphologically and syntactically different from adjectives and other determiners.
@@ -347,22 +403,26 @@ Occasionally it may be also used as indefinite ([pl] <em>kilka</em>).</p>
 and pronouns/determiners: [cs] <em>mnoho</em> “many”, <em>hodně</em> “much”, <em>málo</em> “little, few”. They may denote the degree of
 an adjective or verb, and they can be compared: <em>více</em> “more”, <em>nejvíce</em> “most”, <em>méně</em> “less, fewer”, <em>nejméně</em> “least, fewest”.
 These are typical properties of adverbs.
-However, they can also denote an indefinite quantity when they take a genitive nominal argument.
+However, they can also denote an indefinite quantity when they take a genitive nominal argument
+(plural for countable nouns, or singular in the partitive sense).
 This follows the typical behavior of numerals. The whole phrase (numeral + noun) works like a noun phrase, can become
-argument of a verb and some of the numerals even inflect for case: <em>s mnoha body</em> “with many points” (<code>Case=Ins</code>).
-When it acts as subject, it is regarded as neuter singular for subject-verb agreement.</p>
+argument of a verb and some of the numerals even inflect for case: <em>s mnoha body</em> “with many points” (<code>Case=Ins</code>).
+When it acts as subject, it is regarded as neuter singular for the purpose of subject-verb agreement.</p>
 
-<pre><code class="language-sdparse">Trenér sázel mnohem více na herní stránku než na kondici .
+<p>[cs]</p>
+
+<pre><code class="language-sdparse">Trenér sázel mnohem více na herní stránku než na kondici . \n Coach bet much more on game aspect than on physical-condition .
 advmod(více, mnohem)
 advmod(sázel, více)
 dobj(sázel, stránku)
 nmod(více, kondici)
 </code></pre>
 
-<p>As adverb, <em>více</em> is comparative form of lemma <em>hodně</em>.
-As indefinite numeral, it is its own lemma (but I found only two occurrences in UD Czech).</p>
+<p>As adverb, <em>více</em> is the comparative form of lemma <em>hodně</em> (but it could as well be assigned the lemma <em>mnoho;</em>
+the comparative form is irregular, without direct morphological relation to the basic positive form.
+As indefinite numeral, it is its own lemma (but there are only two occurrences in UD Czech).</p>
 
-<pre><code class="language-sdparse">Bude vybráno více zájemců .
+<pre><code class="language-sdparse">Bude vybráno více zájemců . \n Will-be selected more applicants .
 nsubjpass(vybráno, zájemců)
 det:numgov(zájemců, více)
 </code></pre>
@@ -373,31 +433,58 @@ When they denote quantity, their tag will be <code>DET NumType=Card | PronType=I
 When they denote degree, their tag will be <code>ADV</code>.</p>
 
 <ul>
-  <li>[cs] <em>mnoho, moc, dost, příliš, hodně, více, nejvíce, málo, méně, nejméně, nemnoho, nemálo</em></li>
+  <li>[cs] <em>mnoho, moc, nemálo, dost, příliš, hodně, více, nejvíce, málo, nemnoho, méně, nejméně</em></li>
   <li>[sk] <em>veľa, viac, najviac, málo, menej, najmenej</em></li>
+  <li>[hsb] <em>mnoho, wjele, wjac, wjace, najwjace, najbóle, dosć, mało, mjenje, najmjenje</em></li>
   <li>[pl] <em>dużo, wiele, więcej, najwięcej, mało, mniej, najmniej</em></li>
+  <li>[ru] <em>много, немало, больше, более, наиболее, достаточно, мало, немного, меньше, менее, наименее</em></li>
   <li>[sl] <em>mnogo, veliko, več, največ, malo, manj, najmanj, zelo, bolj, najbolj, dosti</em></li>
   <li>[hr] <em>mnogo, više, najviše, malo, manje, najmanje, vrlo, dosta</em></li>
   <li>[bg] <em>много, повече, най-вече</em></li>
 </ul>
 
-<pre><code class="language-sdparse">[sl] Kolesca morajo biti mnogo večja od tistih
+<p>[sl]</p>
+
+<pre><code class="language-sdparse">Kolesca morajo biti mnogo večja od tistih \n Wheels must be much larger from those
 advmod(večja, mnogo)
 nmod(večja, tistih)
 case(tistih, od)
 </code></pre>
 
-<pre><code class="language-sdparse">[sl] skozi mnogo let
+<pre><code class="language-sdparse">skozi mnogo let \n over many years
 case(let, skozi)
 det(let, mnogo)
 </code></pre>
 
-<pre><code class="language-sdparse">[sl] Slovenija potrebuje več urejenih informacij na internetu
+<pre><code class="language-sdparse">Slovenija potrebuje več urejenih informacij na internetu \n Slovenia needs more orderly informations on internet
 advmod(urejenih, več)
 amod(informacij, urejenih)
 </code></pre>
 
-<p>več truda</p>
+<p>The above sentence seems ambiguous. <em>Več</em> is annotated as an adverb modifying the adjective <em>urejenih,</em> but it could
+also be a quantifier for the whole phrase <em>urejenih informacij.</em></p>
+
+<pre><code class="language-sdparse">Domovanja so raztresena na več kilometrih \n Dwellings are scattered on more kilometers
+det(kilometrih, več)
+case(kilometrih, na)
+nmod(raztresena, kilometrih)
+</code></pre>
+
+<p>Partitive usage:</p>
+
+<pre><code class="language-sdparse">Imeli več časa za priprave \n They-had more time for preparations
+det(časa, več)
+dobj(Imeli, časa)
+</code></pre>
+
+<pre><code class="language-sdparse">ki so terjali življenja več kot sto civilistov \n that have lost lives more than hundred civilians
+mwe(več, kot)
+det(civilistov, več)
+nummod(civilistov, sto)
+</code></pre>
+
+<p>The above annotation is taken from UD Slovenian 1.3 but I think that <em>več kot</em> should be attached to <em>sto</em> and the
+relation should be <a href="">sla-dep/advmod</a>.</p>
 
 <h2 id="references">References</h2>
 

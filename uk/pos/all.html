@@ -129,8 +129,8 @@ negated.</p>
   <li><em>перший, другий, третій </em> “first, second, third”</li>
   <li><em>зроблений  </em> “done” (passive perfective participial adjective)</li>
   <li><em>роблений </em> “being done” (passive imperfective participial adjective)</li>
-  <li><em>роблячий </em> “doing” (present participial adjective)</li>
-  <li><em>зробивший </em> “having done” (past participial adjective)</li>
+  <li><em>роблячий </em> “doing” (present participial adjective - it is considered ungrammatical but still used occasionally, which is why it is encoded)</li>
+  <li><em>зробивший </em> “having done” (past participial adjective - it is considered ungrammatical but still used occasionally, which is why it is encoded)</li>
 </ul>
 
 <!--### Border cases-->
@@ -193,7 +193,7 @@ negated.</p>
 to pronouns, these can be categorized as interrogative, relative, demonstrative etc. Pronominal adverbs also get the <code>ADV</code>
 part-of-speech tag but they are differentiated by additional features.</p>
 
-<p>In accord with the UD approach, adverbial ordinal numerals <em>(вперше, вдруге) </em> are tagged <code>ADV</code>, although the traditional grammar classifies them as adverbs. The same holds for multiplicative numerals <em>(двічі, семикратно). </em></p>
+<!--In accord with the UD approach, adverbial ordinal numerals _(вперше, вдруге)&nbsp;_ are tagged `ADV`, although the traditional grammar classifies them as adverbs. The same holds for multiplicative numerals _(двічі, семикратно).&nbsp;_ -->
 
 <h3 id="examples">Examples</h3>
 <ul>
@@ -298,13 +298,15 @@ determiner may indicate whether the noun is referring to a definite or indefinit
   <li><em>бум </em></li>
   <li><em>ну </em> “well”</li>
   <li><em>ба </em> “look”</li>
-  <li><em>заради Бога </em> “for God’s sake”</li>
+  <li><em>браво </em> “bravo”</li>
 </ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-pos/INTJ.md" target="#">edit INTJ</a></p>
 
 <p><a id="al-uk-pos/NOUN" class="al-dest"></a></p>
 <h2><code>NOUN</code>: noun</h2>
+
+<h3 id="definition">Definition</h3>
 
 <p>The <code>NOUN</code> tag is intended for common nouns only. See <a href="">PROPN</a> for
 proper nouns and <a href="">PRON</a> for pronouns.</p>
@@ -334,72 +336,261 @@ number-case inflectional paradigm.</p>
 <p><a id="al-uk-pos/NUM" class="al-dest"></a></p>
 <h2><code>NUM</code>: numeral</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>NUM</code>.</p>
+<h3 id="definition">Definition</h3>
+
+<p>A numeral is a word, functioning most typically as a determiner, adjective or pronoun, that expresses a number and a relation to the
+number, such as quantity, sequence, frequency or fraction.</p>
+
+<p>Note that cardinal numerals are covered by <code>NUM</code> whether they are used as determiners or not (as in <em>Windows <b>7</b></em>) and whether they are expressed as words <em>(чотири)</em>, digits <em>(4)</em> or Roman numerals <em>(IV)</em>.</p>
+
+<p>Ukrainian grammar distinguishes several subclasses of <em>pronominal numerals (quantifiers):</em>
+interrogative and relative <em>(скільки </em> “how many”);
+demonstrative <em>(стільки </em> “this many”);
+indefinite <em>(кілька, багато, мало </em> “several, many, few”).
+These words behave similarly to (most) cardinal numbers, e.g. they require that the counted noun phrase be in genitive and have different forms depending on the case (with the exception of <em>мало </em> “little, few”. They are not similar to adjectives (unlike their English counterparts). However, in accord with the UD standard, they should be tagged <a href="">DET</a>, not <code>NUM</code>.</p>
+
+<p>In addition, several types of (non-pronominal) numerals, such as ordinal numerals and multiplicative numerals, are tagged <a href="">ADJ</a> or <a href="">ADV</a>, based on their syntactic and morphological behavior.</p>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li><em>0, 1, 2, 3, 4, 5, 2014, 1000000, 3.14159265359</em></li>
+  <li><em>I, II, III, IV, V, MMXIV</em></li>
+  <li><em>один, два, три, чотири, п’ять, сімдесят </em> “one, two, three, four, five, seventy”</li>
+  <li><em>половина, третина, четвертина (чверть) </em> “one-half, one third, quarter”: denominators of fractions constitute a separate class of cardinal numerals. (They are not considered numerals in the Ukrainian grammar. They are tagged <a href="">NOUN</a>.)</li>
+  <li><em>четверо, п’ятеро </em> “four, five” (These are special forms, so-called generic numerals.)</li>
+  <li><em>одні, двоє, троє </em> “one set of, two sets of, three sets of”</li>
+</ul>
+
+<h3 id="counterexamples">Counterexamples</h3>
+
+<ul>
+  <li><em>перший, другий, третій </em> “first, second, third”: adjectival ordinal numerals. They are tagged <a href="">ADJ</a>, and the <a href="">uk-feat/NumType</a> feature reveals their semantic relation to numbers.</li>
+  <li><em>вперше, вдруге, втретє </em> “for the first time, for the second time, for the third time”: adverbial ordinal numerals. They are tagged <a href="">ADV</a>, and the <a href="">uk-feat/NumType</a> feature reveals their semantic relation to numbers.</li>
+  <li><em>двічі, тричі </em> “twice, three times”: multiplicative numerals. They are tagged <a href="">ADV</a>, and the <a href="">uk-feat/NumType</a> feature reveals their semantic relation to numbers.</li>
+  <li><em>двійня, дует, трійня, тріо, квартет </em> “pair, triplet, foursome”: n-tuples <em>(n-tice) </em> are not considered numerals in the Ukrainian grammar. They are tagged <a href="">NOUN</a>.</li>
+  <li><em>одиниця, двійка, трійка, четвірка, п’ятірка </em> “number one, number two, number three, number four, number five”: names of numbers, or of objects identified by the number (e.g. of a bus route). They are not considered numerals and they are tagged <a href="">NOUN</a>.</li>
+  <li><em>тисяча, мільйон, мільярд, трильйон </em> “thousand, million, billion, trillion”: words for large quantities are ambiguous between cardinal numerals (tagged <code>NUM</code>) and nouns.
+If they inflect as nouns, they are tagged <a href="">NOUN</a>; but the borderline is fuzzy.
+For instance, in phrases like <em><b>тисячі</b> людей взяли участь в демонстації </em> (“<b>thousands</b> of people demonstrated in the streets”),   <em>тисячі </em> is a noun.
+In numeric expressions, e.g. <em>132 <b>тисячі</b> доларів </em> (“132 <b>thousand</b> dollars”), it is a cardinal numeral.</li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-pos/NUM.md" target="#">edit NUM</a></p>
 
 <p><a id="al-uk-pos/PART" class="al-dest"></a></p>
 <h2><code>PART</code>: particle</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>PART</code>.</p>
+<h3 id="definition">Definition</h3>
+
+<p>Particles are function words that must be associated with another word or phrase to impart meaning and that do not satisfy definitions of other universal parts of speech (e.g. <a href="ADP">adpositions</a>, <a href="CONJ">coordinating conjunctions</a>, or <a href="SCONJ">subordinating conjunctions</a>).  Particles may encode grammatical categories such as negation, mood etc. Ukrainian particles are not inflected.</p>
+
+<p>Note that response words such as <em>так </em> “yes”, <em>ні </em> “no”, etc. are considered particles in grammars of Ukrainian but they are tagged as interjections under the UD standard. Also note that <em>ні </em> can be used in two ways, one would be translated as English “no” and the other as “nor”. Only the former should become interjection, while the latter will stay a conjunction.</p>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li>Sentence modality: <em><b>но</b>, <b>хай</b>, <b>нехай</b> </em> (“<b>May you</b> have an enjoyable stay!”)</li>
+  <li><em>тільки </em> “just, only”</li>
+  <li><em>аж </em> “only, as late as, even, up to”</li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-pos/PART.md" target="#">edit PART</a></p>
 
 <p><a id="al-uk-pos/PRON" class="al-dest"></a></p>
 <h2><code>PRON</code>: pronoun</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>PRON</code>.</p>
+<h3 id="definition">Definition</h3>
+
+<p>Pronouns are words that substitute for <a href="NOUN">nouns</a> or noun phrases, whose meaning is recoverable from the linguistic or extralinguistic context.</p>
+
+<p>Pronouns under this definition function like nouns. Note that Ukrainian grammar traditionally extends the term <em>pronoun</em> to words that
+substitute for <a href="ADJ">adjectives</a>. Such words are not tagged <code>PRON</code> under our universal scheme. They are tagged as <a href="DET">determiners</a> in order to annotate the same thing same way across languages.</p>
+
+<p>For instance, <em>tohle </em> “this” is traditionally called pronoun in Czech grammar, regardless of context (the notion of determiners does not exist in Ukrainian grammar). To make the annotation parallel across languages, it is now tagged <code>PRON</code> in <em><b>Це</b> я бачила вчора. </em> “I saw <b>this</b> yesterday.” and <code>DET</code> in <em><b>Це</b> дерево я бачила вчора.</em> _ “I saw <b>this</b> tree yesterday.”</p>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li>personal pronouns: <em>я, ти, він, вона, воно, ми, ви, вони </em> “I, you, he, she, it, we, you, they, they”</li>
+  <li>reflexive pronouns: <em>себе, се, собі, собою </em> “oneself”</li>
+  <li>demonstrative pronouns: <em>це </em> as in <em><b>Це</b> я бачила вчора.</em> “I saw <b>this</b> yesterday.”</li>
+  <li>interrogative pronouns: <em>хто, що </em> “who, what” as in <em><b>Що</b> ти думаєш? </em> “<b>What</b> do you think?”</li>
+  <li>relative pronouns: <em>хто, що </em> “who, what” as in <em>Мене цікавить, <b>що</b> ти думаєш. </em>  “I wonder <b>what</b> you think.”</li>
+  <li>indefinite pronouns: <em>дехто, дещо </em> “somebody, something”</li>
+  <li>total pronouns: <em>кожен, всі </em> “everybody, all”</li>
+  <li>negative pronouns: <em>ніхто, ніщо </em> “nobody, nothing”</li>
+</ul>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="http://www-01.sil.org/linguistics/GlossaryOfLinguisticTerms/WhatIsAPronoun.htm">Loos, Eugene E., et al. 2003. Glossary of linguistic terms: What is a pronoun?</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Pronoun">Wikipedia</a></li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-pos/PRON.md" target="#">edit PRON</a></p>
 
 <p><a id="al-uk-pos/PROPN" class="al-dest"></a></p>
 <h2><code>PROPN</code>: proper noun</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>PROPN</code>.</p>
+<h3 id="definition">Definition</h3>
+
+<p>A proper noun is a noun that is the name of a specific individual, place, or object. Ukrainian proper nouns are always written starting with an uppercase letter. Note that names of days of week, names of months, names of languages, and adjectives derived from geographical names are not written capitalized (unlike in English) and are not considered proper nouns.</p>
+
+<p>Single-word named entities should be tagged <code>PROPN</code> even if they originate from a common noun <em>(Заєць, Бук) </em> or an adjective <em>(Довгополий, Масна). </em> Even if they were originally adjectives and inflect according to adjectival paradigms, they behave syntactically as nouns. For instance, <em>Масна </em> (the feminine version of surname <em>Масний </em>) is originally feminine form of the adjective <em>масний </em> “fatty” but as an anthroponimic name, it is a noun. It denotes a concrete person (rather than a property of somebody/something) and its gender is limited to feminine and masculine (while adjectives have forms in all three genders).</p>
+
+<p>Personal names are typically treated as a sequence of proper nouns (one or more given names and one or more surnames). If the name contains prepositions, conjunctions or particles (foreign names), these are tagged as <code>ADP</code>, <code>CONJ</code> and <code>DET</code>, respectively.</p>
+
+<p>Ukrainian (and other Slavic) multi-word named entities have internal syntactic structure, which is preserved in the annotation. The headword is always noun and there may be other nouns involved. They will be tagged either <code>PROPN</code> or <code>NOUN</code> and possible ambiguities must be resolved individually. Modifying adjectives are never tagged <code>PROPN</code>. Even if an adjective is the first word of a multi-word name, and thus it starts with an uppercase letter, it is still tagged <code>ADJ</code>. Similarly, function words in named entities retain their normal tags. These rules are less strict for foreign named entities where the original part of speech is hidden for a Ukrainian speaker.</p>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li><em><b>Франкфурт</b></em><code>PROPN</code> <em>на</em><code>ADP</code> <em><b>Майні</b></em><code>PROPN</code> is a city. <em>Франкфурт </em> is the head and the <em>на Майні </em> part refers to the river flowing through the city, to distinguish it from other Frankfurts.</li>
+  <li><em>Організація</em><code>NOUN</code> <em>об’єднаних</em><code>ADJ</code> <em>націй</em><code>NOUN</code> “United Nations Organization” consists of three words, none of which is proper noun. However, the acronym <em><b>ООН</b> </em> “UN” is a single-token name and is tagged <code>PROPN</code>.</li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-pos/PROPN.md" target="#">edit PROPN</a></p>
 
 <p><a id="al-uk-pos/PUNCT" class="al-dest"></a></p>
 <h2><code>PUNCT</code>: punctuation</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>PUNCT</code>.</p>
+<h3 id="definition">Definition</h3>
+
+<p>Punctuation marks are non-alphabetical characters and character groups used to delimit linguistic units in printed text.</p>
+
+<p>Punctuation is not taken to include logograms such as <em>$</em>, <em>%</em>, and <em>§</em>, which are instead tagged as <a href="">SYM</a>.</p>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li>Period: <em><b>.</b></em></li>
+  <li>Comma: <em><b>,</b></em></li>
+  <li>Parentheses: <em><b>()</b></em></li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-pos/PUNCT.md" target="#">edit PUNCT</a></p>
 
 <p><a id="al-uk-pos/SCONJ" class="al-dest"></a></p>
 <h2><code>SCONJ</code>: subordinating conjunction</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>SCONJ</code>.</p>
+<h3 id="definition">Definition</h3>
+
+<p>A subordinating conjunction is a conjunction that links constructions by making one of them a constituent of the other. The subordinating conjunction typically marks the incorporated constituent which has the status of a (subordinate) clause.</p>
+
+<p>For <em>coordinating conjunctions,</em> see <a href="">CONJ</a>.</p>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li><em>що </em> “that”</li>
+  <li><em>щоб, аби </em> “so that”</li>
+  <li><em>якщо </em> “if”</li>
+  <li><em>як </em> “as”</li>
+  <li><em>ніж </em> “than”</li>
+</ul>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="http://www-01.sil.org/linguistics/GlossaryOfLinguisticTerms/WhatIsASubordinatingConjunction.htm">Loos, Eugene E., et al. 2003. Glossary of linguistic terms: What is a subordinating conjunction?</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Conjunction_(grammar)">Wikipedia</a></li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-pos/SCONJ.md" target="#">edit SCONJ</a></p>
 
 <p><a id="al-uk-pos/SYM" class="al-dest"></a></p>
 <h2><code>SYM</code>: symbol</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>SYM</code>.</p>
+<h3 id="definition">Definition</h3>
+
+<p>A symbol is a word-like entity that differs from ordinary words by form, function, or both.</p>
+
+<p>Many symbols are or contain special non-alphanumeric characters, similarly to <a href="PUNCT">punctuation</a>.  What makes them different from
+punctuation is that they can be substituted by normal words.  This involves all currency symbols, e.g. <em>$ 75</em> is identical to <em>seventy-five dollars</em>.</p>
+
+<p>Mathematical operators form another group of symbols.</p>
+
+<p>Another group of symbols is emoticons and emoji.</p>
+
+<p>Strings that consists entirely of alphanumeric characters are not symbols but they may be <a href="PROPN">proper nouns</a>: <em>130XE</em>, <em>DC10</em>; others may be tagged <code>PROPN</code> (rather than <code>SYM</code>) even if they contain special characters: <em>DC-10</em>.
+Similarly, abbreviations for single words are not symbols but are assigned the part of speech of the full form. For example, <em>п.</em> (пан or пані), <em>кг</em> (кілограм), <em>км</em> (кілометр), <em>проф.</em> (професор) should be tagged <a href="NOUN">nouns</a>. Acronyms for proper names such as <em>OSN</em> and <em>NATO</em> should be tagged as <a href="PROPN">proper nouns</a>.</p>
+
+<p>Characters used as bullets in itemized lists <em>(•, ‣)</em> are not symbols, they are punctuation.</p>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li><em>$, %, §, ©</em></li>
+  <li><em>+, −, ×, ÷, =, &lt;, &gt;</em></li>
+  <li>:), ♥‿♥, 😝</li>
+  <li><em>john.doe@universal.org, http://universaldependencies.org/, 1-800-COMPANY</em></li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-pos/SYM.md" target="#">edit SYM</a></p>
 
 <p><a id="al-uk-pos/VERB" class="al-dest"></a></p>
 <h2><code>VERB</code>: verb</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>VERB</code>.</p>
+<h3 id="definition">Definition</h3>
+
+<p>A verb is a member of the syntactic class of words that typically signal events and actions, can constitute a minimal predicate in a
+clause, and govern the number and types of other constituents which may occur in the clause.</p>
+
+<p>Note that the <code>VERB</code> tag covers main verbs <em>(content verbs)</em> and <em>modal verbs</em> but it does not cover <em>auxiliary verbs,</em> for which there is the <a href="">AUX</a> tag. (Ukrainian modal verbs are not considered auxiliary.) See the description of <code>AUX</code> for more information on the borderline between <code>VERB</code> and <code>AUX</code>.</p>
+
+<p>Ukrainian verbs can take the following morphological forms:</p>
+
+<ul>
+  <li>Infinitive (this is the citation form)</li>
+  <li>Finite verb (indicative and imperative forms; conditional is constructed periphrastically). Ukrainian future tense can be formed either analitically, with the help of the auxiliary verb <em>бути</em>  “to be” or syntactically, with the help of endings rooted in the auxiliary verb <em>мати</em>  “to have”.</li>
+  <li>Active and passive adverbial participle</li>
+  <li>Impersonal form ending with <em>-но/-то</em>. In Slavic languages other than Ukrainian and Polish this form coincides with the neutral passive adjectival participle, but in those two languages the participle has a different ending: <em>-не</em> in Ukrainian and <em>-ne</em> in Polish, which is why it is trated as a separate verbal form.</li>
+</ul>
+
+<p>There are participial forms that are tagged as adjectives (<a href="">ADJ</a>) rather than verbs.
+See below for border cases.</p>
+
+<p>A verbal noun can be derived productively from almost every verb (e.g. <em>робити</em>  “to do” → <em>робіння</em>  “doing”). While in other languages a corresponding form may be called gerund and tagged <code>VERB</code>, in Ukrainian it is tagged <a href="">NOUN</a>. It has always the neuter <a href="">uk-feat/Gender</a> and it inflects for <a href="">uk-feat/Number</a> and <a href="">uk-feat/Case</a>.</p>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li><em>нести</em>  “to carry”</li>
+  <li><em>несу, несеш, несе, несемо, несете, несуть</em>  “I carry, you carry, he/she/it carries, we carry, you carry, they carry”</li>
+  <li><em>неси, несімо, несіть</em>  “carry” (imperative in different persons and numbers)</li>
+  <li><em>ніс, несла, несло, несли</em>  “carried” (past participle in different genders and numbers)</li>
+  <li><em>несено</em> “(it was/somebody) carried” (passive impersonal form)</li>
+  <li><em>несучи, нісши</em>  “carrying” (present and past adverbial participles)</li>
+</ul>
+
+<h3 id="border-cases">Border cases</h3>
+
+<p>Passive and active adjectival participles are treated special as adjective forms. 
+- Passive adjectival participle is used to construct passive voice: <em>несений, несена, несене, несені</em>  “carried” (passive participle in different genders and numbers). It is also used separately as an adjective: <em>ношений, драний</em>  “carried, torn/ragged”. Their meaning is almost identical but the usage slightly varies. Both groups can be used in nominal predication with <a href="uk-dep/cop">copula</a>. Only true participles (verbs) can be used to form the passive voice (but it may be sometimes difficult to distinguish from copula constructions, see <a href="">AUX</a>). On the other hand, the participial adjectives inflect for case and thus can modify nouns.
+- Active participle (it is considered ungrammatical but still used occasionally, which is why it is encoded): <em>несучий</em>  “carrying” (present in different genders and numbers).</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-pos/VERB.md" target="#">edit VERB</a></p>
 
 <p><a id="al-uk-pos/X" class="al-dest"></a></p>
 <h2><code>X</code>: other</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>X</code>.</p>
+<h3 id="definition">Definition</h3>
+
+<p>The tag <code>X</code> is used for words that for some reason cannot be assigned a real part-of-speech category.</p>
+
+<p>A special usage of <code>X</code> is for cases of code-switching where it is not possible (or meaningful) to analyze the intervening language
+grammatically (and where the dependency relation <em>foreign</em> is typically used in the syntactic analysis).</p>
+
+<p>Even if foreign words are tagged <code>X</code>, this usage does not extend to ordinary loan words which should be assigned a normal
+part-of-speech. For example, <em>кілт </em> “kilt” is an ordinary <a href="">NOUN</a>.</p>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li><em>А він тільки <b>xfgh pdl jklw</b> </em> “And he just <b>xfgh pdl jklw</b>”</li>
+</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-pos/X.md" target="#">edit X</a></p>
 
