@@ -45,7 +45,7 @@
 
 <ul>
   <li>Rename <a href="">u-pos/CONJ</a> to <code>CCONJ</code>.</li>
-  <li>Remove <a href="">u-pos/AUX</a>.</li>
+  <li>Extend the use of <a href="">u-pos/AUX</a> to copula verbs and nonverbal TAMVE particles.</li>
   <li>Minimize usage of <a href="">u-pos/PART</a> – small language-specific list of words, case must be made for each.</li>
   <li>Loosen borderline between <a href="">u-pos/PRON</a> and <a href="">u-pos/DET</a>: set of recommendations instead of purely functional rule.</li>
   <li>Provide more general recommendations about setting language-specific borderlines between word categories.</li>
@@ -96,45 +96,35 @@ while in fact it usually went with the relation <code>cc</code> and practically 
 
 <p>Note that the current guidelines say that [en] <em>not</em>, [de] <em>nicht</em> etc. are negative particles (but negative determiners like [en] <em>no</em>, or negative auxiliary verbs like [cs] <em>není</em> are not particles). This is the only positive part of the current <code>PART</code> definition at the language-universal level, because such words were traditionally tagged as adverbs in some languages, and they could be adverbs in the other languages too, had we decided to remove <code>PART</code>.</p>
 
-<h2 id="remove-aux">Remove AUX</h2>
+<h2 id="extend-the-use-of-aux">Extend the use of AUX</h2>
 
-<p>The <a href="">u-pos/AUX</a> category is currently used for auxiliary verbs. In many languages, (some of) the auxiliary verbs may also be used as main verbs. Their paradigm may be defective but the forms they have usually do not distinguish auxiliary usage from full-verb usage, so the <code>AUX</code> tag can only be inferred from the syntactic relation <a href="">u-dep/aux</a>. We believe that each POS category should be able to contribute some additional information rather than just mirror a dependency relation (see also further discussion in the section <em>Borderline between categories</em>). Since the <code>AUX</code> tag served only to distinguish auxiliary and non-auxiliary usage of a verb, it should be removed; the two usages can be recognized by the <code>aux</code> relation.</p>
+<p>The <a href="">u-pos/AUX</a> category is currently used for auxiliary verbs, that is verbs used with the syntactic relation [u-dep/aux] (regardless of whether these verbs can be used as main verbs in other contexts). We propose to extend its use in two ways. First, it can be used for nonverbal particles used to express TAMVE categories, which in v2 will also be analyzed using the [u-dep/aux] relation. Secondly, it will be extended to copula verbs, which perform a grammaticalized function in nominal clauses.</p>
 
-<p>If it is desirable to keep the morphological distinction in a treebank (e.g. because a verb is only auxiliary in a language, and it differs morphologically from normal verbs), the language-specific feature VerbType=Aux (or Mod or Cop) can be used, but there will be no dedicated POS tag.</p>
+<!--In many languages, (some of) the auxiliary verbs may also be used as main verbs. Their paradigm may be defective but the forms they have usually do not distinguish auxiliary usage from full-verb usage, so the `AUX` tag can only be inferred from the syntactic relation [u-dep/aux](). We believe that each POS category should be able to contribute some additional information rather than just mirror a dependency relation (see also further discussion in the section _Borderline between categories_). Since the `AUX` tag served only to distinguish auxiliary and non-auxiliary usage of a verb, it should be removed; the two usages can be recognized by the `aux` relation.
 
-<p>Removing the tag means changing it to <code>VERB</code> in data, removing all the <code>AUX</code> pages from the documentation, and also remove references to it from other parts of the documentation (probably from <code>VERB</code>, <code>aux</code> and <code>auxpass</code>; quite likely also from elsewhere).</p>
+If it is desirable to keep the morphological distinction in a treebank (e.g. because a verb is only auxiliary in a language, and it differs morphologically from normal verbs), the language-specific feature VerbType=Aux (or Mod or Cop) can be used, but there will be no dedicated POS tag.
 
-<p>(NB: If this proposal is not approved by the core group, we should consider re-classifying copula verbs as auxiliaries.)</p>
+Removing the tag means changing it to `VERB` in data, removing all the `AUX` pages from the documentation, and also remove references to it from other parts of the documentation (probably from `VERB`, `aux` and `auxpass`; quite likely also from elsewhere).
 
-<h2 id="borderline-between-categories">Borderline between categories</h2>
+(NB: If this proposal is not approved by the core group, we should consider re-classifying copula verbs as auxiliaries.)-->
 
-<p>We should move away from completely functional guidelines for part-of-speech tags that make the tag completely predictable from the syntactic function.
-In addition to the obvious argument that such guidelines make (some) tags uninformative, they also make it harder to find interesting cross-lingual differences.
+<h2 id="borderlines-between-categories">Borderlines between categories</h2>
+
+<p>Parts of speech have traditionally been defined using a mix of morphological, syntactic and semantic criteria. Given that UD is concerned with grammatical annotation, we in general want to give less priority to (purely) semantic criteria. Morphological criteria are very useful but are not applicable to all languages, or even to all categories within morphologically rich languages. It follows that, in many cases, we have to rely primarily on syntactic criteria. However, we believe that the part-of-speech classification is most useful if it captures regular, prevailing syntactic behavior and does not reflect sentence-specific exceptional behavior. Therefore, we should avoid completely functional guidelines for part-of-speech tags that make the tag completely predictable from the syntactic function. In addition to the obvious argument that such guidelines make (some) tags uninformative, they also make it harder to find interesting cross-lingual differences.
 For example, language X allows words of category A to have syntactic function b, but language Y doesn’t.</p>
 
-<p>We admit that there are ambiguous words that cannot be tagged without considering the context.
-However, we prefer distinctions based on word form, dictionary and <em>prevailing</em> syntactic behavior.
-We should avoid the extreme where (almost) all ambiguities between two categories are resolved
-solely by syntactic structure.
-We have identified two such extremes in the v1 guidelines:</p>
+<p>We admit that there are ambiguous words that cannot be tagged without considering the context. However, we prefer distinctions based <em>prevailing</em> syntactic behavior and (when relevant) morphological properties. We should avoid the extreme where (almost) all ambiguities between two categories are resolved solely by syntactic structure, as was the case with pronouns vs. determiners in v2. Here the current definition of <code>PRON</code> and <code>DET</code> should be loosened. It will be possible in many languages to enumerate words in both classes, and preferably the lists should be based on prevailing syntactic function and morphological properties, rather than the actual context in each sentence.</p>
 
-<ul>
-  <li>Pronouns vs. determiners. Here the current definition of <code>PRON</code> and <code>DET</code> should be loosened.
-It will be possible in many languages to enumerate words in both classes, and preferably
-the lists should be based on morphological properties and prevailing syntactic function,
-rather than the actual context in each sentence.
-The functional approach is not banned though, if there is no better way (reportedly Turkic languages).
-See below for more details.</li>
-  <li>Main verbs vs. auxiliary verbs. In many languages, (some of) the auxiliary verbs may also
-be used as main verbs. Their paradigm may be defective but the forms they have usually do
-not distinguish auxiliary usage from full-verb usage, so the <code>AUX</code> tag can only be
-inferred from the syntactic relation <code>aux</code>.
-There is no reasonable solution similar to the <code>PRON</code>/<code>DET</code> proposal, therefore we propose
-to remove the <code>AUX</code> tag from v2.
-If it is desirable to keep the morphological distinction in a treebank
-(e.g. because a verb is <em>only</em> auxiliary in a language, and it differs morphologically from normal verbs),
-the language-specific feature <code>VerbType=Aux</code> (or <code>Mod</code> or <code>Cop</code>) can be used, but there will be no dedicated POS tag.</li>
-</ul>
+<!--The functional approach is not banned though, if there is no better way (reportedly Turkic languages). See below for more details.
+  * Main verbs vs. auxiliary verbs. In many languages, (some of) the auxiliary verbs may also
+    be used as main verbs. Their paradigm may be defective but the forms they have usually do
+    not distinguish auxiliary usage from full-verb usage, so the `AUX` tag can only be
+    inferred from the syntactic relation `aux`.
+    There is no reasonable solution similar to the `PRON`/`DET` proposal, therefore we propose
+    to remove the `AUX` tag from v2.
+    If it is desirable to keep the morphological distinction in a treebank
+    (e.g. because a verb is _only_ auxiliary in a language, and it differs morphologically from normal verbs),
+    the language-specific feature `VerbType=Aux` (or `Mod` or `Cop`) can be used, but there will be no dedicated POS tag.-->
 
 <p>There are many pairs of categories with unclear border zones, although not all of them in all languages:</p>
 
@@ -168,10 +158,10 @@ A good example is [en] <em>that</em> and [es] <em>que</em> which can be both a r
 act as a core argument of a predicate, while complementizer cannot. So we have to distinguish the two functions,
 although historically the complementizer may actually come from a grammaticalized pronoun.</p>
 
-<p>It would be useful if the proposal for UD v2 also included a list of category pairs that are considered incompatible
-but we did not discuss this in detail in Prague.</p>
+<!--It would be useful if the proposal for UD v2 also included a list of category pairs that are considered incompatible
+but we did not discuss this in detail in Prague.-->
 
-<p>Furthermore, we should encourage authors of language-specific documentation to document all border cases,
+<p>Furthermore, we should encourage authors of language-specific documentation to document all borderline cases,
 but this is not really a change of guidelines.</p>
 
 <h2 id="proposed-principles-for-ud-v2">Proposed principles for UD v2</h2>
@@ -179,13 +169,12 @@ but this is not really a change of guidelines.</p>
 <p>This text could be added to the <a href="../u/overview/morphology.html">morphology overview page</a>, section on POS tags:</p>
 
 <ul>
-  <li>A word’s category should be primarily determined by dictionary rather than by context of a particular sentence.
-Syntax still plays an important role, especially in cross-linguistic mapping of same-named categories.
-However, prototypical (expected) syntactic behavior is of more importance than function performed in exceptional contexts.</li>
+  <li>A word’s category should be primarily determined by prototypical (expected) syntactic behavior, as typically recorded in a dictionary, rather than by the context of a particular sentence.
+<!--Syntax still plays an important role, especially in cross-linguistic mapping of same-named categories.
+However, prototypical (expected) syntactic behavior is of more importance than function performed in exceptional contexts.--></li>
   <li>Morphological behavior may be a good indicator in some languages.
 If, for example, a language uses distinct inflection patterns for nouns and adjectives, then morphology can be used
-to distinguish these two categories. Exceptions cannot be excluded but they should be really exceptional and well grounded;
-when in doubt, use the category determined by morphology.</li>
+to distinguish these two categories. Exceptions cannot be excluded but they should be really exceptional and well grounded; when in doubt, use the category determined by morphology (if available).</li>
   <li>Ambiguous words (belonging to two or more categories) do exist. Sometimes by pure coincidence
 ([en] <em>the can</em> vs. <em>can = to be able to</em>). Sometimes the two words are related but differ morphologically
 ([en] <em>the book(s)</em> vs. <em>to book, booked, booking</em>).</li>
@@ -194,7 +183,7 @@ yet they perform two or more <em>significantly</em> different syntactic function
 parts of speech. The two functions may not be equally frequent but each of them is more frequent than what could be labeled
 as a mere exception (i.e. the <em>wait for his ‘yes’</em> example is exceptional).
 Disambiguating such pairs clearly depends on the context of the given sentence where the word is used.
-This sort of ambiguity should be minimized (because we want to decide as much as possible with dictionary) but it cannot be avoided.
+<!--This sort of ambiguity should be minimized (because we want to decide as much as possible with dictionary) but it cannot be avoided.-->
 So how do we know that the difference is “significant enough”?
 One clue is that the word, when translated to another language, gets two different translations with different POS tags
 (e.g. the English <em>no</em> as response interjection, vs. negative determiner).
