@@ -44,7 +44,12 @@
 <ul>
   <li>The <code>remnant</code> relation should be discarded</li>
   <li>In the case of simple head ellipsis, the dependent should be promoted</li>
-  <li>In case of predicate ellipsis, a more complex relation type that combines the relation of the elided node and its dependent should be used (e.g., <code>conj&gt;dobj</code>)</li>
+  <li>In case of predicate ellipsis, we consider two alternative proposals:
+    <ol>
+      <li>Use a more complex relation type that combines the relation of the elided node and its dependent (e.g., <code>conj&gt;dobj</code>)</li>
+      <li>Use promotion but introduce a new relation <code>orphan</code> for non-standard dependency relations that arises</li>
+    </ol>
+  </li>
   <li>The complex cases of ellipsis should be analyzed with NULL nodes in the <em>enhanced</em> representation</li>
 </ul>
 
@@ -112,7 +117,7 @@ dobj(saw-7, two-8)
 
 <h3 id="clauses">Clauses</h3>
 
-<p>If the main predicate is elided, we promote only if there is an <code>aux</code> or <code>cop</code> (or possibly <code>advmod</code> or <code>mark</code> in the form of infinitival markers).</p>
+<p>If the main predicate is elided, we promote only if there is an <code>aux</code> or <code>cop</code>, or a <code>mark</code> in the form of an infinitival marker.</p>
 
 <p>Example:</p>
 
@@ -125,24 +130,14 @@ nsubj(does-6, Peter-5)
 advmod(does-6, too-8)
 </code></pre>
 
-<h3 id="to-discuss">To discuss:</h3>
+<pre><code class="language-sdparse">Sue is hungry and Peter is , too . 
 
-<p>Should we also promote adverbial modifiers as in the following example?</p>
-
-<p><strong>Sebastian</strong>: I think we should not because of the weird <code>nsubj</code> relation between the subject and the adverb, and instead treat such examples the same way we treat predicate ellipsis.</p>
-
-<pre><code class="language-sdparse">Sue needs a good friend , and probably Peter , too . 
-
-nsubj(needs-2, Sue-1)
-dobj(needs-2, friend-5)
-conj(needs-2, too-11)
-advmod(too-11, probably-8)
-nsubj(too-11, Peter-9)
+nsubj(hungry-3, Sue-1)
+cop(hungry-3, is-2)
+conj(hungry-3, is-6)
+nsubj(is-6, Peter-5)
+advmod(is-6, too-8)
 </code></pre>
-
-<p>Should we also promote infinitival markers as in the following example?</p>
-
-<p><strong>Sebastian</strong>: I think we should as it doesn’t seem to introduce any weird relations and using a more complex composite relation (see below) of the form <em>xcomp&gt;mark</em> does not have any advantages.</p>
 
 <pre><code class="language-sdparse">They will do it if they want to .
 
@@ -166,7 +161,11 @@ nsubj(coffee-6, you-5)
 conj(like-2, coffee-6)
 </code></pre>
 
-<p>We therefore propose to attach orphans to their grandparent with a composite relation of the form <code>headrel&gt;orphanrel</code>.</p>
+<p>We consider two alternative proposals for dealing with such cases in UD basic dependencies, one that make use of composite relations (but do not introduce any new relations) and one that instead adds a new relation tentatively dubbed <code>orphan</code> to preserve intuitions about constituency.</p>
+
+<h3 id="predicate-ellipis-1-composite-relations">Predicate ellipis 1: composite relations</h3>
+
+<p>The first alternative is to attach orphans to their grandparent with a composite relation of the form <code>headrel&gt;orphanrel</code>.</p>
 
 <p>Example:</p>
 
@@ -212,9 +211,47 @@ root&gt;nsubj(ROOT, Jenny)
 root&gt;xcomp&gt;dobj(ROOT, CD)
 </code></pre>
 
+<h3 id="predicate-ellipis-2-orphan-instead-of-remnant">Predicate ellipis 2: orphan instead of remnant</h3>
+
+<p>The second alternative preserves the integrity of the second conjunct as a single subtree by (arbitrarily) promoting one of the orphans to the (subclause) root and attaching the others with a new dummy relation <code>orphan</code> (or possibly <code>ncc</code> for non-constituent coordination). Here are the same examples annotated according to this alternative:</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee .
+
+nsubj(like-2, I-1)
+dobj(like-2, tea-3)
+conj(like-2, you-5)
+orphan(you-5, coffee-6)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book and Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+dobj(buy-4, book-6)
+conj(wants-2, Jenny-8)
+orphan(Jenny-8, CD-10)
+</code></pre>
+
+<pre><code class="language-sdparse">They had left the company , many for good .
+
+nsubj(left, They)
+dobj(left, company)
+conj(left, many)
+orphan(many, good)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book . ROOT And Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+dobj(buy-4, book-6)
+root(ROOT, Jenny)
+orphan(Jenny, CD)
+</code></pre>
+
 <h2 id="predicate-ellipsis-in-enhanced-ud-v2">Predicate ellipsis in <em>Enhanced</em> UD v2</h2>
 
-<p>While we hold on to the principle that <em>basic</em> UD trees have to be strict surface syntax trees, we propose to relax this requirement in the <em>enhanced</em> representation and to allow special null nodes for sentences with elided predicates. These nodes have special word indices of the form <em>a.b</em>, where <em>a</em> is the index of the token that would precede the elided word and <em>b</em> is a counter. (See also the description of the <a href="conll-u.html">proposed changes</a> to the CoNLL-U file format.) Whenever the <em>basic</em> representation contains a composite relation, the <em>enhanced</em> representation contains additional null nodes to resolve all composite relations into simple relations.</p>
+<p>While we hold on to the principle that <em>basic</em> UD trees have to be strict surface syntax trees, we propose to relax this requirement in the <em>enhanced</em> representation and to allow special null nodes for sentences with elided predicates. These nodes have special word indices of the form <em>a.b</em>, where <em>a</em> is the index of the token that would precede the elided word and <em>b</em> is a counter. (See also the description of the <a href="conll-u.html">proposed changes</a> to the CoNLL-U file format.) Whenever the <em>basic</em> representation contains a composite relation under proposal 1 above, the <em>enhanced</em> representation contains additional null nodes to resolve all composite relations into simple relations.</p>
 
 <p>For example, the sentences from the previous section are analyzed as following in the <em>enhanced</em> representation. (The special null nodes are labelled with <em>Ea.b</em> .)</p>
 
@@ -247,13 +284,9 @@ nsubj(E7.1, many)
 nmod(E7.1, good)
 </code></pre>
 
-<p>In the first example, the node <em>E5.1</em> is added for the elided predicate <em>like</em>. In the second example, we add one node for the elided matrix verb <em>wants</em> (<em>E8.1</em>) and one node for the elided embedded verb <em>buy</em> (<em>E8.2</em>). As the elided marker <em>to</em> does not have any dependents, we do not add a null node for it.</p>
+<p>In the first example, the node <em>E5.1</em> is added for the elided predicate <em>like</em>. In the second example, we add one node for the elided matrix verb <em>wants</em> (<em>E8.1</em>) and one node for the elided embedded verb <em>buy</em> (<em>E8.2</em>). As the elided marker <em>to</em> does not have any dependents, we do not add a null node for it. We also recommend adding a link between the null nodes and their corresponding surface forms in the sentence (e.g., linking <em>E5.1</em> to <em>like</em> in the first example)?</p>
 
-<h3 id="to-discuss-1">To discuss:</h3>
-
-<p>Should we also have a link between the null nodes and their corresponding surface forms in the sentence (e.g., linking <em>E5.1</em> to <em>like</em> in the first example)?</p>
-
-<p><strong>Sebastian</strong>: I think we should have this information somewhere. If the maintainers of a treebank actually go through all examples of predicate ellipsis to add null nodes, then it wouldn’t be much more work to specify the corresponding surface form in the sentence and this information could potentially be very useful.</p>
+<p>Finally, it should be noted that, if we adopt alternative 1 for the basic dependencies, then the enhanced representation can in most cases be inferred automatically, whereas with alternative 2 additional annotation will be needed.</p>
 
 
 
