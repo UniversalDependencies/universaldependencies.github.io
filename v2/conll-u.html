@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Coordination in UD v2</title>
+    <title>CoNLL-U Format in UD v2</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
@@ -21,9 +21,9 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-2016">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/2016/prague">2016/prague</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_2016-09-05--06-prague/coordination.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/conll-u.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
@@ -37,84 +37,61 @@
 	  </div>
 	</noscript>
 
-          <h1 id="coordination-in-ud-v2">Coordination in UD v2</h1>
+          <h1 id="conll-u-format-in-ud-v2">CoNLL-U Format in UD v2</h1>
 
-<p>Coordination is analyzed by having direct <a href="">u-dep/conj</a> relations between conjuncts in accordance with the general principle of prioritizing relations between content word. In v1, the first conjunct was taken to be the head not only of all following conjuncts but also of any intervening coordinating conjunctions and punctuation. For v2, we propose the following changes:</p>
-
-<ul>
-  <li>Attach coordinating conjunctions and punctuation to the immediately succeding conjunct (instead of the first)</li>
-  <li>Allow coordination to be analyzed as a right-headed structure in languages that consistently allow gapping (only) in earlier conjuncts</li>
-</ul>
-
-<h2 id="attachment-of-coordinating-conjunctions-and-punctuation">Attachment of coordinating conjunctions and punctuation</h2>
-
-<p>We suggest changing the guidelines for coordination, following the proposal of Gerdes &amp; Kahane (LAW 2016).</p>
+<p>Some of the proposed changes will require modifications to the CoNLL-U format. Whenever possible, we want to do this in the least disruptive fashion possible, keeping backward compatibility as far as we can. In particular, we strongly recommend not changing the number of fields and/or their meaning for fear of breaking people’s tools. We recommend the following changes for v2:</p>
 
 <ul>
-  <li>Kim Gerdes and Sylvain Kahane. 2016. Dependency Annotation Choices: Assessing Theoretical and Practical Issues of Universal Dependencies. Proceedings of the 10th Linguistic Annotation Workshop (LAW).</li>
+  <li>Allow spaces in the <code>FORM</code> and <code>LEMMA</code> fields (see <a href="word-segmentation.html">word segmentation</a>)</li>
+  <li>Let the <code>DEPS</code> field contain the entire enhanced dependency graph (not only additional relations on top of the basic trees) (see <a href="enhanced.html">enhanced dependencies</a>)</li>
+  <li>Allow empty nodes with an indexing scheme distinct from both tokens and words and with relations in the <code>DEPS</code> field (see <a href="ellipsis.html">ellipsis</a>)</li>
+  <li>Standardize sentence-level metadata</li>
+  <li>Restrict the use of the <code>MISC</code> field for ease of processing</li>
 </ul>
 
-<p>We will attach <a href="">u-dep/cc</a> and internal <a href="">u-dep/punct</a> to the immediately succeeding conjunct (instead of to the first conjunct). The guidelines for <a href="">u-dep/conj</a> remain unchanged. For example:</p>
+<h2 id="enhanced-representation-in-the-deps-field">Enhanced representation in the DEPS field</h2>
 
-<pre><code class="language-sdparse">I love apples and bananas .
-dobj(love,apples)
-conj(apples,bananas)
-cc(bananas,and)
-</code></pre>
+<p>The <code>deps</code> field holds the <em>enhanced</em> representation. Unlike previously thought, it seems a better idea for the <code>DEPS</code> field to hold the entire enhanced parsed graph, not only a smaller set of relations on top of the base layer in <code>HEAD+DEPREL</code>. The primary reason is that minimally the <em>ellipsis</em> relations and in future undoubtedly many others are not a part of the enhanced graph but are rather replaced by some relations in it. See <a href="enhanced.html">enhanced dependencies</a>.</p>
 
-<p>This new choice of governor for conjunctions allows a parallel treatment of sentences headed by a conjunction (where the conjunction has to depend on the root of the sentence, and can’t be attached to the previous conjunct).</p>
+<h2 id="empty-nodes-in-the-enhanced-representation">Empty nodes in the enhanced representation</h2>
 
-<pre><code class="language-sdparse">And he left .
-cc(left,And)
-</code></pre>
+<p>A mechanism is needed for empty nodes in the enhanced representation (the base representation will always be empty-node-free). These will be on their separate lines indexed as <code>E2.1</code> which means “the first empty node after the syntactic word indexed 2”. This line would be placed right after the word 2. Naturally, these empty nodes can be
+referred to only from the <code>DEPS</code> field.</p>
 
-<h2 id="right-headed-coordination">Right-headed coordination</h2>
+<p>There doesn’t seem to be a clear idea of whether the empty nodes should receive any values in the <code>FORM, LEMMA, UPOS, FEAT</code>
+fields. Probably <code>UPOS</code> could be somehow realistically filled.</p>
 
-<p>One of the arguments for analyzing coordination as a left-headed structure is that it facilitates the analysis of ellipsis, in particular gapping, in most languages:</p>
+<p>Grepping out all lines which start with E is now sufficient to obtain a CoNLL-U file without empty nodes whose <code>HEAD</code> and <code>DEPREL</code> fields behave as usual.</p>
 
-<pre><code class="language-sdparse">Mary won gold and Sue won bronze
-nsubj(won-2, Mary)
-dobj(won-2, gold)
-conj(won-2, won-6)
-cc(won-6, and)
-nsubj(won-6, Sue)
-dobj(won-6, bronze)
-</code></pre>
+<pre>
+1	Mary	_	_	_	_	2	nsubj	2:nsubj	_
+2	won	_	_	_	_	0	root	0:root	_
+3	silver	_	_	_	_	2	dobj	2:dobj	_
+4	and	_	_	_	_	2	conj&gt;cc	E5.1:cc	_
+5	Sue	_	_	_	_	2	conj&gt;nsubj	E5.1:nsubj	_
+E5.1	_	_	_	_	_	2	conj	2:conj	_
+6	bronze	_	_	_	_	2	conj&gt;dobj	E5.1:dobj	_
+</pre>
 
-<pre><code class="language-sdparse">Mary won gold and Sue bronze
-nsubj(won, Mary)
-dobj(won, gold)
-conj/cc(won, and)
-conj/nsubj(won, Sue)
-conj/dobj(won, bronze)
-</code></pre>
+<!--## Phrase-level features
 
-<p>If the verb of the rightmost clause was treated as the root in the first sentence, there would be no parallel analysis of the second sentence.</p>
+Phrase-level features are features which apply to the whole phrase rather than a single word. These might include phrase-level negation, etc. In the CoNLL-U file, phrase-level features are prefixed with the `~` character but otherwise treated as usual. This will have the advantage of them sorting after any standard features.-->
 
-<p>For the same reason, if a language consistently exhibits gapping in preceding (rather than following) clauses (see example in Turkish below), this may be an argument for treating coordination structures as right-headed in that language. If, on the other hand, the language allows gapping in both preceding and succeeding clauses, the default assumption of left-headedness should be maintained for coordination.</p>
+<h2 id="sentence-level-metadata">Sentence-level metadata</h2>
 
-<pre><code class="language-sdparse">Erkek kardeşi sadece bisiklet ama o araba aldı . \n Male sibling only bicycle but he car bought .
-nsubj(aldı, o)
-dobj(aldı, araba)
-cc(aldı, ama)
-conj&gt;nsubj(aldı, kardeşi)
-conj&gt;dobj(aldı, bisiklet)
-compound(kardeşi, Erkek)
-</code></pre>
+<p>Sentence-level metadata can be provided as before and all tools are required to pass it through, as before. No particular requirements are put on these fields other than “no trailing whitespace”. Several recognized key = value pairs should be standardized:</p>
 
-<p>Analysing this Turkish example as left headed conjunction would mean having ellipsis from the root, something like:</p>
+<ul>
+  <li>sent_id = global_sentence_id</li>
+  <li>text = sentence text</li>
+</ul>
 
-<pre><code class="language-sdparse">ROOT Erkek kardeşi sadece bisiklet ama o araba aldı . \n Male sibling only bicycle but he car bought .
-nsubj(aldı, o)
-dobj(aldı, araba)
-cc(aldı, ama)
-root&gt;dobj(ROOT, bisiklet)
-root&gt;nsubj(ROOT, kardeşi)
-root&gt;conj(ROOT, aldı)
-compound(kardeşi, Erkek)
-</code></pre>
+<p><code>sent_id</code> is compulsory and as per <a href="https://github.com/UniversalDependencies/docs/issues/321">#321</a> it should not contain the <code>/</code> (slash) character.</p>
 
-<p>It is important to note that we do not allow a mix of left-headed and right-headed analyses in one and the same language. The universal default for coordination is to treat the first (or leftmost) conjunct as the head. If a language makes an exception from this default, it must use the exceptional (right-headed) analysis for all coordination structures.</p>
+<h2 id="misc-field">MISC field</h2>
+
+<p>The only global requirement on the <code>MISC</code> field is that it can be split on the <code>|</code> (bar) character without any complex processing of escaping. The requirement of <code>MISC</code> containing zero whitespace characters is dropped. Of course no TAB characters are allowed and no trailing whitespace is allowed. It is likely that <code>spacesBefore</code> and <code>spacesAfter</code> will be standardized as a part of the <code>MISC</code> field.</p>
+
 
 
       </div>
@@ -219,7 +196,7 @@ compound(kardeşi, Erkek)
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = '2016-09-05--06-prague';
+        Collections.listing['_current'] = 'v2';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);

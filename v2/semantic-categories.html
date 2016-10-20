@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Multiword Expressions in UD v2</title>
+    <title>Semantic Categories in UD v2</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
@@ -21,9 +21,9 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-2016">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/2016/prague">2016/prague</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_2016-09-05--06-prague/mwe.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/semantic-categories.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
@@ -37,52 +37,47 @@
 	  </div>
 	</noscript>
 
-          <h1 id="multiword-expressions-in-ud-v2">Multiword Expressions in UD v2</h1>
+          <h1 id="semantic-categories-in-ud-v2">Semantic Categories in UD v2</h1>
 
-<p>Since UD does not allow “words with spaces” (but see a partly new proposal under <a href="word-segmentation.html">word segmentation</a>), even completely fixed multiword expressions must be annotated with (dummy) dependency relations. To improve annotation consistency, we propose the following changes for v2:</p>
+<p>Some of our current relations (i.e., <a href="">u-dep/name</a> and <a href="">u-dep/neg</a>) seem to primarily encode semantic distinctions (rather than syntactic). We propose the following changes for v2:</p>
 
 <ul>
-  <li>Rename <a href="">u-dep/mwe</a> to <strong>fixed</strong> and make clear that this should only be used for completely fixed expressions</li>
-  <li>Change the direction of arrows (right-to-left instead of left-to-right) for this relation as well as the other non-dependency relations <a href="">u-dep/name</a> and <a href="">u-dep/foreign</a> (see also <a href="semantic-categories.html">semantic categories</a>)</li>
+  <li>Remove <a href="">u-dep/neg</a> and instead encode negation as a feature</li>
+  <li>Rename <a href="">u-dep/name</a> to <strong>flat</strong> and extend its usage beyond names (for example, include titles)</li>
 </ul>
 
-<h2 id="rename-mwe-to-fixed">Rename mwe to fixed</h2>
+<h2 id="remove-neg">Remove neg</h2>
 
-<p>It seems that the label <code>mwe</code> (multiword expression) has led to a lot of confusion. It was never intended for multiword expressions like “kick the bucket”, or Fr. “pomme de terre” (potato). It has always been restricted to the <em>fixed expressions</em> category of
-<a href="http://lingo.stanford.edu/pubs/WP-2001-03.pdf">Sag et al.</a>, excluding any relations in scope of <a href="">u-dep/name</a> or <a href="">u-dep/compound</a>. The label <code>fixed</code> might reflect this fact better.</p>
+<p>We suggest getting rid of the <a href="">u-dep/neg</a> relation which is not syntactic. Instead we will use</p>
 
-<p>The proposed change is therefore to change the label <code>mwe</code> (multiword expression) to <code>fixed</code>, and making the guidelines more restrictive (namely, <a href="u-dep/mwe">fixed</a> is used <strong>only</strong> for completely fixed grammaticized expressions that behave like function words or short adverbials).</p>
+<ul>
+  <li>ordinary syntactic relations like <a href="">u-dep/advmod</a>, <a href="">u-dep/aux</a>, etc.</li>
+  <li>a feature Negative=Neg on the negative word to preserve the information about negation</li>
+</ul>
 
-<h2 id="change-arrow-direction">Change arrow direction</h2>
+<h2 id="rename-name-and-modify-its-use">Rename name and modify its use</h2>
 
-<p>For non-dependency relations, it was (more or less) arbitrarily decided in v1 to draw arrows from left to right out of the first word. With hindsight, a more harmonious choice for most languages would have been to instead draw arrows from right to left out of the last word. We propose to make this change for <code>fixed</code> (currently <a href="">u-dep/mwe</a>), <a href="">u-dep/foreign</a> and <code>flat</code> (currently <a href="">u-dep/name</a>). Examples:</p>
+<p>The <code>name</code> label is another one that has led to confusion. It was not intended to be used for all <strong>named entities</strong>, but only for names consisting of multiple nominal elements. We suggest keeping the relation but renaming it to <code>flat</code> to (a) avoid the impression that it should capture named entities in general, and (b) indicate that the relation is only appropriate when there is no clear syntactic head. After we have dropped the direct association with names, we can also extend the use of this relation to titles (“Mrs.”, “President”, etc.) in languages where they do not show clear head or dependent properties. Finally, consistent with the proposed changes for other headless constructions, we propose that arrows should be drawn from righ to left (see <a href="mwe.html">multiword expressions</a>).</p>
 
-<pre><code class="language-sdparse">I like dogs as well as cats
-fixed(as-6, well-5)
-fixed(as-6, as-4)
+<pre><code class="language-sdparse">Hillary Rodham Clinton
+flat(Clinton, Hillary)
+flat(Clinton, Rodham)
 </code></pre>
 
-<pre><code class="language-sdparse">He cried because of you
-fixed(of, because)
+<pre><code class="language-sdparse">Monsieur Louis Pignon
+flat(Pignon, Monsieur)
+flat(Pignon, Louis)
 </code></pre>
 
-<pre><code class="language-sdparse">Je préfère prendre un dessert plutôt qu' une entrée \n I prefer getting a dessert rather than an appetizer
-fixed(qu', plutôt)
-</code></pre>
+<p>In case of foreign phrases that are phrasal or clausal names and where we do not (or cannot) give a compositional analysis, we use <a href="">u-dep/foreign</a> instead of <code>flat</code>, because the latter is restricted to sequences of nominal elements that do not have a (clear) phrasal structure.</p>
 
-<pre><code class="language-sdparse">She said : ez esan lasai
-parataxis(said, lasai)
-foreign(lasai, esan)
-foreign(lasai, ez)
+<pre><code class="language-sdparse">The French title of the book is " Harry à l' école des sorciers ".
+foreign(sorciers, Harry)
+foreign(sorciers, à)
+foreign(sorciers, l')
+foreign(sorciers, école)
+foreign(sorciers, des)
 </code></pre>
-
-<pre><code class="language-sdparse">Usain Bolt won the race
-nsubj(won, Bolt)
-flat(Bolt, Usain)
-</code></pre>
-
-<!--However we do not extend this change to the [u-dep/reparandum]() relation. In repairs, the material to the right will be the "correct" material, and it would seem strange to have something that the speaker of the utterance wants to discard as a direct dependent of the other words in the sentence while the corrected word is buried down in the dependency graph.
-As noted by Gerdes & Kahane (2016), there are of course borderline cases between elaboration and disfluency such as *I saw a room, a bright room, a room with red lights*, but it doesn't seem wrong to us to take the last element *a room with red lights* as the governor of *a room* and *a bright room*.-->
 
 
 
@@ -188,7 +183,7 @@ As noted by Gerdes & Kahane (2016), there are of course borderline cases between
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = '2016-09-05--06-prague';
+        Collections.listing['_current'] = 'v2';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
