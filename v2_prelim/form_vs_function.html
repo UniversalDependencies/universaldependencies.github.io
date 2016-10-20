@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Form versus Function in UD v2</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2_prelim">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2_prelim/v2_prelim">v2_prelim/v2_prelim</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2_prelim/form_vs_function.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="form-vs-function-in-ud-v2-pos-tags-and-syntax">Form vs. Function in UD v2: POS tags and Syntax</h1>
+
+<p>(Dan’s position)</p>
+
+<p>The UD guidelines consist of three main parts: part-of-speech tags, morphological features and dependency relations. While the relations clearly encode <em>function</em> of the word in the sentence, the tags and features may relate to both the function and the <em>form</em> of the word. Parts of speech are traditionally defined using a mixture of morphological, syntactic and semantic criteria.</p>
+
+<p>As we want to have a cross-linguistically consistent set of guidelines in UD, we cannot always rely on dictionaries and grammatical traditions followed by scholars of individual languages: the approaches will often conflict. Sometimes we have to (re-)define word classes, to make sure that “the same thing is not annotated in different ways”. On doing so, we have to think about the extent to which word classes should by influenced by function of the words in particular contexts.</p>
+
+<p><strong>Main objective:</strong> Ideally we want to minimize the number of deviations from traditional grammars. (We want people to love UD, don’t we?) But we cannot eliminate the deviations because traditional grammars are not mutually compatible (at least cross-linguistically; but the difficult words may have different analyses even within one language).</p>
+
+<p>Of form and function, the latter is more portable across languages (most similarities in form are only recognizable in closely related languages). However, once we have a rough idea about a category C in language X, which functionally overlaps with same-named categories in other languages, we can include form in defining the precise borders of the category (either by morphological processes it undergoes, or directly by enumerating word forms that belong to C). Now the main question that we address here is: What do we do if the same word form can perform two quite different functions? Or: what if the word behaves morphologically (form) like category C, but syntactically (function) like category D?</p>
+
+<p><strong>Extreme 1: Function rules!</strong> It is relatively easy to automatically re-tag words based on the tree structure and dependency relation labels. Drawbacks: The tree only helps when converting an existing treebank. This approach may be a disaster for taggers because tagging will incorporate an unusually large portion of syntax. High level of ambiguity of words. Redundancy in annotation (many tags and features follow from dependency relations in a straightforward way – do we then need the tags at all?) Quite likely it will make the life harder for human annotators, too. Sometimes it may not be easy to reconstruct the function because it would involve reconstructing elided material. The impact on the <em>main objective</em> above would have to be evaluated; I bet that if the approach is too much function-oriented, there will be more deviations from the traditional grammar, because the tradition will (probably) try to limit ambiguity in word categories when possible. (We have actually seen this with the <code>PRON</code>/<code>DET</code> distinction, which is defined purely functionally in UD v1. There have been complaints that the result significantly deviates from the traditional categories in many languages, including English.)</p>
+
+<p><strong>Extreme 2: Form rules!</strong> If we take this literally, there are no homonyms, no ambiguity. Probably good news for taggers but less so for users. If a word has two completely different functions (and maybe its translation to other languages differs according to function), then we have a genuine ambiguity. Without it, we could not even distinguish content and function words—a distinction that is central in Universal Dependencies.</p>
+
+<p><strong>The result?</strong> It should be now apparent that we need both. How much of each we need, that is yet to be determined. Maybe there is no good, quantifiable way of defining this borderline. But we should at least intuitively try to make the ratio similar in all decisions we make. Hence it might be helpful to compile a list of word-classification issues where we had to balance form with function.</p>
+
+<h2 id="list-of-form-function-issues">List of form-function issues</h2>
+
+<ul>
+  <li>If a word is mentioned rather than used, we keep its original part of speech. Thus if [en] <em>yes</em> is normally interjection (<code>INTJ</code>), and it appears in a sentence like “We are waiting for his ‘yes’ on the matter”, it is still tagged <code>INTJ</code> and not <code>NOUN</code>. This rule is part of UD v1 (see <a href="/u/overview/morphology.html#using-a-word-vs-mentioning-it">here</a>) and it clearly prefers <span style="background-color:#FF6666">form</span> to function.</li>
+  <li>Verbal particles in Germanic languages, e.g. <em>up</em> in [en] <em>come up,</em> or <em>on</em> in <em>come on.</em> Despite traditionally being called particles in this usage, these words are originally adverbs or prepositions, and that’s how we tag them. This rule is part of UD v1 (see <a href="/u/pos/PART.html">here</a>) and it clearly prefers <span style="background-color:#FF6666">form</span> to function.</li>
+  <li>Multi-word expressions. Whenever we use the mwe relation we construct a multi-node unit that is frozen and (together) performs a grammatical function (often a preposition, conjunction or adverb). The individual words keep their part of speech that they would have outside the MWE, and there is no POS tag for the MWE as a whole. Hence in POS tagging we again prefer <span style="background-color:#FF6666">form</span> to function, and the function of the MWE may look “incompatible” with the word that serves as the head of the MWE.</li>
+  <li>Adverbs (<code>ADV</code>) vs. coordinating conjunctions (<code>CONJ</code>). See also <a href="http://github.com/UniversalDependencies/docs/issues/237">issue 237</a>. No consensus yet. But one could argue that some adverbs have been grammaticalized to perform a connective function. As an analogy to multi-word expressions, we would continue tagging them <code>ADV</code>, while their syntactic relation would be <code>cc</code> (reflecting the function). That would mean preferring <span style="background-color:#FF6666">form</span> to function in tagging.</li>
+  <li>[en] <em>no:</em> in <em>No. We have no bananas.</em> the first occurrence is interjection, while the second is a negative determiner. The syntactic functions are very different and the word is translated differently to other languages (in [cs], the first <em>no</em> would be <em>ne,</em> while the second would be <em>žádné</em>). On the other hand, the Czech word <em>ne</em> can function as either English <em>no</em> (<code>INTJ</code>) or <em>not</em> (<code>PART</code>). In both cases we project the different functions down to the POS tag, hence the <span style="background-color:#66CCFF">function</span> is preferred to the form. (Note that similar ambiguities exist also between function and content words, such as English <em>can,</em> which is either <code>AUX</code> or <code>NOUN</code>.)</li>
+  <li>Pronouns (<code>PRON</code>) vs. determiners (<code>DET</code>). See also <a href="http://github.com/UniversalDependencies/docs/issues/159">issue 159</a> and the <a href="/2015-08-23-uppsala/determiners.html">Uppsala discussion group on determiners</a>. UD v1 follows a definition that can be traced back to the EAGLES project and is purely <span style="background-color:#66CCFF">functional.</span> In <em>That car is expensive, that</em> is <code>DET</code>. In <em>That is expensive, that</em> is <code>PRON</code>. As mentioned above, complaints have been made that this approach violates traditional (or Penn Treebank like?) categories even in English. Moreover, the rule is not bullet-proof. One could argue that a sentence is elliptical and that there actually is a modified noun in the underlying meaning, although it is not visible on the surface. We may want to revise this rule for UD v2. (My proposal: pre-classify all pro-forms in dictionary as either <code>PRON</code> or <code>DET</code>, based on their possible or frequent usage, and when applicable, on their morphological behavior. Then if a <code>DET</code> appears without the modified nominal, we ascribe it to ellipsis. If a <code>PRON</code> modifies another nominal, we interpret it as a variant of relation between two nouns—quite frequent in many languages. Then in both the above examples, <em>that</em> would be tagged as <code>DET</code>. Note however that this particular word can be also used as <code>SCONJ</code>, as in <em>I know that the car is expensive.</em> Here I would recommend that we keep it separate from the <code>DET</code>(/<code>PRON</code>) homonym, because the two syntactic functions are too different and incompatible.)</li>
+  <li>Nouns (<code>NOUN</code>) vs. adjectives (<code>ADJ</code>). Somewhat parallel to the <code>PRON</code>-<code>DET</code> clash, but different in that most tagsets/languages have both categories. However, sometimes a word that is historically adjective lexicalizes as a noun. Its inflection (if applicable in the language) is still adjectival but it is no longer used as an adjectival modifier to nouns (albeit it can modify nouns in the same manner as other nouns do, e.g. as a genitive post-modifier). The absence of modified noun can no longer be explained by ellipsis. For example, [cs] <em>hajný</em> “gamekeeper” was originally an adjective derived from the noun <em>háj</em> “forest”. Its inflection paradigm is still adjectival but it is never used as an adjective. That is, you cannot say something like <em>*hajný muž</em> “gamekeeping man”. The word is listed as <code>NOUN</code> in dictionary and it is tagged <code>NOUN</code> in the UD corpus. Hence we prefer <span style="background-color:#66CCFF">function</span> to form in this case. There is no universal rule how to demarcate the border though. Individual words have to be considered separately in every language. Some words may not be far enough on their way from adjectives to nouns. Note that the other direction is easier. If a noun pre-modifies another noun, as is a common case in English (“fish market”), the modifier is still a <code>NOUN</code>. If it acquires adjectival morphology ([cs] <em>rybí trh</em> “fish market”, from <em>ryba</em> “fish”), it becomes immediately a derived <code>ADJ</code>.</li>
+  <li>Main verbs (<code>VERB</code>) vs. auxiliaries (<code>AUX</code>). In the questions <em>How do you do? Have you had a breakfast?</em>, the first occurrence of <em>to do</em> and <em>to have</em>, respectively, is regarded auxiliary, while in the second it functions as a normal verb. With the verb <em>to be</em>, we distinguish auxiliary usage in periphrastic verb forms <em>(I <b>am</b> eating; he <b>was</b> hired)</em> and existential usage <em>(I think, therefore I <b>am</b>; the castle <b>is</b> on the hill)</em>. The former is <code>AUX</code>, the latter is <code>VERB</code>. We also have copula verb as in <em>he <b>is</b> smart;</em> this usage was tagged <code>VERB</code> according to the UD guidelines v1 but it should probably be <code>AUX</code> in v2 (see <a href="http://github.com/UniversalDependencies/docs/issues/275">issue 275</a>). So even if there are purely auxiliary verbs (English <em>can, could, must, shall</em> will never be tagged <code>VERB</code>), some verbs may work as both and their actual tag is based on the <span style="background-color:#66CCFF">function</span>. The tag can be usually deduced from the syntactic structure, unless the main verb has been elided and the auxiliary promoted to its position—then it would still be tagged <code>AUX</code> but it would have a non-auxiliary relation to its parent.</li>
+  <li>Question particles is a class of words that lacks unified treatment across languages. In some languages they overlap with other parts of speech, in other languages they seem to be distinct. See <a href="http://github.com/UniversalDependencies/docs/issues/178#issuecomment-212822810">issue 178</a> for a survey of question particles in UD 1.2 treebanks.</li>
+</ul>
+
+<h2 id="proposed-principles-for-ud-v2">Proposed principles for UD v2</h2>
+
+<ul>
+  <li>A word’s category should be primarily determined by dictionary rather than by context of a particular sentence. Syntax still plays an important role, especially in cross-linguistic mapping of same-named categories. However, prototypical (expected) syntactic behavior is of more importance than function performed in exceptional contexts.</li>
+  <li>Morphological behavior may be a good indicator in some languages. If, for example, a language uses distinct inflection patterns for nouns and adjectives, then morphology can be used to distinguish these two categories. Exceptions cannot be excluded (see the [cs] <em>hajný</em> example above) but they should be really exceptional and well grounded; when in doubt, use the category determined by morphology.</li>
+  <li>Ambiguous words (belonging to two or more categories) do exist. Sometimes by pure coincidence ([en] <em>the can</em> vs. <em>can = to be able to</em>). Sometimes the two words are related but differ morphologically ([en] <em>the book(s)</em> vs. <em>to book, booked, booking</em>).</li>
+  <li>Perhaps the most difficult part are ambiguous function words that do not inflect (i.e. morphology does not help us), yet they perform two or more significantly different syntactic functions, which we normally associate with different parts of speech. The two functions may not be equally frequent but each of them is more frequent than what could be labeled as a mere exception (i.e. the <em>wait for his ‘yes’</em> example is exceptional). Disambiguating such pairs clearly depends on the context of the given sentence where the word is used. We should minimize this sort of ambiguity (because we want to decide as much as possible with dictionary). But I don’t think we can avoid it. So how do we know that the difference is “significant enough”? One clue is that the word, when translated to another language, gets two different translations with different POS tags (e.g. the English <em>no</em> example above). Another clue comes from contrasting the UD relations used for the two functions. For example, distinguishing <code>PRON</code> from <code>SCONJ</code> ([en] <em>that</em>, [es] <em>que</em>, [ru] <em>что</em> / <em>čto</em>) is important because pronouns, unlike conjunctions, may become core arguments and fill valency slots of verbs. Distinguishing <code>SCONJ</code> and <code>ADP</code> (or the corresponding relations <code>mark</code> and <code>case</code>) seems less crucial and we can probably keep just one POS tag for each such word, based on prototypical usage. Distinguishing between <code>PRON</code> and <code>DET</code> lies on the importance scale somewhere inbetween; but the nature of both these categories is nominal and we can probably live with pre-categorizing most of these words in dictionary.</li>
+</ul>
+
+<h2 id="revised-guidelines-for-pronominal-words">Revised guidelines for pronominal words</h2>
+
+<p>Pronominal words are <a href="/u/pos/PRON.html">pronouns</a>, <a href="/u/pos/DET.html">determiners</a> (articles and pronominal adjectives), pronominal <a href="/u/pos/ADV.html">adverbs</a> <em>(where, when, how)</em>, and in traditional grammars of some languages also pronominal <a href="/u/pos/NUM.html">numerals</a> <em>(how much)</em>.</p>
+
+<ul>
+  <li>In most cases it is straightforward to determine whether a word is pronominal (see also the <a href="/u/feat/PronType.html">PronType</a> feature) but the borderline between indefinite determiners and adjectives is slightly fuzzy. Related languages should synchronize the lists of words they treat as pronominal. The rest of these guidelines demarcate borders within the pronominal group.</li>
+  <li>Pronominal adverbs are tagged <code>ADV</code>. Their pronominality is encoded using the <code>PronType</code> feature. Their typical syntactic function is to modify verbs.</li>
+  <li>Articles <em>(the, a, an)</em> are always tagged <code>DET</code>; their <code>PronType</code> is <code>Art</code>.</li>
+  <li>Pronominal numerals (quantifiers) are tagged <code>DET</code>; besides <code>PronType</code>, they also use the <a href="/u/feat/NumType.html">NumType</a> feature.</li>
+  <li>Words that behave similar to adjectives are <code>DET</code>. (We understand the <code>DET</code> class as pro-adjectives, which is a slightly broader sense than what is usually regarded as determiners in English. In particular, it is possible that one nominal is modified by more than one determiner.) Similar behavior means:
+    <ul>
+      <li>They are more likely to be used attributively (modifying a noun phrase) than substantively (replacing a noun phrase). They may occur alone, though. If they do, it is either because of ellipsis, or because the hypothetical modified noun is something unspecified and general, as in <em>All [visitors] must pay.</em></li>
+      <li>Their inflection is similar to that of adjectives, and distinct from nouns. They agree with the nouns they modify. Especially the ability to inflect for gender is typical for adjectives and determiners. (Gender of nouns is determined lexically and determiners may be required by the grammar to agree with their nouns in gender; therefore they need to inflect for gender.)</li>
+    </ul>
+  </li>
+  <li>Non-possessive personal, reflexive or reciprocal pronouns are always tagged <code>PRON</code>.</li>
+  <li>Possessives vary across languages. In some languages the above tests put them in the <code>DET</code> category. In others, they are more like a normal personal pronoun in a specific case (often the genitive), or a personal pronoun with an adposition; they are tagged <code>PRON</code>.</li>
+  <li>When in doubt, the category should be based on what the traditional grammar of the language says.</li>
+  <li>Ideally, language-specific documentation should list pronominal words and their category. These are all closed classes so it should not be difficult.</li>
+</ul>
+
+<h2 id="morphological-features">Morphological features</h2>
+
+<p>We have discussed the problem of assigning words to POS categories and the extent to which we want it to depend on actual context. Similar problems arise with morphological features. It is not uncommon that a word form is ambiguous and may have several different values of a feature, depending on context.</p>
+
+<ul>
+  <li>For example, the Czech noun <em>růže</em> “rose” has only three singular forms: <em>růže</em> (nominative, genitive or vocative), <em>růži</em> (dative, accusative or locative) and <em>růží</em> (instrumental). We have to distinguish seven case values because other nouns have other forms. The noun <em>žena</em> “woman” has six singular forms, with only dative and locative sharing a form; but these two cases often have different forms in plural. It is customary to assign just one value of <a href="/u/feat/Case.html">Case</a> that is correct in the given context. If we were only allowed to use a dictionary, we would have to tag <em>růže</em> with a set of values instead (<code>Case=Gen,Nom,Voc</code>) but we do not do that. Note that this is different from saying that a word category is only permitted in a given syntactic function. If we say that <code>det</code> always implies <code>DET</code>, we create redundancy; but saying that we must look at context to disambiguate <code>Case</code> assignment does not mean that the <code>Case</code> value deterministically follows from the syntactic function. There is a clear benefit from the <code>Case</code> being disambiguated.</li>
+  <li>However, other situations may be less clear. Many Spanish adjectives inflect for <a href="/u/feat/Gender.html">Gender</a> and must agree in gender with the noun they modify. Hence we have <em>un niño pequeño</em> “a small baby boy” (masculine) but <em>una ciudad pequeña</em> “a small town” (feminine). It is natural to tag the adjective with the gender corresponding to the actual form (<em>pequeño</em> vs. <em>pequeña</em>). Then there is a large group of adjectives that do not inflect and cannot show the agreement, e.g. <em>grande: un palacio grande</em> “a big palace” and <em>una ciudad grande</em> “a big town”. In most cases their gender could be determined from syntactic context, namely from the head noun. Nevertheless, requesting it to be part of the annotation means that we create a redundancy (the gender directly follows from syntax and the noun gender, while there is no trace of it in the form of the adjective itself). So it seems more natural to say that there is a subset of adjectives which do not inflect for gender, and their <code>Gender</code> feature is always empty (i.e. it does not appear at all among the features of the adjective).</li>
+</ul>
+
+<p>In an analogy to the principles for part-of-speech assignment, we could say that both the dictionary (with morphological analyzer) and the actual context may be needed to disambiguate a feature value. It is OK if in some instances the context is not needed. Creating ambiguities that can be resolved solely by context is discouraged, although there is no universally applicable rule how to separate the Czech and the Spanish examples above. (How large must the subset be so that we make it a separate sub-category, treated differently from the gender-aware adjectives?) Each language should have its own exact guidelines to determine what feature values are distinguished where. And as always, similar languages should synchronize with each other and make their respective guidelines as similar as possible.</p>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'v2_prelim';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

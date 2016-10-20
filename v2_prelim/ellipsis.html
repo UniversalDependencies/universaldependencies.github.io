@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Ellipsis in UD v2</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2_prelim">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2_prelim/v2_prelim">v2_prelim/v2_prelim</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2_prelim/ellipsis.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="ellipsis-in-ud-v2">Ellipsis in UD v2</h1>
+
+<p>There seems to be a consensus that we should get rid of the remnant relation, but it is still unclear
+what we should put in its place.
+See the report from the Uppsala meeting here: <a href="../2015-08-23-uppsala/ellipsis.html">ellipsis</a>.
+Conceivably, the enhanced dependencies could be put to use here as well.</p>
+
+<p><strong>Dan’s proposal:</strong></p>
+
+<h2 id="basic-representation">Basic representation</h2>
+
+<ul>
+  <li>Ignore elided nodes if they would be <strong>leaves.</strong> This is what we already do in UD v1. Unspecified subjects in pro-drop languages may serve as an example.</li>
+  <li>If the elided node has <strong>just one dependent,</strong> which is not elided (we call it <em>orphan</em>), the dependent is promoted to the position of the elided node. The relation between the orphan and the parent of the elided node is that of the elided node. Dependents of the orphan, if any, keep their relations. We already do this in UD v1 and there is a number of examples in the <a href="/2015-08-23-uppsala/ellipsis.html#promotion-of-a-dependent-to-the-head-position">Uppsala report on ellipsis</a>.</li>
+  <li>If there are <strong>two or more orphans,</strong> one of them is selected and promoted to the position of the elided node. Its relation to the parent is that of the elided node. The other orphans are attached to the promoted orphan and the relation type describes their relation to the elided node. The following rules specify which orphan is promoted.
+    <ul>
+      <li>If a predicate in coordination is elided (this is the most prominent case, for which we used the <code>remnant</code> relation in UD v1), we look for candidates in this order of precedence: 1. <code>aux</code>, (<code>auxpass</code>), <code>cop</code>; 2. <code>xcomp</code>; 3. <code>dobj</code>; 4. <code>iobj</code>; 5. <code>nmod</code>; 6. <code>advmod</code>; 7. <code>nsubj</code>, (<code>nsubjpass</code>); 8. <code>ccomp</code>; 9. <code>csubj</code>, (<code>csubjpass</code>).</li>
+      <li>If a nominal is elided, we look for candidates in this order of precedence: 1. <code>amod</code>; 2. <code>nummod</code>; 3. <code>det</code>; 4. <code>nmod</code>; 5. <code>case</code>.</li>
+      <li>Language-specific documentation may modify or extend these priority lists.</li>
+      <li>If the above rules are not sufficient to find a single candidate, the leftmost candidate is selected (logical left-to-right ordering, disregarding the writing system).</li>
+    </ul>
+  </li>
+  <li>The <a href="/u/dep/remnant.html">remnant</a> relation is no longer used in UD v2.</li>
+</ul>
+
+<h2 id="enhanced-representation">Enhanced representation</h2>
+
+<p>(Note that there is a <a href="enhanced.html">separate page</a> devoted to the specification of enhanced dependencies. This section discusses only the part needed for ellipsis.)</p>
+
+<p>The enhanced dependencies encode the hypothetical tree before ellision. They bear enough information to reconstruct elided material as NULL nodes, if the user so wishes. (But they do not encode the part of speech and word form of the elided node, although it may be known in some situations.)</p>
+
+<p>Elided nodes are indexed within a sentence with integers starting at 1, to distinguish possible multiple reconstructed nodes in one sentence. The full reference to the elided node is <code>EN</code>+index, e.g. <code>EN1</code>. The ordering of the indices corresponds to the order of the orphans. If there are elided nodes A and B, the ID numbers of the orphans of A are 3 and 5, and the IDs of the orphans of B are 4 and 9, then node A is referred to as <code>EN1</code> and node B as <code>EN2</code>. That’s because the first A’s orphan appears before the first B’s orphan.</p>
+
+<p>As defined in the <a href="/format.html#syntactic-annotation">CoNLL-U format</a>, enhanced dependencies may be specified in the DEPS column as a list of head index – relation pairs, e.g. <code>3:dobj|4:nsubj</code>. In case of ellipsis, the enhanced dependency is a path consisting of two or more dependencies and one or more elided nodes. Example: <code>3:conj&gt;EN1&gt;dobj</code>. Here we again start with the ID of an ancestor node, a real one that has not been elided. Then we follow the path down to the orphan. The relation between the existing ancestor and the elided node is mentioned first. The label of the elided node follows and its relation to the orphan comes last.</p>
+
+<p>The following example illustrates both representations on the sentence <em>Mary won gold and Jane silver.</em></p>
+
+<p>Basic representation:</p>
+
+<pre><code class="language-sdparse">Mary won gold and Jane silver .
+nsubj(won, Mary)
+dobj(won, gold)
+cc(won,and)
+conj(won, silver)
+nsubj(silver, Jane)
+punct(won, .)
+</code></pre>
+
+<p>Enhanced representation:</p>
+
+<pre><code class="language-sdparse">Mary won gold and Jane silver .
+nsubj(won, Mary)
+dobj(won, gold)
+cc(won,and)
+conj&gt;EN1&gt;nsubj(won, Jane)
+conj&gt;EN1&gt;dobj(won, silver)
+punct(won, .)
+</code></pre>
+
+<p>It is possible to encode a path containing more than one elided node. Since the nodes on the same path have the same order in terms of the first orphan, we add a rule that such nodes are numbered top-down. Example:</p>
+
+<pre><code class="language-sdparse">Mary wants to buy a book and Jenny a skirt .
+nsubj(wants, Mary)
+xcomp(wants, buy)
+dobj(buy, book)
+nsubj(buy, Mary)
+conj&gt;EN1&gt;nsubj(wants, Jenny)
+conj&gt;EN1&gt;xcomp&gt;EN2&gt;nsubj(wants, Jenny)
+conj&gt;EN1&gt;xcomp&gt;EN2&gt;dobj(wants, skirt)
+</code></pre>
+
+<p><strong>Joakim’s modified proposal:</strong> I think we should continue to use promotion for the “simple” cases
+of ellipsis, but I don’t think we should generalize it to cases of predicate ellipsis where an argument
+or modifier needs to be promoted, because this gives rise to too many “unnatural” dependencies.
+Hence, I propose we limit promotion to the following cases of head ellipsis:</p>
+
+<ol>
+  <li>Nominals: If the head nominal is ellided, we promote dependents in the following order: amod &gt; nummod &gt; det &gt; nmod &gt; case.</li>
+  <li>Clauses: If the main predicate is ellided, we promote only if there is an aux or cop (or possibly advmod).</li>
+  <li>Modifiers: If the head of a modifier phrase is ellided, we promote if there is an advmod (or equivalent).</li>
+</ol>
+
+<p>In cases where promotion cannot be used, we instead attach orphans to their natural grandparent with a composite label:
+headrel&gt;orphanrel. For example:</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee
+nsubj(like, I)
+dobj(like, tea)
+cc(like, and)
+conj&gt;nsubj(like, you)
+conj&gt;dobj(like, coffee)
+</code></pre>
+
+<p>Note that we need a new separator since either or both of the two concatenated relations can be a subtype.</p>
+
+<p>If we adopt a scheme like this, then more information could be added in the enhanced representation (for example,
+explicit null nodes), but the basic dependency representation would be informative enough so that parser developments
+could experiment with different strategies for dealing with ellipsis (including inferring null nodes). We avoid the
+occurrence of strange dependencies (such as “you” being the subject of “coffee”) at the cost of a slightly more complex
+basic representation (the addition of label paths). All in all, this strikes me as a reasonably compromise.</p>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'v2_prelim';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
