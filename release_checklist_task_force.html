@@ -67,7 +67,7 @@ released. In fact, the individual data providers should never commit anything to
 (But we currently do not have means to enforce it. If someone commits to <code>master</code>, we will have to remove the commits from the history manually, using <code>git revert</code>.)<br />
 <code>for i in UD_* ; do pushd $i ; git checkout master ; git pull --no-edit ; git merge dev ; git push ; git checkout dev ; popd ; echo ; done</code></li>
   <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code>master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the master branch and git will not allow any further operations with them!<br />
-<code>for i in UD_* ; do pushd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; else echo ne ; fi ; popd ; echo ; done</code></li>
+<code>for i in UD_* ; do pushd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; else echo OK ; fi ; popd ; echo ; done</code></li>
   <li>Create the release folder, copy there the repositories that contain .conllu data (skip empty repositories!) and erase files
 that should not be released (<code>.gitignore</code>, <code>.git</code>, <code>not-to-release</code>). The training data in UD_Czech is split to four files
 because it is too large for Github. However, it can be one file in our release, so join the files again in the release
