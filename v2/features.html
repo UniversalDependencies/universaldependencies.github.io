@@ -138,11 +138,21 @@ It is a special plural form of nouns if they occur after numerals: <em>tri stola
       <li>Add <code>VerbForm=Gdv</code> (gerundive, not gerund) in Latin and Ancient Greek.</li>
       <li>Add <code>VerbForm=Vnoun</code> for verbal nouns other than infinitives (also called <em>masdars</em> by some authors, e.g. Haspelmath, 1995).
 In UD v1 we were advising to use <code>VerbForm=Ger</code> for them, using the English gerunds as model. However, the term <em>gerund</em>
-is rather confusing: in Spanish (and other Romance languages?) it denotes the present participle and should be thus labeled <code>Tense=Pres|VerbForm=Part</code>;
-some Slavists use it to denote converbs (adverbial participles), which we now propose to label <code>VerbForm=Conv</code> (previously <code>VerbForm=Trans</code>).
+is rather confusing: in Spanish (and other Romance languages?) it denotes the present participle and should be thus labeled
+<code>Tense=Pres|VerbForm=Part</code>; some Slavists use it to denote converbs (adverbial participles), which we now propose to label
+<code>VerbForm=Conv</code> (previously <code>VerbForm=Trans</code>).
         <ul>
-          <li>TO DISCUSS: Should we get rid of <code>VerbForm=Ger</code> and force people to choose one of the alternatives? Or should we just add a note to the documentation
-that it is deprecated?</li>
+          <li>Observations from UD 1.4:
+<code>VerbForm=Ger</code> occurs in most of the Romance languages (Catalan, Spanish, Galician, Italian, Portuguese, Romanian) and Latin.
+I assume that in all these languages the form and function is similar to the Spanish <em>gerundio</em>, hence it should be replaced
+by <code>VerbForm=Part|Tense=Pres</code> (but I am unsure whether it can be extended to Latin).
+It occurs in one Slavic language (Polish) and it should be replaced by <code>VerbForm=Vnoun</code> there. The same feature could be used
+in all Slavic languages but verbal nouns are currently not distinguished there.
+It occurs in two Germanic languages (English, Danish) and I do not know whether it can be relabeled as verbal noun there.
+Finally, it also occurs in Irish, Sanskrit, Tamil, Kazakh and Turkish (I am not able to judge what should happen there if
+<code>VerbForm=Ger</code> is not available).</li>
+          <li>TO DISCUSS: Should we get rid of <code>VerbForm=Ger</code> and force people to choose one of the alternatives?
+Or should we just add a note to the documentation that it is deprecated?</li>
         </ul>
       </li>
       <li>TO DISCUSS: <code>VerbForm=PartFut|PartPast|PartPres</code> in Hungarian. These should probably be two features, <code>VerbForm=Part</code> and <code>Tense=Fut</code>, as in other UD languages.</li>
