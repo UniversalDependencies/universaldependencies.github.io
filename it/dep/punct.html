@@ -39,8 +39,26 @@
 
           <h2><code>punct</code>: punctuation</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>punct</code>.</p>
+<p>This is used for any piece of punctuation in a clause. 
+The last punctuation mark of the sentence (usually a full stop or interrogative/exclamation point) always depends on the root; commas, apexes and similar depend on the head of the clause, or the complement, they refer to. In general, tokens with the relation <code>punct</code> always attach to content words (except in cases of ellipsis) and can never have dependents.</p>
+
+<pre><code class="language-sdparse">" Chirac , ricorda ti Hiroshima "
+punct(Chirac, "-1)
+punct(Chirac, ,)
+punct(Chirac, "-7)
+</code></pre>
+<pre><code class="language-sdparse">I carri armati , quando si muovevano , andavano a Budapest
+punct(carri, ,-4)
+punct(muovevano, ,-8)
+</code></pre>
+
+<p>A punctuation mark separating coordinated units is attached to the first conjunct.</p>
+
+<pre><code class="language-sdparse">Proiettavano Dreyer , Bergman , Kazan , De Sica 
+punct(Dreyer, ,-3)
+punct(Dreyer, ,-5)
+punct(Dreyer, ,-7)
+</code></pre>
 
 
 <!-- "automatic stats" -->
