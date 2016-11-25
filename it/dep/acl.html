@@ -39,7 +39,7 @@
 
           <h2><code>acl</code>: clausal modifier of noun</h2>
 
-<p><code>acl</code> is used for finite and non-finite clauses that modify a nominal (either a noun or a pronoun). The head of the <code>acl</code> relation is the noun/pronoun that is modified, and the dependent is the head of the clause that modifies the noun/pronoun.</p>
+<p><code>acl</code> is used for dependent finite and non-finite clauses that modify a nominal (either a noun or a pronoun) not as a core argument. The head of the <code>acl</code> relation is the noun/pronoun that is modified, and the dependent is the head of the clause that modifies the noun/pronoun: it can be the verb itself or an adjective part of a verbal predicate.</p>
 
 <p><code>acl</code> is used in the following cases:</p>
 
@@ -47,45 +47,62 @@
   <li>participial modifiers of nouns</li>
 </ul>
 
-<pre><code class="language-sdparse">Commossa , Fiona May ha parlato
+<pre><code class="language-sdparse">Commossa/VERB[Tense:Past|VerbForm=Part] , Fiona/PROPN May/PROPN ha/AUX parlato/VERB
 acl(Fiona, Commossa)
 nsubj(parlato, Fiona)
 name(Fiona, May)
 aux(parlato, ha)
 </code></pre>
-<pre><code class="language-sdparse">Due persone armate di pistola
+<pre><code class="language-sdparse">Due persone/NOUN armate/VERB[Tense:Past|VerbForm=Part] di pistola
 acl(persone, armate)
 </code></pre>
-
-<ul>
-  <li>relative clauses, also including free relatives. Note that in Italian relative clauses are assigned a specific relation <code>acl:relcl</code>, which is a subtype of <code>acl</code></li>
-</ul>
-
-<pre><code class="language-sdparse">L' inchiesta che coinvolge Bernard Tapie
-acl:relcl(inchiesta, coinvolge)
-</code></pre>
-<pre><code class="language-sdparse">La vita , in cui il mutamento avviene
-acl:relcl(vita, avviene)
+<pre><code class="language-sdparse">Gli altri/PRON indicati/VERB[Tense:Past|VerbForm=Part] dalla legge . 
+acl(altri, indicati)
 </code></pre>
 
 <ul>
-  <li>finite clausal complements of nouns like fatto <em>fact</em>, considerazione <em>consideration</em>, bisogno <em>need</em></li>
+  <li>finite and non finite clausal complements of nouns like <em>fatto</em> (fact), <em>volta</em> (time), <em>bisogno</em> (need), <em>modo</em> (way).</li>
 </ul>
 
-<pre><code class="language-sdparse">il fatto che Gianni faccia l' attore
+<pre><code class="language-sdparse">il fatto che Gianni faccia/VERB[VerbForm=Fin] l' attore
 acl(fatto, faccia)
 </code></pre>
+<pre><code class="language-sdparse">Ha bisogno di vedere/VERB[VerbForm=Inf] cambiamenti concreti subito . 
+acl(bisogno, vedere)
+</code></pre>
+<pre><code class="language-sdparse">Ogni volta che fai/VERB[VerbForm=Fin] la doccia . 
+acl(volta, fai)
+</code></pre>
+<pre><code class="language-sdparse">in modo che la loro applicazione porti/VERB[VerbForm=Fin] all' eliminazione della disuguaglianza . 
+acl(modo, porti)
+</code></pre>
 
 <ul>
-  <li>infinitival modifiers of nouns</li>
+  <li>infinitival modifiers of nouns or pronouns</li>
 </ul>
 
-<pre><code class="language-sdparse">non è il caso di pensare
+<pre><code class="language-sdparse">non è il caso/NOUN di pensare/VERB[VerbForm=Inf] 
 acl(caso, pensare)
 </code></pre>
-<pre><code class="language-sdparse">quello di agevolare l' accesso
+<pre><code class="language-sdparse">quello/PRON di agevolare/VERB[VerbForm=Inf]  l' accesso
 acl(quello, agevolare)
 </code></pre>
+
+<ul>
+  <li>cases of secondary predication for non-core argument of a clausal predicate. For more on that and secondary predication of core arguments see the <a href="">xcomp</a> relation.</li>
+</ul>
+
+<pre><code class="language-sdparse">Sono stati ritrovati sani e salvi cinque americani .
+acl(ritrovati, sani)
+cc(sani, e)
+conj(sani, salvi)
+</code></pre>
+
+<ul>
+  <li>relative clauses. See <a href="">acl:relcl</a>.</li>
+</ul>
+
+<p>In Italian relative clauses get assigned a specific relation <a href="">acl:relcl</a>, a specification of <code>acl</code>. Also note that the <code>acl</code> relation contrasts with the <a href="">advcl</a> relation, which is used for adverbial clauses that modify a predicate.</p>
 
 
 <!-- "automatic stats" -->
