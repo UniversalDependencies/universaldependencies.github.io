@@ -39,8 +39,14 @@
 
           <h2><code>case</code>: case marking</h2>
 
-<p>In Italian, the case relation is used for any preposition introducing a noun, pronoun, adjective, adverb. Prepositions are treated as dependents of the noun they attach to or introduce in an “extended nominal projection”. Thus, contrary to previous versions of the Italian Treebank, UD does not treat a preposition as a mediator between a modified word and its object. The case relation aims at providing a more uniform analysis of prepositions and case in morphologically rich languages.</p>
+<p>In Italian, the case relation is used for any preposition introducing a noun, pronoun, adjective or adverb. Prepositions are treated as dependents of the element they attach to (or introduce) in an “extended nominal projection”.</p>
 
+<pre><code class="language-sdparse">Avevano da poco lasciato la cima
+case(poco, da)
+</code></pre>
+<pre><code class="language-sdparse">Camminata da spia
+case(spia, da)
+</code></pre>
 <pre><code class="language-sdparse">Sono d' accordo su il principio
 case(principio, su)
 det(principio, il)
@@ -51,6 +57,25 @@ nmod(accordo, principio)
 case(Interno, di)
 det(Interno, l')
 nmod(ministro, Interno)
+</code></pre>
+
+<p>The <code>case</code> relation can also be used for multiword expression introducing a complement.</p>
+
+<pre><code class="language-sdparse">Prima di tutto 
+case(tutto, Prima)
+mwe(Prima, di)
+</code></pre>
+
+<p>If the head of the relation is a verb in a subordinate clause, than the correct relation is <a href="">mark</a>. If the verb is used as a noun infinitive, than <code>case</code> is the correct relation.</p>
+
+<pre><code class="language-sdparse">La consegna consiste in il fare ronde notturne .
+case(fare, in)
+det(fare, il)
+</code></pre>
+<pre><code class="language-sdparse">Si finisce con l' esaltare il genio maschile .
+case(esaltare, con)
+det(esaltare, l')
+nmod(finisce, esaltare)
 </code></pre>
 
 
