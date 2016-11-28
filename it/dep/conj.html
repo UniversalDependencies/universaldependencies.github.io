@@ -39,22 +39,22 @@
 
           <h2><code>conj</code>: conjunct</h2>
 
-<p>A conjunct is the relation between two elements connected by a coordinating conjunction, such as and, or, etc. The head of the relation is the first conjunct and all the other conjuncts depend on it via the conj relation.</p>
+<p>A conjunct is the relation between two elements connected by a coordinating conjunction, such as <em>e</em>, <em>o</em>, etc. The head of the relation is the first conjunct and all the other conjuncts depend on it via the <code>conj</code> relation. Here are some examples of the use of the conj relation.</p>
 
 <ul>
   <li>coordination with conjunctions</li>
 </ul>
 
 <pre><code class="language-sdparse">Siamo andati alla stazione Termini e lo abbiamo chiesto
-con(andati, e)
+cc(andati, e)
 conj(andati, chiesto)
 </code></pre>
 <pre><code class="language-sdparse">sparatorie e rapine
-con(sparatorie, e)
+cc(sparatorie, e)
 conj(sparatorie, rapine)
 </code></pre>
 <pre><code class="language-sdparse">qua e là
-con(qua, e)
+cc(qua, e)
 conj(qua, là)
 </code></pre>
 
@@ -65,6 +65,8 @@ conj(qua, là)
 <pre><code class="language-sdparse">Per il fratello di Luigi , la cognata , i nipoti
 conj(fratello, cognata)
 conj(fratello, nipoti)
+punct(fratello, ,-6)
+punct(fratello, ,-9)
 </code></pre>
 <pre><code class="language-sdparse">quanto gli piaceva , quanto ne era innamorato
 conj(piaceva, innamorato)
@@ -72,15 +74,24 @@ aux(innamorato, era)
 </code></pre>
 
 <ul>
-  <li>mixed coordination</li>
+  <li>mixed coordination. Note that in the example <em>ma</em> (but) coordinates two clauses, not syntagms; head and dependent of the <a href="">conj</a> relation are the main verbs of the clauses.</li>
 </ul>
 
 <pre><code class="language-sdparse">l' ho vista brutta , ma poi si è ripreso
 conj(vista, ripreso)
 punct(vista, , )
-con(vista, ma)
+cc(vista, ma)
 </code></pre>
 
+<p>The dependent of the relation automatically inherit the syntactic relations of the head, unless they have different dependencies explicitly expressed. Here, for instance, the subject of the two verbs is the same (so <em>cominciare</em> inherits it from <em>lasciare</em>), but the direct object is different (so not inherited).</p>
+
+<pre><code class="language-sdparse">I tre avevano da poco lasciato la cima e stavano cominciando la discesa .
+conj(lasciato, cominciando)
+nsubj(lasciato, tre)
+dobj(lasciato, cima)
+dobj(cominciando, discesa)
+cc(lasciato, e)
+</code></pre>
 
 
 <!-- "automatic stats" -->
