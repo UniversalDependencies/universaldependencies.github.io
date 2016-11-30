@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>neg</title>
+    <title>Polite</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -21,14 +21,20 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/u/dep">u/dep</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/neg.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-u">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/u/feat">u/feat</a></span>
+          <span class="header-text"><a href="https://github.com/turkunlp/docs/edit/pages-source/_u-feat/Polite.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -37,26 +43,102 @@
 	  </div>
 	</noscript>
 
-          <h2><code>neg</code>: negation modifier</h2>
+          <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<p>The negation modifier is the relation between a negation word and the
-word it modifies.</p>
+<h2><code>Polite</code>: politeness</h2>
 
-<p>Modifiers labeled <code>neg</code> depend either on a noun (group “noun
-dependents”) or on a predicate (group “non-core dependents of clausal
-predicates”).</p>
+<p>Various languages have various means to express politeness or respect; some
+of the means are morphological. Three to four dimensions of politeness are
+distinguished in linguistic literature. The <code>Polite</code> feature currently covers
+(and mixes) two of them; a more elaborate system of feature values may be
+devised in future versions of UD if needed. The two axes covered are:</p>
 
-<pre><code class="language-sdparse">Bill is not a scientist
-neg(scientist, not)
-</code></pre>
+<ul>
+  <li>speaker-referent axis (meant to include the addressee when he happens to be the referent)</li>
+  <li>speaker-addressee axis (word forms depend on who is the addressee, although the addressee is not referred to)</li>
+</ul>
 
-<pre><code class="language-sdparse">Bill is no scientist
-neg(scientist, no)
-</code></pre>
+<p>Changing pronouns and/or person and/or number of the verb forms when respectable
+persons are addressed in Indo-European languages belongs to the speaker-referent
+axis because the honorific pronouns are used to refer to the addressee.</p>
 
-<pre><code class="language-sdparse">Bill does n't drive
-neg(drive, n't)
-</code></pre>
+<p>In Czech, formal second person has the same form for singular and plural, and
+is identical to informal second person plural. This involves both the pronoun
+and the finite verb but not a participle, which has no special formal form
+(that is, formal singular is identical to informal singular, not to informal plural).</p>
+
+<p>In German, Spanish or Hindi, both number and person are changed (informal third
+person is used as formal second person) and in addition, special pronouns are used
+that only occur in the formal register ([de] <em>Sie;</em> [es] <em>usted, ustedes;</em>
+[hi] आप <em>āpa</em>).</p>
+
+<p>In Japanese, verbs and other words have polite and informal forms but the polite
+forms are not referring to the addressee (they are not in second person). They
+are just used because of who the addressee is, even if the topic does not
+involve the addressee at all. This kind of polite language is called teineigo (丁寧語)
+and belongs to the speaker-addressee axis. Nevertheless, we currently use the
+same values for both axes, i.e. <code>Polite=Form</code> can be used for teineigo too.
+This approach may be refined in future.</p>
+
+<h3 id="infm-informal-register"><code>Infm</code>: informal register</h3>
+
+<p>Usage varies but if the language distinguishes levels of politeness, then
+the informal register is usually meant for communication with family
+members and close friends.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li>[cs] <em><b>ty jdeš / vy jdete</b></em> (you go.Sing/Plur)</li>
+  <li>[de] <em><b>du gehst / ihr geht</b></em> (you go.Sing/Plur)</li>
+  <li>[es] <em><b>tú vas / vosotros vais</b></em> (you go.Sing/Plur)</li>
+  <li>[ja] <b>行かない <em>ikanai</em></b> (will not go)</li>
+</ul>
+
+<h3 id="form-formal-register"><code>Form</code>: formal register</h3>
+
+<p>Usage varies but if the language distinguishes levels of politeness, then
+the polite register is usually meant for communication with strangers
+and people of higher social status than the one of the speaker.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li>[cs] <em><b>vy jdete</b></em> (you go.Sing/Plur)</li>
+  <li>[de] <em><b>Sie gehen</b></em> (you go.Sing/Plur)</li>
+  <li>[es] <em><b>usted va / ustedes van</b></em> (you go.Sing/Plur)</li>
+  <li>[ja] <b>行きません <em>ikimasen</em></b> (will not go)</li>
+</ul>
+
+<h3 id="elev-referent-elevating"><code>Elev</code>: referent elevating</h3>
+
+<p>This register belongs to the speaker-referent axis and can be seen as a subtype
+of the formal register there. As an example, Japanese sonkeigo (尊敬語) is a set
+of honorific forms that elevate the status of the referent.</p>
+
+<ul>
+  <li>[ja] <b>なさる <em>nasaru,</em></b> なさいます <em>nasaimasu</em> (to do; when talking about a customer or a superior)</li>
+</ul>
+
+<h3 id="humb-speaker-humbling"><code>Humb</code>: speaker humbling</h3>
+
+<p>This register belongs to the speaker-referent axis and can be seen as a subtype
+of the formal register there. As an example, Japanese kenjōgo (謙譲語) is a set
+of honorific forms that lower the speaker’s status, thereby raising the referent’s
+status by comparison.</p>
+
+<ul>
+  <li>[ja] <b>いたす <em>itasu,</em></b> いたします <em>itashimasu</em> (to do; when referring to one’s own actions or the actions of a group member)</li>
+</ul>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li>Brown, Penelope and Stephen C. Levinson. 1987. Politeness: Some Universals in Language Usage. Studies in Interactional Sociolinguistics, Cambridge, UK: Cambridge University Press.</li>
+  <li>Comrie, Bernard. 1976. Linguistic politeness axes: Speaker-addressee, speaker-referent, speaker-bystander. Pragmatics Microfiche 1.7(A3). Department of Linguistics, University of
+Cambridge.</li>
+  <li>Wenger, James R. 1982. Some Universals of Honorific Language with Special Reference to Japanese. Ph.D. thesis, University of Arizona, Tucson, AZ.</li>
+</ul>
 
 
 <!-- "automatic stats" -->
@@ -65,48 +147,8 @@ neg(drive, n't)
 
 
 
-
 <!-- "in other languages" links -->
 <hr/>
-
-neg in other languages:
-
-[<a href="../../bg/dep/neg.html">bg</a>]
-
-[<a href="../../cs/dep/neg.html">cs</a>]
-
-[<a href="../../de/dep/neg.html">de</a>]
-
-[<a href="../../el/dep/neg.html">el</a>]
-
-[<a href="../../en/dep/neg.html">en</a>]
-
-[<a href="../../es/dep/neg.html">es</a>]
-
-[<a href="../../eu/dep/neg.html">eu</a>]
-
-[<a href="../../fa/dep/neg.html">fa</a>]
-
-[<a href="../../fi/dep/neg.html">fi</a>]
-
-[<a href="../../fr/dep/neg.html">fr</a>]
-
-[<a href="../../ga/dep/neg.html">ga</a>]
-
-[<a href="../../he/dep/neg.html">he</a>]
-
-[<a href="../../hu/dep/neg.html">hu</a>]
-
-[<a href="../../it/dep/neg.html">it</a>]
-
-[<a href="../../ja/dep/neg.html">ja</a>]
-
-[<a href="../../ko/dep/neg.html">ko</a>]
-
-[<a href="../../sv/dep/neg.html">sv</a>]
-
-[<a href="../../u/dep/neg.html">u</a>]
-
 
 
 
@@ -212,7 +254,7 @@ neg in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'u-dep';
+        Collections.listing['_current'] = 'u-feat';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);

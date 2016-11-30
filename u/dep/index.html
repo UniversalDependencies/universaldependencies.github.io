@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Universal Dependencies</title>
+    <title>Universal Dependency Relations</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -21,7 +21,7 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-u">home</a></span>
 
 
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
@@ -29,6 +29,12 @@
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -37,188 +43,268 @@
 	  </div>
 	</noscript>
 
-          <h1 id="universal-dependencies">Universal Dependencies</h1>
+          <h1 id="universal-dependency-relations">Universal Dependency Relations</h1>
 
-<p>The idea of universal dependencies is to propose a set of universal grammatical relations which can be used with relative fidelity to capture any dependency relation between words in any language. Each dependency relation should be typed with one of the relations in the table below.</p>
+<p>The following table lists the 37 universal syntactic relations used in UD v2. It is a revised version of the relations 
+originally described in <a href="http://nlp.stanford.edu/pubs/USD_LREC14_paper_camera_ready.pdf"><em>Universal Stanford Dependencies: A cross-linguistic typology</em></a> (de Marneffe <em>et al.</em> 2014).</p>
 
-<p>The table is adapted from <a href="http://nlp.stanford.edu/pubs/USD_LREC14_paper_camera_ready.pdf"><em>Universal Stanford Dependencies:
-A cross-linguistic typology</em></a> (de Marneffe <em>et al.</em> 2014). There have been modifications in the relations: we now have 40 universal relations (instead of the 42 ones proposed in the paper).</p>
+<p>The upper part of the table follows the main organizing principles of the UD taxonomy such that <em>rows</em> correspond to functional categories in relation to the head (core arguments of clausal predicates, non-core dependents of clausal predicates, and dependents of nominals) while <em>columns</em> correspond to structural categories of the dependent
+(nominals, clauses, modifier words, function words).
+The lower part of the table lists relations that are not dependency relations in the narrow sense.</p>
 
-<p>Note: <i>nmod</i>, <i>neg</i>, and <i>punct</i> appear
-in two places.</p>
+<!-- 
+* Relations used to analyze coordination
+* Relations used to analyze multiword expressions (MWE)
+* Loose joining relations
+* Special relations for ellipsis, disfluencies, and orthographic errors
+* Special relations for clausal heads, punctuation and other relations
+-->
 
-<table class="typeindex">
-  <tr>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Core dependents of clausal predicates</strong></td></tr>
-	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Predicate dep</i></td>
-	</tr>
-	<tr>
-	  <td><a>nsubj</a></td>
-	  <td><a>csubj</a></td>
-	</tr>
-	<tr>
-	  <td><a>nsubjpass</a></td>
-	  <td><a>csubjpass</a></td>
-	</tr>
-	<tr>
-	  <td><a>dobj</a></td>
-	  <td><a>ccomp</a></td>
-	  <td><a>xcomp</a></td>
-	</tr>
-	<tr>
-	  <td><a>iobj</a></td>
-	</tr>
-      </table>
-
-    </td>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Non-core dependents of clausal predicates</strong></td></tr>
-	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Predicate dep</i></td>
-	  <td><i>Modifier word</i></td>
-	</tr>
-	<tr>
-	  <td><a>nmod</a></td>
-	  <td><a>advcl</a></td>
-	  <td><a>advmod</a></td>
-	</tr>
-	<tr>
-	  <td>&nbsp;</td>
-	  <td>&nbsp;</td>
-	  <td><a>neg</a></td>
-	</tr>
-      </table>
-
-    </td>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Special clausal dependents</strong></td></tr>
-	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Auxiliary</i></td>
-	  <td><i>Other</i></td>
-	</tr>
-	<tr>
-	  <td><a>vocative</a></td>
-	  <td><a>aux</a></td>
-	  <td><a>mark</a></td>
-	</tr>
-	<tr>
-	  <td><a>discourse</a></td>
-	  <td><a>auxpass</a></td>
-	  <td><a>punct</a></td>
-	</tr>
-	<tr>
-	  <td><a>expl</a></td>
-	  <td><a>cop</a></td>
-	</tr>
-      </table>
-
-    </td>
+<table class="typeindex" border="1">
+  <tr style="background-color:cornflowerblue">
+      <td>	
+	<table class="category">
+	  <tr><td><strong></strong></td></tr>
+	</table>
+      </td>
+      <td>	
+	<table class="category">
+	  <tr><td><strong>Nominals</strong></td></tr>
+	</table>
+      </td>
+      <td>	
+	<table class="category">
+	  <tr><td><strong>Clauses</strong></td></tr>
+	</table>
+      </td>
+      <td>	
+	<table class="category">
+	  <tr><td><strong>Modifier words</strong></td></tr>
+	</table>
+      </td>
+      <td>	
+	<table class="category">
+	  <tr><td><strong>Function Words</strong></td></tr>
+	</table>
+      </td>
   </tr>
   <tr>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Noun dependents</strong></td></tr>
+      <td style="background-color:darkseagreen">
+	<table class="category">
+	  <tr><td><strong>Core arguments</strong></td></tr>
+	</table>
+      </td>
+      <td>
+	<table class="category">
+	  <tr>
+	    <td><a>nsubj</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>obj</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>iobj</a></td>
+	  </tr>
+        </table>
+      </td>
+      <td>
+	<table class="category">
+	  <tr>
+	    <td><a>csubj</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>ccomp</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>xcomp</a></td>
+	  </tr>
+        </table>
+      </td>
+	  <td></td><td></td>
+  </tr>
+  <tr>
+      <td style="background-color:darkseagreen">
+	<table class="category">
+	  <tr><td><strong>Non-core dependents</strong></td></tr>
+	</table>
+      </td>
+      <td>
+	<table class="category">
+	  <tr>
+	    <td><a>obl</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>vocative</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>expl</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>dislocated</a></td>
+	  </tr>
+        </table>
+      </td>
+      <td>
+	<table class="category">
+	  <tr>
+	    <td><a>advcl</a></td>
+	  </tr>
+        </table>
+      </td>
+      <td>
+	<table class="category">
+	  <tr>
+	    <td><a>advmod</a>*</td>
+	  </tr>
+	  <tr>
+	    <td><a>discourse</a></td>
+	  </tr>
+        </table>
+      </td>
+      <td>
+	<table class="category">
+	  <tr>
+	    <td><a>aux</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>cop</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>mark</a></td>
+	  </tr>
+        </table>
+      </td>
+  </tr>
+  <tr>
+      <td style="background-color:darkseagreen">
+	<table class="category">
+	  <tr><td><strong>Nominal dependents</strong></td></tr>
+	</table>
+      </td>
+      <td>
+	<table class="category">
+	  <tr>
+	    <td><a>nmod</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>appos</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>nummod</a></td>
+	  </tr>
+        </table>
+      </td>
+      <td>
+	<table class="category">
+	  <tr>
+	    <td><a>acl</a></td>
+	  </tr>
+        </table>
+      </td>
+      <td>
+	<table class="category">
+	  <tr>
+	    <td><a>amod</a></td>
+	  </tr>
+        </table>
+      </td>
+      <td>
+	<table class="category">
+	  <tr>
+	    <td><a>det</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>clf</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>case</a></td>
+	  </tr>
+        </table>
+      </td>
+  </tr>
+  <tr style="background-color:cornflowerblue">	
+      <td>	
+	<table class="category">
+	  <tr><td><strong>Coordination</strong></td></tr>
+	</table>
+      </td>
+      <td>	
+	<table class="category">
+	  <tr><td><strong>MWE</strong></td></tr>
+	</table>
+      </td>
+      <td>	
+	<table class="category">
+	  <tr><td><strong>Loose</strong></td></tr>
+	</table>
+      </td>
+      <td>	
+	<table class="category">
+	  <tr><td><strong>Special</strong></td></tr>
+	</table>
+      </td>
+      <td>	
+	<table class="category">
+	  <tr><td><strong>Other</strong></td></tr>
+	</table>
+      </td>
+  </tr>
+  <tr>
+      <td>
+        <table class="category">
+	  <tr>
+	    <td><a>conj</a></td>
+	  </tr>
+	  <tr>
+	    <td><a>cc</a></td>
+	  </tr>
+        </table>
+      </td>
+      <td>
+        <table class="category">
 	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Predicate dep</i></td>
-	  <td><i>Modifier word</i></td>
+	  <td><a>fixed</a></td>
 	</tr>
 	<tr>
-	  <td><a>nummod</a></td>
-	  <td><a>acl</a></td>
-	  <td><a>amod</a></td>
+	  <td><a>flat</a></td>
 	</tr>
-	<tr>
-	  <td><a>appos</a></td>
-	  <td>&nbsp;</td>
-	  <td><a>det</a></td>
-	</tr>
-	<tr>
-	  <td><a>nmod</a></td>
-	  <td>&nbsp;</td>
-	  <td><a>neg</a></td>
-	</tr>
-      </table>
-
-    </td>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Compounding and unanalyzed</strong></td></tr>
 	<tr>
 	  <td><a>compound</a></td>
-	  <td><a>mwe</a></td>
+	</tr>
+      </table>
+    </td>
+    <td>
+      <table class="category">
+	<tr>
+	  <td><a>list</a></td>
+	</tr>
+	<tr>
+	  <td><a>parataxis</a></td>
+	</tr>
+      </table>
+    </td>
+    <td>
+      <table class="category">
+	<tr>
+	  <td><a>orphan</a></td>
+	</tr>
+	<tr>
 	  <td><a>goeswith</a></td>
 	</tr>
 	<tr>
-	  <td><a>name</a></td>
-	  <td><a>foreign</a></td>
+	  <td><a>reparandum</a></td>
 	</tr>
       </table>
-
     </td>
     <td>
-
       <table class="category">
-	<tr><td colspan="3"><strong>Coordination</strong></td></tr>
 	<tr>
-	  <td><a>conj</a></td>
-	  <td><a>cc</a></td>
 	  <td><a>punct</a></td>
-	</tr>
-      </table>
-
-    </td>
-  </tr>
-  <tr>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Case-marking, prepositions, possessive</strong></td></tr>
-	<tr>
-	  <td><a>case</a></td>
-	</tr>
-      </table>
-
-    </td>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Loose joining relations</strong></td></tr>
-	<tr>
-	  <td><a>list</a></td>
-	  <td><a>parataxis</a></td>
-	  <td><a>remnant</a></td>
-	</tr>
-	<tr>
-	  <td><a>dislocated</a></td>
-	  <td></td><td><a>reparandum</a></td>
-	</tr>
-      </table>
-
-    </td>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Other</strong></td></tr>
-	<tr>
-	  <td><i>Sentence head</i></td>
-	  <td colspan="2"><i>Unspecified dependency</i></td>
 	</tr>
 	<tr>
 	  <td><a>root</a></td>
+	</tr>
+	<tr>
 	  <td><a>dep</a></td>
 	</tr>
       </table>
@@ -226,6 +312,8 @@ in two places.</p>
     </td>
   </tr>
 </table>
+
+<p>* The <code>advmod</code> relation is used for modifiers not only of predicates but also of other modifier words.</p>
 
 <hr />
 
@@ -238,36 +326,33 @@ in two places.</p>
   <li><a href="">amod</a>: adjectival modifier</li>
   <li><a href="">appos</a>: appositional modifier</li>
   <li><a href="">aux</a>: auxiliary</li>
-  <li><a href="">auxpass</a>: passive auxiliary</li>
   <li><a href="">case</a>: case marking</li>
   <li><a href="">cc</a>: coordinating conjunction</li>
   <li><a href="">ccomp</a>: clausal complement</li>
+  <li><a href="">clf</a>: classifier</li>
   <li><a href="">compound</a>: compound</li>
   <li><a href="">conj</a>: conjunct</li>
   <li><a href="">cop</a>: copula</li>
   <li><a href="">csubj</a>: clausal subject</li>
-  <li><a href="">csubjpass</a>: clausal passive subject</li>
   <li><a href="">dep</a>: unspecified dependency</li>
   <li><a href="">det</a>: determiner</li>
   <li><a href="">discourse</a>: discourse element</li>
   <li><a href="">dislocated</a>: dislocated elements</li>
-  <li><a href="">dobj</a>: direct object</li>
   <li><a href="">expl</a>: expletive</li>
-  <li><a href="">foreign</a>: foreign words</li>
+  <li><a href="">fixed</a>: fixed multiword expression</li>
+  <li><a href="">flat</a>: flat multiword expression</li>
   <li><a href="">goeswith</a>: goes with</li>
   <li><a href="">iobj</a>: indirect object</li>
   <li><a href="">list</a>: list</li>
   <li><a href="">mark</a>: marker</li>
-  <li><a href="">mwe</a>: multi-word expression</li>
-  <li><a href="">name</a>: name</li>
-  <li><a href="">neg</a>: negation modifier</li>
   <li><a href="">nmod</a>: nominal modifier</li>
   <li><a href="">nsubj</a>: nominal subject</li>
-  <li><a href="">nsubjpass</a>: passive nominal subject</li>
   <li><a href="">nummod</a>: numeric modifier</li>
+  <li><a href="">obj</a>: object</li>
+  <li><a href="">obl</a>: oblique nominal</li>
+  <li><a href="">orphan</a>: orphan</li>
   <li><a href="">parataxis</a>: parataxis</li>
   <li><a href="">punct</a>: punctuation</li>
-  <li><a href="">remnant</a>: remnant in ellipsis</li>
   <li><a href="">reparandum</a>: overridden disfluency</li>
   <li><a href="">root</a>: root</li>
   <li><a href="">vocative</a>: vocative</li>

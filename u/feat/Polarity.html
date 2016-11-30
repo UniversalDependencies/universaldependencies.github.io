@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>csubjpass</title>
+    <title>Polarity</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -21,14 +21,20 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/u/dep">u/dep</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/csubjpass.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-u">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/u/feat">u/feat</a></span>
+          <span class="header-text"><a href="https://github.com/turkunlp/docs/edit/pages-source/_u-feat/Polarity.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -37,15 +43,64 @@
 	  </div>
 	</noscript>
 
-          <h2><code>csubjpass</code>: clausal passive subject</h2>
+          <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<p>A clausal passive subject is a clausal syntactic subject of a passive
-clause (or more generally, any voice where the proto-agent argument does not become the subject 
-of the clause). In the example below, <em>that she lied</em> is the subject.</p>
+<h2><code>Polarity</code>: polarity</h2>
 
-<pre><code class="language-sdparse">That she lied was suspected by everyone
-csubjpass(suspected, lied)
-</code></pre>
+<p>Polarity is typically a feature of <a href="u-pos/VERB">verbs</a>,
+<a href="u-pos/ADJ">adjectives</a>, sometimes also <a href="u-pos/ADV">adverbs</a> and
+<a href="u-pos/NOUN">nouns</a> in languages that negate using bound
+morphemes.
+In languages that negate using a function word, <code>Polarity</code> is used to mark
+that function word, unless it is a pro-form already marked with
+<code>PronType=Neg</code> (see below).</p>
+
+<p>Positive polarity (affirmativeness) is rarely, if at all, encoded using overt
+morphology. The feature value <code>Polarity=Pos</code> is usually used to signal that a lemma
+has negative forms but this particular form is not negative. Using the feature
+in such cases is somewhat optional for words that can be negated but rarely are.</p>
+
+<p>For instance, all Czech verbs and adjectives can be negated using the prefix
+<em>ne-</em>. In theory, all nouns can be negated too, with the meaning “anything
+except the entities denotable by the original noun”. However, negated nouns
+are rare and it is not necessary to annotate every positive noun with
+<code>Polarity=Pos</code>. Language-specific documentation should define under which
+circumstances the positive polarity is annotated.</p>
+
+<p>In English, verbs are negated using the <a href="u-pos/PART">particle</a> <em>not</em> and
+adjectives are also negated using prefixes, although the process is less
+productive than in Czech <em>(wise – unwise, probable – improbable)</em>.</p>
+
+<p>Note that <code>Polarity=Neg</code> is not the same thing as
+<a href="">PronType</a><code>=Neg</code>. For pronouns and other pronominal parts of speech
+there is no such binary opposition as for verbs and adjectives. (There
+is no such thing as “affirmative pronoun”.)</p>
+
+<p>The <code>Polarity</code> feature can be also used to distinguish response
+<a href="u-pos/INTJ">interjections</a> <em>yes</em> and <em>no</em>.</p>
+
+<p>Note: <code>Polarity</code> was called <code>Negative</code> in the version 1 of UD guidelines and it is renamed in version 2.</p>
+
+<h3 id="pos-positive-affirmative"><code>Pos</code>: positive, affirmative</h3>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li>[cs] <em><b>přišel</b></em> “he came”</li>
+  <li>[cs] <em><b>velký</b></em> “big”</li>
+  <li>[en] <em><b>yes</b></em></li>
+</ul>
+
+<h3 id="neg-negative"><code>Neg</code>: negative</h3>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li>[cs] <em><b>nepřišel</b></em> “he did not come”</li>
+  <li>[cs] <em><b>nevelký</b></em> “not big”</li>
+  <li>[en] <em><b>not</b></em></li>
+  <li>[en] <em><b>no</b></em> as in <em>no, I don’t think so;</em> but not as in <em>we have no bananas</em></li>
+</ul>
 
 
 <!-- "automatic stats" -->
@@ -54,46 +109,8 @@ csubjpass(suspected, lied)
 
 
 
-
 <!-- "in other languages" links -->
 <hr/>
-
-csubjpass in other languages:
-
-[<a href="../../bg/dep/csubjpass.html">bg</a>]
-
-[<a href="../../cs/dep/csubjpass.html">cs</a>]
-
-[<a href="../../de/dep/csubjpass.html">de</a>]
-
-[<a href="../../el/dep/csubjpass.html">el</a>]
-
-[<a href="../../en/dep/csubjpass.html">en</a>]
-
-[<a href="../../es/dep/csubjpass.html">es</a>]
-
-[<a href="../../eu/dep/csubjpass.html">eu</a>]
-
-[<a href="../../fa/dep/csubjpass.html">fa</a>]
-
-[<a href="../../fr/dep/csubjpass.html">fr</a>]
-
-[<a href="../../ga/dep/csubjpass.html">ga</a>]
-
-[<a href="../../he/dep/csubjpass.html">he</a>]
-
-[<a href="../../hu/dep/csubjpass.html">hu</a>]
-
-[<a href="../../it/dep/csubjpass.html">it</a>]
-
-[<a href="../../ja/dep/csubjpass.html">ja</a>]
-
-[<a href="../../ko/dep/csubjpass.html">ko</a>]
-
-[<a href="../../sv/dep/csubjpass.html">sv</a>]
-
-[<a href="../../u/dep/csubjpass.html">u</a>]
-
 
 
 
@@ -199,7 +216,7 @@ csubjpass in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'u-dep';
+        Collections.listing['_current'] = 'u-feat';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);

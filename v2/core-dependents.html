@@ -21,14 +21,20 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/core-dependents.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/turkunlp/docs/edit/pages-source/_v2/core-dependents.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -43,9 +49,9 @@
 
 <ul>
   <li>Keep the core-oblique distinction and work out more detailed guidelines for how to apply it in different languages</li>
-  <li>Replace the relations <a href="">u-dep/dobj</a> and <a href="">u-dep/iobj</a> by a single relation <strong>obj</strong> and add a language-specific subtype  <strong>obj:ind</strong> to be used for indirect objects in languages that allow extended transitive clauses.</li>
+  <li>Rename the relation <a href="">u-dep/dobj</a> to <strong>obj</strong> because the latter name seems more easily reconcilable with the intended interpretation of “second core argument” or “P/A argument” (without connection to specific cases or semantic roles).</li>
   <li>Remove the relations <a href="">u-dep/nsubjpass</a> and <a href="">u-dep/csubjpass</a> and add language-specific subtypes <strong>nsubj:pass</strong> and <strong>csubj:pass</strong>. (By analogy, the functional relation <strong>auxpass</strong> will be removed and the subtype <strong>aux:pass</strong> added.)</li>
-  <li>Split the modifier relation <a href="">u-dep/nmod</a> into two new relations <strong>anom</strong> and <strong>advnom</strong></li>
+  <li>Split the modifier relation <a href="">u-dep/nmod</a> into <strong>nmod</strong> and <strong>obl</strong></li>
 </ul>
 
 <p>Below we discuss and motivate each of these proposals in turn.</p>
@@ -66,9 +72,9 @@
 <div id="s1" class="sd-parse">
 this morning I called on her
 nsubj(called, I)
-nmod(called, her)
+obl(called, her)
 case(her, on)
-nmod(called, morning)
+obl(called, morning)
 det(morning, this)
 </div>
 
@@ -76,36 +82,40 @@ det(morning, this)
 
 <div id="s2" class="sd-parse">
 buscan una secretaria \n they seek a secretary
-dobj(buscan, secretaria)
+obj(buscan, secretaria)
 det(secretaria, una)
 </div>
 <div id="s3" class="sd-parse">
 buscan a una de las secretarias \n they seek one of the secretaries
-dobj(buscan, una)
+obj(buscan, una)
 case(una, a)
 nmod(una, secretarias)
 det(secretarias, las)
 case(secretarias, de)
 </div>
 
-<p>The criteria for drawing the core-oblique distinction will thus have to be established specifically for each language and should be described in the language-specific documentation. The universal guidelines should help by providing general guidance on the kind of criteria and test that can be applicable. Here is a list to start with:</p>
+<p>The criteria for drawing the core-oblique distinction will thus have to be established specifically for each language and should be described in the language-specific documentation. The universal guidelines should help by providing general guidance on the kind of criteria and tests that can be applicable. Here is a tentative proposal that will be refined as we work out the full documentation for v2:</p>
 
 <ul>
-  <li>Personal pronouns: In many languages, personal pronouns are restricted to core arguments. For example, “this morning” cannot be replaced by the personal pronoun “it” above (only by a pronominal adverb like “then”).</li>
-  <li>Interrogatives: The question corresponding to “she went to Paris” is “where did she go?” not “what did she go?”.</li>
-  <li>Relativization: Languages that use relative clauses often restrict relativization to core arguments.</li>
-  <li>Passivization: In many languages, only core arguments can be passivized.</li>
-  <li>Agreement: Morphosyntactic agreement on verbs is usually restricted to core arguments (predominantly subjects but also objects in some languages).</li>
+  <li>Dependents that fulfill the roles of S, A or O/P are regarded as core unless “wholly oblique” (see below).</li>
+  <li>Other dependents are regarded as core if they resemble core S, A and O/P arguments with respect to at least one of the following coding strategies:
+    <ol>
+      <li>case marking</li>
+      <li>indexation (agreement)</li>
+      <li>linear order</li>
+    </ol>
+  </li>
+  <li>Otherwise, they are regarded as “wholly oblique”.</li>
 </ul>
 
-<h2 id="merge-direct-and-indirect-objects">Merge direct and indirect objects</h2>
+<h2 id="rename-direct-objects">Rename direct objects</h2>
 
 <p>Some languages allow extended transitive clauses with a third participant encoded as a core argument, usually with some kind of benefactive or recipient role, as in the English double-object construction:</p>
 
 <div id="s4" class="sd-parse">
 Mary gave John a book
 nsubj(gave, Mary)
-dobj(gave, book)
+obj(gave, book)
 det(book, a)
 iobj(gave, John)
 </div>
@@ -116,9 +126,9 @@ iobj(gave, John)
 Marie a donné un livre à Jean
 nsubj(donné, Marie)
 aux(donné, a)
-dobj(donné, livre)
+obj(donné, livre)
 det(livre, un)
-nmod(donné, Jean)
+obl(donné, Jean)
 case(Jean, à)
 </div>
 
@@ -127,13 +137,13 @@ case(Jean, à)
 <div id="s6" class="sd-parse">
 Mary gave a book to John
 nsubj(gave, Mary)
-dobj(gave, book)
+obj(gave, book)
 det(book, a)
-nmod(gave, John)
+obl(gave, John)
 case(John, to)
 </div>
 
-<p>In line with our overall decision to keep the core-oblique distinction, we should also continue to make a distinction between true indirect objects (realized as core arguments) and oblique modifiers realizing a similar semantic role. However, because not all languages allow extended transitives, we think it will be more correct (and less confusing) to make this distinction using language-specific subtypes. We therefore recommend that the (current) universal relations <a href="">u-dep/dobj</a> and <a href="">u-dep/iobj</a> are replaced by a single universal relation <strong>obj</strong> (for object). In languages with extended transitives, the language-specific subtype <strong>obj:ind</strong> should be used for indirect objects, while direct objects are still labeled <strong>obj</strong> (with no subtype). This convention brings out the fact that indirect objects are typologically marked.</p>
+<p>In line with our overall decision to keep the core-oblique distinction, we should also continue to make a distinction between true indirect objects (realized as core arguments) and oblique modifiers realizing a similar semantic role. However, because not all languages allow extended transitives, we think it will be less confusing to use the “unmarked” name <strong>obj</strong> for the object in a simple transitive.</p>
 
 <h2 id="remove-special-relations-for-passive-subjects">Remove special relations for passive subjects</h2>
 
@@ -146,12 +156,12 @@ propose to preserve the information encoded in the <a href="">u-dep/auxpass</a> 
 she was invited to the party
 nsubj:pass(invited, she)
 aux:pass(invited, was)
-nmod(invited, party)
+obl(invited, party)
 det(party, the)
 case(party, to)
 </div>
 
-<h2 id="split-the-nmod-relation-into-anom-and-advnom">Split the nmod relation into anom and advnom</h2>
+<h2 id="split-the-nmod-relation-into-nmod-and-obl">Split the nmod relation into nmod and obl</h2>
 
 <p>One of the cornerstones of the UD taxonomy of syntactic relations is the distinction between three main types of linguistic structures: clauses, nominals and modifier words. These structures can in turn be used to modify either predicates or nominals. For modifier words and clauses we use different syntactic relations for these two cases:</p>
 
@@ -206,13 +216,7 @@ she is a doctor at the hospital
 nmod(doctor, hospital)
 </div>
 
-<p>We therefore propose that the <a href="">u-dep/nmod</a> relation is split into two relations, one for adnominal and one for adverbial modification. We propose the names <strong>anom</strong> for the former and <strong>advnom</strong> for the latter. In this way, all modifier relations will satisfy the following pattern:</p>
-
-<ul>
-  <li>Adnominal modifiers are named aX, where X is cl (clause), nom (nominal) or modifier word (mod).</li>
-  <li>Adverbial modifiers are named advX, where X is cl (clause), nom (nominal) or modifier word (mod).</li>
-</ul>
-
+<p>We therefore propose that the <a href="">u-dep/nmod</a> relation is split into two relations, one for adnominal and one for adverbial modification. We propose to keep the name <strong>nmod</strong> for the former and introduce a new name <strong>obl</strong> (oblique)for the latter.</p>
 
 
       </div>

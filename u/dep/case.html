@@ -21,14 +21,20 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/u/dep">u/dep</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/case.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-u">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/u/dep">u/dep</a></span>
+          <span class="header-text"><a href="https://github.com/turkunlp/docs/edit/pages-source/_u-dep/case.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -65,12 +71,12 @@ case(président, du)
 <p>Hebrew:</p>
 
 <pre><code class="language-sdparse">hwa/PRON rah/VERB at/PART[Case=Acc] h/DET klb/NOUN \n he saw ACC the dog  
-dobj(rah-2, klb-5)
+obj(rah-2, klb-5)
 case(klb-5, at-3)
 </code></pre>
 
 <p>When case markers are morphemes, they are not divided off the noun as a separate case dependent,
-but the noun as a whole is analyzed as a <a href="">nmod</a> of the verb.
+but the noun as a whole is analyzed as <a href="">obl</a> (if dependent on a predicate) or <a href="">nmod</a> (if dependent on noun).
 To overtly mark case,
 <a href="../pos/index.html">POS tags</a> and
 <a href="../feat/index.html">features</a>
@@ -80,8 +86,8 @@ are included in the representation as shown below on a Russian example
 <pre><code class="language-conllu"># I wrote the letter with a quill.
 1   Я         ja         PRON   _   Case=Nom|Number=Sing|Person=1|PronType=Prs        2   nsubj   _   I
 2   написал   napisat'   VERB   _   Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act   0   root    _   wrote
-3   письмо    pis'mo     NOUN   _   Case=Acc|Gender=Neut|Number=Sing                  2   dobj    _   the-letter
-4   пером     pero       NOUN   _   Case=Ins|Gender=Neut|Number=Sing                  2   nmod    _   with-a-quill
+3   письмо    pis'mo     NOUN   _   Case=Acc|Gender=Neut|Number=Sing                  2   obj    _   the-letter
+4   пером     pero       NOUN   _   Case=Ins|Gender=Neut|Number=Sing                  2   obl    _   with-a-quill
 </code></pre>
 
 <p>This treatment provides parallelism between different constructions
@@ -91,7 +97,7 @@ which are often introduced by a preposition in some languages:</p>
 
 <pre><code class="language-sdparse">Sue left after the rehearsal
 nsubj(left-2, Sue-1)
-nmod(left-2, rehearsal-5)
+obl(left-2, rehearsal-5)
 det(rehearsal-5, the-4)
 case(rehearsal-5, after-3)
 </code></pre>
@@ -128,17 +134,17 @@ postposition in Finnish</li>
 </ul>
 
 <pre><code class="language-sdparse">etsiä ilman johtolankaa \n to_search without clue.PARTITIVE
-nmod(etsiä, johtolankaa)
+obl(etsiä, johtolankaa)
 case(johtolankaa, ilman)
 </code></pre>
 
 <pre><code class="language-sdparse">etsiä taskulampun kanssa \n to_search torch.GENITIVE with
-nmod(etsiä, taskulampun)
+obl(etsiä, taskulampun)
 case(taskulampun, kanssa)
 </code></pre>
 
 <pre><code class="language-sdparse">etsiä johtolangatta \n to_search clue.ABESSIVE
-nmod(etsiä, johtolangatta)
+obl(etsiä, johtolangatta)
 </code></pre>
 
 <ul>
@@ -147,24 +153,24 @@ analysis to the double object construction</li>
 </ul>
 
 <pre><code class="language-sdparse">give the children the toys
-dobj(give, toys)
+obj(give, toys)
 iobj(give, children)
 </code></pre>
 
 <pre><code class="language-sdparse">give the toys to the children
-dobj(give, toys)
-nmod(give, children)
+obj(give, toys)
+obl(give, children)
 case(children, to)
 </code></pre>
 
 <pre><code class="language-conllu"># give the toys to the children
 1     donner    donner   VERB   _   VerbForm=Inf               0   root   _   give
 2     les       le       DET    _   Definite=Def|Number=Plur   3   det    _   the
-3     jouets    jouet    NOUN   _   Gender=Masc|Number=Plur    1   dobj   _   toys
+3     jouets    jouet    NOUN   _   Gender=Masc|Number=Plur    1   obj   _   toys
 4-5   aux       _        _      _   _                          _   _      _   _
 4     à         à        ADP    _   _                          6   case   _   to
 5     les       le       DET    _   Definite=Def|Number=Plur   6   det    _   the
-6     enfants   enfant   NOUN   _   Gender=Masc|Number=Plur    1   nmod   _   children
+6     enfants   enfant   NOUN   _   Gender=Masc|Number=Plur    1   obl   _   children
 </code></pre>
 
 <p>Another advantage of this new analysis is that it provides a treatment
@@ -177,13 +183,13 @@ cop(shape-4, is-2)
 case(shape-4, in-3)
 </code></pre>
 
-<p>When prepositions are stacked (that is, there is a sequence of prepositions), there are two possible analyses. If the sequence is a frozen combination with a specific meaning, then the best analysis is as an <code>mwe</code>. An English example of this is <em>out of</em>:</p>
+<p>When prepositions are stacked (that is, there is a sequence of prepositions), there are two possible analyses. If the sequence is a frozen combination with a specific meaning, then the best analysis is as <code>fixed</code>. An English example of this is <em>out of</em>:</p>
 
 <pre><code class="language-sdparse">Out of all this , something good will come .
 case(this-4, Out-1)
-mwe(Out-1, of-2)
+fixed(Out-1, of-2)
 det(this-4, all-3)
-nmod(come, this-4)
+obl(come, this-4)
 </code></pre>
 
 <p>However, if various combinations of prepositions can be used to express different meaning combinations or nuances, then  each preposition is independently analyzed as a case dependent. Examples of this in English include <em>up beside</em> (which can alternate with <em>down beside</em> or <em>up near</em>) or <em>except during</em> which can alternate with <em>as during</em> or <em>except after</em>:</p>

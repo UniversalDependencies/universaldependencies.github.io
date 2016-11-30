@@ -21,14 +21,20 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/copula.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/turkunlp/docs/edit/pages-source/_v2/copula.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -37,24 +43,21 @@
 	  </div>
 	</noscript>
 
-          <h1 id="copula-in-ud-v2">Copula in UD v2</h1>
+          <h1 id="nonverbal-predication-and-copulas-in-ud-v2">Nonverbal Predication and Copulas in UD v2</h1>
 
 <p>The treatment of copula constructions (non-verbal intransitive predication) is quite diverse in the current
 version of the treebanks (see table below for the <em>status quo</em>). In order to provide more concrete guidelines
 and to achieve better consistency cross-lingually and within a single language, we propose the
-following changes:</p>
+following changes in v2:</p>
 
 <ul>
-  <li>We should be maximally restrictive with respect to which words can be copulas (only one word in most languages)</li>
-  <li>The copula word should never be the root, except through promotion (“he is not happy, but she is”)</li>
-  <li>When there is more than one possible candidate head, the rules to establish it should be determined on a language-specific basis</li>
-  <li>We should add the subtype <code>nsubj:cop</code> to signal that the subject in copula constructions is special, and to partially solve the problem of having to flip dependencies when the predicate is a clause (see below)</li>
+  <li>The <code>cop</code> relation is restricted to function words (verbal or nonverbal) whose sole function is to link a nonverbal predicate to its subject and which do not add any meaning other than grammaticalized TAME categories (only one word in most languages).</li>
+  <li>The range of constructions that are analyzed using the cop relation is subject to language-specific variation but can be identified using universal guidelines specified below.</li>
 </ul>
 
 <h2 id="problems-with-the-current-copula-analysis">Problems with the current copula analysis</h2>
 
-<p>The main problem is the lack of standardisation. Leaving aside the Galician example, which appears to be a conversion error,
-the Spanish treebank has over 229 verbs with the <code>cop</code> relation, where the Swedish treebank has one.</p>
+<p>The main problem is the lack of standardisation. Leaving aside the Galician example, which appears to be a conversion error, the Spanish treebank has over 229 verbs with the <code>cop</code> relation, where the Swedish treebank has one.</p>
 
 <pre><code class="language-sdparse">Éste quedó sorprendido . \n He was/stayed surprised
 cop(sorprendido, quedó)
@@ -78,7 +81,7 @@ nsubj(on, Se)
 nmod(on, talossa)
 </code></pre>
 
-<p>There are also inconsistencies within a language, for example the existential construction with copula in English:</p>
+<p>There is also variation within a language, for example, the existential construction with copula in English:</p>
 
 <pre><code class="language-sdparse">There is a book on the table .
 expl(is, There)
@@ -99,856 +102,389 @@ nsubj(is, thing)
 ccomp(is, keep)
 </code></pre>
 
-<h2 id="copula-constructions-in-udv2">Copula constructions in UDv2</h2>
+<h2 id="guidelines-for-udv2">Guidelines for UDv2</h2>
 
-<p>For language-specific examples, see below, but here is a summary:</p>
+<p>In order to achieve a more consistent treatment of nonverbal predication in v2, we first define six categories of nonverbal predication that can be found cross-linguistically (with or without a copula):</p>
 
-<h3 id="nominals">Nominals</h3>
+<ol>
+  <li>Equation (aka identification): “she is my mother”</li>
+  <li>Attribution: “she is nice”</li>
+  <li>Location: “she is in the bathroom”</li>
+  <li>Possession: “the book is hers”</li>
+  <li>Benefaction: “the book is for her”</li>
+  <li>Existence: “there is food (in the kitchen)”</li>
+</ol>
 
-<p>The structure wil remain the same, but the relation will be changed to <code>nsubj:cop</code>:</p>
-
-<pre><code class="language-sdparse">Ivan is the best dancer
-nsubj:cop(dancer, Ivan)
-cop(dancer, is)
-</code></pre>
-
-<pre><code class="language-sdparse">Bill is honest
-nsubj:cop(honest, Bill)
-cop(honest, is)
-</code></pre>
-
-<pre><code class="language-sdparse">She is in shape
-nsubj:cop(shape, She)
-cop(shape, is)
-</code></pre>
-
-<p>When there are more than one PP, the head should be the least oblique argument/modifier
-according to relevant language-specific tests. For example:</p>
-
-<pre><code class="language-sdparse">She was in Prague on Tuesday
-nsubj:cop(Prague, She)
-</code></pre>
-
-<p>The omission test could be used:</p>
+<p>We then give the following guidelines for the analysis of these constructions:</p>
 
 <ul>
-  <li><em>She was in Prague</em></li>
-  <li><em>*She was on Tuesday</em></li>
+  <li>If there is no overt linking word (or if such a word can be omitted at least in some persons or tenses), then the predicative nominal is treated as the head of the clause regardless of which of the six categories it falls in. In languages with fixed SVO order (like English), the final nominal is the predicate and the first nominal is the subject. In free-word-order languages it is possible that the first nominal is the predicate, and distinguishing the subject from the predicate is based on language-specific criteria.</li>
+  <li>If there is an overt linking word used in equational constructions (category 1), then that word is treated as a copula and marked with the <code>cop</code> dependency, and is not the head of the clause. <strong>Exception:</strong> If the predicative element in the equation is a clause, then the copula verb is treated as the head of the clause, with the following clause as a <code>ccomp</code> (to prevent that the head of the smaller clause gets two subjects). Note that in some languages it may be instead possible to analyze the clause as the subject (<code>csubj</code>), retaining the <code>cop</code> relation for the copula verb.</li>
+  <li>If there is an overt word used in existential constructions (category 6), which is different from the copula in equational constructions (either a different lemma or with different syntax), then it should be regarded as being the head of existence clauses, taking a subject (and often a locative <code>obl</code>).</li>
+  <li>All other cases of putative copula constructions (categories 2-5) should be assimilated to the equational and existential cases as seems to make most sense according to the inherent logic of the language concerned.</li>
+  <li>A language should normally have at most one copula, but exceptions can be made in case of defective paradigms or if there are two verbs alternating in categories 1-5 (but not in 6) and where any meaning difference reflect at most TAME categories.</li>
 </ul>
-
-<p>Only in cases where no tests apply should we resort to general heuristics such as “closest to the copula” and so on:</p>
-
-<pre><code class="language-sdparse">She was in Prague with her friends
-nsubj:cop(Prague, She)
-</code></pre>
-
-<p>and:</p>
-
-<pre><code class="language-sdparse">She was with her friends in Prague
-nsubj:cop(friends, She)
-</code></pre>
-
-<h3 id="clausals">Clausals</h3>
-
-<p>When there is a clausal predicate, then we make the head of that the head of the whole copula clause:</p>
-
-<pre><code class="language-sdparse">The important thing is to keep calm
-nsubj:cop(keep, thing)
-cop(keep, is)
-xcomp(keep, calm)
-</code></pre>
-
-<p>We distinguish copula subjects from non-copula subjects, so that when there is a clausal we do not get a double subject:</p>
-
-<pre><code class="language-sdparse">The main thing is that the device works
-nsubj:cop(works, thing)
-nsubj(works, device)
-cop(works, is)
-</code></pre>
-
-<h4 id="to-discuss">To discuss</h4>
-
-<p>However, we still get duplication of the <code>cop</code> relation where you have a copula on the right:</p>
-
-<pre><code class="language-sdparse">To be free is to be capable of thinking one's own thoughts
-nsubj:cop(capable, free)
-cop(capable, is-4)
-cop(capable, be-6)
-cop(free, be-2)
-</code></pre>
-
-<p>And in the case of having an expressed subject, we get two subjects for the main predicate:</p>
-
-<pre><code class="language-sdparse">The problem is that she is not happy .
-nsubj:cop(happy, problem)
-nsubj:cop(happy, she)
-cop(happy, is-3)
-cop(happy, is-6)
-</code></pre>
 
 <h3 id="language-specific-examples">Language-specific examples</h3>
 
-<p>For the purposes of demonstrating the new classification system a number of examples have been prepared for a range of UD languages. The examples are in English, but where they are ambiguous in a given language multiple variants will be given.</p>
-
-<ol>
-  <li>She is a student</li>
-  <li>I am a student</li>
-  <li>She was a student</li>
-  <li>I was a student</li>
-  <li>She is happy</li>
-  <li>I am happy</li>
-  <li>She is in shape</li>
-  <li>She is in the house</li>
-  <li>I am in the house</li>
-  <li>She was in the house</li>
-  <li>There is a house in the village</li>
-  <li>The house is in the village</li>
-  <li>There was a house in the village</li>
-  <li>The house was in the village</li>
-</ol>
+<p>We now exemplify how these guidelines apply to different languages.</p>
 
 <h4 id="english">English</h4>
 
-<p>The English analysis more or less follows the analysis in the <code>UD_English</code> treebank, with the addition of the relation <code>nsubj:cop</code> for subjects of copula constructions. There is a difference however with how (11) and (13) are treated.</p>
+<p>The English analysis more or less follows the analysis in the current <code>UD_English</code> treebank. A non-head copula is used in categories (1-5), except for equated clauses, but (6) is treated differently because the verb must be the head in pure existentials.</p>
 
-<p>(1)</p>
+<p>(1a)</p>
 
-<pre><code class="language-sdparse">She is a student
-nsubj:cop(student, She)
-cop(student, is)
+<pre><code class="language-sdparse">she is my mother
+nsubj(mother, she)
+cop(mother, is)
+</code></pre>
+
+<p>(1b)</p>
+
+<pre><code class="language-sdparse">the fact is that she is my mother
+nsubj(is-3, fact)
+ccomp(is-3, mother)
+nsubj(mother, she)
+cop(mother, is-6)
 </code></pre>
 
 <p>(2)</p>
 
-<pre><code class="language-sdparse">I am a student
-nsubj:cop(student, I)
-cop(student, am)
+<pre><code class="language-sdparse">she is nice
+nsubj(nice, she)
+cop(nice, is)
 </code></pre>
 
 <p>(3)</p>
 
-<pre><code class="language-sdparse">She was a student
-nsubj:cop(student, She)
-cop(student, was)
+<pre><code class="language-sdparse">she is in the kitchen
+nsubj(kitchen, she)
+cop(kitchen, is)
+case(kitchen, in)
 </code></pre>
 
 <p>(4)</p>
 
-<pre><code class="language-sdparse">I was a student
-nsubj:cop(student, I)
-cop(student, was)
+<pre><code class="language-sdparse">it is hers
+nsubj(hers, it)
+cop(hers, is)
 </code></pre>
 
 <p>(5)</p>
 
-<pre><code class="language-sdparse">She is happy
-nsubj:cop(happy, She)
-cop(happy, is)
+<pre><code class="language-sdparse">it is for her
+nsubj(her, it)
+cop(her, is)
+case(her, for)
 </code></pre>
 
-<p>(6)</p>
+<p>(6a)</p>
 
-<pre><code class="language-sdparse">I am happy
-nsubj:cop(happy, I)
-cop(happy, am)
+<pre><code class="language-sdparse">there is food
+expl(is, there)
+nsubj(is, food)
 </code></pre>
 
-<p>(7)</p>
+<p>(6b)</p>
 
-<pre><code class="language-sdparse">She is in shape
-nsubj:cop(shape, She)
-cop(shape, is)
+<pre><code class="language-sdparse">there is food in the kitchen
+expl(is, there)
+nsubj(is, food)
+obl(is, kitchen)
+case(kitchen, in)
 </code></pre>
 
-<p>(8)</p>
+<h4 id="irish">Irish</h4>
 
-<pre><code class="language-sdparse">She is in the house
-nsubj:cop(house, She)
-cop(house, is)
-</code></pre>
-
-<p>(9)</p>
-
-<pre><code class="language-sdparse">I am in the house
-nsubj:cop(house, I)
-cop(house, am)
-</code></pre>
-
-<p>(10)</p>
-
-<pre><code class="language-sdparse">She was in the house
-nsubj:cop(house, She)
-cop(house, was)
-</code></pre>
-
-<p>(11)</p>
-
-<pre><code class="language-sdparse">There is a house in the village
-expl(village, There)
-nsubj:cop(village, house)
-cop(village, is)
-</code></pre>
-
-<p>(12)</p>
-
-<pre><code class="language-sdparse">The house is in the village
-nsubj:cop(village, house)
-cop(village, is)
-</code></pre>
-
-<p>(13)</p>
-
-<pre><code class="language-sdparse">There was a house in the village
-expl(village, There)
-nsubj:cop(village, house)
-cop(village, was)
-</code></pre>
-
-<p>(14)</p>
-
-<pre><code class="language-sdparse">The house was in the village
-nsubj:cop(village, house)
-cop(village, was)
-</code></pre>
-
-<h4 id="swedish">Swedish</h4>
+<p>Irish uses a copula verb in categories 1, 4 and 5, and a different verb in categories 2, 3 and 6. Not only the verb but also the word order is different.</p>
 
 <p>(1)</p>
 
-<pre><code class="language-sdparse">Hon är en student
-nsubj:cop(student, Hon)
-cop(student, är)
+<pre><code class="language-sdparse">is ise mo mháthair \n COP her my mother
+nsubj(mháthair, ise)
+cop(mháthair, is)
 </code></pre>
 
 <p>(2)</p>
 
-<pre><code class="language-sdparse">Jag är en student
-nsubj:cop(student, Jag)
-cop(student, är)
+<pre><code class="language-sdparse">tá sí deas \n is she nice
+nsubj(tá, sí)
+xcomp(tá, deas)
 </code></pre>
 
 <p>(3)</p>
 
-<pre><code class="language-sdparse">Hon var en student
-nsubj:cop(student, Hon)
-cop(student, var)
+<pre><code class="language-sdparse">tá sí sa seomra folctha \n is she in room bath
+nsubj(tá, sí)
+xcomp(tá, seomra)
 </code></pre>
 
 <p>(4)</p>
 
-<pre><code class="language-sdparse">Jag var en student
-nsubj:cop(student, Jag)
-cop(student, var)
+<pre><code class="language-sdparse">is lei an leabhar \n COP with her the book
+nsubj(leabhar, lei)
+cop(leabhar, is)
 </code></pre>
 
 <p>(5)</p>
 
-<pre><code class="language-sdparse">Hon är glad
-nsubj:cop(glad, Hon)
-cop(glad, är)
+<pre><code class="language-sdparse">is di an leabhar \n COP with her the book
+nsubj(leabhar, di)
+cop(leabhar, is)
 </code></pre>
 
 <p>(6)</p>
 
-<pre><code class="language-sdparse">Jag är glad
-nsubj:cop(glad, Jag)
-cop(glad, är)
+<pre><code class="language-sdparse">tá bia ann
+nsubj(tá, bia)
 </code></pre>
 
-<p>(7)</p>
+<h4 id="czech">Czech</h4>
 
-<p><em>Example needed</em></p>
+<p>The Czech verb <em>být</em> is used in all categories (1-6) and can be analyzed as copula everywhere except for pure existentials (without location) where no predicate other than the verb is available. Czech word order is free and it is not guaranteed that all constructions will come out as subject-copula-predicate. Reversed order (predicate-copula-subject) is less common but possible, even in the “equation” category (1). Czech is a pro-drop language which means that pronominal subjects are optional.</p>
 
-<p>(8)</p>
+<p>(1a)</p>
 
-<pre><code class="language-sdparse">Hon är i huset
-nsubj:cop(huset, Hon)
-cop(huset, är)
+<pre><code class="language-sdparse">(ona) je moje matka \n she is my mother
+nsubj(matka, (ona))
+nsubj(mother, she)
+cop(matka, je)
+cop(mother, is)
 </code></pre>
 
-<p>(9)</p>
+<p>(1b)</p>
 
-<pre><code class="language-sdparse">Jag är i huset
-nsubj:cop(huset, Jag)
-cop(huset, är)
-</code></pre>
-
-<p>(10)</p>
-
-<pre><code class="language-sdparse">Hon var i huset
-nsubj:cop(huset, Hon)
-cop(huset, var)
-</code></pre>
-
-<p>(11)</p>
-
-<p>Existential constructions in Swedish do not use the copula verb.</p>
-
-<pre><code class="language-sdparse">Det finns et hus i byn
-expl(finns, Det)
-nsubj(finns, hus)
-nmod(finns, byn)
-</code></pre>
-
-<p>(12)</p>
-
-<pre><code class="language-sdparse">Huset är i byn
-nsubj:cop(byn, Huset)
-cop(byn, är)
-</code></pre>
-
-<p>(13)</p>
-
-<pre><code class="language-sdparse">Det fanns et hus i byn
-expl(fanns, Det)
-nsubj(fanns, hus)
-nmod(fanns, byn)
-</code></pre>
-
-<p>(14)</p>
-
-<pre><code class="language-sdparse">Huset var i byn
-nsubj:cop(byn, Huset)
-cop(byn, var)
-</code></pre>
-
-<h4 id="spanish">Spanish</h4>
-
-<p>The <code>UD_Spanish</code> treebank has very many verbs classified as copula. We propose reducing it to the single verb “ser”.</p>
-
-<p>(1)</p>
-
-<pre><code class="language-sdparse">Ella es estudiante
-nsubj:cop(estudiante, Ella)
-cop(estudiante, es)
+<pre><code class="language-sdparse">faktem je , že ona je moje matka \n fact is , that she is my mother
+cop(faktem, je-2)
+cop(fact, is-11)
+csubj(faktem, matka)
+csubj(fact, mother)
+nsubj(matka, ona)
+nsubj(mother, she)
+cop(matka, je-6)
+cop(mother, is-15)
 </code></pre>
 
 <p>(2)</p>
 
-<pre><code class="language-sdparse">Yo soy estudiante
-nsubj:cop(estudiante, Yo)
-cop(estudiante, soy)
+<pre><code class="language-sdparse">(ona) je milá \n she is nice
+nsubj(milá, (ona))
+nsubj(nice, she)
+cop(milá, je)
+cop(nice, is)
 </code></pre>
 
 <p>(3)</p>
 
-<pre><code class="language-sdparse">Ella fue estudiante
-nsubj:cop(estudiante, Ella)
-cop(estudiante, fue)
+<pre><code class="language-sdparse">(ona) je v kuchyni \n she is in kitchen
+nsubj(kuchyni, (ona))
+nsubj(kitchen, she)
+cop(kuchyni, je)
+cop(kitchen, is)
+case(kuchyni, v)
+case(kitchen, in)
 </code></pre>
 
 <p>(4)</p>
 
-<pre><code class="language-sdparse">Yo fui estudiante
-nsubj:cop(estudiante, Yo)
-cop(estudiante, fui)
+<pre><code class="language-sdparse">to je její \n it is hers
+nsubj(její, to)
+nsubj(hers, it)
+cop(její, je)
+cop(hers, is)
 </code></pre>
 
 <p>(5)</p>
 
-<p>In Spanish you can say either <em>Soy feliz</em> “I am happy” or <em>Estoy feliz</em> “I am happy”/”I feel happy”. In the following examples, the subject pronouns are expressed to illustrate the difference in relation for the subject. They may equally well be dropped.</p>
-
-<pre><code class="language-sdparse">Ella es feliz
-nsubj:cop(feliz, Ella)
-cop(feliz, es)
+<pre><code class="language-sdparse">to je pro ni \n it is for her
+nsubj(ni, to)
+nsubj(her, it)
+cop(ni, je)
+cop(her, is)
+case(ni, pro)
+case(her, for)
 </code></pre>
 
-<pre><code class="language-sdparse">Ella está feliz
-nsubj(está, Ella)
-xcomp(está, feliz)
+<p>(6a)</p>
+
+<pre><code class="language-sdparse">jídlo je \n food is
+nsubj(je, jídlo)
+nsubj(is, food)
 </code></pre>
 
-<p>(6)</p>
+<p>(6b)</p>
 
-<pre><code class="language-sdparse">Yo soy feliz
-nsubj:cop(feliz, Yo)
-cop(feliz, soy)
-</code></pre>
-
-<pre><code class="language-sdparse">Yo estoy feliz
-nsubj(estoy, Yo)
-xcomp(estoy, feliz)
-</code></pre>
-
-<p>(7)</p>
-
-<p>Instead of “in shape” we’ll use “de puta madre” which means “really great”,</p>
-
-<pre><code class="language-sdparse">Esta canción es de puta madre
-nsubj:cop(madre, canción)
-cop(madre, es)
-</code></pre>
-
-<pre><code class="language-sdparse">Esta canción está de puta madre
-nsubj(está, canción)
-xcomp(está, madre)
-</code></pre>
-
-<p>(8)</p>
-
-<p>In Spanish location/position uses the verb <em>estar</em> and not <em>ser</em>.</p>
-
-<pre><code class="language-sdparse">Ella está en la casa
-nsubj(está, Ella)
-nmod(está, casa)
-</code></pre>
-
-<p>Note that in Catalan, this would be “Ella és a la casa”, using the <em>ser</em> verb, not the <em>estar</em> verb. This would be analysed as:</p>
-
-<pre><code class="language-sdparse">Ella és a la casa
-nsubj:cop(casa, Ella)
-cop(casa, és)
-</code></pre>
-
-<p>(9)</p>
-
-<pre><code class="language-sdparse">Yo estoy en la casa
-nsubj(estoy, Yo)
-nmod(estoy, casa)
-</code></pre>
-
-<p>(10)</p>
-
-<pre><code class="language-sdparse">Ella estaba en la casa
-nsubj(estaba, Ella)
-nmod(estaba, casa)
-</code></pre>
-
-<p>(11)</p>
-
-<p>Existential constructions in Spanish do not use the copula verb.</p>
-
-<pre><code class="language-sdparse">Hay una casa en el pueblo
-obj:dir(Hay, casa)
-nmod(Hay, pueblo)
-</code></pre>
-
-<p>(12)</p>
-
-<pre><code class="language-sdparse">La casa está en el pueblo
-nsubj(está, casa)
-nmod(está, pueblo)
-</code></pre>
-
-<p>(13)</p>
-
-<pre><code class="language-sdparse">Había una casa en el pueblo
-obj:dir(Había, casa)
-nmod(Había, pueblo)
-</code></pre>
-
-<p>(14)</p>
-
-<pre><code class="language-sdparse">La casa estaba en el pueblo
-nsubj(estaba, casa)
-nmod(estaba, pueblo)
+<pre><code class="language-sdparse">v kuchyni je jídlo \n in kitchen is food
+nsubj(kuchyni, jídlo)
+nsubj(kitchen, food)
+cop(kuchyni, je)
+cop(kitchen, is)
+case(kuchyni, v)
+case(kitchen, in)
 </code></pre>
 
 <h4 id="russian">Russian</h4>
 
 <p>In Russian, there is no copula verb in the present tense. In the future and past tenses, the verb <em>быть</em> “be” is used.
-Note that when the copula verb is used, the complement can be either in nominative or instrumental case.
-When it is instrumental it is <code>is category of</code> and when it is nominative it is more like <code>has quality of</code>. We propose using the same structure for both.</p>
+The same analysis applies to categories (1-5).</p>
 
-<p>(1)</p>
+<p>(1a)</p>
 
-<pre><code class="language-sdparse">Она студентка
-nsubj:cop(студентка, Она)
+<pre><code class="language-sdparse">она моя мать \n she my mother
+nsubj(мать, она)
+nsubj(mother, she)
+</code></pre>
+
+<p>(1b)</p>
+
+<p>When the second part is a clause, the demonstrative pronoun <em>то</em> must be inserted. As a result, we have a different syntactic structure with different analysis: the clause formally modifies a nominal represented by the demonstrative.</p>
+
+<pre><code class="language-sdparse">дело в том , что она моя мать \n fact in that , that she my mother
+nsubj(том, дело)
+nsubj(that-12, fact)
+acl(том, мать)
+acl(that-12, mother)
+nsubj(мать, она)
+nsubj(mother, she)
 </code></pre>
 
 <p>(2)</p>
 
-<pre><code class="language-sdparse">Я студентка
-nsubj:cop(студентка, Я)
+<pre><code class="language-sdparse">она милая \n she nice
+nsubj(милая, она)
+nsubj(nice, she)
 </code></pre>
 
 <p>(3)</p>
 
-<pre><code class="language-sdparse">Она была студентка
-nsubj:cop(студентка, Она)
-cop(студентка, была)
-</code></pre>
-
-<pre><code class="language-sdparse">Она была студенткой
-nsubj:cop(студенткой, Она)
-cop(студенткой, была)
+<pre><code class="language-sdparse">она на кухне \n she in kitchen
+nsubj(кухне, она)
+nsubj(kitchen, she)
+case(кухне, на)
+case(kitchen, in)
 </code></pre>
 
 <p>(4)</p>
 
-<pre><code class="language-sdparse">Я была студентка
-nsubj:cop(студентка, Я)
-cop(студентка, была)
-</code></pre>
-
-<pre><code class="language-sdparse">Я была студенткой
-nsubj:cop(студенткой, Я)
-cop(студенткой, была)
+<pre><code class="language-sdparse">это ее \n it hers
+nsubj(ее, это)
+nsubj(hers, it)
 </code></pre>
 
 <p>(5)</p>
 
-<p>The same goes with adjectival uses:</p>
-
-<pre><code class="language-sdparse">Она счастлива
-nsubj:cop(счастлива, Она)
+<pre><code class="language-sdparse">это для нее \n it for her
+nsubj(нее, это)
+nsubj(her, it)
+case(нее, для)
+case(her, for)
 </code></pre>
 
-<p>(6)</p>
+<p>(6a)</p>
 
-<pre><code class="language-sdparse">Я счастлива
-nsubj:cop(счастлива, Я)
+<p>The form <em>есть</em> is originally the 3rd person singular present indicative of the verb <em>быть</em> (which also functions as copula). However, in Modern Russian this form is used only in existential statements, in both numbers and all persons. Past and future existential statements still use normal forms of <em>быть.</em></p>
+
+<pre><code class="language-sdparse">есть еда \n is food
+nsubj(есть, еда)
+nsubj(is, food)
 </code></pre>
 
-<p>(7)</p>
+<p>(6b)</p>
 
-<p>Instead of “in shape”, we’ll use “в курсе” which means “on the ball”</p>
-
-<pre><code class="language-sdparse">Она в курсе
-nsubj:cop(курсе, Она)
-</code></pre>
-
-<p>(8)</p>
-
-<p>In Russian, there is no verb used for locative predication in the present tense.</p>
-
-<pre><code class="language-sdparse">Она в дому
-nsubj:cop(дому, Она)
-</code></pre>
-
-<p>(9)</p>
-
-<p>As with (8),</p>
-
-<pre><code class="language-sdparse">Я в дому
-nsubj:cop(дому, Я)
-</code></pre>
-
-<p>(10)</p>
-
-<p>In the past tense we have the verb and we make it a dependent:</p>
-
-<pre><code class="language-sdparse">Она была в дому
-nsubj:cop(дому, Она)
-cop(дому, была)
-</code></pre>
-
-<p>(11)</p>
-
-<p>In Russian, in the present tense, existential constructions use “есть” which is sometimes described as a “predicative”:</p>
-
-<pre><code class="language-sdparse">Есть дом в деревне
-nsubj:cop(деревне, дом)
-cop(деревне, Есть)
-</code></pre>
-
-<p>(12)</p>
-
-<pre><code class="language-sdparse">Дом в деревне
-nsubj:cop(деревне, Дом)
-</code></pre>
-
-<p>(13)</p>
-
-<p>In the past tense (and future tense), the verb быть is employed. Syntactically (13) and (14) are equivalent in Russian aside from the word order considerations.</p>
-
-<pre><code class="language-sdparse">Был дом в деревне
-nsubj:cop(деревне, дом)
-cop(деревне, Был)
-</code></pre>
-
-<p>(14)</p>
-
-<pre><code class="language-sdparse">Дом был в деревне
-nsubj:cop(деревне, Дом)
-cop(деревне, был)
+<pre><code class="language-sdparse">есть еда на кухне \n is food in kitchen
+nsubj(есть, еда)
+nsubj(is, food)
+obl(есть, кухне)
+obl(is, kitchen)
+case(кухне, на)
+case(kitchen, in)
 </code></pre>
 
 <h4 id="finnish">Finnish</h4>
 
-<p>In Finnish the copula verb is <em>olla</em> “to be”. Its complement is typically in the nominative, although it may also be in the essive case -nA.</p>
-
-<p>(1)</p>
-
-<pre><code class="language-sdparse">Se on opiskelija
-nsubj:cop(opiskelija, Se)
-cop(opiskelija, on)
-</code></pre>
-
-<p>(2)</p>
-
-<pre><code class="language-sdparse">Mä oon opiskelija
-nsubj:cop(opiskelija, Mä)
-cop(opiskelija, oon)
-</code></pre>
-
-<p>(3)</p>
-
-<pre><code class="language-sdparse">Se oli opiskelija
-nsubj:cop(opiskelija, Se)
-cop(opiskelija, oli)
-</code></pre>
-
-<p>(4)</p>
-
-<pre><code class="language-sdparse">Mä olin opiskelija
-nsubj:cop(opiskelija, Mä)
-cop(opiskelija, olin)
-</code></pre>
-
-<p>(5)</p>
-
-<pre><code class="language-sdparse">Se on iloinen
-nsubj:cop(iloinen, Se)
-cop(iloinen, on)
-</code></pre>
-
-<p>(6)</p>
-
-<pre><code class="language-sdparse">Mä oon iloinen
-nsubj:cop(iloinen, Mä)
-cop(iloinen, oon)
-</code></pre>
-
-<p>(7)</p>
-
-<pre><code class="language-sdparse">Se on kunnossa
-nsubj:cop(kunnossa, Se)
-cop(kunnossa, on)
-</code></pre>
-
-<p>(8)</p>
-
-<pre><code class="language-sdparse">Se on talossa
-nsubj:cop(talossa, Se)
-cop(talossa, on)
-</code></pre>
-
-<p>(9)</p>
-
-<pre><code class="language-sdparse">Mä oon talossa
-nsubj:cop(talossa, Mä)
-cop(talossa, oon)
-</code></pre>
-
-<p>(10)</p>
-
-<pre><code class="language-sdparse">Se oli talossa
-nsubj:cop(talossa, Se)
-cop(talossa, oli)
-</code></pre>
-
-<p>(11)</p>
-
-<p>In Finnish, existential and non-existential are identical aside from word order.</p>
-
-<pre><code class="language-sdparse">Kylässä on talo
-cop(Kylässä, on)
-nsubj:cop(Kylässä, talo)
-</code></pre>
-
-<p>(12)</p>
-
-<pre><code class="language-sdparse">Talo on kylässä
-cop(kylässä, on)
-nsubj:cop(kylässä, Talo)
-</code></pre>
-
-<p>(13)</p>
-
-<pre><code class="language-sdparse">Kylässä oli talo
-cop(Kylässä, oli)
-nsubj:cop(Kylässä, talo)
-</code></pre>
-
-<p>(14)</p>
-
-<pre><code class="language-sdparse">Talo oli kylässä
-cop(kylässä, oli)
-nsubj:cop(kylässä, Talo)
-</code></pre>
+<p>In Finnish the copula verb is <em>olla</em> “to be”.</p>
 
 <h4 id="turkish">Turkish</h4>
 
 <p>In Turkish, there are two copula verbs, <em>i-</em> and <em>ol-</em>. The “true” copula is <em>i-</em> which is defective, only having a limited number of tense forms (aorist and past), and cliticising. When a copula is needed in another tense, <em>ol-</em> is employed. However, if there is a form of <em>i-</em> then the equivalent form of <em>ol-</em> takes on the meaning “become”.</p>
 
-<p>(1)</p>
+<p>In the present tense, third person singular aorist non-formal then there is no overt suffix for third person singular. Unlike Russian, where the copula verb does not appear in any part of the present tense paradigm, in Turkish it appears in all persons except third person (compare 1a and 1b). This means that it is more like the nominative case in the paradigm (which also has a -Ø suffix, than like the Russian copula).</p>
 
-<p>In the present tense, third person singular aorist non-formal then there is no overt suffix for third person singular. Unlike Russian, where the copula verb does not appear in any part of the present tense paradigm, in Turkish it appears in all persons except third person. This means that it is more like the nominative case in the paradigm (which also has a -Ø suffix, than like the Russian copula).</p>
+<p>In Turkish (and indeed in most Turkic languages), existence is a syntactically different (see 6a and 6b), using an adjective <em>var</em> “existent”, and so gets a different structure.</p>
 
-<p>In the following examples the hyphen is used to separate cliticised syntactic words.</p>
+<p>(1a)</p>
 
-<pre><code class="language-sdparse">O öğrenci -Ø
-nsubj:cop(öğrenci, O)
-cop(öğrenci, -Ø)
+<pre><code class="language-sdparse">O benim annem . \n she my mother
+nsubj(annem, O)
+nsubj(mother, she)
+</code></pre>
+
+<p>(1a)</p>
+
+<pre><code class="language-sdparse">Ben senin baban -ım . \n I your father am
+nsubj(baban, O)
+cop(baban, -ım)
+nsubj(father, I)
+</code></pre>
+
+<p>(1c)</p>
+
+<pre><code class="language-sdparse">O benim annem -di . \n she my mother was
+nsubj(annem, O)
+cop(annem, -di)
+nsubj(mother, she)
 </code></pre>
 
 <p>(2)</p>
 
-<pre><code class="language-sdparse">Ben öğrenci -yim
-nsubj:cop(öğrenci, Ben)
-cop(öğrenci, -yim)
+<pre><code class="language-sdparse">O hoş . \n She nice
+nsubj(hoş, O)
+nsubj(nice, She)
 </code></pre>
 
 <p>(3)</p>
 
-<pre><code class="language-sdparse">O öğrenci -ydi
-nsubj:cop(öğrenci, O)
-cop(öğrenci, -ydi)
-</code></pre>
-
-<p>The copula verb here can also be written separately instead of cliticised in more formal styles,</p>
-
-<pre><code class="language-sdparse">O öğrenci idi
-nsubj:cop(öğrenci, O)
-cop(öğrenci, idi)
+<pre><code class="language-sdparse">O mutfakta . \n She kitchen-in .
+nsubj(mutfakta, O)
+nsubj(kitchen-in, She)
 </code></pre>
 
 <p>(4)</p>
 
-<pre><code class="language-sdparse">Ben öğrenci -ydim
-nsubj:cop(öğrenci, Ben)
-cop(öğrenci, -ydim)
+<pre><code class="language-sdparse">Bu onun . \n It hers .
+nsubj(onun, Bu)
+nsubj(hers, It)
 </code></pre>
 
 <p>(5)</p>
 
-<pre><code class="language-sdparse">O mutlu -Ø
-nsubj:cop(mutlu, O)
-cop(mutlu, -Ø)
+<pre><code class="language-sdparse">Bu onun için . \n It hers for .
+nsubj(onun, Bu)
+case(onun, için)
+nsubj(hers, It)
+case(hers, for)
 </code></pre>
 
-<p>(6)</p>
+<p>(6a)
+~~~ sdparse
+Yemek var . \n Food existing .
+nsubj(var, Yemek)
+nsubj(existing, Food)
+~~~</p>
 
-<pre><code class="language-sdparse">Ben mutlu -yum
-nsubj:cop(mutlu, Ben)
-cop(mutlu, -yum)
-</code></pre>
-
-<p>(7)</p>
-
-<p><em>Example needed</em></p>
-
-<p>(8)</p>
-
-<pre><code class="language-sdparse">O evde
-nsubj:cop(evde, O)
-</code></pre>
-
-<p>(9)</p>
-
-<pre><code class="language-sdparse">Ben evde -yim
-nsubj:cop(evde, Ben)
-cop(evde, -yim)
-</code></pre>
-
-<p>(10)</p>
-
-<pre><code class="language-sdparse">O evde -ydi
-nsubj:cop(evde, O)
-cop(evde, -ydi)
-</code></pre>
-
-<p>(11)</p>
-
-<p>In Turkish (and indeed in most Turkic languages), existence is a syntactically different, using an adjective <em>var</em> “existent”, and so gets a different structure.</p>
-
-<pre><code class="language-sdparse">Köyde ev var
-nsubj:cop(var, ev)
-nmod(var, Köyde)
-</code></pre>
-
-<p>(12)</p>
-
-<pre><code class="language-sdparse">Ev köyde
-nsubj:cop(köyde, Ev)
-</code></pre>
-
-<p>(13)</p>
-
-<pre><code class="language-sdparse">Köyde ev var -dı
-nsubj:cop(var, ev)
-cop(var, -dı)
-nmod(var, Köyde)
-</code></pre>
-
-<p>(14)</p>
-
-<pre><code class="language-sdparse">Ev köyde -ydi
-nsubj:cop(köyde, Ev)
-cop(köyde, -ydi)
-</code></pre>
-
-<h4 id="irish">Irish</h4>
-
-<p>Irish has a difference between a <em>copula</em> verb “is” and what is called a substantive verb “bí”. Only the copula verb receives the <code>cop</code> relation. The substantive verb is head and takes an argument with <code>xcomp</code>.
-<a href="http://www.nclt.dcu.ie/~tlynn/Teresa_PhDThesis_final.pdf">Teresa’s thesis</a> has an in depth description of the treatment of the copula in Irish.</p>
-
-<p>(1)</p>
-
-<p><em>Example needed</em></p>
-
-<p>(2)</p>
-
-<p><em>Example needed</em></p>
-
-<p>(3)</p>
-
-<pre><code class="language-sdparse">Ba dhalta í
-cop(dhalta, Ba)
-</code></pre>
-
-<pre><code class="language-sdparse">Bhí sí ina dalta
-xcomp:pred(Bhí, dalta)
-</code></pre>
-
-<p>(4)</p>
-
-<p><em>Not applicable.</em></p>
-
-<p>(5)</p>
-
-<p><em>Not applicable.</em></p>
-
-<p>(6)</p>
-
-<p><em>Example needed</em></p>
-
-<p>(7)</p>
-
-<p><em>Example needed</em></p>
-
-<p>(8)</p>
-
-<p><em>Example needed</em></p>
-
-<p>(9)</p>
-
-<p><em>Example needed</em></p>
-
-<p>(10)</p>
-
-<p><em>Example needed</em></p>
-
-<p>(11)</p>
-
-<p><em>Example needed</em></p>
-
-<p>(12)</p>
-
-<p><em>Example needed</em></p>
-
-<p>(13)</p>
-
-<p><em>Example needed</em></p>
-
-<p>(14)</p>
-
-<p><em>Example needed</em></p>
+<p>(6b)
+~~~ sdparse
+Mutfakta yemek var . \n Kitchen-in food existing .
+nsubj(var, yemek)
+obl(var, Mutfakta)
+nsubj(existing, food)
+obl(existing, Kitchen-in)
+~~~</p>
 
 <h2 id="status-quo">Status quo</h2>
 
-<p>The languages in UD with the tokens which have the <code>cop</code> relation. If we adopt the above recommendations, the vast majority will need converting.</p>
+<p>The languages in UD with the tokens which have the <code>cop</code> relation. The vast majority will need converting in light of the new guidelines.</p>
 
 <table>
   <thead>

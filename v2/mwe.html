@@ -21,14 +21,20 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/mwe.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/turkunlp/docs/edit/pages-source/_v2/mwe.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -39,49 +45,66 @@
 
           <h1 id="multiword-expressions-in-ud-v2">Multiword Expressions in UD v2</h1>
 
-<p>Since UD does not allow “words with spaces” (but see a partly new proposal under <a href="word-segmentation.html">word segmentation</a>), even completely fixed multiword expressions must be annotated with (dummy) dependency relations. To improve annotation consistency, we propose the following changes for v2:</p>
+<p>Since UD does not allow “words with spaces” (but see a partly new proposal under <a href="word-segmentation.html">word segmentation</a>), even completely fixed multiword expressions must be annotated with (dummy) dependency relations. To improve annotation consistency, we propose the following change for v2:</p>
 
 <ul>
-  <li>Rename <a href="">u-dep/mwe</a> to <strong>fixed</strong> and make clear that this should only be used for completely fixed expressions</li>
-  <li>Change the direction of arrows (right-to-left instead of left-to-right) for this relation as well as the other non-dependency relations <a href="">u-dep/name</a> and <a href="">u-dep/foreign</a> (see also <a href="semantic-categories.html">semantic categories</a>)</li>
+  <li>Rename <a href="">u-dep/mwe</a> to <strong>fixed</strong> and make clear that this should only be used for completely fixed expressions
+<!--* Change the direction of arrows (right-to-left instead of left-to-right) for this relation as well as the other non-dependency relations [u-dep/name]() and [u-dep/foreign]() (see also [semantic categories](semantic-categories.html))--></li>
+  <li>Rename <a href="">u-dep/name</a> to <strong>flat</strong> and extend its use to semi-fixed multiword expressions that do not have a clear syntactic head. (See <a href="semantic-categories.html">semantic categories</a>.)</li>
+  <li>Remove <a href="">u-dep/foreign</a> and subsume its use under the new relation <a href="">u-dep/flat</a>.</li>
+  <li>Add a new subtype of <a href="">u-dep/compound</a> for handling serial verb constructions in analogy with particle verbs
+and grammticized light verb constructions.</li>
 </ul>
 
 <h2 id="rename-mwe-to-fixed">Rename mwe to fixed</h2>
 
 <p>It seems that the label <code>mwe</code> (multiword expression) has led to a lot of confusion. It was never intended for multiword expressions like “kick the bucket”, or Fr. “pomme de terre” (potato). It has always been restricted to the <em>fixed expressions</em> category of
-<a href="http://lingo.stanford.edu/pubs/WP-2001-03.pdf">Sag et al.</a>, excluding any relations in scope of <a href="">u-dep/name</a> or <a href="">u-dep/compound</a>. The label <code>fixed</code> might reflect this fact better.</p>
+<a href="http://lingo.stanford.edu/pubs/WP-2001-03.pdf">Sag et al.</a>, excluding any relations in scope of <a href="">u-dep/name</a> or <a href="">u-dep/compound</a>. The label <code>fixed</code> reflects this fact better.</p>
 
 <p>The proposed change is therefore to change the label <code>mwe</code> (multiword expression) to <code>fixed</code>, and making the guidelines more restrictive (namely, <a href="u-dep/mwe">fixed</a> is used <strong>only</strong> for completely fixed grammaticized expressions that behave like function words or short adverbials).</p>
 
-<h2 id="change-arrow-direction">Change arrow direction</h2>
+<h2 id="remove-foreign">Remove foreign</h2>
 
-<p>For non-dependency relations, it was (more or less) arbitrarily decided in v1 to draw arrows from left to right out of the first word. With hindsight, a more harmonious choice for most languages would have been to instead draw arrows from right to left out of the last word. We propose to make this change for <code>fixed</code> (currently <a href="">u-dep/mwe</a>), <a href="">u-dep/foreign</a> and <code>flat</code> (currently <a href="">u-dep/name</a>). Examples:</p>
+<p>The <code>foreign</code> relation does not denote a proper dependency relation and it now seems appropriate to subsume it under the new generalized <code>flat</code> relation. Note that there was never a special part-of-speech tag for foreign words, which were tagged <code>X</code> in cases where they could not be given a proper tag. The use of <code>flat</code> in syntax can be seen as parallel to this. A subtype <code>flat:foreign</code> can be used to preserve information in existing treebanks.</p>
 
-<pre><code class="language-sdparse">I like dogs as well as cats
+<h2 id="serial-verb-constructions">Serial verb constructions</h2>
+
+<p>Serial verb constructions are typologically important and inadequately covered by UD v1. In the absence of a deeper analysis of this class of expressions, which may be worth a special universal relation, we propose to treat them as a subtype of <a href="u-dep/compound">compound</a> and use <code>compound:svc</code> in analogy with the existing subtypes <code>compound:prt</code> for particle verbs and <code>compound:lvc</code> for grammaticized light verb constructions.</p>
+
+<!--## Change arrow direction
+
+For non-dependency relations, it was (more or less) arbitrarily decided in v1 to draw arrows from left to right out of the first word. With hindsight, a more harmonious choice for most languages would have been to instead draw arrows from right to left out of the last word. We propose to make this change for `fixed` (currently [u-dep/mwe]()), [u-dep/foreign]() and `flat` (currently [u-dep/name]()). Examples:
+
+~~~ sdparse
+I like dogs as well as cats
 fixed(as-6, well-5)
 fixed(as-6, as-4)
-</code></pre>
+~~~
 
-<pre><code class="language-sdparse">He cried because of you
+~~~ sdparse
+He cried because of you
 fixed(of, because)
-</code></pre>
+~~~
 
-<pre><code class="language-sdparse">Je préfère prendre un dessert plutôt qu' une entrée \n I prefer getting a dessert rather than an appetizer
+~~~ sdparse
+Je préfère prendre un dessert plutôt qu' une entrée \n I prefer getting a dessert rather than an appetizer
 fixed(qu', plutôt)
-</code></pre>
+~~~
 
-<pre><code class="language-sdparse">She said : ez esan lasai
+~~~ sdparse
+She said : ez esan lasai
 parataxis(said, lasai)
 foreign(lasai, esan)
 foreign(lasai, ez)
-</code></pre>
+~~~
 
-<pre><code class="language-sdparse">Usain Bolt won the race
+~~~ sdparse
+Usain Bolt won the race
 nsubj(won, Bolt)
 flat(Bolt, Usain)
-</code></pre>
+~~~
 
-<!--However we do not extend this change to the [u-dep/reparandum]() relation. In repairs, the material to the right will be the "correct" material, and it would seem strange to have something that the speaker of the utterance wants to discard as a direct dependent of the other words in the sentence while the corrected word is buried down in the dependency graph.
+However we do not extend this change to the [u-dep/reparandum]() relation. In repairs, the material to the right will be the "correct" material, and it would seem strange to have something that the speaker of the utterance wants to discard as a direct dependent of the other words in the sentence while the corrected word is buried down in the dependency graph.
 As noted by Gerdes & Kahane (2016), there are of course borderline cases between elaboration and disfluency such as *I saw a room, a bright room, a room with red lights*, but it doesn't seem wrong to us to take the last element *a room with red lights* as the governor of *a room* and *a bright room*.-->
 
 

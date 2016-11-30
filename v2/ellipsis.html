@@ -21,14 +21,20 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/ellipsis.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/turkunlp/docs/edit/pages-source/_v2/ellipsis.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -39,17 +45,12 @@
 
           <h1 id="ellipsis-in-ud-v2">Ellipsis in UD v2</h1>
 
-<p>The <code>remnant</code> relation turned out to be a non-optimal way for analyzing complex ellipitical constructions. We therefore propose the following changes for UD v2:</p>
+<p>The <code>remnant</code> relation turned out to be a non-optimal way for analyzing complex ellipitical constructions. We therefore introduce the following changes in UD v2:</p>
 
 <ul>
-  <li>The <code>remnant</code> relation should be discarded</li>
-  <li>In the case of simple head ellipsis, the dependent should be promoted</li>
-  <li>In case of predicate ellipsis, we consider two alternative proposals:
-    <ol>
-      <li>Use a more complex relation type that combines the relation of the elided node and its dependent (e.g., <code>conj&gt;dobj</code>)</li>
-      <li>Use promotion but introduce a new relation <code>orphan</code> for non-standard dependency relations that arises</li>
-    </ol>
-  </li>
+  <li>The <code>remnant</code> relation is discarded</li>
+  <li>In the case of simple head ellipsis, a dependent is promoted</li>
+  <li>In case of predicate ellipsis, we also use promotion but introduce a new relation <code>orphan</code> for non-standard dependency relations that arise</li>
   <li>The complex cases of ellipsis should be analyzed with NULL nodes in the <em>enhanced</em> representation</li>
 </ul>
 
@@ -60,9 +61,9 @@
 <pre><code class="language-sdparse">They had left the company , many for good .
 
 nsubj(left, They)
-dobj(left, company)
+obj(left, company)
 remnant(They, many)
-nmod(many, good)
+obl(many, good)
 </code></pre>
 
 <p>In this example, <em>for good</em> is modifying the elided <em>left</em> of the second clause. However, as no similar modifier exists in the first clause, <em>for good</em> cannot be attached with a <em>remnant</em> relation and no reasonable analysis of this sentence is possible. In practice, annotators attached the extra modifier to the subject of the second clause, which incorrectly suggests that <em>for good</em> is modifying the subject <em>many</em>.</p>
@@ -76,7 +77,7 @@ nmod(many, good)
 
 <h2 id="head-ellipsis-in-ud-v2">Head ellipsis in UD v2</h2>
 
-<p>In the following cases of head ellipsis, we promote a modifier of the elided head.</p>
+<p>In the following cases of head ellipsis, we promote a dependent of the elided head.</p>
 
 <h3 id="nominals">Nominals</h3>
 
@@ -89,10 +90,10 @@ nmod(many, good)
 nsubj(kauft-2, Er-1)
 det(Auto-6, ein-4)
 amod(Auto-6, grünes-5)
-dobj(kauft-2, Auto-6)
+obj(kauft-2, Auto-6)
 conj(kauft-2, kauft-9)
 nsubj(kauft-9, sie-8)
-dobj(kauft-9, rotes-12)
+obj(kauft-9, rotes-12)
 det(rotes-12, ein-11)
 </code></pre>
 
@@ -100,31 +101,31 @@ det(rotes-12, ein-11)
 
 nsubj(saw-2, She-1)
 det(animal-4, every-3)
-dobj(saw-2, animal-4)
+obj(saw-2, animal-4)
 conj(saw-2, saw-10)
 advmod(some-12, only-11)
-dobj(saw-10, some-12)
+obj(saw-10, some-12)
 </code></pre>
 
 <pre><code class="language-sdparse">She saw three monkeys and he saw two .
 
 nsubj(saw-2, She-1)
 nummod(monkeys-4, three-3)
-dobj(saw-2, monkeys-4)
+obj(saw-2, monkeys-4)
 conj(saw-2, saw-7)
-dobj(saw-7, two-8)
+obj(saw-7, two-8)
 </code></pre>
 
 <h3 id="clauses">Clauses</h3>
 
-<p>If the main predicate is elided, we promote only if there is an <code>aux</code> or <code>cop</code>, or a <code>mark</code> in the form of an infinitival marker.</p>
+<p>If the main predicate is elided, we use simple promotion only if there is an <code>aux</code> or <code>cop</code>, or a <code>mark</code> in the case of an infinitival marker.</p>
 
 <p>Example:</p>
 
 <pre><code class="language-sdparse">Sue likes pasta and Peter does , too . 
 
 nsubj(likes-2, Sue-1)
-dobj(likes-2, pasta-3)
+obj(likes-2, pasta-3)
 conj(likes-2, does-6)
 nsubj(does-6, Peter-5)
 advmod(does-6, too-8)
@@ -143,7 +144,7 @@ advmod(is-6, too-8)
 
 nsubj(will-2, They-1)
 aux(do-3, will-2)
-dobj(it-4, do-3)
+obj(it-4, do-3)
 advcl(do-3, want-7)
 nsubj(want-7, they-6)
 xcomp(want-7, to-8)
@@ -156,12 +157,12 @@ xcomp(want-7, to-8)
 <pre><code class="language-sdparse">I like tea and you coffee .
 
 nsubj(like-2, I-1)
-dobj(like-2, tea-3)
+obj(like-2, tea-3)
 nsubj(coffee-6, you-5)
 conj(like-2, coffee-6)
 </code></pre>
 
-<p>We consider two alternative proposals for dealing with such cases in UD basic dependencies, one that make use of composite relations (but do not introduce any new relations) and one that instead adds a new relation tentatively dubbed <code>orphan</code> to preserve intuitions about constituency.</p>
+<p>We considered two alternative proposals for dealing with such cases in UD basic dependencies, one that make use of composite relations (but do not introduce any new relations) and one that instead adds a new relation named <code>orphan</code> to preserve intuitions about constituency. In the end we adopted alternative 2.</p>
 
 <h3 id="predicate-ellipis-1-composite-relations">Predicate ellipis 1: composite relations</h3>
 
@@ -172,9 +173,9 @@ conj(like-2, coffee-6)
 <pre><code class="language-sdparse">I like tea and you coffee .
 
 nsubj(like-2, I-1)
-dobj(like-2, tea-3)
+obj(like-2, tea-3)
 conj&gt;nsubj(like-2, you-5)
-conj&gt;dobj(like-2, coffee-6)
+conj&gt;obj(like-2, coffee-6)
 </code></pre>
 
 <p>If the grandparent is also elided, the relation is composed of all three relations and the orphan is attached to its great-grandparent.</p>
@@ -185,9 +186,9 @@ conj&gt;dobj(like-2, coffee-6)
 
 nsubj(wants-2, Mary-1)
 xcomp(wants-2, buy-4)
-dobj(buy-4, book-6)
+obj(buy-4, book-6)
 conj&gt;nsubj(wants-2, Jenny-8)
-conj&gt;xcomp&gt;dobj(wants-2, CD-10)
+conj&gt;xcomp&gt;obj(wants-2, CD-10)
 </code></pre>
 
 <p>Unlike the analysis using the <code>remnant</code> relation, this proposal also allows us to analyze sentences in which the second clause contains additional modifiers.</p>
@@ -195,7 +196,7 @@ conj&gt;xcomp&gt;dobj(wants-2, CD-10)
 <pre><code class="language-sdparse">They had left the company , many for good .
 
 nsubj(left, They)
-dobj(left, company)
+obj(left, company)
 conj&gt;nsubj(left, many)
 conj&gt;nmod(left, good)
 </code></pre>
@@ -206,20 +207,21 @@ conj&gt;nmod(left, good)
 
 nsubj(wants-2, Mary-1)
 xcomp(wants-2, buy-4)
-dobj(buy-4, book-6)
+obj(buy-4, book-6)
 root&gt;nsubj(ROOT, Jenny)
-root&gt;xcomp&gt;dobj(ROOT, CD)
+root&gt;xcomp&gt;obj(ROOT, CD)
 </code></pre>
 
 <h3 id="predicate-ellipis-2-orphan-instead-of-remnant">Predicate ellipis 2: orphan instead of remnant</h3>
 
-<p>The second alternative preserves the integrity of the second conjunct as a single subtree by (arbitrarily) promoting one of the orphans to the (subclause) root and attaching the others with a new dummy relation <code>orphan</code> (or possibly <code>ncc</code> for non-constituent coordination). Here are the same examples annotated according to this alternative:</p>
+<p>The second alternative preserves the integrity of the second conjunct as a single subtree by (arbitrarily) promoting one of the orphans to the (subclause) root and attaching the others with a new dummy relation <code>orphan</code>. Here are the same examples annotated according to this alternative:</p>
 
 <pre><code class="language-sdparse">I like tea and you coffee .
 
 nsubj(like-2, I-1)
-dobj(like-2, tea-3)
+obj(like-2, tea-3)
 conj(like-2, you-5)
+cc(you-5, and-4)
 orphan(you-5, coffee-6)
 </code></pre>
 
@@ -227,7 +229,7 @@ orphan(you-5, coffee-6)
 
 nsubj(wants-2, Mary-1)
 xcomp(wants-2, buy-4)
-dobj(buy-4, book-6)
+obj(buy-4, book-6)
 conj(wants-2, Jenny-8)
 orphan(Jenny-8, CD-10)
 </code></pre>
@@ -235,7 +237,7 @@ orphan(Jenny-8, CD-10)
 <pre><code class="language-sdparse">They had left the company , many for good .
 
 nsubj(left, They)
-dobj(left, company)
+obj(left, company)
 conj(left, many)
 orphan(many, good)
 </code></pre>
@@ -244,49 +246,51 @@ orphan(many, good)
 
 nsubj(wants-2, Mary-1)
 xcomp(wants-2, buy-4)
-dobj(buy-4, book-6)
+obj(buy-4, book-6)
 root(ROOT, Jenny)
 orphan(Jenny, CD)
 </code></pre>
 
+<p>Note that the <code>orphan</code> relation is only used when an ordinary relation would be misleading (for example, when attaching an object to a subject). In particular, the ordinary <code>cc</code> relation should be used for the coordinating conjunction, which attaches to the pseudo-constituent formed through the <code>orphan</code> dependency.</p>
+
+<p>All things considered, alternative 2 was judged to be the best analysis because it preserves the integrity of clauses, avoids the introduction of complex labels, and harmonizes well with the promotion analysis used for simpler cases of ellipsis.</p>
+
 <h2 id="predicate-ellipsis-in-enhanced-ud-v2">Predicate ellipsis in <em>Enhanced</em> UD v2</h2>
 
-<p>While we hold on to the principle that <em>basic</em> UD trees have to be strict surface syntax trees, we propose to relax this requirement in the <em>enhanced</em> representation and to allow special null nodes for sentences with elided predicates. These nodes have special word indices of the form <em>a.b</em>, where <em>a</em> is the index of the token that would precede the elided word and <em>b</em> is a counter. (See also the description of the <a href="conll-u.html">proposed changes</a> to the CoNLL-U file format.) Whenever the <em>basic</em> representation contains a composite relation under proposal 1 above, the <em>enhanced</em> representation contains additional null nodes to resolve all composite relations into simple relations.</p>
+<p>While we hold on to the principle that <em>basic</em> UD trees have to be strict surface syntax trees, we propose to relax this requirement in the <em>enhanced</em> representation and to allow special null nodes for sentences with elided predicates. These nodes have special word indices of the form <em>a.b</em>, where <em>a</em> is the index of the token that would precede the elided word and <em>b</em> is a counter. (See also the description of the <a href="conll-u.html">changes</a> to the CoNLL-U file format.) Whenever the <em>basic</em> representation contains an instance of the <code>orphan</code> relation, the <em>enhanced</em> representation contains additional null nodes so that all orphans can be attached to their real (ellided) parent.</p>
 
 <p>For example, the sentences from the previous section are analyzed as following in the <em>enhanced</em> representation. (The special null nodes are labelled with <em>Ea.b</em> .)</p>
 
 <pre><code class="language-sdparse">I like tea and you E5.1 coffee .
 
 nsubj(like-2, I-1)
-dobj(like-2, tea-3)
+obj(like-2, tea-3)
 nsubj(E5.1-6, you-5)
 conj(like-2, E5.1-6)
-dobj(E5.1-6, coffee-7)
+obj(E5.1-6, coffee-7)
 </code></pre>
 
 <pre><code class="language-sdparse">Mary wants to buy a book and Jenny E8.1 E8.2 a CD .
 
 nsubj(wants-2, Mary-1)
 xcomp(wants-2, buy-4)
-dobj(buy-4, book-6)
+obj(buy-4, book-6)
 conj(wants-2, E8.1-9)
 nsubj(E8.1-9, Jenny-8)
 xcomp(E8.1-9, E8.2-10)
-dobj(E8.2-10, CD-12)
+obj(E8.2-10, CD-12)
 </code></pre>
 
 <pre><code class="language-sdparse">They had left the company , many E7.1 for good .
 
 nsubj(left, They)
-dobj(left, company)
+obj(left, company)
 conj(left, E7.1)
 nsubj(E7.1, many)
 nmod(E7.1, good)
 </code></pre>
 
-<p>In the first example, the node <em>E5.1</em> is added for the elided predicate <em>like</em>. In the second example, we add one node for the elided matrix verb <em>wants</em> (<em>E8.1</em>) and one node for the elided embedded verb <em>buy</em> (<em>E8.2</em>). As the elided marker <em>to</em> does not have any dependents, we do not add a null node for it. We also recommend adding a link between the null nodes and their corresponding surface forms in the sentence (e.g., linking <em>E5.1</em> to <em>like</em> in the first example)?</p>
-
-<p>Finally, it should be noted that, if we adopt alternative 1 for the basic dependencies, then the enhanced representation can in most cases be inferred automatically, whereas with alternative 2 additional annotation will be needed.</p>
+<p>In the first example, the node <em>E5.1</em> is added for the elided predicate <em>like</em>. In the second example, we add one node for the elided matrix verb <em>wants</em> (<em>E8.1</em>) and one node for the elided embedded verb <em>buy</em> (<em>E8.2</em>). As the elided marker <em>to</em> does not have any dependents, we do not add a null node for it.</p>
 
 
 

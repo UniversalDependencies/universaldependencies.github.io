@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>name</title>
+    <title>obl</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -21,14 +21,20 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/u/dep">u/dep</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/name.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-u">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/u/dep">u/dep</a></span>
+          <span class="header-text"><a href="https://github.com/turkunlp/docs/edit/pages-source/_u-dep/obl.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -37,75 +43,69 @@
 	  </div>
 	</noscript>
 
-          <h2><code>name</code>: name</h2>
+          <h2><code>obl</code>: oblique nominal</h2>
 
-<p><code>name</code> is one of the three relations for compounding in UD (together
-with <a href="">compound</a> and <a href="">mwe</a>).
-It is used for proper nouns constituted of multiple nominal
-elements. For example, <code>name</code> would be used between the words of
-<em>Hillary Rodham Clinton, New York,</em> or <em>Carl XVI Gustaf</em> but not to
-replace the usual relations in a phrasal or clausal name like <em>The
-king of Sweden</em> or the novels <em>The Lord of the Rings</em> and <em>Captured By
-Aliens.</em>
-Words joined by <code>name</code> should all be part of a minimal noun phrase;
-otherwise regular syntactic relations should be used.  This is
-basically similar to the treatment of noun compounds with
-<a href="">compound</a>, except that in many cases parts of the name may be
-another nominal element such as an adjective <em>(United Airlines).</em></p>
+<p>The <code>obl</code> relation is used for a nominal (noun, pronoun, noun phrase) functioning as a non-core (oblique) argument or 
+adjunct. This means that it functionally corresponds to an adverbial attaching to a verb, adjective or other adverb.</p>
 
-<p>In general, names are annotated in a flat, head-initial structure, in
-which all words in the name modify the first one using the <code>name</code>
-label.</p>
+<p>The <code>obl</code> relation can be further specified by the case. In conjunction with the <a href="">case</a> relation, it provides a uniform
+analysis for:</p>
 
-<pre><code class="language-sdparse">Carl XVI Gustaf
-name(Carl-1, Gustaf-3)
-name(Carl-1, XVI-2)
+<ul>
+  <li>variant forms with case, a preposition or a postposition, as in Finnish for example:</li>
+</ul>
+
+<pre><code class="language-sdparse">etsiä ilman johtolankaa \n to_search without clue.PARTITIVE
+obl(etsiä, johtolankaa)
+case(johtolankaa, ilman)
 </code></pre>
 
-<p>For organization names with clear syntactic modification structure, the dependencies should reflect the syntactic modification structure using regular syntactic relation, as in:.</p>
-
-<pre><code class="language-sdparse">Natural Resources Conservation Service
-amod(Resources-2, Natural-1)
-compound(Conservation-3, Resources-2)
-compound(Service-4, Conservation-3)
+<pre><code class="language-sdparse">etsiä taskulampun kanssa \n to_search torch.GENITIVE with
+obl(etsiä, taskulampun)
+case(taskulampun, kanssa)
 </code></pre>
 
-<p>In addition, regular syntactic relations are used:
-(i) for a modifying determiner or
-(ii) to connect together the words of a description or name which involve embedded prepositional phrases, sentences, etc.</p>
-
-<pre><code class="language-sdparse">Le Japon
-det(Japon-2, Le-1)
+<pre><code class="language-sdparse">etsiä johtolangatta \n to_search clue.ABESSIVE
+obl(etsiä, johtolangatta)
 </code></pre>
 
-<pre><code class="language-sdparse">Ludwig van Beethoven
-case(Beethoven, van)
+<ul>
+  <li>the dative alternation where the prepositional construction gets a similar analysis to the double object construction:</li>
+</ul>
+
+<pre><code class="language-sdparse">give the children the toys
+obj(give, toys)
+iobj(give, children)
 </code></pre>
 
-<pre><code class="language-sdparse">Miguel de Cervantes y Saavedra
-conj(Cervantes, Saavedra)
-cc(Cervantes, y)
-case(Cervantes, de)
+<pre><code class="language-sdparse">give the toys to the children
+obj(give, toys)
+obl(give, children)
+case(children, to)
 </code></pre>
 
-<pre><code class="language-sdparse">The king of Sweden
-det(king-2, The-1)
-nmod(king-2, Sweden-4)
-case(Sweden-4, of-3)
+<pre><code class="language-conllu"># give the toys to the children
+1     donner    donner   VERB   _   VerbForm=Inf               0   root   _   give
+2     les       le       DET    _   Definite=Def|Number=Plur   3   det    _   the
+3     jouets    jouet    NOUN   _   Gender=Masc|Number=Plur    1   obj   _   toys
+4-5   aux       _        _      _   _                          _   _      _   _
+4     à         à        ADP    _   _                          6   case   _   to
+5     les       le       DET    _   Definite=Def|Number=Plur   6   det    _   the
+6     enfants   enfant   NOUN   _   Gender=Masc|Number=Plur    1   obl   _   children
 </code></pre>
 
-<pre><code class="language-sdparse">Río de la Plata
-case(Plata-4, de-2)
-det(Plata-4, la-3)
-nmod(Río-1, Plata-4)
+<p><code>obl</code> is also used for temporal and locational nominal modifiers:</p>
+
+<pre><code class="language-sdparse">Last night , I swam in the pool
+obl(swam, night)
+obl(swam, pool)
 </code></pre>
 
-<p>In the case of proper entities named after people, e.g. <em>Leland Stanford Jr. University</em>, the <code>name</code> relation should only be used inside the person name, with the rest of the construction analyzed compositionally using normal syntactic relations:</p>
+<p>and for the agent of a passive verb (with the optional subtype obl:agent):</p>
 
-<pre><code class="language-sdparse">Leland Stanford Jr. University
-compound(University-4, Leland-1)
-name(Stanford-2, Leland-1)
-name(Jr.-3, Leland-1)
+<pre><code class="language-sdparse">the cat was chased by the dog
+nsubj:pass(chased, cat)
+obl:agent(chased, dog)
 </code></pre>
 
 
@@ -118,45 +118,6 @@ name(Jr.-3, Leland-1)
 
 <!-- "in other languages" links -->
 <hr/>
-
-name in other languages:
-
-[<a href="../../bg/dep/name.html">bg</a>]
-
-[<a href="../../cs/dep/name.html">cs</a>]
-
-[<a href="../../de/dep/name.html">de</a>]
-
-[<a href="../../el/dep/name.html">el</a>]
-
-[<a href="../../en/dep/name.html">en</a>]
-
-[<a href="../../es/dep/name.html">es</a>]
-
-[<a href="../../eu/dep/name.html">eu</a>]
-
-[<a href="../../fa/dep/name.html">fa</a>]
-
-[<a href="../../fi/dep/name.html">fi</a>]
-
-[<a href="../../fr/dep/name.html">fr</a>]
-
-[<a href="../../ga/dep/name.html">ga</a>]
-
-[<a href="../../he/dep/name.html">he</a>]
-
-[<a href="../../hu/dep/name.html">hu</a>]
-
-[<a href="../../it/dep/name.html">it</a>]
-
-[<a href="../../ja/dep/name.html">ja</a>]
-
-[<a href="../../ko/dep/name.html">ko</a>]
-
-[<a href="../../sv/dep/name.html">sv</a>]
-
-[<a href="../../u/dep/name.html">u</a>]
-
 
 
 

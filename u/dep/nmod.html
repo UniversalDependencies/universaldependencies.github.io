@@ -21,14 +21,20 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/u/dep">u/dep</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/nmod.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-u">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/u/dep">u/dep</a></span>
+          <span class="header-text"><a href="https://github.com/turkunlp/docs/edit/pages-source/_u-dep/nmod.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -39,22 +45,12 @@
 
           <h2><code>nmod</code>: nominal modifier</h2>
 
-<p>The <code>nmod</code> relation is used for nominal modifiers. They depend either
-on another noun (group “noun dependents”) or on a predicate (group
-“non-core dependents of clausal predicates”).</p>
+<p>The <code>nmod</code> relation is used for nominal dependents of another noun or noun phrase and functionally corresponds to
+an attribute, or genitive complement.</p>
 
-<p><code>nmod</code> is a <a href="u-pos/NOUN">noun</a> (or noun phrase) functioning as a
-non-core (oblique) argument or adjunct.
-This means that it functionally corresponds to an adverbial when it attaches to a verb, adjective or other adverb.
-But when attaching to a noun, it corresponds to an attribute, or genitive complement (the terms are less standardized here).</p>
+<p><strong>New from v2:</strong> The <code>nmod</code> relation was previously used also for nominal dependents of verbs, adjectives, and adverbs. The latter are now covered by the new <a href="">obl</a> relation.</p>
 
-<p>The <code>nmod</code> relation can be further specified by the case. 
-In conjunction with the <a href="">case</a> relation, it provides a uniform
-analysis for:</p>
-
-<ul>
-  <li>the possessive alternation:</li>
-</ul>
+<p>In conjunction with the <a href="">case</a> relation, the <code>nmod</code> provides a uniform analysis for the possessive alternation:</p>
 
 <pre><code class="language-sdparse">the Chair 's office
 det(Chair-2, the-1)
@@ -67,55 +63,6 @@ det(office-2, the-1)
 nmod(office-2, Chair-5)
 case(Chair-5, of-3)
 det(Chair-5, the-4)
-</code></pre>
-
-<ul>
-  <li>variant forms with case, a preposition or a postposition, as in Finnish for example:</li>
-</ul>
-
-<pre><code class="language-sdparse">etsiä ilman johtolankaa \n to_search without clue.PARTITIVE
-nmod(etsiä, johtolankaa)
-case(johtolankaa, ilman)
-</code></pre>
-
-<pre><code class="language-sdparse">etsiä taskulampun kanssa \n to_search torch.GENITIVE with
-nmod(etsiä, taskulampun)
-case(taskulampun, kanssa)
-</code></pre>
-
-<pre><code class="language-sdparse">etsiä johtolangatta \n to_search clue.ABESSIVE
-nmod(etsiä, johtolangatta)
-</code></pre>
-
-<ul>
-  <li>the dative alternation where the prepositional construction gets a similar analysis to the double object construction:</li>
-</ul>
-
-<pre><code class="language-sdparse">give the children the toys
-dobj(give, toys)
-iobj(give, children)
-</code></pre>
-
-<pre><code class="language-sdparse">give the toys to the children
-dobj(give, toys)
-nmod(give, children)
-case(children, to)
-</code></pre>
-
-<pre><code class="language-conllu"># give the toys to the children
-1     donner    donner   VERB   _   VerbForm=Inf               0   root   _   give
-2     les       le       DET    _   Definite=Def|Number=Plur   3   det    _   the
-3     jouets    jouet    NOUN   _   Gender=Masc|Number=Plur    1   dobj   _   toys
-4-5   aux       _        _      _   _                          _   _      _   _
-4     à         à        ADP    _   _                          6   case   _   to
-5     les       le       DET    _   Definite=Def|Number=Plur   6   det    _   the
-6     enfants   enfant   NOUN   _   Gender=Masc|Number=Plur    1   nmod   _   children
-</code></pre>
-
-<p><code>nmod</code> is also used for temporal nominal modifiers:</p>
-
-<pre><code class="language-sdparse">Last night , I swam in the pool
-nmod(swam, night)
 </code></pre>
 
 

@@ -21,14 +21,20 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/u/dep">u/dep</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/conj.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-u">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/u/dep">u/dep</a></span>
+          <span class="header-text"><a href="https://github.com/turkunlp/docs/edit/pages-source/_u-dep/conj.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -60,13 +66,13 @@ punct(apples, ,-6)
 punct(apples, ,-8)
 </div>
 
-<p>Coordinate clauses are treated the same way as coordination of other constituent types:</p>
+<p>Coordinated clauses are treated the same way as coordination of other constituent types:</p>
 
 <pre><code class="language-sdparse">He came home , took a shower and immediately went to bed .
 conj(came, took)
 conj(came, went)
-punct(came, ,-4)
-cc(came, and)
+punct(took, ,-4)
+cc(went, and)
 </code></pre>
 
 <p>Coordination may be <em>asyndetic,</em> which means that the coordinating conjunction is omitted.
@@ -76,8 +82,8 @@ Asyndetic coordination may be more frequent in some languages, while in others, 
 <pre><code class="language-sdparse">Veni , vidi , vici .
 conj(Veni, vidi)
 conj(Veni, vici)
-punct(Veni, ,-2)
-punct(Veni, ,-4)
+punct(vidi, ,-2)
+punct(vici, ,-4)
 </code></pre>
 
 <h3 id="shared-dependents-and-effective-parents-in-coordination">Shared Dependents and Effective Parents in Coordination</h3>
@@ -121,24 +127,23 @@ ccomp(saw, kissed)
 </code></pre>
 
 <p>If a dependent is shared among conjuncts, the basic representation always links it to the
-first conjunct (coordination head).
-Relations to the other conjuncts are in the enhanced representation.
-In the following example, enhanced dependencies are shown in red:</p>
-
-<pre><code class="language-conllu"># visual-style 6 1 amod color:red
+first conjunct (coordination head), while the enhanced representation shows all dependencies.
+In the following example, relations that are only part of the enhanced representation are shown in red.
+~~~ conllu
+# visual-style 6 1 amod color:red
 # visual-style 4 3 amod color:red
 # visual-style 6 3 amod color:red
 1 American   _ _ _ _ 4 amod 6:amod        _
-2 and        _ _ _ _ 1 cc   _             _
+2 and        _ _ _ _ 3 cc   _             _
 3 British    _ _ _ _ 1 conj 4:amod|6:amod _
 4 professors _ _ _ _ 0 root _             _
-5 and        _ _ _ _ 4 cc   _             _
+5 and        _ _ _ _ 6 cc   _             _
 6 students   _ _ _ _ 4 conj 0:root        _
-</code></pre>
+~~~</p>
 
 <h3 id="nested-coordination">Nested Coordination</h3>
 
-<p>Note further that the current annotation scheme has only a limited capability to capture nested coordination
+<p>Note further that the basuc annotation scheme has only a limited capability to capture nested coordination
 such as <em>apples and pears or oranges and lemons.</em>
 Consider coordinations</p>
 

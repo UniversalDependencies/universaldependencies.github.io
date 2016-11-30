@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Abbr</title>
+    <title>flat</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -21,14 +21,20 @@
 
       <div id="hp-header">
 	
-          <span class="header-text"><a href="http://universaldependencies.org/#language-ext">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/ext/feat">ext/feat</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ext-feat/Abbr.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/#language-u">home</a></span>
+          <span class="header-text"><a href="http://turkunlp.github.io/docs/u/dep">u/dep</a></span>
+          <span class="header-text"><a href="https://github.com/turkunlp/docs/edit/pages-source/_u-dep/flat.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
       <hr/>
 
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
       <div id="content">
 	<noscript>
 	  <div id="noscript">
@@ -37,17 +43,140 @@
 	  </div>
 	</noscript>
 
-          <h2><code>Abbr</code>: abbreviation</h2>
+          <h2><code>flat</code>: flat multiword expression</h2>
 
-<p>Boolean feature. Is this an abbreviation? Note that the abbreviated
-word(s) typically belongs to a part of speech other than “X”.</p>
+<p>The <code>flat</code> relation is one of three relations for multiword expressions multiword expressions (MWEs) in UD 
+(the other two being <a href="">fixed</a> and <a href="">compound</a>). It is used for exocentric (headless) semi-fixed MWEs like
+names (<em>Hillary Rodham Clinton</em>) and dates (<em>24 December</em>). It contrasts with <a href="">fixed</a>, which applies to
+to completely fixed grammaticized MWEs (like <em>in spite of</em>), and with <a href="">compound</a>, which applies to
+endocentric (headed) MWEs (like <em>apple pie</em>).</p>
 
-<h3 id="yes-it-is-abbreviation">Yes: it is abbreviation</h3>
+<p>Flat MWEs are annotated in a flat structure, where all subsequent words in the expression are attached to the 
+first one using the fixed label. The assumption is that these expressions do not have any internal syntactic structure 
+and that the structural annotation is in principle arbitrary. In practice, however, it is highly desirable to use 
+a consistent annotation of all flat MWEs in all languages.</p>
 
-<p>Examples: etc., J., UK</p>
+<p>Below we describe some of the most common uses of <a href="">flat</a> across languages. Note, however, that semantically
+equivalent expressions in other languages (or even in the same language) may require a different analysis if it
+has a regular compositional syntactic structure.</p>
+
+<h2 id="names">Names</h2>
+
+<p>In many languages, there are multiword proper names with no clear internal syntactic structure and no clear 
+evidence that one of the words is the syntactic head. Such names are annotated using the <code>flat</code> relation, 
+with the optional subtype <code>flat:name</code>.</p>
+
+<pre><code class="language-sdparse">Hilary Rodham Clinton
+flat(Hilary, Rodham)
+flat(Hilary, Clinton)
+</code></pre>
+
+<pre><code class="language-sdparse">Carl XVI Gustaf
+flat(Carl-1, Gustaf-3)
+flat(Carl-1, XVI-2)
+</code></pre>
+
+<pre><code class="language-sdparse">New York
+flat(New, York)
+</code></pre>
+
+<p>By contrast, names that have a regular syntactic structure, like <em>The Lord of the Rings</em> and <em>Captured By
+Aliens</em>, should be annotated with regular syntactic relations.</p>
+
+<pre><code class="language-sdparse">The Lord of the Rings
+det(Lord, The)
+nmod(Lord, Rings)
+case(Rings, of)
+det(Rings, the)
+</code></pre>
+
+<p>For organization names with clear syntactic modification structure, the dependencies should 
+also reflect the syntactic modification structure using regular syntactic relations, as in:</p>
+
+<pre><code class="language-sdparse">Natural Resources Conservation Service
+amod(Resources-2, Natural-1)
+compound(Conservation-3, Resources-2)
+compound(Service-4, Conservation-3)
+</code></pre>
+
+<p>In addition, regular syntactic relations are used: (i) for a modifying determiner or (ii) to connect 
+together the words of a description or name which involve embedded prepositional phrases, sentences, etc.</p>
+
+<pre><code class="language-sdparse">Le Japon
+det(Japon-2, Le-1)
+</code></pre>
+
+<pre><code class="language-sdparse">Ludwig van Beethoven
+case(Beethoven, van)
+</code></pre>
+
+<pre><code class="language-sdparse">Miguel de Cervantes y Saavedra
+conj(Cervantes, Saavedra)
+cc(Saavedra, y)
+case(Cervantes, de)
+</code></pre>
+
+<pre><code class="language-sdparse">The king of Sweden
+det(king-2, The-1)
+nmod(king-2, Sweden-4)
+case(Sweden-4, of-3)
+</code></pre>
+
+<pre><code class="language-sdparse">Río de la Plata
+case(Plata-4, de-2)
+det(Plata-4, la-3)
+nmod(Río-1, Plata-4)
+</code></pre>
+
+<p>In the case of proper entities named after people, e.g. <em>Leland Stanford Jr. University</em>, the <code>flat</code> relation 
+should only be used inside the person name, with the rest of the construction analyzed compositionally using 
+normal syntactic relations:</p>
+
+<pre><code class="language-sdparse">Leland Stanford Jr. University
+compound(University-4, Leland-1)
+flat(Stanford-2, Leland-1)
+flat(Jr.-3, Leland-1)
+</code></pre>
+
+<h2 id="dates-and-complex-numerals">Dates and Complex Numerals</h2>
+
+<p>Date expressions come in many shapes and forms across languages. In some cases, they have a very clear syntactic
+structure, as in <em>the 4th of July</em>, and should be annotated with regular dependency relations. In other cases, they
+have a flat structure with no clearly discernible head, as in <em>1 December 2016</em>, in which case the <code>flat</code> relation 
+should be used.</p>
+
+<pre><code class="language-sdparse">the 4th of July
+det(4th, the)
+nmod(4th, July)
+case(July, of)
+</code></pre>
+
+<pre><code class="language-sdparse">1 December 2016
+flat(1, December)
+flat(1, 2016)
+</code></pre>
+
+<p>The <code>flat</code> relation can also be used for other numerals and other numerical expressions that lack phrasal structure.</p>
+
+<pre><code class="language-sdparse">four thousand
+flat(four, thousand)
+</code></pre>
+
+<h2 id="foreign-phrases">Foreign Phrases</h2>
+
+<p>The <code>flat</code> relation, with the optional subtype <code>flat:foreign</code> should also be used when a foreign phrase
+cannot be given a compositional analysis. In this case, it replaces the <code>foreign</code> relation, which was used
+in v1 but is no longer part of the relation taxonomy.</p>
+
+<pre><code class="language-sdparse">And then she went : gjiko frac zen .
+parataxis(went, gjiko)
+flat(gjiko, frac)
+flat(gjiko, zen)
+</code></pre>
 
 
 <!-- "automatic stats" -->
+
 
 
 
@@ -160,7 +289,7 @@ word(s) typically belongs to a part of speech other than “X”.</p>
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'ext-feat';
+        Collections.listing['_current'] = 'u-dep';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
