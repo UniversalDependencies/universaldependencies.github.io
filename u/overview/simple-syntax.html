@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Universal POS tags</title>
+    <title>Simple Clauses</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -23,7 +23,7 @@
 	
           <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
 
-
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-overview/simple-syntax.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
       </div>
 
@@ -43,87 +43,96 @@
 	  </div>
 	</noscript>
 
-          <h1 id="universal-pos-tags">Universal POS tags</h1>
+          <h1 id="simple-clauses">Simple Clauses</h1>
 
-<p>These tags mark the core part-of-speech categories.
-To distinguish additional lexical and grammatical properties of words,
-use the <a href="../feat/index.html">universal features</a>.</p>
+<p>Simple clauses consist of a predicate together with its nominal core arguments (and may contain 
+additional dependents of both the predicate and its arguments).</p>
 
-<table class="typeindex">
-  <thead>
-    <tr>
-      <th>Open class words</th>
-      <th>Closed class words</th>
-      <th>Other</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="">ADJ</a></td>
-      <td><a href="">ADP</a></td>
-      <td><a href="">PUNCT</a></td>
-    </tr>
-    <tr>
-      <td><a href="">ADV</a></td>
-      <td><a href="">AUX</a></td>
-      <td><a href="">SYM</a></td>
-    </tr>
-    <tr>
-      <td><a href="">INTJ</a></td>
-      <td><a href="">CCONJ</a></td>
-      <td><a href="">X</a></td>
-    </tr>
-    <tr>
-      <td><a href="">NOUN</a></td>
-      <td><a href="">DET</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="">PROPN</a></td>
-      <td><a href="">NUM</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="">VERB</a></td>
-      <td><a href="">PART</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td><a href="">PRON</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td><a href="">SCONJ</a></td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="verbal-clauses">Verbal Clauses</h2>
 
-<hr />
+<pre><code class="language-sdparse">she left
+nsubj(left, she)
+</code></pre>
+<pre><code class="language-sdparse">she left a note
+nsubj(left, she)
+dobj(left, note)
+</code></pre>
+<pre><code class="language-sdparse">she left him a note
+nsubj(left, she)
+dobj(left, note)
+iobj(left, him)
+</code></pre>
 
-<p>Alphabetical listing</p>
+<p>An intransitive verb takes a single argument with the <a href="">u-dep/nsubj</a> relation.
+A transitive verb in addition takes an argument with the <a href="">u-dep/obj</a> relation.
+A ditransitive verb further adds an argument with the <a href="">u-dep/iobj</a> relation.</p>
 
-<ul>
-  <li><a href="">ADJ</a>: adjective</li>
-  <li><a href="">ADP</a>: adposition</li>
-  <li><a href="">ADV</a>: adverb</li>
-  <li><a href="">AUX</a>: auxiliary</li>
-  <li><a href="">CCONJ</a>: coordinating conjunction</li>
-  <li><a href="">DET</a>: determiner</li>
-  <li><a href="">INTJ</a>: interjection</li>
-  <li><a href="">NOUN</a>: noun</li>
-  <li><a href="">NUM</a>: numeral</li>
-  <li><a href="">PART</a>: particle</li>
-  <li><a href="">PRON</a>: pronoun</li>
-  <li><a href="">PROPN</a>: proper noun</li>
-  <li><a href="">PUNCT</a>: punctuation</li>
-  <li><a href="">SCONJ</a>: subordinating conjunction</li>
-  <li><a href="">SYM</a>: symbol</li>
-  <li><a href="">VERB</a>: verb</li>
-  <li><a href="">X</a>: other</li>
-</ul>
+<p>Note that the assignment of core argument relations is independent of case marking (whether morphological or analytic). 
+Thus, in ergative languages, the patient-like argument of a transitive verb will take the he <a href="">u-dep/obj</a> relation 
+despite the fact that it carries the same case marking as the <a href="">u-dep/nsubj</a> argument of an intranstive verb.</p>
+
+<h2 id="nonverbal-clauses">Nonverbal Clauses</h2>
+
+<pre><code class="language-sdparse">she is Jane
+nsubj(Jane, she)
+</code></pre>
+<pre><code class="language-sdparse">she is happy
+nsubj(happy, she)
+</code></pre>
+
+<p>A nonverbal predicate (nominal or adjective) takes a single argument with the <a href="">u-dep/nsubj</a> relation.
+The core argument relation is the same regardless of whether there is an overt copula linking the predicate
+to the subject or not.</p>
+
+<h2 id="non-core-dependents">Non-Core Dependents</h2>
+
+<p>In addition to the core arguments, a predicate may have additional dependents whose grammatical encoding differs 
+from that of core arguments with respect to case marking, agreement and/or linear position in the clause. All such
+dependents are said to be oblique, regardless of whether they can be considered as arguments in the semantic sense. 
+The <a href="">obl</a> relation is used for oblique nominals, and the <a href="">advmod</a> relation is used for adverbial modifiers.</p>
+
+<pre><code class="language-sdparse">she left a note on the table
+nsubj(left, she)
+obj(left, note)
+obl(left, table)
+</code></pre>
+<pre><code class="language-sdparse">she left a note in the morning
+nsubj(left, she)
+obj(left, note)
+obl(left, morning)
+</code></pre>
+<pre><code class="language-sdparse">she left from home
+nsubj(left, she)
+obl(left, home)
+</code></pre>
+<pre><code class="language-sdparse">she left suddenly
+nsubj(left, she)
+advmod(left, suddenly)
+</code></pre>
+
+<h2 id="valency-changing-constructions">Valency-Changing Constructions</h2>
+
+<p>If passivization involves the promotion of an argument to subject position, then this argument can be 
+annotated with a special subtype <code>nsubj:pass</code> to indicate that promotion has taken place. The subtype
+<code>obl:agent</code> can be used to annotated the demoted subject (if present).</p>
+
+<pre><code class="language-sdparse">she left a note on the table
+nsubj(left, she)
+obj(left, note)
+obl(left, table)
+</code></pre>
+<pre><code class="language-sdparse">a note was left on the table
+nsubj:pass(left, note)
+obl(left, table)
+</code></pre>
+<pre><code class="language-sdparse">a note was left by her on the table
+nsubj:pass(left, note)
+obl:agent(left, her)
+obl(left, table)
+</code></pre>
+
+<p>ADD DISCUSSION OF OTHER VALENCY-CHANGING OPERATIONS</p>
+
 
 
       </div>
