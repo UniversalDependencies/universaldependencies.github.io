@@ -71,7 +71,133 @@ cc(two, or)
 
 <h2 id="ellipsis">Ellipsis</h2>
 
-<p>Ellipsis often arises in the context of coordination but</p>
+<p>The UD approach to ellipsis can be summarized as follows:</p>
+
+<ol>
+  <li>If the ellided element has no overt dependents, we do nothing.</li>
+  <li>If the ellided element has overt dependents, we promote one of these to take the role of the head.</li>
+  <li>If the ellided element is a predicate and the promoted element a core argument, we use the <code>orphan</code> relation when attaching other non-functional dependents to the promoted head.</li>
+</ol>
+
+<h3 id="ellipsis-in-nominals">Ellipsis in Nominals</h3>
+
+<p>If the head nominal is elided, we promote dependents in the following order: <code>amod</code> &gt; <code>nummod</code> &gt; <code>det</code> &gt; <code>nmod</code> &gt; <code>case</code>.</p>
+
+<p>Examples:</p>
+
+<pre><code class="language-sdparse">Er kauft sich ein grünes Auto und sie kauft sich ein rotes . \n He buys himself a green car and she buys herself a red .
+
+nsubj(kauft-2, Er-1)
+det(Auto-6, ein-4)
+amod(Auto-6, grünes-5)
+obj(kauft-2, Auto-6)
+conj(kauft-2, kauft-9)
+nsubj(kauft-9, sie-8)
+obj(kauft-9, rotes-12)
+det(rotes-12, ein-11)
+</code></pre>
+
+<pre><code class="language-sdparse">She saw every animal at the zoo but he saw only some .
+
+nsubj(saw-2, She-1)
+det(animal-4, every-3)
+obj(saw-2, animal-4)
+conj(saw-2, saw-10)
+advmod(some-12, only-11)
+obj(saw-10, some-12)
+</code></pre>
+
+<pre><code class="language-sdparse">She saw three monkeys and he saw two .
+
+nsubj(saw-2, She-1)
+nummod(monkeys-4, three-3)
+obj(saw-2, monkeys-4)
+conj(saw-2, saw-7)
+obj(saw-7, two-8)
+</code></pre>
+
+<h3 id="ellipsis-in-clauses">Ellipsis in Clauses</h3>
+
+<p>If the main predicate is elided, we use simple promotion only if there is an <code>aux</code> or <code>cop</code>, or a <code>mark</code> in the case of an infinitival marker.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-sdparse">Sue likes pasta and Peter does , too . 
+
+nsubj(likes-2, Sue-1)
+obj(likes-2, pasta-3)
+conj(likes-2, does-6)
+nsubj(does-6, Peter-5)
+advmod(does-6, too-8)
+</code></pre>
+
+<pre><code class="language-sdparse">Sue is hungry and Peter is , too . 
+
+nsubj(hungry-3, Sue-1)
+cop(hungry-3, is-2)
+conj(hungry-3, is-6)
+nsubj(is-6, Peter-5)
+advmod(is-6, too-8)
+</code></pre>
+
+<pre><code class="language-sdparse">They will do it if they want to .
+
+nsubj(will-2, They-1)
+aux(do-3, will-2)
+obj(it-4, do-3)
+advcl(do-3, want-7)
+nsubj(want-7, they-6)
+xcomp(want-7, to-8)
+</code></pre>
+
+<p>In more complicated cases where a predicate is elided but no <code>aux</code> or <code>cop</code> is present, promotion could lead to very unnatural and confusing relations. For example, in the following sentence, <em>you</em> would be the subject of <em>coffee</em>, suggesting that the second clause contains a copular construction rather than an elided predicate.</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee .
+
+nsubj(like-2, I-1)
+obj(like-2, tea-3)
+nsubj(coffee-6, you-5)
+conj(like-2, coffee-6)
+</code></pre>
+
+<p>In such cases, we use the special relation <code>orphan</code> to signal a non-standard dependency.</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee .
+
+nsubj(like-2, I-1)
+obj(like-2, tea-3)
+conj(like-2, you-5)
+cc(you-5, and-4)
+orphan(you-5, coffee-6)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book and Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+obj(buy-4, book-6)
+conj(wants-2, Jenny-8)
+orphan(Jenny-8, CD-10)
+</code></pre>
+
+<pre><code class="language-sdparse">They had left the company , many for good .
+
+nsubj(left, They)
+obj(left, company)
+conj(left, many)
+orphan(many, good)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book . ROOT And Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+obj(buy-4, book-6)
+root(ROOT, Jenny)
+orphan(Jenny, CD)
+</code></pre>
+
+<p>Note that the <code>orphan</code> relation is only used when an ordinary relation would be misleading (for example, when attaching an object to a subject). In particular, the ordinary <code>cc</code> relation should be used for the coordinating conjunction, which attaches to the pseudo-constituent formed through the <code>orphan</code> dependency.</p>
 
 <h3 id="multiword-expressions">Multiword Expressions</h3>
 
@@ -114,57 +240,8 @@ compound(drive, disk)
 compound(enclosure, drive)
 obj(bought, enclosure)
 </div>
-<p>### Multiword Expressions</p>
 
-<p>Multiword expressions The following types of expressions are annotated in a head-initial structure, where all non-first elements
-depend on the first, and where only the first element can have dependents:</p>
-
-<ol>
-  <li>Fixed multiword expressions (<a href="">u-dep/mwe</a>)</li>
-  <li>Multiword names (<a href="">u-dep/name</a>)</li>
-  <li>Foreign phrases (<a href="">u-dep/foreign</a>)</li>
-</ol>
-
-<div id="s8a" class="sd-parse">
-We had a nice time in spite of the rain .
-case(rain,in)
-mwe(in,spite)
-mwe(in,of)
-nmod(had,rain)
-</div>
-
-<div id="s8b" class="sd-parse">
-Martin Luther King had a dream .
-nsubj(had,Martin)
-name(Martin,Luther)
-name(Martin,King)
-</div>
-
-<div id="s8c" class="sd-parse">
-She said qwe rty yui .
-dobj(said,qwe)
-foreign(qwe,rty)
-foreign(qwe,yui)
-</div>
-
-<p>In contrast, <a href="compound">compounds</a> are annotated to show their modification structure, including a regular concept of head:</p>
-
-<div id="s9" class="sd-parse">
-I bought a computer disk drive enclosure .
-nsubj(bought, I)
-det(enclosure, a)
-compound(drive, computer)
-compound(drive, disk)
-compound(enclosure, drive)
-dobj(bought, enclosure)
-</div>
-<p>## Coordination</p>
-
-<ul>
-  <li>Coordination: currently described under <a href="">u-dep/conj</a></li>
-</ul>
-
-<h3 id="comparatives">Comparatives</h3>
+<h2 id="comparatives">Comparatives</h2>
 
 <p>The syntax of comparative constructions poses various challenges for linguistic theory.  For English, many of these are discussed in Bresnan (1973) and Huddleston and Pullum (2002, chapter 13). We give a discussion of equality comparisons (<em>That car is as big as mine</em>) and inequality scalar comparisons (<em>Sue is taller than Jim</em>).</p>
 
@@ -209,10 +286,10 @@ amod(flour, much)
 <pre><code class="language-sdparse">I do n't hear from my brother as often as I previously heard from him .
 nsubj(hear, I-1)
 aux(hear, do)
-neg(hear, n't)
+advmod(hear, n't)
 case(brother, from-5)
 det(brother, my)
-nmod(hear, brother)
+obl(hear, brother)
 advmod(often, as-8)
 advmod(hear, often)
 mark(heard, as-10)
@@ -220,7 +297,7 @@ nsubj(heard, I-11)
 advmod(heard, previously)
 advcl(often, heard)
 case(him, from-14)
-nmod(heard, him)
+obl(heard, him)
 punct(hear, .)
 </code></pre>
 
@@ -230,13 +307,13 @@ punct(hear, .)
 nsubj(面白い, “X”)
 case(“X”, が)
 case(“Y”, より)
-nmod(面白い, “Y”)
+obl(面白い, “Y”)
 punct(面白い, 。)
 </code></pre>
 
 <p>Since the first <em>as</em> is a functional element, the dependent can be understood to modify the whole phrase <em>as often</em>, and therefore is attached to the head of that phrase. Additionally, it might be noted that comparatives without a comparative word occur in certain varieties of English. For example in Indian English you find usages such as <em>So don’t worry if you think that you have a girl-friend, who is intelligent than you.</em> One further argument from morphological comparatives is discussed below.</p>
 
-<p>The same basic analysis is given for inequality scalar comparatives, with <em>more</em> or <em>less</em> or a comparative adjective and <em>than</em>, parallel to the two uses of <em>as</em> above, except that <em>more</em> can also directly modify a noun, and <em>more</em> is then taken to have the <a href="">u-dep/amod</a> relation to the noun.  In this case, we take the comparative complement as directly depending on <em>more</em>, roughly seeing it as elliptical for <em>more numerous</em>.  In general, the comparative complement always depends on an adjective or adverb, and is usually an <a href="">advcl</a> except when it is directly analyzed as an <a href="">nmod</a> (as discussed at the end of this section).</p>
+<p>The same basic analysis is given for inequality scalar comparatives, with <em>more</em> or <em>less</em> or a comparative adjective and <em>than</em>, parallel to the two uses of <em>as</em> above, except that <em>more</em> can also directly modify a noun, and <em>more</em> is then taken to have the <a href="">u-dep/amod</a> relation to the noun.  In this case, we take the comparative complement as directly depending on <em>more</em>, roughly seeing it as elliptical for <em>more numerous</em>.  In general, the comparative complement always depends on an adjective or adverb, and is usually an <a href="">advcl</a> except when it is directly analyzed as an <a href="">obl</a> (as discussed at the end of this section).</p>
 
 <pre><code class="language-sdparse">more problems than you thought of last week
 amod(problems, more)
@@ -292,12 +369,12 @@ nsubj(put, I)
 compound(put, in)
 advmod(much, as-4)
 amod(flour, much)
-dobj(put, flour)
+obj(put, flour)
 mark(called, as-7)
 det(recipe, the)
 nsubj(called, recipe)
 advcl(much, called)
-nmod(called, for)
+obl(called, for)
 punct(put, .)
 </code></pre>
 
@@ -323,13 +400,13 @@ advcl(better, sober)
 <pre><code class="language-sdparse">as important as a player 's talent
 advmod(important, as-1)
 case(talent, as-3)
-nmod(important, talent)
+obl(important, talent)
 </code></pre>
 
 <pre><code class="language-sdparse">more important than a player 's talent
 advmod(important, more)
 case(talent, than)
-nmod(important, talent)
+obl(important, talent)
 </code></pre>
 
 <h3 id="more-than-as-a-multi-word-expression"><em>More than</em> as a multi-word expression</h3>
@@ -343,14 +420,14 @@ and the quantity it is compared to:</p>
   <li><em>Home prices have more than doubled in the past decade.</em></li>
 </ul>
 
-<p>In these cases we consider <em>more than</em> to be a multi-word expression because the two words are inseparable.
+<p>In these cases we consider <em>more than</em> to be a fixed multi-word expression because the two words are inseparable.
 One cannot say <em>*more percent than 90.</em></p>
 
 <pre><code class="language-sdparse">That is more than likely .
 nsubj(likely, That)
 cop(likely, is)
 advmod(likely, more)
-mwe(more, than)
+fixed(more, than)
 punct(likely, .-6)
 </code></pre>
 
@@ -358,7 +435,7 @@ punct(likely, .-6)
 
 <pre><code class="language-sdparse">more than two years ago
 nummod(years, two)
-mwe(more, than)
+fixed(more, than)
 advmod(two, more)
 </code></pre>
 
@@ -366,11 +443,9 @@ advmod(two, more)
 
 <pre><code class="language-sdparse">more than a year ago
 det(year, a)
-mwe(more, than)
+fixed(more, than)
 advmod(year, more)
 </code></pre>
-
-<h2 id="multiword-expressions-1">Multiword Expressions</h2>
 
 <h2 id="loose-joining-relations-and-clause-external-elements">Loose Joining Relations and Clause-External Elements</h2>
 
@@ -392,7 +467,7 @@ discourse(apply, yes)
 parataxis(agree, apply)
 </code></pre>
 
-<h3 id="punctuation">Punctuation</h3>
+<h2 id="punctuation">Punctuation</h2>
 
 <p>Tokens with the relation <a href="">u-dep/punct</a> always attach to content words (except in cases of ellipsis) and can never have dependents. Since <code>punct</code> is not a normal dependency relation, the usual criteria for determining the head word do not apply. 
 Instead, we use the following principles:</p>
