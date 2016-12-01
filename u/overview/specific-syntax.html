@@ -45,9 +45,76 @@
 
           <h1 id="other-constructions">Other Constructions</h1>
 
-<p>This document contains detailed discussion of particular linguistic constructions that fall outside (or cut across) the main categories of simple clause, complex clauses, and nominal phrases.</p>
+<p>This section contains detailed discussion of particular linguistic constructions that fall outside (or cut across) the main categories of simple clause, complex clauses, and nominal phrases.</p>
+
+<h2 id="coordination">Coordination</h2>
+
+<p>As discussed in the section on <a href="complex-syntax.html">complex clauses</a>, we treat coordinate structures asymmetrically
+by attaching all non-first conjuncts to the first conjunct via the <a href="">u-dep/conj</a> relation. Coordinating conjunctions and punctuation delimiting the conjuncts are attached to the immediately following conjunct using the <a href="">u-dep/cc</a> and <a href="">u-dep/punct</a> relations respectively. This analysis is applied to all cases of coordination at the clause, phrase or word level.</p>
+
+<pre><code class="language-sdparse">He came home , took a shower and immediately went to bed .
+conj(came, took)
+conj(came, went)
+punct(took, ,-4)
+cc(went, and)
+</code></pre>
+
+<pre><code class="language-sdparse">He read the newspaper and a good book .
+conj(newspaper, book)
+cc(book, and)
+</code></pre>
+
+<pre><code class="language-sdparse">He read one or two books .
+conj(one, two)
+cc(two, or)
+</code></pre>
+
+<h2 id="ellipsis">Ellipsis</h2>
+
+<p>Ellipsis often arises in the context of coordination but</p>
 
 <h3 id="multiword-expressions">Multiword Expressions</h3>
+
+<p>Multiword expressions (MWEs) are combinations of words that (in some respect and to different degrees) behave
+as lexical units rather than compositional syntactic phrases. The UD taxonomy contains three special relations 
+for analyzing MWEs:</p>
+
+<ul>
+  <li><a href="">u-dep/fixed</a> are used to analyze fixed grammaticized MWEs like <em>in spite of</em> (see above)</li>
+  <li><a href="">u-dep/flat</a> are used to analyze exocentric semi-fixed MWEs like <em>Barack Obama</em></li>
+  <li><a href="">u-dep/compound</a> are used to analyze (endocentric) compounds like <em>noun phrase</em></li>
+</ul>
+
+<p>Structures analyzed with <a href="">u-dep/fixed</a> and <a href="">u-dep/flat</a> are headless by definition and are consistently
+annotated by attaching all non-first elements to the first and only allowing outgoing dependents from the first element.</p>
+
+<div id="s8a" class="sd-parse">
+We had a nice time in spite of the rain .
+case(rain,in)
+fixed(in,spite)
+fixed(in,of)
+obl(had,rain)
+</div>
+
+<div id="s8b" class="sd-parse">
+Martin Luther King had a dream .
+nsubj(had,Martin)
+flat(Martin,Luther)
+flat(Martin,King)
+</div>
+
+<p>By contrast, <a href="compound">compounds</a> are annotated to show their modification structure, including a regular concept of head:</p>
+
+<div id="s9" class="sd-parse">
+I bought a computer disk drive enclosure .
+nsubj(bought, I)
+det(enclosure, a)
+compound(drive, computer)
+compound(drive, disk)
+compound(enclosure, drive)
+obj(bought, enclosure)
+</div>
+<p>### Multiword Expressions</p>
 
 <p>Multiword expressions The following types of expressions are annotated in a head-initial structure, where all non-first elements
 depend on the first, and where only the first element can have dependents:</p>
