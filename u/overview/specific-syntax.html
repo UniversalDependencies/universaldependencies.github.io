@@ -59,26 +59,43 @@ cc(went, and)
 
 <p>Asyndetic coordination occurs when there is no overt coordinating conjunction.</p>
 
-<h2 id="subordination">Subordination</h2>
+<pre><code class="language-sdparse">Veni , vidi , vici .
+conj(Veni, vidi)
+conj(Veni, vici)
+punct(vidi, ,-2)
+punct(vici, ,-4)
+</code></pre>
 
-<p>Complex clauses involving subordination arise because a core or non-core dependent is realized as a clausal structure.
-We distinguish four basic types:</p>
+<p>As a special case, the first conjunct may be implicit or part of an earlier sentence.</p>
 
-<ol>
-  <li>Clausal subjects (<a href="">u-dep/csubj</a>).</li>
-  <li>Clausal complements (objects), divided into those with obligatory control (<a href="">u-dep/xcomp</a>) and those without (<a href="">u-dep/ccomp</a>).</li>
-  <li>Adverbial clause modifiers (<a href="">u-dep/advcl</a>).</li>
-  <li>Adnominal clause modifiers (<a href="">u-dep/acl</a>) (with relative clauses as an important subtype in many languages).</li>
-</ol>
+<pre><code class="language-sdparse">And then we left .
+cc(left, And)
+~~~ sdparse
 
-<p>In addition, we discuss <em>secondary predicates</em>, which are analyzed as clausal complements or adnominal clause modifiers.</p>
+### Ellipsis
 
-<h3 id="clausal-subjects">Clausal Subjects</h3>
+Coordination is often combined with _ellipsis_, where one or more of the normally obligatory constituents
+of a clause or omitted because they can be inferred from material in another conjunct. 
 
-<p>A clausal subject is a clausal syntactic subject of a clause. Its governor may be a verb or a nonverbal predicate.
-If the governor is in the passive, the subtype <code>csubj:pass</code> can be used.</p>
+## Subordination
 
-<pre><code class="language-sdparse">What she said makes sense
+Complex clauses involving subordination arise because a core or non-core dependent is realized as a clausal structure.
+We distinguish four basic types: 
+
+1. Clausal subjects ([u-dep/csubj]()).
+2. Clausal complements (objects), divided into those with obligatory control ([u-dep/xcomp]()) and those without ([u-dep/ccomp]()).
+3. Adverbial clause modifiers ([u-dep/advcl]()).
+4. Adnominal clause modifiers ([u-dep/acl]()) (with relative clauses as an important subtype in many languages).
+
+In addition, we discuss _secondary predicates_, which are analyzed as clausal complements or adnominal clause modifiers.
+
+### Clausal Subjects
+
+A clausal subject is a clausal syntactic subject of a clause. Its governor may be a verb or a nonverbal predicate.
+If the governor is in the passive, the subtype `csubj:pass` can be used.
+
+~~~ sdparse
+What she said makes sense
 csubj(makes, said)
 </code></pre>
 
