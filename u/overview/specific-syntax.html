@@ -72,30 +72,101 @@ punct(vici, ,-4)
 cc(left, And)
 ~~~ sdparse
 
-### Ellipsis
+### Ellipsis in Clause Coordination 
 
 Coordination is often combined with _ellipsis_, where one or more of the normally obligatory constituents
 of a clause or omitted because they can be inferred from material in another conjunct. 
 
-## Subordination
-
-Complex clauses involving subordination arise because a core or non-core dependent is realized as a clausal structure.
-We distinguish four basic types: 
-
-1. Clausal subjects ([u-dep/csubj]()).
-2. Clausal complements (objects), divided into those with obligatory control ([u-dep/xcomp]()) and those without ([u-dep/ccomp]()).
-3. Adverbial clause modifiers ([u-dep/advcl]()).
-4. Adnominal clause modifiers ([u-dep/acl]()) (with relative clauses as an important subtype in many languages).
-
-In addition, we discuss _secondary predicates_, which are analyzed as clausal complements or adnominal clause modifiers.
-
-### Clausal Subjects
-
-A clausal subject is a clausal syntactic subject of a clause. Its governor may be a verb or a nonverbal predicate.
-If the governor is in the passive, the subtype `csubj:pass` can be used.
+If the main predicate is elided, an associated `aux` or `cop` can be promoted to head of the clause.
 
 ~~~ sdparse
-What she said makes sense
+Sue likes pasta and Peter does , too . 
+
+nsubj(likes-2, Sue-1)
+obj(likes-2, pasta-3)
+conj(likes-2, does-6)
+nsubj(does-6, Peter-5)
+advmod(does-6, too-8)
+</code></pre>
+
+<pre><code class="language-sdparse">Sue is hungry and Peter is , too . 
+
+nsubj(hungry-3, Sue-1)
+cop(hungry-3, is-2)
+conj(hungry-3, is-6)
+nsubj(is-6, Peter-5)
+advmod(is-6, too-8)
+</code></pre>
+
+<p>In more complicated cases where a predicate is elided but no <code>aux</code> or <code>cop</code> is present, promotion can lead to unnatural and confusing relations. For example, in the following sentence, <em>you</em> would be the subject of <em>coffee</em>, suggesting that the second clause contains a nonverbal predication rather than an elided predicate.</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee .
+
+nsubj(like-2, I-1)
+obj(like-2, tea-3)
+nsubj(coffee-6, you-5)
+conj(like-2, coffee-6)
+</code></pre>
+
+<p>In such cases, we therefore use the special <code>orphan</code> relation to attach siblings to the promoted element.</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee .
+
+nsubj(like-2, I-1)
+obj(like-2, tea-3)
+conj(like-2, you-5)
+cc(you-5, and-4)
+orphan(you-5, coffee-6)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book and Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+obj(buy-4, book-6)
+conj(wants-2, Jenny-8)
+orphan(Jenny-8, CD-10)
+</code></pre>
+
+<pre><code class="language-sdparse">They had left the company , many for good .
+
+nsubj(left, They)
+obj(left, company)
+conj(left, many)
+orphan(many, good)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book . ROOT And Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+obj(buy-4, book-6)
+root(ROOT, Jenny)
+orphan(Jenny, CD)
+</code></pre>
+
+<p>Note that the <code>orphan</code> relation is only used when an ordinary relation would be misleading (for example, when attaching an object to a subject). In particular, the ordinary <code>cc</code> relation should be used for the coordinating conjunction, which attaches to the pseudo-constituent formed through the <code>orphan</code> dependency.</p>
+
+<h2 id="subordination">Subordination</h2>
+
+<p>Complex clauses involving subordination arise because a core or non-core dependent is realized as a clausal structure.
+We distinguish four basic types:</p>
+
+<ol>
+  <li>Clausal subjects (<a href="">u-dep/csubj</a>).</li>
+  <li>Clausal complements (objects), divided into those with obligatory control (<a href="">u-dep/xcomp</a>) and those without (<a href="">u-dep/ccomp</a>).</li>
+  <li>Adverbial clause modifiers (<a href="">u-dep/advcl</a>).</li>
+  <li>Adnominal clause modifiers (<a href="">u-dep/acl</a>) (with relative clauses as an important subtype in many languages).</li>
+</ol>
+
+<p>In addition, we discuss <em>secondary predicates</em>, which are analyzed as clausal complements or adnominal clause modifiers.</p>
+
+<h3 id="clausal-subjects">Clausal Subjects</h3>
+
+<p>A clausal subject is a clausal syntactic subject of a clause. Its governor may be a verb or a nonverbal predicate.
+If the governor is in the passive, the subtype <code>csubj:pass</code> can be used.</p>
+
+<pre><code class="language-sdparse">What she said makes sense
 csubj(makes, said)
 </code></pre>
 
