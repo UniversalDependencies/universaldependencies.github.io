@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Basic Dependencies</title>
+    <title>Other Constructions</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -43,19 +43,15 @@
 	  </div>
 	</noscript>
 
-          <h1 id="basic-dependencies">Basic Dependencies</h1>
+          <h1 id="other-constructions">Other Constructions</h1>
 
-<p>This section will contain detailed discussion of particular linguistic constructions of interest, covering best practices for how to annotate them cross-linguistically. It is still a work in progress.  At the moment, you can also see:</p>
+<p>This document contains detailed discussion of particular linguistic constructions that fall outside (or cut across) the main categories of simple clause, complex clauses, and nominal phrases.</p>
+
+<h2 id="coordination">Coordination</h2>
 
 <ul>
   <li>Coordination: currently described under <a href="">u-dep/conj</a></li>
-  <li>Direct and reported speech: currently described under <a href="">u-dep/parataxis</a></li>
-  <li>Choices for representing repeated arguments, particularly for clitic doubling, are described under <a href="">u-dep/expl</a></li>
 </ul>
-
-<h2 id="adjectival-and-adverbial-constructions">Adjectival and adverbial constructions</h2>
-
-<p>…</p>
 
 <h3 id="comparatives">Comparatives</h3>
 
@@ -263,7 +259,13 @@ mwe(more, than)
 advmod(year, more)
 </code></pre>
 
-<h2 id="clause-external-elements">Clause-external elements</h2>
+<h2 id="multiword-expressions">Multiword Expressions</h2>
+
+<h2 id="loose-joining-relations-and-clause-external-elements">Loose Joining Relations and Clause-External Elements</h2>
+
+<ul>
+  <li>Direct and reported speech: currently described under <a href="">u-dep/parataxis</a></li>
+</ul>
 
 <h3 id="feedback-words">Feedback words</h3>
 
@@ -278,41 +280,6 @@ discourse(apply, yes)
 <pre><code class="language-sdparse">I agree , we should apply for membership .
 parataxis(agree, apply)
 </code></pre>
-
-<h2 id="ellipsis">Ellipsis</h2>
-
-<p>Ellipsis means that there is something missing in the sentence.
-Something that has been omitted from the surface form, although it is understood by both the speaker and the listener.
-Various phenomena can be classified as ellipsis;
-the most important and difficult are those where the missing word has dependents.
-Where do we attach these orphans to?</p>
-
-<p>Several different solutions can be found in treebanks.
-One of them is to include an empty node (labeled <code>NULL</code>, <code>#Fantom</code> etc.) that represents the missing word.
-Orphans are then attached to the empty node with their real dependency relation labels.
-Such analysis would be linguistically adequate but it would violate our principle that dependencies exist
-between real syntactic words. (It would also make parsing more difficult.)
-We do not insert empty nodes.</p>
-
-<p>If empty nodes are not an option, some treebanks attach all orphans to the grandparent,
-i.e. parent of the missing parent node. Then they may</p>
-
-<ul>
-  <li>keep the labels they would have if attached to the missing parent</li>
-  <li>get a special label such as the <code>ExD</code> in Prague-style treebanks</li>
-  <li>combine both (in the Danish treebank, the original labels are surrounded by angle brackets to indicate that this is not the real parent)</li>
-</ul>
-
-<p>Another possibility is that one of the orphans gets promoted to the place of the missing parent
-and the other orphans are attached to it.
-This approach is used in Universal Dependencies when a main verb is missing and its auxiliary is promoted:
-<em>I did not solve the problem but he did today.</em></p>
-
-<p>A special case of ellipsis arises in coordinate clauses that share the same verb,
-and the verb is not repeated in the second clause:
-<em>John bought a car and Peter a bike.</em>
-Universal Dependencies annnotate such cases using the <a href="">u-dep/remnant</a> relation
-(for more details see there).</p>
 
 
       </div>
