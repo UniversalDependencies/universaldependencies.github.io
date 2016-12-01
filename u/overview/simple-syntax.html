@@ -82,6 +82,30 @@ obl(left, him)
 
 <p>Note, finally, that not all languages allow extended transitives (and some do only in connection with special valency-changing operations such as applicatives). Hence, the <a href="">u-dep/iobj</a> relation will not be used in all languages.</p>
 
+<h3 id="valency-changing-operations">Valency-Changing Operations</h3>
+
+<p>If passivization involves the promotion of an argument to subject position, then this argument can be 
+annotated with a special subtype <code>nsubj:pass</code> to indicate that promotion has taken place. The subtype
+<code>obl:agent</code> can be used to annotated the demoted subject (if present).</p>
+
+<pre><code class="language-sdparse">she left a note on the table
+nsubj(left, she)
+obj(left, note)
+obl(left, table)
+</code></pre>
+<pre><code class="language-sdparse">a note was left on the table
+nsubj:pass(left, note)
+obl(left, table)
+</code></pre>
+<pre><code class="language-sdparse">a note was left by her on the table
+nsubj:pass(left, note)
+obl:agent(left, her)
+obl(left, table)
+</code></pre>
+
+<p>Similar subtyping could be used for other valency-changing operations, but there are currently no 
+specific guidelines for this.</p>
+
 <h2 id="nonverbal-clauses">Nonverbal Clauses</h2>
 
 <p>A nonverbal predicate (nominal or adjective) takes a single argument with the <a href="">u-dep/nsubj</a> relation.
@@ -192,7 +216,7 @@ obl(is, kitchen)
 case(kitchen, in)
 </code></pre>
 
-<h4 id="irish">Irish</h4>
+<h3 id="irish">Irish</h3>
 
 <p>Irish uses a copula verb in categories 1, 4 and 5, and a different verb in categories 2, 3 and 6. Not only the verb but also the word order is different.</p>
 
@@ -237,7 +261,7 @@ cop(leabhar, is)
 nsubj(tá, bia)
 </code></pre>
 
-<h4 id="czech">Czech</h4>
+<h3 id="czech">Czech</h3>
 
 <p>The Czech verb <em>být</em> is used in all categories (1-6) and can be analyzed as copula everywhere except for pure existentials (without location) where no predicate other than the verb is available. Czech word order is free and it is not guaranteed that all constructions will come out as subject-copula-predicate. Reversed order (predicate-copula-subject) is less common but possible, even in the “equation” category (1). Czech is a pro-drop language which means that pronominal subjects are optional.</p>
 
@@ -321,7 +345,7 @@ case(kuchyni, v)
 case(kitchen, in)
 </code></pre>
 
-<h4 id="russian">Russian</h4>
+<h3 id="russian">Russian</h3>
 
 <p>In Russian, there is no copula verb in the present tense. In the future and past tenses, the verb <em>быть</em> “be” is used.
 The same analysis applies to categories (1-5).</p>
@@ -398,7 +422,7 @@ case(кухне, на)
 case(kitchen, in)
 </code></pre>
 
-<h4 id="turkish">Turkish</h4>
+<h3 id="turkish">Turkish</h3>
 
 <p>In Turkish, there are two copula verbs, <em>i-</em> and <em>ol-</em>. The “true” copula is <em>i-</em> which is defective, only having a limited number of tense forms (aorist and past), and cliticising. When a copula is needed in another tense, <em>ol-</em> is employed. However, if there is a form of <em>i-</em> then the equivalent form of <em>ol-</em> takes on the meaning “become”.</p>
 
@@ -501,11 +525,86 @@ nsubj(left, she)
 advmod(left, suddenly)
 </code></pre>
 
-<p>In addition to the general <a href="">u-dep/obl</a> relation, there are three special relations that are used for non-core dependents of a predicate:</p>
+<p>In addition to the general <a href="">u-dep/obl</a> relation, there are three special relations that are used for non-core dependents of a predicate: <a href="">u-dep/expl</a>, <a href="">u-dep/dislocated</a>, and <a href="">u-dep/vocative</a>.</p>
 
-<ul>
-  <li>The <a href="">u-dep/vocative</a> relation is used to mark a dialogue participant addressed in a text (common in conversations, dialogue, emails, newsgroup postings, etc.). The relation links the addressee’s name to its host sentence. A vocative commonly co-occurs with a null subject, as in the first example below. If the nominal is clearly vocative in intent, the preference is to use the <a href="">u-dep/vocative</a> relation.</li>
-</ul>
+<h3 id="expletives">Expletives</h3>
+
+<p>The <a href="">u-dep/expl</a> relation captures expletive or pleonastic nominals. These are nominals that appear in an argument position of a predicate but which do not themselves satisfy any of the semantic roles of the predicate. The main predicate of the clause (the verb or predicate adjective or noun) is the governor. In English, this is the case for some uses of <em>it</em> and <em>there</em>: the existential <em>there</em>, and <em>it</em> when used in extraposition constructions.  (Note that both <em>it</em> and <em>there</em> also have non-expletive uses.)</p>
+
+<pre><code class="language-sdparse">There is a ghost in the room
+expl(is, There)
+</code></pre>
+
+<pre><code class="language-sdparse">It is clear that we should decline .
+expl(clear, It)
+</code></pre>
+
+<p>Some languages do not have expletives of the English sort, including most languages with free pro-drop (the ability to use zero anaphora rather than overt pronouns). In languages with expletives of this sort, they can be positioned where normally a core argument appears: the subject and direct object (and even indirect object) slots, as in the examples below. Note that in the analysis of these examples, we treat the postposed subject or clausal argument as a regular core argument, and mark the expletive with <a href="">u-dep/expl</a>.</p>
+
+<pre><code class="language-sdparse">There is a ghost in the room
+expl(is, There)
+nsubj(is, ghost)
+obl(is, room)
+</code></pre>
+
+<pre><code class="language-sdparse">I believe there to be a ghost in the room
+nsubj(believe, I)
+expl(believe, there)
+xcomp(believe, be)
+nsubj(be, ghost)
+obl(be, room)
+</code></pre>
+
+<pre><code class="language-sdparse">It is clear that we should decline .
+expl(clear, It)
+csubj(clear, decline)
+</code></pre>
+
+<pre><code class="language-sdparse">That we should decline is clear .
+csubj(clear, decline)
+</code></pre>
+
+<pre><code class="language-sdparse">I mentioned it to Mary that Sue is leaving
+nsubj(mentioned, I)
+expl(mentioned, it)
+obl(mentioned, Mary)
+ccomp(mentioned, leaving)
+</code></pre>
+
+<p>A second, related, use of the <a href="">u-dep/expl</a> relation is for cases of true clitic doubling.  For languages in which clitics and lexical nominals are ususally in complementary distribution – languages, such as French, which obey “Kayne’s generalization” – then whichever of a clitic or a lexical nominal occurs will get the appropriate role, such as <a href="">u-dep/obj</a> or <a href="">u-dep/iobj</a>. In such languages, when doubling does occur, such as in spoken French, the right analysis is to regard the lexical nominal as <a href="">dislocated</a> (see the examples there). As such, the analysis will be the same as when a noun phrase doubles another noun phrase or a regular pronoun that fills a nominal argument position. However, other languages, such as Greek and Bulgarian, standardly allow doubling of a lexical nominal and a pronominal clitic, with the former still appearing in its regular role as an argument of the predicate. In these cases, if only one of the lexical nominal and the clitic appear in a clause, then whichever appears will be given the grammatical role of <a href="">u-dep/obj</a>, <a href="">u-dep/iobj</a>, etc. – parallel to the treatment of lexical nominals and pronouns in other languages, modulo the clitic pronoun having a different position in the sentence.  However, if both occur, the lexical nominal will be given the grammatical role of <a href="">u-dep/obj</a>, <a href="">u-dep/iobj</a>, etc., and the clitic will be treated as a pronominal copy, which does not receive its own semantic role, and hence will get the role <a href="">u-dep/expl</a>. Modulo the different word order, this is fairly parallel to the treatment of <em>it</em> and <em>there</em> in English mentioned above, where another phrase satisfies the semantic role of the predicate. Examples from Greek and Bulgarian follow:</p>
+
+<pre><code class="language-sdparse">Της τον έδωσε της Καίτης τον αναπτήρα \n PRON.Fem.Gen PRON.Masc.Acc gave ART.Fem.Gen Keti.Gen ART.Masc.Acc lighter.Acc
+expl(έδωσε, Της-1)
+iobj(έδωσε, Καίτης)
+det(Καίτης, της-4)
+expl(έδωσε, τον-2)
+obj(έδωσε, αναπτήρα)
+det(αναπτήρα, τον-6)
+</code></pre>
+
+<pre><code class="language-sdparse">Marija mu izprati pismo na rabotnika \n Maria 3.S.M.IO sent letter to the.worker
+expl(izprati, mu)
+obj(izprati, pismo)
+iobj(izprati, rabotnika)
+case(rabotnika, na)
+</code></pre>
+
+<p>The expletive relation is also used for reflexive pronouns (see the feature <a href="">u-feat/Reflex</a>)
+attached to inherently reflexive verbs, i.e. verbs that cannot occur without the reflexive
+pronoun and thus the pronoun does not play the role of a normal object
+(otherwise it would be possible to substitute it with an irreflexive pronoun or other nominal).
+A Czech example:</p>
+
+<pre><code class="language-sdparse">Martin se bojí zvířat . \n Martin REFLEX fears animals .
+expl(bojí, se)
+expl(fears, REFLEX)
+</code></pre>
+
+<p>Further general discussion of expletives can be found in Postal, P. M., and G. K. Pullum (1988) “Expletive Noun Phrases in Subcategorized Positions,” <em>Linguistic Inquiry</em> 19(4): 635–670. The status of clitic doubling, and arguments for the lexical nominal being an argument with the clitic a kind of pronominal copy, appear inter alia in Boris Harizanov (2014) <a href="http://stanford.edu/~bharizan/pdfs/Harizanov_2014_NLLT.pdf">Clitic doubling at the syntax-morphology interface: A-movement and morphological merger in Bulgarian</a>. <em>Natural Language and Linguistic Theory</em>.</p>
+
+<h3 id="vocatives">Vocatives</h3>
+
+<p>The <a href="">u-dep/vocative</a> relation is used to mark a dialogue participant addressed in a text (common in conversations, dialogue, emails, newsgroup postings, etc.). The relation links the addressee’s name to its host sentence. A vocative commonly co-occurs with a null subject, as in the first example below. If the nominal is clearly vocative in intent, the preference is to use the <a href="">u-dep/vocative</a> relation.</p>
 
 <pre><code class="language-sdparse">Guys , take it easy!
 vocative(take, Guys)
@@ -546,29 +645,6 @@ mark(raining, that)
 advcl(left, raining)
 mark(raining, because)
 </code></pre>
-
-<h2 id="valency-changing-operations">Valency-Changing Operations</h2>
-
-<p>If passivization involves the promotion of an argument to subject position, then this argument can be 
-annotated with a special subtype <code>nsubj:pass</code> to indicate that promotion has taken place. The subtype
-<code>obl:agent</code> can be used to annotated the demoted subject (if present).</p>
-
-<pre><code class="language-sdparse">she left a note on the table
-nsubj(left, she)
-obj(left, note)
-obl(left, table)
-</code></pre>
-<pre><code class="language-sdparse">a note was left on the table
-nsubj:pass(left, note)
-obl(left, table)
-</code></pre>
-<pre><code class="language-sdparse">a note was left by her on the table
-nsubj:pass(left, note)
-obl:agent(left, her)
-obl(left, table)
-</code></pre>
-
-<p>COMING SOON: Other valency-changing operations.</p>
 
 
 
