@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Basic Dependencies</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-overview/complex-syntax.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="complex-clauses">Complex Clauses</h1>
+
+<h2 id="coordination">Coordination</h2>
+
+<p>Complex clauses involving coordination arise when two main clauses or two subordinate clauses at the same level are
+linked in a coordinate structure, which may or may not involve an overt coordinating conjunction. We treat coordinate structures asymmetrically by taking the first conjunct as the head with all other conjuncts attached to it via the <a href="">u-dep/conj</a> relation. Coordinating conjunctions and punctuation delimiting the conjuncts are attached to the immediately following conjunct using the <a href="">u-dep/cc</a> and <a href="">u-dep/punct</a> relations respectively.</p>
+
+<pre><code class="language-sdparse">He came home , took a shower and immediately went to bed .
+conj(came, took)
+conj(came, went)
+punct(took, ,-4)
+cc(went, and)
+</code></pre>
+
+<p>Asyndetic coordination occurs when there is no overt coordinating conjunction.</p>
+
+<pre><code class="language-sdparse">Veni , vidi , vici .
+conj(Veni, vidi)
+conj(Veni, vici)
+punct(vidi, ,-2)
+punct(vici, ,-4)
+</code></pre>
+
+<p>As a special case, the first conjunct may be implicit or part of an earlier sentence.</p>
+
+<pre><code class="language-sdparse">And then we left .
+cc(left, And)
+~~~ sdparse
+
+### Ellipsis in Clause Coordination 
+
+Coordination is often combined with _ellipsis_, where one or more of the normally obligatory constituents
+of a clause or omitted because they can be inferred from material in another conjunct. 
+
+If the main predicate is elided, an associated `aux` or `cop` can be promoted to head of the clause.
+
+~~~ sdparse
+Sue likes pasta and Peter does , too . 
+
+nsubj(likes-2, Sue-1)
+obj(likes-2, pasta-3)
+conj(likes-2, does-6)
+nsubj(does-6, Peter-5)
+advmod(does-6, too-8)
+</code></pre>
+
+<pre><code class="language-sdparse">Sue is hungry and Peter is , too . 
+
+nsubj(hungry-3, Sue-1)
+cop(hungry-3, is-2)
+conj(hungry-3, is-6)
+nsubj(is-6, Peter-5)
+advmod(is-6, too-8)
+</code></pre>
+
+<p>In more complicated cases where a predicate is elided but no <code>aux</code> or <code>cop</code> is present, promotion can lead to unnatural and confusing relations. For example, in the following sentence, <em>you</em> would be the subject of <em>coffee</em>, suggesting that the second clause contains a nonverbal predication rather than an elided predicate.</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee .
+
+nsubj(like-2, I-1)
+obj(like-2, tea-3)
+nsubj(coffee-6, you-5)
+conj(like-2, coffee-6)
+</code></pre>
+
+<p>In such cases, we therefore use the special <code>orphan</code> relation to attach siblings to the promoted element.</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee .
+
+nsubj(like-2, I-1)
+obj(like-2, tea-3)
+conj(like-2, you-5)
+cc(you-5, and-4)
+orphan(you-5, coffee-6)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book and Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+obj(buy-4, book-6)
+conj(wants-2, Jenny-8)
+orphan(Jenny-8, CD-10)
+</code></pre>
+
+<pre><code class="language-sdparse">They had left the company , many for good .
+
+nsubj(left, They)
+obj(left, company)
+conj(left, many)
+orphan(many, good)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book . ROOT And Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+obj(buy-4, book-6)
+root(ROOT, Jenny)
+orphan(Jenny, CD)
+</code></pre>
+
+<p>Note that the <code>orphan</code> relation is only used when an ordinary relation would be misleading (for example, when attaching an object to a subject). In particular, the ordinary <code>cc</code> relation should be used for the coordinating conjunction, which attaches to the pseudo-constituent formed through the <code>orphan</code> dependency.</p>
+
+<h2 id="subordination">Subordination</h2>
+
+<p>Complex clauses involving subordination arise because a core or non-core dependent is realized as a clausal structure.
+We distinguish four basic types:</p>
+
+<ol>
+  <li>Clausal subjects (<a href="">u-dep/csubj</a>).</li>
+  <li>Clausal complements (objects), divided into those with obligatory control (<a href="">u-dep/xcomp</a>) and those without (<a href="">u-dep/ccomp</a>).</li>
+  <li>Adverbial clause modifiers (<a href="">u-dep/advcl</a>).</li>
+  <li>Adnominal clause modifiers (<a href="">u-dep/acl</a>) (with relative clauses as an important subtype in many languages).</li>
+</ol>
+
+<p>In addition, we discuss <em>secondary predicates</em>, which are analyzed as clausal complements or adnominal clause modifiers.</p>
+
+<h3 id="clausal-subjects">Clausal Subjects</h3>
+
+<p>A clausal subject is a clausal syntactic subject of a clause. Its governor may be a verb or a nonverbal predicate.
+If the governor is in the passive, the subtype <code>csubj:pass</code> can be used.</p>
+
+<pre><code class="language-sdparse">What she said makes sense
+csubj(makes, said)
+</code></pre>
+
+<pre><code class="language-sdparse">What she said is interesting
+csubj(interesting, said)
+</code></pre>
+
+<pre><code class="language-sdparse">What she said was well received
+csubj:pass(received, said)
+</code></pre>
+
+<h3 id="clausal-complements-objects">Clausal Complements (Objects)</h3>
+
+<p>A clausal complement of a verb or adjective is a dependent clause 
+which is a core argument. That is, it functions like an object of the verb, or
+adjective.</p>
+
+<pre><code class="language-sdparse">He says that you like to swim
+ccomp(says, like)
+mark(like, that)
+</code></pre>
+
+<pre><code class="language-sdparse">He says you like to swim
+ccomp(says, like)
+</code></pre>
+
+<p>Such clausal complements may be finite or nonfinite. However, if the
+subject of the clausal complement is controlled (that is, must be the same
+as the higher subject or object, with no other possible interpretation)
+the appropriate relation is <a href="">xcomp</a>.</p>
+
+<pre><code class="language-sdparse">The boss said to start digging
+ccomp(said, start)
+mark(start, to)
+</code></pre>
+
+<pre><code class="language-sdparse">We started digging
+xcomp(started, digging)
+</code></pre>
+
+<p>The key difference here is that, while it is possible to interpret the first
+sentence to mean that the boss will not be doing any digging, in the second
+sentence it is clear that the subject of <strong>digging</strong> can only be <strong>we</strong>. This is
+what distinguishes <code>ccomp</code> and <code>xcomp</code>.</p>
+
+<p>Additionally, <code>ccomp</code> is used with copulas in equational constructions involving full clauses.</p>
+
+<pre><code class="language-sdparse">The important thing is to keep calm.
+ccomp(is, keep)
+nsubj(is, thing)
+</code></pre>
+
+<pre><code class="language-sdparse">The problem is that this has never been tried .
+ccomp(is, tried)
+nsubj(is, problem)
+</code></pre>
+
+<p>(In these cases, the copula is treated as a head to preserve the integrity of clause boundaries and prevent one predicate to
+be assigned two subjects. This is not an optimal solution given the analysis of equational constructions involving nominals, where one of the nominals is treated as the head, but it is the preferred solution for now.)</p>
+
+<h3 id="adverbial-clause-modifiers">Adverbial Clause Modifiers</h3>
+
+<p>An adverbial clause modifier is a clause which modifies a verb or other predicate (adjective, etc.),
+as a modifier not as a core complement. This includes things such as a temporal clause, consequence, conditional clause, purpose
+clause, etc. The dependent must be clausal (or else it is an <a href="">advmod</a>) and the dependent is the main predicate of the clause.</p>
+
+<pre><code class="language-sdparse">The accident happened as night was falling
+advcl(happened, falling)
+</code></pre>
+
+<pre><code class="language-sdparse">If you know who did it, you should tell the teacher
+advcl(tell, know)
+</code></pre>
+
+<pre><code class="language-sdparse">He talked to him in order to secure the account
+advcl(talked, secure)
+</code></pre>
+
+<pre><code class="language-sdparse">He was upset when I talked to him
+advcl(upset, talked)
+</code></pre>
+
+<h3 id="adnominal-clause-modifiers">Adnominal Clause Modifiers</h3>
+
+<p>An adnominal clause modifier is a clause which modifies a nominal.</p>
+
+<pre><code class="language-sdparse">the issues as he sees them
+acl(issues, sees)
+</code></pre>
+
+<pre><code class="language-sdparse">Cette affaire à suivre \n This case to follow 
+acl(affaire, suivre)
+</code></pre>
+
+<p>This relation is also used for optional depictives. The adjective is taken to modify the nominal of 
+which it provides a secondary predication.</p>
+
+<pre><code class="language-sdparse">She entered the room sad
+acl(She, sad)
+</code></pre>
+
+<pre><code class="language-sdparse">He painted the model naked
+acl(model, naked)
+</code></pre>
+
+<p>A relative clause is a special type of adnominal clause, characterized by finiteness and usually omission of 
+the modified noun in the embedded clause. Some languages use a language-particular subtype for 
+the traditional class of relative clauses.</p>
+
+<pre><code class="language-sdparse">I saw the man you love
+acl(man, love)
+</code></pre>
+
+<p>Some languages allow finite clausal complements for nouns with 
+a subset of nouns like <em>fact</em> or <em>report</em>. These look roughly like relative clauses, but do not have any 
+omitted role in the dependent clause. This is the class of “content
+clauses” in Huddleston and Pullum 2002). These are also analyzed as <code>acl</code>.</p>
+
+<pre><code class="language-sdparse">the fact that nobody cares
+acl(fact, cares)
+</code></pre>
+
+<h3 id="secondary-predicates">Secondary predicates</h3>
+
+<p>A clause can contain a <em>secondary predication</em> or <em>predicative</em>. The most common case is with adjectives, although the same effect can sometimes be achieved with a predicative noun or preposition-marked phrase.</p>
+
+<ul>
+  <li><em>She declared the cake <strong>beautiful</strong>.</em></li>
+  <li><em>She declared the cake <strong>a success</strong>.</em></li>
+  <li><em>She entered the room <strong>sad</strong>.</em></li>
+  <li><em>She hammered the metal <strong>flat</strong>.</em></li>
+</ul>
+
+<p>There are two predicates in such sentences, the main predicate and an additional one, such as <em>the cake</em> being <em>beatiful</em> or <em>She</em> being <em>sad</em>.</p>
+
+<p>Huddleston and Pullum (2002) “The Cambridge Grammar of the English Language”, chapter 4 section 5.3, divide predicatives into obligatory and optional predicatives, which can be either depictives or resultatives, and which can appear in an intransitive or transitive clause, giving eight possibilities:</p>
+
+<ul>
+  <li><em>He looked <strong>fantastic</strong>.</em> [obligatory, depictive, intransitive host]</li>
+  <li><em>She kept Kim <strong>warm</strong>.</em> [obligatory, depictive, transitive host]</li>
+  <li><em>The boss became <strong>angry</strong>.</em> [obligatory, resultative, intransitive host]</li>
+  <li><em>This made me <strong>furious</strong>.</em> [obligatory, resultative, transitive host]</li>
+  <li><em>He died <strong>young</strong>.</em> [optional, depictive, intransitive host]</li>
+  <li><em>He ate the steak <strong>almost raw</strong>.</em> [optional, depictive, transitive host]</li>
+  <li><em>The pond froze <strong>solid</strong>.</em> [optional, resultative, intransitive host]</li>
+  <li><em>He painted the house <strong>blue</strong>.</em> [optional, resultative, transitive host]</li>
+</ul>
+
+<p>In UD, obligatory predicatives are always treated as an <code>xcomp</code>: The secondary predicate is attached as an <code>xcomp</code> of the main predicate. In most cases, as well as an adjective depictive, you can use a verbal or nominal predicate in the same position (e.g., <em>He looked [an idiot]</em>; <em>This made me [seethe with anger]</em>).</p>
+
+<pre><code class="language-sdparse">She declared the cake beautiful .
+nsubj(declared, She)
+obj(declared, cake)
+xcomp(declared, beautiful)
+</code></pre>
+
+<p>In the enhanced representation, there is an additional subject link showing the secondary predication, which is obligatorily a particular role in the higher clause:</p>
+
+<pre><code class="language-sdparse">She declared the cake beautiful .
+nsubj(declared, She)
+obj(declared, cake)
+xcomp(declared, beautiful)
+nsubj(beautiful, cake)
+</code></pre>
+
+<p>A Czech example:</p>
+
+<pre><code class="language-sdparse">jmenovat někoho generálem \n to-appoint someone as-a-general
+obj(jmenovat, někoho)
+xcomp(jmenovat, generálem)
+</code></pre>
+
+<p>The relation <code>xcomp</code> is used for core arguments of clausal predicates,
+so it will not be used for some other instances of secondary predication.
+Optional depictives are analyzed as adjuncts, and made the <a href="">acl</a> of the nominal that they semantically modify (if one is present).</p>
+
+<p>For instance, in <em>She entered the room sad</em> we also have a double predication
+(she entered the room; she was sad).
+But <em>sad</em> is not a core argument of <em>enter:</em> leaving it out will neither affect grammaticality
+nor significantly alter the meaning of the verb.
+On the other hand, leaving out <em>beautiful</em> in <em>She declared the cake beautiful</em>
+will either render the sentence ungrammatical or lead to a different interpretation of <em>declared.</em></p>
+
+<p>The result is that in <em>She entered the room sad,</em> <em>sad</em> will depend on <em>She</em>
+and the relation will be <a href="">acl</a> instead of <code>xcomp</code>:</p>
+
+<pre><code class="language-sdparse">She entered the room sad .
+obj(entered, room)
+acl(She, sad)
+</code></pre>
+
+<pre><code class="language-sdparse">He painted the model naked .
+obj(painted, model)
+acl(model, naked)
+</code></pre>
+
+<p>If the nominal head is missing, the secondary predicate must be attached as
+<a href="">advcl</a> of the verbal predicate, even though it is an <a href="../pos/ADJ.html">adjective</a>,
+not an <a href="../pos/ADV.html">adverb</a>. There is a second predication and the adjective heads the predication (just like in <em>She is sad</em>) and in this case there are simply no other words expressing this second predication:</p>
+
+<pre><code class="language-sdparse">Vstoupila do místnosti smutná . \n She-entered to room sad .
+advcl(Vstoupila, smutná)
+advcl(She-entered, sad)
+</code></pre>
+
+<p>The remaining, most subtle case is optional resultatives. For these, 
+we uniformly use <code>xcomp</code>:</p>
+
+<pre><code class="language-sdparse">He painted the house blue .
+obj(painted, house)
+xcomp(painted, blue)
+</code></pre>
+
+<p>Even though the resultative is optional here, one may argue that it is still a complement (an argument) of the higher verb
+(he is painting something blue), in a way that is not true of depictives. Such an analysis of optional resultatives as core arguments is adopted for English by Huddleston and Pullum (p. 262). In LFG terms, we would say that the verb has acquired a new
+subcategorization frame by application of a lexical rule, and that this frame
+includes an additional <code>xcomp</code> argument. Such an analysis is buttressed by the fact that normally intransitive verbs like <em>to bark</em> can also form similar resultatives by gaining a new subcategorization which adds both a <code>dobj</code> and an <code>xcomp</code>, as in the example below.</p>
+
+<pre><code class="language-sdparse">The dog barked the neighbors awake .
+obj(barked, neighbors)
+xcomp(barked, awake)
+</code></pre>
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'u-overview';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
