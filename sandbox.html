@@ -133,7 +133,31 @@ det(no-such, token)
 6    .         _   PUNCT   _   _   2   punct   _ _
 </div>
 
-<p>Two sentences can be used to show the English translation of a foreign example:</p>
+<p>basic and enhanced side by side</p>
+<table>
+<thead><tr><th>Basic</th><th>Enhanced</th></tr></thead>
+<tbody><tr><td>
+<div class="conllu-parse" tabs="yes">
+1    She       _   PRON    _   _   2   nsubj   _ _
+2    declared  _   VERB    _   _   0   root    _ _
+3    the       _   DET     _   _   4   det     _ _
+4    cake      _   NOUN    _   _   2   dobj    _ _
+5    beautiful _   ADJ     _   _   2   xcomp   _ _
+6    .         _   PUNCT   _   _   2   punct   _ _
+</div>
+</td><td>
+<div class="conllu-parse" tabs="yes">
+1    She       _   PRON    _   _   2   nsubj   _ _
+2    declared  _   VERB    _   _   0   root    _ _
+3    the       _   DET     _   _   4   det     _ _
+4    cake      _   NOUN    _   _   2   dobj    5:nsubj _
+5    beautiful _   ADJ     _   _   2   xcomp   _ _
+6    .         _   PUNCT   _   _   2   punct   _ _
+</div>
+</td>
+
+
+Two sentences can be used to show the English translation of a foreign example:
 
 <pre><code class="language-conllu"># give the toys to the children
 1 donner donner VERB _ VerbForm=Inf 0 root _ give
@@ -153,142 +177,352 @@ det(no-such, token)
 6 children enfant NOUN _ Gender=Masc|Number=Plur 1 nmod _ children
 </code></pre>
 
-<p>Simplified syntax + sentence label</p>
+Simplified syntax + sentence label
 
-<pre><code class="language-conllu"># sentence-label long-label
+~~~ conllu
+# sentence-label long-label
 1     I         I        PRON    PRN      Num=Sing|Per=1     2      nsubj _ _
 2     have      have     VERB    VB       Tens=Pres          0      root _ _
-</code></pre>
+~~~
 
-<p><a name="hebrew"></a></p>
+<a name="hebrew" />
 
-<h2 id="right-to-left-text-hebrew">Right-to-left text (Hebrew)</h2>
+## Right-to-left text (Hebrew)
 
-<pre><code class="language-sdparse">Aדני/NOUN Aראה/VERB Aסרט/NOUN
+~~~ sdparse
+Aדני/NOUN Aראה/VERB Aסרט/NOUN
 nsubj(Aראה, Aדני)
 dobj(Aראה, Aסרט)
-</code></pre>
+~~~
 
-<p>Same without “A” (should trigger auto-insertion of “ˑ”)</p>
+Same without "A" (should trigger auto-insertion of "ˑ")
 
-<pre><code class="language-sdparse">דני/NOUN ראה/VERB סרט/NOUN
+~~~ sdparse
+דני/NOUN ראה/VERB סרט/NOUN
 nsubj(ראה, דני)
 dobj(ראה, סרט)
-</code></pre>
+~~~
 
-<p>Same sentence in CoNLL-U:</p>
+Same sentence in CoNLL-U:
 
-<pre><code class="language-conllu">1     ˑדניˑ       _        NOUN    _      _     2      nsubj _ _
+~~~ conllu
+1     ˑדניˑ       _        NOUN    _      _     2      nsubj _ _
 2     ˑראהˑ       _        VERB    _      _     0      root  _ _
 3     ˑסרטˑ       _        NOUN    _      _     2      dobj  _ _
-</code></pre>
+~~~
 
-<p>Without literal “ˑ” in input  (should trigger auto-insertion)</p>
+Without literal "ˑ" in input  (should trigger auto-insertion)
 
-<pre><code class="language-conllu">1     דני       _        NOUN    _      _     2      nsubj _ _
+~~~ conllu
+1     דני       _        NOUN    _      _     2      nsubj _ _
 2     ראה       _        VERB    _      _     0      root  _ _
 3     סרט       _        NOUN    _      _     2      dobj  _ _
-</code></pre>
+~~~
 
-<p>Does Arabic work as well?</p>
+Does Arabic work as well?
 
-<pre><code class="language-conllu">1     ˑوَˑ       _        NOUN    _      _     2      nsubj _ _
+~~~ conllu
+1     ˑوَˑ       _        NOUN    _      _     2      nsubj _ _
 2     ˑلاحَظَˑ       _        VERB    _      _     0      root  _ _
 3     ˑالتَقْرِيرُˑ       _        NOUN    _      _     2      dobj  _ _
-</code></pre>
+~~~
 
-<p>Without literal “ˑ” in input  (should trigger auto-insertion)</p>
+Without literal "ˑ" in input  (should trigger auto-insertion)
 
-<pre><code class="language-conllu">1     وَ       _        NOUN    _      _     2      nsubj _ _
+~~~ conllu
+1     وَ       _        NOUN    _      _     2      nsubj _ _
 2     لاحَظَ       _        VERB    _      _     0      root  _ _
 3     التَقْرِيرُ       _        NOUN    _      _     2      dobj  _ _
-</code></pre>
+~~~
 
-<pre><code class="language-conllu">1     ‎דני       _        NOUN    _      _     2      nsubj _ _
+~~~ conllu
+1     ‎דני       _        NOUN    _      _     2      nsubj _ _
 2     ‎ראה       _        VERB    _      _     0      root  _ _
 3     ‎סרט       _        NOUN    _      _     2      dobj  _ _
-</code></pre>
-<hr />
+~~~
+----------
 
-<h1 id="some-jekyll">Some Jekyll</h1>
+# Some Jekyll 
 
-<h2 id="finnish-documentation-for-relations-containing-cop">Finnish documentation for relations containing “cop”</h2>
+## Finnish documentation for relations containing "cop" 
 
-<p>Copular clauses receive a special treatment in the SD scheme. The
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Copular clauses receive a special treatment in the SD scheme. The
 predicative acts as the head word of the clause, and the copular verb
-depends on it using a <code>cop</code> (<em>copula</em>) dependency. The only copular
-verb in Finnish is <em>olla</em> “be” (see ISK
-<a href="http://scripta.kotus.fi/visk/sisallys.php?p=891">§891</a>).</p>
+depends on it using a `cop` (*copula*) dependency. The only copular
+verb in Finnish is *olla* "be" (see ISK
+[§891](http://scripta.kotus.fi/visk/sisallys.php?p=891)).
 
 <!-- TODO Distinguishing copular structures from other constructs as
 well as recognizing the subject and the predicative is discussed in
 Section [copulas](#sec-copulas). -->
 
 <!-- fname:cop.pdf -->
-<pre><code class="language-sdparse">Huivi oli punainen . \n The_scarf was red .
+~~~ sdparse
+Huivi oli punainen . \n The_scarf was red .
 nsubj:cop(punainen-3, Huivi-1)
 cop(punainen-3, oli-2)
 punct(punainen-3, .-4)
-</code></pre>
+~~~
 
-<h3 id="references">References</h3>
+### References
 
-<ul>
-  <li><a href="http://scripta.kotus.fi/visk/sisallys.php?p=891">http://scripta.kotus.fi/visk/sisallys.php?p=891</a> (in Finnish)</li>
-</ul>
+* &lt;http://scripta.kotus.fi/visk/sisallys.php?p=891&gt; (in Finnish)
 
-<p>A <em>clausal copular subject</em> (<code>csubj:cop</code>) is a clause that acts as the
+
+
+
+A *clausal copular subject* (`csubj:cop`) is a clause that acts as the
 subject of another, copular clause. As in all copular clauses, the
 predicative acts as the head of the clause and hence it is also the
-governor of the copular subject.</p>
+governor of the copular subject. 
 
 <!--The distinction between clauses acting as the copular subject of
 another clause and so called necessive structures is discussed in
 Section [necessives](#sec-necessives).-->
 
 <!-- fname:csubj-cop.pdf -->
-<pre><code class="language-sdparse">Oli hauskaa käydä teatterissa . \n Was fun to_go to_theatre .
+~~~ sdparse
+Oli hauskaa käydä teatterissa . \n Was fun to_go to_theatre .
 cop(hauskaa-2, Oli-1)
 csubj:cop(hauskaa-2, käydä-3)
 nmod(käydä-3, teatterissa-4)
 punct(hauskaa-2, .-5)
-</code></pre>
+~~~
 
-<p>The dependency type <code>nsubj:cop</code> is used for the nominal subject
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The dependency type `nsubj:cop` is used for the nominal subject
 of a copular clause. The predicative is the head of the copular
-clause, and also the governor of the <code>nsubj:cop</code> dependency.</p>
+clause, and also the governor of the `nsubj:cop` dependency.
 
 <!-- Annotating copular clauses is discussed in Section [copulas](#sec-copulas).-->
 
 <!-- fname:nsubj-cop.pdf -->
-<pre><code class="language-sdparse">Matto on jo kuiva . \n The_mat is already dry .
+~~~ sdparse
+Matto on jo kuiva . \n The_mat is already dry .
 nsubj:cop(kuiva-4, Matto-1)
 cop(kuiva-4, on-2)
 advmod(kuiva-4, jo-3)
 punct(kuiva-4, .-5)
-</code></pre>
+~~~
 
-<h2 id="finnish-documentation-for-relations-with-tag-case">Finnish documentation for relations with tag “case”</h2>
 
-<p>The dependency type <code>case</code> is used for the adposition in pre- and
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Finnish documentation for relations with tag "case"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The dependency type `case` is used for the adposition in pre- and
 postpositional phrases. The head of
 an adpositional phrase is the nominal, not the adposition, so as to
 analyze adpositional phrases similarly to nominal modifiers without an
 adposition. (Such nominal modifiers are frequent in Finnish, as cases
 are often used for the same purpose as adpositions.) To the same end,
-the type <code>case</code> is used in combination with the type <code>nmod</code>, which is
+the type `case` is used in combination with the type `nmod`, which is
 also used for nominal modifiers when no adposition is present (see
-<a href="">nmod</a>).</p>
+[nmod]()).
 
 <!-- fname:adpos.pdf -->
-<pre><code class="language-sdparse">Talo sijaitsee mäen takana . \n House is_located hill behind .
+~~~ sdparse
+Talo sijaitsee mäen takana . \n House is_located hill behind .
 nsubj(sijaitsee-2, Talo-1)
 nmod(sijaitsee-2, mäen-3)
 case(mäen-3, takana-4)
 punct(sijaitsee-2, .-5)
-</code></pre>
+~~~
 
-<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------
 
 <table>
 <tr>
@@ -328,6 +562,7 @@ parataxis(hat-2,hat-9)
 </td>
 </tr>
 </table>
+</tr></tbody></table>
 
 
       </div>
