@@ -869,10 +869,10 @@ dobj(have, apples)
 conj(apples, pears)
 conj(apples, oranges)
 conj(apples, bananas)
-cc(apples, and)
-punct(apples, ,-4)
-punct(apples, ,-6)
-punct(apples, ,-8)
+cc(bananas, and)
+punct(pears, ,-4)
+punct(oranges, ,-6)
+punct(bananas, ,-8)
 </div>
 
 <p>Coordinated clauses are treated the same way as coordination of other constituent types:</p>
@@ -937,9 +937,9 @@ ccomp(saw, kissed)
 
 <p>If a dependent is shared among conjuncts, the basic representation always links it to the
 first conjunct (coordination head), while the enhanced representation shows all dependencies.
-In the following example, relations that are only part of the enhanced representation are shown in red.
-~~~ conllu
-# visual-style 6 1 amod color:red
+In the following example, relations that are only part of the enhanced representation are shown in red.</p>
+
+<pre><code class="language-conllu"># visual-style 6 1 amod color:red
 # visual-style 4 3 amod color:red
 # visual-style 6 3 amod color:red
 1 American   _ _ _ _ 4 amod 6:amod        _
@@ -948,11 +948,11 @@ In the following example, relations that are only part of the enhanced represent
 4 professors _ _ _ _ 0 root _             _
 5 and        _ _ _ _ 6 cc   _             _
 6 students   _ _ _ _ 4 conj 0:root        _
-~~~</p>
+</code></pre>
 
 <h3 id="nested-coordination">Nested Coordination</h3>
 
-<p>Note further that the basuc annotation scheme has only a limited capability to capture nested coordination
+<p>Note further that the basic annotation scheme has only a limited capability to capture nested coordination
 such as <em>apples and pears or oranges and lemons.</em>
 Consider coordinations</p>
 
@@ -1492,26 +1492,31 @@ obj(teaches, students)
 
 <p>This is consistent with the analysis of Huddleston and Pullum (2002) “The Cambridge Grammar of the English Language”,
 chapter 4 section 4 (p. 251).  As they note, it is no different to the same semantic role being sometimes the subject
-and sometimes the object in intransitive/transitive alternations. The one exception is when there is a clausal complement.
-Then the clausal complement is regarded as a “clausal object” and an object nominal will be an iobj, parallel to
-the simple ditransitive case:</p>
+and sometimes the object in intransitive/transitive alternations.</p>
 
-<pre><code class="language-sdparse">She told the students that they needed to study this evening
+<!--The one exception is when there is a clausal complement.
+Then the clausal complement is regarded as a “clausal object” and an object nominal will be an iobj, parallel to
+the simple ditransitive case:
+
+~~~ sdparse
+She told the students that they needed to study this evening
 iobj(told, students)
 ccomp(told, needed)
-</code></pre>
+~~~
 
-<pre><code class="language-sdparse">She told the students the plan
+~~~ sdparse
+She told the students the plan
 iobj(told, students)
 obj(told, plan)
-</code></pre>
+~~~
 
-<p>If there are two or
-more objects, one of them should be <a href="">obj</a> and the others should be
-<code>iobj</code>. In such cases it is necessary to decide what is the
-most directly affected object <em>(patient).</em> If possible,
+If there are two or
+more objects, one of them should be [obj]() and the others should be
+`iobj`. In such cases it is necessary to decide what is the
+most directly affected object _(patient)._ If possible,
 language-specific documentation should help identify direct and
-indirect objects.</p>
+indirect objects.
+-->
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/iobj.md" target="#">edit iobj</a></p>
 
@@ -1574,7 +1579,7 @@ an attribute, or genitive complement.</p>
 
 <p><strong>New from v2:</strong> The <code>nmod</code> relation was previously used also for nominal dependents of verbs, adjectives, and adverbs. The latter are now covered by the new <a href="">obl</a> relation.</p>
 
-<p>In conjunction with the <a href="">case</a> relation, the <code>nmod</code> provides a uniform analysis for the possessive alternation:</p>
+<p>In conjunction with the <a href="">case</a> relation, <code>nmod</code> provides a uniform analysis for the possessive alternation:</p>
 
 <pre><code class="language-sdparse">the Chair 's office
 det(Chair-2, the-1)
@@ -1702,9 +1707,12 @@ obj(begegnen, jemandem)
 regardless of the morphological case or semantic role that it bears. If there are two or more
 objects, one of them should be <code>obj</code> and the others should be
 <a href="">iobj</a>. In such cases it is necessary to decide what is the most
-directly affected object <em>(patient).</em> The one exception is when there is a clausal complement. 
-Then the clausal complement is regarded as a “clausal object” and an object nominal will be an <a href="">iobj</a>. 
-There is more discussion of constructions with multiple objects on the page for <a href="">iobj</a>. 
+directly affected object <em>(patient).</em></p>
+
+<!--The one exception is when there is a clausal complement. 
+Then the clausal complement is regarded as a “clausal object” and an object nominal will be an [iobj]().-->
+
+<p>There is more discussion of constructions with multiple objects on the page for <a href="">iobj</a>. 
 If possible, language-specific documentation should be available to help identify the primary (or direct) object.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/obj.md" target="#">edit obj</a></p>
@@ -1780,7 +1788,7 @@ obl:agent(chased, dog)
 <p><a id="al-u-dep/orphan" class="al-dest"></a></p>
 <h2><code>orphan</code>: orphan</h2>
 
-<p>The ‘orphan’ relation is used in cases of head ellipisis where simple promotion would result in unnatural 
+<p>The ‘orphan’ relation is used in cases of head <a href="http://universaldependencies.org/u/overview/specific-syntax.html#ellipsis">ellipsis</a> where simple promotion would result in unnatural 
 and misleading dependency relation. The typical case is predicate ellipsis where one of the core arguments
 have to be promoted to clausal head.</p>
 
@@ -1798,6 +1806,8 @@ standard relation <a href="">obj</a> would be misleading because <em>bronze</em>
 the <code>orphan</code> relation is used to indicate that this is a non-standard attachment. By contrast, the coordinating
 conjunction <em>and</em> performs essentially the same function as in the non-elliptical case and therefore retains
 its normal relation <code>cc</code>.</p>
+
+<p>See further discussion of <a href="http://universaldependencies.org/u/overview/specific-syntax.html#ellipsis">ellipsis</a>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/orphan.md" target="#">edit orphan</a></p>
 
@@ -2062,6 +2072,7 @@ xcomp(like, swim)
 
 <pre><code class="language-sdparse">Sue asked George to respond to her offer
 xcomp(asked, respond)
+obj(asked, George)
 </code></pre>
 
 <pre><code class="language-sdparse">You look great
@@ -2082,6 +2093,7 @@ xcomp(consider, honest)
 
 <pre><code class="language-sdparse">We expect them to change their minds
 xcomp(expect, change)
+obj(expect, them)
 </code></pre>
 
 <p>Note that the above condition “without its own subject” does not mean that a 

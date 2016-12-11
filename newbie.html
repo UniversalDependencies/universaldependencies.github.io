@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Universal Dependencies</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hint.css"/>
+    <script type="text/javascript" src="lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="lib/ext/jquery.timeago.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+	
+          <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/newbie.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2 id="what-is-ud">What is UD?</h2>
+
+<p>Universal Dependencies (UD) is a project that aims to provide data resources so that it is easy to get 
+consistent analyses of the grammatical structure of sentences in many human languages.</p>
+
+<p>What does that mean? Suppose you’re a regular programmer but you have to deal with some open-domain
+human language text. Maybe you’re mining product descriptions or maybe you’re developing
+features for an ad placement classifier, but either way what you want to do is to identify the
+adjectives that describe a noun. This involves first having a tool that will assign word classes
+(“parts of speech”) to words, so you can find the nouns, etc. And then it also requires recovering
+syntactic relationships, so you know <em>which</em> adjectives describe <em>which</em> nounx. For example, <em><strong>fun</strong></em> describes <em>student</em> here:</p>
+
+<blockquote>
+  <p>_a <strong>fun</strong> and intelligent student</p>
+</blockquote>
+
+<p>That’s grammatical structure. Over the last thirty years, many data resources have been built
+for many languages to help with this goal. The particular gap that UD seeks to fill is that in general these various resources
+have used different names for word class and grammatical relationships and have often given sentences quite different kinds of 
+structures, variously inspired by different syntactic theories. The goal of UD is that the same word class will be given the
+same name in each language, the syntactic relationships will be the same, the syntactic structures of sentences will be done
+the same and the same feature names will be used for indicating things like plural or negation. So you will be able to easily 
+recover the information you need from <em>either</em> English or French text, for example:</p>
+
+<div id="n1" class="sd-parse">
+a fun and intelligent student
+amod(student, fun)
+</div>
+
+<div id="n2" class="sd-parse">
+l’ étudiant intelligent et rigolo
+amod(étudiant, rigolo)
+</div>
+
+<h2 id="how-can-i-use-ud">How can I use UD?</h2>
+
+<p>There are basically two possibilities, based on whether you’re someone who wants language data for building processing tools
+or whether you’re a humble user who hopes to use tools that others have built.</p>
+
+<h3 id="getting-set-up-to-use-ud-data">Getting set up to use UD data</h3>
+
+<h3 id="getting-tools-that-take-advantage-of-ud-data">Getting tools that take advantage of UD data</h3>
+
+<h2 id="how-can-i-contribute-to-the-universal-dependencies-project">How can I contribute to the Universal Dependencies project?</h2>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = ''; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = '';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
