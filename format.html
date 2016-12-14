@@ -179,6 +179,9 @@ tokens that are not words have an underscore in both the HEAD and DEPREL fields.
 
 <!--However, the script that extracts the token sequence optionally provides a heuristic mapping of the morphological and syntactic annotation to non-word tokens. For example, given the following annotation of the English sentence _I haven't a clue_:
 
+WARNING: The multi-word token "haven't" may clash with usual low-level tokenization of English, see issue #322.
+Before uncommenting this part, we may want to use an example from another language.
+
     1     I         I      PRON    PRP   Case=Nom|Number=Sing|Person=1     2   nsubj
     2-3   haven't   _      _       _     _                                 _   _
     2     have      have   VERB    VBP   Number=Sing|Person=1|Tense=Pres   0   root
@@ -222,19 +225,45 @@ without special escaping. If the MISC field is not used, it should contain an un
 
 <h2 id="untokenized-text">Untokenized Text</h2>
 
-<p>To facilitate reconstruction of original (pre-tokenization) text, the information on original word segmentation should be kept if available. Every token after which there was no space in the original text should contain <code>SpaceAfter=No</code> in its MISC field. Note that this feature applies to the token level, not to the word level. Syntactic words that are just part of surface tokens will be ignored during detokenization and thus do not need the feature. In the example below, the line indexed 1 does not contain the <code>SpaceAfter</code> feature even though there was no space between <em>He</em> and <em>‘s</em> in the underlying sentence. However, if there was no space between <em>He’s</em> and the third token, the 1-2 line would have <code>SpaceAfter=No</code>.</p>
+<p>To facilitate reconstruction of original (pre-tokenization) text, the information on original word segmentation should be kept if available. Every token after which there was no space in the original text should contain <code>SpaceAfter=No</code> in its MISC field. Note that this feature applies to the token level, not to the word level. Syntactic words that are just part of surface tokens will be ignored during detokenization and thus do not need the feature. In the example below, the line indexed 3 does not contain the <code>SpaceAfter</code> feature even though there was no space between <em>für</em> and <em>das</em> in the underlying sentence. However, if there were no space between <em>fürs</em> and the following token, the 3-4 line would have <code>SpaceAfter=No</code>.</p>
 
-<pre><code>1-2   He's      _         _       _       _                                 _   _       _   _
-1     He        he        PRON    PRP     Case=Nom|Number=Sing|Person=3     2   nsubj   _   _
-2     is        be        VERB    VBZ     Number=Sing|Person=3|Tense=Pres   6   cop     _   _
-3     in        in        ADP     IN      _                                 6   case    _   _
-4     the       the       DET     DT      Definite=Def|PronType=Art         6   det     _   _
-5     United    unite     VERB    VBD     Tense=Past|VerbForm=Part          6   amod    _   _
-6     Kingdom   kingdom   NOUN    NN      Number=Sing                       0   root    _   _
-7     (         (         PUNCT   -LRB-   _                                 8   punct   _   SpaceAfter=No
-8     UK        UK        PROPN   NNP     Number=Sing                       6   appos   _   SpaceAfter=No
-9     )         )         PUNCT   -RRB-   _                                 8   punct   _   SpaceAfter=No
-10    .         .         PUNCT   .       _                                 6   punct   _   _
+<!--WARNING: The multi-word tokens "he's, haven't" etc. may clash with usual low-level tokenization of English, see issue #322.
+Let's use an example from another language instead.
+
+    1-2   He's      _         _       _       _                                 _   _       _   _
+    1     He        he        PRON    PRP     Case=Nom|Number=Sing|Person=3     2   nsubj   _   _
+    2     is        be        VERB    VBZ     Number=Sing|Person=3|Tense=Pres   6   cop     _   _
+    3     in        in        ADP     IN      _                                 6   case    _   _
+    4     the       the       DET     DT      Definite=Def|PronType=Art         6   det     _   _
+    5     United    unite     VERB    VBD     Tense=Past|VerbForm=Part          6   amod    _   _
+    6     Kingdom   kingdom   NOUN    NN      Number=Sing                       0   root    _   _
+    7     (         (         PUNCT   -LRB-   _                                 8   punct   _   SpaceAfter=No
+    8     UK        UK        PROPN   NNP     Number=Sing                       6   appos   _   SpaceAfter=No
+    9     )         )         PUNCT   -RRB-   _                                 8   punct   _   SpaceAfter=No
+    10    .         .         PUNCT   .       _                                 6   punct   _   _
+-->
+
+<p>Note that columns 5 to 9 are collapsed in the following example.</p>
+
+<pre><code># text Er arbeitet fürs FBI (deutsch etwa: „Bundesamt für Ermittlung“).
+# text_en He works for the FBI (German approx: “Bundesamt für Ermittlung”).
+1     Er           er           PRON    …   _
+2     arbeitet     arbeiten     VERB    …   _
+3-4   fürs         _            _       …   _
+3     für          für          ADP     …   _
+4     das          der          DET     …   _
+5     FBI          FBI          PROPN   …   _
+6     (            (            PUNCT   …   SpaceAfter=No
+7     deutsch      deutsch      ADV     …   _
+8     etwa         etwa         ADV     …   SpaceAfter=No
+9     :            :            PUNCT   …   _
+10    „            „            PUNCT   …   SpaceAfter=No
+11    Bundesamt    Bundesamt    NOUN    …   _
+12    für          für          ADP     …   _
+13    Ermittlung   Ermittlung   NOUN    …   SpaceAfter=No
+14    “            “            PUNCT   …   SpaceAfter=No
+15    )            )            PUNCT   …   SpaceAfter=No
+16    .            .            PUNCT   …
 </code></pre>
 
 <h1 id="sentence-boundaries-and-comments">Sentence Boundaries and Comments</h1>
