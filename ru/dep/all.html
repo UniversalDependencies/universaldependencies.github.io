@@ -293,8 +293,27 @@ acl(wife, naked)
 <p><a id="al-ru-dep/acl:relcl" class="al-dest"></a></p>
 <h2><code>acl:relcl</code>: acl:relcl</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>acl:relcl</code>.</p>
+<p>The <code>acl:relcl</code> relation is used for relative clauses modifying
+a nominal. The relation points from the head of the nominal to the
+head of the relative clause.</p>
+
+<pre><code class="language-sdparse">Я увидела мужчину , который любит тебя \n I saw the man who loves you
+acl:relcl(мужчину, любит)
+acl:relcl(man, loves)
+nsubj(любит, который)
+nsubj(loves, who)
+dobj(любит, тебя)
+dobj(loves, you)
+</code></pre>
+
+<pre><code class="language-sdparse">Я увидел мужчину , которого ты любишь  \n I saw the man who you love
+acl:relcl(мужчину, любишь)
+acl:relcl(man, love)
+nsubj(любишь, ты)
+nsubj(love, you)
+dobj(любишь, которого)
+dobj(love, who)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/acl-relcl.md" target="#">edit acl:relcl</a></p>
 
@@ -384,18 +403,16 @@ amod(impression, First)
 nsubj(хорошим, впечатление)
 nsubj(positive, impression)
 </code></pre>
+<p>Some pronominal modifiers are also considered as <code>amod</code>
+Exception: if the modifying adjectival word is article-equivalent (i.e. tagged <a href="">ru-pos/DET</a>), the relation is <a href="">det</a> instead of <code>amod</code>.</p>
 
-<p>Exception: if the modifying adjectival word is pronominal (i.e. tagged <a href="">ru-pos/DET</a>), the relation is <a href="">det</a> instead of <code>amod</code>.</p>
-
-<pre><code class="language-sdparse">все эти ваши новые группы \n all these your new groups
+<pre><code class="language-sdparse">эти ваши новые группы \n these your new groups
 amod(группы, новые)
 amod(groups, new)
-det(группы, ваши)
-det(groups, your)
+amod(группы, ваши)
+amod(groups, your)
 det(группы, эти)
 det(groups, these)
-det(группы, все)
-det(groups, all)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/amod.md" target="#">edit amod</a></p>
@@ -563,8 +580,14 @@ punct(apples, ,-19)
 <p><a id="al-ru-dep/cc:preconj" class="al-dest"></a></p>
 <h2><code>cc:preconj</code>: cc:preconj</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>cc:preconj</code>.</p>
+<p>A preconjunct is the relation between the head of an NP and a word
+that appears at the beginning bracketing a conjunction (and puts
+emphasis on it), such as <em>either</em>, <em>both</em>, <em>neither</em>, <em>and</em>, <em>but</em>).</p>
+
+<pre><code class="language-sdparse">Но никто не знал ответ . \n But no-one knew the answer .
+cc:preconj(никто, Но)
+cc:preconj(no-one, But)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/cc-preconj.md" target="#">edit cc:preconj</a></p>
 
@@ -1147,8 +1170,12 @@ appos(Vladimir, president)
 <p><a id="al-ru-dep/nmod:agent" class="al-dest"></a></p>
 <h2><code>nmod:agent</code>: nmod:agent</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nmod:agent</code>.</p>
+<p>The relation <code>nmod:agent</code> is used for agents of passive verbs</p>
+
+<pre><code class="language-sdparse">Решение было принято моим отцом \n Decision was made by my father 
+nmod:agent(принято, отцом)
+nmod:agent(принято, father)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/nmod-agent.md" target="#">edit nmod:agent</a></p>
 
@@ -1433,14 +1460,6 @@ nummod(Tverskaya, 12-11)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/nummod.md" target="#">edit nummod</a></p>
-
-<p><a id="al-ru-dep/nummod:entity" class="al-dest"></a></p>
-<h2><code>nummod:entity</code>: nummod:entity</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>nummod:entity</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/nummod-entity.md" target="#">edit nummod:entity</a></p>
 
 <p><a id="al-ru-dep/nummod:gov" class="al-dest"></a></p>
 <h2><code>nummod:gov</code>: numeric modifier governing the case of the noun</h2>
