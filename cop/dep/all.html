@@ -443,24 +443,71 @@ dobj(ⲡⲁϩ, ⲟⲩ)
 <p><a id="al-cop-dep/compound" class="al-dest"></a></p>
 <h2><code>compound</code>: compound</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>compound</code>.</p>
+<p>Used to connect compound noun heads to their modifier. For example, the compound ‘accomplice’ is comprised of ‘friend’ and ‘doing’ (a ‘doing-friend’), which is a type of ‘friend’ (not a type of ‘doing’). Therefore ‘friend’ is the head, and ‘doing’ is attached to it via the function <code>compound</code>:</p>
+
+<pre><code class="language-sdparse">ⲡⲉ/ART ϣⲃⲣ/NOUN ⲣϩⲱⲃ/NOUN \n accomplice! (lit. 'the friend-doing' or 'the doing-friend')
+
+det(ϣⲃⲣ, ⲡⲉ)
+compound(ϣⲃⲣ, ⲣϩⲱⲃ)
+vocative(ϣⲃⲣ)
+</code></pre>
+
+<p><strong>Note:</strong> This label is only used for cases in which tokenization has left parts of a compound as separate units. Generally speaking, Coptic Scriptorium guidelines specify that compound constituents are only annotated at the morpheme level, and do not constitute independent normalized units which are assigned a part of speech. As a result, this label should almost never be needed in corpora following Scriptorium segmentation practices; but for exceptional cases or corpora not following these practices, the <code>compound</code> label is the alternative.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/compound.md" target="#">edit compound</a></p>
 
 <p><a id="al-cop-dep/conj" class="al-dest"></a></p>
 <h2><code>conj</code>: conjunct</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>conj</code>.</p>
+<p>This function marks the coordinate (not the coordinating word ‘and’ etc.) and attaches it to the first member of the chain of coordinates. To retrieve the function of the daughter of<code>conj</code>, only its parent needs to be examined, cf. the guidelines for cc. The same example applies:</p>
+
+<pre><code class="language-sdparse">ϩⲛ/ADP ⲙ/DET ⲙⲛⲧⲁⲡⲓⲥⲧⲟⲥ/NOUN ,/PUNCT ⲙⲛ/ADP ⲙⲛⲧⲁⲕⲁⲑⲁⲣⲧⲟⲥ/NOUN ⲛⲓⲙ/PRON \n In faithlessness and every impurity
+
+case(ⲙⲛⲧⲁⲡⲓⲥⲧⲟⲥ, ϩⲛ)
+det(ⲙⲛⲧⲁⲡⲓⲥⲧⲟⲥ, ⲙ)
+cc(ⲙⲛⲧⲁⲡⲓⲥⲧⲟⲥ, ⲙⲛ)
+conj(ⲙⲛⲧⲁⲡⲓⲥⲧⲟⲥ, ⲙⲛⲧⲁⲕⲁⲑⲁⲣⲧⲟⲥ)
+det(ⲙⲛⲧⲁⲕⲁⲑⲁⲣⲧⲟⲥ, ⲛⲓⲙ)
+</code></pre>
+
+<p>The first coordinate points right to the second.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/conj.md" target="#">edit conj</a></p>
 
 <p><a id="al-cop-dep/cop" class="al-dest"></a></p>
 <h2><code>cop</code>: copula</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>cop</code>.</p>
+<p>This label marks the copula forms ⲡⲉ, ⲧⲉ, ⲛⲉ. Note that the copula is not the root of a copula predication, but rather a dependent of the lexical predicate, usually a noun preceding the copula, but sometimes a verb (especially with preterit conversion, followed by the ‘optional’ copula). Both cases are illustrated below.</p>
+
+<pre><code class="language-sdparse">ⲛⲉⲓ/DET ⲣⲱⲙⲉ/NOUN ϩⲉⲛ/DET ⲓⲟⲩⲇⲁⲓ/NOUN ⲛⲉ/AUX \n These men are Jews. 
+
+cop(ⲓⲟⲩⲇⲁⲓ, ⲛⲉ)
+det(ⲓⲟⲩⲇⲁⲓ, ϩⲉⲛ)
+nsubj(ⲓⲟⲩⲇⲁⲓ, ⲣⲱⲙⲉ)
+det(ⲣⲱⲙⲉ, ⲛⲉⲓ)
+</code></pre>
+
+<pre><code class="language-sdparse">ϩⲁⲙⲟⲓ/CONJ ⲟⲛ/ADV ⲛⲉ/AUX ϣⲁ/AUX ⲧⲉⲧⲛ/PRON ϭⲱ/VERB ⲛ/ADP ⲧⲉⲓ/DET ϩⲉ/NOUN ⲡⲉ/AUX \n Oh, would that you would stop in this way! 
+
+discourse(ϭⲱ, ϩⲁⲙⲟⲓ)
+advmod(ϭⲱ,ⲟⲛ)
+mark(ϭⲱ,ⲛⲉ)
+aux(ϭⲱ,ϣⲁ)
+nsubj(ϭⲱ,ⲧⲉⲧⲛ)
+cop(ϭⲱ,ⲡⲉ)
+nmod(ϭⲱ,ϩⲉ)
+det(ϩⲉ, ⲧⲉⲓ)
+case(ϩⲉ, ⲛ)
+</code></pre>
+
+<p>Also note that in nominal sentences, the subject is <code>nsubj</code> to the predicate, not to the copula. This is also true when the subject follows the copula, as shown below.</p>
+
+<pre><code class="language-sdparse">ⲛⲧⲟⲕ/PRON ⲡⲉ/AUX ⲧⲉⲩ/DET ϩⲉⲗⲡⲓⲥ/NOUN \n Their hope is you (lit. 'it's you, their hope')
+
+cop(ⲛⲧⲟⲕ, ⲡⲉ)
+nsubj(ⲛⲧⲟⲕ, ϩⲉⲗⲡⲓⲥ)
+det(ϩⲉⲗⲡⲓⲥ, ⲧⲉⲩ)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/cop.md" target="#">edit cop</a></p>
 
