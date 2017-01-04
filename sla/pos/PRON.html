@@ -78,7 +78,7 @@ Since they lack the nominative form, the lemma should be the clitic accusative f
   <li>[cu] <em>азъ, тꙑ, мꙑ, вꙑ, и, сѧ</em></li>
 </ul>
 
-<h2 id="possessive-pronouns">Possessive pronouns</h2>
+<h2 id="possessives">Possessives</h2>
 
 <p>The words that are traditionally called possessive pronouns are in fact possessive determiners and should be tagged
 <code>DET Poss=Yes | PronType=Prs</code>. First and second person possessives, and the reflexive possessive, function like adjectives.
@@ -203,10 +203,10 @@ hence it is pronoun and not determiner.</p>
 
 <h2 id="all-everything">All, everything</h2>
 
-<p>The total pronouns with the root <em>vs/vš</em> are another problematic group.</p>
+<p>The total pronouns with the root <em>vs/vš</em> are another problematic group, with some parallels to the demonstratives.</p>
 
-<p>In Czech, <em>všechen</em> can be used adjectively and has forms for different genders and numbers but usually only a subset of the forms is used,
-and quite often they are used without a modified noun:</p>
+<p>In Czech, <em>všechen</em> can be used adjectively and has forms for different genders and numbers but usually only a subset of the forms is
+used, and quite often they are used without a modified noun:</p>
 
 <ul>
   <li><em>všichni</em> (masculine animate plural), meaning “all, everybody,” may include non-masculine referents</li>
@@ -227,8 +227,16 @@ If we limit the search to singular neuters, and exclude the two-pronoun expressi
 <em>všechno</em> is a determiner, mostly with mass nouns (<em>všechno světlo</em> “all light”);
 this contrasts with the total number of singual neuter occurrences, 600.</p>
 
-<p>To summarize, we may want to grant this lemma special treatment. At least the singular neuter form, <em>všechno,</em> would
-deserve the <code>PRON</code> tag, unless it occurs in a clearly attributive position.</p>
+<p>The evidence here is similar to demonstratives, which in general behave like adjectives, but some neuter singular forms are used
+to represent general or unspecified entities, hence they are closer to pronouns. The solution should be same for demonstratives and
+for <em>all,</em> chosing one of the following options:</p>
+
+<ol>
+  <li>Tag all occurrences <code>DET PronType=Tot</code>. The lemma is always masculine singular nominative.</li>
+  <li>As 1., with the exception that selected neuter singular forms are ambiguous and may also appear as <code>PRON PronType=Tot</code>.
+Then the lemma is neuter singular nominative. Disambiguation has to be done by context: if it pre-modifies
+a noun phrase and concords with it in gender, number and case, it is determiner; otherwise it is pronoun.</li>
+</ol>
 
 <p>It remains to be determined how the cognate words in the other Slavic languages behave.</p>
 
@@ -237,6 +245,7 @@ deserve the <code>PRON</code> tag, unless it occurs in a clearly attributive pos
   <li>[sk] lemma <em>všetok,</em> most frequent forms <em>všetko, všetci,</em> other forms <em>všetkých, všetkým, všetky, všetkými, všetkého, všetkému, všetku</em></li>
   <li>[hsb] <em>wšě, wšěch, wšěm, wšykne?, wšeho, wšemu, wšitke, wšitkim, wšitkich</em> (DET; only <em>wšitkim</em> was used without a modified noun), <em>wšitko</em> (PRON)</li>
   <li>[pl] lemma <em>wszystko, wszyscy</em> (PRON); lemma <em>wszystek</em> (DET), forms <em>wszystkie, wszystkich, wszyscy, wsze</em> (but the pronoun-determiner distinction is probably caused by the conversion procedure)</li>
+  <li>[sl] <em>ves, vsa, vse, vsi, vsa</em></li>
 </ul>
 
 <h2 id="pronominal-quantifiers">Pronominal quantifiers</h2>
