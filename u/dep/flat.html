@@ -48,17 +48,17 @@
 <p>The <code>flat</code> relation is one of three relations for multiword expressions multiword expressions (MWEs) in UD 
 (the other two being <a href="">fixed</a> and <a href="">compound</a>). It is used for exocentric (headless) semi-fixed MWEs like
 names (<em>Hillary Rodham Clinton</em>) and dates (<em>24 December</em>). It contrasts with <a href="">fixed</a>, which applies to
-to completely fixed grammaticized MWEs (like <em>in spite of</em>), and with <a href="">compound</a>, which applies to
+to completely fixed grammaticized (function word-like) MWEs (like <em>in spite of</em>), and with <a href="">compound</a>, which applies to
 endocentric (headed) MWEs (like <em>apple pie</em>).</p>
 
-<p>Flat MWEs are annotated in a flat structure, where all subsequent words in the expression are attached to the 
-first one using the fixed label. The assumption is that these expressions do not have any internal syntactic structure 
+<p>Flat MWEs are annotated with a flat structure, where all subsequent words in the expression are attached to the 
+first one using the <code>flat</code> label. The assumption is that these expressions do not have any internal syntactic structure 
 and that the structural annotation is in principle arbitrary. In practice, however, it is highly desirable to use 
 a consistent annotation of all flat MWEs in all languages.</p>
 
-<p>Below we describe some of the most common uses of <a href="">flat</a> across languages. Note, however, that semantically
-equivalent expressions in other languages (or even in the same language) may require a different analysis if it
-has a regular compositional syntactic structure.</p>
+<p>Below we describe some of the most common uses of <a href="">flat</a> across languages. Note that semantically
+equivalent expressions in different languages (or even in the same language) may require a different analysis if sometimes
+there is and sometimes there is not a regular compositional syntactic structure.</p>
 
 <h2 id="names">Names</h2>
 
@@ -90,6 +90,12 @@ case(Rings, of)
 det(Rings, the)
 </code></pre>
 
+<pre><code class="language-sdparse">The king of Sweden
+det(king-2, The-1)
+nmod(king-2, Sweden-4)
+case(Sweden-4, of-3)
+</code></pre>
+
 <p>For organization names with clear syntactic modification structure, the dependencies should 
 also reflect the syntactic modification structure using regular syntactic relations, as in:</p>
 
@@ -100,7 +106,9 @@ compound(Service-4, Conservation-3)
 </code></pre>
 
 <p>In addition, regular syntactic relations are used: (i) for a modifying determiner or (ii) to connect 
-together the words of a description or name which involve embedded prepositional phrases, sentences, etc.</p>
+together the words of a description or name which involve embedded prepositional phrases, sentences, etc.,
+when these relations are recognized in the language being annotated (i.e., the analyses below are for
+French, German, and Spanish, not English).</p>
 
 <pre><code class="language-sdparse">Le Japon
 det(Japon-2, Le-1)
@@ -118,7 +126,15 @@ case(Cervantes, de)
 nmod(Miguel, Cervantes)
 </code></pre>
 
-<p>Note that the above analyses of <em>Ludwig van Beethoven</em> and <em>Miguel de Cervantes y Saavedra</em> assume that <em>van</em> resp. <em>de</em> are prepositions. This is true in the languages of the names’ origin but it may change when the name is used in foreign text, e.g. in English. We may thus get the following analysis in an English sentence:</p>
+<pre><code class="language-sdparse">Río de la Plata
+case(Plata-4, de-2)
+det(Plata-4, la-3)
+nmod(Río-1, Plata-4)
+</code></pre>
+
+<p>The above analyses of <em>Ludwig van Beethoven</em> and <em>Miguel de Cervantes y Saavedra</em> assume that <em>van</em> resp. <em>de</em> are prepositions.
+This is true in the languages of the names’ origin, but it can be expected to change when the name is used in foreign text. For example,
+when names like this are annotated in English, the appropriate analysis is as a <code>flat</code> name:</p>
 
 <pre><code class="language-sdparse">Ludwig van Beethoven was a famous German composer .
 flat(Ludwig, van)
@@ -131,16 +147,15 @@ nsubj(composer, Ludwig)
 punct(composer, .)
 </code></pre>
 
-<pre><code class="language-sdparse">The king of Sweden
-det(king-2, The-1)
-nmod(king-2, Sweden-4)
-case(Sweden-4, of-3)
+<pre><code class="language-sdparse">Río de la Plata
+flat(Río-1, de-2)
+flat(Río-1, la-3)
+flat(Río-1, Plata-4)
 </code></pre>
 
-<pre><code class="language-sdparse">Río de la Plata
-case(Plata-4, de-2)
-det(Plata-4, la-3)
-nmod(Río-1, Plata-4)
+<pre><code class="language-sdparse">Al Arabiya is a Saudi-owned news organization
+flat(Al-1, Arabiya-2)
+nsubj(organization-7, Al-1)
 </code></pre>
 
 <p>In the case of proper entities named after people, e.g. <em>Leland Stanford Jr. University</em>, the <code>flat</code> relation 
