@@ -167,9 +167,9 @@ remote: Total 215 (delta 0), reused 0 (delta 0), pack-reused 215
 Receiving objects: 100% (215/215), 6.98 MiB | 4.55 MiB/s, done.
 Resolving deltas: 100% (134/134), done.
 Checking connectivity... done.</span>
-<pre>
+</pre>
 
-Then enter the cloned folder and switch to ("checkout") the `dev` branch. Your copy of the repository knows that such a branch exists on the server but it only creates your local copy of that branch once you ask for it. You may subsequently want to call `git pull` to make sure that you have the latest contents of the dev branch from the server:
+<p>Then enter the cloned folder and switch to (“checkout”) the <code>dev</code> branch. Your copy of the repository knows that such a branch exists on the server but it only creates your local copy of that branch once you ask for it. You may subsequently want to call <code>git pull</code> to make sure that you have the latest contents of the dev branch from the server:</p>
 
 <pre>
 cd UD_Italian
@@ -183,80 +183,84 @@ git pull
 <span style="color:grey">Already up-to-date.</span>
 </pre>
 
-Once you do this, you are all set. Your copy will stay switched to the dev branch unless you call `git checkout master` (or other `git checkout`) again. You will probably mostly need just `git status`, `git diff`, `git add`, `git commit`, `git push` and `git pull` commands. All pushes and pulls will be done against the remote `dev` branch.
+<p>Once you do this, you are all set. Your copy will stay switched to the dev branch unless you call <code>git checkout master</code> (or other <code>git checkout</code>) again. You will probably mostly need just <code>git status</code>, <code>git diff</code>, <code>git add</code>, <code>git commit</code>, <code>git push</code> and <code>git pull</code> commands. All pushes and pulls will be done against the remote <code>dev</code> branch.</p>
 
+<h1 id="validation">Validation</h1>
 
+<h2 id="data-format-and-repository">Data format and repository</h2>
 
-# Validation
+<p>Up-to-date automatic validation runs of the repositories are available <a href="http://universaldependencies.org/validation.html">here</a>. These are based on the <code>dev</code> branch of the data and use the <code>validate.py</code> script described below.</p>
 
-## Data format and repository
-
-Up-to-date automatic validation runs of the repositories are available [here](http://universaldependencies.org/validation.html). These are based on the `dev` branch of the data and use the `validate.py` script described below.
-
-The final data validation is an important step and each file released
+<p>The final data validation is an important step and each file released
 in the project is expected to validate as conforming to the basic
 requirements on the data and format. For this purpose, there is a
-validation script in the tools repository.
+validation script in the tools repository.</p>
 
-    $ git clone git@github.com:UniversalDependencies/tools.git
-    $ cd tools
-    $ python validate.py -h
+<pre><code>$ git clone git@github.com:UniversalDependencies/tools.git
+$ cd tools
+$ python validate.py -h
+</code></pre>
 
-In general, you validate the data like so:
+<p>In general, you validate the data like so:</p>
 
-    python validate.py --lang=xx [file.conllu]
+<pre><code>python validate.py --lang=xx [file.conllu]
+</code></pre>
 
-for example for Finnish:
+<p>for example for Finnish:</p>
 
-    $ python validate.py --lang=fi ../UD_Finnish/fi-ud-dev.conllu 
-    *** PASSED ***
+<pre><code>$ python validate.py --lang=fi ../UD_Finnish/fi-ud-dev.conllu 
+*** PASSED ***
+</code></pre>
 
-Among other items, the script also validates the language-specific set
+<p>Among other items, the script also validates the language-specific set
 of tags and relations and therefore it needs to know about these. The
-language-specific lists are stored in `data/deprel.xx`
-(language-specific relations) and `data/feat_val.xx`
-(language-specific features). In addition `data/*.ud` stores the UD
+language-specific lists are stored in <code>data/deprel.xx</code>
+(language-specific relations) and <code>data/feat_val.xx</code>
+(language-specific features). In addition <code>data/*.ud</code> stores the UD
 taglists. Before you can validate data for a given language, you need to
 produce and commit the necessary tag lists. You can make the initial lists
-like so:
+like so:</p>
 
-    $ python conllu-stats.py --deprels=langspec path_to_your_data/*.conllu &gt; data/deprel.xx
-    $ python conllu-stats.py --catvals=langspec path_to_your_data/*.conllu &gt; data/feat_val.xx
+<pre><code>$ python conllu-stats.py --deprels=langspec path_to_your_data/*.conllu &gt; data/deprel.xx
+$ python conllu-stats.py --catvals=langspec path_to_your_data/*.conllu &gt; data/feat_val.xx
+</code></pre>
 
-This will gather the language-specific lists in descending order by
+<p>This will gather the language-specific lists in descending order by
 their frequency. It is important to check the resulting files for
 correctness, because otherwise the validation would of course be a
 no-op. Once you have checked the lists manually, you can add them to
-the repository:
+the repository:</p>
 
-    $ git add data/deprel.xx data/feat_val.xx
-    $ git commit -m "Adding language-specific data for xx."
-    $ git push
+<pre><code>$ git add data/deprel.xx data/feat_val.xx
+$ git commit -m "Adding language-specific data for xx."
+$ git push
+</code></pre>
 
-Since the `v2.0` release, whitespace is allowed in the `FORM` and `LEMMA` fields under conditions specified in [here](v2/segmentation.html). This is supported in the validator through the UD-wide file `data/tokens_w_space.ud` and its language-specific variants `data/tokens_w_space.xx`. In these files, each line is a [Python regular expression](https://docs.python.org/2/library/re.html) defining the permissible forms and lemmas that can contain a whitespace.
+<p>Since the <code>v2.0</code> release, whitespace is allowed in the <code>FORM</code> and <code>LEMMA</code> fields under conditions specified in <a href="v2/segmentation.html">here</a>. This is supported in the validator through the UD-wide file <code>data/tokens_w_space.ud</code> and its language-specific variants <code>data/tokens_w_space.xx</code>. In these files, each line is a <a href="https://docs.python.org/2/library/re.html">Python regular expression</a> defining the permissible forms and lemmas that can contain a whitespace.</p>
 
-# Syntax
+<h1 id="syntax">Syntax</h1>
 
-For the `v1.3` release, we have created an additional number of tests which try to uncover possible logical inconsistencies in the treebank data. Automatic validation runs for this syntax validation are available [here](http://universaldependencies.org/svalidation.html). Unlike the data format and repository validation, this validation machinery is not streamlined enough to be distributed for offline use, therefore it is important to regularly push your data to the `dev` branch of the repository.
+<p>For the <code>v1.3</code> release, we have created an additional number of tests which try to uncover possible logical inconsistencies in the treebank data. Automatic validation runs for this syntax validation are available <a href="http://universaldependencies.org/svalidation.html">here</a>. Unlike the data format and repository validation, this validation machinery is not streamlined enough to be distributed for offline use, therefore it is important to regularly push your data to the <code>dev</code> branch of the repository.</p>
 
-The tests are specified in the file `gen_index/stests.yaml` and rely on the query language of the [SETS search interface](http://bionlp-www.utu.fi/dep_search).
+<p>The tests are specified in the file <code>gen_index/stests.yaml</code> and rely on the query language of the <a href="http://bionlp-www.utu.fi/dep_search">SETS search interface</a>.</p>
 
-# Language-specific guidelines
+<h1 id="language-specific-guidelines">Language-specific guidelines</h1>
 
-Every treebank should be accompanied by a set of language-specific guidelines at http://universaldependencies.org/. These guidelines should minimally specify the following:
+<p>Every treebank should be accompanied by a set of language-specific guidelines at http://universaldependencies.org/. These guidelines should minimally specify the following:</p>
 
-1. Tokenization: How was word segmentation performed? Does the treebank include multiword tokens?
-2. POS tags: What universal POS tags (if any) are not used?
-3. Features: What universal features are not used? What language-specific features/values have been added?
-4. Relations: What universal relations are not used? What language-specific subtypes have been added?
+<ol>
+  <li>Tokenization: How was word segmentation performed? Does the treebank include multiword tokens?</li>
+  <li>POS tags: What universal POS tags (if any) are not used?</li>
+  <li>Features: What universal features are not used? What language-specific features/values have been added?</li>
+  <li>Relations: What universal relations are not used? What language-specific subtypes have been added?</li>
+</ol>
 
-There are <a href="contributing_language_specific.html">more detailed guidelines for language-specific documentation.</a>
-Also see the general guidelines about <a href="contributing.html">how to contribute.</a>
+<p>There are <a href="contributing_language_specific.html">more detailed guidelines for language-specific documentation.</a>
+Also see the general guidelines about <a href="contributing.html">how to contribute.</a></p>
 
-# Building the release
+<h1 id="building-the-release">Building the release</h1>
 
-Documentation of the steps to be taken by the release task force is [on a separate page](release_checklist_task_force.html).
-</pre></pre>
+<p>Documentation of the steps to be taken by the release task force is <a href="release_checklist_task_force.html">on a separate page</a>.</p>
 
 
       </div>
