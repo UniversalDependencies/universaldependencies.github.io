@@ -222,7 +222,9 @@ without special escaping. If the MISC field is not used, it should contain an un
 
 <h2 id="untokenized-text">Untokenized Text</h2>
 
-<p>To facilitate reconstruction of original (pre-tokenization) text, the information on original word segmentation should be kept if available. Every token after which there was no space in the original text should contain <code>SpaceAfter=No</code> in its MISC field. Note that this feature applies to the token level, not to the word level. Syntactic words that are just part of surface tokens will be ignored during detokenization and thus do not need the feature. In the example below, the line indexed 3 does not contain the <code>SpaceAfter</code> feature even though there was no space between <em>für</em> and <em>das</em> in the underlying sentence. However, if there were no space between <em>fürs</em> and the following token, the 3-4 line would have <code>SpaceAfter=No</code>.</p>
+<p>To facilitate reconstruction of original (pre-tokenization) text, the information on original word segmentation should be kept if available. If it is not available, UD treebanks since release 2.0 must approximate it using detokenization heuristics (see also the sentence-level attribute <code>text</code> below).</p>
+
+<p>Every token after which there was no space in the original text should contain <code>SpaceAfter=No</code> in its MISC field. Note that this feature applies to the token level, not to the word level. Syntactic words that are just part of surface tokens will be ignored during detokenization and thus do not need the feature. In the example below, the line indexed 3 does not contain the <code>SpaceAfter</code> feature even though there was no space between <em>für</em> and <em>das</em> in the underlying sentence. However, if there were no space between <em>fürs</em> and the following token, the 3-4 line would have <code>SpaceAfter=No</code>.</p>
 
 <!--WARNING: The multi-word tokens "he's, haven't" etc. may clash with usual low-level tokenization of English, see issue #322.
 Let's use an example from another language instead.
@@ -268,25 +270,33 @@ Let's use an example from another language instead.
 <p>There must be exactly one blank line <em>after</em> every sentence, including the last sentence in the file.
 Empty sentences are not allowed.</p>
 
-<p>Lines starting with the <code>#</code> character and preceding a sentence are considered as carrying metadata relevant to the following sentence. These lines are an integral part of the format as they give the ability to embed metadata together with the sentences. Consequently, any tools compatible with the CoNLL-U format should carry these lines over into their output (unless specifically designed to process them in some way). The contents of the comments and metadata is basically unrestricted and will vary depending on the application, but from v2 every sentence must have a unique sentence id, formatted as in the examples below. In sentence ids, the slash character (“/”) is reserved for specialized downstream use and should be avoided in UD treebanks. Comments used to specify the unannotated sentence as a single string should also be formatted as below. Comment and metadata lines inside sentences (i.e., between the token lines) are disallowed.</p>
+<p>Lines starting with the <code>#</code> character and preceding a sentence are considered as carrying metadata relevant to the following sentence. These lines are an integral part of the format as they give the ability to embed metadata together with the sentences. Consequently, any tools compatible with the CoNLL-U format should carry these lines over into their output (unless specifically designed to process them in some way). Comment and metadata lines inside sentences (i.e., between the token lines) are disallowed.</p>
 
-<pre><code># sent_id = 1
-# text = They buy and sell books. 
-1   They     they    PRON    PRP    Case=Nom|Number=Plur               2   nsubj   2:nsubj|4:nsubj   _
-2   buy      buy     VERB    VBP    Number=Plur|Person=3|Tense=Pres    0   root    0:root            _
-3   and      and     CONJ    CC     _                                  4   cc      4:cc              _
-4   sell     sell    VERB    VBP    Number=Plur|Person=3|Tense=Pres    2   conj    0:root|2:conj     _
-5   books    book    NOUN    NNS    Number=Plur                        2   obj     2:obj|4:obj       SpaceAfter=No
-6   .        .       PUNCT   .      _                                  2   punct   2:punct           _
+<p>The contents of the comments and metadata is basically unrestricted and will vary depending on the application, but from v2 the following two comments are compulsory for every sentence (and there must be just one comment of each kind per sentence):</p>
 
-# sent_id = 2
-# text = I have no clue.
-1   I       I       PRON    PRP   Case=Nom|Number=Sing|Person=1     2   nsubj   _   _
-2   have    have    VERB    VBP   Number=Sing|Person=1|Tense=Pres   0   root    _   _
-3   no      no      DET     DT    PronType=Neg                      4   det     _   _
-4   clue    clue    NOUN    NN    Number=Sing                       2   obj     _   SpaceAfter=No
-5   .       .       PUNCT   .     _                                 2   punct   _   _
-</code></pre>
+<ul>
+  <li>A treebank-wide unique sentence id (<code>sent_id</code>), formatted as in the examples below. In sentence ids, the slash character (“/”) is reserved for specialized downstream use and should be avoided in UD treebanks.</li>
+  <li>
+    <p>Comments used to specify the unannotated sentence as a single string (<code>text</code>) should also be formatted as below. If the original text is not available, the providers of the UD treebanks must approximate the <code>text</code> attribute using detokenization heuristics.</p>
+
+    <p># sent_id = 1
+  # text = They buy and sell books. 
+  1   They     they    PRON    PRP    Case=Nom|Number=Plur               2   nsubj   2:nsubj|4:nsubj   _
+  2   buy      buy     VERB    VBP    Number=Plur|Person=3|Tense=Pres    0   root    0:root            _
+  3   and      and     CONJ    CC     _                                  4   cc      4:cc              _
+  4   sell     sell    VERB    VBP    Number=Plur|Person=3|Tense=Pres    2   conj    0:root|2:conj     _
+  5   books    book    NOUN    NNS    Number=Plur                        2   obj     2:obj|4:obj       SpaceAfter=No
+  6   .        .       PUNCT   .      _                                  2   punct   2:punct           _</p>
+
+    <p># sent_id = 2
+  # text = I have no clue.
+  1   I       I       PRON    PRP   Case=Nom|Number=Sing|Person=1     2   nsubj   _   _
+  2   have    have    VERB    VBP   Number=Sing|Person=1|Tense=Pres   0   root    _   _
+  3   no      no      DET     DT    PronType=Neg                      4   det     _   _
+  4   clue    clue    NOUN    NN    Number=Sing                       2   obj     _   SpaceAfter=No
+  5   .       .       PUNCT   .     _                                 2   punct   _   _</p>
+  </li>
+</ul>
 
 
       </div>
