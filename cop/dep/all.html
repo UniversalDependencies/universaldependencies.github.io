@@ -514,8 +514,20 @@ det(ϩⲉⲗⲡⲓⲥ, ⲧⲉⲩ)
 <p><a id="al-cop-dep/csubj" class="al-dest"></a></p>
 <h2><code>csubj</code>: clausal subject</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>csubj</code>.</p>
+<p>Used to mark the head of a clausal subject. The dependency goes from the predicate that governs the subject, to the local root (i.e. the predicate) of the subject clause. This construction is fairly rare, and the subject clause is often an infinitive clause, as shown below.</p>
+
+<pre><code class="language-sdparse">ⲛⲉ/AUX ⲡ/DET ⲉⲧ/SCONJ ⲉϣϣⲉ/VERB ⲡⲉ/AUX ⲉ/ADP ⲁⲛⲉⲭⲉ/VERB ⲙⲙⲟ/ADP ⲕ/PRON \n it would be fitting to tolerate you
+
+csubj(ⲡ, ⲁⲛⲉⲭⲉ)
+aux(ⲁⲛⲉⲭⲉ, ⲉ)
+cop(ⲡ, ⲡⲉ)
+acl(ⲡ, ⲉϣϣⲉ)
+mark(ⲉϣϣⲉ, ⲉⲧ)
+dobj(ⲁⲛⲉⲭⲉ, ⲕ)
+case(ⲕ, ⲙⲙⲟ)
+</code></pre>
+
+<p>Note that this is just like a nominal subject (<code>nsubj</code>): what would be fitting? To tolerate you. To tolerate you is fitting.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/csubj.md" target="#">edit csubj</a></p>
 
@@ -530,40 +542,95 @@ for <code>csubjpass</code>.</p>
 <p><a id="al-cop-dep/dep" class="al-dest"></a></p>
 <h2><code>dep</code>: unspecified dependency</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>dep</code>.</p>
+<p>For all cases not covered by these guidelines, the label dep may be used to denote the unusual dependency. Ideally, these cases should be re-examined and integrated into the guidelines at a later date.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/dep.md" target="#">edit dep</a></p>
 
 <p><a id="al-cop-dep/det" class="al-dest"></a></p>
 <h2><code>det</code>: determiner</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>det</code>.</p>
+<p>Function label for determiners, including definite and indefinite articles governed by their noun, but also the postposed ⲛⲓⲙ ‘any’ and the determiner ⲕⲉ ‘other’, which is unique in being allowed to stand for an article. If a noun has both a normal article and ⲕⲉ, both are marked as <code>det</code>:</p>
+
+<pre><code class="language-sdparse">ϩⲉⲛ/DET ⲕⲉ/DET ϩⲛⲁⲁⲩ/NOUN \n some other matters
+
+det(ϩⲛⲁⲁⲩ, ⲕⲉ)
+det(ϩⲛⲁⲁⲩ, ϩⲉⲛ)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/det.md" target="#">edit det</a></p>
 
 <p><a id="al-cop-dep/discourse" class="al-dest"></a></p>
 <h2><code>discourse</code>: discourse element</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>discourse</code>.</p>
+<p>Function label for discourse particles, such as negative/affirmative answers (yes, …) or interjections (oh! Hah! etc.). The discourse particle is connected to the root of its clause using the <code>discourse</code> function.</p>
+
+<pre><code class="language-sdparse">ϩⲁⲙⲟⲓ/CONJ ⲟⲛ/ADV ⲛⲉ/AUX ϣⲁ/AUX ⲧⲉⲧⲛ/PRON ϭⲱ/VERB ⲛ/ADP ⲧⲉⲓ/DET ϩⲉ/NOUN ⲡⲉ/AUX \n Oh, would that you would stop in this way! 
+
+discourse(ϭⲱ, ϩⲁⲙⲟⲓ)
+advmod(ϭⲱ, ⲟⲛ)
+mark(ϭⲱ, ⲛⲉ)
+aux(ϭⲱ, ϣⲁ)
+nsubj(ϭⲱ, ⲧⲉⲧⲛ)
+cop(ϭⲱ, ⲡⲉ)
+nmod(ϭⲱ, ϩⲉ)
+det(ϩⲉ, ⲧⲉⲓ)
+case(ϩⲉ, ⲛ)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/discourse.md" target="#">edit discourse</a></p>
 
 <p><a id="al-cop-dep/dislocated" class="al-dest"></a></p>
 <h2><code>dislocated</code>: dislocated elements</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>dislocated</code>.</p>
+<p>This label is used for arguments or ‘hanging topics’ that are preposed before the verbal complex, and which are referred to again as pronouns governed by the verbal complex.</p>
+
+<pre><code class="language-sdparse">ⲡ/DET ϣⲓⲡⲉ/NOUN ⲙ/ADP ⲡⲉⲓ/DET ⲙⲁ/NOUN ,/PUNCT ⲡ/DET ⲉⲟⲟⲩ/NOUN ⲙ/ADP ⲡⲉⲓ/DET ⲙⲁ/NOUN ⲁ/AUX ⲓ/PRON ⲡⲁⲣⲁⲓⲧⲉⲓ/VERB ⲙⲙⲟ/ADP ⲩ/PRON \n The shame of this place, the glory of this place, I have forsaken them.
+
+det(ϣⲓⲡⲉ, ⲡ)
+nmod(ϣⲓⲡⲉ, ⲙⲁ-5)
+det(ⲙⲁ-5, ⲡⲉⲓ)
+case(ⲙⲁ-5, ⲙ)
+conj(ⲙⲁ-5, ⲉⲟⲟⲩ)
+det(ⲉⲟⲟⲩ, ⲡ)
+nmod(ⲉⲟⲟⲩ, ⲙⲁ-11)
+det(ⲙⲁ-11, ⲡⲉⲓ)
+case(ⲙⲁ-11, ⲙ)
+appos(ⲩ, ϣⲓⲡⲉ)
+case(ⲩ, ⲙⲙⲟ)
+dobj(ⲡⲁⲣⲁⲓⲧⲉⲓ, ⲩ)
+aux(ⲡⲁⲣⲁⲓⲧⲉⲓ, ⲁ) 
+nsubj(ⲡⲁⲣⲁⲓⲧⲉⲓ, ⲓ)
+</code></pre>
+
+<p>Note how the lexical arguments ‘the shame … the glory’ act as dislocated and are pre-posed, to be referred to again as pronouns by the pronoun object ‘them’, which acts as dobj (forsaken what? them. What is them? shame + glory). The dislocation is linked to the word governing the ‘duplicate pronoun’, usually the verb (here ⲡⲁⲣⲁⲓⲧⲉⲓ ‘forsake’, which also governs the object pronoun).</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/dislocated.md" target="#">edit dislocated</a></p>
 
 <p><a id="al-cop-dep/dobj" class="al-dest"></a></p>
 <h2><code>dobj</code>: direct object</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>dobj</code>.</p>
+<p>Designates the direct object of the verb. This can be one of the following:</p>
+
+<p>A nominal object standing directly after a verb, OR</p>
+
+<p>A pronominal object directly after a verb:</p>
+
+<pre><code class="language-sdparse">Ⲁ/AUX ⲕ/PRON ⲡⲁϩ/VERB ⲟⲩ/PRON \n You have torn them. 
+
+aux(ⲡⲁϩ, Ⲁ)
+nsubj(ⲡⲁϩ, ⲕ)
+dobj(ⲡⲁϩ, ⲟⲩ)
+</code></pre>
+<p>A nominal or pronominal object mediated by the accusative marker (ⲛ/ⲙ/ⲙⲙⲟ⸗), usually in the durative patterns according to Jernstedt’s Law. The marker itself is linked to the noun with the <code>case</code> function.</p>
+
+<pre><code class="language-sdparse">Ⲁ/AUX ⲓ/PRON ϥⲓ/VERB ⲛ/ADP ⲛⲉⲕ/DET ⲛⲟⲩⲧⲉ/NOUN \n I have carried your gods.
+
+aux(ϥⲓ, ⲁ)
+nsubj(ϥⲓ, ⲓ)
+dobj(ϥⲓ, ⲛⲟⲩⲧⲉ)
+case(ⲛⲟⲩⲧⲉ, ⲛ)
+det(ⲛⲟⲩⲛⲧⲉ, ⲛⲉⲕ)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/dobj.md" target="#">edit dobj</a></p>
 
@@ -594,8 +661,15 @@ for <code>goeswith</code>.</p>
 <p><a id="al-cop-dep/iobj" class="al-dest"></a></p>
 <h2><code>iobj</code>: indirect object</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>iobj</code>.</p>
+<p>Only used to mark the possessor in the possessive existential construction:</p>
+
+<pre><code class="language-sdparse">ⲟⲩⲛⲧⲁ/VERB ⲩ/PRON ⲓⲏⲥⲟⲩⲥ/PROPN \n They have Jesus
+
+iobj(ⲟⲩⲛⲧⲁ, ⲩ)
+nsubj(ⲟⲩⲛⲧⲁ, ⲓⲏⲥⲟⲩⲥ)
+</code></pre>
+
+<p>The above example can be interpreted as ‘exists to-them Jesus’, etymologically ⲟⲩⲛⲧⲁ-ⲩ &lt; ‘exists in their hand.’</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/iobj.md" target="#">edit iobj</a></p>
 
@@ -610,48 +684,163 @@ for <code>list</code>.</p>
 <p><a id="al-cop-dep/mark" class="al-dest"></a></p>
 <h2><code>mark</code>: marker</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>mark</code>.</p>
+<p>Marker indicating clause status. For subordinate clauses, this is the subordinating conjunction or particle, such as ϫⲉ introducing the object clause of direct or indirect speech, a relative pronoun such as ⲉⲧ, or an adverbial subordination, such as the circumstantial converter ⲉ/ⲉⲣⲉ. In Coptic, some main clauses also have marker elements determining clause status, which are morphologically and paradigmatically comparable to subordinators: the focalizing and preterit converters. As a result, all converters (POS tags CCIRC, CREL, CPRET and CFOC) are treated as <code>mark</code>, modifying their clause’s predicate, but also non-converter conjunctions with similar functions (e.g. ⲉⲛⲉ ‘if’) as shown in the examples below.</p>
+
+<pre><code class="language-sdparse">ⲉⲛⲉ/CONJ ⲛⲧⲕ/PRON ⲟⲩ/DET ⲉⲛⲧⲏϭ/NOUN \n If you were a weed
+
+mark(ⲉⲛⲧⲏϭ, ⲉⲛⲉ)
+nsubj(ⲉⲛⲧⲏϭ, ⲛⲧⲕ)
+det(ⲉⲛⲧⲏϭ, ⲟⲩ)
+</code></pre>
+
+<pre><code class="language-sdparse">ⲉ/SCONJ ⲕ/PRON ⲧⲣⲩⲫⲁ/VERB \n While you live luxuriously 
+
+mark(ⲧⲣⲩⲫⲁ, ⲉ)
+nsubj(ⲧⲣⲩⲫⲁ, ⲕ)
+</code></pre>
+
+<pre><code class="language-sdparse">ⲉ/PART ⲓ/PPERS ϣⲁϫⲉ/VERB ⲉⲣⲟ/PRON \n It’s YOU I’m talking to! 
+
+mark(ϣⲁϫⲉ, ⲉ)
+nsubj(ϣⲁϫⲉ, ⲓ)
+nmod(ϣⲁⲭⲉ, ⲉⲣⲟ)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/mark.md" target="#">edit mark</a></p>
 
 <p><a id="al-cop-dep/mwe" class="al-dest"></a></p>
 <h2><code>mwe</code>: multi-word expression</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>mwe</code>.</p>
+<p>Multi-word expressions are sequences of tokens which form a fixed expression, for which internal grammatical relations are not represented. For Coptic, this often corresponds to multi-token complex prepositions, often with a frozen adverbial modifier such as ⲉⲃⲟⲗ ‘out’. For example in the following example, the complex sequence ⲉⲃⲟⲗ ϩⲛ ‘out of’, has individual tokens which literally mean ‘out in’.</p>
+
+<pre><code class="language-sdparse">ⲁ/AUX ⲩ/PRON ⲛⲧ/VERB ⲟⲩ/PRON ⲉⲃⲟⲗ/ADV ϩⲙ/ADP ⲡⲉⲕ/DET ⲏⲓ/NOUN \n they took them out of your house
+
+aux(ⲛⲧ, ⲁ)
+nsubj(ⲛⲧ, ⲩ)
+dobj(ⲛⲧ, ⲟⲩ)
+nmod(ⲛⲧ, ⲏⲓ)
+case(ⲏⲓ, ⲉⲃⲟⲗ)
+mwe(ⲉⲃⲟⲗ, ϩⲙ)
+det(ⲏⲓ, ⲡⲉⲕ)
+</code></pre>
+
+<p>While an interpretation connecting ⲉⲃⲟⲗ to the verb to mean ‘take out’ is possible, that would leave the sense of ‘in’ to mean ‘of’ unexplained. Rather, the combination ⲉⲃⲟⲗ ϩⲛ ‘out of’ is lexicalized as a multiword expression, or <code>mwe</code>. By convention, mwe’s point in a chain from left to right, whereas the first token in the chain carries the external function of the expression – in this case a preposition (the label <code>case</code>).</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/mwe.md" target="#">edit mwe</a></p>
 
 <p><a id="al-cop-dep/name" class="al-dest"></a></p>
 <h2><code>name</code>: name</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>name</code>.</p>
+<p>This label is used to connect parts of multi-word names, pointing from left to right in a chain. The most typical case is titles such as ⲁⲡⲁ, but the guideline applies to all complex names.</p>
+
+<pre><code class="language-sdparse">ⲁⲡⲁ/NOUN ⲡⲁⲡⲛⲟⲩⲧⲉ/PROPN  \n Apa Papnoute
+
+name(ⲁⲡⲁ, ⲡⲁⲡⲛⲟⲩⲧⲉ)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/name.md" target="#">edit name</a></p>
 
 <p><a id="al-cop-dep/neg" class="al-dest"></a></p>
 <h2><code>neg</code>: negation modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>neg</code>.</p>
+<p>The label for negations such as ⲁⲛ, ⲛ, ⲧⲙ etc. which receive the POS tag NEG. The attachment is to the negated element, often the predicate or verb. Copula sentence negation is attached to the predicate, not to the copula. In circum-negation (ⲛ…ⲁⲛ), both elements are attached to the same element with the <code>neg</code> label.</p>
+
+<pre><code class="language-sdparse">ⲟⲩ ϩⲱⲃ ⲉ ⲛⲁⲛⲟⲩ ϥ ⲁⲛ ⲡⲉ \n it is not a good deed
+
+det(ϩⲱⲃ, ⲟⲩ)
+acl(ϩⲱⲃ, ⲛⲁⲛⲟⲩ)
+cop(ϩⲱⲃ, ⲡⲉ)
+neg(ϩⲱⲃ, ⲁⲛ)
+mark(ⲛⲁⲛⲟⲩ, ⲉ)
+nsubj(ⲛⲁⲛⲟⲩ, ϥ)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/neg.md" target="#">edit neg</a></p>
 
 <p><a id="al-cop-dep/nmod" class="al-dest"></a></p>
 <h2><code>nmod</code>: nominal modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nmod</code>.</p>
+<p>A nominal modifier. This is the label given to prepositional objects and other types of nominal dependents which are non-core arguments (i.e. neither subject nor object). Note that in keeping with Universal Dependencies for other languages, the <code>nmod</code> noun attaches directly to the lexeme it modifies (usually a noun or verb), while the preposition is seen as a <code>case</code> dependent of the modifying noun.</p>
+
+<pre><code class="language-sdparse">ⲡ/DET ⲣⲏ/NOUN ϩⲛ/ADP ⲧ/DET ⲡⲉ/NOUN  \n the sun in the sky
+
+det(ⲣⲏ, ⲡ)
+nmod(ⲣⲏ, ⲡⲉ)
+case(ⲡⲉ, ϩⲛ)
+det(ⲡⲉ, ⲧ)
+</code></pre>
+
+<p>Note also that prepositional arguments of verbs are also marked as <code>nmod</code>, including prepositional objects of verbs of perception:</p>
+
+<pre><code class="language-sdparse">ⲁⲣ/AUX ⲥⲱⲧⲙ/VERB ⲉⲣⲟ/ADP ⲓ/PRON \n You have heard me
+
+nsubj(ⲥⲱⲧⲙ, ⲁⲣ)
+nmod(ⲥⲱⲧⲙ, ⲓ)
+case(ⲉⲣⲟ, ⲓ)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/nmod.md" target="#">edit nmod</a></p>
 
 <p><a id="al-cop-dep/nsubj" class="al-dest"></a></p>
 <h2><code>nsubj</code>: nominal subject</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nsubj</code>.</p>
+<p>Designates the subject of a verb. The relation is from the lexical verb to the subject pronoun or noun, not from the auxiliary, as shown below. The annotation guidelines do not distinguish passive subjects, since the two forms of passive-like expressions in Coptic may be seen as syntactically indistinct from active:</p>
+
+<p><strong>Actional passive:</strong> formed by a third person plural with non-plural reference, but if there is no singular ‘by’ phrase, it is formally indistinguishable from the active equivalent:</p>
+
+<pre><code class="language-sdparse">Ⲁ/AUX ⲩ/PRON ⲥⲟⲧⲡ/VERB ⲥ/PRON  \n she was chosen (or: they chose her)
+
+aux(ⲥⲟⲧⲡ, ⲁ)
+nsubj(ⲥⲟⲧⲡ, ⲩ)
+dobj(ⲥⲟⲧⲡ, ⲥ)
+</code></pre>
+<p><strong>Stative passive:</strong> formed by the morphological stative form (pos=VSTAT) with a transitive verb, however syntactically same as statal reading with intransitive verb:</p>
+
+<pre><code class="language-sdparse">ϥ/PRON ⲕⲏⲧ/VERB \n it is built (transitive ⲕⲱⲧ “build”)
+
+nsubj(ⲕⲏⲧ, ϥ)
+</code></pre>
+
+<pre><code class="language-sdparse">ϥ/PRON ϩⲟⲗϭ/VERB \n it is sweet (intransitive ϩⲗⲟϭ)
+
+nsubj(ϩⲟⲗϭ, ϥ)
+</code></pre>
+
+<p>Note also that the existential predicates (Scriptorium pos=EXIST) take <code>nsubj</code> for the existing entity, even when they are used in the possessive construction:</p>
+
+<pre><code class="language-sdparse">ⲙⲛ/VERB ⲙⲛⲧⲗⲏⲥⲧⲏⲥ/NOUN ϣⲟⲟⲡ/VERB \n there is no robbery
+
+aux(ϣⲟⲟⲡ, ⲙⲛ)
+nsubj(ϣⲟⲟⲡ, ⲙⲛⲧⲗⲏⲥⲧⲏⲥ)
+</code></pre>
+
+<p>If the possessor is indicated in the EXIST construction, the possessed is still annotated as <code>nsubj</code>, and the possessor is annotated as the indirect object, see <code>iobj</code> (i.e. the construction is interpreted as ‘there exists X to Y’).</p>
+
+<pre><code class="language-sdparse">ⲟⲩⲛⲧⲁ/VERB ⲩ/PRON ⲓⲏⲥⲟⲩⲥ/PROPN \n they have Jesus (literally: “exists to them Jesus”)
+
+iobj(ⲟⲩⲛⲧⲁ, ⲩ)
+nsubj(ⲟⲩⲛⲧⲁ, ⲓⲏⲥⲟⲩⲥ)
+</code></pre>
+
+<p>In pure existence predication, the existing entity is the subject, and the EXIST predicate is the local root:</p>
+
+<pre><code class="language-sdparse">ⲙⲛ/VERB ϭⲉ/PART ⲛⲟⲩⲧⲉ/NOUN ⲛⲃⲗⲁ/ADP ⲕ/PRON \n There is no God but you (“not existing” is the main predicate, “God” is the subject)
+
+nsubj(ⲙⲛ, ⲛⲟⲩⲧⲉ) 
+det(ⲛⲟⲩⲧⲉ, ϭⲉ)
+nmod(ⲙⲛ, ⲕ)
+case(ⲕ, ⲛⲃⲗⲁ)
+</code></pre>
+
+<p>The same analysis applies to the presentative particle ⲉⲓⲥ (‘behold’, ‘voila’):</p>
+
+<pre><code class="language-sdparse">ⲉⲓⲥ/PART ⲟⲩ/ART ⲥⲃⲱ/N ⲛ/ADP ⲃⲣⲣⲉ/N \n Behold, a new teaching
+
+nsubj(ⲉⲓⲥ, ⲥⲃⲱ)
+det(ⲥⲃⲱ, ⲟⲩ)
+nmod(ⲃⲣⲣⲉ, ⲥⲃⲱ)
+case(ⲃⲣⲣⲉ, ⲛ)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/nsubj.md" target="#">edit nsubj</a></p>
 
@@ -666,32 +855,96 @@ for <code>nsubjpass</code>.</p>
 <p><a id="al-cop-dep/nummod" class="al-dest"></a></p>
 <h2><code>nummod</code>: numeric modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nummod</code>.</p>
+<p>This label is used for number modifiers, counting the modified nouns. Note that for numbers taking a preposition ⲛ, the preposition is attached via the case label to the counted noun, but the article (and any further prepositions preceding the article) are attached to the nominal head as well, as shown below.</p>
+
+<pre><code class="language-sdparse">ϩⲙ/ADP ⲡⲉ/DET ϩⲙⲉ/NUM ⲛ/ADP ϩⲟⲟⲩ/NOUN \n in the forty days
+
+case(ϩⲟⲟⲩ, ϩⲙ)
+det(ϩⲟⲟⲩ, ⲡⲉ)
+nummod(ϩⲟⲟⲩ, ϩⲙⲉ)
+case(ϩⲟⲟⲩ, ⲛ)
+</code></pre>
+
+<p>For the number ⲥⲛⲁⲩ ‘two’, which follows the counted noun, the noun is still the head, i.e. the dependency arrow points forward from the noun to the number.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/nummod.md" target="#">edit nummod</a></p>
 
 <p><a id="al-cop-dep/parataxis" class="al-dest"></a></p>
 <h2><code>parataxis</code>: parataxis</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>parataxis</code>.</p>
+<p>This label is used to link two main clauses that are listed together as one sentence (either by accident, or because they are not quite independent sentences). It is also used for parenthetical clauses in the middle of other clauses. The dependency goes from the root of the first clause, or in parenthetical cases, the non-parenthetical clause, to the other one:</p>
+
+<pre><code class="language-sdparse">ⲛ/DET ⲉⲡⲓⲥⲧⲟⲗⲏ/NOUN ⲛⲉ/AUX ⲉⲛⲧ/SCONJ ⲁ/AUX ⲕ/PRON ⲡⲁϩ/VERB ⲟⲩ/PRON ,/PUNCT ⲏ/CONJ ϯ/PRON ⲥⲟⲟⲩⲛ/VERB ⲁⲛ/ADV ⲙⲡⲁⲧ/AUX ⲓ/PRON ϫⲟⲟⲩ/VERB ⲥⲟⲩ/PRON ϫⲉ/CONJ ⲕ/PRON ⲛⲁ/AUX ⲡⲁϩ/VERB ⲟⲩ/PRON \n It’s the letters that you tore, don’t I know before I sent them that you’ll tear them? 
+
+det(ⲉⲡⲓⲥⲧⲟⲗⲏ, ⲛ)
+cop(ⲉⲡⲓⲥⲧⲟⲗⲏ, ⲛⲉ)
+acl(ⲉⲡⲓⲥⲧⲟⲗⲏ, ⲡⲁϩ-7)
+mark(ⲡⲁϩ-7, ⲉⲛⲧ)
+aux(ⲡⲁϩ-7, ⲁ)
+nsubj(ⲡⲁϩ-7, ⲕ-6)
+dobj(ⲡⲁϩ-7, ⲟⲩ-8)
+parataxis(ⲉⲡⲓⲥⲧⲟⲗⲏ, ⲥⲟⲟⲩⲛ)
+cc(ⲥⲟⲟⲩⲛ, ⲏ)
+nsubj(ⲥⲟⲟⲩⲛ, ϯ)
+neg(ⲥⲟⲟⲩⲛ, ⲁⲛ)
+acl(ⲥⲟⲟⲩⲛ, ϫⲟⲟⲩ)
+aux(ϫⲟⲟⲩ, ⲙⲡⲁⲧ)
+nsubj(ϫⲟⲟⲩ, ⲓ)
+ccomp(ⲥⲟⲟⲩⲛ, ⲡⲁϩ-21)
+dobj(ϫⲟⲟⲩ, ⲥⲟⲩ)
+aux(ⲡⲁϩ-21, ⲛⲁ)
+nsubj(ⲡⲁϩ-21, ⲕ-19)
+mark(ⲡⲁϩ-21, ϫⲉ)
+dobj(ⲡⲁϩ-21, ⲟⲩ-22)
+</code></pre>
+
+<p>If both of these clauses are seen as one sentence, there is no other relation to call the connection between the first clause and the second one. Note that this is distinct from two coordinated clauses, e.g. with ⲁⲩⲱ ‘and’, for which <code>cc</code> and <code>conj</code> should be used.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/parataxis.md" target="#">edit parataxis</a></p>
 
 <p><a id="al-cop-dep/punct" class="al-dest"></a></p>
 <h2><code>punct</code>: punctuation</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>punct</code>.</p>
+<p>The function for punctuation. It is seen as a root function, i.e. punctuation does not depend on any other word in the sentence. If a single tree form is desired, it is also possible to attach punctuation to the local root of the graph.</p>
+
+<pre><code class="language-sdparse">ⲁⲛⲟⲕ/PRON ./PUNCT \n I.
+
+punct(.)
+root(ⲁⲛⲟⲕ) 
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/punct.md" target="#">edit punct</a></p>
 
 <p><a id="al-cop-dep/remnant" class="al-dest"></a></p>
 <h2><code>remnant</code>: remnant in ellipsis</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>remnant</code>.</p>
+<p>This (relatively rarely used) function is required when ellipsis of a head word results in two words which do not refer to the same thing in the world (cf. dislocated) to be realized as double dependents of the same head. English examples for this relations are sentences such as:</p>
+
+<p>Mary ate the cake, but John the cookies.</p>
+
+<p>In this case, the absence of a second ‘ate’ forces us to consider two conflicting subjects and objects for the first ‘ate’. The solution is to connect the second member in each set to the first one, using the remnant relation. Coptic examples work using the same logic:</p>
+
+<pre><code class="language-sdparse">ⲛ/ADV ⲥⲉ/PRON ⲣⲭⲣⲉⲓⲁ/VERB ⲁⲛ/ADV ⲛϭⲓ/PTC ⲛ/ART ⲉⲧ/SCONJ ⲧⲏⲕ/VERB ⲙ/ADP ⲡ/DET ⲥⲁⲓⲛ/NOUN ⲁⲗⲗⲁ/CONJ ⲛ/DET ⲉⲧ/SCONJ ϣⲟⲟⲡ/VERB ⲕⲁⲕⲱⲥ/ADV \n The healthy do not need the doctor, but those who are unwell (need the doctor). 
+
+neg(ⲣⲭⲣⲉⲓⲁ, ⲛ-1)
+nsubj(ⲣⲭⲣⲉⲓⲁ, ⲥⲉ)
+neg(ⲣⲭⲣⲉⲓⲁ, ⲁⲛ)
+dislocated(ⲣⲭⲣⲉⲓⲁ, ⲛ-6)
+case(ⲛ-6, ⲛϭⲓ)
+cc(ⲣⲭⲣⲉⲓⲁ, ⲁⲗⲗⲁ)
+acl(ⲛ-6, ⲧⲏⲕ)
+mark(ⲧⲏⲕ, ⲉⲧ-7)
+nmod(ⲧⲏⲕ, ⲥⲁⲓⲛ)
+case(ⲥⲁⲓⲛ, ⲙ)
+det(ⲥⲁⲓⲛ, ⲡ)
+remnant(ⲥⲉ, ⲛ-13)
+acl(ⲛ-13, ϣⲟⲟⲡ)
+mark(ϣⲟⲟⲡ, ⲉⲧ-14)
+advmod(ϣⲟⲟⲡ, ⲕⲁⲕⲱⲥ)
+
+</code></pre>
+
+<p>While both subjects are related to need, only the first instance of the subject may be realized on the overt verb need. The second subject is thought of as belonging to an omitted coordinated verb. For this reason, the conjunction but is seen as having the function cc to the first verb.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/remnant.md" target="#">edit remnant</a></p>
 
@@ -706,24 +959,68 @@ for <code>reparandum</code>.</p>
 <p><a id="al-cop-dep/root" class="al-dest"></a></p>
 <h2><code>root</code>: root</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>root</code>.</p>
+<p>The root of the utterance, that word, which depends on no other word. Usually this is the predicate, a verb if available, otherwise the nominal predicate of a nominal sentence. In fragments, such as a plain nominal phrase or a single interjection, the local root (i.e. the noun head, or the interjection) is the root.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/root.md" target="#">edit root</a></p>
 
 <p><a id="al-cop-dep/vocative" class="al-dest"></a></p>
 <h2><code>vocative</code>: vocative</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>vocative</code>.</p>
+<p>Used to mark direct forms of address, usually introduced by a definite article: ⲡⲉϣⲃⲣⲣϩⲱⲃ!  ‘oh you accomplice!’. If the vocative forms the entire utterance, it is labeled vocative and functions as the root of the utterance. If there is a further proposition in the sentence (usually an imperative), then the vocative is attached to the root of the predication:</p>
+
+<pre><code class="language-sdparse">ⲡ/DET ⲛⲟⲩⲧⲉ/NOUN ⲁⲣⲓ/VERB ⲧ/DET ⲁⲅⲁⲡⲏ/NOUN \n Oh God, have mercy! 
+
+det(ⲛⲟⲩⲧⲉ, ⲡ)
+vocative(ⲁⲣⲓ, ⲛⲟⲩⲧⲉ)
+dobj(ⲁⲣⲓ, ⲁⲅⲁⲡⲏ)
+det(ⲁⲅⲁⲡⲏ, ⲧ)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/vocative.md" target="#">edit vocative</a></p>
 
 <p><a id="al-cop-dep/xcomp" class="al-dest"></a></p>
 <h2><code>xcomp</code>: open clausal complement</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>xcomp</code>.</p>
+<p>This label is used to mark dependent clauses that do not contain their own subject, most often infinitive object clauses.</p>
+
+<pre><code class="language-sdparse">ⲧⲉⲧⲛ/PRON ⲕⲱ/VERB ⲙⲙⲟ/ADP ⲟⲩ/PRON ⲁⲛ/ADV ⲉ/ADP ⲥⲣϥⲉ/VERB ⲉ/ADP ⲁⲁ/VERB ϥ/PRON \n you do not let them engage in making it
+
+nsubj(ⲕⲱ, ⲧⲉⲧⲛ)
+dobj(ⲕⲱ, ⲟⲩ)
+case(ⲟⲩ, ⲙⲙⲟ)
+neg(ⲕⲱ, ⲁⲛ)
+xcomp(ⲕⲱ, ⲥⲣϥⲉ)
+mark(ⲥⲣϥⲉ, ⲉ-6)
+xcomp(ⲥⲣϥⲉ, ⲁⲁ)
+mark(ⲁⲁ, ⲉ-8)
+det(ⲁⲁ, ϥ)
+</code></pre>
+
+<p>Note how in the example above, the subject of both infinitives marked by ⲉ is the object of the main verb ⲕⲱ, which is external to the infinitive clauses. The infinitive clauses marked by xcomp are inheriting their subject argument from the main clause argument.</p>
+
+<p>Additionally, the subordinate infinitive of the causative construction with ⲧⲣⲉ is also analyzed as xcomp, although the etymological subject of the auxiliary ⲧⲣⲉ is attached to the lexical infinitive as a subject. This facilitates syntactic recognition of the construction next to semantic argument structure extraction:</p>
+
+<pre><code class="language-sdparse">
+ⲙⲡⲉ/AUX ⲕ/PRON ⲟⲩⲱϣ/VERB ⲁⲛ/ADV ⲡⲉ/AUX ⲉ/ADP ⲧⲣⲉ/VERB ⲛ/DET ϣⲏⲣⲉ/NOUN ⲙ/ADP ⲡ/DET ⲛⲟⲩⲧⲉ/NOUN ϫⲓ/VERB ⲟⲩ/DET ⲡⲣⲟⲥⲫⲟⲣⲁ/NOUN \n you did not wish to make the sons of God carry an offering
+
+aux(ⲟⲩⲱϣ, ⲙⲡⲉ)
+nsubj(ⲟⲩⲱϣ, ⲕ)
+neg(ⲟⲩⲱϣ, ⲁⲛ)
+cop(ⲟⲩϣⲱ, ⲡⲉ)
+xcomp(ⲟⲩⲱϣ, ⲧⲣⲉ)
+aux(ⲧⲣⲉ, ⲉ)
+det(ϣⲏⲣⲉ, ⲛ)
+xcomp(ⲧⲣⲉ, ϫⲓ)
+nsubj(ϫⲓ, ϣⲏⲣⲉ)
+nmod(ϣⲏⲣⲉ, ⲛⲟⲩⲧⲉ)
+case(ⲛⲟⲩⲧⲉ, ⲙ)
+det(ⲛⲟⲩⲧⲉ, ⲡ)
+det(ⲡⲣⲟⲥⲫⲟⲣⲁ, ⲟⲩ)
+dobj(ϫⲓ, ⲡⲣⲟⲥⲫⲟⲣⲁ)
+
+</code></pre>
+
+<p>Note that in the example above, the first xcomp is the normal infinitive case, with no explicit subject, but the second xcomp illustrates the causative construction: ‘sons’ are both the object of ‘making’ and subject of ‘carrying’.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/xcomp.md" target="#">edit xcomp</a></p>
 

@@ -796,9 +796,26 @@ This makes sense, since nominals normally do not take core arguments.</p>
 <p><a id="al-u-dep/clf" class="al-dest"></a></p>
 <h2><code>clf</code>: classifier</h2>
 
-<p>A <code>clf</code> (classifier) is a word which accompanies a noun in certain grammatical contexts, and generally reflects some kind of 
+<p>A <code>clf</code> (classifier) is a word which accompanies a noun in certain grammatical contexts. 
+The most canonical use is numeral classifiers, where the word is used with a number for counting objects. 
+A classifier generally reflects some kind of 
 conceptual classification of nouns, based principally on features of their referents. 
-Here are some examples from Mandarin Chinese:</p>
+Etymologically, classifiers are normally historically nouns, and the words may still also be used as independent nouns,
+but in their classifier use they have scant semantics left.
+In most cases, the most appropriate UPOS to give classifiers will still be NOUN, though you may wish to give the words a feature
+indicating their special status as a classifier. (There is at present no Universal feature for classifiers, but <code>NounType=Clf</code>
+might be apt.)
+The <code>clf</code> function is intended for languages which have highly grammaticalized systems of classifiers.
+The greatest density of such languages is in Asia.
+As well as core classifiers, there are often also other words, sometimes called “massifiers” that are used in counting with
+similar behavior to classifiers. These typically include words for containers (“cup”, “box”) and units (“month”, “inch”),
+such as Chinese 袋 ‘bag’ in 一袋米 [one bag rice] ‘a bag of rice’.
+In a classifier language, it is usually most appropriate to also analyze these words as classifiers.
+Most other languages also count things with units, however, for these languages, such as English, <code>clf</code> is not used and rather
+standard noun phrase relations are still used (despite there also being incipient grammaticalization in many cases, including English).
+See the examples for English at the end.</p>
+
+<p>Here are some examples from Mandarin/Putonghua Chinese:</p>
 
 <ul>
   <li>三个学生 (三個學生) sān gè xuéshēng = “three students”, literally “three [human-classifier] student”</li>
@@ -807,13 +824,57 @@ Here are some examples from Mandarin Chinese:</p>
   <li>三条河 (三條河) sān tiáo hé = “three rivers”, literally “three [long-wavy-classifier] river”</li>
 </ul>
 
-<p>Syntactically, the classifier groups with the numeral, rather than the noun, and we therefore treat
-classifiers as functional dependents of numerals (or possessives) using the new <code>clf</code> relation.</p>
+<p>Syntactically, the classifier groups with the numeral rather than the noun and we therefore treat
+classifiers as functional dependents of numerals (or possessives) using the new <code>clf</code> relation. (This
+is one of Greenberg’s universals and is true in almost all cases. 
+A couple of exceptions are noted in Aikhenvald (2000: 105) <em>Classifiers</em>, OUP, but it is noticeable that in those languages
+the putative head noun is in the genitive case.)</p>
 
-<pre><code class="language-sdparse">sān gè xuéshēng \n three clf student
+<div class="sd-parse">
+sān gè xuéshēng \n three clf student
 nummod(xuéshēng, sān)
 clf(sān, gè)
-</code></pre>
+</div>
+
+<p>Classifier words also occur in various other constructions, and so it is important to distinguish the word in a particular
+language from the universal classifier function proposed in UD. We go through here some further examples with Chinese classifiers.</p>
+
+<p>No noun may appear with the number and classifier. 
+In this case, the classifier takes the role of the missing noun, and we promote the classifier to be the head.
+So 我 買 兩 本 “I am buying two” is regarded as “I am buying two [books-CLF]”.</p>
+
+<div class="sd-parse">
+我 買 兩 本 \n I buy two CLF
+obj(買, 本)
+nummod(本, 兩)
+</div>
+
+<p>In some languages, including Chinese, a classifier can also appear without a number, and frequently then has some sort of
+determinative function. We use the relation <code>det</code> for such uses of a classifier. For instance, in Cantonese ‘She bought a/the book’:</p>
+
+<div class="sd-parse">
+佢 買 咗 本 書 \n keoi maai zo bun syu \n 3sg buy PERF CLF book
+obj(買, 書)
+det(書, 本)
+</div>
+
+<p>For languages without highly grammaticalized classifier systems, standard nominal modification relationships are used
+even when things are being counted in groups (with “massifiers”). For example, in English:</p>
+
+<div class="sd-parse">
+three cups of rolled oats
+nummod(cups, three)
+case(oats, of)
+amod(oats, rolled)
+nmod(cups, oats)
+</div>
+
+<div class="sd-parse">
+three cups rolled oats
+nummod(cups, three)
+amod(oats, rolled)
+nmod(cups, oats)
+</div>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/clf.md" target="#">edit clf</a></p>
 
@@ -1308,17 +1369,17 @@ fixed(plutôt, qu')
 <p>The <code>flat</code> relation is one of three relations for multiword expressions multiword expressions (MWEs) in UD 
 (the other two being <a href="">fixed</a> and <a href="">compound</a>). It is used for exocentric (headless) semi-fixed MWEs like
 names (<em>Hillary Rodham Clinton</em>) and dates (<em>24 December</em>). It contrasts with <a href="">fixed</a>, which applies to
-to completely fixed grammaticized MWEs (like <em>in spite of</em>), and with <a href="">compound</a>, which applies to
+to completely fixed grammaticized (function word-like) MWEs (like <em>in spite of</em>), and with <a href="">compound</a>, which applies to
 endocentric (headed) MWEs (like <em>apple pie</em>).</p>
 
-<p>Flat MWEs are annotated in a flat structure, where all subsequent words in the expression are attached to the 
-first one using the fixed label. The assumption is that these expressions do not have any internal syntactic structure 
+<p>Flat MWEs are annotated with a flat structure, where all subsequent words in the expression are attached to the 
+first one using the <code>flat</code> label. The assumption is that these expressions do not have any internal syntactic structure 
 and that the structural annotation is in principle arbitrary. In practice, however, it is highly desirable to use 
 a consistent annotation of all flat MWEs in all languages.</p>
 
-<p>Below we describe some of the most common uses of <a href="">flat</a> across languages. Note, however, that semantically
-equivalent expressions in other languages (or even in the same language) may require a different analysis if it
-has a regular compositional syntactic structure.</p>
+<p>Below we describe some of the most common uses of <a href="">flat</a> across languages. Note that semantically
+equivalent expressions in different languages (or even in the same language) may require a different analysis if sometimes
+there is and sometimes there is not a regular compositional syntactic structure.</p>
 
 <h2 id="names">Names</h2>
 
@@ -1340,6 +1401,16 @@ flat(Carl-1, XVI-2)
 flat(New, York)
 </code></pre>
 
+<p>Titles/honorifics are also analyzed using the <code>flat</code> relation.</p>
+
+<pre><code class="language-sdparse">Mr. Smith
+flat(Mr., Smith)
+</code></pre>
+
+<pre><code class="language-sdparse">President Obama
+flat(President, Obama)
+</code></pre>
+
 <p>By contrast, names that have a regular syntactic structure, like <em>The Lord of the Rings</em> and <em>Captured By
 Aliens</em>, should be annotated with regular syntactic relations.</p>
 
@@ -1348,6 +1419,12 @@ det(Lord, The)
 nmod(Lord, Rings)
 case(Rings, of)
 det(Rings, the)
+</code></pre>
+
+<pre><code class="language-sdparse">The king of Sweden
+det(king-2, The-1)
+nmod(king-2, Sweden-4)
+case(Sweden-4, of-3)
 </code></pre>
 
 <p>For organization names with clear syntactic modification structure, the dependencies should 
@@ -1360,7 +1437,9 @@ compound(Service-4, Conservation-3)
 </code></pre>
 
 <p>In addition, regular syntactic relations are used: (i) for a modifying determiner or (ii) to connect 
-together the words of a description or name which involve embedded prepositional phrases, sentences, etc.</p>
+together the words of a description or name which involve embedded prepositional phrases, sentences, etc.,
+when these relations are recognized in the language being annotated (i.e., the analyses below are for
+French, German, and Spanish, not English).</p>
 
 <pre><code class="language-sdparse">Le Japon
 det(Japon-2, Le-1)
@@ -1368,18 +1447,14 @@ det(Japon-2, Le-1)
 
 <pre><code class="language-sdparse">Ludwig van Beethoven
 case(Beethoven, van)
+nmod(Ludwig, Beethoven)
 </code></pre>
 
 <pre><code class="language-sdparse">Miguel de Cervantes y Saavedra
 conj(Cervantes, Saavedra)
 cc(Saavedra, y)
 case(Cervantes, de)
-</code></pre>
-
-<pre><code class="language-sdparse">The king of Sweden
-det(king-2, The-1)
-nmod(king-2, Sweden-4)
-case(Sweden-4, of-3)
+nmod(Miguel, Cervantes)
 </code></pre>
 
 <pre><code class="language-sdparse">Río de la Plata
@@ -1388,14 +1463,40 @@ det(Plata-4, la-3)
 nmod(Río-1, Plata-4)
 </code></pre>
 
+<p>The above analyses of <em>Ludwig van Beethoven</em> and <em>Miguel de Cervantes y Saavedra</em> assume that <em>van</em> resp. <em>de</em> are prepositions.
+This is true in the languages of the names’ origin, but it can be expected to change when the name is used in foreign text. For example,
+when names like this are annotated in English, the appropriate analysis is as a <code>flat</code> name:</p>
+
+<pre><code class="language-sdparse">Ludwig van Beethoven was a famous German composer .
+flat(Ludwig, van)
+flat(Ludwig, Beethoven)
+det(composer, a)
+amod(composer, famous)
+amod(composer, German)
+cop(composer, was)
+nsubj(composer, Ludwig)
+punct(composer, .)
+</code></pre>
+
+<pre><code class="language-sdparse">Río de la Plata
+flat(Río-1, de-2)
+flat(Río-1, la-3)
+flat(Río-1, Plata-4)
+</code></pre>
+
+<pre><code class="language-sdparse">Al Arabiya is a Saudi-owned news organization
+flat(Al-1, Arabiya-2)
+nsubj(organization-7, Al-1)
+</code></pre>
+
 <p>In the case of proper entities named after people, e.g. <em>Leland Stanford Jr. University</em>, the <code>flat</code> relation 
 should only be used inside the person name, with the rest of the construction analyzed compositionally using 
 normal syntactic relations:</p>
 
 <pre><code class="language-sdparse">Leland Stanford Jr. University
-compound(University-4, Leland-1)
-flat(Stanford-2, Leland-1)
-flat(Jr.-3, Leland-1)
+compound(Leland-1, University-4)
+flat(Leland-1, Stanford-2)
+flat(Leland-1, Jr.-3)
 </code></pre>
 
 <h2 id="dates-and-complex-numerals">Dates and Complex Numerals</h2>
@@ -1950,10 +2051,10 @@ Since <code>punct</code> is not a normal dependency relation, the usual criteria
 Instead, we use the following principles:</p>
 
 <ol>
-  <li>A punctuation mark separating coordinated units is attached to the first conjunct.</li>
+  <li>A punctuation mark separating coordinated units is attached to the following conjunct.</li>
   <li>A punctuation mark preceding or following a subordinated unit is attached to this unit.</li>
   <li>Within the relevant unit, a punctuation mark is attached at the highest possible node that preserves projectivity.</li>
-  <li>Paired punctuation marks (quotes and brackets) should be attached to the same word unless that would create non-projectivity. This word is usually the head of the phrase enclosed in the paired punctuation.</li>
+  <li>Paired punctuation marks (e.g. quotes and brackets, sometimes also dashes, commas and other) should be attached to the same word unless that would create non-projectivity. This word is usually the head of the phrase enclosed in the paired punctuation.</li>
 </ol>
 
 <div id="punct1" class="sd-parse">
@@ -1977,14 +2078,14 @@ punct(kam, .)
 
 <div id="punct3" class="sd-parse">
 A.K.A. , AKA , or a\/k\/a may refer to : “ Also known as ” , used to introduce pseudonyms , aliases , etc. ( Compare f.k.a. for “ formerly known as ” . )
-punct(A.K.A., ,-2)
-punct(A.K.A., ,-4)
+punct(AKA, ,-2)
+punct(a/k/a, ,-4)
 punct(refer, :)
 punct(known-13, “-11)
 punct(known-13, ”-15)
 punct(used, ,-16)
-punct(pseudonyms, ,-21)
-punct(pseudonyms, ,-23)
+punct(aliases, ,-21)
+punct(etc., ,-23)
 punct(Compare, (-25)
 punct(Compare, )-35)
 punct(known-31, “-29)

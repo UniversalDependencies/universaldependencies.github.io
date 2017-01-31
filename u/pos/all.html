@@ -255,8 +255,7 @@ also include copulas (in the narrow sense of pure linking words for nonverbal pr
 
 <p><em>Modal verbs</em> may count as auxiliaries in some languages (English). In
 other languages their behavior is not too different from the <a href="VERB">main
-verbs</a> and they are thus tagged <code>VERB</code>. <em>Copulas</em> also stay with
-main verbs.</p>
+verbs</a> and they are thus tagged <code>VERB</code>.</p>
 
 <p>Note that not all languages have grammaticalized auxiliaries, and
 even where they exist the dividing line between full verbs and
@@ -270,6 +269,7 @@ language-specific documentation.</p>
   <li>Tense auxiliaries: <em><b>has</b> (done), <b>is</b> (doing), <b>will</b> (do)</em></li>
   <li>Passive auxiliaries: <em><b>was</b> (done), <b>got</b> (done)</em></li>
   <li>Modal auxiliaries: <em><b>should</b> (do), <b>must</b> (do)</em></li>
+  <li>Verbal copulas: <em>He <b>is</b> a teacher.</em></li>
 </ul>
 
 <h3 id="references">References</h3>
@@ -321,6 +321,17 @@ indefinite element of a class, to a closer or more distant element, to
 an element belonging to a specified person or thing, to a particular
 number or quantity, etc.</p>
 
+<p>Determiners under this definition include both <em>articles</em>
+and <em>pro-adjectives (pronominal adjectives)</em>, which is a slightly broader
+sense than what is usually regarded as determiners in English.
+In particular, there is no general requirement that a nominal can be
+modified by at most one determiner, although some languages may show
+a strong tendency towards such a constraint.
+(For example, an English nominal usually allows only one <code>DET</code> modifier,
+but there are occasional cases of <em>addeterminers</em>, which appear outside
+the usual determiner, such as [en] <em>all</em> in <em><b>all</b> the children survived</em>.
+In such cases, both <em>all</em> and <em>the</em> are given the POS <code>DET</code>.)</p>
+
 <p>Note that the <code>DET</code> tag includes (pronominal) <em>quantifiers</em> (words
 like <em>many, few, several),</em> which are included among determiners in
 some languages but may belong to numerals in others. However,
@@ -328,31 +339,51 @@ some languages but may belong to numerals in others. However,
 tagged <code>DET</code> even though some authors would include them in
 quantifiers. Cardinal numbers have their own tag <a href="">NUM</a>.</p>
 
-<p>Also note that the notion of determiners is unknown in grammars of
+<p>Also note that the notion of determiners is unknown in traditional grammar of
 some languages (e.g. Czech); words equivalent to English determiners
 may be traditionally classified as <a href="PRON">pronouns</a> and/or
 <a href="NUM">numerals</a> in these languages. In order to annotate the same
 thing the same way across languages, the words satisfying our definition
 of determiners should be tagged <code>DET</code> in these languages as well.</p>
 
-<p>For instance, [en] <em>this</em> is either pronoun <em>(I saw <b>this</b>
-yesterday.)</em> or determiner <em>(I saw <b>this</b> car yesterday.)</em> Its
-Czech translation, [cs] <em>tohle</em>, is traditionally called pronoun in
-Czech grammar, regardless of context. To make the annotation parallel
-across languages, it should be now tagged <a href="">PRON</a> in <em><b>Tohle</b>
-jsem viděl včera.</em> and <code>DET</code> in <em><b>Tohle</b> auto jsem viděl včera.</em></p>
+<p>It is not always crystal clear where pronouns end and determiners start.
+Unlike in UD v1 it is no longer required that they are told apart solely on
+the base of the context. The words can be pre-classified in the dictionary
+as either <code>PRON</code> or <code>DET</code>, based on their <em>typical</em> syntactic distribution
+(and morphology, when applicable).
+Language-specific documentation should list all determiners (it is a closed class)
+and point out ambiguities, if any.</p>
 
-<p>Usually a nominal allows only one <code>DET</code> modifier, but there are occasional cases of <em>addeterminers</em>, which appear outside the usual determiner, such as [en] <em>all</em> in <em><b>all</b> the children survived</em>.  In such cases, both <em>all</em> and <em>the</em> are given the POS <code>DET</code>.</p>
+<p>See also <a href="../overview/morphology.html#pronominal-words">general principles on pronominal words</a>
+for more tips on how to define determiners.
+In particular:</p>
+
+<ul>
+  <li>Articles <em>(the, a, an)</em> are always tagged <code>DET</code>; their <a href="/u/feat/PronType.html">PronType</a> is <code>Art</code>.</li>
+  <li>Pronominal numerals (quantifiers) are tagged <code>DET</code>; besides <code>PronType</code>, they also use the <a href="/u/feat/NumType.html">NumType</a> feature.</li>
+  <li>Words that behave similar to adjectives are <code>DET</code>. Similar behavior means:
+    <ul>
+      <li>They are more likely to be used attributively (modifying a noun phrase) than substantively (replacing a noun phrase). They may occur alone, though.
+If they do, it is either because of ellipsis, or because the hypothetical modified noun is something unspecified and general, as in <em>All [visitors] must pay.</em></li>
+      <li>Their inflection (if applicable) is similar to that of adjectives, and distinct from nouns.
+They agree with the nouns they modify.
+Especially the ability to inflect for gender is typical for adjectives and determiners.
+(Gender of nouns is determined lexically and determiners may be required by the grammar to agree with their nouns in gender; therefore they need to inflect for gender.)</li>
+    </ul>
+  </li>
+  <li>Possessives vary across languages. In some languages the above tests put them in the <code>DET</code> category.
+In others, they are more like a normal personal pronoun in a specific case (often the genitive), or a personal pronoun with an adposition; they are tagged <code>PRON</code>.</li>
+</ul>
 
 <h3 id="examples">Examples</h3>
 
 <ul>
   <li>articles (a closed class indicating definiteness, specificity or givenness): <em>a, an, the</em></li>
-  <li>possessive determiners: <em>my, your, his, her, its, our, their</em></li>
+  <li>possessive determiners: [cs] <em>můj, tvůj, jeho, její, náš, váš, jejich</em></li>
   <li>demonstrative determiners: <em>this</em> as in <em>I saw <b>this</b> car yesterday.</em></li>
   <li>interrogative determiners: <em>which</em> as in <em>“<b>Which</b> car do you like?”</em></li>
   <li>relative determiners: <em>which</em> as in <em>“I wonder <b>which</b> car you like.”</em></li>
-  <li>quantity/quantifier determiners: indefinite <em>any</em>, universal: <em>all</em>, and negative <em>no</em> as in <em>“We have <b>no</b> cars available.”</em></li>
+  <li>quantity determiners (quantifiers): indefinite <em>any</em>, universal: <em>all</em>, and negative <em>no</em> as in <em>“We have <b>no</b> cars available.”</em></li>
 </ul>
 
 <h3 id="references">References</h3>
@@ -537,24 +568,33 @@ substitute for <a href="ADJ">adjectives</a>. Such words are not tagged <code>PRO
 under our universal scheme. They are tagged as <a href="DET">determiners</a> in
 order to annotate the same thing the same way across languages.</p>
 
-<p>For instance, [en] <em>this</em> is either pronoun <em>(I saw <b>this</b>
-yesterday.)</em> or determiner <em>(I saw <b>this</b> car yesterday.)</em> Its
-Czech translation, [cs] <em>tohle</em>, is traditionally called pronoun in
-Czech grammar, regardless of context (the notion of determiners does
-not exist in Czech grammar). To make the annotation parallel across
-languages, it should be now tagged <code>PRON</code> in <em><b>Tohle</b> jsem viděl
-včera.</em> and <code>DET</code> in <em><b>Tohle</b> auto jsem viděl včera.</em></p>
+<p>It is not always crystal clear where pronouns end and determiners start.
+Unlike in UD v1 it is no longer required that they are told apart solely on
+the base of the context. The words can be pre-classified in the dictionary
+as either <code>PRON</code> or <code>DET</code>, based on their <em>typical</em> syntactic distribution
+(and morphology, when applicable).
+Language-specific documentation should list all pronouns (it is a closed class)
+and point out ambiguities, if any.</p>
+
+<p>See also <a href="../overview/morphology.html#pronominal-words">general principles on pronominal words</a>
+for more tips on how to define pronouns.
+In particular:</p>
+
+<ul>
+  <li>Non-possessive personal, reflexive or reciprocal pronouns are always tagged <code>PRON</code>.</li>
+  <li>Possessives vary across languages. In some languages the above tests put them in the <code>DET</code> category.
+In others, they are more like a normal personal pronoun in a specific case (often the genitive), or a personal pronoun with an adposition; they are tagged <code>PRON</code>.</li>
+</ul>
 
 <h3 id="examples">Examples</h3>
 
 <ul>
   <li>personal pronouns: <em>I, you, he, she, it, we, they</em></li>
   <li>reflexive pronouns: <em>myself, yourself, himself, herself, itself, ourselves, yourselves, theirselves</em></li>
-  <li>demonstrative pronouns: <em>this</em> as in <em>I saw <b>this</b> yesterday.</em></li>
   <li>interrogative pronouns: <em>who, what</em> as in <em><b>What</b> do you think?</em></li>
   <li>relative pronouns: <em>who, what</em> as in <em>I wonder <b>what</b> you think.</em> (Note, however, that some relative clause introducing words, such as [en] <em>that</em> are better analyzed as subordinating conjunctions (otherwise known as “complementizers” in the literature), and so are tagged as <a href="">SCONJ</a>.)</li>
   <li>indefinite pronouns: <em>somebody, something, anybody, anything</em></li>
-  <li>totality pronouns: <em>everybody, everything</em></li>
+  <li>total pronouns: <em>everybody, everything</em></li>
   <li>negative pronouns: <em>nobody, nothing</em></li>
 </ul>
 
@@ -656,7 +696,7 @@ status of a (subordinate) clause.</p>
   <li>Relativizers, like [he] <em>še</em>. (Note that these words, which simply introduce a relative caluse, and normally don’t inflect, need to be distinguished from relative or resumptive pronouns, which have a nominal function within the relative clause and which we analyze as <a href="">PRON</a>.)</li>
 </ul>
 
-<p>For <em>coordinating conjunctions,</em> see <a href="">CONJ</a>.</p>
+<p>For <em>coordinating conjunctions,</em> see <a href="">CCONJ</a>.</p>
 
 <h3 id="examples">Examples</h3>
 
@@ -724,8 +764,9 @@ may occur in the clause. Verbs are often associated with grammatical
 categories like tense, mood, aspect and voice, which can either be
 expressed inflectionally or using auxilliary verbs or particles.</p>
 
-<p>Note that the <code>VERB</code> tag covers main verbs <em>(content verbs)</em> and
-<em>copulas</em> but it does not cover <em>auxiliary verbs,</em> for which there is
+<p>Note that the <code>VERB</code> tag covers main verbs <em>(content verbs)</em>
+but it does not cover <em>auxiliary verbs</em> and verbal <em>copulas</em>
+(in the narrow sense), for which there is
 the <a href="">AUX</a> tag. <em>Modal verbs</em> may be considered <code>VERB</code> or <code>AUX</code>,
 depending on their behavior in the given language. Language-specific
 documentation should specify which verbs are tagged <code>AUX</code> in which
@@ -739,7 +780,7 @@ may be classified as either <code>VERB</code> or <a href="">ADJ</a>.</p>
 share properties and usage of nouns and verbs. Depending on language
 and context, they may be classified as either <code>VERB</code> or <a href="">NOUN</a>.</p>
 
-<p>Note that there are verb forms such as <em>transgressives</em> or <em>adverbial
+<p>Note that there are verb forms such as <em>converbs (transgressives)</em> or <em>adverbial
 participles</em> that share properties and usage of adverbs and
 verbs. Depending on language and context, they may be classified as
 either <code>VERB</code> or <a href="">ADV</a>.</p>

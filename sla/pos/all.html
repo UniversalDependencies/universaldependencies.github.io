@@ -218,7 +218,7 @@ Since they lack the nominative form, the lemma should be the clitic accusative f
   <li>[cu] <em>азъ, тꙑ, мꙑ, вꙑ, и, сѧ</em></li>
 </ul>
 
-<h2 id="possessive-pronouns">Possessive pronouns</h2>
+<h2 id="possessives">Possessives</h2>
 
 <p>The words that are traditionally called possessive pronouns are in fact possessive determiners and should be tagged
 <code>DET Poss=Yes | PronType=Prs</code>. First and second person possessives, and the reflexive possessive, function like adjectives.
@@ -343,10 +343,10 @@ hence it is pronoun and not determiner.</p>
 
 <h2 id="all-everything">All, everything</h2>
 
-<p>The total pronouns with the root <em>vs/vš</em> are another problematic group.</p>
+<p>The total pronouns with the root <em>vs/vš/sv</em> are another problematic group, with some parallels to the demonstratives.</p>
 
-<p>In Czech, <em>všechen</em> can be used adjectively and has forms for different genders and numbers but usually only a subset of the forms is used,
-and quite often they are used without a modified noun:</p>
+<p>In Czech, <em>všechen</em> can be used adjectively and has forms for different genders and numbers but usually only a subset of the forms is
+used, and quite often they are used without a modified noun:</p>
 
 <ul>
   <li><em>všichni</em> (masculine animate plural), meaning “all, everybody,” may include non-masculine referents</li>
@@ -367,8 +367,16 @@ If we limit the search to singular neuters, and exclude the two-pronoun expressi
 <em>všechno</em> is a determiner, mostly with mass nouns (<em>všechno světlo</em> “all light”);
 this contrasts with the total number of singual neuter occurrences, 600.</p>
 
-<p>To summarize, we may want to grant this lemma special treatment. At least the singular neuter form, <em>všechno,</em> would
-deserve the <code>PRON</code> tag, unless it occurs in a clearly attributive position.</p>
+<p>The evidence here is similar to demonstratives, which in general behave like adjectives, but some neuter singular forms are used
+to represent general or unspecified entities, hence they are closer to pronouns. The solution should be same for demonstratives and
+for the equivalents of <em>all,</em> chosing one of the following options:</p>
+
+<ol>
+  <li>Tag all occurrences <code>DET PronType=Tot</code>. The lemma is always masculine singular nominative.</li>
+  <li>As 1., with the exception that selected neuter singular forms are ambiguous and may also appear as <code>PRON PronType=Tot</code>.
+Then the lemma is neuter singular nominative. Disambiguation has to be done by context: if it pre-modifies
+a noun phrase and concords with it in gender, number and case, it is determiner; otherwise it is pronoun.</li>
+</ol>
 
 <p>It remains to be determined how the cognate words in the other Slavic languages behave.</p>
 
@@ -377,6 +385,11 @@ deserve the <code>PRON</code> tag, unless it occurs in a clearly attributive pos
   <li>[sk] lemma <em>všetok,</em> most frequent forms <em>všetko, všetci,</em> other forms <em>všetkých, všetkým, všetky, všetkými, všetkého, všetkému, všetku</em></li>
   <li>[hsb] <em>wšě, wšěch, wšěm, wšykne?, wšeho, wšemu, wšitke, wšitkim, wšitkich</em> (DET; only <em>wšitkim</em> was used without a modified noun), <em>wšitko</em> (PRON)</li>
   <li>[pl] lemma <em>wszystko, wszyscy</em> (PRON); lemma <em>wszystek</em> (DET), forms <em>wszystkie, wszystkich, wszyscy, wsze</em> (but the pronoun-determiner distinction is probably caused by the conversion procedure)</li>
+  <li>[ru] <em>все, всё</em></li>
+  <li>[sl] <em>ves, vsa, vse, vsi</em></li>
+  <li>[hr] <em>sve, svatko, svaki, svaka, svako</em></li>
+  <li>[bg] <em>всеки, всичко, всички</em></li>
+  <li>[cu] <em>вьсь, весь, вьсъ, вьсѣ, вьсе, вьси, вьсѧ, вьсꙗкъ</em></li>
 </ul>
 
 <h2 id="pronominal-quantifiers">Pronominal quantifiers</h2>
@@ -423,7 +436,7 @@ When it acts as subject, it is regarded as neuter singular for the purpose of su
 <pre><code class="language-sdparse">Trenér sázel mnohem více na herní stránku než na kondici . \n Coach bet much more on game aspect than on physical-condition .
 advmod(více, mnohem)
 advmod(sázel, více)
-dobj(sázel, stránku)
+obj(sázel, stránku)
 nmod(více, kondici)
 </code></pre>
 
@@ -432,7 +445,7 @@ the comparative form is irregular, without direct morphological relation to the 
 As indefinite numeral, it is its own lemma (but there are only two occurrences in UD Czech).</p>
 
 <pre><code class="language-sdparse">Bude vybráno více zájemců . \n Will-be selected more applicants .
-nsubjpass(vybráno, zájemců)
+nsubj:pass(vybráno, zájemců)
 det:numgov(zájemců, více)
 </code></pre>
 
@@ -465,14 +478,6 @@ case(let, skozi)
 det(let, mnogo)
 </code></pre>
 
-<pre><code class="language-sdparse">Slovenija potrebuje več urejenih informacij na internetu \n Slovenia needs more orderly informations on internet
-advmod(urejenih, več)
-amod(informacij, urejenih)
-</code></pre>
-
-<p>The above sentence seems ambiguous. <em>Več</em> is annotated as an adverb modifying the adjective <em>urejenih,</em> but it could
-also be a quantifier for the whole phrase <em>urejenih informacij.</em></p>
-
 <pre><code class="language-sdparse">Domovanja so raztresena na več kilometrih \n Dwellings are scattered on more kilometers
 det(kilometrih, več)
 case(kilometrih, na)
@@ -483,17 +488,8 @@ nmod(raztresena, kilometrih)
 
 <pre><code class="language-sdparse">Imeli več časa za priprave \n They-had more time for preparations
 det(časa, več)
-dobj(Imeli, časa)
+obj(Imeli, časa)
 </code></pre>
-
-<pre><code class="language-sdparse">ki so terjali življenja več kot sto civilistov \n that have lost lives more than hundred civilians
-mwe(več, kot)
-det(civilistov, več)
-nummod(civilistov, sto)
-</code></pre>
-
-<p>The above annotation is taken from UD Slovenian 1.3 but I think that <em>več kot</em> should be attached to <em>sto</em> and the
-relation should be <a href="">sla-dep/advmod</a>.</p>
 
 <h2 id="references">References</h2>
 
