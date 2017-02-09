@@ -281,13 +281,14 @@ punct(ăn, 。)
 <p>An appositional modier of an NP is an NP immediately to the right of the first NP that serves to
 define or modify that NP.</p>
 
-<pre><code class="language-sdparse"> Ông Minh, chủ_tịch FPT, khai_mạc hội_nghị 。
+<pre><code class="language-sdparse"> Ông Minh , chủ_tịch FPT , khai_mạc hội_nghị 。
 nn(Ông, Minh)
 punct(Ông, ,)
 nn(chủ_tịch, FPT)
 punct(chủ_tịch, ,)
 nsubj(khai_mạc, Ông)
 dobj(khai_mạc, hội_nghị)
+appos(Ông, chủ_tịch)
 punct(khai_mạc, 。)
 </code></pre>
 
@@ -312,7 +313,7 @@ punct(đi, 。)
 
 <p>A passive auxiliary of a clause is a non-main verb of the clause which contains the passive information. In Vietnamese, some passive verbs are “bị”, “được”, …</p>
 
-<pre> <code class="language-dsparse">Tôi bị đánh 。
+<pre> <code class="language-sdparse">Tôi bị đánh 。
 nsubj(đánh, Tôi)
 auxpass(đánh, bị)
 punct(đánh, 。)
@@ -339,7 +340,7 @@ conjunction.)</p>
 <pre><code class="language-sdparse">Lan cao và xinh_xắn 。
 nsubj(cao, Lan)
 cc(cao, và)
-conj(cao, xinh xắn)
+conj(cao, xinh_xắn)
 punct(cao, 。)
 </code></pre>
 
@@ -376,8 +377,25 @@ for <code>compound</code>.</p>
 <p><a id="al-vi-dep/conj" class="al-dest"></a></p>
 <h2><code>conj</code>: conjunct</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>conj</code>.</p>
+<p>A conjunct is the relation between two elements connected by a coordinating conjunction, such as
+“và”, “hoặc”, etc. The head of the relation is the first conjunct
+and other conjunctions depend on it via the conj relation.</p>
+
+<pre><code class="language-sdparse">Lan cao và xinh_xắn 。
+nsubj(cao, Lan)
+cc(cao, và)
+conj(cao, xinh_xắn)
+punct(cao, 。)
+</code></pre>
+
+<pre><code class="language-sdparse">Họ đang bơi hoặc đá bóng 。
+nsubj(bơi, Họ)
+advmod(bơi, đang)
+cc(bơi, hoặc)
+conj(bơi, đá)
+dobj(đá, bóng)
+punct(bơi, 。)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_vi-dep/conj.md" target="#">edit conj</a></p>
 
