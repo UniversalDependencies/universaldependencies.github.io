@@ -45,8 +45,68 @@
 
           <h1 id="tokenization">Tokenization</h1>
 
-<p>This document is a placeholder for the language-specific overview of
-guidelines for tokenization.</p>
+<p><strong>Dealing With Portmanteau Tags</strong></p>
+
+<p>There are two modes of annotation: using portmanteau dependency tags, and pure universal dependencies.</p>
+
+<p><em>Portmanteau functions</em></p>
+
+<p>For portmanteau tags, tokens which carry a fused portmanteau POS tag receive both functions associated with those components, separated by an underscore. For example, the form ⲉⲕϣⲁⲛ, which is tokenized as one fused token with the POS tag ACOND_PPERS, is both an auxiliary and a subject pronoun. Therefore, its associated verb dominates it as aux_nsubj, by analogy to the POS tag.</p>
+
+<p><em>Pure universal dependencies</em></p>
+
+<p>When using pure dependencies, more ‘lexical’ functions trump more ‘grammatical’ ones, so that examples like ACOND_PPERS are still labeled nsubj, omitting the aux label entirely. This preserves the pure universal dependency tag set.</p>
+
+<p>Alternatively, if the intended application of the annotation project supports sub-tokenization, the CoNLL-U format can be used as follows, specifying subtokens/supertokens for fused units:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1-2</td>
+      <td>ⲉⲕϣⲁⲛ</td>
+      <td>_</td>
+      <td>_</td>
+      <td>_</td>
+      <td>_</td>
+      <td>_</td>
+      <td>_</td>
+      <td>_</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>ⲉⲣϣⲁⲛ</td>
+      <td>_</td>
+      <td>ACOND</td>
+      <td>_</td>
+      <td>_</td>
+      <td>3</td>
+      <td>aux</td>
+      <td>_</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>ⲕ</td>
+      <td>_</td>
+      <td>PPERS</td>
+      <td>_</td>
+      <td>_</td>
+      <td>3</td>
+      <td>nsubj</td>
+      <td>_</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>ⲥⲱⲧⲙ</td>
+      <td>_</td>
+      <td>V</td>
+      <td>_</td>
+      <td>_</td>
+      <td>0</td>
+      <td>root</td>
+      <td>_</td>
+    </tr>
+  </tbody>
+</table>
 
 
       </div>
