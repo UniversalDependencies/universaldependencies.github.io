@@ -235,36 +235,101 @@ in two places.</p>
 
 <p><code>acl</code> is used for clauses that modify a noun (in contrast to <a href="">advcl</a> which is used for clauses that modify a predicate). Clausal modifiers may precede the noun, and may be formed with (1) or without (2) the relativizer 的 <em>de</em>. They may also be postnominal, in which case they are simply juxtaposed after the noun without any linking function words (3-5).</p>
 
-<pre><code class="language-sdparse">人/NOUN[Gloss=people] 説/VERB[Gloss=say] 的/PART[Gloss=REL] 話/NOUN[Gloss=words] \n "words (that) people say"
-acl(話, 説)
-mark:rel(説, 的)
-nsubj(説, 人)
+<pre><code class="language-conllu"># visual-style 4 2 acl	color:blue
+1	人	_	NOUN	_	_	2	nsubj	_	people
+2	説	_	VERB	_	_	4	acl	_	say
+3	的	_	PART	_	_	2	mark:rel	_	REL
+4	話	_	NOUN	_	_	0	root	_	words
+
+1	"words	_	_	_	_	0	_	_	_
+2	(that)	_	_	_	_	0	_	_	_
+3	people	_	_	_	_	0	_	_	_
+4	say"	_	_	_	_	0	_	_	_
+
 </code></pre>
 
-<pre><code class="language-sdparse">治/VERB[Gloss=cure] 病/NOUN[Gloss=illness] 方面/NOUN[Gloss=aspect] 的/PART[Gloss=GEN] 問題/NOUN[Gloss=matter] \n "the matter regarding the aspect of curing illnesses"
-acl(方面, 治)
-obj(治, 病)
-nmod(問題, 方面)
-case(方面, 的)
+<pre><code class="language-conllu"># visual-style 3 1 acl	color:blue
+1	治	_	VERB	_	_	3	acl	_	cure
+2	病	_	NOUN	_	_	1	obj	_	illnesses
+3	方面	_	NOUN	_	_	5	nmod	_	aspect
+4	的	_	PART	_	_	3	case	_	GEN
+5	問題	_	NOUN	_	_	0	root	_	matter
+
+1	"the	_	_	_	_	0	_	_	_
+2	matter	_	_	_	_	0	_	_	_
+3	regarding	_	_	_	_	0	_	_	_
+4	the	_	_	_	_	0	_	_	_
+5	aspect	_	_	_	_	0	_	_	_
+6	of	_	_	_	_	0	_	_	_
+7	curing	_	_	_	_	0	_	_	_
+8	illnesses"	_	_	_	_	0	_	_	_
+
 </code></pre>
 
 <p>Postnominal clausal modifiers (known as “descriptive clauses” in Li &amp; Thompson, 1981) are headed by V2 in a [(NP1) V1 NP2 V2-clause] structure, where NP2 is the direct object of V1 and the V2-clause describes information regarding NP2. This analysis is contingent on the [(NP1) V1 NP2 V2-clause] sequence being a single sentence with one intonational phrase and no pause in between.</p>
 
-<pre><code class="language-sdparse">有/VERB[Gloss=exist] 機會/NOUN[Gloss=chance] 學壞/VERB[Gloss=learn-bad] \n "There is a chance of learning from bad people."
-obj(有, 機會)
-acl(機會, 學壞)
+<pre><code class="language-conllu"># visual-style 2 3 acl	color:blue
+1	有	_	VERB	_	_	0	root	_	exist
+2	機會	_	NOUN	_	_	1	obj	_	chance
+3	學壞	_	VERB	_	_	2	acl	_	learn-bad
+
+1	"There's	_	_	_	_	0	_	_	_
+2	a	_	_	_	_	0	_	_	_
+3	chance	_	_	_	_	0	_	_	_
+4	of	_	_	_	_	0	_	_	_
+5	learning	_	_	_	_	0	_	_	_
+6	from	_	_	_	_	0	_	_	_
+7	bad	_	_	_	_	0	_	_	_
+8	people."	_	_	_	_	0	_	_	_
+
 </code></pre>
 
-<pre><code class="language-sdparse">我們/PRON[Gloss=1PL] 突然/ADV[Gloss=suddenly] 有/VERB[Gloss=have] 事/NOUN[Gloss=things] 要/AUX[Gloss=need] 忙/VERB[Gloss=be-busy-at] \n "We suddenly have things that need busy attending to."
-acl(事, 忙)
-nsubj(有, 我們)
-advmod(有, 突然)
-obj(有, 事)
-aux(忙, 要)
+<pre><code class="language-conllu"># visual-style 4 6 acl	color:blue
+1	我們	_	PRON	_	_	3	nsubj	_	1PL
+2	突然	_	ADV	_	_	3	advmod	_	suddenly
+3	有	_	VERB	_	_	0	root	_	have
+4	事	_	NOUN	_	_	3	obj	_	things
+5	要	_	AUX	_	_	6	aux	_	need
+6	忙	_	VERB	_	_	4	acl	_	be-busy-at
+
+1	"We	_	_	_	_	0	_	_	_
+2	suddenly	_	_	_	_	0	_	_	_
+3	have	_	_	_	_	0	_	_	_
+4	things	_	_	_	_	0	_	_	_
+5	that	_	_	_	_	0	_	_	_
+6	need	_	_	_	_	0	_	_	_
+7	busy	_	_	_	_	0	_	_	_
+8	attending	_	_	_	_	0	_	_	_
+9	to."	_	_	_	_	0	_	_	_
+
 </code></pre>
 
-<pre><code class="language-sdparse">我/PRON[Gloss=1SG] 昨天/NOUN[Gloss=yesterday] 收/VERB[Gloss=receive] 到/VERB[Gloss=arrive] 信/NOUN[Gloss=letter] 說/VERB[Gloss=say] 我/PRON[Gloss=1SG] 帳户/NOUN[Gloss=account] 没/VERB[Gloss=not-have] 錢/NOUN[Gloss=money] 了/PART \n "I received a letter yesterday saying that my bank account is empty."
-acl(信, 說)
+<pre><code class="language-conllu"># visual-style 5 6 acl	color:blue
+1	我	_	PRON	_	_	3	nsubj	_	1SG
+2	昨天	_	NOUN	_	_	3	obl:tmod	_	yesterday
+3	收	_	VERB	_	_	0	root	_	receive
+4	到	_	VERB	_	_	3	compound:vv	_	arrive
+5	信	_	NOUN	_	_	3	obj	_	letter
+6	説	_	VERB	_	_	5	acl	_	say
+7	我	_	PRON	_	_	8	nmod	_	1SG
+8	帳户	_	NOUN	_	_	9	nsubj	_	account
+9	没	_	VERB	_	_	6	ccomp	_	not-have
+10	錢	_	NOUN	_	_	9	obj	_	money
+11	了	_	PART	_	_	9	discourse:sp	_	SP
+
+1	"I	_	_	_	_	0	_	_	_
+2	received	_	_	_	_	0	_	_	_
+3	a	_	_	_	_	0	_	_	_
+4	letter	_	_	_	_	0	_	_	_
+5	yesterday	_	_	_	_	0	_	_	_
+6	saying	_	_	_	_	0	_	_	_
+7	that	_	_	_	_	0	_	_	_
+8	my	_	_	_	_	0	_	_	_
+9	bank	_	_	_	_	0	_	_	_
+10	account	_	_	_	_	0	_	_	_
+11	is	_	_	_	_	0	_	_	_
+12	empty."	_	_	_	_	0	_	_	_
+
 </code></pre>
 
 <h3 id="references">References</h3>
@@ -278,18 +343,316 @@ acl(信, 說)
 <p><a id="al-zh-dep/advcl" class="al-dest"></a></p>
 <h2><code>advcl</code>: adverbial clause modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>advcl</code>.</p>
+<p>The adverbial clause modifier is a clause which modifies a predicate; in other words, it is a clausal adjunct. This includes subordinate clauses such as conditional clauses (2), temporal clauses (3), as well as purpose clauses (4), among others. The head is the main predicate of the main clause, while the dependent is the main predicate of the modifying clause.</p>
+
+<p>If the adverbial is non-clausal, use <a href="">advmod</a> instead.</p>
+
+<pre><code class="language-conllu"># visual-style 4 2 advcl	color:blue
+1	我	_	PRON	_	_	4	nsubj	_	1SG
+2	拍	_	VERB	_	_	4	advcl	_	pat
+3	胸口	_	NOUN	_	_	2	obj	_	chest
+4	保證	_	VERB	_	_	0	root	_	guarantee
+
+1	"I	_	_	_	_	0	_	_	_
+2	guarantee	_	_	_	_	0	_	_	_
+3	(by)	_	_	_	_	0	_	_	_
+4	patting	_	_	_	_	0	_	_	_
+5	my	_	_	_	_	0	_	_	_
+6	chest."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 6 4 advcl	color:blue
+1	如果	_	SCONJ	_	_	4	mark	_	if
+2	排骨	_	NOUN	_	_	4	nsubj	_	ribs
+3	不	_	ADV	_	_	4	advmod	_	NEG
+4	入味	_	ADJ	_	_	6	advcl	_	flavorful
+5	別	_	AUX	_	_	6	aux	_	don't
+6	賴	_	VERB	_	_	0	root	_	blame
+7	我	_	PRON	_	_	6	obj	_	1SG
+
+1	"If	_	_	_	_	0	_	_	_
+2	the	_	_	_	_	0	_	_	_
+3	ribs	_	_	_	_	0	_	_	_
+4	aren't	_	_	_	_	0	_	_	_
+5	flavorful,	_	_	_	_	0	_	_	_
+6	don't	_	_	_	_	0	_	_	_
+7	blame	_	_	_	_	0	_	_	_
+8	me."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 7 2 advcl	color:blue
+1	她	_	PRON	_	_	2	nsubj	_	3SG.F
+2	去	_	VERB	_	_	7	advcl	_	go
+3	東京	_	PROPN	_	_	2	obj	_	Tokyo
+4	後	_	ADP	_	_	2	mark	_	after
+5	我	_	PRON	_	_	7	nsubj	_	1SG
+6	再	_	ADV	_	_	7	advmod	_	again
+7	加入	_	VERB	_	_	0	root	_	join
+
+1	"I'll	_	_	_	_	0	_	_	_
+2	join	_	_	_	_	0	_	_	_
+3	again	_	_	_	_	0	_	_	_
+4	after	_	_	_	_	0	_	_	_
+5	she	_	_	_	_	0	_	_	_
+6	goes	_	_	_	_	0	_	_	_
+7	to	_	_	_	_	0	_	_	_
+8	Tokyo."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Purpose clauses typically come after the main clause and may be introduced by function words such as 来 <em>lái</em> (4), 去 <em>qù</em>, 以 <em>yǐ</em>.</p>
+
+<pre><code class="language-conllu"># visual-style 1 7 advcl	color:blue
+1	伸	_	VERB	_	_	0	root	_	extend
+2	出	_	VERB	_	_	1	compound:vv	_	out
+3	你	_	PRON	_	_	5	nmod	_	2SG
+4	的	_	PART	_	_	3	case	_	GEN
+5	手	_	NOUN	_	_	1	obj	_	hand
+6	來	_	SCONJ	_	_	7	mark	_	to
+7	讓	_	VERB	_	_	1	advcl	_	let
+8	他	_	PRON	_	_	7	obj	_	3SG.M
+9	量	_	VERB	_	_	7	xcomp	_	measure
+10	尺寸	_	NOUN	_	_	9	obj	_	length
+
+1	"Take	_	_	_	_	0	_	_	_
+2	out	_	_	_	_	0	_	_	_
+3	your	_	_	_	_	0	_	_	_
+4	hand	_	_	_	_	0	_	_	_
+5	in	_	_	_	_	0	_	_	_
+6	order	_	_	_	_	0	_	_	_
+7	to	_	_	_	_	0	_	_	_
+8	let	_	_	_	_	0	_	_	_
+9	him	_	_	_	_	0	_	_	_
+10	measure	_	_	_	_	0	_	_	_
+11	it."	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/advcl.md" target="#">edit advcl</a></p>
 
 <p><a id="al-zh-dep/advmod" class="al-dest"></a></p>
 <h2><code>advmod</code>: adverbial modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>advmod</code>.</p>
+<p>An adverbial modifier of a word is a (non-clausal) adverb or adverbial phrase that serves to modify a predicate (1, 2, 3), a modifier word (4, 5), and in some restricted cases function words (6-8).</p>
+
+<p>Predicates may be a verb (1) or a predicate adjective (2) or nominal (3) in copular constructions.</p>
+
+<pre><code class="language-conllu"># visual-style 3 2 advmod	color:blue
+1	你	_	PRON	_	_	3	nmod	_	2SG
+2	已經	_	ADV	_	_	3	advmod	_	already
+3	答應	_	VERB	_	_	0	root	_	promise
+4	他們	_	PRON	_	_	3	obj	_	3PL
+
+1	"You	_	_	_	_	0	_	_	_
+2	already	_	_	_	_	0	_	_	_
+3	promised	_	_	_	_	0	_	_	_
+4	them."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2 1 advmod	color:blue
+1	更	_	ADV	_	_	2	advmod	_	more
+2	好	_	ADJ	_	_	0	root	_	good
+
+1	"better"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 6 2 advmod	color:blue
+1	他	_	PRON	_	_	6	nsubj	_	3SG.M
+2	曾經	_	ADV	_	_	6	advmod	_	once
+3	是	_	VERB	_	_	6	cop	_	COP
+4	一	_	NUM	_	_	6	nummod	_	one
+5	個	_	NOUN	_	_	4	clf	_	CL:generic
+6	廚師	_	NOUN	_	_	0	root	_	chef
+
+1	"He	_	_	_	_	0	_	_	_
+2	was	_	_	_	_	0	_	_	_
+3	a	_	_	_	_	0	_	_	_
+4	chef	_	_	_	_	0	_	_	_
+5	once."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Modifier words that may be modified by an adverb include numerals (4) and quantifying determiners (5).</p>
+
+<pre><code class="language-conllu"># visual-style 2 1 advmod	color:blue
+1	大概	_	ADV	_	_	2	advmod	_	around
+2	五百	_	NUM	_	_	3	nummod	_	five-hundred
+3	元	_	NOUN	_	_	0	root	_	dollars
+
+1	"about	_	_	_	_	0	_	_	_
+2	five	_	_	_	_	0	_	_	_
+3	hundred	_	_	_	_	0	_	_	_
+4	dollars"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2 1 advmod	color:blue
+1	很	_	ADV	_	_	2	advmod	_	very
+2	多	_	DET	_	_	3	det	_	many
+3	人	_	NOUN	_	_	0	root	_	people
+
+1	"many	_	_	_	_	0	_	_	_
+2	people"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>When the negative 不 <em>bù</em> precedes a modal auxiliary, it modifies the auxiliary and not the verb (6). This is because when the verb is negated, 不 <em>bù</em> precedes the verb immediately, after the auxiliary (7). Both the auxiliary and the verb can be negated simultaneously in Mandarin (8).</p>
+
+<pre><code class="language-conllu"># visual-style 3 2 advmod	color:blue
+1	她	_	PRON	_	_	4	nsubj	_	3SG.F
+2	不	_	ADV	_	_	3	advmod	_	NEG
+3	可以	_	AUX	_	_	4	aux	_	can
+4	去	_	VERB	_	_	0	root	_	go
+
+1	"She	_	_	_	_	0	_	_	_
+2	is	_	_	_	_	0	_	_	_
+3	not	_	_	_	_	0	_	_	_
+4	able/allowed	_	_	_	_	0	_	_	_
+5	to	_	_	_	_	0	_	_	_
+6	go."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 4 3 advmod	color:blue
+1	她	_	PRON	_	_	4	nsubj	_	3SG.F
+2	可以	_	AUX	_	_	4	aux	_	can
+3	不	_	ADV	_	_	4	advmod	_	NEG
+4	去	_	VERB	_	_	0	root	_	go
+
+1	"She	_	_	_	_	0	_	_	_
+2	is	_	_	_	_	0	_	_	_
+3	able/allowed	_	_	_	_	0	_	_	_
+4	to	_	_	_	_	0	_	_	_
+5	not	_	_	_	_	0	_	_	_
+6	go."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 3 2 advmod	color:blue
+# visual-style 5 4 advmod	color:blue
+1	她	_	PRON	_	_	5	nsubj	_	3SG.F
+2	不	_	ADV	_	_	3	advmod	_	NEG
+3	可以	_	AUX	_	_	5	aux	_	can
+4	不	_	ADV	_	_	5	advmod	_	NEG
+5	去	_	VERB	_	_	0	root	_	go
+
+1	"She	_	_	_	_	0	_	_	_
+2	is	_	_	_	_	0	_	_	_
+3	not	_	_	_	_	0	_	_	_
+4	able/allowed	_	_	_	_	0	_	_	_
+5	to	_	_	_	_	0	_	_	_
+6	not	_	_	_	_	0	_	_	_
+7	go."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Temporal expressions that are adverbs or short adverbial phrases also use the <a href="">advmod</a> relation. (However, temporal expressions that are nouns or noun phrases use the <a href="">obl:tmod</a> relation.)</p>
+
+<pre><code class="language-conllu"># visual-style 4 3 advmod	color:blue
+1	希望	_	VERB	_	_	0	root	_	hope
+2	他	_	PRON	_	_	4	nsubj	_	3SG.M
+3	早日	_	ADV	_	_	4	advmod	_	early
+4	康復	_	VERB	_	_	1	ccomp	_	recover
+
+1	"Hope	_	_	_	_	0	_	_	_
+2	he'll	_	_	_	_	0	_	_	_
+3	recover	_	_	_	_	0	_	_	_
+4	soon."	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/advmod.md" target="#">edit advmod</a></p>
+
+<p><a id="al-zh-dep/advmod:df" class="al-dest"></a></p>
+<h2><code>advmod:df</code>: duration or frequency adverbial modifier</h2>
+
+<p>The relation <code>advmod:df</code> is used for a noun phrase headed by a classifier expressing the duration or the frequency of the event expressed by the main predicate. The duration (1) and frequency (2) phrases can be post-verbal as well as pre-verbal (3-4).</p>
+
+<pre><code class="language-conllu"># visual-style 3 6 advmod:df	color:blue
+1	他	_	PRON	_	_	3	nsubj	_	3SG
+2	已經	_	ADV	_	_	3	advmod	_	already
+3	來	_	VERB	_	_	0	root	_	come
+4	了	_	AUX	_	_	3	aux	_	PERF
+5	兩	_	NUM	_	_	6	nummod	_	two
+6	天	_	NOUN	_	_	3	advmod:df	_	CL:days
+7	了	_	PART	_	_	3	discourse:sp	_	SP
+
+1	"He	_	_	_	_	0	_	_	_
+2	has	_	_	_	_	0	_	_	_
+3	already	_	_	_	_	0	_	_	_
+4	been	_	_	_	_	0	_	_	_
+5	here	_	_	_	_	0	_	_	_
+6	for	_	_	_	_	0	_	_	_
+7	two	_	_	_	_	0	_	_	_
+8	days."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2 6 advmod:df	color:blue
+1	我	_	PRON	_	_	2	nsubj	_	1SG
+2	等	_	VERB	_	_	0	root	_	wait
+3	過	_	AUX	_	_	2	aux	_	EXP
+4	他	_	PRON	_	_	2	obj	_	3SG.M
+5	三	_	NUM	_	_	6	nummod	_	three
+6	次	_	NOUN	_	_	2	advmod:df	_	CL:times
+
+1	"I	_	_	_	_	0	_	_	_
+2	waited	_	_	_	_	0	_	_	_
+3	for	_	_	_	_	0	_	_	_
+4	him	_	_	_	_	0	_	_	_
+5	three	_	_	_	_	0	_	_	_
+6	times."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 5 3 advmod:df	color:blue
+1	他	_	PRON	_	_	5	nsubj	_	3SG.M
+2	兩	_	NUM	_	_	3	nummod	_	two
+3	年	_	NOUN	_	_	5	advmod:df	_	years
+4	沒	_	AUX	_	_	5	aux	_	NEG.PERF
+5	來	_	VERB	_	_	0	root	_	come
+6	美國	_	PROPN	_	_	5	obj	_	USA
+7	了	_	PART	_	_	5	discourse:sp	_	SP
+
+1	"It	_	_	_	_	0	_	_	_
+2	has	_	_	_	_	0	_	_	_
+3	been	_	_	_	_	0	_	_	_
+4	two	_	_	_	_	0	_	_	_
+5	years	_	_	_	_	0	_	_	_
+6	that	_	_	_	_	0	_	_	_
+7	he	_	_	_	_	0	_	_	_
+8	has	_	_	_	_	0	_	_	_
+9	not	_	_	_	_	0	_	_	_
+10	come	_	_	_	_	0	_	_	_
+11	to	_	_	_	_	0	_	_	_
+12	the	_	_	_	_	0	_	_	_
+13	U.S."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 5 3 advmod:df	color:blue
+1	他	_	PRON	_	_	5	nsubj	_	3SG.M
+2	三	_	NUM	_	_	3	nummod	_	three
+3	次	_	NOUN	_	_	5	advmod:df	_	CL:times
+4	都	_	ADV	_	_	5	advmod	_	all
+5	去	_	VERB	_	_	0	root	_	go
+6	了	_	PART	_	_	5	discourse:sp	_	SP
+
+1	"He	_	_	_	_	0	_	_	_
+2	went	_	_	_	_	0	_	_	_
+3	all	_	_	_	_	0	_	_	_
+4	three	_	_	_	_	0	_	_	_
+5	times."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>For nominal time expressions and adverbial time expressions that provide a time frame rather than a duration, use <a href="">obl:tmod</a> and <a href="">advmod</a>, respectively.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/advmod-df.md" target="#">edit advmod:df</a></p>
 
 <p><a id="al-zh-dep/amod" class="al-dest"></a></p>
 <h2><code>amod</code>: adjectival modifier</h2>
