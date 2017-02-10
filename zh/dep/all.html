@@ -1258,7 +1258,21 @@ for <code>case:suff</code>.</p>
 
 </code></pre>
 
-<p>Note, however, that classifiers have other functions. If a noun phrase does not have a regular noun, then the classifier is promoted to head of the noun phrase and any numeral or determiner would depend on the classifier, such as in (4) and (5). In Mandarin, a classifier may also be considered to function as an indefinite determiner when a noun phrase with a bare classifier accompanying a noun is in object position, as in (6).</p>
+<h3 id="non-clf-functions-of-mandarin-classifiers">Non-<code>clf</code> functions of Mandarin classifiers</h3>
+
+<p>In other constructions involving classifiers, they are annotated with other syntax relations. First, in Mandarin a classifier may also be considered to function as an indefinite determiner when a noun phrase consisting of a bare classifier accompanying a noun is in post-verbal position, as in (4).</p>
+
+<pre><code class="language-conllu">1	切	_	VERB	_	_	0	root	_	cut
+2	個	_	NOUN	_	_	3	det	_	CL:generic
+3	梨子	_	NOUN	_	_	1	obj	_	pear
+
+1	"cut	_	_	_	_	0	_	_	_
+2	a	_	_	_	_	0	_	_	_
+3	pear"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Second, if a noun phrase does not have a regular noun, then the classifier is promoted to head of the noun phrase and any numeral or determiner would depend on the classifier, such as in (5) and (6).</p>
 
 <pre><code class="language-conllu">1	給	_	VERB	_	_	0	root	_	give
 2	我	_	PRON	_	_	1	iobj	_	1SG
@@ -1289,17 +1303,7 @@ for <code>case:suff</code>.</p>
 
 </code></pre>
 
-<pre><code class="language-conllu">1	切	_	VERB	_	_	0	root	_	cut
-2	個	_	NOUN	_	_	3	det	_	CL:generic
-3	梨子	_	NOUN	_	_	1	obj	_	pear
-
-1	"cut	_	_	_	_	0	_	_	_
-2	a	_	_	_	_	0	_	_	_
-3	pear"	_	_	_	_	0	_	_	_
-
-</code></pre>
-
-<p>If there is a genitive 的 <em>de</em> between the classifier and the noun, then the classifier is treated as if it were a noun and as an <a href="">nmod</a> dependent of the noun.</p>
+<p>If there is a genitive 的 <em>de</em> between the classifier and the noun, then the classifier is also treated as a head noun for the numeral, and it is labeled as an <a href="">nmod</a> dependent of the noun.</p>
 
 <pre><code class="language-conllu">1	我	_	PRON	_	_	2	nsubj	_	1SG
 2	買	_	VERB	_	_	0	root	_	buy
@@ -1325,8 +1329,55 @@ for <code>case:suff</code>.</p>
 <p><a id="al-zh-dep/compound" class="al-dest"></a></p>
 <h2><code>compound</code>: compound</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>compound</code>.</p>
+<p>The <code>compound relation</code> is used primarily for noun-noun compounds (for verb and verb-object compounds, see <a href="">compound:dir</a>, <a href="">compound:ext</a>, <a href="">compound:vo</a>, and <a href="">compound:vv</a>). This applies to any nominal preceding and modifying another nominal unless the relationship between the two is a possessive one (see <a href="">nmod</a>). The latter nominal is typically the head of the compound.</p>
+
+<pre><code class="language-conllu"># visual-style 2 1 compound	color:blue
+1	中文	_	NOUN	_	_	2	compound	_	Chinese-language
+2	試卷	_	NOUN	_	_	0	root	_	exam-paper
+
+1	"Chinese	_	_	_	_	0	_	_	_
+2	language	_	_	_	_	0	_	_	_
+3	exam	_	_	_	_	0	_	_	_
+4	paper"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Names preceding titles or relationship roles are also treated as noun compounds, as well as names of companies or institutions with internal combinations of proper nouns with regular nouns.</p>
+
+<pre><code class="language-conllu"># visual-style 2 1 compound	color:blue
+1	馬	_	PROPN	_	_	2	compound	_	Ma
+2	先生	_	NOUN	_	_	0	root	_	Mr.
+
+1	"Mr.	_	_	_	_	0	_	_	_
+2	Ma"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 3 1 compound	color:blue
+# visual-style 3 2 compound	color:blue
+1	威威	_	PROPN	_	_	3	compound	_	Weiwei
+2	職業	_	NOUN	_	_	3	compound	_	employment
+3	介紹所	_	NOUN	_	_	0	root	_	agency
+
+1	"Weiwei	_	_	_	_	0	_	_	_
+2	Employment	_	_	_	_	0	_	_	_
+3	Agency"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Internal compounding should always be parsed first. For example, in (3) the last two nouns 職業 介紹所 <em>employment agency</em> form a compound first before compounding with the proper noun 威威 <em>Weiwei</em>, but in (4) 警察 招募 <em>police recruitment</em> form a compound first before compounding further with 廣告 <em>advertisement</em>.</p>
+
+<pre><code class="language-conllu"># visual-style 2 1 compound	color:blue
+# visual-style 3 2 compound	color:blue
+1	警察	_	NOUN	_	_	2	compound	_	police
+2	招募	_	NOUN	_	_	3	compound	_	recruitment
+3	廣告	_	NOUN	_	_	0	root	_	advertisement
+
+1	"police	_	_	_	_	0	_	_	_
+2	recruitment	_	_	_	_	0	_	_	_
+3	ad"	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/compound.md" target="#">edit compound</a></p>
 
