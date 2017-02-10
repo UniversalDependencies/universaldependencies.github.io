@@ -2032,16 +2032,78 @@ for <code>case:suff</code>.</p>
 <p><a id="al-zh-dep/det" class="al-dest"></a></p>
 <h2><code>det</code>: determiner</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>det</code>.</p>
+<p>The <code>det</code> relation applies to the head of a nominal and its determiner. All determiners are tagged <a href="">DET</a>, and thus all words with the tag will be a <code>det</code> dependent. Classifiers may also function as determiners (see further below).</p>
+
+<pre><code class="language-conllu"># visual-style 4 1 det	color:blue
+1	這	_	DET	_	_	4	det	_	this
+2	頓	_	NOUN	_	_	1	clf	_	CL
+3	英雄	_	NOUN	_	_	4	compound	_	hero
+4	宴	_	NOUN	_	_	0	root	_	banquet
+
+1	"this	_	_	_	_	0	_	_	_
+2	heroes'	_	_	_	_	0	_	_	_
+3	banquet"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 3 1 det	color:blue
+1	哪	_	DET	_	_	3	det	_	which
+2	一	_	NUM	_	_	3	nummod	_	one
+3	位	_	NOUN	_	_	0	root	_	CL:person
+
+1	"Which	_	_	_	_	0	_	_	_
+2	person?"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2 1 det	color:blue
+1	每	_	DET	_	_	2	det	_	every
+2	次	_	NOUN	_	_	0	root	_	CL:time
+
+1	"every	_	_	_	_	0	_	_	_
+2	time"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Classifiers are treated as determiners when a noun phrase begins with a bare classifier. In Mandarin Chinese, this only occurs when the noun phrase is in postverbal position (and has an indefinite interpretation).</p>
+
+<pre><code class="language-conllu"># visual-style 4 3 det	color:blue
+1	買	_	VERB	_	_	0	root	_	buy
+2	了	_	AUX	_	_	1	aux	_	PERF
+3	本	_	NOUN	_	_	4	det	_	CL:book
+4	書	_	NOUN	_	_	1	obj	_	book
+
+1	"bought	_	_	_	_	0	_	_	_
+2	a	_	_	_	_	0	_	_	_
+3	book"	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/det.md" target="#">edit det</a></p>
 
 <p><a id="al-zh-dep/discourse" class="al-dest"></a></p>
 <h2><code>discourse</code>: discourse element</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>discourse</code>.</p>
+<p>The discourse relation is used for interjections (words tagged <a href="">INTJ</a>) and other discourse particles or words which are not clearly linked to the syntactic structure of the sentence except in a discursive sense. However, if an interjected element is clausal (including tag questions and words with a sentence-final particle or single words that are verbs or predicate adjectives), it should be given the relation <a href="">parataxis</a>.</p>
+
+<pre><code class="language-conllu"># visual-style 3 1 discourse	color:blue
+1	嗯	_	INTJ	_	_	4	discourse	_	uh-huh
+2	，	_	PUNCT	_	_	1	punct	_	_
+3	不過	_	ADV	_	_	4	advmod	_	but
+4	可能	_	ADJ	_	_	0	root	_	possible
+5	是	_	VERB	_	_	7	cop	_	be
+6	三	_	NUM	_	_	7	nummod	_	three
+7	年	_	NOUN	_	_	4	xcomp	_	CL:years
+
+1	"Uh-huh,	_	_	_	_	0	_	_	_
+2	but	_	_	_	_	0	_	_	_
+3	it	_	_	_	_	0	_	_	_
+4	may	_	_	_	_	0	_	_	_
+5	be	_	_	_	_	0	_	_	_
+6	three	_	_	_	_	0	_	_	_
+7	years."	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/discourse.md" target="#">edit discourse</a></p>
 
@@ -2052,6 +2114,56 @@ for <code>discourse</code>.</p>
 for <code>dislocated</code>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/dislocated.md" target="#">edit dislocated</a></p>
+
+<p><a id="al-zh-dep/disource:sp" class="al-dest"></a></p>
+<h2><code>disource:sp</code>: sentence particle</h2>
+
+<p>Sentence particles, also commonly known as sentence-final particles in Chinese linguistics, occur at the end of clauses and sentences in Mandarin and have a wide range of functions including modifying the modality of a sentence or its proposition, and expressing discourse and pragmatic information. They are linked to the main predicate as <code>discourse:sp</code> dependents (we place them under an extension of <code>discourse</code> under a loose interpretation of “discourse”).</p>
+
+<p>Common sentence-final particles in Mandarin include: 吧 <em>ba</em>, 的 <em>de</em>, 啦 <em>la</em>, 了 <em>le</em>, 吗 <em>ma</em>, 嘛 <em>ma</em>, 呢 <em>ne</em>, 呀 <em>ya</em>, 罢了 <em>bàle</em>. We also include 而已 <em>éryǐ</em>, which has the same syntactic distribution at the end of clauses and sentences.</p>
+
+<pre><code class="language-conllu"># visual-style 5 7 discourse:sp	color:blue
+1	不	_	ADV	_	_	2	advmod	_	NEG
+2	會	_	AUX	_	_	3	aux	_	know-how
+3	拼	_	VERB	_	_	5	advcl	_	spell
+4	就	_	ADV	_	_	5	advmod	_	then
+5	寫	_	VERB	_	_	0	root	_	write
+6	中文	_	NOUN	_	_	5	obj	_	Chinese
+7	了	_	PART	_	_	5	discourse:sp	_	SP
+
+1	"If	_	_	_	_	0	_	_	_
+2	you	_	_	_	_	0	_	_	_
+3	don't	_	_	_	_	0	_	_	_
+4	know	_	_	_	_	0	_	_	_
+5	how	_	_	_	_	0	_	_	_
+6	to	_	_	_	_	0	_	_	_
+7	spell	_	_	_	_	0	_	_	_
+8	then	_	_	_	_	0	_	_	_
+9	write	_	_	_	_	0	_	_	_
+10	in	_	_	_	_	0	_	_	_
+11	Chinese."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2 4 discourse:sp	color:blue
+# visual-style 2 5 discourse:sp	color:blue
+1	要	_	AUX	_	_	2	aux	_	need
+2	收	_	VERB	_	_	0	root	_	take
+3	費	_	NOUN	_	_	2	obj	_	fee
+4	的	_	PART	_	_	2	discourse:sp	_	SP
+5	嗎	_	PART	_	_	2	discourse:sp	_	SP:Q
+6	？	_	PUNCT	_	_	2	punct	_	_
+
+1	Is	_	_	_	_	0	_	_	_
+2	there	_	_	_	_	0	_	_	_
+3	a	_	_	_	_	0	_	_	_
+4	fee?"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>To differentiate between 了-1 (aspect marker) and 了-2 (sentence-final particle), one should define as sentence-final a 了 which is placed at the end of a clause or a sentence (though it may be followed by additional sentence-final particles), unless a clear context makes it possible to determine that it is the aspect marker. Before an object, adverbial of duration or frequency, and other non-clause/sentence-final elements, 了 will always be annotated as an aspect marker with <code>aux</code>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/discourse-sp.md" target="#">edit disource:sp</a></p>
 
 <p><a id="al-zh-dep/dobj" class="al-dest"></a></p>
 <h2><code>dobj</code>: direct object</h2>
