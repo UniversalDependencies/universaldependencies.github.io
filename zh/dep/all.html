@@ -1621,11 +1621,31 @@ for <code>case:suff</code>.</p>
 
 <p>The <code>compound:vo</code> relation is used for verb-object compounds where the combination is semantically one unit but syntactically separate. These are known as 離合詞 “separable words” in Chinese linguistics.</p>
 
-<p>These compounds run the range of (i) light verb constructions where the noun carries more semantic weight than the verb, such as 打-電話 / <em>dǎ-diànhuà</em> hit-telephone “make a phone call” (which may be labeled <code>compound:lvc</code> in other languages), (ii) both the verb and noun contributing relatively equal semantic weight, such as 讀-書 / <em>dú-shū</em> read-book “study”, as well as (iii) situations where the verb carries the semantic weight over a redundant or relatively empty noun, such as 睡-覺 / <em>shuì-jiào</em> sleep-sense “sleep” where the noun 覺 no longer has a modern lexical usage and in fact the verb 睡 can be – and is often – used on its own to convey the same meaning.</p>
+<p>These compounds run the range of:</p>
+
+<ul>
+  <li>(i) light verb constructions where the noun carries more semantic weight than the verb
+    <ul>
+      <li>e.g., 打␣電話 / <em>dǎ-diànhuà</em> hit-telephone “make a phone call”</li>
+      <li>(equivalents of these in other languages may be labeled with <code>compound:lvc</code>)</li>
+    </ul>
+  </li>
+  <li>(ii) both the verb and noun contributing relatively equal semantic weight
+    <ul>
+      <li>e.g., 讀␣書 / <em>dú-shū</em> read-book “study”</li>
+    </ul>
+  </li>
+  <li>(iii) situations where the verb carries the semantic weight over a redundant or relatively empty noun
+    <ul>
+      <li>e.g., 睡␣覺 / <em>shuì-jiào</em> sleep-sense “sleep”</li>
+      <li>in the example, the noun 覺 no longer has a modern lexical usage and the verb 睡 can be used on its own to convey the same meaning</li>
+    </ul>
+  </li>
+</ul>
 
 <p>All of the above cases have the same syntactic distribution, where the object behaves like a direct object of the verb. Therefore, verb-object compounds never take another object as direct object, and the object can be separated from the verb as in regular non-compound situations.</p>
 
-<p>For example, aspect markers as well as adverbials of duration and frequency may come in between:</p>
+<p>For example, aspect markers as well as adverbials of duration and frequency, when present, come in between:</p>
 
 <pre><code class="language-conllu"># visual-style 1 5 compound:vo	color:blue
 1	打	_	VERB	_	_	0	root	_	hit
@@ -1643,7 +1663,7 @@ for <code>case:suff</code>.</p>
 
 </code></pre>
 
-<p>When undergoing verb-verb compounding (see <a href="">compound:vv</a>), it is the verb in the verb-object compound that undergoes the compounding, rather than the entire verb-object unit – which results in a [verb + verb + object] order instead of a [verb + object + verb] order:</p>
+<p>When undergoing verb-verb compounding (see <a href="">compound:vv</a>), it is the verb in the verb-object compound that undergoes the compounding, rather than the entire verb-object unit, resulting in a VVO order instead of a VOV order:</p>
 
 <pre><code class="language-conllu"># visual-style 2 4 compound:vo	color:blue
 1	我	_	PRON	_	_	2	nsubj	_	1SG
@@ -1693,7 +1713,7 @@ for <code>case:suff</code>.</p>
 <p><a id="al-zh-dep/compound:vv" class="al-dest"></a></p>
 <h2><code>compound:vv</code>: verb-verb compound</h2>
 
-<p>This relation is used for verb-verb compounds where the second verb covers what are known as as “resultative complements” and “phase complements” in Chinese linguistics. Here we will call them resultative and phase <strong>compounds</strong> to avoid confusion on the different definitions of “complement” between Chinese linguistics and general linguistics terminology.</p>
+<p>This relation is used for verb-verb compounds where the second verb covers what are known as “resultative complements” and “phase complements” in Chinese linguistics. Here we will call them resultative and phase <b>compounds</b> to avoid confusion between the different definitions of “complement” between Chinese-specific constructions and general linguistics terminology.</p>
 
 <p>A special feature of these compounds (as well as directional compounds; see <a href="">compound:dir</a>) is that the affirmative potential 得 <em>de</em> and negative potential 不 <em>bù</em> can intervene between the two verbs (see examples (2) and (4)). However, unlike directional compounds, this is the only situation in which the verb-verb compound can be separated.</p>
 
@@ -1785,34 +1805,222 @@ for <code>case:suff</code>.</p>
 <p><a id="al-zh-dep/conj" class="al-dest"></a></p>
 <h2><code>conj</code>: conjunct</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>conj</code>.</p>
+<p>A conjunct is a relation between two elements or more that are coordinated. The first conjunct is the head of all following conjuncts. However, any conjunction words and punctuation in between conjuncts depend on their immediately following conjunct.</p>
+
+<p>The elements can be connected by a coordinating conjunction (1), or simply separated by punctuation or juxtaposed next to each other (2).</p>
+
+<pre><code class="language-conllu"># visual-style 1 3 conj	color:blue
+1	黃金週	_	PROPN	_	_	0	root	_	Golden-Week
+2	和	_	CCONJ	_	_	3	cc	_	and
+3	暑假	_	NOUN	_	_	1	conj	_	summer-vacation
+
+1	"Golden	_	_	_	_	0	_	_	_
+2	Week	_	_	_	_	0	_	_	_
+3	and	_	_	_	_	0	_	_	_
+4	summer	_	_	_	_	0	_	_	_
+5	vacation"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 3 5 conj	color:blue
+# visual-style 3 7 conj	color:blue
+1	你	_	PRON	_	_	3	nsubj	_	2SG
+2	慢慢	_	ADV	_	_	3	advmod	_	slowly
+3	吸收	_	VERB	_	_	0	root	_	absorb
+4	、	_	PUNCT	_	_	5	punct	_	_
+5	消化	_	VERB	_	_	3	conj	_	digest
+6	、	_	PUNCT	_	_	7	punct	_	_
+7	考慮	_	VERB	_	_	3	conj	_	consider
+
+1	"Slowly	_	_	_	_	0	_	_	_
+2	absorb,	_	_	_	_	0	_	_	_
+3	digest,	_	_	_	_	0	_	_	_
+4	and	_	_	_	_	0	_	_	_
+5	think	_	_	_	_	0	_	_	_
+6	it	_	_	_	_	0	_	_	_
+7	over."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Clauses can also be coordinated (3).</p>
+
+<pre><code class="language-conllu"># visual-style 3 8 conj	color:blue
+1	我	_	PRON	_	_	3	nsubj	_	1SG
+2	已經	_	ADV	_	_	3	advmod	_	already
+3	吃	_	VERB	_	_	0	root	_	eat
+4	飽	_	ADJ	_	_	3	compound:vv	_	full
+5	了	_	PART	_	_	3	discourse:sp	_	SP
+6	，	_	PUNCT	_	_	8	punct	_	_
+7	而且	_	CCONJ	_	_	8	cc	_	and
+8	覺得	_	VERB	_	_	3	conj	_	feel
+9	很	_	ADV	_	_	10	advmod	_	very
+10	睏	_	ADJ	_	_	8	xcomp	_	sleepy
+
+1	"I'm	_	_	_	_	0	_	_	_
+2	already	_	_	_	_	0	_	_	_
+3	full	_	_	_	_	0	_	_	_
+4	from	_	_	_	_	0	_	_	_
+5	eating,	_	_	_	_	0	_	_	_
+6	and	_	_	_	_	0	_	_	_
+7	I	_	_	_	_	0	_	_	_
+8	feel	_	_	_	_	0	_	_	_
+9	very	_	_	_	_	0	_	_	_
+10	sleep,	_	_	_	_	0	_	_	_
+11	too."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>We also use this function for the VERB + NEG + VERB (or AUX + NEG + AUX) interrogative construction (4-5).</p>
+
+<pre><code class="language-conllu"># visual-style 5 7 conj	color:blue
+1	外面	_	NOUN	_	_	3	obl	_	outside
+2	好	_	ADV	_	_	3	advmod	_	very
+3	冷	_	ADJ	_	_	0	root	_	cold
+4	，	_	PUNCT	_	_	5	punct	_	_
+5	是	_	VERB	_	_	3	parataxis	_	be
+6	不	_	ADV	_	_	7	advmod	_	NEG
+7	是	_	VERB	_	_	5	conj	_	be
+8	？	_	PUNCT	_	_	5	punct	_	_
+
+1	"It's	_	_	_	_	0	_	_	_
+2	cold	_	_	_	_	0	_	_	_
+3	outside,	_	_	_	_	0	_	_	_
+4	isn't	_	_	_	_	0	_	_	_
+5	it?"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 1 3 conj	color:blue
+1	喝	_	VERB	_	_	0	root	_	drink
+2	不	_	ADV	_	_	3	advmod	_	NEG
+3	喝	_	VERB	_	_	1	conj	_	drink
+4	咖啡	_	NOUN	_	_	1	obj	_	coffee
+5	？	_	PUNCT	_	_	1	punct	_	_
+
+1	"Do	_	_	_	_	0	_	_	_
+2	you	_	_	_	_	0	_	_	_
+3	drink	_	_	_	_	0	_	_	_
+4	coffee	_	_	_	_	0	_	_	_
+5	(or	_	_	_	_	0	_	_	_
+6	not)?"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>In more formal registers, the negative adverb 否 <em>fǒu</em> may replace the NEG + VERB part of the VERB + NEG + VERB construction  for certain (auxiliary) verbs (e.g., 是否 and 能否 instead of 是不是 and 能不能). In this case, the negative adverb is also treated as a <code>conj</code> dependent.</p>
+
+<pre><code class="language-conllu"># visual-style 2 3 conj	color:blue
+1	我	_	PRON	_	_	4	nsubj	_	1SG
+2	能	_	AUX	_	_	4	aux	_	can
+3	否	_	ADV	_	_	2	conj	_	NEG
+4	申請	_	VERB	_	_	0	root	_	apply
+5	信用卡	_	NOUN	_	_	4	obj	_	credit-card
+6	？	_	PUNCT	_	_	4	punct	_	_
+
+1	"Can	_	_	_	_	0	_	_	_
+2	I	_	_	_	_	0	_	_	_
+3	apply	_	_	_	_	0	_	_	_
+4	for	_	_	_	_	0	_	_	_
+5	a	_	_	_	_	0	_	_	_
+6	credit	_	_	_	_	0	_	_	_
+7	card?"	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/conj.md" target="#">edit conj</a></p>
 
 <p><a id="al-zh-dep/cop" class="al-dest"></a></p>
 <h2><code>cop</code>: copula</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>cop</code>.</p>
+<p>The <code>cop</code> relation is used exclusively for the word 是 / <em>shì</em> “be” primarily as a copula linked to the main predicate, which may often be a noun or adjective. The words 為 / <em>wéi</em> “be, be as” and 非 / <em>fēi</em> “not be” are also included if they are the only verb in a sentence and the latter is semantically equivalent to the opposite of 是 <em>shì</em>.</p>
+
+<pre><code class="language-conllu"># visual-style 4 2 cop	color:blue
+1	他	_	PRON	_	_	4	nsubj	_	3SG
+2	是	_	VERB	_	_	4	cop	_	be
+3	我	_	PRON	_	_	4	nmod	_	1SG
+4	男朋友	_	NOUN	_	_	0	root	_	boyfriend
+
+1	"He	_	_	_	_	0	_	_	_
+2	is	_	_	_	_	0	_	_	_
+3	my	_	_	_	_	0	_	_	_
+4	boyfriend."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>If the complement of the copular verb is a clause, however, then the copular verb should be the head of the sentence with the clausal complement as a <code>ccomp</code> dependent.</p>
+
+<pre><code class="language-conllu">1	原因	_	NOUN	_	_	2	nsubj	_	reason
+2	是	_	VERB	_	_	0	root	_	be
+3	他	_	PRON	_	_	5	nsubj	_	3SG
+4	沒	_	AUX	_	_	5	aux	_	NEG.PERF
+5	來	_	VERB	_	_	2	ccomp	_	come
+
+1	"The	_	_	_	_	0	_	_	_
+2	reason	_	_	_	_	0	_	_	_
+3	is	_	_	_	_	0	_	_	_
+4	he	_	_	_	_	0	_	_	_
+5	didn't	_	_	_	_	0	_	_	_
+6	come."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>For the cleft-like focus constructions with 是 and 是…的, see <a href="">ccomp</a>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/cop.md" target="#">edit cop</a></p>
 
 <p><a id="al-zh-dep/csubj" class="al-dest"></a></p>
 <h2><code>csubj</code>: clausal subject</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>csubj</code>.</p>
+<p>The <code>csubj</code> relation is the clausal counterpart to <a href="">nsubj</a>; when the subject of the sentence is a clause itself, this relation is used. The governor of the subject clause is its main verb.</p>
+
+<pre><code class="language-conllu"># visual-style 7 2 csubj	color:blue
+1	其實	_	ADV	_	_	7	advmod	_	actually
+2	教	_	VERB	_	_	7	csubj	_	teach
+3	小孩	_	NOUN	_	_	2	obj	_	children
+4	能	_	AUX	_	_	7	aux	_	can
+5	有	_	AUX	_	_	7	aux	_	have
+6	多	_	ADV	_	_	7	advmod	_	very
+7	難	_	ADJ	_	_	0	root	_	difficult
+8	呢	_	PART	_	_	7	discourse:sp	_	SP
+9	？	_	PUNCT	_	_	7	punct	_	_
+
+1	"Actually,	_	_	_	_	0	_	_	_
+2	how	_	_	_	_	0	_	_	_
+3	difficult	_	_	_	_	0	_	_	_
+4	can	_	_	_	_	0	_	_	_
+5	teaching	_	_	_	_	0	_	_	_
+6	children	_	_	_	_	0	_	_	_
+7	be?"	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/csubj.md" target="#">edit csubj</a></p>
 
 <p><a id="al-zh-dep/csubjpass" class="al-dest"></a></p>
 <h2><code>csubjpass</code>: clausal passive subject</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>csubjpass</code>.</p>
+<p>When a clause is the passive subject of a verb, the <code>csubj:pass</code> relation is used.</p>
 
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/csubjpass.md" target="#">edit csubjpass</a></p>
+<pre><code class="language-conllu"># visual-style 6 2 csubj:pass	color:blue
+1	他	_	PRON	_	_	2	nsubj	_	3SG.M
+2	換	_	VERB	_	_	6	csubj:pass	_	change
+3	衣服	_	NOUN	_	_	2	obj	_	clothes
+4	被	_	ADP	_	_	5	case	_	by
+5	人	_	NOUN	_	_	6	obl	_	people
+6	看	_	VERB	_	_	0	root	_	see
+7	到	_	VERB	_	_	6	compound:vv	_	arrive
+
+1	"Him	_	_	_	_	0	_	_	_
+2	changing	_	_	_	_	0	_	_	_
+3	clothes	_	_	_	_	0	_	_	_
+4	was	_	_	_	_	0	_	_	_
+5	seen	_	_	_	_	0	_	_	_
+6	by	_	_	_	_	0	_	_	_
+7	other	_	_	_	_	0	_	_	_
+8	people."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/csubj-pass.md" target="#">edit csubjpass</a></p>
 
 <p><a id="al-zh-dep/dep" class="al-dest"></a></p>
 <h2><code>dep</code>: unspecified dependency</h2>
