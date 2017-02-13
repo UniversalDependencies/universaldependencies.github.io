@@ -2300,14 +2300,6 @@ for <code>case:suff</code>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/discourse-sp.md" target="#">edit disource:sp</a></p>
 
-<p><a id="al-zh-dep/dobj" class="al-dest"></a></p>
-<h2><code>dobj</code>: direct object</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>dobj</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/dobj.md" target="#">edit dobj</a></p>
-
 <p><a id="al-zh-dep/expl" class="al-dest"></a></p>
 <h2><code>expl</code>: expletive</h2>
 
@@ -2537,7 +2529,7 @@ for <code>foreign</code>.</p>
 4	就	_	ADV	_	_	7	advmod	_	then
 5	將	_	ADP	_	_	6	case	_	BA
 6	事情	_	NOUN	_	_	7	obl	_	affair
-7	鬧	_	VERB	_	_	0	root	make-noise
+7	鬧	_	VERB	_	_	0	root	_	make-noise
 8	大	_	ADJ	_	_	7	compound:vv	_	big
 
 1	"If	_	_	_	_	0	_	_	_
@@ -2583,7 +2575,7 @@ for <code>foreign</code>.</p>
 5	，	_	PUNCT	_	_	2	punct	_	_
 6	希望	_	VERB	_	_	0	root	_	hope
 7	你	_	PRON	_	_	8	nsubj	_	2SG
-8	開開心心	_	ADJ	_	_	6	ccomp	happy
+8	開開心心	_	ADJ	_	_	6	ccomp	_	happy
 
 1	"After	_	_	_	_	0	_	_	_
 2	she	_	_	_	_	0	_	_	_
@@ -2829,7 +2821,7 @@ for <code>nmod:tmod</code>.</p>
 <p><a id="al-zh-dep/nummod" class="al-dest"></a></p>
 <h2><code>nummod</code>: numeric modifier</h2>
 
-<p>A numeric modifier is a modifier that is a numeral word or phrase preceding the noun or noun phrase it modifies. Ordinal numbers such as 第一 ‘first’ 第二 ‘second’, however, should be treated as adjectives (<a href="">amod</a>) in terms of their dependency relation to the noun, even though they are tagged as <a href="">NUM</a>.</p>
+<p>A numeric modifier is a modifier that is a numeral word or phrase preceding the noun or noun phrase it modifies. Ordinal numbers such as 第一 / <em>dìyī</em> “first” and 第二 / <em>dìèr</em> “second”, however, should be treated as adjectives (<a href="">amod</a>) in terms of their dependency relation to the noun, even though they are tagged as <a href="">NUM</a>.</p>
 
 <p>Numeric modifiers are always attached to the head of the noun phrase.</p>
 
@@ -2855,6 +2847,97 @@ for <code>nmod:tmod</code>.</p>
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/nummod.md" target="#">edit nummod</a></p>
+
+<p><a id="al-zh-dep/obj" class="al-dest"></a></p>
+<h2><code>obj</code>: object</h2>
+
+<p>The object of a transitive verb is its second core argument after its subject. If a third argument, an indirect object, is present, that object is marked as <code>iobj</code> (2), but if the only object present is an indirect object, it is still marked as <code>obj</code> (3).</p>
+
+<pre><code class="language-conllu"># visual-style 1 3 obj	color:blue
+1	開	_	VERB	_	_	0	root	_	open
+2	瓶	_	NOUN	_	_	3	det	_	CL:bottle
+3	酒	_	NOUN	_	_	1	obj	_	wine
+
+1	"open	_	_	_	_	0	_	_	_
+2	a	_	_	_	_	0	_	_	_
+3	bottle	_	_	_	_	0	_	_	_
+4	of	_	_	_	_	0	_	_	_
+5	wine"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 1 5 obj	color:blue
+1	給	_	VERB	_	_	0	root	_	give
+2	他	_	PRON	_	_	1	iobj	_	3SG.M
+3	兩	_	NUM	_	_	5	nummod	_	two
+4	本	_	NOUN	_	_	3	clf	_	CL:book
+5	書	_	NOUN	_	_	1	obj	_	book
+
+1	"Give	_	_	_	_	0	_	_	_
+2	him	_	_	_	_	0	_	_	_
+3	two	_	_	_	_	0	_	_	_
+4	books."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2 3 obj	color:blue
+1	今年	_	NOUN	_	_	2	obl:tmod	_	this-year
+2	給	_	VERB	_	_	0	root	_	give
+3	他	_	PRON	_	_	2	obj	_	3SG.M
+4	吧	_	PART	_	_	2	discourse:sp	_	SP
+
+1	"This	_	_	_	_	0	_	_	_
+2	year	_	_	_	_	0	_	_	_
+3	let's	_	_	_	_	0	_	_	_
+4	give	_	_	_	_	0	_	_	_
+5	it	_	_	_	_	0	_	_	_
+6	to	_	_	_	_	0	_	_	_
+7	him."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p><code>obj</code> is also used to link the direct object of a movement verb. This verb can be single (4) or compounded (5).</p>
+
+<pre><code class="language-conllu"># visual-style 5 6 obj	color:blue
+# visual-style 7 8 obj	color:blue
+1	那	_	DET	_	_	3	det	_	that
+2	傻	_	ADJ	_	_	3	amod	_	stupid
+3	丫頭	_	NOUN	_	_	4	nsubj	_	girl
+4	説	_	VERB	_	_	0	root	_	say
+5	去	_	VERB	_	_	4	ccomp	_	go
+6	福岡	_	PROPN	_	_	5	obj	_	Fukuoka
+7	看	_	VERB	_	_	5	conj	_	see
+8	別人	_	PRON	_	_	7	obj	_	others
+9	耕作	_	VERB	_	_	7	xcomp	_	farm
+
+1	"That	_	_	_	_	0	_	_	_
+2	stupid	_	_	_	_	0	_	_	_
+3	girl	_	_	_	_	0	_	_	_
+4	says	_	_	_	_	0	_	_	_
+5	she	_	_	_	_	0	_	_	_
+6	wants	_	_	_	_	0	_	_	_
+7	to	_	_	_	_	0	_	_	_
+8	go	_	_	_	_	0	_	_	_
+9	to	_	_	_	_	0	_	_	_
+10	Fukuoka	_	_	_	_	0	_	_	_
+11	to	_	_	_	_	0	_	_	_
+12	see	_	_	_	_	0	_	_	_
+13	people	_	_	_	_	0	_	_	_
+14	farming."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 1 3 obj	color:blue
+1	來	_	VERB	_	_	0	root	_	come
+2	到	_	VERB	_	_	1	compound:vv	_	arrive
+3	這裡	_	PRON	_	_	1	obj	_	here
+
+1	"arrived	_	_	_	_	0	_	_	_
+2	here"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/obj.md" target="#">edit obj</a></p>
 
 <p><a id="al-zh-dep/parataxis" class="al-dest"></a></p>
 <h2><code>parataxis</code>: parataxis</h2>
