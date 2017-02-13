@@ -30,8 +30,8 @@
       <hr/>
 
       
-      <div class="v1warning">
-	This page still pertains to UD version 1.
+      <div class="v2complete">
+	This page pertains to UD version 2.
       </div>
       
       
@@ -47,6 +47,208 @@
 
 <p>This document is a placeholder for the language-specific documentation
 for <code>xcomp</code>.</p>
+
+<p>The open clausal complement functions like an object of another verb, but unlike the <a href="">ccomp</a> dependent, it obligatorily lacks an overt subject. More crucially, the absent or “silent” subject is coreferent with an argument outside of the clausal complement in a higher clause (this is also known as “obligatory control” in some linguistic literature).</p>
+
+<p>When the silent subject of <code>xcomp</code> is obligatorily coreferent with the subject of the higher clause, it is known as “subject control”. Some matrix verbs that take a clausal complement with subject control include 準備 <em>zhǔnbèi</em> “prepare”, 打算 <em>dǎsuàn</em> “plan”, 決定 <em>juédìng</em> “decide”, 開始 <em>kāishǐ</em> “start”, 答應 <em>dāyìng</em> “promise”.</p>
+
+<pre><code class="language-conllu"># visual-style 4 5 xcomp	color:blue
+1	我	_	PRON	_	_	4	nsubj	_	1SG
+2	早	_	ADV	_	_	4	advmod	_	early
+3	就	_	ADV	_	_	4	advmod	_	then
+4	打算	_	VERB	_	_	0	root	_	plan
+5	換	_	VERB	_	_	4	xcomp	_	change
+6	車	_	NOUN	_	_	5	obj	_	car
+
+1	"I	_	_	_	_	0	_	_	_
+2	already	_	_	_	_	0	_	_	_
+3	planned	_	_	_	_	0	_	_	_
+4	to	_	_	_	_	0	_	_	_
+5	change	_	_	_	_	0	_	_	_
+6	cars	_	_	_	_	0	_	_	_
+7	early	_	_	_	_	0	_	_	_
+8	on."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>The matrix verb may require both a non-clausal object and a clausal complement:</p>
+
+<pre><code class="language-conllu"># visual-style 2 4 xcomp	color:blue
+1	我	_	PRON	_	_	2	nsubj	_	1SG
+2	答應	_	VERB	_	_	0	root	_	promise
+3	你	_	PRON	_	_	2	obj	_	2SG
+4	買	_	VERB	_	_	2	xcomp	_	buy
+5	那	_	DET	_	_	7	det	_	that
+6	頭	_	NOUN	_	_	5	clf	_	CL:cattle
+7	牛	_	NOUN	_	_	4	obj	_	cow
+
+1	"I	_	_	_	_	0	_	_	_
+2	promise	_	_	_	_	0	_	_	_
+3	you	_	_	_	_	0	_	_	_
+4	to	_	_	_	_	0	_	_	_
+5	buy	_	_	_	_	0	_	_	_
+6	that	_	_	_	_	0	_	_	_
+7	cow."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>In the case of “object control”, the subject of the clausal complement is obligatorily coreferent with the direct object of the higher clause. Chinese “pivotal constructions” are considered to fall under this category. Some matrix verbs that may take a clausal complement with object control include 麻煩 <em>máfán</em> “trouble”, 勸 <em>quàn</em> “advise”, 派 <em>pài</em> “dispatch”, 求 <em>qiú</em> “beg”, 委託 <em>wěituō</em> “entrust”, 請 <em>qǐng</em> “asl”, 命令 <em>mìnglìng</em> “order”, 叫 <em>jiào</em> “tell”, 原諒 <em>yuánliàng</em> “forgive”, 恭喜 <em>gōngxǐ</em> “congratulate”, 批評 <em>pīpíng</em> “criticize”, among others (however, note that some of these verbs may also take just a non-clausal object).</p>
+
+<pre><code class="language-conllu"># visual-style 2 7 xcomp	color:blue
+1	我	_	PRON	_	_	2	nsubj	_	1SG
+2	命令	_	VERB	_	_	0	root	_	order
+3	你	_	PRON	_	_	2	obj	_	2SG
+4	立刻	_	ADV	_	_	7	advmod	_	immediately
+5	把	_	ADP	_	_	6	case	_	BA
+6	腳	_	NOUN	_	_	7	obl:patient	_	leg
+7	放	_	VERB	_	_	2	xcomp	_	put
+8	下	_	VERB	_	_	7	compound:dir	_	go-down
+
+1	"I	_	_	_	_	0	_	_	_
+2	order	_	_	_	_	0	_	_	_
+3	you	_	_	_	_	0	_	_	_
+4	to	_	_	_	_	0	_	_	_
+5	put	_	_	_	_	0	_	_	_
+6	down	_	_	_	_	0	_	_	_
+7	your	_	_	_	_	0	_	_	_
+8	feet	_	_	_	_	0	_	_	_
+9	immediately."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<h3 id="secondary-predicates">Secondary predicates</h3>
+
+<p>Note that the complement may be simply a nominal predicate, where the structure should not be confused with a ditransitive verb requiring a direct object and an indirect object, such as the example below. This is also known as a “secondary predicate” or “small clause” in the linguistic literature.</p>
+
+<pre><code class="language-conllu"># visual-style 1 4 xcomp	color:blue
+1	叫	_	VERB	_	_	0	root	_	call
+2	我	_	PRON	_	_	1	obj	_	1SG
+3	羅	_	PROPN	_	_	4	compound	_	Luo
+4	先生	_	NOUN	_	_	1	xcomp	_	Mr.
+
+1	"Call	_	_	_	_	0	_	_	_
+2	me	_	_	_	_	0	_	_	_
+3	Mr.	_	_	_	_	0	_	_	_
+4	Luo."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2 4 xcomp	color:blue
+1	d她	_	PRON	_	_	2	nsubj	_	3SG.F
+2	d當	_	VERB	_	_	0	root	_	consider
+3	d我	_	PRON	_	_	2	obj	_	1SG
+4	d傻瓜	_	NOUN	_	_	2	xcomp	_	fool
+
+1	"She	_	_	_	_	0	_	_	_
+2	considers	_	_	_	_	0	_	_	_
+3	me	_	_	_	_	0	_	_	_
+4	a	_	_	_	_	0	_	_	_
+5	fool."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<h3 id="in-extent-compound-constructions">In “extent compound” constructions</h3>
+
+<p>Additionally, <code>xcomp</code> is used when the clause following a V-得 extent compound (see <a href="">compound:ext</a>) is missing a subject.</p>
+
+<pre><code class="language-conllu"># visual-style 2 4 xcomp	color:blue
+1	我	_	PRON	_	_	2	nsubj	_	1SG
+2	説	_	VERB	_	_	0	root	_	say
+3	得	_	PART	_	_	2	compound:ext	_	DE
+4	對	_	ADJ	_	_	2	xcomp	_	correct
+
+1	"You	_	_	_	_	0	_	_	_
+2	said	_	_	_	_	0	_	_	_
+3	it	_	_	_	_	0	_	_	_
+4	correctly."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2 5 xcomp	color:blue
+1	我	_	PRON	_	_	2	nsubj	_	1SG
+2	熱	_	ADJ	_	_	0	root	_	hot
+3	得	_	PART	_	_	2	compound:ext	_	DE
+4	想	_	AUX	_	_	5	aux	_	want
+5	吐	_	VERB	_	_	2	xcomp	_	vomit
+6	了	_	PART	_	_	5	discourse:sp	_	SP
+
+1	"I'm	_	_	_	_	0	_	_	_
+2	so	_	_	_	_	0	_	_	_
+3	hot	_	_	_	_	0	_	_	_
+4	I	_	_	_	_	0	_	_	_
+5	want	_	_	_	_	0	_	_	_
+6	to	_	_	_	_	0	_	_	_
+7	vomit."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<h3 id="raising-constructions">Raising constructions</h3>
+
+<p>A small class of predicate adjectives, such as 容易 <em>róngyì</em> “easy”, 難 <em>nán</em> “difficult”, 可能 <em>kěnéng</em> “possible”, take a clausal complement in which its subject or object is in the subject or topic position of the main clause.</p>
+
+<pre><code class="language-conllu"># visual-style 3 4 xcomp	color:blue
+1	他	_	PRON	_	_	3	nsubj	_	3SG
+2	很	_	ADV	_	_	3	advmod	_	very
+3	容易	_	ADJ	_	_	0	root	_	easy
+4	忘記	_	VERB	_	_	3	xcomp	_	forget
+5	事情	_	NOUN	_	_	4	obj	_	things
+
+1	"It	_	_	_	_	0	_	_	_
+2	is	_	_	_	_	0	_	_	_
+3	easy	_	_	_	_	0	_	_	_
+4	for	_	_	_	_	0	_	_	_
+5	him	_	_	_	_	0	_	_	_
+6	to	_	_	_	_	0	_	_	_
+7	forget	_	_	_	_	0	_	_	_
+8	things.	_	_	_	_	0	_	_	_
+9	/	_	_	_	_	0	_	_	_
+10	He	_	_	_	_	0	_	_	_
+11	forgets	_	_	_	_	0	_	_	_
+12	things	_	_	_	_	0	_	_	_
+13	easily."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>The predicate of the clausal complement is linked to the predicate adjective as an <code>xcomp</code> dependent, whereas the noun phrase preceding the predicate adjective is treated as its subject (<code>nsubj</code>) regardless of whether it can be understood to be the subject or object of the clausal complement.</p>
+
+<h3 id="ccomp-vs-object-control-xcomp"><code>ccomp</code> vs. object-control <code>xcomp</code></h3>
+
+<p>Since both <code>ccomp</code> and object-control <code>xcomp</code> may both contain an argument between the matrix verb and the embedded verb, confusion may arise as to which relation is appropriate.</p>
+
+<p>We adopt a test from Chao (1968) which allows one to separate “clausal objects” (<code>ccomp</code>) from “pivotal constructions” (object-control <code>xcomp</code>). In the case of <code>ccomp</code>, it is grammatical to dislocate the matrix verb with its subject to the end, while the same operation on an <code>xcomp</code> sentence would result in ungrammaticality:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><b><code>ccomp</code></b></th>
+      <th><b><code>xcomp</code></b></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>他 認為</em> 你 有 禮貌</td>
+      <td><em>他 请</em> 你 帮忙</td>
+    </tr>
+    <tr>
+      <td>3SG consider 2SG have politeness</td>
+      <td>3SG ask 2SG help</td>
+    </tr>
+    <tr>
+      <td>“He thinks you’re polite”</td>
+      <td>“He asked you to help”</td>
+    </tr>
+    <tr>
+      <td>OKAY: 你 有 禮貌, <em>他 認為</em></td>
+      <td>BAD: * 你 帮忙, <em>他 请</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li>Chao, Yuan Ren. 1968. A Grammar of Spoken Chinese. University of California Press.</li>
+</ul>
 
 
 <!-- "automatic stats" -->
