@@ -73,9 +73,9 @@ This time the script is run for every language (not every treebank):<br />
 The <code>master</code> branch should not be touched the next six months and it should have exactly the contents that was officially
 released. In fact, the individual data providers should never commit anything to the <code>master</code> branch, only to <code>dev</code> branch.
 (But we currently do not have means to enforce it. If someone commits to <code>master</code>, we will have to remove the commits from the history manually, using <code>git revert</code>.)<br />
-<code>for i in UD_* ; do pushd $i ; git checkout master ; git pull --no-edit ; git merge dev ; git push ; git checkout dev ; popd ; echo ; done</code></li>
+<code>for i in UD_* ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev ; git push ; git checkout dev ; cd .. ; echo ; done</code></li>
   <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code>master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the <code>master</code> branch and git will not allow any further operations with them!<br />
-<code>for i in UD_* ; do pushd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; else echo OK ; fi ; popd ; echo ; done</code></li>
+<code>for i in UD_* ; do echo $i ; cd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; else echo OK ; fi ; cd .. ; echo ; done</code></li>
   <li>After resolving the conflicts do not forget to checkout the <code>dev</code> branch again! (If there were no conflicts, we are already back in <code>dev</code>.)<br />
 <code>for i in UD_* ; do pushd $i ; git checkout dev ; popd ; echo ; done</code></li>
   <li>The following steps are now performed by the script <tt>tools/package_ud_release.sh</tt>.
