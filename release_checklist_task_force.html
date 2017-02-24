@@ -64,9 +64,6 @@ It will also collect information such as the list of contributors (we need this 
       <li>The release script must know the list of treebanks that are included in the shared task. Only these treebanks will have the detokenized and predicted versions mentioned above. Only these treebanks will be also checked again that their repository does not contain the test data. The remaining treebanks (e.g. Coptic, Sanskrit, Tamil) are allowed to include v2 test data.</li>
     </ul>
   </li>
-  <li>Update the list of licenses for Lindat. See the <a href="https://github.com/UniversalDependencies/LICENSE">LICENSE repository</a>.
-Send the new list to Lindat so they add it to their menu (they like to get it as a diff file against the previous license;
-they can be reached at lindat-help@ufal.mff.cuni.cz).</li>
   <li>Update statistics in the <code>stats.xml</code> file in each repository:<br />
 <code>for i in UD_* ; do echo $i ; cd $i ; ( cat *.conllu | ../tools/conllu-stats.pl &gt; stats.xml ) ; git add stats.xml ; git commit -m 'Updated statistics.' ; git push ; cd .. ; echo ; done</code></li>
   <li>Run the same script again (but with different settings) and generate the long statistics that are displayed in the docs:
@@ -107,6 +104,9 @@ this is how you remove the tag from where it is now: <code>git tag -d r1.3</code
 And this is how you remove it from Github: <code>git push origin :refs/tags/r1.3</code>.
 WARNING: The following command tags all UD repositories, including those that are not part of the current release.<br />
 <code>for i in UD_* docs tools ; do pushd $i ; git tag r1.4 ; git push --tags ; popd ; echo ; done</code></li>
+  <li>Update the list of licenses for Lindat. See the <a href="https://github.com/UniversalDependencies/LICENSE">LICENSE repository</a>.
+Send the new list to Lindat so they add it to their menu (they like to get it as a diff file against the previous license;
+they can be reached at lindat-help@ufal.mff.cuni.cz).</li>
   <li>Once the Lindat staff make the new license list available in their system, we can
 <a href="https://lindat.mff.cuni.cz/repository/xmlui/submit">create a new Lindat item</a> for the new version of UD.
 (The server starts by asking you to “select a community”. Choose LINDAT / CLARIN.
