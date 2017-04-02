@@ -924,7 +924,7 @@
 2	的	_	PART	_	_	1	case	_	GEN
 3	老闆娘	_	NOUN	_	_	0	root	_	female-boss
 4	楊	_	PROPN	_	_	5	compound	_	Yang
-5	姑娘	_	NOUN	_	_	3	appos	_	Ms.
+5	女士	_	NOUN	_	_	3	appos	_	Ms.
 
 1	"my	_	_	_	_	0	_	_	_
 2	boss	_	_	_	_	0	_	_	_
@@ -1364,17 +1364,16 @@
 
 <p>The subject of the embedded clause may sometimes be absent, but pragmatically understood, such as in the below example where the thing being mentioned as being stinky may be a room or a pair of socks that was previously discussed or known to be the topic of discussion.</p>
 
-<pre><code class="language-conllu"># visual-style 4 6 ccomp	color:blue
+<pre><code class="language-conllu"># visual-style 2 4 ccomp	color:blue
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
 # visual-style 4	bgColor:blue
 # visual-style 4	fgColor:white
-# visual-style 6	bgColor:blue
-# visual-style 6	fgColor:white
-1	你	_	PRON	_	_	4	nsubj	_	2SG
-2	有	_	VERB	_	_	4	aux	_	PERF
-3	否	_	ADV	_	_	2	conj	_	NEG
-4	覺得	_	VERB	_	_	0	root	_	think
-5	很	_	ADV	_	_	6	advmod	_	very
-6	臭	_	ADJ	_	_	4	ccomp	_	stinky
+1	你	_	PRON	_	_	2	nsubj	_	2SG
+2	覺得	_	VERB	_	_	0	root	_	think
+3	很	_	ADV	_	_	4	advmod	_	very
+4	臭	_	ADJ	_	_	2	ccomp	_	stinky
+5	嗎	_	PART	_	_	2	discourse:sp	_	Q
 
 1	"Do	_	_	_	_	0	_	_	_
 2	you	_	_	_	_	0	_	_	_
@@ -1520,7 +1519,7 @@
 <p><a id="al-zh-dep/clf" class="al-dest"></a></p>
 <h2><code>clf</code>: classifier</h2>
 
-<p>The <code>clf</code> relation is used in noun phrases where a numeral or determiner modifying the head noun is accompanied by a classifier. The classifier is attached to the numeral if a numeral is present, or else to the determiner.</p>
+<p>The <code>clf</code> relation is used in noun phrases where a cardinal numeral (1,3), an ordinal numeral (2), or a determiner (3,4) modifying the head noun is accompanied by a classifier. The classifier is attached to the numeral if a numeral is present, or else to the determiner. Note that ordinal numerals are tagged <a><code>ADJ</code></a> and labeled <a><code>amod</code></a> in relation to the noun; they are the only words tagged <code>ADJ</code> that can be accompanied by a classifier.</p>
 
 <pre><code class="language-conllu"># visual-style 1 2 clf	color:blue
 # visual-style 1	bgColor:blue
@@ -1535,6 +1534,21 @@
 2	ball	_	_	_	_	0	_	_	_
 3	of	_	_	_	_	0	_	_	_
 4	fire"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 1 2 clf	color:blue
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+1	第一	_	ADJ	_	_	3	amod	_	one
+2	位	_	NOUN	_	_	1	clf	_	CL:person
+3	老師	_	NOUN	_	_	0	root	_	teacher
+
+1	"the	_	_	_	_	0	_	_	_
+2	first	_	_	_	_	0	_	_	_
+3	teacher	_	_	_	_	0	_	_	_
 
 </code></pre>
 
@@ -2101,9 +2115,9 @@
 <p><a id="al-zh-dep/compound:vv" class="al-dest"></a></p>
 <h2><code>compound:vv</code>: verb-verb compound</h2>
 
-<p>This relation is used for verb-verb compounds where the second verb covers what are known as “resultative complements” and “phase complements” in Chinese linguistics. Here we will call them resultative and phase <em>compounds</em> to avoid confusion between the different definitions of “complement” between Chinese-specific terminology and general linguistics terminology.</p>
+<p>This relation is used for verb-verb and verb-adjective compounds where the second verb/adjective covers what are known as “resultative complements” and “phase complements” in Chinese linguistics. Here we will call them resultative and phase <em>compounds</em> to avoid confusion between the different definitions of “complement” between Chinese-specific terminology and general linguistics terminology.</p>
 
-<p>A special feature of these compounds (as well as directional compounds; see <a href="">compound:dir</a>) is that the affirmative potential 得 <em>de</em> and negative potential 不 <em>bù</em> can intervene between the two verbs (see examples (2) and (4)). However, unlike directional compounds, this is the only situation in which the verb-verb compound can be separated.</p>
+<p>A special feature of these compounds (as well as directional compounds; see <a href="">compound:dir</a>) is that the affirmative potential 得 <em>de</em> and negative potential 不 <em>bù</em> can intervene between the compound (see examples (2) and (5)). However, unlike directional compounds, this is the only situation in which the resultative and phase compounds can be separated.</p>
 
 <h3 id="resultative-compounds">Resultative compounds</h3>
 
@@ -2149,6 +2163,25 @@
 7	through	_	_	_	_	0	_	_	_
 8	by	_	_	_	_	0	_	_	_
 9	doing)	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Note that in Chinese resultative compounds the second verb can be an adjective, in which case <code>compound:vv</code> is still the appropriate relation to link the two:</p>
+
+<pre><code class="language-conllu"># visual-style 2 3 compound:vv	color:blue
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+1	他	_	PRON	_	_	2	nsubj	_	3SG.M
+2	哭	_	VERB	_	_	0	root	_	cry
+3	累	_	ADJ	_	_	2	compound:vv	_	tired
+4	了	_	AUX	_	_	2	aux	_	PERF
+
+1	"He	_	_	_	_	0	_	_	_
+2	cried	_	_	_	_	0	_	_	_
+3	himself	_	_	_	_	0	_	_	_
+4	tired."	_	_	_	_	0	_	_	_
 
 </code></pre>
 
@@ -2359,6 +2392,37 @@
 5	a	_	_	_	_	0	_	_	_
 6	credit	_	_	_	_	0	_	_	_
 7	card?"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Note that the “et cetera” particle 等(等) / <em>děng(děng)</em> is treated as the final conjunct in a series of conjuncts.</p>
+
+<pre><code class="language-conllu"># visual-style 5 8 conj	color:blue
+# visual-style 5 7 conj	color:blue
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+# visual-style 8	bgColor:blue
+# visual-style 8	fgColor:white
+1	這裡	_	PRON	_	_	3	nsubj	_	here
+2	能	_	AUX	_	_	3	aux	_	can
+3	買	_	ADV	_	_	0	root	_	buy
+4	到	_	VERB	_	_	3	compound:vv	_	arrive
+5	臭豆腐	_	NOUN	_	_	3	obj	_	stinky-tofu
+6	、	_	PUNCT	_	_	7	punct	_	_
+7	滷水蛋	_	PUNCT	_	_	5	conj	_	brined-eggs
+8	等等	_	PART	_	_	5	conj	_	etc.
+
+1	"One	_	_	_	_	0	_	_	_
+2	can	_	_	_	_	0	_	_	_
+3	buy	_	_	_	_	0	_	_	_
+4	stinky	_	_	_	_	0	_	_	_
+5	tofu,	_	_	_	_	0	_	_	_
+6	brined	_	_	_	_	0	_	_	_
+7	eggs,	_	_	_	_	0	_	_	_
+8	etc.	_	_	_	_	0	_	_	_
+9	here."	_	_	_	_	0	_	_	_
 
 </code></pre>
 
