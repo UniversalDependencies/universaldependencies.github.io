@@ -613,8 +613,8 @@ cc(left, And)
 </code></pre>
 
 <pre><code class="language-sdparse">Máme jablka , hrušky , pomeranče a banány . \n We-have apples , pears , oranges and bananas .
-dobj(Máme, jablka)
-dobj(We-have, apples)
+obj(Máme, jablka)
+obj(We-have, apples)
 conj(jablka, hrušky)
 conj(jablka, pomeranče)
 conj(jablka, banány)
@@ -705,8 +705,8 @@ conj(old, wise)
 </code></pre>
 
 <pre><code class="language-sdparse">Máme jablka , hrušky , pomeranče a banány . \n We-have apples , pears , oranges and bananas .
-dobj(Máme, jablka)
-dobj(We-have, apples)
+obj(Máme, jablka)
+obj(We-have, apples)
 conj(jablka, hrušky)
 conj(jablka, pomeranče)
 conj(jablka, banány)
@@ -935,11 +935,11 @@ the information about case conditions.</p>
 <pre><code class="language-sdparse">Kolik mužů hrálo karty ? \n How-many men played cards ?
 det:numgov(mužů, Kolik)
 nsubj(hrálo, mužů)
-dobj(hrálo, karty)
+obj(hrálo, karty)
 punct(hrálo, ?-5)
 det:numgov(men, How-many)
 nsubj(played, men)
-dobj(played, cards)
+obj(played, cards)
 punct(played, ?-11)
 </code></pre>
 
@@ -962,7 +962,7 @@ ccomp(Nepamatuji, hrál)
 compound:reflex(Nepamatuji, si)
 punct(hrál, ,-3)
 aux(hrál, jsem)
-dobj(hrál, karty)
+obj(hrál, karty)
 iobj(hrál, muži)
 case(muži, s)
 det:nummod(muži, kolika)
@@ -971,7 +971,7 @@ ccomp(I-do-not-remember, played)
 compound:reflex(I-do-not-remember, myself)
 punct(played, ,-14)
 aux(played, I-have)
-dobj(played, cards)
+obj(played, cards)
 iobj(played, men)
 case(men, with)
 det:nummod(men, how-many)
@@ -996,60 +996,6 @@ discourse(they-betrayed, it)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/discourse.md" target="#">edit discourse</a></p>
 
-<p><a id="al-cs-dep/dobj" class="al-dest"></a></p>
-<h2><code>dobj</code>: direct object</h2>
-
-<p>The direct object of a verb is the noun phrase that denotes the entity acted upon.
-Most often the direct object is in the <a href="cs-feat/Case">accusative case</a> but
-there are verbs that require their objects be in other cases (except for
-nominative and vocative).</p>
-
-<p>Accusative example:</p>
-
-<pre><code class="language-sdparse">Koupil jsem auto . \n Bought I-have car .
-dobj(Koupil, auto)
-dobj(Bought, car)
-</code></pre>
-
-<p>Genitive example:</p>
-
-<pre><code class="language-sdparse">Cením si vaší pomoci . \n I-appreciate REFLEX your help .
-dobj(Cením, pomoci)
-dobj(I-appreciate, help)
-</code></pre>
-
-<p>Dative example:</p>
-
-<pre><code class="language-sdparse">Čelíme velkým problémům . \n We-face big problems .
-dobj(Čelíme, problémům)
-dobj(We-face, problems)
-</code></pre>
-
-<p>Instrumental example:</p>
-
-<pre><code class="language-sdparse">Univerzita nedisponuje takovým rozpočtem . \n University does-not-have-at-disposal such budget .
-dobj(nedisponuje, rozpočtem)
-dobj(does-not-have-at-disposal, budget)
-</code></pre>
-
-<p>In general, if there is just one object, it should be labeled <code>dobj</code>,
-regardless of the morphological case or semantic role that it bears. If there are two or more
-objects, one of them should be <code>dobj</code> and the others should be
-<a href="">iobj</a>. In such cases it is necessary to decide what is the most
-directly affected object <em>(patient).</em> The one exception is when there is a clausal complement. Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an iobj.</p>
-
-<h2 id="diffs">Diffs</h2>
-
-<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
-
-<p>The manual annotation of the PDT does not distinguish direct and indirect objects.
-Therefore all non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>dobj</code>
-in the converted data, even if it results in two or more direct objects attached to one verb.
-In future, the valency lexicon <a href="http://ufal.mff.cuni.cz/vallex">Vallex</a>
-could be used to identify the main object.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/dobj.md" target="#">edit dobj</a></p>
-
 <p><a id="al-cs-dep/expl" class="al-dest"></a></p>
 <h2><code>expl</code>: expletive: reflexive pronoun with an inherently reflexive verb</h2>
 
@@ -1057,7 +1003,7 @@ could be used to identify the main object.</p>
 However, some verbs are inherently reflexive, i.e. the verb always occurs with a reflexive
 prounoun, and the pronoun cannot be replaced by a non-reflexive pronoun.</p>
 
-<p>With these verbs, the reflexive pronoun is attached as <code>expl</code> instead of <a href="">dobj</a>.
+<p>With these verbs, the reflexive pronoun is attached as <code>expl</code> instead of <a href="">obj</a>.
 (Note that the <code>expl</code> relation is first used for this purpose in the UD release 1.2,
 to increase parallelism with other languages. In the previous releases this usage of
 reflexive <em>se/si</em> was labeled <code>compound:reflex</code>.)</p>
@@ -1105,7 +1051,7 @@ goeswith(těžka, z)
 <h2><code>iobj</code>: indirect object</h2>
 
 <p>The indirect object of a verb is any nominal phrase that is a core
-argument of the verb but is not its subject or <a href="dobj">direct object</a>.
+argument of the verb but is not its subject or <a href="obj">direct object</a>.
 The prototypical example is the recipient of ditransitive verbs of
 exchange:</p>
 
@@ -1120,25 +1066,25 @@ The morphological <a href="">cs-feat/Case</a> of the objects is dictated by verb
 <p>In the following Czech example, the verb takes two arguments, both are nouns in the accusative case. One of them is direct object (patient), the other is indirect (addressee). It is parallel to how the English translation would be annotated (where there is no morphological case marking) and also to verbs of giving (consider a similar sentence, <em>he gave my daughter a class of maths</em>).</p>
 
 <pre><code class="language-sdparse">On učí mou dceru matematiku . \n He teaches my daughter.Acc maths.Acc .
-dobj(učí, matematiku)
+obj(učí, matematiku)
 iobj(učí, dceru)
-dobj(teaches, maths.Acc)
+obj(teaches, maths.Acc)
 iobj(teaches, daughter.Acc)
 </code></pre>
 
 <p>In general, if there is just one object, it should be labeled
-<a href="">dobj</a>, regardless of the morphological case or semantic role.
+<a href="">obj</a>, regardless of the morphological case or semantic role.
 For example, <em>učit</em> “to teach” can take either the subject matter or the recipient as the only object,
-and in both cases it would be analyzed as the <a href="">dobj</a>:</p>
+and in both cases it would be analyzed as the <a href="">obj</a>:</p>
 
 <pre><code class="language-sdparse">Učí úvod do logiky . \n He-teaches introduction to logic .
-dobj(Učí, úvod)
-dobj(He-teaches, introduction)
+obj(Učí, úvod)
+obj(He-teaches, introduction)
 </code></pre>
 
 <pre><code class="language-sdparse">Učí studenty prvního ročníku . \n He-teaches students of-first year .
-dobj(Učí, studenty)
-dobj(He-teaches, students)
+obj(Učí, studenty)
+obj(He-teaches, students)
 </code></pre>
 
 <p>The one exception is when there is a clausal complement.
@@ -1154,13 +1100,13 @@ ccomp(She-told, they-needed)
 
 <pre><code class="language-sdparse">Řekla studentům svůj plán . \n She-told students her plan .
 iobj(Řekla, studentům)
-dobj(Řekla, plán)
+obj(Řekla, plán)
 iobj(She-told, students)
-dobj(She-told, plan)
+obj(She-told, plan)
 </code></pre>
 
 <p>If there are two or
-more objects, one of them should be <a href="">dobj</a> and the others should be
+more objects, one of them should be <a href="">obj</a> and the others should be
 <code>iobj</code>. In such cases it is necessary to decide what is the
 most directly affected object <em>(patient).</em></p>
 
@@ -1169,7 +1115,7 @@ most directly affected object <em>(patient).</em></p>
 <h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>The manual annotation of the PDT does not distinguish direct and indirect objects.
-Therefore all non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>dobj</code>
+Therefore all non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>obj</code>
 in the converted data, even if it results in two or more direct objects attached to one verb.
 In future, the valency lexicon <a href="http://ufal.mff.cuni.cz/vallex">Vallex</a>
 could be used to identify the main object.</p>
@@ -1585,45 +1531,45 @@ There are four labels used:</p>
 <pre><code class="language-sdparse">Tři muži hráli karty . \n Three men played cards .
 nummod(muži, Tři)
 nsubj(hráli, muži)
-dobj(hráli, karty)
+obj(hráli, karty)
 punct(hráli, .-5)
 nummod(men, Three)
 nsubj(played, men)
-dobj(played, cards)
+obj(played, cards)
 punct(played, .-11)
 </code></pre>
 
 <pre><code class="language-sdparse">Pět mužů hrálo karty . \n Five men played cards .
 nummod:gov(mužů, Pět)
 nsubj(hrálo, mužů)
-dobj(hrálo, karty)
+obj(hrálo, karty)
 punct(hrálo, .-5)
 nummod:gov(men, Five)
 nsubj(played, men)
-dobj(played, cards)
+obj(played, cards)
 punct(played, .-11)
 </code></pre>
 
 <pre><code class="language-sdparse">Kolik mužů hrálo karty ? \n How-many men played cards ?
 det:numgov(mužů, Kolik)
 nsubj(hrálo, mužů)
-dobj(hrálo, karty)
+obj(hrálo, karty)
 punct(hrálo, ?-5)
 det:numgov(men, How-many)
 nsubj(played, men)
-dobj(played, cards)
+obj(played, cards)
 punct(played, ?-11)
 </code></pre>
 
 <pre><code class="language-sdparse">Hrál jsem karty s pěti muži . \n Played I-have cards with five men .
 aux(Hrál, jsem)
-dobj(Hrál, karty)
+obj(Hrál, karty)
 iobj(Hrál, muži)
 case(muži, s)
 nummod(muži, pěti)
 punct(Hrál, .-7)
 aux(Played, I-have)
-dobj(Played, cards)
+obj(Played, cards)
 iobj(Played, men)
 case(men, with)
 nummod(men, five)
@@ -1635,7 +1581,7 @@ ccomp(Nepamatuji, hrál)
 compound:reflex(Nepamatuji, si)
 punct(hrál, ,-3)
 aux(hrál, jsem)
-dobj(hrál, karty)
+obj(hrál, karty)
 iobj(hrál, muži)
 case(muži, s)
 det:nummod(muži, kolika)
@@ -1644,7 +1590,7 @@ ccomp(I-do-not-remember, played)
 compound:reflex(I-do-not-remember, myself)
 punct(played, ,-14)
 aux(played, I-have)
-dobj(played, cards)
+obj(played, cards)
 iobj(played, men)
 case(men, with)
 det:nummod(men, how-many)
@@ -1817,17 +1763,71 @@ the information about case conditions.</p>
 <pre><code class="language-sdparse">Pět mužů hrálo karty . \n Five men played cards .
 nummod:gov(mužů, Pět)
 nsubj(hrálo, mužů)
-dobj(hrálo, karty)
+obj(hrálo, karty)
 punct(hrálo, .-5)
 nummod:gov(men, Five)
 nsubj(played, men)
-dobj(played, cards)
+obj(played, cards)
 punct(played, .-11)
 </code></pre>
 
 <p>See <a href="">nummod</a> for a broader discussion of the various situations with quantifiers.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/nummod-gov.md" target="#">edit nummod:gov</a></p>
+
+<p><a id="al-cs-dep/obj" class="al-dest"></a></p>
+<h2><code>obj</code>: direct object</h2>
+
+<p>The direct object of a verb is the noun phrase that denotes the entity acted upon.
+Most often the direct object is in the <a href="cs-feat/Case">accusative case</a> but
+there are verbs that require their objects be in other cases (except for
+nominative and vocative).</p>
+
+<p>Accusative example:</p>
+
+<pre><code class="language-sdparse">Koupil jsem auto . \n Bought I-have car .
+obj(Koupil, auto)
+obj(Bought, car)
+</code></pre>
+
+<p>Genitive example:</p>
+
+<pre><code class="language-sdparse">Cením si vaší pomoci . \n I-appreciate REFLEX your help .
+obj(Cením, pomoci)
+obj(I-appreciate, help)
+</code></pre>
+
+<p>Dative example:</p>
+
+<pre><code class="language-sdparse">Čelíme velkým problémům . \n We-face big problems .
+obj(Čelíme, problémům)
+obj(We-face, problems)
+</code></pre>
+
+<p>Instrumental example:</p>
+
+<pre><code class="language-sdparse">Univerzita nedisponuje takovým rozpočtem . \n University does-not-have-at-disposal such budget .
+obj(nedisponuje, rozpočtem)
+obj(does-not-have-at-disposal, budget)
+</code></pre>
+
+<p>In general, if there is just one object, it should be labeled <code>obj</code>,
+regardless of the morphological case or semantic role that it bears. If there are two or more
+objects, one of them should be <code>obj</code> and the others should be
+<a href="">iobj</a>. In such cases it is necessary to decide what is the most
+directly affected object <em>(patient).</em> The one exception is when there is a clausal complement. Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an iobj.</p>
+
+<h2 id="diffs">Diffs</h2>
+
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+
+<p>The manual annotation of the PDT does not distinguish direct and indirect objects.
+Therefore all non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>obj</code>
+in the converted data, even if it results in two or more direct objects attached to one verb.
+In future, the valency lexicon <a href="http://ufal.mff.cuni.cz/vallex">Vallex</a>
+could be used to identify the main object.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/dobj.md" target="#">edit obj</a></p>
 
 <p><a id="al-cs-dep/parataxis" class="al-dest"></a></p>
 <h2><code>parataxis</code>: parataxis</h2>
@@ -1921,7 +1921,7 @@ punct(Go, !-7)
 </code></pre>
 
 <p>Tokens with the relation <code>punct</code> always attach to content words (except in cases of ellipsis) and can never have dependents.
-Since <code>punct</code> is not a normal dependency relation, the usual criteria for determining the head word do not apply. 
+Since <code>punct</code> is not a normal dependency relation, the usual criteria for determining the head word do not apply.
 Instead, we use the following principles:</p>
 
 <ol>
@@ -1932,8 +1932,8 @@ Instead, we use the following principles:</p>
 </ol>
 
 <pre><code class="language-sdparse">Máme jablka , hrušky , pomeranče a banány . \n We-have apples , pears , oranges and bananas .
-dobj(Máme, jablka)
-dobj(We-have, apples)
+obj(Máme, jablka)
+obj(We-have, apples)
 conj(jablka, hrušky)
 conj(jablka, pomeranče)
 conj(jablka, banány)
@@ -1981,8 +1981,8 @@ head gets elided).</p>
 <pre><code class="language-sdparse">Pavel si objednal hovězí a Markéta vepřové . \n Pavel himself ordered beef and Markéta pork .
 nsubj(objednal, Pavel-1)
 nsubj(ordered, Pavel-10)
-dobj(objednal, hovězí)
-dobj(ordered, beef)
+obj(objednal, hovězí)
+obj(ordered, beef)
 remnant(Pavel-1, Markéta-6)
 remnant(Pavel-10, Markéta-15)
 remnant(hovězí, vepřové)
@@ -2044,8 +2044,8 @@ the head (root) position and the other orphans are attached to it.</p>
 <pre><code class="language-sdparse">ROOT A co na to MF ? \n ROOT And what to it MF ?
 root(ROOT-1, A)
 root(ROOT-9, And)
-dobj(A, co)
-dobj(And, what)
+obj(A, co)
+obj(And, what)
 nmod(A, to-5)
 nmod(And, it)
 case(to-5, na)

@@ -852,6 +852,36 @@ nsubj(calls, my-mother)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/expl.md" target="#">edit expl</a></p>
 
+<p><a id="al-ru-dep/fixed" class="al-dest"></a></p>
+<h2><code>fixed</code>: fixed multiword expression</h2>
+
+<p>The fixed relation is one of the three relations (compound, fixed, flat) for special kinds of multiword expressions. It is used for fixed grammaticized expressions that behave like function words or short adverbials. The first word is always taken as the head, with all subsequent words as direct dependents.In Russian it is used for multi-word prepositions.</p>
+
+<pre><code class="language-sdparse">В отличие от тебя , мне нечего стыдиться . \n In contrast to you , I-have nothing to-be-ashamed .
+fixed(В, отличие)
+fixed(В, от)
+case(тебя, В)
+fixed(In, contrast)
+fixed(In, to)
+case(you, In)
+</code></pre>
+
+<p>Multi-word prepositions usually form a contiguous span of the sentence. In exceptional cases however, they can be interrupted
+by emphasizers and other words:</p>
+
+<pre><code class="language-sdparse">в сравнении , например , с долгом \n in comparison , for-example , to loans
+fixed(в, сравнении)
+fixed(в, с)
+case(долгом, в)
+advmod:emph(долгом, например)
+fixed(in, comparison)
+fixed(in, to)
+case(loans, in)
+advmod:emph(loans, for-example)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/fixed.md" target="#">edit fixed</a></p>
+
 <p><a id="al-ru-dep/flat" class="al-dest"></a></p>
 <h2><code>flat</code>: flat</h2>
 
@@ -897,7 +927,7 @@ goeswith(тдышаться, о)
 <h2><code>iobj</code>: indirect object</h2>
 
 <p>The indirect object of a verb is any nominal phrase that is a core
-argument of the verb but is not its subject or <a href="dobj">direct object</a>.
+argument of the verb but is not its subject or <a href="obj">direct object</a>.
 The prototypical example is the recipient of ditransitive verbs of
 exchange:</p>
 
@@ -912,25 +942,25 @@ The morphological <a href="">ru-feat/Case</a> of the objects is dictated by verb
 <p>In the following Russian example, the verb takes two arguments. One of them is direct object (patient), the other is indirect (addressee). It is parallel to how the English translation would be annotated (where there is no morphological case marking) and also to verbs of giving (cf. a similar sentence, <em>he gave my daughter a class of maths</em>).</p>
 
 <pre><code class="language-sdparse">Он преподает моей дочери математику . \n He teaches my daughter.Dat maths.Acc .
-dobj(преподает, математику)
+obj(преподает, математику)
 iobj(преподает, дочери)
-dobj(teaches, maths.Acc)
+obj(teaches, maths.Acc)
 iobj(teaches, daughter.Dat)
 </code></pre>
 
 <p>In general, if there is just one object, it should be labeled
-<a href="">dobj</a>, regardless of the morphological case or semantic role.
+<a href="">obj</a>, regardless of the morphological case or semantic role.
 For example, <em>преподавать</em> “to teach” can take either the subject matter or the recipient as the only object,
-and in both cases it would be analyzed as the <a href="">dobj</a>:</p>
+and in both cases it would be analyzed as the <a href="">obj</a>:</p>
 
 <pre><code class="language-sdparse">Он преподает математику . \n He teaches maths .
-dobj(преподает, математику)
-dobj(teaches, maths)
+obj(преподает, математику)
+obj(teaches, maths)
 </code></pre>
 
 <pre><code class="language-sdparse">Он преподает студентам . \n He teaches students .
-dobj(преподает, студентам)
-dobj(teaches, students)
+obj(преподает, студентам)
+obj(teaches, students)
 </code></pre>
 
 <p>The one exception is when there is a clausal complement.
@@ -946,12 +976,12 @@ ccomp(told, they-needed)
 
 <pre><code class="language-sdparse">Она рассказала студентам свой план . \n She told students her plan .
 iobj(рассказала, студентам)
-dobj(рассказала, план)
+obj(рассказала, план)
 iobj(told, students)
-dobj(told, plan)
+obj(told, plan)
 </code></pre>
 
-<p>If there are two or more objects, one of them should be <a href="">dobj</a> and the others should be <code>iobj</code>. In such cases it is necessary to decide what is the most directly affected object <em>(patient)</em>, and the Accusative <a href="">ru-feat/Case</a> has priority over the Dative, Instrumental, and Genitive cases.</p>
+<p>If there are two or more objects, one of them should be <a href="">obj</a> and the others should be <code>iobj</code>. In such cases it is necessary to decide what is the most directly affected object <em>(patient)</em>, and the Accusative <a href="">ru-feat/Case</a> has priority over the Dative, Instrumental, and Genitive cases.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/iobj.md" target="#">edit iobj</a></p>
 
@@ -991,9 +1021,9 @@ mark(speak, that)
 
 <pre><code class="language-sdparse">Мы отправим товар , как только на наш счет поступят деньги . \n We will-dispatch goods , as soon-as at our account arrive money .
 mark(поступят, как)
-mwe(как, только)
+fixed(как, только)
 mark(arrive, as)
-mwe(as, soon-as)
+fixed(as, soon-as)
 </code></pre>
 
 <p>Note that the subordinating conjunction should not be confused with relative pronouns and adverbs.
@@ -1006,39 +1036,6 @@ advmod(arrive, when)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/mark.md" target="#">edit mark</a></p>
-
-<p><a id="al-ru-dep/mwe" class="al-dest"></a></p>
-<h2><code>mwe</code>: multi-word expression</h2>
-
-<p>The multi-word expression (modifier) relation is one of the
-relations for compounding and it is intended for function words.
-In Russian it is used for multi-word prepositions.
-The leftmost word is the head and all the other words are attached as its <code>mwe</code> modifiers.</p>
-
-<pre><code class="language-sdparse">В отличие от тебя , мне нечего стыдиться . \n In contrast to you , I-have nothing to-be-ashamed .
-mwe(В, отличие)
-mwe(В, от)
-case(тебя, В)
-mwe(In, contrast)
-mwe(In, to)
-case(you, In)
-</code></pre>
-
-<p>Multi-word prepositions usually form a contiguous span of the sentence. In exceptional cases however, they can be interrupted
-by emphasizers and other words:</p>
-
-<pre><code class="language-sdparse">в сравнении , например , с долгом \n in comparison , for-example , to loans
-mwe(в, сравнении)
-mwe(в, с)
-case(долгом, в)
-advmod:emph(долгом, например)
-mwe(in, comparison)
-mwe(in, to)
-case(loans, in)
-advmod:emph(loans, for-example)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru-dep/fixed.md" target="#">edit mwe</a></p>
 
 <p><a id="al-ru-dep/neg" class="al-dest"></a></p>
 <h2><code>neg</code>: negation modifier</h2>
@@ -1524,8 +1521,8 @@ have to be promoted to clausal head.</p>
 <pre><code class="language-sdparse">Павел заказал говядину , а Мария свинину . \n Pavel  ordered beef and Maria pork .
 nsubj(заказал, Павел)
 nsubj(ordered, Pavel)
-dobj(заказал, говядину)
-dobj(ordered, beef)
+obj(заказал, говядину)
+obj(ordered, beef)
 conj(Павел, Мария)
 conj(Pavel, Maria)
 orphan(говядину, свинину)
@@ -1617,8 +1614,8 @@ Instead, we use the following principles:</p>
 </ol>
 
 <pre><code class="language-sdparse">Мы покупаем яблоки , груши , апельсины и бананы . \n We buy apples , pears , oranges and bananas .
-dobj(покупаем, яблоки)
-dobj(buy, apples)
+obj(покупаем, яблоки)
+obj(buy, apples)
 conj(яблоки, груши)
 conj(яблоки, апельсины)
 conj(яблоки, бананы)
@@ -1694,8 +1691,8 @@ the head (root) position and the other orphans are attached to it.</p>
 <pre><code class="language-sdparse">ROOT И что он на это ? \n ROOT And what he to it ?
 root(ROOT-1, И)
 root(ROOT-9, And)
-dobj(И, что)
-dobj(And, what)
+obj(И, что)
+obj(And, what)
 nmod(И, это)
 nmod(And, it)
 case(это, на)
