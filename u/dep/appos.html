@@ -70,10 +70,19 @@ where the title is less than a full nominal, and reversal is impossible or would
 full nominal. We seem to have only one nominal not two here. For example:</p>
 
 <blockquote>
-  <p>President Obama
-*Obama President
-state senator Paul Mnuchin
-*Paul Mnuchin state senator</p>
+  <p>President Obama</p>
+</blockquote>
+
+<blockquote>
+  <p>*Obama President</p>
+</blockquote>
+
+<blockquote>
+  <p>state senator Paul Mnuchin</p>
+</blockquote>
+
+<blockquote>
+  <p>*Paul Mnuchin state senator</p>
 </blockquote>
 
 <p><code>appos</code> should not be used in such cases. However, often an apposition can be made by using a fuller form, such as:</p>
@@ -82,11 +91,12 @@ state senator Paul Mnuchin
 appos(Mnuchin-2, senator-8)
 </code></pre>
 
-<p>However, as is often the case, there are borderline cases. In formal writing, punctuation is often a good signal of apposition, 
+<p>As is often the case, there are borderline cases. In formal writing, punctuation is often a good signal of apposition, 
 but there are certainly cases that feel like apposition where no punctuation is used:</p>
 
-<pre><code class="language-sdparse">the leader of the militant Lebanese Shiite group Hezbollah
-appos(group-8, Hezbollah-9)
+<pre><code class="language-sdparse">the leader of the militant Lebanese Shiite group Hassan Nasrallah
+appos(group-8, Hassan-9)
+flat(Hassan-9, Nasrallah-10)
 </code></pre>
 
 <p>While items like abbreviations are generally reversable, the determiner test suggested above doesn’t quite work there, since the determiner seems to belong with the main item:</p>
@@ -122,7 +132,7 @@ conj(German, French)
 cc(French, or)
 </code></pre>
 
-<p><em>appos</em> is also used to link key-value pairs in addresses, signatures, etc. (see also the <a href="">list</a> label):</p>
+<p><em>appos</em> is also used to link key-value pairs in addresses, signature blocs, etc. (see also the <a href="">list</a> label):</p>
 
 <pre><code class="language-sdparse">Steve Jones Phone: 555-9814 Email: jones@abc.edf
 flat:name(Steve-1, Jones-2)
