@@ -82,7 +82,8 @@ flat(Carl-1, XVI-2)
 flat(New, York)
 </code></pre>
 
-<p>Titles/honorifics are also analyzed using the <code>flat</code> relation.</p>
+<p>Titles/honorifics are also analyzed using the <code>flat</code> relation. Note that some titles are complex
+and have their own internal syntactic structure. Such structure is shown with regular relations embedded under <code>flat</code>:</p>
 
 <pre><code class="language-sdparse">Mr. Smith
 flat(Mr., Smith)
@@ -90,6 +91,18 @@ flat(Mr., Smith)
 
 <pre><code class="language-sdparse">President Obama
 flat(President, Obama)
+</code></pre>
+
+<pre><code class="language-sdparse">French actor Gaspard Ulliel
+amod(actor-2, French-1)
+flat(actor-2, Gaspard-3)
+flat(actor-2, Ulliel-4)
+</code></pre>
+
+<pre><code class="language-sdparse">der Milliardär Ross Perot \n the millionaire Ross Perot
+det(Milliardär-2, der-1)
+flat(Milliardär-2, Ross-3)
+flat(Milliardär-2, Perot-4)
 </code></pre>
 
 <p>By contrast, names that have a regular syntactic structure, like <em>The Lord of the Rings</em> and <em>Captured By
@@ -117,7 +130,7 @@ compound(Conservation-3, Resources-2)
 compound(Service-4, Conservation-3)
 </code></pre>
 
-<p>In addition, regular syntactic relations are used: (i) for a modifying determiner or (ii) to connect 
+<p>In addition, regular syntactic relations are used: (i) for a modifying determiner or similar function word and (ii) to connect 
 together the words of a description or name which involve embedded prepositional phrases, sentences, etc.,
 when these relations are (i) recognized in the language being annotated (i.e., the analyses below are for
 French, German, and Spanish, not English) and (ii) deemed not to be grammaticalized to the extent that the original role
@@ -172,8 +185,8 @@ flat(Al-1, Arabiya-2)
 nsubj(organization-7, Al-1)
 </code></pre>
 
-<p>And in Modern German, these prepositions have generally just become a fossilized part of a family name 
-and appear without the given name. Again, here, analysis as <code>flat</code> seems appropriate:</p>
+<p>And in Modern German or French, these prepositions have generally just become a fossilized part of a family name 
+and regularly appear without the given name. Again, here, analysis as <code>flat</code> seems correct:</p>
 
 <pre><code class="language-sdparse">Von Hohenlohe gewann das Rennen . \n Von Hohenlohe won the race .
 flat(Von-1, Hohenlohe-2)
@@ -189,6 +202,11 @@ compound(Leland-1, University-4)
 flat(Leland-1, Stanford-2)
 flat(Leland-1, Jr.-3)
 </code></pre>
+
+<h3 id="some-further-notes-on-relations-for-names">Some further notes on relations for names</h3>
+
+<p><em>This paragraph briefly records some of the arguments that have been made in the past on relations for name structure. It is an issue over which there has historically been variation and about which there is some continuing debate.</em> Examples like 
+<em>French actor Gaspard Ulliel:</em> Some treebanks have used <code>nmod</code> for titles and honorifics like <em>Mr.</em> or <em>French actor</em>. Most people think this is inappropriate, since an <code>nmod</code> dependent should be a full phrase, which will typically take its own case as a modifier in a cased language. In contrast, these titles seem to be part of the same phrase as the name that follows them; they show case agreement concord in a cased language. Some grammatical traditions, descending from Latin, call <em>French actor</em> in such cases a “fixed (or close) apposition” and take the name as the head. UD has restricted the <code>appos</code> relation to following appositives (corresponding to “loose (or wide) apposition” in the Latin tradition). The relation <code>appos</code> is only used when you have two full nominals, typically joined loosely, and often separated by a punctuation mark like a comma. So <code>appos</code> is not correct for these cases. Sometimes the relation <code>compound</code> has been used, but this does not seem right. It implies headedness, and titles do not usually behave like compounds: in German, they are not joined to the following words, as compounds are normally joined in German, and they appear at the beginning of names in both German and Hebrew, even though German compounds are head last and Hebrew compounds are head first. So <code>compound</code> does not seem appropriate either. Some UDv1 treebanks used <code>name</code> for honorifics like <em>Mr.</em>, although some felt that was wrong and <code>name</code> should be restricted to joining the proper nouns of multi-word names. In UDv2, <code>name</code> was removed and replaced by <code>flat</code>, which allowed a broader notion of a chunk of unheaded material. In the UDv2 guidelines, cases of both titles and honorifics are joined to names with <code>flat</code>.</p>
 
 <h2 id="dates-and-complex-numerals">Dates and Complex Numerals</h2>
 
