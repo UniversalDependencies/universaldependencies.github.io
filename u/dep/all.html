@@ -464,7 +464,7 @@ amod(loan, $)
 <h2><code>appos</code>: appositional modifier</h2>
 
 <p>An appositional modifier of a noun is a nominal immediately following
-the first noun that serves to define or modify that noun. It includes
+the first noun that serves to define, modify, name, or describe that noun. It includes
 parenthesized examples, as well as defining abbreviations in one of
 these structures.</p>
 
@@ -480,7 +480,95 @@ appos(Bill-1, cousin-5)
 appos(Corporation-4, ABC-6)
 </code></pre>
 
-<p>In case of more than one appositive nominal, all nouns should be marked as modifying the first noun, rather than being chained:</p>
+<p><code>appos</code> is intended to be used between two nominals. In general, modulo punctuation, the two halves of an apposition can be switched. 
+For example, you could also say <em>My brother, Sam, arrived.</em> There are somewhat similar constructions with titles 
+where the title is less than a full nominal, such as <em>state senator Paul Mnuchin</em>, where reversal is impossible 
+or would require insertion of a determiner to make a 
+full nominal. Some grammatical traditions, descending from Latin, call <em>state senator</em> in such cases a “fixed (or close) apposition” and take the name as the head. However, we seem to have only one nominal not two here. For example:</p>
+
+<blockquote>
+  <p>President Obama</p>
+</blockquote>
+
+<blockquote>
+  <p>*Obama President</p>
+</blockquote>
+
+<blockquote>
+  <p>state senator Paul Mnuchin</p>
+</blockquote>
+
+<blockquote>
+  <p>*Paul Mnuchin state senator</p>
+</blockquote>
+
+<p><code>appos</code> should not be used in such cases. However, the examples can usually be rendered in a fuller form, corresponding to “loose (or wide) apposition” in the Latin tradition, where there are two full phrases. Then the relation <code>appos</code> is appropriate, for example:</p>
+
+<pre><code class="language-sdparse">Paul Mnuchin , the senior Oregon state senator
+appos(Mnuchin-2, senator-8)
+</code></pre>
+
+<p>As is often the case, there are borderline cases. In formal writing, punctuation is usually a good signal of apposition, 
+but there are certainly cases of apposition where no punctuation is used:</p>
+
+<pre><code class="language-sdparse">the leader of the militant Lebanese Shiite group Hassan Nasrallah
+appos(group-8, Hassan-9)
+flat(Hassan-9, Nasrallah-10)
+</code></pre>
+
+<p>Good tests include to ask whether the two halves are full nominals, whether the two halves can be swapped or not, and whether 
+there is case or agreement concord (in a language with rich morphology). So we have:</p>
+
+<pre><code class="language-sdparse">I met the French actor Gaspard Ulliel
+nsubj(met-2, I-1)
+det(actor-5, the-3)
+amod(actor-5, French-4)
+obj(met-2, actor-5)
+appos(actor-5, Gaspard-6)
+flat(Gaspard-6, Ulliel-7)
+</code></pre>
+
+<pre><code class="language-sdparse">I met Gaspard Ulliel the French actor 
+nsubj(met-2, I-1)
+obj(met-2, Gaspard-3)
+flat(Gaspard-3, Ulliel-4)
+det(actor-7, the-5)
+amod(actor-7, French-6)
+appos(Gaspard-3, actor-7)
+</code></pre>
+
+<pre><code class="language-sdparse">I met Gaspard Ulliel , the French actor 
+nsubj(met-2, I-1)
+obj(met-2, Gaspard-3)
+flat(Gaspard-3, Ulliel-4)
+punct(Gaspard-3, ,-5)
+det(actor-8, the-6)
+amod(actor-8, French-7)
+appos(Gaspard-3, actor-8)
+</code></pre>
+
+<pre><code class="language-sdparse">I met French actor Gaspard Ulliel
+nsubj(met-2, I-1)
+amod(actor-4, French-3)
+obj(met-2, actor-4)
+flat(actor-4, Gaspard-5)
+flat(actor-4, Ulliel-6)
+</code></pre>
+
+<p>While items like abbreviations are generally reversable, the determiner test suggested above doesn’t quite work there, since the determiner seems to belong with the main item:</p>
+
+<pre><code class="language-sdparse">The ABC ( Australian Broadcasting Corporation )
+appos(ABC-2, Corporation-6)
+</code></pre>
+
+<p>While <code>appos</code> is normally between two nominals, there are a few cases where there is a relation with a clause, 
+such as when describing facts or events for which <code>appos</code> still feels appropriate:</p>
+
+<pre><code class="language-sdparse">This problem , that people could lower their tax rates by choosing to become corporations , might become acute .
+appos(problem-2, lower-7)
+</code></pre>
+
+<p>In the rare cases of more than one appositive nominal, all nouns should be marked as modifying the first noun, rather than being chained:</p>
 
 <pre><code class="language-sdparse">Sam , my brother , John 's cousin , arrived
 appos(Sam-1, brother-4)
@@ -489,7 +577,7 @@ appos(Sam-1, cousin-8)
 
 <p>Note however that nested apposition cannot be completely excluded. It may occur in combination with coordination:</p>
 
-<pre><code class="language-sdparse">You can choose between four subjects : language ( German or French ) , economy , technology and art .
+<pre><code class="language-sdparse">You can choose between four subjects , language ( German or French ) , economy , technology and art .
 appos(subjects, language)
 conj(language, economy)
 conj(language, technology)
@@ -500,7 +588,7 @@ conj(German, French)
 cc(French, or)
 </code></pre>
 
-<p><em>appos</em> is also used to link key-value pairs in addresses, signatures, etc. (see also the <a href="">list</a> label):</p>
+<p><code>appos</code> is also used to link key-value pairs in addresses, signature blocs, etc. (see also the <a href="">list</a> label):</p>
 
 <pre><code class="language-sdparse">Steve Jones Phone: 555-9814 Email: jones@abc.edf
 flat:name(Steve-1, Jones-2)
@@ -1371,7 +1459,7 @@ fixed(plutôt, qu')
 <p>The <code>flat</code> relation is one of three relations for multiword expressions multiword expressions (MWEs) in UD 
 (the other two being <a href="">fixed</a> and <a href="">compound</a>). It is used for exocentric (headless) semi-fixed MWEs like
 names (<em>Hillary Rodham Clinton</em>) and dates (<em>24 December</em>). It contrasts with <a href="">fixed</a>, which applies to
-to completely fixed grammaticized (function word-like) MWEs (like <em>in spite of</em>), and with <a href="">compound</a>, which applies to
+completely fixed grammaticized (function word-like) MWEs (like <em>in spite of</em>), and with <a href="">compound</a>, which applies to
 endocentric (headed) MWEs (like <em>apple pie</em>).</p>
 
 <p>Flat MWEs are annotated with a flat structure, where all subsequent words in the expression are attached to the 
@@ -1403,7 +1491,8 @@ flat(Carl-1, XVI-2)
 flat(New, York)
 </code></pre>
 
-<p>Titles/honorifics are also analyzed using the <code>flat</code> relation.</p>
+<p>Titles/honorifics are also analyzed using the <code>flat</code> relation. Note that some titles are complex
+and have their own internal syntactic structure. Such structure is shown with regular relations embedded under <code>flat</code>:</p>
 
 <pre><code class="language-sdparse">Mr. Smith
 flat(Mr., Smith)
@@ -1413,7 +1502,24 @@ flat(Mr., Smith)
 flat(President, Obama)
 </code></pre>
 
-<p>By contrast, names that have a regular syntactic structure, like <em>The Lord of the Rings</em> and <em>Captured By
+<pre><code class="language-sdparse">French actor Gaspard Ulliel
+amod(actor-2, French-1)
+flat(actor-2, Gaspard-3)
+flat(actor-2, Ulliel-4)
+</code></pre>
+
+<pre><code class="language-sdparse">Milliardär Ross Perot \n billionaire Ross Perot
+flat(Milliardär-1, Ross-2)
+flat(Milliardär-1, Perot-3)
+</code></pre>
+
+<p>However if the two halves of a descriptive title and a name appear to be two separate nominals, 
+then analysis with <code>flat</code> is not appropriate, and <a href="">u-dep/appos</a> is appropriate. These cases are often set off by
+punctuation, such as a comma, but no punctuation may appear in more informal text. 
+You can generally test for such examples by asking if the two halves can be reversed; if they can, it is probably an <code>appos</code>; 
+see the examples there.</p>
+
+<p>In contrast to the above, names that have a regular syntactic structure, like <em>The Lord of the Rings</em> and <em>Captured By
 Aliens</em>, should be annotated with regular syntactic relations.</p>
 
 <pre><code class="language-sdparse">The Lord of the Rings
@@ -1438,10 +1544,11 @@ compound(Conservation-3, Resources-2)
 compound(Service-4, Conservation-3)
 </code></pre>
 
-<p>In addition, regular syntactic relations are used: (i) for a modifying determiner or (ii) to connect 
+<p>In addition, regular syntactic relations are used: (i) for a modifying determiner or similar function word and (ii) to connect 
 together the words of a description or name which involve embedded prepositional phrases, sentences, etc.,
-when these relations are recognized in the language being annotated (i.e., the analyses below are for
-French, German, and Spanish, not English).</p>
+when these relations are (i) recognized in the language being annotated (i.e., the analyses below are for
+French, German, and Spanish, not English) and (ii) deemed not to be grammaticalized to the extent that the original role
+of the function words has been lost.</p>
 
 <pre><code class="language-sdparse">Le Japon
 det(Japon-2, Le-1)
@@ -1466,7 +1573,8 @@ nmod(Río-1, Plata-4)
 </code></pre>
 
 <p>The above analyses of <em>Ludwig van Beethoven</em> and <em>Miguel de Cervantes y Saavedra</em> assume that <em>van</em> resp. <em>de</em> are prepositions.
-This is true in the languages of the names’ origin, but it can be expected to change when the name is used in foreign text. For example,
+This is true in the languages of the names’ origin, but it can be expected to change when the name is used in foreign text 
+or when sufficient grammaticalization has taken place. For example,
 when names like this are annotated in English, the appropriate analysis is as a <code>flat</code> name:</p>
 
 <pre><code class="language-sdparse">Ludwig van Beethoven was a famous German composer .
@@ -1491,6 +1599,14 @@ flat(Al-1, Arabiya-2)
 nsubj(organization-7, Al-1)
 </code></pre>
 
+<p>And in Modern German or French, these prepositions have generally just become a fossilized part of a family name 
+and regularly appear without the given name. Again, here, analysis as <code>flat</code> seems correct:</p>
+
+<pre><code class="language-sdparse">Von Hohenlohe gewann das Rennen . \n Von Hohenlohe won the race .
+flat(Von-1, Hohenlohe-2)
+nsubj(gewann-3, Von-1)
+</code></pre>
+
 <p>In the case of proper entities named after people, e.g. <em>Leland Stanford Jr. University</em>, the <code>flat</code> relation 
 should only be used inside the person name, with the rest of the construction analyzed compositionally using 
 normal syntactic relations:</p>
@@ -1500,6 +1616,11 @@ compound(Leland-1, University-4)
 flat(Leland-1, Stanford-2)
 flat(Leland-1, Jr.-3)
 </code></pre>
+
+<h3 id="some-further-notes-on-relations-for-names">Some further notes on relations for names</h3>
+
+<p><em>This paragraph briefly records some of the arguments that have been made in the past on relations for name structure. It is an issue over which there has historically been variation and about which there is some continuing debate.</em> Examples like 
+<em>French actor Gaspard Ulliel:</em> Some treebanks have used <code>nmod</code> for titles and honorifics like <em>Mr.</em> or <em>French actor</em>. Most people think this is inappropriate, since an <code>nmod</code> dependent should be a full phrase, which will typically take its own case as a modifier in a cased language. In contrast, these titles seem to be part of the same phrase as the name that follows them; they show case agreement concord in a cased language. Some grammatical traditions, descending from Latin, call <em>French actor</em> in such cases a “fixed (or close) apposition” and take the name as the head. UD has restricted the <code>appos</code> relation to following appositives (corresponding to “loose (or wide) apposition” in the Latin tradition). The relation <code>appos</code> is only used when you have two full nominals, typically joined loosely, and often separated by a punctuation mark like a comma. So <code>appos</code> is not correct for these cases. Sometimes the relation <code>compound</code> has been used, but this does not seem right. It implies headedness, and titles do not usually behave like compounds: in German, they are not joined to the following words, as compounds are normally joined in German, and they appear at the beginning of names in both German and Hebrew, even though German compounds are head last and Hebrew compounds are head first. So <code>compound</code> does not seem appropriate either. Some UDv1 treebanks used <code>name</code> for honorifics like <em>Mr.</em>, although some felt that was wrong and <code>name</code> should be restricted to joining the proper nouns of multi-word names. In UDv2, <code>name</code> was removed and replaced by <code>flat</code>, which allowed a broader notion of a chunk of unheaded material. In the UDv2 guidelines, cases of both titles and honorifics are joined to names with <code>flat</code>.</p>
 
 <h2 id="dates-and-complex-numerals">Dates and Complex Numerals</h2>
 
