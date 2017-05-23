@@ -1492,7 +1492,7 @@ in two places.</p>
 <pre><code class="language-conllu">1	隻	_	NOUN	_	_	2	det	_	CL
 2	貓	_	NOUN	_	_	3	nsubj	_	cat
 3	跌	_	VERB	_	_	0	root	_	fall
-4	低	_	ADJ	_	_	3	compound:vv	_	low
+4	低	_	VERB	_	_	3	compound:dir	_	lower
 5	咗	_	AUX	_	_	3	aux	_	PERF
 
 1	"the	_	_	_	_	0	_	_	_
@@ -1627,6 +1627,138 @@ in two places.</p>
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_yue-dep/compound.md" target="#">edit compound</a></p>
+
+<p><a id="al-yue-dep/compound:dir" class="al-dest"></a></p>
+<h2><code>compound:dir</code>: directional verb compound</h2>
+
+<p>A “directional verb compound” (known as “directional complement” in Chinese linguistics) consists of a series of at least two verbs where the second verb is one of the directional or deitic motion verbs (or a combination of the two) in the below exhaustive list. Some linguists argue that these verbs have grammaticalized into adposition-like particles in this [verb + directional verb] construction, with their particle semantics listed in parentheses below.</p>
+
+<ul>
+  <li>(A) Ten verbs expressing directional motion
+    <ul>
+      <li>出 / <em>ceot1</em> “exit” (out)</li>
+      <li>入 / <em>jap6</em> “enter” (in(to))</li>
+      <li>上 / <em>soeng5</em> “go up” (up)</li>
+      <li>落 / <em>lok6</em> “go down” (down into)</li>
+      <li>低 / <em>dai1</em> “lower” (down)</li>
+      <li>返 / <em>faan1</em> “return” (back)</li>
+      <li>埋 / <em>maai4</em> “approach” (near, toward)</li>
+      <li>過 / <em>guo3</em> “cross” (over)</li>
+      <li>開 / <em>hoi1</em> “open, separate, come apart/away” (away)</li>
+      <li>起 / <em>hei2</em> “rise, arise” (up)</li>
+    </ul>
+  </li>
+  <li>(B) Two verbs expressing deictic motion
+    <ul>
+      <li>嚟 / <em>lei4</em> “come” (towards deitic center)</li>
+      <li>去 / <em>heoi3</em> “go” (away from deitic center)</li>
+    </ul>
+  </li>
+  <li>Some combinations of the above two, only in AB order
+    <ul>
+      <li>e.g., 返嚟 / <em>faan1lei4</em> “come back” (back towards deitic center), 上嚟 / <em>soeng5lei4</em> “come up” (up towards deitic center), 落去 / <em>lok3heoi3</em> “go down” (down from deitic center), 入去 / <em>jap6heoi3</em> “go in” (in from deitic center), etc.</li>
+      <li>(Note: each combination is considered a single-token verb)</li>
+    </ul>
+  </li>
+</ul>
+
+<pre><code class="language-conllu"># visual-style 2 3 compound:dir	color:blue
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+1	佢	_	PRON	_	_	2	nsubj	_	3SG
+2	爬	_	VERB	_	_	0	root	_	climb
+3	上嚟	_	VERB	_	_	2	compound:dir	_	come-up
+4	嘑	_	PART	_	_	2	discourse:sp	_	SP
+
+1	"He's	_	_	_	_	0	_	_	_
+2	climbed	_	_	_	_	0	_	_	_
+3	up	_	_	_	_	0	_	_	_
+4	(toward	_	_	_	_	0	_	_	_
+5	speaker)."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 4 5 compound:dir	color:blue
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+1	擺	_	VERB	_	_	0	root	_	put
+2	低	_	VERB	_	_	1	compound:dir	_	down
+3	啲	_	NOUN	_	_	4	det	_	CL:mass/plural
+4	嘢	_	NOUN	_	_	1	obj	_	stuff
+
+1	"put	_	_	_	_	0	_	_	_
+2	the	_	_	_	_	0	_	_	_
+3	stuff	_	_	_	_	0	_	_	_
+4	down"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Unlike in Mandarin, the AB combination cannot be split in Cantonese.</p>
+
+<p>Directional verb compounds can have idiomatic meanings that make them similar to phrasal verbs in some European languages, where the directional verb (or particle) no longer necessarily refers to spatial direction or deixis. Regardless of their grammaticalized non-spatial uses, we treat them all as part of a directional verb compound when they work together with a main verb.</p>
+
+<pre><code class="language-conllu"># visual-style 2 3 compound:dir	color:blue
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+1	我	_	PRON	_	_	2	nsubj	_	1SG
+2	諗	_	VERB	_	_	0	root	_	think
+3	起	_	VERB	_	_	2	compound:dir	_	rise
+4	嘑	_	PART	_	_	2	discourse:sp	_	SP
+
+1	"I	_	_	_	_	0	_	_	_
+2	recall	_	_	_	_	0	_	_	_
+3	(lit.	_	_	_	_	0	_	_	_
+4	think	_	_	_	_	0	_	_	_
+5	up)	_	_	_	_	0	_	_	_
+6	now"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Other words such as the direct object (5) or the affirmative potential 得 <em>de</em> and negative potential 不 <em>bù</em> can intervene. Uses involving the potential morphemes in directional verb compounds can often have idiomatic meanings as well (6).</p>
+
+<pre><code class="language-conllu"># visual-style 1 3 compound:dir	color:blue
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+1	帶	_	VERB	_	_	0	root	_	take
+2	佢哋	_	PRON	_	_	1	obj	_	3PL
+3	出去	_	VERB	_	_	1	compound:dir	_	go-out
+
+1	"Take	_	_	_	_	0	_	_	_
+2	them	_	_	_	_	0	_	_	_
+3	out."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 4 6 compound:dir	color:blue
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+1	佢	_	PRON	_	_	4	nsubj	_	3SG.M
+2	同	_	ADP	_	_	3	case	_	with
+3	我	_	PRON	_	_	4	obl	_	1SG
+4	過	_	VERB	_	_	0	root	_	cross
+5	唔	_	ADV	_	_	6	advmod	_	NEG
+6	去	_	VERB	_	_	4	compound:dir	_	go
+
+1	"He	_	_	_	_	0	_	_	_
+2	doesn't	_	_	_	_	0	_	_	_
+3	get	_	_	_	_	0	_	_	_
+4	along	_	_	_	_	0	_	_	_
+5	with	_	_	_	_	0	_	_	_
+6	me."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_yue-dep/compound-dir.md" target="#">edit compound:dir</a></p>
 
 <p><a id="al-yue-dep/conj" class="al-dest"></a></p>
 <h2><code>conj</code>: conjunct</h2>
@@ -2406,7 +2538,7 @@ for <code>dep</code>.</p>
 # visual-style 3	bgColor:blue
 # visual-style 3	fgColor:white
 1	弗羅倫斯	_	PROPN	_	_	0	root	_	Florence
-2	·	_	PUNCT	_	_	1	punct	_	_
+2	·	_	PUNCT	_	_	3	punct	_	_
 3	南丁格爾	_	PROPN	_	_	1	flat	_	Nightingale
 
 1	"Florence	_	_	_	_	0	_	_	_
