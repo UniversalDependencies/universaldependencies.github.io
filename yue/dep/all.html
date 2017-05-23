@@ -2036,15 +2036,15 @@ in two places.</p>
 1	"can't	_	_	_	_	0	_	_	_
 2	figure	_	_	_	_	0	_	_	_
 3	out	_	_	_	_	0	_	_	_
-3	/	_	_	_	_	0	_	_	_
-3	take	_	_	_	_	0	_	_	_
-3	things	_	_	_	_	0	_	_	_
-3	to	_	_	_	_	0	_	_	_
-3	heart	_	_	_	_	0	_	_	_
-4	(lit.	_	_	_	_	0	_	_	_
-5	can't	_	_	_	_	0	_	_	_
-6	think	_	_	_	_	0	_	_	_
-7	through)."	_	_	_	_	0	_	_	_
+4	/	_	_	_	_	0	_	_	_
+5	take	_	_	_	_	0	_	_	_
+6	things	_	_	_	_	0	_	_	_
+7	to	_	_	_	_	0	_	_	_
+8	heart	_	_	_	_	0	_	_	_
+9	(lit.	_	_	_	_	0	_	_	_
+10	can't	_	_	_	_	0	_	_	_
+11	think	_	_	_	_	0	_	_	_
+12	through)."	_	_	_	_	0	_	_	_
 
 </code></pre>
 
@@ -3056,8 +3056,69 @@ for <code>goeswith</code>.</p>
 <p><a id="al-yue-dep/list" class="al-dest"></a></p>
 <h2><code>list</code>: list</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>list</code>.</p>
+<p>The list relation is used for chains of comparable items. In lists with more than two items, all items of the list should modify the first one. Informal and web texts often contain passages which are meant to be interpreted as lists but are parsed as single sentences. Email signatures often contain these structures, in the form of contact information: the different contact information items are labeled as <code>list</code>; the key-value pair relations are labeled as <code>appos</code>.</p>
+
+<pre><code class="language-conllu"># visual-style 1 2 list	color:blue
+# visual-style 1 5 list	color:blue
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+1	張保仔	_	PROPN	_	_	0	root	_	Cheung-Po-Chai
+2	電話	_	NOUN	_	_	1	list	_	phone
+3	：	_	PUNCT	_	_	4	punct	_	_
+4	2540-5654	_	NOUN	_	_	2	appos	_	_
+5	電郵	_	NOUN	_	_	1	list	_	e-mail
+6	：	_	PUNCT	_	_	7	punct	_	_
+7	lisi@lisimail.com	_	NOUN	_	_	5	appos	_	_
+
+1	"Cheung	_	_	_	_	0	_	_	_
+2	Po	_	_	_	_	0	_	_	_
+3	Chai	_	_	_	_	0	_	_	_
+4	Phone:	_	_	_	_	0	_	_	_
+5	2540-5654	_	_	_	_	0	_	_	_
+6	E-mail:	_	_	_	_	0	_	_	_
+7	pochai@cheungpochai.com"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Another place where <code>list</code> has been used is for a sequence of attributes or descriptive terms used as the title line of a review (such as product or restaurant reviews, etc.:</p>
+
+<pre><code class="language-conllu"># visual-style 1 5 list	color:blue
+# visual-style 1 8 list	color:blue
+# visual-style 1 11 list	color:blue
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 8	bgColor:blue
+# visual-style 8	fgColor:white
+# visual-style 11	bgColor:blue
+# visual-style 11	fgColor:white
+1	難食	_	ADJ	_	_	0	root	_	unsavory
+2	，	_	PUNCT	_	_	5	punct	_	_
+3	服務	_	NOUN	_	_	4	compound	_	service
+4	態度	_	NOUN	_	_	5	nsubj	_	attitude
+5	差	_	ADJ	_	_	1	list	_	poor
+6	，	_	PUNCT	_	_	8	punct	_	_
+7	環境	_	NOUN	_	_	8	nsubj	_	atmosphere
+8	惡劣	_	ADJ	_	_	1	list	_	poor
+9	，	_	PUNCT	_	_	11	punct	_	_
+10	價錢	_	NOUN	_	_	11	nsubj	_	price
+11	昂貴	_	ADJ	_	_	1	list	_	expensive
+
+1	"unsavory,	_	_	_	_	0	_	_	_
+2	poor	_	_	_	_	0	_	_	_
+3	service,	_	_	_	_	0	_	_	_
+4	poor	_	_	_	_	0	_	_	_
+5	atmosphere,	_	_	_	_	0	_	_	_
+6	expensive"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>However, <code>list</code> should not be over-used. If a construction can be easily analyzed using the grammatical relations of standard sentences, such as when there is overt coordination, then it should be analyzed with these more standard relations, even if it is laid out as a list typographically.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_yue-dep/list.md" target="#">edit list</a></p>
 
@@ -3855,11 +3916,243 @@ for <code>neg</code>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_yue-dep/obl-tmod.md" target="#">edit obl:tmod</a></p>
 
+<p><a id="al-yue-dep/orphan" class="al-dest"></a></p>
+<h2><code>orphan</code>: orphan</h2>
+
+<p>The <code>orphan</code> relation is used for verb ellipsis (specifically, gapping or gapping-like phenomena; see Tang, 2001). One of elements in the clause with the elided verb is promoted, and all other elements that would have been connected to the verb would now be connected to the promoted head as <code>orphan</code> dependents if their original relationship to the elided verb no longer applies in their current link to the promoted head.</p>
+
+<pre><code class="language-conllu"># visual-style 8 11 orphan	color:blue
+# visual-style 8	bgColor:blue
+# visual-style 8	fgColor:white
+# visual-style 11	bgColor:blue
+# visual-style 11	fgColor:white
+1	我	_	PRON	_	_	2	nsubj	_	1SG
+2	飲	_	VERB	_	_	0	root	_	drink
+3	咗	_	AUX	_	_	2	aux	_	PERF
+4	兩	_	NUM	_	_	6	nummod	_	two
+5	杯	_	NOUN	_	_	4	clf	_	CL:cup
+6	茶	_	NOUN	_	_	2	obj	_	tea
+7	，	_	PUNCT	_	_	8	punct	_	_
+8	佢	_	PRON	_	_	2	conj	_	3SG
+9	三	_	NUM	_	_	11	nummod	_	three
+10	杯	_	NOUN	_	_	9	clf	_	CL:cup
+11	咖啡	_	NOUN	_	_	8	orphan	_	coffee
+12	。	_	PUNCT	_	_	2	punct	_	_
+
+1	"I	_	_	_	_	0	_	_	_
+2	drank	_	_	_	_	0	_	_	_
+3	two	_	_	_	_	0	_	_	_
+4	cups	_	_	_	_	0	_	_	_
+5	of	_	_	_	_	0	_	_	_
+6	tea,	_	_	_	_	0	_	_	_
+7	and	_	_	_	_	0	_	_	_
+8	he	_	_	_	_	0	_	_	_
+9	three	_	_	_	_	0	_	_	_
+10	cups	_	_	_	_	0	_	_	_
+11	of	_	_	_	_	0	_	_	_
+12	coffee."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>In the above example, the verb in the second clause is elided, and the subject 佢 / <em>keoi5</em> “he” is promoted to head position of the second clause, whereas the head of the object, 咖啡 / <em>gaa3fe1</em> “coffee” in the noun phrase 三 杯 咖啡 / <em>saam1 bui1 gaa3fe1</em> “three cups of coffee”, is connected to the promoted head as an <code>orphan</code> dependent, rather than <code>obj</code> (since 咖啡 / <em>gaa3fe1</em> “coffee” is not the object of 佢 / <em>keoi5</em> “he” but of the elided verb).</p>
+
+<p>The prefered order of promotion is as follows, depending on the relation of a word to its elided verb:</p>
+
+<ul>
+  <li><code>nsubj</code> &gt; <code>obj</code> &gt; <code>iobj</code> &gt; <code>obl</code> &gt; <code>advmod</code> &gt; <code>csubj</code> &gt; <code>xcomp</code> &gt; <code>ccomp</code> &gt; <code>advcl</code>.</li>
+</ul>
+
+<p>Some other arguments, such as the subject in (2), may also be elided along with the verb in a subsequent clause. In the following example, the second clause only has the direct and indirect objects left. According to the promotion hierarchy above, the direct object 手機 / <em>sau5gei1</em> “mobile phone” is promoted to head and not the indirect object 嫲嫲 / <em>maa4maa4</em> “grandmother”.</p>
+
+<pre><code class="language-conllu"># visual-style 12 14 orphan	color:blue
+# visual-style 12	bgColor:blue
+# visual-style 12	fgColor:white
+# visual-style 14	bgColor:blue
+# visual-style 14	fgColor:white
+1	他	_	PRON	_	_	2	nsubj	_	3SG.M
+2	買	_	VERB	_	_	0	root	_	give
+3	咗	_	AUX	_	_	2	aux	_	PERF
+4	一	_	NUM	_	_	6	nummod	_	one
+5	個	_	NOUN	_	_	4	clf	_	CL:generic
+6	手錶	_	NOUN	_	_	2	obj	_	watch
+7	畀	_	ADP	_	_	8	case	_	to
+8	爺爺	_	NOUN	_	_	2	obl	_	grandfather
+9	，	_	PUNCT	_	_	12	punct	_	_
+10	一	_	NUM	_	_	12	nummod	_	one
+11	個	_	NOUN	_	_	10	clf	_	CL:generic
+12	手機	_	NOUN	_	_	2	conj	_	mobile-phone
+13	畀	_	ADP	_	_	14	case	_	to
+14	嫲嫲	_	NOUN	_	_	12	orphan	_	grandmother
+15	。	_	PUNCT	_	_	2	punct	_	_
+
+1	"He	_	_	_	_	0	_	_	_
+2	gave	_	_	_	_	0	_	_	_
+3	grandpa	_	_	_	_	0	_	_	_
+4	a	_	_	_	_	0	_	_	_
+5	watch,	_	_	_	_	0	_	_	_
+6	and	_	_	_	_	0	_	_	_
+7	grandma	_	_	_	_	0	_	_	_
+8	a	_	_	_	_	0	_	_	_
+9	mobile	_	_	_	_	0	_	_	_
+10	phone."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li>Tang, Sze-Wing. 2001. ‘The (Non-)Existence of Gapping in Chinese and Its Implications for the Theory of Gapping.’ Journal of East Asian Linguistics 10: 201. doi:10.1023/A:1011250802691</li>
+</ul>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_yue-dep/orphan.md" target="#">edit orphan</a></p>
+
 <p><a id="al-yue-dep/parataxis" class="al-dest"></a></p>
 <h2><code>parataxis</code>: parataxis</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>parataxis</code>.</p>
+<p>Parataxis is a relation for “side-by-side sentences” including reported speech (1), parenthetical comments and clausal interjections (2), tag questions (3), and generally pairs of clauses that are pragmatically understood to be related in a discursive way despite lacking linking words between them (4). Clauses introduced after a colon (冒號 “：”) or long dash (破折號 “──”) also exemplify this kind of usage (5).</p>
+
+<pre><code class="language-conllu"># visual-style 4 11 parataxis	color:blue
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 11	bgColor:blue
+# visual-style 11	fgColor:white
+1	佢	_	PRON	_	_	4	nsubj	_	3SG.M
+2	突然間	_	ADV	_	_	4	advmod	_	suddenly
+3	大聲	_	ADV	_	_	4	advmod	_	loudly
+4	叫	_	VERB	_	_	0	root	_	yell
+5	：	_	PUNCT	_	_	11	punct	_	_
+6	「	_	PUNCT	_	_	11	punct	_	_
+7	我	_	PRON	_	_	11	nsubj	_	1SG
+8	係	_	VERB	_	_	11	cop	_	be
+9	個	_	NOUN	_	_	11	det	_	CL:generic
+10	大	_	ADJ	_	_	11	amod	_	big
+11	傻瓜	_	NOUN	_	_	4	parataxis	_	idiot
+12	！	_	PUNCT	_	_	11	punct	_	_
+13	」	_	PUNCT	_	_	11	punct	_	_
+
+1	"He	_	_	_	_	0	_	_	_
+2	suddenly	_	_	_	_	0	_	_	_
+3	yelled	_	_	_	_	0	_	_	_
+4	out	_	_	_	_	0	_	_	_
+5	loud,	_	_	_	_	0	_	_	_
+6	'I'm	_	_	_	_	0	_	_	_
+7	a	_	_	_	_	0	_	_	_
+8	big	_	_	_	_	0	_	_	_
+9	idiot!'"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 3 7 parataxis	color:blue
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+1	呢度	_	PRON	_	_	3	obl	_	here
+2	都	_	ADV	_	_	3	advmod	_	also
+3	有	_	VERB	_	_	0	root	_	have
+4	臭豆腐	_	NOUN	_	_	3	obj	_	stinky-tofu
+5	（	_	PUNCT	_	_	7	punct	_	_
+6	非常之	_	ADV	_	_	7	advmod	_	super
+7	好食	_	ADJ	_	_	3	parataxis	_	tasty
+8	㗎	_	PART	_	_	7	discourse:sp	_	SP
+9	！	_	PUNCT	_	_	7	punct	_	_
+10	）	_	PUNCT	_	_	7	punct	_	_
+
+1	"They	_	_	_	_	0	_	_	_
+2	also	_	_	_	_	0	_	_	_
+3	have	_	_	_	_	0	_	_	_
+4	stinky	_	_	_	_	0	_	_	_
+5	tofu	_	_	_	_	0	_	_	_
+6	here	_	_	_	_	0	_	_	_
+7	(it's	_	_	_	_	0	_	_	_
+8	super	_	_	_	_	0	_	_	_
+9	tasty!)."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2 5 parataxis	color:blue
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+1	他	_	PRON	_	_	2	nsubj	_	3SG
+2	嬲	_	VERB	_	_	0	root	_	get-angry
+3	嘑	_	PART	_	_	2	discourse:sp	_	SP
+4	，	_	PUNCT	_	_	5	punct	_	_
+5	係	_	VERB	_	_	2	parataxis	_	be
+6	唔	_	ADV	_	_	7	advmod	_	NEG
+7	係	_	VERB	_	_	5	conj	_	be
+8	？	_	PUNCT	_	_	5	punct	_	_
+
+1	"He's	_	_	_	_	0	_	_	_
+2	angry,	_	_	_	_	0	_	_	_
+3	isn't	_	_	_	_	0	_	_	_
+4	he?"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 4 10 parataxis	color:blue
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 10	bgColor:blue
+# visual-style 10	fgColor:white
+1	佢	_	PRON	_	_	4	nsubj	_	3SG.M
+2	係	_	VERB	_	_	4	cop	_	be
+3	紀律	_	NOUN	_	_	4	compound	_	discipline
+4	部隊	_	NOUN	_	_	0	root	_	team
+5	，	_	PUNCT	_	_	9	punct	_	_
+6	你	_	PRON	_	_	9	nsubj	_	2SG
+7	都	_	ADV	_	_	9	advmod	_	also
+8	會	_	AUX	_	_	9	aux	_	will
+9	係	_	VERB	_	_	4	parataxis	_	be
+
+1	"He	_	_	_	_	0	_	_	_
+2	is	_	_	_	_	0	_	_	_
+3	a	_	_	_	_	0	_	_	_
+4	member	_	_	_	_	0	_	_	_
+5	of	_	_	_	_	0	_	_	_
+6	the	_	_	_	_	0	_	_	_
+7	disciplinary	_	_	_	_	0	_	_	_
+8	team	_	_	_	_	0	_	_	_
+9	--	_	_	_	_	0	_	_	_
+10	you	_	_	_	_	0	_	_	_
+11	will	_	_	_	_	0	_	_	_
+12	also	_	_	_	_	0	_	_	_
+13	be	_	_	_	_	0	_	_	_
+14	one."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2 11 parataxis	color:blue
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 11	bgColor:blue
+# visual-style 11	fgColor:white
+1	你	_	PRON	_	_	2	nsubj	_	2SG
+2	買	_	VERB	_	_	0	root	_	buy
+3	呢	_	DET	_	_	5	det	_	this
+4	本	_	NOUN	_	_	3	clf	_	CL:book
+5	書	_	NOUN	_	_	2	obj	_	book
+6	喇	_	SP	_	_	2	discourse:sp	_	SP
+7	──	_	PUNCT	_	_	11	punct	_	2SG
+8	嗰	_	DET	_	_	9	det	_	that
+9	本	_	NOUN	_	_	11	nsubj	_	CL:book
+10	唔	_	ADV	_	_	11	advmod	_	NEG
+11	好	_	ADJ	_	_	2	parataxis	_	good
+12	呀	_	PART	_	_	11	discourse:sp	_	SP
+
+1	"You	_	_	_	_	0	_	_	_
+2	should	_	_	_	_	0	_	_	_
+3	buy	_	_	_	_	0	_	_	_
+4	this	_	_	_	_	0	_	_	_
+5	book;	_	_	_	_	0	_	_	_
+6	that	_	_	_	_	0	_	_	_
+7	one	_	_	_	_	0	_	_	_
+8	is	_	_	_	_	0	_	_	_
+9	not	_	_	_	_	0	_	_	_
+10	good."	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_yue-dep/parataxis.md" target="#">edit parataxis</a></p>
 
@@ -3870,14 +4163,6 @@ for <code>parataxis</code>.</p>
 for <code>punct</code>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_yue-dep/punct.md" target="#">edit punct</a></p>
-
-<p><a id="al-yue-dep/remnant" class="al-dest"></a></p>
-<h2><code>remnant</code>: remnant in ellipsis</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>remnant</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_yue-dep/remnant.md" target="#">edit remnant</a></p>
 
 <p><a id="al-yue-dep/reparandum" class="al-dest"></a></p>
 <h2><code>reparandum</code>: overridden disfluency</h2>
