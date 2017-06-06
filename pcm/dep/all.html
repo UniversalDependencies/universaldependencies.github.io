@@ -130,7 +130,7 @@
       <td>
 	<table class="category">
 	  <tr>
-	    <td><a>obl</a></td>
+	    <td><del>obl</del></td>
 	  </tr>
     <tr>
 	    <td>↳<a>obl:ad</a></td>
@@ -381,10 +381,11 @@ for <code>acl</code>.</p>
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/acl.md" target="#">edit acl</a></p>
 
 <p><a id="al-pcm-dep/acl:cleft" class="al-dest"></a></p>
-<h2><code>acl:cleft</code>: cleft clause modifier</h2>
+<h2><code>acl:cleft</code>: clefted phrase modifier</h2>
 
-<p>The acl:cleft relation is used between a cleft clause and its head.
-This link is not used if a clause or an adverb is clefted</p>
+<p>The acl:cleft relation is used between a clefted phrase and its head. When the clefted element is a clause or an adverb, we use the <a href="">ccomp:cleft</a> relation instead.</p>
+
+<p>The clefted elements can often be identified by the presence of the copulative particle <em>na</em> which is described in more details on the <a href="">PART</a> page.</p>
 
 <pre><code class="language-conllu"># visual-style 3 7 acl:cleft	color:blue
 # visual-style 3	bgColor:blue
@@ -400,6 +401,15 @@ This link is not used if a clause or an adverb is clefted</p>
 7	be	_	VERB	_	_	3	acl:cleft	_
 8	dat	_	PRON	_	_	7	nsubj	_
 
+1	be	_	_	_	_	0	_	_	_
+2	the	_	_	_	_	0	_	_	_
+3	danger	_	_	_	_	0	_	_	_
+4	when	_	_	_	_	0	_	_	_	
+5	exist	_	_	_	_	0	_	_	_
+6	alcohol	_	_	_	_	0	_	_	_	
+7	be	_	_	_	_	0	_	_	_
+8	that	_	_	_	_	0	_	_	_	
+
 1	Those	_	_	_	_	0	_	_	_
 2	are	_	_	_	_	0	_	_	_
 3	the	_	_	_	_	0	_	_	_
@@ -407,8 +417,6 @@ This link is not used if a clause or an adverb is clefted</p>
 5	of	_	_	_	_	0	_	_	_
 6	alcohol	_	_	_	_	0	_	_	_	
 </code></pre>
-
-<p>The particule “na” is often a marker of clefts.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/acl-cleft.md" target="#">edit acl:cleft</a></p>
 
@@ -429,6 +437,14 @@ This link is not used if a clause or an adverb is clefted</p>
 5	speed	_	NOUN	_	_	6	nmod	_
 6	limiting	_	ADJ	_	_	7	amod	_
 7	device	_	NOUN	_	_	4	obj	_
+
+1	what	_	_	_	_	0	_	_	_
+2	we	_	_	_	_	0	_	_	_
+3	CONT	_	_	_	_	0	_	_	_
+4	call	_	_	_	_	0	_	_	_	
+5	speed	_	_	_	_	0	_	_	_
+6	limiting	_	_	_	_	0	_	_	_
+7	device	_	_	_	_	0	_	_	_
 
 1	what	_	_	_	_	0	_	_	_
 2	we	_	_	_	_	0	_	_	_
@@ -617,6 +633,16 @@ for <code>advmod:emph</code>.</p>
   <li>make</li>
 </ul>
 
+<p>Some of these auxiliaries can also be used as the main verb of a clause:</p>
+
+<ul>
+  <li>come</li>
+  <li>dey</li>
+  <li>fit</li>
+  <li>go</li>
+  <li>make</li>
+</ul>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/aux_.md" target="#">edit aux</a></p>
 
 <p><a id="al-pcm-dep/case" class="al-dest"></a></p>
@@ -646,8 +672,53 @@ for <code>ccomp</code>.</p>
 <p><a id="al-pcm-dep/ccomp:cleft" class="al-dest"></a></p>
 <h2><code>ccomp:cleft</code>: ccomp:cleft</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>ccomp:cleft</code>.</p>
+<p>The <code>ccomp:cleft</code> relation is used between a clefted clause or adverb and its head. When the clefted element is nominal however, we use the <a href="">acl:cleft</a> relation. In Naija clefts are used for focalization.</p>
+
+<p>The clefted elements can often be identified by the presence of the copulative particle <em>na</em> which is described in more details on the <a href="">PART</a> page.</p>
+
+<pre><code class="language-conllu"># visual-style 2 6 ccomp:cleft	color:blue
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+1	na	_	PART	_	_	2	cop	_	_
+2	so	_	ADV	_	_	0	root	_	_
+3	di	_	DET	_	_	4	det	_	_
+4	bleed	_	NOUN	_	_	6	nsubj	_	_
+5	go	_	AUX	_	_	6	aux	_	_
+6	continue	_	VERB	_	_	2	ccomp:cleft	_	_
+7	till	_	ADP	_	_	11	mark	_	_
+8	di	_	DET	_	_	9	det	_	_
+9	person	_	NOUN	_	_	11	nsubj	_	_
+10	go	_	AUX	_	_	11	aux	_	_
+11	die	_	VERB	_	_	6	obl	_	_
+
+
+1	be	_	_	_	_	0	_	_	_
+2	how 	_	_	_	_	0	_	_	_
+3	the	_	_	_	_	0	_	_	_
+4	bleeding	_	_	_	_	0	_	_	_	
+5	will	_	_	_	_	0	_	_	_
+6	continue	_	_	_	_	0	_	_	_
+7	till	_	_	_	_	0	_	_	_	
+8	the	_	_	_	_	0	_	_	_	
+9	person	_	_	_	_	0	_	_	_	
+10	will	_	_	_	_	0	_	_	_	
+11	die	_	_	_	_	0	_	_	_	
+
+1	That	_	_	_	_	0	_	_	_
+2	is	_	_	_	_	0	_	_	_
+3	how	_	_	_	_	0	_	_	_
+4	the	_	_	_	_	0	_	_	_	
+5	bleeding	_	_	_	_	0	_	_	_
+6	will	_	_	_	_	0	_	_	_
+7	continue	_	_	_	_	0	_	_	_	
+8	till	_	_	_	_	0	_	_	_	
+9	the	_	_	_	_	0	_	_	_	
+10	person	_	_	_	_	0	_	_	_	
+11	dies	_	_	_	_	0	_	_	_	
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/ccomp-cleft.md" target="#">edit ccomp:cleft</a></p>
 
@@ -909,8 +980,26 @@ for <code>discourse</code>.</p>
 <p><a id="al-pcm-dep/dislocated" class="al-dest"></a></p>
 <h2><code>dislocated</code>: dislocated elements</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>dislocated</code>.</p>
+<p>The <code>dislocated</code> relation is used between a dislocated clause or phrase and its head. In Naija dislocations are used for topicalization.</p>
+
+<pre><code class="language-conllu"># visual-style 5 2 dislocated	color:blue
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5 fgColor:white
+1	one	_	DET	_	_	2	det	_	_
+2	man	_	NOUN	_	_	5	dislocated	_	_
+3	im	_	PRON	_	_	5	nsubj	_	_
+4	dey	_	AUX	_	_	5	aux	_	_
+5	drive	_	VERB	_	_	0	root	_	_
+
+1	one	_	_	_	_	0	_	_	_
+2	man	_	_	_	_	0	_	_	_
+3	he	_	_	_	_	0	_	_	_
+4	was	_	_	_	_	0	_	_	_	
+5	driving	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/dislocated.md" target="#">edit dislocated</a></p>
 
@@ -941,8 +1030,24 @@ for <code>goeswith</code>.</p>
 <p><a id="al-pcm-dep/iobj" class="al-dest"></a></p>
 <h2><code>iobj</code>: indirect object</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>iobj</code>.</p>
+<p>The <code>iobj</code> relation is used for dative objects of the verb when the verb has more than one object.</p>
+
+<pre><code class="language-conllu"># visual-style 3 4 iobj	color:blue
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+1	make	_	AUX	_	_	3	aux	_	_
+2	una	_	PRON	_	_	3	nsubj	_	_
+3	ask	_	VERB	_	_	0	root	_	_
+4	me	_	PRON	_	_	3	iobj	_	_
+5	question	_	NOUN	_	_	3	obj	_	_
+
+1	ask	_	_	_	_	0	_	_	_
+2	me	_	_	_	_	0	_	_	_
+3	questions	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/iobj.md" target="#">edit iobj</a></p>
 
@@ -965,8 +1070,32 @@ for <code>mark</code>.</p>
 <p><a id="al-pcm-dep/nmod" class="al-dest"></a></p>
 <h2><code>nmod</code>: nominal modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nmod</code>.</p>
+<p>The <code>nmod</code> relation is used for nominal dependants of another noun or noun phrase.</p>
+
+<pre><code class="language-conllu"># visual-style 7 6 nmod	color:blue
+# visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+# visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+1	im	_	PRON	_	_	2	nmod:poss	_	_
+2	daughter	_	NOUN	_	_	3	nsubj	_	_
+3	fall	_	VERB	_	_	0	root	_	_
+4	from	_	ADP	_	_	7	case	_	_
+5	three	_	NUM	_	_	6	nummod	_	_
+6	storey	_	NOUN	_	_	7	nmod	_	_
+7	build	_	NOUN	_	_	3	obl	_	_
+
+1	his	_	_	_	_	0	_	_	_
+2	daughter	_	_	_	_	0	_	_	_
+3	fell	_	_	_	_	0	_	_	_
+4	from	_	_	_	_	0	_	_	_
+5	a	_	_	_	_	0	_	_	_
+6	three	_	_	_	_	0	_	_	_
+7	story	_	_	_	_	0	_	_	_
+8	building	_	_	_	_	0	_	_	_
+
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/nmod.md" target="#">edit nmod</a></p>
 
@@ -981,8 +1110,33 @@ for <code>nmod:appos</code>.</p>
 <p><a id="al-pcm-dep/nmod:poss" class="al-dest"></a></p>
 <h2><code>nmod:poss</code>: possessive nominal modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nmod:poss</code>.</p>
+<p>The <code>nmod:poss</code> relation is used between a nominal clause and its possessive determiner.</p>
+
+<pre><code class="language-conllu"># visual-style 9 7 nmod:poss	color:blue
+# visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+# visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
+1	we	_	PRON	_	_	3	nsubj	_	_
+2	don	_	AUX	_	_	3	aux	_	_
+3	check	_	VERB	_	_	0	root	_	_
+4	di	_	DET	_	_	5	det	_	_
+5	matter	_	NOUN	_	_	3	obj	_	_
+6	for	_	ADP	_	_	9	case	_	_
+7	our	_	PRON	_	_	9	nmod:poss	_	_
+8	national	_	ADJ	_	_	9	amod	_	_
+9	headquarters	_	NOUN	_	_	3	obl	_	_
+
+1	we	_	_	_	_	0	_	_	_
+2	evaluated	_	_	_	_	0	_	_	_
+3	the	_	_	_	_	0	_	_	_
+4	matter	_	_	_	_	0	_	_	_
+5	at	_	_	_	_	0	_	_	_
+6	our	_	_	_	_	0	_	_	_
+7	National	_	_	_	_	0	_	_	_
+8	Headquarters	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/nmod-poss.md" target="#">edit nmod:poss</a></p>
 
@@ -1029,24 +1183,66 @@ for <code>nsubjpass</code>.</p>
 <p><a id="al-pcm-dep/nummod" class="al-dest"></a></p>
 <h2><code>nummod</code>: numeric modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nummod</code>.</p>
+<p>The <code>nummod</code> relation is used between a nominal phrase and its numeric modifier.</p>
+
+<pre><code class="language-conllu"># visual-style 6 5 nummod	color:blue
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+1	make	_	AUX	_	_	3	aux	_	_
+2	I	_	PRON	_	_	3	nsubj	_	_
+3	give	_	VERB	_	_	0	root	_	_
+4	you	_	PRON	_	_	3	iobj	_	_
+5	one	_	NUM	_	_	6	nummod	_	_
+6	instance	_	NOUN	_	_	3	obj	_	_
+
+1	let	_	_	_	_	0	_	_	_
+2	me	_	_	_	_	0	_	_	_
+3	give	_	_	_	_	0	_	_	_
+4	you	_	_	_	_	0	_	_	_
+5	one	_	_	_	_	0	_	_	_
+6	instance	_	_	_	_	0	_	_	_
+
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/nummod.md" target="#">edit nummod</a></p>
 
 <p><a id="al-pcm-dep/obl:ad" class="al-dest"></a></p>
 <h2><code>obl:ad</code>: oblique adjunct</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>obl:ad</code>.</p>
+<p>The <code>obl:ad</code> relation is used for nominal elements which are not core arguments. On the other hand, when the nominal element is an argument we use either <a href="">obj</a> if it’s a direct object, or <a href="">obl:comp</a> when the argument is introduced by a preposition.</p>
+
+<pre><code class="language-conllu"># visual-style 6 8 obl:ad	color:blue
+# visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+# visual-style 8	bgColor:blue
+# visual-style 8	fgColor:white
+1	farmer	farmer	NOUN	NOUN	_	2	nsubj	_	_
+2	happy	happy	ADJ	ADJ	_	0	root	_	_
+3	pass	pass	VERB	VERB	_	2	compound:svc	_	_
+4	when	when	ADV	ADV	_	6	mark	_	_
+5	rain	rain	NOUN	NOUN	_	6	nsubj	_	_
+6	fall	fall	VERB	VERB	_	2	advcl	_	_
+7	like	like	ADP	ADP	_	8	case	_	_
+8	dis	this	DET	DET	_	6	obl:ad	_	_
+
+1	Farmers	_	_	_	_	0	_	_	_
+2	become	_	_	_	_	0	_	_	_
+3	happier	_	_	_	_	0	_	_	_
+4	when	_	_	_	_	0	_	_	_
+5	rain	_	_	_	_	0	_	_	_
+6	falls	_	_	_	_	0	_	_	_
+7	like	_	_	_	_	0	_	_	_
+8	this	_	_	_	_	0	_	_	_
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/obl-ad.md" target="#">edit obl:ad</a></p>
 
 <p><a id="al-pcm-dep/obl:comp" class="al-dest"></a></p>
-<h2><code>obl:comp</code>: oblique complement</h2>
+<h2><code>obl:comp</code>: core oblique complement</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>obl:comp</code>.</p>
+<p>The <code>obl:comp</code> relation is used for core arguments which are introduced by a preposition. We introduce this relation to distinguish these elements which are subcategorized from oblique elements, which are not core arguments and will be annotated as <a href="">obl:ad</a>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/obl-comp.md" target="#">edit obl:comp</a></p>
 
@@ -1179,6 +1375,13 @@ for <code>root</code>.</p>
 
 <p>The xcomp relation is also used in constructions that are known as <em>secondary predicates</em>.
 In this type of construction there are two predicates mixed in one clause, and each of the predicates constitutes a core argument.</p>
+
+<p>The 2 predicates in the following example are:</p>
+
+<ul>
+  <li>something is given a name</li>
+  <li>this name is “hemorrage”</li>
+</ul>
 
 <pre><code class="language-conllu"># visual-style 6 7 xcomp	color:blue
 # visual-style 6	bgColor:blue
