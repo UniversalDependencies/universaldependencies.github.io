@@ -433,7 +433,7 @@ for <code>acl</code>.</p>
 1	wetin	what	PRON	PRON	_	0	root	_	_
 2	we	we	PRON	PRON	_	4	nsubj	_	_
 3	dey	be	AUX	AUX	_	4	aux	_	_
-4	call	call	VERB	VERB	_	1	acl:cleft	_	_
+4	call	call	VERB	VERB	_	1	acl:relcl	_	_
 5	speed	speed	NOUN	NOUN	_	6	nmod	_
 6	limiting	limiting	ADJ	ADJ	_	7	amod	_
 7	device	device	NOUN	NOUN	_	4	obj	_
@@ -816,7 +816,7 @@ for <code>acl</code>.</p>
 <p><a id="al-pcm-dep/ccomp" class="al-dest"></a></p>
 <h2><code>ccomp</code>: clausal complement</h2>
 
-<p>The <code>ccomp</code> link is used for clausal dependents which are core arguments when the subject is not controlled, otherwise the link is <a href="xcomp.html">xcomp</a></p>
+<p>The <code>ccomp</code> link is used for clausal dependents which are core arguments, when the subject is not controlled. However, when the subject is controlled, we use the <a href="">xcomp</a> link.</p>
 
 <pre><code class="language-conllu"># visual-style 3 8 ccomp	color:blue
 # visual-style 3	bgColor:blue
@@ -826,7 +826,7 @@ for <code>acl</code>.</p>
 1	dem	they	PRON	PRON	_	3	nsubj	_	_
 2	just	just	ADV	ADV	_	3	advmod	_	_
 3	tell	tell	VERB	VERB	_	0	root	_	_
-4	am	he	PRON	PRON	_	3	obj	_	_
+4	am	he	PRON	PRON	_	3	iobj	_	_
 5	sey	that	SCONJ	SCONJ	_	8	mark	_	_
 6	im	he	PRON	PRON	_	7	nmod:poss	_	_
 7	daughter	daughter	NOUN	NOUN	_	8	nsubj	_	_
@@ -1319,7 +1319,7 @@ for <code>conj</code>.</p>
 6	good	good	ADJ	ADJ	_	2	ccomp:cleft	_	_
 
 
-1	Be	_	_	_	_	0	_	_	_
+1	be	_	_	_	_	0	_	_	_
 2	why	_	_	_	_	0	_	_	_
 3	drink	_	_	_	_	0	_	_	_
 4	drive	_	_	_	_	0	_	_	_
@@ -1374,14 +1374,6 @@ for <code>dep</code>.</p>
 5	good	_	_	_	_	0	_	_	_
 
 </code></pre>
-
-<p>The determiners of Naija include :</p>
-
-<ul>
-  <li>dem</li>
-  <li>di</li>
-  <li>dis/dese</li>
-</ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/det.md" target="#">edit det</a></p>
 
@@ -1546,7 +1538,7 @@ for <code>goeswith</code>.</p>
 <p><a id="al-pcm-dep/iobj" class="al-dest"></a></p>
 <h2><code>iobj</code>: indirect object</h2>
 
-<p>The <code>iobj</code> relation is used for dative objects of the verb when the verb has more than one object.</p>
+<p>The <code>iobj</code> relation is used for dative objects of the verb when the verb already has an object or a complement. If there is only one object, it should be labeled <a href="">obj</a> regardless of its morphological case.</p>
 
 <pre><code class="language-conllu"># visual-style 3 4 iobj	color:blue
 # visual-style 3	bgColor:blue
@@ -1569,6 +1561,41 @@ for <code>goeswith</code>.</p>
 1	ask	_	_	_	_	0	_	_	_
 2	me	_	_	_	_	0	_	_	_
 3	questions	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 3 4 iobj	color:blue
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+1	dem	they	PRON	PRON	_	3	nsubj	_	_
+2	just	just	ADV	ADV	_	3	advmod	_	_
+3	tell	tell	VERB	VERB	_	0	root	_	_
+4	am	he	PRON	PRON	_	3	iobj	_	_
+5	sey	that	SCONJ	SCONJ	_	8	mark	_	_
+6	im	he	PRON	PRON	_	7	nmod:poss	_	_
+7	daughter	daughter	NOUN	NOUN	_	8	nsubj	_	_
+8	fall	fall	VERB	VERB	_	3	ccomp	_	_
+
+
+1	they	_	_	_	_	0	_	_	_
+2	just	_	_	_	_	0	_	_	_
+3	tell	_	_	_	_	0	_	_	_
+4	he	_	_	_	_	0	_	_	_
+5	that	_	_	_	_	0	_	_	_
+6	he	_	_	_	_	0	_	_	_
+7	daughter	_	_	_	_	0	_	_	_
+8	fall	_	_	_	_	0	_	_	_
+
+1	they	_	_	_	_	0	_	_	_
+2	just	_	_	_	_	0	_	_	_
+3	told	_	_	_	_	0	_	_	_
+4	him	_	_	_	_	0	_	_	_
+5	that	_	_	_	_	0	_	_	_
+6	his	_	_	_	_	0	_	_	_
+7	daughter	_	_	_	_	0	_	_	_
+8	fell	_	_	_	_	0	_	_	_
 
 </code></pre>
 
@@ -1751,6 +1778,13 @@ for <code>nmod:appos</code>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/nsubj.md" target="#">edit nsubj</a></p>
 
+<p><a id="al-pcm-dep/nsubj" class="al-dest"></a></p>
+<h2><code>nsubj</code>: nominal subject</h2>
+
+<p>This document is a placeholder for the language specific documentation for <code>orphan</code>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/orphan.md" target="#">edit nsubj</a></p>
+
 <p><a id="al-pcm-dep/nsubj:expl" class="al-dest"></a></p>
 <h2><code>nsubj:expl</code>: expletive subject</h2>
 
@@ -1806,7 +1840,7 @@ for <code>nsubjpass</code>.</p>
 <p><a id="al-pcm-dep/obl:ad" class="al-dest"></a></p>
 <h2><code>obl:ad</code>: oblique adjunct</h2>
 
-<p>The <code>obl:ad</code> relation is used for nominal adjuncts. On the other hand, when the nominal element is an argument we use <a href="">obj</a> if it’s a direct object, or <a href="">obl:comp</a> if the argument is introduced by a preposition.</p>
+<p>The <code>obl:ad</code> relation is used for nominal adjuncts.</p>
 
 <pre><code class="language-conllu"># visual-style 6 8 obl:ad	color:blue
 # visual-style 6	bgColor:blue
@@ -1842,14 +1876,53 @@ for <code>nsubjpass</code>.</p>
 8	this	_	_	_	_	0	_	_	_
 </code></pre>
 
+<pre><code class="language-conllu"># visual-style 3 9 obl:ad	color:blue
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
+1	you	you	PRON	PRON	_	3	nsubj	_	_
+2	dey	dey	AUX	AUX	_	3	aux	_	_
+3	do	do	VERB	VERB	_	0	root	_	_
+4	two	two	NUM	NUM	_	5	nummod	_	_
+5	thing	thing	NOUN	NOUN	_	3	obj	_	_
+6	at	at	ADP	ADP	_	9	case	_	_
+7	di	the	DET	DET	_	9	det	_	_
+8	same	same	ADJ	ADJ	_	9	amod	_	_
+9	time	time	NOUN	NOUN	_	3	obl:ad	_	_
+
+
+1	you	_	_	_	_	0	_	_	_
+2	CONT	_	_	_	_	0	_	_	_
+3	do	_	_	_	_	0	_	_	_
+4	two	_	_	_	_	0	_	_	_
+5	thing	_	_	_	_	0	_	_	_
+6	at	_	_	_	_	0	_	_	_
+7	the	_	_	_	_	0	_	_	_
+8	same	_	_	_	_	0	_	_	_
+9	time	_	_	_	_	0	_	_	_
+
+1	You	_	_	_	_	0	_	_	_
+2	are	_	_	_	_	0	_	_	_
+3	doing	_	_	_	_	0	_	_	_
+4	two	_	_	_	_	0	_	_	_
+5	things	_	_	_	_	0	_	_	_
+6	at	_	_	_	_	0	_	_	_
+7	the	_	_	_	_	0	_	_	_
+8	same	_	_	_	_	0	_	_	_
+9	time	_	_	_	_	0	_	_	_
+</code></pre>
+
+<p>On the other hand, when the nominal element is an argument we use <a href="">obj</a> if it’s a direct object, or <a href="">obl:comp</a> if the argument is introduced by a preposition.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/obl-ad.md" target="#">edit obl:ad</a></p>
 
 <p><a id="al-pcm-dep/obl:comp" class="al-dest"></a></p>
 <h2><code>obl:comp</code>: oblique complement</h2>
 
-<p>The <code>obl:comp</code> relation is used for arguments which are introduced by a preposition.</p>
+<p>The <code>obl:comp</code> relation is used for nominal arguments which are introduced by a preposition.</p>
 
-<p>We introduce this relation to distinguish these elements, which are subcategorized, from oblique elements which are not core arguments but adjuncts, and will be annotated as <a href="">obl:ad</a>.</p>
+<p>We introduce this relation to distinguish these elements, which are subcategorized, from oblique elements which are not arguments but adjuncts, and will be annotated as <a href="">obl:ad</a>.</p>
 
 <pre><code class="language-conllu"># visual-style 4 6 obl:comp	color:blue
 # visual-style 6	bgColor:blue
@@ -1893,10 +1966,10 @@ for <code>parataxis</code>.</p>
 <p>The <code>parataxis:conj</code> relation is used between juxtaposed clauses. The clauses are juxtaposed when they are independant from one another. This relation is introduced to emphasize the similarities of this type of construction with other types of conjuncts.</p>
 
 <pre><code class="language-conllu"># visual-style 3 9 parataxis:conj	color:blue
-# visual-style 2	bgColor:blue
-# visual-style 2	fgColor:white
-# visual-style 6	bgColor:blue
-# visual-style 6	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
 1	im	he	PRON	PRON	_	3	nsubj	_	_
 2	fit	can	AUX	AUX	_	3	aux	_	_
 3	make	let	VERB	VERB	_	0	root	_	_
@@ -2114,9 +2187,9 @@ In this type of construction there are two predicates mixed in one clause, and e
 # visual-style 6	fgColor:white
 # visual-style 7	bgColor:blue
 # visual-style 7	fgColor:white
-1	dat	that	PRON	PRO	_	2	nsubj	_	_
-2	na	is	VERB	VERB	_	0	root	_	_
-3	whetin	what	PRON	PRON	_	2	obj	_	_
+1	dat	that	PRON	PRO	_	3	nsubj	_	_
+2	na	is	VERB	VERB	_	3	cop	_	_
+3	whetin	what	PRON	PRON	_	0	root	_	_
 4	dem	they	PRON	PRON	_	6	nsubj	_	_
 5	dey	dey	AUX	AUX	_	6	aux	_	_
 6	call	call	VERB	VERB	_	3	acl:relcl	_	_
