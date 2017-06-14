@@ -470,6 +470,21 @@ conj(hésitation, retard)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/conj.md" target="#">edit conj</a></p>
 
+<p><a id="al-fr-dep/conj:appos" class="al-dest"></a></p>
+<h2><code>conj:appos</code>: conjunct apposition</h2>
+
+<p>In FrenchSpoken the <code>conj:appos</code> relation is used instead of <code>appos</code> for appositions which respect the prosody of lists. The elements in a <code>conj:appos</code> are not bound to a particular sequence, they can be rearranged in a different order. This choice of relation is meant to emphasize the similarity between some appositions and ordinary coordination.</p>
+
+<p>Here is an example :</p>
+
+<pre><code class="language-sdparse">Bruno, mon oncle, est un grand fan de rugby \n Bruno, my uncle, is a big fan of rugby
+conj:appos(Bruno, oncle)
+</code></pre>
+
+<p>Not all appositions respect these critierias, for appositions which modify nominal elements but without showing these similarities to coordinations we use the <a href="">nmod:appos</a> relation instead.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/conj-appos.md" target="#">edit conj:appos</a></p>
+
 <p><a id="al-fr-dep/cop" class="al-dest"></a></p>
 <h2><code>cop</code>: copula</h2>
 
@@ -804,6 +819,68 @@ nmod(fait, an)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nmod.md" target="#">edit nmod</a></p>
 
+<p><a id="al-fr-dep/nmod:appos" class="al-dest"></a></p>
+<h2><code>nmod:appos</code>: nominal modifier apposition</h2>
+
+<p>In FrenchSpoken the <code>nmod:appos</code> relation is used for appositions which modify nominal elements. The nominal modifier is not introduced by a preposition (else we use the <a href="">nmod</a> relation). Contrary to the <a href="">conj:appos</a> relation, the <code>nmod:appos</code> relation doesn’t respect the prosody of lists.</p>
+
+<p>Here are a few examples :</p>
+
+<pre><code class="language-sdparse">Le journal Libération a refusé de dévoilé ses sources concernant le dossier Fillon. \n The newspaper Liberation refused to reveal its sources in the Fillon case.
+nmod:appos(journal, Libération)
+nmod:appos(dossier, Fillon)
+</code></pre>
+
+<pre><code class="language-sdparse">l'affaire Dreyfus
+nmod:appos(affaire, Dreyfus)
+</code></pre>
+
+<pre><code class="language-sdparse">la société Hebrard
+nmod:appos(société, Hebrard)
+</code></pre>
+
+<pre><code class="language-sdparse">la région Auvergne
+nmod:appos(région, Auvergne)
+</code></pre>
+
+<p>N.B.: for phrases like “la ville de Paris” we use the <a href="">nmod</a> relation because there is a preposition which cannot be removed (*la ville Paris)
+~~~ sdparse
+la ville de Paris
+nmod(ville, Paris)
+case(Paris, de)
+~~~</p>
+
+<pre><code class="language-sdparse">La rue Faidherbe et la place Voltaire sont situées dans le même quartier. \n Faidherbe street and place Voltaire are located in the same neigbourhood.
+nmod:appos(rue, Faidherbe)
+nmod:appos(place, Voltaire)
+</code></pre>
+
+<pre><code class="language-sdparse">Monsieur Dupont habitait près de la ligne Maginot. \n Mister Dupont lived close to the Maginot Line. 
+nmod:appos(Monsieur, Dupont)
+</code></pre>
+
+<p>We use <code>nmod:appos</code>, instead of flat, for “le président Macron”, which follows in French the same pattern as other <code>nmod:appos</code>. The relation is also used between first and second name:</p>
+
+<pre><code class="language-sdparse">le président Macron
+nmod:appos(président, Macron)
+</code></pre>
+
+<pre><code class="language-sdparse">Emmanuel Macron
+nmod:appos(Emmanuel, macron)
+</code></pre>
+
+<pre><code class="language-sdparse">l’acteur Gaspard Ulliel
+nmod:appos(acteur, Gaspard)
+nmod:appos(Gaspard, Ulliel)
+</code></pre>
+
+<pre><code class="language-sdparse">la rue Victor Hugo
+nmod:appos(rue, Victor)
+nmod:appos(Victor, Hugo)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nmod-appos.md" target="#">edit nmod:appos</a></p>
+
 <p><a id="al-fr-dep/nmod:poss" class="al-dest"></a></p>
 <h2><code>nmod:poss</code>: possessive nominal modifier</h2>
 
@@ -870,6 +947,81 @@ det(27, le)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nummod.md" target="#">edit nummod</a></p>
+
+<p><a id="al-fr-dep/obl" class="al-dest"></a></p>
+<h2><code>obl</code>: oblique nominal</h2>
+
+<p>In UDv2, the <code>obl</code> relation is used for a nominal dependent of a verb. However, this dependent is neither a subject (for which we use the <a href="">nsubj</a> relation) nor a direct object (for which we use the <a href="">obj</a> relation).</p>
+
+<p>In FrenchSpoken, we use the <a href="">obl:mod</a> relation when the dependent is a modifier of the verb and the <a href="">obl:comp</a> relation when the dependent is a core argument of the verb. We also use the <a href="">obl:periph</a> relation some of the non-core nominal dependents of the verb.</p>
+
+<p>Here are a few examples :</p>
+
+<pre><code class="language-sdparse">Habituellement, Pierre mange une pomme à dix heures piles. \n Usually, Pierre eats an apple at ten o'clock.
+obl:mod(mange, heures)
+</code></pre>
+
+<pre><code class="language-sdparse">Max habite à Paris. \n Max lives in Paris.
+obl:comp(habite, Paris)
+</code></pre>
+
+<pre><code class="language-sdparse">Selon ma voisine, le gardien vole parfois des colis. \n According to my neighbour, the caretaker sometimes steals packages.
+obl:periph(vole, voisine)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obl.md" target="#">edit obl</a></p>
+
+<p><a id="al-fr-dep/obl:comp" class="al-dest"></a></p>
+<h2><code>obl:comp</code>: oblique complement</h2>
+
+<p>In FrenchSpoken, the <code>obl:comp</code> relation is used for core dependents of a verb (or an adjective), which are introduced by a preposition.</p>
+
+<p>Here is an example from FrenchSpoken :</p>
+
+<pre><code class="language-sdparse">vous sortez euh de la euh commune de Pontamafrey \n you go out uh of the uh municipality of Pontamafrey
+obl:comp(sortez, commune)
+</code></pre>
+
+<p>For prepositional phrases which are not required by the verb (or the adjective) but modify the verb (or the adjective), we use the <a href="">obl:mod</a> relation.
+For non-core nominal dependents of a verb, we can also use the <a href="">obl:periph</a> relation.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obl-comp.md" target="#">edit obl:comp</a></p>
+
+<p><a id="al-fr-dep/obl:mod" class="al-dest"></a></p>
+<h2><code>obl:mod</code>: oblique modifier</h2>
+
+<p>In FrenchSpoken, the <code>obl:mod</code> relation is used for nominal adjuncts. They can be (but are not always) introduced by a preposition.
+N.B.: In UDv1 the <a href="">nmod</a> relation was used for nominal dependents of verbs, adjectives, and adverbs. In UDv2, we use the <code>obl</code> relation (or one of its sub-categorisations) for these dependents.</p>
+
+<p>Here is an example from FrenchSpoken :</p>
+
+<pre><code class="language-sdparse">oui oui je prends le métro le matin à huit heures et demie \n yes i take the underground in the morning at eight thirty
+obl:mod(prends, heure)
+obl:mod (prends, matin)
+</code></pre>
+
+<p>For prepositional phrases which are required by the verb (or the adjective), we use the <a href="">obl:comp</a> relation.
+For non-core nominal dependents of a verb, we can also use the <a href="">obl:periph</a> relation.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obl-mod.md" target="#">edit obl:mod</a></p>
+
+<p><a id="al-fr-dep/obl:periph" class="al-dest"></a></p>
+<h2><code>obl:periph</code>: oblique peripheral nominal</h2>
+
+<p>In FrenchSpoken, the <code>obl:periph</code> relation is used for nominals which are not required by the verb. 
+The specificity of an <code>obl:periph</code>, compared to an <a href="">obl:mod</a>, is that the <code>obl:periph</code> nominal cannot be cleaved. In addition, the <code>obl:periph</code> nominal cannot be moved inside the core of the sentence, unless it is put in parenthesis.</p>
+
+<pre><code class="language-sdparse">A mon avis, Pierre devrait rester là. \n In my opinion, Pierre should stay there.
+obl:periph(devrait, avis)
+</code></pre>
+
+<p>Example from FrenchSpoken :</p>
+
+<pre><code class="language-sdparse">pour l'Idépendant du midi c'est la gifle \n
+obl:periph(gifle, Indépendant)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obl-periph.md" target="#">edit obl:periph</a></p>
 
 <p><a id="al-fr-dep/parataxis" class="al-dest"></a></p>
 <h2><code>parataxis</code>: parataxis</h2>
