@@ -477,13 +477,35 @@ conj(hésitation, retard)
 
 <p>Here is an example :</p>
 
-<pre><code class="language-sdparse">Bruno, mon oncle, est un grand fan de rugby \n Bruno, my uncle, is a big fan of rugby
+<pre><code class="language-sdparse">Bruno , mon oncle , est un grand fan de rugby \n Bruno, my uncle, is a big fan of rugby
 conj:appos(Bruno, oncle)
 </code></pre>
 
 <p>Not all appositions respect these critierias, for appositions which modify nominal elements but without showing these similarities to coordinations we use the <a href="">nmod:appos</a> relation instead.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/conj-appos.md" target="#">edit conj:appos</a></p>
+
+<p><a id="al-fr-dep/conj:dicto" class="al-dest"></a></p>
+<h2><code>conj:dicto</code>: spoken overridden disfluency </h2>
+
+<p>In FrenchSpoken the <code>conj:dicto</code> relation is used instead of <a href="">reparandum</a> to indicate disfluencies overridden in a speech repair. Contrary to <code>reparandum</code>, in the <code>conj:dicto</code> relation the disfluency is the head and the repair is the dependent.
+Using <code>conj:dicto</code> instead of <code>reparandum</code> enables us to better reflect how the utterance was produced by a speaker since we stay closer to the order in which the words were enonciated.</p>
+
+<p>Example from FrenchSpoken:</p>
+
+<pre><code class="language-sdparse">c'est des choses dont vous parlez dans en classe euh \n
+conj:dicto(dans, en)
+case(classe, dans)
+</code></pre>
+
+<p>N.B.: with <code>reparandum</code>, “en” would have been the dependent of “classe”, instead of “dans”</p>
+
+<pre><code class="language-sdparse">c'est des choses dont vous parlez dans en classe euh \n
+reparandum(en, dans)
+case(classe, en)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/conj-dicto.md" target="#">edit conj:dicto</a></p>
 
 <p><a id="al-fr-dep/cop" class="al-dest"></a></p>
 <h2><code>cop</code>: copula</h2>
@@ -826,12 +848,12 @@ nmod(fait, an)
 
 <p>Here are a few examples :</p>
 
-<pre><code class="language-sdparse">Le journal Libération a refusé de dévoiler ses sources concernant le dossier Fillon. \n The newspaper Liberation refused to reveal its sources in the Fillon case.
+<pre><code class="language-sdparse">Le journal Libération a refusé de dévoiler ses sources concernant le dossier Fillon . \n The newspaper Liberation refused to reveal its sources in the fillon case.
 nmod:appos(journal, Libération)
 nmod:appos(dossier, Fillon)
 </code></pre>
 
-<pre><code class="language-sdparse">l'affaire Dreyfus
+<pre><code class="language-sdparse">l' affaire Dreyfus
 nmod:appos(affaire, Dreyfus)
 </code></pre>
 
@@ -843,12 +865,12 @@ nmod:appos(société, Hebrard)
 nmod:appos(région, Auvergne)
 </code></pre>
 
-<p>N.B.: for phrases like “la ville de Paris” we use the <a href="">nmod</a> relation because of the preposition (which cannot be removed *la ville Paris)
-~~~ sdparse
-la ville de Paris
+<p>N.B.: for phrases like “la ville de Paris” we use the <a href="">nmod</a> relation because of the preposition (which cannot be removed *la ville Paris)</p>
+
+<pre><code class="language-sdparse">la ville de Paris
 nmod(ville, Paris)
 case(Paris, de)
-~~~</p>
+</code></pre>
 
 <pre><code class="language-sdparse">La rue Faidherbe et la place Voltaire sont situées dans le même quartier. \n Faidherbe street and place Voltaire are located in the same neigbourhood.
 nmod:appos(rue, Faidherbe)
@@ -866,10 +888,10 @@ nmod:appos(président, Macron)
 </code></pre>
 
 <pre><code class="language-sdparse">Emmanuel Macron
-nmod:appos(Emmanuel, macron)
+nmod:appos(Emmanuel, Macron)
 </code></pre>
 
-<pre><code class="language-sdparse">l’acteur Gaspard Ulliel
+<pre><code class="language-sdparse">l’ acteur Gaspard Ulliel
 nmod:appos(acteur, Gaspard)
 nmod:appos(Gaspard, Ulliel)
 </code></pre>
@@ -961,11 +983,11 @@ det(27, le)
 obl:mod(mange, heures)
 </code></pre>
 
-<pre><code class="language-sdparse">Max habite à Paris. \n Max lives in Paris.
+<pre><code class="language-sdparse">Max habite à Paris . \n Max lives in Paris.
 obl:comp(habite, Paris)
 </code></pre>
 
-<pre><code class="language-sdparse">Selon ma voisine, le gardien vole parfois des colis. \n According to my neighbour, the caretaker sometimes steals packages.
+<pre><code class="language-sdparse">Selon ma voisine , le gardien vole parfois des colis. \n According to my neighbour, the caretaker sometimes steals packages.
 obl:periph(vole, voisine)
 </code></pre>
 
@@ -996,7 +1018,7 @@ N.B.: In UDv1 the <a href="">nmod</a> relation was used for nominal dependents o
 <p>Here is an example from FrenchSpoken :</p>
 
 <pre><code class="language-sdparse">oui oui je prends le métro le matin à huit heures et demie \n yes i take the underground in the morning at eight thirty
-obl:mod(prends, heure)
+obl:mod(prends, heures)
 obl:mod (prends, matin)
 </code></pre>
 
@@ -1011,13 +1033,13 @@ For non-core nominal dependents of a verb, we can also use the <a href="">obl:pe
 <p>In FrenchSpoken, the <code>obl:periph</code> relation is used for nominals which are not required by the verb. 
 The specificity of an <code>obl:periph</code>, compared to an <a href="">obl:mod</a>, is that the <code>obl:periph</code> nominal cannot be cleaved. In addition, the <code>obl:periph</code> nominal cannot be moved inside the core of the sentence, unless it is put in parenthesis.</p>
 
-<pre><code class="language-sdparse">A mon avis, Pierre devrait rester là. \n In my opinion, Pierre should stay there.
+<pre><code class="language-sdparse">A mon avis , Pierre devrait rester là. \n In my opinion, Pierre should stay there.
 obl:periph(devrait, avis)
 </code></pre>
 
 <p>Example from FrenchSpoken :</p>
 
-<pre><code class="language-sdparse">pour l'Idépendant du midi c'est la gifle \n
+<pre><code class="language-sdparse">pour l' Indépendant du midi c'est la gifle \n
 obl:periph(gifle, Indépendant)
 </code></pre>
 
