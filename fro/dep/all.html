@@ -694,14 +694,13 @@ for <code>goeswith</code>.</p>
 <p><a id="al-fro-dep/iobj" class="al-dest"></a></p>
 <h2><code>iobj</code>: indirect object</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>iobj</code>.</p>
+<p>The indirect object (<code>iobj</code>) of a verb is any nominal phrase that is a core argument of the verb but is not its subject or direct object.</p>
 
-<pre><code class="language-conllu"># visual-style 2 1 det	color:blue
-# visual-style 1	bgColor:blue
-# visual-style 1	fgColor:white
-# visual-style 2	bgColor:blue
-# visual-style 2	fgColor:white
+<pre><code class="language-conllu"># visual-style 5 4 iobj	color:blue
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
 1	De	_	ADP	PRE	_	2	case	_	_
 2	Sarraguce	_	PROPN	NOMpro	_	7	nmod	_	_
 3	ci	_	ADV	ADVgen	_	5	advmod	_	_
@@ -710,6 +709,19 @@ for <code>iobj</code>.</p>
 6	les	_	DET	DETdef	_	7	det	_	_
 7	clefs	_	NOUN	NOMcom	_	5	obj	_	_
 
+</code></pre>
+
+<p>For nominal dependents of verbs, adjectives, and adverbs, it gets analyzed with the <code>obl</code> relation:</p>
+
+<pre><code class="language-conllu"># visual-style 2 4 obl	color:blue
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+1	Il	_	PRON	PROper	_	2	nsubj	_	_
+2	dist	_	VERB	VERcjg	_	0	root	_	_
+3	al	_	ADP	PRE.DETdef	_	4	case	_	_
+4	rei	_	NOUN	NOMcom	_	2	obl	_	_
 
 </code></pre>
 
@@ -883,7 +895,7 @@ for <code>nummod</code>.</p>
 <p><a id="al-fro-dep/obj" class="al-dest"></a></p>
 <h2><code>obj</code>: object</h2>
 
-<p>The object (<code>obj</code>) of a verb is the second most core argument of a verb after the subject. This argument is nominal (noun or pronoun).
+<p>The object (<code>obj</code>) of a verb is the second most core argument of a verb before or after the subject. This argument is nominal (noun or pronoun).
 (See <a href="">ccomp</a> for when the object is clausal.)</p>
 
 <pre><code class="language-conllu"># visual-style 4 2 obj	color:blue
@@ -901,20 +913,20 @@ for <code>nummod</code>.</p>
 
 </code></pre>
 
-<pre><code class="language-conllu"># visual-style 4 2 obj	color:blue
+<pre><code class="language-conllu"># visual-style 9 2 obj	color:blue
 # visual-style 2	bgColor:blue
 # visual-style 2	fgColor:white
-# visual-style 4	bgColor:blue
-# visual-style 4	fgColor:white
+# visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
 1	Se	_	ADV	ADVgen	_	9	advmod	_	_
 2	l'	_	PRON	PROper	_	9	obj	_	_
-3	eut	_	VERB	VERcjg	morph=VFin	9	aux	_	_
+3	eut	_	VERB	VERcjg	_	9	aux	_	_
 4	en	_	ADP	PRE	_	6	case	_	_
 5	l'	_	DET	DETdef	_	6	det	_	_
 6	angle	_	NOUN	NOMcom	_	9	obl	_	_
 7	a	_	ADP	PRE	_	8	case	_	_
 8	force	_	NOUN	NOMcom	_	9	obl	_	_
-9	mis	_	VERB	VERppe	morph=VPar	0	root	_	_
+9	mis	_	VERB	VERppe	_	0	root	_	_
 
 </code></pre>
 
@@ -936,6 +948,67 @@ for <code>nummod</code>.</p>
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fro-dep/obj.md" target="#">edit obj</a></p>
+
+<p><a id="al-fro-dep/obl" class="al-dest"></a></p>
+<h2><code>obl</code>: oblique nominal</h2>
+
+<p>The <code>obl</code> relation is used for a nominal dependent (noun, pronoun, noun phrase) of a verb (or main predicate). 
+This concerns different cases of prepositional groups, and more generally, it corresponds to an adverbial attaching to a verb, adjective or other adverb.</p>
+
+<pre><code class="language-conllu"># visual-style 1 5 obl	color:blue
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+1	Vint	_	VERB	VERcjg	_	0	root	_	_
+2	s'	_	PRON	PROper	_	1	expl	_	_
+3	en	_	ADV	PROadv	_	1	advmod	_	_
+4	al	_	ADP	PRE.DETdef	_	5	case	_	_
+5	tabernacle	_	NOUN	NOMcom	_	1	obl	_	_
+
+</code></pre>
+
+<p>This relation is used when the dependent is a core argument of the verb, in the case of double object construction.</p>
+
+<pre><code class="language-conllu"># visual-style 3 5 obl	color:blue
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+1	et	_	CCONJ	CONcoo	_	3	cc:nc	_	_
+2	ele	_	PRON	PROper	_	3	nsubj	_	_
+3	dunet	_	VERB	VERcjg	_	0	root	_	_
+4	a	_	ADP	PRE	_	5	case	_	_
+5	hume	_	NOUN	NOMcom	_	3	obl	_	_
+6	ki	_	PRON	PROrel	_	8	nsubj	_	_
+7	la	_	PRON	PROper	_	8	obj	_	_
+8	portet	_	VERB	VERcjg	_	5	acl:relcl	_	_
+9	sur	_	ADP	PRE	_	10	case	_	_
+10	sei	_	PRON	PROper	_	8	obl	_	_
+11	force	_	NOUN	NOMcom	_	3	obj	_	_
+12	et	_	CCONJ	CONcoo	_	13	cc	_	_
+13	vertut	_	NOUN	NOMcom	_	11	conj	_	_
+
+</code></pre>
+
+<p>It can also be used for temporal and locational nominal modifiers:</p>
+
+<pre><code class="language-conllu"># visual-style 3 7 obl	color:blue
+# visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+1	si	_	ADV	ADVgen	_	3	advmod	_	_
+2	la	_	PRON	PROper	_	3	obj	_	_
+3	trovet	_	VERB	VERcjg	_	0	root	_	_
+4	l'	_	DET	DETdef	_	5	det	_	_
+5	um	_	PRON	PROind	_	3	nsubj	_	_
+6	en	_	ADP	PRE	_	7	case	_	_
+7	Indie	_	PROPN	NOMpro	_	3	obl	_	_
+
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fro-dep/obl.md" target="#">edit obl</a></p>
 
 <p><a id="al-fro-dep/parataxis" class="al-dest"></a></p>
 <h2><code>parataxis</code>: parataxis</h2>
