@@ -1132,6 +1132,51 @@ nsubj(reflet, art)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nsubj.md" target="#">edit nsubj</a></p>
 
+<p><a id="al-fr-dep/nsubj:expl" class="al-dest"></a></p>
+<h2><code>nsubj:expl</code>: expletiv nominal subject</h2>
+
+<p>In FrenchSpoken we decided not to use the <a href="">expl</a> relation. Instead we only use a subrelation for impersonal constructions:</p>
+
+<pre><code class="language-sdparse">il est arrivé un malheur \n something bad happened
+nsubj:expl(arrivé, il)
+nsubj:quasi(arrivé, malheur)
+</code></pre>
+
+<p>The use of the <code>nsubj:expl</code> relation also enables us to mark the difference between a few structures.
+For example the temporal use of <em>il y a</em> (i.e. when <em>il y a</em> works like an adposition) to the other uses of <em>il y a</em>:</p>
+
+<pre><code class="language-sdparse">Paul est arrivé il y a trois jours . \n Paul arrived three days ago.
+fixed(il, y)
+fixed(y, a)
+case(jours, il)
+</code></pre>
+
+<pre><code class="language-sdparse">Il y a trois livres sur la table. \n There are three books on the table.
+nsubj:expl(a, Il)
+advmod(a, y)
+</code></pre>
+
+<p><code>nsubj:expl</code> also enables us to differenciate between cleft and presentative construction using <em>c’est</em> (or <em>c’était</em>, <em>ce sont</em> etc.):</p>
+
+<p>In the following example, <em>c’</em> has an obvious antecedent (<em>Pierre</em>) so the second sentence (<em>C’est un ami qui habite ici.</em>) is a presentative construction (and not a cleft sentence).
+In this case, we use the usual <code>nsubj</code> relation.</p>
+
+<pre><code class="language-sdparse">Je te présente Pierre. C' est un ami qui habite ici. \n This is Pierre. He is a friend who lives here.
+nsubj(ami, c')
+acl:relcl(ami, habite)
+</code></pre>
+
+<p>In the second example, <em>c’</em> doesn’t have an obvious antecedent. The second sentence (<em>C’est un ami qui habite ici</em>) is a cleft sentence, that is why we use the <code>nsubj:expl</code>relation.</p>
+
+<pre><code class="language-sdparse">Je connais cette maison. C'est un ami qui habite ici. \n I know this house. It's a friend who lives there.
+nsubj:expl(ami, c')
+acl:cleft(ami, habite)
+</code></pre>
+
+<p>N.B.: Note that we use two different subrelations for relative clauses (<a href="">acl:relcl</a>) and for cleft sentences (<a href="">acl:cleft</a>).</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nsubj-expl.md" target="#">edit nsubj:expl</a></p>
+
 <p><a id="al-fr-dep/nsubjpass" class="al-dest"></a></p>
 <h2><code>nsubjpass</code>: passive nominal subject</h2>
 
