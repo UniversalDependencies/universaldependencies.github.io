@@ -62,17 +62,9 @@
 
           <h2><code>expl</code>: expletive</h2>
 
-<p>This relation captures expletive or pleonastic nominals. These are nominals that appear in an argument position of a predicate but which do not themselves satisfy any of the semantic roles of the predicate. There is further discussion and examples on the universal dependency page (<a href="">u-dep/expl</a>).</p>
-
-<pre><code class="language-sdparse">C' est la seule manière de réussir \n It' s the only way to succeed
-expl(manière, C')
-</code></pre>
-
-<p>In Romance languages, pronouns in prominal verbs which do not have a semantic role are marked as <code>expl</code> such as <em>se</em> in <em>se douter</em>. In French the <code>expl</code> relation is also used for euphonic elements, such as <em>l’</em> in e.g. <em>et que l’on retrouve</em> or <em>t</em> in <em>a-t-il reçu mon email?</em></p>
-
 <p>Note that currenlty expletives are not annotated consistently in the French treebank.</p>
 
-<p>In FrenchSpoken we don’t use the <code>expl</code>relation. The current definition sates that the <code>expl</code>relation should be used for “nominals that appear in an argument position of a predicate but which do not themselves satisfy any of the semantic roles of the predicate” (see above and the universal dependency page (<a href="">u-dep/expl</a>). This definition seems to give more value to the semantic relations than to the syntactic relations.
+<p>In FrenchSpoken we don’t use the <code>expl</code>relation. The current definition sates that the <code>expl</code>relation should be used for “nominals that appear in an argument position of a predicate but which do not themselves satisfy any of the semantic roles of the predicate” (see the universal dependency page (<a href="">u-dep/expl</a>). This definition seems to give more value to the semantic relations than to the syntactic relations.
 That is why we will only use <em>expl</em> as a subrelation for impersonal constructions. All other arguments (whether they satisfy a semantic role of the predicate or not) will be annotated with the usual syntactic dependency relations (nsubj, obj etc.). For further information see the following discussion: https://github.com/UniversalDependencies/docs/issues/461</p>
 
 <p>In FrenchSpoken we will thus use the <a href="">nsubj:expl</a> relation for impersonal constructions such as:</p>
@@ -82,9 +74,9 @@ nsubj:expl(arrivé, il)
 nsubj:quasi(arrivé, malheur)
 </code></pre>
 
-<p>N.B.: we also introduce another type a subrelation <a href="">nsubj:quasi</a> for the other dependent of the predicate that has a <em>nsubj:expl</em></p>
+<p>N.B.: we also introduce another type a subrelation <a href="">nsubj:quasi</a> and <a href="">csubj:quasi</a> for the other dependent of the predicate that has a <em>nsubj:expl</em></p>
 
-<p>For pronominal verbs, we use the usual relations for core arguments:</p>
+<p>For pronominal verbs, we use the usual relations for core arguments.</p>
 
 <pre><code class="language-sdparse">se douter \n to suspect
 obj(douter, se)
@@ -94,26 +86,38 @@ obj(douter, se)
 obj(souvient, se)
 </code></pre>
 
-<p>For euphonic elements, we consider them as allomorphs. For example in <em>a-t-elle bien dormi ?</em> we consider that <em>-t-elle</em> is an allomorph of the pronoun <em>elle</em>:</p>
+<p>N.B.: Here the pronoun is not an expletive but a part of a fixed verbal expression that is syntactically regular.</p>
 
-<pre><code class="language-sdparse">a -t - elle bien dormi ? \n did she sleep well?
-nsubj(a,-t)
-goeswith(-t,-)
+<p>For euphonic elements, we consider them as allomorphs. For example in <em>a-t-elle bien dormi ?</em> we consider that <em>-t-elle</em> is an allomorph of the pronoun <em>elle</em>.
+We decided to do a strictly formal tokenization where the hyphens are considered as tokens. This means that, for example, in <em>a-t-elle</em> we have 5 tokens <em>a</em>, <em>-</em>, <em>t</em>, <em>-</em> and <em>elle</em>.
+The first hyphen is the head (i.e. he receives the link <code>nsubj</code>) and the other tokens are linked with a goeswith:</p>
+
+<pre><code class="language-sdparse">a - t - elle bien dormi ? \n did she sleep well?
+nsubj(a,-)
+goeswith(-,t)
+goeswith(-,-)
 goeswith(-,elle)
 </code></pre>
 
-<p>N.B.: In some French treebanks, doubled subjects in interrogativ sentences are annotated with <code>expl</code> :</p>
+<p>As for the POS, we suggest tagging the hyphens with PUNCT and the <em>t</em> with PART (and of course <em>elle</em> with PRON).
+This way of tokanizing and segmentating seems easier for the parsing and doesn’t require an external source since we keep everything separated.	We also don’t have to wonder where to attach the hyphens as they constitute separated tokens.
+Thus it becomes easier to automatically analyze together cases like <em>là-dessus</em> and <em>là-bas</em> where the hyphen belongs to the left part (<em>là-</em> and <em>dessus</em> or <em>bas</em>) and cases like <em>est-elle</em> where we can choose to attach the hyphen to the right part (<em>-elle</em>).</p>
+
+<p>N.B.: The choice of segmentation and tokenization we made are arbitrary and other French treebanks could choose to do otherwise (for example they could consider <em>a-t-</em> or <em>-t-elle</em> as a token, or annotate the <em>-t-</em> with <code>expl</code>).</p>
+
+<p>In some French treebanks, doubled subjects in interrogativ sentences are annotated with <code>expl</code> :</p>
 
 <pre><code class="language-sdparse">Marie est -elle là ? \n Is Marie here?
 nsubj(est, Marie)
 expl(est, -elle)
 </code></pre>
 
-<p>In FrenchSpoken we will annotate the two subjects with <code>nsubj</code>:</p>
+<p>In FrenchSpoken we will annotate the two subjects with <code>nsubj</code> (and we use the tokenization rules from above):</p>
 
-<pre><code class="language-sdparse">Marie est -elle là ? \n Is Marie here?
+<pre><code class="language-sdparse">Marie est - elle là ? \n Is Marie here?
 nsubj(est, Marie)
-nsubj(est, -elle)
+goeswith(-,elle)
+nsubj(est, -)
 </code></pre>
 
 
