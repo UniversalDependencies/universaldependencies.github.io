@@ -395,6 +395,22 @@ acl(regards, braqués)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/acl.md" target="#">edit acl</a></p>
 
+<p><a id="al-fr-dep/acl:cleft" class="al-dest"></a></p>
+<h2><code>acl:cleft</code>: cleft clause modifier</h2>
+
+<p>In FrenchSpoken we use the <code>acl:cleft</code> relation to link the clefted nominal element and cleft clause in a cleft construction. 
+When the clefted element is a clause or an adverb, we use the ccomp:cleft relation instead.</p>
+
+<pre><code class="language-sdparse">Les vendanges commencent aujourd'hui. C' est un vigneron du coin qui me l'a dit .
+nsubj:expl(vigneron, C')
+acl:cleft(vigneron, dit)
+nsubj(dit, qui)
+</code></pre>
+
+<p>We also use the <a href="">nsubj:expl</a> relation for the syntactical subject of the cleft construction.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/acl-cleft.md" target="#">edit acl:cleft</a></p>
+
 <p><a id="al-fr-dep/acl:relcl" class="al-dest"></a></p>
 <h2><code>acl:relcl</code>: relative clause modifier</h2>
 
@@ -895,10 +911,15 @@ nsubj(est, -)
 <p>The <code>fixed</code> relation is one of the three relations for multiword expressions (MWEs) (the other two being flat and compound). It is used for certain fixed grammaticized expressions that behave like function words or short adverbials.
 Fixed MWEs are annotated in a flat structure, where all subsequent words in the expression are attached to the first one using the fixed label.</p>
 
+<pre><code class="language-sdparse">Marie était malade mais elle est quand même venue . \n Marie was sick but she came anyway. 
+fixed(quand, même)
+advmod(venue, quand)
+</code></pre>
+
 <p>In FrenchSpoken we try to use the <code>fixed</code> relation as little as possible and instead to syntactically analyse as many expression as we can.</p>
 
-<p>However the <code>fixed</code> relation is sometimes very useful. For example it enables us to differenciate between the temporal use of <em>il y a</em> (i.e. when <em>il y a</em> works like an adposition) and the other uses of <em>il y a</em>:
-The <em>il y a</em> that works like an adposition will be annotated with <code>fixed</code>:</p>
+<p>However the <code>fixed</code> relation enables enables us to differenciate between different structures, for example between the temporal use of <em>il y a</em> (i.e. when <em>il y a</em> works like an adposition) and the other uses of <em>il y a</em>:
+The <em>il y a</em> that works like an adposition is annotated with <code>fixed</code>:</p>
 
 <pre><code class="language-sdparse">Paul est arrivé il y a trois jours . \n Paul arrived three days ago.
 fixed(il, y)
