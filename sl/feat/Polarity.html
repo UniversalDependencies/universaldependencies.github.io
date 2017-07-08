@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Polarity</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-sl">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/sl/feat">sl/feat</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_sl-feat/Polarity.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v1warning">
+	This page still pertains to UD version 1.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <style>h3 {display:block;background-color:#dfeffc}</style>
+
+<h2><code>Polarity</code>: whether the word can be or is negated</h2>
+
+<p>In Slovenian, negation can be expressed in different ways. Syntactically, it can be marked by using negation particle <em>ne</em> “not”, as in <em>Tega <b>ne</b> vem</em> “I do not know that.” or <em>Šli smo na <b>ne</b> najbolj zanimivo predavanje.</em> “We attended a not too interesting lecture.”, or by using special negated verb form, as in <em>To <b>ni</b> ona.</em> “This is not her.” Morhplogically, negation is marked by prefix <em>ne-</em>, as in <em><b>ne</b>pravičen</em> “unfair”, <em><b>ne</b>želen</em> “unwanted” etc.</p>
+
+<p>In the Slovenian UD Treebank, we currently only mark negation as an inflectional feature of a limited set of <a href="VERB">verbs</a> and <a href="AUX">auxiliaries</a>: <em><b>biti</b></em> “to be”, <em><b>imeti</b></em> “to have”, <em><b>hoteti</b></em> “to want”.</p>
+
+<h3 id="neg-negative"><code>Neg</code>: negative</h3>
+
+<p><code>Polarity</code> is assigned to negated word forms of verbs <em>biti, imeti, hoteti</em>.</p>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li><em><b>nisem</b></em> “I am not”, <em><b>nisi</b></em> “you are not”, <em><b>ni</b></em> “he/she/it is not” etc.</li>
+  <li><em><b>nimam</b></em> “I do not have”, <em><b>nimaš</b></em> “you do not have”, <em><b>nima</b></em> “he/she/it does not have” etc.</li>
+  <li><em><b>nočem</b></em> “I do not want”, <em><b>nočeš</b></em> “you do not want”, <em><b>nočemo</b></em> “he/she/it does not want” etc.</li>
+</ul>
+
+<h3 id="pos-positive-affirmative"><code>Pos</code>: positive, affirmative</h3>
+
+<p><code>Positive</code> is assigned to non-negated word forms of verbs <em>biti, imeti, hoteti</em> with identical set of other grammatical features.</p>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li><em><b>sem</b></em> “I am”, <em><b>nisi</b></em> “you are”, <em><b>je</b></em> “he/she/it is” etc.</li>
+  <li><em><b>imam</b></em> “I have”, <em><b>imaš</b></em> “you have”, <em><b>ima</b></em> “he/she/it has” etc.</li>
+  <li><em><b>hočem</b></em> “I want”, <em><b>hočeš</b></em> “you want”, <em><b>hočemo</b></em> “he/she/it wants” etc.</li>
+</ul>
+
+<h3 id="conversion-from-jos">Conversion from JOS</h3>
+
+<p>All verbs with feature Negative=no are converted to <code>Negative=Pos</code> and all verbs with feature Negative=yes are converted to <code>Negative=Neg</code>.</p>
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+<hr />
+
+<h2 id="treebank-statistics-udslovenian">Treebank Statistics (UD_Slovenian)</h2>
+
+<p>This feature is language-specific.
+It occurs with 2 different values: <code>Neg</code>, <code>Pos</code>.</p>
+
+<p>9038 tokens (7%) have a non-empty value of <code>Polarity</code>.
+95 types (0%) occur at least once with a non-empty value of <code>Polarity</code>.
+5 lemmas (0%) occur at least once with a non-empty value of <code>Polarity</code>.
+The feature is used with 3 part-of-speech tags: <a href="">sl-pos/AUX</a> (7447; 6% instances), <a href="">sl-pos/VERB</a> (978; 1% instances), <a href="">sl-pos/PART</a> (613; 0% instances).</p>
+
+<h3 id="aux"><code>AUX</code></h3>
+
+<p>7447 <a href="">sl-pos/AUX</a> tokens (83% of all <code>AUX</code> tokens) have a non-empty value of <code>Polarity</code>.</p>
+
+<p>The most frequent other feature values with which <code>AUX</code> and <code>Polarity</code> co-occurred: <tt><a href="Mood.html">Mood</a>=Ind</tt> (7447; 100%), <tt><a href="VerbForm.html">VerbForm</a>=Fin</tt> (7447; 100%), <tt><a href="Tense.html">Tense</a>=Pres</tt> (6559; 88%), <tt><a href="Person.html">Person</a>=3</tt> (6511; 87%), <tt><a href="Number.html">Number</a>=Sing</tt> (5062; 68%).</p>
+
+<p><code>AUX</code> tokens may have the following values of <code>Polarity</code>:</p>
+
+<ul>
+  <li><code>Neg</code> (557; 7% of non-empty <code>Polarity</code>): <em>ni, niso, nisem, nismo, niste, nista, nisva, nisi</em></li>
+  <li><code>Pos</code> (6890; 93% of non-empty <code>Polarity</code>): <em>je, so, bo, sem, bodo, sta, smo, bomo, boste, ste</em></li>
+</ul>
+
+<table>
+  <tr><th>Paradigm <i>biti</i></th><th><tt>Neg</tt></th><th><tt>Pos</tt></th></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bom</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nisem</em></td><td><em>sem</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>boš</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nisi</em></td><td><em>si, as</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>ni</em></td><td><em>je</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bova</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nisva</em></td><td><em>sva</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bosta</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Pres</tt></td><td></td><td><em>sta</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bosta</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nista</em></td><td><em>sta</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bomo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nismo</em></td><td><em>smo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>boste</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>niste</em></td><td><em>ste</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bodo, bojo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>niso</em></td><td><em>so</em></td></tr>
+</table>
+
+<h3 id="verb"><code>VERB</code></h3>
+
+<p>978 <a href="">sl-pos/VERB</a> tokens (8% of all <code>VERB</code> tokens) have a non-empty value of <code>Polarity</code>.</p>
+
+<p>The most frequent other feature values with which <code>VERB</code> and <code>Polarity</code> co-occurred: <tt><a href="Gender.html">Gender</a>=EMPTY</tt> (978; 100%), <tt><a href="VerbForm.html">VerbForm</a>=Fin</tt> (978; 100%), <tt><a href="Mood.html">Mood</a>=Ind</tt> (978; 100%), <tt><a href="Tense.html">Tense</a>=Pres</tt> (895; 92%), <tt><a href="Person.html">Person</a>=3</tt> (855; 87%), <tt><a href="Number.html">Number</a>=Sing</tt> (726; 74%), <tt><a href="Aspect.html">Aspect</a>=EMPTY</tt> (637; 65%).</p>
+
+<p><code>VERB</code> tokens may have the following values of <code>Polarity</code>:</p>
+
+<ul>
+  <li><code>Neg</code> (169; 17% of non-empty <code>Polarity</code>): <em>ni, nima, nimajo, nimam, noče, nimamo, nisem, nimate, nismo, niso</em></li>
+  <li><code>Pos</code> (809; 83% of non-empty <code>Polarity</code>): <em>je, ima, imajo, bo, so, imamo, imate, imam, hoče, bodo</em></li>
+</ul>
+
+<table>
+  <tr><th>Paradigm <i>biti</i></th><th><tt>Neg</tt></th><th><tt>Pos</tt></th></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bom</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nisem</em></td><td><em>sem</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nisi</em></td><td><em>si</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>ni</em></td><td><em>je</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td></td><td><em>Sva</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td></td><td><em>sta</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nismo</em></td><td><em>smo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>boste</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>niste</em></td><td><em>ste</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bodo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>niso</em></td><td><em>so</em></td></tr>
+</table>
+
+<h3 id="part"><code>PART</code></h3>
+
+<p>613 <a href="">sl-pos/PART</a> tokens (17% of all <code>PART</code> tokens) have a non-empty value of <code>Polarity</code>.</p>
+
+<p><code>PART</code> tokens may have the following values of <code>Polarity</code>:</p>
+
+<ul>
+  <li><code>Neg</code> (613; 100% of non-empty <code>Polarity</code>): <em>ne</em></li>
+</ul>
+
+<h2 id="relations-with-agreement-in-polarity">Relations with Agreement in <code>Polarity</code></h2>
+
+<p>The 10 most frequent relations where parent and child node agree in <code>Polarity</code>:
+<tt>AUX –[<a href="../dep/conj.html">conj</a>]–&gt; VERB</tt> (1; 100%).</p>
+
+<hr />
+
+<h2 id="treebank-statistics-udslovenian-sst">Treebank Statistics (UD_Slovenian-SST)</h2>
+
+<p>This feature is language-specific.
+It occurs with 2 different values: <code>Neg</code>, <code>Pos</code>.</p>
+
+<p>1783 tokens (9%) have a non-empty value of <code>Polarity</code>.
+43 types (1%) occur at least once with a non-empty value of <code>Polarity</code>.
+4 lemmas (0%) occur at least once with a non-empty value of <code>Polarity</code>.
+The feature is used with 3 part-of-speech tags: <a href="">sl-pos/AUX</a> (1090; 6% instances), <a href="">sl-pos/VERB</a> (499; 3% instances), <a href="">sl-pos/PART</a> (194; 1% instances).</p>
+
+<h3 id="aux-1"><code>AUX</code></h3>
+
+<p>1090 <a href="">sl-pos/AUX</a> tokens (86% of all <code>AUX</code> tokens) have a non-empty value of <code>Polarity</code>.</p>
+
+<p>The most frequent other feature values with which <code>AUX</code> and <code>Polarity</code> co-occurred: <tt><a href="VerbForm.html">VerbForm</a>=Fin</tt> (1090; 100%), <tt><a href="Mood.html">Mood</a>=Ind</tt> (1090; 100%), <tt><a href="Tense.html">Tense</a>=Pres</tt> (939; 86%), <tt><a href="Number.html">Number</a>=Sing</tt> (765; 70%), <tt><a href="Person.html">Person</a>=3</tt> (730; 67%).</p>
+
+<p><code>AUX</code> tokens may have the following values of <code>Polarity</code>:</p>
+
+<ul>
+  <li><code>Neg</code> (73; 7% of non-empty <code>Polarity</code>): <em>ni, nisem, nismo, niso, nisi, niste, nisva</em></li>
+  <li><code>Pos</code> (1017; 93% of non-empty <code>Polarity</code>): <em>je, so, sem, smo, bo, si, bomo, ste, bom, boš</em></li>
+</ul>
+
+<table>
+  <tr><th>Paradigm <i>biti</i></th><th><tt>Neg</tt></th><th><tt>Pos</tt></th></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bom</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nisem</em></td><td><em>sem</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>boš</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nisi</em></td><td><em>si</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>ni</em></td><td><em>je, biti</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bova</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nisva</em></td><td><em>sva</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bosta</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td></td><td><em>sta</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bomo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nismo</em></td><td><em>smo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>boste</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>niste</em></td><td><em>ste</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bodo, bojo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>niso</em></td><td><em>so</em></td></tr>
+</table>
+
+<h3 id="verb-1"><code>VERB</code></h3>
+
+<p>499 <a href="">sl-pos/VERB</a> tokens (19% of all <code>VERB</code> tokens) have a non-empty value of <code>Polarity</code>.</p>
+
+<p>The most frequent other feature values with which <code>VERB</code> and <code>Polarity</code> co-occurred: <tt><a href="Mood.html">Mood</a>=Ind</tt> (499; 100%), <tt><a href="Gender.html">Gender</a>=EMPTY</tt> (499; 100%), <tt><a href="VerbForm.html">VerbForm</a>=Fin</tt> (499; 100%), <tt><a href="Tense.html">Tense</a>=Pres</tt> (451; 90%), <tt><a href="Number.html">Number</a>=Sing</tt> (379; 76%), <tt><a href="Aspect.html">Aspect</a>=EMPTY</tt> (360; 72%), <tt><a href="Person.html">Person</a>=3</tt> (350; 70%).</p>
+
+<p><code>VERB</code> tokens may have the following values of <code>Polarity</code>:</p>
+
+<ul>
+  <li><code>Neg</code> (63; 13% of non-empty <code>Polarity</code>): <em>ni, nima, nimam, nimajo, niso, noče, nimamo, nisem, nimaš, nismo</em></li>
+  <li><code>Pos</code> (436; 87% of non-empty <code>Polarity</code>): <em>je, so, ima, bo, imamo, imajo, imaš, si, imate, bom</em></li>
+</ul>
+
+<table>
+  <tr><th>Paradigm <i>biti</i></th><th><tt>Neg</tt></th><th><tt>Pos</tt></th></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bom</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nisem</em></td><td><em>sem</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>boš</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Pres</tt></td><td></td><td><em>si</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Sing|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>ni</em></td><td><em>je</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bova</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td></td><td><em>sva</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bosta</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Dual|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td></td><td><em>sta</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bomo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=1|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>nismo</em></td><td><em>smo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=2|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>niste</em></td><td><em>ste</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Fut</tt></td><td></td><td><em>bodo, bojo</em></td></tr>
+  <tr><td><tt><a href="Number.html">Number</a>=Plur|<a href="Person.html">Person</a>=3|<a href="Tense.html">Tense</a>=Pres</tt></td><td><em>niso</em></td><td><em>so</em></td></tr>
+</table>
+
+<h3 id="part-1"><code>PART</code></h3>
+
+<p>194 <a href="">sl-pos/PART</a> tokens (11% of all <code>PART</code> tokens) have a non-empty value of <code>Polarity</code>.</p>
+
+<p><code>PART</code> tokens may have the following values of <code>Polarity</code>:</p>
+
+<ul>
+  <li><code>Neg</code> (194; 100% of non-empty <code>Polarity</code>): <em>ne</em></li>
+</ul>
+
+<h2 id="relations-with-agreement-in-polarity-1">Relations with Agreement in <code>Polarity</code></h2>
+
+<p>The 10 most frequent relations where parent and child node agree in <code>Polarity</code>:
+<tt>VERB –[<a href="../dep/reparandum.html">reparandum</a>]–&gt; VERB</tt> (10; 56%),
+<tt>AUX –[<a href="../dep/reparandum.html">reparandum</a>]–&gt; VERB</tt> (2; 100%),
+<tt>AUX –[<a href="../dep/reparandum.html">reparandum</a>]–&gt; AUX</tt> (1; 100%).</p>
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+Polarity in other languages:
+
+[<a href="../../u/feat/Polarity.html">u</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'sl-feat';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
