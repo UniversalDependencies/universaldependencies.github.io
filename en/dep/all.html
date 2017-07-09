@@ -197,7 +197,7 @@ in two places.</p>
 	<tr><td colspan="3"><strong>Compounding and unanalyzed</strong></td></tr>
 	<tr>
 	  <td><a>compound</a></td>
-	  <td><a>mwe</a></td>
+	  <td><a>fixed</a></td>
 	  <td><a>goeswith</a></td>
 	</tr>
 	<tr>
@@ -899,116 +899,12 @@ expl(is, There)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/expl.md" target="#">edit expl</a></p>
 
-<p><a id="al-en-dep/foreign" class="al-dest"></a></p>
-<h2><code>foreign</code>: foreign words</h2>
-
-<p>We use <code>foreign</code> to label sequences of foreign words. These are given
-a linear analysis: the head is the first token in the foreign phrase.</p>
-
-<pre><code class="language-sdparse">I guess that c' est la vie
-nsubj(guess-2, I-1)
-ccomp(guess-2, c'-4)
-mark(c'-4, that-3)
-foreign(c'-4, est-5)
-foreign(c'-4, la-6)
-foreign(c'-4, vie-7)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/foreign.md" target="#">edit foreign</a></p>
-
-<p><a id="al-en-dep/goeswith" class="al-dest"></a></p>
-<h2><code>goeswith</code>: goes with</h2>
-
-<p>This relation links two parts of a word that are separated in text
-that is not well edited. We follow the treebank: The GW part is the
-dependent and the head is in some sense the <em>main</em> part, often the
-second part.</p>
-
-<pre><code class="language-sdparse">They come here with out legal permission
-goeswith(out-5, with-4)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/goeswith.md" target="#">edit goeswith</a></p>
-
-<p><a id="al-en-dep/iobj" class="al-dest"></a></p>
-<h2><code>iobj</code>: indirect object</h2>
-
-<p>The indirect object of a (verbal) predicate is the nominal which is the dative
-object of the verb. The relation <code>iobj</code> is used for objects that are not direct
-objects. It occurs only when there is a <code>obj</code> or <code>ccomp</code> in the clause.</p>
-
-<pre><code class="language-sdparse">She gave me a raise
-iobj(gave, me)
-</code></pre>
-
-<p>Note that prepositional phrases are not considered core arguments in English,
-hence in <em>she gave it to me</em>, the <em>to me</em> part is attached as <a href="">nmod</a> although
-semantically it corresponds to the dative.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/iobj.md" target="#">edit iobj</a></p>
-
-<p><a id="al-en-dep/list" class="al-dest"></a></p>
-<h2><code>list</code>: list</h2>
-
-<p>The <code>list</code> relation is used for chains of comparable items. Web text often contains passages which are meant to be interpreted as lists but are parsed as single sentences. Email signatures in particular contain these structures, in the form of contact information: the different contact information items are labeled as <code>list</code>; the key-value pair relations are labeled as <a href="">appos</a>.</p>
-
-<p>In lists with more than two items, all items of the list shoud modify the first one.</p>
-
-<pre><code class="language-sdparse">Steve Jones Phone: 555-9814 Email: jones@abc.edf
-name(Steve-1, Jones-2)
-list(Steve-1, Phone:-3)
-list(Steve-1, Email:-5)
-appos(Phone:-3, 555-9814-4)
-appos(Email:-5, jones@abc.edf-6)
-</code></pre>
-
-<p>In an itemized or numbered list, we have been taking the item marker as a dependent of the head of the contentful list item. This appears to be better than the alternative.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/list.md" target="#">edit list</a></p>
-
-<p><a id="al-en-dep/mark" class="al-dest"></a></p>
-<h2><code>mark</code>: marker</h2>
-
-<p>A marker is the word introducing a clause subordinate to another clause. For a complement clause, this will typically be <em>that</em> or <em>whether</em>. For an adverbial clause, the marker is typically a preposition like <em>before</em> or a subordinating conjunction fulfilling a similar role like <em>while</em> or <em>although</em>. The mark is a dependent of the subordinate clause head.</p>
-
-<pre><code class="language-sdparse">Forces engaged in fighting after insurgents attacked
-mark(attacked, after)
-</code></pre>
-
-<pre><code class="language-sdparse">He says that you like to swim
-mark(swim, that)
-</code></pre>
-
-<p>The infinitive marker <em>to</em> is analyzed as a <code>mark</code>.</p>
-
-<pre><code class="language-sdparse">I tried to finish it
-mark(finish, to)
-</code></pre>
-
-<p>When a a noun or a verb takes a prepositionally marked non-core argument (modifier) and that modifier is a clause, then we also label that prepositon as <code>mark</code> (as it would not seem reasonable to call it <code>case</code> when it is marking a clause). The result will commonly be a doubly marked clause.</p>
-
-<pre><code class="language-sdparse">We have no useful information on whether users are at risk .
-nsubj(have, We)
-neg(information, no)
-amod(information, useful)
-dobj(have, information)
-mark(risk, on)
-mark(risk, whether)
-nsubj(risk, users)
-cop(risk, are)
-case(risk, at)
-acl(information, risk)
-punct(have, .)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/mark.md" target="#">edit mark</a></p>
-
-<p><a id="al-en-dep/mwe" class="al-dest"></a></p>
-<h2><code>mwe</code>: multi-word expression</h2>
+<p><a id="al-en-dep/fixed" class="al-dest"></a></p>
+<h2><code>fixed</code>: multi-word expression</h2>
 
 <p>The multi-word expression (modifier) relation is used for certain fixed grammaticized expressions with function words that behave like a single function word. Multiword expressions are annotated in a flat, head-initial structure,
 in which all words in the expression modify the first one using the
-<code>mwe</code> label.</p>
+<code>fixed</code> label.</p>
 
 <p>At present, this relation is used inside the following expressions:</p>
 
@@ -1263,8 +1159,8 @@ mwe(had, better)
 aux(had, apologize)
 </code></pre>
 
-<h3 id="not-mwes">Not <code>mwe</code>s</h3>
-<p>The following are <strong>not</strong> annotated as <code>mwe</code>s, but are instead labeled according to their apparent internal structure.</p>
+<h3 id="not-fixeds">Not <code>fixed</code>s</h3>
+<p>The following are <strong>not</strong> annotated as <code>fixed</code>s, but are instead labeled according to their apparent internal structure.</p>
 
 <p><em>out of</em>, <em>off of</em> (All double prepositions denoting spatial relations are annotated with two cases on the nominal)</p>
 
@@ -1301,7 +1197,7 @@ nmod(like, all)
 case(all, at)
 </code></pre>
 
-<p><em>at most</em>, <em>at least</em> (when used for quantities. To determine whether <em>at least</em> should be an <code>mwe</code> or not in borderline cases, substitute it with <em>at most</em>; if the sentence remains grammatical, it should receive its surface analysis)</p>
+<p><em>at most</em>, <em>at least</em> (when used for quantities. To determine whether <em>at least</em> should be an <code>fixed</code> or not in borderline cases, substitute it with <em>at most</em>; if the sentence remains grammatical, it should receive its surface analysis)</p>
 
 <pre><code class="language-sdparse">at most 50 percent
 nmod:npmod(percent, most)
@@ -1340,13 +1236,117 @@ vocative(long, Ham)
 parataxis(long, missed)
 </code></pre>
 
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/mwe.md" target="#">edit mwe</a></p>
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/fixed.md" target="#">edit fixed</a></p>
+
+<p><a id="al-en-dep/foreign" class="al-dest"></a></p>
+<h2><code>foreign</code>: foreign words</h2>
+
+<p>We use <code>foreign</code> to label sequences of foreign words. These are given
+a linear analysis: the head is the first token in the foreign phrase.</p>
+
+<pre><code class="language-sdparse">I guess that c' est la vie
+nsubj(guess-2, I-1)
+ccomp(guess-2, c'-4)
+mark(c'-4, that-3)
+foreign(c'-4, est-5)
+foreign(c'-4, la-6)
+foreign(c'-4, vie-7)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/foreign.md" target="#">edit foreign</a></p>
+
+<p><a id="al-en-dep/goeswith" class="al-dest"></a></p>
+<h2><code>goeswith</code>: goes with</h2>
+
+<p>This relation links two parts of a word that are separated in text
+that is not well edited. We follow the treebank: The GW part is the
+dependent and the head is in some sense the <em>main</em> part, often the
+second part.</p>
+
+<pre><code class="language-sdparse">They come here with out legal permission
+goeswith(out-5, with-4)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/goeswith.md" target="#">edit goeswith</a></p>
+
+<p><a id="al-en-dep/iobj" class="al-dest"></a></p>
+<h2><code>iobj</code>: indirect object</h2>
+
+<p>The indirect object of a (verbal) predicate is the nominal which is the dative
+object of the verb. The relation <code>iobj</code> is used for objects that are not direct
+objects. It occurs only when there is a <code>obj</code> or <code>ccomp</code> in the clause.</p>
+
+<pre><code class="language-sdparse">She gave me a raise
+iobj(gave, me)
+</code></pre>
+
+<p>Note that prepositional phrases are not considered core arguments in English,
+hence in <em>she gave it to me</em>, the <em>to me</em> part is attached as <a href="">nmod</a> although
+semantically it corresponds to the dative.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/iobj.md" target="#">edit iobj</a></p>
+
+<p><a id="al-en-dep/list" class="al-dest"></a></p>
+<h2><code>list</code>: list</h2>
+
+<p>The <code>list</code> relation is used for chains of comparable items. Web text often contains passages which are meant to be interpreted as lists but are parsed as single sentences. Email signatures in particular contain these structures, in the form of contact information: the different contact information items are labeled as <code>list</code>; the key-value pair relations are labeled as <a href="">appos</a>.</p>
+
+<p>In lists with more than two items, all items of the list shoud modify the first one.</p>
+
+<pre><code class="language-sdparse">Steve Jones Phone: 555-9814 Email: jones@abc.edf
+name(Steve-1, Jones-2)
+list(Steve-1, Phone:-3)
+list(Steve-1, Email:-5)
+appos(Phone:-3, 555-9814-4)
+appos(Email:-5, jones@abc.edf-6)
+</code></pre>
+
+<p>In an itemized or numbered list, we have been taking the item marker as a dependent of the head of the contentful list item. This appears to be better than the alternative.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/list.md" target="#">edit list</a></p>
+
+<p><a id="al-en-dep/mark" class="al-dest"></a></p>
+<h2><code>mark</code>: marker</h2>
+
+<p>A marker is the word introducing a clause subordinate to another clause. For a complement clause, this will typically be <em>that</em> or <em>whether</em>. For an adverbial clause, the marker is typically a preposition like <em>before</em> or a subordinating conjunction fulfilling a similar role like <em>while</em> or <em>although</em>. The mark is a dependent of the subordinate clause head.</p>
+
+<pre><code class="language-sdparse">Forces engaged in fighting after insurgents attacked
+mark(attacked, after)
+</code></pre>
+
+<pre><code class="language-sdparse">He says that you like to swim
+mark(swim, that)
+</code></pre>
+
+<p>The infinitive marker <em>to</em> is analyzed as a <code>mark</code>.</p>
+
+<pre><code class="language-sdparse">I tried to finish it
+mark(finish, to)
+</code></pre>
+
+<p>When a a noun or a verb takes a prepositionally marked non-core argument (modifier) and that modifier is a clause, then we also label that prepositon as <code>mark</code> (as it would not seem reasonable to call it <code>case</code> when it is marking a clause). The result will commonly be a doubly marked clause.</p>
+
+<pre><code class="language-sdparse">We have no useful information on whether users are at risk .
+nsubj(have, We)
+neg(information, no)
+amod(information, useful)
+dobj(have, information)
+mark(risk, on)
+mark(risk, whether)
+nsubj(risk, users)
+cop(risk, are)
+case(risk, at)
+acl(information, risk)
+punct(have, .)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/mark.md" target="#">edit mark</a></p>
 
 <p><a id="al-en-dep/name" class="al-dest"></a></p>
 <h2><code>name</code>: name</h2>
 
 <p><code>name</code> is one of the three relations for compounding in UD (together
-with <a href="">compound</a> and <a href="">mwe</a>).
+with <a href="">compound</a> and <a href="">fixed</a>).
 It is used for proper nouns constituted of multiple nominal
 elements. For example, <code>name</code> would be used between the words of
 <em>Hillary Rodham Clinton, New York,</em> or <em>Carl XVI Gustaf</em> but not to

@@ -206,7 +206,7 @@ in two places.</p>
 	<tr><td colspan="3"><strong>Compounding and unanalyzed</strong></td></tr>
 	<tr>
 	  <td><a>compound</a></td>
-	  <td><a>mwe</a></td>
+	  <td><a>fixed</a></td>
 	  <td><a>goeswith</a></td>
 	</tr>
 	<tr>
@@ -1030,6 +1030,56 @@ expl(fears, REFLEX)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/expl.md" target="#">edit expl</a></p>
 
+<p><a id="al-cs-dep/fixed" class="al-dest"></a></p>
+<h2><code>fixed</code>: multi-word expression</h2>
+
+<p>The multi-word expression (modifier) relation is one of the
+relations for compounding and it is intended for function words.
+In Czech it is used for multi-word prepositions.
+The leftmost word is the head and all the other words are attached as its <code>fixed</code> modifiers.</p>
+
+<pre><code class="language-sdparse">Na rozdíl od tebe já se nemám zač stydět . \n In contrast to you I myself have-not of-what to-be-ashamed .
+mwe(Na, rozdíl)
+mwe(Na, od)
+case(tebe, Na)
+mwe(In, contrast)
+mwe(In, to)
+case(you, In)
+</code></pre>
+
+<p>Multi-word prepositions usually form a contiguous span of the sentence. In exceptional cases however, they can be interrupted
+by emphasizers and other words:</p>
+
+<pre><code class="language-sdparse">ve srovnání například s úvěry \n in comparison for-example to loans
+mwe(ve, srovnání)
+mwe(ve, s)
+case(úvěry, ve)
+advmod:emph(úvěry, například)
+mwe(in, comparison)
+mwe(in, to)
+case(loans, in)
+advmod:emph(loans, for-example)
+</code></pre>
+
+<p>Another type of interruption is caused by a possessive determiner. For instance, <em>na základě něčeho</em> “based on something”
+contains the multi-word preposition <em>na základě</em> “based on”, lit. <em>on the-basis-of</em>. This expression is etymologically
+a combination of a proper preposition <em>na</em> “on” and the noun <em>základ</em> “basis”; the argument <em>něčeho</em> “something” is in
+genitive. If the phrase <em>na základě</em> were not analyzed as a multi-word expression, we would have a normal genitive
+modification between two nominals: <em>základ něčeho</em> “basis of-something”. A genitive modifier can be substituted by
+a possessive determiner, and this is possible even within the partially frozen multi-word preposition, as with the
+relative possessive determiner in the following example:</p>
+
+<pre><code class="language-sdparse">zákon , na jehož základě byl zřízen fond \n law , on whose basis was created fund
+nmod(zřízen, jehož)
+nmod(created, whose)
+case(jehož, na)
+case(whose, on)
+mwe(na, základě)
+mwe(on, basis)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/fixed.md" target="#">edit fixed</a></p>
+
 <p><a id="al-cs-dep/foreign" class="al-dest"></a></p>
 <h2><code>foreign</code>: foreign words</h2>
 
@@ -1192,56 +1242,6 @@ advmod(arrive, when)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/mark.md" target="#">edit mark</a></p>
-
-<p><a id="al-cs-dep/mwe" class="al-dest"></a></p>
-<h2><code>mwe</code>: multi-word expression</h2>
-
-<p>The multi-word expression (modifier) relation is one of the
-relations for compounding and it is intended for function words.
-In Czech it is used for multi-word prepositions.
-The leftmost word is the head and all the other words are attached as its <code>mwe</code> modifiers.</p>
-
-<pre><code class="language-sdparse">Na rozdíl od tebe já se nemám zač stydět . \n In contrast to you I myself have-not of-what to-be-ashamed .
-mwe(Na, rozdíl)
-mwe(Na, od)
-case(tebe, Na)
-mwe(In, contrast)
-mwe(In, to)
-case(you, In)
-</code></pre>
-
-<p>Multi-word prepositions usually form a contiguous span of the sentence. In exceptional cases however, they can be interrupted
-by emphasizers and other words:</p>
-
-<pre><code class="language-sdparse">ve srovnání například s úvěry \n in comparison for-example to loans
-mwe(ve, srovnání)
-mwe(ve, s)
-case(úvěry, ve)
-advmod:emph(úvěry, například)
-mwe(in, comparison)
-mwe(in, to)
-case(loans, in)
-advmod:emph(loans, for-example)
-</code></pre>
-
-<p>Another type of interruption is caused by a possessive determiner. For instance, <em>na základě něčeho</em> “based on something”
-contains the multi-word preposition <em>na základě</em> “based on”, lit. <em>on the-basis-of</em>. This expression is etymologically
-a combination of a proper preposition <em>na</em> “on” and the noun <em>základ</em> “basis”; the argument <em>něčeho</em> “something” is in
-genitive. If the phrase <em>na základě</em> were not analyzed as a multi-word expression, we would have a normal genitive
-modification between two nominals: <em>základ něčeho</em> “basis of-something”. A genitive modifier can be substituted by
-a possessive determiner, and this is possible even within the partially frozen multi-word preposition, as with the
-relative possessive determiner in the following example:</p>
-
-<pre><code class="language-sdparse">zákon , na jehož základě byl zřízen fond \n law , on whose basis was created fund
-nmod(zřízen, jehož)
-nmod(created, whose)
-case(jehož, na)
-case(whose, on)
-mwe(na, základě)
-mwe(on, basis)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/mwe.md" target="#">edit mwe</a></p>
 
 <p><a id="al-cs-dep/name" class="al-dest"></a></p>
 <h2><code>name</code>: personal name</h2>
