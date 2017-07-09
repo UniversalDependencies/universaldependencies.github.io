@@ -245,7 +245,7 @@ in two places.</p>
 	<tr>
 	  <td><a>list</a></td>
 	  <td><a>parataxis</a></td>
-	  <td><a>remnant</a></td>
+	  <td><a>orphan</a></td>
 	</tr>
 	<tr>
 	  <td><a>dislocated</a></td>
@@ -1643,54 +1643,16 @@ nummod($, 40)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/nummod.md" target="#">edit nummod</a></p>
 
-<p><a id="al-en-dep/parataxis" class="al-dest"></a></p>
-<h2><code>parataxis</code>: parataxis</h2>
+<p><a id="al-en-dep/orphan" class="al-dest"></a></p>
+<h2><code>orphan</code>: remnant in ellipsis</h2>
 
-<p>The parataxis relation (from Greek for “place side by side”) is a relation between the main verb of a clause and other sentential elements, such as a sentential parenthetical, a clause after a “:” or a “;”, or two sentences placed side by side without any explicit coordination or subordination.</p>
-
-<pre><code class="language-sdparse">Let 's face it we 're annoyed
-parataxis(Let, annoyed)
-</code></pre>
-
-<p>When multiple parataxes are present in a single sentence, they get a flat structure, not a hierarchical one, even if they form a temporal sequence.</p>
-
-<pre><code class="language-sdparse">ROOT I 'm not kidding , I once lost a hamster in my house , three months later I walk down in the basement and it was as big as a rat .
-root(ROOT, kidding)
-parataxis(lost, kidding)
-parataxis(walk, kidding)
-</code></pre>
-
-<p>All else being equal, the leftmost phrase should be the head, but in rare situations the parataxis can go ``backwards’’:</p>
-
-<pre><code class="language-sdparse">The guy , John said , left early in the morning
-parataxis(left, said)
-</code></pre>
-
-<p>See also: <a href="/u/dep/parataxis.html">language-general documentation of <code>parataxis</code></a></p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/parataxis.md" target="#">edit parataxis</a></p>
-
-<p><a id="al-en-dep/punct" class="al-dest"></a></p>
-<h2><code>punct</code>: punctuation</h2>
-
-<p>This is used for any piece of punctuation in a clause, if punctuation is being retained in the typed dependencies. By default, punctuation is not retained in the output.</p>
-
-<pre><code class="language-sdparse">Go home !
-punct(Go, !)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/punct.md" target="#">edit punct</a></p>
-
-<p><a id="al-en-dep/remnant" class="al-dest"></a></p>
-<h2><code>remnant</code>: remnant in ellipsis</h2>
-
-<p>The <code>remnant</code> relation is used to provide a satisfactory treatment of ellipsis (in
+<p>The <code>orphan</code> relation is used to provide a satisfactory treatment of ellipsis (in
 the case of gapping and stripping, where a predicational or verbal
 head gets elided) <em>without</em> having to postulate empty nodes in the basic representation. This is something that was lacking in earlier versions
 of SD and provides a basis for being able to reconstruct dependencies
 in the enhanced representation of SD.</p>
 
-<p>USD adopts an analysis that notes that in ellipsis a <code>remnant</code> corresponds to a <em>correlate</em> in a preceding clause. The <code>remnant</code> relation connects each remnant to its correlate in the basic dependency representation. This is then a sufficient representation to reconstruct the predicate-argument structure in the enhanced representation.</p>
+<p>USD adopts an analysis that notes that in ellipsis a <code>orphan</code> corresponds to a <em>correlate</em> in a preceding clause. The <code>orphan</code> relation connects each remnant to its correlate in the basic dependency representation. This is then a sufficient representation to reconstruct the predicate-argument structure in the enhanced representation.</p>
 
 <pre><code class="language-sdparse">Marie went to Paris and Miriam to Prague
 nsubj(went-2, Marie-1)
@@ -1703,7 +1665,7 @@ case(Prague-8, to-7)
 remnant(Paris-4, Prague-8)
 </code></pre>
 
-<p>Even in the more complex example below, the <code>remnant</code>
+<p>Even in the more complex example below, the <code>orphan</code>
 relations enable us to correctly retrieve the subjects and objects in
 the clauses with an elided verb.</p>
 
@@ -1716,7 +1678,7 @@ remnant(bronze-3, silver-6)
 remnant(silver-6, gold-10)
 </code></pre>
 
-<p>Note in particular that (unlike for <a href="">conj</a>), <code>remnant</code> uses a chaining analysis where each subsequent remnant depends on the immediately preceding remnant/correlate. The reason for this is that otherwise in a sentence with 2 or more chained ellipses the dependency structure would no longer track which remnants go together. It would become impossible to determine whether Mary won silver and Sandy gold, or Mary won gold and Sandy silver.</p>
+<p>Note in particular that (unlike for <a href="">conj</a>), <code>orphan</code> uses a chaining analysis where each subsequent remnant depends on the immediately preceding remnant/correlate. The reason for this is that otherwise in a sentence with 2 or more chained ellipses the dependency structure would no longer track which remnants go together. It would become impossible to determine whether Mary won silver and Sandy gold, or Mary won gold and Sandy silver.</p>
 
 <p>Instances of stripping typically occur when there is only one argument in the second clause, but with an accompanying adverbial modifier such as <em>not</em> or <em>only</em>. We model these sentences with the remnant relation as well.</p>
 
@@ -1773,7 +1735,7 @@ remnant(Mary-1, Tom-13)
 remnant(today-4, tomorrow-14)
 </code></pre>
 
-<p>The <code>remnant</code> relation is used when no predicational material is present. In contrast, in right-node-raising (RNR) and VP-ellipsis constructions in which some kind of predicational or verbal material is still present, the <code>remnant</code> relation is not used. In RNR, the verbs are coordinated and the object is a <a href="">obj</a> of the first verb:</p>
+<p>The <code>orphan</code> relation is used when no predicational material is present. In contrast, in right-node-raising (RNR) and VP-ellipsis constructions in which some kind of predicational or verbal material is still present, the <code>orphan</code> relation is not used. In RNR, the verbs are coordinated and the object is a <a href="">obj</a> of the first verb:</p>
 
 <pre><code class="language-sdparse">John bought and ate an apple
 nsubj(bought-2, John-1)
@@ -1795,7 +1757,45 @@ nsubj(will-7, Mary-6)
 advmod(will-7, too-8)
 </code></pre>
 
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/remnant.md" target="#">edit remnant</a></p>
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/orphan.md" target="#">edit orphan</a></p>
+
+<p><a id="al-en-dep/parataxis" class="al-dest"></a></p>
+<h2><code>parataxis</code>: parataxis</h2>
+
+<p>The parataxis relation (from Greek for “place side by side”) is a relation between the main verb of a clause and other sentential elements, such as a sentential parenthetical, a clause after a “:” or a “;”, or two sentences placed side by side without any explicit coordination or subordination.</p>
+
+<pre><code class="language-sdparse">Let 's face it we 're annoyed
+parataxis(Let, annoyed)
+</code></pre>
+
+<p>When multiple parataxes are present in a single sentence, they get a flat structure, not a hierarchical one, even if they form a temporal sequence.</p>
+
+<pre><code class="language-sdparse">ROOT I 'm not kidding , I once lost a hamster in my house , three months later I walk down in the basement and it was as big as a rat .
+root(ROOT, kidding)
+parataxis(lost, kidding)
+parataxis(walk, kidding)
+</code></pre>
+
+<p>All else being equal, the leftmost phrase should be the head, but in rare situations the parataxis can go ``backwards’’:</p>
+
+<pre><code class="language-sdparse">The guy , John said , left early in the morning
+parataxis(left, said)
+</code></pre>
+
+<p>See also: <a href="/u/dep/parataxis.html">language-general documentation of <code>parataxis</code></a></p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/parataxis.md" target="#">edit parataxis</a></p>
+
+<p><a id="al-en-dep/punct" class="al-dest"></a></p>
+<h2><code>punct</code>: punctuation</h2>
+
+<p>This is used for any piece of punctuation in a clause, if punctuation is being retained in the typed dependencies. By default, punctuation is not retained in the output.</p>
+
+<pre><code class="language-sdparse">Go home !
+punct(Go, !)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en-dep/punct.md" target="#">edit punct</a></p>
 
 <p><a id="al-en-dep/reparandum" class="al-dest"></a></p>
 <h2><code>reparandum</code>: overridden disfluency</h2>

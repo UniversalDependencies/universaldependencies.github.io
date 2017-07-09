@@ -248,7 +248,7 @@ in two places.</p>
 	<tr>
 	  <td><a>list</a></td>
 	  <td><a>parataxis</a></td>
-	  <td><a>remnant</a></td>
+	  <td><a>orphan</a></td>
 	</tr>
 	<tr>
 	  <td><strike>dislocated</strike></td>
@@ -890,7 +890,7 @@ because of an unresolved long distance dependency.</p>
 <p>Most <code>dep</code> instances in the current conversion of the PDT 3.0 data
 correspond to the PDT label <code>ExD</code>, which marks ellipsis.
 The current conversion software cannot produce the annotation conforming
-to the UD standard and using the <a href="">remnant</a> relation.</p>
+to the UD standard and using the <a href="">orphan</a> relation.</p>
 
 <pre><code class="language-sdparse">K čemu ovšem , to nebylo jasné . \n For what however , that was-not clear .
 dep(jasné, čemu)
@@ -1844,6 +1844,40 @@ could be used to identify the main object.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/obj.md" target="#">edit obj</a></p>
 
+<p><a id="al-cs-dep/orphan" class="al-dest"></a></p>
+<h2><code>orphan</code>: remnant in ellipsis</h2>
+
+<p>The <code>orphan</code> relation is used to provide a satisfactory treatment of certain instances of
+<a href="http://universaldependencies.org/cs/overview/specific-syntax.html#ellipsis">ellipsis</a>
+(in the case of gapping and stripping, where a predicational or verbal
+head gets elided).</p>
+
+<pre><code class="language-sdparse">Pavel si objednal hovězí a Markéta vepřové . \n Pavel himself ordered beef and Markéta pork .
+nsubj(objednal, Pavel-1)
+nsubj(ordered, Pavel-10)
+obj(objednal, hovězí)
+obj(ordered, beef)
+remnant(Pavel-1, Markéta-6)
+remnant(Pavel-10, Markéta-15)
+remnant(hovězí, vepřové)
+remnant(beef, pork)
+</code></pre>
+
+<h2 id="diffs">Diffs</h2>
+
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+
+<p>At present the conversion of the PDT data to UD does not handle ellipsis properly
+and the <code>orphan</code> relation is not used.</p>
+
+<p>In the analytical layer of PDT, ellipsis
+(together with some other issues, such as the <a href="">vocative</a>) is signalled by the
+dependency relation <code>ExD</code> (ex-dependent).
+All the <code>ExD</code> relations that are not vocatives or comparatives are currently just re-labeled <a href="">dep</a>
+or <a href="">root</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/orphan.md" target="#">edit orphan</a></p>
+
 <p><a id="al-cs-dep/parataxis" class="al-dest"></a></p>
 <h2><code>parataxis</code>: parataxis</h2>
 
@@ -1984,40 +2018,6 @@ punct(means, .-17)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/punct.md" target="#">edit punct</a></p>
-
-<p><a id="al-cs-dep/remnant" class="al-dest"></a></p>
-<h2><code>remnant</code>: remnant in ellipsis</h2>
-
-<p>The <code>remnant</code> relation is used to provide a satisfactory treatment of certain instances of
-<a href="http://universaldependencies.org/cs/overview/specific-syntax.html#ellipsis">ellipsis</a>
-(in the case of gapping and stripping, where a predicational or verbal
-head gets elided).</p>
-
-<pre><code class="language-sdparse">Pavel si objednal hovězí a Markéta vepřové . \n Pavel himself ordered beef and Markéta pork .
-nsubj(objednal, Pavel-1)
-nsubj(ordered, Pavel-10)
-obj(objednal, hovězí)
-obj(ordered, beef)
-remnant(Pavel-1, Markéta-6)
-remnant(Pavel-10, Markéta-15)
-remnant(hovězí, vepřové)
-remnant(beef, pork)
-</code></pre>
-
-<h2 id="diffs">Diffs</h2>
-
-<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
-
-<p>At present the conversion of the PDT data to UD does not handle ellipsis properly
-and the <code>remnant</code> relation is not used.</p>
-
-<p>In the analytical layer of PDT, ellipsis
-(together with some other issues, such as the <a href="">vocative</a>) is signalled by the
-dependency relation <code>ExD</code> (ex-dependent).
-All the <code>ExD</code> relations that are not vocatives or comparatives are currently just re-labeled <a href="">dep</a>
-or <a href="">root</a>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/remnant.md" target="#">edit remnant</a></p>
 
 <p><a id="al-cs-dep/reparandum" class="al-dest"></a></p>
 <h2><code>reparandum</code>: overridden disfluency</h2>
