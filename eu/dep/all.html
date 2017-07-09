@@ -181,7 +181,7 @@ in two places.</p>
 	  <td><a>goeswith</a></td>
 	</tr>
 	<tr>
-	  <td><a>name</a></td>
+	  <td><a>flat</a></td>
 	  <td><a>foreign</a></td>
 	</tr>
       </table>
@@ -1004,6 +1004,60 @@ punct(sendoago-3, .-9)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/fixed.md" target="#">edit fixed</a></p>
 
+<p><a id="al-eu-dep/flat" class="al-dest"></a></p>
+<h2><code>flat</code>: name</h2>
+
+<p><code>flat</code> is one of the three relations for compounding in UD (together with <a href="">compound</a> and <a href="">fixed</a>). It is used for proper nouns constituted of multiple nominal elements. 
+Words joined by <code>flat</code> should all be part of a minimal noun phrase; otherwise, regular syntactic relations should be used.<br />
+In general, names are annotated in a flat, head-initial structure, in which all words in the name modify the first one using the <code>flat</code> label.</p>
+
+<p><em><strong>Scottie Pippenek</strong> polemika artean ekin zion norgehiagokari .</em></p>
+
+<p><em><strong>Scottie Pippene</strong> attacked to the competition among polemics .</em></p>
+
+<pre><code class="language-sdparse">Scottie Pippenek polemika artean ekin zion norgehiagokari . \n Scottie Pippene polemic among attacked competition_the_to . 
+
+nsubj(ekin-5, Scottie-1)
+name(Scottie-1, Pippenek-2)
+nmod(ekin-5, polemika-3)
+case(polemika-3, artean-4)
+aux(ekin-5, zion-6)
+iobj(ekin-5, norgehiagokari-7)
+punct(ekin-5, .-8)
+</code></pre>
+
+<p><em><strong>Dan Eggen</strong> gustora zegoen atzo .</em></p>
+
+<p><em><strong>Dan Eggen</strong> was comfortably yesterday .</em></p>
+
+<pre><code class="language-sdparse">Dan Eggen gustora zegoen atzo . \n Dan Eggen comfortably was yesterday .
+
+nsubj(zegoen-4, Dan-1)
+name(Dan-1, Eggen-2)
+advmod(zegoen-4, gustora-3)
+advmod(zegoen-4, atzo-5)
+punct(zegoen-4, .-6)
+</code></pre>
+
+<p><em>Hego Koreako gobernuak <strong>Hyundai Motor</strong> enpresaren salmenta baimendu du .</em></p>
+
+<p><em>South Korea’s government has authorized the sale of <strong>Hyundai Motor</strong> enterprise .</em></p>
+
+<pre><code class="language-sdparse">Hego Koreako gobernuak Hyundai Motor enpresaren salmenta baimendu du . \n South Korea's government Hyundai Motor enterprise_of sale_the authorized has . 
+
+compound(Koreako-2, Hego-1)
+nmod(gobernuak-3, Koreako-2)
+subj(baimendu-8, gobernuak-3)
+nmod(enpresaren-6, Motor-5)
+name(Motor-5, Hyundai-4)
+nmod(salmenta-7, enpresaren-6)
+dobj(baimendu-8, salmenta-7)
+aux(baimendu-8, du-9)
+punct(baimendu-8, .-10)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/flat.md" target="#">edit flat</a></p>
+
 <p><a id="al-eu-dep/foreign" class="al-dest"></a></p>
 <h2><code>foreign</code>: foreign words</h2>
 
@@ -1144,60 +1198,6 @@ punct(azalduko-4, .-13)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/mark.md" target="#">edit mark</a></p>
-
-<p><a id="al-eu-dep/name" class="al-dest"></a></p>
-<h2><code>name</code>: name</h2>
-
-<p><code>name</code> is one of the three relations for compounding in UD (together with <a href="">compound</a> and <a href="">fixed</a>). It is used for proper nouns constituted of multiple nominal elements. 
-Words joined by <code>name</code> should all be part of a minimal noun phrase; otherwise, regular syntactic relations should be used.<br />
-In general, names are annotated in a flat, head-initial structure, in which all words in the name modify the first one using the <code>name</code> label.</p>
-
-<p><em><strong>Scottie Pippenek</strong> polemika artean ekin zion norgehiagokari .</em></p>
-
-<p><em><strong>Scottie Pippene</strong> attacked to the competition among polemics .</em></p>
-
-<pre><code class="language-sdparse">Scottie Pippenek polemika artean ekin zion norgehiagokari . \n Scottie Pippene polemic among attacked competition_the_to . 
-
-nsubj(ekin-5, Scottie-1)
-name(Scottie-1, Pippenek-2)
-nmod(ekin-5, polemika-3)
-case(polemika-3, artean-4)
-aux(ekin-5, zion-6)
-iobj(ekin-5, norgehiagokari-7)
-punct(ekin-5, .-8)
-</code></pre>
-
-<p><em><strong>Dan Eggen</strong> gustora zegoen atzo .</em></p>
-
-<p><em><strong>Dan Eggen</strong> was comfortably yesterday .</em></p>
-
-<pre><code class="language-sdparse">Dan Eggen gustora zegoen atzo . \n Dan Eggen comfortably was yesterday .
-
-nsubj(zegoen-4, Dan-1)
-name(Dan-1, Eggen-2)
-advmod(zegoen-4, gustora-3)
-advmod(zegoen-4, atzo-5)
-punct(zegoen-4, .-6)
-</code></pre>
-
-<p><em>Hego Koreako gobernuak <strong>Hyundai Motor</strong> enpresaren salmenta baimendu du .</em></p>
-
-<p><em>South Korea’s government has authorized the sale of <strong>Hyundai Motor</strong> enterprise .</em></p>
-
-<pre><code class="language-sdparse">Hego Koreako gobernuak Hyundai Motor enpresaren salmenta baimendu du . \n South Korea's government Hyundai Motor enterprise_of sale_the authorized has . 
-
-compound(Koreako-2, Hego-1)
-nmod(gobernuak-3, Koreako-2)
-subj(baimendu-8, gobernuak-3)
-nmod(enpresaren-6, Motor-5)
-name(Motor-5, Hyundai-4)
-nmod(salmenta-7, enpresaren-6)
-dobj(baimendu-8, salmenta-7)
-aux(baimendu-8, du-9)
-punct(baimendu-8, .-10)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eu-dep/name.md" target="#">edit name</a></p>
 
 <p><a id="al-eu-dep/neg" class="al-dest"></a></p>
 <h2><code>neg</code>: negation modifier</h2>

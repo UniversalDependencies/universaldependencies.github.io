@@ -185,7 +185,7 @@ in two places.</p>
 	  <td><a>goeswith</a></td>
 	</tr>
 	<tr>
-	  <td><a>name</a></td>
+	  <td><a>flat</a></td>
 	  <td><a>foreign</a></td>
 	</tr>
       </table>
@@ -808,7 +808,7 @@ nummod(ευρώ, εκατομμύρια)
 
 <ul>
   <li><a href="">fixed</a> for fixed grammaticized expressions with function words</li>
-  <li><a href="">name</a> for proper nouns constituted of multiple nominal elements</li>
+  <li><a href="">flat</a> for proper nouns constituted of multiple nominal elements</li>
 </ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_el-dep/compound.md" target="#">edit compound</a></p>
@@ -1111,6 +1111,96 @@ in which all words in the expression modify the first one using the
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_el-dep/fixed.md" target="#">edit fixed</a></p>
 
+<p><a id="al-el-dep/flat" class="al-dest"></a></p>
+<h2><code>flat</code>: name</h2>
+
+<p>We use the <code>flat</code> relation for proper nouns constituted of more than one words. 
+The first (leftmost) word is the head, and the other words are direct dependents of the head.</p>
+
+<pre><code class="language-sdparse">Τάκης Παπαδόπουλος
+name(Τάκης, Παπαδόπουλος)
+</code></pre>
+
+<pre><code class="language-sdparse">Ρωμανός Δ' Διογένης
+name(Ρωμανός, Δ')
+name(Ρωμανός, Διογένης)
+</code></pre>
+
+<pre><code class="language-sdparse">Μάο Τσε Τουνγκ
+name(Μάο, Τσε)
+name(Μάο, Τουνγκ)
+</code></pre>
+
+<p>Regular syntactic relations are used for Greek:
+(i) for a modifier word including determiners, adjectives and adverbs
+(ii) to connect together the words of a description or name which involve embedded prepositional phrases, sentences, etc.</p>
+
+<pre><code class="language-sdparse">την Παλιά Κοκκινιά
+amod(Κοκκινιά, Παλιά)
+det(Κοκκινιά, την)
+</code></pre>
+
+<pre><code class="language-sdparse">της Νέας Υόρκης
+amod(Υόρκης, Νέας)
+det(Υόρκης, της)
+</code></pre>
+
+<pre><code class="language-sdparse">Τα Άνω Δολιανά
+det(Δολιανά, Τα)
+advmod(Δολιανά, Άνω)
+</code></pre>
+
+<pre><code class="language-sdparse">Ο Βασιλιάς της Αγγλίας
+det(Βασιλιάς, Ο)
+nmod(Βασιλιάς, Αγγλίας)
+det(Αγγλίας, της)
+</code></pre>
+
+<p>This also holds for organization names with clear syntactic modification structure as in:</p>
+
+<pre><code class="language-sdparse">Γενική Γραμματεία Εκπαίδευσης Ενηλίκων
+amod(Γραμματεία, Γενική)
+nmod(Γραμματεία, Εκπαίδευσης)
+nmod(Εκπαίδευσης, Ενηλίκων)
+</code></pre>
+
+<p>This convention is not used for foreign names (transliterated or not), which are annotated in a flat, head-initial structure, in 
+which all words in the name modify the first one using the <code>flat</code> label.</p>
+
+<pre><code class="language-sdparse">Σαν Σεμπαστιάν
+name(Σαν, Σεμπαστιάν)
+</code></pre>
+
+<pre><code class="language-sdparse">Στράτφορντ απόν Έιβον
+name(Στράτφορντ, απόν)
+name(Στράτφορντ, Έιβον)
+</code></pre>
+
+<pre><code class="language-sdparse">Río de la Plata
+name(Río, de)
+name(Río, la)
+name(Río, Plata)
+</code></pre>
+
+<pre><code class="language-sdparse">Ζαν ντ' Αρκ
+name(Ζαν, ντ')
+name(Ζαν, Αρκ)
+</code></pre>
+
+<pre><code class="language-sdparse">Ludwig van Beethoven
+name(Ludwig, van)
+name(Ludwig, Beethoven)
+</code></pre>
+
+<pre><code class="language-sdparse">Miguel de Cervantes y Saavedra
+name(Miguel, de)
+name(Miguel, y)
+name(Miguel, Cervantes)
+name(Miguel, Saavedra)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_el-dep/flat.md" target="#">edit flat</a></p>
+
 <p><a id="al-el-dep/foreign" class="al-dest"></a></p>
 <h2><code>foreign</code>: foreign words</h2>
 
@@ -1118,7 +1208,7 @@ in which all words in the expression modify the first one using the
 a linear analysis: the head is the first token in the foreign phrase.</p>
 
 <p><code>foreign</code> does not apply to words transliterated to the Greek script, 
-loanwords or to foreign <a href="name">names</a>. It applies to quoted foreign text 
+loanwords or to foreign <a href="flat">names</a>. It applies to quoted foreign text 
 incorporated in a sentence/discourse of the host language (unless we want 
 to and know how to annotate the internal structure according 
 to the syntax of the foreign language).</p>
@@ -1330,96 +1420,6 @@ mwe(Αν, και)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_el-dep/mark.md" target="#">edit mark</a></p>
-
-<p><a id="al-el-dep/name" class="al-dest"></a></p>
-<h2><code>name</code>: name</h2>
-
-<p>We use the <code>name</code> relation for proper nouns constituted of more than one words. 
-The first (leftmost) word is the head, and the other words are direct dependents of the head.</p>
-
-<pre><code class="language-sdparse">Τάκης Παπαδόπουλος
-name(Τάκης, Παπαδόπουλος)
-</code></pre>
-
-<pre><code class="language-sdparse">Ρωμανός Δ' Διογένης
-name(Ρωμανός, Δ')
-name(Ρωμανός, Διογένης)
-</code></pre>
-
-<pre><code class="language-sdparse">Μάο Τσε Τουνγκ
-name(Μάο, Τσε)
-name(Μάο, Τουνγκ)
-</code></pre>
-
-<p>Regular syntactic relations are used for Greek:
-(i) for a modifier word including determiners, adjectives and adverbs
-(ii) to connect together the words of a description or name which involve embedded prepositional phrases, sentences, etc.</p>
-
-<pre><code class="language-sdparse">την Παλιά Κοκκινιά
-amod(Κοκκινιά, Παλιά)
-det(Κοκκινιά, την)
-</code></pre>
-
-<pre><code class="language-sdparse">της Νέας Υόρκης
-amod(Υόρκης, Νέας)
-det(Υόρκης, της)
-</code></pre>
-
-<pre><code class="language-sdparse">Τα Άνω Δολιανά
-det(Δολιανά, Τα)
-advmod(Δολιανά, Άνω)
-</code></pre>
-
-<pre><code class="language-sdparse">Ο Βασιλιάς της Αγγλίας
-det(Βασιλιάς, Ο)
-nmod(Βασιλιάς, Αγγλίας)
-det(Αγγλίας, της)
-</code></pre>
-
-<p>This also holds for organization names with clear syntactic modification structure as in:</p>
-
-<pre><code class="language-sdparse">Γενική Γραμματεία Εκπαίδευσης Ενηλίκων
-amod(Γραμματεία, Γενική)
-nmod(Γραμματεία, Εκπαίδευσης)
-nmod(Εκπαίδευσης, Ενηλίκων)
-</code></pre>
-
-<p>This convention is not used for foreign names (transliterated or not), which are annotated in a flat, head-initial structure, in 
-which all words in the name modify the first one using the <code>name</code> label.</p>
-
-<pre><code class="language-sdparse">Σαν Σεμπαστιάν
-name(Σαν, Σεμπαστιάν)
-</code></pre>
-
-<pre><code class="language-sdparse">Στράτφορντ απόν Έιβον
-name(Στράτφορντ, απόν)
-name(Στράτφορντ, Έιβον)
-</code></pre>
-
-<pre><code class="language-sdparse">Río de la Plata
-name(Río, de)
-name(Río, la)
-name(Río, Plata)
-</code></pre>
-
-<pre><code class="language-sdparse">Ζαν ντ' Αρκ
-name(Ζαν, ντ')
-name(Ζαν, Αρκ)
-</code></pre>
-
-<pre><code class="language-sdparse">Ludwig van Beethoven
-name(Ludwig, van)
-name(Ludwig, Beethoven)
-</code></pre>
-
-<pre><code class="language-sdparse">Miguel de Cervantes y Saavedra
-name(Miguel, de)
-name(Miguel, y)
-name(Miguel, Cervantes)
-name(Miguel, Saavedra)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_el-dep/name.md" target="#">edit name</a></p>
 
 <p><a id="al-el-dep/neg" class="al-dest"></a></p>
 <h2><code>neg</code>: negation modifier</h2>

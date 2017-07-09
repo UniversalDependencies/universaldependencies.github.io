@@ -181,7 +181,7 @@ in two places.</p>
 	  <td><a>goeswith</a></td>
 	</tr>
 	<tr>
-	  <td><a>name</a></td>
+	  <td><a>flat</a></td>
 	  <td><a>foreign</a></td>
 	</tr>
       </table>
@@ -660,7 +660,7 @@ compound(milhões, 150)
 
 <ul>
   <li><a href="">fixed</a> for fixed grammaticized expressions with function words</li>
-  <li><a href="">name</a> for proper nouns constituted of multiple nominal elements</li>
+  <li><a href="">flat</a> for proper nouns constituted of multiple nominal elements</li>
 </ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pt-dep/compound.md" target="#">edit compound</a></p>
@@ -1100,14 +1100,14 @@ nsubj(maior, período)
 <h2><code>fixed</code>: multi-word expression</h2>
 
 <p>The multi-word expression (modifier) relation is one of the three
-relations (<a href="">compound</a>, <code>fixed</code>, <a href="">name</a>) for compounding.
+relations (<a href="">compound</a>, <code>fixed</code>, <a href="">flat</a>) for compounding.
 It is used for certain fixed grammaticized expressions that behave
 like function words or short adverbials.</p>
 
 <p>The scope of <code>fixed</code> annotation corresponds roughly to the <em>fixed
 expressions</em> category of
 <a href="http://lingo.stanford.edu/pubs/WP-2001-03.pdf">Sag et al.</a>, but
-excludes any relations in scope of <a href="">name</a> or <a href="">compound</a>.
+excludes any relations in scope of <a href="">flat</a> or <a href="">compound</a>.
 Additionally, limited morphosyntactic variation may be allowed
 for MWEs in exceptional cases.</p>
 
@@ -1131,13 +1131,77 @@ in which all words in the expression modify the first one using the
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pt-dep/fixed.md" target="#">edit fixed</a></p>
 
+<p><a id="al-pt-dep/flat" class="al-dest"></a></p>
+<h2><code>flat</code>: name</h2>
+
+<p><code>flat</code> is one of the three relations for compounding in UD (together
+with <a href="">compound</a> and <a href="">fixed</a>).
+It is used for proper nouns constituted of multiple nominal
+elements. For example, <code>flat</code> would be used between the words of
+<em>Hillary Clinton, Rio de Janeiro,</em> or <em>Dom Pedro I</em> but not to
+replace the usual relations in a phrasal or clausal name like <em>O rei da Suécia</em> or the novels <em>O senhor dos anéis</em>.
+Words joined by <code>flat</code> should all be part of a minimal noun phrase;
+otherwise regular syntactic relations should be used.  This is
+basically similar to the treatment of noun compounds with
+<a href="">compound</a>, except that in many cases parts of the name may be
+another nominal element such as an adjective <em>(Páginas Amarelas).</em></p>
+
+<p>In general, names are annotated in a flat, head-initial structure, in
+which all words in the name modify the first one using the <code>flat</code>
+label.</p>
+
+<pre><code class="language-sdparse">Dom Pedro I
+name(Dom-1, I-3)
+name(Dom-1, Pedro-2)
+</code></pre>
+
+<p>For organization names with clear syntactic modification structure, the dependencies should reflect the syntactic modification structure using regular syntactic relation, as in:.</p>
+
+<pre><code class="language-sdparse">Procuradoria Geral da República
+amod(Procuradoria, Geral)
+compound(Procuradoria, República)
+</code></pre>
+
+<p>In addition, regular syntactic relations are used:
+(i) for a modifying determiner or
+(ii) to connect together the words of a description or name which involve embedded prepositional phrases, sentences, etc.</p>
+
+<pre><code class="language-sdparse">os Estados Unidos
+det(Estados, os)
+</code></pre>
+
+<pre><code class="language-sdparse">Miguel de Cervantes 
+name(Miguel, Cervantes)
+case(Cervantes, de)
+</code></pre>
+
+<pre><code class="language-sdparse">O rei de a Suécia
+det(rei-2, O-1)
+nmod(rei-2, Suécia-4)
+case(Suécia-4, de-3)
+</code></pre>
+
+<pre><code class="language-sdparse">Rio de Janeiro
+case(Janeiro, de)
+nmod(Rio, Janeiro)
+</code></pre>
+
+<p>In the case of proper entities named after people, e.g. <em>Fundação Getúlio Vargas</em>, the <code>flat</code> relation should only be used inside the person name, with the rest of the construction analyzed compositionally using normal syntactic relations:</p>
+
+<pre><code class="language-sdparse">Fundação Getúlio Vargas
+compound(Fundação, Getúlio)
+name(Getúlio, Vargas)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pt-dep/flat.md" target="#">edit flat</a></p>
+
 <p><a id="al-pt-dep/foreign" class="al-dest"></a></p>
 <h2><code>foreign</code>: foreign words</h2>
 
 <p>We use <code>foreign</code> to label sequences of foreign words. These are given
 a linear analysis: the head is the first token in the foreign phrase.</p>
 
-<p><code>foreign</code> does not apply to loanwords or to foreign <a href="name">names</a>. 
+<p><code>foreign</code> does not apply to loanwords or to foreign <a href="flat">names</a>. 
 It applies to quoted foreign text incorporated in a sentence/discourse
 of the host language (unless we want to and know how to annotate the
 internal structure according to the syntax of the foreign language).</p>
@@ -1275,70 +1339,6 @@ mark(elaborada, que)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pt-dep/mark.md" target="#">edit mark</a></p>
-
-<p><a id="al-pt-dep/name" class="al-dest"></a></p>
-<h2><code>name</code>: name</h2>
-
-<p><code>name</code> is one of the three relations for compounding in UD (together
-with <a href="">compound</a> and <a href="">fixed</a>).
-It is used for proper nouns constituted of multiple nominal
-elements. For example, <code>name</code> would be used between the words of
-<em>Hillary Clinton, Rio de Janeiro,</em> or <em>Dom Pedro I</em> but not to
-replace the usual relations in a phrasal or clausal name like <em>O rei da Suécia</em> or the novels <em>O senhor dos anéis</em>.
-Words joined by <code>name</code> should all be part of a minimal noun phrase;
-otherwise regular syntactic relations should be used.  This is
-basically similar to the treatment of noun compounds with
-<a href="">compound</a>, except that in many cases parts of the name may be
-another nominal element such as an adjective <em>(Páginas Amarelas).</em></p>
-
-<p>In general, names are annotated in a flat, head-initial structure, in
-which all words in the name modify the first one using the <code>name</code>
-label.</p>
-
-<pre><code class="language-sdparse">Dom Pedro I
-name(Dom-1, I-3)
-name(Dom-1, Pedro-2)
-</code></pre>
-
-<p>For organization names with clear syntactic modification structure, the dependencies should reflect the syntactic modification structure using regular syntactic relation, as in:.</p>
-
-<pre><code class="language-sdparse">Procuradoria Geral da República
-amod(Procuradoria, Geral)
-compound(Procuradoria, República)
-</code></pre>
-
-<p>In addition, regular syntactic relations are used:
-(i) for a modifying determiner or
-(ii) to connect together the words of a description or name which involve embedded prepositional phrases, sentences, etc.</p>
-
-<pre><code class="language-sdparse">os Estados Unidos
-det(Estados, os)
-</code></pre>
-
-<pre><code class="language-sdparse">Miguel de Cervantes 
-name(Miguel, Cervantes)
-case(Cervantes, de)
-</code></pre>
-
-<pre><code class="language-sdparse">O rei de a Suécia
-det(rei-2, O-1)
-nmod(rei-2, Suécia-4)
-case(Suécia-4, de-3)
-</code></pre>
-
-<pre><code class="language-sdparse">Rio de Janeiro
-case(Janeiro, de)
-nmod(Rio, Janeiro)
-</code></pre>
-
-<p>In the case of proper entities named after people, e.g. <em>Fundação Getúlio Vargas</em>, the <code>name</code> relation should only be used inside the person name, with the rest of the construction analyzed compositionally using normal syntactic relations:</p>
-
-<pre><code class="language-sdparse">Fundação Getúlio Vargas
-compound(Fundação, Getúlio)
-name(Getúlio, Vargas)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pt-dep/name.md" target="#">edit name</a></p>
 
 <p><a id="al-pt-dep/neg" class="al-dest"></a></p>
 <h2><code>neg</code>: negation modifier</h2>

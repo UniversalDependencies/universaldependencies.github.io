@@ -214,7 +214,7 @@ and <i>punct</i> appear in two places.</p>
 	  <td>↳<a>compound:nn</a></td>
 	</tr>
 	<tr>
-	  <td><a>name</a></td>
+	  <td><a>flat</a></td>
 	</tr>
       </table>
 
@@ -776,7 +776,7 @@ lit. “the kind of hairstyle that it lasts”
 <h2><code>compound</code>: compound</h2>
 
 <p><code>compound</code> is one of the three UD relations UD for compounding,
-together with <a href="">fixed</a> and <a href="">name</a>.</p>
+together with <a href="">fixed</a> and <a href="">flat</a>.</p>
 
 <p>UD Finnish additionally defines two subtypes of <code>compound</code>,
 <a href="">compound:nn</a> for noun compounds and <a href="">compound:prt</a>
@@ -1124,6 +1124,29 @@ punct(tuli-4, .-7)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/fixed.md" target="#">edit fixed</a></p>
 
+<p><a id="al-fi-dep/flat" class="al-dest"></a></p>
+<h2><code>flat</code>: name</h2>
+
+<p>Proper names constituted of more than one word are annotated using the dependency type <code>flat</code>. The first (leftmost) word is the head, and the other words are direct dependents of the head.</p>
+
+<p>The <code>flat</code> dependency relation is used in cases where the multi-word name does not have an obvious internal syntactic structure, as is the case with for instance names of people (<em>Matti Virtanen</em>) or cities (<em>New York</em>).</p>
+
+<p>If a name has an obvious internal structure, as is often the case in names of books and movies for instance, this structure is marked instead, and the <code>flat</code> relation is marked as a secondary relation (DEPS field) spanning over the whole name phrase (from first token to the last).</p>
+
+<!-- fname:name.pdf -->
+<pre><code class="language-sdparse">Jumalat juhlivat öisin on Donna Tarttin esikoisteos . \n Gods celebrate by_night is Donna Tartt's first_work .
+nsubj(juhlivat-2, Jumalat-1)
+nmod(juhlivat-2, öisin-3)
+name(Jumalat-1, öisin-3)
+nsubj:cop(esikoisteos-7, juhlivat-2)
+cop(esikoisteos-7, on-4)
+punct(esikoisteos-7, .-8)
+name(Donna-5, Tarttin-6)
+nmod:poss(esikoisteos-7, Donna-5)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/flat.md" target="#">edit flat</a></p>
+
 <p><a id="al-fi-dep/foreign" class="al-dest"></a></p>
 <h2><code>foreign</code>: foreign</h2>
 
@@ -1133,7 +1156,7 @@ to internal structure, marking all words in the sequence direct
 dependents of the head. The head is the first word of the foreign phrase.</p>
 
 <p>Note that <code>foreign</code> does not apply to foreign <em>names</em>, which
-are annotated using <a href="">name</a>, or to sequences of <em>analyzed</em> words
+are annotated using <a href="">flat</a>, or to sequences of <em>analyzed</em> words
 of foreign origin (such as established loanwords), which are
 annotated with their full syntactic structure.</p>
 
@@ -1237,29 +1260,6 @@ punct(Sanoin-1, .-7)
 <p><a href="mark" class="al-doc">See details</a></p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/mark.md" target="#">edit mark</a></p>
-
-<p><a id="al-fi-dep/name" class="al-dest"></a></p>
-<h2><code>name</code>: name</h2>
-
-<p>Proper names constituted of more than one word are annotated using the dependency type <code>name</code>. The first (leftmost) word is the head, and the other words are direct dependents of the head.</p>
-
-<p>The <code>name</code> dependency relation is used in cases where the multi-word name does not have an obvious internal syntactic structure, as is the case with for instance names of people (<em>Matti Virtanen</em>) or cities (<em>New York</em>).</p>
-
-<p>If a name has an obvious internal structure, as is often the case in names of books and movies for instance, this structure is marked instead, and the <code>name</code> relation is marked as a secondary relation (DEPS field) spanning over the whole name phrase (from first token to the last).</p>
-
-<!-- fname:name.pdf -->
-<pre><code class="language-sdparse">Jumalat juhlivat öisin on Donna Tarttin esikoisteos . \n Gods celebrate by_night is Donna Tartt's first_work .
-nsubj(juhlivat-2, Jumalat-1)
-nmod(juhlivat-2, öisin-3)
-name(Jumalat-1, öisin-3)
-nsubj:cop(esikoisteos-7, juhlivat-2)
-cop(esikoisteos-7, on-4)
-punct(esikoisteos-7, .-8)
-name(Donna-5, Tarttin-6)
-nmod:poss(esikoisteos-7, Donna-5)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-dep/name.md" target="#">edit name</a></p>
 
 <p><a id="al-fi-dep/neg" class="al-dest"></a></p>
 <h2><code>neg</code>: negation modifier</h2>

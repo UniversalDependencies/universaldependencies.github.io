@@ -210,7 +210,7 @@ in two places.</p>
 	  <td><a>goeswith</a></td>
 	</tr>
 	<tr>
-	  <td><a>name</a></td>
+	  <td><a>flat</a></td>
 	  <td><a>foreign</a></td>
 	  <td></td>
 	</tr>
@@ -1080,13 +1080,37 @@ mwe(on, basis)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/fixed.md" target="#">edit fixed</a></p>
 
+<p><a id="al-cs-dep/flat" class="al-dest"></a></p>
+<h2><code>flat</code>: personal name</h2>
+
+<p><code>flat</code> is one of the relations for compounding in UD.
+In Czech it is used to join the first (or middle) and the last name of a person.</p>
+
+<p>The leftmost name is always the head and the other name(s) are attached to it.
+In most cases this is the opposite to PDT where family names are heads and given names are dependents,
+and the family name is usually the last name.</p>
+
+<p>The relation is not used to attach adjectives to nouns within multi-word names of places, organizations etc.
+(e.g. <em>Český Krumlov</em>).</p>
+
+<pre><code class="language-sdparse">Prezident Václav Havel včera navštívil Český Krumlov . \n President Václav Havel yesterday visited Český Krumlov .
+name(Václav-2, Havel-3)
+name(Václav-11, Havel-12)
+nmod(Václav-2, Prezident)
+nmod(Václav-11, President)
+amod(Krumlov-7, Český-6)
+amod(Krumlov-16, Český-15)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/flat.md" target="#">edit flat</a></p>
+
 <p><a id="al-cs-dep/foreign" class="al-dest"></a></p>
 <h2><code>foreign</code>: foreign words</h2>
 
 <p>We use <code>foreign</code> to label sequences of foreign words. These are given
 a linear analysis: the head is the first token in the foreign phrase.</p>
 
-<p><code>foreign</code> does not apply to loanwords or to foreign <a href="name">names</a>. 
+<p><code>foreign</code> does not apply to loanwords or to foreign <a href="flat">names</a>. 
 It applies to quoted foreign text incorporated in a sentence/discourse
 of the host language (unless we want to and know how to annotate the
 internal structure according to the syntax of the foreign language).</p>
@@ -1242,30 +1266,6 @@ advmod(arrive, when)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/mark.md" target="#">edit mark</a></p>
-
-<p><a id="al-cs-dep/name" class="al-dest"></a></p>
-<h2><code>name</code>: personal name</h2>
-
-<p><code>name</code> is one of the relations for compounding in UD.
-In Czech it is used to join the first (or middle) and the last name of a person.</p>
-
-<p>The leftmost name is always the head and the other name(s) are attached to it.
-In most cases this is the opposite to PDT where family names are heads and given names are dependents,
-and the family name is usually the last name.</p>
-
-<p>The relation is not used to attach adjectives to nouns within multi-word names of places, organizations etc.
-(e.g. <em>Český Krumlov</em>).</p>
-
-<pre><code class="language-sdparse">Prezident Václav Havel včera navštívil Český Krumlov . \n President Václav Havel yesterday visited Český Krumlov .
-name(Václav-2, Havel-3)
-name(Václav-11, Havel-12)
-nmod(Václav-2, Prezident)
-nmod(Václav-11, President)
-amod(Krumlov-7, Český-6)
-amod(Krumlov-16, Český-15)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/name.md" target="#">edit name</a></p>
 
 <p><a id="al-cs-dep/neg" class="al-dest"></a></p>
 <h2><code>neg</code>: negation modifier</h2>
