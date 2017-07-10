@@ -62,7 +62,7 @@
 
           <h1 id="dependencies">Dependencies</h1>
 
-<p>Note: <i>punct</i> appears in two places: clauses and nominals.</p>
+<p>Note: <i>punct</i> appears in two places.</p>
 
 <table class="typeindex">
   <tr>
@@ -582,22 +582,20 @@ case(event, about)
 <h2><code>cc</code>: coordinating conjunction</h2>
 
 <p>For more on coordination, see the <a href="">conj</a> relation.
-A <code>cc</code> is the relation between the first conjunct and
-the <a href="cs-pos/CONJ">coordinating conjunction</a> delimiting another conjunct.
+A <code>cc</code> is the relation between a conjunct and
+the <a href="cs-pos/CCONJ">coordinating conjunction</a> that precedes it.
 (Note: different dependency grammars have different treatments of coordination.
 We take the first conjunct as the head of the coordination.)</p>
 
 <pre><code class="language-sdparse">Je to starý a moudrý muž . \n Is he old and wise man .
-cc(starý, a)
-cc(old, and)
+cc(moudrý, a)
+cc(wise, and)
 </code></pre>
 
 <p>A coordinating conjunction may also appear at the beginning of a
 sentence. This is also called a <code>cc</code>, and it depends on the root
 predicate of the sentence.
-(In fact there is a coordination that spans multiple sentences.
-We cannot attach a word to the first conjunct because it is in another sentence.
-Thus we attach it to the first conjunct available in the current sentence: its main predicate.)</p>
+(In fact there is a coordination that spans multiple sentences.)</p>
 
 <pre><code class="language-sdparse">A pak jsme odešli . \n And then we-have left .
 cc(odešli, A)
@@ -613,12 +611,12 @@ conj(jablka, banány)
 conj(apples, pears)
 conj(apples, oranges)
 conj(apples, bananas)
-cc(jablka, a)
-cc(apples, and)
-punct(jablka, ,-3)
-punct(jablka, ,-5)
-punct(apples, ,-13)
-punct(apples, ,-15)
+cc(banány, a)
+cc(bananas, and)
+punct(hrušky, ,-3)
+punct(pomeranče, ,-5)
+punct(pears, ,-13)
+punct(oranges, ,-15)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/cc.md" target="#">edit cc</a></p>
@@ -687,7 +685,7 @@ compound(thousand, five)
 
 <p>A conjunct is the relation between two elements connected by a
 coordinating conjunction, such as <em>and, or,</em> or a comma or other punctuation.
-We treat coordination asymmetrically in what is known as the Stanford style:
+We treat coordination asymmetrically.
 The head of the relation is the first
 conjunct and all the other conjuncts depend on it via the <code>conj</code> relation.</p>
 
@@ -705,12 +703,12 @@ conj(jablka, banány)
 conj(apples, pears)
 conj(apples, oranges)
 conj(apples, bananas)
-cc(jablka, a)
-cc(apples, and)
-punct(jablka, ,-3)
-punct(jablka, ,-5)
-punct(apples, ,-13)
-punct(apples, ,-15)
+cc(banány, a)
+cc(bananas, and)
+punct(hrušky, ,-3)
+punct(pomeranče, ,-5)
+punct(pears, ,-13)
+punct(oranges, ,-15)
 </code></pre>
 
 <p>Coordinate clauses are treated the same way as coordination of other constituent types:</p>
@@ -720,10 +718,10 @@ conj(Přišel, osprchoval)
 conj(Přišel, šel)
 conj(He-came, showered)
 conj(He-came, went)
-punct(Přišel, ,-3)
-punct(He-came, ,-15)
-cc(Přišel, a)
-cc(He-came, and)
+punct(osprchoval, ,-3)
+punct(showered, ,-15)
+cc(šel, a)
+cc(went, and)
 </code></pre>
 
 <p>See <a href="u-dep/conj">universal/conj</a> for more details on various coordination-related issues.
@@ -1121,10 +1119,12 @@ flat:foreign(Blue, Face)
 
 <p>This relation links two parts of a word that are separated in text
 that is not well edited.
-The head is in some sense the “main” part, often the second part.</p>
+The head is always the first part, the other parts are attached to it with the <code>goeswith</code> relation
+(for consistency, similarly as in <a href="">flat</a>, <a href="">fixed</a> and <a href="">conj</a>).
+Note that only the last part may be annotated with <code>SpaceAfter=No</code>.</p>
 
 <pre><code class="language-sdparse">Zastavil a z těžka oddychoval .
-goeswith(těžka, z)
+goeswith(z, těžka)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/goeswith.md" target="#">edit goeswith</a></p>
@@ -1227,9 +1227,9 @@ appos(tel.:-3, 555-9814-4)
 appos(e-mail:-5, jones@abc.edf-6)
 </code></pre>
 
-<h2 id="diffs">Diffs</h2>
+<h2 id="diffs-1">Diffs</h2>
 
-<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank-1">Prague Dependency Treebank</h3>
 
 <p>The <code>list</code> relation is not used in the current conversion of the PDT data to UD.</p>
 
@@ -1815,9 +1815,9 @@ objects, one of them should be <code>obj</code> and the others should be
 <a href="">iobj</a>. In such cases it is necessary to decide what is the most
 directly affected object <em>(patient).</em> The one exception is when there is a clausal complement. Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an iobj.</p>
 
-<h2 id="diffs">Diffs</h2>
+<h2 id="diffs-2">Diffs</h2>
 
-<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank-2">Prague Dependency Treebank</h3>
 
 <p>The manual annotation of the PDT does not distinguish direct and indirect objects.
 Therefore most non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>obj</code>
@@ -1865,9 +1865,9 @@ remnant(hovězí, vepřové)
 remnant(beef, pork)
 </code></pre>
 
-<h2 id="diffs">Diffs</h2>
+<h2 id="diffs-3">Diffs</h2>
 
-<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank-3">Prague Dependency Treebank</h3>
 
 <p>At present the conversion of the PDT data to UD does not handle ellipsis properly
 and the <code>orphan</code> relation is not used.</p>
@@ -1951,9 +1951,9 @@ parataxis(rozšiřuje, jde)
 parataxis(extended, concerns)
 </code></pre>
 
-<h2 id="diffs">Diffs</h2>
+<h2 id="diffs-4">Diffs</h2>
 
-<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank-4">Prague Dependency Treebank</h3>
 
 <p>At present the PDT data converted to UD use <code>parataxis</code> only for interjected parentheticals.
 The other examples above are analyzed differently (legacy PDT structure).</p>
