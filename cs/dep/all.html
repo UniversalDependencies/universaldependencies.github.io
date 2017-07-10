@@ -125,17 +125,19 @@
 	  <td><a>mark</a></td>
 	</tr>
 	<tr>
-	  <td><a>discourse</a></td>
-	  <td><a>auxpass</a></td>
+	  <td><tt>expl</tt></td>
+	  <td>↳<a>aux:pass</a></td>
 	  <td><a>punct</a></td>
 	</tr>
 	<tr>
-	  <td><a>expl</a></td>
-	  <td>↳<a>auxpass:reflex</a></td>
+	  <td>↳<a>expl:pass</a></td>
+	  <td><a>cop</a></td>
 	</tr>
 	<tr>
-	  <td>&nbsp;</td>
-	  <td><a>cop</a></td>
+	  <td>↳<a>expl:pv</a></td>
+	</tr>
+	<tr>
+	  <td><a>discourse</a></td>
 	</tr>
       </table>
 
@@ -555,22 +557,7 @@ cop(podepsána, byla)
 cop(signed, was)
 </code></pre>
 
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/auxpass.md" target="#">edit auxpass</a></p>
-
-<p><a id="al-cs-dep/auxpass:reflex" class="al-dest"></a></p>
-<h2><code>auxpass:reflex</code>: reflexive pronoun used in reflexive passive</h2>
-
-<p>Reflexive pronouns (see the feature <a href="">cs-feat/Reflex</a>) are used in various constructions in Czech,
-including so-called <em>reflexive passive.</em>
-In PDT, their relation to the verb is labeled <code>AuxR</code>.
-The corresponding label in Czech UD is called <code>auxpass:reflex</code>.</p>
-
-<pre><code class="language-sdparse">To se řekne snadno . \n It is said easily .
-auxpass:reflex(řekne, se)
-auxpass:reflex(said, is)
-</code></pre>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/auxpass-reflex.md" target="#">edit auxpass:reflex</a></p>
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/aux-pass.md" target="#">edit auxpass</a></p>
 
 <p><a id="al-cs-dep/case" class="al-dest"></a></p>
 <h2><code>case</code>: case marking</h2>
@@ -1000,24 +987,41 @@ discourse(they-betrayed, it)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/discourse.md" target="#">edit discourse</a></p>
 
-<p><a id="al-cs-dep/expl" class="al-dest"></a></p>
-<h2><code>expl</code>: expletive: reflexive pronoun with an inherently reflexive verb</h2>
+<p><a id="al-cs-dep/expl:pass" class="al-dest"></a></p>
+<h2><code>expl:pass</code>: reflexive pronoun used in reflexive passive</h2>
+
+<p>Reflexive pronouns (see the feature <a href="">cs-feat/Reflex</a>) are used in various constructions in Czech,
+including so-called <em>reflexive passive.</em>
+In PDT, their relation to the verb is labeled <code>AuxR</code>.
+The corresponding label in Czech UD is called <code>expl:pass</code>
+(since UD 2.0; in previous versions it was labeled <code>auxpass:reflex</code>).</p>
+
+<pre><code class="language-sdparse">To se řekne snadno . \n It is said easily .
+expl:pass(řekne, se)
+expl:pass(said, is)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/expl-pass.md" target="#">edit expl:pass</a></p>
+
+<p><a id="al-cs-dep/expl:pv" class="al-dest"></a></p>
+<h2><code>expl:pv</code>: reflexive clitic with an inherently reflexive verb</h2>
 
 <p>Reflexive pronouns (see the feature <a href="">cs-feat/Reflex</a>) usually replace objects of verbs.
 However, some verbs are inherently reflexive, i.e. the verb always occurs with a reflexive
 prounoun, and the pronoun cannot be replaced by a non-reflexive pronoun.</p>
 
-<p>With these verbs, the reflexive pronoun is attached as <code>expl</code> instead of <a href="">obj</a>.
+<p>With these verbs, the reflexive pronoun is attached as <code>expl:pv</code> instead of <a href="">obj</a>.
 (Note that the <code>expl</code> relation is first used for this purpose in the UD release 1.2,
+and it is further subtyped as <code>expl:pv</code> since UD 2.0,
 to increase parallelism with other languages. In the previous releases this usage of
 reflexive <em>se/si</em> was labeled <code>compound:reflex</code>.)</p>
 
 <pre><code class="language-sdparse">Martin se bojí zvířat . \n Martin REFLEX fears animals .
-expl(bojí, se)
-expl(fears, REFLEX)
+expl:pv(bojí, se)
+expl:pv(fears, REFLEX)
 </code></pre>
 
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/expl.md" target="#">edit expl</a></p>
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/expl-pv.md" target="#">edit expl:pv</a></p>
 
 <p><a id="al-cs-dep/fixed" class="al-dest"></a></p>
 <h2><code>fixed</code>: multi-word expression</h2>
@@ -1223,9 +1227,9 @@ appos(tel.:-3, 555-9814-4)
 appos(e-mail:-5, jones@abc.edf-6)
 </code></pre>
 
-<h2 id="diffs-1">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-1">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>The <code>list</code> relation is not used in the current conversion of the PDT data to UD.</p>
 
@@ -1823,9 +1827,9 @@ objects, one of them should be <code>obj</code> and the others should be
 <a href="">iobj</a>. In such cases it is necessary to decide what is the most
 directly affected object <em>(patient).</em> The one exception is when there is a clausal complement. Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an iobj.</p>
 
-<h2 id="diffs-2">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-2">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>The manual annotation of the PDT does not distinguish direct and indirect objects.
 Therefore most non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>obj</code>
@@ -1873,9 +1877,9 @@ remnant(hovězí, vepřové)
 remnant(beef, pork)
 </code></pre>
 
-<h2 id="diffs-3">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-3">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>At present the conversion of the PDT data to UD does not handle ellipsis properly
 and the <code>orphan</code> relation is not used.</p>
@@ -1959,9 +1963,9 @@ parataxis(rozšiřuje, jde)
 parataxis(extended, concerns)
 </code></pre>
 
-<h2 id="diffs-4">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-4">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>At present the PDT data converted to UD use <code>parataxis</code> only for interjected parentheticals.
 The other examples above are analyzed differently (legacy PDT structure).</p>
@@ -2086,13 +2090,15 @@ punct(And, ?-15)
 <p><a id="al-cs-dep/vocative" class="al-dest"></a></p>
 <h2><code>vocative</code>: vocative</h2>
 
-<p>The <code>vocative</code> relation is used to mark dialogue participant addressed in text.
-The relation links the addressee’s name to its host sentence.
+<p>The <code>vocative</code> relation is used to mark the dialogue participant addressed in text.
+The relation links the addressee’s name or title to its host sentence.
 In Czech, the addressee’s name must also appear in the vocative <a href="">cs-feat/Case</a> form.</p>
 
 <pre><code class="language-sdparse">Pane , jste blázen ! \n Sir , you-are a-fool !
-vocative(jste, Pane)
-vocative(you-are, Sir)
+vocative(blázen, Pane)
+vocative(a-fool, Sir)
+cop(blázen, jste)
+cop(a-fool, you-are)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/vocative.md" target="#">edit vocative</a></p>
