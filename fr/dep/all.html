@@ -398,8 +398,8 @@ acl(regards, braqués)
 <p><a id="al-fr-dep/acl:cleft" class="al-dest"></a></p>
 <h2><code>acl:cleft</code>: cleft clause modifier</h2>
 
-<p>In FrenchSpoken we use the <code>acl:cleft</code> relation to link the clefted nominal element and cleft clause in a cleft construction. 
-When the clefted element is a clause or an adverb, we use the ccomp:cleft relation instead.</p>
+<p>In FrenchSpoken we use the <code>acl:cleft</code> relation to link the clefted nominal element (i.e. the head of the cleft construction) and the clause of the cleft sentence.
+When the clefted element is a clause or an adverb, we use the <a href="">ccomp:cleft</a> relation instead.</p>
 
 <pre><code class="language-sdparse">Les vendanges commencent aujourd'hui. C' est un vigneron du coin qui me l'a dit .
 nsubj:expl(vigneron, C')
@@ -446,10 +446,6 @@ clause, etc. The dependent must be clausal (or else it is an <a href="">advmod</
 advcl(produit, faisait)
 </code></pre>
 
-<pre><code class="language-sdparse">Si tu sais qui l'a fait, tu devrais le dire au professeur \n If you know who did it, you should tell the teacher
-advcl(dire, sais)
-</code></pre>
-
 <pre><code class="language-sdparse">Il faut venir tôt pour avoir de la place \n One needs to get there early to have a seat
 advcl(venir, avoir)
 </code></pre>
@@ -466,7 +462,21 @@ advcl(donne, mets)
 mark(mets, si)
 </code></pre>
 
+<p>However we introduce a new subrelation <a href="">advcl:periph</a> for averbial clause modifiers that cannot be clefted.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/advcl.md" target="#">edit advcl</a></p>
+
+<p><a id="al-fr-dep/advcl:periph" class="al-dest"></a></p>
+<h2><code>advcl:periph</code>: peripheral adverbial clause modifier</h2>
+
+<p>In FrenchSpoken we use the <code>advcl:periph</code> relation for adverbial clause modifiers that cannot be clefted and cannot be moved inside the core of the sentence, unless it is put in parenthesis.
+For other adverbial modifiers we still use the <a href="">advcl</a> relation.</p>
+
+<pre><code class="language-sdparse">Si tu sais qui l'a fait, tu devrais le dire au professeur \n If you know who did it, you should tell the teacher
+advcl:periph(dire, sais)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/advcl-periph.md" target="#">edit advcl:periph</a></p>
 
 <p><a id="al-fr-dep/advmod" class="al-dest"></a></p>
 <h2><code>advmod</code>: adverbial modifier</h2>
@@ -658,9 +668,9 @@ conj(hésitation, retard)
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/conj.md" target="#">edit conj</a></p>
 
 <p><a id="al-fr-dep/conj:appos" class="al-dest"></a></p>
-<h2><code>conj:appos</code>: conjunct apposition</h2>
+<h2><code>conj:appos</code>: apposed conjunct</h2>
 
-<p>In FrenchSpoken the <code>conj:appos</code> relation is used instead of <code>appos</code> for appositions which respect the prosody of lists. The elements in a <code>conj:appos</code> are not bound to a particular sequence, they can be rearranged in a different order. This choice of relation is meant to emphasize the similarity between some appositions and ordinary coordination.</p>
+<p>In FrenchSpoken the <code>conj:appos</code> relation is used instead of <code>appos</code> for appositions which respect the prosody of lists. The elements in a <code>conj:appos</code> are not bound to a particular sequence, they can be rearranged in a different order. The elements of a <code>conj:appos</code> are in the same paradigm (i.e they fulfill the same role in relation to their governor). This choice of relation is meant to emphasize the similarity between some appositions and ordinary coordination.</p>
 
 <p>Here is an example :</p>
 
@@ -1421,8 +1431,7 @@ For non-core nominal dependents of a verb, we can also use the <a href="">obl:pe
 <p><a id="al-fr-dep/obl:mod" class="al-dest"></a></p>
 <h2><code>obl:mod</code>: oblique modifier</h2>
 
-<p>In FrenchSpoken, the <code>obl:mod</code> relation is used for nominal adjuncts. They can be (but are not always) introduced by a preposition.
-N.B.: In UDv1 the <a href="">nmod</a> relation was used for nominal dependents of verbs, adjectives, and adverbs. In UDv2, we use the <code>obl</code> relation (or one of its sub-categorisations) for these dependents.</p>
+<p>In FrenchSpoken, the <code>obl:mod</code> relation is used for nominal adjuncts. They can be (but are not always) introduced by a preposition.</p>
 
 <p>Here is an example from FrenchSpoken :</p>
 
@@ -1437,10 +1446,10 @@ For non-core nominal dependents of a verb, we can also use the <a href="">obl:pe
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obl-mod.md" target="#">edit obl:mod</a></p>
 
 <p><a id="al-fr-dep/obl:periph" class="al-dest"></a></p>
-<h2><code>obl:periph</code>: oblique peripheral nominal</h2>
+<h2><code>obl:periph</code>: peripheral oblique nominal</h2>
 
 <p>In FrenchSpoken, the <code>obl:periph</code> relation is used for nominals which are not required by the verb. 
-The specificity of an <code>obl:periph</code>, compared to an <a href="">obl:mod</a>, is that the <code>obl:periph</code> nominal cannot be cleaved. In addition, the <code>obl:periph</code> nominal cannot be moved inside the core of the sentence, unless it is put in parenthesis.</p>
+The specificity of an <code>obl:periph</code>, compared to an <a href="">obl:mod</a>, is that the <code>obl:periph</code> nominal cannot be clefted. In addition, the <code>obl:periph</code> nominal cannot be moved inside the core of the sentence, unless it is put in parenthesis.</p>
 
 <pre><code class="language-sdparse">A mon avis , Pierre devrait rester là. \n In my opinion, Pierre should stay there.
 obl:periph(devrait, avis)
@@ -1451,6 +1460,8 @@ obl:periph(devrait, avis)
 <pre><code class="language-sdparse">pour l' Indépendant du midi c'est la gifle \n
 obl:periph(gifle, Indépendant)
 </code></pre>
+
+<p>We use two other subrelations for <code>obl</code>: <a href="">obl:comp</a> for prepositional core dependents and <a href="">obl:mod</a> for nominal adjuncts (introduced by a preposition or not) that can be clefted.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obl-periph.md" target="#">edit obl:periph</a></p>
 
