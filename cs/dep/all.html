@@ -47,8 +47,8 @@
       <hr/>
 
       
-      <div class="v1warning">
-	This page still pertains to UD version 1.
+      <div class="v2complete">
+	This page pertains to UD version 2.
       </div>
       
       
@@ -863,7 +863,7 @@ because of an unresolved long distance dependency.</p>
 
 <p>Most <code>dep</code> instances in the current conversion of the PDT 3.0 data
 correspond to the PDT label <code>ExD</code>, which marks ellipsis.
-The current conversion software cannot produce the annotation conforming
+The current conversion software cannot produce the annotation fully conforming
 to the UD standard and using the <a href="">orphan</a> relation.</p>
 
 <pre><code class="language-sdparse">K čemu ovšem , to nebylo jasné . \n For what however , that was-not clear .
@@ -1847,7 +1847,7 @@ obl(Met, Thursday)
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/obl.md" target="#">edit obl</a></p>
 
 <p><a id="al-cs-dep/orphan" class="al-dest"></a></p>
-<h2><code>orphan</code>: remnant in ellipsis</h2>
+<h2><code>orphan</code>: connecting orphaned arguments of elided predicate</h2>
 
 <p>The <code>orphan</code> relation is used to provide a satisfactory treatment of certain instances of
 <a href="http://universaldependencies.org/cs/overview/specific-syntax.html#ellipsis">ellipsis</a>
@@ -1859,24 +1859,13 @@ nsubj(objednal, Pavel-1)
 nsubj(ordered, Pavel-10)
 obj(objednal, hovězí)
 obj(ordered, beef)
-remnant(Pavel-1, Markéta-6)
-remnant(Pavel-10, Markéta-15)
-remnant(hovězí, vepřové)
-remnant(beef, pork)
+conj(objednal, Markéta-6)
+conj(ordered, Markéta-15)
+orphan(Markéta-6, vepřové)
+orphan(Markéta-15, pork)
+cc(Markéta-6, a)
+cc(Markéta-15, and)
 </code></pre>
-
-<h2 id="diffs-3">Diffs</h2>
-
-<h3 id="prague-dependency-treebank-3">Prague Dependency Treebank</h3>
-
-<p>At present the conversion of the PDT data to UD does not handle ellipsis properly
-and the <code>orphan</code> relation is not used.</p>
-
-<p>In the analytical layer of PDT, ellipsis
-(together with some other issues, such as the <a href="">vocative</a>) is signalled by the
-dependency relation <code>ExD</code> (ex-dependent).
-All the <code>ExD</code> relations that are not vocatives or comparatives are currently just re-labeled <a href="">dep</a>
-or <a href="">root</a>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/orphan.md" target="#">edit orphan</a></p>
 
@@ -1951,9 +1940,9 @@ parataxis(rozšiřuje, jde)
 parataxis(extended, concerns)
 </code></pre>
 
-<h2 id="diffs-4">Diffs</h2>
+<h2 id="diffs-3">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-4">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank-3">Prague Dependency Treebank</h3>
 
 <p>At present the PDT data converted to UD use <code>parataxis</code> only for interjected parentheticals.
 The other examples above are analyzed differently (legacy PDT structure).</p>
@@ -2051,7 +2040,7 @@ there is just one node with the <code>root</code> dependency relation in every
 tree. If the main predicate is not present (due to
 <a href="http://universaldependencies.org/cs/overview/specific-syntax.html#ellipsis">ellipsis</a>)
 and there are
-multiple orphaned dependents, the leftmost dependent is promoted to
+multiple orphaned dependents, the dependent that is highest in the obliqueness hierarchy is promoted to
 the head (root) position and the other orphans are attached to it.</p>
 
 <p>An example sentence-like segment that lacks the main verb:
@@ -2059,18 +2048,18 @@ the head (root) position and the other orphans are attached to it.</p>
 “And what [does] MF [say] to it?”</p>
 
 <pre><code class="language-sdparse">ROOT A co na to MF ? \n ROOT And what to it MF ?
-root(ROOT-1, A)
-root(ROOT-9, And)
-obj(A, co)
-obj(And, what)
-nmod(A, to-5)
-nmod(And, it)
+root(ROOT-1, MF-6)
+root(ROOT-9, MF-14)
+orphan(MF-6, co)
+orphan(MF-14, what)
+orphan(MF-6, to-5)
+orphan(MF-14, it)
 case(to-5, na)
 case(it, to-12)
-nsubj(A, MF-6)
-nsubj(And, MF-14)
-punct(A, ?-7)
-punct(And, ?-15)
+cc(MF-6, A)
+cc(MF-14, And)
+punct(MF-6, ?-7)
+punct(MF-14, ?-15)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/root.md" target="#">edit root</a></p>
