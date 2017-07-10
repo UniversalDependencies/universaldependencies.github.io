@@ -62,7 +62,7 @@
 
           <h1 id="dependencies">Dependencies</h1>
 
-<p>Note: <i>punct</i> appears in two places.</p>
+<p>Note: <i>punct</i> appears in two places: clauses and nominals.</p>
 
 <table class="typeindex">
   <tr>
@@ -514,25 +514,25 @@ aux(Come, I-would)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/aux_.md" target="#">edit aux</a></p>
 
-<p><a id="al-cs-dep/auxpass" class="al-dest"></a></p>
-<h2><code>auxpass</code>: passive auxiliary</h2>
+<p><a id="al-cs-dep/aux:pass" class="al-dest"></a></p>
+<h2><code>aux:pass</code>: passive auxiliary</h2>
 
 <p>A passive auxiliary of a clause is a form of the <a href="cs-pos/AUX">auxiliary verb</a> <em>být</em> “to be”
 used to construct the periphrastic passive voice (in any tense or in the infinitive).</p>
 
 <pre><code class="language-sdparse">Kennedy byl zabit . \n Kennedy was killed .
-auxpass(zabit, byl)
-auxpass(killed, was)
+aux:pass(zabit, byl)
+aux:pass(killed, was)
 </code></pre>
 
 <pre><code class="language-sdparse">Kennedy bude zabit . \n Kennedy will-be killed .
-auxpass(zabit, bude)
-auxpass(killed, will-be)
+aux:pass(zabit, bude)
+aux:pass(killed, will-be)
 </code></pre>
 
 <pre><code class="language-sdparse">Kennedy netušil , že jeho osudem je být zabit . \n Kennedy did-not-anticipate that his fate is to-be killed .
-auxpass(zabit, být)
-auxpass(killed, to-be)
+aux:pass(zabit, být)
+aux:pass(killed, to-be)
 </code></pre>
 
 <p>Note that the passive participle may be also used as nominal predicate with <a href="cop">copula</a>.
@@ -544,8 +544,8 @@ The former focuses on the process while the latter emphasizes the result.</p>
 </ul>
 
 <pre><code class="language-sdparse">Smlouva byla podepsána v Bílém domě . \n Contract was signed in White House .
-auxpass(podepsána, byla)
-auxpass(signed, was)
+aux:pass(podepsána, byla)
+aux:pass(signed, was)
 </code></pre>
 
 <ul>
@@ -557,7 +557,7 @@ cop(podepsána, byla)
 cop(signed, was)
 </code></pre>
 
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/aux-pass.md" target="#">edit auxpass</a></p>
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/aux-pass.md" target="#">edit aux:pass</a></p>
 
 <p><a id="al-cs-dep/case" class="al-dest"></a></p>
 <h2><code>case</code>: case marking</h2>
@@ -763,8 +763,8 @@ The former focuses on the process while the latter emphasizes the result.</p>
 </ul>
 
 <pre><code class="language-sdparse">Smlouva byla podepsána v Bílém domě . \n Contract was signed in White House .
-auxpass(podepsána, byla)
-auxpass(signed, was)
+aux:pass(podepsána, byla)
+aux:pass(signed, was)
 </code></pre>
 
 <pre><code class="language-sdparse">Smlouva byla podepsána červeným inkoustem . \n Contract was signed in-red ink .
@@ -773,19 +773,18 @@ cop(signed, was)
 </code></pre>
 
 <p>The nominal predicate may also be expressed using a prepositional phrase.
-However, not every occurrence of <em>být</em> “to be” with a prepositional phrase is a copula with a nominal predicate.
-Phrases expressing the state of the subject are predicates, e.g. <em>Lenka je v kondici</em> “Lenka is in shape”.
-In contrast, prepositional phrases specifying location are not predicates.
-The verb <em>být</em> is understood as the existential “to be” in such cases, and thus it itself is the predicate, not just a copula.</p>
+Phrases expressing the state of the subject are clear predicates, e.g. <em>Lenka je v kondici</em> “Lenka is in shape”.
+Under the v2 guidelines, prepositional phrases expressing locations are also considered predicates, to increase parallelism across languages.</p>
 
-<p>Thus the following two sentences receive parallel analyses:</p>
+<p>Thus the following sentences receive parallel analyses:</p>
 
 <ul>
   <li><em>Lenka je skvělá.</em> “Lenka is brilliant.”</li>
   <li><em>Lenka je v kondici.</em> “Lenka is in shape.”</li>
+  <li><em>Lenka je v kuchyni.</em> “Lenka is in the kitchen.”</li>
 </ul>
 
-<p>The following two will be parallel, too:</p>
+<p>In contrast, the following two are no longer parallel:</p>
 
 <ul>
   <li><em>Lenka je v kuchyni.</em> “Lenka is in the kitchen.”</li>
@@ -802,10 +801,10 @@ nsubj(shape, Lenka-7)
 </code></pre>
 
 <pre><code class="language-sdparse">Lenka je v kuchyni . \n Lenka is in kitchen .
-nsubj(je, Lenka-1)
-nsubj(is, Lenka-7)
-nmod(je, kuchyni)
-nmod(is, kitchen)
+nsubj(kuchyni, Lenka-1)
+nsubj(kitchen, Lenka-7)
+cop(kuchyni, je)
+cop(kitchen, is)
 case(kuchyni, v)
 case(kitchen, in)
 </code></pre>
@@ -1988,7 +1987,7 @@ Since <code>punct</code> is not a normal dependency relation, the usual criteria
 Instead, we use the following principles:</p>
 
 <ol>
-  <li>A punctuation mark separating coordinated units is attached to the first conjunct.</li>
+  <li>A punctuation mark separating coordinated units is attached to the following conjunct.</li>
   <li>A punctuation mark preceding or following a subordinated unit is attached to this unit.</li>
   <li>Within the relevant unit, a punctuation mark is attached at the highest possible node that preserves projectivity.</li>
   <li>Paired punctuation marks (quotes and brackets) should be attached to the same word unless that would create non-projectivity. This word is usually the head of the phrase enclosed in the paired punctuation.</li>
@@ -2003,12 +2002,12 @@ conj(jablka, banány)
 conj(apples, pears)
 conj(apples, oranges)
 conj(apples, bananas)
-cc(jablka, a)
-cc(apples, and)
-punct(jablka, ,-3)
-punct(jablka, ,-5)
-punct(apples, ,-13)
-punct(apples, ,-15)
+cc(banány, a)
+cc(bananas, and)
+punct(hrušky, ,-3)
+punct(pomeranče, ,-5)
+punct(pears, ,-13)
+punct(oranges, ,-15)
 </code></pre>
 
 <pre><code class="language-sdparse">Muž , kterého jste včera viděl , přišel zas . \n Man , whom you-have yesterday seen , came again .
