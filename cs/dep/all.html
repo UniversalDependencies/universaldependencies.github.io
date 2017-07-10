@@ -62,8 +62,7 @@
 
           <h1 id="dependencies">Dependencies</h1>
 
-<p>Note: <i>nmod</i>, <i>neg</i>, and <i>punct</i> appear
-in two places.</p>
+<p>Note: <i>punct</i> appears in two places.</p>
 
 <table class="typeindex">
   <tr>
@@ -104,7 +103,7 @@ in two places.</p>
 	  <td><i>Modifier word</i></td>
 	</tr>
 	<tr>
-	  <td><a>nmod</a></td>
+	  <td><a>obl</a></td>
 	  <td><a>advcl</a></td>
 	  <td><a>advmod</a></td>
 	</tr>
@@ -112,11 +111,6 @@ in two places.</p>
 	  <td>&nbsp;</td>
 	  <td>&nbsp;</td>
 	  <td>↳<a>advmod:emph</a></td>
-	</tr>
-	<tr>
-	  <td>&nbsp;</td>
-	  <td>&nbsp;</td>
-	  <td><a>neg</a></td>
 	</tr>
       </table>
 
@@ -1177,7 +1171,7 @@ obj(He-teaches, students)
 </code></pre>
 
 <p>The one exception is when there is a clausal complement.
-Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an iobj, parallel to
+Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an <code>iobj</code>, parallel to
 the simple ditransitive case:</p>
 
 <pre><code class="language-sdparse">Řekla studentům , že dnes večer musí studovat . \n She-told students , that today evening they-needed to-study .
@@ -1204,8 +1198,10 @@ most directly affected object <em>(patient).</em></p>
 <h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>The manual annotation of the PDT does not distinguish direct and indirect objects.
-Therefore all non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>obj</code>
+Therefore most non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>obj</code>
 in the converted data, even if it results in two or more direct objects attached to one verb.
+Occasionally a heuristic was used: if there are two objects, one of them accusative and the other dative, then the former is obj and the latter iobj.
+But such heuristics do not cover all possible objects, and even ditransitive verbs may occur without one of their objects because of ellipsis.
 In future, the valency lexicon <a href="http://ufal.mff.cuni.cz/vallex">Vallex</a>
 could be used to identify the main object.</p>
 
@@ -1232,9 +1228,9 @@ appos(tel.:-3, 555-9814-4)
 appos(e-mail:-5, jones@abc.edf-6)
 </code></pre>
 
-<h2 id="diffs-1">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-1">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>The <code>list</code> relation is not used in the current conversion of the PDT data to UD.</p>
 
@@ -1353,6 +1349,22 @@ appos(Václav, prezident)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/nmod.md" target="#">edit nmod</a></p>
+
+<p><a id="al-cs-dep/nmod" class="al-dest"></a></p>
+<h2><code>nmod</code>: nominal modifier</h2>
+
+<p>The <code>obl</code> relation is used for oblique nominal arguments and adjuncts of verbs, adjectives or adverbs.</p>
+
+<p><code>nmod</code> is a <a href="cs-pos/NOUN">noun</a> (or noun phrase) functioning as a
+non-core (oblique) argument or adjunct.
+This means that it functionally corresponds to an adverbial when it attaches to a verb, adjective or other adverb.</p>
+
+<pre><code class="language-sdparse">Potkal jsem ho minulý čtvrtek . \n Met I-have him last Thursday .
+obl(Potkal, čtvrtek)
+obl(Met, Thursday)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/obl.md" target="#">edit nmod</a></p>
 
 <p><a id="al-cs-dep/nsubj" class="al-dest"></a></p>
 <h2><code>nsubj</code>: nominal subject</h2>
@@ -1832,13 +1844,16 @@ objects, one of them should be <code>obj</code> and the others should be
 <a href="">iobj</a>. In such cases it is necessary to decide what is the most
 directly affected object <em>(patient).</em> The one exception is when there is a clausal complement. Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an iobj.</p>
 
-<h2 id="diffs-2">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-2">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>The manual annotation of the PDT does not distinguish direct and indirect objects.
-Therefore all non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>obj</code>
+Therefore most non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>obj</code>
 in the converted data, even if it results in two or more direct objects attached to one verb.
+Occasionally a heuristic was used: if there are two objects, one of them accusative and the other dative,
+then the former is <code>obj</code> and the latter <code>iobj</code>. But such heuristics do not cover all possible objects,
+and even ditransitive verbs may occur without one of their objects because of ellipsis.
 In future, the valency lexicon <a href="http://ufal.mff.cuni.cz/vallex">Vallex</a>
 could be used to identify the main object.</p>
 
@@ -1863,9 +1878,9 @@ remnant(hovězí, vepřové)
 remnant(beef, pork)
 </code></pre>
 
-<h2 id="diffs-3">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-3">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>At present the conversion of the PDT data to UD does not handle ellipsis properly
 and the <code>orphan</code> relation is not used.</p>
@@ -1949,9 +1964,9 @@ parataxis(rozšiřuje, jde)
 parataxis(extended, concerns)
 </code></pre>
 
-<h2 id="diffs-4">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-4">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>At present the PDT data converted to UD use <code>parataxis</code> only for interjected parentheticals.
 The other examples above are analyzed differently (legacy PDT structure).</p>
