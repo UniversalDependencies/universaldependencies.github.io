@@ -202,8 +202,9 @@
 	</tr>
 	<tr>
 	  <td><a>flat</a></td>
-	  <td><a>foreign</a></td>
-	  <td></td>
+	</tr>
+	<tr>
+	  <td>↳<a>flat:foreign</a></td>
 	</tr>
       </table>
 
@@ -949,7 +950,7 @@ In these situations they are labeled <code>det:nummod</code>.</p>
 
 <pre><code class="language-sdparse">Nepamatuji si , s kolika muži jsem hrál karty . \n I-do-not-remember myself , with how-many men I-have played cards .
 ccomp(Nepamatuji, hrál)
-compound:reflex(Nepamatuji, si)
+expl:pv(Nepamatuji, si)
 punct(hrál, ,-3)
 aux(hrál, jsem)
 obj(hrál, karty)
@@ -958,7 +959,7 @@ case(muži, s)
 det:nummod(muži, kolika)
 punct(Nepamatuji, .-10)
 ccomp(I-do-not-remember, played)
-compound:reflex(I-do-not-remember, myself)
+expl:pv(I-do-not-remember, myself)
 punct(played, ,-14)
 aux(played, I-have)
 obj(played, cards)
@@ -1086,8 +1087,8 @@ and the family name is usually the last name.</p>
 (e.g. <em>Český Krumlov</em>).</p>
 
 <pre><code class="language-sdparse">Prezident Václav Havel včera navštívil Český Krumlov . \n President Václav Havel yesterday visited Český Krumlov .
-name(Václav-2, Havel-3)
-name(Václav-11, Havel-12)
+flat(Václav-2, Havel-3)
+flat(Václav-11, Havel-12)
 nmod(Václav-2, Prezident)
 nmod(Václav-11, President)
 amod(Krumlov-7, Český-6)
@@ -1096,24 +1097,24 @@ amod(Krumlov-16, Český-15)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/flat.md" target="#">edit flat</a></p>
 
-<p><a id="al-cs-dep/foreign" class="al-dest"></a></p>
-<h2><code>foreign</code>: foreign words</h2>
+<p><a id="al-cs-dep/flat:foreign" class="al-dest"></a></p>
+<h2><code>flat:foreign</code>: foreign words</h2>
 
-<p>We use <code>foreign</code> to label sequences of foreign words. These are given
+<p>We use <code>flat:foreign</code> to label sequences of foreign words. These are given
 a linear analysis: the head is the first token in the foreign phrase.</p>
 
-<p><code>foreign</code> does not apply to loanwords or to foreign <a href="flat">names</a>. 
+<p><code>flat:foreign</code> does not apply to loanwords or to foreign <a href="flat">names</a>.
 It applies to quoted foreign text incorporated in a sentence/discourse
 of the host language (unless we want to and know how to annotate the
 internal structure according to the syntax of the foreign language).</p>
 
 <pre><code class="language-sdparse">Jarmusch se objevil ve Wangově snímku Modrá ve tváři ( Blue in the Face ) .
-foreign(Blue, in)
-foreign(Blue, the)
-foreign(Blue, Face)
+flat:foreign(Blue, in)
+flat:foreign(Blue, the)
+flat:foreign(Blue, Face)
 </code></pre>
 
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/foreign.md" target="#">edit foreign</a></p>
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs-dep/flat-foreign.md" target="#">edit flat:foreign</a></p>
 
 <p><a id="al-cs-dep/goeswith" class="al-dest"></a></p>
 <h2><code>goeswith</code>: goes with</h2>
@@ -1226,9 +1227,9 @@ appos(tel.:-3, 555-9814-4)
 appos(e-mail:-5, jones@abc.edf-6)
 </code></pre>
 
-<h2 id="diffs-1">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-1">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>The <code>list</code> relation is not used in the current conversion of the PDT data to UD.</p>
 
@@ -1575,7 +1576,7 @@ punct(Played, .-15)
 
 <pre><code class="language-sdparse">Nepamatuji si , s kolika muži jsem hrál karty . \n I-do-not-remember myself , with how-many men I-have played cards .
 ccomp(Nepamatuji, hrál)
-compound:reflex(Nepamatuji, si)
+expl:pv(Nepamatuji, si)
 punct(hrál, ,-3)
 aux(hrál, jsem)
 obj(hrál, karty)
@@ -1584,7 +1585,7 @@ case(muži, s)
 det:nummod(muži, kolika)
 punct(Nepamatuji, .-10)
 ccomp(I-do-not-remember, played)
-compound:reflex(I-do-not-remember, myself)
+expl:pv(I-do-not-remember, myself)
 punct(played, ,-14)
 aux(played, I-have)
 obj(played, cards)
@@ -1814,9 +1815,9 @@ objects, one of them should be <code>obj</code> and the others should be
 <a href="">iobj</a>. In such cases it is necessary to decide what is the most
 directly affected object <em>(patient).</em> The one exception is when there is a clausal complement. Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an iobj.</p>
 
-<h2 id="diffs-2">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-2">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>The manual annotation of the PDT does not distinguish direct and indirect objects.
 Therefore most non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>obj</code>
@@ -1864,9 +1865,9 @@ remnant(hovězí, vepřové)
 remnant(beef, pork)
 </code></pre>
 
-<h2 id="diffs-3">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-3">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>At present the conversion of the PDT data to UD does not handle ellipsis properly
 and the <code>orphan</code> relation is not used.</p>
@@ -1950,9 +1951,9 @@ parataxis(rozšiřuje, jde)
 parataxis(extended, concerns)
 </code></pre>
 
-<h2 id="diffs-4">Diffs</h2>
+<h2 id="diffs">Diffs</h2>
 
-<h3 id="prague-dependency-treebank-4">Prague Dependency Treebank</h3>
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
 
 <p>At present the PDT data converted to UD use <code>parataxis</code> only for interjected parentheticals.
 The other examples above are analyzed differently (legacy PDT structure).</p>
