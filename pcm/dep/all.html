@@ -935,9 +935,9 @@
 1	they	_	_	_	_	0	_	_	_
 2	just	_	_	_	_	0	_	_	_
 3	tell	_	_	_	_	0	_	_	_
-4	he	_	_	_	_	0	_	_	_
+4	him	_	_	_	_	0	_	_	_
 5	that	_	_	_	_	0	_	_	_
-6	he	_	_	_	_	0	_	_	_
+6	his	_	_	_	_	0	_	_	_
 7	daughter	_	_	_	_	0	_	_	_
 8	fall	_	_	_	_	0	_	_	_
 
@@ -1160,7 +1160,7 @@
 <p><a id="al-pcm-dep/compound:svc" class="al-dest"></a></p>
 <h2><code>compound:svc</code>: serial verb compounds</h2>
 
-<p>The relation <code>compound:svc</code> is used for serial verb constructions. In this type of construction, several verbs are combined to describe the same action. The verbs in a serial verb construction share the same subject but not necessarily the same object.</p>
+<p>The relation <code>compound:svc</code> is used for serial verb constructions. In this type of construction, several verbs are combined to describe the same action.</p>
 
 <pre><code class="language-conllu"># visual-style 2 4 compound:svc	color:blue
 # visual-style 4	bgColor:blue
@@ -1186,6 +1186,8 @@
 5	to	_	_	_	_	0	_	_	_
 6	work	_	_	_	_	0	_	_	_
 </code></pre>
+
+<p>The verbs in a serial verb construction share the same subject but not necessarily the same object.</p>
 
 <pre><code class="language-conllu"># visual-style 4 7 compound:svc	color:blue
 # visual-style 4	bgColor:blue
@@ -1321,7 +1323,9 @@ for <code>conj</code>.</p>
 <p><a id="al-pcm-dep/conj:appos" class="al-dest"></a></p>
 <h2><code>conj:appos</code>: apposed conjunct</h2>
 
-<p>The <code>conj:appos</code> relation is used instead of <code>appos</code> for appositions which respect the prosody of lists. The elements in a <code>conj:appos</code> are not bound to a particular sequence, they can be rearranged in a different order. This choice of relation is meant to emphasize the similarity between some appositions and ordinary coordination.</p>
+<p>As other conj subrelation, <code>conj:appos</code> is used between conjuncts, that is between elements which are in the same paradigm, i.e which fulfill the same role in relation to their governor. Contrarily to <a href="">conj:coord</a>, conjucts in a <code>conj:appos</code> relation have the same referent. Contrarily to <a href="">nmod:appos</a>, an apposed conjunct must respect a specific background prosody.</p>
+
+<p>The elements in a <code>conj:appos</code> are not bound to a particular sequence, they can be rearranged in a different order. This choice of relation is meant to emphasize the similarity between some appositions and ordinary coordination.</p>
 
 <p>Not all appositions respect these critierias, for appositions which modify nominal elements but without showing these similarities to coordinations we use the <a href="">nmod:appos</a> relation instead.</p>
 
@@ -1702,7 +1706,97 @@ for <code>det:predet</code>.</p>
 <p><a id="al-pcm-dep/fixed" class="al-dest"></a></p>
 <h2><code>fixed</code>: fixed multiword expression</h2>
 
-<p>This document is a placeholder for the language-specific documentation for <code>fixed</code>.</p>
+<p>The <code>fixed</code> relation is one of the relations used for multiword expressions (MWEs). It is used for certain fixed grammaticized expressions that behave like function words or short adverbials. Fixed MWEs are annotated in a flat structure, where all subsequent words in the expression are attached to the first one using the fixed label.</p>
+
+<pre><code class="language-conllu"># visual-style 1 2 fixed	color:blue
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+1	so	so	SCONJ	SCONJ	_	6	mark	_	_
+2	dat	that	SCONJ	PRON	_	1	fixed	_	_
+3	you	you	PRON	PRON	_	6	nsubj	_	_
+4	no	not	PART	PART	_	6	advmod	_	_
+5	go	will	AUX	AUX	_	6	aux	_	_
+6	enter	enter	VERB	VERB	_	0	root	_	_
+7	mouth	mouth	NOUN	NOUN	_	6	obj	_	_
+8	of	of	ADP	ADP	_	10	case	_	_
+9	anoder	another	DET	DET	_	10	det	_	_
+10	car	car	NOUN	NOUN	_	7	nmod	_	_
+
+1	so	_	_	_	_	0	_	_	_
+2	that	_	_	_	_	0	_	_	_
+3	you	_	_	_	_	0	_	_	_
+4	not	_	_	_	_	0	_	_	_
+5	will	_	_	_	_	0	_	_	_
+6	enter	_	_	_	_	0	_	_	_
+7	mouth	_	_	_	_	0	_	_	_
+8	of	_	_	_	_	0	_	_	_
+9	another	_	_	_	_	0	_	_	_
+10	car	_	_	_	_	0	_	_	_
+
+1	so	_	_	_	_	0	_	_	_
+2	that	_	_	_	_	0	_	_	_
+3	you	_	_	_	_	0	_	_	_
+4	won't	_	_	_	_	0	_	_	_
+5	enter	_	_	_	_	0	_	_	_
+6	the	_	_	_	_	0	_	_	_
+7	way	_	_	_	_	0	_	_	_
+8	of	_	_	_	_	0	_	_	_
+9	another	_	_	_	_	0	_	_	_
+10	car	_	_	_	_	0	_	_	_
+</code></pre>
+
+<p>Naija makes little use of the fixed relation and instead analyzes these expressions syntactically when possible.</p>
+
+<pre><code class="language-conllu"># visual-style 4 2 mark	color:blue
+# visual-style 4 3 mark	color:blue
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+1	but	but	CCONJ	CCONJ	_	21	cc	_	_
+2	if	if	SCONJ	SCONJ	_	4	mark	_	_
+3	to	to	PART	ADP	_	4	mark	_	_
+4	say	say	VERB	VERB	_	21	advcl	_	_
+5	dat	that	DET	PRON	_	6	det	_	_
+6	man	man	NOUN	NOUN	_	8	dislocated	_	_
+7	im	he	PRON	PRON	_	8	nsubj	_	_
+8	park	park	NOUN	NOUN	_	4	ccomp	_	_
+9	maybe	maybe	ADV	ADV	_	14	advmod	_	_
+10	im	he	PRON	PRON	_	13	nsubj	_	_
+11	for	for	AUX	ADP	_	13	aux	_	_
+12	no	not	PART	PART	_	13	advmod	_	_
+13	die	die	VERB	VERB	_	0	root	_	_
+
+1	but	_	_	_	_	0	_	_	_
+2	if	_	_	_	_	0	_	_	_
+3	to	_	_	_	_	0	_	_	_
+4	say	_	_	_	_	0	_	_	_
+5	that	_	_	_	_	0	_	_	_
+6	man	_	_	_	_	0	_	_	_
+7	he	_	_	_	_	0	_	_	_
+8	park	_	_	_	_	0	_	_	_
+9	maybe	_	_	_	_	0	_	_	_
+10	he	_	_	_	_	0	_	_	_
+11	would	_	_	_	_	0	_	_	_
+12	not	_	_	_	_	0	_	_	_
+13	die	_	_	_	_	0	_	_	_
+
+1	But	_	_	_	_	0	_	_	_
+2	if	_	_	_	_	0	_	_	_
+3	the	_	_	_	_	0	_	_	_
+4	man	_	_	_	_	0	_	_	_
+5	had	_	_	_	_	0	_	_	_
+6	parked	_	_	_	_	0	_	_	_
+7	maybe	_	_	_	_	0	_	_	_
+8	he	_	_	_	_	0	_	_	_
+9	wouldn't	_	_	_	_	0	_	_	_
+10	have	_	_	_	_	0	_	_	_
+11	died	_	_	_	_	0	_	_	_
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-dep/fixed.md" target="#">edit fixed</a></p>
 
