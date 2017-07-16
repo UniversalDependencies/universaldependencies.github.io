@@ -423,7 +423,7 @@ acl(regards, braqués)
 <h2><code>acl:cleft</code>: cleft clause modifier</h2>
 
 <p>FrenchSpoken uses the <code>acl:cleft</code> relation to link the clefted nominal element (i.e. the head of the cleft construction) and the clause of the cleft sentence.
-When the clefted element is a clause or an adverb, we use the <a href="">ccomp:cleft</a> relation instead.</p>
+The <a href="">nsubj:expl</a> relation is used to annotate the syntactical subject of the cleft construction.</p>
 
 <pre><code class="language-sdparse">Les vendanges commencent aujourd'hui. C' est un vigneron du coin qui me l'a dit .
 nsubj:expl(vigneron, C')
@@ -431,9 +431,20 @@ acl:cleft(vigneron, dit)
 nsubj(dit, qui)
 </code></pre>
 
-<p>We also use the <a href="">nsubj:expl</a> relation for the syntactical subject of the cleft construction.</p>
+<pre><code class="language-sdparse">Il y a Marie qui danse dans la pièce. \n Marie dances in the room.
+nsubj:expl(a,Il)
+advmod(a,y)
+obj(a,Marie)
+acl:cleft(Marie,danse)
+</code></pre>
 
-<p>N.B.: <code>acl:cleft</code> is only used for clefted nominal subjects or objects. All other cases are annotated with the <a href="">ccomp:cleft</a> relation.</p>
+<pre><code class="language-sdparse">J' ai le mari de ma voisine qui est réparteur de voiture. \n I've got a neighbour whose husband is a car repairer.
+nsubj(ai,J')
+obj(ai,mari)
+acl:cleft(mari,réparateur)
+</code></pre>
+
+<p>N.B.: <code>acl:cleft</code> is only used for clefted nominal subjects or objects. All other cases are annotated with the <a href="">ccomp:cleft</a> relation (for example when the clefted element is a verb or an adverb).</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/acl-cleft.md" target="#">edit acl:cleft</a></p>
 
@@ -1630,6 +1641,124 @@ parataxis(idée, futur)
 <p>FrenchSpoken does not use the simple <code>parataxis</code> relation. There are instead six different subrelations: <a href="">parataxis:discourse</a>, <a href="">parataxis:dislocated</a>, <a href="">parataxis:insert</a>, <a href="">parataxis:obj</a>, <a href="">parataxis:parenth</a> and <a href="">parataxis:conj</a>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/parataxis.md" target="#">edit parataxis</a></p>
+
+<p><a id="al-fr-dep/parataxis:conj" class="al-dest"></a></p>
+<h2><code>parataxis:conj</code>: parataxis conjunct</h2>
+
+<p>The <code>parataxis:conj</code> relation is used to link two juxtaposed illocutary units.</p>
+
+<pre><code class="language-sdparse">Marie est restée chez elle : elle était malade toute la soirée. \n Marie stayed at home: she was thick all night.
+parataxis:conj(restée,malade)
+</code></pre>
+
+<p>N.B.: The two clauses linked by the <code>parataxis:conj</code> relation could be considered as two independent illocutary units (i.e. two independent syntax dependency trees). 
+In that case, the <code>parataxis:conj</code> link becomes useless and the two illocutary units are annotated seperately.</p>
+
+<p>There are five more subrelations that FrenchSpoken uses: <a href="">parataxis:discourse</a>, <a href="">parataxis:dislocated</a>, <a href="">parataxis:insert</a>, <a href="">parataxis:obj</a> and <a href="">parataxis:parenth</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/parataxis-conj.md" target="#">edit parataxis:conj</a></p>
+
+<p><a id="al-fr-dep/parataxis:discourse" class="al-dest"></a></p>
+<h2><code>parataxis:discourse</code>: parataxis discourse</h2>
+
+<p>The <code>parataxis:discourse</code> relation is used for associated illocutary units. Contrary to parentheticals (for which the <a href="">parataxis:parenth</a> relation is used), the associated units do not allow for expansions.
+Additionally those clauses mostly have first or second person subjects (or <em>on</em>). For instance <em>je pense</em>, <em>tu vois</em>, <em>tu penses pas ?</em>, <em>on dirait</em> etc.
+For other discourse elements such as interjections we use the standard <a href="">discourse</a> relation.</p>
+
+<pre><code class="language-sdparse">Il aurait fallu tourner à droite, tu penses pas ? \n We should have turned left, don't you think?
+parataxis:discourse(fallu, penses)
+</code></pre>
+
+<p>Here is an example from FrenchSpoken:</p>
+
+<pre><code class="language-sdparse">autrefois oui oui c'était pas le cas euh je veux dire euh \n in the past yes yes it wasn't the case uh I mean uh
+parataxis:discourse(cas, veux)
+</code></pre>
+
+<p>There are five more subrelations that FrenchSpoken uses: <a href="">parataxis:dislocated</a>, <a href="">parataxis:insert</a>, <a href="">parataxis:obj</a>, <a href="">parataxis:parenth</a> and <a href="">parataxis:conj</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/parataxis-discourse.md" target="#">edit parataxis:discourse</a></p>
+
+<p><a id="al-fr-dep/parataxis:dislocated" class="al-dest"></a></p>
+<h2><code>parataxis:dislocated</code>: parataxis dislocated</h2>
+
+<p>The <code>parataxis:dislocated</code> relation is used for pre-nucleus clauses that function like dislocations. 
+They  cannot be considered as illocutary units since they are not autonomous.</p>
+
+<p>For instance, in the following example, <em>j’ai le copain de ma copine</em> could not be an autonomous sentence. Furthermore it commutes with the nominal phrase <em>le copain de ma copine</em> and works like a dislocation, that is why the <code>parataxis:dislocated</code> relation is appropriate.</p>
+
+<pre><code class="language-sdparse">j' ai le copain de ma copine il a un petit bateau dans le port de Toulon \n this boyfriend of my friend, he's got a little boat in the port of Toulon
+parataxis:dislocated(a,ai)
+</code></pre>
+
+<p>N.B.: Since pre-nucleus clause functions like a dislocation, it could be annotated with a simple <a href="">dislocated</a> link.</p>
+
+<p>There are five more subrelations that FrenchSpoken uses: <a href="">parataxis:discourse</a>, <a href="">parataxis:insert</a>, [parataxis:obj], <a href="">parataxis:parenth</a> and <a href="">parataxis:conj</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/parataxis-dislocated.md" target="#">edit parataxis:dislocated</a></p>
+
+<p><a id="al-fr-dep/parataxis:insert" class="al-dest"></a></p>
+<h2><code>parataxis:insert</code>: parataxis insert</h2>
+
+<p>The <code>parataxis:insert</code> relation is used for parenthetical clauses which could not be considered as independent sentences, since they are not saturated. 
+In French such clauses can usually be found in formal writings (news, tales etc.). They are also typically caracterized by an inversion of the subject.</p>
+
+<p>N.B.: When the parenthetical clause is saturated, the <a href="">parataxis:parenth</a> relation is more appropriate.</p>
+
+<pre><code class="language-sdparse">Demain, déclara gravement Mathilde, il faudra partir dès l'aube. \n Tommorow, Mathilde declared gravely, we must leave at dawn.
+parataxis:insert(faudra, déclara)
+</code></pre>
+
+<p>Here is an example from FrenchSpoken:</p>
+
+<pre><code class="language-sdparse">vraiment dit Job la vie de l'homme sur Terre est une corvée \n truely, said Job, man's life on earth is nothing more than pressed service
+parataxis:insert(corvée, dit)
+</code></pre>
+
+<p>There are five more subrelations that FrenchSpoken uses: <a href="">parataxis:discourse</a>, <a href="">parataxis:dislocated</a>, <a href="">parataxis:obj</a>, <a href="">parataxis:parenth</a> and <a href="">parataxis:conj</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/parataxis-insert.md" target="#">edit parataxis:insert</a></p>
+
+<p><a id="al-fr-dep/parataxis:obj" class="al-dest"></a></p>
+<h2><code>parataxis:obj</code>: parataxis object</h2>
+
+<p>The <code>parataxis:obj</code> relation is used for direct speech when it is governed by a verb.</p>
+
+<pre><code class="language-sdparse">Ma mère m'a dit tu dois ranger ta chambre. \n My mother told me you have to clean your room.
+parataxis:obj(dit, dois)
+</code></pre>
+
+<p>In the previous example, we can see that <em>Ma mère m’a dit</em> cannot constitute a core sentence without the phrase <em>tu dois ranger ta chambre</em>. 
+This clearly shows that <em>tu dois ranger ta chambre</em> is an object of <em>dit</em>, that is why the <code>parataxis:obj</code> relation is used.</p>
+
+<p>Here is an example from FrenchSpoken:</p>
+
+<pre><code class="language-sdparse">on m'a dit tu as l'antenne un mois \n they told me you have the antenna for one month
+parataxis:obj(dit, as)
+</code></pre>
+
+<p>There are five more subrelations that FrenchSpoken uses: <a href="">parataxis:discourse</a>, <a href="">parataxis:dislocated</a>, <a href="">parataxis:insert</a>, <a href="">parataxis:parenth</a> and <a href="">parataxis:conj</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/parataxis-obj.md" target="#">edit parataxis:obj</a></p>
+
+<p><a id="al-fr-dep/parataxis:parenth" class="al-dest"></a></p>
+<h2><code>parataxis:parenth</code>: parataxis parenthesical</h2>
+
+<p>The <code>parataxis:parenth</code> relation is used for parenthetical clauses. They could constitute autonomous sentences but they are inserted within another illocutary unit.</p>
+
+<pre><code class="language-sdparse">Les enfants ont le droit d'avoir du temps libre ( voir ci-dessous ) \n Children have a right to free time ( see below )
+parataxis:parenth(ont, voir)
+</code></pre>
+
+<p>Here is an example from FrenchSpoken:</p>
+
+<pre><code class="language-sdparse">alors que heinze c'est quand même assez extraordinaire hein c'est le patron de la défense \n wheras Heinze it's quite extraordinary he's the boss of defense
+parataxis:parenth(patron, extraordinaire)
+</code></pre>
+
+<p>There are five more subrelations that FrenchSpoken uses: <a href="">parataxis:discourse</a>, <a href="">parataxis:dislocated</a>, <a href="">parataxis:insert</a>, <a href="">parataxis:obj</a> and <a href="">parataxis:conj</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/parataxis-parenth.md" target="#">edit parataxis:parenth</a></p>
 
 <p><a id="al-fr-dep/punct" class="al-dest"></a></p>
 <h2><code>punct</code>: punctuation</h2>
