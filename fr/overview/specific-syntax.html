@@ -83,6 +83,63 @@ cop(fait, est)
 nsubj(fait, il)
 </code></pre>
 
+<h2 id="cleft-sentences">Cleft sentences</h2>
+
+<p>FrenchSpoken analyzes cleft sentences with <a href="">fr-dep/acl:cleft</a> when the clefted element is a nominal subject or object. All other clefted elements are analyzed with <a href="">fr-dep/ccomp:cleft</a>.
+For cleft sentences constructed with a <em>c’est</em> (or <em>ce sont</em>, <em>c’était</em> etc.), the clefted element is the head or the whole cleft sentence and the syntactical subject <em>c’</em> receives a <a href="">fr-dep/nsubj:expl</a> link.</p>
+
+<pre><code class="language-sdparse">Notre jardin est vraiment magnifique. C' est notre jardinier qui a tout fait seul ! \n Our garden is truly beautiful. It's our gardener who did everything on his own!
+nsubj:expl(jardinier,C')
+acl:cleft(jardinier,fait)
+nsubj(fait,qui)
+</code></pre>
+
+<pre><code class="language-sdparse">Les temps sont durs. C' est en faisant des compromis qu' on s'en sortira. \n Times are tough. That's by making compromises that we will be able to find a way out of misery.
+nusbj:expl(faisant,C')
+cop(faisant,est)
+ccomp:cleft(faisant,sortira)
+advcl(sortira,qu')
+</code></pre>
+
+<pre><code class="language-sdparse">Je n'entends pas la télévision. Il y a mon père qui passe l'aspirateur. \n I can't hear the television. My father is vaccuuming the room.
+nsubj:expl(a,Il)
+advmod(a,y)
+obj(a,père)
+acl:cleft(père,passe)
+nsubj(passe,qui)
+</code></pre>
+
+<p>N.B.: Presentative constructions must not be mistaken for cleft sentences. FrenchSpoken annotates those two constructions differently.
+In a presentative construction the pronoun <em>c’</em> has an antecedent whereas the <em>c’</em> in a cleft sentence does not have one. The <em>c’</em> of a presentative will thus be annotated with a standard <a href="">fr-dep/nsubj</a> relation and the <em>c’</em> of a cleft sentence will be annotated with the <code>nsubj:expl</code> subrelation (see above).
+In the following example, <em>C’</em> has an obvious antecedent: <em>notre jardinier</em>. The relative clause of the presentative construction is governed by <em>lui</em> with a <a href="">fr-dep/acl:relcl</a> relation (and not an <code>acl:cleft</code> relation).</p>
+
+<pre><code class="language-sdparse">Notre jardinier est excellent. C' est lui qui a fait tout ce merveilleux travail. \n Our gardener is excellent. He is the one who did all this wonderful work.
+nsubj(lui,C')
+acl:relcl(lui,fait)
+nsubj(fait,qui)
+</code></pre>
+
+<h2 id="pseudo-cleft-sentences">Pseudo-cleft sentences</h2>
+
+<p>To stay consistent with the analysis made for the cleft sentences, and thus to show the similarities between the two types of constructions, the head of a pseudo-cleft sentence is the element that follows the <em>c’est</em> (or <em>c’était</em> etc.) and the pronoun <em>c’</em> is annotated with <a href="">fr-dep/nsubj:expl</a>. 
+This head governs the left part of the pseudo-cleft construction with a <a href="">fr-dep/dislocated:cleft</a> link. 
+The pronoun <em>ce</em> is the head of the left part of the pseudo-cleft and governs the relative clause with a standard <a href="">fr-dep/acl:relcl</a> link.</p>
+
+<pre><code class="language-sdparse">Ce que j' aime, c' est le chocolat. \n Chocolate is what I like.
+cop(chocolat,est)
+nsubj:expl(c')
+dislocated:cleft(chocolat,Ce)
+acl:relcl(ce,aime)
+</code></pre>
+
+<pre><code class="language-sdparse">Ce qui me fait peur, c' est que tu te casses une jambe. \n What scares me is that you break your leg.
+mark(casses,que)
+cop(casses,est)
+nsubj:expl(casses,c')
+dislocated:cleft(casses,Ce)
+acl:relcl(ce,fait)
+</code></pre>
+
 
 
       </div>
