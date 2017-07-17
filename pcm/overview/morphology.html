@@ -47,8 +47,8 @@
       <hr/>
 
       
-      <div class="v1warning">
-	This page still pertains to UD version 1.
+      <div class="v2complete">
+	This page pertains to UD version 2.
       </div>
       
       
@@ -60,10 +60,54 @@
 	  </div>
 	</noscript>
 
-          <h1 id="morphology">Morphology</h1>
+          <h1 id="morphology--general-principles">Morphology : General Principles</h1>
 
-<p>This document is a placeholder for the language-specific overview of
-guidelines for part-of-speech tags and features.</p>
+<p>The UD scheme allows the specification of a complete morpho-syntactic representation that can be applied cross-linguistically. This effectively means that grammatical notions may be indicated via word forms (morphologically) or via dependency relations (syntactically). The morphological specification of a (syntactic) word in the UD scheme consists of three levels of representation :</p>
+
+<ul>
+  <li>A <em>lemma</em> representing the semantic content of the word.</li>
+  <li>A <em>part-of-speech tag</em> representing the abstract lexical category associated with the word.</li>
+  <li>A <em>set of features</em> representing lexical and grammatical properties that are associated with the particular word form.</li>
+</ul>
+
+<p>Lemmas are typically determined by language-specific dictionaries and lexica. In contrast, the part-of-speech tags and grammatical properties are taken from two universal inventories defined below.</p>
+
+<h2 id="lemmas">Lemmas</h2>
+
+<p>The <code>LEMMA</code> field should contain the canonical or base form of the word, such as the form typically found in dictionaries. If the lemma is not available, an underscore (“<code>_</code>”) can be used to indicate its absence.</p>
+
+<h2 id="part-of-speech-tags">Part-of-Speech Tags</h2>
+
+<p>The list of <a href="../../u/pos/index.html">universal POS tags</a> is a fixed list containing 17 tags. It is possible that some tags will not be used in some languages. However, the list cannot be extended to cover language-specific extensions. Instead, more fine-grained classification of words can be achieved via the use of <a href="../../pcm/feat/index.html">features</a> (see below).</p>
+
+<p>Just one tag per word is expected, and it should not be empty. (Use the <code>X</code> tag instead of underscore if no other tag is appropriate.)</p>
+
+<h2 id="features">Features</h2>
+
+<p>Features are additional pieces of information about the word, its part of speech and morphosyntactic properties. Every feature has the form <code>Name=Value</code> and every word can have any number of features, separated by the vertical bar, as in <code>Gender=Masc|Number=Sing</code>.</p>
+
+<ul>
+  <li>There are two types of identifiers:
+    <ul>
+      <li>feature names = <em>features</em></li>
+      <li>feature values = <em>values</em></li>
+    </ul>
+  </li>
+  <li>All identifiers (both features and values) consist of English letters or, occasionally, digits 0-9. The first letter is always uppercase. The other letters are generally lowercase, except for positions where new internal words are marked for better readability (e.g. <code>NumType</code> ). This makes features distinct from the <a href="../../u/pos/index.html">universal POS tags</a> (all uppercase) and from the <a href="../../u/dep/index.html">universal dependency relations</a> (all lowercase).</li>
+  <li>A feature of a word should always be fully specified in the data, i.e. both the feature name and the value should be identified: <code>PronType=Prs</code> . Note that the values are not guaranteed to be unique across features, e.g. <code>Sup</code> could denote the superessive case, superlative degree of comparison or supine (a verb form).</li>
+  <li>Not mentioning a feature in the data implies the empty value, which means that the feature is either irrelevant for this part of speech, or its value cannot be determined for this word form due to language-specific reasons.</li>
+  <li>Canonical ordering: features of one word (appearing on the same line) are always ordered alphabetically; if a feature has multiple values, these are ordered alphabetically, too. This rule facilitates cases when it is necessary to compare feature sets of two words. Alphabetical sorting means that uppercase letters are considered identical to their lowercase counterparts. So for example, <code>Number</code> precedes <code>NumType</code> .</li>
+  <li>Description of individual features usually hints what parts of speech the feature is likely to appear with. This information is intended to help understand the typical usage of the feature; however, it is <em>not a strict rule!</em> Applicability of features to parts of speech is very language-dependent and it should never be assumed that the feature cannot appear together with a particular POS tag.</li>
+</ul>
+
+<h2 id="lexical-features">Lexical Features</h2>
+
+<p>All of these can be considered attributes of lexemes or lemmas (rather than individual word forms) and they represent a fine-grained sub-classification of words.</p>
+
+<h2 id="inflectional-features">Inflectional Features</h2>
+
+<p>These are mostly features of word forms rather than lemmas. There are exceptions: for instance, gender of nouns is usually a lexical feature (all word forms of one lemma have the same gender). However, other parts of speech (adjectives, pronouns, verbs) may inflect for gender because of agreement with nouns.</p>
+
 
 
       </div>
