@@ -444,13 +444,13 @@ obj(a,Marie)
 acl:cleft(Marie,danse)
 </code></pre>
 
-<pre><code class="language-sdparse">J' ai le mari de ma voisine qui est réparteur de voiture. \n I've got a neighbour whose husband is a car repairer.
+<pre><code class="language-sdparse">J' ai le mari de ma voisine qui est réparateur de voiture. \n I've got a neighbour whose husband is a car repairer.
 nsubj(ai,J')
 obj(ai,mari)
 acl:cleft(mari,réparateur)
 </code></pre>
 
-<p>N.B.: <code>acl:cleft</code> is only used for clefted nominal subjects or objects. All other cases are annotated with the <a href="">ccomp:cleft</a> relation (for example when the clefted element is a verb or an adverb). Also see the <a href="">fr-overview/specific-syntax</a> page.</p>
+<p>N.B.: <code>acl:cleft</code> is only used for clefted nominal subjects or objects. All other cases are annotated with the <a href="">ccomp:cleft</a> relation (for example when the clefted element is a verb or an adverb). Also see the <a href="http://universaldependencies.org/fr/overview/specific-syntax.html">specific-syntax</a> page.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/acl-cleft.md" target="#">edit acl:cleft</a></p>
 
@@ -611,17 +611,17 @@ appos(Sam, frère)
 appos(Appelation, AOC)
 </code></pre>
 
-<p>In FrenchSpoken we don’t use the <code>appos</code> relation anymore. Instead we have two subrelations <a href="">nmod:appos</a> and <a href="">conj:appos</a>.
+<p>In FrenchSpoken does not use the <code>appos</code> relation anymore. Instead there are two subrelations <a href="">nmod:appos</a> and <a href="">conj:appos</a>.
 The <code>nmod:appos</code> relation is used for appositions which modify nominal elements.</p>
 
 <pre><code class="language-sdparse">la place Voltaire 
 nmod:appos(place, Voltaire)
 </code></pre>
 
-<p>The <code>conj:appos</code> relation is used for appositions that respect the prosody of list (the elements of such an appositions are in the same paradigm):</p>
+<p>The <code>conj:appos</code> relation is used for appositions that respect the prosody of list (the elements of such an appositions are in the same paradigm and have the same referent):</p>
 
 <pre><code class="language-sdparse">Sam , mon frère , est arrivé . \n Sam, my brother, arrived.
-conj:appos(Same, frère)
+conj:appos(Sam, frère)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/appos.md" target="#">edit appos</a></p>
@@ -700,7 +700,7 @@ case(attendant, En)
 <p>A coordinating conjunction relation holds between the head conjunct of a coordinate structure and any of the coordinating conjunction involved in the structure. This also includes the first element in paired conjunctions like <em>ni … ni</em> “nor … nor”. Note that we never treat punctuation as coordinating conjunctions. For more on coordination, see the French <a href="">conj</a> relation as well as the universal dependency page (<a href="">u-dep/conj</a>).</p>
 
 <pre><code class="language-sdparse">1500 euros par an et par enfant \n 1500 euros per child and per year
-cc(an, et)
+cc(enfant, et)
 conj(an, enfant)
 </code></pre>
 
@@ -708,17 +708,23 @@ conj(an, enfant)
 cc(peine, Et)
 </code></pre>
 
-<p>FrenchSpoken also uses this relation. Here are a few examples from FrenchSpoken:</p>
+<p>FrenchSpoken also uses the <code>cc</code> relation. However the standard <code>conj</code> relation is not used anymore and has been replaced by a few subrelations (see <a href="">conj</a> for more details).</p>
 
-<p>~~~ sdparse
- et j’ai vraiment mal vécu ça \n and I really didn’t live this well
- cc(vécu, et)
- ~~~</p>
+<pre><code class="language-sdparse">et j'ai vraiment mal vécu ça \n and I really didn't live this well
+cc(vécu, et)
+</code></pre>
 
-<p>~~~ sdparse
-nous avons attendu sept ou huit heures dans la gare \n we waited for seven or eight hours at the station
-conj(sept, huit)
-cc(sept, ou)</p>
+<pre><code class="language-sdparse">nous avons attendu sept ou huit heures dans la gare \n we waited for seven or eight hours at the station
+conj:coord(sept, huit)
+cc(huit, ou)
+</code></pre>
+
+<p>In the following example, <em>c’est-à-dire</em> is the coordinating conjunction in a <a href="">conj:appos</a> relation :</p>
+
+<pre><code class="language-sdparse">La fille du cousin du père de Zoé, c'est-à-dire la cousine de Zoé, est astronaute. \n The daughter of Zoe's dad's cousin, in other words Zoe's cousin, is an astronaut.
+conj:appos(fille,cousine)
+cc(cousine,c'est-à-dire)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/cc.md" target="#">edit cc</a></p>
 
@@ -751,19 +757,24 @@ mark(ait, qu')
 <p>FrenchSpoken uses the <code>ccomp:cleft</code> relation in cleft sentences when the clefted element is not a nominal subject or object . 
 Else the appropriate relation is <a href="">acl:cleft</a>.</p>
 
-<pre><code class="language-sdparse">Juliette n'est pas ma confidente. C'est à Camille que je raconte tout. \n Juliette isn't my confidante. I tell everything to Camille.
+<pre><code class="language-sdparse">Juliette n'est pas ma confidente. C' est à Camille que je raconte tout. \n Juliette isn't my confidante. I tell everything to Camille.
 ccomp:cleft(Camille,raconte)
+nsubj:expl(Camille,C')
 </code></pre>
 
 <pre><code class="language-sdparse">Il y a longtemps que j' habite ici. \n I've lived here for a long time.
 ccomp:cleft(longtemps, habite)
+nsubj:expl(a,Il)
+advmod(a,y)
+obj(a,longtemps)
 </code></pre>
 
-<pre><code class="language-sdparse">Nager avec les dauphins ne me fait pas rêver. C'est explorer la forêt tropicale qui m' intéresse. \n Swimming with the dolphins isn't my dream. It's exploring the rainforest that interests me.
-ccomp:cleft(explorer, intéresse)
+<pre><code class="language-sdparse">Nager avec les dauphins ne me fait pas rêver. C' est explorer la forêt tropicale qui m' intéresse. \n Swimming with the dolphins isn't my dream. It's exploring the rainforest that interests me.
+ccomp:cleft(explorer, intéresse.)
+nsubj:expl(explorer,C')
 </code></pre>
 
-<p>N.B.: Also see the <a href="">fr-overview/specific-syntax</a> page.</p>
+<p>N.B.: Also see the <a href="http://universaldependencies.org/fr/overview/specific-syntax.html">specific-syntax</a> page.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/ccomp-cleft.md" target="#">edit ccomp:cleft</a></p>
 
@@ -798,14 +809,20 @@ conj(hésitation, inattention)
 conj(hésitation, retard)
 </code></pre>
 
+<p>FrenchSpoken does not use the simple <code>conj</code> relation. Three different subrelations are used instead: <a href="">conj:appos</a>, <a href="">conj:coord</a> and <a href="">conj:dicto</a>.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/conj.md" target="#">edit conj</a></p>
 
 <p><a id="al-fr-dep/conj:appos" class="al-dest"></a></p>
 <h2><code>conj:appos</code>: apposed conjunct</h2>
 
-<p>In FrenchSpoken the <code>conj:appos</code> relation is used instead of <code>appos</code> for appositions which respect the prosody of lists. The elements in a <code>conj:appos</code> are not bound to a particular sequence, they can be rearranged in a different order. The elements of a <code>conj:appos</code> are in the same paradigm (i.e they fulfill the same role in relation to their governor). This choice of relation is meant to emphasize the similarity between some appositions and ordinary coordination.</p>
+<p>In FrenchSpoken the <code>conj:appos</code> relation is used instead of <code>appos</code> for appositions which respect the prosody of lists. The elements in a <code>conj:appos</code> are not bound to a particular sequence, they can be rearranged in a different order. The elements of a <code>conj:appos</code> are in the same paradigm (i.e they fulfill the same role in relation to their governor). This choice of relation is meant to emphasize the similarity between some appositions and ordinary coordination.
+Contrary to the conjuncts of a <a href="">conj:coord</a> relation, the conjuncts of a <code>conj:appos</code> relation have the same referent.</p>
 
-<p>Here is an example :</p>
+<pre><code class="language-sdparse">Sa cousine , une grande psychiatre , habite à Charleville-Mézière. \n His cousin, a great psychiatrist, live in Charleville-Mézière.
+conj:appos(cousine,psychiatre)
+nsubj(habite,cousine)
+</code></pre>
 
 <pre><code class="language-sdparse">Bruno , mon oncle , est un grand fan de rugby \n Bruno, my uncle, is a big fan of rugby
 conj:appos(Bruno, oncle)
@@ -819,20 +836,46 @@ conj:appos(Bruno, oncle)
 <h2><code>conj:coord</code>: coordinated conjunct</h2>
 
 <p>The <code>conj:coord</code> relation is used between conjuncts that are coordinated. Coordinating conjunctions such as <em>et</em> (<em>and</em>) or <em>ou</em> (<em>or</em>) may connect the conjuncts, but they are not necessary. 
-Conjunctions are treated asymetrically with the first conjunct as the head, and all the other conjuncts as dependants of this element.</p>
+Conjunctions are treated asymetrically with the first conjunct as the head, and all the other conjuncts as dependants of this element.
+Contrary to the conjuncts of a <code>conj:appos</code> relation, the conjuncts of a <code>conj:coord</code> relation do not have the same referent.</p>
+
+<pre><code class="language-sdparse">Pierre et Patrick aiment rouler en moto. \n Pierre and Patrick like driving a motorcycle.
+conj:coord(Pierre,Patrick)
+nsubj(aiment,Pierre)
+cc(Patrick,et)
+</code></pre>
+
+<pre><code class="language-sdparse">J'ai acheté des tomates , des courgettes et des aubergines pour faire une ratatouille. \n I bought tomatoes, zucchinis and eggplants to cook a ratatouille.
+obj(acheté,tomates)
+conj:coord(tomates,courgettes)
+conj:coord(tomates,aubergines)
+cc(aubergines,et)
+</code></pre>
+
+<pre><code class="language-sdparse">Ni sa mère , ni son père ont répondu à ses appels. \n Neither his mother nor his dad answered his phonecalls.
+cc(mère,Ni)
+conj:coord(mère,père)
+cc(père,ni)
+nsubj(répondu,mère)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/conj-coord.md" target="#">edit conj:coord</a></p>
 
 <p><a id="al-fr-dep/conj:dicto" class="al-dest"></a></p>
 <h2><code>conj:dicto</code>: spoken overridden disfluency </h2>
 
-<p>In FrenchSpoken the <code>conj:dicto</code> relation is used instead of <a href="">reparandum</a> to indicate disfluencies overridden in a speech repair. This combines two cases of paradigmatic relations that are distinguished in the Rhapsodie corpus (http://www.projet-rhapsodie.fr/): Disfluency and reformulation. 
+<p>In FrenchSpoken the <code>conj:dicto</code> relation is used instead of <a href="">reparandum</a> to indicate disfluencies overridden in a speech repair. This combines two cases of paradigmatic relations that are distinguished in the <a href="http://www.projet-rhapsodie.fr/">Rhapsodie corpus</a>: Disfluency and reformulation. 
 Contrary to <code>reparandum</code>, in the <code>conj:dicto</code> relation, the disfluency is the head and the “repair” is the dependent. Using <code>conj:dicto</code> instead of reparandum enables us to better reflect how the utterance was produced by a speaker since we stay closer to the order in which the words were uttered. 
 Moreover, it is often difficult to distinguish reformulation and disfluency and they behave similarly to other paradigmatic relations such as coordination as has been shown in Gerdes, Kim, and Sylvain Kahane. “Speaking in piles: Paradigmatic annotation of french spoken corpus.” Proceedings of the Fifth Corpus Linguistics Conference, Liverpool. 2009.</p>
 
+<pre><code class="language-sdparse">Je vais au chez le coiffeur. \n I'm going at to the hairdresser.
+conj:dicto(au,chez)
+case(coiffeur.,au)
+</code></pre>
+
 <p>Example from FrenchSpoken:</p>
 
-<pre><code class="language-sdparse">c'est des choses dont vous parlez dans en classe euh \n
+<pre><code class="language-sdparse">c'est des choses dont vous parlez dans en classe euh \n These are things we talk about in in class.
 conj:dicto(dans, en)
 case(classe, dans)
 </code></pre>
@@ -999,16 +1042,16 @@ obj(longer, les)
 <p>FrenchSpoken uses the <code>dislocated:cleft</code> relation in pseudo-cleft structures to link the clefted element to the left part of the pseudo-cleft construction.</p>
 
 <pre><code class="language-sdparse">Ce que Thérèse aime par-dessus tout, c' est la randonnée. \n What Thérèse likes more than anything is hiking.
-dislocated:cleft(randonnée,Ce)
+dislocated:cleft(randonnée.,Ce)
 acl:relcl(Ce,aime)
 </code></pre>
 
-<pre><code class="language-sdparse">Ce qui m' embête, c'est que tu ne m'as pas appelée. \n What bothers me is that you didn't call.
-dislocated:cleft(appelée,Ce)
+<pre><code class="language-sdparse">Ce qui m' embête , c'est que tu ne m'as pas appelée. \n What bothers me is that you didn't call.
+dislocated:cleft(appelée.,Ce)
 acl:relcl(Ce,embête)
 </code></pre>
 
-<p>N.B.: For more informations on pseudo-cleft sentences see the <a href="">fr-overview/specific-syntax</a> page.</p>
+<p>N.B.: For more informations on pseudo-cleft sentences see the <a href="http://universaldependencies.org/fr/overview/specific-syntax.html">specific-syntax</a> page.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/dislocated-cleft.md" target="#">edit dislocated:cleft</a></p>
 
@@ -1018,7 +1061,7 @@ acl:relcl(Ce,embête)
 <p>Note that currenlty expletives are not annotated consistently in the French treebank.</p>
 
 <p>FrenchSpoken does not use the <code>expl</code>relation. The current definition sates that the <code>expl</code>relation should be used for “nominals that appear in an argument position of a predicate but which do not themselves satisfy any of the semantic roles of the predicate” (see the universal dependency page <a href="">u-dep/expl</a>). This definition seems to give more value to the semantic relations than to the syntactic relations.
-That is why FrenchSpoken only uses <em>expl</em> as a subrelation for impersonal constructions. All other arguments (whether they satisfy a semantic role of the predicate or not) will be annotated with the usual syntactic dependency relations (nsubj, obj etc.). For further information see the following discussion: https://github.com/UniversalDependencies/docs/issues/461</p>
+That is why FrenchSpoken only uses <em>expl</em> as a subrelation for impersonal constructions. All other arguments (whether they satisfy a semantic role of the predicate or not) will be annotated with the usual syntactic dependency relations (nsubj, obj etc.). For further information see <a href="https://github.com/UniversalDependencies/docs/issues/46">this discussion</a>.</p>
 
 <p>FrenchSpoken thus uses the <a href="">nsubj:expl</a> relation for impersonal constructions such as:</p>
 
@@ -1042,7 +1085,7 @@ obj(souvient, se)
 <p>N.B.: Here the pronoun is not an expletive but a part of a fixed verbal expression that is syntactically regular.</p>
 
 <p>In <em>a-t-elle bien dormi ?</em>, we consider the euphony marker <em>t</em> in <em>a-t-elle</em> as part as of the pronoun <em>elle</em>. This gives us an allomorphic form <em>-t-elle</em>  of the pronoun <em>elle</em>.
-Due to the tokenizing choices we made (see <a href="">fr-overview/tokenization</a>), <em>a-t-elle</em> is split in five tokens: <em>a</em>, <em>-</em>, <em>t</em>, <em>-</em> and <em>elle</em>. 
+Due to the tokenizing choices we made (see the <a href="http://universaldependencies.org/fr/overview/tokenization.html">tokenization</a> page), <em>a-t-elle</em> is split in five tokens: <em>a</em>, <em>-</em>, <em>t</em>, <em>-</em> and <em>elle</em>. 
 The first hyphen is the head (i.e. it receives the link <code>nsubj</code>) and the other tokens are linked with a goeswith:</p>
 
 <pre><code class="language-sdparse">a - t - elle bien dormi ? \n did she sleep well?
@@ -1061,7 +1104,7 @@ nsubj(est, Marie)
 expl(est, -elle)
 </code></pre>
 
-<p>FrenchSpoken annotates the two subjects with <code>nsubj</code> (and follows these tokenizing rules <a href="">fr-overview/tokenization</a>):</p>
+<p>FrenchSpoken annotates the two subjects with <code>nsubj</code> (and follows <a href="http://universaldependencies.org/fr/overview/tokenization.html">these tokenizing rules</a>):</p>
 
 <pre><code class="language-sdparse">Marie est - elle là ? \n Is Marie here?
 nsubj(est, Marie)
@@ -1453,7 +1496,7 @@ nsubj:expl(ami, C')
 acl:cleft(ami, habite)
 </code></pre>
 
-<p>N.B.: Note that we use two different subrelations for relative clauses (<a href="">acl:relcl</a>) and for cleft sentences (<a href="">acl:cleft</a>). Also see the <a href="">fr-overview/specific-syntax</a> page.</p>
+<p>N.B.: Note that we use two different subrelations for relative clauses (<a href="">acl:relcl</a>) and for cleft sentences (<a href="">acl:cleft</a>). Also see the <a href="http://universaldependencies.org/fr/overview/specific-syntax.html">specific-syntax</a> page.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nsubj-expl.md" target="#">edit nsubj:expl</a></p>
 
