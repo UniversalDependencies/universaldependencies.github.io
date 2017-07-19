@@ -687,7 +687,7 @@ The true agent of the action described by the sentence will either be anotated w
 <pre><code class="language-sdparse">Marie a fait asseoir Pierre. \n Marie made Pierre sit.
 aux:caus(asseoir,fait)
 nsubj:caus(asseoir,Marie)
-obj:agent(asseoir,Pierre)
+obj:agent(asseoir-4,Pierre-5)
 </code></pre>
 
 <p>N.B.: For more details about the analysis of causatives see <a href="http://universaldependencies.org/fr/overview/specific-syntax.html#causative">this page</a>.</p>
@@ -740,6 +740,36 @@ case(enseignement, de)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/case.md" target="#">edit case</a></p>
+
+<p><a id="al-fr-dep/case:complex" class="al-dest"></a></p>
+<h2><code>case:complex</code>: complex case</h2>
+
+<p>The <code>case:complex</code> relation is used to analyze complex prepositions. In some French treebanks these prepositions are analyzed with a <a href="">fixed</a> relation. 
+However FrenchSpoken does not consider them as fixed but intead as regular constructions. Like complex determiners (see the <a href="">det:complex</a> relation), complex prepositions can be coordinated. 
+Moreover in complex prepositions containing a <em>de</em>, the contraction of the <em>de</em> remains possible:
+<em>contrairement à toi et à ta mère</em>, <em>à côté du garage et de la maison</em> etc.</p>
+
+<pre><code class="language-sdparse">Elle a trouvé du travail grâce à cette agence d'intérim. \n She found a job thanks to this temporary employment agency.
+case:complex(agence,grâce)
+case(agence,à)
+det(agence,cette)
+</code></pre>
+
+<pre><code class="language-sdparse">La tortue est à côté de son arbre favori. \n The tortoise is next to its favorite tree.
+case:complex(arbre,côté)
+case(arbre,de)
+det(arbre,son)
+case(côté,à)
+</code></pre>
+
+<pre><code class="language-sdparse">Contrairement à toi et à ton frère, Patrick a fait des efforts pour être plus poli. \n Contrary to you and your brother, Patrick made some efforts to be more polite.
+case:complex(toi,contrairement)
+case(toi-3,à-2)
+case(frère-7,à-5)
+conj:coord(toi,frère)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/case-complex.md" target="#">edit case:complex</a></p>
 
 <p><a id="al-fr-dep/cc" class="al-dest"></a></p>
 <h2><code>cc</code>: coordinating conjunction</h2>
@@ -1034,6 +1064,45 @@ nmod:poss(ami, Mon)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/det.md" target="#">edit det</a></p>
 
+<p><a id="al-fr-dep/det:complex" class="al-dest"></a></p>
+<h2><code>det:complex</code>: complex determiner</h2>
+
+<p>The <code>det:complex</code> relation is used to annotate complex determiners. Some French treebanks analyze them with a <a href="">fixed</a> relation but FrenchSpoken does not: complex determiners are considered as regular constructions and as such, they are syntactically analyzed.
+Like complex prepositions (see the <a href="">case:complex</a> relation), complex determiners can be coordinated: <em>Il y a trop de beurre et de sucre dans ce gâteau.</em></p>
+
+<p>Here are come examples of complex determiners that follow the pattern “Adv+de+N” like <em>trop de chocolat</em>, <em>beaucoup de fraises</em>, <em>énormément d’étoiles</em> etc.</p>
+
+<pre><code class="language-sdparse">Pierre a mangé trop de chocolat. \n Pierre ate too much chocolate.
+det:complex(chocolat,trop)
+case(chocolat,de)
+</code></pre>
+
+<pre><code class="language-sdparse">Je pense que tu as mis assez de peinture sur ce mur. \n I think you put enough paint on this wall.
+det:complex(peinture,assez)
+case(peinture,de)
+</code></pre>
+
+<p>Other types of complex determiner are anotated with the <code>det:complex</code> relation:</p>
+
+<pre><code class="language-sdparse">Julien a acheté un tas de vêtements pendant les soldes. \n Julien bought a lot of clothing during the sales.
+det:complex(vêtements,tas)
+det(tas,un)
+case(vêtements,de)
+</code></pre>
+
+<pre><code class="language-sdparse">Hier soir, plein de gens étaient présents au concert d'hier soir. \n Many people attended the concert yesterday night.
+det:complex(gens,plein)
+case(gens,de)
+</code></pre>
+
+<pre><code class="language-sdparse">La plupart des bactéries ont été tuées par cet antibiotique. \n Most of the bacteria were killed by this antibiotic.
+det:complex(bactéries,plupart)
+det(plupart,la)
+case(bactéries,des)
+</code></pre>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/det-complex.md" target="#">edit det:complex</a></p>
+
 <p><a id="al-fr-dep/discourse" class="al-dest"></a></p>
 <h2><code>discourse</code>: discourse element</h2>
 
@@ -1306,7 +1375,7 @@ case(présidente, à)
 <p><a id="al-fr-dep/iobj:agent" class="al-dest"></a></p>
 <h2><code>iobj:agent</code>: agentive indirect object</h2>
 
-<p>In a causative construction, the <a href="">iobj:agent</a> relation attaches the infinitive verb to his agent, when the latter is the syntactical indirect object of the sentence.
+<p>In a causative construction, the <code>iobj:agent</code> relation attaches the infinitive verb to his agent, when the latter is the syntactical indirect object of the sentence.
 For example, in the following sentences, the use of the pronouns <em>leur</em> and <em>lui</em> shows that these pronouns are indirect objects (see the page on the <a href="">iobj</a> relation).</p>
 
 <pre><code class="language-sdparse">Marie leur fait manger des épinards pour la première fois. \n Marie made them eat spinach for the first time.
@@ -1691,7 +1760,7 @@ obj(voit, fille)
 <p><a id="al-fr-dep/obj:agent" class="al-dest"></a></p>
 <h2><code>obj:agent</code>: agentive object</h2>
 
-<p>In a causative construction, the <a href="">obj:agent</a> relation attaches the infinitive verb to his agent, when the latter is the syntactical object of the sentence.
+<p>In a causative construction, the <code>obj:agent</code> relation attaches the infinitive verb to his agent, when the latter is the syntactical object of the sentence.
 For example, in the following sentence, “ses petits” is the tue agent of the verb “sauter” (<em>Ses petits ont sauté dans la mare</em>). 
 This nominal phrase can be pronominalized as follows: <em>La cane les a fait sauter dans la mare.</em> The use of the pronoun <em>les</em> clearly shows that “ses petits” is the syntactical object of the sentence.</p>
 
@@ -1747,7 +1816,7 @@ case(voisine, Selon)
 <p><a id="al-fr-dep/obl:agent" class="al-dest"></a></p>
 <h2><code>obl:agent</code>: agentive oblique</h2>
 
-<p>In a causative construction, the <a href="">obl:agent</a> relation attaches the infinitive verb to his agent, when the latter is the syntactical oblique of the sentence.
+<p>In a causative construction, the <code>obl:agent</code> relation attaches the infinitive verb to his agent, when the latter is the syntactical oblique of the sentence.
 I.e a complement introduced by a preposition (see the page about the <a href="">obl</a> relation).</p>
 
 <pre><code class="language-sdparse">Patrick a fait boire du thé à Micheline alors qu'elle déteste ça. \n Patrick made Micheline drink tee, even though she hates tee.
