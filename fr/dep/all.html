@@ -653,7 +653,7 @@ conj:appos(Sam, frère)
 <p>An auxiliary of a clause is a <a href="sv-pos/AUX">non-main verb</a> of the
 clause.</p>
 
-<p>Exception: An auxiliary verb used to construct the passive
+<p>In some French treebanks an auxiliary verb used to construct the passive
 <a href="sv-feat/Voice">voice</a> is not labeled <code>aux</code> but <a href="">auxpass</a>.</p>
 
 <pre><code class="language-sdparse">On peut nager dans le lac \n One can swim in the lake
@@ -664,7 +664,35 @@ aux(nager, peut)
 aux(eu, a)
 </code></pre>
 
+<p>The <a href="">aux</a> relation is also used in FrenchSpoken:</p>
+
+<pre><code class="language-sdparse">c'est l'esprit qui a peut-être changé \n it's the spirit that may have changed
+aux(changé,a)
+</code></pre>
+
+<p>Currently FrenchSpoken does not use the <a href="">aux:pass</a> relation. 
+There is another subrelation used to annotate the causative constructions: the <a href="">aux:caus</a> relation.</p>
+
+<p>N.B.: Modals like <em>pouvoir</em>, <em>vouloir</em> etc. are annotated with an <a href="">aux</a> relation in some treebanks but FrenchSpoken does not consider them as auxiliary verbs.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/aux_.md" target="#">edit aux</a></p>
+
+<p><a id="al-fr-dep/aux:caus" class="al-dest"></a></p>
+<h2><code>aux:caus</code>: causative auxiliary</h2>
+
+<p>The <code>aux:caus</code> relation is used to link the infinitive verb (i.e. the governor) and the causative verb in a causative construction.
+The syntactical subject of the sentence receives a <a href="">nsubj:caus</a> link.
+The true agent of the action described by the sentence will either be anotated with an <a href="">iobj:agent</a>, an <a href="">obj:agent</a> or an <a href="">obl:agent</a> relation.</p>
+
+<pre><code class="language-sdparse">Marie a fait asseoir Pierre. \n Marie made Pierre sit.
+aux:caus(asseoir,fait)
+nsubj:caus(asseoir,Marie)
+obj:agent(asseoir,Pierre)
+</code></pre>
+
+<p>N.B.: For more details about the analysis of causatives see <a href="http://universaldependencies.org/fr/overview/specific-syntax.html#causative">this page</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/aux-caus.md" target="#">edit aux:caus</a></p>
 
 <p><a id="al-fr-dep/auxpass" class="al-dest"></a></p>
 <h2><code>auxpass</code>: passive auxiliary</h2>
@@ -1247,7 +1275,7 @@ goeswith(aujourd', hui)
 iobj(envoie, m')
 </code></pre>
 
-<p>When the indirect object is realized with a preposition, it gets analyzed with the <a href="">obl</a> relation:</p>
+<p>In some French treebanks, when the indirect object is realized with a preposition, it gets analyzed with the <a href="">obl</a> relation:</p>
 
 <pre><code class="language-sdparse">Il envoie la lettre à la présidente . \n He sends the letter to the president .
 obl(envoie, présidente)
@@ -1260,13 +1288,13 @@ case(présidente, à)
 iobj(parle, se)
 </code></pre>
 
-<p>In FrenchSpoken we also use the <code>iobj</code> relation for a nominal which corresponds to a dative objects i.e. a nominal that is a core argument of the verb but is not its subject or (direct) object.</p>
+<p>FrenchSpoken also uses the <code>iobj</code> relation for a nominal which corresponds to a dative objects i.e. a nominal that is a core argument of the verb but is not its subject or (direct) object.</p>
 
 <pre><code class="language-sdparse">Nous vous conseillons ce charmant petit restaurant. \n We recommend you this lovely restaurant.
 iobj(conseillons, vous)
 </code></pre>
 
-<p>However, in FrenchSpoken, when the indirect object is realized with a preposition, we don’t use the simple <code>obl</code> relation. We use instead the <a href="">obl:comp</a> relation:</p>
+<p>However when the indirect object is realized with a preposition, it is not annoted with a simple <a href="">obl</a> relation but with an <a href="">obl:comp</a> relation instead:</p>
 
 <pre><code class="language-sdparse">Il envoie la lettre à la présidente . \n He sends the letter to the president .
 obl:comp(envoie, présidente)
@@ -1274,6 +1302,30 @@ case(présidente, à)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/iobj.md" target="#">edit iobj</a></p>
+
+<p><a id="al-fr-dep/iobj:agent" class="al-dest"></a></p>
+<h2><code>iobj:agent</code>: agentive indirect object</h2>
+
+<p>In a causative construction, the <a href="">iobj:agent</a> relation attaches the infinitive verb to his agent, when the latter is the syntactical indirect object of the sentence.
+For example, in the following sentences, the use of the pronouns <em>leur</em> and <em>lui</em> shows that these pronouns are indirect objects (see the page on the <a href="">iobj</a> relation).</p>
+
+<pre><code class="language-sdparse">Marie leur fait manger des épinards pour la première fois. \n Marie made them eat spinach for the first time.
+aux:caus(manger,fait)
+nsubj:caus(manger,Marie)
+iobj:agent(manger,leur)
+</code></pre>
+
+<pre><code class="language-sdparse">Ils lui ont fait vivre les pires vacances de sa vie. \n They made her spend the worst holidays she had ever had.
+aux:caus(vivre,fait)
+nsubj:caus(vivre,Ils)
+iobj:agent(vivre,lui)
+</code></pre>
+
+<p>The infinitive verb governs the syntactical subject of the sentence with a <a href="">nsubj:caus</a> relation and the causative verb with an <a href="">aux:caus</a> relation.</p>
+
+<p>N.B.: For more details about the analysis of causatives see <a href="http://universaldependencies.org/fr/overview/specific-syntax.html#causative">this page</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/iobj-agent.md" target="#">edit iobj:agent</a></p>
 
 <p><a id="al-fr-dep/list" class="al-dest"></a></p>
 <h2><code>list</code>: list</h2>
@@ -1494,6 +1546,23 @@ nsubj(reflet, art)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nsubj.md" target="#">edit nsubj</a></p>
 
+<p><a id="al-fr-dep/nsubj:caus" class="al-dest"></a></p>
+<h2><code>nsubj:caus</code>: causative nominal subject</h2>
+
+<p>In a causative construction, the <code>nsubj:caus</code> relation links the infinitive verb (i.e. the head of the sentence) to the syntactical subject of the sentence.
+The infinitive verb governs the causative verb with an <a href="">aux:caus</a> relation.
+The true agent of the action described by the sentence is annotated with an <a href="">iobj:agent</a>, an <a href="">obj:agent</a> or an <a href="">obl:agent</a> relation.</p>
+
+<pre><code class="language-sdparse">Ses filles lui ont fait acheter un chiot. \n His girls made him buy a puppy.
+aux:caus(acheter,fait)
+nsubj:caus(acheter,filles)
+iobj:agent(acheter,lui)
+</code></pre>
+
+<p>N.B.: For more details about the analysis of causatives see <a href="http://universaldependencies.org/fr/overview/specific-syntax.html#causative">this page</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nsubj-caus.md" target="#">edit nsubj:caus</a></p>
+
 <p><a id="al-fr-dep/nsubj:expl" class="al-dest"></a></p>
 <h2><code>nsubj:expl</code>: expletive nominal subject</h2>
 
@@ -1619,6 +1688,31 @@ obj(voit, fille)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obj.md" target="#">edit obj</a></p>
 
+<p><a id="al-fr-dep/obj:agent" class="al-dest"></a></p>
+<h2><code>obj:agent</code>: agentive object</h2>
+
+<p>In a causative construction, the <a href="">obj:agent</a> relation attaches the infinitive verb to his agent, when the latter is the syntactical object of the sentence.
+For example, in the following sentence, “ses petits” is the tue agent of the verb “sauter” (<em>Ses petits ont sauté dans la mare</em>). 
+This nominal phrase can be pronominalized as follows: <em>La cane les a fait sauter dans la mare.</em> The use of the pronoun <em>les</em> clearly shows that “ses petits” is the syntactical object of the sentence.</p>
+
+<pre><code class="language-sdparse">La cane a fait sauter ses petits dans la mare. \n The duck made its ducklings jump into the pond.
+aux:caus(sauter,fait)
+nsubj:caus(sauter,cane)
+obj:agent(sauter,petits)
+</code></pre>
+
+<pre><code class="language-sdparse">Mon père a une femme de ménage. Il la fait venir le mercredi. \n My father has cleaning lady. He makes her come on wednesdays.
+aux:caus(venir,fait)
+nsubj:caus(venir,Il)
+obj:agent(venir,la)
+</code></pre>
+
+<p>The infinitive verb governs the syntactical subject of the sentence with a <a href="">nsubj:caus</a> relation and the causative verb with an <a href="">aux:caus</a> relation.</p>
+
+<p>N.B.: For more details about the analysis of causatives see <a href="http://universaldependencies.org/fr/overview/specific-syntax.html#causative">this page</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obj-agent.md" target="#">edit obj:agent</a></p>
+
 <p><a id="al-fr-dep/obl" class="al-dest"></a></p>
 <h2><code>obl</code>: oblique nominal</h2>
 
@@ -1649,6 +1743,30 @@ case(voisine, Selon)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obl.md" target="#">edit obl</a></p>
+
+<p><a id="al-fr-dep/obl:agent" class="al-dest"></a></p>
+<h2><code>obl:agent</code>: agentiv oblique</h2>
+
+<p>In a causative construction, the <a href="">obl:agent</a> relation attaches the infinitive verb to his agent, when the latter is the syntactical oblique of the sentence.
+I.e a complement introduced by a preposition (see the page about the <a href="">obl</a> relation).</p>
+
+<pre><code class="language-sdparse">Patrick a fait boire du thé à Micheline alors qu'elle déteste ça. \n Patrick made Micheline drink tee, even though she hates tee.
+aux:caus(boire,fait)
+nsubj:caus(boire,Patrick)
+obl:agent(boire,Micheline)
+</code></pre>
+
+<pre><code class="language-sdparse">Monique a fait toiletter son bichon par le meilleur toiletteur de la région. \n Monique made her Bichon Frise groomed by the best groomer in the area.
+aux:caus(toiletter,fait)
+nsubj:caus(toiletter,Monique)
+obl:agent(toiletter,toiletteur)
+</code></pre>
+
+<p>The infinitive verb governs the syntactical subject of the sentence with a <a href="">nsubj:caus</a> relation and the causative verb with an <a href="">aux:caus</a> relation.</p>
+
+<p>N.B.: For more details about the analysis of causatives see <a href="http://universaldependencies.org/fr/overview/specific-syntax.html#causative">this page</a>.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obl-agent.md" target="#">edit obl:agent</a></p>
 
 <p><a id="al-fr-dep/obl:comp" class="al-dest"></a></p>
 <h2><code>obl:comp</code>: oblique complement</h2>
