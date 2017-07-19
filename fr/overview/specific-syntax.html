@@ -92,7 +92,7 @@ nsubj(passe,qui)
 In a presentative construction the pronoun <em>c’</em> has an antecedent whereas the <em>c’</em> in a cleft sentence does not have one. The <em>c’</em> of a presentative will thus be annotated with a standard <a href="">fr-dep/nsubj</a> relation and the <em>c’</em> of a cleft sentence will be annotated with the <code>nsubj:expl</code> subrelation (see above).
 In the following example, <em>C’</em> has an obvious antecedent: <em>notre jardinier</em>. The relative clause of the presentative construction is governed by <em>lui</em> with a <a href="">fr-dep/acl:relcl</a> relation (and not an <code>acl:cleft</code> relation).</p>
 
-<pre><code class="language-sdparse">Notre jardin est vraiment magnifque. C’est un endroit où j’ aime venir lire. \n Our garden is truly beautiful. It's a place where I like to come reading.
+<pre><code class="language-sdparse">Notre jardin est vraiment magnifque. C’ est un endroit où j’ aime venir lire. \n Our garden is truly beautiful. It's a place where I like to come reading.
 nsubj(endroit,C')
 acl:relcl(endroit,aime)
 obl:mod(aime,où)
@@ -102,15 +102,7 @@ obl:mod(aime,où)
 
 <p><em>qu’est-ce que …</em> is actually a cleft construction. 
 For example the sentence <em>Qu’est-ce que tu lis ?</em> (<em>What are you reading?</em>) corresponds to the sentence <em>C’est quoi que tu lis ?</em>. In the second sentence the cleft construction clearly appears: <em>quoi</em> is the clefted element and <em>que tu lis</em> the clause attached to it.
-<em>Qu’est-ce que …</em> is thus analyzed as a cleft sentence. The first <em>qu’</em> (i.e. the clefted element) is the head of the whole sentence and governs the right part with an <a href="">fr-dep/acl:cleft</a> or a <a href="">fr-dep/ccomp:cleft</a> link.</p>
-
-<pre><code class="language-sdparse">Qu' est - ce qu' un délinquant ? \n What is an offender?
-root(ROOT-0,Qu'-1)
-cop(Qu',est)
-nsubj:expl(Qu',ce)
-acl:cleft(Qu',délinquant)
-nsubj(qu',délinquant)
-</code></pre>
+<em>Qu’est-ce que …</em> is thus analyzed as a cleft sentence. The first <em>qu’</em> (i.e. the clefted element) is the head of the whole sentence and governs the right part with an <a href="">fr-dep/acl:cleft</a> link.</p>
 
 <pre><code class="language-sdparse">Qu' est - ce qu' il a fait ? \n What did he do ?
 root(ROOT-0,Qu'-8)
@@ -119,6 +111,14 @@ nsubj:expl(Qu',ce)
 acl:cleft(Qu',fait)
 obj(fait,qu')
 nsubj(fait,il)
+</code></pre>
+
+<pre><code class="language-sdparse">Qu' est - ce que tu as acheté au magasin ? \n What did you buy in the shop?
+cop(Qu',est)
+nsubj:expl(Qu',ce)
+acl:cleft(Qu',acheté)
+obj(acheté,que)
+nsubj(acheté,tu)
 </code></pre>
 
 <h2 id="pseudo-cleft-sentences">Pseudo-cleft sentences</h2>
@@ -152,7 +152,7 @@ The head of a causative construction is the infinitiv verb, which governs <em>fa
 aux:caus(changer,fait)
 nsubj:caus(changer,J')
 obj(changer,roues)
-obl:agent(changer,garagiste)
+obl:agent(changer,garagiste.)
 </code></pre>
 
 <pre><code class="language-sdparse">Ce magicien fait vraiment rêver les enfants. \n This magician really makes the kids dream.
@@ -165,7 +165,7 @@ obj:agent(rêver,enfants.)
 aux:caus(visiter,fait)
 nsubj:caus(visiter,je)
 iobj:agent(visiter,lui)
-obj(visiter,maison)
+obj(visiter,maison.)
 </code></pre>
 
 <p>N.B.: For more details about the analysis of causatives, see <a href="https://gitlab.inria.fr/sequoia/deep-sequoia/issues/153#">this discussion</a> (which is partly in English and partly in French).</p>
