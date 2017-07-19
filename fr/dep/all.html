@@ -101,6 +101,9 @@
 	  <tr>
 	    <td><a>nsubj</a></td>
 	  </tr>
+ 	  <tr>
+	    <td>↳<a>nsubj:caus</a></td>
+	  </tr>
 	  <tr>
 	    <td>↳<a>nsubj:expl</a></td>
 	  </tr>
@@ -113,8 +116,14 @@
           <tr>
 	    <td><a>obj</a></td>
 	  </tr>
+   	  <tr>
+	    <td>↳<a>obj:agent</a></td>
+	  </tr>
 	  <tr>
 	    <td><a>iobj</a></td>
+	  </tr>
+ 	  <tr>
+	    <td>↳<a>iobj:agent</a></td>
 	  </tr>
 	  <tr>
 		<td><a>obl:comp</a></td>
@@ -155,6 +164,9 @@
 	<table class="category">
 	  <tr>
 	    <td><a>obl</a></td>
+	  </tr>
+   	  <tr>
+	    <td>↳<a>obl:agent</a></td>
 	  </tr>
 	  <tr>
 	  <td>↳<a>obl:mod</a></td>
@@ -203,6 +215,9 @@
 	<table class="category">
 	  <tr>
 	    <td><a>aux</a></td>
+	  </tr>
+	  <tr>
+	    <td>↳<a>aux:caus</a></td>
 	  </tr>
   	  <tr>
 	    <td>↳<a>auxpass</a></td>
@@ -263,8 +278,14 @@
 	  <tr>
 	    <td><a>det</a></td>
 	  </tr>
+ 	  <tr>
+	    <td>↳<a>det:complex</a></td>
+	  </tr>
 	  <tr>
 	    <td><a>case</a></td>
+	  </tr>
+ 	  <tr>
+	    <td>↳<a>case:complex</a></td>
 	  </tr>
         </table>
       </td>
@@ -679,18 +700,16 @@ case(rentrée, de)
 case(attendant, En)
 </code></pre>
 
-<p>In FrenchSpoken we also use the <code>case</code> relation. Here are a few examples from FrenchSpoken:</p>
+<p>Here are a few examples from FrenchSpoken with the relation <code>case</code>:</p>
 
-<p>~~~ sdparse
- je travaille dans le privé là \n I currently work in the private sector
- case(privé, dans)
- ~~~</p>
+<pre><code class="language-sdparse">je travaille dans le privé là \n I currently work in the private sector
+case(privé, dans)
+</code></pre>
 
-<p>~~~ sdparse
- un rassemblement devant le ministère de l’enseignement supérieur \n a gathering in front of the Ministry of Higher Education
- case(ministère, devant)
- case(enseignement, de)
- ~~~</p>
+<pre><code class="language-sdparse">un rassemblement devant le ministère de l' enseignement supérieur \n a gathering in front of the Ministry of Higher Education
+case(ministère, devant)
+case(enseignement, de)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/case.md" target="#">edit case</a></p>
 
@@ -1001,6 +1020,19 @@ discourse(fun, Waouh)
 discourse(occasion, Bref)
 </code></pre>
 
+<p>FrenchSpoken also uses the <code>discourse</code> relation. Here are some examples:</p>
+
+<pre><code class="language-sdparse">je traverse euh face à la euh MDE \n I cross the road uh in front of the uh MDE
+discourse(traverse-2,euh-3)
+discourse(la-6,euh-7)
+</code></pre>
+
+<pre><code class="language-sdparse">nah ça parait normal \n well it looks ok
+discourse(parait,bah)
+</code></pre>
+
+<p>N.B.: FrenchSpoken uses the <a href="">parataxis:discourse</a> relation for sentential discourse markers.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/discourse.md" target="#">edit discourse</a></p>
 
 <p><a id="al-fr-dep/dislocated" class="al-dest"></a></p>
@@ -1125,7 +1157,7 @@ fixed(quand, même)
 advmod(venue, quand)
 </code></pre>
 
-<p>In FrenchSpoken we try to use the <code>fixed</code> relation as little as possible and instead to syntactically analyse as many expression as we can.
+<p>Instead of using the <code>fixed</code> relation, FrenchSpoken syntactically analyzes as many expressions as possible.
 For instance, <em>il y a</em> corresponds to two frozen expressions: a particular marker of clefting (<em>il y a trois libres sur la table</em>) and an adposition (<em>Paul est arrivé il y a trois jours</em>). The first is syntactically regular and is the analyzed with regular relations. The second is syntactically deviant and is analyzed with <em>fixed</em>:</p>
 
 <pre><code class="language-sdparse">Paul est arrivé il y a trois jours . \n Paul arrived three days ago.
@@ -1722,7 +1754,8 @@ parataxis:conj(restée,malade)
 </code></pre>
 
 <p>N.B.: The two clauses linked by the <code>parataxis:conj</code> relation could be considered as two independent illocutary units (i.e. two independent syntax dependency trees). 
-In that case, the <code>parataxis:conj</code> link becomes useless and the two illocutary units are annotated seperately.</p>
+In that case, the <code>parataxis:conj</code> link becomes useless and the two illocutary units are annotated seperately.
+Note also that the <code>parataxis:conj</code> relation is used to annotate written corpora (i.e. it is not used to annotate oral corpora).</p>
 
 <p>There are five more subrelations that FrenchSpoken uses: <a href="">parataxis:discourse</a>, <a href="">parataxis:dislocated</a>, <a href="">parataxis:insert</a>, <a href="">parataxis:obj</a> and <a href="">parataxis:parenth</a>.</p>
 
