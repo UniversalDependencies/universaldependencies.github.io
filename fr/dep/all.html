@@ -681,8 +681,8 @@ There is another subrelation used to annotate the causative constructions: the <
 <h2><code>aux:caus</code>: causative auxiliary</h2>
 
 <p>The <code>aux:caus</code> relation is used to link the infinitive verb (i.e. the governor) and the causative verb in a causative construction.
-The syntactical subject of the sentence receives a <a href="">nsubj:caus</a> link.
-The true agent of the action described by the sentence will either be anotated with an <a href="">iobj:agent</a>, an <a href="">obj:agent</a> or an <a href="">obl:agent</a> relation.</p>
+The syntactical subject of the sentence (i.e. the causer) receives a <a href="">nsubj:caus</a> link.
+The initial agent of the action described by the sentence is demoted and will either be anotated with an <a href="">iobj:agent</a>, an <a href="">obj:agent</a> or an <a href="">obl:agent</a> relation.</p>
 
 <pre><code class="language-sdparse">Marie a fait asseoir Pierre. \n Marie made Pierre sit.
 aux:caus(asseoir,fait)
@@ -858,7 +858,7 @@ nsubj:expl(explorer,C')
 <p><a id="al-fr-dep/compound" class="al-dest"></a></p>
 <h2><code>compound</code>: compound</h2>
 
-<p><code>compound</code> in French is used for compounds like the following:</p>
+<p>The <code>compound</code> relation is one of three relations for multiword expressions (MWEs) (the other two being <a href="">fixed</a> and <a href="">flat</a>). It is used for noun compounds like the following:</p>
 
 <pre><code class="language-sdparse">ambiance chalet \n
 compound(ambiance, chalet)
@@ -867,6 +867,22 @@ compound(ambiance, chalet)
 <pre><code class="language-sdparse">début décembre  \n beginning (of) December
 compound(début, décembre)
 </code></pre>
+
+<p>Here are some examples from FrenchSpoken:</p>
+
+<pre><code class="language-sdparse">alors vote sanction ou pas \n so sanction vote or not
+compound(vote,sanction)
+</code></pre>
+
+<pre><code class="language-sdparse">ce serveur américain est une sorte de club VIP réservé à la jet set \n this american server is a kind of VIP club only for the jet set
+compound(jet,set)
+</code></pre>
+
+<pre><code class="language-sdparse">elle voit le garçon pâtissier \n she can see the young pastry chef
+compound(garçon,pâtissier)
+</code></pre>
+
+<p>N.B.: noun compounds must not be confused with apposed nominal modifiers, which are annotated with the <a href="">nmod:appos</a> relation.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/compound.md" target="#">edit compound</a></p>
 
@@ -1056,7 +1072,7 @@ det(fleurs, Les)
 det(livre, Quel)
 </code></pre>
 
-<p>A possessive determiner is marked with the <a href="">nmod:poss</a> relation:</p>
+<p>In some French treebanks, possessive determiners are marked with the <a href="">nmod:poss</a> relation:</p>
 
 <pre><code class="language-sdparse">Mon ami  \n My friend
 nmod:poss(ami, Mon)
@@ -1068,6 +1084,15 @@ nmod:poss(ami, Mon)
 det(vigilance,la)
 det(moment,ce)
 </code></pre>
+
+<p>FrenchSpoken annotates possessive determiners with a <code>det</code> relation and does not use the <code>nmod:poss</code> relation.</p>
+
+<pre><code class="language-sdparse">nous allons vous prouver l' efficacité de notre boule magique \n we will show you the efficiency of our magic ball
+det(boule,notre)
+det(efficacité,l')
+</code></pre>
+
+<p>N.B.: The <a href="">det:complex</a> relation is used to analyze complex determiners.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/det.md" target="#">edit det</a></p>
 
@@ -1131,7 +1156,7 @@ discourse(traverse-2,euh-3)
 discourse(la-6,euh-7)
 </code></pre>
 
-<pre><code class="language-sdparse">nah ça parait normal \n well it looks ok
+<pre><code class="language-sdparse">bah ça parait normal \n well it looks ok
 discourse(parait,bah)
 </code></pre>
 
@@ -1261,7 +1286,12 @@ fixed(quand, même)
 advmod(venue, quand)
 </code></pre>
 
-<p>Instead of using the <code>fixed</code> relation, FrenchSpoken syntactically analyzes as many expressions as possible.
+<pre><code class="language-sdparse">Je suis sûre d'avoir vu Paul à Paris alors qu' il est censé être à Dubai ! \n I'm sure I've seen Paul in Paris but he's supposed to be in Dubai!
+fixed(alors,qu')
+mark(censé,alors)
+</code></pre>
+
+<p>Instead of using the <code>fixed</code> relation, FrenchSpoken syntactically analyzes as many expressions as possible (i.e. the <code>fixed</code> relation is only used for syntactically irregular constructions).
 For instance, <em>il y a</em> corresponds to two frozen expressions: a particular marker of clefting (<em>il y a trois libres sur la table</em>) and an adposition (<em>Paul est arrivé il y a trois jours</em>). The first is syntactically regular and is the analyzed with regular relations. The second is syntactically deviant and is analyzed with <em>fixed</em>:</p>
 
 <pre><code class="language-sdparse">Paul est arrivé il y a trois jours . \n Paul arrived three days ago.
@@ -1275,12 +1305,14 @@ nsubj:expl(a, Il)
 advmod(a, y)
 </code></pre>
 
+<p>Complex determiners and complex prepositions, which are currently often analyzed with a <code>fixed</code> relation in some French treebanks, are respectively analyzed with the <a href="">det:comlex</a> and <a href="">case:complex</a> relations by FrenchSpoken.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/fixed.md" target="#">edit fixed</a></p>
 
 <p><a id="al-fr-dep/flat" class="al-dest"></a></p>
 <h2><code>flat</code>: name</h2>
 
-<p>The name relation is one of the three relations for compounding in UD (together
+<p>The <code>flat</code> relation is one of the three relations for MWE in UD (together
 with <a href="">compound</a> and <a href="">fixed</a>).
 It is used for proper nouns constituted of multiple nominal
 elements. For example, <code>flat</code> would be used between the words of
@@ -1313,6 +1345,8 @@ det(Belle, La)
 det(Bête, la)
 </code></pre>
 
+<p>FrenchSpoken uses <a href="">nmod:appos</a> instead of <code>flat</code>.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/flat.md" target="#">edit flat</a></p>
 
 <p><a id="al-fr-dep/foreign" class="al-dest"></a></p>
@@ -1334,11 +1368,21 @@ foreign(persona, grata)
 <p>This relation links two parts of a word that are separated in text
 that is not well edited, or due to tokenization errors. The head is in some sense the <em>main</em> part.</p>
 
-<p>This relation is not used in the French treebank.</p>
+<p>This relation is rarely used in the French treebank.</p>
 
 <pre><code class="language-sdparse">Ils sont partis aujourd' hui  \n They left today
 goeswith(aujourd', hui)
 </code></pre>
+
+<p>For some constructions using hyphens, FrenchSpoken uses the <code>goeswith</code> relation:</p>
+
+<pre><code class="language-sdparse">A - t - il mangé la dernière part de gâteau ? \n Did he eat the last slice of cake?
+goeswith(--2,t)
+goeswith(--2,--4)
+goeswith(--2,il-5)
+</code></pre>
+
+<p>For more details see the <a href="http://universaldependencies.org/fr/overview/tokenization.html">tokenization page</a>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/goeswith.md" target="#">edit goeswith</a></p>
 
@@ -1382,7 +1426,7 @@ case(présidente, à)
 <p><a id="al-fr-dep/iobj:agent" class="al-dest"></a></p>
 <h2><code>iobj:agent</code>: agentive indirect object</h2>
 
-<p>In a causative construction, the <code>iobj:agent</code> relation attaches the infinitive verb to his agent, when the latter is the syntactical indirect object of the sentence.
+<p>In a causative construction, the <code>iobj:agent</code> relation attaches the infinitive verb to his agent, when the latter is the syntactical indirect object of the sentence (this initial agent has been demoted and became an <code>iobj</code> in the causative construction).
 For example, in the following sentences, the use of the pronouns <em>leur</em> and <em>lui</em> shows that these pronouns are indirect objects (see the page on the <a href="">iobj</a> relation).</p>
 
 <pre><code class="language-sdparse">Marie leur fait manger des épinards pour la première fois. \n Marie made them eat spinach for the first time.
@@ -1397,7 +1441,7 @@ nsubj:caus(vivre,Ils)
 iobj:agent(vivre,lui)
 </code></pre>
 
-<p>The infinitive verb governs the syntactical subject of the sentence with a <a href="">nsubj:caus</a> relation and the causative verb with an <a href="">aux:caus</a> relation.</p>
+<p>The infinitive verb governs the syntactical subject of the sentence (i.e. the causer) with a <a href="">nsubj:caus</a> relation and the causative verb with an <a href="">aux:caus</a> relation.</p>
 
 <p>N.B.: For more details about the analysis of causatives see <a href="http://universaldependencies.org/fr/overview/specific-syntax.html#causative">this page</a>.</p>
 
@@ -1439,6 +1483,13 @@ mark(pleut, S')
 
 <pre><code class="language-sdparse">Il faut arriver tôt pour avoir de la place \n One needs to get there early to have a seat
 mark(avoir, pour)
+</code></pre>
+
+<p>Note that in the phrase <em>dès que</em>, <em>que</em> is considered as a marker by FrenchSpoken (and not analyzed with <a href="">fixed</a> as it may be done in other French treebanks). <em>dès</em> is thus analyzed as a preposition, dependent of the finite verb of the clause. The fact that the clause following the <em>dès</em> can commute with a simple nominal phrase justifies this analysis. For instance, in the following example, <em>que son mari est arrivé</em> (in <em>dès que son marie est arrivé</em>) can commute with <em>son arrivée</em> (<em>dès son arrivée</em>).</p>
+
+<pre><code class="language-sdparse">Muriel a quitté la pièce dès que son mari est arrivé. \n Muriel left the room as soon as her husband arrived.
+mark(arrivé,que)
+case(arrivé,dès)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/mark.md" target="#">edit mark</a></p>
@@ -1486,9 +1537,7 @@ neg(lâchera, ne)
 <p><a id="al-fr-dep/nmod" class="al-dest"></a></p>
 <h2><code>nmod</code>: nominal modifier</h2>
 
-<p>The <code>nmod</code> relation is used for nominal modifiers of nouns or clausal
-predicates. <code>nmod</code> is a noun functioning as a non-core (oblique)
-argument or adjunct. In French, <code>nmod</code> is used for prepositional complements as well as for temporal complements not introduced by a preposition.</p>
+<p>The <code>nmod</code> relation is used for nominal modifiers of nouns or noun phrases.</p>
 
 <pre><code class="language-sdparse">Le résultat de la course \n The result of the race
 nmod(résultat, course)
@@ -1500,19 +1549,19 @@ nmod(soin, enfants)
 case(enfants, de)
 </code></pre>
 
-<pre><code class="language-sdparse">Il a grandi en Afrique \n He grew up in Africa
-nmod(grandi, Afrique)
-case(Afrique, en)
+<p>Here are some examples from FrenchSpoken:</p>
+
+<pre><code class="language-sdparse">il est à l' opéra de Vienne \n he is at the opera of Vienna
+nmod(opéra,Vienne)
+case(Vienne,de)
 </code></pre>
 
-<pre><code class="language-sdparse">Il est utilisé pour le service \n It is used for the service
-nmod(utilisé, service)
-case(service, pour)
+<pre><code class="language-sdparse">c'est un virus qui a fait le tour du monde \n it's a virus which went around the world
+nmod(tour,monde)
+case(monde,du)
 </code></pre>
 
-<pre><code class="language-sdparse">L' an passé, la compagnie a fait pas mal de bénéfices \n Last year, the company made quite a lot of benefit
-nmod(fait, an)
-</code></pre>
+<p>N.B.: Apart from the usual <code>nmod</code> relation, FrenchSpoken also uses the <a href="">nmod:appos</a> relation for nominal modifiers which are not introduced by a preposition.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nmod.md" target="#">edit nmod</a></p>
 
@@ -1625,7 +1674,7 @@ nsubj(reflet, art)
 <p><a id="al-fr-dep/nsubj:caus" class="al-dest"></a></p>
 <h2><code>nsubj:caus</code>: causative nominal subject</h2>
 
-<p>In a causative construction, the <code>nsubj:caus</code> relation links the infinitive verb (i.e. the head of the sentence) to the syntactical subject of the sentence.
+<p>In a causative construction, the <code>nsubj:caus</code> relation links the infinitive verb (i.e. the head of the sentence) to the syntactical subject of the sentence (i.e. the causer).
 The infinitive verb governs the causative verb with an <a href="">aux:caus</a> relation.
 The true agent of the action described by the sentence is annotated with an <a href="">iobj:agent</a>, an <a href="">obj:agent</a> or an <a href="">obl:agent</a> relation.</p>
 
@@ -1716,17 +1765,29 @@ modify the meaning of the noun with a quantity.</p>
 nummod(bonbons, 3)
 </code></pre>
 
-<pre><code class="language-sdparse">Il perdit presque 13 pourcent  \n He lost almost 14 percent
+<pre><code class="language-sdparse">Il perdit presque 13 pourcent  \n He lost almost 13 percent
 nummod(pourcent, 13)
 </code></pre>
 
-<p>Dates are annotated as follows: if present the month is the head, the day is <em>nummod</em>, and the year is <em>nmod</em></p>
+<p>Dates are annotated as follows: if present the month is the head, the day and the year are <em>nummod</em>:</p>
 
 <pre><code class="language-sdparse">Elle est née le 12 décembre 2011  \n She was born on December 12 2011
 nmod(née, décembre)
 nummod(décembre, 12)
 nmod(décembre, 2011)
 det(27, le)
+</code></pre>
+
+<p>Here are some examples from FrenchSpoken:</p>
+
+<pre><code class="language-sdparse">et j'ai dit je gagne trois cents francs par mois /n and I said I earn three hundreds francs a month
+nummod(francs,trois)
+nummod(trois,cents)
+</code></pre>
+
+<pre><code class="language-sdparse">je suis né à Alger en 1943 \n I was born in Algiers in 1943
+nummod(né,1943)
+case(1943,en)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nummod.md" target="#">edit nummod</a></p>
@@ -1767,7 +1828,7 @@ obj(voit, fille)
 <p><a id="al-fr-dep/obj:agent" class="al-dest"></a></p>
 <h2><code>obj:agent</code>: agentive object</h2>
 
-<p>In a causative construction, the <code>obj:agent</code> relation attaches the infinitive verb to his agent, when the latter is the syntactical object of the sentence.
+<p>In a causative construction, the <code>obj:agent</code> relation attaches the infinitive verb to his agent, when the latter is the syntactical object of the sentence (this initial agent has been demoted and became the object of the causative contruction).
 For example, in the following sentence, “ses petits” is the tue agent of the verb “sauter” (<em>Ses petits ont sauté dans la mare</em>). 
 This nominal phrase can be pronominalized as follows: <em>La cane les a fait sauter dans la mare.</em> The use of the pronoun <em>les</em> clearly shows that “ses petits” is the syntactical object of the sentence.</p>
 
@@ -1777,13 +1838,13 @@ nsubj:caus(sauter,cane)
 obj:agent(sauter,petits)
 </code></pre>
 
-<pre><code class="language-sdparse">Mon père a une femme de ménage. Il la fait venir le mercredi. \n My father has cleaning lady. He makes her come on wednesdays.
+<pre><code class="language-sdparse">Mon père a une femme de ménage. Il la fait venir le mercredi. \n My father has a cleaning lady. He makes her come on wednesdays.
 aux:caus(venir,fait)
 nsubj:caus(venir,Il)
 obj:agent(venir,la)
 </code></pre>
 
-<p>The infinitive verb governs the syntactical subject of the sentence with a <a href="">nsubj:caus</a> relation and the causative verb with an <a href="">aux:caus</a> relation.</p>
+<p>The infinitive verb governs the syntactical subject of the sentence (i.e. the causer) with a <a href="">nsubj:caus</a> relation and the causative verb with an <a href="">aux:caus</a> relation.</p>
 
 <p>N.B.: For more details about the analysis of causatives see <a href="http://universaldependencies.org/fr/overview/specific-syntax.html#causative">this page</a>.</p>
 
@@ -1823,7 +1884,7 @@ case(voisine, Selon)
 <p><a id="al-fr-dep/obl:agent" class="al-dest"></a></p>
 <h2><code>obl:agent</code>: agentive oblique</h2>
 
-<p>In a causative construction, the <code>obl:agent</code> relation attaches the infinitive verb to his agent, when the latter is the syntactical oblique of the sentence.
+<p>In a causative construction, the <code>obl:agent</code> relation attaches the infinitive verb to his agent, when the latter is the syntactical oblique of the sentence (this initial agent has been demoted and became the oblique complement of the causative construction).
 I.e a complement introduced by a preposition (see the page about the <a href="">obl</a> relation).</p>
 
 <pre><code class="language-sdparse">Patrick a fait boire du thé à Micheline alors qu'elle déteste ça. \n Patrick made Micheline drink tee, even though she hates tee.
@@ -1838,7 +1899,7 @@ nsubj:caus(toiletter,Monique)
 obl:agent(toiletter,toiletteur)
 </code></pre>
 
-<p>The infinitive verb governs the syntactical subject of the sentence with a <a href="">nsubj:caus</a> relation and the causative verb with an <a href="">aux:caus</a> relation.</p>
+<p>The infinitive verb governs the syntactical subject of the sentence (i.e. the causer) with a <a href="">nsubj:caus</a> relation and the causative verb with an <a href="">aux:caus</a> relation.</p>
 
 <p>N.B.: For more details about the analysis of causatives see <a href="http://universaldependencies.org/fr/overview/specific-syntax.html#causative">this page</a>.</p>
 
@@ -1901,7 +1962,7 @@ obl:periph(gifle, Indépendant)
 <p><a id="al-fr-dep/orphan" class="al-dest"></a></p>
 <h2><code>orphan</code>: remnant in ellipsis</h2>
 
-<p>The remnant relation is used to analyze cases of ellipsis where there is no function word that can be promoted to take the place of the elided content word. For a full discussion of its use, see the universal dependency description (<a href="">u-dep/remnant</a>).</p>
+<p>The <code>orphan</code> relation is used to analyze cases of ellipsis where there is no function word that can be promoted to take the place of the elided content word. For a full discussion of its use, see the universal dependency description (<a href="">u-dep/orphan</a>).</p>
 
 <p>Currently this construction is not correctly annotated in the French treebank.</p>
 
@@ -1914,6 +1975,8 @@ remnant(Marie-1, Miriam-7)
 case(Prague-9, à-8)
 remnant(Paris-5, Prague-9)
 </code></pre>
+
+<p>Currently the <code>orphan</code> relation is not used in FrenchSpoken.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/orphan.md" target="#">edit orphan</a></p>
 
@@ -2071,6 +2134,10 @@ punct(pleut, ,)
 punct(mouillé, .)
 </code></pre>
 
+<p>Since the FrenchSpoken corpus is an oral corpus, there are no punctuation signs (apart from hyphens in certain words or constructions).</p>
+
+<p>N.B.: In FrenchSpoken some constructions containing hyphens are annotated with the <a href="">goeswith</a> relation. See the <a href="http://universaldependencies.org/fr/overview/tokenization.html">tokenization</a> page.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/punct.md" target="#">edit punct</a></p>
 
 <p><a id="al-fr-dep/reparandum" class="al-dest"></a></p>
@@ -2081,11 +2148,13 @@ repair. The disfluency is the dependent of the repair.</p>
 
 <p>Currently this construction is not annotated in the French treebank (but there are probably no attested uses).</p>
 
-<pre><code class="language-sdparse">Va à-2 droi- à-4 gauche . \n Go to the righ- to the left .
+<pre><code class="language-sdparse">Va à droi- à gauche . \n Go to the righ- to the left .
 nmod(Va, gauche)
 reparandum(gauche, droi-)
 case(droi-, à-2)
 </code></pre>
+
+<p>For disfluences and reformulations FrenchSpoken uses the <a href="">conj:dicto</a> relation instead of the <code>reparandum</code> relation.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/reparandum.md" target="#">edit reparandum</a></p>
 
@@ -2094,7 +2163,8 @@ case(droi-, à-2)
 
 <p>The <code>root</code> grammatical relation points to the root of the sentence. A
 fake node <code>ROOT</code> is used as the governor. The <code>ROOT</code> node is indexed
-with 0, since the indexing of real words in the sentence starts at 1.</p>
+with 0, since the indexing of real words in the sentence starts at 1.
+There should only be one node with the <code>root</code> dependency relation in every tree.</p>
 
 <pre><code class="language-sdparse">ROOT J' aime les frites . \n I love French fries .
 root(ROOT, aime)
@@ -2102,6 +2172,16 @@ root(ROOT, aime)
 
 <pre><code class="language-sdparse">ROOT Il est grand . \n He is tall .
 root(ROOT, grand)
+</code></pre>
+
+<p>Some examples from FrenchSpoken:</p>
+
+<pre><code class="language-sdparse">ROOT ils ont discuté \n they chatted
+root(ROOT,discuté)
+</code></pre>
+
+<pre><code class="language-sdparse">ROOT tu prends la grande rue \n you take the big street
+root(ROOT,prends)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/root.md" target="#">edit root</a></p>
@@ -2118,6 +2198,8 @@ vocative(faites, gars)
 <pre><code class="language-sdparse">David , comment ça va ? \n David, how 's it going ?
 vocative(va, David)
 </code></pre>
+
+<p>Currently FrenchSpoken does not use this relation.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/vocative.md" target="#">edit vocative</a></p>
 

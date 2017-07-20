@@ -1827,19 +1827,19 @@ an attribute, or genitive complement.</p>
 
 <p><strong>New from v2:</strong> The <code>nmod</code> relation was previously used also for nominal dependents of verbs, adjectives, and adverbs. The latter are now covered by the new <a href="">obl</a> relation.</p>
 
-<p>In conjunction with the <a href="">case</a> relation, <code>nmod</code> provides a uniform analysis for the possessive alternation:</p>
-
-<pre><code class="language-sdparse">the Chair 's office
-det(Chair-2, the-1)
-nmod(office-4, Chair-2)
-case(Chair-2, 's-3)
-</code></pre>
+<p>In conjunction with the <a href="">case</a> relation, <code>nmod</code> provides a uniform analysis for the possessive alternation (with the option of a subtype like <code>nmod:poss</code> to distinguish non-adpositional case):</p>
 
 <pre><code class="language-sdparse">the office of the Chair
 det(office-2, the-1)
 nmod(office-2, Chair-5)
 case(Chair-5, of-3)
 det(Chair-5, the-4)
+</code></pre>
+
+<pre><code class="language-sdparse">the Chair 's office
+det(Chair-2, the-1)
+nmod:poss(office-4, Chair-2)
+case(Chair-2, 's-3)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/nmod.md" target="#">edit nmod</a></p>
@@ -2074,6 +2074,8 @@ parataxis(Let, annoyed)
 
 <pre><code class="language-sdparse">The guy , John said , left early in the morning
 parataxis(left, said)
+punct(said, ,-3)
+punct(said, ,-6)
 </code></pre>
 
 <h2 id="an-inventory-of-constructions-to-which-parataxis-has-been-applied">An inventory of constructions to which parataxis has been applied</h2>
@@ -2092,6 +2094,7 @@ dependents of the first one, to maximize similarity to the analysis used for con
 
 <pre><code class="language-sdparse">Bearded dragons are sight hunters , they need to see the food to move .
 parataxis(hunters, need)
+punct(need, ,)
 </code></pre>
 
 <p>This relation may happen with units that are smaller than sentences:</p>
@@ -2108,6 +2111,8 @@ det(CIA, the)
 
 <pre><code class="language-sdparse">The guy , John said , left early in the morning
 parataxis(left, said)
+punct(said, ,-3)
+punct(said, ,-6)
 </code></pre>
 
 <p>there are paraphrases that convey essentially the same meaning but
@@ -2130,18 +2135,27 @@ ccomp(said, left)
 
 <pre><code class="language-sdparse">John said : “ The guy left early in the morning . ”
 parataxis(said, left)
+punct(left, :)
+punct(left, “)
+punct(left, ”)
 </code></pre>
 
 <pre><code class="language-sdparse">“ The guy left early in the morning ” , John said .
 parataxis(left, said)
+punct(said, ,)
+punct(left, “)
+punct(left, ”)
 </code></pre>
 
 <pre><code class="language-sdparse">The guy left early in the morning , John said .
 parataxis(left, said)
+punct(said, ,)
 </code></pre>
 
 <pre><code class="language-sdparse">The guy , he said , left early in the morning .
 parataxis(left, said)
+punct(said, ,-3)
+punct(said, ,-6)
 </code></pre>
 
 <p>An argument for this analysis is that in the cases analyzed as embedding, the entire clause
@@ -2156,6 +2170,9 @@ There does not seem to be a better relation to use.</p>
 
 <pre><code class="language-sdparse">Washington ( CNN ) :
 parataxis(Washington, CNN)
+punct(CNN, ()
+punct(CNN, ))
+punct(CNN, :)
 </code></pre>
 
 <h3 id="interjected-clauses">Interjected clauses</h3>
@@ -2164,6 +2181,8 @@ parataxis(Washington, CNN)
 
 <pre><code class="language-sdparse">Calafia has great fries ( they are to die for ! )
 parataxis(has, are)
+punct(are, ()
+punct(are, ))
 </code></pre>
 
 <pre><code class="language-sdparse">Just to let you all know Matt has confirmed the booking for 3rd Dec is OK .
@@ -2179,6 +2198,7 @@ because the first half feels like a whole clause interjection, not like the main
 
 <pre><code class="language-sdparse">It 's not me , is it ?
 parataxis(me, is)
+punct(is, ,)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/parataxis.md" target="#">edit parataxis</a></p>
@@ -2199,7 +2219,7 @@ Instead, we use the following principles:</p>
 
 <ol>
   <li>A punctuation mark separating coordinated units is attached to the following conjunct.</li>
-  <li>A punctuation mark preceding or following a subordinated unit is attached to this unit.</li>
+  <li>A punctuation mark preceding or following a dependent unit is attached to that unit.</li>
   <li>Within the relevant unit, a punctuation mark is attached at the highest possible node that preserves projectivity.</li>
   <li>Paired punctuation marks (e.g. quotes and brackets, sometimes also dashes, commas and other) should be attached to the same word unless that would create non-projectivity. This word is usually the head of the phrase enclosed in the paired punctuation.</li>
 </ol>
@@ -2239,6 +2259,8 @@ punct(known-31, “-29)
 punct(known-31, ”-33)
 punct(Compare, .-34)
 </div>
+
+<p>See also examples at <a href="">parataxis</a>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/punct.md" target="#">edit punct</a></p>
 
