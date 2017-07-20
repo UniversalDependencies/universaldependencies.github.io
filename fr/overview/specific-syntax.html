@@ -146,7 +146,8 @@ acl:relcl(Ce,fait)
 <h3 id="causative">Causative</h3>
 
 <p>In French causatives are typically constructed with the verb <em>faire</em>. 
-The head of a causative construction is the infinitive verb, which governs <em>faire</em> with a <a href="">fr-dep/aux:caus</a> link. The syntactical subject of the sentence is annotated with <a href="">fr-dep/nsubj:caus</a>. The true agent of the action described by the causative will be linked to the infinitive verb by an <a href="">fr-dep/obj:agent</a>, an <a href="">fr-dep/iobj:agent</a> or an <a href="">fr-dep/obl:agent</a> relation, depending on the syntactical function it has in the sentence.</p>
+The new argument, the causer, which is the subject of the construction is annotated <a href="">nsubj:caus</a>, while the initial subject/agent of the verb is demoted and becomes either an object, an indirect object or an oblique complement of the causative construction.
+The head of a causative construction is the infinitive verb, which governs <em>faire</em> with a <a href="">fr-dep/aux:caus</a> link. The syntactical subject of the sentence (i.e. the causer) is annotated with <a href="">fr-dep/nsubj:caus</a>. The true agent of the action described by the causative will be linked to the infinitive verb by an <a href="">fr-dep/obj:agent</a>, an <a href="">fr-dep/iobj:agent</a> or an <a href="">fr-dep/obl:agent</a> relation, depending on the syntactical function it has in the sentence.</p>
 
 <pre><code class="language-sdparse">J' ai fait changer les roues de la voiture par le garagiste. \n I made the mechanic change the car's wheels.
 aux:caus(changer,fait)
@@ -169,6 +170,60 @@ obj(visiter,maison.)
 </code></pre>
 
 <p>N.B.: For more details about the analysis of causatives, see <a href="https://gitlab.inria.fr/sequoia/deep-sequoia/issues/153#">this discussion</a> (which is partly in English and partly in French).</p>
+
+<h3 id="superlatives">Superlatives</h3>
+
+<p>Superlative constructions, <em>le/la/les plus ADJ</em>, are annotated as follows:
+The head of the construction is the noun. It governs the adjective with the usual <a href="">fr-dep/amod</a> link and the determiner with a <a href="">fr-dep/det</a> link. The <em>plus</em> is annotated with an <a href="">fr-dep/advmod</a> and is a dependant of the adjective.
+The noun modifier introduced by the preposition <em>de</em> is attached to the noun, even though it seems to be a dependant more of the superlative constrcution than of the noun.</p>
+
+<pre><code class="language-sdparse">Dans ce rayon se trouvent les plus beaux livres de la bibliothèque. \n On this shelf one can find the most beautiful books in the whole library.
+det(livres,les)
+amod(livres,beaux)
+advmod(beaux,plus)
+nmod(livres,bibliothèque.)
+case(bibliothèque,de)
+</code></pre>
+
+<p>When the superlative is post-posed, the determiner is a dependant of the adjective:</p>
+
+<pre><code class="language-sdparse">Il aime manger dans les restaurants les plus réputés. \n He likes to eat in the most renowned restaurants.
+det(restaurants-6,les-5)
+amod(restaurants-6,réputés.-9)
+advmod(plus,réputés.)
+det(les-7,réputés._9)
+</code></pre>
+
+<p>When the superlative is in a <a href="">fr-dep/cop</a> relation (and the noun is not present in the superlative construction), the head of the superlative construction is the adjective:</p>
+
+<pre><code class="language-sdparse">Ces maisons sont les plus vieilles. \n These houses are the oldest.
+advmod(vieilles,plus)
+det(vieilles,les)
+cop(vieilles,sont)
+nsubj(vieilles,maisons)
+</code></pre>
+
+<h3 id="comparatives">Comparatives</h3>
+
+<p>In comparative constructions, the adjective is the head. It governs the comparative adverb (<em>plus</em>, <em>moins</em>, <em>aussi</em> etc.) with an <a href="">fr-dep/advmod</a> link. The comparison element introduced by <em>que</em> is analyzed with [fr-dep/advcl] and is a dependent of the adjective. <em>que</em> is analyzed with <a href="">fr-dep/mark</a>.
+N.B.: Here is the <a href="http://universaldependencies.org/u/overview/specific-syntax.html#comparatives">universal page</a> for the analysis of comparatives</p>
+
+<pre><code class="language-sdparse">Mathilde est plus gentille que tu ne le penses. \n Mathilde is kinder than you think.
+nsubj(gentille,Mathilde)
+cop(gentille,est)
+advmod(gentille,plus)
+advcl(gentille,penses.)
+mark(penses.,que)
+</code></pre>
+
+<pre><code class="language-sdparse">Patrick est aussi courageux que Pierre. \n Patrick is as brave as Pierre.
+nsubj(courageux,Patrick)
+cop(courageux,est)
+advmod(courageux,aussi)
+advcl(courageux,Pierre)
+mark(Pierre,que)
+</code></pre>
+
 
 
       </div>
