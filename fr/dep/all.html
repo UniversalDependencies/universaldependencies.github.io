@@ -436,13 +436,23 @@ acl(culte, nourri)
 acl(Il, pleurant)
 </code></pre>
 
-<p>In FrenchSpoken we also use the <code>acl</code> relation.</p>
+<p>FrenchSpoken also uses the <code>acl</code> relation:</p>
 
 <pre><code class="language-sdparse">on va donc avoir nos regards braqués sur l'hémisphère sud \n so we will be focused on the southern hemisphere
 acl(regards, braqués)
 </code></pre>
 
-<p>N.B.: In FrenchSpoken we use another subtype of <code>acl</code> for cleft sentences : the <code>acl:cleft</code> relation.</p>
+<pre><code class="language-sdparse">la difficulté à vivre \n a difficulty to live with
+acl(difficulté,vivre)
+mark(vivre,à)
+</code></pre>
+
+<pre><code class="language-sdparse">j'avais de la chance d' avoir des enfants qui travaillaient \n I was lucky to have children who were working
+acl(chance,avoir)
+mark(avoir,d')
+</code></pre>
+
+<p>N.B.: For cleft sentences FrenchSpoken uses a subrelation of <code>acl</code> : the <code>acl:cleft</code> relation.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/acl.md" target="#">edit acl</a></p>
 
@@ -452,14 +462,14 @@ acl(regards, braqués)
 <p>FrenchSpoken uses the <code>acl:cleft</code> relation to link the clefted nominal element (i.e. the head of the cleft construction) and the clause of the cleft sentence.
 The <a href="">nsubj:expl</a> relation is used to annotate the syntactical subject of the cleft construction.</p>
 
-<pre><code class="language-sdparse">Les vendanges commencent aujourd'hui. C' est un vigneron du coin qui me l'a dit .
+<pre><code class="language-sdparse">Les vendanges commencent aujourd'hui. C' est un vigneron du coin qui me l'a dit . \n Harvest starts today. It's a wine-grower who told me so.
 nsubj:expl(vigneron, C')
 acl:cleft(vigneron, dit)
 nsubj(dit, qui)
 </code></pre>
 
 <pre><code class="language-sdparse">Il y a Marie qui danse dans la pièce. \n Marie dances in the room.
-nsubj:expl(a,Il)
+nsubj(a,Il)
 advmod(a,y)
 obj(a,Marie)
 acl:cleft(Marie,danse)
@@ -488,11 +498,16 @@ nsubj(aime, qui)
 dobj(aime, t')
 </code></pre>
 
-<p>FrenchSpoken also uses the <code>acl</code> relation, here is an example:</p>
+<p>FrenchSpoken also uses the <code>acl:relcl</code> relation:</p>
 
 <pre><code class="language-sdparse">j'ai eu envie d' être un intellectuel qui marque son temps \n I wanted to be an intellectual who marks his time 
 acl:relcl(intellectuel, marque)
 nsubj(marque, qui)
+</code></pre>
+
+<pre><code class="language-sdparse">est-ce que vous avez des enseignants dont vous vous souvenez particulièrement \n do you have teachers of whom you have a strong memory
+acl:relcl(enseignants,souvenez)
+obl:comp(souvenez,dont)
 </code></pre>
 
 <p>N.B.: For cleft sentences, FrenchSpoken uses the <a href="">acl:cleft</a> subrelation.</p>
@@ -585,12 +600,12 @@ advmod(agréable, vraiment)
 Peripheral adverbial modifiers (like all peripheral elements) cannot be moved inside the core of the sentence, unless they are put in parenthesis.
 Other adverbial modifiers are annotated with the <a href="">advmod</a> relation.</p>
 
-<pre><code class="language-sdparse">Franchement, tu aurais pu faire un effort. \n Honestly, you could have made an effort.
-advmod:periph(faire, franchement)
+<pre><code class="language-sdparse">Franchement , tu aurais pu faire un effort. \n Honestly, you could have made an effort.
+advmod:periph(faire, Franchement)
 </code></pre>
 
 <pre><code class="language-sdparse">Apparemment James a déjà vendu sa voiture. \n Apparently James has already sold his car.
-advmod:periph(vendu, apparamment)
+advmod:periph(vendu, Apparemment)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/advmod-periph.md" target="#">edit advmod:periph</a></p>
@@ -632,7 +647,7 @@ appos(Sam, frère)
 appos(Appelation, AOC)
 </code></pre>
 
-<p>In FrenchSpoken does not use the <code>appos</code> relation anymore. Instead there are two subrelations <a href="">nmod:appos</a> and <a href="">conj:appos</a>.
+<p>FrenchSpoken does not use the <code>appos</code> relation anymore. Instead there are two subrelations <a href="">nmod:appos</a> and <a href="">conj:appos</a>.
 The <code>nmod:appos</code> relation is used for appositions which modify nominal elements.</p>
 
 <pre><code class="language-sdparse">la place Voltaire 
@@ -653,8 +668,8 @@ conj:appos(Sam, frère)
 <p>An auxiliary of a clause is a <a href="sv-pos/AUX">non-main verb</a> of the
 clause.</p>
 
-<p>In some French treebanks an auxiliary verb used to construct the passive
-<a href="sv-feat/Voice">voice</a> is not labeled <code>aux</code> but <a href="">auxpass</a>.</p>
+<p>In some corpora of the French treebank an auxiliary verb used to construct the passive
+<a href="sv-feat/Voice">voice</a> is not labeled <code>aux</code> but <a href="">auxpass</a> (FrenchSpoken does not use this relation).</p>
 
 <pre><code class="language-sdparse">On peut nager dans le lac \n One can swim in the lake
 aux(nager, peut)
@@ -664,16 +679,15 @@ aux(nager, peut)
 aux(eu, a)
 </code></pre>
 
-<p>The <a href="">aux</a> relation is also used in FrenchSpoken:</p>
+<p>The <code>aux</code> relation is also used in FrenchSpoken:</p>
 
 <pre><code class="language-sdparse">c'est l'esprit qui a peut-être changé \n it's the spirit that may have changed
 aux(changé,a)
 </code></pre>
 
-<p>Currently FrenchSpoken does not use the <a href="">aux:pass</a> relation. 
-There is another subrelation used to annotate the causative constructions: the <a href="">aux:caus</a> relation.</p>
+<p>There is another subrelation used to annotate the causative constructions: the <a href="">aux:caus</a> relation.</p>
 
-<p>N.B.: Modals like <em>pouvoir</em>, <em>vouloir</em> etc. are annotated with an <a href="">aux</a> relation in some treebanks but FrenchSpoken does not consider them as auxiliary verbs.</p>
+<p>N.B.: Modals like <em>pouvoir</em>, <em>vouloir</em> etc. are annotated with an <code>aux</code> relation in some corpora of the French treebank but FrenchSpoken does not consider them as auxiliary verbs.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/aux_.md" target="#">edit aux</a></p>
 
@@ -684,7 +698,7 @@ There is another subrelation used to annotate the causative constructions: the <
 The syntactical subject of the sentence (i.e. the causer) receives a <a href="">nsubj:caus</a> link.
 The initial agent of the action described by the sentence is demoted and will either be anotated with an <a href="">iobj:agent</a>, an <a href="">obj:agent</a> or an <a href="">obl:agent</a> relation.</p>
 
-<pre><code class="language-sdparse">Marie a fait asseoir Pierre. \n Marie made Pierre sit.
+<pre><code class="language-sdparse">Marie a fait asseoir Pierre . \n Marie made Pierre sit.
 aux:caus(asseoir,fait)
 nsubj:caus(asseoir,Marie)
 obj:agent(asseoir-4,Pierre-5)
@@ -711,7 +725,7 @@ auxpass(assassiné, été)
 aux(assassiné, a)
 </code></pre>
 
-<p>Currently FrenchSpoken doesn’t use the <code>auxpass</code> relation.</p>
+<p>Currently FrenchSpoken does not use the <code>auxpass</code> relation.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/auxpass.md" target="#">edit auxpass</a></p>
 
@@ -739,13 +753,15 @@ case(ministère, devant)
 case(enseignement, de)
 </code></pre>
 
+<p>For complex prepositions, FrenchSpoken uses the <a href="">case:complex</a> relation.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/case.md" target="#">edit case</a></p>
 
 <p><a id="al-fr-dep/case:complex" class="al-dest"></a></p>
-<h2><code>case:complex</code>: complex case</h2>
+<h2><code>case:complex</code>: complex case marker</h2>
 
-<p>The <code>case:complex</code> relation is used to analyze complex prepositions. In some French treebanks these prepositions are analyzed with a <a href="">fixed</a> relation. 
-However FrenchSpoken does not consider them as fixed but intead as regular constructions. Like complex determiners (see the <a href="">det:complex</a> relation), complex prepositions can be coordinated. 
+<p>The <code>case:complex</code> relation is used to analyze complex prepositions. In some corpora of the French treebank these prepositions are analyzed with a <a href="">fixed</a> relation. 
+However FrenchSpoken does not consider them as fixed but intead as regular constructions since like complex determiners (see the <a href="">det:complex</a> relation), complex prepositions can be coordinated. 
 Moreover in complex prepositions containing a <em>de</em>, the contraction of the <em>de</em> remains possible:
 <em>contrairement à toi et à ta mère</em>, <em>à côté du garage et de la maison</em> etc.</p>
 
@@ -762,8 +778,8 @@ det(arbre,son)
 case(côté,à)
 </code></pre>
 
-<pre><code class="language-sdparse">Contrairement à toi et à ton frère, Patrick a fait des efforts pour être plus poli. \n Contrary to you and your brother, Patrick made some efforts to be more polite.
-case:complex(toi,contrairement)
+<pre><code class="language-sdparse">Contrairement à toi et à ton frère , Patrick a fait des efforts pour être plus poli. \n Contrary to you and your brother, Patrick made some efforts to be more polite.
+case:complex(toi,Contrairement)
 case(toi-3,à-2)
 case(frère-7,à-5)
 conj:coord(toi,frère)
@@ -819,12 +835,14 @@ ccomp(dit, aimes)
 ccomp(certain, fait) 
 </code></pre>
 
-<p>In FrenchSpoken, we also use the <code>ccomp</code> relation. Here is an example from FrenchSpoken:</p>
+<p>Here is an example from FrenchSpoken with a <code>ccomp</code>:</p>
 
 <pre><code class="language-sdparse">on ne peut pas exclure qu' il y ait quelque chose de grave \n it cannot be ruled out that there is something serious
 ccomp(exclure, ait) 
 mark(ait, qu')
 </code></pre>
+
+<p>N.B.: FrenchSpoken uses the <a href="">ccomp:cleft</a> relation to annotate some cases of cleft sentences.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/ccomp.md" target="#">edit ccomp</a></p>
 
@@ -909,7 +927,7 @@ conj(hésitation, retard)
 <p><a id="al-fr-dep/conj:appos" class="al-dest"></a></p>
 <h2><code>conj:appos</code>: apposed conjunct</h2>
 
-<p>In FrenchSpoken the <code>conj:appos</code> relation is used instead of <code>appos</code> for appositions which respect the prosody of lists. The elements in a <code>conj:appos</code> are not bound to a particular sequence, they can be rearranged in a different order. The elements of a <code>conj:appos</code> are in the same paradigm (i.e they fulfill the same role in relation to their governor). This choice of relation is meant to emphasize the similarity between some appositions and ordinary coordination.
+<p>FrenchSpoken uses the <code>conj:appos</code> relation instead of <code>appos</code> for appositions which respect the prosody of lists. The elements in a <code>conj:appos</code> are not bound to a particular sequence, they can be rearranged in a different order. The elements of a <code>conj:appos</code> are in the same paradigm (i.e they fulfill the same role in relation to their governor). This choice of relation is meant to emphasize the similarity between some appositions and ordinary coordination.
 Contrary to the conjuncts of a <a href="">conj:coord</a> relation, the conjuncts of a <code>conj:appos</code> relation have the same referent.</p>
 
 <pre><code class="language-sdparse">Sa cousine , une grande psychiatre , habite à Charleville-Mézière. \n His cousin, a great psychiatrist, live in Charleville-Mézière.
@@ -930,7 +948,7 @@ conj:appos(Bruno, oncle)
 
 <p>The <code>conj:coord</code> relation is used between conjuncts that are coordinated. Coordinating conjunctions such as <em>et</em> (<em>and</em>) or <em>ou</em> (<em>or</em>) may connect the conjuncts, but they are not necessary. 
 Conjunctions are treated asymetrically with the first conjunct as the head, and all the other conjuncts as dependants of this element.
-Contrary to the conjuncts of a <code>conj:appos</code> relation, the conjuncts of a <code>conj:coord</code> relation do not have the same referent.</p>
+Contrary to the conjuncts of a <a href="">conj:appos</a> relation, the conjuncts of a <code>conj:coord</code> relation do not have the same referent.</p>
 
 <pre><code class="language-sdparse">Pierre et Patrick aiment rouler en moto. \n Pierre and Patrick like driving a motorcycle.
 conj:coord(Pierre,Patrick)
@@ -957,7 +975,7 @@ nsubj(répondu,mère)
 <p><a id="al-fr-dep/conj:dicto" class="al-dest"></a></p>
 <h2><code>conj:dicto</code>: spoken overridden disfluency </h2>
 
-<p>In FrenchSpoken the <code>conj:dicto</code> relation is used instead of <a href="">reparandum</a> to indicate disfluencies overridden in a speech repair. This combines two cases of paradigmatic relations that are distinguished in the <a href="http://www.projet-rhapsodie.fr/">Rhapsodie corpus</a>: Disfluency and reformulation. 
+<p>FrenchSpoken uses the <code>conj:dicto</code> relation instead of <a href="">reparandum</a> to indicate disfluencies overridden in a speech repair. This combines two cases of paradigmatic relations that are distinguished in the <a href="http://www.projet-rhapsodie.fr/">Rhapsodie corpus</a>: Disfluency and reformulation. 
 Contrary to <code>reparandum</code>, in the <code>conj:dicto</code> relation, the disfluency is the head and the “repair” is the dependent. Using <code>conj:dicto</code> instead of reparandum enables us to better reflect how the utterance was produced by a speaker since we stay closer to the order in which the words were uttered. 
 Moreover, it is often difficult to distinguish reformulation and disfluency and they behave similarly to other paradigmatic relations such as coordination as has been shown in Gerdes, Kim, and Sylvain Kahane. “Speaking in piles: Paradigmatic annotation of french spoken corpus.” Proceedings of the Fifth Corpus Linguistics Conference, Liverpool. 2009.</p>
 
@@ -995,7 +1013,20 @@ amod(homme, honnête)
 det(homme, un)
 </code></pre>
 
-<p>In the current French treebank, the following verbs are treated as copular ones: <em>être</em>, <em>devenir</em>, <em>rester</em>, <em>demeurer</em>, as well as in some constructions <em>appeler</em>, <em>intituler</em>, <em>nommer</em>, <em>réputer</em>, <em>élir</em></p>
+<p>The <code>cop</code> relation can be found in FrenchSpoken:</p>
+
+<pre><code class="language-sdparse">c' est une jeune fille pauvre \n it's a poor girl
+cop(fille,est)
+nsubj(fille,c')
+</code></pre>
+
+<p>In some corpora of the current French treebank, the following verbs are treated as copular ones: <em>être</em>, <em>devenir</em>, <em>rester</em>, <em>demeurer</em>, as well as in some constructions <em>appeler</em>, <em>intituler</em>, <em>nommer</em>, <em>réputer</em>, <em>élir</em>
+However note that not all corpora of the French treebank treat the same verbs as copulas. For example, FrenchSpoken annotates <em>devenir</em> like a regular verb.</p>
+
+<pre><code class="language-sdparse">il devient le sherpa du président \n he becomes the president's sherpa
+nsubj(devient,il)
+obj(devient,sherpa)
+</code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/cop.md" target="#">edit cop</a></p>
 
@@ -1008,7 +1039,7 @@ det(homme, un)
 csubj(embête, vienne)
 </code></pre>
 
-<p>In FrenchSpoken we also use the <code>csubj</code> relation. Here is an example from FrenchSpoken :</p>
+<p>Here is an example from FrenchSpoken :</p>
 
 <pre><code class="language-sdparse">créer des choses qui durent m'a paru être essentiel \n creating things that last seemed essential to me 
 csubj(paru, créer)
@@ -1019,7 +1050,7 @@ csubj(paru, créer)
 <p><a id="al-fr-dep/csubj:quasi" class="al-dest"></a></p>
 <h2><code>csubj:quasi</code>: quasi clausal subject</h2>
 
-<p>In FrenchSpoken we don’t use the usual <a href="">expl</a> relation and have instead decided to use only a subrelation for impersonal construction: <a href="">nsubj:expl</a>.
+<p>FrenchSpoken does not use the usual <a href="">expl</a> relation. There is instead a subrelation used only for impersonal construction: <a href="">nsubj:expl</a>.
 To annotate the other dependent of the predicate (i.e. not the dependent annotated with the <code>nsubj:expl</code> relation) we use the <code>csubj:quasi</code> relation, when this other dependent is a clause.
 When the other dependent is a nominal, we use the <a href="">nsubj:quasi</a> relation.</p>
 
@@ -1048,7 +1079,7 @@ clause. It is not a very common construction in French. In the example below, <e
 csubjpass(cru, triché)
 </code></pre>
 
-<p>Currently FrenchSpoken doesn’t use the <code>csubjpass</code> relation.</p>
+<p>Currently FrenchSpoken does not use the <code>csubjpass</code> relation.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/csubjpass.md" target="#">edit csubjpass</a></p>
 
@@ -1072,12 +1103,6 @@ det(fleurs, Les)
 det(livre, Quel)
 </code></pre>
 
-<p>In some French treebanks, possessive determiners are marked with the <a href="">nmod:poss</a> relation:</p>
-
-<pre><code class="language-sdparse">Mon ami  \n My friend
-nmod:poss(ami, Mon)
-</code></pre>
-
 <p>The <code>det</code> relation is also used by FrenchSpoken:</p>
 
 <pre><code class="language-sdparse">donc la vigilance sera accrue à ce moment -là \n so there will be increased vigilance at that time
@@ -1085,7 +1110,13 @@ det(vigilance,la)
 det(moment,ce)
 </code></pre>
 
-<p>FrenchSpoken annotates possessive determiners with a <code>det</code> relation and does not use the <code>nmod:poss</code> relation.</p>
+<p>In some corpora of the French treebank, possessive determiners are marked with the <a href="">nmod:poss</a> relation:</p>
+
+<pre><code class="language-sdparse">Mon ami  \n My friend
+nmod:poss(ami, Mon)
+</code></pre>
+
+<p>However FrenchSpoken annotates possessive determiners with a <code>det</code> relation and does not use the <code>nmod:poss</code> relation.</p>
 
 <pre><code class="language-sdparse">nous allons vous prouver l' efficacité de notre boule magique \n we will show you the efficiency of our magic ball
 det(boule,notre)
@@ -1099,12 +1130,12 @@ det(efficacité,l')
 <p><a id="al-fr-dep/det:complex" class="al-dest"></a></p>
 <h2><code>det:complex</code>: complex determiner</h2>
 
-<p>The <code>det:complex</code> relation is used to annotate complex determiners. Some French treebanks analyze them with a <a href="">fixed</a> relation but FrenchSpoken does not: complex determiners are considered as regular constructions and as such, they are syntactically analyzed.
+<p>The <code>det:complex</code> relation is used to annotate complex determiners. Some corpora of the French treebank analyze them with a <a href="">fixed</a> relation but FrenchSpoken does not: complex determiners are considered as regular constructions and as such, they are syntactically analyzed.
 Like complex prepositions (see the <a href="">case:complex</a> relation), complex determiners can be coordinated: <em>Il y a trop de beurre et de sucre dans ce gâteau.</em></p>
 
 <p>Here are come examples of complex determiners that follow the pattern “Adv+de+N” like <em>trop de chocolat</em>, <em>beaucoup de fraises</em>, <em>énormément d’étoiles</em> etc.</p>
 
-<pre><code class="language-sdparse">Pierre a mangé trop de chocolat. \n Pierre ate too much chocolate.
+<pre><code class="language-sdparse">Pierre a mangé trop de chocolat . \n Pierre ate too much chocolate.
 det:complex(chocolat,trop)
 case(chocolat,de)
 </code></pre>
@@ -1129,7 +1160,7 @@ case(gens,de)
 
 <pre><code class="language-sdparse">La plupart des bactéries ont été tuées par cet antibiotique. \n Most of the bacteria were killed by this antibiotic.
 det:complex(bactéries,plupart)
-det(plupart,la)
+det(plupart,La)
 case(bactéries,des)
 </code></pre>
 
@@ -1178,7 +1209,7 @@ dislocated(aime, Pierre)
 dobj(aime, l')
 </code></pre>
 
-<p>In FrenchSpoken we also use the <code>dislocated</code> relation. Here are some examples from FrenchSpoken.</p>
+<p>Here are some examples from FrenchSpoken:</p>
 
 <pre><code class="language-sdparse">lui il avait passé les quatres nuits ou trois nuits à ramper dans les décombres \n He had spent the four nights or three nights crawling in the rubble 
 dislocated(passé, lui)
@@ -1222,7 +1253,7 @@ acl:relcl(Ce,embête)
 <p>Note that currenlty expletives are not annotated consistently in the French treebank.</p>
 
 <p>FrenchSpoken does not use the <code>expl</code>relation. The current definition sates that the <code>expl</code>relation should be used for “nominals that appear in an argument position of a predicate but which do not themselves satisfy any of the semantic roles of the predicate” (see the universal dependency page <a href="">u-dep/expl</a>). This definition seems to give more value to the semantic relations than to the syntactic relations.
-That is why FrenchSpoken only uses <em>expl</em> as a subrelation for impersonal constructions. All other arguments (whether they satisfy a semantic role of the predicate or not) will be annotated with the usual syntactic dependency relations (nsubj, obj etc.). For further information see <a href="https://github.com/UniversalDependencies/docs/issues/46">this discussion</a>.</p>
+That is why FrenchSpoken only uses <code>expl</code> as a subrelation for impersonal constructions. All other arguments (whether they satisfy a semantic role of the predicate or not) will be annotated with the usual syntactic dependency relations (nsubj, obj etc.). For further information see <a href="https://github.com/UniversalDependencies/docs/issues/46">this discussion</a>.</p>
 
 <p>FrenchSpoken thus uses the <a href="">nsubj:expl</a> relation for impersonal constructions such as:</p>
 
@@ -1247,7 +1278,7 @@ obj(souvient, se)
 
 <p>In <em>a-t-elle bien dormi ?</em>, we consider the euphony marker <em>t</em> in <em>a-t-elle</em> as part as of the pronoun <em>elle</em>. This gives us an allomorphic form <em>-t-elle</em>  of the pronoun <em>elle</em>.
 Due to the tokenizing choices we made (see the <a href="http://universaldependencies.org/fr/overview/tokenization.html">tokenization</a> page), <em>a-t-elle</em> is split in five tokens: <em>a</em>, <em>-</em>, <em>t</em>, <em>-</em> and <em>elle</em>. 
-The first hyphen is the head (i.e. it receives the link <code>nsubj</code>) and the other tokens are linked with a goeswith:</p>
+The first hyphen is the head (i.e. it receives the link <code>nsubj</code>) and the other tokens are linked with a <a href="">goeswith</a>:</p>
 
 <pre><code class="language-sdparse">a - t - elle bien dormi ? \n did she sleep well?
 nsubj(a,-)
@@ -1258,7 +1289,7 @@ goeswith(-,elle)
 
 <p>N.B.: This segmentating and tokenizing choice is arbitrary and other French treebanks could choose to do otherwise (for example they could consider <em>a-t-</em> or <em>-t-elle</em> as a token, or annotate the <em>-t-</em> with <code>expl</code>).</p>
 
-<p>In some French treebanks, doubled subjects in interrogativ sentences are annotated with <code>expl</code> :</p>
+<p>In some corpora of the French treebank, doubled subjects in interrogativ sentences are annotated with <code>expl</code> :</p>
 
 <pre><code class="language-sdparse">Marie est -elle là ? \n Is Marie here?
 nsubj(est, Marie)
@@ -1292,7 +1323,12 @@ mark(censé,alors)
 </code></pre>
 
 <p>Instead of using the <code>fixed</code> relation, FrenchSpoken syntactically analyzes as many expressions as possible (i.e. the <code>fixed</code> relation is only used for syntactically irregular constructions).
-For instance, <em>il y a</em> corresponds to two frozen expressions: a particular marker of clefting (<em>il y a trois libres sur la table</em>) and an adposition (<em>Paul est arrivé il y a trois jours</em>). The first is syntactically regular and is the analyzed with regular relations. The second is syntactically deviant and is analyzed with <em>fixed</em>:</p>
+For instance, <em>il y a</em> corresponds to two frozen expressions: a particular marker of clefting (<em>il y a trois libres sur la table</em>) and an adposition (<em>Paul est arrivé il y a trois jours</em>). The first is syntactically regular and is analyzed with regular relations. The second is syntactically deviant and is analyzed with <em>fixed</em>:</p>
+
+<pre><code class="language-sdparse">Il y a trois livres sur la table. \n There are three books on the table.
+nsubj:expl(a, Il)
+advmod(a, y)
+</code></pre>
 
 <pre><code class="language-sdparse">Paul est arrivé il y a trois jours . \n Paul arrived three days ago.
 fixed(il, y)
@@ -1300,12 +1336,7 @@ fixed(il, a)
 case(jours, il)
 </code></pre>
 
-<pre><code class="language-sdparse">Il y a trois livres sur la table. \n There are three books on the table.
-nsubj:expl(a, Il)
-advmod(a, y)
-</code></pre>
-
-<p>Complex determiners and complex prepositions, which are currently often analyzed with a <code>fixed</code> relation in some French treebanks, are respectively analyzed with the <a href="">det:comlex</a> and <a href="">case:complex</a> relations by FrenchSpoken.</p>
+<p>Complex determiners and complex prepositions, which are currently often analyzed with a <code>fixed</code> relation in some corpora of the French treebank, are respectively analyzed with the <a href="">det:complex</a> and <a href="">case:complex</a> relations by FrenchSpoken.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/fixed.md" target="#">edit fixed</a></p>
 
@@ -1395,13 +1426,6 @@ goeswith(--2,il-5)
 iobj(envoie, m')
 </code></pre>
 
-<p>In some French treebanks, when the indirect object is realized with a preposition, it gets analyzed with the <a href="">obl</a> relation:</p>
-
-<pre><code class="language-sdparse">Il envoie la lettre à la présidente . \n He sends the letter to the president .
-obl(envoie, présidente)
-case(présidente, à)
-</code></pre>
-
 <p>The <code>iobj</code>relation is also used for pronouns in prononimal verbs which are indirect objects:</p>
 
 <pre><code class="language-sdparse">Il se parle tout haut. \n He speaks to himself out loud .
@@ -1414,7 +1438,14 @@ iobj(parle, se)
 iobj(conseillons, vous)
 </code></pre>
 
-<p>However when the indirect object is realized with a preposition, it is not annoted with a simple <a href="">obl</a> relation but with an <a href="">obl:comp</a> relation instead:</p>
+<p>In some corpora of the French treebank, when the indirect object is realized with a preposition, it gets analyzed with the <a href="">obl</a> relation:</p>
+
+<pre><code class="language-sdparse">Il envoie la lettre à la présidente . \n He sends the letter to the president .
+obl(envoie, présidente)
+case(présidente, à)
+</code></pre>
+
+<p>However FrenchSpoken does not and uses an <a href="">obl:comp</a> relation instead:</p>
 
 <pre><code class="language-sdparse">Il envoie la lettre à la présidente . \n He sends the letter to the president .
 obl:comp(envoie, présidente)
@@ -1426,7 +1457,7 @@ case(présidente, à)
 <p><a id="al-fr-dep/iobj:agent" class="al-dest"></a></p>
 <h2><code>iobj:agent</code>: agentive indirect object</h2>
 
-<p>In a causative construction, the <code>iobj:agent</code> relation attaches the infinitive verb to his agent, when the latter is the syntactical indirect object of the sentence (this initial agent has been demoted and became an <code>iobj</code> in the causative construction).
+<p>In a causative construction, the <code>iobj:agent</code> relation attaches the infinitive verb to his agent, when the latter is the syntactical indirect object of the sentence (this initial agent has been demoted and became an indirect object in the causative construction).
 For example, in the following sentences, the use of the pronouns <em>leur</em> and <em>lui</em> shows that these pronouns are indirect objects (see the page on the <a href="">iobj</a> relation).</p>
 
 <pre><code class="language-sdparse">Marie leur fait manger des épinards pour la première fois. \n Marie made them eat spinach for the first time.
@@ -1464,6 +1495,8 @@ appos(GSM:-3, 555-9814-4)
 appos(Email:-5, jones@abc.edf-6)
 </code></pre>
 
+<p>The <code>list</code> relation is not used in FrenchSpoken.</p>
+
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/list.md" target="#">edit list</a></p>
 
 <p><a id="al-fr-dep/mark" class="al-dest"></a></p>
@@ -1475,7 +1508,7 @@ appos(Email:-5, jones@abc.edf-6)
 mark(aimes, que)
 </code></pre>
 
-<pre><code class="language-sdparse">S' il pleut, on sera mouillé \n If it rains, we will get wet
+<pre><code class="language-sdparse">S' il pleut , on sera mouillé \n If it rains, we will get wet
 mark(pleut, S')
 </code></pre>
 
@@ -1485,9 +1518,19 @@ mark(pleut, S')
 mark(avoir, pour)
 </code></pre>
 
-<p>Note that in the phrase <em>dès que</em>, <em>que</em> is considered as a marker by FrenchSpoken (and not analyzed with <a href="">fixed</a> as it may be done in other French treebanks). <em>dès</em> is thus analyzed as a preposition, dependent of the finite verb of the clause. The fact that the clause following the <em>dès</em> can commute with a simple nominal phrase justifies this analysis. For instance, in the following example, <em>que son mari est arrivé</em> (in <em>dès que son marie est arrivé</em>) can commute with <em>son arrivée</em> (<em>dès son arrivée</em>).</p>
+<p>Here are some examples from FrenchSpoken:</p>
 
-<pre><code class="language-sdparse">Muriel a quitté la pièce dès que son mari est arrivé. \n Muriel left the room as soon as her husband arrived.
+<pre><code class="language-sdparse">il faudra que les parents l' acceptent \n the parents will have to accept it
+mark(acceptent,que)
+</code></pre>
+
+<pre><code class="language-sdparse">on n' arrive plus à maintenir des clientèles \n we can't manage to keep the customers anymore
+mark(maintenir,à)
+</code></pre>
+
+<p>Note that in the phrase <em>dès que</em>, <em>que</em> is considered as a marker by FrenchSpoken (and not analyzed with <a href="">fixed</a> as it may be done in other corpora of the French treebank). <em>dès</em> is thus analyzed as a preposition, dependent of the finite verb of the clause. The fact that the clause following the <em>dès</em> can commute with a simple nominal phrase justifies this analysis. For instance, in the following example, <em>que son mari est arrivé</em> (in <em>dès que son marie est arrivé</em>) can commute with <em>son arrivée</em> (<em>dès son arrivée</em>).</p>
+
+<pre><code class="language-sdparse">Muriel a quitté la pièce dès que son mari est arrivé . \n Muriel left the room as soon as her husband arrived.
 mark(arrivé,que)
 case(arrivé,dès)
 </code></pre>
@@ -1655,7 +1698,7 @@ nsubj(malade, Papa)
 nsubj(cuisinière, Maman)
 </code></pre>
 
-<p>In FrenchSpoken we also use the <code>nsubj</code> relation :</p>
+<p>Here are some examples from FrenchSpoken with the <code>nsubj</code> relation :</p>
 
 <pre><code class="language-sdparse">je peux pas vous dire \n I can't tell you
 nsubj(peux, je)
@@ -1691,7 +1734,7 @@ iobj:agent(acheter,lui)
 <p><a id="al-fr-dep/nsubj:expl" class="al-dest"></a></p>
 <h2><code>nsubj:expl</code>: expletive nominal subject</h2>
 
-<p>In FrenchSpoken we decided not to use the <a href="">expl</a> relation. Instead we only use a subrelation for impersonal constructions:</p>
+<p>FrenchSpoken does not use the <a href="">expl</a> relation. Instead there is subrelation used only for impersonal constructions:</p>
 
 <pre><code class="language-sdparse">il est arrivé un malheur \n something bad happened
 nsubj:expl(arrivé, il)
@@ -1703,7 +1746,7 @@ nsubj:expl(faudra, il)
 csubj:quasi(faudra, acheter)
 </code></pre>
 
-<p>N.B.: we decided to use the <a href="">nsubj:quasi</a> relation to annotate the other dependent of the predicate when it is a nominal and the <a href="">csubj:quasi</a> when it is a clause.</p>
+<p>N.B.: The <a href="">nsubj:quasi</a> relation is used for the other dependent of the predicate when it is a nominal and the <a href="">csubj:quasi</a> when it is a clause.</p>
 
 <p><code>nsubj:expl</code> also enables us to differenciate between cleft and presentative constructions, in the case where they both use  <em>c’est</em> (or <em>c’était</em>, <em>ce sont</em> etc.):</p>
 
@@ -1729,15 +1772,15 @@ acl:cleft(ami, habite)
 <p><a id="al-fr-dep/nsubj:quasi" class="al-dest"></a></p>
 <h2><code>nsubj:quasi</code>: quasi nominal subject</h2>
 
-<p>In FrenchSpoken we don’t use the usual <a href="">expl</a> relation and have instead decided to use only a subrelation for impersonal construction: <a href="">nsubj:expl</a>.
-To annotate the other dependent of the predicate (i.e. not the dependent annotated with the <code>nsubj:expl</code> relation) we use the <code>nsubj:quasi</code> relation.</p>
+<p>FrenchSpoken does not use the usual <a href="">expl</a> relation. There is instead a subrelation used only for impersonal constructions: <a href="">nsubj:expl</a>.
+To annotate the other dependent of the predicate (i.e. not the dependent annotated with the <code>nsubj:expl</code> relation), the <code>nsubj:quasi</code> relation is used.</p>
 
 <pre><code class="language-sdparse">il est arrivé un malheur \n something bad happened
 nsubj:expl(arrivé, il)
 nsubj:quasi(arrivé, malheur)
 </code></pre>
 
-<p>When the other dependent of the impersonal construction’s predicate is a clause, we use the <a href="">csubj:quasi</a> relation.</p>
+<p>When the other dependent of the impersonal construction’s predicate is a clause, the <a href="">csubj:quasi</a> relationis used.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nsubj-quasi.md" target="#">edit nsubj:quasi</a></p>
 
@@ -1751,7 +1794,7 @@ subject of a passive clause.</p>
 nsubjpass(gagnée, participant)
 </code></pre>
 
-<p>Currently FrenchSpoken doesn’t use the <code>nsubjpass</code> relation.</p>
+<p>Currently FrenchSpoken does not use the <code>nsubjpass</code> relation.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/nsubjpass.md" target="#">edit nsubjpass</a></p>
 
@@ -1775,7 +1818,7 @@ nummod(pourcent, 13)
 nmod(née, décembre)
 nummod(décembre, 12)
 nmod(décembre, 2011)
-det(27, le)
+det(12, le)
 </code></pre>
 
 <p>Here are some examples from FrenchSpoken:</p>
@@ -1817,7 +1860,7 @@ obj(douter, se)
 obj(souvenir, se)
 </code></pre>
 
-<p>In FrenchSpoken we also use the <code>obj</code> relation :</p>
+<p>FrenchSpoken also uses the <code>obj</code> relation :</p>
 
 <pre><code class="language-sdparse">on voit une jeune fille habillée en noir \n we see a young girl dressed in black
 obj(voit, fille)
@@ -1908,7 +1951,7 @@ obl:agent(toiletter,toiletteur)
 <p><a id="al-fr-dep/obl:comp" class="al-dest"></a></p>
 <h2><code>obl:comp</code>: oblique complement</h2>
 
-<p>In FrenchSpoken, the <code>obl:comp</code> relation is used for core dependents of a verb (or an adjective), which are introduced by a preposition.</p>
+<p>FrenchSpoken uses the <code>obl:comp</code> relation for core dependents of a verb (or an adjective), which are introduced by a preposition.</p>
 
 <p>Here is an example from FrenchSpoken :</p>
 
@@ -1917,15 +1960,15 @@ obl:comp(sortez, commune)
 case(commune, de)
 </code></pre>
 
-<p>For prepositional phrases which are not required by the verb (or the adjective) but modify the verb (or the adjective), we use the <a href="">obl:mod</a> relation.
-For non-core nominal dependents of a verb, we can also use the <a href="">obl:periph</a> relation.</p>
+<p>For prepositional phrases which are not required by the verb (or the adjective) but modify the verb (or the adjective), the <a href="">obl:mod</a> relation is used.
+For non-core nominal dependents of a verb not governed by their head, the <a href="">obl:periph</a> relation is used.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obl-comp.md" target="#">edit obl:comp</a></p>
 
 <p><a id="al-fr-dep/obl:mod" class="al-dest"></a></p>
 <h2><code>obl:mod</code>: oblique modifier</h2>
 
-<p>In FrenchSpoken, the <code>obl:mod</code> relation is used for nominal adjuncts. They can be (but are not always) introduced by a preposition.</p>
+<p>FrenchSpoken uses  the <code>obl:mod</code> relation for nominal adjuncts. They can be (but are not always) introduced by a preposition.</p>
 
 <p>Here is an example from FrenchSpoken :</p>
 
@@ -1942,7 +1985,7 @@ For non-core nominal dependents of a verb, we can also use the <a href="">obl:pe
 <p><a id="al-fr-dep/obl:periph" class="al-dest"></a></p>
 <h2><code>obl:periph</code>: peripheral oblique nominal</h2>
 
-<p>In FrenchSpoken, the <code>obl:periph</code> relation is used for nominals which are not required by the verb. 
+<p>FrenchSpoken uses  the <code>obl:periph</code> relation for nominals which are not required by the verb. 
 The specificity of an <code>obl:periph</code>, compared to an <a href="">obl:mod</a>, is that the <code>obl:periph</code> nominal cannot be clefted. In addition, the <code>obl:periph</code> nominal cannot be moved inside the core of the sentence, unless it is put in parenthesis.</p>
 
 <pre><code class="language-sdparse">A mon avis , Pierre devrait rester là. \n In my opinion, Pierre should stay there.
@@ -1955,7 +1998,7 @@ obl:periph(devrait, avis)
 obl:periph(gifle, Indépendant)
 </code></pre>
 
-<p>We use two other subrelations for <code>obl</code>: <a href="">obl:comp</a> for prepositional core dependents and <a href="">obl:mod</a> for nominal adjuncts (introduced by a preposition or not) that can be clefted.</p>
+<p>Two other subrelations of <code>obl</code> are used: <a href="">obl:comp</a> for prepositional core dependents and <a href="">obl:mod</a> for nominal adjuncts (introduced by a preposition or not) that can be clefted.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/obl-periph.md" target="#">edit obl:periph</a></p>
 
@@ -2220,7 +2263,7 @@ xcomp(compte, retourner)
 xcomp(considère, ami)
 </code></pre>
 
-<p>In FrenchSopken we also use the <code>xcomp</code>relation. Here are examples from FrenchSpoken:</p>
+<p>Here are examples from FrenchSpoken:</p>
 
 <pre><code class="language-sdparse">j' aimerais enseigner dans un établissement public \n I'd like to teach in a public school
 xcomp(aimerais, enseigner)
@@ -2229,6 +2272,8 @@ xcomp(aimerais, enseigner)
 <pre><code class="language-sdparse">on pourrait imaginer des mélanges \n we could imagine some mixes
 xcomp(pourrait, imaginer)
 </code></pre>
+
+<p>N.B.: For causative constructions (<em>Marie fait repeindre les murs à Jean-Pierre.</em> etc.) see the <a href="http://universaldependencies.org/fr/overview/specific-syntax.html">specific syntax</a> page.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/xcomp.md" target="#">edit xcomp</a></p>
 
