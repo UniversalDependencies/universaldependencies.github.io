@@ -104,7 +104,7 @@ in two places.</p>
 	  <td><i>Modifier word</i></td>
 	</tr>
 	<tr>
-	  <td><a>nmod</a></td>
+	  <td><a>obl</a></td>
 	  <td><a>advcl</a></td>
 	  <td><a>advmod</a></td>
 	</tr>
@@ -327,7 +327,7 @@ advmod(ⲕⲟⲟⲩⲉ, ⲧⲏⲣ)
 <p><a id="al-cop-dep/amod" class="al-dest"></a></p>
 <h2><code>amod</code>: adjectival modifier</h2>
 
-<p>This function is reserved to the small closed class of Egyptian adjectives which may follow a noun without mediating ⲛ. The label is only given if the construction is actually noun+adjective: if an ⲛ appears, then the label should be <code>nmod</code>.</p>
+<p>This function is reserved to the small closed class of Egyptian adjectives which may follow a noun without mediating ⲛ. The label is only given if the construction is actually noun+adjective: if the preposition ⲛ appears, then the label should be <code>nmod</code>.</p>
 
 <p>Example:</p>
 
@@ -445,12 +445,12 @@ neg(ⲥⲟⲟⲩⲛ, ⲁⲛ)
 
 cc(ⲥⲟⲟⲩⲛ, ⲏ)
 nsubj(ⲥⲟⲟⲩⲛ, ϯ)
-neg(ⲥⲟⲟⲩⲛ, ⲁⲛ)
+advmod(ⲥⲟⲟⲩⲛ, ⲁⲛ)
 ccomp(ⲥⲟⲟⲩⲛ, ⲡⲁϩ)
 mark(ⲡⲁϩ, ϫⲉ)
 nsubj(ⲡⲁϩ, ⲕ)
 aux(ⲡⲁϩ, ⲛⲁ)
-dobj(ⲡⲁϩ, ⲟⲩ)
+obj(ⲡⲁϩ, ⲟⲩ)
 </code></pre>
 
 <p>Note how the verb “know” (ⲥⲟⲟⲩⲛ) is the source of <code>ccomp</code>, and the subordinate clause main verb, “tear” (ⲡⲁϩ), is the target.</p>
@@ -540,7 +540,7 @@ aux(ⲁⲛⲉⲭⲉ, ⲉ)
 cop(ⲡ, ⲡⲉ)
 acl(ⲡ, ⲉϣϣⲉ)
 mark(ⲉϣϣⲉ, ⲉⲧ)
-dobj(ⲁⲛⲉⲭⲉ, ⲕ)
+obj(ⲁⲛⲉⲭⲉ, ⲕ)
 case(ⲕ, ⲙⲙⲟ)
 </code></pre>
 
@@ -558,8 +558,7 @@ csubj(ⲉⲝⲉⲥⲧⲓ, ⲁⲁ)
 <p><a id="al-cop-dep/csubjpass" class="al-dest"></a></p>
 <h2><code>csubjpass</code>: clausal passive subject</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>csubjpass</code>.</p>
+<p>The relation <code>csubjpass</code> is not used in Coptic, refer to the documentation on <code>nsubj</code> for (pseudo-)passivization.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/csubjpass.md" target="#">edit csubjpass</a></p>
 
@@ -573,12 +572,42 @@ for <code>csubjpass</code>.</p>
 <p><a id="al-cop-dep/det" class="al-dest"></a></p>
 <h2><code>det</code>: determiner</h2>
 
-<p>Function label for determiners, including definite and indefinite articles governed by their noun, but also the postposed ⲛⲓⲙ ‘any’ and the determiner ⲕⲉ ‘other’, which is unique in being allowed to stand for an article. If a noun has both a normal article and ⲕⲉ, both are marked as <code>det</code>:</p>
+<p>Function label for determiners, including definite and indefinite articles governed by their noun, but also the postposed ⲛⲓⲙ ‘any’ and the determiner ⲕⲉ ‘other’, which is unique in being allowed to stand for an article.</p>
+
+<pre><code class="language-sdparse">ⲣⲱⲙⲉ/NOUN ⲛⲓⲙ/PRON \n any man
+
+det(ⲣⲱⲙⲉ, ⲛⲓⲙ)
+</code></pre>
+
+<pre><code class="language-sdparse">ⲕⲉ/DET ⲣⲱⲙⲉ/NOUN \n another man
+
+det(ⲣⲱⲙⲉ, ⲕⲉ)
+</code></pre>
+
+<h2 id="double-determiners">Double determiners</h2>
+
+<p>If a noun has both a normal article and ⲕⲉ, both are marked as <code>det</code>:</p>
 
 <pre><code class="language-sdparse">ϩⲉⲛ/DET ⲕⲉ/DET ϩⲛⲁⲁⲩ/NOUN \n some other matters
 
 det(ϩⲛⲁⲁⲩ, ⲕⲉ)
 det(ϩⲛⲁⲁⲩ, ϩⲉⲛ)
+</code></pre>
+
+<h2 id="possessive-determiners">Possessive determiners</h2>
+
+<p>Both pre-posed possessives and the old suffix pronouns are treated as determiners:</p>
+
+<pre><code class="language-sdparse">ⲡⲉⲥ/DET ⲏⲓ/NOUN \n her house
+
+det(ⲏⲓ, ⲡⲉⲥ)
+</code></pre>
+
+<p>Note that the suffix possessors are pure pronouns, and are therefore tagged as PRON (but the relation is still <code>det</code>):</p>
+
+<pre><code class="language-sdparse">ⲣⲛⲧ/NOUN ⲕ/PRON \n your name
+
+det(ⲣⲛⲧ, ⲕ)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/det.md" target="#">edit det</a></p>
@@ -635,23 +664,31 @@ nsubj(ⲡⲁⲣⲁⲓⲧⲉⲓ, ⲓ)
 
 <p>Designates the direct object of the verb. This can be one of the following:</p>
 
-<p>A nominal object standing directly after a verb, OR</p>
-
-<p>A pronominal object directly after a verb:</p>
+<ol>
+  <li>
+    <p>A nominal object standing directly after a verb, OR</p>
+  </li>
+  <li>
+    <p>A pronominal object directly after a verb:</p>
+  </li>
+</ol>
 
 <pre><code class="language-sdparse">Ⲁ/AUX ⲕ/PRON ⲡⲁϩ/VERB ⲟⲩ/PRON \n You have torn them. 
 
 aux(ⲡⲁϩ, Ⲁ)
 nsubj(ⲡⲁϩ, ⲕ)
-dobj(ⲡⲁϩ, ⲟⲩ)
+obj(ⲡⲁϩ, ⲟⲩ)
 </code></pre>
-<p>A nominal or pronominal object mediated by the accusative marker (ⲛ/ⲙ/ⲙⲙⲟ⸗), usually in the durative patterns according to Jernstedt’s Law. The marker itself is linked to the noun with the <code>case</code> function.</p>
+
+<ol>
+  <li>A nominal or pronominal object, mediated by the accusative marker (ⲛ/ⲙ/ⲙⲙⲟ⸗), usually in the durative patterns according to Jernstedt’s Law. The marker itself is linked to the noun with the <code>case</code> function.</li>
+</ol>
 
 <pre><code class="language-sdparse">Ⲁ/AUX ⲓ/PRON ϥⲓ/VERB ⲛ/ADP ⲛⲉⲕ/DET ⲛⲟⲩⲧⲉ/NOUN \n I have carried your gods.
 
 aux(ϥⲓ, ⲁ)
 nsubj(ϥⲓ, ⲓ)
-dobj(ϥⲓ, ⲛⲟⲩⲧⲉ)
+obj(ϥⲓ, ⲛⲟⲩⲧⲉ)
 case(ⲛⲟⲩⲧⲉ, ⲛ)
 det(ⲛⲟⲩⲛⲧⲉ, ⲛⲉⲕ)
 </code></pre>
@@ -784,7 +821,7 @@ nsubj(ⲛⲁⲛⲟⲩ, ϥ)
 <p><a id="al-cop-dep/nmod" class="al-dest"></a></p>
 <h2><code>nmod</code>: nominal modifier</h2>
 
-<p>A nominal modifier. This is the label given to prepositional objects and other types of nominal dependents which are non-core arguments (i.e. neither subject nor object). Note that in keeping with Universal Dependencies for other languages, the <code>nmod</code> noun attaches directly to the lexeme it modifies (usually a noun or verb), while the preposition is seen as a <code>case</code> dependent of the modifying noun.</p>
+<p>A nominal modifier. This is the label given to prepositional objects and other types of nominal dependents which are non-core arguments and not verbal modifiers (i.e. neither subject nor object nor oblique). Note that in keeping with Universal Dependencies for other languages, the <code>nmod</code> noun attaches directly to the lexeme it modifies (usually a noun), while the preposition is seen as a <code>case</code> dependent of the modifying noun.</p>
 
 <pre><code class="language-sdparse">ⲡ/DET ⲣⲏ/NOUN ϩⲛ/ADP ⲧ/DET ⲡⲉ/NOUN  \n the sun in the sky
 
@@ -794,12 +831,12 @@ case(ⲡⲉ, ϩⲛ)
 det(ⲡⲉ, ⲧ)
 </code></pre>
 
-<p>Note also that prepositional arguments of verbs are also marked as <code>nmod</code>, including prepositional objects of verbs of perception:</p>
+<p>Note that prepositional arguments of verbs are marked as <code>obl</code>, not <code>nmod</code>, including prepositional objects of verbs of perception:</p>
 
 <pre><code class="language-sdparse">ⲁⲣ/PRON ⲥⲱⲧⲙ/VERB ⲉⲣⲟ/ADP ⲓ/PRON \n You have heard me
 
 nsubj(ⲥⲱⲧⲙ, ⲁⲣ)
-nmod(ⲥⲱⲧⲙ, ⲓ)
+obl(ⲥⲱⲧⲙ, ⲓ)
 case(ⲉⲣⲟ, ⲓ)
 </code></pre>
 
@@ -816,8 +853,9 @@ case(ⲉⲣⲟ, ⲓ)
 
 aux(ⲥⲟⲧⲡ, ⲁ)
 nsubj(ⲥⲟⲧⲡ, ⲩ)
-dobj(ⲥⲟⲧⲡ, ⲥ)
+obj(ⲥⲟⲧⲡ, ⲥ)
 </code></pre>
+
 <p><strong>Stative passive:</strong> formed by the morphological stative form (pos=VSTAT) with a transitive verb, however syntactically same as statal reading with intransitive verb:</p>
 
 <pre><code class="language-sdparse">ϥ/PRON ⲕⲏⲧ/VERB \n it is built (transitive ⲕⲱⲧ “build”)
@@ -852,7 +890,7 @@ nsubj(ⲟⲩⲛⲧⲁ, ⲓⲏⲥⲟⲩⲥ)
 
 nsubj(ⲙⲛ, ⲛⲟⲩⲧⲉ) 
 det(ⲛⲟⲩⲧⲉ, ϭⲉ)
-nmod(ⲙⲛ, ⲕ)
+obl(ⲙⲛ, ⲕ)
 case(ⲕ, ⲛⲃⲗⲁ)
 </code></pre>
 
@@ -871,8 +909,7 @@ case(ⲃⲣⲣⲉ, ⲛ)
 <p><a id="al-cop-dep/nsubjpass" class="al-dest"></a></p>
 <h2><code>nsubjpass</code>: passive nominal subject</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nsubjpass</code>.</p>
+<p>The relation <code>nsubjpass</code> is not used in Coptic. For both transitive stative subjects and third person plural pseudo-passivization, use <code>nsubj</code>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/nsubjpass.md" target="#">edit nsubjpass</a></p>
 
@@ -1002,12 +1039,14 @@ det(ⲁⲅⲁⲡⲏ, ⲧ)
 
 <p>This label is used to mark dependent clauses that do not contain their own subject, most often infinitive object clauses.</p>
 
+<h2 id="use-with-infinitives">Use with infinitives</h2>
+
 <pre><code class="language-sdparse">ⲧⲉⲧⲛ/PRON ⲕⲱ/VERB ⲙⲙⲟ/ADP ⲟⲩ/PRON ⲁⲛ/ADV ⲉ/ADP ⲥⲣϥⲉ/VERB ⲉ/ADP ⲁⲁ/VERB ϥ/PRON \n you do not let them engage in making it
 
 nsubj(ⲕⲱ, ⲧⲉⲧⲛ)
-dobj(ⲕⲱ, ⲟⲩ)
+obj(ⲕⲱ, ⲟⲩ)
 case(ⲟⲩ, ⲙⲙⲟ)
-neg(ⲕⲱ, ⲁⲛ)
+advmod(ⲕⲱ, ⲁⲛ)
 xcomp(ⲕⲱ, ⲥⲣϥⲉ)
 mark(ⲥⲣϥⲉ, ⲉ-6)
 xcomp(ⲥⲣϥⲉ, ⲁⲁ)
@@ -1017,6 +1056,8 @@ det(ⲁⲁ, ϥ)
 
 <p>Note how in the example above, the subject of both infinitives marked by ⲉ is the object of the main verb ⲕⲱ, which is external to the infinitive clauses. The infinitive clauses marked by xcomp are inheriting their subject argument from the main clause argument.</p>
 
+<h2 id="use-with-causative-">Use with causative ⲧⲣⲉ</h2>
+
 <p>Additionally, the subordinate infinitive of the causative construction with ⲧⲣⲉ is also analyzed as xcomp, although the etymological subject of the auxiliary ⲧⲣⲉ is attached to the lexical infinitive as a subject. This facilitates syntactic recognition of the construction next to semantic argument structure extraction:</p>
 
 <pre><code class="language-sdparse">
@@ -1024,7 +1065,7 @@ det(ⲁⲁ, ϥ)
 
 aux(ⲟⲩⲱϣ, ⲙⲡⲉ)
 nsubj(ⲟⲩⲱϣ, ⲕ)
-neg(ⲟⲩⲱϣ, ⲁⲛ)
+advmod(ⲟⲩⲱϣ, ⲁⲛ)
 cop(ⲟⲩϣⲱ, ⲡⲉ)
 xcomp(ⲟⲩⲱϣ, ⲧⲣⲉ)
 aux(ⲧⲣⲉ, ⲉ)
@@ -1035,11 +1076,25 @@ nmod(ϣⲏⲣⲉ, ⲛⲟⲩⲧⲉ)
 case(ⲛⲟⲩⲧⲉ, ⲙ)
 det(ⲛⲟⲩⲧⲉ, ⲡ)
 det(ⲡⲣⲟⲥⲫⲟⲣⲁ, ⲟⲩ)
-dobj(ϫⲓ, ⲡⲣⲟⲥⲫⲟⲣⲁ)
+obj(ϫⲓ, ⲡⲣⲟⲥⲫⲟⲣⲁ)
 
 </code></pre>
 
 <p>Note that in the example above, the first xcomp is the normal infinitive case, with no explicit subject, but the second xcomp illustrates the causative construction: ‘sons’ are both the object of ‘making’ and subject of ‘carrying’.</p>
+
+<h2 id="predicate-of--become">Predicate of ϣⲱⲡⲉ ‘become’</h2>
+
+<p>Predicates of ϣⲱⲡⲉ ‘become’ (and stative ϣⲟⲟⲡ) are not considered objects, but are linked as <code>xcomp</code> to the verb. The preposition ⲛ is still marked as <code>case</code> in this construction.</p>
+
+<pre><code class="language-sdparse">
+ⲧⲉⲧⲛ ϣⲱⲡⲉ ⲛ ϫⲣⲟⲡ \n you become an obstacle
+
+xcomp(ϣⲱⲡⲉ, ϫⲣⲟⲡ)
+case(ϫⲣⲟⲡ, ⲛ)
+
+</code></pre>
+
+<p>This analysis effectively treats predicates of verbs of ‘becoming’ as a small clause: become(x,be(y)), with x serving as the overt subject of become, but also the external subject of the ‘be’ predication, much like a governed infinitive.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/xcomp.md" target="#">edit xcomp</a></p>
 
