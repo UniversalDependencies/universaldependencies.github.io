@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>auxpass</title>
+    <title>csubj:pass</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-fr">home</a></span>
           <span class="header-text"><a href="http://universaldependencies.org/fr/dep">fr/dep</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/auxpass.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr-dep/csubj-pass.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,23 +60,16 @@
 	  </div>
 	</noscript>
 
-          <h2><code>auxpass</code>: passive auxiliary</h2>
+          <h2><code>csubj:pass</code>: clausal passive subject</h2>
 
-<p>A passive auxiliary of a clause is a non-main verb of the clause which
-contains the passive information.</p>
+<p>A clausal passive subject is a clausal syntactic subject of a passive clause.
+It is not a very common construction in French. In the example below, <em>qu’il avait triché</em> is the clausal subject.</p>
 
-<pre><code class="language-sdparse">Kennedy fut assassiné \n Kennedy was murdered
-auxpass(assassiné, fut)
+<pre><code class="language-sdparse">Qu'il avait triché était cru par tout le monde . \n That he cheated was believed by everyone .
+csubj:pass(cru, triché)
 </code></pre>
 
-<p>Other auxiliaries associated with the same main verb are not labeled <code>auxpass</code> but <code>aux</code> since they do not themselves indicate passive voice.</p>
-
-<pre><code class="language-sdparse">Kennedy a été assassiné \n Kennedy has been murdered
-auxpass(assassiné, été)
-aux(assassiné, a)
-</code></pre>
-
-<p>Currently FrenchSpoken does not use the <code>auxpass</code> relation.</p>
+<p>Currently FrenchSpoken does not use the <code>csubj:pass</code> relation.</p>
 
 
 <!-- "automatic stats" -->
@@ -86,129 +79,56 @@ aux(assassiné, a)
 
 
 
+
+<hr />
+
+<h2 id="treebank-statistics-udfrench-sequoia">Treebank Statistics (UD_French-Sequoia)</h2>
+
+<p>This relation is a language-specific subtype of <a href="">csubj</a>.</p>
+
+<p>1 nodes (0%) are attached to their parents as <code>csubj:pass</code>.</p>
+
+<p>1 instances of <code>csubj:pass</code> (100%) are left-to-right (parent precedes child).
+Average distance between parent and child is 7.</p>
+
+<p>The following 1 pairs of parts of speech are connected with <code>csubj:pass</code>: <a href="">fr-pos/VERB</a>-<a href="">fr-pos/NOUN</a> (1; 100% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 19	bgColor:blue
+# visual-style 19	fgColor:white
+# visual-style 12	bgColor:blue
+# visual-style 12	fgColor:white
+# visual-style 12 19 csubj:pass	color:blue
+1	Ceux-ci	celui-ci	PRON	_	Gender=Masc|Number=Plur|PronType=Dem	3	nsubj:pass	_	_
+2	seront	être	AUX	_	Mood=Ind|Number=Plur|Person=3|Tense=Fut|VerbForm=Fin	3	aux:pass	_	_
+3	réalisés	réaliser	VERB	_	Gender=Masc|Number=Plur|Tense=Past|VerbForm=Part|Voice=Pass	0	root	_	_
+4	par	par	ADP	_	_	6	case	_	_
+5	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	6	det	_	_
+6	promoteur	promoteur	NOUN	_	Gender=Masc|Number=Sing	3	obl	_	_
+7	qui	qui	PRON	_	PronType=Rel	10	nsubj	_	_
+8	s'	le/lui	PRON	_	Person=3|Reflex=Yes	10	expl	_	SpaceAfter=No
+9	y	y	PRON	_	Person=3	10	iobj	_	_
+10	engage	engager	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	6	acl:relcl	_	_
+11	étant	être	AUX	_	Tense=Pres|VerbForm=Part	12	aux:pass	_	_
+12	précisé	préciser	VERB	_	Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part|Voice=Pass	1	acl	_	_
+13	que	que	SCONJ	_	_	19	mark	_	_
+14	la	le	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	15	det	_	_
+15	voirie	voirie	NOUN	_	Gender=Fem|Number=Sing	19	nsubj	_	_
+16	restera	rester	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Fut|VerbForm=Fin	19	cop	_	_
+17	en	en	ADP	_	_	19	case	_	_
+18	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	19	det	_	SpaceAfter=No
+19	état	état	NOUN	_	Gender=Masc|Number=Sing	12	csubj:pass	_	_
+20	pour	pour	ADP	_	_	22	case	_	_
+21	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	22	det	_	_
+22	moment	moment	NOUN	_	Gender=Masc|Number=Sing	19	obl	_	SpaceAfter=No
+23	.	.	PUNCT	_	_	3	punct	_	_
+
+</code></pre>
+
+
+
+
 <!-- "in other languages" links -->
 <hr/>
-
-auxpass in other languages:
-
-[<a href="../../am/dep/auxpass.html">am</a>]
-
-[<a href="../../ar/dep/auxpass.html">ar</a>]
-
-[<a href="../../bg/dep/auxpass.html">bg</a>]
-
-[<a href="../../bxr/dep/auxpass.html">bxr</a>]
-
-[<a href="../../ca/dep/auxpass.html">ca</a>]
-
-[<a href="../../ckb/dep/auxpass.html">ckb</a>]
-
-[<a href="../../cop/dep/auxpass.html">cop</a>]
-
-[<a href="../../cs/dep/auxpass.html">cs</a>]
-
-[<a href="../../cu/dep/auxpass.html">cu</a>]
-
-[<a href="../../da/dep/auxpass.html">da</a>]
-
-[<a href="../../de/dep/auxpass.html">de</a>]
-
-[<a href="../../el/dep/auxpass.html">el</a>]
-
-[<a href="../../en/dep/auxpass.html">en</a>]
-
-[<a href="../../es/dep/auxpass.html">es</a>]
-
-[<a href="../../et/dep/auxpass.html">et</a>]
-
-[<a href="../../eu/dep/auxpass.html">eu</a>]
-
-[<a href="../../fa/dep/auxpass.html">fa</a>]
-
-[<a href="../../fi/dep/auxpass.html">fi</a>]
-
-[<a href="../../fo/dep/auxpass.html">fo</a>]
-
-[<a href="../../fr/dep/auxpass.html">fr</a>]
-
-[<a href="../../gl/dep/auxpass.html">gl</a>]
-
-[<a href="../../got/dep/auxpass.html">got</a>]
-
-[<a href="../../grc/dep/auxpass.html">grc</a>]
-
-[<a href="../../he/dep/auxpass.html">he</a>]
-
-[<a href="../../hi/dep/auxpass.html">hi</a>]
-
-[<a href="../../hr/dep/auxpass.html">hr</a>]
-
-[<a href="../../hu/dep/auxpass.html">hu</a>]
-
-[<a href="../../id/dep/auxpass.html">id</a>]
-
-[<a href="../../it/dep/auxpass.html">it</a>]
-
-[<a href="../../ja/dep/auxpass.html">ja</a>]
-
-[<a href="../../kk/dep/auxpass.html">kk</a>]
-
-[<a href="../../kmr/dep/auxpass.html">kmr</a>]
-
-[<a href="../../ko/dep/auxpass.html">ko</a>]
-
-[<a href="../../la/dep/auxpass.html">la</a>]
-
-[<a href="../../lv/dep/auxpass.html">lv</a>]
-
-[<a href="../../mr/dep/auxpass.html">mr</a>]
-
-[<a href="../../nl/dep/auxpass.html">nl</a>]
-
-[<a href="../../no/dep/auxpass.html">no</a>]
-
-[<a href="../../pl/dep/auxpass.html">pl</a>]
-
-[<a href="../../pt/dep/auxpass.html">pt</a>]
-
-[<a href="../../ro/dep/auxpass.html">ro</a>]
-
-[<a href="../../ru/dep/auxpass.html">ru</a>]
-
-[<a href="../../sa/dep/auxpass.html">sa</a>]
-
-[<a href="../../sk/dep/auxpass.html">sk</a>]
-
-[<a href="../../sla/dep/auxpass.html">sla</a>]
-
-[<a href="../../sl/dep/auxpass.html">sl</a>]
-
-[<a href="../../so/dep/auxpass.html">so</a>]
-
-[<a href="../../sr/dep/auxpass.html">sr</a>]
-
-[<a href="../../sv/dep/auxpass.html">sv</a>]
-
-[<a href="../../swl/dep/auxpass.html">swl</a>]
-
-[<a href="../../ta/dep/auxpass.html">ta</a>]
-
-[<a href="../../tr/dep/auxpass.html">tr</a>]
-
-[<a href="../../ug/dep/auxpass.html">ug</a>]
-
-[<a href="../../uk/dep/auxpass.html">uk</a>]
-
-[<a href="../../ur/dep/auxpass.html">ur</a>]
-
-[<a href="../../urj/dep/auxpass.html">urj</a>]
-
-[<a href="../../vi/dep/auxpass.html">vi</a>]
-
-[<a href="../../yue/dep/auxpass.html">yue</a>]
-
-[<a href="../../zh/dep/auxpass.html">zh</a>]
-
 
 
 
