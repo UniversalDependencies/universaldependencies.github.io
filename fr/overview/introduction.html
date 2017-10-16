@@ -62,7 +62,22 @@
 
           <h1 id="introduction">Introduction</h1>
 
-<p>The French data come from the universal Google dataset (version 2.0): a mix of random sentences sampled from Google News, from Blogger, from Wikipedia and from Google local reviews. The conversion to the UD POS and UD dependencies have been performed automatically, using heuristic rules and fixed lists of words (produced by native speakers of the language). The output of the conversion has not been manually corrected systematically.</p>
+<p>In version 2.1, there are 6 different corpora for French:</p>
+
+<ul>
+  <li><a href="#French">French</a></li>
+  <li><a href="#French-FTB">French-FTB</a></li>
+  <li><a href="#French-PUD">French-PUD</a></li>
+  <li><a href="#French-ParTUT">French-ParTUT</a></li>
+  <li><a href="#French-Sequoia">French-Sequoia</a></li>
+  <li><a href="#French-Spoken">French-Spoken</a></li>
+</ul>
+
+<h2 id="french">French</h2>
+
+<p><a href="https://github.com/UniversalDependencies/UD_French">Github repository</a></p>
+
+<p>The French data come from the universal Google dataset (version 2.0): a mix of random sentences sampled from Google News, from Blogger, from Wikipedia and from Google local reviews. The conversion to the UD POS and UD dependencies have been performed automatically, using heuristic rules and fixed lists of words (produced by native speakers of the language).</p>
 
 <p>More information about the original Google dataset can be found in the following paper:</p>
 
@@ -71,6 +86,122 @@
   Dipanjan Das, Kuzman Ganchev, Keith Hall, Slav Petrov, Hao Zhang,
   Oscar Tackstrom, Claudia Bedini, Nuria Bertomeu Castello and Jungmee Lee
   Proceedings of ACL 2013</p>
+
+<p>Since version 1.0, many improvements and corrections were made to the automatically converted data.</p>
+
+<p>Subtypes of relations used in the version 2.1</p>
+
+<p><code>
+acl:relcl
+aux:caus
+aux:pass
+csubj:pass
+flat:foreign
+flat:name
+nmod:poss
+nsubj:pass
+</code></p>
+
+<h2 id="french-ftb">French-FTB</h2>
+<p><a href="https://github.com/UniversalDependencies/UD_French-FTB">Github repository</a></p>
+
+<h2 id="french-pud">French-PUD</h2>
+<p><a href="https://github.com/UniversalDependencies/UD_French-PUD">Github repository</a></p>
+
+<h2 id="french-partut">French-ParTUT</h2>
+<p><a href="https://github.com/UniversalDependencies/UD_French-ParTUT">Github repository</a></p>
+
+<p>UD_French-ParTUT data is derived from the already-existing parallel treebank Par(allel)TUT.</p>
+
+<p>ParTUT is a morpho-syntactically annotated collection of Italian/French/English parallel sentences,
+which includes texts from different sources and representing different genres and domains, released in several formats.</p>
+
+<p>ParTUT comprises approximately 167,000 tokens, with an average amount
+of 2,100 sentences per language. The texts of the collection currently available were
+gathered from a large number of sources and domains:
+* the <a href="http://creativecommons.org/licenses/by-nc-sa/2.0">Creative Commons</a> open license;
+* the <a href="https://ec.europa.eu/jrc/en/language-technologies/dgt-translation-memory">DGT-Translation Memory</a>
+* the <a href="http://www.statmt.org/europarl/">Europarl</a> parallel corpus [Koehn, 2005] (section ep_00_01_17);
+* publicly available pages from <a href="https://www.facebook.com/help/345121355559712/">Facebook website</a>;
+* the <a href="http://optima.jrc.it/Acquis/index_2.2.html">JRC-Acquis multilingual parallel corpus</a> (section jrc52006DC243) [Steinberger et al., 2006];
+* several articles from <a href="https://www.project-syndicate.org/">Project Syndicate©</a> [ABSENT IN UD_French-ParTUT];
+* the <a href="http://www.ohchr.org/EN/UDHR/Pages/SearchByLang.aspx">Universal Declaration of Human Rights</a>;
+* Wikipedia articles retrieved in the English section and then translated into Italian only by graduate students in Translation  Studies [ABSENT IN UD_French-ParTUT];
+* the <a href="https://wit3.fbk.eu/mt.php?release=2012-02">Web Inventory of Translated Talks</a> [Cettolo et al., 2012].</p>
+
+<p>ParTUT data can be downloaded <a href="http://www.di.unito.it/~tutreeb/treebanks.html">here</a> and <a href="https://github.com/msang/partut-repo">here</a> (CoNLL format only).</p>
+
+<h3 id="corpus-splitting">Corpus splitting</h3>
+
+<p>The corpus was randomly splitted using a script. In order to meet the CoNLL 2017 Shared Task requirements, and considering the limited amount of data available for the French section,
+we splitted the treebank so as to obtain at least 10K words for both test and development sets, leaving the remaining part for training.
+The corpus is thus partitioned as follows:</p>
+
+<ul>
+  <li>fr_partut-ud-train.conllu: 6396 words (220 sentences)</li>
+  <li>fr_partut-ud-dev.conllu: 11531 words (400 sentences)</li>
+  <li>fr_partut-ud-test.conllu: 10670 words (400 sentences)</li>
+</ul>
+
+<p>Moreover, in order to preserve the 1:1 correspondence among the three language sections, all of them were partitioned in the same way; therefore the same sentences, in the same order,
+are found in the training, development and test set of the English and Italian treebanks as well.</p>
+
+<h3 id="basic-statistics">Basic statistics</h3>
+
+<ul>
+  <li>Tree count:  1020</li>
+  <li>Word count:  28597</li>
+  <li>Token count: 27661</li>
+  <li>Dep. relations: 42 of which 8 language specific</li>
+  <li>POS tags: 17</li>
+  <li>Category=value feature pairs: 32</li>
+</ul>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li>
+    <p>Manuela Sanguinetti, Cristina Bosco. 2014. PartTUT: The Turin University Parallel Treebank.
+In Basili, Bosco, Delmonte, Moschitti, Simi (editors) Harmonization and development of resources and tools for Italian Natural Language Processing within the PARLI project, LNCS, Springer Verlag</p>
+  </li>
+  <li>
+    <p>Manuela Sanguinetti, Cristina Bosco. 2014. Converting the parallel treebank ParTUT in Universal Stanford Dependencies.
+In Proceedings of the 1rst Conference for Italian Computational Linguistics (CLiC-it 2014), Pisa (Italy)</p>
+  </li>
+  <li>
+    <p>Cristina Bosco, Manuela Sanguinetti. 2014. Towards a Universal Stanford Dependencies parallel treebank.
+In Proceedings of the 13th Workshop on Treebanks and Linguistic Theories (TLT-13), Tubingen (Germany)</p>
+  </li>
+</ul>
+
+<h3 id="acknowledments">Acknowledments</h3>
+
+<p>We are deeply grateful to Project Syndicate© for letting us download and exploit their articles as text material under the terms of educational use.</p>
+
+<h2 id="french-sequoia">French-Sequoia</h2>
+<p><a href="https://github.com/UniversalDependencies/UD_French-Sequoia">Github repository</a></p>
+
+<p>The <strong>UD_French-Sequoia</strong> corpus is an automatic conversion of the surface representation of the <a href="http://deep-sequoia.inria.fr">French Sequoia corpus</a>.
+The conversion was done with the <a href="http://grew.loria.fr">Grew software</a>.</p>
+
+<h3 id="basic-statistics-and-splitting">Basic statistics and splitting</h3>
+<p>The whole corpus contains 70,624 tokens in 3,099 sentences.</p>
+
+<p>In <strong>UD_French-Sequoia</strong>, data were randomly split into:</p>
+
+<ul>
+  <li><code>fr_sequoia-ud-test.conllu</code>: 10,050 tokens in 456 sentences</li>
+  <li><code>fr_sequoia-ud-dev.conllu</code>: 10,013 tokens in 412 sentences</li>
+  <li><code>fr_sequoia-ud-train.conllu</code>: 50,561 tokens in 2,231 sentences</li>
+</ul>
+
+<h3 id="references-1">References</h3>
+<p>Marie Candito, Guy Perrier, Bruno Guillaume, Corentin Ribeyre, Karën Fort, Djamé Seddah and Éric de la Clergerie. (2014) <a href="http://hal.inria.fr/docs/00/97/15/74/PDF/deep_sequoia.final_with_keywords.pdf">Deep Syntax Annotation of the Sequoia French Treebank</a>. <em>Proc. of LREC 2014</em>, Reykjavic, Iceland.</p>
+
+<p>Guy Perrier, Marie Candito, Bruno Guillaume, Corentin Ribeyre, Karën Fort and Djamé Seddah. (2014) <a href="http://talc2.loria.fr/deep-sequoia/papers/syntaxe_profonde.pdf">Un schéma d’annotation en dépendances syntaxiques profondes pour le français</a>. <em>Proc. of TALN 2014</em>, Marseille, France.</p>
+
+<h2 id="french-spoken">French-Spoken</h2>
+<p><a href="https://github.com/UniversalDependencies/UD_French-Spoken">Github repository</a></p>
 
 
 
