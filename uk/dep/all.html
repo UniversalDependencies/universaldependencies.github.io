@@ -278,34 +278,33 @@ for <code>advmod</code>.</p>
 
 <p>Exception: if the modifying adjectival word is pronominal (i.e. tagged <a href="">uk-pos/DET</a>), the relation is <a href="">det</a> instead of <code>amod</code>.</p>
 
-<!--~~~ sdparse-->
-<!--Ніна їсть зелене яблуко . \n Nina is eating a green apple .-->
-<!--amod(яблуко, зелене)-->
-<!--amod(apple, green)-->
-<!--~~~-->
-
-<pre><code class="language-conllu">1	Ніна	Ніна	NPROP	NSN	_	2	nsubj	_	_
-2	їсть	їсти	VERB	VPR3s	_	0	root	_	_
-3	зелене	зелений	ADJ	ASA	_	4	amod	_	_
-4	яблуко	яблуко	NOUN	NSA	_	2	dobj	_	_
-
+<pre><code class="language-sdparse">Ніна їсть зелене яблуко . \n Nina is-eating (a) green apple .
+amod(яблуко, зелене)
+amod(apple, green)
 </code></pre>
 
-<pre><code class="language-sdparse">Ігор взяв десятитисячну позику . \n Igor has taken a ten-thousand loan .
+<!--~~~ conllu-->
+<!--1	Ніна	Ніна	NPROP	NSN	_	2	nsubj	_	_-->
+<!--2	їсть	їсти	VERB	VPR3s	_	0	root	_	_-->
+<!--3	зелене	зелений	ADJ	ASA	_	4	amod	_	_-->
+<!--4	яблуко	яблуко	NOUN	NSA	_	2	dobj	_	_-->
+<!--~~~-->
+
+<pre><code class="language-sdparse">Ігор взяв десятитисячну позику . \n Igor has taken (a) ten-thousand loan .
 amod(позику, десятитисячну)
 amod(loan, ten-thousand)
 </code></pre>
 
-<pre><code class="language-sdparse">Перший бігун був швидкий . \n First racer was fast .
+<pre><code class="language-sdparse">Перший бігун був швидкий . \n The-first racer was fast .
 amod(бігун, Перший)
-amod(racer, First)
+amod(racer, The-first)
 nsubj(швидкий, бігун)
 nsubj(fast, racer)
 </code></pre>
 
-<pre><code class="language-sdparse">Швидкий бігун був перший . \n Fast racer was first .
+<pre><code class="language-sdparse">Швидкий бігун був перший . \n The-fast racer was first .
 amod(бігун, Швидкий)
-amod(racer, Fast)
+amod(racer, The-fast)
 nsubj(перший, бігун)
 nsubj(first, racer)
 </code></pre>
@@ -523,11 +522,11 @@ for <code>nmod</code>.</p>
 <p><a id="al-uk-dep/nsubj" class="al-dest"></a></p>
 <h2><code>nsubj</code>: nominal subject</h2>
 
-<p>A nominal subject is a nominal phrase which is the syntactic subject of a clause; in Ukrainian, the phrase is in the nominative <a href="">uk-feat/Case</a>. (See <a href="">csubj</a> for when the subject is clausal. See <a href="">nsubjpass</a> and <a href="">csubjpass</a> for when the subject is not the proto-agent argument due to valence changing operations.) The governor of the <code>nsubj</code> relation might not always be a verb: when the verb is a copular verb, the root of the clause is the complement of the copular verb, which can be an adjective or noun. Copular verbs in the present tense are in most cases omitted in Ukrainian.</p>
+<p>A nominal subject is a nominal phrase which is the syntactic subject of a clause; in Ukrainian, the phrase is in the nominative <a href="">uk-feat/Case</a>. (See <a href="">csubj</a> for when the subject is clausal. See <a href="">nsubj:pass</a> and <a href="">csubj:pass</a> for when the subject is not the proto-agent argument due to valence changing operations.) The governor of the <code>nsubj</code> relation might not always be a verb: when the verb is a copular verb, the root of the clause is the complement of the copular verb, which can be an adjective or noun. Copular verbs in the present tense are in most cases omitted in Ukrainian.</p>
 
 <pre><code class="language-sdparse">Заповіт написав Тарас Шевченко . \n The Will was written by Taras Shevchenko .
-nsubj(написав, Шевченко-4)
-nsubj(wrote, Shevchenko-13)
+nsubj(написав, Шевченко)
+nsubj(written, Shevchenko)
 </code></pre>
 
 <pre><code class="language-sdparse">Машина -- червона . \n Car is red .
