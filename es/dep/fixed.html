@@ -62,7 +62,7 @@
 
           <h2><code>fixed</code>: multi-word expression</h2>
 
-<p>This document is a placeholder for the language-specific documentation
+<p>This document is a stub for the language-specific documentation
 for <code>fixed</code>.</p>
 
 <pre><code class="language-sdparse">Tengo que estudiar . \n I have to study .
@@ -275,6 +275,10 @@ fixed in other languages:
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -303,6 +307,8 @@ fixed in other languages:
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

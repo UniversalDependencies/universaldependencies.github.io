@@ -174,14 +174,6 @@ the <code>Abbr</code> feature will not appear.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-feat/Abbr.md" target="#">edit Abbr</a></p>
 
-<p><a id="al-fi-feat/AdpType" class="al-dest"></a></p>
-<h2><code>AdpType</code>: AdpType</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>AdpType</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-feat/AdpType.md" target="#">edit AdpType</a></p>
-
 <p><a id="al-fi-feat/Case" class="al-dest"></a></p>
 <h2><code>Case</code>: case</h2>
 
@@ -1437,22 +1429,6 @@ the <code>PronType</code> value <code>Ind</code> to these pronouns.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-feat/PronType.md" target="#">edit PronType</a></p>
 
-<p><a id="al-fi-feat/PunctSide" class="al-dest"></a></p>
-<h2><code>PunctSide</code>: PunctSide</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>PunctSide</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-feat/PunctSide.md" target="#">edit PunctSide</a></p>
-
-<p><a id="al-fi-feat/Reflex" class="al-dest"></a></p>
-<h2><code>Reflex</code>: reflexive</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>Reflex</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi-feat/Reflex.md" target="#">edit Reflex</a></p>
-
 <p><a id="al-fi-feat/Style" class="al-dest"></a></p>
 <h2><code>Style</code>: style</h2>
 
@@ -1685,6 +1661,10 @@ and passive for verbs (<a href="">fi-pos/VERB</a> and <a href="">fi-pos/AUX</a>)
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -1713,6 +1693,8 @@ and passive for verbs (<a href="">fi-pos/VERB</a> and <a href="">fi-pos/AUX</a>)
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

@@ -62,9 +62,6 @@
 
           <h2><code>dobj</code>: direct object</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>obj</code>.</p>
-
 <p>The direct object of a verb is the noun phrase that denotes the entity acted upon.
 The direct object in Bulgarian corresponds to the position of the “Accusative” case, 
 since nominals in Bulgarian do not have declension.</p>
@@ -257,6 +254,10 @@ dobj in other languages:
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -285,6 +286,8 @@ dobj in other languages:
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

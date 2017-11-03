@@ -201,6 +201,10 @@ for i in UD_* ; do pushd $i ; git checkout dev ; git pull --no-edit ; git rm *-t
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -229,6 +233,8 @@ for i in UD_* ; do pushd $i ; git checkout dev ; git pull --no-edit ; git rm *-t
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

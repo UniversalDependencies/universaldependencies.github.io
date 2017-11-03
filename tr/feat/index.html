@@ -131,9 +131,7 @@
   <li><a href="">Case</a>: case</li>
   <li><a href="">Definite</a>: definiteness or state</li>
   <li><a href="">Degree</a>: degree of comparison</li>
-  <li><a href="">Echo</a>: Echo</li>
   <li><a href="">Evidential</a>: evidential</li>
-  <li><a href="">Evidentiality</a>: Evidentiality</li>
   <li><a href="">Gender</a>: gender</li>
   <li><a href="">Mood</a>: mood</li>
   <li><a href="">NumType</a>: numeral type</li>
@@ -145,7 +143,6 @@
   <li><a href="">Poss</a>: possessive</li>
   <li><a href="">PronType</a>: pronominal type</li>
   <li><a href="">Reflex</a>: reflexive</li>
-  <li><a href="">Register</a>: Register</li>
   <li><a href="">Tense</a>: tense</li>
   <li><a href="">VerbForm</a>: form of verb or deverbative</li>
   <li><a href="">Voice</a>: voice</li>
@@ -196,6 +193,10 @@
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -224,6 +225,8 @@
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

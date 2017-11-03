@@ -336,14 +336,6 @@ action of the verb.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_sv-feat/Mood.md" target="#">edit Mood</a></p>
 
-<p><a id="al-sv-feat/NumType" class="al-dest"></a></p>
-<h2><code>NumType</code>: NumType</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>NumType</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_sv-feat/NumType.md" target="#">edit NumType</a></p>
-
 <p><a id="al-sv-feat/Number" class="al-dest"></a></p>
 <h2><code>Number</code>: number</h2>
 
@@ -609,6 +601,10 @@ that any word belonging to one of these categories is assigned the feature <code
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -637,6 +633,8 @@ that any word belonging to one of these categories is assigned the feature <code
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

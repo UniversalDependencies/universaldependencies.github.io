@@ -380,14 +380,6 @@ dobj(ⲥⲟⲧⲡ, ⲥ)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/aux_.md" target="#">edit aux</a></p>
 
-<p><a id="al-cop-dep/auxpass" class="al-dest"></a></p>
-<h2><code>auxpass</code>: passive auxiliary</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>auxpass</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/auxpass.md" target="#">edit auxpass</a></p>
-
 <p><a id="al-cop-dep/case" class="al-dest"></a></p>
 <h2><code>case</code>: case marking</h2>
 
@@ -659,14 +651,6 @@ nsubj(ⲡⲁⲣⲁⲓⲧⲉⲓ, ⲓ)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/dislocated.md" target="#">edit dislocated</a></p>
 
-<p><a id="al-cop-dep/expl" class="al-dest"></a></p>
-<h2><code>expl</code>: expletive</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>expl</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/expl.md" target="#">edit expl</a></p>
-
 <p><a id="al-cop-dep/fixed" class="al-dest"></a></p>
 <h2><code>fixed</code>: multi-word expression</h2>
 
@@ -699,22 +683,6 @@ name(ⲁⲡⲁ, ⲡⲁⲡⲛⲟⲩⲧⲉ)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/flat.md" target="#">edit flat</a></p>
 
-<p><a id="al-cop-dep/foreign" class="al-dest"></a></p>
-<h2><code>foreign</code>: foreign words</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>foreign</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/foreign.md" target="#">edit foreign</a></p>
-
-<p><a id="al-cop-dep/goeswith" class="al-dest"></a></p>
-<h2><code>goeswith</code>: goes with</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>goeswith</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/goeswith.md" target="#">edit goeswith</a></p>
-
 <p><a id="al-cop-dep/iobj" class="al-dest"></a></p>
 <h2><code>iobj</code>: indirect object</h2>
 
@@ -729,14 +697,6 @@ nsubj(ⲟⲩⲛⲧⲁ, ⲓⲏⲥⲟⲩⲥ)
 <p>The above example can be interpreted as ‘exists to-them Jesus’, etymologically ⲟⲩⲛⲧⲁ-ⲩ &lt; ‘exists in their hand.’</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/iobj.md" target="#">edit iobj</a></p>
-
-<p><a id="al-cop-dep/list" class="al-dest"></a></p>
-<h2><code>list</code>: list</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>list</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/list.md" target="#">edit list</a></p>
 
 <p><a id="al-cop-dep/mark" class="al-dest"></a></p>
 <h2><code>mark</code>: marker</h2>
@@ -1039,14 +999,6 @@ root(ⲁⲛⲟⲕ)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/punct.md" target="#">edit punct</a></p>
 
-<p><a id="al-cop-dep/reparandum" class="al-dest"></a></p>
-<h2><code>reparandum</code>: overridden disfluency</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>reparandum</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop-dep/reparandum.md" target="#">edit reparandum</a></p>
-
 <p><a id="al-cop-dep/root" class="al-dest"></a></p>
 <h2><code>root</code>: root</h2>
 
@@ -1179,6 +1131,10 @@ case(ϫⲣⲟⲡ, ⲛ)
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -1207,6 +1163,8 @@ case(ϫⲣⲟⲡ, ⲛ)
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

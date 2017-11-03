@@ -62,9 +62,6 @@
 
           <h2><code>mark</code>: marker</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>mark</code>.</p>
-
 <p>A marker is the word introducing a finite or non-finite clause subordinate to another clause. The tag  <code>mark</code> in related to dependent of the subordinate clause head. Although in some languages such as English it is used in <a href="ccomp">complement clauses</a> or <a href="advcl">adverbial clauses</a>, in Basque, in those cases, we do not need the marker, since being an agglutinative language those marks are suffixed to words.</p>
 
 <p><em>neskak solasa hausnartzen zuen <strong>bitartean</strong> .</em></p>
@@ -373,6 +370,10 @@ mark in other languages:
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -401,6 +402,8 @@ mark in other languages:
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

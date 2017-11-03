@@ -154,7 +154,6 @@
 
 <ul>
   <li><a href="">Abbr</a>: abbreviation</li>
-  <li><a href="">AdpType</a>: AdpType</li>
   <li><a href="">Case</a>: case</li>
   <li><a href="">Clitic</a>: clitic</li>
   <li><a href="">Connegative</a>: connegative</li>
@@ -172,8 +171,6 @@
   <li><a href="">Polarity</a>: whether the word can be or is negated</li>
   <li><a href="">Poss</a>: possessive</li>
   <li><a href="">PronType</a>: pronominal type</li>
-  <li><a href="">PunctSide</a>: PunctSide</li>
-  <li><a href="">Reflex</a>: reflexive</li>
   <li><a href="">Style</a>: style</li>
   <li><a href="">Tense</a>: tense</li>
   <li><a href="">Typo</a>: misspelled</li>
@@ -226,6 +223,10 @@
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -254,6 +255,8 @@
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

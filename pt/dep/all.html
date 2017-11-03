@@ -291,14 +291,6 @@ acl:inf(nada,perder)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pt-dep/acl-inf.md" target="#">edit acl:inf</a></p>
 
-<p><a id="al-pt-dep/acl:part" class="al-dest"></a></p>
-<h2><code>acl:part</code>: acl:part</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>acl:part</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pt-dep/acl-part.md" target="#">edit acl:part</a></p>
-
 <p><a id="al-pt-dep/acl:relcl" class="al-dest"></a></p>
 <h2><code>acl:relcl</code>: acl:relcl</h2>
 
@@ -967,14 +959,6 @@ det(suspeitos, outros)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pt-dep/det.md" target="#">edit det</a></p>
-
-<p><a id="al-pt-dep/det:poss" class="al-dest"></a></p>
-<h2><code>det:poss</code>: det:poss</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>det:poss</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pt-dep/det-poss.md" target="#">edit det:poss</a></p>
 
 <p><a id="al-pt-dep/discourse" class="al-dest"></a></p>
 <h2><code>discourse</code>: discourse element</h2>
@@ -1933,14 +1917,6 @@ depend on <em>Ela</em> and the relation will be <a href="">acl</a> instead of <c
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pt-dep/xcomp.md" target="#">edit xcomp</a></p>
 
-<p><a id="al-pt-dep/xcomp:adj" class="al-dest"></a></p>
-<h2><code>xcomp:adj</code>: xcomp:adj</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>xcomp:adj</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pt-dep/xcomp-adj.md" target="#">edit xcomp:adj</a></p>
-
 
 
       </div>
@@ -1987,6 +1963,10 @@ for <code>xcomp:adj</code>.</p>
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -2015,6 +1995,8 @@ for <code>xcomp:adj</code>.</p>
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

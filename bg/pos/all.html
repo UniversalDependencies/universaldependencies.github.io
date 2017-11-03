@@ -640,14 +640,6 @@ So, such cases are excluded here and analysed compositionally, as recommended in
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_bg-pos/SCONJ.md" target="#">edit SCONJ</a></p>
 
-<p><a id="al-bg-pos/SYM" class="al-dest"></a></p>
-<h2><code>SYM</code>: symbol</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>SYM</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_bg-pos/SYM.md" target="#">edit SYM</a></p>
-
 <p><a id="al-bg-pos/VERB" class="al-dest"></a></p>
 <h2><code>VERB</code>: verb</h2>
 
@@ -683,14 +675,6 @@ Participles and gerund are considered also <code>VERB</code>. Below the specific
 <p>Note that the symbol `#’, used in the Universal POS section indicates a holder for arbitrary number of features, suppressed in the respective tag as irrelevant in the BulTreeBank tagset, when mapped to the Universal one.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_bg-pos/VERB.md" target="#">edit VERB</a></p>
-
-<p><a id="al-bg-pos/X" class="al-dest"></a></p>
-<h2><code>X</code>: other</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>X</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_bg-pos/X.md" target="#">edit X</a></p>
 
 
 
@@ -738,6 +722,10 @@ for <code>X</code>.</p>
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -766,6 +754,8 @@ for <code>X</code>.</p>
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

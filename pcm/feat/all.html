@@ -300,14 +300,6 @@
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-feat/Degree.md" target="#">edit Degree</a></p>
 
-<p><a id="al-pcm-feat/Gender" class="al-dest"></a></p>
-<h2><code>Gender</code>: gender</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>Gender</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-feat/Gender.md" target="#">edit Gender</a></p>
-
 <p><a id="al-pcm-feat/Mood" class="al-dest"></a></p>
 <h2><code>Mood</code>: mood</h2>
 
@@ -815,6 +807,10 @@ personal/possessive pronouns.</p>
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -843,6 +839,8 @@ personal/possessive pronouns.</p>
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

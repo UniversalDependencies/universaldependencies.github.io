@@ -453,14 +453,6 @@ context.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-pos/PROPN.md" target="#">edit PROPN</a></p>
 
-<p><a id="al-pcm-pos/PUNCT" class="al-dest"></a></p>
-<h2><code>PUNCT</code>: punctuation</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>PUNCT</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-pos/PUNCT.md" target="#">edit PUNCT</a></p>
-
 <p><a id="al-pcm-pos/SCONJ" class="al-dest"></a></p>
 <h2><code>SCONJ</code>: subordinating conjunction</h2>
 
@@ -482,14 +474,6 @@ for <code>PUNCT</code>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-pos/SCONJ.md" target="#">edit SCONJ</a></p>
 
-<p><a id="al-pcm-pos/SYM" class="al-dest"></a></p>
-<h2><code>SYM</code>: symbol</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>SYM</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-pos/SYM.md" target="#">edit SYM</a></p>
-
 <p><a id="al-pcm-pos/VERB" class="al-dest"></a></p>
 <h2><code>VERB</code>: verb</h2>
 
@@ -510,14 +494,6 @@ for <code>SYM</code>.</p>
 </ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-pos/VERB.md" target="#">edit VERB</a></p>
-
-<p><a id="al-pcm-pos/X" class="al-dest"></a></p>
-<h2><code>X</code>: other</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>X</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pcm-pos/X.md" target="#">edit X</a></p>
 
 
 
@@ -565,6 +541,10 @@ for <code>X</code>.</p>
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -593,6 +573,8 @@ for <code>X</code>.</p>
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

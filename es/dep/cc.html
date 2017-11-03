@@ -62,9 +62,6 @@
 
           <h2><code>cc</code>: coordinating conjunction</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>cc</code>.</p>
-
 <p>A coordination is the relation between an element of a conjunct and the coordinating conjunction word of the conjunct. (Note: different dependency grammars have different treatments of coordination. We take one conjunct of a conjunction as the head of the conjunction.) A conjunction may also appear at the beginning of a sentence. This is also called a cc, and it depends on the root predicate of the sentence.</p>
 
 <pre><code class="language-sdparse">María es guapa y simpática . \n María is pretty and friendly .
@@ -398,6 +395,10 @@ cc in other languages:
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -426,6 +427,8 @@ cc in other languages:
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

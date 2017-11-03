@@ -62,9 +62,6 @@
 
           <h2><code>aux</code>: auxiliary</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>aux</code>.</p>
-
 <p>An auxiliary of a clause is a non-main verb of the clause, e.g., a modal auxiliary, or a form of “estar”, “ser” or “haber” in a periphrastic tense.</p>
 
 <p>Spanish modal auxiliaries include (Butt and Benjamin, 2013):</p>
@@ -397,6 +394,10 @@ aux in other languages:
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -425,6 +426,8 @@ aux in other languages:
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

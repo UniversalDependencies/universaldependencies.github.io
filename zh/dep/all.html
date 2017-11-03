@@ -3796,14 +3796,6 @@
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/obl-patient.md" target="#">edit obl:patient</a></p>
 
-<p><a id="al-zh-dep/obl:periph" class="al-dest"></a></p>
-<h2><code>obl:periph</code>: obl:periph</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>obl:periph</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zh-dep/obl-periph.md" target="#">edit obl:periph</a></p>
-
 <p><a id="al-zh-dep/obl:tmod" class="al-dest"></a></p>
 <h2><code>obl:tmod</code>: temporal modifier</h2>
 
@@ -4838,6 +4830,10 @@ for <code>obl:periph</code>.</p>
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -4866,6 +4862,8 @@ for <code>obl:periph</code>.</p>
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

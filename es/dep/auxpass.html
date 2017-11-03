@@ -62,7 +62,7 @@
 
           <h2><code>auxpass</code>: passive auxiliary</h2>
 
-<p>This document is a placeholder for the language-specific documentation
+<p>This document is a stub for the language-specific documentation
 for <code>auxpass</code>.</p>
 
 <pre><code class="language-sdparse">Kennedy fue asesinado . \n Kennedy was murdered .
@@ -247,6 +247,10 @@ auxpass in other languages:
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -275,6 +279,8 @@ auxpass in other languages:
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

@@ -288,14 +288,6 @@ feature of <a href="">Animacy</a>). Nevertheless this is not a grammatical restr
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-feat/Case.md" target="#">edit Case</a></p>
 
-<p><a id="al-uk-feat/Definite" class="al-dest"></a></p>
-<h2><code>Definite</code>: definiteness or state</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>Definite</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk-feat/Definite.md" target="#">edit Definite</a></p>
-
 <p><a id="al-uk-feat/Degree" class="al-dest"></a></p>
 <h2><code>Degree</code>: degree of comparison</h2>
 
@@ -1007,6 +999,10 @@ Although these forms are morphologically very close to the present forms, they a
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -1035,6 +1031,8 @@ Although these forms are morphologically very close to the present forms, they a
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

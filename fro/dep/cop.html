@@ -62,7 +62,7 @@
 
           <h2><code>cop</code>: copula</h2>
 
-<p>This document is a placeholder for the language-specific documentation
+<p>This document is a stub for the language-specific documentation
 for <code>cop</code>.</p>
 
 <pre><code class="language-conllu"># visual-style 2 1 det	color:blue
@@ -262,6 +262,10 @@ cop in other languages:
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -290,6 +294,8 @@ cop in other languages:
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

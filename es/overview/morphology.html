@@ -62,9 +62,6 @@
 
           <h1 id="morphology">Morphology</h1>
 
-<p>This document is a placeholder for the language-specific overview of
-guidelines for part-of-speech tags and features.</p>
-
 <p>Token level morphology features and lemmas have been added automatically using the parsers/taggers in Bohnet et al. 2013* trained on the Ancora** treebank and converted automatically to UD standards.</p>
 
 <p>Various heuristics have been added to improve the output of the tagger, fix obvious errors and add features that
@@ -125,6 +122,10 @@ Transactions of the Association for Computational Linguistics 1 (2013): 415-428.
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -153,6 +154,8 @@ Transactions of the Association for Computational Linguistics 1 (2013): 415-428.
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

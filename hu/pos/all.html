@@ -145,14 +145,6 @@ Common features for adjectives and participles are: Number, Case, Number[psor], 
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hu-pos/AUX_.md" target="#">edit AUX</a></p>
 
-<p><a id="al-hu-pos/CCONJ" class="al-dest"></a></p>
-<h2><code>CCONJ</code>: coordinating conjunction</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>CCONJ</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hu-pos/CCONJ.md" target="#">edit CCONJ</a></p>
-
 <p><a id="al-hu-pos/DET" class="al-dest"></a></p>
 <h2><code>DET</code>: determiner</h2>
 
@@ -167,14 +159,6 @@ for <code>CCONJ</code>.</p>
 <p>These determiners bear the nominal inflectional features (Number, Case, Number[psor], Person[psor], Number[psed]).</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hu-pos/DET.md" target="#">edit DET</a></p>
-
-<p><a id="al-hu-pos/INTJ" class="al-dest"></a></p>
-<h2><code>INTJ</code>: interjection</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>INTJ</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hu-pos/INTJ.md" target="#">edit INTJ</a></p>
 
 <p><a id="al-hu-pos/NOUN" class="al-dest"></a></p>
 <h2><code>NOUN</code>: noun</h2>
@@ -218,30 +202,6 @@ Number, Case, Number[psor], Person[psor], Number[psed]</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hu-pos/PROPN.md" target="#">edit PROPN</a></p>
 
-<p><a id="al-hu-pos/PUNCT" class="al-dest"></a></p>
-<h2><code>PUNCT</code>: punctuation</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>PUNCT</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hu-pos/PUNCT.md" target="#">edit PUNCT</a></p>
-
-<p><a id="al-hu-pos/SCONJ" class="al-dest"></a></p>
-<h2><code>SCONJ</code>: subordinating conjunction</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>SCONJ</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hu-pos/SCONJ.md" target="#">edit SCONJ</a></p>
-
-<p><a id="al-hu-pos/SYM" class="al-dest"></a></p>
-<h2><code>SYM</code>: symbol</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>SYM</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hu-pos/SYM.md" target="#">edit SYM</a></p>
-
 <p><a id="al-hu-pos/VERB" class="al-dest"></a></p>
 <h2><code>VERB</code>: verb</h2>
 
@@ -256,14 +216,6 @@ see-PRES-1SG-INDEF a bird-ACC
 “I see a bird.”</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hu-pos/VERB.md" target="#">edit VERB</a></p>
-
-<p><a id="al-hu-pos/X" class="al-dest"></a></p>
-<h2><code>X</code>: other</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>X</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hu-pos/X.md" target="#">edit X</a></p>
 
 
 
@@ -311,6 +263,10 @@ for <code>X</code>.</p>
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -339,6 +295,8 @@ for <code>X</code>.</p>
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

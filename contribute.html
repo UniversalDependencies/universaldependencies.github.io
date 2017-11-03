@@ -64,7 +64,7 @@
 
 <ul>
   <li>
-    <p>If you want to use UD treebanks, download them from LINDAT/CLARIN to make sure you get the latest official version.</p>
+    <p>If you want to use UD treebanks, <a href="http://universaldependencies.org#download">download</a> them from LINDAT/CLARIN to make sure you get the latest official version.</p>
   </li>
   <li>
     <p>If you want to give feedback on UD guidelines or treebanks, use the <a href="https://github.com/universaldependencies/docs/issues">issue tracker</a> or send email to the UD list.</p>
@@ -132,6 +132,10 @@ for adding a new language/treebank and then get in touch with us.</p>
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -160,6 +164,8 @@ for adding a new language/treebank and then get in touch with us.</p>
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

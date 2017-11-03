@@ -250,68 +250,17 @@ in two places.</p>
 <p>Alphabetical listing</p>
 
 <ul>
-  <li><a href="">acl</a>: clausal modifier of noun</li>
-  <li><a href="">advcl</a>: adverbial clause modifier</li>
   <li><a href="">advmod</a>: adverbial modifier</li>
-  <li><a href="">advmod:locy</a>: advmod:locy</li>
-  <li><a href="">advmod:mode</a>: advmod:mode</li>
-  <li><a href="">advmod:obl</a>: advmod:obl</li>
-  <li><a href="">advmod:que</a>: advmod:que</li>
-  <li><a href="">advmod:tfrom</a>: advmod:tfrom</li>
-  <li><a href="">advmod:tlocy</a>: advmod:tlocy</li>
-  <li><a href="">advmod:to</a>: advmod:to</li>
-  <li><a href="">advmod:tto</a>: advmod:tto</li>
   <li><a href="">amod</a>: adjectival modifier</li>
-  <li><a href="">amod:att</a>: amod:att</li>
-  <li><a href="">amod:attlvc</a>: amod:attlvc</li>
-  <li><a href="">amod:mode</a>: amod:mode</li>
-  <li><a href="">amod:obl</a>: amod:obl</li>
-  <li><a href="">appos</a>: appositional modifier</li>
-  <li><a href="">aux</a>: auxiliary</li>
   <li><a href="">auxpass</a>: passive auxiliary</li>
-  <li><a href="">case</a>: case marking</li>
-  <li><a href="">cc</a>: coordinating conjunction</li>
   <li><a href="">ccomp</a>: clausal complement</li>
-  <li><a href="">ccomp:obj</a>: ccomp:obj</li>
-  <li><a href="">ccomp:obl</a>: ccomp:obl</li>
-  <li><a href="">ccomp:pred</a>: ccomp:pred</li>
   <li><a href="">compound</a>: compound</li>
-  <li><a href="">compound:preverb</a>: compound:preverb</li>
-  <li><a href="">conj</a>: conjunct</li>
-  <li><a href="">cop</a>: copula</li>
-  <li><a href="">csubj</a>: clausal subject</li>
   <li><a href="">csubjpass</a>: clausal passive subject</li>
-  <li><a href="">dep</a>: unspecified dependency</li>
-  <li><a href="">det</a>: determiner</li>
-  <li><a href="">discourse</a>: discourse element</li>
-  <li><a href="">dislocated</a>: dislocated elements</li>
-  <li><a href="">dobj</a>: direct object</li>
-  <li><a href="">dobj:lvc</a>: dobj:lvc</li>
   <li><a href="">expl</a>: expletive</li>
   <li><a href="">fixed</a>: multi-word expression</li>
   <li><a href="">flat</a>: name</li>
-  <li><a href="">foreign</a>: foreign words</li>
-  <li><a href="">goeswith</a>: goes with</li>
-  <li><a href="">iobj</a>: indirect object</li>
-  <li><a href="">list</a>: list</li>
-  <li><a href="">mark</a>: marker</li>
-  <li><a href="">neg</a>: negation modifier</li>
   <li><a href="">nmod</a>: nominal modifier</li>
-  <li><a href="">nmod:att</a>: nmod:att</li>
-  <li><a href="">nmod:attlvc</a>: nmod:attlvc</li>
-  <li><a href="">nmod:obl</a>: nmod:obl</li>
-  <li><a href="">nmod:obllvc</a>: nmod:obllvc</li>
-  <li><a href="">nsubj</a>: nominal subject</li>
-  <li><a href="">nsubj:lvc</a>: nsubj:lvc</li>
   <li><a href="">nsubjpass</a>: passive nominal subject</li>
-  <li><a href="">nummod</a>: numeric modifier</li>
-  <li><a href="">orphan</a>: remnant in ellipsis</li>
-  <li><a href="">parataxis</a>: parataxis</li>
-  <li><a href="">punct</a>: punctuation</li>
-  <li><a href="">reparandum</a>: overridden disfluency</li>
-  <li><a href="">root</a>: root</li>
-  <li><a href="">vocative</a>: vocative</li>
-  <li><a href="">xcomp</a>: open clausal complement</li>
 </ul>
 
 
@@ -359,6 +308,10 @@ in two places.</p>
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -387,6 +340,8 @@ in two places.</p>
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

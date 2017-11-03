@@ -60,7 +60,9 @@
 	  </div>
 	</noscript>
 
-          <h1 id="introduction">Introduction</h1>
+          <p><strong>See the new overview of Czech-specific guidelines <a href="cs-hub.html">here</a>.</strong></p>
+
+<h1 id="introduction">Introduction</h1>
 
 <p>The Czech UD treebank is based on the <a href="http://ufal.mff.cuni.cz/pdt3.0">Prague Dependency Treebank 3.0</a> (PDT),
 created at the Charles University in Prague.
@@ -140,7 +142,7 @@ Jan Štěpánek, and Šárka Zikánová.</p>
   <li>Eduard Bejček, Eva Hajičová, Jan Hajič, Pavlína Jínová, Václava Kettnerová, Veronika Kolářová,
 Marie Mikulová, Jiří Mírovský, Anna Nedoluzhko, Jarmila Panevová, Lucie Poláková, Magda Ševčíková,
 Jan Štěpánek, and Šárka Zikánová. 2013.
-Prague Dependency Treebank 3.0, LINDAT/CLARIN digital library at Institute of Formal and Applied Linguistics, Charles University in Prague, 
+Prague Dependency Treebank 3.0, LINDAT/CLARIN digital library at Institute of Formal and Applied Linguistics, Charles University in Prague,
 <a href="http://hdl.handle.net/11858/00-097C-0000-0023-1AAF-3">http://hdl.handle.net/11858/00-097C-0000-0023-1AAF-3</a>.</li>
   <li>Eduard Bejček, Jarmila Panevová, Jan Popelka, Pavel Straňák, Magda Ševčíková, Jan Štěpánek, and Zdeněk Žabokrtský. 2012.
 <a href="http://ufal.mff.cuni.cz/pdt3.0/doc/03_COLING_2012.pdf">Prague Dependency Treebank 2.5 – a revisited version of PDT 2.0</a>.
@@ -192,6 +194,10 @@ In: <em>Proceedings of the 24th International Conference on Computational Lingui
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -220,6 +226,8 @@ In: <em>Proceedings of the 24th International Conference on Computational Lingui
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

@@ -62,9 +62,6 @@
 
           <h2><code>nummod</code>: numeric modifier</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nummod</code>.</p>
-
 <p>A numeric modifier of a noun is any number phrase that serves to modify the meaning of the noun with a quantity.</p>
 
 <pre><code class="language-sdparse">hay dos espacios \n There are two spaces
@@ -387,6 +384,10 @@ nummod in other languages:
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -415,6 +416,8 @@ nummod in other languages:
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

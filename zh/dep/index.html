@@ -420,7 +420,6 @@
   <li><a href="">obl</a>: oblique nominal</li>
   <li><a href="">obl:agent</a>: agent in passive construction</li>
   <li><a href="">obl:patient</a>: object in BA construction</li>
-  <li><a href="">obl:periph</a>: obl:periph</li>
   <li><a href="">obl:tmod</a>: temporal modifier</li>
   <li><a href="">orphan</a>: orphan</li>
   <li><a href="">parataxis</a>: parataxis</li>
@@ -476,6 +475,10 @@
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -504,6 +507,8 @@
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

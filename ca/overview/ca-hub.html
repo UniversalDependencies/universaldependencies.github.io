@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Catalan UD</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-ca">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ca-overview/ca-hub.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <!-- Inspired by an old proposal for language-specific documentation here: http://universaldependencies.org/v2/minimaldoc.html
+     If we agree on a scheme like this, the old proposal should be updated and made visible in the “How to Contribute” section;
+     right now it is probably not linked from anywhere. -->
+
+<h1 id="ud-for-catalan-span-classflagspanimg-classflag-srcflagssvges-ctsvg-span">UD for Catalan <span class="flagspan"><img class="flag" src="../../flags/svg/ES-CT.svg" /></span></h1>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>In general, words are delimited by whitespace characters. Description of exceptions follows.</li>
+  <li>According to typographical rules, many punctuation marks are attached to a neighboring word.
+We usually tokenize them as separate tokens (words)
+with the exception of abbreviations such as <em>etc.</em> “etc.” which are kept as one token with the period.</li>
+  <li>There are two main classes of multi-word tokens:
+    <ul>
+      <li>Contractions of prepositions and definite articles.
+Example: <em>al = a + el</em> “to the”, <em>del = de + el</em> “of the”.</li>
+      <li>Certain verb forms (infinitives, imperatives, present participles) are writen together with
+object clitic pronouns, while with other verb forms the clitics are written as separate words.
+Examples: <em>convertir-se = convertir + se</em> “to become” (lit. “to convert itself”), <em>fer-ho</em> “to do it”.
+Since the verb-clitic combination is written with a hyphen in Catalan, it could be split during the low-level tokenization.
+However, we treat it as a multi-word token to emphasize parallelism with Spanish, where it is written as one word.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<ul>
+  <li>Catalan uses all 17 universal POS categories, including particles (<a href="">PART</a>).</li>
+  <li>The only word to be tagged as particle is <em>no</em> “not”.</li>
+  <li>TODO: rules for the PRON vs. DET distinction.</li>
+  <li>Catalan auxiliary verbs (<a href="">AUX</a>) are:
+    <ul>
+      <li><em>ser</em> and <em>estar</em> “to be”, used as copulas</li>
+      <li><em>ser</em> “to be” for the passive (<em>la guia va ser presentada</em> “the guide was presented”)</li>
+      <li><em>estar</em> “to be” for the progressive (<em>la globalització està causant els canvis</em> “globalization is causing changes”)</li>
+      <li><em>haver</em> “to be” for the perfect tenses (<em>¿Què ha passat?</em> “What happened?”)</li>
+    </ul>
+  </li>
+  <li>There are four main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Infinitive <code>Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>, e.g. <em>estudiar</em> “to study”.</li>
+      <li>Finite verb <code>Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>, e.g. <em>estudiarem</em> “we will study”.</li>
+      <li>Participle <code>Part</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>, e.g. <em>estudiat</em> “studied”.</li>
+      <li>Gerund <code>Ger</code> (Catalan <em>gerundio</em>) or present participle, e.g. <em>estudiant</em> “studying”.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="nominal-features">Nominal Features</h3>
+
+<ul>
+  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with one of two values: <code>Masc</code> or <code>Fem</code>.
+    <ul>
+      <li>The following parts of speech inflect for <code>Gender</code> because they must agree with nouns: <a href="">ADJ</a>, <a href="">DET</a>.
+Only a subset of adjectives can inflect for gender. A large group of adjectives (e.g. <em>firal</em> “fair” or <em>gran</em> “big”)
+have just one form regardless of the gender of the modified noun. These adjectives have the
+gender feature empty.</li>
+    </ul>
+  </li>
+  <li>The two values of the <a href="">Number</a> feature are <code>Sing</code> and <code>Plur</code>. The following parts of speech inflect for number:
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite and participles).</li>
+  <li><a href="">Case</a> has three possible values: <code>Nom</code>, <code>Dat</code>, <code>Acc</code>.
+It occurs only with personal pronouns (<a href="">PRON</a>).
+The “case” (i.e., role w.r.t. predicates or other phrases) of other nominals is expressed using prepositions, not morphologically.</li>
+  <li><a href="">Definite</a> has 2 values: <code>Ind</code>, <code>Def</code>. It is used to distinguish the indefinite and definite articles (<a href="">DET</a>).</li>
+</ul>
+
+<h3 id="degree-and-polarity">Degree and Polarity</h3>
+
+<ul>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>) and has one of three possible values: <code>Pos</code>, <code>Cmp</code>, <code>Abs</code>.
+The absolute superlative is marked morphologically on adjectives.
+Otherwise, the comparative and superlative of most adjectives is formed periphrastically,
+and <code>Degree=Cmp</code> is only used with a few irregular forms.</li>
+  <li><a href="">Polarity</a> is used to mark the negative particle <em>no,</em> i.e., only the <code>Neg</code> value is used.</li>
+</ul>
+
+<h3 id="verbal-features">Verbal Features</h3>
+
+<ul>
+  <li>Finite verbs always have one of four values of <a href="">Mood</a>: <code>Ind</code>, <code>Imp</code>, <code>Sub</code> and <code>Cnd</code>.</li>
+  <li>Finite verbs can have one of four values of <a href="">Tense</a>: <code>Past</code>, <code>Imp</code>, <code>Pres</code>, <code>Fut</code>.
+    <ul>
+      <li>Imperative and conditional forms do not have the <code>Tense</code> feature.
+(In Catalan grammar, the conditional is itself often classified as a tense.
+However, it is a mood in Universal Dependencies.)</li>
+      <li>The <code>Tense</code> feature is also used with the past participles (<em>venido</em> “come”).</li>
+    </ul>
+  </li>
+  <li>The <a href="">Aspect</a> feature is currently not used in Catalan.
+It is not needed for the imperfect past tense because UD has the special value <code>Tense=Imp</code>.
+And it is not needed for the perfect tenses because they are constructed periphrastically.</li>
+  <li>The <a href="">Voice</a> feature is not used in Catalan because the passive voice is expressed periphrastically.</li>
+</ul>
+
+<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>) and determiners (<a href="">DET</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>), adjectives (<a href="">ADJ</a>) and determiners (<a href="">DET</a>).</li>
+  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>meu</em> “my”),
+possessive personal pronouns (e.g. <em>meva</em> “mine”).</li>
+  <li>The <a href="">Reflex</a> feature is always used together with <code>PronType=Prs</code> and it marks reflexive pronouns.
+Note that their forms in the first and second person are ambiguous with irreflexive accusative forms, and the <code>Reflex</code> feature
+must be decided by context.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code>1</code>, <code>2</code> and <code>3</code>.
+With personal possessive determiners (<a href="">DET</a>), the feature actually encodes the person of the possessor.
+Person is not marked on other types of pronouns and on nouns, although they can be almost always interpreted as the 3rd person.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
+  <li>The <a href="">Polite</a> feature distinguishes informal second-person pronouns (<em>tu, vosaltres,</em> <code>Polite=Infm</code>)
+from the formal <em>vostè, vostès</em> (<code>Polite=Form</code>).</li>
+  <li>There is one <a href="../../u/overview/feat-layers.html">layered feature</a>, <a href="">Number[psor]</a>.
+It appears with possessive determiners and encodes the lexical number of the possessor.
+The extra layer is needed to distinguish this lexical feature from the inflectional number
+that marks agreement with the modified (possessed) noun.</li>
+</ul>
+
+<h3 id="other-features">Other Features</h3>
+
+<ul>
+  <li>The following universal features are not used in Catalan: <a href="">Animacy</a>, <a href="">Evident</a>.</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
+
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a bare noun phrase without preposition.
+If it is a personal pronoun, it must be in the nominative form
+(note however that Catalan is a pro-drop language, where pronominal subjects can be omitted).</li>
+  <li>Direct nominal object (<a href="">obj</a>) is either a bare noun phrase (for inanimate objects)
+or a prepositional phrase with the preposition <em>a</em> (for animate objects)
+or a personal pronoun in the accusative form.</li>
+  <li>Extra attention has to be paid to the reflexive pronoun <em>es</em>. It can function as:
+    <ul>
+      <li>Core object (<a href="">obj</a> or <a href="">iobj</a>): <em>es va veure al mirall</em> “he sighted himself in the mirror.”</li>
+      <li>Reciprocal core objects (<code>obj</code> or <code>iobj</code>): <em>es van besar</em> “they kissed each other.”</li>
+      <li>Reflexive passive (<a href="">expl:pass</a>): <em>s’ha ofert una atenció psicològica a les persones afectades</em> “psychological attention has been offered to the people affected” (lit.  “offered itself”).</li>
+      <li>Inherently reflexive verb, cannot exist without the reflexive clitic, and the clitic cannot be substituted by an irreflexive pronoun
+or a noun phrase. In many cases, an irreflexive counterpart of the verb actually exists but its meaning is different because it
+denotes a different action performed by the agent.
+In accord with the current UD guidelines, we label the relation
+between the verb and the clitic as <a href="">expl:pv</a>, not <code>compound</code>. Example: <em>es tracta d’una immigració</em> “the matter is immigration;”
+<em>s’havia de riure</em> “he had to laugh.”</li>
+    </ul>
+  </li>
+  <li>In passive clauses, the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.
+    <ul>
+      <li>The auxiliary verb in periphrastic passive is labeled <a href="">aux:pass</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
+
+<ul>
+  <li>The copula verbs <em>ser</em> and <em>estar</em> (be) are used in equational, attributional, locative, possessive and benefactory nonverbal clauses.</li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Catalan:
+    <ul>
+      <li><a href="">acl:relcl</a> for relative clauses</li>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
+      <li><a href="">aux:pass</a> for passive auxiliaries</li>
+    </ul>
+  </li>
+  <li>The following relation types are not used in Catalan at all:
+<a href="">clf</a>, <a href="">dislocated</a></li>
+</ul>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is one Catalan UD treebank:</p>
+
+<ul>
+  <li><a href="../../treebanks/ca-index.html">Catalan</a></li>
+</ul>
+
+<p><a href="../../treebanks/es-ca-comparison.html">Spanish-Catalan comparison</a></p>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'ca-overview';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

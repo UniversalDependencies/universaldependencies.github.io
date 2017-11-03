@@ -331,14 +331,6 @@ TODO: Revisit arguments for pou being a marker or a relative pronoun
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_el-dep/acl-rel.md" target="#">edit acl:relcl</a></p>
 
-<p><a id="al-el-dep/acl:relcl" class="al-dest"></a></p>
-<h2><code>acl:relcl</code>: acl:relcl</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>acl:relcl</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_el-dep/acl-relcl.md" target="#">edit acl:relcl</a></p>
-
 <p><a id="al-el-dep/advcl" class="al-dest"></a></p>
 <h2><code>advcl</code>: adverbial clause modifier</h2>
 
@@ -967,14 +959,6 @@ nsubj(συνεχιστούν, συνομιλίες)
 </code></pre>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_el-dep/csubjpass.md" target="#">edit csubjpass</a></p>
-
-<p><a id="al-el-dep/dep" class="al-dest"></a></p>
-<h2><code>dep</code>: unspecified dependency</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>dep</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_el-dep/dep.md" target="#">edit dep</a></p>
 
 <p><a id="al-el-dep/det" class="al-dest"></a></p>
 <h2><code>det</code>: determiner</h2>
@@ -1908,6 +1892,10 @@ xcomp(έκανε, αγνώριστο)
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -1936,6 +1924,8 @@ xcomp(έκανε, αγνώριστο)
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

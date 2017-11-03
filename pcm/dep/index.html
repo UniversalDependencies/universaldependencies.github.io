@@ -424,26 +424,20 @@
   <li><a href="">conj:dicto</a>: disfluency, reformulation, elaboration</li>
   <li><a href="">cop</a>: copula</li>
   <li><a href="">csubj</a>: clausal subject</li>
-  <li><a href="">dep</a>: unspecified dependency</li>
   <li><a href="">det</a>: determiner</li>
   <li><a href="">det:predet</a>: predeterminer</li>
   <li><a href="">discourse</a>: discourse element</li>
   <li><a href="">dislocated</a>: dislocated elements</li>
   <li><a href="">fixed</a>: fixed multiword expression</li>
   <li><a href="">flat</a>: flat multiword expression</li>
-  <li><a href="">flat:foreign</a>: foreign phrase</li>
-  <li><a href="">goeswith</a>: goes with</li>
   <li><a href="">iobj</a>: indirect object</li>
-  <li><a href="">list</a>: list</li>
   <li><a href="">mark</a>: marker</li>
   <li><a href="">nmod</a>: nominal modifier</li>
   <li><a href="">nmod:appos</a>: appositional modifier</li>
-  <li><a href="">nmod:npmod</a>: nmod:npmod</li>
   <li><a href="">nmod:poss</a>: possessive nominal modifier</li>
   <li><a href="">nsubj</a>: nominal subject</li>
   <li><a href="">nsubj:expl</a>: expletive subject</li>
   <li><a href="">nsubj:quasi</a>: quasi subject</li>
-  <li><a href="">nsubjpass</a>: passive nominal subject</li>
   <li><a href="">nummod</a>: numeric modifier</li>
   <li><a href="">obj</a>: object</li>
   <li><a href="">obl</a>: oblique</li>
@@ -455,10 +449,8 @@
   <li><a href="">parataxis:conj</a>: juxtaposed clause</li>
   <li><a href="">parataxis:discourse</a>: parataxis:discourse</li>
   <li><a href="">parataxis:dislocated</a>: parataxis:dislocated</li>
-  <li><a href="">parataxis:insert</a>: insert</li>
   <li><a href="">parataxis:obj</a>: direct speech</li>
   <li><a href="">parataxis:parenth</a>: parenthetical</li>
-  <li><a href="">punct</a>: punctuation</li>
   <li><a href="">root</a>: root</li>
   <li><a href="">vocative</a>: vocative</li>
   <li><a href="">xcomp</a>: open clausal complement</li>
@@ -509,6 +501,10 @@
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -537,6 +533,8 @@
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

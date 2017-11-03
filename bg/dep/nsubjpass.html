@@ -62,9 +62,6 @@
 
           <h2><code>nsubjpass</code>: passive nominal subject</h2>
 
-<p>This document is a placeholder for the language-specific documentation
-for <code>nsubjpass</code>.</p>
-
 <p>A passive nominal subject is a noun phrase which is the syntactic
 subject of a passive clause. Similarly to Czech, in Bulgarian there are
 two kinds of passive: participle-based
@@ -252,6 +249,10 @@ nsubjpass in other languages:
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -280,6 +281,8 @@ nsubjpass in other languages:
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {

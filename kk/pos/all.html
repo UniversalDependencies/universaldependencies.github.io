@@ -202,14 +202,6 @@ take part in participle constructions. They are tagged <code>AUX</code>.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_kk-pos/AUX_.md" target="#">edit AUX</a></p>
 
-<p><a id="al-kk-pos/CCONJ" class="al-dest"></a></p>
-<h2><code>CCONJ</code>: coordinating conjunction</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>CCONJ</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_kk-pos/CCONJ.md" target="#">edit CCONJ</a></p>
-
 <p><a id="al-kk-pos/DET" class="al-dest"></a></p>
 <h2><code>DET</code>: determiner</h2>
 
@@ -282,14 +274,6 @@ number, such as quantity, sequence, frequency or fraction.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_kk-pos/NUM.md" target="#">edit NUM</a></p>
 
-<p><a id="al-kk-pos/PART" class="al-dest"></a></p>
-<h2><code>PART</code>: particle</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>PART</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_kk-pos/PART.md" target="#">edit PART</a></p>
-
 <p><a id="al-kk-pos/PRON" class="al-dest"></a></p>
 <h2><code>PRON</code>: pronoun</h2>
 
@@ -347,14 +331,6 @@ used to delimit linguistic units in printed text.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_kk-pos/PUNCT.md" target="#">edit PUNCT</a></p>
 
-<p><a id="al-kk-pos/SCONJ" class="al-dest"></a></p>
-<h2><code>SCONJ</code>: subordinating conjunction</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>SCONJ</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_kk-pos/SCONJ.md" target="#">edit SCONJ</a></p>
-
 <p><a id="al-kk-pos/SYM" class="al-dest"></a></p>
 <h2><code>SYM</code>: symbol</h2>
 
@@ -390,14 +366,6 @@ other constituents which may occur in the clause.</p>
 </ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_kk-pos/VERB.md" target="#">edit VERB</a></p>
-
-<p><a id="al-kk-pos/X" class="al-dest"></a></p>
-<h2><code>X</code>: other</h2>
-
-<p>This document is a placeholder for the language-specific documentation
-for <code>X</code>.</p>
-
-<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_kk-pos/X.md" target="#">edit X</a></p>
 
 
 
@@ -445,6 +413,10 @@ for <code>X</code>.</p>
     var setupAccordions = function() {
 	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -473,6 +445,8 @@ for <code>X</code>.</p>
 		}
 	    }
 	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
     };
 
     var setupTimeago = function() {
