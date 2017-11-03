@@ -227,28 +227,38 @@ channel. Such treebanks should say <code>no</code> here.</li>
   </li>
   <li><code>Genre</code>: this is simply a space-separated list of genres which gets mapped into symbols in the table. The possible genres are listed in <a href="https://github.com/UniversalDependencies/docs/blob/pages-source/gen_index/genre_symbols.json">this file</a> in the repository. If you don’t see yours, just edit the file on GitHub and add your genre, choosing one of the symbols from <a href="https://fortawesome.github.io/Font-Awesome/icons/">the <em>FontAwesome</em> list</a>. Please make sure you get the syntax right, since this is a machine-readable JSON file. It is also possible to not add the genre to the <code>genre_symbols.json</code> file, in which case the default symbol will be used automatically. The genre name will still remain visible in the mouse-over tooltip.</li>
   <li>Source of annotation of lemmas, POS tags, morphological features and dependency relations.
-There are up to four possible values: <code>manual native</code>, <code>converted from manual</code>, <code>automatic</code> and <code>not available</code>.
-Manual native means that the annotation was done manually, directly in the UD annotation scheme.
+There are several possible values:
+    <ul>
+      <li><code>manual native</code> … means that the annotation was done manually, directly in the UD annotation scheme.
 Note that manual verification of automatic annotation (e.g. you pre-parse the texts before you give it to humans)
-counts as manual annotation.
-Converted from manual means that it was originally annotated in a non-UD scheme, then converted to UD by a program,
-but the converted annotation has not been verified by a human annotator.
-Automatic means that the annotation was predicted by a program such as tagger or parser.
-Not available means that this type of annotation is not present.
-Note that some values are available only for some types of annotation.
+counts as manual annotation.</li>
+      <li><code>converted from manual</code> … means that it was originally annotated in a non-UD scheme, then converted to UD by a program,
+but the converted annotation has not been verified by a human annotator.</li>
+      <li><code>converted from manual and checked</code> … significant spot-checking and manual corrections occurred after the conversion;
+however, it does not qualify as full manual annotation because not all words were visited systematically.
+This is an intermediate level between “converted from manual” and “manual native”.</li>
+      <li><code>automatic</code> … means that the annotation was predicted by a program such as tagger or parser.</li>
+      <li><code>automatic and checked</code> … significant spot-checking and manual corrections occurred after the automatic prediction;
+however, it does not qualify as full manual annotation because not all words were visited systematically.
+This is an intermediate level between “automatic” and “manual native”.</li>
+      <li><code>not available</code> … means that this type of annotation is not present.</li>
+    </ul>
+  </li>
+  <li>Note that some values are available only for some types of annotation.
 UPOS tags and relations must always be available and cannot be automatic.
     <ul>
-      <li><code>Lemmas</code> … <code>manual native | converted from manual | automatic | not available</code></li>
-      <li><code>UPOS</code> … <code>manual native | converted from manual</code></li>
-      <li><code>XPOS</code> … <code>manual native | automatic | not available</code></li>
-      <li><code>Features</code> … <code>manual native | converted from manual | automatic | not available</code></li>
-      <li><code>Relations</code> … <code>manual native | converted from manual</code></li>
+      <li><code>Lemmas</code> … <code>manual native | converted from manual (and checked) | automatic (and checked) | not available</code></li>
+      <li><code>UPOS</code> … <code>manual native | converted from manual (and checked)</code></li>
+      <li><code>XPOS</code> … <code>manual native | automatic (and checked) | not available</code></li>
+      <li><code>Features</code> … <code>manual native | converted from manual (and checked) | automatic (and checked) | not available</code></li>
+      <li><code>Relations</code> … <code>manual native | converted from manual (and checked)</code></li>
     </ul>
   </li>
   <li><code>Contributors</code>: the list of contributors to be included with the data release and in the LINDAT download page. This is a semicolon-separated list where every name is in the <code>Last, First</code> form and the <code>README</code> file should be utf-8 encoded to make sure special characters are preserved correctly.</li>
   <li><code>Contributing</code>:
     <ul>
       <li><code>here</code> … The changes are done directly in the dev branch of the UD repository. Bugs can be fixed via pull requests.</li>
+      <li><code>here source</code> … The changes are done in the UD repository but not directly in the final CoNLL-U files. Instead, there is a folder called <code>not-to-release</code> where source files have to be located and fixed.</li>
       <li><code>elsewhere</code> … Do not submit pull requests; create issues. Main development happens somewhere else. If there is a bug, either the original data or the conversion procedure must be fixed.</li>
       <li><code>to be adopted</code> … The treebank currently misses a maintainer. If you know the language, please consider adopting the treebank.</li>
     </ul>
