@@ -1,0 +1,635 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>iobj</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-cs">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/cs/cs">cs/cs</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs/dep/iobj.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>iobj</code>: indirect object</h2>
+
+<p>The indirect object of a verb is any nominal phrase that is a core
+argument of the verb but is not its subject or <a href="obj">direct object</a>.
+The prototypical example is the recipient of ditransitive verbs of
+exchange:</p>
+
+<pre><code class="language-sdparse">Pavel dal Petrovi dvě hrušky . \n Pavel gave Petr two pears .
+iobj(dal, Petrovi)
+iobj(gave, Petr)
+</code></pre>
+
+<p>However, Czech allows other semantic roles as additional objects.
+The morphological <a href="">cs-feat/Case</a> of the objects is dictated by verb valency.</p>
+
+<p>In the following Czech example, the verb takes two arguments, both are nouns in the accusative case. One of them is direct object (patient), the other is indirect (addressee). It is parallel to how the English translation would be annotated (where there is no morphological case marking) and also to verbs of giving (consider a similar sentence, <em>he gave my daughter a class of maths</em>).</p>
+
+<pre><code class="language-sdparse">On učí mou dceru matematiku . \n He teaches my daughter.Acc maths.Acc .
+obj(učí, matematiku)
+iobj(učí, dceru)
+obj(teaches, maths.Acc)
+iobj(teaches, daughter.Acc)
+</code></pre>
+
+<p>In general, if there is just one object, it should be labeled
+<a href="">obj</a>, regardless of the morphological case or semantic role.
+For example, <em>učit</em> “to teach” can take either the subject matter or the recipient as the only object,
+and in both cases it would be analyzed as the <a href="">obj</a>:</p>
+
+<pre><code class="language-sdparse">Učí úvod do logiky . \n He-teaches introduction to logic .
+obj(Učí, úvod)
+obj(He-teaches, introduction)
+</code></pre>
+
+<pre><code class="language-sdparse">Učí studenty prvního ročníku . \n He-teaches students of-first year .
+obj(Učí, studenty)
+obj(He-teaches, students)
+</code></pre>
+
+<p>The one exception is when there is a clausal complement.
+Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an <code>iobj</code>, parallel to
+the simple ditransitive case:</p>
+
+<pre><code class="language-sdparse">Řekla studentům , že dnes večer musí studovat . \n She-told students , that today evening they-needed to-study .
+iobj(Řekla, studentům)
+ccomp(Řekla, musí)
+iobj(She-told, students)
+ccomp(She-told, they-needed)
+</code></pre>
+
+<pre><code class="language-sdparse">Řekla studentům svůj plán . \n She-told students her plan .
+iobj(Řekla, studentům)
+obj(Řekla, plán)
+iobj(She-told, students)
+obj(She-told, plan)
+</code></pre>
+
+<p>If there are two or
+more objects, one of them should be <a href="">obj</a> and the others should be
+<code>iobj</code>. In such cases it is necessary to decide what is the
+most directly affected object <em>(patient).</em></p>
+
+<h2 id="diffs">Diffs</h2>
+
+<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+
+<p>The manual annotation of the PDT does not distinguish direct and indirect objects.
+Therefore most non-clausal dependents labeled <code>Obj</code> in PDT are currently labeled <code>obj</code>
+in the converted data, even if it results in two or more direct objects attached to one verb.
+Occasionally a heuristic was used: if there are two objects, one of them accusative and the other dative, then the former is obj and the latter iobj.
+But such heuristics do not cover all possible objects, and even ditransitive verbs may occur without one of their objects because of ellipsis.
+In future, the valency lexicon <a href="http://ufal.mff.cuni.cz/vallex">Vallex</a>
+could be used to identify the main object.</p>
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+
+<hr />
+
+<h2 id="treebank-statistics-udczech">Treebank Statistics (UD_Czech)</h2>
+
+<p>This relation is universal.</p>
+
+<p>7477 nodes (1%) are attached to their parents as <code>iobj</code>.</p>
+
+<p>4522 instances of <code>iobj</code> (60%) are left-to-right (parent precedes child).
+Average distance between parent and child is 2.99799384779992.</p>
+
+<p>The following 9 pairs of parts of speech are connected with <code>iobj</code>: <a href="">cs-pos/VERB</a>-<a href="">cs-pos/NOUN</a> (4031; 54% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/PRON</a> (1994; 27% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/PROPN</a> (635; 8% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/ADJ</a> (411; 5% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/DET</a> (324; 4% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/NUM</a> (55; 1% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/ADV</a> (24; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/SYM</a> (2; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/PART</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 10	bgColor:blue
+# visual-style 10	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 3 10 iobj	color:blue
+1	Mohou	moci	VERB	VB-P---3P-AA--1	Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	LGloss=(mít_možnost_[něco_dělat])
+2	zde	zde	ADV	Db-------------	PronType=Dem	1	advmod	_	_
+3	porovnat	porovnat	VERB	Vf--------A----	Aspect=Perf|Polarity=Pos|VerbForm=Inf	1	xcomp	_	_
+4	svůj	svůj	DET	P8IS4----------	Animacy=Inan|Case=Acc|Gender=Masc|Number=Sing|Poss=Yes|PronType=Prs|Reflex=Yes	5	det	_	LId=svůj-1|LGloss=(přivlast.)
+5	vývoj	vývoj	NOUN	NNIS4-----A----	Animacy=Inan|Case=Acc|Gender=Masc|Number=Sing|Polarity=Pos	3	obj	_	SpaceAfter=No
+6	,	,	PUNCT	Z:-------------	_	7	punct	_	_
+7	záměry	záměr	NOUN	NNIP4-----A----	Animacy=Inan|Case=Acc|Gender=Masc|Number=Plur|Polarity=Pos	5	conj	_	_
+8	se	s	ADP	RV--7----------	AdpType=Voc|Case=Ins	10	case	_	LId=s-1
+9	světovými	světový	ADJ	AAIP7----1A----	Animacy=Inan|Case=Ins|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos	10	amod	_	_
+10	trendy	trend	NOUN	NNIP7-----A----	Animacy=Inan|Case=Ins|Gender=Masc|Number=Plur|Polarity=Pos	3	iobj	_	SpaceAfter=No
+11	.	.	PUNCT	Z:-------------	_	1	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+# visual-style 7 3 iobj	color:blue
+1	Může	moci	VERB	VB-S---3P-AA---	Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	LGloss=(mít_možnost_[něco_dělat])
+2	po	po	ADP	RR--6----------	AdpType=Prep|Case=Loc	3	case	_	LId=po-1
+3	mně	já	PRON	PP-S6--1-------	Case=Loc|Number=Sing|Person=1|PronType=Prs	7	iobj	_	_
+4	takové	takový	DET	PDIP4----------	Animacy=Inan|Case=Acc|Gender=Masc|Number=Plur|PronType=Dem	5	det	_	_
+5	údaje	údaj	NOUN	NNIP4-----A----	Animacy=Inan|Case=Acc|Gender=Masc|Number=Plur|Polarity=Pos	7	obj	_	_
+6	pojišťovna	pojišťovna	NOUN	NNFS1-----A----	Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos	1	nsubj	_	_
+7	vyžadovat	vyžadovat	VERB	Vf--------A----	Aspect=Imp|Polarity=Pos|VerbForm=Inf	1	xcomp	_	SpaceAfter=No
+8	?	?	PUNCT	Z:-------------	_	1	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 8	bgColor:blue
+# visual-style 8	fgColor:white
+# visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
+# visual-style 9 8 iobj	color:blue
+1	Z	z	ADP	RR--2----------	AdpType=Prep|Case=Gen	3	case	_	LId=z-1
+2	českého	český	ADJ	AAIS2----1A----	Animacy=Inan|Case=Gen|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos	3	amod	_	_
+3	tisku	tisk	NOUN	NNIS2-----A----	Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos	9	obl	_	_
+4	se	se	PRON	P7-X4----------	Case=Acc|PronType=Prs|Reflex=Yes|Variant=Short	9	expl:pv	_	LGloss=(zvr._zájmeno/částice)
+5	čtenář	čtenář	NOUN	NNMS1-----A----	Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos	9	nsubj	_	_
+6	o	o	ADP	RR--6----------	AdpType=Prep|Case=Loc	8	case	_	LId=o-1
+7	současném	současný	ADJ	AANS6----1A----	Case=Loc|Degree=Pos|Gender=Neut|Number=Sing|Polarity=Pos	8	amod	_	_
+8	Německu	Německo	PROPN	NNNS6-----A----	Case=Loc|Gender=Neut|NameType=Geo|Number=Sing|Polarity=Pos	9	iobj	_	_
+9	dovídá	dovídat	VERB	VB-S---3P-AA---	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	_
+10	velice	velice	ADV	Db-------------	_	11	advmod	_	_
+11	málo	málo	DET	Ca--4----------	Case=Acc|NumType=Card|PronType=Ind	9	obj	_	LId=málo-1|LGloss=(málo_+_2._p.,_málo_peněz)
+
+</code></pre>
+
+<hr />
+
+<h2 id="treebank-statistics-udczech-cac">Treebank Statistics (UD_Czech-CAC)</h2>
+
+<p>This relation is universal.</p>
+
+<p>2076 nodes (0%) are attached to their parents as <code>iobj</code>.</p>
+
+<p>1453 instances of <code>iobj</code> (70%) are left-to-right (parent precedes child).
+Average distance between parent and child is 3.12042389210019.</p>
+
+<p>The following 8 pairs of parts of speech are connected with <code>iobj</code>: <a href="">cs-pos/VERB</a>-<a href="">cs-pos/NOUN</a> (1334; 64% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/PRON</a> (494; 24% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/DET</a> (92; 4% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/ADJ</a> (88; 4% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/PROPN</a> (48; 2% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/NUM</a> (14; 1% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/SYM</a> (5; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/ADV</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 4 5 iobj	color:blue
+1	Zvýšené	zvýšený	ADJ	AANS4----1A----	Case=Acc|Degree=Pos|Gender=Neut|Number=Sing|Polarity=Pos	2	amod	_	LDeriv=zvýšit
+2	úsilí	úsilí	NOUN	NNNS4-----A----	Case=Acc|Gender=Neut|Number=Sing|Polarity=Pos	4	obj	_	_
+3	budeme	být	AUX	VB-P---1F-AA---	Mood=Ind|Number=Plur|Person=1|Polarity=Pos|Tense=Fut|VerbForm=Fin|Voice=Act	4	aux	_	_
+4	věnovat	věnovat	VERB	Vf--------A----	Aspect=Imp|Polarity=Pos|VerbForm=Inf	0	root	_	_
+5	zavádění	zavádění	NOUN	NNNS3-----A----	Case=Dat|Gender=Neut|Number=Sing|Polarity=Pos	4	iobj	_	LDeriv=zavádět
+6	nových	nový	ADJ	AAIP2----1A----	Animacy=Inan|Case=Gen|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos	7	amod	_	_
+7	poznatků	poznatek	NOUN	NNIP2-----A----	Animacy=Inan|Case=Gen|Gender=Masc|Number=Plur|Polarity=Pos	5	nmod	_	_
+8	do	do	ADP	RR--2----------	AdpType=Prep|Case=Gen	9	case	_	LId=do-1
+9	praxe	praxe	NOUN	NNFS2-----A----	Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos	5	nmod	_	SpaceAfter=No
+10	.	.	PUNCT	Z:-------------	_	4	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 4 3 iobj	color:blue
+1	Dobrý	dobrý	ADJ	AAIS1----1A----	Animacy=Inan|Case=Nom|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos	2	amod	_	_
+2	vzhled	vzhled	NOUN	NNIS1-----A----	Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos	4	nsubj	_	_
+3	nám	já	PRON	PP-P3--1-------	Case=Dat|Number=Plur|Person=1|PronType=Prs	4	iobj	_	_
+4	dodává	dodávat	VERB	VB-S---3P-AA---	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	LDeriv=dodat
+5	jistotu	jistota	NOUN	NNFS4-----A----	Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos	4	obj	_	_
+6	a	a	CCONJ	J^-------------	_	7	cc	_	LId=a-1
+7	sebevědomí	sebevědomí	NOUN	NNNS4-----A----	Case=Acc|Gender=Neut|Number=Sing|Polarity=Pos	5	conj	_	SpaceAfter=No
+8	,	,	PUNCT	Z:-------------	_	10	punct	_	_
+9	které	který	DET	P4NS4----------	Case=Acc|Gender=Neut|Number=Sing|PronType=Int,Rel	10	obj	_	_
+10	potřebujeme	potřebovat	VERB	VB-P---1P-AA---	Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	5	acl	_	SpaceAfter=No
+11	.	.	PUNCT	Z:-------------	_	4	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+# visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+# visual-style 7 6 iobj	color:blue
+1	A	a	CCONJ	J^-------------	_	7	cc	_	_
+2	že	že	SCONJ	J,-------------	_	7	advmod	_	_
+3	co	co	PRON	PQ--4----------	Animacy=Inan|Case=Acc|PronType=Int,Rel	7	obj	_	LId=co-1
+4	by	být	AUX	Vc-X---3-------	Mood=Cnd|Person=3|VerbForm=Fin	7	aux	_	_
+5	na	na	ADP	RR--4----------	AdpType=Prep|Case=Acc	6	case	_	_
+6	to	ten	DET	PDNS4----------	Case=Acc|Gender=Neut|Number=Sing|PronType=Dem	7	iobj	_	_
+7	řekly	říci	VERB	VpTP---XR-AA---	Animacy=Inan|Gender=Fem,Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act	0	root	_	SpaceAfter=No
+8	,	,	PUNCT	Z:-------------	_	11	punct	_	_
+9	když	když	SCONJ	J,-------------	_	11	mark	_	_
+10	by	být	AUX	Vc-------------	Mood=Cnd|Person=3|VerbForm=Fin	11	aux	_	_
+11	šli	jít	VERB	VpMP---XR-AA---	Animacy=Anim|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act	7	advcl	_	_
+12	společně	společně	ADV	Dg-------1A----	Degree=Pos|Polarity=Pos	11	advmod	_	LDeriv=společný
+13	darovat	darovat	VERB	Vf--------A----	Aspect=Imp|Polarity=Pos|VerbForm=Inf	11	advcl	_	_
+14	krev	krev	NOUN	NNFS4-----A----	Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos	13	obj	_	SpaceAfter=No
+15	.	.	PUNCT	Z:-------------	_	7	punct	_	_
+
+</code></pre>
+
+<hr />
+
+<h2 id="treebank-statistics-udczech-cltt">Treebank Statistics (UD_Czech-CLTT)</h2>
+
+<p>This relation is universal.</p>
+
+<p>15 nodes (0%) are attached to their parents as <code>iobj</code>.</p>
+
+<p>9 instances of <code>iobj</code> (60%) are left-to-right (parent precedes child).
+Average distance between parent and child is 4.2.</p>
+
+<p>The following 2 pairs of parts of speech are connected with <code>iobj</code>: <a href="">cs-pos/VERB</a>-<a href="">cs-pos/NOUN</a> (12; 80% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/PRON</a> (3; 20% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 5 6 iobj	color:blue
+1	(1)	(1)	PUNCT	Z:-------------	_	4	punct	_	_
+2	Účetní	účetní	ADJ	AAFP1----1A----	Case=Nom|Degree=Pos|Gender=Fem|Number=Plur|Polarity=Pos	3	amod	_	LId=účetní-1
+3	jednotky	jednotka	NOUN	NNFP1-----A----	Case=Nom|Gender=Fem|Number=Plur|Polarity=Pos	4	nsubj	_	_
+4	mohou	moci	VERB	VB-P---3P-AA--1	Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	_
+5	pověřit	pověřit	VERB	Vf--------A----	Polarity=Pos|VerbForm=Inf	4	xcomp	_	_
+6	vedením	vedení	NOUN	NNNS7-----A----	Case=Ins|Gender=Neut|Number=Sing|Polarity=Pos	5	iobj	_	_
+7	svého	svůj	DET	P8ZS2----------	Case=Gen|Gender=Masc,Neut|Number=Sing|Poss=Yes|PronType=Prs|Reflex=Yes	8	det	_	LId=svůj-1
+8	účetnictví	účetnictví	NOUN	NNNS2-----A----	Case=Gen|Gender=Neut|Number=Sing|Polarity=Pos	6	nmod	_	_
+9	i	i	CCONJ	J^-------------	_	14	advmod:emph	_	LId=i-1
+10	jinou	jiný	ADJ	AAFS4----1A----	Case=Acc|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos	14	amod	_	_
+11	právnickou	právnický	ADJ	AAFS4----1A----	Case=Acc|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos	14	amod	_	_
+12	nebo	nebo	CCONJ	J^-------------	_	13	cc	_	_
+13	fyzickou	fyzický	ADJ	AAFS4----1A----	Case=Acc|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos	11	conj	_	_
+14	osobu	osoba	NOUN	NNFS4-----A----	Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos	5	obj	_	SpaceAfter=No
+15	.	.	PUNCT	Z:-------------	_	4	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 35	bgColor:blue
+# visual-style 35	fgColor:white
+# visual-style 37	bgColor:blue
+# visual-style 37	fgColor:white
+# visual-style 37 35 iobj	color:blue
+1	(4)	(4)	PUNCT	Z:-------------	_	14	punct	_	_
+2	Z	z	ADP	RR--2----------	AdpType=Prep|Case=Gen	4	case	_	LId=z-1
+3	účetních	účetní	ADJ	AAFP2----1A----	Case=Gen|Degree=Pos|Gender=Fem|Number=Plur|Polarity=Pos	4	amod	_	LId=účetní-1
+4	jednotek	jednotka	NOUN	NNFP2-----A----	Case=Gen|Gender=Fem|Number=Plur|Polarity=Pos	14	obl	_	_
+5	podle	podle	ADP	RR--2----------	AdpType=Prep|Case=Gen	6	case	_	LId=podle-2
+6	§	§	X	X@-------------	_	14	advmod	_	_
+7	1	1	X	X@-------------	_	6	flat	_	_
+8	odst.	odst.	X	X@-------------	_	6	flat	_	_
+9	2	2	X	X@-------------	_	6	flat	_	_
+10	písm.	písm.	X	X@-------------	_	6	flat	_	_
+11	d)	d)	X	X@-------------	_	6	flat	_	_
+12	až	až	X	X@-------------	_	6	flat	_	_
+13	h)	h)	X	X@-------------	_	6	flat	_	_
+14	mohou	moci	VERB	VB-P---3P-AA--1	Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	_
+15	vést	vést	VERB	Vf--------A----	Polarity=Pos|VerbForm=Inf	14	xcomp	_	LId=vést-1
+16	účetnictví	účetnictví	NOUN	NNNS4-----A----	Case=Acc|Gender=Neut|Number=Sing|Polarity=Pos	15	obj	_	_
+17	ve	v	ADP	RV--6----------	AdpType=Voc|Case=Loc	19	case	_	LId=v-1
+18	zjednodušeném	zjednodušený	ADJ	AAIS6----1A----	Animacy=Inan|Case=Loc|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos	19	amod	_	_
+19	rozsahu	rozsah	NOUN	NNIS6-----A----	Animacy=Inan|Case=Loc|Gender=Masc|Number=Sing|Polarity=Pos	16	nmod	_	_
+20	ty	ten	PRON	PDFP4----------	Case=Acc|Gender=Fem|Number=Plur|PronType=Dem	14	nsubj	_	SpaceAfter=No
+21	,	,	PUNCT	Z:-------------	_	23	punct	_	_
+22	které	který	PRON	P4FP1----------	Case=Nom|Gender=Fem|Number=Plur|PronType=Int,Rel	23	nsubj	_	_
+23	nemají	mít	VERB	VB-P---3P-NA---	Mood=Ind|Number=Plur|Person=3|Polarity=Neg|Tense=Pres|VerbForm=Fin|Voice=Act	20	acl	_	_
+24	povinnost	povinnost	NOUN	NNFS4-----A----	Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos	23	obj	_	_
+25	mít	mít	VERB	Vf--------A----	Polarity=Pos|VerbForm=Inf	24	acl	_	_
+26	účetní	účetní	ADJ	AAFS4----1A----	Case=Acc|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos	27	amod	_	LId=účetní-1
+27	závěrku	závěrka	NOUN	NNFS4-----A----	Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos	25	obj	_	_
+28	ověřenu	ověřit	VERB	VsFS4--XX-AP---	Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos|VerbForm=Part|Voice=Pass	27	xcomp	_	_
+29	auditorem	auditor	NOUN	NNMS7-----A----	Animacy=Anim|Case=Ins|Gender=Masc|Number=Sing|Polarity=Pos	28	obj	_	SpaceAfter=No
+30	,	,	PUNCT	Z:-------------	_	32	punct	_	_
+31	nebo	nebo	CCONJ	J^-------------	_	32	cc	_	_
+32	ty	ten	PRON	PDMP4----------	Animacy=Anim|Case=Acc|Gender=Masc|Number=Plur|PronType=Dem	20	conj	_	SpaceAfter=No
+33	,	,	PUNCT	Z:-------------	_	37	punct	_	_
+34	o	o	ADP	RR--6----------	AdpType=Prep|Case=Loc	35	case	_	LId=o-1
+35	nichž	jenž	PRON	P9XP6----------	Case=Loc|Number=Plur|PrepCase=Pre|PronType=Rel	37	iobj	_	_
+36	to	ten	PRON	PDNS4----------	Case=Acc|Gender=Neut|Number=Sing|PronType=Dem	37	obj	_	_
+37	stanoví	stanovit	VERB	VB-S---3P-AA---	Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	32	acl	_	_
+38	zvláštní	zvláštní	ADJ	AAIS1----1A----	Animacy=Inan|Case=Nom|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos	39	amod	_	_
+39	zákon	zákon	NOUN	NNIS1-----A----	Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos	37	nsubj	_	SpaceAfter=No
+40	.	.	PUNCT	Z:-------------	_	14	punct	_	_
+
+</code></pre>
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+iobj in other languages:
+
+[<a href="../../am/dep/iobj.html">am</a>]
+
+[<a href="../../ar/dep/iobj.html">ar</a>]
+
+[<a href="../../bg/dep/iobj.html">bg</a>]
+
+[<a href="../../bxr/dep/iobj.html">bxr</a>]
+
+[<a href="../../ca/dep/iobj.html">ca</a>]
+
+[<a href="../../ckb/dep/iobj.html">ckb</a>]
+
+[<a href="../../cop/dep/iobj.html">cop</a>]
+
+[<a href="../../cs/dep/iobj.html">cs</a>]
+
+[<a href="../../cu/dep/iobj.html">cu</a>]
+
+[<a href="../../da/dep/iobj.html">da</a>]
+
+[<a href="../../de/dep/iobj.html">de</a>]
+
+[<a href="../../el/dep/iobj.html">el</a>]
+
+[<a href="../../en/dep/iobj.html">en</a>]
+
+[<a href="../../es/dep/iobj.html">es</a>]
+
+[<a href="../../et/dep/iobj.html">et</a>]
+
+[<a href="../../eu/dep/iobj.html">eu</a>]
+
+[<a href="../../fa/dep/iobj.html">fa</a>]
+
+[<a href="../../fo/dep/iobj.html">fo</a>]
+
+[<a href="../../fr/dep/iobj.html">fr</a>]
+
+[<a href="../../gl/dep/iobj.html">gl</a>]
+
+[<a href="../../got/dep/iobj.html">got</a>]
+
+[<a href="../../grc/dep/iobj.html">grc</a>]
+
+[<a href="../../he/dep/iobj.html">he</a>]
+
+[<a href="../../hi/dep/iobj.html">hi</a>]
+
+[<a href="../../hr/dep/iobj.html">hr</a>]
+
+[<a href="../../hu/dep/iobj.html">hu</a>]
+
+[<a href="../../id/dep/iobj.html">id</a>]
+
+[<a href="../../it/dep/iobj.html">it</a>]
+
+[<a href="../../ja/dep/iobj.html">ja</a>]
+
+[<a href="../../kk/dep/iobj.html">kk</a>]
+
+[<a href="../../kmr/dep/iobj.html">kmr</a>]
+
+[<a href="../../ko/dep/iobj.html">ko</a>]
+
+[<a href="../../la/dep/iobj.html">la</a>]
+
+[<a href="../../lv/dep/iobj.html">lv</a>]
+
+[<a href="../../mr/dep/iobj.html">mr</a>]
+
+[<a href="../../nl/dep/iobj.html">nl</a>]
+
+[<a href="../../no/dep/iobj.html">no</a>]
+
+[<a href="../../pl/dep/iobj.html">pl</a>]
+
+[<a href="../../pt/dep/iobj.html">pt</a>]
+
+[<a href="../../ro/dep/iobj.html">ro</a>]
+
+[<a href="../../ru/dep/iobj.html">ru</a>]
+
+[<a href="../../sa/dep/iobj.html">sa</a>]
+
+[<a href="../../sk/dep/iobj.html">sk</a>]
+
+[<a href="../../sla/dep/iobj.html">sla</a>]
+
+[<a href="../../sl/dep/iobj.html">sl</a>]
+
+[<a href="../../so/dep/iobj.html">so</a>]
+
+[<a href="../../sr/dep/iobj.html">sr</a>]
+
+[<a href="../../sv/dep/iobj.html">sv</a>]
+
+[<a href="../../swl/dep/iobj.html">swl</a>]
+
+[<a href="../../ta/dep/iobj.html">ta</a>]
+
+[<a href="../../tr/dep/iobj.html">tr</a>]
+
+[<a href="../../u/dep/iobj.html">u</a>]
+
+[<a href="../../ug/dep/iobj.html">ug</a>]
+
+[<a href="../../uk/dep/iobj.html">uk</a>]
+
+[<a href="../../ur/dep/iobj.html">ur</a>]
+
+[<a href="../../urj/dep/iobj.html">urj</a>]
+
+[<a href="../../vi/dep/iobj.html">vi</a>]
+
+[<a href="../../yue/dep/iobj.html">yue</a>]
+
+[<a href="../../zh/dep/iobj.html">zh</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'cs';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

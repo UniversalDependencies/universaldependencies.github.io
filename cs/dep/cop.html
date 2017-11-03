@@ -1,0 +1,626 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>cop</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-cs">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/cs/cs">cs/cs</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs/dep/cop.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>cop</code>: copula</h2>
+
+<p>A copula is the relation between the nominal predicate <em>(přísudek jmenný)</em> and
+the copular verb <em><b>být</b></em> “to be” (or its variants <em>bývat, bývávat</em>).
+The verb <em>stát se</em> “to become”, despite being counted among copular verbs by some authors,
+is not analyzed as <code>cop</code>.</p>
+
+<p>We normally take a copula as a dependent of its complement (the nominal predicate).
+The nominal predicate is usually a <a href="cs-pos/NOUN">noun</a>, an <a href="cs-pos/ADJ">adjective</a>
+or a <a href="../feat/VerbForm.html#part-participle">participle</a>.</p>
+
+<pre><code class="language-sdparse">Ondřej je čestný muž . \n Ondřej is honest man .
+cop(muž, je)
+cop(man, is)
+</code></pre>
+
+<pre><code class="language-sdparse">Ondřej je čestný . \n Ondřej is honest .
+cop(čestný, je)
+cop(honest, is)
+</code></pre>
+
+<p>Note that the passive participle may be also used as nominal predicate with copula.
+Hence it may be difficult to distinguish a passive construction from a copula construction.
+The former focuses on the process while the latter emphasizes the result.</p>
+
+<ul>
+  <li>Passive: <em>Smlouva <b>byla</b>.<code>AUX</code> podepsána v Bílém domě.</em>   “The contract was signed in the White House.”</li>
+  <li>Copula: <em>Smlouva <b>byla</b>.<code>VERB</code> podepsána červeným inkoustem.</em>   “The contract was signed in red ink.”</li>
+</ul>
+
+<pre><code class="language-sdparse">Smlouva byla podepsána v Bílém domě . \n Contract was signed in White House .
+aux:pass(podepsána, byla)
+aux:pass(signed, was)
+</code></pre>
+
+<pre><code class="language-sdparse">Smlouva byla podepsána červeným inkoustem . \n Contract was signed in-red ink .
+cop(podepsána, byla)
+cop(signed, was)
+</code></pre>
+
+<p>The nominal predicate may also be expressed using a prepositional phrase.
+Phrases expressing the state of the subject are clear predicates, e.g. <em>Lenka je v kondici</em> “Lenka is in shape”.
+Under the v2 guidelines, prepositional phrases expressing locations are also considered predicates, to increase parallelism across languages.</p>
+
+<p>Thus the following sentences receive parallel analyses:</p>
+
+<ul>
+  <li><em>Lenka je skvělá.</em> “Lenka is brilliant.”</li>
+  <li><em>Lenka je v kondici.</em> “Lenka is in shape.”</li>
+  <li><em>Lenka je v kuchyni.</em> “Lenka is in the kitchen.”</li>
+</ul>
+
+<p>In contrast, the following two are no longer parallel:</p>
+
+<ul>
+  <li><em>Lenka je v kuchyni.</em> “Lenka is in the kitchen.”</li>
+  <li><em>Lenka zůstala v kuchyni.</em> “Lenka stayed in the kitchen.”</li>
+</ul>
+
+<pre><code class="language-sdparse">Lenka je v kondici . \n Lenka is in shape .
+cop(kondici, je)
+cop(shape, is)
+case(kondici, v)
+case(shape, in)
+nsubj(kondici, Lenka-1)
+nsubj(shape, Lenka-7)
+</code></pre>
+
+<pre><code class="language-sdparse">Lenka je v kuchyni . \n Lenka is in kitchen .
+nsubj(kuchyni, Lenka-1)
+nsubj(kitchen, Lenka-7)
+cop(kuchyni, je)
+cop(kitchen, is)
+case(kuchyni, v)
+case(kitchen, in)
+</code></pre>
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+
+<hr />
+
+<h2 id="treebank-statistics-udczech">Treebank Statistics (UD_Czech)</h2>
+
+<p>This relation is universal.</p>
+
+<p>18020 nodes (1%) are attached to their parents as <code>cop</code>.</p>
+
+<p>15062 instances of <code>cop</code> (84%) are right-to-left (child precedes parent).
+Average distance between parent and child is 2.3673140954495.</p>
+
+<p>The following 9 pairs of parts of speech are connected with <code>cop</code>: <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/AUX</a> (10173; 56% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/AUX</a> (6528; 36% instances), <a href="">cs-pos/DET</a>-<a href="">cs-pos/AUX</a> (466; 3% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/AUX</a> (419; 2% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/AUX</a> (183; 1% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/AUX</a> (176; 1% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/AUX</a> (61; 0% instances), <a href="">cs-pos/PART</a>-<a href="">cs-pos/AUX</a> (10; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/AUX</a> (4; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 3 2 cop	color:blue
+1	Změny	změna	NOUN	NNFP1-----A----	Case=Nom|Gender=Fem|Number=Plur|Polarity=Pos	3	nsubj	_	_
+2	jsou	být	AUX	VB-P---3P-AA---	Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	3	cop	_	_
+3	citelné	citelný	ADJ	AAFP1----1A----	Case=Nom|Degree=Pos|Gender=Fem|Number=Plur|Polarity=Pos	0	root	_	SpaceAfter=No
+4	,	,	PUNCT	Z:-------------	_	6	punct	_	_
+5	je	být	AUX	VB-S---3P-AA---	Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	6	cop	_	_
+6	třeba	třeba	ADJ	ACNS------A----	Gender=Neut|Number=Sing|Polarity=Pos|Variant=Short	3	conj	_	LId=třeba-1
+7	je	on	PRON	PPXP4--3-------	Case=Acc|Number=Plur|Person=3|PronType=Prs	9	obj	_	LId=on-1|LGloss=(oni/ono)
+8	lépe	dobře	ADV	Dg-------2A----	Degree=Cmp|Polarity=Pos	9	advmod	_	_
+9	prezentovat	prezentovat	VERB	Vf--------A----	Polarity=Pos|VerbForm=Inf	6	csubj	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+# visual-style 6 4 cop	color:blue
+1	BESO	Beso	PROPN	NNNS1-----A----	Case=Nom|Gender=Neut|NameType=Com|Number=Sing|Polarity=Pos	6	nsubj	_	_
+2	a	a	CCONJ	J^-------------	_	3	cc	_	LId=a-1
+3	SES	SES	PROPN	NNXXX-----A---8	Abbr=Yes|NameType=Com|Polarity=Pos	1	conj	_	_
+4	jsou	být	AUX	VB-P---3P-AA---	Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	6	cop	_	_
+5	dvě	dva	NUM	ClHP1----------	Case=Nom|Gender=Fem,Neut|Number=Plur|NumForm=Word|NumType=Card|NumValue=1,2,3	6	nummod	_	LNumValue=2
+6	organizace	organizace	NOUN	NNFP1-----A----	Case=Nom|Gender=Fem|Number=Plur|Polarity=Pos	0	root	_	_
+7	se	s	ADP	RV--7----------	AdpType=Voc|Case=Ins	9	case	_	LId=s-1
+8	stejným	stejný	ADJ	AANS7----1A----	Case=Ins|Degree=Pos|Gender=Neut|Number=Sing|Polarity=Pos	9	amod	_	_
+9	posláním	poslání	NOUN	NNNS7-----A----	Case=Ins|Gender=Neut|Number=Sing|Polarity=Pos	6	nmod	_	SpaceAfter=No|LDeriv=poslat
+10	.	.	PUNCT	Z:-------------	_	6	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 5 6 cop	color:blue
+1	Proto	proto	CCONJ	J^-------------	_	3	cc	_	LId=proto-1|LGloss=(proto;_a_proto,_ale_proto,...)
+2	nás	já	PRON	PP-P4--1-------	Case=Acc|Number=Plur|Person=1|PronType=Prs	3	obj	_	_
+3	zajímalo	zajímat	VERB	VpNS---XR-AA---	Aspect=Imp|Gender=Neut|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act	0	root	_	SpaceAfter=No
+4	,	,	PUNCT	Z:-------------	_	5	punct	_	_
+5	jaký	jaký	DET	P4YS1----------	Case=Nom|Gender=Masc|Number=Sing|PronType=Int,Rel	3	csubj	_	_
+6	je	být	AUX	VB-S---3P-AA---	Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	5	cop	_	_
+7	její	jeho	DET	PSZS1FS3-------	Case=Nom|Gender=Masc,Neut|Gender[psor]=Fem|Number=Sing|Number[psor]=Sing|Person=3|Poss=Yes|PronType=Prs	8	det	_	LGloss=(přivlast.)
+8	pohled	pohled	NOUN	NNIS1-----A----	Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos	5	nsubj	_	_
+9	na	na	ADP	RR--4----------	AdpType=Prep|Case=Acc	10	case	_	LId=na-1
+10	působení	působení	NOUN	NNNS4-----A----	Case=Acc|Gender=Neut|Number=Sing|Polarity=Pos	8	nmod	_	LDeriv=působit
+11	Američanů	Američan	PROPN	NNMP2-----A----	Animacy=Anim|Case=Gen|Gender=Masc|NameType=Nat|Number=Plur|Polarity=Pos	10	nmod	_	SpaceAfter=No
+12	.	.	PUNCT	Z:-------------	_	3	punct	_	_
+
+</code></pre>
+
+<hr />
+
+<h2 id="treebank-statistics-udczech-cac">Treebank Statistics (UD_Czech-CAC)</h2>
+
+<p>This relation is universal.</p>
+
+<p>7973 nodes (2%) are attached to their parents as <code>cop</code>.</p>
+
+<p>6883 instances of <code>cop</code> (86%) are right-to-left (child precedes parent).
+Average distance between parent and child is 2.18763326226013.</p>
+
+<p>The following 25 pairs of parts of speech are connected with <code>cop</code>: <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/AUX</a> (4448; 56% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/AUX</a> (2483; 31% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/AUX</a> (370; 5% instances), <a href="">cs-pos/DET</a>-<a href="">cs-pos/AUX</a> (354; 4% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/AUX</a> (156; 2% instances), <a href="">cs-pos/SYM</a>-<a href="">cs-pos/AUX</a> (47; 1% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/AUX</a> (43; 1% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/SYM</a> (15; 0% instances), <a href="">cs-pos/PART</a>-<a href="">cs-pos/AUX</a> (11; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/NOUN</a> (8; 0% instances), <a href="">cs-pos/PROPN</a>-<a href="">cs-pos/AUX</a> (8; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/ADJ</a> (7; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/NOUN</a> (5; 0% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/AUX</a> (4; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/SYM</a> (3; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/ADV</a> (2; 0% instances), <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/CCONJ</a> (1; 0% instances), <a href="">cs-pos/INTJ</a>-<a href="">cs-pos/AUX</a> (1; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/ADJ</a> (1; 0% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/NUM</a> (1; 0% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/SYM</a> (1; 0% instances), <a href="">cs-pos/SCONJ</a>-<a href="">cs-pos/ADJ</a> (1; 0% instances), <a href="">cs-pos/SCONJ</a>-<a href="">cs-pos/AUX</a> (1; 0% instances), <a href="">cs-pos/SYM</a>-<a href="">cs-pos/NOUN</a> (1; 0% instances), <a href="">cs-pos/SYM</a>-<a href="">cs-pos/SYM</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+# visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
+# visual-style 9 6 cop	color:blue
+1	Stav	stav	NOUN	NNIS1-----A----	Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos	9	nsubj	_	_
+2	a	a	CCONJ	J^-------------	_	3	cc	_	LId=a-1
+3	využívání	využívání	NOUN	NNNS1-----A----	Case=Nom|Gender=Neut|Number=Sing|Polarity=Pos	1	conj	_	LDeriv=využít
+4	půdního	půdní	ADJ	AAIS2----1A----	Animacy=Inan|Case=Gen|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos	5	amod	_	_
+5	fondu	fond	NOUN	NNIS2-----A----	Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos	1	nmod	_	_
+6	jsou	být	AUX	VB-P---3P-AA---	Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	9	cop	_	_
+7	u	u	ADP	RR--2----------	AdpType=Prep|Case=Gen	8	case	_	LId=u-1
+8	nás	já	PRON	PP-P2--1-------	Case=Gen|Number=Plur|Person=1|PronType=Prs	9	obl	_	_
+9	neuspokojivé	uspokojivý	ADJ	AAIP1----1N----	Animacy=Inan|Case=Nom|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Neg	0	root	_	SpaceAfter=No
+10	.	.	PUNCT	Z:-------------	_	9	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 2 7 cop	color:blue
+1	Prvním	první	ADJ	CrIS7----------	Animacy=Inan|Case=Ins|Gender=Masc|Number=Sing|NumType=Ord	2	amod	_	_
+2	požadavkem	požadavek	NOUN	NNIS7-----A----	Animacy=Inan|Case=Ins|Gender=Masc|Number=Sing|Polarity=Pos	0	root	_	_
+3	tělesné	tělesný	ADJ	AAFS2----1A----	Case=Gen|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos	6	amod	_	_
+4	a	a	CCONJ	J^-------------	_	5	cc	_	LId=a-1
+5	duševní	duševní	ADJ	AAFS2----1A----	Case=Gen|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos	3	conj	_	_
+6	rehabilitace	rehabilitace	NOUN	NNFS2-----A----	Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos	2	nmod	_	_
+7	je	být	AUX	VB-S---3P-AA---	Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	2	cop	_	_
+8	tedy	tedy	ADV	Dg-------1A----	Degree=Pos|Polarity=Pos	2	advmod	_	_
+9	ticho	ticho	NOUN	NNNS1-----A----	Case=Nom|Gender=Neut|Number=Sing|Polarity=Pos	2	nsubj	_	SpaceAfter=No
+10	.	.	PUNCT	Z:-------------	_	2	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 5 3 cop	color:blue
+1	K	k	ADP	RR--3----------	AdpType=Prep|Case=Dat	2	case	_	LId=k-1
+2	tomu	ten	DET	PDZS3----------	Case=Dat|Gender=Masc,Neut|Number=Sing|PronType=Dem	5	obl	_	_
+3	je	být	AUX	VB-S---3P-AA---	Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	5	cop	_	_
+4	však	však	CCONJ	J^-------------	_	5	cc	_	_
+5	třeba	třeba	ADV	Db-------------	_	0	root	_	LId=třeba-2|LGloss=(například)
+6	souhlasu	souhlas	NOUN	NNIS2-----A----	Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos	5	nsubj	_	_
+7	ZV	ZV	NOUN	NNIXX-----A---8	Abbr=Yes|Animacy=Inan|Gender=Masc|Polarity=Pos	6	nmod	_	_
+8	ROH	ROH	PROPN	NNNXX-----A---8	Abbr=Yes|Gender=Neut|NameType=Com|Polarity=Pos	7	nmod	_	SpaceAfter=No
+9	.	.	PUNCT	Z:-------------	_	5	punct	_	_
+
+</code></pre>
+
+<hr />
+
+<h2 id="treebank-statistics-udczech-cltt">Treebank Statistics (UD_Czech-CLTT)</h2>
+
+<p>This relation is universal.</p>
+
+<p>324 nodes (1%) are attached to their parents as <code>cop</code>.</p>
+
+<p>294 instances of <code>cop</code> (91%) are right-to-left (child precedes parent).
+Average distance between parent and child is 2.56481481481481.</p>
+
+<p>The following 7 pairs of parts of speech are connected with <code>cop</code>: <a href="">cs-pos/ADJ</a>-<a href="">cs-pos/AUX</a> (131; 40% instances), <a href="">cs-pos/NOUN</a>-<a href="">cs-pos/AUX</a> (117; 36% instances), <a href="">cs-pos/VERB</a>-<a href="">cs-pos/AUX</a> (68; 21% instances), <a href="">cs-pos/PRON</a>-<a href="">cs-pos/AUX</a> (4; 1% instances), <a href="">cs-pos/ADV</a>-<a href="">cs-pos/AUX</a> (2; 1% instances), <a href="">cs-pos/DET</a>-<a href="">cs-pos/AUX</a> (1; 0% instances), <a href="">cs-pos/NUM</a>-<a href="">cs-pos/AUX</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 4 3 cop	color:blue
+1	(5)	(5)	PUNCT	Z:-------------	_	4	punct	_	_
+2	Rezervy	rezerva	NOUN	NNFP4-----A----	Case=Acc|Gender=Fem|Number=Plur|Polarity=Pos	5	obj	_	_
+3	není	být	AUX	VB-S---3P-AA---	Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	4	cop	_	_
+4	možné	možný	ADJ	AANS1----1A----	Case=Nom|Degree=Pos|Gender=Neut|Number=Sing|Polarity=Pos	0	root	_	_
+5	používat	používat	VERB	Vf--------A----	Polarity=Pos|VerbForm=Inf	4	csubj	_	_
+6	k	k	ADP	RR--3----------	AdpType=Prep|Case=Dat	7	case	_	LId=k-1
+7	úpravám	úprava	NOUN	NNFP3-----A----	Case=Dat|Gender=Fem|Number=Plur|Polarity=Pos	5	obl	_	_
+8	výše	výše	NOUN	NNFS2-----A----	Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos	7	nmod	_	_
+9	ocenění	ocenění	NOUN	NNNS2-----A----	Case=Gen|Gender=Neut|Number=Sing|Polarity=Pos	8	nmod	_	_
+10	aktiv	aktivum	NOUN	NNNP2-----A----	Case=Gen|Gender=Neut|Number=Plur|Polarity=Pos	9	nmod	_	SpaceAfter=No|LId=aktivum-1
+11	.	.	PUNCT	Z:-------------	_	4	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 10	bgColor:blue
+# visual-style 10	fgColor:white
+# visual-style 12	bgColor:blue
+# visual-style 12	fgColor:white
+# visual-style 12 10 cop	color:blue
+1	Účetní	účetní	ADJ	AANS1----1A----	Case=Nom|Degree=Pos|Gender=Neut|Number=Sing|Polarity=Pos	2	amod	_	LId=účetní-1
+2	období	období	NOUN	NNNS1-----A----	Case=Nom|Gender=Neut|Number=Sing|Polarity=Pos	5	nsubj	_	_
+3	se	se	PRON	P7-X4----------	Case=Acc|PronType=Prs|Reflex=Yes|Variant=Short	5	expl:pv	_	_
+4	buď	buď	CCONJ	J^-------------	_	5	cc	_	_
+5	shoduje	shodovat	VERB	VB-S---3P-AA---	Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	_
+6	s	s	ADP	RR--7----------	AdpType=Prep|Case=Ins	8	case	_	LId=s-1
+7	kalendářním	kalendářní	ADJ	AAIS7----1A----	Animacy=Inan|Case=Ins|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos	8	amod	_	_
+8	rokem	rok	NOUN	NNIS7-----A----	Animacy=Inan|Case=Ins|Gender=Masc|Number=Sing|Polarity=Pos	5	obj	_	_
+9	nebo	nebo	CCONJ	J^-------------	_	12	cc	_	_
+10	je	být	AUX	VB-S---3P-AA---	Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	12	cop	_	_
+11	hospodářským	hospodářský	ADJ	AAIS7----1A----	Animacy=Inan|Case=Ins|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos	12	amod	_	_
+12	rokem	rok	NOUN	NNIS7-----A----	Animacy=Inan|Case=Ins|Gender=Masc|Number=Sing|Polarity=Pos	5	conj	_	SpaceAfter=No
+13	.	.	PUNCT	Z:-------------	_	5	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 5 4 cop	color:blue
+1	Směrná	směrný	ADJ	AAFS1----1A----	Case=Nom|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos	3	amod	_	_
+2	účtová	účtový	ADJ	AAFS1----1A----	Case=Nom|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos	3	amod	_	_
+3	osnova	osnova	NOUN	NNFS1-----A----	Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos	5	nsubj	_	_
+4	je	být	AUX	VB-S---3P-AA---	Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act	5	cop	_	_
+5	uvedena	uvést	VERB	VsQW---XX-AP---	Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|VerbForm=Part|Voice=Pass	0	root	_	_
+6	v	v	ADP	RR--6----------	AdpType=Prep|Case=Loc	7	case	_	LId=v-1
+7	příloze	příloha	NOUN	NNFS6-----A----	Case=Loc|Gender=Fem|Number=Sing|Polarity=Pos	5	obl	_	_
+8	č.	č.	X	X@-------------	_	7	nmod	_	_
+9	4	4	X	X@-------------	_	8	flat	_	_
+10	k	k	ADP	RR--3----------	AdpType=Prep|Case=Dat	12	case	_	LId=k-1
+11	této	tento	DET	PDFS3----------	Case=Dat|Gender=Fem|Number=Sing|PronType=Dem	12	det	_	_
+12	vyhlášce	vyhláška	NOUN	NNFS3-----A----	Case=Dat|Gender=Fem|Number=Sing|Polarity=Pos	7	nmod	_	SpaceAfter=No
+13	.	.	PUNCT	Z:-------------	_	5	punct	_	_
+
+</code></pre>
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+cop in other languages:
+
+[<a href="../../am/dep/cop.html">am</a>]
+
+[<a href="../../ar/dep/cop.html">ar</a>]
+
+[<a href="../../bg/dep/cop.html">bg</a>]
+
+[<a href="../../bxr/dep/cop.html">bxr</a>]
+
+[<a href="../../ca/dep/cop.html">ca</a>]
+
+[<a href="../../ckb/dep/cop.html">ckb</a>]
+
+[<a href="../../cop/dep/cop.html">cop</a>]
+
+[<a href="../../cs/dep/cop.html">cs</a>]
+
+[<a href="../../cu/dep/cop.html">cu</a>]
+
+[<a href="../../da/dep/cop.html">da</a>]
+
+[<a href="../../de/dep/cop.html">de</a>]
+
+[<a href="../../el/dep/cop.html">el</a>]
+
+[<a href="../../en/dep/cop.html">en</a>]
+
+[<a href="../../es/dep/cop.html">es</a>]
+
+[<a href="../../et/dep/cop.html">et</a>]
+
+[<a href="../../eu/dep/cop.html">eu</a>]
+
+[<a href="../../fa/dep/cop.html">fa</a>]
+
+[<a href="../../fi/dep/cop.html">fi</a>]
+
+[<a href="../../fo/dep/cop.html">fo</a>]
+
+[<a href="../../fr/dep/cop.html">fr</a>]
+
+[<a href="../../ga/dep/cop.html">ga</a>]
+
+[<a href="../../gl/dep/cop.html">gl</a>]
+
+[<a href="../../got/dep/cop.html">got</a>]
+
+[<a href="../../grc/dep/cop.html">grc</a>]
+
+[<a href="../../he/dep/cop.html">he</a>]
+
+[<a href="../../hi/dep/cop.html">hi</a>]
+
+[<a href="../../hr/dep/cop.html">hr</a>]
+
+[<a href="../../hu/dep/cop.html">hu</a>]
+
+[<a href="../../id/dep/cop.html">id</a>]
+
+[<a href="../../it/dep/cop.html">it</a>]
+
+[<a href="../../ja/dep/cop.html">ja</a>]
+
+[<a href="../../kk/dep/cop.html">kk</a>]
+
+[<a href="../../kmr/dep/cop.html">kmr</a>]
+
+[<a href="../../ko/dep/cop.html">ko</a>]
+
+[<a href="../../la/dep/cop.html">la</a>]
+
+[<a href="../../lv/dep/cop.html">lv</a>]
+
+[<a href="../../mr/dep/cop.html">mr</a>]
+
+[<a href="../../nl/dep/cop.html">nl</a>]
+
+[<a href="../../no/dep/cop.html">no</a>]
+
+[<a href="../../pl/dep/cop.html">pl</a>]
+
+[<a href="../../pt/dep/cop.html">pt</a>]
+
+[<a href="../../ro/dep/cop.html">ro</a>]
+
+[<a href="../../ru/dep/cop.html">ru</a>]
+
+[<a href="../../sa/dep/cop.html">sa</a>]
+
+[<a href="../../sk/dep/cop.html">sk</a>]
+
+[<a href="../../sla/dep/cop.html">sla</a>]
+
+[<a href="../../sl/dep/cop.html">sl</a>]
+
+[<a href="../../so/dep/cop.html">so</a>]
+
+[<a href="../../sr/dep/cop.html">sr</a>]
+
+[<a href="../../sv/dep/cop.html">sv</a>]
+
+[<a href="../../swl/dep/cop.html">swl</a>]
+
+[<a href="../../ta/dep/cop.html">ta</a>]
+
+[<a href="../../tr/dep/cop.html">tr</a>]
+
+[<a href="../../u/dep/cop.html">u</a>]
+
+[<a href="../../ug/dep/cop.html">ug</a>]
+
+[<a href="../../uk/dep/cop.html">uk</a>]
+
+[<a href="../../ur/dep/cop.html">ur</a>]
+
+[<a href="../../urj/dep/cop.html">urj</a>]
+
+[<a href="../../vi/dep/cop.html">vi</a>]
+
+[<a href="../../yue/dep/cop.html">yue</a>]
+
+[<a href="../../zh/dep/cop.html">zh</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'cs';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
