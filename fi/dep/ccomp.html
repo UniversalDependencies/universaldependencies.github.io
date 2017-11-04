@@ -1,0 +1,520 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>ccomp</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-fi">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/fi/fi">fi/fi</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fi/dep/ccomp.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v1warning">
+	This page still pertains to UD version 1.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>ccomp</code>: clausal complement</h2>
+
+<p><em>Clausal complement</em> is an object like clausal dependent. The governor is most
+commonly, although not always, the main verb or predicative of the
+main clause, and the dependent is the main verb or predicative of the
+dependent clause. The clausal complement can also modify a word other
+than a verb, most often a noun or pronoun. Most commonly clausal
+complements are <em>että</em>-clauses.</p>
+
+<p>If the subject of the clausal complement is controlled (that is, must be the same as the higher subject or object, with no other possible interpretation) the appropriate relation is either <strong>xcomp</strong> or <strong>xcomp:ds</strong>.</p>
+
+<!--Distinguishing different verbal dependents, including different
+clausal complements, is discussed more closely in Section
+[verbal](#sec-verbal).-->
+
+<!-- fname:ccomp1.pdf -->
+<pre><code class="language-sdparse">Sanoin hänelle , että vesi kiehuu . \n I_said to_him , that water boils .
+nmod(Sanoin-1, hänelle-2)
+ccomp(Sanoin-1, kiehuu-6)
+punct(kiehuu-6, ,-3)
+mark(kiehuu-6, että-4)
+nsubj(kiehuu-6, vesi-5)
+punct(Sanoin-1, .-7)
+</code></pre>
+
+<!-- fname:ccomp2.pdf -->
+<pre><code class="language-sdparse">Se , että naapurin koira haukkui kovasti , suututti äitiä . \n It , that neighbor's dog barked loudly , made_angry mother .
+ccomp(Se-1, haukkui-6)
+punct(haukkui-6, ,-2)
+punct(haukkui-6, ,-8)
+mark(haukkui-6, että-3)
+nmod:poss(koira-5, naapurin-4)
+nsubj(haukkui-6, koira-5)
+advmod(haukkui-6, kovasti-7)
+nsubj(suututti-9, Se-1)
+dobj(suututti-9, äitiä-10)
+punct(suututti-9, .-11)
+</code></pre>
+
+<h3 id="diffs">Diffs</h3>
+
+<p>In FinnTreeBank (FI_FTB), if a clausal complement modifies
+a word other than a verb, the reason is most likely
+a verb-derived noun
+(eg. <em>ei käy <strong>kieltäminen</strong>, etteikö olisi mennyt</em>(<code>ccomp</code>)
+“no denying that ∅ wouldn’t have gone”).
+Clauses modifying regular nouns get marked as <code>acl</code>:
+<em>semmonen <strong>kampaus</strong> et se kestää</em>(<code>ccomp</code>)
+lit. “the kind of hairstyle that it lasts”
+(according to <a href="http://universaldependencies.org/u/dep/all.html#al-u-dep/acl">Universal dependency relations: acl</a>).</p>
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+
+<hr />
+
+<h2 id="treebank-statistics-udfinnish">Treebank Statistics (UD_Finnish)</h2>
+
+<p>This relation is universal.</p>
+
+<p>1783 nodes (1%) are attached to their parents as <code>ccomp</code>.</p>
+
+<p>1782 instances of <code>ccomp</code> (100%) are left-to-right (parent precedes child).
+Average distance between parent and child is 5.48906337633202.</p>
+
+<p>The following 38 pairs of parts of speech are connected with <code>ccomp</code>: <a href="">fi-pos/VERB</a>-<a href="">fi-pos/VERB</a> (787; 44% instances), <a href="">fi-pos/PRON</a>-<a href="">fi-pos/VERB</a> (270; 15% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/NOUN</a> (138; 8% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/ADJ</a> (108; 6% instances), <a href="">fi-pos/NOUN</a>-<a href="">fi-pos/VERB</a> (86; 5% instances), <a href="">fi-pos/ADV</a>-<a href="">fi-pos/VERB</a> (82; 5% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/PRON</a> (66; 4% instances), <a href="">fi-pos/ADJ</a>-<a href="">fi-pos/VERB</a> (51; 3% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/ADV</a> (38; 2% instances), <a href="">fi-pos/PRON</a>-<a href="">fi-pos/NOUN</a> (34; 2% instances), <a href="">fi-pos/PRON</a>-<a href="">fi-pos/ADJ</a> (22; 1% instances), <a href="">fi-pos/NOUN</a>-<a href="">fi-pos/NOUN</a> (18; 1% instances), <a href="">fi-pos/NOUN</a>-<a href="">fi-pos/ADJ</a> (15; 1% instances), <a href="">fi-pos/PRON</a>-<a href="">fi-pos/PRON</a> (14; 1% instances), <a href="">fi-pos/ADV</a>-<a href="">fi-pos/ADJ</a> (8; 0% instances), <a href="">fi-pos/PRON</a>-<a href="">fi-pos/ADV</a> (6; 0% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/PROPN</a> (6; 0% instances), <a href="">fi-pos/ADJ</a>-<a href="">fi-pos/NOUN</a> (5; 0% instances), <a href="">fi-pos/ADJ</a>-<a href="">fi-pos/PRON</a> (4; 0% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/NUM</a> (4; 0% instances), <a href="">fi-pos/NOUN</a>-<a href="">fi-pos/ADV</a> (3; 0% instances), <a href="">fi-pos/ADV</a>-<a href="">fi-pos/PRON</a> (2; 0% instances), <a href="">fi-pos/ADJ</a>-<a href="">fi-pos/ADJ</a> (1; 0% instances), <a href="">fi-pos/ADJ</a>-<a href="">fi-pos/AUX</a> (1; 0% instances), <a href="">fi-pos/ADP</a>-<a href="">fi-pos/VERB</a> (1; 0% instances), <a href="">fi-pos/ADV</a>-<a href="">fi-pos/ADV</a> (1; 0% instances), <a href="">fi-pos/ADV</a>-<a href="">fi-pos/INTJ</a> (1; 0% instances), <a href="">fi-pos/ADV</a>-<a href="">fi-pos/NOUN</a> (1; 0% instances), <a href="">fi-pos/AUX</a>-<a href="">fi-pos/VERB</a> (1; 0% instances), <a href="">fi-pos/NOUN</a>-<a href="">fi-pos/NUM</a> (1; 0% instances), <a href="">fi-pos/NOUN</a>-<a href="">fi-pos/PRON</a> (1; 0% instances), <a href="">fi-pos/NOUN</a>-<a href="">fi-pos/PROPN</a> (1; 0% instances), <a href="">fi-pos/PRON</a>-<a href="">fi-pos/INTJ</a> (1; 0% instances), <a href="">fi-pos/PRON</a>-<a href="">fi-pos/PROPN</a> (1; 0% instances), <a href="">fi-pos/PUNCT</a>-<a href="">fi-pos/NOUN</a> (1; 0% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/AUX</a> (1; 0% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/INTJ</a> (1; 0% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/X</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 3 7 ccomp	color:blue
+1	Kuinka	kuinka	ADV	Adv	_	3	advmod	_	_
+2	sitten	sitten	ADV	Adv	_	3	advmod	_	_
+3	tiedät	tietää	VERB	V	Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	SpaceAfter=No
+4	,	,	PUNCT	Punct	_	7	punct	_	_
+5	onko	olla	AUX	V	Clitic=Ko|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	7	aux:pass	_	_
+6	sinut	sinä	PRON	Pron	Case=Acc|Number=Sing|Person=2|PronType=Prs	7	obj	_	_
+7	bannattu	bannata	VERB	V	Case=Nom|Degree=Pos|Number=Sing|PartForm=Past|VerbForm=Part|Voice=Pass	3	ccomp	_	SpaceAfter=No
+8	?	?	PUNCT	Punct	_	3	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 2 7 ccomp	color:blue
+1	Syytä	syy	NOUN	N	Case=Par|Number=Sing	10	obj	_	_
+2	sille	se	PRON	Pron	Case=All|Number=Sing|PronType=Dem	1	nmod	_	SpaceAfter=No
+3	,	,	PUNCT	Punct	_	7	punct	_	_
+4	miksi	miksi	ADV	Adv	_	7	advmod	_	_
+5	minut	minä	PRON	Pron	Case=Acc|Number=Sing|Person=1|PronType=Prs	7	obj	_	_
+6	oli	olla	AUX	V	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	7	aux:pass	_	_
+7	suodatettu	suodattaa	VERB	V	Case=Nom|Degree=Pos|Number=Sing|PartForm=Past|VerbForm=Part|Voice=Pass	2	ccomp	_	SpaceAfter=No
+8	,	,	PUNCT	Punct	_	7	punct	_	_
+9	en	ei	AUX	V	Number=Sing|Person=1|Polarity=Neg|VerbForm=Fin|Voice=Act	10	aux	_	_
+10	tiedä	tietää	VERB	V	Connegative=Yes|Mood=Ind|Tense=Pres|VerbForm=Fin	0	root	_	SpaceAfter=No
+11	.	.	PUNCT	Punct	_	10	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 2 6 ccomp	color:blue
+1	Enhän	ei	AUX	V	Clitic=Han|Number=Sing|Person=1|Polarity=Neg|VerbForm=Fin|Voice=Act	2	aux	_	_
+2	tiedä	tietää	VERB	V	Connegative=Yes|Mood=Ind|Tense=Pres|VerbForm=Fin	0	root	_	SpaceAfter=No
+3	,	,	PUNCT	Punct	_	6	punct	_	_
+4	mitä	mikä	PRON	Pron	Case=Par|Number=Sing|PronType=Int	6	nsubj:cop	_	_
+5	toisella	toinen	PRON	Pron	Case=Ade|Number=Sing|PronType=Rcp	6	det	_	_
+6	puolella	puoli	NOUN	N	Case=Ade|Number=Sing	2	ccomp	_	_
+7	on	olla	AUX	V	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	6	cop	_	SpaceAfter=No
+8	.	.	PUNCT	Punct	_	2	punct	_	_
+
+</code></pre>
+
+<hr />
+
+<h2 id="treebank-statistics-udfinnish-ftb">Treebank Statistics (UD_Finnish-FTB)</h2>
+
+<p>This relation is universal.</p>
+
+<p>1598 nodes (1%) are attached to their parents as <code>ccomp</code>.</p>
+
+<p>1366 instances of <code>ccomp</code> (85%) are left-to-right (parent precedes child).
+Average distance between parent and child is 4.65519399249061.</p>
+
+<p>The following 11 pairs of parts of speech are connected with <code>ccomp</code>: <a href="">fi-pos/VERB</a>-<a href="">fi-pos/VERB</a> (1359; 85% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/ADJ</a> (106; 7% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/NOUN</a> (96; 6% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/PRON</a> (23; 1% instances), <a href="">fi-pos/NOUN</a>-<a href="">fi-pos/VERB</a> (5; 0% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/X</a> (3; 0% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/PROPN</a> (2; 0% instances), <a href="">fi-pos/PROPN</a>-<a href="">fi-pos/VERB</a> (1; 0% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/ADV</a> (1; 0% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/INTJ</a> (1; 0% instances), <a href="">fi-pos/VERB</a>-<a href="">fi-pos/NUM</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 3 5 ccomp	color:blue
+1	Aku	aku	PROPN	N,Prop,Sg,Nom	Case=Nom|Number=Sing	2	nsubj	_	_
+2	meni	mennä	VERB	V,Act,Ind,Past,Sg3	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	_
+3	katsomaan	katsoa	VERB	V,Act,InfMa,Ill	Case=Ill|InfForm=3|VerbForm=Inf|Voice=Act	2	xcomp	_	Alt=xcomp
+4	ketä	kuka	PRON	Pron,Interr,Sg,Nom	Case=Nom|Number=Sing|PronType=Int|Style=Coll	5	nsubj	_	_
+5	piti	pitää	VERB	V,Act,Ind,Past,Sg3	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	3	ccomp	_	_
+6	ääntä	ääni	NOUN	N,Sg,Par	Case=Par|Number=Sing	5	obj	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 3 9 ccomp	color:blue
+1	ei	ei	VERB	V,Neg,Act,Sg3	Number=Sing|Person=3|Polarity=Neg|VerbForm=Fin|Voice=Act	3	aux	_	_
+2	voi	voida	VERB	V,Act,Ind,Pres,ConNeg	Connegative=Yes|Mood=Ind|Tense=Pres|VerbForm=Fin|Voice=Act	3	aux	_	_
+3	ajatellakhaa	ajatella	VERB	V,Act,InfA,Lat,Kaan	Case=Lat|Clitic=Kaan|InfForm=1|Style=Coll|VerbForm=Inf|Voice=Act	0	root	_	_
+4	varhmaan	varmaan	PART	Pcle	Style=Coll	3	advmod	_	_
+5	että	että	SCONJ	Pcle,CS	_	9	mark	_	_
+6	ne	ne	PRON	Pron,Dem,Pl,Nom	Case=Nom|Number=Plur|PronType=Dem	9	nsubj:cop	_	_
+7	ikinä	ikinä	ADV	Adv	_	9	advmod	_	_
+8	olis	olla	AUX	V,Act,Cond,Sg3	Mood=Cnd|Number=Sing|Person=3|Style=Coll|VerbForm=Fin|Voice=Act	9	cop	_	_
+9	vakinaisia	vakinainen	ADJ	A,Pl,Par	Case=Par|Number=Plur	3	ccomp	_	_
+10	.	.	PUNCT	Pun	_	9	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 10	bgColor:blue
+# visual-style 10	fgColor:white
+# visual-style 10 4 ccomp	color:blue
+1	Se	se	PRON	Pron,Dem,Sg,Nom	Case=Nom|Number=Sing|PronType=Dem	7	expl	_	Alt=7_expl|Missed-Rel=phrm
+2	on	olla	AUX	V,Act,Ind,Pres,Sg3	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	4	cop	_	_
+3	oma	oma	ADJ	A,Sg,Nom	Case=Nom|Number=Sing	4	amod	_	_
+4	vika	vika	NOUN	N,Sg,Nom	Case=Nom|Number=Sing	10	ccomp	_	_
+5	jos	jos	SCONJ	Pcle,CS	_	7	mark	_	_
+6	on	olla	AUX	V,Act,Ind,Pres,Sg3	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	7	cop	_	_
+7	yksinäinen	yksinäinen	ADJ	A,Sg,Nom	Case=Nom|Number=Sing	4	csubj:cop	_	_
+8	,	,	PUNCT	Pun	_	7	punct	_	_
+9	hän	hän	PRON	Pron,Pers,Sg3,Nom	Case=Nom|Number=Sing|Person=3|PronType=Prs	10	nsubj	_	_
+10	sanoo	sanoa	VERB	V,Act,Ind,Pres,Sg3	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	_
+11	.	.	PUNCT	Pun	_	10	punct	_	_
+
+</code></pre>
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+ccomp in other languages:
+
+[<a href="../../am/dep/ccomp.html">am</a>]
+
+[<a href="../../ar/dep/ccomp.html">ar</a>]
+
+[<a href="../../bg/dep/ccomp.html">bg</a>]
+
+[<a href="../../bxr/dep/ccomp.html">bxr</a>]
+
+[<a href="../../ca/dep/ccomp.html">ca</a>]
+
+[<a href="../../ckb/dep/ccomp.html">ckb</a>]
+
+[<a href="../../cop/dep/ccomp.html">cop</a>]
+
+[<a href="../../cs/dep/ccomp.html">cs</a>]
+
+[<a href="../../cu/dep/ccomp.html">cu</a>]
+
+[<a href="../../da/dep/ccomp.html">da</a>]
+
+[<a href="../../de/dep/ccomp.html">de</a>]
+
+[<a href="../../el/dep/ccomp.html">el</a>]
+
+[<a href="../../en/dep/ccomp.html">en</a>]
+
+[<a href="../../es/dep/ccomp.html">es</a>]
+
+[<a href="../../et/dep/ccomp.html">et</a>]
+
+[<a href="../../eu/dep/ccomp.html">eu</a>]
+
+[<a href="../../fa/dep/ccomp.html">fa</a>]
+
+[<a href="../../fi/dep/ccomp.html">fi</a>]
+
+[<a href="../../fo/dep/ccomp.html">fo</a>]
+
+[<a href="../../fr/dep/ccomp.html">fr</a>]
+
+[<a href="../../ga/dep/ccomp.html">ga</a>]
+
+[<a href="../../gl/dep/ccomp.html">gl</a>]
+
+[<a href="../../got/dep/ccomp.html">got</a>]
+
+[<a href="../../grc/dep/ccomp.html">grc</a>]
+
+[<a href="../../he/dep/ccomp.html">he</a>]
+
+[<a href="../../hi/dep/ccomp.html">hi</a>]
+
+[<a href="../../hr/dep/ccomp.html">hr</a>]
+
+[<a href="../../hu/dep/ccomp.html">hu</a>]
+
+[<a href="../../id/dep/ccomp.html">id</a>]
+
+[<a href="../../it/dep/ccomp.html">it</a>]
+
+[<a href="../../ja/dep/ccomp.html">ja</a>]
+
+[<a href="../../kk/dep/ccomp.html">kk</a>]
+
+[<a href="../../kmr/dep/ccomp.html">kmr</a>]
+
+[<a href="../../ko/dep/ccomp.html">ko</a>]
+
+[<a href="../../la/dep/ccomp.html">la</a>]
+
+[<a href="../../lv/dep/ccomp.html">lv</a>]
+
+[<a href="../../mr/dep/ccomp.html">mr</a>]
+
+[<a href="../../nl/dep/ccomp.html">nl</a>]
+
+[<a href="../../no/dep/ccomp.html">no</a>]
+
+[<a href="../../pl/dep/ccomp.html">pl</a>]
+
+[<a href="../../pt/dep/ccomp.html">pt</a>]
+
+[<a href="../../ro/dep/ccomp.html">ro</a>]
+
+[<a href="../../ru/dep/ccomp.html">ru</a>]
+
+[<a href="../../sa/dep/ccomp.html">sa</a>]
+
+[<a href="../../sk/dep/ccomp.html">sk</a>]
+
+[<a href="../../sla/dep/ccomp.html">sla</a>]
+
+[<a href="../../sl/dep/ccomp.html">sl</a>]
+
+[<a href="../../so/dep/ccomp.html">so</a>]
+
+[<a href="../../sr/dep/ccomp.html">sr</a>]
+
+[<a href="../../sv/dep/ccomp.html">sv</a>]
+
+[<a href="../../swl/dep/ccomp.html">swl</a>]
+
+[<a href="../../ta/dep/ccomp.html">ta</a>]
+
+[<a href="../../tr/dep/ccomp.html">tr</a>]
+
+[<a href="../../u/dep/ccomp.html">u</a>]
+
+[<a href="../../ug/dep/ccomp.html">ug</a>]
+
+[<a href="../../uk/dep/ccomp.html">uk</a>]
+
+[<a href="../../ur/dep/ccomp.html">ur</a>]
+
+[<a href="../../urj/dep/ccomp.html">urj</a>]
+
+[<a href="../../vi/dep/ccomp.html">vi</a>]
+
+[<a href="../../yue/dep/ccomp.html">yue</a>]
+
+[<a href="../../zh/dep/ccomp.html">zh</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'fi';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
