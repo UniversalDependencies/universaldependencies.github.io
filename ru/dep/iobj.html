@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>iobj</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-ru">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/ru/ru">ru/ru</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru/dep/iobj.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v1warning">
+	This page still pertains to UD version 1.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>iobj</code>: indirect object</h2>
+
+<p>The indirect object of a verb is any nominal phrase that is a core
+argument of the verb but is not its subject or <a href="obj">direct object</a>.
+The prototypical example is the recipient of ditransitive verbs of
+exchange:</p>
+
+<pre><code class="language-sdparse">Павел дал Петру две груши . \n Pavel gave Peter two pears .
+iobj(дал, Петру)
+iobj(gave, Peter)
+</code></pre>
+
+<p>However, Russian allows other semantic roles as additional objects.
+The morphological <a href="">ru-feat/Case</a> of the objects is dictated by verb valency.</p>
+
+<p>In the following Russian example, the verb takes two arguments. One of them is direct object (patient), the other is indirect (addressee). It is parallel to how the English translation would be annotated (where there is no morphological case marking) and also to verbs of giving (cf. a similar sentence, <em>he gave my daughter a class of maths</em>).</p>
+
+<pre><code class="language-sdparse">Он преподает моей дочери математику . \n He teaches my daughter.Dat maths.Acc .
+obj(преподает, математику)
+iobj(преподает, дочери)
+obj(teaches, maths.Acc)
+iobj(teaches, daughter.Dat)
+</code></pre>
+
+<p>In general, if there is just one object, it should be labeled
+<a href="">obj</a>, regardless of the morphological case or semantic role.
+For example, <em>преподавать</em> “to teach” can take either the subject matter or the recipient as the only object,
+and in both cases it would be analyzed as the <a href="">obj</a>:</p>
+
+<pre><code class="language-sdparse">Он преподает математику . \n He teaches maths .
+obj(преподает, математику)
+obj(teaches, maths)
+</code></pre>
+
+<pre><code class="language-sdparse">Он преподает студентам . \n He teaches students .
+obj(преподает, студентам)
+obj(teaches, students)
+</code></pre>
+
+<p>The one exception is when there is a clausal complement.
+Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an iobj, parallel to
+the simple ditransitive case:</p>
+
+<pre><code class="language-sdparse">Она сказала студентам , что сегодня вечером нужно учиться . \n She told students , that today evening they-needed to-study .
+iobj(сказала, студентам)
+ccomp(сказала, нужно)
+iobj(told, students)
+ccomp(told, they-needed)
+</code></pre>
+
+<pre><code class="language-sdparse">Она рассказала студентам свой план . \n She told students her plan .
+iobj(рассказала, студентам)
+obj(рассказала, план)
+iobj(told, students)
+obj(told, plan)
+</code></pre>
+
+<p>If there are two or more objects, one of them should be <a href="">obj</a> and the others should be <code>iobj</code>. In such cases it is necessary to decide what is the most directly affected object <em>(patient)</em>, and the Accusative <a href="">ru-feat/Case</a> has priority over the Dative, Instrumental, and Genitive cases.</p>
+
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+
+<hr />
+
+<h2 id="treebank-statistics-udrussian">Treebank Statistics (UD_Russian)</h2>
+
+<p>This relation is universal.</p>
+
+<p>962 nodes (1%) are attached to their parents as <code>iobj</code>.</p>
+
+<p>808 instances of <code>iobj</code> (84%) are left-to-right (parent precedes child).
+Average distance between parent and child is 2.03222453222453.</p>
+
+<p>The following 24 pairs of parts of speech are connected with <code>iobj</code>: <a href="">ru-pos/VERB</a>-<a href="">ru-pos/NOUN</a> (578; 60% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/PRON</a> (141; 15% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/PROPN</a> (83; 9% instances), <a href="">ru-pos/NOUN</a>-<a href="">ru-pos/NOUN</a> (71; 7% instances), <a href="">ru-pos/ADJ</a>-<a href="">ru-pos/NOUN</a> (32; 3% instances), <a href="">ru-pos/NOUN</a>-<a href="">ru-pos/PROPN</a> (12; 1% instances), <a href="">ru-pos/ADJ</a>-<a href="">ru-pos/PRON</a> (9; 1% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/DET</a> (8; 1% instances), <a href="">ru-pos/NOUN</a>-<a href="">ru-pos/PRON</a> (4; 0% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/ADV</a> (4; 0% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/NUM</a> (3; 0% instances), <a href="">ru-pos/ADV</a>-<a href="">ru-pos/NOUN</a> (2; 0% instances), <a href="">ru-pos/NOUN</a>-<a href="">ru-pos/DET</a> (2; 0% instances), <a href="">ru-pos/PROPN</a>-<a href="">ru-pos/PROPN</a> (2; 0% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/ADJ</a> (2; 0% instances), <a href="">ru-pos/ADJ</a>-<a href="">ru-pos/ADV</a> (1; 0% instances), <a href="">ru-pos/ADJ</a>-<a href="">ru-pos/NUM</a> (1; 0% instances), <a href="">ru-pos/ADJ</a>-<a href="">ru-pos/PROPN</a> (1; 0% instances), <a href="">ru-pos/ADP</a>-<a href="">ru-pos/NOUN</a> (1; 0% instances), <a href="">ru-pos/ADP</a>-<a href="">ru-pos/PRON</a> (1; 0% instances), <a href="">ru-pos/AUX</a>-<a href="">ru-pos/NOUN</a> (1; 0% instances), <a href="">ru-pos/NUM</a>-<a href="">ru-pos/PRON</a> (1; 0% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/ADP</a> (1; 0% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/VERB</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 3 5 iobj	color:blue
+1	Жена	ЖЕНА	NOUN	NN	Animacy=Anim|Case=Nom|Gender=Fem|Number=Sing	3	nsubj	_	_
+2	Дзодзуашвили	ДЗОДЗУАШВИЛИ	PROPN	NNP	Animacy=Anim|Case=Gen|Gender=Masc|Number=Sing	1	nmod	_	_
+3	приходится	ПРИХОДИТЬСЯ	VERB	VBC	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Mid	0	root	_	_
+4	тетей	ТЕТЯ	NOUN	NN	Animacy=Anim|Case=Ins|Gender=Fem|Number=Sing	3	advmod	_	_
+5	жене	ЖЕНА	NOUN	NN	Animacy=Anim|Case=Dat|Gender=Fem|Number=Sing	3	iobj	_	_
+6	Владимира	ВЛАДИМИР	PROPN	NNP	Animacy=Anim|Case=Gen|Gender=Masc|Number=Sing	5	nmod	_	_
+7	Гуцаева	ГУЦАЕВ	PROPN	NNP	Animacy=Anim|Case=Gen|Gender=Masc|Number=Sing	6	flat	_	SpaceAfter=No
+8	.	.	PUNCT	.	_	3	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 2 3 iobj	color:blue
+1	Они	ОНИ	PRON	PRP	Case=Nom|Number=Plur|Person=3	2	nsubj	_	_
+2	сказали	СКАЗАТЬ	VERB	VBC	Aspect=Perf|Mood=Ind|Number=Plur|Tense=Past|VerbForm=Fin	0	root	_	_
+3	мне	Я	PRON	PRP	Case=Dat|Number=Sing|Person=1	2	iobj	_	SpaceAfter=No
+4	,	,	PUNCT	,	_	8	punct	_	_
+5	что	ЧТО	SCONJ	IN	_	8	mark	_	_
+6	им	ОНИ	PRON	PRP	Case=Dat|Number=Plur|Person=3	8	iobj	_	_
+7	очень	ОЧЕНЬ	ADV	RB	_	8	advmod	_	_
+8	понравилось	ПОНРАВИТЬСЯ	VERB	VBC	Aspect=Perf|Gender=Neut|Mood=Ind|Number=Sing|Tense=Past|VerbForm=Fin|Voice=Mid	2	ccomp	_	_
+9	мое	МОЙ	DET	PRP$	Animacy=Inan|Case=Nom|Gender=Neut|Number=Sing|Person=1	10	det	_	_
+10	выступление	ВЫСТУПЛЕНИЕ	NOUN	NN	Animacy=Inan|Case=Nom|Gender=Neut|Number=Sing	8	nsubj	_	SpaceAfter=No
+11	.	.	PUNCT	.	_	2	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+# visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+# visual-style 6 7 iobj	color:blue
+1	Наиболее	НАИБОЛЕЕ	ADV	RBS	Degree=Sup	2	advmod	_	_
+2	известный	ИЗВЕСТНЫЙ	ADJ	JJL	Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing	4	amod	_	_
+3	русский	РУССКИЙ	ADJ	JJL	Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing	4	amod	_	_
+4	перевод	ПЕРЕВОД	NOUN	NN	Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing	6	nsubj:pass	_	_
+5	был	БЫТЬ	AUX	VBC	Aspect=Imp|Gender=Masc|Mood=Ind|Number=Sing|Tense=Past|VerbForm=Fin	6	aux:pass	_	_
+6	сделан	СДЕЛАТЬ	VERB	VBNH	Animacy=Inan|Aspect=Perf|Case=Nom|Gender=Masc|Number=Sing|Tense=Past|Variant=Short|VerbForm=Part|Voice=Pass	0	root	_	_
+7	Даниилом	ДАНИИЛ	PROPN	NNP	Animacy=Anim|Case=Ins|Gender=Masc|Number=Sing	6	iobj	_	_
+8	Хармсом	ХАРМС	PROPN	NNP	Animacy=Anim|Case=Ins|Gender=Masc|Number=Sing	7	flat	_	SpaceAfter=No
+9	.	.	PUNCT	.	_	6	punct	_	_
+
+</code></pre>
+
+<hr />
+
+<h2 id="treebank-statistics-udrussian-syntagrus">Treebank Statistics (UD_Russian-SynTagRus)</h2>
+
+<p>This relation is universal.</p>
+
+<p>1249 nodes (0%) are attached to their parents as <code>iobj</code>.</p>
+
+<p>731 instances of <code>iobj</code> (59%) are left-to-right (parent precedes child).
+Average distance between parent and child is 3.11609287429944.</p>
+
+<p>The following 32 pairs of parts of speech are connected with <code>iobj</code>: <a href="">ru-pos/VERB</a>-<a href="">ru-pos/NOUN</a> (693; 55% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/PRON</a> (215; 17% instances), <a href="">ru-pos/ADV</a>-<a href="">ru-pos/PRON</a> (58; 5% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/PROPN</a> (54; 4% instances), <a href="">ru-pos/NOUN</a>-<a href="">ru-pos/NOUN</a> (40; 3% instances), <a href="">ru-pos/ADJ</a>-<a href="">ru-pos/NOUN</a> (36; 3% instances), <a href="">ru-pos/ADJ</a>-<a href="">ru-pos/PRON</a> (36; 3% instances), <a href="">ru-pos/ADV</a>-<a href="">ru-pos/NOUN</a> (33; 3% instances), <a href="">ru-pos/NOUN</a>-<a href="">ru-pos/PRON</a> (31; 2% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/ADJ</a> (6; 0% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/DET</a> (6; 0% instances), <a href="">ru-pos/ADJ</a>-<a href="">ru-pos/PROPN</a> (5; 0% instances), <a href="">ru-pos/NOUN</a>-<a href="">ru-pos/PROPN</a> (5; 0% instances), <a href="">ru-pos/ADJ</a>-<a href="">ru-pos/ADJ</a> (3; 0% instances), <a href="">ru-pos/NOUN</a>-<a href="">ru-pos/ADJ</a> (3; 0% instances), <a href="">ru-pos/PRON</a>-<a href="">ru-pos/PRON</a> (3; 0% instances), <a href="">ru-pos/ADV</a>-<a href="">ru-pos/PROPN</a> (2; 0% instances), <a href="">ru-pos/PART</a>-<a href="">ru-pos/PRON</a> (2; 0% instances), <a href="">ru-pos/PROPN</a>-<a href="">ru-pos/NOUN</a> (2; 0% instances), <a href="">ru-pos/PROPN</a>-<a href="">ru-pos/PROPN</a> (2; 0% instances), <a href="">ru-pos/PUNCT</a>-<a href="">ru-pos/NOUN</a> (2; 0% instances), <a href="">ru-pos/VERB</a>-<a href="">ru-pos/VERB</a> (2; 0% instances), <a href="">ru-pos/ADJ</a>-<a href="">ru-pos/DET</a> (1; 0% instances), <a href="">ru-pos/ADP</a>-<a href="">ru-pos/PRON</a> (1; 0% instances), <a href="">ru-pos/ADV</a>-<a href="">ru-pos/ADJ</a> (1; 0% instances), <a href="">ru-pos/ADV</a>-<a href="">ru-pos/DET</a> (1; 0% instances), <a href="">ru-pos/DET</a>-<a href="">ru-pos/PRON</a> (1; 0% instances), <a href="">ru-pos/NOUN</a>-<a href="">ru-pos/DET</a> (1; 0% instances), <a href="">ru-pos/NUM</a>-<a href="">ru-pos/NOUN</a> (1; 0% instances), <a href="">ru-pos/PRON</a>-<a href="">ru-pos/DET</a> (1; 0% instances), <a href="">ru-pos/PRON</a>-<a href="">ru-pos/NOUN</a> (1; 0% instances), <a href="">ru-pos/PROPN</a>-<a href="">ru-pos/PRON</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 6	bgColor:blue
+# visual-style 6	fgColor:white
+# visual-style 6 4 iobj	color:blue
+1	Например	например	ADV	_	Degree=Pos	6	parataxis	6:parataxis	SpaceAfter=No
+2	,	,	PUNCT	_	_	1	punct	1:punct	_
+3	для	для	ADP	_	_	4	case	4:case	_
+4	описания	описание	NOUN	_	Animacy=Inan|Case=Gen|Gender=Neut|Number=Sing	6	iobj	6:iobj	_
+5	алгоритма	алгоритм	NOUN	_	Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing	4	nmod	4:nmod	_
+6	применяются	применять	VERB	_	Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass	0	root	0:root	_
+7	блок-схемы	блок-схема	NOUN	_	Animacy=Inan|Case=Nom|Gender=Fem|Number=Plur	6	nsubj:pass	6:nsubj:pass	SpaceAfter=No
+8	.	.	PUNCT	_	_	7	punct	7:punct	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 5 4 iobj	color:blue
+1	-	-	PUNCT	_	_	2	punct	2:punct	_
+2	Что	что	PRON	_	Case=Acc	5	obj	5:obj	_
+3	для	для	ADP	_	_	4	case	4:case	_
+4	вас	вы	PRON	_	Case=Gen|Number=Plur|Person=2	5	iobj	5:iobj	_
+5	значит	значить	VERB	_	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	0:root	_
+6	название	название	NOUN	_	Animacy=Inan|Case=Nom|Gender=Neut|Number=Sing	5	nsubj	5:nsubj	_
+7	картины	картина	NOUN	_	Animacy=Inan|Case=Gen|Gender=Fem|Number=Sing	6	nmod	6:nmod	_
+8	-	-	PUNCT	_	_	7	punct	7:punct	_
+9	"	"	PUNCT	_	_	10	punct	10:punct	SpaceAfter=No
+10	Социальная	социальный	ADJ	_	Case=Nom|Degree=Pos|Gender=Fem|Number=Sing	11	amod	11:amod	_
+11	сеть	сеть	NOUN	_	Animacy=Inan|Case=Nom|Gender=Fem|Number=Sing	6	parataxis	6:parataxis	SpaceAfter=No
+12	"	"	PUNCT	_	_	11	punct	11:punct	SpaceAfter=No
+13	?	?	PUNCT	_	_	11	punct	11:punct	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 1 2 iobj	color:blue
+1	Здесь	здесь	ADV	_	Degree=Pos	0	root	0:root	_
+2	нам	мы	PRON	_	Case=Dat|Number=Plur|Person=1	1	iobj	1:iobj	_
+3	и	и	CCONJ	_	_	7	cc	7:cc	_
+4	шестиногость	шестиногость	NOUN	_	Animacy=Inan|Case=Nom|Gender=Fem|Number=Sing	1	nsubj	1:nsubj	SpaceAfter=No
+5	,	,	PUNCT	_	_	4	punct	4:punct	_
+6	и	и	CCONJ	_	_	7	cc	7:cc	_
+7	многоголовость	многоголовость	NOUN	_	Animacy=Inan|Case=Nom|Gender=Fem|Number=Sing	4	conj	4:conj	SpaceAfter=No
+8	!	!	PUNCT	_	_	7	punct	7:punct	_
+
+</code></pre>
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+iobj in other languages:
+
+[<a href="../../am/dep/iobj.html">am</a>]
+
+[<a href="../../ar/dep/iobj.html">ar</a>]
+
+[<a href="../../bg/dep/iobj.html">bg</a>]
+
+[<a href="../../bxr/dep/iobj.html">bxr</a>]
+
+[<a href="../../ca/dep/iobj.html">ca</a>]
+
+[<a href="../../ckb/dep/iobj.html">ckb</a>]
+
+[<a href="../../cop/dep/iobj.html">cop</a>]
+
+[<a href="../../cs/dep/iobj.html">cs</a>]
+
+[<a href="../../cu/dep/iobj.html">cu</a>]
+
+[<a href="../../da/dep/iobj.html">da</a>]
+
+[<a href="../../de/dep/iobj.html">de</a>]
+
+[<a href="../../el/dep/iobj.html">el</a>]
+
+[<a href="../../en/dep/iobj.html">en</a>]
+
+[<a href="../../es/dep/iobj.html">es</a>]
+
+[<a href="../../et/dep/iobj.html">et</a>]
+
+[<a href="../../eu/dep/iobj.html">eu</a>]
+
+[<a href="../../fa/dep/iobj.html">fa</a>]
+
+[<a href="../../fo/dep/iobj.html">fo</a>]
+
+[<a href="../../fr/dep/iobj.html">fr</a>]
+
+[<a href="../../gl/dep/iobj.html">gl</a>]
+
+[<a href="../../got/dep/iobj.html">got</a>]
+
+[<a href="../../grc/dep/iobj.html">grc</a>]
+
+[<a href="../../he/dep/iobj.html">he</a>]
+
+[<a href="../../hi/dep/iobj.html">hi</a>]
+
+[<a href="../../hr/dep/iobj.html">hr</a>]
+
+[<a href="../../hu/dep/iobj.html">hu</a>]
+
+[<a href="../../id/dep/iobj.html">id</a>]
+
+[<a href="../../it/dep/iobj.html">it</a>]
+
+[<a href="../../ja/dep/iobj.html">ja</a>]
+
+[<a href="../../kk/dep/iobj.html">kk</a>]
+
+[<a href="../../kmr/dep/iobj.html">kmr</a>]
+
+[<a href="../../ko/dep/iobj.html">ko</a>]
+
+[<a href="../../la/dep/iobj.html">la</a>]
+
+[<a href="../../lv/dep/iobj.html">lv</a>]
+
+[<a href="../../mr/dep/iobj.html">mr</a>]
+
+[<a href="../../nl/dep/iobj.html">nl</a>]
+
+[<a href="../../no/dep/iobj.html">no</a>]
+
+[<a href="../../pl/dep/iobj.html">pl</a>]
+
+[<a href="../../pt/dep/iobj.html">pt</a>]
+
+[<a href="../../ro/dep/iobj.html">ro</a>]
+
+[<a href="../../ru/dep/iobj.html">ru</a>]
+
+[<a href="../../sa/dep/iobj.html">sa</a>]
+
+[<a href="../../sk/dep/iobj.html">sk</a>]
+
+[<a href="../../sla/dep/iobj.html">sla</a>]
+
+[<a href="../../sl/dep/iobj.html">sl</a>]
+
+[<a href="../../so/dep/iobj.html">so</a>]
+
+[<a href="../../sr/dep/iobj.html">sr</a>]
+
+[<a href="../../sv/dep/iobj.html">sv</a>]
+
+[<a href="../../swl/dep/iobj.html">swl</a>]
+
+[<a href="../../ta/dep/iobj.html">ta</a>]
+
+[<a href="../../tr/dep/iobj.html">tr</a>]
+
+[<a href="../../u/dep/iobj.html">u</a>]
+
+[<a href="../../ug/dep/iobj.html">ug</a>]
+
+[<a href="../../uk/dep/iobj.html">uk</a>]
+
+[<a href="../../ur/dep/iobj.html">ur</a>]
+
+[<a href="../../urj/dep/iobj.html">urj</a>]
+
+[<a href="../../vi/dep/iobj.html">vi</a>]
+
+[<a href="../../yue/dep/iobj.html">yue</a>]
+
+[<a href="../../zh/dep/iobj.html">zh</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'ru';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
