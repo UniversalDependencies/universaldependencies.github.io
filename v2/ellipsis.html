@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Ellipsis in UD v2</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/ellipsis.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="archived-discussion-on-ellipsis-in-ud-v2">Archived discussion on Ellipsis in UD v2</h1>
+
+<blockquote>
+  <h1 id="notice">Notice</h1>
+  <p>This is an archive page. The final documentation is here: <a href="http://universaldependencies.org/u/overview/specific-syntax.html#ellipsis">http://universaldependencies.org/u/overview/specific-syntax.html#ellipsis</a></p>
+</blockquote>
+
+<p>The <code>remnant</code> relation turned out to be a non-optimal way for analyzing complex ellipitical constructions. We therefore introduce the following changes in UD v2:</p>
+
+<ul>
+  <li>The <code>remnant</code> relation is discarded</li>
+  <li>In the case of simple head ellipsis, a dependent is promoted</li>
+  <li>In case of predicate ellipsis, we also use promotion but introduce a new relation <code>orphan</code> for non-standard dependency relations that arise</li>
+  <li>The complex cases of ellipsis should be analyzed with NULL nodes in the <em>enhanced</em> representation</li>
+</ul>
+
+<h2 id="problems-with-the-remnant-analysis">Problems with the <code>remnant</code> analysis</h2>
+
+<p>The <a href="http://universaldependencies.org/docs/u/dep/remnant.html">old analysis</a> of elliptical constructions using the <code>remnant</code> relation does not work well when the second clause contains additional modifiers of the elided predicate.</p>
+
+<pre><code class="language-sdparse">They had left the company , many for good .
+
+nsubj(left, They)
+obj(left, company)
+remnant(They, many)
+obl(many, good)
+</code></pre>
+
+<p>In this example, <em>for good</em> is modifying the elided <em>left</em> of the second clause. However, as no similar modifier exists in the first clause, <em>for good</em> cannot be attached with a <em>remnant</em> relation and no reasonable analysis of this sentence is possible. In practice, annotators attached the extra modifier to the subject of the second clause, which incorrectly suggests that <em>for good</em> is modifying the subject <em>many</em>.</p>
+
+<p>Additional issues of the <code>remnant</code> analysis are:</p>
+
+<ul>
+  <li>The dependency trees contain a lot of non-projective dependencies, which complicates parsing.</li>
+  <li>The requirement that every argument/modifier of the elided predicate has an antecedent, makes it impossible to analyze cross-sentence elliptical constructions. (This would require relations crossing sentence boundaries.)</li>
+</ul>
+
+<h2 id="head-ellipsis-in-ud-v2">Head ellipsis in UD v2</h2>
+
+<p>In the following cases of head ellipsis, we promote a dependent of the elided head.</p>
+
+<h3 id="nominals">Nominals</h3>
+
+<p>If the head nominal is elided, we promote dependents in the following order: <code>amod</code> &gt; <code>nummod</code> &gt; <code>det</code> &gt; <code>nmod</code> &gt; <code>case</code>.</p>
+
+<p>Examples:</p>
+
+<pre><code class="language-sdparse">Er kauft sich ein grünes Auto und sie kauft sich ein rotes . \n He buys himself a green car and she buys herself a red .
+
+nsubj(kauft-2, Er-1)
+det(Auto-6, ein-4)
+amod(Auto-6, grünes-5)
+obj(kauft-2, Auto-6)
+conj(kauft-2, kauft-9)
+nsubj(kauft-9, sie-8)
+obj(kauft-9, rotes-12)
+det(rotes-12, ein-11)
+</code></pre>
+
+<pre><code class="language-sdparse">She saw every animal at the zoo but he saw only some .
+
+nsubj(saw-2, She-1)
+det(animal-4, every-3)
+obj(saw-2, animal-4)
+conj(saw-2, saw-10)
+advmod(some-12, only-11)
+obj(saw-10, some-12)
+</code></pre>
+
+<pre><code class="language-sdparse">She saw three monkeys and he saw two .
+
+nsubj(saw-2, She-1)
+nummod(monkeys-4, three-3)
+obj(saw-2, monkeys-4)
+conj(saw-2, saw-7)
+obj(saw-7, two-8)
+</code></pre>
+
+<h3 id="clauses">Clauses</h3>
+
+<p>If the main predicate is elided, we use simple promotion only if there is an <code>aux</code> or <code>cop</code>, or a <code>mark</code> in the case of an infinitival marker.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-sdparse">Sue likes pasta and Peter does , too . 
+
+nsubj(likes-2, Sue-1)
+obj(likes-2, pasta-3)
+conj(likes-2, does-6)
+nsubj(does-6, Peter-5)
+advmod(does-6, too-8)
+</code></pre>
+
+<pre><code class="language-sdparse">Sue is hungry and Peter is , too . 
+
+nsubj(hungry-3, Sue-1)
+cop(hungry-3, is-2)
+conj(hungry-3, is-6)
+nsubj(is-6, Peter-5)
+advmod(is-6, too-8)
+</code></pre>
+
+<pre><code class="language-sdparse">They will do it if they want to .
+
+nsubj(will-2, They-1)
+aux(do-3, will-2)
+obj(it-4, do-3)
+advcl(do-3, want-7)
+nsubj(want-7, they-6)
+xcomp(want-7, to-8)
+</code></pre>
+
+<h2 id="predicate-ellipsis-in-basic-ud-v2">Predicate ellipsis in <em>Basic</em> UD v2</h2>
+
+<p>In more complicated cases where a predicate is elided but no <code>aux</code> or <code>cop</code> is present, promotion would lead to very unnatural and confusing relations. For example, in the following sentence, <em>you</em> would be the subject of <em>coffee</em>, suggesting that the second clause contains a copular construction rather than an elided predicate.</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee .
+
+nsubj(like-2, I-1)
+obj(like-2, tea-3)
+nsubj(coffee-6, you-5)
+conj(like-2, coffee-6)
+</code></pre>
+
+<p>We considered two alternative proposals for dealing with such cases in UD basic dependencies, one that make use of composite relations (but do not introduce any new relations) and one that instead adds a new relation named <code>orphan</code> to preserve intuitions about constituency. In the end we adopted alternative 2.</p>
+
+<h3 id="predicate-ellipis-1-composite-relations-rejected-variant">Predicate ellipis 1: composite relations (rejected variant)</h3>
+
+<p>The first alternative is to attach orphans to their grandparent with a composite relation of the form <code>headrel&gt;orphanrel</code>.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee .
+
+nsubj(like-2, I-1)
+obj(like-2, tea-3)
+conj&gt;nsubj(like-2, you-5)
+conj&gt;obj(like-2, coffee-6)
+</code></pre>
+
+<p>If the grandparent is also elided, the relation is composed of all three relations and the orphan is attached to its great-grandparent.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-sdparse">Mary wants to buy a book and Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+obj(buy-4, book-6)
+conj&gt;nsubj(wants-2, Jenny-8)
+conj&gt;xcomp&gt;obj(wants-2, CD-10)
+</code></pre>
+
+<p>Unlike the analysis using the <code>remnant</code> relation, this proposal also allows us to analyze sentences in which the second clause contains additional modifiers.</p>
+
+<pre><code class="language-sdparse">They had left the company , many for good .
+
+nsubj(left, They)
+obj(left, company)
+conj&gt;nsubj(left, many)
+conj&gt;nmod(left, good)
+</code></pre>
+
+<p>This approach can also be used when the antecedent of the elided node is in another sentence. The artificial ROOT node is now allowed to have more than one child, but only if all are attached via composite relations, starting with <code>root&gt;</code>.</p>
+
+<pre><code class="language-sdparse">Mary wants to buy a book . ROOT And Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+obj(buy-4, book-6)
+root&gt;nsubj(ROOT, Jenny)
+root&gt;xcomp&gt;obj(ROOT, CD)
+</code></pre>
+
+<h3 id="predicate-ellipis-2-orphan-instead-of-remnant-approved-variant">Predicate ellipis 2: orphan instead of remnant (approved variant)</h3>
+
+<p>The second alternative preserves the integrity of the second conjunct as a single subtree by (arbitrarily) promoting one of the orphans to the (subclause) root and attaching the others with a new dummy relation <code>orphan</code>. Here are the same examples annotated according to this alternative:</p>
+
+<pre><code class="language-sdparse">I like tea and you coffee .
+
+nsubj(like-2, I-1)
+obj(like-2, tea-3)
+conj(like-2, you-5)
+cc(you-5, and-4)
+orphan(you-5, coffee-6)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book and Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+obj(buy-4, book-6)
+conj(wants-2, Jenny-8)
+orphan(Jenny-8, CD-10)
+</code></pre>
+
+<pre><code class="language-sdparse">They had left the company , many for good .
+
+nsubj(left, They)
+obj(left, company)
+conj(left, many)
+orphan(many, good)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book . ROOT And Jenny a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+obj(buy-4, book-6)
+root(ROOT, Jenny)
+orphan(Jenny, CD)
+</code></pre>
+
+<p>Note that the <code>orphan</code> relation is only used when an ordinary relation would be misleading (for example, when attaching an object to a subject). In particular, the ordinary <code>cc</code> relation should be used for the coordinating conjunction, which attaches to the pseudo-constituent formed through the <code>orphan</code> dependency.</p>
+
+<p>All things considered, alternative 2 was judged to be the best analysis because it preserves the integrity of clauses, avoids the introduction of complex labels, and harmonizes well with the promotion analysis used for simpler cases of ellipsis.</p>
+
+<h2 id="predicate-ellipsis-in-enhanced-ud-v2">Predicate ellipsis in <em>Enhanced</em> UD v2</h2>
+
+<p>While we hold on to the principle that <em>basic</em> UD trees have to be strict surface syntax trees, we propose to relax this requirement in the <em>enhanced</em> representation and to allow special null nodes for sentences with elided predicates. These nodes have special word indices of the form <em>Ea.b</em>, where <em>a</em> is the index of the token that would precede the elided word and <em>b</em> is a counter. (See also the description of the <a href="conll-u.html">changes</a> to the CoNLL-U file format.) Whenever the <em>basic</em> representation contains an instance of the <code>orphan</code> relation, the <em>enhanced</em> representation contains additional null nodes so that all orphans can be attached to their real (ellided) parent.</p>
+
+<p>For example, the sentences from the previous section are analyzed as following in the <em>enhanced</em> representation. (The special null nodes are labelled with <em>Ea.b</em> .)</p>
+
+<pre><code class="language-sdparse">I like tea and you E5.1 coffee .
+
+nsubj(like-2, I-1)
+obj(like-2, tea-3)
+nsubj(E5.1-6, you-5)
+conj(like-2, E5.1-6)
+obj(E5.1-6, coffee-7)
+</code></pre>
+
+<pre><code class="language-sdparse">Mary wants to buy a book and Jenny E8.1 E8.2 a CD .
+
+nsubj(wants-2, Mary-1)
+xcomp(wants-2, buy-4)
+obj(buy-4, book-6)
+conj(wants-2, E8.1-9)
+nsubj(E8.1-9, Jenny-8)
+xcomp(E8.1-9, E8.2-10)
+obj(E8.2-10, CD-12)
+</code></pre>
+
+<pre><code class="language-sdparse">They had left the company , many E7.1 for good .
+
+nsubj(left, They)
+obj(left, company)
+conj(left, E7.1)
+nsubj(E7.1, many)
+nmod(E7.1, good)
+</code></pre>
+
+<p>In the first example, the node <em>E5.1</em> is added for the elided predicate <em>like</em>. In the second example, we add one node for the elided matrix verb <em>wants</em> (<em>E8.1</em>) and one node for the elided embedded verb <em>buy</em> (<em>E8.2</em>). As the elided marker <em>to</em> does not have any dependents, we do not add a null node for it.</p>
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'v2';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Minimal documentation</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/minimaldoc.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v1warning">
+	This page still pertains to UD version 1.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="minimal-requirements-for-language-specific-documentation">Minimal requirements for language-specific documentation</h1>
+
+<p>We also discussed in Prague that there are many places in the universal guidelines where we require
+that language-specific documentation specifies how a particular thing works in the language but
+then the language-specific documentation either does not exist or is not clear enough about the
+given point.</p>
+
+<p>There is no doubt that we want to encourage people to document their data, but we do not want to
+ban data in languages that are not documented—it is usually better to have undocumented data than
+no data at all.</p>
+
+<p>However, we should create a page in the universal guidelines that would summarize (perhaps even
+as a web form) all the questions to which language-specific sections are supposed to provide
+answers.</p>
+
+<p>The list below could become the first version of such summary but it is currently incomplete.
+It should also contain references to documentation pages where the answers should appear,
+and ideally also links to such pages in languages where they already exist and can serve as example.</p>
+
+<ul>
+  <li>Introduction:
+    <ul>
+      <li>We have just one documentation section per language, but sometimes we have several treebanks per language.
+If this is the case, each such treebank should be mentioned in the introductory page, and a hyperlink to
+the README file in the corresponding data repository should be provided.</li>
+      <li>Is this treebank automatically converted from a non-UD treebank (and if so, have all sentences been manually checked or not),
+or was it annotated natively in UD?</li>
+      <li>POS tags and dependency relations should be annotated manually at least in the original (pre-conversion) treebank.
+Features and lemmas are not obligatory, and they may be also predicted automatically, if manual annotation is not available.
+The introduction and the README file must clearly state what parts of the annotation are
+manual and native UD / manual non-UD, then automatically converted / automatically predicted, no or incomplete manual checking.
+The same information should also be repeated in morphology overview (for lemmas, POS tags and features) and in syntax overview (for dependency relations). We may even consider making this mandatory metadata in the README.</li>
+    </ul>
+  </li>
+  <li>Word segmentation:
+    <ul>
+      <li>Does the writing system use spaces to separate words?
+(If not, then it should not contain multi-word tokens and it probably does not contain the
+<code>SpaceAfter=No</code> attribute but the data should be understood as if the attribute occurred at
+every word. Examples are Chinese, Japanese and Thai.)</li>
+      <li>Does the writing system use spaces inside words?
+(It means that spaces are not used to separate words and implies “yes” to the previous question.
+Vietnamese is probably the only example.)</li>
+      <li>Are there exceptional (and approved by UD) cases where the orthography allows spaces inside words
+even if the language is not Vietnamese? If so, list them.
+(Currently the only candidate—not approved yet!—is the space inside long numbers in some languages,
+e.g. “1 000 000”. Example languages would be French and Czech.)</li>
+      <li>Is it possible to fuse two or more syntactic words into one multiword token on the surface?
+If so, describe all types of such fusions.
+Note that punctuation written adjacent to a word does not constitute a fusion.</li>
+    </ul>
+  </li>
+  <li>Morphology and part of speech:
+    <ul>
+      <li>All language-specific features and values should be documented, especially if this is the only language
+where they are used. This has higher priority then documenting the universal features with native examples.</li>
+      <li>There are probably restrictions on what features can be used with what POS categories.
+All tag documenting pages should list features relevant for the tag, and inversely,
+all feature documenting pages should list POS categories to which the feature may apply.</li>
+      <li>Does the language have words that share properties of verbs and other parts of speech (participles, gerunds, converbs)?
+Is their tag <code>VERB</code>, or are they treated as derived <code>ADJ</code>, <code>NOUN</code> or <code>ADV</code>?
+If their tag is not <code>VERB</code>, are they still recognizable by <code>VerbForm</code> and other verbal features?</li>
+      <li>How are the pronominal words delimited and partitioned?
+All pronouns, determiners (pronominal adjectives), pronominal quantifiers and pronominal adverbs should be listed and assigned a category. If it is necessary to leave a subset of these words to be disambiguated by context (function), it should be mentioned explicitly and explained.</li>
+      <li>If the language uses the <a href="/u/pos/PART.html">PART</a> category (particles), all particles must be listed
+and for each it must be explained why it is a particle and why it cannot be anything else.</li>
+    </ul>
+  </li>
+  <li>Syntax:
+    <ul>
+      <li>All subtypes of dependency relations should be documented, especially if this is the only language
+where they are used. This has higher priority then documenting the universal relations with native examples.</li>
+      <li>Is there a copula in the language? What is its lemma? Typically, there is only one <code>VERB</code> serving as copula, sometimes two.
+It’s meaning corresponds to the English <em>to be</em>. In some languages it is omitted in the present tense but usually there
+are forms for other tenses. Other similar verbs like English <em>to become</em> have an additional meaning shade and they are not treated as copula in UD, although traditional grammars may think otherwise. Also, when a verb is copula in UD, we consider all instances where it links a subject to additional information as copular, i.e. even if the additional information is location. If the verb can still have non-copular functions (such as being auxiliary in periphrastic tenses), the documentation should also say it.</li>
+      <li>Are there auxiliary verbs (or particles), used to construct periphrastic tense-aspect-mood categories? List all lemmas that
+may occur (or must occur) as auxiliaries and what TAM categories they are used in.</li>
+    </ul>
+  </li>
+</ul>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'v2';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

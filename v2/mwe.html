@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Multiword Expressions in UD v2</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/mwe.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="multiword-expressions-in-ud-v2">Multiword Expressions in UD v2</h1>
+
+<p>Since UD does not allow “words with spaces” (but see a partly new proposal under <a href="word-segmentation.html">word segmentation</a>), even completely fixed multiword expressions must be annotated with (dummy) dependency relations. To improve annotation consistency, we propose the following change for v2:</p>
+
+<ul>
+  <li>Rename <code>mwe</code> to <a href="">u-dep/fixed</a> and make clear that this should only be used for completely fixed expressions
+<!--* Change the direction of arrows (right-to-left instead of left-to-right) for this relation as well as the other non-dependency relations [u-dep/name]() and [u-dep/foreign]() (see also [semantic categories](semantic-categories.html))--></li>
+  <li>Rename <code>name</code> to <a href="">u-dep/flat</a> and extend its use to semi-fixed multiword expressions that do not have a clear syntactic head. (See <a href="semantic-categories.html">semantic categories</a>.)</li>
+  <li>Remove <code>foreign</code> and subsume its use under the new relation <a href="">u-dep/flat</a>.</li>
+  <li>Add a new subtype of <a href="">u-dep/compound</a> for handling serial verb constructions in analogy with particle verbs
+and grammticized light verb constructions.</li>
+</ul>
+
+<h2 id="rename-mwe-to-fixed">Rename mwe to fixed</h2>
+
+<p>It seems that the label <code>mwe</code> (multiword expression) has led to a lot of confusion. It was never intended for multiword expressions like “kick the bucket”, or Fr. “pomme de terre” (potato). It has always been restricted to the <em>fixed expressions</em> category of
+<a href="http://lingo.stanford.edu/pubs/WP-2001-03.pdf">Sag et al.</a>, excluding any relations in scope of <code>name</code> or <a href="">u-dep/compound</a>. The label <a href="">u-dep/fixed</a> reflects this fact better.</p>
+
+<p>The proposed change is therefore to change the label <code>mwe</code> (multiword expression) to <a href="">u-dep/fixed</a>, and making the guidelines more restrictive (namely, <code>fixed</code> is used <strong>only</strong> for completely fixed grammaticized expressions that behave like function words or short adverbials).</p>
+
+<h2 id="remove-foreign">Remove foreign</h2>
+
+<p>The <code>foreign</code> relation does not denote a proper dependency relation and it now seems appropriate to subsume it under the new generalized <code>flat</code> relation. Note that there was never a special part-of-speech tag for foreign words, which were tagged <code>X</code> in cases where they could not be given a proper tag. The use of <code>flat</code> in syntax can be seen as parallel to this. A subtype <code>flat:foreign</code> can be used to preserve information in existing treebanks.</p>
+
+<h2 id="serial-verb-constructions">Serial verb constructions</h2>
+
+<p>Serial verb constructions are typologically important and inadequately covered by UD v1. In the absence of a deeper analysis of this class of expressions, which may be worth a special universal relation, we propose to treat them as a subtype of <a href="u-dep/compound">compound</a> and use <code>compound:svc</code> in analogy with the existing subtypes <code>compound:prt</code> for particle verbs and <code>compound:lvc</code> for grammaticized light verb constructions.</p>
+
+<!--## Change arrow direction
+
+For non-dependency relations, it was (more or less) arbitrarily decided in v1 to draw arrows from left to right out of the first word. With hindsight, a more harmonious choice for most languages would have been to instead draw arrows from right to left out of the last word. We propose to make this change for `fixed` (currently [u-dep/mwe]()), [u-dep/foreign]() and `flat` (currently [u-dep/name]()). Examples:
+
+~~~ sdparse
+I like dogs as well as cats
+fixed(as-6, well-5)
+fixed(as-6, as-4)
+~~~
+
+~~~ sdparse
+He cried because of you
+fixed(of, because)
+~~~
+
+~~~ sdparse
+Je préfère prendre un dessert plutôt qu' une entrée \n I prefer getting a dessert rather than an appetizer
+fixed(qu', plutôt)
+~~~
+
+~~~ sdparse
+She said : ez esan lasai
+parataxis(said, lasai)
+foreign(lasai, esan)
+foreign(lasai, ez)
+~~~
+
+~~~ sdparse
+Usain Bolt won the race
+nsubj(won, Bolt)
+flat(Bolt, Usain)
+~~~
+
+However we do not extend this change to the [u-dep/reparandum]() relation. In repairs, the material to the right will be the "correct" material, and it would seem strange to have something that the speaker of the utterance wants to discard as a direct dependent of the other words in the sentence while the corrected word is buried down in the dependency graph.
+As noted by Gerdes & Kahane (2016), there are of course borderline cases between elaboration and disfluency such as *I saw a room, a bright room, a room with red lights*, but it doesn't seem wrong to us to take the last element *a room with red lights* as the governor of *a room* and *a bright room*.-->
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'v2';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

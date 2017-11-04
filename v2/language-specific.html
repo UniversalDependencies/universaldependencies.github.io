@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Language-specific subtypes and syntactic features in UD v2</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/language-specific.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v1warning">
+	This page still pertains to UD version 1.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="language-specific-subtypes-and-features-in-ud-v2">Language-specific subtypes and features in UD v2</h1>
+
+<p>Whereas the morphological annotation layer allows an arbitrary number of features (universal or language-specific) on top of the universal part-of-speech tags, the syntactic annotation is limited to universal syntactic relations and language-specific subtypes of these. (In addition, there is the enhanced representation, which allows additional relations to be added but does not really provide a mechanism for subclassifying basic syntactic relations.) This has led to a situation where subtypes are used to encode a rather heterogeneous set of distinctions with very little consistency across treebanks. Moreover, because only one level of subtyping is allowed, there is a blocking effect such that, if a treebank uses subtypes for one dimension (say, LVC-hood), it cannot encode any other dimension (at least not for one and the same relation). For v2 we therefore propose two changes:</p>
+
+<ul>
+  <li>Subtyping should be restricted to a proper subclassification of syntactic relations</li>
+  <li>Other types of information could instead be expressed as <strong>syntactic features</strong> (yet to be defined)</li>
+</ul>
+
+<h1 id="syntactic-subtypes">Syntactic subtypes</h1>
+
+<p>The following (existing) subtypes are plausible candidates for proper syntactic subtypes:</p>
+
+<ul>
+  <li><strong>acl:relcl</strong> - A relative clause is a special type of <a href="">u-dep/acl</a>, normally with a characteristic syntactic structure (with relativization of a major clause participant).</li>
+  <li><strong>advcl:compar</strong> - A comparative clause is a special type of <a href="">u-dep/advcl</a>, which again has a characteristic syntactic structure (introduced by a marker such as “as” or “than”) and furthermore puts syntactic constraints on the matrix clause (a function word such as “as” or “more” that correlates with the marker); other possible subtypes of <a href="">u-dep/advcl</a> could come from the traditional subclassification of adverbial clauses as conditional, temporal, consecutive, and so on.</li>
+  <li><strong>advmod:tmod</strong> - A temporal modifier is a special type of adverbial modifier; as for adverbial clauses there is a traditional taxonomy that could be used to subclassify <a href="">u-dep/advmod</a> as referring to time, place, manner, etc.</li>
+  <li><strong>aux:caus</strong>, <strong>aux:q</strong> - These are special types of auxiliary verbs used to form causatives and questions, respectively; this seems to be well in line with the proposal to replace <a href="">u-dep/auxpass</a> with the subtype <strong>aux:pass</strong> (see proposal on <a href="core-dependents.html">core dependents</a>).</li>
+  <li><strong>cc:preconj</strong> - Words like “both” and “either” have a special role in coordinated structures, distinct from the one filled by “and” and “or”, so it seems appropriate to have a subtype for this relation.</li>
+  <li><strong>compound:lvc</strong>, <strong>compound:prt</strong> - Complex predicates in languages like Persian and particle verbs in Germanic languages are special types of compounds, with characteristic syntactic properties.</li>
+  <li><strong>nmod:agent</strong>, <strong>nmod:poss</strong> - These are pecial types of nominal modifiers used to express the agent of a passive verb and a genitive/possessive modifier, respectively; nominal modifiers can however be subclassified in many ways, so we need to make sure that we have a consistent taxonomy.</li>
+  <li><strong>nsubj:cop</strong> - The subject of a nominal clause (with or without an overt copula verb) is often distinguished from other subjects in language typology; in addition, this subtype is needed for disambiguation when the predicate of a nominal clause is itself a clause.</li>
+</ul>
+
+<p>Finally, if we merge <a href="">u-dep/dobj</a> and <a href="">u-dep/iobj</a> to <strong>obj</strong>, it seems natural to subclassify objects into direct (<strong>obj:dir</strong>) and indirect (<strong>obj:ind</strong>) (see proposal on <a href="core-dependents.html">core dependents</a>).</p>
+
+<p>Here are some examples of subtypes that we think are less suitable, partly because of the blocking effect discussed above:</p>
+
+<ul>
+  <li><strong>:mwe</strong> - Except for fixed multiword expressions, which should be handled using the <a href="">u-dep/mwe</a>), the fact that a particular construction is idiomatic and non-compositional is not a syntactic classification and is better handled in a separate annotation layer (or, if nothing else fits, in the MISC column).</li>
+  <li><strong>:part</strong>, <strong>:inf</strong> - Subclassifying clausal complements or modifiers as being participial or infinitival may have syntactic relevance (for example, for the realization of arguments) but is better handled through features on the main predicate.</li>
+</ul>
+
+<h1 id="syntactic-features">Syntactic features</h1>
+
+<p>As noted above, the current annotation scheme gives very little opportunity for subclassification at the syntactic level (in contrast to the morphological level, where features can in principle be added ad infinitum). When talking about syntactic features, there seems to be at least two different things one could have in mind:</p>
+
+<ul>
+  <li><strong>Features of syntactic relations:</strong> If dependency labels were coupled with syntactic features, just as part-of-speech tags are coupled with morphological features, it would be possible to subclassify syntactic relations along more than one dimension at a time (just like, say, a pronoun can be subclassified as being personal, singular, third person <strong>and</strong> feminine). It is not clear how such features could be introduced without a major change to the CoNLL-U format. Nor is it clear how great the need for such features really is.</li>
+  <li><strong>Features of syntactic phrases:</strong> Even in a dependency-based representation, the need arises to classify structures larger than words. A case in point is (main) clause mood. Most languages in the world distinguish (at least) declarative, interrogative, and imperative clauses, something that is currently not reflected in the UD annotation at all but could be useful also from a more practical NLP perspective. The most natural place to put this information is on the main predicate of the clause (normally a verb), but it is clearly not a morphological feature of this word (except perhaps for imperatives). Hence, we would need to make a distinction between features that encode morphological properties of a word and features that capture properties of an entire phrase or clause headed at that word. Note also that the relevant phrase cannot in general be identified with the entire subtree rooted at that word in the basic dependency tree. In principle, such features could just be stored in the FEATS column, perhaps with a special prefix or symbol in the feature name to indicate that they are phrase-level features. However, this would at least be a conceptual change in the interpretation of the CoNLL-U format, where so far there has been a clear division between morphological information (in columns 3-6) and syntactic information (in columns 7-9). Moreover, it would not solve the issue with phrases smaller than complete subtrees. Finally, it is again not clear how great the need for such features really is.</li>
+</ul>
+
+<p>Tentative proposal:</p>
+
+<ul>
+  <li>
+    <p>Features that do not apply primarily to a word in itself but to a phrase headed by the word or to the dependency going into the word can be added to the FEATS field. Such features should have a name that starts with the character “~”, which will indicate that they are not morphological features of the word and make sure that they are alphabetically sorted after all the morphological features. Candidates for such features are:</p>
+
+    <ul>
+      <li><strong>~Mood</strong> - sentence mood like <strong>Decl</strong>, <strong>Interr</strong> or <strong>Imper</strong>, indicated on the main predicate</li>
+      <li><strong>~MWEPos</strong> - part-of-speech category of a fixed MWE, indicated on the pseudo-head</li>
+      <li><strong>~Definite</strong> - definiteness for noun phrases in languages where this is a holistic property of the phrase, indicated on the head noun</li>
+    </ul>
+  </li>
+</ul>
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'v2';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>CoNLL-U Format in UD v2</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/conll-u.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="conll-u-format-in-ud-v2">CoNLL-U Format in UD v2</h1>
+
+<p>Some of the changes adopted in v2 require modifications to the CoNLL-U format. Whenever possible, we have tried to do this in the least disruptive fashion possible, keeping backward compatibility as far as we can. In particular, we have decided against changing the number of fields and/or their meaning for fear of breaking people’s tools. We make the following changes for v2:</p>
+
+<ul>
+  <li>Allow spaces in the <code>FORM</code> and <code>LEMMA</code> fields (see <a href="segmentation.html">word segmentation</a>)</li>
+  <li>Let the <code>DEPS</code> field contain the entire enhanced dependency graph (not only additional relations on top of the basic trees) (see <a href="enhanced.html">enhanced dependencies</a>)</li>
+  <li>Allow empty nodes with an indexing scheme distinct from both tokens and words and with relations in the <code>DEPS</code> field (see <a href="ellipsis.html">ellipsis</a>)</li>
+  <li>Standardize sentence-level metadata</li>
+  <li>Restrict the use of the <code>MISC</code> field for ease of processing</li>
+</ul>
+
+<h2 id="enhanced-representation-in-the-deps-field">Enhanced representation in the DEPS field</h2>
+
+<p>The <code>deps</code> field holds the <em>enhanced</em> representation. Unlike previously thought, it seems a better idea for the <code>DEPS</code> field to hold the entire enhanced parsed graph, not only a smaller set of relations on top of the base layer in <code>HEAD+DEPREL</code>. The primary reason is that minimally the <em>ellipsis</em> relations and in future undoubtedly many others are not a part of the enhanced graph but are rather replaced by some relations in it. See <a href="enhanced.html">enhanced dependencies</a>.</p>
+
+<h2 id="empty-nodes-in-the-enhanced-representation">Empty nodes in the enhanced representation</h2>
+
+<p>A mechanism is needed for empty nodes in the enhanced representation (the base representation will always be empty-node-free). These will be on their separate lines indexed as <code>2.1</code> which means “the first empty node after the syntactic word indexed 2”. This line would be placed right after the word 2. Naturally, these empty nodes can be
+referred to only from the <code>DEPS</code> field.</p>
+
+<!--There doesn't seem to be a clear idea of whether the empty nodes should receive any values in the `FORM, LEMMA, UPOS, FEAT`
+fields. Probably `UPOS` could be somehow realistically filled.-->
+
+<p>Grepping out all lines which start with E is now sufficient to obtain a CoNLL-U file without empty nodes whose <code>HEAD</code> and <code>DEPREL</code> fields behave as usual.</p>
+
+<pre>
+1	Mary	_	_	_	_	2	nsubj	2:nsubj	_
+2	won	_	_	_	_	0	root	0:root	_
+3	silver	_	_	_	_	2	obj	2:obj	_
+4	and	_	_	_	_	5	cc	E5.1:cc	_
+5	Sue	_	_	_	_	2	conj	E5.1:nsubj	_
+5.1	_	_	_	_	_	2	conj	2:conj	_
+6	bronze	_	_	_	_	5	orphan	E5.1:dobj	_
+</pre>
+
+<!--## Phrase-level features
+
+Phrase-level features are features which apply to the whole phrase rather than a single word. These might include phrase-level negation, etc. In the CoNLL-U file, phrase-level features are prefixed with the `~` character but otherwise treated as usual. This will have the advantage of them sorting after any standard features.-->
+
+<h2 id="sentence-level-metadata">Sentence-level metadata</h2>
+
+<p>Sentence-level metadata can be provided as before and all tools are required to pass it through, as before. No particular requirements are put on these fields other than “no trailing whitespace”. Several recognized key = value pairs should be standardized:</p>
+
+<ul>
+  <li>sent_id = global_sentence_id</li>
+  <li>text = sentence text</li>
+</ul>
+
+<p><code>sent_id</code> is compulsory and as per <a href="https://github.com/UniversalDependencies/docs/issues/321">#321</a> it should not contain the <code>/</code> (slash) character.</p>
+
+<h2 id="misc-field">MISC field</h2>
+
+<p>The only global requirement on the <code>MISC</code> field is that it can be split on the <code>|</code> (bar) character without any complex processing of escaping. The requirement of <code>MISC</code> containing zero whitespace characters is dropped. Of course no TAB characters are allowed and no trailing whitespace is allowed. It is likely that <code>spacesBefore</code> and <code>spacesAfter</code> will be standardized as a part of the <code>MISC</code> field.</p>
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'v2';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

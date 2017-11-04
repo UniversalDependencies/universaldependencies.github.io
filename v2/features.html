@@ -1,0 +1,796 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Features in UD v2</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/features.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="features-in-ud-v2">Features in UD v2</h1>
+
+<p>We propose for v2:</p>
+
+<ul>
+  <li>Rename <code>Negative</code> to <a href="">u-feat/Polarity</a> and rename individual values of <code>Aspect</code>, <code>VerbForm</code> and <code>Definite</code>.</li>
+  <li>Remove <code>Tense=Nar</code> (but keep the other values of <a href="">u-feat/Tense</a>).</li>
+  <li>For a number of existing features, add new values that may be or have already been needed in some languages.</li>
+  <li>Add four new features to the universal set of features: evidentiality, politeness, abbreviation and foreign.</li>
+  <li>A number of other potential changes is suggested for general discussion but not really proposed yet.</li>
+</ul>
+
+<p>The proposals in this chapter are based on</p>
+
+<ol>
+  <li>experience with applying the v1 features (see also the <a href="http://github.com/UniversalDependencies/docs/issues?q=is%3Aissue%20label%3Afeatures">issue tracker</a>)</li>
+  <li>survey of language-specific features and values used in current UD treebanks (especially those that are also documented)</li>
+  <li>draft proposal from the <a href="http://www.unimorph.org/" target="_blank">UniMorph project</a>, which has similar goals as UD features (<a href="http://www.unimorph.org/doc/Sylak-Glassman_2016_-_UniMorph_Schema_User_Guide.pdf" target="_blank">Sylak-Glassman 2016</a>; see below for a comparison of UniMorph and UD features)</li>
+</ol>
+
+<p>Another reference that could contribute to the universal features is the <a href="http://linguistics-ontology.org/gold/2010">GOLD ontology</a>; see also <a href="http://linguistics-ontology.org/">the general project page</a>. In particular, items in the ontology under Morphosemantic property and Morphosyntactic property roughly correspond to our features.</p>
+
+<h2 id="renaming-existing-features-andor-values">Renaming existing features and/or values</h2>
+
+<p>See the <a href="http://github.com/UniversalDependencies/docs/issues/219">issue 219</a> for related discussion.</p>
+
+<ul>
+  <li><a href="">u-feat/Aspect</a>: values <code>Pro</code> (prospective, used in Basque) and <code>Prog</code> (progressive, used in Basque, Turkish and Chinese) are highly confusing.
+I propose to change the prospective value to <code>Aspect=Prosp</code>, following the label used in UniMorph.</li>
+  <li><code>Negative</code>: current proposal – rename the feature to <a href="">u-feat/Polarity</a> (and keep values <code>Pos</code> and <code>Neg</code>).
+Another option would be to keep the name but use only one value <code>Yes</code> because positive polarity is rarely marked morphologically.
+<code>Negative=Pos</code> looks weird and it probably just marks words that can take the negative morpheme but do not have it in the given form.
+Nevertheless, <code>Negative=Pos</code> is currently used in 13 treebanks so we probably want to keep it but rename the feature to <code>Polarity</code>.</li>
+  <li><a href="">u-feat/VerbForm</a>: rename <code>Trans</code> (transgressive) to <code>Conv</code> (converb).
+Transgressive is a term that comes from Slavic languages and is alien to e.g. Turkish or Hindi where functionally similar forms exist.
+It turns out that even within Slavic linguistics, the term transgressive is not widely used (the Slavic languages naturally have their
+native terms; the translation <em>transgressive</em>, of Latin-German-English etymology, is almost unknown outside Czech, Slovak and Sorbian).
+English literature on Slavic languages sometimes uses the term <em>gerund</em> but it is absolutely confusing and unsuitable because it is
+similar neither in form nor in function to the form we mark <code>VerbForm=Ger</code> in English and Spanish (and BTW these are also quite different
+from each other, but at least Spanish has the term <em>gerundio</em> as its own, not only as English translation).
+More neutral terms are adverbial participle or <em>converb</em> (Haspelmath, 1995), so I propose to relabel these forms <code>VerbForm=Conv</code>.</li>
+  <li><a href="">u-feat/Definite</a>: rename <code>Red</code> (reduced) to <code>Cons</code> (construct state); see the
+<a href="http://github.com/UniversalDependencies/docs/issues/135">issue 135</a> for related discussion.</li>
+  <li>TO DISCUSS: What is <code>NumType=Pers</code> in Irish? (Defined but not used.)</li>
+</ul>
+
+<h2 id="addingremoving-values-tofrom-existing-features">Adding/removing values to/from existing features</h2>
+
+<ul>
+  <li><a href="">u-feat/Animacy</a>
+    <ul>
+      <li>Add <code>Animacy=Hum</code> (human).
+We currently have three values of animacy, <code>Anim</code> (animate), <code>Inan</code> (inanimate) and <code>Nhum</code> (non-human).
+The last one is used so far only in Polish. As a side effect, it restricts the meaning of <code>Anim</code> to human (also
+called personal) nouns. While it is not unusual that feature meaning slightly shifts across languages (e.g. plural
+means “more than one” in some languages and “more than two” in others), it will be more intuitive to divide the
+Polish nouns into <code>Hum</code>, <code>Nhum</code> and <code>Inan</code>. More importantly, there are languages (e.g. Yuwan, a Ryukyuan language)
+that only distinguish human vs. non-human, and the latter includes inanimates.
+On the other hand, languages like Czech will keep their animate vs. inanimate two-way distinction.
+The precise meaning will thus remain
+language-specific, but more appropriate labels will now be available.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/Case</a>
+    <ul>
+      <li>Add <code>Case=Equ</code> (equative, means “X-like”, “similar to X”, “same as X”). It is already used in UD Turkish and it is also proposed in UniMorph.</li>
+      <li>Add <code>Case=Cmp</code> (comparative, means “than X”). It occurs in Dravidian and Northeast-Caucasian languages; it is proposed in UniMorph.</li>
+      <li>TO DISCUSS: Chinese “cases” Advb, Comp, Rel.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/Degree</a>
+    <ul>
+      <li>Add <code>Degree=Equ</code> (equative, means “as X as”; note that it marks the adjective and it is distinct from the equative case, which marks
+the standard of comparison). One of the examples in UniMorph is Estonian <em><b>pikkune</b> (pikkus+ne)</em> “as tall as”.
+UD Estonian contains 6 occurrences of <em>pikkune</em> but it does not define equative as a language-specific feature; it uses simply <code>Degree=Pos</code> here.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/Definite</a>
+    <ul>
+      <li>Add <code>Definite=Spec</code> (specific indefinite, e.g. “a certain stick”). Occurs e.g. in Lakota, proposed in UniMorph. In languages where it is used
+the value <code>Ind</code> is interpreted as non-specific indefinite, i.e. “any (one) stick”.</li>
+      <li>TO DISCUSS: <code>Definite=2</code> in Hungarian.
+Description: definiteness-like agreement of verbs with a second person object in <a href="hu-feat/Definite">Hungarian</a>.
+Hungarian verbs have to be conjugated in harmony with the definiteness of the object, making a difference between
+a definite object (<em>nézem a filmet</em> “I am watching the film”), an indefinite object (<em>nézek egy filmet</em> “I am
+watching a film”) and a second person object (<em>nézlek téged</em> “I am watching you”). So <code>Definite=2</code> is actually not
+about definiteness proper, maybe it should be <code>Person[obj]</code>. Perhaps we should leave this value specific to
+Hungarian.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/Number</a>
+    <ul>
+      <li>Add <code>Number=Count</code> from Bulgarian (and Macedonian). It is known variously as “counting form”, “count plural” or “quantitative plural” (Sussex and Cubberley 2006, p. 324).
+It is a special plural form of nouns if they occur after numerals: <em>tri stola</em> “three chairs” vs. <em>stolove</em> “chairs”.
+(The form originates in the Proto-Slavic dual but it should not be marked <code>Number=Dual</code> because 1. the dual vanished from Bulgarian and 2. the form is no longer semantically tied to the number two.)</li>
+      <li>Add <code>Number=Tri</code> (trial). Occurs in pronouns of several Austronesian languages; proposed in UniMorph.</li>
+      <li>Add <code>Number=Pauc</code> (paucal, means “a few”). Proposed in UniMorph.</li>
+      <li>Add <code>Number=Grpa</code> (greater paucal, means “more than several but not many”). Occurs in Sursurunga, an Austronesian language. Proposed in UniMorph.</li>
+      <li>Add <code>Number=Grpl</code> (greater plural, means “many, all possible”; precise semantics varies across languages). Proposed in UniMorph.</li>
+      <li>Add <code>Number=Inv</code> (inverse number, i.e. non-default for that particular noun). Occurs e.g. in Kiowa. Proposed in UniMorph.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/VerbForm</a>
+    <ul>
+      <li>Add <code>VerbForm=Gdv</code> (gerundive, not gerund) in Latin and Ancient Greek.</li>
+      <li>Add <code>VerbForm=Vnoun</code> for verbal nouns other than infinitives (also called <em>masdars</em> by some authors, e.g. Haspelmath, 1995).
+In UD v1 we were advising to use <code>VerbForm=Ger</code> for them, using the English gerunds as model. However, the term <em>gerund</em>
+is rather confusing: in Spanish (and other Romance languages?) it denotes the present participle and should be thus labeled
+<code>Tense=Pres|VerbForm=Part</code>; some Slavists use it to denote converbs (adverbial participles), which we now propose to label
+<code>VerbForm=Conv</code> (previously <code>VerbForm=Trans</code>).</li>
+      <li>Using <code>VerbForm=Ger</code> is discouraged and alternatives should be considered first. However, the feature is still available in UDv2
+and can be used if the alternatives do not seem acceptable. The feature may be removed in future versions but comprehensive
+investigation has to be done first.
+        <ul>
+          <li>Observations from UD 1.4:
+<code>VerbForm=Ger</code> occurs in most of the Romance languages (Catalan, Spanish, Galician, Italian, Portuguese, Romanian) and Latin.
+I assume that in all these languages the form and function is similar to the Spanish <em>gerundio</em>, hence it should be replaced
+by <code>VerbForm=Part|Tense=Pres</code> (but I am unsure whether it can be extended to Latin).
+It occurs in one Slavic language (Polish) and it should be replaced by <code>VerbForm=Vnoun</code> there. The same feature could be used
+in all Slavic languages but verbal nouns are currently not distinguished there.
+It occurs in two Germanic languages (English, Danish) and I do not know whether it can be relabeled as verbal noun there.
+Finally, it also occurs in Irish, Sanskrit, Tamil, Kazakh and Turkish (I am not able to judge what should happen there if
+<code>VerbForm=Ger</code> is not available).</li>
+        </ul>
+      </li>
+      <li>TO DISCUSS: <code>VerbForm=PartFut|PartPast|PartPres</code> in Hungarian. These should probably be two features, <code>VerbForm=Part</code> and <code>Tense=Fut</code>, as in other UD languages.</li>
+      <li>TO DISCUSS: <code>VerbForm=Cop</code> in Irish. There is no documentation so we will need some input from Teresa if we want to do anything with it.</li>
+      <li>TO DISCUSS: <code>VerbForm=Stem</code> currently only one occurrence in Swedish.
+Verb stems also occur regularly in Hindi but they have the function of adverbial participles (converbs, transgressives) there, so <code>VerbForm=Conv</code> should be used for them.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/Mood</a>
+    <ul>
+      <li>Add <code>Mood=Prp</code> (purposive, means “in order to”). Occurs in Amazonian languages; proposed in UniMorph.</li>
+      <li>TO DISCUSS: Add <code>Mood=Int</code> (intentive, indicates that the speaker strongly intents for the action of the verb to be realized). Occurs in Tonkawa; proposed in UniMorph.</li>
+      <li>TO DISCUSS: <code>Mood=Int</code> in Irish (what does it mean? Interrogative?)</li>
+      <li>TO DISCUSS: <code>Mood=Inter</code> in Chinese (what does it mean?)</li>
+      <li>Add <code>Mood=Adm</code> (admirative; expresses surprise, irony or doubt). Occurs in Albanian, other Balkan languages, and in Caddo (Native American from Oklahoma). Proposed in UniMorph.</li>
+      <li>TO DISCUSS: Add <code>Mood=Per</code> (permissive; means “may, is permitted”).</li>
+      <li>TO DISCUSS: Add <code>Mood=Ded</code> (deductive, inferential, speculative; means “[I believe that it] ought to, must be”).</li>
+      <li>TO DISCUSS: Add <code>Mood=Sim</code> (simulative, means “as if”).</li>
+      <li>Do not add <code>Mood=Abil</code>, which is currently used in UD Turkish. The Turkish data should use <code>Mood=Pot</code> (potential) instead.</li>
+      <li>Do not add sequences of mood markings, which are currently used in Turkish and may be needed in other agglutinating languages. Leave them language-specific.
+[tr] AbilCnd, AbilDes, AbilGen, AbilGenNec, AbilImp, AbilNec, AbilPrs (all of these should start with Pot instead of Abil), GenNec.</li>
+      <li>TO DISCUSS: <code>Mood=Prs</code> (persuasive) in Turkish. Reportedly similar in meaning to imperative, but tries to persuade the addressee rather than issuing a direct command.
+But it could be also analyzed as a politeness distinction (comment by John Sylak-Glassman), perhaps <code>Polite=Elev</code> (see below).
+Hence we should be careful and at least discuss this more with Çağrı before we possibly add the value.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/Tense</a>
+    <ul>
+      <li>Do not add <code>Tense=Aor</code> (aorist), despite its current usage in Ancient Greek and Turkish.
+It is a confusing term with different meanings in grammars of different languages.
+In Slavic languages we use normal <code>Tense=Past</code> to denote aorist.
+In Turkish it is the unmarked non-past form.</li>
+      <li>Do not add sequences of tense markings, which are currently used in Turkish and may be needed in other agglutinating languages. Leave them language-specific.
+[tr] AorPast, FutPast.</li>
+      <li>Remove <code>Tense=Nar</code>. It has not been used anywhere yet. In Turkish, for which it was intended, the renarrative past is encoded as
+<code>Evidentiality=Nfh|Tense=Past</code>. And we are proposing to adopt evidentiality as a new universal feature.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/Aspect</a>
+    <ul>
+      <li>Add <code>Aspect=Iter</code> (iterative). It is already used in Hungarian UD, although it is called frequentative there
+(<code>Aspect=Freq</code>). It is called <em>iterative</em> in UniMorph and I also think the term iterative is more common cross-linguistically,
+although I have not checked Hungarian grammar. (Note: Iteratives also exist in Czech with this name and meaning but they can
+be formed only from imperfective verbs and they are usually not classified as a separate aspect; they are just <code>Aspect=Imp</code>.)
+Hungarian example: <em>üt</em> “hit”, <em><b>ütöget</b></em> “hit several times”.</li>
+      <li>Add <code>Aspect=Hab</code> (habitual). Proposed in UniMorph and in Turkish documentation (although not used in current Turkish data).
+It is the most accurate description for the simple present in English, and it said to be useful for a variety of other languages.</li>
+      <li>TO DISCUSS: Add <code>Aspect=Rapid</code>? Used in UD Turkish, suffix <em>-iver,</em> Kornfilt (1995, p.361) calls this rapid or sudden aspect.
+John: In another grammar, Göksel and Kerslake (2005, p.79), the -iver morpheme seems to have a considerably wider range of meaning
+than simply <code>rapid' or </code>sudden.’ In fact, it seemed to me to imply probability that some event would occur.
+Native Turkish speakers should deffinitely weigh in on this.</li>
+      <li>TO DISCUSS: Add <code>Aspect=Dur</code>? Proposed in Turkish documentation but in the data it appears only as the first part of morpheme sequences DurPerf, DurPerfProg and DurProg.</li>
+      <li>Do not add <code>Aspect=Res</code> (resultative) from Old Church Slavonic. It is used there for forms that are arguably <code>Aspect=Perf</code>.
+And it should not be used to mark a particular form because in Slavic languages aspect is primarily a lexical feature (perfective vs. imperfective lemmas).</li>
+      <li>Do not add sequences of aspect markings, which are currently used in Turkish and may be needed in other agglutinating languages. Leave them language-specific.
+[tr] DurPerf, DurPerfProg, DurProg, ProgRapid.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/Voice</a>
+    <ul>
+      <li>Add <code>Voice=Mid</code> (middle voice), currently used in fo, grc, grc_proiel, sa.</li>
+      <li>Add <code>Voice=Antip</code> (antipassive): in ergative-absolutive languages, an ergative subject is demoted to an absolutive subject. Proposed in UniMorph.</li>
+      <li>Add <code>Voice=Dir</code> (direct). Used in direct-inverse voice systems, e.g. in North American languages. Proposed in UniMorph.
+Direct means that the argument that is higher in salience hierarchy is the subject.
+Example hierarchy: human 1st person – 2nd – 3rd – non-human animate – inanimate.</li>
+      <li>Add <code>Voice=Inv</code> (inverse). Used in direct-inverse voice systems, e.g. in North American languages. Proposed in UniMorph.
+Inverse voice marking means that the argument lower in the hierarchy functions as subject.</li>
+      <li>TO DISCUSS: <code>Voice=Auto</code> (ga).</li>
+      <li>Do not add sequences of voice markings, which are currently used in Turkish and may be needed in other agglutinating languages. Leave them language-specific.
+[tr] CauPass.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/PronType</a>
+    <ul>
+      <li>Add <code>PronType=Emp</code> (emphatic) from Romanian. There are similarities with reflexive and demonstrative pronouns / determiners.
+Example: <em>himself</em> as in “He himself did it.” Czech <em>sám</em>, Romanian <em>însuși</em>.</li>
+      <li>Add <code>PronType=Exc</code> (exclamative) from Italian (but it can be defined in other languages, too). It expresses the
+speaker’s surprise towards the modified noun, e.g. <em>what</em> in “What a surprise!” In many languages, exclamative
+determiners are recruited from the set of interrogative determiners. Therefore, not all tagsets distinguish them.</li>
+      <li>NOTE: The Italian data in UD v1 contain three additional values of <a href="it-feat/PronType">Italian</a>: <code>Clit</code>, <code>Predet</code> and <code>Ord</code>.
+We do not propose to adopt these values as universal in UD v2. We propose to change the Italian guidelines so that these values
+are no longer needed. See <a href="http://github.com/UniversalDependencies/docs/issues/353">Issue 353</a> for details.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/NumType</a>
+    <ul>
+      <li>Remove <code>NumType=Gen</code>, it is poorely defined as a garbage can, some of the words should actually be cardinals, some are better classified as <code>NumType=Mult</code>.</li>
+    </ul>
+  </li>
+  <li><a href="">u-feat/Person</a>
+    <ul>
+      <li>Add <code>Person=0</code>. Proposed in UniMorph.
+Zero person is for impersonal statements, appears in Finnish as well as in Santa Ana Pueblo Keres.
+(The construction is distinctive in Finnish but it does not use unique morphology that would necessarily require
+a feature; the current UD Finnish also lives without it.) However, it is morphologically distinct in Keres (Davis 1964:75).</li>
+      <li>Add <code>Person=4</code>. Proposed in UniMorph.
+John: 4th person could be distinguished by additional, independently-needed features, such
+as obviation status (e.g. proximate [prx] or obviative [obv], which are not included in
+person features currently), so while the feature <code>4</code> is convenient and part of paradigmatic
+contrasts (e.g. in Navajo), it may not be strictly necessary. The features proximate (prx)
+and obviative (obv) should be included somehow if direct and inverse voice are allowed,
+since languages that mark these voice categories tend to also mark 3rd person arguments
+as proximate or obviative (esp. when all arguments in the clause are 3rd person).</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="adding-new-features">Adding new features</h2>
+
+<ul>
+  <li><code>Evident</code> (evidentiality) is currently used only in Turkish but it seems like this is an important feature in non-Indo-European languages.
+We could take the values from UniMorph. At present we only need <code>Evident=Nfh</code> (non-first hand).</li>
+  <li><code>Polite</code> (politeness) is currently used in 9 treebanks: ca, da, de, es, es_ancora, eu, hi, sa, ta.
+UniMorph distinguishes four axes along which politeness may be scaled (see below), one of them covering another
+feature currently used in a few UD treebanks, <code>Style</code>.
+I propose to add, for the time being, the feature <code>Polite</code> with the UniMorph-like values from the speaker-referent
+axis, i.e. <code>Infm</code> (informal), <code>Form</code> (formal), <code>Elev</code> (elevated status of referent; interpreted as a subtype of
+<code>Form</code>), <code>Humb</code> (humbled status of speaker; subtype of <code>Form</code>). That will let us cover the Indo-European tu/vous
+pronouns, as well as part of Japanese honorifics.
+    <ul>
+      <li>TO DISCUSS:
+The Turkish treebank has <code>Register</code>, which resembles politeness/style in having values <code>Form</code> and <code>Inf</code>,
+contrasting e.g. the 3rd person verb forms <em>etmekte</em> (<code>Form</code>) and <em>ediyor</em> (<code>Inf</code>) “he is doing”.
+However, it is possible that the <em>-mekte</em> forms are restricted to more formal settings and do not
+directly reflect the relation between the speaker and the addressee. If this is true, then they
+are not covered by what we currently propose to cover under <code>Polite</code>.</li>
+    </ul>
+  </li>
+  <li><a href="cs-feat/Abbr">Abbr=Yes</a> (abbreviation) is not language-specific and is currently used in 12 treebanks: ar, cs, cs_cac, cs_cltt, da, et, fi, fi_ftb, fo, la_ittb, pl, ro.</li>
+  <li><a href="cs-feat/Foreign">Foreign</a> is not language-specific and is currently used in 13 treebanks: ar, cs, cs_cac, da, de, es, et, fi, fo, hi, nl, sl, sl_sst.
+The values should be discussed though.
+The currently used values are <code>Foreign</code>, <code>Fscript</code> and <code>Tscript</code> but most treebanks use only the first one. Alternatively we could make it just a binary feature,
+<code>Foreign=Yes</code>, which it was originally.</li>
+  <li>TO DISCUSS: <code>NumForm=Digit|Roman|Word</code>.
+The values can arguably be easily deduced from the word form; nevertheless, it is now used in 12 treebanks: ar, ca, cs, cs_cac, es_ancora, et, la_ittb, nl, pt, ro, sl, ta.
+Inconsistency in Estonian: <code>NumForm=Letter</code> instead of <code>Word</code>, which is used elsewhere.</li>
+  <li>TO DISCUSS: <code>PartType</code> (particle type, not participle type). Given how diverse the <a href="">u-pos/PART</a> category is, it
+would make sense to define its subcategories. Currently used in ga, da, nl, ro, with the following values:
+<code>Inf</code> (infinitive marker; used in ga, da, nl, ro),
+<code>Vbp</code> (used for separable verb prefixes in [nl] but they should be tagged <code>ADP</code>, not <code>PART</code>, and would not get this feature),
+<code>Ad</code>, <code>Cmpl</code>, <code>Comp</code>, <code>Cop</code>, <code>Deg</code>, <code>Num</code>, <code>Pat</code>, <code>Vb</code>, <code>Voc</code> (meaning unknown, no documentation; used in Irish).
+On the other hand, the function of the particle can sometimes (often?) be expressed using other features that already exist.
+For instance, the particles marking infinitives could have the feature <code>VerbForm=Inf</code>.
+Similarly, negative particles like [en] <em>not</em> could have <code>Polarity=Neg</code>.</li>
+  <li>TO DISCUSS: <code>Interrog</code> (interrogativity). In some sense it is parallel to (but separate from) polarity (negativity).
+It may mark independent question particles, which exist in some languages (but note that these could also be covered
+by <code>PartType=Int</code> if we approve the feature), as well as interrogative forms of verbs.
+These currently appear in Irish and are tagged <code>Mood=Int</code> there; however, the interrogative morphemes may probably
+be combined with other mood categories (examples? Turkish?), which supports interrogativity as a separate feature.
+It would not apply to interrogative pronouns, determiners and adverbs, which are already marked by <code>PronType=Int</code>—much
+like <code>Polarity=Neg</code> is not used where <code>PronType=Neg</code> is. Similarly to polarity, the feature is proposed in UniMorph.
+It has two values there, <code>Decl</code> and <code>Int</code>, but the former is not expected to be used frequently (similar to <code>Pos</code> in
+<code>Polarity</code>) because declarativeness is usually not marked.</li>
+</ul>
+
+<h2 id="comparison-with-unimorph">Comparison with UniMorph</h2>
+
+<p>General differences:</p>
+
+<ul>
+  <li>We work “bottom-up”. We wait for a feature to appear in a language (or source treebank), then we think about where to put it in the schema.
+They work “top-down”. They surveyed literature on language typology and collected all features that could possibly occur in any natural language.</li>
+  <li>Their schema “is responsible for capturing only the meanings of overt inflectional morphemes, which considerably limits the semantic space
+that must be formally described by the UniMorph Schema features.”
+In contrast, we also include some features that are not inflectional but they provide a more fine-grained partitioning of the part-of-speech space, e.g. <code>PronType</code>.</li>
+  <li>They build upon the Leipzig Glossing Rules and their labels can be applied, if needed, to words, morphemes or phrases.
+We focus on individual words and don’t mark some complex forms that can be expressed only periphrastically.
+(But it is actually possible that UniMorph ignores periphrastic forms, too. They often stress that something is/is not
+distinguished by overt affixal morphology. So maybe there is no difference in this point.)</li>
+  <li>We need fully qualified feature+value pair to get a unique string, e.g. <code>Degree=Sup</code> is something else than <code>VerbForm=Sup</code> or <code>Case=Sup</code>.
+They distinguish “dimensions” (our features) but their values are globally unique even without dimension name.
+They also have templatic features (combined of several atoms), and they often rely on feature (value) combinations.
+We have combined values too (e.g. <code>Gender=Masc,Neut</code>) but for us it expresses disjunction, used when we cannot select just one of the values.
+They have disjunction too, but they also mark conjunction of features, or elaboration, e.g. <code>IN+ABL</code>.</li>
+</ul>
+
+<h3 id="unimorph-dimensions-draft-v2">UniMorph dimensions (draft v2)</h3>
+
+<ul>
+  <li><code>Aktionsart</code>, values: <code>STAT</code> (stative), <code>DYN</code> (dynamic), <code>TEL</code> (telic), <code>ATEL</code> (atelic), <code>PCT</code> (punctual), <code>DUR</code> (durative), <code>ACH</code> (achievement), <code>ACCMP</code> (accomplishment), <code>SEMEL</code> (semelfactive), <code>ACTY</code> (activity). Aktionsart is a feature that we don’t have in UD but it is closely related to our <a href="../u/feat/Aspect.html">Aspect</a>. Aspect in Slavic languages is treated as a lexical feature, change of aspect is considered a derivation. Perfective verbs in Slavic languages correspond to telic verbs in UniMorph, imperfective verbs correspond to atelic verbs and statives. However, aktionsart could be defined for other languages including English, while aspect is not marked in UD English.</li>
+  <li><code>Animacy</code>, values: <code>ANIM</code> (animate), <code>INAN</code> (inanimate), <code>HUM</code> (human), <code>NHUM</code> (non-human).
+In UD we don’t have human but we do have the other three. We are now proposing to add <code>Animacy=Hum</code> to UD, see above.</li>
+  <li><code>Argument Marking</code> for head-marking languages. UniMorph uses templatic features <code>ARG</code>+<code>Case</code>+<code>Person</code>+<code>Number</code>, e.g. <code>ARGNO1S</code> means that the nominative argument of the current verb is 1st person singular. Available cases are nominative, accusative, absolutive, ergative, dative, benefactive. We mostly only need to annotate agreement of the verb with its subject, i.e. the nominative argument, and we use the <code>Person</code> and <code>Number</code> features of the verb for this. So far only Basque needs more, as the verbs may agree there with up to three arguments (absolutive, ergative and dative). We use the layered features, i.e. <code>Person[abs]</code>, <code>Person[erg]</code>, <code>Person[dat]</code>, <code>Number[abs]</code> etc.</li>
+  <li><code>Aspect</code>, values: <code>IPFV</code> (imperfective), <code>PFV</code> (perfective), <code>PRF</code> (perfect), <code>PROG</code> (progressive), <code>PROSP</code> (prospective), <code>ITER</code> (iterative), <code>HAB</code> (habitual).
+Their aspect + aktionsart is not compatible with our aspect, although we have a few values in common (perfect/ive, imperfective, progressive, prospective).
+We also mix aspect with tense by allowing the value <code>Tense=Imp</code>.</li>
+  <li><code>Case</code>
+    <ul>
+      <li>Core case: can be defined in terms of three “meta-arguments,” S (subject), A (agent), and P (patient). Values:
+<code>NOM</code> (nominative; <code>Case=Nom</code>), <code>ACC</code> (accusative; <code>Case=Acc</code>), <code>ERG</code> (ergative; <code>Case=Erg</code>), <code>ABS</code> (absolutive; <code>Case=Abs</code>), <code>NOMS</code> (nominative, subject only).
+We have all these values, except that we do not distinguish <code>NOMS</code> from <code>NOM</code>.</li>
+      <li>Non-core, non-local case: <code>DAT</code> (dative; <code>Case=Dat</code>), <code>BEN</code> (benefactive; <code>Case=Ben</code>), <code>PRP</code> (purposive; <code>Case=Cau</code>),
+<code>GEN</code> (genitive; <code>Case=Gen</code>), <code>REL</code> (relative), <code>PRT</code> (partitive; <code>Case=Par</code>),
+<code>INS</code> (instrumental; <code>Case=Ins</code>), <code>COM</code> (comitative; <code>Case=Com</code>), <code>VOC</code> (vocative; <code>Case=Voc</code>),
+<code>COMPV</code> (comparative), <code>EQTV</code> (equative), <code>PRIV</code> (privative; <code>Case=Abe</code>), <code>PROPR</code> (proprietive),
+<code>AVR</code> (aversive), <code>FRML</code> (essive formal; <code>Case=Ess</code>), <code>TRANS</code> (translative; <code>Case=Tra</code>), <code>BYWAY</code> (essive modal).
+We currently lack values of 6 cases in this category, although equative seems to already occur in our Turkish data (if it is what <code>Case=Equ</code> refers to).
+Our causative (<code>Case=Cau</code>) might be (or overlap with) UniMorph’s purposive.
+Our abessive (<code>Case=Abe</code>) is their privative; we use the term from Uralic languages, they from Australia.
+Our essive/prolative (<code>Case=Ess</code>, used in [hu, et, fi, eu]) is their essive formal.
+Their essive modal (<code>BYWAY</code>) comes from Hungarian and “marks the notion of ‘by way of’ a location;” I suspect that we subsume it within instrumental.
+Their relative (<code>REL</code>) “marks possessor and A role”, hence it looks like a merger of genitive and accusative.</li>
+      <li>Local / place: <code>INTER</code> (“among”), <code>AT</code> (“at”), <code>POST</code> (“behind”), <code>IN</code> (“in”), <code>CIRC</code> (“near”), <code>ANTE</code> (“near, in front of”), <code>APUD</code> (“next to”),
+<code>ON</code> (“on”), <code>ONHR</code> (“on” horizontal), <code>ONVR</code> (“on” vertical), <code>SUB</code> (“under”).</li>
+      <li>Local / distance: <code>REM</code> (distal), <code>PROX</code> (proximate).</li>
+      <li>Local / motion: <code>ESS</code> (essive), <code>ALL</code> (allative), <code>ABL</code> (ablative).</li>
+      <li>Local / aspect: <code>APPRX</code> (approximative), <code>TERM</code> (terminative), <code>PROL</code> (prolative/translative), <code>VERS</code> (versative).</li>
+      <li>UD has <code>Case=Loc</code>, which is used in a number of Indo-European languages (especially Slavic) but also in Basque, Turkish and others.
+It has mostly a locative meaning, where the placement and direction are not precisely specified. It can also have a non-locative meaning.
+The closest counterpart of the locative case in UniMorph is plain <code>ESS</code>.</li>
+      <li>The UniMorph draft accounts for compositionality of locative morphemes in some languages: “from [the place] between us” could be encoded as <em>we</em> + <code>INTER</code> + <code>ABL</code>.
+In contrast, we use established terms for some of the combinations but definitely cannot encode all possible combinations in all languages.
+Our local cases are:
+inessive (<code>Case=Ine</code>; <code>IN+ESS</code>); illative (<code>Case=Ill</code>; <code>IN+ALL</code>); elative (<code>Case=Ela</code>; <code>IN+ABL</code>);
+adessive (<code>Case=Ade</code>; <code>ON/AT+ESS</code>); allative (<code>Case=All</code>; <code>ON/AT+ALL</code>); ablative (<code>Case=Abl</code>; <code>ON/AT+ABL</code>);
+superessive (<code>Case=Sup</code>; <code>ON/ONVR+ESS</code>); sublative (<code>Case=Sub</code>; <code>ON+ALL</code>); delative (<code>Case=Del</code>; <code>ON/ONVR+ABL</code>);
+lative (<code>Case=Lat</code>; <code>ALL</code>, i.e. it says it’s motion towards something, without distinguishing on/at/in/under);
+terminative (<code>Case=Ter</code>; <code>ALL+TERM</code>, i.e. it specifies motion up to some point, also called terminal allative).</li>
+      <li>They do not have additive <code>Case=Add</code> because they encode atomic meaning and additive is equal in meaning to illative.
+It is questionable whether we want to keep it in UD but I would keep it because it is actively used in UD Estonian, so there apparently is some demand.</li>
+      <li>They currently do not have
+temporal <code>Case=Tem</code> (hu) and
+distributive <code>Case=Dis</code> (hu).</li>
+      <li>We should add <code>Case=Equ</code> to the universal features. We already use it in Turkish.
+Similarly, we should add <code>Case=Cmp</code> for comparative (“than X”), occurring in Dravidian and Northeast-Caucasian languages.</li>
+      <li>We do not have <code>Case=Prp</code> for proprietive (“having X”), a positive counterpart of abessive, occurring in Australian languages.
+(But we have comitative <code>Case=Com</code> which can also be viewed as a positive counterpart of abessive.)
+There appears to be debate about whether proprietive is in fact inflectional or derivational.
+Blake (2001:156) cites only Kalkatungu (an extinct Pama-Nyungan language from Queensland) as a specific example.
+Moreover, Heine and Kuteva (2002:88) identify a historical grammaticalization pathway for comitative case to the sense of “having”.</li>
+      <li>We do not have <code>Case=Avr</code> for aversive (“fearing X”).
+Blake (2001:156) notes that this case is “common in Australian languages” but only provides Kalkatungu as an example.</li>
+      <li>As for the local cases, there are too many possible combinations and we should probably wait until the need for one of them arises.</li>
+    </ul>
+  </li>
+  <li><code>Comparison</code>, values: <code>CMPR</code> (comparative), <code>SPRL</code> (superlative), <code>AB</code> (absolute for superlatives), <code>RL</code> (relative for superlatives), <code>EQT</code> (equative).
+We have <code>Degree=Cmp</code> for comparative, <code>Degree=Sup</code> for relative superlative (<code>SPRL+RL</code>) and <code>Degree=Abs</code> for absolute superlative (<code>SPRL+AB</code>).
+We also have <code>Degree=Pos</code> (positive) that denotes the basic degree, i.e. adjective that is not compared.
+This comes from traditional grammars of various languages, although it would be possible to tag such adjectives by omitting the <code>Degree</code> feature.
+We could not distinguish adjectives that cannot take the comparative/superlative morphemes, but in fact we avoid that distinction with most features.
+On the other hand, we do not have the equative degree (note that it marks the adjective and it is distinct from the equative case, which marks
+the standard of comparison). One of the examples in UniMorph is Estonian <em><b>pikkune</b> (pikkus+ne)</em> “as tall as”.
+UD Estonian contains 6 occurrences of <em>pikkune</em> but it does not define equative as a language-specific feature; it uses simply <code>Degree=Pos</code> here.
+We may want to define the value <code>Degree=Equ</code> and see if anyone uses it.</li>
+  <li><code>Definiteness</code>, values: <code>DEF</code> (definite), <code>INDF</code> (indefinite), <code>SPEC</code> (specific), <code>NSPEC</code> (non-specific).
+The last two are elaboration of indefinite. Specific indefinite: <em>a certain stick</em>; non-specific indefinite: <em>any stick but still only one, not many</em>.
+We have <code>Definite=Def</code> and <code>Definite=Ind</code>.
+If we include the distinction of specificity, it will be just one value cutting off the current <code>Ind</code>, maybe <code>Definite=Spec</code>.
+On the other hand, we have two peculiar values coming from the Prague Arabic Dependency Treebank.
+<code>Definite=Red</code> (reduced) is used for noun that is modified by another noun in genitive and has neither definite nor indefinite morpheme.
+This is also called the <em>construct state</em> and appears in other Semitic languages, e.g. Hebrew.
+<code>Definite=Com</code> (complex) is used in <em>improper annexation / false iḍāfa</em> (related to the construct state but more complex) in Arabic.</li>
+  <li><code>Deixis</code> subclassifies demonstrative pronouns, which in some languages are also used instead of 3rd person pronouns.
+We have only <code>PronType=Dem</code> (or <code>Prs</code>) but we do not distinguish the other dimensions at present.
+At least distance would make sense for the languages we already have in UD, but the original tagsets did not care about it.
+    <ul>
+      <li><code>Distance</code>, values: <code>PROX</code> (proximate), <code>MED</code> (medial), <code>REMT</code> (remote).</li>
+      <li><code>Reference Point</code>, values: <code>REF1</code> (speaker), <code>REF2</code> (addressee), <code>NOREF</code> (distal, i.e. neither speaker nor addressee),
+<code>PHOR</code> (phoric, i.e. either anaphoric or cataphoric; previously mentioned or to be disambiguated).
+This feature sometimes overlaps with distance and sometimes is explicitly separated.</li>
+      <li><code>Visibility</code>, values: <code>VIS</code> (visible), <code>NVIS</code> (not visible).</li>
+      <li><code>Verticality</code>, values: <code>ABV</code> (above the level plane of the speaker), <code>EVEN</code> (at the same level), <code>BEL</code> (below the level of the speaker).</li>
+    </ul>
+  </li>
+  <li><code>Evidentiality</code>, values: <code>FH</code> (firsthand), <code>DRCT</code> (direct), <code>SEN</code> (sensory), <code>VISU</code> (visual), <code>NVSEN</code> (non-visual sensory), <code>AUD</code> (auditory),
+<code>NFH</code> (non-firsthand), <code>QUOT</code> (quotative), <code>RPRT</code> (reported), <code>HRSY</code> (hearsay), <code>INFER</code> (inferred), <code>ASSUM</code> (assumed).
+UD v1 does not have this feature, although we have <code>Mood=Qot</code> (et, lv) and <code>Tense=Nar</code> (re-narrative past tense; the value was intended
+for Turkish but in the end it was not used there, and language-specific <code>Evidentiality=Nfh</code> was introduced instead.
+We propose to make <code>Evidentiality</code> a universal feature in UD v2. Maybe we can just adopt the values used in UniMorph.
+We will have to check how it interacts with the quotative mood in Estonian and Latvian.</li>
+  <li><code>Finiteness</code>, values: <code>FIN</code> (finite), <code>NFIN</code> (nonfinite). We have <code>VerbForm=Fin</code> for finite, any other verbform is nonfinite.</li>
+  <li><code>Gender and Noun Class</code>, values: <code>MASC</code> (masculine), <code>FEM</code> (feminine), <code>NEUT</code> (neuter), <code>BANTU1-23</code> (noun classes in Bantu languages),
+<code>NAKH1-8</code> (noun classes in Nakh-Daghestanian languages). We have <code>Gender=Masc</code>, <code>Fem</code>, <code>Neut</code> for the three genders;
+in addition, we have <code>Gender=Com</code> for the common gender in Scandinavian languages, which only distinguish <em>neutrum</em> (<code>Neut</code>) and <em>utrum</em> (<code>Com</code>).
+At present we do not cover any Bantu or Nakh-Daghestanian language.</li>
+  <li><code>Information Structure</code>, values: <code>TOP</code> (topic), <code>FOC</code> (focus).
+We do not have a feature for information structure but there are not many languages where it is marked via overt affixal morphology.</li>
+  <li><code>Interrogativity</code>, values: <code>DECL</code> (declarative), <code>INT</code> (interrogative). Used for verbs.
+We do not have a feature for this. <code>PronType=Int</code> could be possibly abused to encode verbs with interrogative morpheme,
+but it would be much better not to mix the feature with pronominal types; we also don’t mix <code>Negative=Neg</code> with <code>PronType=Neg</code>.</li>
+  <li>Language-specific features <code>LGSPEC1</code>, <code>LGSPEC2</code> etc. UniMorph uses them to distinguish alternating forms whose selection is not
+tied to meaning. For example, genitive of German <em>Buch</em> is either <em>Buchs</em> or <em>Buches</em>. One form will be <code>LGSPEC1</code> and the other
+<code>LGSPEC2</code>. We do not have anything similar in UD.</li>
+  <li><code>Mood</code>, values: <code>IND</code> (indicative, <code>Mood=Ind</code>), <code>SBJV</code> (subjunctive, <code>Mood=Sub</code>), <code>REAL</code> (realis), <code>IRR</code> (irrealis), <code>AUPRP</code> (Australian purposive),
+<code>AUNPRP</code> (Australian non-purposive), <code>IMP</code> (imperative-jussive, <code>Mood=Imp</code>, <code>Mood=Jus</code>), <code>COND</code> (conditional, <code>Moos=Cnd</code>),
+<code>PURP</code> (general purposive, “in order to”), <code>INTEN</code> (intentive), <code>POT</code> (potential, <code>Mood=Pot</code>), <code>LKLY</code> (likely),
+<code>ADM</code> (admirative), <code>OBLIG</code> (obligative, <code>Mood=Nec</code>), <code>DEB</code> (debitive, <code>Mood=Nec</code>), <code>PERM</code> (permissive), <code>DED</code> (deductive), <code>SIM</code> (simulative, “as if”),
+<code>OPT</code> (optative-desiderative, <code>Mood=Opt</code>, <code>Mood=Des</code>).
+    <ul>
+      <li>We do not have realis and irrealis but I wonder whether we actually have to distinguish them from indicative and subjunctive, respectively.</li>
+      <li>There are no Australian languages in UD at present, and we do not encode the Australian purposive vs. non-purposive.
+The discussion in UniMorph suggests that the non-purposive vs. purposive opposition can be viewed as on par with
+the realis vs. irrealis and indicative vs. subjunctive oppositions.</li>
+      <li>Imperatives are direct commands for the addressee while hortatives and jussives include more suggestive forms,
+such as “let them/us X”. They just conflate all three to <code>IMP</code> (imperative-jussive).
+We have a separate label for jussive but we only use it in Arabic. Nevertheless, Arabic also has the imperative, so it makes sense to distinguish the two values.</li>
+      <li>UniMorph conflates optative and desiderative into one mood, <code>OPT</code>, while we have both <code>Mood=Opt</code> and <code>Mood=Des</code>.
+UD Turkish uses both values but the Turkish documentation says that desiderative is morphologically identical to conditional, so it is questionable whether we want to keep <code>Des</code> there.
+In addition, optative is used in Finnish, Gothic, Ancient Greek and Sanskrit.</li>
+      <li>John’s comment on conditional: ambiguous between designating the <em>protasis / condition</em> (“if it rained”),
+and the <em>apodosis / result</em> from that condition being fulfilled (“, the game would be cancelled”).
+Languages differ in whether the conditional applies to the protasis, the apodosis or both.
+Spanish uses the conditional for the protasis, but subjunctive imperfect for the apodosis.</li>
+      <li>UniMorph distinguishes debitive from obligative while we have only one corresponding value, necessitative.</li>
+      <li>Other moods that are used in UD Turkish: <code>Abil</code>, <code>AbilCnd</code>, <code>AbilDes</code>, <code>AbilGen</code>, <code>AbilGenNec</code>, <code>AbilImp</code>, <code>AbilNec</code>, <code>AbilPrs</code>,
+<code>Gen</code>, <code>GenNec</code>, <code>Prs</code>. The <code>Abil</code> should probably be replaced by the universal feature <code>Mood=Pot</code> (potential).
+<code>Prs</code> means persuasive, reportedly related to imperative but different in that we try to persuade the addressee to do something instead of just commanding.</li>
+      <li>We currently lack values for purposive, intentive, admirative, permissive, deductive and simulative, and we may want to add them.</li>
+    </ul>
+  </li>
+  <li><code>Number</code>, values: <code>SG</code> (singular, <code>Number=Sing</code>), <code>PL</code> (plural, <code>Number=Plur</code>), <code>DU</code> (dual, <code>Number=Dual</code>), <code>TRI</code> (trial), <code>PAUC</code> (paucal),
+<code>GPAUC</code> (greater paucal), <code>GRPL</code> (greater plural), <code>INVN</code> (inverse).
+    <ul>
+      <li>We may want to add values <code>Number=Tri</code>, <code>Pauc</code>, <code>Grpa</code>, <code>Grpl</code>, <code>Inv</code>.</li>
+      <li>We have two additional values, <code>Ptan</code> (plurale tantum) and <code>Coll</code> (singulare tantum), which may be viewed as elaboration of <code>Sing</code> and <code>Plur</code>, respectively,
+and which encode an inherent property of nouns rather than inflection. Agreeing adjectives and verbs never take this value, they use <code>Sing</code> and <code>Plur</code> instead.</li>
+    </ul>
+  </li>
+  <li><code>Part of Speech</code>, values: <code>N</code> (noun), <code>PROPN</code> (proper name), <code>ADJ</code> (adjective), <code>PRO</code> (pronoun), <code>CLF</code> (classifier), <code>ART</code> (article),
+<code>DET</code> (determiner), <code>V</code> (verb), <code>ADV</code> (adverb), <code>AUX</code> (auxiliary), <code>V.PTCP</code> (participle, verbal adjective), <code>V.MSDR</code> (masdar, verbal noun), <code>V.CVB</code> (converb, verbal adverb),
+<code>ADP</code> (adposition), <code>COMP</code> (complementizer), <code>CONJ</code> (conjunction), <code>NUM</code> (numeral), <code>PART</code> (particle), <code>INTJ</code> (interjection)
+    <ul>
+      <li>We do not have a separate tag for classifiers. I believe that we subsume them under nouns in UD Chinese.</li>
+      <li>We subsume articles within determiners but we distinguish them by <code>PronType=Art</code>.</li>
+      <li>We do not treat participles, verbal nouns and verbal adverbs as separate parts of speech.
+We distinguish them by the <code>VerbForm</code> feature and we allow language-specific guidelines to put them under <code>VERB</code>, or under <code>ADJ/NOUN/ADV</code>.
+Our v1 guidelines propose to call verbal nouns gerunds (<code>VerbForm=Ger</code>). This is motivated by the English gerunds but it should
+probably be revised because the term has quite different meaning in different languages, which causes confusion.
+On the other hand, I do not quite like the term <em>masdar</em> used in UniMorph, which is taken from Arabic but not widely understood elsewhere.
+Perhaps <code>VerbForm=Vnoun</code> would be enough? (Note that infinitives can also be used like nouns in some languages; these would keep <code>VerbForm=Inf</code>.)
+In contrast, I find the term <em>converb</em> (Haspelmath, 1995) quite appropriate and language-neutral. We currently use <code>VerbForm=Trans</code> (transgressive)
+but this term turned out to be known only in a few Slavic languages. So we may rename it to <code>VerbForm=Conv</code> (or maybe <code>VerbForm=Vadv</code>, verbal adverb, adverbial participle).</li>
+      <li>They have a tag for auxiliary verbs while we are now proposing to get rid of it.</li>
+      <li>Unlike us, they conflate coordinating and subordinating conjunctions in one tag <code>CONJ</code>.
+However, they have a separate tag for complementizers while we include them in <code>SCONJ</code>.</li>
+      <li>Like us, they distinguish <code>NUM</code>, <code>PART</code> and <code>INTJ</code>. They actually refer to us when explaining why they include these categories.</li>
+    </ul>
+  </li>
+  <li><code>Person</code>, values: <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>INCL</code> (inclusive <em>we</em>), <code>EXCL</code> (exclusive <em>we</em>), <code>PRX</code> (proximate), <code>OBV</code> (obviative).
+We have only the classical 1st–3rd persons. Zero person is for impersonal statements, appears in Finnish as well as in Santa Ana Pueblo Keres.
+The fourth person is used in some languages to describe an otherwise third-person referent that is differentiated from other third-person referents.
+Clusivity could be encoded as a separate language-specific feature, which would be in line with UniMorph, which combines <code>1+INCL</code> or <code>1+EXCL</code>.</li>
+  <li><code>Polarity</code>, values: <code>NEG</code> (negative), <code>POS</code> (positive, affirmative). We have been calling the feature <code>Negative(ness)</code> but we propose to rename it to <code>Polarity</code> in UD v2.</li>
+  <li><code>Politeness</code>: ve have it only as a language-specific feature, used rarely.
+    <ul>
+      <li>Speaker-Referent Axis (whether or not the referent happens to also be the addressee).
+<code>INFM</code> (informal; the <em>tu</em> 2nd person singular pronoun in Indo-European languages.
+<code>FORM</code> (formal; the <em>vous</em> 2nd person singular pronoun in Indo-European languages.
+Sublevels of the formal level:
+<code>FORM+ELEV</code> (referent elevating; sonkeigo forms in Japanese).
+<code>FORM+HUMB</code> (speaker humbling; kenjougo forms in Japanese).</li>
+      <li>Speaker-Addressee Axis (not referring to the addressee).
+Japanese teineigo is an example of an addressee honorific system.
+<code>POL</code> (polite), <code>MPOL</code> (medium polite).</li>
+      <li>Speaker-Bystander Axis.
+<code>AVOID</code> (avoidance style, taboo language = used in the presence of anyone to whom the avoidance relationship applies, e.g. mother-in-law),
+<code>LOW</code> (low status = language used in the presence of only those having a low status),
+<code>HIGH</code> (high status = in the presence of the secondary chief(tess)),
+<code>STELV</code> (elevated status = in the presence of the primary chieftess),
+<code>STSUPR</code> (supreme status = in the presence of the primary chief).
+The neutral level is unspecified.</li>
+      <li>Speaker-Setting Axis; referred to as <em>register</em> in sociolinguistics.
+<code>LIT</code> (literary, <code>Style=Form</code>), <code>FOREG</code> (formal register, <code>Style=Form</code>), <code>COL</code> (colloquial, <code>Style=Coll</code>).
+We have corresponding features in the section of language-specific extensions but they are currently used only in a few treebanks (cs, da, fi).</li>
+    </ul>
+  </li>
+  <li><code>Possession</code> is a templatic feature that may incorporate features of the possessor such as person and number.
+We encode the same situation using the boolean feature <code>Poss=Yes</code>, and separate features for <code>Person</code>, <code>Number</code> etc.
+If it is necessary to distinguish them from same-named inflectional features of the possessive word, we use layered features on the <code>[psor]</code> (“possessor”) layer:
+<code>Person[psor]</code>, <code>Number[psor]</code> etc.
+UniMorph defines the following combinations:
+<code>PSS1S</code> (possession by 1st person singular), <code>PSS2S</code>, <code>PSS2SM</code> (2nd person singular masculine), <code>PSS2SF</code>, <code>PSS2SINFM</code> (informal), <code>PSS2SFORM</code>,
+<code>PSS3S</code>, <code>PSS3SM</code>, <code>PSS3SF</code>, <code>PSS1D</code>, <code>PSS1DI</code> (dual inclusive), <code>PSS1DE</code> (exclusive), <code>PSS2D</code>, <code>PSS2DM</code>, <code>PSS2DF</code>,
+<code>PSS3D</code>, <code>PSS3DM</code>, <code>PSS3DF</code>, <code>PSS1P</code>, <code>PSS1PI</code>, <code>PSS1PE</code>, <code>PSS2P</code>, <code>PSS2PM</code>, <code>PSS2PF</code>, <code>PSS3P</code>, <code>PSS3PM</code>, <code>PSS3PF</code>.
+In addition, they define simple <code>PSSD</code> (possessive but without marking features of the possessor), and also
+<code>ALN</code> for alienable and <code>NALN</code> for inalienable possession. Alienable means that the ownership can change (“my house”) while inalienable means
+that it cannot change (“my back”).</li>
+  <li><code>Switch Reference</code>, values: <code>SS</code> (same subject), <code>DS</code> (different subject), <code>SSADV</code>, <code>DSADV</code>.
+When there are two verbs in a row, switch-reference is morphological marking of whether they have or do not have the same subject.
+We do not have this feature in UD.</li>
+  <li><code>Tense</code>, values: <code>PRS</code> (present, <code>Tense=Pres</code>), <code>PST</code> (past, <code>Tense=Past</code>), <code>FUT</code> (future, <code>Tense=Fut</code>),
+<code>IMMED</code> (immediate), <code>HOD</code> (hodiernal, i.e. today), <code>1DAY</code> (within one day), <code>RCT</code> (recent), <code>RMT</code> (remote).
+    <ul>
+      <li>They envisage combining their features, e.g. <code>FUT+HOD</code> or <code>PST+RCT</code>.</li>
+      <li>We currently only have present, past and future without the more specific values like recent and remote.</li>
+      <li>Moreover, we cover two present-aspect combinations that may have separate morphological forms and sometimes cannot be represented by <code>Tense</code> + <code>Aspect</code> because there
+is also the lexical aspect (as in Bulgarian). We would have to redesign our scheme and add aktionsart, or use two layered aspects on one word to solve this.
+The combinations are <code>Tense=Imp</code> (imperfect tense) and <code>Tense=Pqp</code> (pluperfect).</li>
+    </ul>
+  </li>
+  <li><code>Valency</code>, values: <code>IMPRS</code> (impersonal), <code>INTR</code> (intransitive), <code>TR</code> (transitive), <code>DITR</code> (ditransitive), <code>REFL</code> (reflexive), <code>RECP</code> (reciprocal), <code>CAUS</code> (causative), <code>APPL</code> (applicative).
+At present we do not have a valency feature in UD. We only have a suggestion for a language-specific feature, with only two values,
+<code>Subcat=Intr</code> and <code>Subcat=Tran</code>, which are currently used only in UD Dutch.
+We do account for causativity and reciprocality in the <code>Voice</code> feature.
+We also have a boolean feature <code>Reflex=Yes</code> but most of the time we use it to mark reflexive pronouns.
+The <code>Valency</code> feature in UniMorph captures number of arguments (arity) of the verb: e.g. the causative morpheme adds one participant (the person who is forced to do the thing).
+The <code>Voice</code> feature in UD is more about switching roles of the participants. Obviously, the two features must interact with each other.</li>
+  <li><code>Voice</code>, values: <code>ACT</code> (active, <code>Voice=Act</code>), <code>MID</code> (middle, <code>Voice=Mid</code>), <code>PASS</code> (passive, <code>Voice=Pass</code>),
+<code>ANTIP</code> (antipassive), <code>DIR</code> (direct), <code>INV</code> (inverse),
+<code>AGFOC</code> (agent focus), <code>PFOC</code> (patient focus), <code>LFOC</code> (location focus), <code>BFOC</code> (beneficiary focus), <code>ACFOC</code> (accompanier focus), <code>IFOC</code> (instrument focus), <code>CFOC</code> (conveyed focus).</li>
+</ul>
+
+<h2 id="stuff-to-check">Stuff to check</h2>
+
+<ul>
+  <li>Does Hungarian have <code>Case=Abs</code>?</li>
+</ul>
+
+<h2 id="inventory-of-features-that-will-stay-language-specific">Inventory of features that will stay language-specific</h2>
+
+<ul>
+  <li><code>AdpType</code> distinguishes prepositions from postpositions, but also a few other types. It is used in a number of treebanks, but the usage is not consistent and I have some doubts whether it is useful. Many languages have a strong preference towards either pre- or postpositions.</li>
+  <li><code>AdvType</code> potentially useful in many languages but currently almost unused.</li>
+  <li><code>Clitic</code> specific to Finnish</li>
+  <li><code>ConjType</code> used only in Czech</li>
+  <li><code>Connegative</code> Finnish and Estonian</li>
+  <li><code>Derivation</code> specific to Finnish</li>
+  <li><code>Dialect</code> used only in Irish</li>
+  <li><code>Echo=Rdp</code> (reduplicative), used in Hindi and Turkish</li>
+  <li><code>Form</code> specific to Irish</li>
+  <li><code>HebBinyan</code> specific to Hebrew (but I believe it could be converted to aspect and voice)</li>
+  <li><code>HebExistential</code> specific to Hebrew</li>
+  <li><code>HebSource</code> debugging feature</li>
+  <li><code>Hyph=Yes</code> used only in a few treebanks</li>
+  <li><code>InfForm</code> specific to Finnish</li>
+  <li><code>NameType</code> used only in Czech</li>
+  <li><code>NounType</code> specific to Irish</li>
+  <li><code>NumValue</code> used in Czech and Arabic</li>
+  <li><code>PartForm</code> specific to Finnish</li>
+  <li><code>Position</code> used only in Romanian</li>
+  <li><code>Prefix=Yes</code> specific to Hebrew</li>
+  <li><code>PrepCase</code> used in Catalan, Czech, Polish, Portuguese, Spanish</li>
+  <li><code>PrepForm</code> specific to Irish (maybe it could be renamed to <code>AdpType</code>, which is used elsewhere)</li>
+  <li><code>PunctSide</code> used in ca, es_ancora, fi_ftb, nl</li>
+  <li><code>PunctType</code> used in ca, es_ancora, nl, ta; not consistent</li>
+  <li><code>Style</code> used in Czech, Danish and Finnish</li>
+  <li><code>Subcat</code> used only in Dutch</li>
+  <li><code>Typo=Yes</code> could be useful in all treebanks but we first need a general guideline for handling typos. Should the form in FORM be original, or fixed? And should we have a MISC attribute with the fixed or original form? See also <a href="https://github.com/UniversalDependencies/docs/issues/330">issue 330</a>.</li>
+  <li><code>Variant</code>; <code>Variant=Brev</code> in Russian denotes the short-form adjective (<em>холоден</em>, as opposed to <em>холодный</em>), which
+are distinguished by definiteness in South Slavic, and by <code>Variant=Short</code> (vs. <code>Long</code>) in West Slavic. Maybe this
+opposition would deserve a Slavic-specific feature, <code>AdjForm=Short|Long</code>.</li>
+  <li><code>VerbType=Aux|Mod|Cop|Main</code>; currently used in Hebrew, Dutch and Latin; it has to be seen how much such a feature will be demanded if we remove the <code>AUX</code> tag.</li>
+  <li><code>Xtra=Junk</code> used in Hebrew</li>
+</ul>
+
+<h3 id="all-layered-features">All layered features</h3>
+
+<p>We may want to standardize some of the layers but they seem to be de-facto standardized anyway.</p>
+
+<ul>
+  <li><code>Gender[dat], [erg], [psor]</code></li>
+  <li><code>Number[abs], [dat], [erg], [psed], [psor]</code></li>
+  <li><code>Person[abs], [dat], [erg], [psor]</code></li>
+  <li><code>Polite[abs], [dat], [erg]</code></li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li>Blake, Barry J. 2001. <em>Case.</em> Cambridge: Cambridge University Press. 2nd edition.</li>
+  <li>Davis, Irvine. 1964. The language of Santa Ana Pueblo (anthropological papers, no. 69). <em>Smithsonian
+Institution Bureau of American Ethnology, Bulletin 191: Anthropological Papers, Numbers
+68-74,</em> Washington, DC: United States Government Printing Office, 53–190.</li>
+  <li>Göksel, Asli and Kerslake, Celia. 2005. <em>Turkish: A Comprehensive Grammar.</em> New York: Routledge.</li>
+  <li>Haspelmath, Martin. 1995. The converb as a cross-linguistically valid category.
+<em>Converbs in Cross-Linguistic Perspective: Structure and Meaning of Adverbial Verb Forms – Adverbial Participles, Gerunds –,</em>
+edited by Martin Haspelmath and Ekkehard König, Berlin: Mouton de Gruyter, Empirical Approaches to Language Typology, 1–56.</li>
+  <li>Heine, Bernd and Kuteva, Tania. 2002. <em>World Lexicon of Grammaticalization.</em> Cambridge: Cambridge University Press.</li>
+  <li>Kornfilt, Jaklin. <em>Turkish.</em> London and New York: Routledge, 1997.</li>
+  <li>Sussex, Roland and Cubberley, Paul. 2006. <em>The Slavic Languages.</em> Cambridge University Press.</li>
+  <li>Sylak-Glassman, John. 2016. <em><a href="https://github.com/ckirov/UniMorph/blob/master/doc/Sylak-Glassman_2016_-_UniMorph_Schema_User_Guide.pdf">The Composition and Use of the Universal Morphological Feature Schema (UniMorph Schema)</a></em> Working Draft v2, May 25 2016.</li>
+</ul>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'v2';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

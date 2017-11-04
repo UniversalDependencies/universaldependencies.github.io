@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>POS tags</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/postags.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="part-of-speech-tags-in-ud-v2">Part-of-speech tags in UD v2</h1>
+
+<h2 id="summary">Summary</h2>
+
+<p>For v2, we propose</p>
+
+<ul>
+  <li>Rename <code>CONJ</code> to <a href="">u-pos/CCONJ</a>.</li>
+  <li>Extend the use of <a href="">u-pos/AUX</a> to copula verbs and nonverbal TAMVE particles.</li>
+  <li>Minimize usage of <a href="">u-pos/PART</a> – small language-specific list of words, case must be made for each.</li>
+  <li>Loosen borderline between <a href="">u-pos/PRON</a> and <a href="">u-pos/DET</a>: set of recommendations instead of purely functional rule.</li>
+  <li>Provide more general recommendations about setting language-specific borderlines between word categories.</li>
+</ul>
+
+<p>For related discussion see</p>
+
+<ul>
+  <li><a href="../u/overview/morphology.html">Morphology overview page</a> has a section on POS tags</li>
+  <li><a href="../u/pos/index.html">Current guidelines for POS tags</a></li>
+  <li><a href="../v2/form_vs_function.html">Form vs. function in POS tags</a></li>
+  <li><a href="http://github.com/UniversalDependencies/docs/issues/159">Issue 159</a> (<code>PRON</code> vs. <code>DET</code>) and the <a href="../2015-08-23-uppsala/determiners.html">Uppsala report on determiners</a></li>
+  <li><a href="http://github.com/UniversalDependencies/docs/issues/178#issuecomment-212822810">Issue 178</a> (question particles)</li>
+  <li><a href="http://github.com/UniversalDependencies/docs/issues/237">Issue 237</a> (<code>ADV</code> vs. <code>CONJ</code>)</li>
+  <li><a href="http://github.com/UniversalDependencies/docs/issues/275">Issue 275</a> (copula <code>VERB</code> vs. <code>AUX</code>)</li>
+  <li><a href="http://github.com/UniversalDependencies/docs/issues?q=is%3Aissue%20is%3Aopen%20label%3APOS">List of open issues with the POS label</a></li>
+</ul>
+
+<h2 id="rename-conj-to-cconj">Rename CONJ to CCONJ</h2>
+
+<p>We propose to rename the <code>CONJ</code> tag to <code>CCONJ</code> <em>(coordinating conjunction)</em>
+and thus make it analogous to <code>SCONJ</code> <em>(subordinating conjunction).</em>
+That will hopefully reduce the confusion that we observed in v1:
+people have assumed that the <code>CONJ</code> tag would correspond to the <code>conj</code> relation,
+while in fact it usually went with the relation <code>cc</code> and practically never with <code>conj</code>.</p>
+
+<h2 id="keep-propn">Keep PROPN</h2>
+
+<p>We considered removing <code>PROPN</code> as a separate POS tag because
+1. the motivation to have it is weak in some languages (no grammatical implications except for capital letters);
+2. the possibility to say that a language does not have <code>PROPN</code> does not really solve anything – these languages indeed have the category and typically will want to use it if it exists, to increase cross-linguistic parallelism;
+3. disambiguation from <code>NOUN</code> is hard in many languages;
+4. it would be better to have phrase-level named entity annotation, which would include non-noun words (adjectives) and nesting.</p>
+
+<p>We decided to keep the tag in v2 because
+1. the category has been traditionally distinguished in a significant number of languages and tagsets, and people do not want to lose it there;
+2. the reasons above do not seem strong enough to remove it;
+3. we are not going to have named entity annotation in UD v2.</p>
+
+<h2 id="keep-part-but-minimize-its-usage">Keep PART but minimize its usage</h2>
+
+<p>We considered removing <code>PART</code> because it is a very small category, which is defined mostly negatively (it is particle if it is not anything else). We decided to keep it because
+1. we would have to take the current particles one-by-one in each language and decide where to put them;
+2. in some instances it would still be hard to find a suitable category;
+3. which may actually lead to creation of several new and even smaller categories.</p>
+
+<p>However, the lists of particles in individual languages should be reviewed anyways. Language-specific documentation must list all particles in the language, and ideally also explain why they are particles.</p>
+
+<p>Note that the current guidelines say that [en] <em>not</em>, [de] <em>nicht</em> etc. are negative particles (but negative determiners like [en] <em>no</em>, or negative auxiliary verbs like [cs] <em>není</em> are not particles). This is the only positive part of the current <code>PART</code> definition at the language-universal level, because such words were traditionally tagged as adverbs in some languages, and they could be adverbs in the other languages too, had we decided to remove <code>PART</code>.</p>
+
+<h2 id="extend-the-use-of-aux">Extend the use of AUX</h2>
+
+<p>The <a href="">u-pos/AUX</a> category is currently used for auxiliary verbs, that is verbs used with the syntactic relation <a href="">u-dep/aux</a> (regardless of whether these verbs can be used as main verbs in other contexts). We propose to extend its use in two ways. First, it can be used for nonverbal particles used to express TAMVE categories, which in v2 will also be analyzed using the <a href="">u-dep/aux</a> relation. Secondly, it will be extended to copula (<a href="">u-dep/cop</a>) verbs, which perform a grammaticalized function in nominal clauses.</p>
+
+<!--In many languages, (some of) the auxiliary verbs may also be used as main verbs. Their paradigm may be defective but the forms they have usually do not distinguish auxiliary usage from full-verb usage, so the `AUX` tag can only be inferred from the syntactic relation [u-dep/aux](). We believe that each POS category should be able to contribute some additional information rather than just mirror a dependency relation (see also further discussion in the section _Borderline between categories_). Since the `AUX` tag served only to distinguish auxiliary and non-auxiliary usage of a verb, it should be removed; the two usages can be recognized by the `aux` relation.
+
+If it is desirable to keep the morphological distinction in a treebank (e.g. because a verb is only auxiliary in a language, and it differs morphologically from normal verbs), the language-specific feature VerbType=Aux (or Mod or Cop) can be used, but there will be no dedicated POS tag.
+
+Removing the tag means changing it to `VERB` in data, removing all the `AUX` pages from the documentation, and also remove references to it from other parts of the documentation (probably from `VERB`, `aux` and `auxpass`; quite likely also from elsewhere).
+
+(NB: If this proposal is not approved by the core group, we should consider re-classifying copula verbs as auxiliaries.)-->
+
+<h2 id="borderlines-between-categories">Borderlines between categories</h2>
+
+<p>Parts of speech have traditionally been defined using a mix of morphological, syntactic and semantic criteria. Given that UD is concerned with grammatical annotation, we in general want to give less priority to (purely) semantic criteria. Morphological criteria are very useful but are not applicable to all languages, or even to all categories within morphologically rich languages. It follows that, in many cases, we have to rely primarily on syntactic criteria. However, we believe that the part-of-speech classification is most useful if it captures regular, prevailing syntactic behavior and does not reflect sentence-specific exceptional behavior. Therefore, we should avoid completely functional guidelines for part-of-speech tags that make the tag completely predictable from the syntactic function. In addition to the obvious argument that such guidelines make (some) tags uninformative, they also make it harder to find interesting cross-lingual differences.
+For example, language X allows words of category A to have syntactic function b, but language Y doesn’t.</p>
+
+<p>We admit that there are ambiguous words that cannot be tagged without considering the context. However, we prefer distinctions based on <em>prevailing</em> syntactic behavior and (when relevant) morphological properties. We should avoid the extreme where (almost) all ambiguities between two categories are resolved solely by syntactic structure, as was the case with pronouns vs. determiners in v1. Here the current definition of <code>PRON</code> and <code>DET</code> should be loosened. It will be possible in many languages to enumerate words in both classes, and preferably the lists should be based on prevailing syntactic function and morphological properties, rather than the actual context in each sentence.</p>
+
+<!--The functional approach is not banned though, if there is no better way (reportedly Turkic languages). See below for more details.
+  * Main verbs vs. auxiliary verbs. In many languages, (some of) the auxiliary verbs may also
+    be used as main verbs. Their paradigm may be defective but the forms they have usually do
+    not distinguish auxiliary usage from full-verb usage, so the `AUX` tag can only be
+    inferred from the syntactic relation `aux`.
+    There is no reasonable solution similar to the `PRON`/`DET` proposal, therefore we propose
+    to remove the `AUX` tag from v2.
+    If it is desirable to keep the morphological distinction in a treebank
+    (e.g. because a verb is _only_ auxiliary in a language, and it differs morphologically from normal verbs),
+    the language-specific feature `VerbType=Aux` (or `Mod` or `Cop`) can be used, but there will be no dedicated POS tag.-->
+
+<p>There are many pairs of categories with unclear border zones, although not all of them in all languages:</p>
+
+<ul>
+  <li><code>NOUN</code> can be confused with <code>PROPN</code>, <code>PRON</code>, <code>ADJ</code> and some forms of <code>VERB</code> (gerunds, infinitives)</li>
+  <li><code>PROPN</code> can be confused with <code>NOUN</code> and <code>X</code> (foreign names)</li>
+  <li><code>ADJ</code> can be confused with <code>DET</code>, <code>NUM</code> (ordinals) and some forms of <code>VERB</code> (participles)</li>
+  <li><code>PRON</code> can be confused with <code>DET</code>, <code>NUM</code> (pronominal quantifiers), <code>ADV</code> (pronominal adverbs) and possibly <code>NOUN</code></li>
+  <li><code>DET</code> can be confused with <code>PRON</code>, <code>NUM</code> (pronominal quantifiers), <code>ADV</code> (pronominal adverbs) and possibly <code>ADJ</code></li>
+  <li><code>NUM</code> can be confused with <code>ADJ</code> (ordinals), <code>NOUN</code> (high-value cardinals, e.g. “million”), <code>PRON</code>, <code>DET</code> (pronominal quantifiers) and <code>ADV</code> (adverbs of degree/quantity, multiplicative numerals like [cs] <em>sedmkrát</em> “seven times” etc.)</li>
+  <li><code>ADV</code> can be confused with <code>ADJ</code>, <code>PRON</code>, <code>DET</code> (pronominal adverbs), <code>NUM</code> (adverbial numerals and adverbs of degree/quantity) and some forms of <code>VERB</code> (transgressives/converbs); furthermore, some are on the border to <code>ADP</code>, <code>SCONJ</code> and <code>CCONJ</code></li>
+  <li><code>VERB</code> can be confused with <code>AUX</code> (but we are proposing to remove <code>AUX</code>), <code>NOUN</code> (gerunds), <code>ADJ</code> (participles), <code>ADV</code> (transgressives/converbs)</li>
+  <li><code>ADP</code> can be confused with <code>SCONJ</code>, <code>ADV</code>, some secondary prepositions also with <code>NOUN</code> and other categories</li>
+  <li><code>SCONJ</code> can be confused with <code>ADP</code>, <code>ADV</code> and <code>CCONJ</code></li>
+  <li><code>CCONJ</code> can be confused with <code>ADV</code> and <code>SCONJ</code></li>
+  <li><code>PART</code> should in theory not be confused with anything because then it should not be <code>PART</code>; nevertheless, at least some traditional particles are now <code>ADP</code>, <code>ADV</code>, <code>SCONJ</code> or <code>CCONJ</code>, and the particle <em>not</em> would be traditionally <code>ADV</code> in some languages</li>
+  <li><code>INTJ</code> can sometimes be confused with <code>NOUN</code>, <code>ADJ</code>, <code>VERB</code> or <code>ADV</code> if they are used like exclamations; but arguably these could then not be tagged <code>INTJ</code></li>
+  <li><code>PUNCT</code> can be confused with <code>SYM</code></li>
+  <li><code>SYM</code> can be confused with <code>PUNCT</code></li>
+  <li><code>X</code> as a tag for foreign word can be confused with <code>PROPN</code> when the word itself is not a proper noun in the foreign language, but is a part of a longer book/movie title</li>
+</ul>
+
+<p>Some pairs are less problematic than others because some categories are functionally more compatible than others.
+It is acceptable if <code>PRON</code> and <code>DET</code> are pre-categorized and distinguished mostly by word list or morphology,
+because they can be seen as two subcategories of a broader category of nominals; if a word is classified as <code>DET</code>
+but it occurs in place of a noun phrase, it can be explained by ellipsis and we do not have to switch the tag
+to <code>PRON</code> in such contexts. However, some categories are not compatible and if a word occurs in both, it has to
+be taken as two separate lemmas; consequently it has to be disambiguated according to sentence context.
+A good example is [en] <em>that</em> and [es] <em>que</em> which can be both a relative pronoun and a subordinating conjunction
+(complementizer). We cannot say that all occurrences are either <code>PRON</code> or <code>SCONJ</code> because a pronoun can
+act as a core argument of a predicate, while complementizer cannot. So we have to distinguish the two functions,
+although historically the complementizer may actually come from a grammaticalized pronoun.</p>
+
+<!--It would be useful if the proposal for UD v2 also included a list of category pairs that are considered incompatible
+but we did not discuss this in detail in Prague.-->
+
+<p>Furthermore, we should encourage authors of language-specific documentation to document all borderline cases,
+but this is not really a change of guidelines.</p>
+
+<h2 id="proposed-principles-for-ud-v2">Proposed principles for UD v2</h2>
+
+<p>This text could be added to the <a href="../u/overview/morphology.html">morphology overview page</a>, section on POS tags:</p>
+
+<ul>
+  <li>A word’s category should be primarily determined by prototypical (expected) syntactic behavior, as typically recorded in a dictionary, rather than by the context of a particular sentence.
+<!--Syntax still plays an important role, especially in cross-linguistic mapping of same-named categories.
+However, prototypical (expected) syntactic behavior is of more importance than function performed in exceptional contexts.--></li>
+  <li>Morphological behavior may be a good indicator in some languages.
+If, for example, a language uses distinct inflection patterns for nouns and adjectives, then morphology can be used
+to distinguish these two categories. Exceptions cannot be excluded but they should be really exceptional and well grounded; when in doubt, use the category determined by morphology (if available).</li>
+  <li>Ambiguous words (belonging to two or more categories) do exist. Sometimes by pure coincidence
+([en] <em>the can</em> vs. <em>can = to be able to</em>). Sometimes the two words are related but differ morphologically
+([en] <em>the book(s)</em> vs. <em>to book, booked, booking</em>).</li>
+  <li>Perhaps the most difficult part are ambiguous function words that do not inflect (i.e. morphology does not help us),
+yet they perform two or more <em>significantly</em> different syntactic functions, which we normally associate with different
+parts of speech. The two functions may not be equally frequent but each of them is more frequent than what could be labeled
+as a mere exception (i.e. the <em>wait for his ‘yes’</em> example is exceptional).
+Disambiguating such pairs clearly depends on the context of the given sentence where the word is used.
+<!--This sort of ambiguity should be minimized (because we want to decide as much as possible with dictionary) but it cannot be avoided.-->
+So how do we know that the difference is “significant enough”?
+One clue is that the word, when translated to another language, gets two different translations with different POS tags
+(e.g. the English <em>no</em> as response interjection, vs. negative determiner).
+Another clue comes from contrasting the UD relations used for the two functions.
+For example, distinguishing <code>PRON</code> from <code>SCONJ</code> ([en] <em>that</em>, [es] <em>que</em>, [ru] <em>что</em> / <em>čto</em>) is important because pronouns,
+unlike conjunctions, may become core arguments and fill valency slots of verbs.
+Distinguishing <code>SCONJ</code> from <code>ADP</code>, or <code>CCONJ</code> from <code>ADV</code> seems less crucial and we can probably
+keep just one POS tag for each such word, based on prototypical usage.</li>
+</ul>
+
+<h2 id="revised-guidelines-for-pronominal-words">Revised guidelines for pronominal words</h2>
+
+<p>This text could be added to the <a href="../u/overview/morphology.html">morphology overview page</a>, section on POS tags,
+and it should also be reflected in the documentation of individual POS tags:</p>
+
+<p>Pronominal words are <a href="/u/pos/PRON.html">pronouns</a>, <a href="/u/pos/DET.html">determiners</a> (articles and pronominal adjectives),
+pronominal <a href="/u/pos/ADV.html">adverbs</a> <em>(where, when, how)</em>, and in traditional grammars of some languages also pronominal <a href="/u/pos/NUM.html">numerals</a> <em>(how much)</em>.</p>
+
+<ul>
+  <li>In most cases it is straightforward to determine whether a word is pronominal (see also the <a href="/u/feat/PronType.html">PronType</a> feature)
+but the borderline between indefinite determiners and adjectives is slightly fuzzy. Related languages should synchronize the lists of words
+they treat as pronominal. The rest of these guidelines demarcate borders within the pronominal group.</li>
+  <li>Pronominal adverbs are tagged <code>ADV</code>. Their pronominality is encoded using the <code>PronType</code> feature. Their typical syntactic function is to modify verbs.</li>
+  <li>Articles <em>(the, a, an)</em> are always tagged <code>DET</code>; their <code>PronType</code> is <code>Art</code>.</li>
+  <li>Pronominal numerals (quantifiers) are tagged <code>DET</code>; besides <code>PronType</code>, they also use the <a href="/u/feat/NumType.html">NumType</a> feature.</li>
+  <li>Words that behave similar to adjectives are <code>DET</code>.
+(We understand the <code>DET</code> class as pro-adjectives, which is a slightly broader sense than what is usually regarded as determiners in English.
+In particular, it is possible that one nominal is modified by more than one determiner.) Similar behavior means:
+    <ul>
+      <li>They are more likely to be used attributively (modifying a noun phrase) than substantively (replacing a noun phrase). They may occur alone, though.
+If they do, it is either because of ellipsis, or because the hypothetical modified noun is something unspecified and general, as in <em>All [visitors] must pay.</em></li>
+      <li>Their inflection is similar to that of adjectives, and distinct from nouns. They agree with the nouns they modify.
+Especially the ability to inflect for gender is typical for adjectives and determiners.
+(Gender of nouns is determined lexically and determiners may be required by the grammar to agree with their nouns in gender; therefore they need to inflect for gender.)</li>
+    </ul>
+  </li>
+  <li>Non-possessive personal, reflexive or reciprocal pronouns are always tagged <code>PRON</code>.</li>
+  <li>Possessives vary across languages. In some languages the above tests put them in the <code>DET</code> category.
+In others, they are more like a normal personal pronoun in a specific case (often the genitive), or a personal pronoun with an adposition; they are tagged <code>PRON</code>.</li>
+  <li>When the above rules do not help, the category should be based on what the traditional grammar of the language says.</li>
+  <li>Ideally, language-specific documentation should list pronominal words and their category. These are all closed classes so it should not be difficult.</li>
+</ul>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'v2';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Segmentation in UD v2</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-v2">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/v2/v2">v2/v2</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_v2/segmentation.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="word-segmentation-in-ud-v2">Word segmentation in UD v2</h1>
+
+<p>The UD scheme makes a distinction between <strong>tokens</strong>, word-like elements that can be identified using simple rules, often relying (only) on whitespace and punctuation, and <strong>words</strong>, which are the linguistically relevant word units needed for morphological and syntactic analysis. In v1, it was assumed that words would never contain spaces, and that “multitoken words” should always be handled using special relations like <a href="">u-dep/fixed</a> and <a href="">u-dep/goeswith</a>. For v2, we relax this assumption in two ways:</p>
+
+<ul>
+  <li>Allow words with spaces for languages where spaces mark something else than word boundaries (for example, syllable boundaries as in Vietnamese)</li>
+  <li>Allow words with spaces (in any language) for an approved (and restricted) list of exceptions like numbers (“100 000”) and abbreviations (“i. e.”)</li>
+</ul>
+
+<p>Throughout the remainder of this text, the symbol <code>⎵</code> will be used to indicate orthographic space.</p>
+
+<h2 id="problems-with-current-treatment-of-word-segmentation">Problems with current treatment of word segmentation</h2>
+
+<p>There are two main problems with the current treatment of word segmentation:</p>
+
+<ul>
+  <li>The first is that for some languages (Vietnamese being the prototypical example) spaces do not mark word boundaries, but rather syllable boundaries.</li>
+  <li>In other languages, some kind of spacing character is used as a delimiter in numerals, or is optionally used in abbreviations.</li>
+</ul>
+
+<h3 id="spaces-as-syllable-delimiters">Spaces as syllable delimiters</h3>
+
+<p>There is unanimous agreement that words with spaces should be allowed in the Vietnamese treebank, because the alternative of treating all polysyllabic words as multiword expressions would artificially make Vietnamese look very different from all other languages. As far as we know, Vietnamese is the only language where this is necessary, but still all tools will need to be able to support having spaces in CoNLL-U columns. Consider the following example, “Minh is (a) teacher.”, where <i>giáo viên</i> is a bisyllabic word meaning “teacher”. (Currently using underscore, “giáo⎵viên”, because even the tree visualization tool cannot work with word-internal spaces.)</p>
+
+<pre><code class="language-conllu">
+1	Minh	Minh	PROPN	_	_	3	nsubj	_	_
+2	là	là	VERB	_	_	3	cop	_	_
+3	giáo⎵viên	giáo⎵viên	NOUN	_	_	0	root	_	_
+4	.	.	PUNCT	_	_	3	punct	_	_
+
+</code></pre>
+
+<p>If a language allows spaces inside words on a language-wide basis, this must be declared in the language-specific documentation.</p>
+
+<h3 id="other-cases">Other cases</h3>
+
+<p>For the remainder of the languages, we should essentially maintain the ban on spaces in words. However, we propose that for a highly restricted closed class of orthographic phenomena, we may make exceptions (with prior approval).</p>
+
+<h4 id="spaces-as-numeral-separators">Spaces as numeral separators</h4>
+
+<p>In the existing French treebank, space delimited numerals, e.g. “100 000” are collapsed into a single numeral, “… de 8 500 à 20 000 euros.” becomes:</p>
+
+<pre><code class="language-conllu">
+1	de	de	ADP	_	_	2	case	_	_
+2	8500	8500	NUM	_	_	0	nmod	_	_
+3	à	à	ADP	_	_	5	case	_	_
+4	20000	20000	NUM	_	_	5	nummod	_	_
+5	euros	euro	NOUN	_	Gender=Masc|Number=Plur	0	nmod	_	_
+
+</code></pre>
+
+<p>We do not see that this is an improvement over simply allowing the space, and the alternative (to have each 000 as a 
+separate token and use <code>goeswith</code> or <code>mwe</code>) is unwieldy and does not exactly fit, e.g. writing 100 000 is not an 
+orthographic error, but rather orthographically normative, and neither is it a fixed expression.</p>
+
+<p>The new tokenisation would be:</p>
+
+<pre><code class="language-sdparse">
+de 8⎵500 à 20⎵000 euros \n from 8,500 to 20,000 euros
+
+</code></pre>
+
+<h4 id="spaces-in-normalising-abbreviations">Spaces in normalising abbreviations</h4>
+
+<p>Spaces should be allowed in order to normalise abbreviations, in Swedish “e.g.” can be written either “t.ex.” or “t ex”</p>
+
+<p>With space “t ex”:</p>
+
+<pre><code class="language-sdparse">
+Idrottsmateriel t_ex spikskor , kompass , kartfodral \n Sporting.goods e.⎵g. spiked.shoes , compass , map.holder
+
+</code></pre>
+
+<p>Without space “t.ex.”:</p>
+
+<pre><code class="language-sdparse">
+Det gäller t.ex. säsongarbetslösa byggnadsarbetare . \n This applies.to e.g. seasonally.unemployed building.workers .
+
+</code></pre>
+
+<h4 id="spaces-between-a-syntactic-word-and-a-bound-morpheme">Spaces between a syntactic word and a bound morpheme</h4>
+
+<p>In Tuvan, in some tenses, the person/number agreement is written separate from the verbal morpheme. We propose allowing these to be tokenised as one unit</p>
+
+<pre><code class="language-sdparse">
+Мен Кызылга чурттап турган⎵мен .  \n I Kyzyl.to living standing.am
+nsubj(чурттап, Мен)
+aux(чурттап, турган⎵мен)
+nmod(чурттап, Кызылга)
+
+</code></pre>
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'v2';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

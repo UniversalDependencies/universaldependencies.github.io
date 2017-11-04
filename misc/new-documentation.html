@@ -1,0 +1,423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Ideas for New Documentation</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-misc">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/misc/misc">misc/misc</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_misc/new-documentation.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="ideas-for-new-documentation">Ideas for New Documentation</h1>
+
+<h2 id="issues-with-current-documentation">Issues with current documentation:</h2>
+
+<ul>
+  <li>The current documentation which is organized along relations rather than constructions makes it often hard to find the right analysis of a certain construction.</li>
+  <li>There is either a lot of redundancy (or conflicting statements) between the universal documentation and the language-specific documentation (in particular in the case of English) or very little to no language-specific documentation.</li>
+  <li>Users have to go back and forth between the universal documentation and language-specific documentation and it is often not clear where to find the information.</li>
+  <li>We have a lot of very productive GitHub discussions but there is no efficient process of transferring the results of a discussion from GitHub issues to the official documentation. Further, many interesting annotated examples are buried in the discussions.</li>
+  <li>There is no efficient way to search for examples within the documentation. Currently, users can can only search in treebanks but there are no explanations attached to the results.</li>
+  <li>Users might not know what a construction is called (or what we call it) but they might be able to search for it using a POS/surface token/dependency pattern.</li>
+  <li>Providing a full language-specific documentation is often too big of a commitment for maintainers of a language and might not even be always necessary. A page that lists all the noteworthy things about a treebank or language, on the other hand, would require much less effort.</li>
+</ul>
+
+<h2 id="ideas">Ideas</h2>
+
+<ul>
+  <li>5 different types of pages:
+    <ul>
+      <li>General page (Introduction, contribution guidelines, organization, etc.)</li>
+      <li>Relations and POS tags (similar to current documentation)</li>
+      <li>Constructions (new)</li>
+      <li>Examples (new)</li>
+      <li>“Treebank readme” following a to-be-developed template (new)</li>
+    </ul>
+  </li>
+  <li>The pages for relations, POS tags, and the new construction pages should contain the universal as well as the language-specific guidelines on a single page.
+    <ul>
+      <li>The top part of the page contains the universal guidelines, similar to the ones we currently have with representative examples from a few languages and general descriptions of the relation/tag/construction.</li>
+      <li>The language-specific documentation should only contain things that are (e.g., examples in the language, noteworthy corner cases in the language, lists of lexical items that define a relation/tag/construction, etc.)</li>
+      <li>Below the universal guidelines, there are buttons for each language (or some better UI element) that allows the user to toggle the visibility of the language-specific documentation. If there is a language-specific documentation for the selected language, it is shown below the universal guidelines.</li>
+      <li>The selected languages are stored in a cookie so that a user can select the languages they are interested in and when they browse the documentation, the language-specific documentation for that language is always shown.</li>
+    </ul>
+  </li>
+  <li><em>Construction</em> pages and <em>relation/POS</em> pages:
+    <ul>
+      <li>Markdown-formatted pages similar to current relation pages.</li>
+      <li>Examples are no longer part of the markup of the page but instead embedded from example pages (allows for a more structured search and reusing of examples on multiple pages).</li>
+    </ul>
+  </li>
+  <li><em>Example</em> pages:
+    <ul>
+      <li>Structured page with the following information:
+        <ul>
+          <li>Example in ConLL-U or SD format</li>
+          <li>Language</li>
+          <li>“Universally-relevant”: A flag that indicates whether this example is intended to demonstrate something that is relevant for multiple languages.</li>
+          <li>(optional): Discussion of the example</li>
+          <li>“Links” to construction/relation/tag pages.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><em>General pages</em>:
+    <ul>
+      <li>Markdown-formatted pages that allow embedding of examples</li>
+    </ul>
+  </li>
+  <li>“<em>Treebank readme</em>”:
+    <ul>
+      <li>Markdown-formatted pages that follow a template and allow embedding of examples</li>
+    </ul>
+  </li>
+  <li>Link between examples and constructions:
+    <ul>
+      <li>Example pages show links to the constructions/relations that are relevant for the example.</li>
+      <li>One can browse through the examples for selected languages that are relevant for a certain construction/relation/tag.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Many GitHub discussion can probably be summarized with an example and a short description of what was discussed. Example pages might therefore make it easier to transfer results from discussions to the official documentation.</p>
+  </li>
+  <li>Search:
+    <ul>
+      <li>The search can be used to perform a full-text search of the documentation and to search for examples within the documentation.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Relations and POS tags are still linked in a table that highlights the organization of the tags/relations.</p>
+  </li>
+  <li>Constructions are linked in an alphabetical sorted (or hierarchical?) list</li>
+</ul>
+
+<p>(I deliberately did not mention morphological featues. As Dan pointed out, this format might not work as well for morphological features, as, for example, there are a large number of cases but most of them are irrelevant for most languages, and a user might not want to read about all of them when they are only interested in the values for a particular language. So we probably need a different solution for these.)</p>
+
+<h2 id="proposal-for-a-construction-taxonomy">Proposal for a Construction Taxonomy</h2>
+
+<ul>
+  <li>Nominals (might as well get them out of the way before going into the more complex stuff)
+    <ul>
+      <li>Modification in nominals
+        <ul>
+          <li>Nominal modifiers (incl. appositions)</li>
+          <li>Adjectival modifiers</li>
+          <li>Numeral modifiers</li>
+          <li>Clausal modifiers (refer forward to complex clauses?)</li>
+        </ul>
+      </li>
+      <li>Grammatical markers (aka function words)
+        <ul>
+          <li>Determiners</li>
+          <li>Classifiers</li>
+          <li>Adpositions</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simple clauses
+    <ul>
+      <li>Predicates and core arguments
+        <ul>
+          <li>Intransitive clauses</li>
+          <li>Transitive clauses</li>
+          <li>Ditransitive clauses</li>
+          <li>Copular/nonverbal clauses</li>
+        </ul>
+      </li>
+      <li>Non-core dependents of predicates
+        <ul>
+          <li>Oblique arguments and adjuncts</li>
+          <li>Adverbials (incl. negation)</li>
+          <li>Discourse</li>
+          <li>Vocative</li>
+        </ul>
+      </li>
+      <li>Predicate realization
+        <ul>
+          <li>Auxiliary verbs</li>
+          <li>Complex predicates (move to MWE?)</li>
+          <li>Secondary predication (move to complex clauses?)</li>
+        </ul>
+      </li>
+      <li>Core argument realization
+        <ul>
+          <li>Expletives</li>
+          <li>Reflexives</li>
+          <li>Pro-drop</li>
+          <li>Clitics</li>
+          <li>Dislocated</li>
+        </ul>
+      </li>
+      <li>Special constructions
+        <ul>
+          <li>Passives</li>
+          <li>Causatives</li>
+          <li>Applicatives (?)</li>
+          <li>Existentials</li>
+          <li>Partitives (not sure whether these belong here or under nominals?)</li>
+          <li>Clefts</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Complex clauses (aka Subordination)
+    <ul>
+      <li>Complement clauses (cf. core arguments)</li>
+      <li>Adverbial clauses (cf. non-core dependents)
+        <ul>
+          <li>Comparative constructions	(move to special constructions?)</li>
+        </ul>
+      </li>
+      <li>Adnominal clauses (cf. modifiers in nominals)
+        <ul>
+          <li>Relative clauses (unless treated under nominals)</li>
+        </ul>
+      </li>
+      <li>Grammatical markers (aka function words)
+        <ul>
+          <li>Subordinating conjunctions (and adpositions)</li>
+          <li>Relative pronouns and similar</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Coordination
+    <ul>
+      <li>Clausal coordination (incl.	parataxis?)</li>
+      <li>Phrasal coordination (incl. head coordination)
+        <ul>
+          <li>Uneven coordination</li>
+          <li>Non-constituent coordination</li>
+        </ul>
+      </li>
+      <li>Loose joining relations
+        <ul>
+          <li>Parataxis</li>
+          <li>Lists</li>
+        </ul>
+      </li>
+      <li>Grammatical markers
+        <ul>
+          <li>Coordinating conjunctions (incl. paired conjunctions)</li>
+          <li>Clitics</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Multiword expressions
+    <ul>
+      <li>Fixed expressions
+        <ul>
+          <li>Adpositions (“in spite of”)</li>
+          <li>Adverbs (“by and large”)</li>
+          <li>Subordinating conjunctions (“bien que”)</li>
+        </ul>
+      </li>
+      <li>Compounds</li>
+      <li>Verbal MWEs (particle verbs, prepositional verbs, light verbs)</li>
+      <li>Names</li>
+      <li>Dates</li>
+    </ul>
+  </li>
+  <li>Special phenomena
+    <ul>
+      <li>Ellipsis</li>
+      <li>Disfluencies</li>
+      <li>Typographical errors</li>
+      <li>Punctuation</li>
+      <li>Symbols</li>
+    </ul>
+  </li>
+</ul>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'misc';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
