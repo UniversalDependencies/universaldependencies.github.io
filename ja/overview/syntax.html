@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Syntax</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-ja">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/ja/ja">ja/ja</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ja/syntax.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v1warning">
+	This page still pertains to UD version 1.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="syntax">Syntax</h1>
+
+<p>Syntactic dependency labels in Japanese are defined in conformity with
+the principles of Universal Dependencies as far as possible.  However,
+the definition of Japanese syntax under Universal Dependencies
+involves several issues to be discussed.  For example, the definition
+of “clause” is not clear, while dependency labels rely on the
+definition of “clause”, such as the distinction between “nsubj” and
+“csubj”.  These issues are detailed in the section
+<a href="http://universaldependencies.org/ja/overview/specific-syntax.html">Specific Constructions</a>,
+while we still have unclear cases.</p>
+
+<p>In the following, we give a rough sketch of dependency labels with a
+couple of examples.  See the section <a href="http://universaldependencies.org/ja/dep/index.html">Japanese dependency relations</a>
+for the definition of each label.</p>
+
+<h2 id="core-dependents-of-clausal-predicates">Core dependents of clausal predicates</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>label</th>
+      <th>description</th>
+      <th>examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>nsubj</code></td>
+      <td>Nominal subjects (typically a postpositional phrase with a case marker が / <i>ga</i> or sometimes with は / <i>wa</i>)&lt;/td&gt;</td>
+      <td>太郎 が / <i>Taro ga</i> “Taro-NOM” &lt;-<code>nsubj</code>- 走る / <i>hashiru</i> “run”</td>
+    </tr>
+    <tr>
+      <td><code>nsubjpass</code></td>
+      <td>Nominal subjects in passive forms</td>
+      <td>太郎 が / <i>Taro ga</i> “Taro-NOM” &lt;-<code>nsubjpass</code>- ほめ られる / <i>home rareru</i> “praise-PASSIVE”</td>
+    </tr>
+    <tr>
+      <td><code>obj</code></td>
+      <td>Direct object (typically a postpositional phrase with a case marker を / <i>o</i>)</td>
+      <td>ご飯 を / <i>gohan o</i> “rice-ACC” &lt;-<code>obj</code>- 食べる / <i>taberu</i> “eat”</td>
+    </tr>
+    <tr>
+      <td><code>iobj</code></td>
+      <td>Indirect object (typicall a postpositional phrase with a case marker に / <i>ni</i>)</td>
+      <td>花子 に / <i>Hanako ni</i> “Hanako-ACC” &lt;-<code>iobj</code>- あげる / <i>ageru</i> “give”</td>
+    </tr>
+    <tr>
+      <td><code>csubj</code></td>
+      <td>Clausal subjects introduced by a nominal marker の / <i>no</i></td>
+      <td>太郎 が 怒ら れる の は / Taro ga okora reru no ha “that-TOPIC Taro is punished” &lt;-<code>csubj</code>- いやだ / iyada “dislike”</td>
+    </tr>
+    <tr>
+      <td><code>csubjpass</code></td>
+      <td>Clausal subjects in passive forms</td>
+      <td>言っ た の が / <i>It ta no ga</i> “that-NOM (someone) said” &lt;-<code>csubjpass</code>- 悔やま れる / <i>kuyama reru</i> “regret-PASSIVE”</td>
+    </tr>
+    <tr>
+      <td><code>ccomp</code></td>
+      <td>Complement clause (typically a clause introduced by と / <i>to</i>)</td>
+      <td>きれい だ と / <i>kirei da to</i> “that (something) is beautiful” &lt;-<code>ccomp</code>- 思う / <i>omou</i> “think”</td>
+    </tr>
+    <tr>
+      <td><code>xcomp</code></td>
+      <td>Not used in Japanese</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="non-core-dependents-of-clausal-predicate">Non-core dependents of clausal predicate</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>label</th>
+      <th>description</th>
+      <th>examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>nmod</code></td>
+      <td>Prepositional/noun phrases modifying another phrase</td>
+      <td>北海道 へ / <i>Hokkaido e</i> “Hokkaido-TO” &lt;-<code>nmod</code>- 行く / <i>iku</i> “go” <br /> 明日 / <i>ashita</i> “tomorrow” &lt;-<code>nmod</code>- 行く <i>iku</i> “go”</td>
+    </tr>
+    <tr>
+      <td><code>advcl</code></td>
+      <td>Subordinate clause</td>
+      <td>食べ た なら / <i>tabe ta nara</i> “if (someone) ate &lt;-<code>advcl</code>- 行く / <i>iku</i> “go”</td>
+    </tr>
+    <tr>
+      <td><code>advmod</code></td>
+      <td>Adverbial modifiers</td>
+      <td>ゆっくり / <i>yukkuri</i> “slowly” &lt;-<code>advmod</code>- 走る <i>hashiru</i> “run”</td>
+    </tr>
+    <tr>
+      <td><code>neg</code></td>
+      <td>Negation with ない / <i>nai</i>, ず / <i>zu</i></td>
+      <td>食べ <i>tabe</i> “eat” -<code>neg</code>-&gt; ない / <i>nai</i> “not”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="noun-dependents">Noun dependents</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>label</th>
+      <th>description</th>
+      <th>examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>nummod</code></td>
+      <td>Numeral classifier phrases</td>
+      <td>3 冊 の / <i>san satsu no</i> “three books of” &lt;-<code>nummod</code>- 本 / <i>hon</i> “books”</td>
+    </tr>
+    <tr>
+      <td><code>appos</code></td>
+      <td>Appositive relations</td>
+      <td>形態素 解析 器 / <i>keitaiso kaiseki ki</i> “morphological analyzer” &lt;-<code>appos</code>- Mecab / <i>mekabu</i> “mecab”</td>
+    </tr>
+    <tr>
+      <td><code>nmod</code></td>
+      <td>Prepositional phrases modifying another phrase</td>
+      <td>リンゴ の / <i>ringo no</i> “of apple” &lt;-<code>nmod</code>- ジュース <i>jusu</i> “juice”</td>
+    </tr>
+    <tr>
+      <td><code>acl</code></td>
+      <td>Relative clause, clausal complement of nouns</td>
+      <td>太郎 が 食べ た / <i>Taro ga tabe ta “Taro ate” &lt;-<code>acl</code>- リンゴ / <i>ringo</i> “apple” <br /> ほめ られた / <i>home rareta</i> “praise-PASSIVE” &lt;-<code>acl</code>- こと / <i>koto</i> “fact”</i></td>
+    </tr>
+    <tr>
+      <td><code>amod</code></td>
+      <td>Adjectival modifiers; adjectives with arguments are tagged as “acl”</td>
+      <td>きれいな / <i>kireina</i> “beautiful” &lt;-<code>amod</code>- リンゴ / <i>ringo</i> “apple”</td>
+    </tr>
+    <tr>
+      <td><code>det</code></td>
+      <td>この / <i>kono</i> “this”, こんな / <i>konna</i> “this”, あの / <i>ano</i> “that”, あんな  / <i>anna</i> “that”, その / <i>sono</i> “that”, そんな / <i>sonna</i> “that”, どの / <i>dono</i> “which”, どんな / <i>donna</i> “which” modifying a noun</td>
+      <td>この / <i>kono</i> “this” &lt;-<code>det</code>- 本 / <i>hon</i> “book”</td>
+    </tr>
+    <tr>
+      <td><code>neg</code></td>
+      <td>Negation with 不 / <i>fu</i>, 非 / <i>hi</i></td>
+      <td>不 / <i>fu</i> “not” &lt;-<code>neg</code>- 支持 / <i>shiji</i> “support”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="case-marking-prepositions-possessive">Case-marking, prepositions, possessive</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>label</th>
+      <th>description</th>
+      <th>examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>case</code></td>
+      <td>Postpositions and particles attach to a noun phrase</td>
+      <td>太郎 / <i>Taro</i> “Taro” -<code>case</code>-&gt; が / <i>ga</i> “NOM”, 太郎 / <i>Taro</i> “Taro” -<code>case</code>-&gt; の / <i>no</i> “of”, 東京 / <i>Tokyo</i> “Tokyo” -<code>case</code>-&gt; へ / <i>e</i> “to”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="compounding-and-unanalyzed">Compounding and unanalyzed</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>label</th>
+      <th>description</th>
+      <th>examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>compound</code></td>
+      <td>Noun compounds, verb compounds</td>
+      <td>構文 / <i>kobun</i> “syntax” &lt;-<code>compound</code>- 解析 / <i>kaiseki</i> “analysis”, 泳ぎ / <i>oyogi</i> “swim” &lt;-<code>compound</code>- 着く / <i>tsuku</i> “reach”</td>
+    </tr>
+    <tr>
+      <td><code>flat</code></td>
+      <td>Proper noun compounds</td>
+      <td>山田 / <i>Yamada</i> “Yamada” -<code>flat</code>-&gt; 太郎 / <i>Taro</i> “Taro”</td>
+    </tr>
+    <tr>
+      <td><code>fixed</code></td>
+      <td>Multi-word functional expressions</td>
+      <td>に / <i>ni</i> -<code>fixed</code>-&gt; よって / <i>yotte</i> “by”, かも / <i>kamo</i> -<code>fixed</code>-&gt; しれ / <i>shire</i> -<code>fixed</code>-&gt; ない / <i>nai</i> (maybe)</td>
+    </tr>
+    <tr>
+      <td><code>foreign</code></td>
+      <td>Foreign words in non-Japanese characters</td>
+      <td>google &lt;-<code>foreign</code>- docs</td>
+    </tr>
+    <tr>
+      <td><code>goeswith</code></td>
+      <td>used when a word is somehow split into tokens</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="loose-joining-relations">Loose joining relations</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>label</th>
+      <th>description</th>
+      <th>examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>list</code></td>
+      <td>Listing</td>
+      <td>1. 東京 / <i>Tokyo</i> “Tokyo” &lt;-<code>list</code>- 2. 大阪 / <i>Osaka</i> “Osaka”&lt;/td&gt;&lt;/tr&gt;</td>
+    </tr>
+    <tr>
+      <td><code>dislocated</code></td>
+      <td>a topic phrase (typically a prepositionalphrase with topic marker は / <i>ha</i>)</td>
+      <td>象 は / <i>zo wa</i> “elephant-TOPIC” &lt;-<code>dislocated</code>- 鼻 が 長い / <i>hana ga nagai</i> “nose is long”</td>
+    </tr>
+    <tr>
+      <td><code>parataxis</code></td>
+      <td>Listing of sentences</td>
+      <td>「 太郎 は 花子 が 好き 。 / <i>Taro wa Hanako ga suki .</i> “Taro loves Hanako.” &lt;-<code>parataxis</code>- 次郎 は 梅子 が 好き 。 / <i>Jiro wa Umeko ga suki .</i> “Jiro loves Umeko” 」 と 三郎 が 言っ た / <i>to Saburo ga it ta</i> “Saburo said”</td>
+    </tr>
+    <tr>
+      <td><code>orphan</code></td>
+      <td>used to annotate head-less coordination (see the definition in Universal Dependencies for details)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>reparandum</code></td>
+      <td>speech repair</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="special-clausal-dependents">Special clausal dependents</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>label</th>
+      <th>description</th>
+      <th>examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>vocative</code></td>
+      <td>dialogue participant names in text</td>
+      <td>太郎 / <i>Taro</i> “Taro” &lt;-<code>vocative</code>- 食べ なさい / <i>tabe nasai</i> “eat-IMPERATIVE”</td>
+    </tr>
+    <tr>
+      <td><code>discourse</code></td>
+      <td>discourse elements like interjection and emoticons</td>
+      <td>あー / <i>a</i> “ah” &lt;-<code>discourse</code>- つかれ た <i>tsukare ta</i> “tired”</td>
+    </tr>
+    <tr>
+      <td><code>expl</code></td>
+      <td>not used in Japanese</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>aux</code></td>
+      <td>auxiliary verbs and particles that attach to verbs</td>
+      <td>食べ <i>tabe</i> “eat” -<code>aux</code>-&gt; た / <i>ta</i> “PAST”, 行き / <i>iki</i> “go” -<code>aux</code>-&gt; ます / <i>masu</i> “POLITE” -<code>aux</code>-&gt; か / <i>ka</i> “QUESTION”</td>
+    </tr>
+    <tr>
+      <td><code>auxpass</code></td>
+      <td>passive auxiliary</td>
+      <td>食べ / <i>tabe</i> “eat” -<code>auxpass</code>-&gt; られる / <i>rareru</i> “PASSIVE”</td>
+    </tr>
+    <tr>
+      <td><code>cop</code></td>
+      <td>copular auxiliary だ / <i>da</i></td>
+      <td>太郎 は / <i>Taro wa</i> “Taro-TOPIC” &lt;-<code>nsubj</code>- 学生 / <i>gakusei</i> “student” -<code>cop</code>-&gt; だ / <i>da</i> “COPULA”</td>
+    </tr>
+    <tr>
+      <td><code>mark</code></td>
+      <td>subordinating conjunction, conjunctive particle, complementizer (と / <i>to</i>, か / <i>ka</i>)</td>
+      <td>東京 へ 行く / <i>Tokyo e iku</i> “go to Tokyo” -<code>mark</code>-&gt; と / <i>to</i> “that” 言っ た / <i>it ta</i> “said”</td>
+    </tr>
+    <tr>
+      <td><code>punct</code></td>
+      <td>punctuations</td>
+      <td>太郎 が 走る / <i>Taro ga hashiru</i> “Taro runs” -<code>punct</code>-&gt; 。&lt;/td&gt;</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="coordination">Coordination</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>label</th>
+      <th>description</th>
+      <th>examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>conj</code></td>
+      <td>coordination</td>
+      <td>(太郎 / <i>Taro</i> “Taro” -<code>cc</code>-&gt; と / <i>to</i> “and”) -<code>conj</code>-&gt; 次郎 / <i>Jiro</i> “Jiro”</td>
+    </tr>
+    <tr>
+      <td><code>cc</code></td>
+      <td>conjunction, coordinating conjunctive particle (e.g. と / <i>to</i>, や / <i>ya</i>)</td>
+      <td>See the example above</td>
+    </tr>
+    <tr>
+      <td><code>punct</code></td>
+      <td>punctuations</td>
+      <td>(太郎 / <i>Taro</i> “Taro” -<code>punct</code>-&gt; 、) -<code>conj</code>-&gt; 次郎 / <i>Jiro</i> “Jiro”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="other">Other</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>label</th>
+      <th>description</th>
+      <th>examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>root</code></td>
+      <td>head of a sentence</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>dep</code></td>
+      <td>undefined</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'ja';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

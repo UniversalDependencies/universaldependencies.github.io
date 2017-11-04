@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Upper Sorbian UD</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-hsb">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/hsb/hsb">hsb/hsb</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hsb/hsb-hub.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <!-- Inspired by an old proposal for language-specific documentation here: http://universaldependencies.org/v2/minimaldoc.html
+     If we agree on a scheme like this, the old proposal should be updated and made visible in the “How to Contribute” section;
+     right now it is probably not linked from anywhere. -->
+
+<h1 id="ud-for-upper-sorbian-span-classflagspanimg-classflag-srcflagssvghsbsvg-span">UD for Upper Sorbian <span class="flagspan"><img class="flag" src="../../flags/svg/HSB.svg" /></span></h1>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>In general, words are delimited by whitespace characters. Description of exceptions follows.</li>
+  <li>According to typographical rules, many punctuation marks are attached to a neighboring word. We always tokenize them as separate tokens (words);
+that holds even for hyphenated compounds such as <em>syrisko-arabska</em> “Syrian-Arabic” (three tokens) and for abbreviations such as <em>atd.</em> “etc.”
+(two tokens).</li>
+  <li>A whitespace separating digits in a large number is not treated as a word separator. For example, <em>1 000 000</em> (“1,000,000” by English
+rules) is one token.</li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<ul>
+  <li>Upper Sorbian uses all 17 universal POS categories, including particles (<a href="">PART</a>).
+At present, three word types are tagged <a href="">PART</a>: <em>hakle</em>, <em>jenož</em> “only” and <em>nic</em> “not”.</li>
+  <li>The pronoun (<a href="">PRON</a>) vs. determiner (<a href="">DET</a>) distinction is based on word lists because the traditional grammar does not define determiners.
+In general, words that inflect for gender, to be able to agree with a modified noun, are tagged <a href="">DET</a>, even if they
+act independently in a given sentence; that includes possessives.
+Pronominal quantifiers (which the traditional grammar includes in numerals) are <a href="">DET</a> as well.</li>
+  <li>Upper Sorbian has just one auxiliary verb (<a href="">AUX</a>), <em>być</em> (“to be”).
+The auxiliary verb is used in several types of constructions:
+    <ul>
+      <li>The copula with non-verbal predicates.</li>
+      <li>Periphrastic future tense (future form of <em>być</em> + infinitive of the main verb).</li>
+      <li>Periphrastic perfect tenses (present/past form of <em>być</em> + l-participle of the main verb).</li>
+      <li>Periphrastic conditional (conditional form of <em>být</em> + l-participle of the main verb).</li>
+      <li>Periphrastic passive.</li>
+    </ul>
+  </li>
+  <li>In other words, <em>być</em> is the only lemma that occurs with the <a href="">AUX</a> tag.
+It may still occur also as normal <a href="">VERB</a> if it is used in purely existential sentences
+(i.e. such that don’t even indicate location because if they do, then <em>być</em> is treated as copula).
+    <ul>
+      <li>Note that this may be changed in future. Existential sentences could be treated as elliptical versions of locational sentences;
+then the verb would be the root, but it could still be tagged as <code>AUX</code> and the <code>AUX</code>-<code>VERB</code> distinction could be anchored in the lexicon.</li>
+    </ul>
+  </li>
+  <li>Verbs with modal meaning are not considered auxiliary in Upper Sorbian.</li>
+  <li>There are five main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Infinitive <code>Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Finite verb <code>Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Participle <code>Part</code>, tagged <a href="">VERB</a> or <a href="">AUX</a> (the so-called l-participle) or <a href="">ADJ</a> (all other participle types).</li>
+      <li>Converb <code>Conv</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Verbal noun <code>Vnoun</code>, tagged <a href="">NOUN</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="nominal-features">Nominal Features</h3>
+
+<ul>
+  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with one of three values: <code>Masc</code>, <code>Fem</code> or <code>Neut</code>.
+In some cases the masculine gender is further subclassified by the <a href="">Animacy</a> values <code>Anim</code>, <code>Nhum</code> and <code>Inan</code>.
+Feminine and neuter nominals do not distinguish animacy grammatically.
+    <ul>
+      <li>The following parts of speech inflect for <code>Gender</code> and <code>Animacy</code> because they must agree with nouns: <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>,
+<a href="">VERB</a>, <a href="">AUX</a>. For verbs (including auxiliaries), only participles inflect for gender. Finite verbs don’t.</li>
+    </ul>
+  </li>
+  <li>The three main values of the <a href="">Number</a> feature are <code>Sing</code>, <code>Dual</code> and <code>Plur</code>. The following parts of speech inflect for number:
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite, participles and converbs).
+    <ul>
+      <li>Selected nouns are plurale tantum (<code>Ptan</code>) or singulare tantum (<code>Coll</code>). These two values are lexical and cannot be used with
+the agreeing adjectives, determiners or verbs. They also never occur with pronouns.</li>
+    </ul>
+  </li>
+  <li><a href="">Case</a> has 7 possible values: <code>Nom</code>, <code>Gen</code>, <code>Dat</code>, <code>Acc</code>, <code>Voc</code>, <code>Loc</code>, <code>Ins</code>.
+It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, and marginally <a href="">NUM</a>.
+It can occur with participles but only with those tagged as <code>ADJ</code>. It never occurs with verbs.
+    <ul>
+      <li>The <code>Case</code> feature also occurs with prepositions (<a href="">ADP</a>). Here it is a lexical feature. Prepositions do not inflect for case
+but they subcategorize for the case of their noun phrase.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="degree-and-polarity">Degree and Polarity</h3>
+
+<ul>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>) and has one of three possible values: <code>Pos</code>, <code>Cmp</code>, <code>Sup</code>.</li>
+  <li><a href="">Polarity</a> has two values, <code>Pos</code> and <code>Neg</code>, and applies primarily to verbs (<a href="">VERB</a>, <a href="">AUX</a>), adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>)
+that can be negated using the bound morpheme <em>nje-</em>.
+    <ul>
+      <li>Negating nouns is usually limited to those derived from verbs.</li>
+      <li>The <code>Polarity</code> feature is not used with pronouns and determiners, although there is a subset of negative pronouns and determiners.
+The <code>PronType=Neg</code> feature is used there instead.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="verbal-features">Verbal Features</h3>
+
+<ul>
+  <li>Verbs have a lexical <a href="">Aspect</a>, either imperfective (<code>Imp</code>) or perfective (<code>Perf</code>). A few verbs are biaspectual and they lack the <code>Aspect</code>
+feature. Some imperfective verbs could be further classified as iteratives but they are not marked as such (although UD provides <code>Aspect=Iter</code>).
+    <ul>
+      <li>The <code>Aspect</code> feature should be also used with the corresponding derived nouns and adjectives (participles), if they have the
+<code>VerbForm</code> feature.</li>
+    </ul>
+  </li>
+  <li>Finite verbs always have one of three values of <a href="">Mood</a>: <code>Ind</code>, <code>Imp</code> or <code>Cnd</code>. The conditional mood is only used with conditional
+auxiliaries <em>(bych, by, bychmoj, byštaj, byštej, bychmy, byšće, bychu)</em>.
+The l-participle of the main verb, that is needed to form a periphrastic conditional,
+is not marked with this feature.</li>
+  <li>Verbs in the indicative mood always have one of three values of <a href="">Tense</a>: <code>Past</code>, <code>Pres</code> or <code>Fut</code>.
+Note that <code>Tense=Pres</code> is also used with forms of perfective verbs, which are formally present, but semantically future.
+Hence both <em>du domoj</em> “I am going home” and <em>přińdu domoj</em> “I will come home” end up marked as <code>Tense=Pres</code>.
+On the other hand, a few imperfective verbs can form a genuine future form using prefixes, and they are marked <code>Tense=Fut</code>:
+<em>póńdu domoj</em> “I will go home”.
+    <ul>
+      <li>Imperative and conditional forms do not have the <code>Tense</code> feature (note that past and present conditionals are distinguished
+analytically).</li>
+      <li>The <code>Tense</code> feature is also used to mark present adjectival participles (<em>dźěłacy</em> “doing”).
+The l-participle (tagged <code>VERB</code> or <code>AUX</code>) has <code>Tense=Past</code> because its primary function is to form the past (perfect) tense.</li>
+    </ul>
+  </li>
+  <li>There are two values of the <a href="">Voice</a> feature: <code>Act</code> and <code>Pass</code>. Only the passive participle has <code>Voice=Pass</code>. All other verb forms have
+<code>Voice=Act</code>.</li>
+</ul>
+
+<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>), adjectives (<a href="">ADJ</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>mój</em> “my”),
+possessive interrogative, indefinite or negative determiners (e.g. <em>čeji</em> “whose”),
+possessive relative determiners (e.g. <em>čejiž</em> “whose”)
+and possessive adjectives (e.g. <em>nanowy</em> “father’s”).</li>
+  <li>The <a href="">Reflex</a> feature marks reflexive pronouns <em>(so, sej)</em> and determiners <em>(swój)</em>.
+In Upper Sorbian it is always used together with <code>PronType=Prs</code>.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code>1</code>, <code>2</code> and <code>3</code>.
+With personal possessive determiners (<a href="">DET</a>), the feature actually encodes the person of the possessor.
+Person is not marked on other types of pronouns and on nouns, although they can be almost always interpreted as the 3rd person.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
+  <li>There are two <a href="../../u/overview/feat-layers.html">layered features</a>, <a href="">Gender[psor]</a> and <a href="">Number[psor]</a>.
+They appear with certain possessive adjectives and determiners and encode the lexical gender/number of the possessor.
+The extra layer is needed to distinguish these lexical features from the inflectional gender and number
+that mark agreement with the modified (possessed) noun.</li>
+</ul>
+
+<h3 id="other-features">Other Features</h3>
+
+<ul>
+  <li>Besides the layered features listed above, there are several other language-specific features:
+    <ul>
+      <li><a href="">AdvType</a></li>
+      <li><a href="">Hyph</a></li>
+      <li><a href="">VerbType</a></li>
+    </ul>
+  </li>
+  <li>The following universal features are not used in Upper Sorbian: <a href="">Definite</a>, <a href="">Evident</a>, <a href="">Polite</a>.</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
+
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase in the nominative case, without preposition.
+    <ul>
+      <li>If the noun phrase is quantified, it may be in the genitive, which is required by the quantifier.
+If this is the case, then the quantifier is attached using a special relation, either <a href="">nummod:gov</a> or <a href="">det:numgov</a>.</li>
+      <li>An infinitive verb may serve as the subject and is labeled as clausal subject, <a href="">csubj</a>.
+On the other hand, verbal nouns as subjects are just <code>nsubj</code>.</li>
+      <li>A finite subordinate clause may serve as the subject and is labeled <code>csubj</code>.</li>
+    </ul>
+  </li>
+  <li>Objects defined in the Upper Sorbian grammar may be bare noun phrases in accusative, dative, genitive or instrumental,
+or prepositional phrases in accusative, dative, genitive, locative or instrumental.
+For the purpose of UD the objects are divided to core objects, labeled <a href="">obj</a> or <a href="">iobj</a>,
+and oblique objects, labeled <a href="">obl:arg</a>.
+    <ul>
+      <li>Bare accusative, dative, genitive and instrumental objects are considered core.</li>
+      <li>All prepositional objects are considered oblique.</li>
+      <li>Accusative objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
+      <li>If a verb subcategorizes for the infinitive (e.g. modal verbs or verbs of control), the infinitival complement is labeled <a href="">xcomp</a>.</li>
+      <li>If a verb subcategorizes for two core objects, one of them accusative (or <code>ccomp</code>) and the other non-accusative,
+then the non-accusative object is labeled <a href="">iobj</a>.
+Core nominal objects in other situations are labeled just <a href="">obj</a>.</li>
+    </ul>
+  </li>
+  <li>Adjuncts (or, following the Upper Sorbian grammar, adverbial modifiers realized as noun phrases) are usually
+prepositional phrases, but they can be bare noun phrases as well. They are labeled <a href="">obl</a>:
+    <ul>
+      <li>Temporal modifiers realized as accusative noun phrases: <em>přijědu přichodnu sobotu</em> “I will come next Saturday.”</li>
+      <li>Instrumental noun phrases expressing the way or means with which something was done.
+Example: <em>rěčachu akkadšćinu</em> “they spoke Akkadian.”</li>
+      <li>All prepositional phrases that are not prepositional objects (i.e., their role and form is not defined lexically by the predicate)
+are adjuncts.</li>
+    </ul>
+  </li>
+  <li>Extra attention has to be paid to clitic forms of reflexive pronouns <em>so</em> (accusative) and <em>sej</em> (dative). They can function as:
+    <ul>
+      <li>Core objects (<a href="">obj</a> or <a href="">iobj</a>).</li>
+      <li>Reciprocal core objects (<code>obj</code> or <code>iobj</code>).</li>
+      <li>Reflexive passive (<a href="">expl:pass</a>): <em>skłonjować so</em> “to be declined,” lit. “to decline itself.”</li>
+      <li>Inherently reflexive verb, cannot exist without the reflexive clitic. In accord with the current UD guidelines, we label the relation
+between the verb and the clitic as <a href="">expl:pv</a>, not <code>compound</code>. Example: <em>hodźić so</em> “to fit.”</li>
+    </ul>
+  </li>
+  <li>In passive clauses (both reflexive and periphrastic passive), the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.
+    <ul>
+      <li>The auxiliary verb in periphrastic passive is labeled <a href="">aux:pass</a>.</li>
+      <li>If the demoted agent is present, it has the form of a bare instrumental phrase and its relation is labeled <a href="">obl:agent</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
+
+<ul>
+  <li>The copula verb <em>być</em> (be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses.
+Purely existential clauses (without indicating location) use <em>być</em> as well but it is treated as the head of the clause and tagged <a href="">VERB</a>.</li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Upper Sorbian:
+    <ul>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
+      <li><a href="">obl:agent</a> for agents of passive verbs</li>
+      <li><a href="">obl:arg</a> for prepositional objects</li>
+      <li><a href="">expl:pv</a> for reflexive clitics of inherently reflexive verbs</li>
+      <li><a href="">expl:pass</a> for reflexive clitics in reflexive passives</li>
+      <li><a href="">aux:pass</a> for passive auxiliaries</li>
+      <li><a href="">nummod:gov</a> for cardinal numbers that are attached as children of the counted noun but govern its case</li>
+      <li><a href="">det:numgov</a> for pronominal quantifiers that are attached as children of the quantified noun but govern its case</li>
+      <li><a href="">det:nummod</a> for pronominal quantifiers in cases in which they do not govern the case of the quantified noun</li>
+      <li><a href="">advmod:emph</a> for adverbs or particles that modify noun phrases and emphasize or negate them</li>
+      <li><a href="">flat:foreign</a> for non-first words in quoted foreign phrases</li>
+    </ul>
+  </li>
+  <li>The following main types are not used alone and must be subtyped:
+<a href="">expl</a></li>
+  <li>The following relation types are not used in Upper Sorbian at all:
+<a href="">clf</a>, <a href="">dislocated</a></li>
+</ul>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is one Upper Sorbian UD treebank:</p>
+
+<ul>
+  <li><a href="../../treebanks/hsb-index.html">Upper Sorbian</a></li>
+</ul>
+
+<p><a href="../../treebanks/cs-hsb-comparison.html">Czech-Upper Sorbian comparison</a></p>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'hsb';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
