@@ -3,15 +3,15 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Slovak UD</title>
+    <title>Polish UD</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
-    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
-    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-sk">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/sk/sk">sk/sk</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_sk/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-pl">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/pl/pl">pl/pl</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pl/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -64,17 +64,18 @@
      If we agree on a scheme like this, the old proposal should be updated and made visible in the “How to Contribute” section;
      right now it is probably not linked from anywhere. -->
 
-<h1 id="ud-for-slovak-span-classflagspanimg-classflag-srcflagssvgsksvg-span">UD for Slovak <span class="flagspan"><img class="flag" src="../../flags/svg/SK.svg" /></span></h1>
+<h1 id="ud-for-polish-span-classflagspanimg-classflag-srcflagssvgplsvg-span">UD for Polish <span class="flagspan"><img class="flag" src="../../flags/svg/PL.svg" /></span></h1>
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
   <li>In general, words are delimited by whitespace characters. Description of exceptions follows.</li>
-  <li>According to typographical rules, many punctuation marks are attached to a neighboring word. We always tokenize them as separate tokens (words);
-that holds even for hyphenated compounds such as <em>slovensko-český</em> “Slovak-Czech” (three tokens) and for abbreviations such as <em>tzv.</em> “so-called”
-(two tokens).</li>
+  <li>According to typographical rules, many punctuation marks are attached to a neighboring word. We normally tokenize them as separate tokens (words);
+however, hyphenated compounds (e.g. <em>Konstancinie-Jeziornie</em>) are kept as one token.</li>
   <li>A whitespace separating digits in a large number is not treated as a word separator. For example, <em>1 000 000</em> (“1,000,000” by English
 rules) is one token.</li>
+  <li>There are several closed classes of contractions that are treated as multi-word tokens and segmented to individual syntactic words.
+The most prominent type is an l-participle fused with an auxiliary: <em>wyprodukowaliśmy = wyprodukowali + śmy</em> “we have produced”.</li>
 </ul>
 
 <h2 id="morphology">Morphology</h2>
@@ -82,34 +83,34 @@ rules) is one token.</li>
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>Slovak uses all 17 universal POS categories, including particles (<a href="">PART</a>).
-At present, more than 100 word types are tagged <a href="">PART</a>. This is a legacy of an existing Slovak morphological analyzer
+  <li>Polish uses all 17 universal POS categories, including particles (<a href="">PART</a>).
+At present, more than 60 word types are tagged <a href="">PART</a>. This is a legacy of an existing Polish morphological analyzer
 and many of these words should probably belong to another category in UD; however, the exact list has yet to be worked out.</li>
   <li>The pronoun (<a href="">PRON</a>) vs. determiner (<a href="">DET</a>) distinction is based on word lists because the traditional grammar does not define determiners.
 In general, words that inflect for gender, to be able to agree with a modified noun, are tagged <a href="">DET</a>, even if they
 act independently in a given sentence; that includes possessives.
 Pronominal quantifiers (which the traditional grammar includes in numerals) are <a href="">DET</a> as well.</li>
-  <li>Slovak has just one auxiliary verb (<a href="">AUX</a>), <em>byť</em> (“to be”), but the lemma <em>bývať</em> is also possible.
-It is in fact just variant of <em>byť</em>, but it is a separate lemma because
-the morphological process that relates it to <em>byť</em> is considered derivational.
+  <li>Polish has just one auxiliary verb (<a href="">AUX</a>), <em>być</em> (“to be”), but the lemma <em>bywać</em> is also possible.
+It is in fact just a variant of <em>być</em>, but it is a separate lemma because
+the morphological process that relates it to <em>być</em> is considered derivational.
 The auxiliary verb is used in several types of constructions:
     <ul>
       <li>The copula with non-verbal predicates.</li>
-      <li>Periphrastic future tense (future form of <em>byť</em> + infinitive of the main verb).</li>
-      <li>Periphrastic past tense (present form of <em>byť</em> + l-participle of the main verb; the auxiliary is omitted with 3rd-person subjects).</li>
-      <li>Periphrastic conditional (conditional form of <em>byť</em> + present indicative form of <em>byť</em> + l-participle of the main verb).</li>
-      <li>Periphrastic passive (any form of <em>byť</em>, including periphrastic forms, + passive participle of the main verb).</li>
+      <li>Periphrastic future tense (future form of <em>być</em> + infinitive of the main verb).</li>
+      <li>Periphrastic past tense (present form of <em>być</em> + l-participle of the main verb; the auxiliary is omitted with 3rd-person subjects).</li>
+      <li>Periphrastic conditional (conditional form of <em>być</em> + l-participle of the main verb).</li>
+      <li>Periphrastic passive (any form of <em>być</em>, including periphrastic forms, + passive participle of the main verb).</li>
     </ul>
   </li>
-  <li>In other words, <em>byť</em> and <em>bývať</em> are the only lemmas that occur with the <a href="">AUX</a> tag.
+  <li>In other words, <em>być</em> and <em>bywać</em> are the only lemmas that occur with the <a href="">AUX</a> tag.
 They may still occur also as normal <a href="">VERB</a> if they are used in purely existential sentences
-(i.e. such that don’t even indicate location because if they do, then <em>být</em> is treated as copula).
+(i.e. such that don’t even indicate location because if they do, then <em>być</em> is treated as copula).
     <ul>
       <li>Note that this may be changed in future. Existential sentences could be treated as elliptical versions of locational sentences;
 then the verb would be the root, but it could still be tagged as <code>AUX</code> and the <code>AUX</code>-<code>VERB</code> distinction could be anchored in the lexicon.</li>
     </ul>
   </li>
-  <li>Verbs with modal meaning are not considered auxiliary in Slovak.</li>
+  <li>Verbs with modal meaning are not considered auxiliary in Polish.</li>
   <li>There are five main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
     <ul>
       <li>Infinitive <code>Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
@@ -125,7 +126,7 @@ then the verb would be the root, but it could still be tagged as <code>AUX</code
 
 <ul>
   <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with one of three values: <code>Masc</code>, <code>Fem</code> or <code>Neut</code>.
-In some cases the masculine gender is further subclassified by the <a href="">Animacy</a> values <code>Anim</code> and <code>Inan</code>.
+In some cases the masculine gender is further subclassified by the <a href="">Animacy</a> values <code>Hum</code>, <code>Nhum</code> and <code>Inan</code>.
 Feminine and neuter nominals do not distinguish animacy grammatically.
     <ul>
       <li>The following parts of speech inflect for <code>Gender</code> and <code>Animacy</code> because they must agree with nouns: <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>,
@@ -135,12 +136,12 @@ Feminine and neuter nominals do not distinguish animacy grammatically.
   <li>The two main values of the <a href="">Number</a> feature are <code>Sing</code> and <code>Plur</code>. The following parts of speech inflect for number:
 <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite, participles and converbs), marginally <a href="">NUM</a>.
     <ul>
+      <li>Remnants of the <code>Dual</code> number occur only in the instrumental <a href="">Case</a> of a few nouns and all the agreeing parts of speech.</li>
       <li>Selected nouns are plurale tantum (<code>Ptan</code>) or singulare tantum (<code>Coll</code>). These two values are lexical and cannot be used with
 the agreeing adjectives, determiners or verbs. They also never occur with pronouns.</li>
     </ul>
   </li>
-  <li><a href="">Case</a> has 7 possible values: <code>Nom</code>, <code>Gen</code>, <code>Dat</code>, <code>Acc</code>, <code>Voc</code>, <code>Loc</code>, <code>Ins</code>
-(but the vocative survives only in a few nouns).
+  <li><a href="">Case</a> has 7 possible values: <code>Nom</code>, <code>Gen</code>, <code>Dat</code>, <code>Acc</code>, <code>Voc</code>, <code>Loc</code>, <code>Ins</code>.
 It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>.
 It can occur with participles but only with those tagged as <code>ADJ</code>. It never occurs with verbs.
     <ul>
@@ -153,12 +154,12 @@ but they subcategorize for the case of their noun phrase.</li>
 <h3 id="degree-and-polarity">Degree and Polarity</h3>
 
 <ul>
-  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>) and has one of three possible values: <code>Pos</code>, <code>Cmp</code>, <code>Sup</code>.</li>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>) and has one of three possible values: <code>Pos</code>, <code>Sup</code>.</li>
   <li><a href="">Polarity</a> has two values, <code>Pos</code> and <code>Neg</code>, and applies primarily to verbs (<a href="">VERB</a>, <a href="">AUX</a>), adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>)
-that can be negated using the bound morpheme <em>ne-</em>.
+that can be negated using the bound morpheme <em>nie-</em>.
     <ul>
-      <li>Occasionally <em>ne</em> occurs as an independent negation particle (<a href="">PART</a>) and is marked with <code>Polarity=Neg</code>.</li>
-      <li>Negating nouns is usually limited to those derived from verbs <em>(neúspěch, nedůvěra, nevydávání)</em> but in principle every noun can be negated.</li>
+      <li>Occasionally <em>nie</em> occurs as an independent negation particle (<a href="">PART</a>) and is marked with <code>Polarity=Neg</code>.</li>
+      <li>Negating nouns is usually limited to those derived from verbs <em>(niedopełnienie, niedopuszczenie, nieodpowiadanie).</em></li>
       <li>The <code>Polarity</code> feature is not used with pronouns and determiners, although there is a subset of negative pronouns and determiners.
 The <code>PronType=Neg</code> feature is used there instead.</li>
     </ul>
@@ -176,17 +177,19 @@ feature. Some imperfective verbs could be further classified as iteratives but t
     </ul>
   </li>
   <li>Finite verbs always have one of three values of <a href="">Mood</a>: <code>Ind</code>, <code>Imp</code> or <code>Cnd</code>. The conditional mood is only used with conditional
-auxiliary <em>(by)</em>. The l-participle of the main verb, that is needed to form a periphrastic conditional,
+auxiliaries <em>(bych, bys, by, bychom, byste)</em>. The l-participle of the main verb, that is needed to form a periphrastic conditional,
 is not marked with this feature.</li>
   <li>Verbs in the indicative mood always have one of three values of <a href="">Tense</a>: <code>Past</code>, <code>Pres</code> or <code>Fut</code>.
 Note that <code>Tense=Pres</code> is also used with forms of perfective verbs, which are formally present, but semantically future.
-Hence both <em>idem domov</em> “I am going home” and <em>prídem domov</em> “I will come home” end up marked as <code>Tense=Pres</code>.
+Hence both <em>idę do domu</em> “I am going home” and <em>przyjdę do domu</em> “I will come home” end up marked as <code>Tense=Pres</code>.
 On the other hand, a few imperfective verbs can form a genuine future form using prefixes, and they are marked <code>Tense=Fut</code>:
-<em>pôjdem domov</em> “I will go home”.
+<em>pójdę do domu</em> “I will go home”.
     <ul>
       <li>Imperative and conditional forms do not have the <code>Tense</code> feature (note that past and present conditionals are distinguished
 analytically).</li>
-      <li>The l-participle (tagged <code>VERB</code> or <code>AUX</code>) also has <code>Tense=Past</code> because its primary function is to form the past tense.
+      <li>The <code>Tense</code> feature is also used to distinguish present and past converbs (<em>robiąc</em> “while doing” vs. <em>zrobiwszy</em> “having done”),
+and present and past participles (<em>robiący</em> “doing” vs. <em>zrobiwszy</em> “having done”).
+The l-participle (tagged <code>VERB</code> or <code>AUX</code>) also has <code>Tense=Past</code> because its primary function is to form the past tense.
 The passive participle does not have the <code>Tense</code> feature.</li>
     </ul>
   </li>
@@ -199,10 +202,8 @@ The passive participle does not have the <code>Tense</code> feature.</li>
 <ul>
   <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
   <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>), adjectives (<a href="">ADJ</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
-  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>môj</em> “my”),
-possessive interrogative, indefinite or negative determiners (e.g. <em>čí</em> “whose”),
-and possessive adjectives (e.g. <em>otcov</em> “father’s”).</li>
-  <li>The <a href="">Reflex</a> feature marks reflexive pronouns <em>(sa, si)</em> and determiners <em>(svoj)</em>.
+  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>mój</em> “my”).</li>
+  <li>The <a href="">Reflex</a> feature marks reflexive pronouns <em>(się, sobie)</em> and determiners <em>(swój)</em>.
 In Polish it is always used together with <code>PronType=Prs</code>.</li>
   <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code>1</code>, <code>2</code> and <code>3</code>.
 With personal possessive determiners (<a href="">DET</a>), the feature actually encodes the person of the possessor.
@@ -211,10 +212,10 @@ Person is not marked on other types of pronouns and on nouns, although they can 
       <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
     </ul>
   </li>
-  <li>There are two <a href="../../u/overview/feat-layers.html">layered features</a>, <a href="">Gender[psor]</a> and <a href="">Number[psor]</a>.
-They appear with certain possessive adjectives and determiners and encode the lexical gender/number of the possessor.
-The extra layer is needed to distinguish these lexical features from the inflectional gender and number
-that mark agreement with the modified (possessed) noun.</li>
+  <li>A <a href="../../u/overview/feat-layers.html">layered feature</a>, <a href="">Number[psor]</a>,
+appears with certain possessive determiners and encodes the lexical number of the possessor.
+The extra layer is needed to distinguish this lexical number from the inflectional number
+that marks agreement with the modified (possessed) noun.</li>
 </ul>
 
 <h3 id="other-features">Other Features</h3>
@@ -222,9 +223,10 @@ that mark agreement with the modified (possessed) noun.</li>
 <ul>
   <li>Besides the layered features listed above, there are several other language-specific features:
     <ul>
-      <li><a href="">NumForm</a></li>
       <li><a href="">AdpType</a></li>
       <li><a href="">Hyph</a></li>
+      <li><a href="">PrepCase</a></li>
+      <li><a href="">Variant</a> … distinguishes short and long forms of adjectives, a Slavic-wide phenomenon</li>
       <li><a href="">Typo</a></li>
     </ul>
   </li>
@@ -245,7 +247,7 @@ On the other hand, verbal nouns as subjects are just <code>nsubj</code>.</li>
       <li>A finite subordinate clause may serve as the subject and is labeled <code>csubj</code>.</li>
     </ul>
   </li>
-  <li>Objects defined in the Slovak grammar may be bare noun phrases in accusative, dative, genitive or instrumental,
+  <li>Objects defined in the Polish grammar may be bare noun phrases in accusative, dative, genitive or instrumental,
 or prepositional phrases in accusative, dative, genitive, locative or instrumental.
 For the purpose of UD the objects are divided to core objects, labeled <a href="">obj</a> or <a href="">iobj</a>,
 and oblique objects, labeled <a href="">obl:arg</a>.
@@ -259,27 +261,23 @@ then the non-accusative object is labeled <a href="">iobj</a>.
 Core nominal objects in other situations are labeled just <a href="">obj</a>.</li>
     </ul>
   </li>
-  <li>Adjuncts (or, following the Slovak grammar, adverbial modifiers realized as noun phrases) are usually
+  <li>Adjuncts (or, following the Polish grammar, adverbial modifiers realized as noun phrases) are usually
 prepositional phrases, but they can be bare noun phrases as well. They are labeled <a href="">obl</a>:
     <ul>
-      <li>Temporal modifiers realized as accusative noun phrases: <em>prídem budúcu sobotu</em> “I will come next Saturday.”</li>
-      <li>Dative noun phrases with benefactive or possessive role (i.e. if the verb does not subcategorize for a single dative object
-and if it is not a verb of giving (or similar), where the dative could be interpreted as the recipient.
-Example: <em>uvarila mu obed</em> “she cooked (for) him a lunch.”</li>
+      <li>Temporal modifiers realized as accusative noun phrases: <em>poszukiwania trwały całą niedzielę</em> “the search lasted all Sunday.”</li>
       <li>Instrumental noun phrases expressing the way or means with which something was done.
-Example: <em>zbil psa palicou</em> “he beat up the dog with a stick.”</li>
+Example: <em>wymalują je sprayami na chodnikach</em> “they will spray them on the sidewalks.”</li>
       <li>All prepositional phrases that are not prepositional objects (i.e., their role and form is not defined lexically by the predicate)
 are adjuncts.</li>
     </ul>
   </li>
-  <li>Extra attention has to be paid to clitic forms of reflexive pronouns <em>se</em> (accusative) and <em>si</em> (dative). They can function as:
+  <li>Extra attention has to be paid to clitic forms of reflexive pronouns <em>się</em> (accusative). They can function as:
     <ul>
-      <li>Core objects (<a href="">obj</a> or <a href="">iobj</a>): <em>zbadal sa/seba v zrkadle</em> “he sighted himself in the mirror,” <em>ublížila si/sebe</em> “she hurt herself.”</li>
-      <li>Reciprocal core objects (<code>obj</code> or <code>iobj</code>): <em>bozkávali sa</em> “they were kissing each other,”
-<em>vykali si</em> “they used the polite form of address for each other.”</li>
-      <li>Reflexive passive (<a href="">expl:pass</a>): <em>obed sa varí</em> “the lunch is being cooked,” lit. “the lunch cooks itself.”</li>
+      <li>Core objects (<a href="">obj</a>): <em>zobaczył się/siebie w lustrze</em> “he sighted himself in the mirror.”</li>
+      <li>Reciprocal core objects (<code>obj</code>): <em>całowali się</em> “they were kissing each other.”</li>
+      <li>Reflexive passive (<a href="">expl:pass</a>): <em>kasa otwiera się</em> “the ticket window is opening,” lit. “the ticket window opens itself.”</li>
       <li>Inherently reflexive verb, cannot exist without the reflexive clitic. In accord with the current UD guidelines, we label the relation
-between the verb and the clitic as <a href="">expl:pv</a>, not <code>compound</code>. Example: <em>smiala sa</em> “she laughed,” <em>zvykla si</em> “she got used to it.”</li>
+between the verb and the clitic as <a href="">expl:pv</a>, not <code>compound</code>. Example: <em>śmiała się</em> “she laughed.”</li>
     </ul>
   </li>
   <li>In passive clauses (both reflexive and periphrastic passive), the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.
@@ -293,14 +291,14 @@ between the verb and the clitic as <a href="">expl:pv</a>, not <code>compound</c
 <h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
 
 <ul>
-  <li>The copula verb <em>byť</em> (be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses.
-Purely existential clauses (without indicating location) use <em>byť</em> as well but it is treated as the head of the clause and tagged <a href="">VERB</a>.</li>
+  <li>The copula verb <em>być</em> (be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses.
+Purely existential clauses (without indicating location) use <em>być</em> as well but it is treated as the head of the clause and tagged <a href="">VERB</a>.</li>
 </ul>
 
 <h3 id="relations-overview">Relations Overview</h3>
 
 <ul>
-  <li>The following relation subtypes are used in Slovak:
+  <li>The following relation subtypes are used in Polish:
     <ul>
       <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
       <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
@@ -313,7 +311,6 @@ Purely existential clauses (without indicating location) use <em>byť</em> as we
       <li><a href="">det:numgov</a> for pronominal quantifiers that are attached as children of the quantified noun but govern its case</li>
       <li><a href="">det:nummod</a> for pronominal quantifiers in cases in which they do not govern the case of the quantified noun</li>
       <li><a href="">advmod:emph</a> for adverbs or particles that modify noun phrases and emphasize or negate them</li>
-      <li><a href="">flat:foreign</a> for non-first words in quoted foreign phrases</li>
     </ul>
   </li>
   <li>The following main types are not used alone and must be subtyped:
@@ -324,20 +321,20 @@ Purely existential clauses (without indicating location) use <em>byť</em> as we
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There is one Slovak UD treebank:</p>
+<p>There is one Polish UD treebank:</p>
 
 <ul>
-  <li><a href="../../treebanks/sk-index.html">Slovak</a></li>
+  <li><a href="../../treebanks/pl-index.html">Polish</a></li>
 </ul>
 
-<p><a href="../../treebanks/cs-sk-comparison.html">Czech-Slovak comparison</a></p>
+<p><a href="../../treebanks/cs-pl-comparison.html">Czech-Polish comparison</a></p>
 
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../../'; // filled in by jekyll
+    var root = '../'; // filled in by jekyll
     head.js(
         // External libraries
         root + 'lib/ext/jquery.min.js',
@@ -441,7 +438,7 @@ Purely existential clauses (without indicating location) use <em>byť</em> as we
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'sk';
+        Collections.listing['_current'] = 'pl';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
