@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>German UD</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-de">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/de/de">de/de</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_de/de-hub.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <!-- Inspired by an old proposal for language-specific documentation here: http://universaldependencies.org/v2/minimaldoc.html
+     If we agree on a scheme like this, the old proposal should be updated and made visible in the “How to Contribute” section;
+     right now it is probably not linked from anywhere. -->
+
+<h1 id="ud-for-german-span-classflagspanimg-classflag-srcflagssvgdesvg-span">UD for German <span class="flagspan"><img class="flag" src="../../flags/svg/DE.svg" /></span></h1>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>In general, words are delimited by whitespace characters. Description of exceptions follows.</li>
+  <li>According to typographical rules, many punctuation marks are attached to a neighboring word.
+We usually tokenize them as separate tokens (words)
+with the exception of abbreviations such as <em>usw.</em> “etc.” which are kept as one token with the period.</li>
+  <li>German compounds are written as one word and we do not split them.</li>
+  <li>There is one class of multi-word tokens: the contractions of prepositions and definite articles.
+Example: <em>zum = zu + dem</em> “to the”.</li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<ul>
+  <li>German uses all 17 universal POS categories, including particles (<a href="">PART</a>).</li>
+  <li>The following words are particles in German: <em>nicht</em> “not”, and the infinitive marker <em>zu</em> “to”.</li>
+  <li>The pronoun (<a href="">PRON</a>) vs. determiner (<a href="">DET</a>) distinction is based on word lists because the traditional grammar does not define determiners.
+In general, words that inflect for gender, to be able to agree with a modified noun, are tagged <a href="">DET</a>, even if they
+act independently in a given sentence; that includes possessives.</li>
+  <li>German auxiliary verbs (<a href="">AUX</a>) are:
+    <ul>
+      <li><em>sein</em> for perfect tenses of some verbs (<em>ich bin gekommen</em> “I have come”) and as copula (<em>er ist alt</em> “he is old”)</li>
+      <li><em>haben</em> for perfect tenses of the remaining verbs (<em>ich habe gegessen</em> “I have eaten”)</li>
+      <li><em>werden</em> for future tense (<em>ich werde reisen</em> “I will travel”) and for the passive (<em>es wurde gegessen</em> “it was eaten”)</li>
+      <li>modal verbs <em>dürfen</em> “may”, <em>können</em> “can”, <em>mögen</em> “want”, <em>müssen</em> “must”, <em>sollen</em> “shall”, <em>wollen</em> “want”</li>
+      <li>The verbs <em>sein, haben</em> and <em>werden</em> can also occur as normal verbs (<a href="">VERB</a>), meaning “be, have, become”.</li>
+    </ul>
+  </li>
+  <li>There are four main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Infinitive <code>Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Finite verb <code>Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Participle <code>Part</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Verbal noun <code>Vnoun</code>, tagged <a href="">NOUN</a>, looks like a capitalized infinitive but has an article and may inflect.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="nominal-features">Nominal Features</h3>
+
+<ul>
+  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with one of three values: <code>Masc</code>, <code>Fem</code> or <code>Neut</code>.
+    <ul>
+      <li>The following parts of speech inflect for <code>Gender</code> because they must agree with nouns: <a href="">ADJ</a>, <a href="">DET</a>,
+<a href="">VERB</a>, <a href="">AUX</a>. For verbs (including auxiliaries), only participles can inflect for gender. Finite verbs don’t.</li>
+    </ul>
+  </li>
+  <li>The two main values of the <a href="">Number</a> feature are <code>Sing</code> and <code>Plur</code>. The following parts of speech inflect for number:
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite and participles).</li>
+  <li><a href="">Case</a> has 4 possible values: <code>Nom</code>, <code>Gen</code>, <code>Dat</code>, <code>Acc</code>.
+It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>.
+However, case forms of nouns are extremely ambiguous and most of the time the case is distinguished only by the form of the article.</li>
+  <li><a href="">Definite</a> has 2 values: <code>Ind</code>, <code>Def</code>. It is used to distinguish the indefinite and definite articles (<a href="">DET</a>).</li>
+</ul>
+
+<h3 id="degree-and-polarity">Degree and Polarity</h3>
+
+<ul>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>) and has one of three possible values: <code>Pos</code>, <code>Cmp</code>, <code>Sup</code>.</li>
+  <li><a href="">Polarity</a> is used to mark the negative particle <em>nicht,</em> i.e., only the <code>Neg</code> value is used.</li>
+</ul>
+
+<h3 id="verbal-features">Verbal Features</h3>
+
+<ul>
+  <li>Finite verbs always have one of three values of <a href="">Mood</a>: <code>Ind</code>, <code>Imp</code> or <code>Sub</code> (called <em>Konjunktiv</em> in German).</li>
+  <li>Indicative and subjunctive verbs always have one of two values of <a href="">Tense</a>: <code>Past</code>, <code>Pres</code>.
+    <ul>
+      <li>In the subjunctive mood, the tense feature is used to distinguish Konjunktiv I (<code>Pres</code>) and Konjunktiv II (<code>Past</code>).</li>
+      <li>Imperative forms do not have the <code>Tense</code> feature.</li>
+      <li>The <code>Tense</code> feature is also used to distinguish present and past participles (<em>kommend</em> “coming” vs. <em>gekommen</em> “come”).</li>
+    </ul>
+  </li>
+  <li>The features <a href="">Aspect</a> and <a href="">Voice</a> are not used in German because
+both the perfect aspect and the passive voice are expressed periphrastically.</li>
+</ul>
+
+<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>), adjectives (<a href="">ADJ</a>) and determiners (<a href="">DET</a>).</li>
+  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>mein</em> “my”),
+possessive interrogative or relative determiners (e.g. <em>wessen</em> “whose”).</li>
+  <li>The <a href="">Reflex</a> feature is always used together with <code>PronType=Prs</code> and it marks reflexive pronouns <em>(mich, dich, sich, uns, euch).</em>
+Note that their forms in the first and second person are ambiguous with irreflexive accusative forms, and the <code>Reflex</code> feature
+must be decided by context.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code>1</code>, <code>2</code> and <code>3</code>.
+With personal possessive determiners (<a href="">DET</a>), the feature actually encodes the person of the possessor.
+Person is not marked on other types of pronouns and on nouns, although they can be almost always interpreted as the 3rd person.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
+  <li>The <a href="">Polite</a> feature distinguishes informal second-person pronouns (<em>du, ihr,</em> <code>Polite=Infm</code>)
+from the formal <em>Sie</em> (<code>Polite=Form</code>).
+The formal pronoun is phonologically equivalent in all its case forms to the third-person plural <em>sie</em>
+but it is distinguished in orthography by the capital letter <em>S.</em>
+We tag it as second person (because that is its meaning) and we do not tag its number (because it is used both
+for singular and plural addressees) despite the fact that it combines with third-person plural verbs.
+The parser must learn that <code>Person=2|Polite=Form</code> subject attaches to <code>Number=Plur|Person=3</code> verbs,
+while <code>Number=Sing|Person=2|Polite=Infm</code> subject attaches to <code>Number=Sing|Person=2</code> verbs.</li>
+  <li>There are two <a href="../../u/overview/feat-layers.html">layered features</a>, <a href="">Gender[psor]</a> and <a href="">Number[psor]</a>.
+They appear with certain possessive determiners and encode the lexical gender/number of the possessor.
+The extra layer is needed to distinguish these lexical features from the inflectional gender and number
+that mark agreement with the modified (possessed) noun.</li>
+</ul>
+
+<h3 id="other-features">Other Features</h3>
+
+<ul>
+  <li>Besides the layered features listed above, there are several other language-specific features:
+    <ul>
+      <li><a href="">Typo</a></li>
+    </ul>
+  </li>
+  <li>The following universal features are not used in German: <a href="">Animacy</a>, <a href="">Evident</a>.</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
+
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase in the nominative case, without preposition.
+    <ul>
+      <li>A finite subordinate clause may serve as the subject and is labeled <code>csubj</code>.</li>
+      <li>If an infinitive verb is to serve as the subject, it becomes a verbal noun
+(it gets the neuter singular nominative article and it is capitalized in writing),
+thus it is labeled <code>nsubj</code>.</li>
+    </ul>
+  </li>
+  <li>Objects defined in the German grammar may be bare noun phrases in accusative, dative or genitive,
+or prepositional phrases in accusative, dative or genitive.
+For the purpose of UD the objects are divided to core objects, labeled <a href="">obj</a> or <a href="">iobj</a>,
+and oblique objects, labeled <a href="">obl:arg</a>.
+    <ul>
+      <li>Bare accusative, dative and genitive objects are considered core.</li>
+      <li>All prepositional objects are considered oblique.</li>
+      <li>Accusative objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
+      <li>If a verb subcategorizes for the infinitive (e.g. phasal verbs or verbs of control), the infinitival complement is labeled <a href="">xcomp</a>.</li>
+      <li>If a verb subcategorizes for two core objects, one of them accusative (or <code>ccomp</code>) and the other non-accusative,
+then the non-accusative object is labeled <a href="">iobj</a>.
+Core nominal objects in other situations are labeled just <a href="">obj</a>.</li>
+    </ul>
+  </li>
+  <li>Adjuncts (or, following the German grammar, adverbial modifiers realized as noun phrases) are usually
+prepositional phrases, but they can be bare noun phrases as well. They are labeled <a href="">obl</a>:
+    <ul>
+      <li>Temporal modifiers realized as accusative noun phrases: <em>ich arbeite jeden Tag</em> “I work every day.”</li>
+      <li>All prepositional phrases that are not prepositional objects (i.e., their role and form is not defined lexically by the predicate)
+are adjuncts.</li>
+    </ul>
+  </li>
+  <li>Extra attention has to be paid to the reflexive pronoun <em>sich</em>. It can function as:
+    <ul>
+      <li>Core object (<a href="">obj</a> or <a href="">iobj</a>): <em>er sah sich im Spiegel</em> “he sighted himself in the mirror.”</li>
+      <li>Reciprocal core objects (<code>obj</code> or <code>iobj</code>): <em>sie küssten sich</em> “they were kissing each other.”</li>
+      <li>Inherently reflexive verb, cannot exist without the reflexive clitic, and the clitic cannot be substituted by an irreflexive pronoun
+or a noun phrase.
+In accord with the current UD guidelines, we label the relation
+between the verb and the clitic as <a href="">expl:pv</a>, not <code>compound</code>. Example: <em>wir müssen uns beeilen</em> “we must hurry.”</li>
+    </ul>
+  </li>
+  <li>In passive clauses, the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.
+    <ul>
+      <li>The auxiliary verb in periphrastic passive is labeled <a href="">aux:pass</a>.</li>
+      <li>If the demoted agent is present, it has the form of a bare instrumental phrase and its relation is labeled <a href="">obl:agent</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
+
+<ul>
+  <li>The copula verb <em>sein</em> (be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses.
+    <ul>
+      <li>Existential clauses use a different verb, <em>geben</em> (give) with an accusative object: <em>es gibt Essen</em> “there is food.”</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in German:
+    <ul>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
+      <li><a href="">obl:agent</a> for agents of passive verbs</li>
+      <li><a href="">obl:arg</a> for prepositional objects</li>
+      <li><a href="">expl:pv</a> for reflexive clitics of inherently reflexive verbs</li>
+      <li><a href="">aux:pass</a> for passive auxiliaries</li>
+      <li><a href="">compound:prt</a> for separable verb prefixes</li>
+      <li><a href="">det:poss</a> for possessive determiners</li>
+      <li><a href="">nmod:poss</a> for possessive modifier phrases</li>
+    </ul>
+  </li>
+  <li>The following main types are not used alone and must be subtyped:
+<a href="">expl</a></li>
+  <li>The following relation types are not used in German at all:
+<a href="">clf</a>, <a href="">dislocated</a></li>
+</ul>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There are <a href="../../treebanks/de-comparison.html">two</a> German UD treebanks:</p>
+
+<ul>
+  <li><a href="../../treebanks/de-index.html">German</a></li>
+  <li><a href="../../treebanks/de_pud-index.html">German-PUD</a></li>
+</ul>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'de';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
