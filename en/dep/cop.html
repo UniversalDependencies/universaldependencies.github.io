@@ -1,0 +1,745 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>cop</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-en">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/en/en">en/en</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en/dep/cop.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v1warning">
+	This page still pertains to UD version 1.
+      </div>
+      
+      
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>cop</code>: copula</h2>
+
+<p>A copula is the relation between the complement of a copular verb and
+the copular verb. Copular heads are avoided when possible.</p>
+
+<pre><code class="language-sdparse">Bill is an honest man
+cop(man, is)
+nsubj(man, Bill)
+amod(man, honest)
+det(man, an)
+</code></pre>
+
+<p>Prepositional phrases are annotated similarly, the only difference being that
+the nominal predicate has an additional case marker.</p>
+
+<pre><code class="language-sdparse">Bill is from California
+case(California, from)
+cop(California, is)
+nsubj(California, Bill)
+</code></pre>
+
+<p>When an adjective or adverb is being predicated of a nominal phrase, the
+adjective/adverb is the root, the nominal phrase is the nsubj, and the
+copula is the cop.</p>
+
+<pre><code class="language-sdparse">Bill is honest
+nsubj(honest, Bill)
+cop(honest, is)
+</code></pre>
+
+<pre><code class="language-sdparse">It was yesterday
+nsubj(yesterday, It)
+cop(yesterday, was)
+</code></pre>
+
+<p>Prepositions may also project a cop dependent.</p>
+
+<pre><code class="language-sdparse">The light is on
+cop(on, is)
+nsubj(on, light)
+det(light, The)
+</code></pre>
+
+<p>In predicative wh-constructions, the fronted wh-word is the head, and the copula is 
+another cop.</p>
+
+<pre><code class="language-sdparse">What is that ?
+cop(What, is)
+nsubj(What, that)
+</code></pre>
+
+<p>However, whenever the copula has a clausal argument/adjunct, the copula becomes the root, so the cop relation is not used.</p>
+
+<pre><code class="language-sdparse">It was because Bill is honest
+nsubj(was, It)
+mark(honest, because)
+ccomp(was, honest)
+nsubj(honest, Bill)
+cop(honest, is)
+</code></pre>
+
+<pre><code class="language-sdparse">My question is : was that really true ?
+nsubj(is, question)
+ccomp(is, true)
+cop(true, was)
+nsubj(true, that)
+advmod(true, really)
+</code></pre>
+
+<pre><code class="language-sdparse">This is to inform you of our decision
+nsubj(is, This)
+advcl(is, inform)
+aux(inform, to)
+dobj(inform, you)
+nmod(inform, decision)
+case(decision, of)
+poss(decision, our)
+</code></pre>
+
+<p>Predicative “be” is the only verb recognized as a copula; other copula-like verbs,such as “become”, “get”, and “seem”, are treated as regular raising verbs, and thus take xcomp arguments. Non-predicative uses of “be”–e.g., “be” when used in periphrastic verbal constructions, presentationals, or existentials–is annotated as an aux instead.
+of a cop.</p>
+
+<pre><code class="language-sdparse">Bill got rich
+nsubj(got, Bill)
+xcomp(got, rich)
+</code></pre>
+
+<pre><code class="language-sdparse">Bill is speaking
+nsubj(speaking, Bill)
+aux(speaking, is)
+</code></pre>
+
+<pre><code class="language-sdparse">Here are some bags
+advmod(are, Here)
+nsubj(are, bags)
+det(bags, some)
+</code></pre>
+
+<pre><code class="language-sdparse">There 's a cow in the field
+expl('s, There)
+nsubj('s, cow)
+det(cow, a)
+nmod('s, field)
+det(field, the)
+case(field, in)
+</code></pre>
+
+
+<!-- "automatic stats" -->
+
+
+
+
+
+
+
+<hr />
+
+<h2 id="treebank-statistics-udenglish">Treebank Statistics (UD_English)</h2>
+
+<p>This relation is universal.</p>
+
+<p>5044 nodes (2%) are attached to their parents as <code>cop</code>.</p>
+
+<p>4837 instances of <code>cop</code> (96%) are right-to-left (child precedes parent).
+Average distance between parent and child is 2.16276764472641.</p>
+
+<p>The following 13 pairs of parts of speech are connected with <code>cop</code>: <a href="">en-pos/ADJ</a>-<a href="">en-pos/AUX</a> (2510; 50% instances), <a href="">en-pos/NOUN</a>-<a href="">en-pos/AUX</a> (1794; 36% instances), <a href="">en-pos/ADV</a>-<a href="">en-pos/AUX</a> (258; 5% instances), <a href="">en-pos/PROPN</a>-<a href="">en-pos/AUX</a> (162; 3% instances), <a href="">en-pos/PRON</a>-<a href="">en-pos/AUX</a> (145; 3% instances), <a href="">en-pos/NUM</a>-<a href="">en-pos/AUX</a> (80; 2% instances), <a href="">en-pos/VERB</a>-<a href="">en-pos/AUX</a> (30; 1% instances), <a href="">en-pos/DET</a>-<a href="">en-pos/AUX</a> (21; 0% instances), <a href="">en-pos/SYM</a>-<a href="">en-pos/AUX</a> (21; 0% instances), <a href="">en-pos/ADP</a>-<a href="">en-pos/AUX</a> (15; 0% instances), <a href="">en-pos/X</a>-<a href="">en-pos/AUX</a> (5; 0% instances), <a href="">en-pos/AUX</a>-<a href="">en-pos/AUX</a> (2; 0% instances), <a href="">en-pos/INTJ</a>-<a href="">en-pos/AUX</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 3 2 cop	color:blue
+1	That	that	PRON	DT	Number=Sing|PronType=Dem	3	nsubj	_	SpaceAfter=No
+2	's	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	right	right	ADJ	JJ	Degree=Pos	0	root	_	SpaceAfter=No
+4	,	,	PUNCT	,	_	3	punct	_	_
+5	folks	folks	NOUN	UH	_	3	parataxis	_	SpaceAfter=No
+6	.	.	PUNCT	.	_	3	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 5 2 cop	color:blue
+1	I	I	PRON	PRP	Case=Nom|Number=Sing|Person=1|PronType=Prs	5	nsubj	_	_
+2	was	be	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	5	cop	_	_
+3	on	on	ADP	IN	_	5	case	_	_
+4	my	my	PRON	PRP$	Number=Sing|Person=1|Poss=Yes|PronType=Prs	5	nmod:poss	_	_
+5	way	way	NOUN	NN	Number=Sing	0	root	_	_
+6	to	to	ADP	IN	_	8	case	_	_
+7	my	my	PRON	PRP$	Number=Sing|Person=1|Poss=Yes|PronType=Prs	8	nmod:poss	_	_
+8	wedding	wedding	NOUN	NN	Number=Sing	5	nmod	_	_
+9	fearing	fear	VERB	VBG	VerbForm=Ger	1	acl	_	_
+10	death	death	NOUN	NN	Number=Sing	9	obj	_	SpaceAfter=No
+11	,	,	PUNCT	,	_	9	punct	_	_
+12	basically	basically	ADV	RB	_	9	advmod	_	SpaceAfter=No
+13	.	.	PUNCT	.	_	5	punct	_	SpaceAfter=No
+14	"	"	PUNCT	''	_	5	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 1 2 cop	color:blue
+1	Here	here	ADV	RB	PronType=Dem	0	root	_	SpaceAfter=No
+2	's	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	1	cop	_	_
+3	an	a	DET	DT	Definite=Ind|PronType=Art	4	det	_	_
+4	excerpt	excerpt	NOUN	NN	Number=Sing	1	nsubj	_	_
+5	from	from	ADP	IN	_	7	case	_	_
+6	the	the	DET	DT	Definite=Def|PronType=Art	7	det	_	_
+7	article	article	NOUN	NN	Number=Sing	4	nmod	_	SpaceAfter=No
+8	:	:	PUNCT	:	_	1	punct	_	_
+
+</code></pre>
+
+<hr />
+
+<h2 id="treebank-statistics-udenglish-esl">Treebank Statistics (UD_English-ESL)</h2>
+
+<p>This relation is universal.</p>
+
+<p>2547 nodes (3%) are attached to their parents as <code>cop</code>.</p>
+
+<p>2489 instances of <code>cop</code> (98%) are right-to-left (child precedes parent).
+Average distance between parent and child is 1.99018453082057.</p>
+
+<p>The following 12 pairs of parts of speech are connected with <code>cop</code>: <a href="">en-pos/ADJ</a>-<a href="">en-pos/VERB</a> (1465; 58% instances), <a href="">en-pos/NOUN</a>-<a href="">en-pos/VERB</a> (810; 32% instances), <a href="">en-pos/PROPN</a>-<a href="">en-pos/VERB</a> (82; 3% instances), <a href="">en-pos/ADV</a>-<a href="">en-pos/VERB</a> (69; 3% instances), <a href="">en-pos/NUM</a>-<a href="">en-pos/VERB</a> (46; 2% instances), <a href="">en-pos/PRON</a>-<a href="">en-pos/VERB</a> (37; 1% instances), <a href="">en-pos/VERB</a>-<a href="">en-pos/VERB</a> (24; 1% instances), <a href="">en-pos/DET</a>-<a href="">en-pos/VERB</a> (6; 0% instances), <a href="">en-pos/SYM</a>-<a href="">en-pos/VERB</a> (3; 0% instances), <a href="">en-pos/ADP</a>-<a href="">en-pos/VERB</a> (2; 0% instances), <a href="">en-pos/X</a>-<a href="">en-pos/VERB</a> (2; 0% instances), <a href="">en-pos/PART</a>-<a href="">en-pos/VERB</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 5 3 cop	color:blue
+1	_	_	DET	PRP$	_	2	nmod:poss	_	_
+2	_	_	NOUN	NNS	_	5	nsubj	_	_
+3	_	_	VERB	VBD	_	5	cop	_	_
+4	_	_	PART	RB	_	5	neg	_	_
+5	_	_	ADJ	JJ	_	0	root	_	_
+6	_	_	ADV	RB	_	5	advmod	_	_
+7	_	_	PART	TO	_	8	mark	_	_
+8	_	_	VERB	VB	_	6	xcomp	_	_
+9	_	_	DET	PRP$	_	10	nmod:poss	_	_
+10	_	_	NOUN	NN	_	8	dobj	_	_
+11	_	_	ADP	IN	_	13	case	_	_
+12	_	_	NOUN	NN	_	13	compound	_	_
+13	_	_	NOUN	NN	_	10	nmod	_	_
+14	_	_	PUNCT	,	_	5	punct	_	_
+15	_	_	CONJ	CC	_	5	cc	_	_
+16	_	_	DET	DT	_	18	det	_	_
+17	_	_	NOUN	NN	_	18	compound	_	_
+18	_	_	NOUN	NN	_	20	nsubj	_	_
+19	_	_	VERB	VBD	_	20	cop	_	_
+20	_	_	ADJ	JJ	_	5	conj	_	_
+21	_	_	PUNCT	.	_	5	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 13	bgColor:blue
+# visual-style 13	fgColor:white
+# visual-style 16	bgColor:blue
+# visual-style 16	fgColor:white
+# visual-style 16 13 cop	color:blue
+1	_	_	VERB	VBG	_	7	advcl	_	_
+2	_	_	PRON	PRP	_	1	dobj	_	_
+3	_	_	ADP	IN	_	4	case	_	_
+4	_	_	NOUN	NN	_	1	nmod	_	_
+5	_	_	PRON	PRP	_	7	nsubj	_	_
+6	_	_	AUX	MD	_	7	aux	_	_
+7	_	_	VERB	VB	_	0	root	_	_
+8	_	_	PART	TO	_	9	mark	_	_
+9	_	_	VERB	VB	_	7	xcomp	_	_
+10	_	_	SCONJ	IN	_	16	mark	_	_
+11	_	_	DET	DT	_	12	det	_	_
+12	_	_	NOUN	NN	_	16	nsubj	_	_
+13	_	_	VERB	VBZ	_	16	cop	_	_
+14	_	_	DET	DT	_	16	det	_	_
+15	_	_	ADJ	JJ	_	16	amod	_	_
+16	_	_	NOUN	NN	_	9	ccomp	_	_
+17	_	_	ADP	IN	_	19	case	_	_
+18	_	_	DET	DT	_	19	det	_	_
+19	_	_	NOUN	NNS	_	16	nmod	_	_
+20	_	_	PUNCT	,	_	19	punct	_	_
+21	_	_	NOUN	NNS	_	19	conj	_	_
+22	_	_	PUNCT	,	_	19	punct	_	_
+23	_	_	NOUN	NNS	_	19	conj	_	_
+24	_	_	CONJ	CC	_	19	cc	_	_
+25	_	_	ADV	RB	_	26	advmod	_	_
+26	_	_	ADV	RB	_	19	advmod	_	_
+27	_	_	CONJ	CC	_	19	cc	_	_
+28	_	_	ADV	RB	_	19	advmod	_	_
+29	_	_	PUNCT	.	_	7	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 15	bgColor:blue
+# visual-style 15	fgColor:white
+# visual-style 17	bgColor:blue
+# visual-style 17	fgColor:white
+# visual-style 17 15 cop	color:blue
+1	_	_	ADV	RB	_	17	advmod	_	_
+2	_	_	ADP	IN	_	3	case	_	_
+3	_	_	DET	DT	_	1	nmod	_	_
+4	_	_	PUNCT	,	_	17	punct	_	_
+5	_	_	DET	DT	_	6	det	_	_
+6	_	_	NOUN	NN	_	17	nsubj	_	_
+7	_	_	ADP	IN	_	8	case	_	_
+8	_	_	NOUN	NN	_	6	nmod	_	_
+9	_	_	DET	WDT	_	13	nmod	_	_
+10	_	_	PRON	PRP	_	13	nsubjpass	_	_
+11	_	_	AUX	VBP	_	13	aux	_	_
+12	_	_	AUX	VBN	_	13	auxpass	_	_
+13	_	_	VERB	VBN	_	8	acl:relcl	_	_
+14	_	_	ADP	IN	_	9	case	_	_
+15	_	_	VERB	VBZ	_	17	cop	_	_
+16	_	_	PROPN	NNP	_	17	compound	_	_
+17	_	_	PROPN	NNP	_	0	root	_	_
+18	_	_	PUNCT	.	_	17	punct	_	_
+
+</code></pre>
+
+<hr />
+
+<h2 id="treebank-statistics-udenglish-lines">Treebank Statistics (UD_English-LinES)</h2>
+
+<p>This relation is universal.</p>
+
+<p>1040 nodes (2%) are attached to their parents as <code>cop</code>.</p>
+
+<p>990 instances of <code>cop</code> (95%) are right-to-left (child precedes parent).
+Average distance between parent and child is 2.13942307692308.</p>
+
+<p>The following 10 pairs of parts of speech are connected with <code>cop</code>: <a href="">en-pos/ADJ</a>-<a href="">en-pos/AUX</a> (458; 44% instances), <a href="">en-pos/NOUN</a>-<a href="">en-pos/AUX</a> (381; 37% instances), <a href="">en-pos/PRON</a>-<a href="">en-pos/AUX</a> (78; 8% instances), <a href="">en-pos/VERB</a>-<a href="">en-pos/AUX</a> (75; 7% instances), <a href="">en-pos/PROPN</a>-<a href="">en-pos/AUX</a> (27; 3% instances), <a href="">en-pos/ADV</a>-<a href="">en-pos/AUX</a> (9; 1% instances), <a href="">en-pos/NUM</a>-<a href="">en-pos/AUX</a> (5; 0% instances), <a href="">en-pos/AUX</a>-<a href="">en-pos/AUX</a> (4; 0% instances), <a href="">en-pos/ADP</a>-<a href="">en-pos/AUX</a> (2; 0% instances), <a href="">en-pos/SCONJ</a>-<a href="">en-pos/AUX</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 3 2 cop	color:blue
+1	Filters	_	NOUN	PL-NOM	_	3	nsubj	_	_
+2	are	_	AUX	PRES	_	3	cop	_	_
+3	additive	_	ADJ	POS	_	0	root	_	SpaceAfter=No
+4	.	_	PUNCT	Period	_	3	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 5	bgColor:blue
+# visual-style 5	fgColor:white
+# visual-style 5 1 cop	color:blue
+1	Is	_	AUX	PRES	_	5	cop	_	_
+2	he	_	PRON	PERS-P3SG-NOM	_	5	nsubj	_	_
+3	a	_	DET	IND-SG	_	5	det	_	_
+4	smart	_	ADJ	POS	_	5	amod	_	_
+5	detective	_	NOUN	SG-NOM	_	0	root	_	SpaceAfter=No
+6	?	_	PUNCT	QuestionMark	_	5	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 1 2 cop	color:blue
+1	What	_	PRON	WH	_	0	root	_	_
+2	are	_	AUX	PRES	_	1	cop	_	_
+3	XML	_	PROPN	SG-NOM	_	4	compound	_	_
+4	schemas	_	NOUN	PL-NOM	_	1	nsubj	_	_
+
+</code></pre>
+
+<hr />
+
+<h2 id="treebank-statistics-udenglish-partut">Treebank Statistics (UD_English-ParTUT)</h2>
+
+<p>This relation is universal.</p>
+
+<p>551 nodes (1%) are attached to their parents as <code>cop</code>.</p>
+
+<p>507 instances of <code>cop</code> (92%) are right-to-left (child precedes parent).
+Average distance between parent and child is 2.27404718693285.</p>
+
+<p>The following 10 pairs of parts of speech are connected with <code>cop</code>: <a href="">en-pos/NOUN</a>-<a href="">en-pos/AUX</a> (238; 43% instances), <a href="">en-pos/ADJ</a>-<a href="">en-pos/AUX</a> (235; 43% instances), <a href="">en-pos/VERB</a>-<a href="">en-pos/AUX</a> (23; 4% instances), <a href="">en-pos/PRON</a>-<a href="">en-pos/AUX</a> (19; 3% instances), <a href="">en-pos/ADV</a>-<a href="">en-pos/AUX</a> (13; 2% instances), <a href="">en-pos/NUM</a>-<a href="">en-pos/AUX</a> (10; 2% instances), <a href="">en-pos/PROPN</a>-<a href="">en-pos/AUX</a> (8; 1% instances), <a href="">en-pos/INTJ</a>-<a href="">en-pos/AUX</a> (2; 0% instances), <a href="">en-pos/SYM</a>-<a href="">en-pos/AUX</a> (2; 0% instances), <a href="">en-pos/DET</a>-<a href="">en-pos/AUX</a> (1; 0% instances).</p>
+
+<pre><code class="language-conllu"># visual-style 10	bgColor:blue
+# visual-style 10	fgColor:white
+# visual-style 13	bgColor:blue
+# visual-style 13	fgColor:white
+# visual-style 13 10 cop	color:blue
+1	I	I	PRON	PE	Number=Sing|Person=1|PronType=Prs	3	nsubj	_	_
+2	would	will	AUX	VM	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	3	aux	_	_
+3	ask	ask	VERB	V	VerbForm=Inf	0	root	_	_
+4	that	that	SCONJ	CS	_	6	mark	_	_
+5	they	they	PRON	PE	Number=Plur|Person=3|PronType=Prs	6	nsubj	_	_
+6	reconsider	reconsider	VERB	V	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	3	ccomp	_	SpaceAfter=No
+7	,	,	PUNCT	FF	_	6	punct	_	_
+8	since	since	SCONJ	CS	_	13	mark	_	_
+9	this	this	PRON	PD	Number=Sing|PronType=Dem	13	nsubj	_	_
+10	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	13	cop	_	_
+11	not	not	PART	PART	Polarity=Neg	13	advmod	_	_
+12	the	the	DET	RD	Definite=Def|PronType=Art	13	det	_	_
+13	case	case	NOUN	S	Number=Sing	6	advcl	_	SpaceAfter=No
+14	.	.	PUNCT	FS	_	3	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
+# visual-style 10	bgColor:blue
+# visual-style 10	fgColor:white
+# visual-style 10 9 cop	color:blue
+1	Mr	mister	NOUN	S	Gender=Masc|Number=Sing	10	vocative	_	_
+2	Cox	Cox	PROPN	SP	_	1	flat	_	SpaceAfter=No
+3	,	,	PUNCT	FF	_	4	punct	_	_
+4	Mr	mister	NOUN	S	Gender=Masc|Number=Sing	1	conj	_	_
+5	Hänsch	Hänsch	PROPN	SP	_	4	flat	_	SpaceAfter=No
+6	,	,	PUNCT	FF	_	1	punct	_	_
+7	would	will	AUX	VM	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	10	aux	_	_
+8	this	this	PRON	PD	Number=Sing|PronType=Dem	10	nsubj	_	_
+9	be	be	AUX	VA	VerbForm=Inf	10	cop	_	_
+10	acceptable	acceptable	ADJ	A	Degree=Pos	0	root	_	_
+11	to	to	ADP	E	_	12	case	_	_
+12	you	you	PRON	PE	Person=2|PronType=Prs	10	obl	_	SpaceAfter=No
+13	?	?	PUNCT	FS	_	10	punct	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 9	bgColor:blue
+# visual-style 9	fgColor:white
+# visual-style 11	bgColor:blue
+# visual-style 11	fgColor:white
+# visual-style 11 9 cop	color:blue
+1	When	when	SCONJ	CS	_	3	mark	_	_
+2	you	you	PRON	PE	Person=2|PronType=Prs	3	nsubj	_	_
+3	look	look	VERB	V	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	11	advcl	_	_
+4	at	at	ADP	E	_	6	case	_	_
+5	the	the	DET	RD	Definite=Def|PronType=Art	6	det	_	_
+6	mycelium	mycelium	NOUN	S	Gender=Masc|Number=Sing	3	obl	_	SpaceAfter=No
+7	,	,	PUNCT	FF	_	3	punct	_	_
+8	they	they	PRON	PE	Number=Plur|Person=3|PronType=Prs	11	nsubj	_	SpaceAfter=No
+9	're	be	AUX	VA	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	11	cop	_	_
+10	highly	highly	ADV	B	_	11	advmod	_	_
+11	branched	branch	VERB	V	Tense=Past|VerbForm=Part	0	root	_	SpaceAfter=No
+12	.	.	PUNCT	FS	_	11	punct	_	_
+
+</code></pre>
+
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+cop in other languages:
+
+[<a href="../../am/dep/cop.html">am</a>]
+
+[<a href="../../ar/dep/cop.html">ar</a>]
+
+[<a href="../../bg/dep/cop.html">bg</a>]
+
+[<a href="../../bxr/dep/cop.html">bxr</a>]
+
+[<a href="../../ca/dep/cop.html">ca</a>]
+
+[<a href="../../ckb/dep/cop.html">ckb</a>]
+
+[<a href="../../cop/dep/cop.html">cop</a>]
+
+[<a href="../../cs/dep/cop.html">cs</a>]
+
+[<a href="../../cu/dep/cop.html">cu</a>]
+
+[<a href="../../da/dep/cop.html">da</a>]
+
+[<a href="../../de/dep/cop.html">de</a>]
+
+[<a href="../../el/dep/cop.html">el</a>]
+
+[<a href="../../en/dep/cop.html">en</a>]
+
+[<a href="../../es/dep/cop.html">es</a>]
+
+[<a href="../../et/dep/cop.html">et</a>]
+
+[<a href="../../eu/dep/cop.html">eu</a>]
+
+[<a href="../../fa/dep/cop.html">fa</a>]
+
+[<a href="../../fi/dep/cop.html">fi</a>]
+
+[<a href="../../fo/dep/cop.html">fo</a>]
+
+[<a href="../../fr/dep/cop.html">fr</a>]
+
+[<a href="../../ga/dep/cop.html">ga</a>]
+
+[<a href="../../gl/dep/cop.html">gl</a>]
+
+[<a href="../../got/dep/cop.html">got</a>]
+
+[<a href="../../grc/dep/cop.html">grc</a>]
+
+[<a href="../../he/dep/cop.html">he</a>]
+
+[<a href="../../hi/dep/cop.html">hi</a>]
+
+[<a href="../../hr/dep/cop.html">hr</a>]
+
+[<a href="../../hu/dep/cop.html">hu</a>]
+
+[<a href="../../id/dep/cop.html">id</a>]
+
+[<a href="../../it/dep/cop.html">it</a>]
+
+[<a href="../../ja/dep/cop.html">ja</a>]
+
+[<a href="../../kk/dep/cop.html">kk</a>]
+
+[<a href="../../kmr/dep/cop.html">kmr</a>]
+
+[<a href="../../ko/dep/cop.html">ko</a>]
+
+[<a href="../../la/dep/cop.html">la</a>]
+
+[<a href="../../lv/dep/cop.html">lv</a>]
+
+[<a href="../../mr/dep/cop.html">mr</a>]
+
+[<a href="../../nl/dep/cop.html">nl</a>]
+
+[<a href="../../no/dep/cop.html">no</a>]
+
+[<a href="../../pl/dep/cop.html">pl</a>]
+
+[<a href="../../pt/dep/cop.html">pt</a>]
+
+[<a href="../../ro/dep/cop.html">ro</a>]
+
+[<a href="../../ru/dep/cop.html">ru</a>]
+
+[<a href="../../sa/dep/cop.html">sa</a>]
+
+[<a href="../../sk/dep/cop.html">sk</a>]
+
+[<a href="../../sla/dep/cop.html">sla</a>]
+
+[<a href="../../sl/dep/cop.html">sl</a>]
+
+[<a href="../../so/dep/cop.html">so</a>]
+
+[<a href="../../sr/dep/cop.html">sr</a>]
+
+[<a href="../../sv/dep/cop.html">sv</a>]
+
+[<a href="../../swl/dep/cop.html">swl</a>]
+
+[<a href="../../ta/dep/cop.html">ta</a>]
+
+[<a href="../../tr/dep/cop.html">tr</a>]
+
+[<a href="../../u/dep/cop.html">u</a>]
+
+[<a href="../../ug/dep/cop.html">ug</a>]
+
+[<a href="../../uk/dep/cop.html">uk</a>]
+
+[<a href="../../ur/dep/cop.html">ur</a>]
+
+[<a href="../../urj/dep/cop.html">urj</a>]
+
+[<a href="../../vi/dep/cop.html">vi</a>]
+
+[<a href="../../yue/dep/cop.html">yue</a>]
+
+[<a href="../../zh/dep/cop.html">zh</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'en';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014 
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>. 
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
