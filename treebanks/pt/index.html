@@ -68,11 +68,11 @@
 <h1 id="ud-portuguese">UD Portuguese</h1>
 
 <p>Language: <a href="../pt/overview/pt-hub.html">Portuguese</a> (code: <code>pt</code>)<br />
-Family: Indo-European, Italic</p>
+Family: Indo-European, Romance</p>
 
 <p>This treebank has been part of Universal Dependencies since the UD v1.2 release.</p>
 
-<p>The following people have contributed to making this treebank part of UD: Cláudia Freitas, Eckhard Bick, Fabricio Chalub, Alexandre Rademaker, Livy Real, Valeria de Paiva, Daniel Zeman, Martin Popel, David Mareček, Natalia Silveira, André Martins.</p>
+<p>The following people have contributed to making this treebank part of UD: Alexandre Rademaker, Eckhard Bick, Fabricio Chalub, Cláudia Freitas, Livy Real, Valeria de Paiva, Daniel Zeman, Martin Popel, David Mareček, Natalia Silveira, André Martins.</p>
 
 <p>Repository: <a href="https://github.com/UniversalDependencies/UD_Portuguese">UD_Portuguese</a></p>
 
@@ -83,7 +83,10 @@ Family: Indo-European, Italic</p>
 <p>Questions, comments?
 General annotation questions (either Portuguese-specific or cross-linguistic) can be raised in the <a href="https://github.com/UniversalDependencies/docs/issues">main UD issue tracker</a>.
 You can report bugs in this treebank in the <a href="https://github.com/UniversalDependencies/UD_Portuguese/issues">treebank-specific issue tracker on Github</a>.
-If you want to collaborate, please contact [arademaker (æt) gmail • com].</p>
+If you want to collaborate, please contact [arademaker (æt) gmail • com].
+Development of the treebank happens outside the UD repository.
+If there are bugs, either the original data source or the conversion procedure must be fixed.
+Do not submit pull requests against the UD repository.</p>
 
 <table>
   <thead>
@@ -95,11 +98,11 @@ If you want to collaborate, please contact [arademaker (æt) gmail • com].
   <tbody>
     <tr>
       <td>Lemmas</td>
-      <td>(undocumented)</td>
+      <td>annotated manually in non-UD style, automatically converted to UD, with some manual corrections of the conversion</td>
     </tr>
     <tr>
       <td>UPOS</td>
-      <td>(undocumented)</td>
+      <td>annotated manually in non-UD style, automatically converted to UD, with some manual corrections of the conversion</td>
     </tr>
     <tr>
       <td>XPOS</td>
@@ -107,19 +110,93 @@ If you want to collaborate, please contact [arademaker (æt) gmail • com].
     </tr>
     <tr>
       <td>Features</td>
-      <td>(undocumented)</td>
+      <td>annotated manually in non-UD style, automatically converted to UD, with some manual corrections of the conversion</td>
     </tr>
     <tr>
       <td>Relations</td>
-      <td>(undocumented)</td>
+      <td>annotated manually in non-UD style, automatically converted to UD, with some manual corrections of the conversion</td>
     </tr>
   </tbody>
 </table>
 
 <h2 id="description">Description</h2>
 
+<p>This Universal Dependencies (UD) Portuguese treebank is based on the
+Constraint Grammar converted version of the Bosque, which is part of
+the Floresta Sintá(c)tica treebank.</p>
+
+<p>This Universal Dependencies (UD) Portuguese treebank is based on
+the Constraint Grammar converted version of the Bosque, which is part
+of the Floresta Sintá(c)tica treebank.</p>
+
+<p>Eckhard Bick has maintained since 2008 an experimental version of the
+dependency Bosque for research, which was not aligned with either the
+Linguateca published constituent version or the 7.4 dependency version
+of the Bosque. In 2016, Eckhard Bick wrote UD conversion rules for
+Constraint Grammar input, and applied these to the updated version of
+the dependency Bosque (Linguateca site version 7.5 of March 2016).</p>
+
+<p>In October 2016, Alexandre Rademaker, Cláudia Freitas, Fabricio
+Chalub, Valeria de Paiva and Livy Maria Real Coelho, aiming at full
+compatibility with ConLL UD specifications, consistency-checked and
+discussed the 7.5 UD Bosque, leading to a further round of manual
+treebank corrections and conversion rule changes by Bick. The
+conversion grammar used contains some 530 rules. Of these 70 were
+simple feature mapping rules, and 130 were local MWE splitting rules,
+assigning internal structure, POS and features to MWE’s from the
+Bosque. The remainder of the rules handle UD-specific dependency and
+function label changes in a context-dependent fashion. The main
+issues were raising of copula dependents to subject complements,
+inversion of prepositional dependency and a change from syntactic to
+semantic verb chain dependency.</p>
+
+<p>The new UD treebank retains the additional tags for NP definiteness
+and complex tenses, as well as the original syntactic function tags
+and secondary morphological tags of the original Bosque. Thus the
+treebank retains its original linguistic focus, in addition to coping
+with the machine learning uses targeted by the ConLL UD format.</p>
+
 <h2 id="acknowledgments">Acknowledgments</h2>
-<p># Statistics of UD Portuguese</p>
+
+<p>The UD_Portuguese releases 1.2 to 1.4 were based on a different
+conversion of Bosque, used in the CoNLL-X Shared Task in dependency
+parsing (2006); the CoNLL version was taken and converted to the
+Prague dependency style as a part of HamleDT (since 2011). Later
+versions of HamleDT added a conversion to the Stanford dependencies
+(2014) and to Universal Dependencies (HamleDT 3.0, 2015).</p>
+
+<p>UD release 1.4 contained two conversions of Bosque: one labeled
+UD_Portuguese (via CoNLL 2006 and HamleDT) and another labeled
+UD_Portuguese-Bosque (the new conversion described above).</p>
+
+<p>The two versions were merged (and labeled UD_Portuguese) in UD release
+2.0. The merged version is based mostly on the new conversion by Bick
+et al.. The conversion by Zeman et al. was used to
+cross-validate. After the alignment of the sentences from the two
+versions, the data was split in dev, test and train following the
+distribution of sentences from Zeman et al.</p>
+
+<p>The conversion was implemented by Eckhard Bick and revised by:</p>
+
+<ul>
+  <li>Alexandre Rademaker</li>
+  <li>Fabricio Chalub</li>
+  <li>Claudia Freitas</li>
+  <li>Livy Real</li>
+  <li>Valeria Paiva</li>
+</ul>
+
+<p>The HamleDT conversion was implemented by Dan Zeman and revised by:</p>
+
+<ul>
+  <li>Martin Popel</li>
+  <li>David Mareček</li>
+  <li>Daniel Zeman</li>
+  <li>Natalia Silveira</li>
+  <li>André Martins</li>
+</ul>
+
+<h1 id="statistics-of-ud-portuguese">Statistics of UD Portuguese</h1>
 
 <h2 id="pos-tags">POS Tags</h2>
 
