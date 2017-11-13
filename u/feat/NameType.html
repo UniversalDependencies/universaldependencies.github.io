@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>PunctType</title>
+    <title>NameType</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-ext">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/ext/feat">ext/feat</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ext-feat/PunctType.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/u/feat">u/feat</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/NameType.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -62,45 +62,63 @@
 
           <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<h2><code>PunctType</code>: punctuation type</h2>
+<h2><code>NameType</code>: type of named entity</h2>
 
-<p>Many tagsets have just one tag for punctuation. Others (including the
-Penn Treebank and the Swedish Mamba tagset) classify punctuation in
-more detail.</p>
+<p>Classification of named entities (token-based, no nesting of entities etc.)
+The feature applies mainly to the <a href="">cs-pos/PROPN</a> tag;
+in multi-word foreign names, <a href="cs-pos/ADJ">adjectives</a> may also have this feature
+(they preserve the <code>ADJ</code> tag but at the same time they would not exist in Czech
+otherwise than in the named entity).</p>
 
-<h3 id="peri-period-at-the-end-of-sentence-in-penn-tagset-includes-question-and-exclamation">Peri: period at the end of sentence; in Penn tagset, includes question and exclamation</h3>
+<h3 id="geo-geographical-name"><code>Geo</code>: geographical name</h3>
 
-<h3 id="qest-question-mark">Qest: question mark</h3>
+<p>Names of cities, countries, rivers, mountains etc.</p>
 
-<h3 id="excl-exclamation-mark">Excl: exclamation mark</h3>
+<h4 id="examples">Examples</h4>
 
-<h3 id="quot-quoation-marks-various-sorts-in-various-languages">Quot: quoation marks (various sorts in various languages)</h3>
+<ul>
+  <li><em><b>Praha</b> </em> “Prague”, <em><b>Kostelec</b> nad Černými lesy </em>, <em><b>Německo</b> </em> “Germany”</li>
+</ul>
 
-<h3 id="brck-bracket">Brck: bracket</h3>
+<h3 id="prs-name-of-person"><code>Prs</code>: name of person</h3>
 
-<h3 id="comm-comma">Comm: comma</h3>
+<p>This value is used if it is not known whether it is a given or a family name, but it is known that it is a personal name.</p>
 
-<h3 id="colo-colon-in-penn-tagset--is-in-fact-tag-for-generic-other-punctuation">Colo: colon; in Penn tagset, “:” is in fact tag for generic other punctuation</h3>
+<h3 id="giv-given-name-of-person"><code>Giv</code>: given name of person</h3>
 
-<h3 id="semi-semicolon">Semi: semicolon</h3>
+<p>Given name (not family name). This is usually the first name in European and American names. In Chinese names, the last two syllables (of three) are usually the given name.</p>
 
-<h3 id="dash-dash-hyphen">Dash: dash, hyphen</h3>
+<h3 id="sur-surname--family-name-of-person"><code>Sur</code>: surname / family name of person</h3>
 
-<h3 id="symb-symbol">Symb: symbol</h3>
+<p>Family name (surname). This is usually the last name in European and American names. In Chinese names, the first syllable (of three) is usually the surname.</p>
+
+<h3 id="nat-nationality"><code>Nat</code>: nationality</h3>
+
+<p>Name denoting a member of a particular nation, or inhabitant of a particular territory.</p>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li><em><b>Čech</b> </em> “Czech”, <em><b>Němec</b> </em> “German”, <em><b>Pražan</b> </em> “Praguer”</li>
+</ul>
+
+<h3 id="com-company-organization"><code>Com</code>: company, organization</h3>
+
+<h3 id="pro-product"><code>Pro</code>: product</h3>
+
+<h3 id="oth-other"><code>Oth</code>: other</h3>
+
+<p>Names of stadiums, guerilla bases, events etc.</p>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-PunctType in other languages:
+NameType in other languages:
 
-[<a href="../../ca/feat/PunctType.html">ca</a>]
+[<a href="../../cs/feat/NameType.html">cs</a>]
 
-[<a href="../../es/feat/PunctType.html">es</a>]
-
-[<a href="../../nl/feat/PunctType.html">nl</a>]
-
-[<a href="../../ta/feat/PunctType.html">ta</a>]
+[<a href="../../fo/feat/NameType.html">fo</a>]
 
 
 
@@ -215,7 +233,7 @@ PunctType in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'ext-feat';
+        Collections.listing['_current'] = 'u-feat';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);

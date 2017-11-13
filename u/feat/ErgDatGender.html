@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>PrepCase</title>
+    <title>ErgDatGender</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-ext">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/ext/feat">ext/feat</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ext-feat/PrepCase.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/u/feat">u/feat</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/ErgDatGender.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -62,59 +62,44 @@
 
           <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<h2><code>PrepCase</code>: case form sensitive to prepositions</h2>
+<h2><code>ErgDatGender</code>: gender agreement with ergative/dative argument</h2>
 
-<p>Personal pronouns in some languages
-have different forms depending on whether they are objects of
-prepositions or not. For instance, Czech <i>on</i>
-(he) without prepositions has the forms <i>jemu</i>/DAT, <i>jeho</i>/ACC,
-<i>jím</i>/INS, while with a preposition it is <i>němu</i>/DAT,
-<i>něho</i>/ACC, <i>ním</i>/INS. Similarly, Portuguese pronouns in
-prepositional oblique case take forms different from oblique pronouns
-serving as direct objects of verbs: <i>eu</i>/NOM (I), <i>me</i>/ACC
-(give me that), <i>mim</i>/PREP-ACC (come to me).</p>
+<h2 id="gendererg-genderdat">Gender[erg], Gender[dat]</h2>
 
-<p>Default empty value means that the word form is neutral w.r.t.
-prepositions.</p>
+<p>Finite verbs in many Indo-European languages agree in person and number with their subject.
+In Basque (a <a href="http://en.wikipedia.org/wiki/Polypersonal_agreement">polypersonal language</a>),
+certain verbs overtly mark agreement with up to three arguments:
+one in the absolutive <a href="u-feat/Case">case</a>,
+one in ergative and
+one in dative.
+Thus in <em>dakarkiogu</em> “we bring it to him/her”,
+<em>akar</em> is the stem (<em>ekarri</em> = “bring”),
+<em>d</em> stands for “it” (absolutive argument is the direct object of transitive verbs),
+<em>ki</em> stands for the dative case,
+<em>o</em> stands for “he” and
+<em>gu</em> stands for “we” (ergative argument is the subject of transitive verbs).</p>
 
-<h3 id="npr-non-prepositional-case">Npr: non-prepositional case</h3>
+<p>In the informal register, there are also separate forms for masculine and feminine arguments,
+although <a href="u-feat/Gender">gender</a> is otherwise not distinguished in Basque.</p>
 
-<p>This
-word form must not be used after a preposition.</p>
+<ul>
+  <li><code>Gender[erg]</code> is the gender of the ergative argument of the verb. The corresponding feature in Interset 2.041 is called <code>erggender</code>.</li>
+  <li><code>Gender[dat]</code> is the gender of the dative argument of the verb. The corresponding feature in Interset 2.041 is called <code>datgender</code>.</li>
+</ul>
 
-<p>Examples:
-[cs]
-<span style="color: red"><i>jemu</i></span>
-= him (dative).</p>
+<h3 id="masc-masculine-gender">Masc: masculine gender</h3>
 
-<h3 id="pre-prepositional-case">Pre: prepositional case</h3>
+<p>Examples: [eu] <em>ukan <b>ezak</b></em> “have it” <code>Gender[erg]=Masc|Number[abs]=Sing|Number[erg]=Sing|Person[abs]=3|Person[erg]=2|Polite[erg]=Inf</code>
+(imperative addressing a man)</p>
 
-<p>This
-word form must be used after a preposition.</p>
+<h3 id="fem-feminine-gender">Fem: feminine gender</h3>
 
-<p>Examples:
-[cs]
-<i>k
-</i><span style="color: red"><i>ně</i></span><span style="color: red"><i>mu</i></span>
-= to
-him (dative).</p>
+<p>Examples: [eu] <em>ukan <b>ezan</b></em> “have it” <code>Gender[erg]=Fem|Number[abs]=Sing|Number[erg]=Sing|Person[abs]=3|Person[erg]=2|Polite[erg]=Inf</code>
+(imperative addressing a woman)</p>
 
 
 <!-- "in other languages" links -->
 <hr/>
-
-PrepCase in other languages:
-
-[<a href="../../ca/feat/PrepCase.html">ca</a>]
-
-[<a href="../../cs/feat/PrepCase.html">cs</a>]
-
-[<a href="../../es/feat/PrepCase.html">es</a>]
-
-[<a href="../../pl/feat/PrepCase.html">pl</a>]
-
-[<a href="../../pt/feat/PrepCase.html">pt</a>]
-
 
 
 
@@ -228,7 +213,7 @@ PrepCase in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'ext-feat';
+        Collections.listing['_current'] = 'u-feat';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);

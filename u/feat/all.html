@@ -183,6 +183,225 @@ word(s) typically belongs to a part of speech other than <a href="">u-pos/X</a>.
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Abbr.md" target="#">edit Abbr</a></p>
 
+<p><a id="al-u-feat/AbsErgDatNumber" class="al-dest"></a></p>
+<h2><code>AbsErgDatNumber</code>: number agreement with absolutive/ergative/dative argument</h2>
+
+<h2 id="numberabs-numbererg-numberdat">Number[abs], Number[erg], Number[dat]</h2>
+
+<p>Finite verbs in many Indo-European languages agree in person and <a href="u-feat/Number">number</a> with their subject.
+In Basque (a <a href="http://en.wikipedia.org/wiki/Polypersonal_agreement">polypersonal language</a>),
+certain verbs overtly mark agreement with up to three arguments:
+one in the absolutive <a href="u-feat/Case">case</a>,
+one in ergative and
+one in dative.
+Thus in <em>dakarkiogu</em> “we bring it to him/her”,
+<em>akar</em> is the stem (<em>ekarri</em> = “bring”),
+<em>d</em> stands for “it” (absolutive argument is the direct object of transitive verbs),
+<em>ki</em> stands for the dative case,
+<em>o</em> stands for “he” and
+<em>gu</em> stands for “we” (ergative argument is the subject of transitive verbs).</p>
+
+<ul>
+  <li><code>Number[abs]</code> is the number of the absolutive argument of the verb. The corresponding feature in Interset 2.041 is called <code>absnumber</code>.</li>
+  <li><code>Number[erg]</code> is the number of the ergative argument of the verb. The corresponding feature in Interset 2.041 is called <code>ergnumber</code>.</li>
+  <li><code>Number[dat]</code> is the number of the dative argument of the verb. The corresponding feature in Interset 2.041 is called <code>datnumber</code>.</li>
+</ul>
+
+<p>One may want to use just <code>Number</code> instead of <code>Number[abs]</code>.
+However, there are two issues with that (at least in Basque).
+First, the absolutive argument is not always the subject. For transitive verbs, it is the object, so the parallelism with nominative-accusative languages would be weak anyway.
+Second, and more important, some Basque finite verbs have additional morphemes of nominal inflection.
+Thus their form reflects the person-number agreement with the absolutive argument <em>(nor)</em>, and nominal inflection (case, number etc.) at the same time.
+Examples: <em>dena</em> (<code>Number=Sing|Number[abs]=Sing</code>),
+<em>dituena</em> (<code>Number=Sing|Number[abs]=Plur|Number[erg]=Sing</code>),
+<em>dugunak</em> (<code>Number=Plur|Number[abs]=Sing|Number[erg]=Plur</code>),
+<em>direnak</em> (<code>Number=Plur|Number[abs]=Plur</code>).
+So we reserve the <code>Number</code> feature for nominal inflection, and the <code>Number[abs]</code> feature for agreement.</p>
+
+<p>Note that we also define <code>Person[abs]</code> and <code>Polite[abs]</code>, although there is no direct conflict for these features.
+But it is better to have these features aligned with <code>Person[erg]</code>, <code>Polite[erg]</code>, <code>Person[dat]</code> and <code>Polite[dat]</code>.</p>
+
+<h3 id="sing-singular">Sing: singular</h3>
+
+<p>Examples: [eu] <em><b>d</b>akarki<b>o</b>gu</em> <code>Number[abs]=Sing|Number[dat]=Sing</code></p>
+
+<h3 id="plur-plural">Plur: plural</h3>
+
+<p>Examples: [eu] <em>dakarkio<b>gu</b></em> <code>Number[erg]=Plur</code></p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/AbsErgDatNumber.md" target="#">edit AbsErgDatNumber</a></p>
+
+<p><a id="al-u-feat/AbsErgDatPerson" class="al-dest"></a></p>
+<h2><code>AbsErgDatPerson</code>: person agreement with absolutive/ergative/dative argument</h2>
+
+<h2 id="personabs-personerg-persondat">Person[abs], Person[erg], Person[dat]</h2>
+
+<p>Finite verbs in many Indo-European languages agree in <a href="u-feat/Person">person</a> and number with their subject.
+In Basque (a <a href="http://en.wikipedia.org/wiki/Polypersonal_agreement">polypersonal language</a>),
+certain verbs overtly mark agreement with up to three arguments:
+one in the absolutive <a href="u-feat/Case">case</a>,
+one in ergative and
+one in dative.
+Thus in <em>dakarkiogu</em> “we bring it to him/her”,
+<em>akar</em> is the stem (<em>ekarri</em> = “bring”),
+<em>d</em> stands for “it” (absolutive argument is the direct object of transitive verbs),
+<em>ki</em> stands for the dative case,
+<em>o</em> stands for “he” and
+<em>gu</em> stands for “we” (ergative argument is the subject of transitive verbs).</p>
+
+<ul>
+  <li><code>Person[abs]</code> is the person of the absolutive argument of the verb. The corresponding feature in Interset 2.041 is called <code>absperson</code>.</li>
+  <li><code>Person[erg]</code> is the person of the ergative argument of the verb. The corresponding feature in Interset 2.041 is called <code>ergperson</code>.</li>
+  <li><code>Person[dat]</code> is the person of the dative argument of the verb. The corresponding feature in Interset 2.041 is called <code>datperson</code>.</li>
+</ul>
+
+<p>One may want to use just <code>Person</code> instead of <code>Person[abs]</code>.
+However, there are two issues with that (at least in Basque).
+First, the absolutive argument is not always the subject. For transitive verbs, it is the object, so the parallelism with nominative-accusative languages would be weak anyway.
+Second, we cannot avoid <code>Number[abs]</code> (both <code>Number</code> and <code>Number[abs]</code> can occur at one word)
+and thus we keep <code>Person[abs]</code> to demonstrate that it is the same layer of agreement for both the features.</p>
+
+<h3 id="first-person">1: first person</h3>
+
+<p>Examples: [eu] <em>dakarkio<b>gu</b></em> <code>Person[erg]=1</code></p>
+
+<h3 id="second-person">2: second person</h3>
+
+<p>Examples: [eu] <em>dakarkio<b>zu</b></em> <code>Person[erg]=2</code></p>
+
+<h3 id="third-person">3: third person</h3>
+
+<p>Examples: [eu] <em><b>d</b>akarki<b>o</b>gu</em> <code>Person[abs]=3|Person[dat]=3</code></p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/AbsErgDatPerson.md" target="#">edit AbsErgDatPerson</a></p>
+
+<p><a id="al-u-feat/AbsErgDatPolite" class="al-dest"></a></p>
+<h2><code>AbsErgDatPolite</code>: politeness agreement with absolutive/ergative/dative argument</h2>
+
+<h2 id="politeabs-politeerg-politedat">Polite[abs], Polite[erg], Polite[dat]</h2>
+
+<p>Finite verbs in many Indo-European languages agree in person and number with their subject;
+for the second person this also affects the politeness register.
+In Basque (a <a href="http://en.wikipedia.org/wiki/Polypersonal_agreement">polypersonal language</a>),
+certain verbs overtly mark agreement with up to three arguments:
+one in the absolutive <a href="u-feat/Case">case</a>,
+one in ergative and
+one in dative.
+Thus in <em>dakarkiogu</em> “we bring it to him/her”,
+<em>akar</em> is the stem (<em>ekarri</em> = “bring”),
+<em>d</em> stands for “it” (absolutive argument is the direct object of transitive verbs),
+<em>ki</em> stands for the dative case,
+<em>o</em> stands for “he” and
+<em>gu</em> stands for “we” (ergative argument is the subject of transitive verbs).</p>
+
+<ul>
+  <li><code>Polite[abs]</code> is the politeness of the absolutive argument of the verb. The corresponding feature in Interset 2.041 is called <code>abspoliteness</code>.</li>
+  <li><code>Polite[erg]</code> is the politeness of the ergative argument of the verb. The corresponding feature in Interset 2.041 is called <code>ergpoliteness</code>.</li>
+  <li><code>Polite[dat]</code> is the politeness of the dative argument of the verb. The corresponding feature in Interset 2.041 is called <code>datpoliteness</code>.</li>
+</ul>
+
+<p>One may want to use just <code>Polite</code> instead of <code>Polite[abs]</code>.
+However, there are two issues with that (at least in Basque).
+First, the absolutive argument is not always the subject. For transitive verbs, it is the object, so the parallelism with nominative-accusative languages would be weak anyway.
+Second, we cannot avoid <code>Number[abs]</code> (both <code>Number</code> and <code>Number[abs]</code> can occur at one word)
+and thus we keep <code>Polite[abs]</code> to demonstrate that it is the same layer of agreement for both the features.</p>
+
+<h3 id="inf-informal">Inf: informal</h3>
+
+<p>Examples: [eu] <em>ezan, ezak</em> <code>Polite[erg]=Inf</code></p>
+
+<h3 id="pol-polite-formal">Pol: polite, formal</h3>
+
+<p>Examples: [eu] <em>ezazu</em> <code>Polite[erg]=Pol</code> (politeness-neutral form is <em>ezazue</em>)</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/AbsErgDatPolite.md" target="#">edit AbsErgDatPolite</a></p>
+
+<p><a id="al-u-feat/AdpType" class="al-dest"></a></p>
+<h2><code>AdpType</code>: adposition type</h2>
+
+<h3 id="prep-preposition">Prep: preposition</h3>
+
+<p>Examples: in, on, to, from</p>
+
+<h3 id="post-postposition">Post: postposition</h3>
+
+<p>Examples: German “entlang” in “der Strasse entlang” (along the street)</p>
+
+<h3 id="circ-circumposition">Circ: circumposition</h3>
+
+<p>Examples: German “von … an” in “von dieser Stelle an” (from this place
+on)</p>
+
+<h3 id="voc-vocalized-preposition">Voc: vocalized preposition</h3>
+
+<p>In Slavic languages, some prepositions are non-syllabic and their form
+has to be changed in some contexts to facilitate pronunciation.</p>
+
+<p>Czech examples: ke, ku, se, ve, ze</p>
+
+<p>(Non-vocalized equivalents are: k, k, s, v, z)</p>
+
+<p>Same phenomenon exists in Slovak, Russian and probably elsewhere.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/AdpType.md" target="#">edit AdpType</a></p>
+
+<p><a id="al-u-feat/AdvType" class="al-dest"></a></p>
+<h2><code>AdvType</code>: adverb type</h2>
+
+<p>Semantic subclasses of adverbs. They are annotated in some tagsets
+(e.g. Bulgarian, Czech, Hindi, Japanese) and would probably apply to
+many other languages if their tagsets cared to cover them. Note that
+the “prontype” feature also applies to some adverbs and is orthogonal
+to “AdvType”.</p>
+
+<h3 id="man-adverb-of-manner-how">Man: adverb of manner (“how”)</h3>
+
+<h3 id="loc-adverb-of-location-where-where-to-where-from">Loc: adverb of location (“where, where to, where from”)</h3>
+
+<h3 id="tim-adverb-of-time-when-since-when-till-when">Tim: adverb of time (“when, since when, till when”)</h3>
+
+<h3 id="deg-adverb-of-quantity-or-degree-how-much">Deg: adverb of quantity or degree (“how much”)</h3>
+
+<p>Note that there is a fuzzy borderline between adverbs of degree and
+indefinite numerals (as they are called in some grammars). This has
+not yet been solved in Interset.</p>
+
+<h3 id="cau-adverb-of-cause-why">Cau: adverb of cause (“why”)</h3>
+
+<h3 id="mod-adverb-of-modal-nature">Mod: adverb of modal nature</h3>
+
+<p>The Czech examples below are similar to modal verbs: they take
+infinitives as arguments and add the meaning of possibility, necessity
+or recommendedness. I suspect that the Bulgarian example
+(transliteration of French “à propos”) is used differently but its
+native tagset also calles it “modal”.</p>
+
+<p>Examples: [bg] апропо, [cs] možno, nutno, radno, třeba</p>
+
+<h3 id="sta-adverb-of-state">Sta: adverb of state</h3>
+
+<p>Note that while the English translations of the Czech examples below
+might hint that they are adjectives, morphologically and syntactically
+they are adverbs (and some of them ambiguous with nouns).</p>
+
+<p>Examples: [cs] plno (full), zima (cold), chyba (wrong), škoda (pity),
+volno (available), nanic (no good)</p>
+
+<p>Finally, Interset also has two values of “AdvType” that somewhat
+deviate from the rest. I do not know what exactly should be done with
+them but I had to distinguish them somehow.</p>
+
+<h3 id="ex-existential-there-in-english">Ex: existential “there” in English</h3>
+
+<p>What part of speech is this “there” in the universal parts of speech?</p>
+
+<h3 id="adadj-ad-adjective-in-finnish">Adadj: ad-adjective in Finnish</h3>
+
+<p>Derived from adjectives, used only to modify other adjectives
+(http://archives.conlang.info/pei/juenchen/phaelbhaduen.html).</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/AdvType.md" target="#">edit AdvType</a></p>
+
 <p><a id="al-u-feat/Animacy" class="al-dest"></a></p>
 <h2><code>Animacy</code>: animacy</h2>
 
@@ -1020,6 +1239,26 @@ marks the property being compared. It occurs in Turkish.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Case.md" target="#">edit Case</a></p>
 
+<p><a id="al-u-feat/ConjType" class="al-dest"></a></p>
+<h2><code>ConjType</code>: conjunction type</h2>
+
+<p>We already distinguished the two main types, coordinating and
+subordinating conjunctions, at the level of POS tags. However, there
+are other (sub?)types that are not yet accounted for.</p>
+
+<h3 id="comp-comparing-conjunction">Comp: comparing conjunction</h3>
+
+<p>Examples: [de] wie (as), als (than)</p>
+
+<h3 id="oper-mathematical-operator">Oper: mathematical operator</h3>
+
+<p>Note that operators can be expressed either using symbols or using
+words.</p>
+
+<p>Examples: [cs] krát (times), plus, minus</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/ConjType.md" target="#">edit ConjType</a></p>
+
 <p><a id="al-u-feat/Definite" class="al-dest"></a></p>
 <h2><code>Definite</code>: definiteness or state</h2>
 
@@ -1210,6 +1449,77 @@ handsome</b>”</li>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Degree.md" target="#">edit Degree</a></p>
 
+<p><a id="al-u-feat/Echo" class="al-dest"></a></p>
+<h2><code>Echo</code>: is this an echo word or a reduplicative?</h2>
+
+<p>Is this a reduplicative or echo word? Such words occur in Hindi and
+other Indian languages. In Hyderabad Dependency Treebank they get
+their own part-of-speech tags RDP and ECH, respectively. We do not
+want to treat them as separate parts of speech because they could be
+assigned a POS independent of their RDP or ECH status (same as the
+word that they echo). Perhaps we should merge this also with the
+“hyph” feature to something called “compound”?</p>
+
+<h3 id="rdp-reduplicative">Rdp: reduplicative</h3>
+
+<p>The word is a copy of a previous word. In Hindi, this would add the meaning of distribution (“one rupee each”), separation (“sit separately”), variety, diversity or just emphasis.</p>
+
+<p>Examples: [hi] “कभी - कभी” = “kabhī - kabhī” = “sometimes”, “कभी” =
+“kabhī” = “sometimes”; “एक एक” = “eka eka” = “one each”, “एक” = “eka”
+= “one”</p>
+
+<h3 id="ech-echo">Ech: echo</h3>
+
+<p>The word rhymes with a previous word but it is not identical to it and
+typically it does not have any meaning of its own. In Hindi it
+generalizes the meaning of the previous word and eventually translates
+as “or something”, “etc.” etc.</p>
+
+<p>Examples: [hi] “चाय वाय” = “čāya vāya” = “tea or something” (as in “Have some tea or something.”)</p>
+
+<p>For more details see Rupert Snell and Simon Weightman: Teach Yourself
+Hindi, Section 16.4 and 16.5, pages 210 – 211.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Echo.md" target="#">edit Echo</a></p>
+
+<p><a id="al-u-feat/ErgDatGender" class="al-dest"></a></p>
+<h2><code>ErgDatGender</code>: gender agreement with ergative/dative argument</h2>
+
+<h2 id="gendererg-genderdat">Gender[erg], Gender[dat]</h2>
+
+<p>Finite verbs in many Indo-European languages agree in person and number with their subject.
+In Basque (a <a href="http://en.wikipedia.org/wiki/Polypersonal_agreement">polypersonal language</a>),
+certain verbs overtly mark agreement with up to three arguments:
+one in the absolutive <a href="u-feat/Case">case</a>,
+one in ergative and
+one in dative.
+Thus in <em>dakarkiogu</em> “we bring it to him/her”,
+<em>akar</em> is the stem (<em>ekarri</em> = “bring”),
+<em>d</em> stands for “it” (absolutive argument is the direct object of transitive verbs),
+<em>ki</em> stands for the dative case,
+<em>o</em> stands for “he” and
+<em>gu</em> stands for “we” (ergative argument is the subject of transitive verbs).</p>
+
+<p>In the informal register, there are also separate forms for masculine and feminine arguments,
+although <a href="u-feat/Gender">gender</a> is otherwise not distinguished in Basque.</p>
+
+<ul>
+  <li><code>Gender[erg]</code> is the gender of the ergative argument of the verb. The corresponding feature in Interset 2.041 is called <code>erggender</code>.</li>
+  <li><code>Gender[dat]</code> is the gender of the dative argument of the verb. The corresponding feature in Interset 2.041 is called <code>datgender</code>.</li>
+</ul>
+
+<h3 id="masc-masculine-gender">Masc: masculine gender</h3>
+
+<p>Examples: [eu] <em>ukan <b>ezak</b></em> “have it” <code>Gender[erg]=Masc|Number[abs]=Sing|Number[erg]=Sing|Person[abs]=3|Person[erg]=2|Polite[erg]=Inf</code>
+(imperative addressing a man)</p>
+
+<h3 id="fem-feminine-gender">Fem: feminine gender</h3>
+
+<p>Examples: [eu] <em>ukan <b>ezan</b></em> “have it” <code>Gender[erg]=Fem|Number[abs]=Sing|Number[erg]=Sing|Person[abs]=3|Person[erg]=2|Polite[erg]=Inf</code>
+(imperative addressing a woman)</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/ErgDatGender.md" target="#">edit ErgDatGender</a></p>
+
 <p><a id="al-u-feat/Evident" class="al-dest"></a></p>
 <h2><code>Evident</code>: evidentiality</h2>
 
@@ -1379,6 +1689,21 @@ or tag individual instances of <em>grande</em> as either masculine or feminine, 
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Gender.md" target="#">edit Gender</a></p>
 
+<p><a id="al-u-feat/Hyph" class="al-dest"></a></p>
+<h2><code>Hyph</code>: hyphenated compound or part of it</h2>
+
+<p>Boolean feature. Is this part of a hyphenated compound? Depending on
+tokenization, the compound may be one token or be split to several
+tokens; then the tokens need tags.</p>
+
+<h3 id="yes-it-is-part-of-hyphenated-compound">Yes: it is part of hyphenated compound</h3>
+
+<p>Examples: “anglo-“ in “anglo-saxon”; [cs] “česko-slovenský”
+(Czecho-Slovak; the second part is a normal adjective, including
+adjectival morphological paradigm, but the first part is special.)</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Hyph.md" target="#">edit Hyph</a></p>
+
 <p><a id="al-u-feat/Mood" class="al-dest"></a></p>
 <h2><code>Mood</code>: mood</h2>
 
@@ -1545,6 +1870,97 @@ and in Caddo (Native American from Oklahoma).</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Mood.md" target="#">edit Mood</a></p>
 
+<p><a id="al-u-feat/NameType" class="al-dest"></a></p>
+<h2><code>NameType</code>: type of named entity</h2>
+
+<p>Classification of named entities (token-based, no nesting of entities etc.)
+The feature applies mainly to the <a href="">cs-pos/PROPN</a> tag;
+in multi-word foreign names, <a href="cs-pos/ADJ">adjectives</a> may also have this feature
+(they preserve the <code>ADJ</code> tag but at the same time they would not exist in Czech
+otherwise than in the named entity).</p>
+
+<h3 id="geo-geographical-name"><code>Geo</code>: geographical name</h3>
+
+<p>Names of cities, countries, rivers, mountains etc.</p>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li><em><b>Praha</b> </em> “Prague”, <em><b>Kostelec</b> nad Černými lesy </em>, <em><b>Německo</b> </em> “Germany”</li>
+</ul>
+
+<h3 id="prs-name-of-person"><code>Prs</code>: name of person</h3>
+
+<p>This value is used if it is not known whether it is a given or a family name, but it is known that it is a personal name.</p>
+
+<h3 id="giv-given-name-of-person"><code>Giv</code>: given name of person</h3>
+
+<p>Given name (not family name). This is usually the first name in European and American names. In Chinese names, the last two syllables (of three) are usually the given name.</p>
+
+<h3 id="sur-surname--family-name-of-person"><code>Sur</code>: surname / family name of person</h3>
+
+<p>Family name (surname). This is usually the last name in European and American names. In Chinese names, the first syllable (of three) is usually the surname.</p>
+
+<h3 id="nat-nationality"><code>Nat</code>: nationality</h3>
+
+<p>Name denoting a member of a particular nation, or inhabitant of a particular territory.</p>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li><em><b>Čech</b> </em> “Czech”, <em><b>Němec</b> </em> “German”, <em><b>Pražan</b> </em> “Praguer”</li>
+</ul>
+
+<h3 id="com-company-organization"><code>Com</code>: company, organization</h3>
+
+<h3 id="pro-product"><code>Pro</code>: product</h3>
+
+<h3 id="oth-other"><code>Oth</code>: other</h3>
+
+<p>Names of stadiums, guerilla bases, events etc.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/NameType.md" target="#">edit NameType</a></p>
+
+<p><a id="al-u-feat/NounType" class="al-dest"></a></p>
+<h2><code>NounType</code>: noun type</h2>
+
+<p>We already split common and proper nouns at the level of POS
+tags but some tagsets mark other distinctions.</p>
+
+<h3 id="class-classifier">Class: classifier</h3>
+
+<p>Chinese classifiers between cardinal numbers and nouns. Note that this
+is the only value of NounType. Interset also has the values “com” and
+“prop” but in Universal Treebanks, we decided to distinguish these two
+already at the level of POS tags.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/NounType.md" target="#">edit NounType</a></p>
+
+<p><a id="al-u-feat/NumForm" class="al-dest"></a></p>
+<h2><code>NumForm</code>: numeral form</h2>
+
+<p>Feature of cardinal and ordinal numbers. Is the number expressed by
+digits or as a word? This feature appears in 10+ tagsets that I
+studied. Note that it is a bit Euro-centric because it distinguishes
+(in some tagsets) (Euro)Arabic digits and Roman numerals, but what
+about digits in various other scripts? In texts in many Indian scripts
+and in the Arabic script both native digits and Euro-Arabic digits can
+appear (e.g. 2014 vs. २०१४ in Devanagari).</p>
+
+<h3 id="word-number-expressed-as-word">Word: number expressed as word</h3>
+
+<p>Examples: one, two, three</p>
+
+<h3 id="digit-number-expressed-using-digits">Digit: number expressed using digits</h3>
+
+<p>Examples: 1, 2, 3</p>
+
+<h3 id="roman-roman-numeral">Roman: roman numeral</h3>
+
+<p>Examples: I, II, III</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/NumForm.md" target="#">edit NumForm</a></p>
+
 <p><a id="al-u-feat/NumType" class="al-dest"></a></p>
 <h2><code>NumType</code>: numeral type</h2>
 
@@ -1697,6 +2113,34 @@ one token.)</li>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/NumType.md" target="#">edit NumType</a></p>
 
+<p><a id="al-u-feat/NumValue" class="al-dest"></a></p>
+<h2><code>NumValue</code>: numeric value</h2>
+
+<p>Low-value (&lt;5) cardinal numbers in Slavic languages behave
+morphologically and syntactically differently from the rest, therefore
+some tagsets distinguish them (so far seen in Czech, Polish, and also
+Arabic, although it is not Slavic).</p>
+
+<p>In Czech, number “one” agrees with the counted noun in gender, number
+and case. Number “two” agrees in gender and case and numbers “three”
+and “four” agree in case. These numerals behave similarly to
+adjectives. Numbers “five”, “six” etc. behave differently. If the case
+of the counted phrase is genitive, dative, locative or instrumental,
+the numeral agrees in case with the noun. However, if the case of the
+whole phrase is nominative, accusative or vocative, then the numeral
+dictates that the noun is in genitive. This behavior is similar to
+nouns modified by other nouns in genitive. (Note that this is why in
+the Czech PDT some numeral nodes are annotated as governing nouns
+instead of modifying them.)</p>
+
+<h3 id="numeric-value-1">1: numeric value 1</h3>
+
+<h3 id="numeric-value-2">2: numeric value 2</h3>
+
+<h3 id="numeric-value-3-or-4">3: numeric value 3 or 4</h3>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/NumValue.md" target="#">edit NumValue</a></p>
+
 <p><a id="al-u-feat/Number" class="al-dest"></a></p>
 <h2><code>Number</code>: number</h2>
 
@@ -1833,6 +2277,52 @@ semantically plausible. Sometimes, the plural form exists and means
 </ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Number.md" target="#">edit Number</a></p>
+
+<p><a id="al-u-feat/PartType" class="al-dest"></a></p>
+<h2><code>PartType</code>: particle type</h2>
+
+<p>Types of particles found in various tagsets. I am merely presenting
+here what I have in Interset now. We will have to make it match our
+new definition of particles.</p>
+
+<h3 id="mod-modal-particle">Mod: modal particle</h3>
+
+<p>Examples: [bg] май (possibly), нека (let), [cs] ať, kéž, nechť (let)</p>
+
+<h3 id="emp-particle-of-emphasis">Emp: particle of emphasis</h3>
+
+<p>Examples: [bg] даже (even)</p>
+
+<h3 id="res-particle-of-response">Res: particle of response</h3>
+
+<p>Examples: yes, no</p>
+
+<h3 id="inf-infinitive-marker">Inf: infinitive marker</h3>
+
+<p>Did we say that these are subordinating conjunctions?</p>
+
+<p>If so, do we want to have this feature value in “conjtype”?</p>
+
+<p>Examples: [en] to, [de] zu, [da] at, [sv] att</p>
+
+<h3 id="vbp-separated-verb-prefix-in-german">Vbp: separated verb prefix in German</h3>
+
+<p>They are analogous to verbal particles in other Germanic languages,
+which again overlap with adpositions and adverbs. Do we want to tag
+them as adpositions/adverbs and add this feature?  Examples: [de] vor
+(in “stellen Sie sich vor”)</p>
+
+<p>Besides these, various languages have also question particles (they
+cause the sentence to be question, i.e. thye are a sort of pronounced
+question marks) and negative particles (English “not”, German “nicht”
+etc.; some people would say that these are adverbs). I have been
+abusing “prontype” values “int” and “neg” to capture these two types
+in Interset but I am not particularly happy with that, as prontype
+otherwise applies to different class of words. So if we keep the
+“PartType” feature, we may want to also add the “int” and “neg” values
+here.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/PartType.md" target="#">edit PartType</a></p>
 
 <p><a id="al-u-feat/Person" class="al-dest"></a></p>
 <h2><code>Person</code>: person</h2>
@@ -2125,6 +2615,280 @@ means that empty value has the <code>No</code> meaning.)</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Poss.md" target="#">edit Poss</a></p>
 
+<p><a id="al-u-feat/PossGender" class="al-dest"></a></p>
+<h2><code>PossGender</code>: possessor’s gender</h2>
+
+<p>Possessive
+adjectives and pronouns may have two different genders: that of the
+possessed object (gender agreement with modified noun) and that of
+the possessor (lexical feature, inherent gender). The PossGender
+feature captures the possessor’s gender. For simplicity, the set of
+possible values is identical to Gender, although only a subset has
+been observed in corpora so far.</p>
+
+<p>In
+the Czech examples below, the masculine PossGender implies using one
+of the suffixes <i>-</i><i>ův, -ova, -ovo,</i>
+and the feminine PossGender implies using one of <i>-</i><i>in,
+-ina, -ino</i>.</p>
+
+<h3 id="masc-masculine-possessor">Masc: masculine possessor</h3>
+
+<p>Examples:
+[cs]
+<span style="color: red"><i>otcův
+syn</i></span>
+(father’s
+son; PossGender=Masc|Gender=Masc);
+<span style="color: red"><i>otcova
+dcera</i></span>
+(father’s
+daughter; PossGender=Masc|Gender=Fem);
+<span style="color: red"><i>otcovo
+dítě</i></span>
+(father’s
+child; PossGender=Masc|Gender=Neut).</p>
+
+<h3 id="fem-feminine-possessor">Fem: feminine possessor</h3>
+
+<p>Examples:
+[cs]
+<span style="color: red"><i>m</i></span><span style="color: red"><i>atčin
+syn</i></span>
+(mother’s
+son; PossGender=Fem|Gender=Masc);
+<span style="color: red"><i>matčina
+dcera</i></span>
+(mother’s
+daughter; PossGender=Fem|Gender=Fem);
+<span style="color: red"><i>matčino
+dítě</i></span>
+(mother’s
+child; PossGender=Fem|Gender=Neut).</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/PossGender.md" target="#">edit PossGender</a></p>
+
+<p><a id="al-u-feat/PossNumber" class="al-dest"></a></p>
+<h2><code>PossNumber</code>: possessor’s number</h2>
+
+<p>Possessives
+may have two different numbers: that of the possessed object (number
+agreement with modified noun) and that of the possessor. The
+PossNumber feature captures the possessor’s number. For simplicity,
+the set of possible values is identical to Number, although only a
+subset has been observed in corpora so far.</p>
+
+<h3 id="sing-singular-possessor">Sing: singular possessor</h3>
+
+<p>Examples:
+[en]
+<span style="color: red"><i>my,
+his</i></span><span style="color: red"><i>,
+her, its</i></span>;
+[cs]
+<span style="color: red"><i>můj</i></span><i>
+pes</i>
+(my
+dog; PossNumber=Sing|Number=Sing); <span style="color: red"><i>mí</i></span><i>
+psi</i>
+(my
+dogs; PossNumber=Sing|Number=Plur).</p>
+
+<h3 id="plur-plural-possessor">Plur: plural possessor</h3>
+
+<p>Examples:
+[en]
+<span style="color: red"><i>our,
+t</i></span><span style="color: red"><i>heir</i></span>;
+[cs]
+<span style="color: red"><i>náš</i></span><i>
+pes</i>
+(our
+dog; PossNumber=Plur|Number=Sing); <span style="color: red"><i>naši</i></span><i>
+psi</i>
+(our
+dogs; PossNumber=Plur|Number=Plur).</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/PossNumber.md" target="#">edit PossNumber</a></p>
+
+<p><a id="al-u-feat/PossPerson" class="al-dest"></a></p>
+<h2><code>PossPerson</code>: possessor’s person</h2>
+
+<p>PossPerson
+is possessor’s person, marked e.g. on Hungarian nouns. These noun
+forms would be translated to English as possessive pronoun + noun.</p>
+
+<p>Note
+that there is currently a sort of inconsitency in Interset: since
+this feature was introduced, it would be logical to use it also for
+possessive pronouns in other languages. Yet the possessor’s person of
+these pronouns is traditionally captured in the “Person”
+feature. Also note that using PossPerson for possessive pronouns
+might introduce inconsistency at the other end because in some
+languages, possessive pronouns are actually identical to personal
+pronouns in the genitive case.</p>
+
+<h3 id="first-person-possessor">1: first person possessor</h3>
+
+<p>Examples:
+[hu]
+<i>kutya</i>
+= dog;
+<span style="color: red"><i>kutyám</i></span>
+=
+my dog;
+<span style="color: red"><i>kutyá</i></span><span style="color: red"><i>nk</i></span>
+=
+our dog.</p>
+
+<h3 id="second-person-possessor">2: second person possessor</h3>
+
+<p>Examples:
+[hu]
+<i>kutya</i>
+= dog;
+<span style="color: red"><i>kutyá</i></span><span style="color: red"><i>d</i></span>
+=
+your.Sing dog;
+<span style="color: red"><i>kutyá</i></span><span style="color: red"><i>tok</i></span>
+=
+your.Plur dog.</p>
+
+<h3 id="third-person-possessor">3: third person possessor</h3>
+
+<p>Examples:
+[hu]
+<i>kutya</i>
+= dog;
+<span style="color: red"><i>kutyá</i></span><span style="color: red"><i>ja</i></span>
+=
+his/her/its dog;
+<span style="color: red"><i>kutyá</i></span><span style="color: red"><i>juk</i></span>
+=
+their dog.</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/PossPerson.md" target="#">edit PossPerson</a></p>
+
+<p><a id="al-u-feat/PossedNumber" class="al-dest"></a></p>
+<h2><code>PossedNumber</code>: possessed object’s number</h2>
+
+<h2 id="possednumber">PossedNumber</h2>
+
+<p>PossedNumber
+is the possessee’s (possessed, owned noun phrase’s) number. In
+Hungarian, possession can be marked on the possessor or on the
+possessed. It is possible, though rare, that a noun has three
+distinct number features: its own grammatical number, number of its
+possessor and number of its possession. Examples from the
+Multext-East Hungarian lexicon:</p>
+
+<ul>
+  <li><i>könnyedén</i> (SSS)
+    <ul>
+      <li><i>könny</i> = a tear (singular)</li>
+      <li><i>könnyed</i> = your tear (singular owner)</li>
+      <li><i>könnyedé</i> = (possession) of your tear (singular possession)</li>
+      <li><i>könnyedén</i> = (on the possession) of your tear (superessive case)</li>
+    </ul>
+  </li>
+  <li><i>ellenfeleié</i> (PSS)
+    <ul>
+      <li><i>ellenfél</i> = an opponent (singular)</li>
+      <li><i>ellenfele</i> = his/her/its opponent (singular owner)</li>
+      <li><i>ellenfelei</i> = his/her/its opponents (core plural, singular owner)</li>
+      <li><i>ellenfeleié</i> = (possession) of his/her/its opponents (singular possession)</li>
+    </ul>
+  </li>
+  <li><i>életeké</i> (SPS)
+    <ul>
+      <li><i>él</i> = point (singular)</li>
+      <li><i>élek</i> = points (plural)</li>
+      <li><i>élén</i> = his/her/its point (singular owner)</li>
+      <li><i>élünk</i> = our point (plural owner)</li>
+      <li><i>életeké</i> = (possession) of our point (singular possession)</li>
+    </ul>
+  </li>
+  <li><i>tárgyalópartnereinkét</i> (PPS)
+    <ul>
+      <li><i>tárgyalópartner</i> = negotiator (singular)</li>
+      <li><i>tárgyalópartnerei</i> = his/her/its negotiators (plural, singular owner)</li>
+      <li><i>tárgyalópartnereinkét</i> = (possession) of our negotiators (plural, plural owner, singular possession, accusative case)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Words marked for plural possessions are very rare, though. Note
+that in the following example from Multext-East, Columbus is marked
+for plural possession, but not for his own owner.</p>
+
+<ul>
+  <li><i>Kolumbuszéinál</i>
+    <ul>
+      <li><i>Kolumbusz</i> = Columbus (singular)</li>
+      <li><i>Kolumbuszéi</i> = (possessions) of Columbus (plural possession)</li>
+      <li><i>Kolumbuszéinál</i> = (at the possessions) of Columbus (adessive case)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="sing-singular-possession">Sing: singular possession</h3>
+
+<h3 id="plur-plural-possession">Plur: plural possession</h3>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/PossedNumber.md" target="#">edit PossedNumber</a></p>
+
+<p><a id="al-u-feat/Prefix" class="al-dest"></a></p>
+<h2><code>Prefix</code>: Word functions as a prefix in a compund construction</h2>
+
+<p>Boolean feature. Is this a prefix word in a compound, that usually cannot stand on its own?</p>
+
+<p>These are words corresponding to prefixes such <code>inter-</code> (inter disciplinary), <code>post-</code> (post traumatic), <code>un-</code> (un avoidable), <code>di-</code> (di transitive) and so on in English, but which are 
+relized as distinct tokens (without the hyphen) in different languages.</p>
+
+<h3 id="yes-it-is-a-prefix-of-a-compound">Yes: it is a prefix of a compound</h3>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Prefix.md" target="#">edit Prefix</a></p>
+
+<p><a id="al-u-feat/PrepCase" class="al-dest"></a></p>
+<h2><code>PrepCase</code>: case form sensitive to prepositions</h2>
+
+<p>Personal pronouns in some languages
+have different forms depending on whether they are objects of
+prepositions or not. For instance, Czech <i>on</i>
+(he) without prepositions has the forms <i>jemu</i>/DAT, <i>jeho</i>/ACC,
+<i>jím</i>/INS, while with a preposition it is <i>němu</i>/DAT,
+<i>něho</i>/ACC, <i>ním</i>/INS. Similarly, Portuguese pronouns in
+prepositional oblique case take forms different from oblique pronouns
+serving as direct objects of verbs: <i>eu</i>/NOM (I), <i>me</i>/ACC
+(give me that), <i>mim</i>/PREP-ACC (come to me).</p>
+
+<p>Default empty value means that the word form is neutral w.r.t.
+prepositions.</p>
+
+<h3 id="npr-non-prepositional-case">Npr: non-prepositional case</h3>
+
+<p>This
+word form must not be used after a preposition.</p>
+
+<p>Examples:
+[cs]
+<span style="color: red"><i>jemu</i></span>
+= him (dative).</p>
+
+<h3 id="pre-prepositional-case">Pre: prepositional case</h3>
+
+<p>This
+word form must be used after a preposition.</p>
+
+<p>Examples:
+[cs]
+<i>k
+</i><span style="color: red"><i>ně</i></span><span style="color: red"><i>mu</i></span>
+= to
+him (dative).</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/PrepCase.md" target="#">edit PrepCase</a></p>
+
 <p><a id="al-u-feat/PronType" class="al-dest"></a></p>
 <h2><code>PronType</code>: pronominal type</h2>
 
@@ -2308,6 +3072,50 @@ somebody…</em></li>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/PronType.md" target="#">edit PronType</a></p>
 
+<p><a id="al-u-feat/PunctSide" class="al-dest"></a></p>
+<h2><code>PunctSide</code>: which side of paired punctuation is this?</h2>
+
+<p>Distinguishes between initial and final form of pairwise punctuation
+(brackets, quotation marks, question and exclamation in Spanish). Note
+that “initial” and “final” are better terms than “left” and
+“right”. The latter would be confusing in languages writing from right
+to left, like Arabic.</p>
+
+<h3 id="ini-initial-left-bracket-in-english-texts">Ini: initial (left bracket in English texts)</h3>
+
+<h3 id="fin-final-right-bracket-in-english-texts">Fin: final (right bracket in English texts)</h3>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/PunctSide.md" target="#">edit PunctSide</a></p>
+
+<p><a id="al-u-feat/PunctType" class="al-dest"></a></p>
+<h2><code>PunctType</code>: punctuation type</h2>
+
+<p>Many tagsets have just one tag for punctuation. Others (including the
+Penn Treebank and the Swedish Mamba tagset) classify punctuation in
+more detail.</p>
+
+<h3 id="peri-period-at-the-end-of-sentence-in-penn-tagset-includes-question-and-exclamation">Peri: period at the end of sentence; in Penn tagset, includes question and exclamation</h3>
+
+<h3 id="qest-question-mark">Qest: question mark</h3>
+
+<h3 id="excl-exclamation-mark">Excl: exclamation mark</h3>
+
+<h3 id="quot-quoation-marks-various-sorts-in-various-languages">Quot: quoation marks (various sorts in various languages)</h3>
+
+<h3 id="brck-bracket">Brck: bracket</h3>
+
+<h3 id="comm-comma">Comm: comma</h3>
+
+<h3 id="colo-colon-in-penn-tagset--is-in-fact-tag-for-generic-other-punctuation">Colo: colon; in Penn tagset, “:” is in fact tag for generic other punctuation</h3>
+
+<h3 id="semi-semicolon">Semi: semicolon</h3>
+
+<h3 id="dash-dash-hyphen">Dash: dash, hyphen</h3>
+
+<h3 id="symb-symbol">Symb: symbol</h3>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/PunctType.md" target="#">edit PunctType</a></p>
+
 <p><a id="al-u-feat/Reflex" class="al-dest"></a></p>
 <h2><code>Reflex</code>: reflexive</h2>
 
@@ -2346,6 +3154,64 @@ pronoun: <em>svůj</em></li>
 </ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Reflex.md" target="#">edit Reflex</a></p>
+
+<p><a id="al-u-feat/Style" class="al-dest"></a></p>
+<h2><code>Style</code>: style or sublanguage to which this word form belongs</h2>
+
+<p>This
+may be a lexical feature (some words-lemmas are archaic, some are
+colloquial) or a morphological feature (inflectional patterns may
+systematically change between dialects or styles). It could be used
+in many languages but only a few choose to actually annotate it. Seen
+in Bulgarian, Czech, Danish, Finnish and Hungarian.</p>
+
+<h3 id="arch-archaic-obsolete">Arch: archaic, obsolete</h3>
+
+<h3 id="rare-rare">Rare: rare</h3>
+
+<h3 id="form-formal-literary">Form: formal, literary</h3>
+
+<h3 id="poet-poetic">Poet: poetic</h3>
+
+<h3 id="norm-normal-neutral">Norm: normal, neutral</h3>
+
+<h3 id="coll-colloquial">Coll: colloquial</h3>
+
+<h3 id="vrnc-vernacular">Vrnc: vernacular</h3>
+
+<h3 id="slng-slang">Slng: slang</h3>
+
+<h3 id="expr-expressive-emotional">Expr: expressive, emotional</h3>
+
+<h3 id="derg-derogative">Derg: derogative</h3>
+
+<h3 id="vulg-vulgar">Vulg: vulgar</h3>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Style.md" target="#">edit Style</a></p>
+
+<p><a id="al-u-feat/Subcat" class="al-dest"></a></p>
+<h2><code>Subcat</code>: subcategorization</h2>
+
+<p>Lexical feature of verbs.
+Some tagsets distinguish intransitive and transitive verbs.
+In many languages however, subcategorization of verbs is much more complex than this.</p>
+
+<h3 id="intr-intransitive-verb">Intr: intransitive verb</h3>
+
+<p>A verb that does not take arguments other than the subject.</p>
+
+<p>Examples:
+[en] <em>to <b>go</b></em></p>
+
+<h3 id="tran-transitive-verb">Tran: transitive verb</h3>
+
+<p>A verb that takes a direct (accusative) object as argument (in addition to the subject).
+These verbs can be passivized, then the direct object becomes the subject.</p>
+
+<p>Examples:
+[en] <em>to <b>do</b> something, to be <b>done</b> by somebody</em></p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Subcat.md" target="#">edit Subcat</a></p>
 
 <p><a id="al-u-feat/Tense" class="al-dest"></a></p>
 <h2><code>Tense</code>: tense</h2>
@@ -2443,6 +3309,18 @@ past. This value does not apply to English where the pluperfect (past
 perfect) is constructed analytically. It applies e.g. to Portuguese.</p>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Tense.md" target="#">edit Tense</a></p>
+
+<p><a id="al-u-feat/Typo" class="al-dest"></a></p>
+<h2><code>Typo</code>: is this a misspelled word?</h2>
+
+<p>Indicates bad spelling, grammatical error etc. Does not say how the
+correct form looks like.</p>
+
+<h3 id="yes-it-is-typo">Yes: it is typo</h3>
+
+<p>Examples: Barak Obama</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Typo.md" target="#">edit Typo</a></p>
 
 <p><a id="al-u-feat/VerbForm" class="al-dest"></a></p>
 <h2><code>VerbForm</code>: form of verb or deverbative</h2>
@@ -2600,6 +3478,63 @@ Also called masdars by some authors, e.g. Haspelmath, 1995.</p>
 </ul>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/VerbForm.md" target="#">edit VerbForm</a></p>
+
+<p><a id="al-u-feat/VerbType" class="al-dest"></a></p>
+<h2><code>VerbType</code>: verb type</h2>
+
+<p>We already split auxiliary and non-auxiliary verbs at the level of POS
+tags but some tagsets mark other distinctions.</p>
+
+<h3 id="aux-auxiliary-verb">Aux: auxiliary verb</h3>
+
+<p>Verb used to create periphrastic verb forms (tenses, passives etc.) In
+many languages there will be ambiguity between auxiliary and other
+usages, thus the same verb should get different tags or feature values
+depending on context.</p>
+
+<h3 id="cop-copula-verb">Cop: copula verb</h3>
+
+<p>Verb used to make nominal predicates from adjectives, nouns or
+participles. Some languages omit the copula or use other means to
+create nominal predicates. In languages that have copula, it is often
+the equivalent of the verbs “to be” or “to become”.</p>
+
+<p>Examples: It <em>is</em> purple. He just <em>became</em> father.</p>
+
+<h3 id="mod-modal-verb">Mod: modal verb</h3>
+
+<p>A group of verbs traditionally distinguished in grammars of some
+languages. They take infinitive of another verb as argument (with or
+without infinitive-marking conjunction, in languages that have it) and
+add various modes of possibility, necessity etc. to the meaning of the
+infinitive. There are other verbs that take infinitives as arguments
+but they are not considered modal (e.g. phasal verbs such as “to
+<em>begin</em> to do something”). The set of modal verbs for a language is
+closed and can be enumerated.</p>
+
+<p>Note that some languages (e.g. Turkish) use special forms of the main
+verb instead of combining it with a modal verb.</p>
+
+<p>German examples: dürfen (may), können (can), mögen (want/like to),
+müssen (must), sollen (shall), wollen (want to), wissen (know to)</p>
+
+<p>Czech examples: muset (must), mít (shall, have to), moci (can), smět
+(may, be allowed to), umět (know to), chtít (want to)</p>
+
+<h3 id="light-light-support-verb">Light: light (support) verb</h3>
+
+<p>Light or support verb is used in verbo-nominal constructions where the main
+part of the meaning is contributed by a noun complement.
+An English example would be <em>to take a nap,</em> where <em>take</em> is the light verb.
+It is often the case that the light verb can also function as a normal verb
+in the language (cf. <em>to take two dollars</em>).
+If the light verb constructions are used frequently in a language (e.g. Hindi or Japanese) or
+if there is a dedicated light verb that cannot be used as normal verb,
+it makes sense to mark light verbs with a dedicated feature value.</p>
+
+<p>Japanese example: suru</p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/VerbType.md" target="#">edit VerbType</a></p>
 
 <p><a id="al-u-feat/Voice" class="al-dest"></a></p>
 <h2><code>Voice</code>: voice</h2>

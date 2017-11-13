@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>ConjType</title>
+    <title>PossGender</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-ext">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/ext/feat">ext/feat</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ext-feat/ConjType.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/u/feat">u/feat</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/PossGender.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -62,32 +62,59 @@
 
           <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<h2><code>ConjType</code>: conjunction type</h2>
+<h2><code>PossGender</code>: possessor’s gender</h2>
 
-<p>We already distinguished the two main types, coordinating and
-subordinating conjunctions, at the level of POS tags. However, there
-are other (sub?)types that are not yet accounted for.</p>
+<p>Possessive
+adjectives and pronouns may have two different genders: that of the
+possessed object (gender agreement with modified noun) and that of
+the possessor (lexical feature, inherent gender). The PossGender
+feature captures the possessor’s gender. For simplicity, the set of
+possible values is identical to Gender, although only a subset has
+been observed in corpora so far.</p>
 
-<h3 id="comp-comparing-conjunction">Comp: comparing conjunction</h3>
+<p>In
+the Czech examples below, the masculine PossGender implies using one
+of the suffixes <i>-</i><i>ův, -ova, -ovo,</i>
+and the feminine PossGender implies using one of <i>-</i><i>in,
+-ina, -ino</i>.</p>
 
-<p>Examples: [de] wie (as), als (than)</p>
+<h3 id="masc-masculine-possessor">Masc: masculine possessor</h3>
 
-<h3 id="oper-mathematical-operator">Oper: mathematical operator</h3>
+<p>Examples:
+[cs]
+<span style="color: red"><i>otcův
+syn</i></span>
+(father’s
+son; PossGender=Masc|Gender=Masc);
+<span style="color: red"><i>otcova
+dcera</i></span>
+(father’s
+daughter; PossGender=Masc|Gender=Fem);
+<span style="color: red"><i>otcovo
+dítě</i></span>
+(father’s
+child; PossGender=Masc|Gender=Neut).</p>
 
-<p>Note that operators can be expressed either using symbols or using
-words.</p>
+<h3 id="fem-feminine-possessor">Fem: feminine possessor</h3>
 
-<p>Examples: [cs] krát (times), plus, minus</p>
-
+<p>Examples:
+[cs]
+<span style="color: red"><i>m</i></span><span style="color: red"><i>atčin
+syn</i></span>
+(mother’s
+son; PossGender=Fem|Gender=Masc);
+<span style="color: red"><i>matčina
+dcera</i></span>
+(mother’s
+daughter; PossGender=Fem|Gender=Fem);
+<span style="color: red"><i>matčino
+dítě</i></span>
+(mother’s
+child; PossGender=Fem|Gender=Neut).</p>
 
 
 <!-- "in other languages" links -->
 <hr/>
-
-ConjType in other languages:
-
-[<a href="../../cs/feat/ConjType.html">cs</a>]
-
 
 
 
@@ -201,7 +228,7 @@ ConjType in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'ext-feat';
+        Collections.listing['_current'] = 'u-feat';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);

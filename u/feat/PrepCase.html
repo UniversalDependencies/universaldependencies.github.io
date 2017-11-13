@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>NameType</title>
+    <title>PrepCase</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-ext">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/ext/feat">ext/feat</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ext-feat/NameType.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/u/feat">u/feat</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/PrepCase.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -62,63 +62,58 @@
 
           <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<h2><code>NameType</code>: type of named entity</h2>
+<h2><code>PrepCase</code>: case form sensitive to prepositions</h2>
 
-<p>Classification of named entities (token-based, no nesting of entities etc.)
-The feature applies mainly to the <a href="">cs-pos/PROPN</a> tag;
-in multi-word foreign names, <a href="cs-pos/ADJ">adjectives</a> may also have this feature
-(they preserve the <code>ADJ</code> tag but at the same time they would not exist in Czech
-otherwise than in the named entity).</p>
+<p>Personal pronouns in some languages
+have different forms depending on whether they are objects of
+prepositions or not. For instance, Czech <i>on</i>
+(he) without prepositions has the forms <i>jemu</i>/DAT, <i>jeho</i>/ACC,
+<i>jím</i>/INS, while with a preposition it is <i>němu</i>/DAT,
+<i>něho</i>/ACC, <i>ním</i>/INS. Similarly, Portuguese pronouns in
+prepositional oblique case take forms different from oblique pronouns
+serving as direct objects of verbs: <i>eu</i>/NOM (I), <i>me</i>/ACC
+(give me that), <i>mim</i>/PREP-ACC (come to me).</p>
 
-<h3 id="geo-geographical-name"><code>Geo</code>: geographical name</h3>
+<p>Default empty value means that the word form is neutral w.r.t.
+prepositions.</p>
 
-<p>Names of cities, countries, rivers, mountains etc.</p>
+<h3 id="npr-non-prepositional-case">Npr: non-prepositional case</h3>
 
-<h4 id="examples">Examples</h4>
+<p>This
+word form must not be used after a preposition.</p>
 
-<ul>
-  <li><em><b>Praha</b> </em> “Prague”, <em><b>Kostelec</b> nad Černými lesy </em>, <em><b>Německo</b> </em> “Germany”</li>
-</ul>
+<p>Examples:
+[cs]
+<span style="color: red"><i>jemu</i></span>
+= him (dative).</p>
 
-<h3 id="prs-name-of-person"><code>Prs</code>: name of person</h3>
+<h3 id="pre-prepositional-case">Pre: prepositional case</h3>
 
-<p>This value is used if it is not known whether it is a given or a family name, but it is known that it is a personal name.</p>
+<p>This
+word form must be used after a preposition.</p>
 
-<h3 id="giv-given-name-of-person"><code>Giv</code>: given name of person</h3>
-
-<p>Given name (not family name). This is usually the first name in European and American names. In Chinese names, the last two syllables (of three) are usually the given name.</p>
-
-<h3 id="sur-surname--family-name-of-person"><code>Sur</code>: surname / family name of person</h3>
-
-<p>Family name (surname). This is usually the last name in European and American names. In Chinese names, the first syllable (of three) is usually the surname.</p>
-
-<h3 id="nat-nationality"><code>Nat</code>: nationality</h3>
-
-<p>Name denoting a member of a particular nation, or inhabitant of a particular territory.</p>
-
-<h4 id="examples-1">Examples</h4>
-
-<ul>
-  <li><em><b>Čech</b> </em> “Czech”, <em><b>Němec</b> </em> “German”, <em><b>Pražan</b> </em> “Praguer”</li>
-</ul>
-
-<h3 id="com-company-organization"><code>Com</code>: company, organization</h3>
-
-<h3 id="pro-product"><code>Pro</code>: product</h3>
-
-<h3 id="oth-other"><code>Oth</code>: other</h3>
-
-<p>Names of stadiums, guerilla bases, events etc.</p>
+<p>Examples:
+[cs]
+<i>k
+</i><span style="color: red"><i>ně</i></span><span style="color: red"><i>mu</i></span>
+= to
+him (dative).</p>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-NameType in other languages:
+PrepCase in other languages:
 
-[<a href="../../cs/feat/NameType.html">cs</a>]
+[<a href="../../ca/feat/PrepCase.html">ca</a>]
 
-[<a href="../../fo/feat/NameType.html">fo</a>]
+[<a href="../../cs/feat/PrepCase.html">cs</a>]
+
+[<a href="../../es/feat/PrepCase.html">es</a>]
+
+[<a href="../../pl/feat/PrepCase.html">pl</a>]
+
+[<a href="../../pt/feat/PrepCase.html">pt</a>]
 
 
 
@@ -233,7 +228,7 @@ NameType in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'ext-feat';
+        Collections.listing['_current'] = 'u-feat';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
