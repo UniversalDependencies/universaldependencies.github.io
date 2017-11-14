@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Working Groups for Guidelines</title>
+    <title>Working Group on Data Splits</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/workgroups/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/workgroups/split.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,24 +60,57 @@
 	  </div>
 	</noscript>
 
-          <h1 id="working-groups-for-guidelines">Working Groups for Guidelines</h1>
+          <h1 id="working-group-on-data-splits">Working Group on Data Splits</h1>
 
-<p>As discussed at the <a href="http://universaldependencies.org/misc/brainstorming-pisa-09-18-2017.html">brainstorming meeting in Pisa</a> and elsewhere, we need to develop more detailed guidelines for many linguistic phenomena. We therefore want to create topical working groups that can collect examples from different languages, discuss how these examples can be analyzed in a way that is consistent with the universal guidelines as well as consistent across languages, and propose guidelines that can be incorporated in the documentation of the universal guidelines.</p>
+<p>Until the CoNLL 2017 shared task, UD did not have clear guidelines how to
+split the data to training, development and test parts. The shared task
+guidelines were only focused on participation in the task, and were changed
+on the fly. This is an attempt to put together a set of recommendations that
+will hopefully work for treebanks of various sizes and will be more stable
+over time.</p>
+
+<p><strong>Note that at present this is just a proposal under discussion and it may
+change without warning! When the discussion is over, the guidelines will be
+moved from here to the how-to-contribute pages.</strong></p>
+
+<p>These guidelines are strong recommendations rather than strict rules. In some
+cases it may not be even possible to meet all of them with a given dataset.</p>
+
+<p>The general underlying idea is that we do not want to ban tiny datasets from
+being released, but we only want to distinguish training and test sets if
+the test set will be large enough (the 10K-word threshold was set in the
+CoNLL 2017 shared task) and if the data that is left for training is at least
+as large as the test set. Making an official split is useful for comparison
+of experiments evaluated on the treebank, but with small treebanks people
+should do ten-fold cross-validation anyway.</p>
+
+<p>There is one exception to that general idea. If this is the only UD treebank
+in the given language, we may set aside a small sample and call it “train” (or “sample”?)
+This may be useful if the treebank is used in a shared task where the systems
+are supposed to use cross-lingual projection techniques and cannot access the test data,
+but the developers should have access at least to a sample of the language
+so they can see the annotation, language properties etc.
+In other situations, users should still use the entire data for training and
+testing via cross-validation.
+Providing the sample is completely optional.
+Note that it does not make sense to set aside a sample
+if a larger treebank of the same language exists and has training data.</p>
 
 <ol>
-  <li><a href="enhanced.html">Enhanced dependencies</a></li>
-  <li><a href="mwe.html">Multiword expressions</a></li>
-  <li><a href="existentials.html">Existentials</a></li>
-  <li><a href="comparatives.html">Comparative constructions</a></li>
-</ol>
-
-<hr />
-
-<p>Temporary discussion about guidelines for other aspects than annotation.
-The guidelines will be later moved to an appropriate page.</p>
-
-<ol>
-  <li><a href="split.html">Data split to training, development and test files</a></li>
+  <li>If you have less than 20K words:
+    <ul>
+      <li>Option A: Keep everything as test data. Users will have to do 10-fold cross-validation if they want to train on it.</li>
+      <li>Option B: If there are no larger treebanks of this language, set aside a small sample (20 to 50 sentences) and call it “train” (or “sample”?) Consider translating and annotating the 20 examples from the <a href="https://github.com/UniversalDependencies/cairo/blob/master/translations.txt">Cairo Cicling Corpus</a> (CCC) and providing them as the sample.</li>
+    </ul>
+  </li>
+  <li>If you have between 20K and 30K words, take 10K as test data and the rest as training data.</li>
+  <li>If you have between 30K and 100K words, take 10K as test data, 10K as dev data and the rest as training data.</li>
+  <li>If you have more than 100K words, take 80% as training data, 10% (min 10K words) as dev data and 10% (min 10K words) as test data.</li>
+  <li>If the treebank contains running text (rather than random shuffled sentences), try to split the data on document or paragraph boundaries.</li>
+  <li>If the treebank contains different domains or genres, try to distribute them proportionally to training, dev and test.</li>
+  <li>If the data in the treebank overlap with another UD treebank of the same language, make sure that the overlapping sentences end up in the same part (training/dev/test) in both treebanks! (By overlap we mean duplicate source text but not individual simple sentences that occur naturally at different positions of independent texts.)</li>
+  <li>If this is one language of a multi-lingual parallel treebank, make sure that corresponding sentences in all languages end up in the same part (training/dev/test)!</li>
+  <li>It is desirable that the data split of one treebank is stable across UD releases, i.e. a sentence that was in training data in release N is not moved to dev or test data in release N+1. In exceptional cases such restructuring can be approved by the release team, provided there are good reasons for it. (One obviously valid reason is that a growing treebank exceeds the 20K-word threshold and is split to training-test.) If at all possible, please try to plan ahead and minimize the need for re-splits in the future.</li>
 </ol>
 
 
