@@ -121,7 +121,105 @@ Do not submit pull requests against the UD repository.</p>
 
 <h2 id="description">Description</h2>
 
+<p>Gold standard Universal Dependencies corpus for Ukrainian, developed for UD version 2 originally,
+by Institute for Ukrainian, NGO.</p>
+
+<p>UD Ukrainian comprises 100K tokens in 5866 sentences of fiction, news, opinion articles, Wikipedia, legal documents, letters, posts, and comments — from the last 15 years, as well as from the first half of the 20th century.</p>
+
 <h2 id="acknowledgments">Acknowledgments</h2>
+
+<p>Major contributors: Natalia Kotsyba, Bohdan Moskalevskyi, Mykhailo Romanenko.</p>
+
+<p>Large portion of anotation was made by Halyna Samoridna, Ivanka Kosovska, Olha Lytvyn, Oksana Orlenko and by students of Kyiv-Mohyla Academy department of Ukrainian language (headed by Liudmyla Dyka): Hanna Brovko, Bohdana Matushko, Natalia Onyshchuk, Valeriia Pareviazko, Yaroslava Rychyk, Anastasiia Stetsenko, Snizhana Umanets.</p>
+
+<p>We thank Prof. Larysa Masenko for guidance.</p>
+
+<hr />
+
+<h3 id="basic-stats">Basic stats</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>set</th>
+      <th style="text-align: right">sentences</th>
+      <th style="text-align: right">~tokens</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>train</td>
+      <td style="text-align: right">4506</td>
+      <td style="text-align: right">75K</td>
+    </tr>
+    <tr>
+      <td>dev</td>
+      <td style="text-align: right">783</td>
+      <td style="text-align: right">10K</td>
+    </tr>
+    <tr>
+      <td>test</td>
+      <td style="text-align: right">577</td>
+      <td style="text-align: right">15K</td>
+    </tr>
+    <tr>
+      <td>TOTAL</td>
+      <td style="text-align: right">5866</td>
+      <td style="text-align: right">100K</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="annotation-procedure">Annotation procedure</h3>
+
+<p>Morphology is annotated using 2+1 schema. The syntax is single-pass plus supervisor’s check.
+Consistency is further enforced by ~200 validation and autofix rules.</p>
+
+<h3 id="data-split">Data split</h3>
+
+<p>Data is split between train/dev/test linearly by hand at 75%/10%/15% to balance in genre and complexity. Some large documents are divided across datasets.</p>
+
+<h3 id="format">Format</h3>
+
+<p>UD Ukrainian data conforms to <a href="http://universaldependencies.org/format.html">CoNLL-U</a> format with the following specifics:
+* Sentence-level comments:
+* Document boundaries are present as <code># newdoc id = xxxx</code>.
+* Sentence-level paragraph boundaries are present as <code># newpar id = xxxx</code>.
+* Document titles are present as <code># doc_title = Назва</code>.
+* Gaps in the text are marked on the sentences following the gap as:
+* <code># annotation_gap</code> for sentences not exported to CoNLL-U because annotator was unable to parse it with confidence (new guidelines need to be created etc.);
+* <code># gap</code> for intentional gaps in texts (selected fragments).
+* XPOSTAG column contains <a href="http://nl.ijs.si/ME/V4/msd/html/msd-uk.html">MTE</a> tag with <code>U</code> for punctuation. UPOS+FEATS contain all the information in XPOSTAG and more. XPOSTAG is intended for legacy applications.
+* No enhanced dependencies or empty nodes present in DEPS column.
+* MISC column:
+* Token-level paragraph boundaries are present as <code>NewPar=Yes</code>.
+* Token ids are present as <code>Id=xxxx</code>.
+* <code>SpaceAfter=No</code> markers are present.
+* Document, paragraph, sentence, and token ids are 4-character base-32 numbers. They survive treebank updates.</p>
+
+<h3 id="contact">Contact</h3>
+
+<p><a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#111;&#114;&#103;&#064;&#109;&#111;&#118;&#097;&#046;&#105;&#110;&#115;&#116;&#105;&#116;&#117;&#116;&#101;">&#111;&#114;&#103;&#064;&#109;&#111;&#118;&#097;&#046;&#105;&#110;&#115;&#116;&#105;&#116;&#117;&#116;&#101;</a></p>
+
+<h3 id="changelog">Changelog</h3>
+
+<ul>
+  <li>2017-11-15 <strong>v2.1</strong></li>
+  <li>Quadrupled the amount of data up to 100K, mostly with nonfiction; improved consistency.</li>
+  <li>
+    <p>Resplitted train/dev/test.</p>
+  </li>
+  <li>2017-02-15 <strong>v2.0</strong></li>
+  <li>
+    <p>Replaced v1.4 data with 25K tokens of misc genres, mostly fiction.</p>
+  </li>
+  <li>2016-11-01 <strong>v1.4</strong></li>
+  <li>An initial experimental release containing 1.6K tokens of grammar examples and fiction.</li>
+</ul>
+
+<hr />
+
+<p>```</p>
 
 <h1 id="statistics-of-ud-ukrainian">Statistics of UD Ukrainian</h1>
 
