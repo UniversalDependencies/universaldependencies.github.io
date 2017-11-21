@@ -3,15 +3,15 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Czech Format Extension</title>
+    <title>Syntax</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
-    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
-    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-cs">home</a></span>
           <span class="header-text"><a href="http://universaldependencies.org/cs/cs">cs/cs</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs/format.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs/syntax.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -47,8 +47,8 @@
       <hr/>
 
       
-      <div class="v1warning">
-	This page still pertains to UD version 1.
+      <div class="v2complete">
+	This page pertains to UD version 2.
       </div>
       
 
@@ -60,71 +60,23 @@
 	  </div>
 	</noscript>
 
-          <h1 id="czech-format-extension-miscellaneous">Czech Format Extension: Miscellaneous</h1>
+          <h1 id="syntax">Syntax</h1>
 
-<p>The final MISC field is for storing any additional information that does not fit into any of
-the other fields. See also the description of the <a href="../../format.html">CoNLL-U file format</a>.</p>
+<p>The tree structure and dependency relation labels in the Czech data have been obtained
+by an automatic transformation of the PDT trees,
+using dedicated scenarios within the
+<a href="http://ufal.mff.cuni.cz/treex">Treex</a> NLP framework.</p>
 
-<h2 id="untokenized-text">Untokenized text</h2>
-
-<p>In accord with the universal formatting guidelines the Czech data uses the <code>SpaceAfter=No</code>
-MISC feature to facilitate reconstruction of original (pre-tokenization) text.</p>
-
-<h2 id="lemma-extensions">Lemma extensions</h2>
-
-<p>The lemmas in the original PDT may contain various additional information encoded as extensions
-to the lemma string. These extensions have been removed so that only the bare canonical word form
-remains. The information has been stored partially as features (e.g. <a href="">cs-feat/NameType</a>),
-and the rest should be put in the MISC column. The following MISC features exist. Each of them may
-occur at most once per node.</p>
-
-<ul>
-  <li><code>LId</code> is a unique identifier of the dictionary entry, used with homonyms. It is the lemma itself, followed by a hyphen and a numeric identifier. Example: <em>jen-1</em>.</li>
-  <li><code>LGloss</code> is a comment that further explains the meaning of the lemma. It is particularly useful with homonyms. Typically it is a synonym or a longer explanation in Czech. See below for an example.</li>
-  <li><code>LDeriv</code> is another lemma from which this one has been derived. Only those derivations are marked that the underlying morphological lexicon considers productive.</li>
-  <li><code>LNumValue</code> is the numeric value of numeral words. Unlike the FEAT feature <a href="">cs-feat/NumValue</a>, here the exact value is given, not just a category of values.</li>
-</ul>
-
-<pre># sent_id a-cmpr9406-001-p2s1
-# orig_file_sentence cmpr9406_001#1
-1   Třikrát     třikrát  ADV    Cv-------------  NumType=Mult                                              2  advmod  _  LNumValue=3
-2   rychlejší   rychlý   ADJ    AAFS1----2A----  Case=Nom|Degree=Comp|Gender=Fem|Negative=Pos|Number=Sing  0  root    _  _
-3   než         než      SCONJ  J,-------------  _                                                         4  mark    _  LId=než-2
-4   slovo       slovo    NOUN   NNNS1-----A----  Case=Nom|Gender=Neut|Negative=Pos|Number=Sing             2  advcl   _  _
-
-# sent_id a-cmpr9406-001-p3s1B
-# orig_file_sentence cmpr9406_001#3
-1  Pomocí  pomoc   NOUN  NNFS7-----A----  Case=Ins|Gender=Fem|Negative=Pos|Number=Sing                                  2  xcomp  _  _
-2  může    moci    VERB  VB-S---3P-AA---  Mood=Ind|Negative=Pos|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act  0  root   _  LGloss=(mít_možnost_[něco_dělat])
-3  být     být     VERB  Vf--------A----  Negative=Pos|VerbForm=Inf                                                     1  cop    _  _
-4  systém  systém  NOUN  NNIS1-----A----  Animacy=Inan|Case=Nom|Gender=Masc|Negative=Pos|Number=Sing                    2  nsubj  _  _
-5  ECM     ECM     NOUN  NNIXX-----A---8  Abbr=Yes|Animacy=Inan|Foreign=Yes|Gender=Masc|Negative=Pos                    4  nmod   _  LId=ECM-3|LGloss=(Error_Correction_Mode,_mód_u_faxů)
-
-# sent_id a-cmpr9406-001-p6s5
-# orig_file_sentence cmpr9406_001#16
-1   Pokud       pokud       SCONJ  J,-------------  _       3       mark    _       _
-2   test        test        NOUN   NNIS1-----A----  Animacy=Inan|Case=Nom|Gender=Masc|Negative=Pos|Number=Sing      3       nsubj   _  _
-3   neproběhne  proběhnout  VERB   VB-S---3P-NA---  Aspect=Perf|Mood=Ind|Negative=Neg|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act        6       advcl   _       _
-4   bezchybně   bezchybně   ADV    Dg-------1A----  Degree=Pos|Negative=Pos 3       advmod  _       SpaceAfter=No|LDeriv=bezchybný
-5   ,           ,           PUNCT  Z:-------------  _       3       punct   _       _
-6   snižují     snižovat    VERB   VB-P---3P-AA---  Aspect=Imp|Mood=Ind|Negative=Pos|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act 0       root    _       _
-7   rychlost    rychlost    NOUN   NNFS4-----A----  Case=Acc|Gender=Fem|Negative=Pos|Number=Sing    6       obj    _  LDeriv=rychlý
-8   přenosu     přenos      NOUN   NNIS2-----A----  Animacy=Inan|Case=Gen|Gender=Masc|Negative=Pos|Number=Sing      7       nmod    _  _
-9   tak         tak         ADV    Db-------------  _       10      advmod  _       LId=tak-3
-10  dlouho      dlouho      ADV    Dg-------1A----  Degree=Pos|Negative=Pos 6       advmod  _       SpaceAfter=No|LGloss=(o_čase;_př._dlouhá_doba)
-11  ,           ,           PUNCT  Z:-------------  _       14      punct   _       _
-12  až          až          SCONJ  J,-------------  _       14      mark    _       LId=až-2|LGloss=(přijde,_až_to_dodělá)
-13  test        test        NOUN   NNIS1-----A----  Animacy=Inan|Case=Nom|Gender=Masc|Negative=Pos|Number=Sing      14      nsubj   _  _
-14  proběhne    proběhnout  VERB   VB-S---3P-AA---  Aspect=Perf|Mood=Ind|Negative=Pos|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act        10      advcl   _       _
-15  správně     správně     ADV    Dg-------1A----  Degree=Pos|Negative=Pos 14      advmod  _       SpaceAfter=No|LGloss=(podle_něj._měřítek;_př._chlap,_míra,...)|LDeriv=správný
-16  .           .           PUNCT  Z:-------------  _       6       punct   _       _</pre>
+<p>Several <a href="../dep/index.html">language-specific subtypes</a>
+of the <a href="../../u/dep/index.html">universal dependency relations</a> have been defined
+to preserve the information encoded in the original treebank.</p>
 
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../../'; // filled in by jekyll
+    var root = '../'; // filled in by jekyll
     head.js(
         // External libraries
         root + 'lib/ext/jquery.min.js',
