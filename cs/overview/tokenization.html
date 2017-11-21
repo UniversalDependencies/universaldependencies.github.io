@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-cs">home</a></span>
-          <span class="header-text"><a href="http://universaldependencies.org/cs/cs">cs/cs</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs/tokenization.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-hy">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/hy/hy">hy/hy</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hy/tokenization.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -62,130 +62,30 @@
 
           <h1 id="tokenization">Tokenization</h1>
 
-<p>The low-level tokenization of the Czech UD treebank follows the tokenization of the
-<a href="http://ufal.mff.cuni.cz/pdt3.0">Prague Dependency Treebank 3.0</a> (PDT):</p>
+<p>The low-level tokenization of the Armenian UD treebank follows the tokenization of the
+<a href="http://armtreebank.yerevann.com/">ՀայՇտեմ - Armenian Dependency Treebank 1.0</a> (ArmDT):</p>
 
 <ul>
   <li>In general, tokens are delimited by whitespace.</li>
   <li>Punctuation (recognized by the corresponding Unicode property) that is conventionally written adjacent to the preceding or following word is separated during tokenization.
 Some special cases worth mentioning:
     <ul>
-      <li>An abbreviation marked by a period, as in <em>atd.</em> “etc.”, becomes two tokens, <em><b>atd</b></em> and <em><b>.</b></em>. The same holds for ordinal numbers <em>(<b>1.</b>)</em></li>
-      <li>A compound containing a hyphen becomes three tokens (two words and the hyphen), as in <em>česko-slovenský</em> “Czech-Slovak”, <em>česko-německý</em> “Czech-German” or <em>německo-český</em> “German-Czech”.
+      <li>An abbreviation marked by a period, as in <em>թ.</em> “year”, becomes two tokens, <em><b>թ</b></em> and <em><b>.</b></em> .</li>
+      <li>A compound containing a hyphen becomes three tokens (two words and the hyphen), as in <em>անգլո-ամերիկյան</em> “anglo-american”, <em>պատմա-բանասիրական</em> “historical-philological”.
 In these cases, the first token is a special form of adjective that never occurs independently.
-Compounds without a hyphen are not split, thus <em>středopravý</em> “right-centrist” is one token but <em>středo-pravý</em> would be three tokens.
-Another common case of splitting-on-hyphen is the conjunction <em>li</em> “if”, attached to verbs as in <em>bude-li</em> “if will be”.</li>
-      <li>Exception: Decimal numbers are normalized (the Czech decimal comma is converted to the English decimal point) and kept as one token, e.g. <em><b>2.1</b></em>.</li>
+Compounds without a hyphen are not split, thus <em>ռազմածովային</em> “navy” is one token but <em>հասարակական-քաղաքական</em> “civic-social” would be three tokens.
+Another common case of splitting-on-hyphen are reduplicative or echo words <em>մեծ-մեծ</em> “very big”, <em>շուն-մուն</em> “dog or something”.</li>
+      <li>Exception: Decimal numbers are normalized (the Armenian decimal comma is converted to the English decimal point) and kept as one token, e.g. <em><b>2.1</b></em>.</li>
     </ul>
   </li>
-  <li>Most of the time, every punctuation character constitutes a token of its own. Thus <em><b>…</b></em> will become three tokens.</li>
+  <li>Most of the time, every punctuation character constitutes a token of its own. Thus <em><b>»,—</b></em> will become three tokens.
+    <ul>
+      <li>Exceptions are conventional multi-character punctuation marks: <em><b>…</b></em> , <em><b>….</b></em> , and emojis and smileys: <em><b>:)</b></em> , <em><b>^_^</b></em>, etc.
+Conventional non-armenianmulti-character punctuation marks and terms are tokenized as single tokens: <em><b>?!</b></em> , <em><b>°С</b></em> .</li>
+    </ul>
+  </li>
 </ul>
 
-<h2 id="words-and-tokens">Words and Tokens</h2>
-
-<p>In Czech there are fused words that correspond to multiple syntactic words.
-The original PDT data use special part-of-speech tags to identify fused words,
-nevertheless the fused token is not split in PDT and it corresponds to just one node in the dependency tree.
-(Note: An exception was the splitting of <em>aby</em> and <em>kdyby</em> in PDT 1.0 but it was abandoned in later versions.)</p>
-
-<p>In contrast, the UD format requires that certain types of fused words be split.
-We say that there is a multi-word token consisting of several syntactic words, each having its own node in the tree
-(see also <a href="../../u/overview/tokenization.html">universal tokenization</a>).</p>
-
-<h3 id="preposition--personal-pronoun-on-in-the-accusative-nj">Preposition + Personal Pronoun <em>on</em> in the Accusative <em>(něj)</em></h3>
-
-<ul>
-  <li><em>proň</em> = <em>pro něj</em> = “for him”</li>
-  <li><em>naň</em> = <em>na něj</em> = “on him”</li>
-  <li><em>oň</em> = <em>o něj</em> = “about him”</li>
-  <li><em>zaň</em> = <em>za něj</em> = “behind/for him”</li>
-</ul>
-
-<p>This category covers words that would be tagged by the PDT tag <code>P0-------------</code>.
-However, no such word occurs in the PDT 3.0 data.</p>
-
-<h3 id="preposition--interrogativerelative-pronoun-co-in-the-accusative">Preposition + Interrogative/Relative Pronoun <em>co</em> in the Accusative</h3>
-
-<ul>
-  <li><em>nač</em> = <em>na co</em> = “on what”</li>
-  <li><em>oč</em> = <em>o co</em> = “about what”</li>
-  <li><em>zač</em> = <em>za co</em> = “behind/for what”</li>
-</ul>
-
-<p>This category covers words that would be tagged by the PDT tag <code>PY-------------</code>.
-No such word occurs in the PDT 3.0 data but there are a few occurrences in the CAC 2.0 data.</p>
-
-<p>Note: There is another analogically fused word, <em>proč</em> “why”. In contrast to the above, <em>proč</em> has grammaticalized
-into an interrogative/relative adverb. It is more frequent than the three fusions listed above but it is not used
-to replace a prepositional object. We do not split it into <em>pro co</em>.</p>
-
-<h3 id="participle-pronoun-or-subordinating-conjunction--the-auxiliary-bt-in-the-2nd-person-singular-jsi">Participle, Pronoun or Subordinating Conjunction + the Auxiliary <em>být</em> in the 2nd Person Singular <em>(jsi)</em></h3>
-
-<ul>
-  <li><em>udělals</em> = <em>udělal jsi</em> = “you have done”</li>
-  <li><em>tys</em> = <em>ty jsi</em> = “you have”</li>
-  <li><em>ses</em> = <em>jsi se (se jsi)</em> = “you have … yourself”</li>
-  <li><em>sis</em> = <em>jsi si (si jsi)</em> = “you have … yourself”</li>
-  <li><em>cos</em> = <em>co jsi</em> = “what you have”</li>
-  <li><em>tos</em> = <em>to jsi</em> = “you have … that”</li>
-  <li><em>žes</em> = <em>že jsi</em> = “that you have”</li>
-</ul>
-
-<p>Note: This rule does not include the words <em>bys, abys</em> and <em>kdybys.</em>
-They resemble the words above but <em>bys</em> is an independent form of the auxiliary verb <em>být</em> “to be”,
-and <em>abys</em> and <em>kdybys</em> are in fact fused words, but they were formed using <em>bys,</em> not <em>jsi.</em></p>
-
-<p>This category does not have its own tag in PDT.
-The <em>ses, sis</em> pronouns are <code>P7.*</code> pronouns with the second person.
-The <em>tys</em> pronoun can be distinguished by having more verbal features in its tag (<code>PP-S1--2P-AA---</code>) than <em>ty</em> (<code>PP-S1--2-------</code>).
-The <em>žes</em> conjunction is tagged <code>J,-S---2-------</code> while <em>že</em> is tagged <code>J,-------------</code>.
-The participles can be distinguished by the value of person:
-normal participle <em>udělal</em> does not inflect for person (<code>VpYS---XR-AA---</code>)
-while participle fused with <em>jsi</em>, i.e. <em>udělals</em>, is tagged as being in the second person (<code>VpYS---2R-AA---</code>).
-None of these occur in the PDT 3.0 data.</p>
-
-<h3 id="subordinating-conjunction-aby-or-kdyby">Subordinating Conjunction <em>aby</em> or <em>kdyby</em></h3>
-
-<ul>
-  <li><em>abych</em> = <em>aby bych</em> = “so that I would”</li>
-  <li><em>abys</em> = <em>aby bys</em> = “so that you would”</li>
-  <li><em>aby</em> = <em>aby by</em> = “so that he/she/it/they would”</li>
-  <li><em>abychom</em> = <em>aby bychom</em> = “so that we would”</li>
-  <li><em>abyste</em> = <em>aby byste</em> = “so that you would”</li>
-  <li><em>kdybych</em> = <em>když bych</em> = “if I were”</li>
-  <li><em>kdybys</em> = <em>když bys</em> = “if you were”</li>
-  <li><em>kdyby</em> = <em>když by</em> = “if he/she/it/they were”</li>
-  <li><em>kdybychom</em> = <em>když bychom</em> = “if we were”</li>
-  <li><em>kdybyste</em> = <em>když byste</em> = “if you were”</li>
-</ul>
-
-<p>Note: It is not clear even to a native speaker what exactly the first word should be <em>(aby, až, kdyby</em> or <em>když);</em>
-in any case, it is a conjunction.
-However, it is clear that the second word is a conditional form of <em>být.</em></p>
-
-<p>Heuristic to transform the tree if only surface tokens are desired as nodes:
-attach the fused token (e.g. <em>abychom</em>) to the parent and with the label of the first part <em>(aby)</em>.
-Tag it as subordinating conjunction and merge the features of both parts:</p>
-
-<pre>3-4   abychom   _      _      _                 _                                            _   _      _   _
-3     aby       aby   SCONJ   J,-------------   _                                            7   mark   _   _
-4     bychom    být   AUX     Vc-P---1-------   Mood=Cnd|Number=Plur|Person=1|VerbForm=Fin   7   aux    _   _</pre>
-
-<p>will be transformed to</p>
-
-<pre>3     abychom   aby   SCONJ   J,-P---1-------   Mood=Cnd|Number=Plur|Person=3|VerbForm=Fin   6   mark   _   _</pre>
-
-<h3 id="verb--conjunction-nebo">Verb + Conjunction <em>neboť</em></h3>
-
-<ul>
-  <li><em>dělámť</em> = <em>neboť dělám</em> = “because I do”</li>
-  <li><em>děláť</em> = <em>neboť dělá</em> = “because he/she/it does”</li>
-  <li><em>dělalť</em> = <em>neboť dělal</em> = “because he did”</li>
-</ul>
-
-<p>The word forms in this group can be considered archaic.</p>
-
-<p>There is only one occurrence in the PDT 3.0 data of the word <em>neníť</em> “because it is not” (tagged <code>Vt-S---3P-NA--2</code>).</p>
 
 
       </div>
@@ -298,7 +198,7 @@ Tag it as subordinating conjunction and merge the features of both parts:</p>
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'cs';
+        Collections.listing['_current'] = 'hy';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
