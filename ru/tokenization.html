@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Tokenization</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-ru">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/ru/ru">ru/ru</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru/tokenization.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v1warning">
+	This page still pertains to UD version 1.
+      </div>
+      
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="tokenization">Tokenization</h1>
+
+<p>The low-level tokenization of the Russian UD treebanks generally adopt the RNC standard.</p>
+
+<ul>
+  <li>In general, tokens are delimited by whitespace. The regexp [А-zА-яЁё-]+ usually corresponds to one token.</li>
+  <li>Punctuation (recognized by the corresponding Unicode property) that is conventionally written adjacent to the preceding or following word is separated during tokenization.</li>
+  <li>Each punctuation mark is treated as a single token, e.g. the following sequence: <b>)”, -</b> becomes four tokens, <b>)</b> , <b>”</b>, <b>,</b>, and <b>-“</b>. Exceptions are conventional multi-character punctuation marks: <b>–</b> , <b>…</b> , <b>?!</b> ,  etc., and emojis and smileys: <b>:)</b> , <b>^_^</b>, etc.</li>
+  <li>Conventional non-cyrillic multi-character terms are tokenized as single tokens: <b>°С</b>.</li>
+</ul>
+
+<p>Some special cases worth mentioning:
+* Numerical expressions including decimal numbers, such as <b>245</b>, <b>3,14</b>, are treated as single tokens.
+* Time expressions like <b>20:55</b> are splitted into separate tokens (in this case, three { <b>20</b> , <b>:</b> , <b>55</b> }).
+* Dates like <b>20.04.2012</b> are splitted into separate tokens (in this case, five { <b>20</b> , <b>.</b> , <b>04</b> , <b>.</b> , <b>2012</b> }).
+* Special symbols before and after numerical expressions, as in <b>$500</b> , <b>2,67%</b> , <b>+27°С</b> , are tokenised separately (so, the tokens are { <b>$</b> , <b>500</b> } , { <b>2,67</b> , <b>%</b> } , { <b>+</b> , <b>27</b> , <b>°С</b> }).
+* Numerical expressions with hyphen and cyrillic endings (e.g. <b>1-ый</b> “1st”, <b>3-м</b> “3rd.Ins”) as well as adjectives and other non-numerals which contain digits (e.g. <b>79-летний</b> “79 year old”, <b>500-летие</b> “500th anniversary”) are treated as single tokens.
+* Other words with hyphen are treated as single tokens, except for the cases then the first part is inflected. Examples: { <b>из-за</b> } “because of”, { <b>зелено-серых</b> } “green-gray”, { <b>Санкт-Петербург</b> } “St. Petersburg”, but { <b>Ростове</b> , <b>-</b> , <b>на</b> , <b>-</b> , <b>Дону</b>} “(in) Rostov on Don”.
+* The discoursive particles <b>-то</b> and <b>-с</b> are tokenised separately, e.g. Вася-то { <b>Вася</b> , <b>-</b> , <b>то</b> }. Exception: indefinite pronouns and adverbs, see below.
+* Abbreviations are treated as single tokens, whitespaces split the abbreviations.
+* Abbreviations marked by a period, as in <b>стр.</b> “p. (page)”, <b>П.</b> “P. (for Peter)”, are treated as single tokens. If the period overlaps with the end of sentence period then it is written once as a separate token (denoting end-of-sentence), e.g. { <b>1914</b> , <b>г</b> , <b>.</b> } “year 1914”.
+* Abbreviations can not contain a period inside, i.e. the patterns like <b>и т.д.</b> “and so on”, <b>и т.п.</b> “and so forth” are splitted into three tokens: { <b>и</b> , <b>т.</b> , <b>д.</b> }, { <b>и</b> , <b>т.</b> , <b>п.</b> }.
+* Email addresses, URLs, and tweet-style names are treated as single tokens: {no@mail.ru}, {https://github.com}, {@anna_li}</p>
+
+<p>The Russian UD treebanks does not contain multiword tokens. (UD_Russian-Syntagrus treebank v.1.3 and v.1.4 contained multitokens following the Syntagrus standard).</p>
+
+<h3 id="pronouns-and-adverbs">Pronouns and adverbs</h3>
+
+<ul>
+  <li>Indefinite pronouns and adverbs like <b>кто-нибудь</b>, <b>кто-либо</b>, <b>кто-то</b>, <b>кое-кто</b> “someone, somebody”, etc. are treated as a single token.</li>
+  <li>In preposition phrases, the pronouns with <b>кое-</b> are splitted into three tokens: <b>кое к кому</b> { <b>кое</b> , <b>к</b> , <b>кому</b> } “to someone”.</li>
+  <li>Negative pronouns, adverbs and adverbial predicatives are tokenized as single tokens, e.g. <b>никто</b> “no one”, <b>никакой</b> “no, neither”, <b>нигде</b> “nowhere”, <b>негде</b> “there is no place”. However, in preposition phrases the negative pronouns and predicatives are splitted into three tokens: <b>ни к кому</b> { <b>ни</b> , <b>к</b> , <b>кому</b> } “to no one”, <b>не от кого</b> { <b>не</b> , <b>от</b> , <b>кого</b> }“there is no one”.</li>
+</ul>
+
+<h3 id="verb-forms-analytical-grammatical-forms-negation">Verb forms, analytical grammatical forms, negation</h3>
+
+<ul>
+  <li>reflexive verbs are kept as a single token (orthographic rule): <b>моется</b> “wash oneself”, <b>пройтись</b> “to have a walk”.</li>
+  <li>the forms of subjunctive mood, analytical passive, complex future tense, complex comparatives, etc. are splitted
+according to the orthographic principle: { <b>могли</b> , <b>бы</b> } “would be able, could”, { <b>были</b> , <b>зафиксированы</b> } “were recorded”, { <b>будет</b> , <b>держаться</b> } “will be held”, { <b>более</b> , <b>серьезные</b> } “more serious”.</li>
+  <li><b>не</b> and <b>ни</b> used as negation markers with verbs, pronouns and other words are tokenized according to the orthographic rules: { <b>не</b> , <b>реагируя</b> } “not reacting”, { <b>ни</b> , <b>в</b> , <b>какую</b> } “in no way”, but { <b>непоправимый</b> } “irrecoverable”, { <b>назавершенный</b> } “not finished”, { <b>никаких</b> } “no one”.</li>
+  <li><b>пол-</b> and <b>полу-</b> “half” are never kept separate: <b>поллитра</b> “half a liter”, <b>пол-яблока</b> “half an apple”, <b>полубезработный</b> “almost unemployed”.</li>
+</ul>
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'ru';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014–2017
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

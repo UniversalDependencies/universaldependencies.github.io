@@ -1,0 +1,709 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Migration Guidelines</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-en">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/en/en">en/en</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en/migration-guidelines.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v1warning">
+	This page still pertains to UD version 1.
+      </div>
+      
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="migration-guidelines-from-sd-to-ud">Migration Guidelines (from SD to UD)</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<h2 id="changes-affecting-the-tree-structure">Changes Affecting the Tree Structure</h2>
+
+<p>This section lists the changes to the representation that affect the structure of dependency trees.</p>
+
+<h3 id="treatment-of-copular-constructions">Treatment of Copular Constructions</h3>
+
+<p>The first difference between between Universal Dependencies and Stanford Dependencies is the treatment of copular constructions. While only nominal and adjectival predicates were treated as heads of copular constructions in the Stanford Dependencies representation, we also treat prepositional and adverbial predicates as the head of <a href="en-dep/cop">copular</a> constructions in the Universal Dependencies representation.</p>
+
+<pre><code class="language-sdparse">ROOT He is in the house .
+cop(house, is)
+root(ROOT, house)
+</code></pre>
+
+<pre><code class="language-sdparse">ROOT She is here .
+cop(here, is)
+root(ROOT, here)
+</code></pre>
+
+<pre><code class="language-sdparse">ROOT She is a lawyer .
+cop(lawyer, is)
+root(ROOT, lawyer)
+</code></pre>
+
+<p>Note that this change is currently only partially implemented in the Stanford Parser. In copular
+constructions with an adverbial predicate the copula verb is still treated as the head. The change
+will be completely implemented in future versions of the parser.</p>
+
+<h3 id="treatment-of-prepositional-phrases">Treatment of Prepositional Phrases</h3>
+
+<p>Another major difference between Universal Dependencies and Stanford Dependencies is the treatment of prepositional phrases. In the Stanford Dependencies representation the preposition is always being treated the head of the prepositional phrase while in the Universal Dependencies representation the head of a prepositional phrase is always a content word – either a noun phrase or the main predicate of a clause introduced by a preposition. The preposition itself is attached to the head of the prepositional phrase with the case <a href="en-dep/case">case</a> or a <a href="en-dep/mark">marker</a> relation.</p>
+
+<p>If the prepositional phrase only consists of a preposition followed by a noun phrase we use the <a href="en-dep/nmod">nmod</a> relation between the head of the prepositional phrase and the noun or predicate which it modifies.</p>
+
+<h4 id="examples">Examples:</h4>
+
+<pre><code class="language-sdparse">The office of the chair .
+case(chair-5, of-3)
+nmod(office-2, chair-5)
+</code></pre>
+
+<pre><code class="language-sdparse">There is a ball on the table .
+case(table-7, on-5)
+nmod(is-2, table-7)
+</code></pre>
+
+<p>If the prepositional phrase consists of a preposition followed by a clause we either use the <a href="en-dep/nmod">acl</a> or <a href="en-dep/advcl">advcl</a> relation between the head of the prepositional phrase and the noun or predicate it modifies. <code>acl</code> is being used whenever the prepositional phrase modifies a noun unless it is a predicate in a <a href="en-dep/cop">copular</a> construction. <code>advcl</code> is being used whenever the prepositional phrase modifies a verb, adjective or nominal predicate in a copular construction. The preposition is attached as a <a href="en-dep/mark">marker</a>.</p>
+
+<h4 id="examples-1">Examples:</h4>
+
+<pre><code class="language-sdparse">The accident happened as the night was falling .
+mark(falling, as)
+advcl(happened, falling)
+</code></pre>
+
+<p>In this example the prepositional phrase modifies a verb, namely <em>happened</em>, and therefore we use <code>advcl</code>.</p>
+
+<pre><code class="language-sdparse">I am just very nervous after watching the movie .
+mark(watching, after)
+advcl(nervous, watching)
+</code></pre>
+
+<p>In this example the prepositional phrase modifies an adjectival predicate, namely <em>nervous</em>, and therefore we use <code>advcl</code>.</p>
+
+<pre><code class="language-sdparse">We have no information on whether users are experiencing problems .
+mark(experiencing, on)
+acl(information, experiencing)
+</code></pre>
+
+<p>In this example the prepositional phrase modifies a noun phrase, namely <em>information</em>, and therefore we use <code>acl</code>.</p>
+
+<pre><code class="language-sdparse">The war was a long way from being over .
+cop(way, was)
+mark(over, from)
+advcl(war, over)
+</code></pre>
+
+<p>In this example the prepositional phrase modifies a nominal predicate in a copular construction, namely <em>war</em>, and therefore we use <code>advcl</code>. Also note that the prepositional phrase does also contain a copular construction and therefore the adverbial predicate <em>over</em> is the head of the prepositional phrase.</p>
+
+<h3 id="multi-word-expressions">Multi-Word Expressions</h3>
+
+<p>There are two differences regarding the treatment of multi-word expressions in Universal Dependencies as compared to Stanford Dependencies. First, multi-word expressions are now always head-initial and all other words in the expression depend on the first word. Second, the list of expressions which are being treated as multi-word expressions changed. See the description of the <a href="en-dep/mwe">mwe relation</a> for a complete list of multi-word expressions in UD.</p>
+
+<h2 id="mapping-of-stanford-dependencies-to-universal-dependencies">Mapping of Stanford Dependencies to Universal Dependencies</h2>
+
+<p>The following list provides for each relation in the original Stanford Dependencies representation the name of
+the equivalent relation in the Universal Dependencies representation. For some relations there doesn’t exist
+a 1:1 mapping. In these cases you’ll find a description of how different instances of the relation are treated
+in the UD representation. The list also provides the name of the GrammaticalRelation object as defined
+in Stanford CoreNLP and the Stanford Parser. Relations that were renamed, folded into other relations or changed otherwise are highlighted in <b>red</b>.</p>
+
+<h3 id="bacomp-xcompb"><b><code>acomp</code>: <code>xcomp</code></b></h3>
+
+<p><code>acomp</code> no longer exists as a relation in UD and has been folded into <a href="en-dep/xcomp"><code>xcomp</code></a>.</p>
+
+<h4 id="grammaticalrelation-object">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.XCLAUSAL_COMPLEMENT</code></p>
+
+<h3 id="badvcl-advclb"><b><code>advcl</code>: <code>advcl</code></b></h3>
+
+<p><code>advcl</code> relations in SD are still annotated as <a href="en-dep/advcl"><code>advcl</code></a> in UD.</p>
+
+<p>Note, however, that this relation is now also used for prepositional phrases modifying a predicate (some instances of <code>pcomp</code> and <code>prepc</code> in SD) and for reduced non-finite verbal modifiers that modify a predicate (some instances of <code>vmod</code> in SD).</p>
+
+<h4 id="grammaticalrelation-object-1">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.ADV_CLAUSE_MODIFIER</code></p>
+
+<h3 id="badvmod-advmodb"><b><code>advmod</code>: <code>advmod</code></b></h3>
+
+<p><code>advmod</code> relations in SD are still annotated as <a href="en-dep/advmod"><code>advmod</code></a> in UD.</p>
+
+<p>Note, however, that this relation is now also used for quantifier phrase modifiers (<code>quantmod</code> in SD).</p>
+
+<h4 id="grammaticalrelation-object-2">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.ADVERBIAL_MODIFIER</code></p>
+
+<h3 id="bagent-nmodagentb"><b><code>agent</code>: <code>nmod:agent</code></b></h3>
+
+<p>This relation has been renamed to <code>nmod:agent</code>.</p>
+
+<h4 id="grammaticalrelation-object-3">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.AGENT</code></p>
+
+<h3 id="amod-amod"><code>amod</code>: <code>amod</code></h3>
+
+<p><code>amod</code> relations in SD are still annotated as <a href="en-dep/amod"><code>amod</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-4">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.ADJECTIVAL_MODIFIER</code></p>
+
+<h3 id="appos-appos"><code>appos</code>: <code>appos</code></h3>
+
+<p><code>appos</code> relations in SD are still annotated as <a href="en-dep/appos"><code>appos</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-5">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.APPOSITIONAL_MODIFIER</code></p>
+
+<h3 id="aux-aux"><code>aux</code>: <code>aux</code></h3>
+
+<p><code>aux</code> relations in SD are still annotated as <a href="en-dep/aux"><code>aux</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-6">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.AUX_MODIFIER</code></p>
+
+<h3 id="auxpass-auxpass"><code>auxpass</code>: <code>auxpass</code></h3>
+
+<p><code>auxpass</code> relations in SD are still annotated as <a href="en-dep/auxpass"><code>auxpass</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-7">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.AUX_PASSIVE_MODIFIER</code></p>
+
+<h3 id="cc-cc"><code>cc</code>: <code>cc</code></h3>
+
+<p><code>cc</code> relations in SD are still annotated as <a href="en-dep/cc"><code>cc</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-8">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.COORDINATION</code></p>
+
+<h3 id="ccomp-ccomp"><code>ccomp</code>: <code>ccomp</code></h3>
+
+<p><code>ccomp</code> relations in SD are still annotated as <a href="en-dep/ccomp"><code>ccomp</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-9">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.CLAUSAL_COMPLEMENT</code></p>
+
+<h3 id="bconj-conjb"><b><code>conj</code>: <code>conj</code></b></h3>
+
+<p><code>conj</code> relations in SD are still annotated as <a href="en-dep/conj"><code>conj</code></a> in UD.</p>
+
+<p>Note that in the <em>enhanced</em> representation (formerly known as <em>CCprocessed</em> representation), the
+relation name and the coordinating conjunction are now separated by <code>:</code> instead of <code>_</code>, e.g.
+<code>conj:and</code> instead of <code>conj_and</code>.</p>
+
+<h4 id="grammaticalrelation-object-10">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.CONJUNCT</code></p>
+
+<h3 id="bcop-copb"><b><code>cop</code>: <code>cop</code></b></h3>
+
+<p><code>cop</code> relations in SD are still annotated as <a href="en-dep/cop"><code>cop</code></a> in UD.</p>
+
+<p>Unlike in the SD representation, prepositional phrases and adverbial phrases are also
+treated as the head of copular constructions in UD as illustrated in the following examples:</p>
+
+<pre><code class="language-sdparse">ROOT She is here
+cop(here, is)
+root(ROOT, here)
+</code></pre>
+
+<pre><code class="language-sdparse">ROOT He is in the house
+cop(house, is)
+root(ROOT, house)
+</code></pre>
+
+<p>Note that this change is currently only partially implemented in the Stanford Parser. In copular
+constructions with an adverbial predicate the copula verb is still treated as the head. The change
+will be completely implemented in future versions of the parser.</p>
+
+<h4 id="grammaticalrelation-object-11">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.COPULA</code></p>
+
+<h3 id="csubj-csubj"><code>csubj</code>: <code>csubj</code></h3>
+
+<p><code>csubj</code> relations in SD are still annotated as <a href="en-dep/csubj"><code>csubj</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-12">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.CLAUSAL_SUBJECT</code></p>
+
+<h3 id="csubjpass-csubjpass"><code>csubjpass</code>: <code>csubjpass</code></h3>
+
+<p><code>csubjpass</code> relations in SD are still annotated as <a href="en-dep/csubjpass"><code>csubjpass</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-13">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.CLAUSAL_PASSIVE_SUBJECT</code></p>
+
+<h3 id="dep-dep"><code>dep</code>: <code>dep</code></h3>
+
+<p><code>dep</code> relations in SD are still annotated as <a href="en-dep/dep"><code>dep</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-14">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.GrammaticalRelation.DEPENDENT</code></p>
+
+<h3 id="discourse-discourse"><code>discourse</code>: <code>discourse</code></h3>
+
+<p><code>discourse</code> relations in SD are still annotated as <a href="en-dep/discourse"><code>discourse</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-15">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.DISCOURSE_ELEMENT</code></p>
+
+<h3 id="obj-obj"><code>obj</code>: <code>obj</code></h3>
+
+<p><code>obj</code> relations in SD are still annotated as <a href="en-dep/dobj"><code>obj</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-16">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.DIRECT_OBJECT</code></p>
+
+<h3 id="bexpl-explb"><b><code>expl</code>: <code>expl</code></b></h3>
+
+<p><code>expl</code> relations in SD are still annotated as <a href="en-dep/expl"><code>expl</code></a> in UD.</p>
+
+<p>According to the UD guidelines the pleonastic <em>it</em> should also have the <code>expl</code> relation. This is the
+case in the manually annotated treebank but the Stanford Parser currently does not treat instances
+of the pleonastic <em>it</em> differently.</p>
+
+<h4 id="grammaticalrelation-object-17">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.EXPLETIVE</code></p>
+
+<h3 id="goeswith-goeswith"><code>goeswith</code>: <code>goeswith</code></h3>
+
+<p><code>goeswith</code> relations in SD are still annotated as <a href="en-dep/goeswith"><code>goeswith</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-18">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.GOES_WITH</code></p>
+
+<h3 id="iobj-iobj"><code>iobj</code>: <code>iobj</code></h3>
+
+<p><code>iobj</code> relations in SD are still annotated as <a href="en-dep/iobj"><code>iobj</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-19">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.INDIRECT_OBJECT</code></p>
+
+<h3 id="mark-mark"><code>mark</code>: <code>mark</code></h3>
+
+<p><code>mark</code> relations in SD are still annotated as <a href="en-dep/mark"><code>mark</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-20">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.MARKER</code></p>
+
+<h3 id="bfixed-fixedb"><b><code>fixed</code>: <code>fixed</code></b></h3>
+
+<p><code>fixed</code> relations in SD are still annotated as <a href="en-dep/mwe"><code>fixed</code></a> in UD.</p>
+
+<p>However, the list of expressions which are considered multi-word expressions has changed. See the
+description of the <a href="en-dep/mwe"><code>fixed</code> relation</a> for the list of multi-word expressions.</p>
+
+<h4 id="grammaticalrelation-object-21">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.MULTI_WORD_EXPRESSION</code></p>
+
+<h3 id="neg-neg"><code>neg</code>: <code>neg</code></h3>
+
+<p><code>neg</code> relations in SD are still annotated as <a href="en-dep/neg"><code>neg</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-22">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.NEGATION_MODIFIER</code></p>
+
+<h3 id="bnn-compoundb"><b><code>nn</code>: <code>compound</code></b></h3>
+
+<p>The <code>nn</code> relation in SD has been renamed to <a href="en-dep/compound"><code>compound</code></a> in UD.</p>
+
+<p>This relation is now also used for elements of compound numbers instead of the <code>number</code> relation in SD.</p>
+
+<h4 id="grammaticalrelation-object-23">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.COMPOUND_MODIFIER</code></p>
+
+<h3 id="bnpadvmod-nmodnpmodb"><b><code>npadvmod</code>: <code>nmod:npmod</code></b></h3>
+
+<p>The <code>npadvmod</code> relation in SD has been renamed to <a href="en-dep/nmod-npmod"><code>nmod:npmod</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-24">GrammaticalRelation object:</h4>
+<p>`edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.NP_ADVERBIAL_MODIFIER</p>
+
+<h3 id="nsubj-nsubj"><code>nsubj</code>: <code>nsubj</code></h3>
+
+<p><code>nsubj</code> relations in SD are still annotated as <a href="en-dep/nsubj"><code>nsubj</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-25">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.NOMINAL_SUBJECT</code></p>
+
+<h3 id="nsubjpass-nsubjpass"><code>nsubjpass</code>: <code>nsubjpass</code></h3>
+
+<p><code>nsubjpass</code> relations in SD are still annotated as <a href="en-dep/nsubj"><code>nsubjpass</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-26">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.NOMINAL_PASSIVE_SUBJECT</code></p>
+
+<h3 id="bnum-nummodb"><b><code>num</code>: <code>nummod</code></b></h3>
+
+<p>The <code>num</code> relation in SD has been renamed to <a href="en-dep/nummod"><code>nummod</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-27">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.NUMERIC_MODIFIER</code></p>
+
+<h3 id="bnumber-compoundb"><b><code>number</code>: <code>compound</code></b></h3>
+
+<p>The <code>number</code> relation in SD no longer exists as a relation in UD and has been folded into <a href="en-dep/compound"><code>compound</code></a>.</p>
+
+<h4 id="grammaticalrelation-object-28">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.COMPOUND</code></p>
+
+<h3 id="parataxis-parataxis"><code>parataxis</code>: <code>parataxis</code></h3>
+
+<p><code>parataxis</code> relations in SD are still annotated as <a href="en-dep/parataxis"><code>parataxis</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-29">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.NOMINAL_PASSIVE_SUBJECT</code></p>
+
+<h3 id="bposs-nmodpossb"><b><code>poss</code>: <code>nmod:poss</code></b></h3>
+
+<p>The <code>poss</code> relation in SD has been renamed to <a href="en-dep/nmod-poss"><code>nmod:poss</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-30">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.POSSESSION_MODIFIER</code></p>
+
+<h3 id="bpossesive-caseb"><b><code>possesive</code>: <code>case</code></b></h3>
+
+<p>The <code>possesive</code> relation in SD no longer exists as a relation in UD and has been folded into <a href="en-dep/case"><code>case</code></a>.</p>
+
+<h4 id="grammaticalrelation-object-31">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.CASE_MARKER</code></p>
+
+<h3 id="bpcomp-acl-or-advclb"><b><code>pcomp</code>: <code>acl</code> or <code>advcl</code></b></h3>
+
+<p>Prepositional phrases are treated differently in UD and therefore the <code>pcomp</code> relation no longer exists.
+See the section <a href="#treatment-of-prepositional-phrases">Treatment of Prepositional Phrases</a> for more details on when to use <code>acl</code> or <code>advcl</code>.</p>
+
+<h4 id="grammaticalrelation-object-32">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.CLAUSAL_MODIFIER</code> (<code>acl</code>)</p>
+
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.ADV_CLAUSE_MODIFIER</code> (<code>advcl</code>)</p>
+
+<h3 id="bpobj-nmodb"><b><code>pobj</code>: <code>nmod</code></b></h3>
+
+<p>The <code>pobj</code> relation in SD has been renamed to <a href="en-dep/nmod"><code>nmod</code></a> in UD.</p>
+
+<p>Note that prepositional phrases are treated differently in UD and not only the name of this relation
+but also the tree structure changed. See the section <a href="#treatment-of-prepositional-phrases">Treatment of Prepositional Phrases</a> for more details on the new treatment of prepositional phrases.</p>
+
+<h4 id="grammaticalrelation-object-33">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.NOMINAL_MODIFIER</code></p>
+
+<h3 id="bpreconj-conjpreconjb"><b><code>preconj</code>: <code>conj:preconj</code></b></h3>
+
+<p>The <code>preconj</code> relation in SD has been renamed to <a href="en-dep/conj-preconj"><code>conj:preconj</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-34">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.PRECONJUNCT</code></p>
+
+<h3 id="bpredet-detpredetb"><b><code>predet</code>: <code>det:predet</code></b></h3>
+
+<p>The <code>predet</code> relation in SD has been renamed to <a href="en-dep/det-predet"><code>det:predet</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-35">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.PREDETERMINER</code></p>
+
+<h3 id="bprep-case-or-markb"><b><code>prep</code>: <code>case</code> or <code>mark</code></b></h3>
+
+<p>Prepositional phrases are treated differently in UD. See the section <a href="#treatment-of-prepositional-phrases">Treatment of Prepositional Phrases</a> for more details on the new treatment of prepositional phrases.</p>
+
+<p>The various <code>prep_&lt;PREPOSITION&gt;</code> relations in the <em>collapsed</em> and <em>CCprocessed</em> SD representations
+have been replaced with <code>nmod:&lt;PREPOSITION&gt;</code> relations in the UD <em>enhanced</em> representation.</p>
+
+<h4 id="grammaticalrelation-object-36">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.CASE_MARKER</code></p>
+
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.MARKER</code></p>
+
+<h3 id="bprepc-acl-or-advclb"><b><code>prepc</code>: <code>acl</code> or <code>advcl</code></b></h3>
+
+<p>The <code>prepc_&lt;PREPOSITION&gt;</code> relations in the <em>collapsed</em> and <em>CCprocessed</em> SD representations have been
+replaced with <code>acl:&lt;PREPOSITION&gt;</code> and <code>advcl:&lt;PREPOSITION&gt;</code> relations in the UD <em>enhanced</em> representation.</p>
+
+<p>See the section <a href="#treatment-of-prepositional-phrases">Treatment of Prepositional Phrases</a> for more details.</p>
+
+<h3 id="bprt-compoundprtb"><b><code>prt</code>: <code>compound:prt</code></b></h3>
+
+<p>The <code>prt</code> relation in SD has been renamed to <a href="en-dep/compound-prt"><code>compound:prt</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-37">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.PHRASAL_VERB_PARTICLE</code></p>
+
+<h3 id="punct-punct"><code>punct</code>: <code>punct</code></h3>
+
+<p><code>punct</code> relations in SD are still annotated as <a href="en-dep/punct"><code>punct</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-38">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.PUNCTUATION</code></p>
+
+<h3 id="bquantmod-advmodb"><b><code>quantmod</code>: <code>advmod</code></b></h3>
+
+<p>The <code>quantmod</code> relation in SD no longer exists as a relation in UD and has been folded into <a href="en-dep/advmod"><code>advmod</code></a>.</p>
+
+<h4 id="grammaticalrelation-object-39">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.ADVERBIAL_MODIFIER</code></p>
+
+<h3 id="ref-ref"><code>ref</code>: <code>ref</code></h3>
+
+<p><code>ref</code> relations in SD are still annotated as <code>ref</code> in UD.</p>
+
+<p>Note that referents are only part of the <em>enhanced</em> UD representation.</p>
+
+<h4 id="grammaticalrelation-object-40">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.REFERENT</code></p>
+
+<h3 id="root-root"><code>root</code>: <code>root</code></h3>
+
+<p><code>root</code> relations in SD are still annotated as <a href="en-dep/punct"><code>root</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-41">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.GrammaticalRelation.ROOT</code></p>
+
+<h3 id="btmod-nmodtmodb"><b><code>tmod</code>: <code>nmod:tmod</code></b></h3>
+
+<p>The <code>tmod</code> relation in SD has been renamed to <a href="en-dep/nmod-tmod"><code>nmod:tmod</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-42">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.TEMPORAL_MODIFIER</code></p>
+
+<h3 id="bvmod-acl-or-advclb"><b><code>vmod</code>: <code>acl</code> or <code>advcl</code></b></h3>
+
+<p>The <code>vmod</code> relation in SD no longer exists as a relation in UD and has been folded into the <a href="en-dep/acl"><code>acl</code></a> and <a href="en-dep/advcl"><code>advcl</code></a> relations in UD.</p>
+
+<p>The <code>acl</code> relation is used for clauses that modify a noun unless the noun is a predicate in a copular
+construction. The <code>advcl</code> relation is used for clauses that modify a verb or any other predicate.</p>
+
+<p>See the section <a href="#treatment-of-prepositional-phrases">Treatment of Prepositional Phrases</a> for more details on when to use
+<code>acl</code> or <code>advcl</code>.</p>
+
+<h4 id="grammaticalrelation-object-43">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.CLAUSAL_MODIFIER</code> (<code>acl</code>)</p>
+
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.ADV_CLAUSE_MODIFIER</code> (<code>advcl</code>)</p>
+
+<h3 id="xcomp-xcomp"><code>xcomp</code>: <code>xcomp</code></h3>
+
+<p><code>xcomp</code> relations in SD are still annotated as <a href="en-dep/xcomp"><code>xcomp</code></a> in UD.</p>
+
+<h4 id="grammaticalrelation-object-44">GrammaticalRelation object:</h4>
+<p><code>edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations.XCLAUSAL_COMPLEMENT</code></p>
+
+<h2 id="new-relations">New Relations</h2>
+
+<p>The UD represenation also introduces the following new relations which did not exist in SD.</p>
+
+<ul>
+  <li><a href="en-dep/dislocated"><code>dislocated</code></a></li>
+  <li><a href="en-dep/foreign"><code>foreign</code></a></li>
+  <li><a href="en-dep/list"><code>list</code></a></li>
+  <li><a href="en-dep/remnant"><code>orphan</code></a></li>
+  <li><a href="en-dep/vocative"><code>vocative</code></a></li>
+</ul>
+
+<h2 id="enhanced-universal-depencies"><em>Enhanced</em> Universal Depencies</h2>
+
+<p>Apart from the the basic representation, the Stanford parser also provided several post-processed representations including the <em>collapsed</em> and <em>CCprocessed</em> representations. The main purpose of the <em>collapsed</em> representation was to collapse prepositions to get direct dependencies between content words. Considering the new <a href="#treatment-of-prepositional-phrases">treatment of prepositional phrases</a> the basic representation already has direct dependencies between content words which makes the <em>collapsed</em> representation largely obsolete. On the other hand, the propagation of conjunt dependencies still adds useful dependencies in UD.</p>
+
+<p>For these reasons we decided to reduce the total number of representations to the following three:</p>
+
+<ul>
+  <li><em>basic</em> representation</li>
+  <li><em>enhanced</em> representation</li>
+  <li><em>enhanced-tree</em> representation preserving a tree structure</li>
+</ul>
+
+<p>The <em>basic</em> representation uses the dependencies defined above, and forms a tree structure. Each
+word in the sentence is the dependent of exactly one thing, either another word in the sentence or the
+distingushed <em>ROOT</em> token.</p>
+
+<p>The <em>enhanced</em> representation roughly corresponds to the <em>CCprocessed</em> representation in SD. However, there are two main differences:</p>
+
+<ul>
+  <li>The delimiter between the original relation name and the conjunction or the preposition was changed from <code>_</code> to <code>:</code>. For example, what used to be <code>conj_and</code> is now <code>conj:and</code>, or <code>prep_in_front_of</code> is now <code>nmod:in_front_of</code>.</li>
+  <li>We no longer delete words in the <em>enhanced</em> representation.</li>
+</ul>
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'en';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014–2017
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
