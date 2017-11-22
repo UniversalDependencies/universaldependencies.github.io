@@ -153,14 +153,12 @@ Marie: the types of propagated dependencies should maybe be constrained. E.g. it
   </li>
 </ul>
 
-<p>Dropping or marking of “semantically void” syntactic dependencies, more precisely edges that do not link a governor to one of its semantic argument (or the other way round).</p>
-
 <h2 id="treatment-of-semantically-void-syntactic-dependencies">Treatment of semantically void syntactic dependencies</h2>
 <p><strong>DECISION TO MAKE</strong></p>
 
-<p>One key question to address is whether “void” syntactic dependencies should / could be removed in the enhanced graphs, or whether this is postponed in further semantic processing.</p>
+<p>One key question to address is whether “void” syntactic dependencies should / could be removed, or at least marked as such, in the enhanced graphs, or whether this is postponed in further semantic processing.</p>
 
-<p>This concerns basic edges in which</p>
+<p>This concerns basic edges that do not link a governor to one of its semantic argument (or the other way round).</p>
 
 <ul>
   <li>the dependent is itself semantically void (expletives)</li>
@@ -174,11 +172,11 @@ Marie: the types of propagated dependencies should maybe be constrained. E.g. it
 
 <p><strong>PROS</strong>: useful for semantic analysis</p>
 
-<p><strong>CONS</strong>: not fully coherent with the UD commitment to syntactic representations. Can create unconnected nodes, might not be justified if enhanced deps are still to be syntactic</p>
+<p><strong>CONS</strong>: not fully coherent with the UD commitment to syntactic representations. Can create unconnected nodes</p>
 
 <p>A compromise could be to use special suffixes or substrings on the label for such cases (in the absence of features on dependencies). The v2 “expl” label would count as one of the substrings that signal semantically empty edges.
 Treebank providers could decide to provide such marks or not.
-Treebank users could choose to use it or not.</p>
+Treebank users could choose to use them or not.</p>
 
 <p>For v3 version: For the expletives that do have the syntactic properties of subjects, the “expl” label could be replaced by a more consistent nsubj:expl label.</p>
 
