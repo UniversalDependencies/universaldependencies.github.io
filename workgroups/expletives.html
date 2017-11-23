@@ -147,7 +147,7 @@ ccomp(fann, kom)
 
 <p>Inherent reflexives are verbs that can only be used with a reflexive pronoun in object position and do not occur as transitive verbs with ordinary objects. UD currently assumes that the reflexive pronoun in this case is non-referental and therefore should be analysed as an expletive.</p>
 
-<pre><code class="language-sdparse">hon kände sig sjuk \n she felt (herself) sick
+<pre><code class="language-sdparse">hon kände sig sjuk \n she felt herself sick
 nsubj(känd, hon)
 expl(kände, sig)
 </code></pre>
@@ -156,9 +156,33 @@ expl(kände, sig)
 
 <h2 id="expletives-and-core-arguments">Expletives and Core Arguments</h2>
 
-<p>Expletives typically behave like core arguments syntactically in that they satisfy many of the standard tests for subjecthood and objecthood. In some constructions (weather verbs, inherent reflexives), they are the only candidates for the given core argument relation and differ from a normal argument only in being non-referential and lacking a semantic role. In other constructions (existentials, extraposition of subject/complement clauses), the core argument properties are split between the expletive, which often satisfy most of the formal criteria, and a referential phrase that is assigned the semantic role normally associated with the core argument relation.</p>
+<p>Expletives typically behave like core arguments syntactically in that they satisfy many of the standard tests for subjecthood and objecthood. In some constructions (weather verbs, inherent reflexives), they are the only candidate for the given core argument relation and differ from a normal argument only in being non-referential and lacking a semantic role. In other constructions (existentials, extraposition of subject/complement clauses), the core argument properties are split between the expletive, which often satisfies most of the formal criteria, and a referential phrase that is assigned the semantic role normally associated with the core argument relation.</p>
 
-<p>The current UD taxonomy treats expletives as distinct from core arguments, which implies that <code>nsubj</code> and <code>obj</code> are restricted to referential subjects and object, respectively.</p>
+<p>There are at least three possible ways of treating expletives in relation to core arguments:</p>
+
+<ol>
+  <li>Treat expletives as distinct from core arguments. In constructions where the expletive is the sole candidate for a given core argument relation, that relation is not used at all. In constructions where the core argument properties are split, the referential phrase is assigned the core argument relation. This is the approach taken in the current UD taxonomy and it implies that <code>nsubj</code> and <code>obj</code> are restricted to referential subjects and object, respectively. Thus, in existential sentences, the expletive is labeled <code>expl</code> and the logical subject is labeled <code>nsubj</code>. A modified version of this scheme would be to introduce subtypes of <code>expl</code> to indicate whether the expletive occurs in subject or object position.</li>
+  <li>Treat expletives as a subtype of core arguments but allow another referential phrase to instantiate the same core argument relation. In existential constructions, the expletive would then be assigned the relation <code>nsubj:expl</code> and the logical subject would still be labeled <code>nsubj</code>.</li>
+  <li>Treat expletives as a subtype of core argments and do not allow another referential phrase to instantiate the same core argument relation. In existential constructions, if the expletive is labeled <code>nsubj:expl</code>, the logical subject could no longer be labeled <code>nsubj</code>.</li>
+</ol>
+
+<p>The following table summarizes the different relations that would be used for different constructions in the three different schemes.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Construction</td>
+      <td>Expletive</td>
+      <td>Referential</td>
+    </tr>
+    <tr>
+      <td>Weather verb</td>
+      <td>1. expl (expl:subj)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
 
 
       </div>
