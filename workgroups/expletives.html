@@ -81,13 +81,55 @@
   <li>Extraposition of clausal subjects</li>
 </ol>
 
-<p>Weather verbs are 0-place predicates like “rain” and “snow”, which typically take an expletive pronoun as their subject in languages that do not allow pro-drop. In this case, the predicate never assigns a semantic role to its subject and there is no other potential argument in the clause. The Swedish and Norwegian UD treebanks currently use [expl()] for the subject of weather verbs, while Dutch uses [nsubj()].</p>
+<p>Weather verbs are 0-place predicates like “rain” and “snow”, which typically take an expletive pronoun as their subject in languages that do not allow pro-drop. In this case, the predicate never assigns a semantic role to its subject and there is no other potential argument in the clause. The Swedish and Norwegian UD treebanks currently use <code>expl</code> for the subject of weather verbs, while Dutch uses <code>nsubj</code>.</p>
 
-<h3 id="impersonal-verbs">Impersonal Verbs</h3>
+<pre><code class="language-sdparse">det regnar \n it rains
+expl(regnar, det)
+</code></pre>
 
-<h3 id="presentation-constructions">Presentation Constructions</h3>
+<p>Existential sentences (sometimes called presentation sentences) are sentences that involve an intransitive verb and an indefinite noun phrase that is interpreted as the logical subject of the verb but does not occur in the canonical subject position, which is instead filled by an expletive.</p>
 
-<h3 id="extraposed-clauses">Extraposed Clauses</h3>
+<pre><code class="language-sdparse">en katt sitter på mattan \n a cat sits on the mat
+nsubj(sitter, katt)
+obl(sitter, mattan)
+</code></pre>
+<pre><code class="language-sdparse">det sitter en katt på mattan \n it sits a cat on the mat
+expl(sitter, det)
+nsubj(sitter, katt)
+obl(sitter, mattan)
+</code></pre>
+
+<p>The Swedish and Norwegian UD treebanks treat the dummy pronoun as an expletive and analyzes the indefinite noun phrase as <code>nsubj</code> to capture the parallelism to the simple intransitive sentence. However, there are good arguments that the indefinite noun phrase syntactically behaves as an object in the second sentence. The Dutch UD treebank also treats the indefinite noun phrase as <code>nsubj</code> (and it seems to behave like a subject in Dutch) but analyzes the putative expletive as <code>advmod</code> (which is a pronominal adverb similar to English “there”).</p>
+
+<p>Extraposition of clausal subjects exhibit a similar parallelism to simple clausal subjects:</p>
+
+<pre><code class="language-sdparse">att hon kom förvånade mig \n that she came surprised me
+csubj(förvånade, kom)
+obj(förvånade, mig)
+</code></pre>
+<pre><code class="language-sdparse">det förvånade mig att hon kom \n it surprised me that she came
+expl(förvånade, det)
+csubj(förvånade, kom)
+obj(förvånade, mig)
+</code></pre>
+
+<p>Swedish, Norwegian and Dutch all follow English in using <code>expl</code> for the expletive pronoun and <code>csubj</code> for the clause. English uses the same type of annotation for expletives with raising verbs, even though they have no parallel construction without the expletive.</p>
+
+<pre><code class="language-sdparse">it seems that she came
+csubj(seems, came)
+expl(seems, it)
+</code></pre>
+<pre><code class="language-sdparse">* that she came seems
+</code></pre>
+
+<h2 id="object-expletives">Object Expletives</h2>
+
+<p>Expletives in object position have been assumed in (at least) two types of constructions:</p>
+
+<ol>
+  <li>Extraposed complement clauses</li>
+  <li>Inherent reflexives</li>
+</ol>
 
 <h3 id="inherent-reflexives">Inherent Reflexives</h3>
 
