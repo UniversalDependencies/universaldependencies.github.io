@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>NameType</title>
+    <title>Hyph</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-hy">home</a></span>
           <span class="header-text"><a href="http://universaldependencies.org/hy/hy">hy/hy</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hy/feat/NameType.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hy/feat/Hyph.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -62,99 +62,44 @@
 
           <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<h2><code>NameType</code>: type of named entity</h2>
+<h2><code>Hyph</code>: hyphenated compound or part of it</h2>
 
 <table class="typeindex" border="1">
 <tr>
   <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
-  <td><a href="#Com">Com</a></td>
-  <td><a href="#Geo">Geo</a></td>
-  <td><a href="#Giv">Giv</a></td>
-  <td><a href="#Oth">Oth</a></td>
-  <td><a href="#Pro">Pro</a></td>
-  <td><a href="#Prs">Prs</a></td>
-  <td><a href="#Sur">Sur</a></td>
+  <td><a href="#Yes">Yes</a></td>
 </tr>
 </table>
 
-<p>Classification of named entities (token-based, no nesting of entities etc.)
-The feature applies mainly to the <a href="">PROPN</a> tag;
-in multi-word foreign names, <a href="ADJ">adjectives</a> may also have this feature
-(they preserve the <code>ADJ</code>).</p>
+<p>Boolean feature. Is this the first part of a hyphenated compound?</p>
 
-<h3 id="a-namegeogeoa-geographical-name"><a name="Geo"><code>Geo</code></a>: geographical name</h3>
+<p>Compound adjectives with hyphens, such as <em>անգլո-ամերիկյան </em> “Anglo-American” get split during
+tokenization. The last part, <em>ամերիկյան, </em> is an independent adjective. However, the first part, <em>անգլո, </em> is a form that does not occur elsewhere than in
+compounds (the independent form would be <em>անգլիական</em>).</p>
 
-<p>Names of cities, countries, rivers, mountains etc.</p>
+<h3 id="a-nameyesyesa-it-is-part-of-hyphenated-compound"><a name="Yes"><code>Yes</code></a>: it is part of hyphenated compound</h3>
 
 <h4 id="examples">Examples</h4>
 
 <ul>
-  <li><em><b>Երևան, ՀՀ, Եվրոպա, Գերմանիա</b> </em> “Yerevan, RA, Europe, Germany”</li>
-</ul>
-
-<h3 id="a-nameprsprsa-name-of-person"><a name="Prs"><code>Prs</code></a>: name of person</h3>
-
-<p>This value is used if it is not known whether it is a given or a family name, but it is known that it is a personal name. We used this value for pseudonyms, nicknames, pen-names, patronyms, etc.</p>
-
-<ul>
-  <li><em><b>Բենեդիկտոս, Րաֆֆի, Նար-Դոս, Գամառ-Քատիպա, Քաչալ</b> </em> “Benedictus, Raffi, Nar-Dos, Gamar-Katipa, Kachal (skinhead)”</li>
-</ul>
-
-<h3 id="a-namegivgiva-given-name-of-person"><a name="Giv"><code>Giv</code></a>: given name of person</h3>
-
-<p>Given name (not family name). This is usually the first name.</p>
-
-<h4 id="examples-1">Examples</h4>
-
-<ul>
-  <li><em><b>Արամ, Անահիտ, Հովհաննես</b> </em> “Aram, Anahit, Hovhannes”</li>
-</ul>
-
-<h3 id="a-namesursura-surname--family-name-of-person"><a name="Sur"><code>Sur</code></a>: surname / family name of person</h3>
-
-<p>Family name (surname). This is usually the last name.</p>
-
-<h4 id="examples-2">Examples</h4>
-
-<ul>
-  <li><em><b>Սարոյան, Տեր-Պետրոսյան, Գրիգորյան</b> </em> “Saroyan, Ter-Petrosyan, Grigoryan”</li>
-</ul>
-
-<h3 id="a-namecomcoma-company-organization-institution"><a name="Com"><code>Com</code></a>: company, organization, institution</h3>
-
-<h4 id="examples-3">Examples</h4>
-
-<ul>
-  <li><em><b>Սիմենս, ՄԱԿ, ԳԱԱ</b> </em> “Siemens, UN, NAS”</li>
-</ul>
-
-<h3 id="a-nameproproa-product"><a name="Pro"><code>Pro</code></a>: product</h3>
-
-<h4 id="examples-4">Examples</h4>
-
-<ul>
-  <li><em><b>Երազ, ԿամԱԶ, Չայկա, Մերսեդես</b> </em> “Yeraz, Kamaz, Chaika, Mercedes”</li>
-</ul>
-
-<h3 id="a-nameothotha-other"><a name="Oth"><code>Oth</code></a>: other</h3>
-
-<p>Names of stadiums, guerilla bases, events etc.</p>
-
-<h4 id="examples-5">Examples</h4>
-
-<ul>
-  <li><em><b>«Հրազդան», «Դինամո», «Զվարթնոց», Զատիկ</b> </em> “Hrazdan, Dinamo, Zvartnots, Easter”</li>
+  <li><em><b>անգլո</b>-ամերիկյան </em> “Anglo-American”</li>
+  <li><em><b>իսրայելա</b>-պաղեստինյան </em> “Israeli–Palestinian”</li>
+  <li><em><b>կրոնա</b>-մշակութային </em> “religious-cultural”</li>
 </ul>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-NameType in other languages:
+Hyph in other languages:
 
-[<a href="../../cs/feat/NameType.html">cs</a>]
+[<a href="../../cs/feat/Hyph.html">cs</a>]
 
-[<a href="../../fo/feat/NameType.html">fo</a>]
+[<a href="../../et/feat/Hyph.html">et</a>]
+
+[<a href="../../pl/feat/Hyph.html">pl</a>]
+
+[<a href="../../pt/feat/Hyph.html">pt</a>]
 
 
 
