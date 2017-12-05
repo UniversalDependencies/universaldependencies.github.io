@@ -87,52 +87,52 @@
 <h1 id="executive-summary">Executive summary</h1>
 
 <ul>
-  <li>Make sure <a href="#repository-and-files">your repository has the right files</a>, <a href="#treebank-metadata">correct metadata</a> in the README, and data being prepared for the next release <a href="#repository-branches">lives on the <code>dev</code> branch</a>.</li>
+  <li>Make sure <a href="#repository-and-files">your repository has the right files</a>, <a href="#treebank-metadata">correct metadata</a> in the README, and data being prepared for the next release <a href="#repository-branches">lives on the <code class="highlighter-rouge">dev</code> branch</a>.</li>
   <li>Make sure your data and repository pass the <a href="#data-format-and-repository">format validation</a>: <a href="http://universaldependencies.org/validation.html">direct link</a> to the format validator output.</li>
   <li>Make sure your data does not show major deviations in the <a href="#syntax">content validation</a>: <a href="http://universaldependencies.org/svalidation.html">direct link</a> to the content validator output.</li>
 </ul>
 
 <h1 id="repository-and-files">Repository and files</h1>
 
-<p>Every language has its own GitHub repository called <code>UD_Language</code>, where <code>Language</code> is the name of the language. For example, the repository for Finnish is called <code>UD_Finnish</code>. Make sure to create the repository for your language if it does not already exist. Some languages have more than one treebank and the additional treebanks have their own repositories with a <code>-Treebank</code> identifier after the language name. For example, <code>UD_Finnish-FTB</code> is the repository for the FinnTreeBank, while the plain <code>UD_Finnish</code> holds the Turku Dependency Treebank.</p>
+<p>Every language has its own GitHub repository called <code class="highlighter-rouge">UD_Language</code>, where <code class="highlighter-rouge">Language</code> is the name of the language. For example, the repository for Finnish is called <code class="highlighter-rouge">UD_Finnish</code>. Make sure to create the repository for your language if it does not already exist. Some languages have more than one treebank and the additional treebanks have their own repositories with a <code class="highlighter-rouge">-Treebank</code> identifier after the language name. For example, <code class="highlighter-rouge">UD_Finnish-FTB</code> is the repository for the FinnTreeBank, while the plain <code class="highlighter-rouge">UD_Finnish</code> holds the Turku Dependency Treebank.</p>
 
-<p>Every language repository should contain the following five files (where <code>xx</code> is the ISO code for the given language; if this is not the first treebank for the language, use <code>xx_y</code> instead, where <code>y</code> is the lowercased treebank identifier):</p>
+<p>Every language repository should contain the following five files (where <code class="highlighter-rouge">xx</code> is the ISO code for the given language; if this is not the first treebank for the language, use <code class="highlighter-rouge">xx_y</code> instead, where <code class="highlighter-rouge">y</code> is the lowercased treebank identifier):</p>
 
 <ol>
-  <li><code>xx-ud-train.conllu</code></li>
-  <li><code>xx-ud-dev.conllu</code></li>
+  <li><code class="highlighter-rouge">xx-ud-train.conllu</code></li>
+  <li><code class="highlighter-rouge">xx-ud-dev.conllu</code></li>
   <li><del>xx-ud-test.conllu</del> temporary rule for UD 2.0: <strong>do not publish the test set!</strong> Validate it offline and then send it by e-mail to ud.conll.shared.task.2017@gmail.com.</li>
-  <li><code>README.txt</code> or <code>README.md</code></li>
-  <li><code>LICENSE.txt</code></li>
+  <li><code class="highlighter-rouge">README.txt</code> or <code class="highlighter-rouge">README.md</code></li>
+  <li><code class="highlighter-rouge">LICENSE.txt</code></li>
 </ol>
 
-<p>The first three files contain the treebank data split into a training, development and test set. These should be in <code>CONLL-U</code> format and conform to the universal guidelines. They need to be validated as described below.</p>
+<p>The first three files contain the treebank data split into a training, development and test set. These should be in <code class="highlighter-rouge">CONLL-U</code> format and conform to the universal guidelines. They need to be validated as described below.</p>
 
 <p>If the treebank consists of more than 20,000 words, make the test set and dev set at least 10,000 words each, even if it leaves you with training data smaller than development data (that is <a href="http://universaldependencies.org/conll17/inclusion-rules.html">necessary for the CoNLL 2017 shared task</a>). There is no upper limit on the size of dev/test. If you cannot reach 10,000 words of test data, use a more typical split, e.g. 80-10-10% (but the treebank will not be included in the shared task).</p>
 
 <p>The training-development-test data split should be stable across releases. It should not happen that a sentence that was once part of training data ever appears in the test data, and vice versa (except for sentences that are naturally occurring duplicates in independent texts). We want to prevent accidental misguided results of experiments where people take a parser trained on UD 1.1 and apply it to test data from UD 1.2. <strong>We decided to make an exception to this rule for UD 2.0 where it is needed to achieve 10K test or dev, on the ground that v2 annotation is not backward-compatible anyway.</strong></p>
 
-<p>The <code>README.txt</code> file contains basic documentation of the treebank and machine-readable metadata for the UD main page (see below) and the <code>LICENSE.txt</code> specifies under what license the treebank is made available.</p>
+<p>The <code class="highlighter-rouge">README.txt</code> file contains basic documentation of the treebank and machine-readable metadata for the UD main page (see below) and the <code class="highlighter-rouge">LICENSE.txt</code> specifies under what license the treebank is made available.</p>
 
-<p>Repositories of released treebanks also contain a <code>stats.xml</code> file, which is generated as part of the release-building process, using the script <code>conllu-stats.pl</code> available from the <code>tools</code> repository. Data providers do not have to care about this file.</p>
+<p>Repositories of released treebanks also contain a <code class="highlighter-rouge">stats.xml</code> file, which is generated as part of the release-building process, using the script <code class="highlighter-rouge">conllu-stats.pl</code> available from the <code class="highlighter-rouge">tools</code> repository. Data providers do not have to care about this file.</p>
 
 <h2 id="the-readme-file">The README file</h2>
 
-<p>The <code>README</code> file is distributed together with the data and summarizes information about the treebank for its users;
+<p>The <code class="highlighter-rouge">README</code> file is distributed together with the data and summarizes information about the treebank for its users;
 the contents of the file is also displayed by Github when readers land on the Github homepage of the treebank repository.
-At the same time, certain pre-defined parts of the <code>README</code> file are automatically copied to the UD website to places
+At the same time, certain pre-defined parts of the <code class="highlighter-rouge">README</code> file are automatically copied to the UD website to places
 where individual treebanks are described. In these cases, the contents is interpreted as MarkDown and you can use the
 <a href="https://guides.github.com/features/mastering-markdown/">MarkDown syntax</a>
-to add a little formatting (but please remember that some users will read directly the <code>README</code> file, so it should stay
+to add a little formatting (but please remember that some users will read directly the <code class="highlighter-rouge">README</code> file, so it should stay
 reasonably human-readable).
-The last part of the <code>README</code> file contains machine-readable metadata (described below) where selected vital information
+The last part of the <code class="highlighter-rouge">README</code> file contains machine-readable metadata (described below) where selected vital information
 must be provided in a fixed pre-defined way.</p>
 
-<p>MarkDown source files usually have the <code>.md</code> extension (<code>README.md</code>); but for historical reasons,
-it is also possible to name the file <code>README.txt</code>.
-Only one of these files must be present, it is not permitted to have both <code>README.md</code> and <code>README.txt</code>!</p>
+<p>MarkDown source files usually have the <code class="highlighter-rouge">.md</code> extension (<code class="highlighter-rouge">README.md</code>); but for historical reasons,
+it is also possible to name the file <code class="highlighter-rouge">README.txt</code>.
+Only one of these files must be present, it is not permitted to have both <code class="highlighter-rouge">README.md</code> and <code class="highlighter-rouge">README.txt</code>!</p>
 
-<p>The <code>README</code> file should minimally contain the following information:</p>
+<p>The <code class="highlighter-rouge">README</code> file should minimally contain the following information:</p>
 
 <ol>
   <li>A description of the treebank and its origin (creation method, data sources, etc.)</li>
@@ -143,12 +143,12 @@ Only one of these files must be present, it is not permitted to have both <code>
   <li>A machine-readable section with treebank metadata. This is described below.</li>
 </ol>
 
-<p>MarkDown uses the <code>#</code> character to mark section headings. Several sections with fixed names are expected in every <code>README</code>
-and will be searched for by various scripts. Use the following template (from Swedish) to adjust your <code>README</code>.
+<p>MarkDown uses the <code class="highlighter-rouge">#</code> character to mark section headings. Several sections with fixed names are expected in every <code class="highlighter-rouge">README</code>
+and will be searched for by various scripts. Use the following template (from Swedish) to adjust your <code class="highlighter-rouge">README</code>.
 The first section, called <em>Summary</em>, should be rather short (one-two lines), so it can appear in an index page listing all
 treebanks. An automatically generated treebank page in the UD documentation will take over the sections <em>Summary, Introduction</em>
-and <em>Acknowledgments.</em> Note that the pre-defined section headings must be top-level headings, i.e. just one <code>#</code> character
-at the beginning of the line! Any nested subsections (two or more <code>#</code> characters at the beginning of the line) are considered part
+and <em>Acknowledgments.</em> Note that the pre-defined section headings must be top-level headings, i.e. just one <code class="highlighter-rouge">#</code> character
+at the beginning of the line! Any nested subsections (two or more <code class="highlighter-rouge">#</code> characters at the beginning of the line) are considered part
 of the superordinate section and will be copied with it.</p>
 
 <pre>
@@ -185,7 +185,7 @@ The new conversion has been performed by Joakim Nivre and Aaron Smith at Uppsala
 <h2 id="treebank-metadata">Treebank metadata</h2>
 
 <p>The table on the front page is automatically generated from special lines (metadata)
-in the <code>README.txt</code> or <code>README.md</code> file for every treebank. The metadata are used for various
+in the <code class="highlighter-rouge">README.txt</code> or <code class="highlighter-rouge">README.md</code> file for every treebank. The metadata are used for various
 other automated tasks as well, for example the list of contributors to every UD release is
 collected from the READMEs.</p>
 
@@ -198,7 +198,7 @@ UD list of contributors.</p>
 
 <p>Here is an example of the treebank metadata block from the <a href="https://github.com/UniversalDependencies/UD_Czech/blob/dev/README.txt">Czech README file</a></p>
 
-<pre><code>&lt;pre&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;pre&gt;
 === Machine-readable metadata (DO NOT REMOVE!) ================================
 Data available since: UD v1.0
 License: CC BY-NC-SA 3.0
@@ -214,82 +214,82 @@ Contributing: elsewhere
 Contact: zeman@ufal.mff.cuni.cz
 ===============================================================================
 &lt;/pre&gt;
-</code></pre>
+</code></pre></div></div>
 
-<p>This block should be the last thing in the <code>README</code> file. The properties are as follows:</p>
+<p>This block should be the last thing in the <code class="highlighter-rouge">README</code> file. The properties are as follows:</p>
 
 <ul>
-  <li><code>Data available since</code> can be <code>UD v1.0</code>, <code>UD v1.1</code>, <code>UD v1.2</code>, <code>UD v1.3</code>, <code>UD v1.4</code>, <code>UD v2.0</code>, <code>UD v2.1</code> etc.
+  <li><code class="highlighter-rouge">Data available since</code> can be <code class="highlighter-rouge">UD v1.0</code>, <code class="highlighter-rouge">UD v1.1</code>, <code class="highlighter-rouge">UD v1.2</code>, <code class="highlighter-rouge">UD v1.3</code>, <code class="highlighter-rouge">UD v1.4</code>, <code class="highlighter-rouge">UD v2.0</code>, <code class="highlighter-rouge">UD v2.1</code> etc.
 Pick the number of the first release where this treebank appears.
 Do not change it when the treebank is released the next time.</li>
-  <li><code>License</code>: anything containing the string <code>BY-NC-SA</code> will be given the CC non-commercial logo, <code>BY-SA</code> or <code>BY</code> the CC logo, and <code>GNU</code> the GNU logo. To add any other license, please provide a suitable icon to ginter@cs.utu.fi and zeman@ufal.mff.cuni.cz.
+  <li><code class="highlighter-rouge">License</code>: anything containing the string <code class="highlighter-rouge">BY-NC-SA</code> will be given the CC non-commercial logo, <code class="highlighter-rouge">BY-SA</code> or <code class="highlighter-rouge">BY</code> the CC logo, and <code class="highlighter-rouge">GNU</code> the GNU logo. To add any other license, please provide a suitable icon to ginter@cs.utu.fi and zeman@ufal.mff.cuni.cz.
     <ul>
-      <li><code>Includes text</code>: Most treebanks should say <code>yes</code> here. But there are a few instances where
+      <li><code class="highlighter-rouge">Includes text</code>: Most treebanks should say <code class="highlighter-rouge">yes</code> here. But there are a few instances where
 the license of the underlying text does not allow redistribution. Here, the UD repository
 contains only the annotation without words and lemmas, but with a merging script that the
 user can run and merge the annotation with the corpus that they obtained through another
-channel. Such treebanks should say <code>no</code> here.</li>
+channel. Such treebanks should say <code class="highlighter-rouge">no</code> here.</li>
     </ul>
   </li>
-  <li><code>Genre</code>: this is simply a space-separated list of genres which gets mapped into symbols in the table. The possible genres are listed in <a href="https://github.com/UniversalDependencies/docs/blob/pages-source/gen_index/genre_symbols.json">this file</a> in the repository. If you don’t see yours, just edit the file on GitHub and add your genre, choosing one of the symbols from <a href="https://fortawesome.github.io/Font-Awesome/icons/">the <em>FontAwesome</em> list</a>. Please make sure you get the syntax right, since this is a machine-readable JSON file. It is also possible to not add the genre to the <code>genre_symbols.json</code> file, in which case the default symbol will be used automatically. The genre name will still remain visible in the mouse-over tooltip.</li>
+  <li><code class="highlighter-rouge">Genre</code>: this is simply a space-separated list of genres which gets mapped into symbols in the table. The possible genres are listed in <a href="https://github.com/UniversalDependencies/docs-automation/blob/master/genre_symbols.json">this file</a>. If you don’t see yours, just edit the file on GitHub and add your genre, choosing one of the symbols from <a href="https://fortawesome.github.io/Font-Awesome/icons/">the <em>FontAwesome</em> list</a>. Please make sure you get the syntax right, since this is a machine-readable JSON file. It is also possible to not add the genre to the <code class="highlighter-rouge">genre_symbols.json</code> file, in which case the default symbol will be used automatically. The genre name will still remain visible in the mouse-over tooltip.</li>
   <li>Source of annotation of lemmas, POS tags, morphological features and dependency relations.
 There are several possible values:
     <ul>
-      <li><code>manual native</code> … means that the annotation was done manually, directly in the UD annotation scheme.
+      <li><code class="highlighter-rouge">manual native</code> … means that the annotation was done manually, directly in the UD annotation scheme.
 Note that manual verification of automatic annotation (e.g. you pre-parse the text before you give it to humans)
 counts as manual annotation.</li>
-      <li><code>converted from manual</code> … means that it was originally annotated in a non-UD scheme, then converted to UD by a program,
+      <li><code class="highlighter-rouge">converted from manual</code> … means that it was originally annotated in a non-UD scheme, then converted to UD by a program,
 but the converted annotation has not been verified by a human annotator.</li>
-      <li><code>converted with corrections</code> … significant spot-checking and manual corrections occurred after the conversion;
+      <li><code class="highlighter-rouge">converted with corrections</code> … significant spot-checking and manual corrections occurred after the conversion;
 however, it does not qualify as full manual annotation because not all words were visited systematically.
 This is an intermediate level between “converted from manual” and “manual native”.</li>
-      <li><code>automatic</code> … means that the annotation was predicted by a program such as tagger or parser.</li>
-      <li><code>automatic with corrections</code> … significant spot-checking and manual corrections occurred after the automatic prediction;
+      <li><code class="highlighter-rouge">automatic</code> … means that the annotation was predicted by a program such as tagger or parser.</li>
+      <li><code class="highlighter-rouge">automatic with corrections</code> … significant spot-checking and manual corrections occurred after the automatic prediction;
 however, it does not qualify as full manual annotation because not all words were visited systematically.
 This is an intermediate level between “automatic” and “manual native”.</li>
-      <li><code>not available</code> … means that this type of annotation is not present.</li>
+      <li><code class="highlighter-rouge">not available</code> … means that this type of annotation is not present.</li>
     </ul>
   </li>
   <li>Note that some values are available only for some types of annotation.
 UPOS tags and relations must always be available and cannot be automatic.
     <ul>
-      <li><code>Lemmas</code> … <code>manual native | converted from manual | converted with corrections | automatic | automatic with corrections | not available</code></li>
-      <li><code>UPOS</code> … <code>manual native | converted from manual | converted with corrections</code></li>
-      <li><code>XPOS</code> … <code>manual native | automatic | automatic with corrections | not available</code></li>
-      <li><code>Features</code> … <code>manual native | converted from manual | converted with corrections | automatic | automatic with corrections | not available</code></li>
-      <li><code>Relations</code> … <code>manual native | converted from manual | converted with corrections</code></li>
+      <li><code class="highlighter-rouge">Lemmas</code> … <code class="highlighter-rouge">manual native | converted from manual | converted with corrections | automatic | automatic with corrections | not available</code></li>
+      <li><code class="highlighter-rouge">UPOS</code> … <code class="highlighter-rouge">manual native | converted from manual | converted with corrections</code></li>
+      <li><code class="highlighter-rouge">XPOS</code> … <code class="highlighter-rouge">manual native | automatic | automatic with corrections | not available</code></li>
+      <li><code class="highlighter-rouge">Features</code> … <code class="highlighter-rouge">manual native | converted from manual | converted with corrections | automatic | automatic with corrections | not available</code></li>
+      <li><code class="highlighter-rouge">Relations</code> … <code class="highlighter-rouge">manual native | converted from manual | converted with corrections</code></li>
     </ul>
   </li>
-  <li><code>Contributors</code>: the list of contributors to be included with the data release and in the LINDAT download page. This is a semicolon-separated list where every name is in the <code>Last, First</code> form and the <code>README</code> file should be utf-8 encoded to make sure special characters are preserved correctly.</li>
-  <li><code>Contributing</code>:
+  <li><code class="highlighter-rouge">Contributors</code>: the list of contributors to be included with the data release and in the LINDAT download page. This is a semicolon-separated list where every name is in the <code class="highlighter-rouge">Last, First</code> form and the <code class="highlighter-rouge">README</code> file should be utf-8 encoded to make sure special characters are preserved correctly.</li>
+  <li><code class="highlighter-rouge">Contributing</code>:
     <ul>
-      <li><code>here</code> … The changes are done directly in the dev branch of the UD repository. Bugs can be fixed via pull requests.</li>
-      <li><code>here source</code> … The changes are done in the UD repository but not directly in the final CoNLL-U files. Instead, there is a folder called <code>not-to-release</code> where source files have to be located and fixed.</li>
-      <li><code>elsewhere</code> … Do not submit pull requests; create issues. Main development happens somewhere else. If there is a bug, either the original data or the conversion procedure must be fixed.</li>
-      <li><code>to be adopted</code> … The treebank currently misses a maintainer. If you know the language, please consider adopting the treebank.</li>
+      <li><code class="highlighter-rouge">here</code> … The changes are done directly in the dev branch of the UD repository. Bugs can be fixed via pull requests.</li>
+      <li><code class="highlighter-rouge">here source</code> … The changes are done in the UD repository but not directly in the final CoNLL-U files. Instead, there is a folder called <code class="highlighter-rouge">not-to-release</code> where source files have to be located and fixed.</li>
+      <li><code class="highlighter-rouge">elsewhere</code> … Do not submit pull requests; create issues. Main development happens somewhere else. If there is a bug, either the original data or the conversion procedure must be fixed.</li>
+      <li><code class="highlighter-rouge">to be adopted</code> … The treebank currently misses a maintainer. If you know the language, please consider adopting the treebank.</li>
     </ul>
   </li>
-  <li><code>Contact</code>: please add an e-mail address where the current maintainer of the data can be contacted. You can also include several e-mail addresses separated by commas.</li>
+  <li><code class="highlighter-rouge">Contact</code>: please add an e-mail address where the current maintainer of the data can be contacted. You can also include several e-mail addresses separated by commas.</li>
 </ul>
 
 <p>If you want to see what web content will be generated from your README file, run the
-<code>generate_treebank_hub.pl</code> script from the tools repository on your treebank folder,
+<code class="highlighter-rouge">generate_treebank_hub.pl</code> script from the tools repository on your treebank folder,
 e.g.</p>
 
-<pre><code>tools/generate_treebank_hub.pl UD_Czech &gt; for_web.md
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tools/generate_treebank_hub.pl UD_Czech &gt; for_web.md
+</code></pre></div></div>
 
 <h2 id="repository-branches">Repository branches</h2>
 
-<p>While the official UD release is always through Lindat, many users of UD source their data from the GitHub language repositories. Therefore, the <code>master</code> branch of every language should contain the last, officially released version of the data for the given language. The development in between releases should happen on the <code>dev</code> branch of the repository.
-Although it is currently not locked, treebank maintainers should never touch the <code>master</code> branch, they should always push to <code>dev</code>. At release time, the release task force will take care of merging the contents of the <code>dev</code> branch into <code>master</code>.
+<p>While the official UD release is always through Lindat, many users of UD source their data from the GitHub language repositories. Therefore, the <code class="highlighter-rouge">master</code> branch of every language should contain the last, officially released version of the data for the given language. The development in between releases should happen on the <code class="highlighter-rouge">dev</code> branch of the repository.
+Although it is currently not locked, treebank maintainers should never touch the <code class="highlighter-rouge">master</code> branch, they should always push to <code class="highlighter-rouge">dev</code>. At release time, the release task force will take care of merging the contents of the <code class="highlighter-rouge">dev</code> branch into <code class="highlighter-rouge">master</code>.
 <strong>Please do not submit pull requests from the dev branch (or from anywhere else) to the master branch.</strong>
 This is not needed for the release merge to take place, and if someone overlooks the destination branch and accepts the pull request,
 it will again result in a commit to the master branch at wrong time.</p>
 
-<p>(To make things a bit more confusing, this policy of data repositories does not apply to some other repositories that we use. In the <code>docs</code> repository you must work with the <code>pages-source</code> branch. That is done automatically if you edit the documentation in your browser via the <em>edit page</em> link. You will also need to access the <code>tools</code> repository and upload the <code>deprel</code> and <code>feat_val</code> files specific for your treebank. In this case, please use the <code>master</code> branch.)</p>
+<p>(To make things a bit more confusing, this policy of data repositories does not apply to some other repositories that we use. In the <code class="highlighter-rouge">docs</code> repository you must work with the <code class="highlighter-rouge">pages-source</code> branch. That is done automatically if you edit the documentation in your browser via the <em>edit page</em> link. You will also need to access the <code class="highlighter-rouge">tools</code> repository and upload the <code class="highlighter-rouge">deprel</code> and <code class="highlighter-rouge">feat_val</code> files specific for your treebank. In this case, please use the <code class="highlighter-rouge">master</code> branch.)</p>
 
-<p>If you have no previous experience with Git, here is a quick tutorial on how to deal with the branches. Please refer to on-line documentation of Git and Github for more details. The tutorial assumes that you are communicating with Github from a Linux shell. The interface may be different if your OS is Windows. If you are working only with the Github web interface, you are not dependent on your operating system but you must remember to switch the <code>Branch: master</code> drop-down menu (left-hand side of the page) to <code>Branch: dev</code>; it always starts in <code>master</code> by default. In contrast, when you want to clone the repository to your local system, you need the address that is hidden under <code>Clone or download</code> in the right-hand side of the page, and that address is common for all branches. Our example is the <a href="https://github.com/UniversalDependencies/UD_Italian/tree/dev">Italian repository</a>. Here is how you clone the repo to your system (<code>git clone</code> is the command, the remainder is the address copied from the Github web):</p>
+<p>If you have no previous experience with Git, here is a quick tutorial on how to deal with the branches. Please refer to on-line documentation of Git and Github for more details. The tutorial assumes that you are communicating with Github from a Linux shell. The interface may be different if your OS is Windows. If you are working only with the Github web interface, you are not dependent on your operating system but you must remember to switch the <code class="highlighter-rouge">Branch: master</code> drop-down menu (left-hand side of the page) to <code class="highlighter-rouge">Branch: dev</code>; it always starts in <code class="highlighter-rouge">master</code> by default. In contrast, when you want to clone the repository to your local system, you need the address that is hidden under <code class="highlighter-rouge">Clone or download</code> in the right-hand side of the page, and that address is common for all branches. Our example is the <a href="https://github.com/UniversalDependencies/UD_Italian/tree/dev">Italian repository</a>. Here is how you clone the repo to your system (<code class="highlighter-rouge">git clone</code> is the command, the remainder is the address copied from the Github web):</p>
 
 <pre>
 git clone git@github.com:UniversalDependencies/UD_Italian.git
@@ -301,7 +301,7 @@ Resolving deltas: 100% (134/134), done.
 Checking connectivity... done.</span>
 </pre>
 
-<p>Then enter the cloned folder and switch to (“checkout”) the <code>dev</code> branch. Your copy of the repository knows that such a branch exists on the server but it only creates your local copy of that branch once you ask for it. You may subsequently want to call <code>git pull</code> to make sure that you have the latest contents of the dev branch from the server:</p>
+<p>Then enter the cloned folder and switch to (“checkout”) the <code class="highlighter-rouge">dev</code> branch. Your copy of the repository knows that such a branch exists on the server but it only creates your local copy of that branch once you ask for it. You may subsequently want to call <code class="highlighter-rouge">git pull</code> to make sure that you have the latest contents of the dev branch from the server:</p>
 
 <pre>
 cd UD_Italian
@@ -315,47 +315,47 @@ git pull
 <span style="color:blue">Already up-to-date.</span>
 </pre>
 
-<p>Once you do this, you are all set. Your copy will stay switched to the dev branch unless you call <code>git checkout master</code> (or other <code>git checkout</code>) again. You will probably mostly need just <code>git status</code>, <code>git diff</code>, <code>git add</code>, <code>git commit</code>, <code>git push</code> and <code>git pull</code> commands. All pushes and pulls will be done against the remote <code>dev</code> branch.</p>
+<p>Once you do this, you are all set. Your copy will stay switched to the dev branch unless you call <code class="highlighter-rouge">git checkout master</code> (or other <code class="highlighter-rouge">git checkout</code>) again. You will probably mostly need just <code class="highlighter-rouge">git status</code>, <code class="highlighter-rouge">git diff</code>, <code class="highlighter-rouge">git add</code>, <code class="highlighter-rouge">git commit</code>, <code class="highlighter-rouge">git push</code> and <code class="highlighter-rouge">git pull</code> commands. All pushes and pulls will be done against the remote <code class="highlighter-rouge">dev</code> branch.</p>
 
 <h1 id="validation">Validation</h1>
 
 <h2 id="data-format-and-repository">Data format and repository</h2>
 
-<p>Up-to-date automatic validation runs of the repositories are available <a href="http://universaldependencies.org/validation.html">here</a>. These are based on the <code>dev</code> branch of the data and use the <code>validate.py</code> script described below.</p>
+<p>Up-to-date automatic validation runs of the repositories are available <a href="http://universaldependencies.org/validation.html">here</a>. These are based on the <code class="highlighter-rouge">dev</code> branch of the data and use the <code class="highlighter-rouge">validate.py</code> script described below.</p>
 
 <p>The final data validation is an important step and each file released
 in the project is expected to validate as conforming to the basic
 requirements on the data and format. For this purpose, there is a
 validation script in the tools repository.</p>
 
-<pre><code>$ git clone git@github.com:UniversalDependencies/tools.git
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone git@github.com:UniversalDependencies/tools.git
 $ cd tools
 $ python validate.py -h
-</code></pre>
+</code></pre></div></div>
 
 <p>In general, you validate the data like so:</p>
 
-<pre><code>python validate.py --lang=xx [file.conllu]
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python validate.py --lang=xx [file.conllu]
+</code></pre></div></div>
 
 <p>for example for Finnish:</p>
 
-<pre><code>$ python validate.py --lang=fi ../UD_Finnish/fi-ud-dev.conllu
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python validate.py --lang=fi ../UD_Finnish/fi-ud-dev.conllu
 *** PASSED ***
-</code></pre>
+</code></pre></div></div>
 
 <p>Among other items, the script also validates the language-specific set
 of tags and relations and therefore it needs to know about these. The
-language-specific lists are stored in <code>data/deprel.xx</code>
-(language-specific relations) and <code>data/feat_val.xx</code>
-(language-specific features). In addition <code>data/*.ud</code> stores the UD
+language-specific lists are stored in <code class="highlighter-rouge">data/deprel.xx</code>
+(language-specific relations) and <code class="highlighter-rouge">data/feat_val.xx</code>
+(language-specific features). In addition <code class="highlighter-rouge">data/*.ud</code> stores the UD
 taglists. Before you can validate data for a given language, you need to
 produce and commit the necessary tag lists. You can make the initial lists
 like so:</p>
 
-<pre><code>$ python conllu-stats.py --deprels=langspec path_to_your_data/*.conllu &gt; data/deprel.xx
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python conllu-stats.py --deprels=langspec path_to_your_data/*.conllu &gt; data/deprel.xx
 $ python conllu-stats.py --catvals=langspec path_to_your_data/*.conllu &gt; data/feat_val.xx
-</code></pre>
+</code></pre></div></div>
 
 <p>This will gather the language-specific lists in descending order by
 their frequency. It is important to check the resulting files for
@@ -363,18 +363,18 @@ correctness, because otherwise the validation would of course be a
 no-op. Once you have checked the lists manually, you can add them to
 the repository:</p>
 
-<pre><code>$ git add data/deprel.xx data/feat_val.xx
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git add data/deprel.xx data/feat_val.xx
 $ git commit -m "Adding language-specific data for xx."
 $ git push
-</code></pre>
+</code></pre></div></div>
 
-<p>Since the <code>v2.0</code> release, whitespace is allowed in the <code>FORM</code> and <code>LEMMA</code> fields under conditions specified in <a href="v2/segmentation.html">here</a>. This is supported in the validator through the UD-wide file <code>data/tokens_w_space.ud</code> and its language-specific variants <code>data/tokens_w_space.xx</code>. In these files, each line is a <a href="https://docs.python.org/2/library/re.html">Python regular expression</a> defining the permissible forms and lemmas that can contain a whitespace.</p>
+<p>Since the <code class="highlighter-rouge">v2.0</code> release, whitespace is allowed in the <code class="highlighter-rouge">FORM</code> and <code class="highlighter-rouge">LEMMA</code> fields under conditions specified in <a href="v2/segmentation.html">here</a>. This is supported in the validator through the UD-wide file <code class="highlighter-rouge">data/tokens_w_space.ud</code> and its language-specific variants <code class="highlighter-rouge">data/tokens_w_space.xx</code>. In these files, each line is a <a href="https://docs.python.org/2/library/re.html">Python regular expression</a> defining the permissible forms and lemmas that can contain a whitespace.</p>
 
 <h1 id="syntax">Syntax</h1>
 
-<p>For the <code>v1.3</code> release, we have created an additional number of tests which try to uncover possible logical inconsistencies in the treebank data. Automatic validation runs for this syntax validation are available <a href="http://universaldependencies.org/svalidation.html">here</a>. Unlike the data format and repository validation, this validation machinery is not streamlined enough to be distributed for offline use, therefore it is important to regularly push your data to the <code>dev</code> branch of the repository.</p>
+<p>For the <code class="highlighter-rouge">v1.3</code> release, we have created an additional number of tests which try to uncover possible logical inconsistencies in the treebank data. Automatic validation runs for this syntax validation are available <a href="http://universaldependencies.org/svalidation.html">here</a>. Unlike the data format and repository validation, this validation machinery is not streamlined enough to be distributed for offline use, therefore it is important to regularly push your data to the <code class="highlighter-rouge">dev</code> branch of the repository.</p>
 
-<p>The tests are specified in the file <code>gen_index/stests.yaml</code> and rely on the query language of the <a href="http://bionlp-www.utu.fi/dep_search">SETS search interface</a>.</p>
+<p>The tests are specified in the file <code class="highlighter-rouge">gen_index/stests.yaml</code> and rely on the query language of the <a href="http://bionlp-www.utu.fi/dep_search">SETS search interface</a>.</p>
 
 <h1 id="language-specific-guidelines">Language-specific guidelines</h1>
 

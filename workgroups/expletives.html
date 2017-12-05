@@ -76,16 +76,27 @@
 <p>Expletives in subject position have traditionally been postulated in (at least) three types of constructions:</p>
 
 <ol>
-  <li>Weather verbs</li>
+  <li>Weather verbs and more generally “intrinsically impersonal verbs”</li>
   <li>Existential sentences</li>
   <li>Extraposition of clausal subjects</li>
 </ol>
 
-<p>Weather verbs are 0-place predicates like “rain” and “snow”, which typically take an expletive pronoun as their subject in languages that do not allow pro-drop. In this case, the predicate never assigns a semantic role to its subject and there is no other potential argument in the clause. The Swedish and Norwegian UD treebanks currently use <code>expl</code> for the subject of weather verbs, while Dutch uses <code>nsubj</code>.</p>
+<h3 id="weather-verbs-and-more-generally-intrinsically-impersonal-verbs">Weather verbs (and more generally “intrinsically impersonal verbs”)</h3>
+<p>Weather verbs are 0-place predicates like “rain” and “snow”, which typically take an expletive pronoun as their subject in languages that do not allow pro-drop. In this case, the predicate never assigns a semantic role to its subject and there is no other potential argument in the clause. The Swedish and Norwegian UD treebanks currently use <code class="highlighter-rouge">expl</code> for the subject of weather verbs, while Dutch uses <code class="highlighter-rouge">nsubj</code>.</p>
 
 <pre><code class="language-sdparse">det regnar \n it rains
 expl(regnar, det)
 </code></pre>
+
+<p>“Intrinsically impersonal verbs” encompasses a more general category of verbs, not only 0-place predicates but also 1-place predicates, that typically take an expletive pronoun as their subject, without any parallelism to a construction with a full subject. This is the case in French for the deficient verb “falloir” (be necessary). In the current French treebanks, all preverbal explective “il” clitics are treated as plain subjects (nsubj).</p>
+
+<pre><code class="language-sdparse">il faut 3 nouveaux recrutements \n it is-necessary 3 new recruitments
+</code></pre>
+
+<pre><code class="language-sdparse">* 3 nouveaux recrutements faut
+</code></pre>
+
+<h3 id="existential-sentences">Existential sentences</h3>
 
 <p>Existential sentences (sometimes called presentation sentences) are sentences that involve an intransitive verb and an indefinite noun phrase that is interpreted as the logical subject of the verb but does not occur in the canonical subject position, which is instead filled by an expletive.</p>
 
@@ -99,8 +110,36 @@ nsubj(sitter, katt)
 obl(sitter, mattan)
 </code></pre>
 
-<p>The Swedish and Norwegian UD treebanks treat the dummy pronoun as an expletive and analyzes the indefinite noun phrase as <code>nsubj</code> to capture the parallelism to the simple intransitive sentence. However, there are good arguments that the indefinite noun phrase syntactically behaves as an object in the second sentence. The Dutch UD treebank also treats the indefinite noun phrase as <code>nsubj</code> (and it seems to behave like a subject in Dutch) but analyzes the putative expletive as <code>advmod</code> (which is a pronominal adverb similar to English “there”).</p>
+<p>The Swedish and Norwegian UD treebanks treat the dummy pronoun as an expletive and analyzes the indefinite noun phrase as <code class="highlighter-rouge">nsubj</code> to capture the parallelism to the simple intransitive sentence. However, there are good arguments that the indefinite noun phrase syntactically behaves as an object in the second sentence. The Dutch UD treebank also treats the indefinite noun phrase as <code class="highlighter-rouge">nsubj</code> (and it seems to behave like a subject in Dutch) but analyzes the putative expletive as <code class="highlighter-rouge">advmod</code> (which is a pronominal adverb similar to English “there”).</p>
 
+<p>For French, the traditionally called “impersonal construction” encompasses various cases of extraposed subjects, including indefinite noun phrases, possible for some intransitive verbs (those taking “être” as auxiliary, but not only). There too are arguments to view the postverbal indefinite NP as a direct object (in particular, it is pronominalized using the quantitative “en” clitic).</p>
+
+<pre><code class="language-sdparse">Trois candidats sont arrivés \n Three candidates are arrived
+</code></pre>
+<pre><code class="language-sdparse">Il est arrivé 3 candidats \n It is arrived 3 candidates
+</code></pre>
+<pre><code class="language-sdparse">Il en est arrivé trois \n It of-it is arrived three
+</code></pre>
+
+<pre><code class="language-sdparse">Quelques personnes nageaient dans le bassin quand l'alarme retentit \n A-few people were-swimming in the pool when the alarm sounded
+</code></pre>
+<pre><code class="language-sdparse">Il nageait quelques personnes dans le bassin ... \n it was-swimming a-few people in the pool ...
+</code></pre>
+
+<h3 id="impersonal-passive-and-medio-passive">Impersonal passive and medio-passive</h3>
+
+<p>French passives or medio-passives can occur with a pre-nominal subject (interpreted as the canonical object), or with a direct object and expletive “il” subject:</p>
+
+<pre><code class="language-sdparse">Plus de 100 000 exemplaires ont été vendus \n More than 100 000 copies have been sold
+</code></pre>
+<pre><code class="language-sdparse">Il a été vendu plus de 100 000 exemplaires \ It has been sold more than 100 000 exemplaires
+</code></pre>
+<pre><code class="language-sdparse">Plus de 100 000 exemplaires se sont vendus \n More than 100 000 copies REFL are sold
+</code></pre>
+<pre><code class="language-sdparse">Il s'est vendu plus de 100 000 exemplaires \ It REFL is sold more than 100 000 exemplaires
+</code></pre>
+
+<h3 id="extraposition-of-clausal-subjects">Extraposition of clausal subjects</h3>
 <p>Extraposition of clausal subjects exhibit a similar parallelism to simple clausal subjects:</p>
 
 <pre><code class="language-sdparse">att hon kom förvånade mig \n that she came surprised me
@@ -113,13 +152,21 @@ csubj(förvånade, kom)
 obj(förvånade, mig)
 </code></pre>
 
-<p>Swedish, Norwegian and Dutch all follow English in using <code>expl</code> for the expletive pronoun and <code>csubj</code> for the clause. English uses the same type of annotation for expletives with raising verbs, even though they have no parallel construction without the expletive.</p>
+<p>Swedish, Norwegian and Dutch all follow English in using <code class="highlighter-rouge">expl</code> for the expletive pronoun and <code class="highlighter-rouge">csubj</code> for the clause. English uses the same type of annotation for expletives with raising verbs, even though they have no parallel construction without the expletive.</p>
 
 <pre><code class="language-sdparse">it seems that she came
 csubj(seems, came)
 expl(seems, it)
 </code></pre>
 <pre><code class="language-sdparse">* that she came seems
+</code></pre>
+
+<p>The clause can also be infinitival. For instance in French the extraposition is particularly frequent for the subject of a copula+adjective construction:</p>
+
+<pre><code class="language-sdparse">Il est parfois difficile de rester calme \n It is sometimes difficult to stay calm
+</code></pre>
+
+<pre><code class="language-sdparse">Il est possible que Paul soit déjà parti \n It is possible that Paul be already gone
 </code></pre>
 
 <h2 id="object-expletives">Object Expletives</h2>
@@ -131,7 +178,7 @@ expl(seems, it)
   <li>Inherent reflexives</li>
 </ol>
 
-<p>Extraposed complement clauses, with or without a corresponding expletive pronoun, typically occur together with a predicative <code>xcomp</code> as in the following examples.</p>
+<p>Extraposed complement clauses, with or without a corresponding expletive pronoun, typically occur together with a predicative <code class="highlighter-rouge">xcomp</code> as in the following examples.</p>
 
 <pre><code class="language-sdparse">jag fann förvånande att hon kom \n I found surprising that she came
 nsubj(fann, jag)
@@ -154,6 +201,38 @@ expl(kände, sig)
 <pre><code class="language-sdparse">*hon kände honom sjuk \n she felt him sick
 </code></pre>
 
+<h2 id="right-dislocation-">Right dislocation (?)</h2>
+
+<p>(marie: for French the extraposed complement clause is better and more generally described as right dislocation, of either a subject or a complement clause, with a coreferential indefinite pronoun “ça”. The left dislocation is also possible, but it seems it has different prosodic properties, suggesting that the dislocated element is not part of the clause.</p>
+
+<pre><code class="language-sdparse">Qu'il parte m'a peiné \n That he left me-accusative has hurt
+</code></pre>
+
+<pre><code class="language-sdparse">ça m'a peiné qu'il parte \n It me-accusative has hurt that he left
+</code></pre>
+
+<pre><code class="language-sdparse">J'ai trouvé surprenant qu'il parte \n I found surprising that he left
+</code></pre>
+
+<pre><code class="language-sdparse">J'ai trouvé ça surprenant qu'il parte \n I found it surprising that he left
+</code></pre>
+
+<p>More generally, informal French allows dislocating any kind of argument, with appropriate clitics.</p>
+
+<pre><code class="language-sdparse">Il les a cassées ses lunettes Paul \n He them-fem-acc has broken his sunglasses Paul
+</code></pre>
+
+<h2 id="clitic-doubling">Clitic doubling</h2>
+
+<p>For some languages, like Spanish or Greek, clitic pronouns can cooccur with the full noun phrase they refer to.</p>
+
+<pre><code class="language-sdparse">Lo vimos a Juan \n Him we-saw (a) Juan
+</code></pre>
+
+<p>In French, this is possible for the nominative clitic, but in direct interrogative clauses only:</p>
+<pre><code class="language-sdparse">Jean vient-il ? \n John comes-he ?
+</code></pre>
+
 <h2 id="expletives-and-core-arguments">Expletives and Core Arguments</h2>
 
 <p>Expletives typically behave like core arguments syntactically in that they satisfy many of the standard tests for subjecthood and objecthood. In some constructions (weather verbs, inherent reflexives), they are the only candidate for the given core argument relation and differ from a normal argument only in being non-referential and lacking a semantic role. In other constructions (existentials, extraposition of subject/complement clauses), the core argument properties are split between the expletive, which often satisfies most of the formal criteria, and a referential phrase that is assigned the semantic role normally associated with the core argument relation.</p>
@@ -161,9 +240,9 @@ expl(kände, sig)
 <p>There are at least three possible ways of treating expletives in relation to core arguments:</p>
 
 <ol>
-  <li>Treat expletives as distinct from core arguments. In constructions where the expletive is the sole candidate for a given core argument relation, that relation is not used at all. In constructions where the core argument properties are split, the referential phrase is assigned the core argument relation. This is the approach taken in the current UD taxonomy and it implies that <code>nsubj</code> and <code>obj</code> are restricted to referential subjects and object, respectively. Thus, in existential sentences, the expletive is labeled <code>expl</code> and the logical subject is labeled <code>nsubj</code>. A modified version of this scheme would be to introduce subtypes of <code>expl</code> to indicate whether the expletive occurs in subject or object position.</li>
-  <li>Treat expletives as a subtype of core arguments but allow another referential phrase to instantiate the same core argument relation. In existential constructions, the expletive would then be assigned the relation <code>nsubj:expl</code> and the logical subject would still be labeled <code>nsubj</code>.</li>
-  <li>Treat expletives as a subtype of core argments and do not allow another referential phrase to instantiate the same core argument relation. In existential constructions, if the expletive is labeled <code>nsubj:expl</code>, the logical subject could no longer be labeled <code>nsubj</code>.</li>
+  <li>Treat expletives as distinct from core arguments. In constructions where the expletive is the sole candidate for a given core argument relation, that relation is not used at all. In constructions where the core argument properties are split, the referential phrase is assigned the core argument relation. This is the approach taken in the current UD taxonomy and it implies that <code class="highlighter-rouge">nsubj</code> and <code class="highlighter-rouge">obj</code> are restricted to referential subjects and object, respectively. Thus, in existential sentences, the expletive is labeled <code class="highlighter-rouge">expl</code> and the logical subject is labeled <code class="highlighter-rouge">nsubj</code>. A modified version of this scheme would be to introduce subtypes of <code class="highlighter-rouge">expl</code> to indicate whether the expletive occurs in subject or object position.</li>
+  <li>Treat expletives as a subtype of core arguments but allow another referential phrase to instantiate the same core argument relation. In existential constructions, the expletive would then be assigned the relation <code class="highlighter-rouge">nsubj:expl</code> and the logical subject would still be labeled <code class="highlighter-rouge">nsubj</code>.</li>
+  <li>Treat expletives as a subtype of core argments and do not allow another referential phrase to instantiate the same core argument relation. In existential constructions, if the expletive is labeled <code class="highlighter-rouge">nsubj:expl</code>, the logical subject could no longer be labeled <code class="highlighter-rouge">nsubj</code>.</li>
 </ol>
 
 <p>The following table summarizes the different relations that would be used for different constructions in the three different schemes.</p>
@@ -268,6 +347,133 @@ expl(kände, sig)
     </tr>
   </tbody>
 </table>
+
+<h2 id="expletives-in-ud-v21-treebanks">Expletives in UD v2.1 treebanks</h2>
+
+<p>Out of 102 treebanks from 60 languages in UD version 2.1: 39 treebanks contain expletives (the expl relation)</p>
+
+<p>The 39 treebanks are from the following 20 languages:</p>
+<ul>
+  <li>Arabic (only in the PUD treebank, influence from English?)</li>
+  <li>Bulgarian</li>
+  <li>Croatian</li>
+  <li>Danish</li>
+  <li>Dutch</li>
+  <li>English</li>
+  <li>Finnish (?)</li>
+  <li>French</li>
+  <li>Galician</li>
+  <li>German</li>
+  <li>Greek</li>
+  <li>Italian</li>
+  <li>Norwegian</li>
+  <li>Portuguese</li>
+  <li>Romanian</li>
+  <li>Russian (?)</li>
+  <li>Sanskrit (? only 1 instance)</li>
+  <li>Slovenian</li>
+  <li>Swedish</li>
+  <li>Ukrainian</li>
+</ul>
+
+<p><a href="http://folk.uio.no/liljao/expl-stats_v2.1.txt">Statistics per treebank</a> (absolute expletive counts, total, and proportion of expletives out of all tokens)</p>
+
+<h3 id="examples">Examples</h3>
+
+<p>(Translations are provided by Google translate in many cases, feel free to correct if you know the language in question!)</p>
+
+<ul>
+  <li>Bulgarian
+    <ul>
+      <li>В дискусията, предполагам, ще се засегнат важни въпроси. (expletive “се” is a reflexive pronoun, transl. “In the discussion, I suppose, will affect important issues”.)</li>
+    </ul>
+  </li>
+  <li>Croatian:
+    <ul>
+      <li>Seb Bytyci, izvršni ravnatelj Instituta za balkansku politiku, slaže se s time. (expletive “se” is a reflexive pronoun, transl. “Seb Bytyci, executive director of the Institute for Balkan Policy, agrees.”)</li>
+    </ul>
+  </li>
+  <li>Danish:
+    <ul>
+      <li>Så skal der rafles om husholdningspengene. (expletive “der”, transl. “So, there will be discussions about household money”)</li>
+    </ul>
+  </li>
+  <li>Dutch:
+    <ul>
+      <li>Overigens is het ook niet uitgesloten, dat het stichtingsbestuur van Sparta zelf ook wijzigingen zal ondergaan. (expletive “het”, transl. “Moreover, it is also not excluded that the foundation of Sparta itself will undergo changes.”)</li>
+    </ul>
+  </li>
+  <li>English:
+    <ul>
+      <li>There has been talk that the night curfew might be implemented again. (expletive “there”)</li>
+    </ul>
+  </li>
+  <li>Finnish:
+    <ul>
+      <li>ajatus oli sekö, että aloitetaan kysymyksistä? (expletive pronoun marked as Clitic=Ko “sekö”, transl. “the idea was to start asking questions?”)</li>
+    </ul>
+  </li>
+  <li>French:
+    <ul>
+      <li>Il ne se représenta pas en 1972. (expletive “se”, transl. “He did not represent himself in 1972.”)</li>
+    </ul>
+  </li>
+  <li>Galician:
+    <ul>
+      <li>Ás cinco remátase de traballar. (expletive clitic “-se”, transl. “At five it is over to work”)</li>
+    </ul>
+  </li>
+  <li>German:
+    <ul>
+      <li>Die Party ist vorbei, heißt es nun. (expletive “es”, transl. “The party is over, it is now said”)</li>
+    </ul>
+  </li>
+  <li>Greek:
+    <ul>
+      <li>Πιστεύω ότι είναι δίκαιο να το αναγνωρίσουμε αυτό. (expletive “το”, transl. “I believe it is fair to recognize this.”)</li>
+    </ul>
+  </li>
+  <li>Italian:
+    <ul>
+      <li>L’intrigo internazionale si è svolto tra Beirut, Ginevra e Tripoli nel 1990. (expletive “si”, transl. “International intrigue took place between Beirut, Geneva and Tripoli in 1990.”)</li>
+    </ul>
+  </li>
+  <li>Norwegian:
+    <ul>
+      <li>Det var veldig positivt at han klarte å senke tiden sin (expletive “Det”, transl. “It was very positive that he managed to lower his time”)</li>
+    </ul>
+  </li>
+  <li>Portuguese:
+    <ul>
+      <li>Na confusão que se segue, parte um primeiro tiro […] (expletive “se”, transl. “In the confusion that follows, a first shot […]”)</li>
+    </ul>
+  </li>
+  <li>Romanian:
+    <ul>
+      <li>Dar asemenea lucruri nu le știai decât din zvonuri vagi. (expletive “le”, transl. “But you knew such things only from vague rumors.”)</li>
+    </ul>
+  </li>
+  <li>Russian:
+    <ul>
+      <li>Или это снег таял на груди? (expletive “это”, transl. “Or was it snow melting on his chest?”)</li>
+    </ul>
+  </li>
+  <li>Slovenian:
+    <ul>
+      <li>V takšnem primeru se lahko bolnikovo stanje celo poslabša. (expletive “se”, transl. “In this case, the patient’s condition may even deteriorate.”)</li>
+    </ul>
+  </li>
+  <li>Swedish:
+    <ul>
+      <li>Det är viktigt för dig att känna till de här nyheterna. (expletive “Det”, transl. “It is important for you to be familiar with these news”)</li>
+    </ul>
+  </li>
+  <li>Ukrainian:
+    <ul>
+      <li>Залишити слід на папері — це був вирішальний крок. (expletive “це”, transl. “Leave the mark on paper - it was a decisive step.”)</li>
+    </ul>
+  </li>
+</ul>
 
 
 

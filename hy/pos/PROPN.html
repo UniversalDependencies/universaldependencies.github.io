@@ -71,35 +71,35 @@ and names of months
 <em>(հունվար, փետրվար, մարտ, ապրիլ, մայիս, հունիս, հուլիս, օգոստոս, սեպտեմբեր, հոկտեմբեր, նոյեմբեր, դեկտեմբեր) </em>
 are not written capitalized (unlike English) and are not considered proper nouns.</p>
 
-<p>Single-word named entities should be tagged <code>PROPN</code> though they originate from a common noun (Աշտարակ, Իջևան) (towns) or an adjective (Սիզավետ, Որոտան) (village, river). Even if <em>սիզավետ</em> “grassy” is originally an adjective, syntactically it behaves as a noun. As a geographical name it denotes a concrete location (rather than a property of something).</p>
+<p>Single-word named entities should be tagged <code class="highlighter-rouge">PROPN</code> though they originate from a common noun (Աշտարակ, Իջևան) (towns) or an adjective (Սիզավետ, Որոտան) (village, river). Even if <em>սիզավետ</em> “grassy” is originally an adjective, syntactically it behaves as a noun. As a geographical name it denotes a concrete location (rather than a property of something).</p>
 
-<p>Note that names of languages (հայերեն, անգլերեն) and adjectives derived from geographical names (<em>հայկական, հայոց, անգլիական, երևանյան </em> “Armenian, English, of Yerevan”) are written in lowercase and are not tagged <code>PROPN</code>.</p>
+<p>Note that names of languages (հայերեն, անգլերեն) and adjectives derived from geographical names (<em>հայկական, հայոց, անգլիական, երևանյան </em> “Armenian, English, of Yerevan”) are written in lowercase and are not tagged <code class="highlighter-rouge">PROPN</code>.</p>
 
-<p>Personal names are typically treated as a sequence of proper nouns (one or more given names and one or more surnames). If the name contains prepositions, conjunctions or articles (foreign names), these are tagged as <a href="">ADP</a>, <a href="">CCONJ</a> and <a href="">DET</a>, respectively.</p>
+<p>Personal names are typically treated as a sequence of proper nouns (one or more given names and one or more surnames). If the name contains prepositions, conjunctions or articles (foreign names), these are tagged as <a href="">DET</a>, the morphological analysis do not includes their original part of speech.</p>
 
 <p>When other phrases or sentences are used as names, the component words retain their original tags. For example, in <em>«Մենք ենք, մեր սարերը» </em>, <em>Մենք </em> is <a href="">PRON</a>, <em>ենք </em> is <a href="">AUX</a>, <em>մեր </em> is <a href="">DET</a>, etc.</p>
 
-<p>Acronyms of proper nouns, such as <em>ՄԱԿ </em> “UN” and <em>ՆԱՏՕ </em> “NATO”, should be tagged <code>PROPN</code>. Even if they contain numbers (as in various product names), they are tagged <code>PROPN</code> and not <a href="">SYM</a>: <em>ՏՈՒ-154Մ </em>, <em>ԻԼ-76 </em>. However, if the token consists entirely of digits (like <em>7 </em> in <em>Windows 7 </em>), it is tagged <a href="">NUM</a>.</p>
+<p>Acronyms of proper nouns, such as <em>ՄԱԿ </em> “UN” and <em>ՆԱՏՕ </em> “NATO”, should be tagged <code class="highlighter-rouge">PROPN</code>. Even if they contain numbers (as in various product names), they are tagged <code class="highlighter-rouge">PROPN</code> and not <a href="">SYM</a>: <em>ՏՈՒ-154Մ </em>, <em>ԻԼ-76 </em>. However, if the token consists entirely of digits (like <em>7 </em> in <em>Windows 7 </em>), it is tagged <a href="">NUM</a>.</p>
 
 <p>Armenian multi-word named entities have internal syntactic
 structure, which is preserved in the annotation. The headword is always noun
-and there may be other nouns involved. They will be tagged <code>PROPN</code> if they are proper nouns as single-word named entities. Even if an adjective is the
+and there may be other nouns involved. They will be tagged <code class="highlighter-rouge">PROPN</code> if they are proper nouns as single-word named entities. Even if an adjective is the
 first word of a multi-word name, and thus it starts with an uppercase letter,
-it is still tagged <code>ADJ</code>.</p>
+it is still tagged <code class="highlighter-rouge">ADJ</code>.</p>
 
 <h3 id="examples">Examples</h3>
 
 <ul>
-  <li><em><b>Դոնի</b></em>.<code>PROPN</code> <em><b>Ռոստով</b></em>.<code>PROPN</code>, <em><b>Մայնի</b></em>.<code>PROPN</code> <em><b>Ֆրանկֆուրտ</b></em>.<code>PROPN</code> “Rostov-on-Don, Frankfurt am Main”. <em>Ռոստով </em> and <em>Ֆրանկֆուրտ </em> are the heads. The <em>Դոնի </em>, <em>Մայնի </em> parts refer to the rivers flowing through the city, and are tagged as <code>PROPN</code> too.</li>
-  <li><em>Վերին</em>.<code>ADJ</code> <em><b>Սասնաշեն</b></em>.<code>PROPN</code> is a village. <em>Սասնաշեն </em> is the head and it is
-tagged <code>PROPN</code> although it is a geographical name. <em>Վերին </em> is an adjective meaning “upper” and it is
-tagged <code>ADJ</code>.</li>
-  <li><em>Հյուսիսային</em>.<code>ADJ</code> <em>սառուցյալ</em>.<code>ADJ</code> <em>օվկիանոս</em>.<code>NOUN</code> “The Arctic Ocean”. Even though the three words
+  <li><em><b>Դոնի</b></em>.<code class="highlighter-rouge">PROPN</code> <em><b>Ռոստով</b></em>.<code class="highlighter-rouge">PROPN</code>, <em><b>Մայնի</b></em>.<code class="highlighter-rouge">PROPN</code> <em><b>Ֆրանկֆուրտ</b></em>.<code class="highlighter-rouge">PROPN</code> “Rostov-on-Don, Frankfurt am Main”. <em>Ռոստով </em> and <em>Ֆրանկֆուրտ </em> are the heads. The <em>Դոնի </em>, <em>Մայնի </em> parts refer to the rivers flowing through the city, and are tagged as <code class="highlighter-rouge">PROPN</code> too.</li>
+  <li><em>Վերին</em>.<code class="highlighter-rouge">ADJ</code> <em><b>Սասնաշեն</b></em>.<code class="highlighter-rouge">PROPN</code> is a village. <em>Սասնաշեն </em> is the head and it is
+tagged <code class="highlighter-rouge">PROPN</code> although it is a geographical name. <em>Վերին </em> is an adjective meaning “upper” and it is
+tagged <code class="highlighter-rouge">ADJ</code>.</li>
+  <li><em>Հյուսիսային</em>.<code class="highlighter-rouge">ADJ</code> <em>սառուցյալ</em>.<code class="highlighter-rouge">ADJ</code> <em>օվկիանոս</em>.<code class="highlighter-rouge">NOUN</code> “The Arctic Ocean”. Even though the three words
 together are a name of a particular ocean, <em>օվկիանոս</em> is a common noun and is
 tagged as such.</li>
-  <li><em>Միավորված</em>.<code>ADJ</code> <em>ազգերի</em>.<code>NOUN</code> <em>կազմակերպություն</em>.<code>NOUN</code> “United Nations Organization”
+  <li><em>Միավորված</em>.<code class="highlighter-rouge">ADJ</code> <em>ազգերի</em>.<code class="highlighter-rouge">NOUN</code> <em>կազմակերպություն</em>.<code class="highlighter-rouge">NOUN</code> “United Nations Organization”
 consists of three words, none of which is proper noun. However, the acronym
-<em><b>ՄԱԿ</b> </em> “UNO” is a single-token name and is tagged <code>PROPN</code>. In <em>ԵԱՀԿ.<code>PROPN</code></em> <em>Մինսկի.<code>PROPN</code></em> <em>խումբ.<code>NOUN</code></em> “The OSCE Minsk Group” the first two words as single-tokens are proper nouns and are tagged as such.</li>
+<em><b>ՄԱԿ</b> </em> “UNO” is a single-token name and is tagged <code class="highlighter-rouge">PROPN</code>. In <em>ԵԱՀԿ.<code class="highlighter-rouge">PROPN</code></em> <em>Մինսկի.<code class="highlighter-rouge">PROPN</code></em> <em>խումբ.<code class="highlighter-rouge">NOUN</code></em> “The OSCE Minsk Group” the first two words as single-tokens are proper nouns and are tagged as such.</li>
 </ul>
 
 
