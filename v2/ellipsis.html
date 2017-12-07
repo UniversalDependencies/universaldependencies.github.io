@@ -63,22 +63,22 @@
           <h1 id="archived-discussion-on-ellipsis-in-ud-v2">Archived discussion on Ellipsis in UD v2</h1>
 
 <blockquote>
-  <h1 id="notice">Notice</h1>
-  <p>This is an archive page. The final documentation is here: <a href="http://universaldependencies.org/u/overview/specific-syntax.html#ellipsis">http://universaldependencies.org/u/overview/specific-syntax.html#ellipsis</a></p>
+  <p>#Notice
+This is an archive page. The final documentation is here: <a href="http://universaldependencies.org/u/overview/specific-syntax.html#ellipsis">http://universaldependencies.org/u/overview/specific-syntax.html#ellipsis</a></p>
 </blockquote>
 
-<p>The <code>remnant</code> relation turned out to be a non-optimal way for analyzing complex ellipitical constructions. We therefore introduce the following changes in UD v2:</p>
+<p>The <code class="highlighter-rouge">remnant</code> relation turned out to be a non-optimal way for analyzing complex ellipitical constructions. We therefore introduce the following changes in UD v2:</p>
 
 <ul>
-  <li>The <code>remnant</code> relation is discarded</li>
+  <li>The <code class="highlighter-rouge">remnant</code> relation is discarded</li>
   <li>In the case of simple head ellipsis, a dependent is promoted</li>
-  <li>In case of predicate ellipsis, we also use promotion but introduce a new relation <code>orphan</code> for non-standard dependency relations that arise</li>
+  <li>In case of predicate ellipsis, we also use promotion but introduce a new relation <code class="highlighter-rouge">orphan</code> for non-standard dependency relations that arise</li>
   <li>The complex cases of ellipsis should be analyzed with NULL nodes in the <em>enhanced</em> representation</li>
 </ul>
 
-<h2 id="problems-with-the-remnant-analysis">Problems with the <code>remnant</code> analysis</h2>
+<h2 id="problems-with-the-remnant-analysis">Problems with the <code class="highlighter-rouge">remnant</code> analysis</h2>
 
-<p>The <a href="http://universaldependencies.org/docs/u/dep/remnant.html">old analysis</a> of elliptical constructions using the <code>remnant</code> relation does not work well when the second clause contains additional modifiers of the elided predicate.</p>
+<p>The <a href="http://universaldependencies.org/docs/u/dep/remnant.html">old analysis</a> of elliptical constructions using the <code class="highlighter-rouge">remnant</code> relation does not work well when the second clause contains additional modifiers of the elided predicate.</p>
 
 <pre><code class="language-sdparse">They had left the company , many for good .
 
@@ -90,7 +90,7 @@ obl(many, good)
 
 <p>In this example, <em>for good</em> is modifying the elided <em>left</em> of the second clause. However, as no similar modifier exists in the first clause, <em>for good</em> cannot be attached with a <em>remnant</em> relation and no reasonable analysis of this sentence is possible. In practice, annotators attached the extra modifier to the subject of the second clause, which incorrectly suggests that <em>for good</em> is modifying the subject <em>many</em>.</p>
 
-<p>Additional issues of the <code>remnant</code> analysis are:</p>
+<p>Additional issues of the <code class="highlighter-rouge">remnant</code> analysis are:</p>
 
 <ul>
   <li>The dependency trees contain a lot of non-projective dependencies, which complicates parsing.</li>
@@ -103,7 +103,7 @@ obl(many, good)
 
 <h3 id="nominals">Nominals</h3>
 
-<p>If the head nominal is elided, we promote dependents in the following order: <code>amod</code> &gt; <code>nummod</code> &gt; <code>det</code> &gt; <code>nmod</code> &gt; <code>case</code>.</p>
+<p>If the head nominal is elided, we promote dependents in the following order: <code class="highlighter-rouge">amod</code> &gt; <code class="highlighter-rouge">nummod</code> &gt; <code class="highlighter-rouge">det</code> &gt; <code class="highlighter-rouge">nmod</code> &gt; <code class="highlighter-rouge">case</code>.</p>
 
 <p>Examples:</p>
 
@@ -140,7 +140,7 @@ obj(saw-7, two-8)
 
 <h3 id="clauses">Clauses</h3>
 
-<p>If the main predicate is elided, we use simple promotion only if there is an <code>aux</code> or <code>cop</code>, or a <code>mark</code> in the case of an infinitival marker.</p>
+<p>If the main predicate is elided, we use simple promotion only if there is an <code class="highlighter-rouge">aux</code> or <code class="highlighter-rouge">cop</code>, or a <code class="highlighter-rouge">mark</code> in the case of an infinitival marker.</p>
 
 <p>Example:</p>
 
@@ -174,7 +174,7 @@ xcomp(want-7, to-8)
 
 <h2 id="predicate-ellipsis-in-basic-ud-v2">Predicate ellipsis in <em>Basic</em> UD v2</h2>
 
-<p>In more complicated cases where a predicate is elided but no <code>aux</code> or <code>cop</code> is present, promotion would lead to very unnatural and confusing relations. For example, in the following sentence, <em>you</em> would be the subject of <em>coffee</em>, suggesting that the second clause contains a copular construction rather than an elided predicate.</p>
+<p>In more complicated cases where a predicate is elided but no <code class="highlighter-rouge">aux</code> or <code class="highlighter-rouge">cop</code> is present, promotion would lead to very unnatural and confusing relations. For example, in the following sentence, <em>you</em> would be the subject of <em>coffee</em>, suggesting that the second clause contains a copular construction rather than an elided predicate.</p>
 
 <pre><code class="language-sdparse">I like tea and you coffee .
 
@@ -184,11 +184,11 @@ nsubj(coffee-6, you-5)
 conj(like-2, coffee-6)
 </code></pre>
 
-<p>We considered two alternative proposals for dealing with such cases in UD basic dependencies, one that make use of composite relations (but do not introduce any new relations) and one that instead adds a new relation named <code>orphan</code> to preserve intuitions about constituency. In the end we adopted alternative 2.</p>
+<p>We considered two alternative proposals for dealing with such cases in UD basic dependencies, one that make use of composite relations (but do not introduce any new relations) and one that instead adds a new relation named <code class="highlighter-rouge">orphan</code> to preserve intuitions about constituency. In the end we adopted alternative 2.</p>
 
 <h3 id="predicate-ellipis-1-composite-relations-rejected-variant">Predicate ellipis 1: composite relations (rejected variant)</h3>
 
-<p>The first alternative is to attach orphans to their grandparent with a composite relation of the form <code>headrel&gt;orphanrel</code>.</p>
+<p>The first alternative is to attach orphans to their grandparent with a composite relation of the form <code class="highlighter-rouge">headrel&gt;orphanrel</code>.</p>
 
 <p>Example:</p>
 
@@ -213,7 +213,7 @@ conj&gt;nsubj(wants-2, Jenny-8)
 conj&gt;xcomp&gt;obj(wants-2, CD-10)
 </code></pre>
 
-<p>Unlike the analysis using the <code>remnant</code> relation, this proposal also allows us to analyze sentences in which the second clause contains additional modifiers.</p>
+<p>Unlike the analysis using the <code class="highlighter-rouge">remnant</code> relation, this proposal also allows us to analyze sentences in which the second clause contains additional modifiers.</p>
 
 <pre><code class="language-sdparse">They had left the company , many for good .
 
@@ -223,7 +223,7 @@ conj&gt;nsubj(left, many)
 conj&gt;nmod(left, good)
 </code></pre>
 
-<p>This approach can also be used when the antecedent of the elided node is in another sentence. The artificial ROOT node is now allowed to have more than one child, but only if all are attached via composite relations, starting with <code>root&gt;</code>.</p>
+<p>This approach can also be used when the antecedent of the elided node is in another sentence. The artificial ROOT node is now allowed to have more than one child, but only if all are attached via composite relations, starting with <code class="highlighter-rouge">root&gt;</code>.</p>
 
 <pre><code class="language-sdparse">Mary wants to buy a book . ROOT And Jenny a CD .
 
@@ -236,7 +236,7 @@ root&gt;xcomp&gt;obj(ROOT, CD)
 
 <h3 id="predicate-ellipis-2-orphan-instead-of-remnant-approved-variant">Predicate ellipis 2: orphan instead of remnant (approved variant)</h3>
 
-<p>The second alternative preserves the integrity of the second conjunct as a single subtree by (arbitrarily) promoting one of the orphans to the (subclause) root and attaching the others with a new dummy relation <code>orphan</code>. Here are the same examples annotated according to this alternative:</p>
+<p>The second alternative preserves the integrity of the second conjunct as a single subtree by (arbitrarily) promoting one of the orphans to the (subclause) root and attaching the others with a new dummy relation <code class="highlighter-rouge">orphan</code>. Here are the same examples annotated according to this alternative:</p>
 
 <pre><code class="language-sdparse">I like tea and you coffee .
 
@@ -273,13 +273,13 @@ root(ROOT, Jenny)
 orphan(Jenny, CD)
 </code></pre>
 
-<p>Note that the <code>orphan</code> relation is only used when an ordinary relation would be misleading (for example, when attaching an object to a subject). In particular, the ordinary <code>cc</code> relation should be used for the coordinating conjunction, which attaches to the pseudo-constituent formed through the <code>orphan</code> dependency.</p>
+<p>Note that the <code class="highlighter-rouge">orphan</code> relation is only used when an ordinary relation would be misleading (for example, when attaching an object to a subject). In particular, the ordinary <code class="highlighter-rouge">cc</code> relation should be used for the coordinating conjunction, which attaches to the pseudo-constituent formed through the <code class="highlighter-rouge">orphan</code> dependency.</p>
 
 <p>All things considered, alternative 2 was judged to be the best analysis because it preserves the integrity of clauses, avoids the introduction of complex labels, and harmonizes well with the promotion analysis used for simpler cases of ellipsis.</p>
 
 <h2 id="predicate-ellipsis-in-enhanced-ud-v2">Predicate ellipsis in <em>Enhanced</em> UD v2</h2>
 
-<p>While we hold on to the principle that <em>basic</em> UD trees have to be strict surface syntax trees, we propose to relax this requirement in the <em>enhanced</em> representation and to allow special null nodes for sentences with elided predicates. These nodes have special word indices of the form <em>Ea.b</em>, where <em>a</em> is the index of the token that would precede the elided word and <em>b</em> is a counter. (See also the description of the <a href="conll-u.html">changes</a> to the CoNLL-U file format.) Whenever the <em>basic</em> representation contains an instance of the <code>orphan</code> relation, the <em>enhanced</em> representation contains additional null nodes so that all orphans can be attached to their real (ellided) parent.</p>
+<p>While we hold on to the principle that <em>basic</em> UD trees have to be strict surface syntax trees, we propose to relax this requirement in the <em>enhanced</em> representation and to allow special null nodes for sentences with elided predicates. These nodes have special word indices of the form <em>Ea.b</em>, where <em>a</em> is the index of the token that would precede the elided word and <em>b</em> is a counter. (See also the description of the <a href="conll-u.html">changes</a> to the CoNLL-U file format.) Whenever the <em>basic</em> representation contains an instance of the <code class="highlighter-rouge">orphan</code> relation, the <em>enhanced</em> representation contains additional null nodes so that all orphans can be attached to their real (ellided) parent.</p>
 
 <p>For example, the sentences from the previous section are analyzed as following in the <em>enhanced</em> representation. (The special null nodes are labelled with <em>Ea.b</em> .)</p>
 

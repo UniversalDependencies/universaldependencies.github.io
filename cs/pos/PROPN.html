@@ -74,7 +74,7 @@ and names of months
 are not written capitalized (unlike in English)
 and are not considered proper nouns.</p>
 
-<p>Single-word named entities should be tagged <code>PROPN</code> even if they originate
+<p>Single-word named entities should be tagged <code class="highlighter-rouge">PROPN</code> even if they originate
 from a common noun <em>(Zajíc, Huť) </em> or an adjective <em>(Veselý, Teplá). </em>
 Even if they were originally adjectives and inflect according to adjectival
 paradigms, they behave syntactically as nouns. For instance, <em>Teplá </em>
@@ -86,21 +86,21 @@ genders).</p>
 
 <p>Note that names of languages <em>(čeština, angličtina)</em>
 and adjectives derived from geographical names <em>(český, anglický </em> “Czech, English”)
-are written in lowercase and are not tagged <code>PROPN</code>.</p>
+are written in lowercase and are not tagged <code class="highlighter-rouge">PROPN</code>.</p>
 
 <p>Personal names are typically treated as a sequence of proper nouns
 (one or more given names and one or more surnames).
 If the name contains prepositions, conjunctions or articles (foreign names
-and old Czech names), these are tagged as <code>ADP</code>, <code>CCONJ</code> and <code>DET</code>,
+and old Czech names), these are tagged as <code class="highlighter-rouge">ADP</code>, <code class="highlighter-rouge">CCONJ</code> and <code class="highlighter-rouge">DET</code>,
 respectively.</p>
 
 <p>Czech (and other Slavic) multi-word named entities have internal syntactic
 structure, which is preserved in the annotation. The headword is always noun
-and there may be other nouns involved. They will be tagged either <code>PROPN</code> or
-<code>NOUN</code> and possible ambiguities must be resolved individually.
-Modifying adjectives are never tagged <code>PROPN</code>. Even if an adjective is the
+and there may be other nouns involved. They will be tagged either <code class="highlighter-rouge">PROPN</code> or
+<code class="highlighter-rouge">NOUN</code> and possible ambiguities must be resolved individually.
+Modifying adjectives are never tagged <code class="highlighter-rouge">PROPN</code>. Even if an adjective is the
 first word of a multi-word name, and thus it starts with an uppercase letter,
-it is still tagged <code>ADJ</code>.
+it is still tagged <code class="highlighter-rouge">ADJ</code>.
 Similarly, function words in named entities retain their normal tags.
 These rules are less strict for foreign named entities where the original
 part of speech is hidden for a Czech speaker.</p>
@@ -108,20 +108,20 @@ part of speech is hidden for a Czech speaker.</p>
 <h3 id="examples">Examples</h3>
 
 <ul>
-  <li><em><b>Bečov</b></em>.<code>PROPN</code> <em>nad</em>.<code>ADP</code> <em><b>Teplou</b></em>.<code>PROPN</code> is a city. <em>Bečov </em> is the head
+  <li><em><b>Bečov</b></em>.<code class="highlighter-rouge">PROPN</code> <em>nad</em>.<code class="highlighter-rouge">ADP</code> <em><b>Teplou</b></em>.<code class="highlighter-rouge">PROPN</code> is a city. <em>Bečov </em> is the head
 and the <em>nad Teplou </em> part refers to the river flowing through the city,
 to distinguish it from other Bečovs.</li>
-  <li><em>Červený</em>.<code>ADJ</code> <em><b>Újezd</b></em>.<code>PROPN</code> is a village. <em>Újezd </em> is the head and it is
-tagged <code>PROPN</code> although it originates in the common noun <em>újezd </em> “district, riding”.
+  <li><em>Červený</em>.<code class="highlighter-rouge">ADJ</code> <em><b>Újezd</b></em>.<code class="highlighter-rouge">PROPN</code> is a village. <em>Újezd </em> is the head and it is
+tagged <code class="highlighter-rouge">PROPN</code> although it originates in the common noun <em>újezd </em> “district, riding”.
 There are many locations named <em>Újezd </em> and the noun is perceived as a proper
 noun in current Czech. <em>Červený </em> is an adjective meaning “red” and it is
-tagged <code>ADJ</code>.</li>
-  <li><em>Červená</em>.<code>ADJ</code> <em>řeka</em>.<code>NOUN</code> “Red River”. Even though the two words
+tagged <code class="highlighter-rouge">ADJ</code>.</li>
+  <li><em>Červená</em>.<code class="highlighter-rouge">ADJ</code> <em>řeka</em>.<code class="highlighter-rouge">NOUN</code> “Red River”. Even though the two words
 together are a name of a particular river, <em>řeka</em> is a common noun and is
 tagged as such.</li>
-  <li><em>Organizace</em>.<code>NOUN</code> <em>spojených</em>.<code>ADJ</code> <em>národů</em>.<code>NOUN</code> “United Nations Organization”
+  <li><em>Organizace</em>.<code class="highlighter-rouge">NOUN</code> <em>spojených</em>.<code class="highlighter-rouge">ADJ</code> <em>národů</em>.<code class="highlighter-rouge">NOUN</code> “United Nations Organization”
 consists of three words, none of which is proper noun. However, the acronym
-<em><b>OSN</b> </em> “UNO” is a single-token name and is tagged <code>PROPN</code>.</li>
+<em><b>OSN</b> </em> “UNO” is a single-token name and is tagged <code class="highlighter-rouge">PROPN</code>.</li>
 </ul>
 
 <h3 id="conversion-from-the-prague-dependency-treebank">Conversion from the Prague Dependency Treebank</h3>
@@ -129,10 +129,10 @@ consists of three words, none of which is proper noun. However, the acronym
 <p>The PDT set of morphological (part-of-speech) tags does not distinguish
 common and proper nouns. However, lemmas in PDT contain additional features
 that also encode types of named entities. When converting the PDT annotation
-to UD, these lemma features are removed, the <code>PROPN</code> tag is used and the feature
+to UD, these lemma features are removed, the <code class="highlighter-rouge">PROPN</code> tag is used and the feature
 <a href="">cs-feat/NameType</a> is added to the universal features to preserve the type.
 Only nouns are treated this way.
-Foreign adjectives are not converted to <code>PROPN</code> despite the fact
+Foreign adjectives are not converted to <code class="highlighter-rouge">PROPN</code> despite the fact
 that they entered Czech as parts of foreign names and their lemmas contain
 the name type feature.</p>
 

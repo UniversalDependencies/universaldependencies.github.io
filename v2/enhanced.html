@@ -105,7 +105,7 @@ xcomp(E8.1-9, E8.2-10)
 obj(E8.2-10, CD-12)
 </code></pre>
 
-<p>Note that this is a case in which the <em>enhanced</em> UD graph is not a supergraph of the <em>basic</em> tree as the <em>basic</em> tree contains <code>orphan</code> relations, which are not present in the <em>enhanced</em> UD graph.</p>
+<p>Note that this is a case in which the <em>enhanced</em> UD graph is not a supergraph of the <em>basic</em> tree as the <em>basic</em> tree contains <code class="highlighter-rouge">orphan</code> relations, which are not present in the <em>enhanced</em> UD graph.</p>
 
 <h2 id="controlledraised-subjects">Controlled/raised subjects</h2>
 
@@ -210,7 +210,7 @@ nsubj(buy, John)
 
 <h3 id="conjoined-modifiers">Conjoined modifiers</h3>
 
-<p>Each conjunct in a conjoined modifier phrase gets attached to the governor of the modifier phrase. For example, the following phrase contains a conjoined adjectival phrase that modifies a noun. In the enhanced representation, there is an additional <code>amod</code> relation between the noun <em>river</em> and the second conjunct <em>wide</em>.</p>
+<p>Each conjunct in a conjoined modifier phrase gets attached to the governor of the modifier phrase. For example, the following phrase contains a conjoined adjectival phrase that modifies a noun. In the enhanced representation, there is an additional <code class="highlighter-rouge">amod</code> relation between the noun <em>river</em> and the second conjunct <em>wide</em>.</p>
 
 <pre><code class="language-sdparse">a long and wide river
 
@@ -223,7 +223,7 @@ conj(long, wide)
 
 <p>(See also the notes on <a href="core-dependents.html">core dependents</a> for a detailed discussion of the new analysis of passive constructions in the <em>basic</em> representation.)</p>
 
-<p>We propose that we no longer use a special <code>nsubjpass</code> relation in the <em>basic</em> representation. However, the distiction between regular subjects and subjects in passive constructions is still highly useful for many NLP tasks. We therefore propose to use the relations <code>nsubj:pass</code> <!--(for languages without `dobj`/`iobj` distinction), `nsubj:passdir`, `nsubj:passind`,-->and <code>obl:agent</code> for the arguments of a passivized verb.</p>
+<p>We propose that we no longer use a special <code class="highlighter-rouge">nsubjpass</code> relation in the <em>basic</em> representation. However, the distiction between regular subjects and subjects in passive constructions is still highly useful for many NLP tasks. We therefore propose to use the relations <code class="highlighter-rouge">nsubj:pass</code> <!--(for languages without `dobj`/`iobj` distinction), `nsubj:passdir`, `nsubj:passind`,-->and <code class="highlighter-rouge">obl:agent</code> for the arguments of a passivized verb.</p>
 
 <pre><code class="language-sdparse">The book was written by the author .
 
@@ -255,7 +255,7 @@ nsubj(yıkattı, Bilge)
 
 <h2 id="relative-clauses">Relative clauses</h2>
 
-<p>In <em>basic</em> trees, relative pronouns are attached to the main predicate of the relative clause (typically with a <code>nsubj</code> or <code>dobj</code> relation). In the corresponding <em>enhanced</em> graphs, the relative pronoun is attached to what it is referring to with the special <code>ref</code> relation and the governor of the relative clause is attached as an argument to the main predicate of the relative clause. Note that such graphs contain a cycle.</p>
+<p>In <em>basic</em> trees, relative pronouns are attached to the main predicate of the relative clause (typically with a <code class="highlighter-rouge">nsubj</code> or <code class="highlighter-rouge">dobj</code> relation). In the corresponding <em>enhanced</em> graphs, the relative pronoun is attached to what it is referring to with the special <code class="highlighter-rouge">ref</code> relation and the governor of the relative clause is attached as an argument to the main predicate of the relative clause. Note that such graphs contain a cycle.</p>
 
 <p><em>Basic</em> tree:</p>
 
@@ -293,7 +293,7 @@ obj(read, book)
 
 <h2 id="case-information">Case Information</h2>
 
-<p>Adding prepositions (or case information) to the relation name of non-core dependents often makes it possible to disambiguate its  semantic role. We therefore augment <code>nmod</code>, <code>obl</code>, <code>acl</code> and <code>advcl</code> relation labels with the preposition or the case of the modifier.</p>
+<p>Adding prepositions (or case information) to the relation name of non-core dependents often makes it possible to disambiguate its  semantic role. We therefore augment <code class="highlighter-rouge">nmod</code>, <code class="highlighter-rouge">obl</code>, <code class="highlighter-rouge">acl</code> and <code class="highlighter-rouge">advcl</code> relation labels with the preposition or the case of the modifier.</p>
 
 <pre><code class="language-sdparse">the house on the hill
 

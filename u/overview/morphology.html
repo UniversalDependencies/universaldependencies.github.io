@@ -87,11 +87,11 @@ and features. See also <a href="tokenization.html">Tokenization</a> and
 
 <h2 id="lemmas">Lemmas</h2>
 
-<p>The <code>LEMMA</code> field should contain the canonical or base form of the word, such as the form typically found in dictionaries.</p>
+<p>The <code class="highlighter-rouge">LEMMA</code> field should contain the canonical or base form of the word, such as the form typically found in dictionaries.</p>
 
-<p>If the lemma is not available, an underscore (“<code>_</code>”) can be used to indicate its absence.</p>
+<p>If the lemma is not available, an underscore (“<code class="highlighter-rouge">_</code>”) can be used to indicate its absence.</p>
 
-<p>The <code>LEMMA</code> field should not be used to encode features or other similar properties of the word (use <code>FEATS</code> and <code>MISC</code> instead; see <a href="../../format.html">format</a>).</p>
+<p>The <code class="highlighter-rouge">LEMMA</code> field should not be used to encode features or other similar properties of the word (use <code class="highlighter-rouge">FEATS</code> and <code class="highlighter-rouge">MISC</code> instead; see <a href="../../format.html">format</a>).</p>
 
 <h2 id="part-of-speech-tags">Part-of-Speech Tags</h2>
 
@@ -105,8 +105,8 @@ allows an additional POSTAG, taken from a language-specific
 (or corpus-specific) tagset. Such language-specific POSTAGs have their own
 data column and are not mixed with the universal POS tags.</p>
 
-<p>The universal POS tags consist of uppercase English letters <code>[A-Z]</code> only.
-Just one tag per word is expected, and it should not be empty. (Use the <code>X</code> tag
+<p>The universal POS tags consist of uppercase English letters <code class="highlighter-rouge">[A-Z]</code> only.
+Just one tag per word is expected, and it should not be empty. (Use the <code class="highlighter-rouge">X</code> tag
 instead of underscore if no other tag is appropriate.)</p>
 
 <h3 id="using-a-word-vs-mentioning-it">Using a word vs. mentioning it</h3>
@@ -135,11 +135,11 @@ pronominal <a href="/u/pos/ADV.html">adverbs</a> <em>(where, when, how)</em>, an
   <li>In most cases it is straightforward to determine whether a word is pronominal (see also the <a href="/u/feat/PronType.html">PronType</a> feature)
 but the borderline between indefinite determiners and adjectives is slightly fuzzy. Related languages should synchronize the lists of words
 they treat as pronominal. The rest of these guidelines demarcate borders within the pronominal group.</li>
-  <li>Pronominal adverbs are tagged <code>ADV</code>. Their pronominality is encoded using the <code>PronType</code> feature. Their typical syntactic function is to modify verbs.</li>
-  <li>Articles <em>(the, a, an)</em> are always tagged <code>DET</code>; their <code>PronType</code> is <code>Art</code>.</li>
-  <li>Pronominal numerals (quantifiers) are tagged <code>DET</code>; besides <code>PronType</code>, they also use the <a href="/u/feat/NumType.html">NumType</a> feature.</li>
-  <li>Words that behave similar to adjectives are <code>DET</code>.
-(We understand the <code>DET</code> class as pro-adjectives, which is a slightly broader sense than what is usually regarded as determiners in English.
+  <li>Pronominal adverbs are tagged <code class="highlighter-rouge">ADV</code>. Their pronominality is encoded using the <code class="highlighter-rouge">PronType</code> feature. Their typical syntactic function is to modify verbs.</li>
+  <li>Articles <em>(the, a, an)</em> are always tagged <code class="highlighter-rouge">DET</code>; their <code class="highlighter-rouge">PronType</code> is <code class="highlighter-rouge">Art</code>.</li>
+  <li>Pronominal numerals (quantifiers) are tagged <code class="highlighter-rouge">DET</code>; besides <code class="highlighter-rouge">PronType</code>, they also use the <a href="/u/feat/NumType.html">NumType</a> feature.</li>
+  <li>Words that behave similar to adjectives are <code class="highlighter-rouge">DET</code>.
+(We understand the <code class="highlighter-rouge">DET</code> class as pro-adjectives, which is a slightly broader sense than what is usually regarded as determiners in English.
 In particular, it is possible that one nominal is modified by more than one determiner.) Similar behavior means:
     <ul>
       <li>They are more likely to be used attributively (modifying a noun phrase) than substantively (replacing a noun phrase). They may occur alone, though.
@@ -149,9 +149,9 @@ Especially the ability to inflect for gender is typical for adjectives and deter
 (Gender of nouns is determined lexically and determiners may be required by the grammar to agree with their nouns in gender; therefore they need to inflect for gender.)</li>
     </ul>
   </li>
-  <li>Non-possessive personal, reflexive or reciprocal pronouns are always tagged <code>PRON</code>.</li>
-  <li>Possessives vary across languages. In some languages the above tests put them in the <code>DET</code> category.
-In others, they are more like a normal personal pronoun in a specific case (often the genitive), or a personal pronoun with an adposition; they are tagged <code>PRON</code>.</li>
+  <li>Non-possessive personal, reflexive or reciprocal pronouns are always tagged <code class="highlighter-rouge">PRON</code>.</li>
+  <li>Possessives vary across languages. In some languages the above tests put them in the <code class="highlighter-rouge">DET</code> category.
+In others, they are more like a normal personal pronoun in a specific case (often the genitive), or a personal pronoun with an adposition; they are tagged <code class="highlighter-rouge">PRON</code>.</li>
   <li>When the above rules do not help, the category should be based on what the traditional grammar of the language says.</li>
   <li>Ideally, language-specific documentation should list pronominal words and their category. These are all closed classes so it should not be difficult.</li>
 </ul>
@@ -168,9 +168,9 @@ for specific POS tags:</p>
 <h2 id="features">Features</h2>
 
 <p>Features are additional pieces of information about the word, its part of speech
-and morphosyntactic properties. Every feature has the form <code>Name=Value</code> and
+and morphosyntactic properties. Every feature has the form <code class="highlighter-rouge">Name=Value</code> and
 every word can have any number of features, separated by the vertical bar, as in
-<code>Gender=Masc|Number=Sing</code>.</p>
+<code class="highlighter-rouge">Gender=Masc|Number=Sing</code>.</p>
 
 <p>We provide an <a href="../../u/feat/index.html">inventory of
 features</a> that are attested in multiple corpora and it is thus
@@ -193,22 +193,22 @@ Universal and language-specific features of a word are listed together in the FE
   <li>All identifiers (both features and values) consist of English letters or,
 occasionally, digits 0-9. The first letter is always uppercase.
 The other letters are generally lowercase, except for positions where new
-internal words are marked for better readability (e.g. <code>NumType</code>).
+internal words are marked for better readability (e.g. <code class="highlighter-rouge">NumType</code>).
 This makes features distinct from the 
 <a href="../../u/pos/index.html">universal POS tags</a> 
 (all uppercase) and from the 
 <a href="../../u/dep/index.html">universal dependency relations</a> 
 (all lowercase).</li>
   <li>A feature of a word should always be fully specified in the data, i.e. both
-the feature name and the value should be identified: <code>PronType=Prs</code>.
+the feature name and the value should be identified: <code class="highlighter-rouge">PronType=Prs</code>.
 Note that the values are not guaranteed to be unique across features,
-e.g. <code>Sup</code> could denote the superessive case, superlative degree of comparison
+e.g. <code class="highlighter-rouge">Sup</code> could denote the superessive case, superlative degree of comparison
 or supine (a verb form).</li>
   <li>Not mentioning a feature in the data implies the empty value,
 which means that the feature is either irrelevant for this part of speech,
 or its value cannot be determined for this word form due to language-specific reasons.</li>
   <li>It is possible to declare that a feature has two or more values for a given word:
-<code>Case=Acc,Dat</code>. The interpretation is that the word may have one of these values
+<code class="highlighter-rouge">Case=Acc,Dat</code>. The interpretation is that the word may have one of these values
 but we cannot decide between them. Such <em>multivalues</em> should be used sparingly.
 They should not be used if the value list would cover the whole value space,
 or the subspace valid for the given language.
@@ -219,7 +219,7 @@ always ordered alphabetically; if a feature has multiple values, these are
 ordered alphabetically, too. This rule facilitates cases when it is necessary
 to compare feature sets of two words.
 Alphabetical sorting means that uppercase letters are considered identical to their lowercase counterparts.
-So for example, <code>Number</code> precedes <code>NumType</code>.</li>
+So for example, <code class="highlighter-rouge">Number</code> precedes <code class="highlighter-rouge">NumType</code>.</li>
   <li>Description of individual features usually hints what parts of speech the
 feature is likely to appear with. This information is intended to help
 understand the typical usage of the feature; however, it is <em>not a strict rule!</em>
@@ -261,14 +261,14 @@ the possessor.</p>
 
 <p>If a feature is (can be) layered in a language, the name of the feature must
 indicate the layer. An additional identifier in square brackets is used to
-distinguish layers, e.g. <code>Gender[psor]</code> for the possessor’s gender.
+distinguish layers, e.g. <code class="highlighter-rouge">Gender[psor]</code> for the possessor’s gender.
 We recommend that the layer identifiers consist of lowercase English letters
-<code>[a-z]</code> and/or digits <code>[0-9]</code>.
+<code class="highlighter-rouge">[a-z]</code> and/or digits <code class="highlighter-rouge">[0-9]</code>.
 The layers, their meaning and their
 identifiers must be defined in a language-specific extension to this
 documentation. For each layered feature, one layer may be defined as default
 and the corresponding features then appear without identifier,
-e.g. <code>Gender=Masc|Gender[psor]=Fem</code>.</p>
+e.g. <code class="highlighter-rouge">Gender=Masc|Gender[psor]=Fem</code>.</p>
 
 
       </div>

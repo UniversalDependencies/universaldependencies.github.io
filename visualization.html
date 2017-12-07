@@ -81,13 +81,13 @@ acomp(looks, beautiful)
 represented in either the Stanford Dependency or CoNLL-X format. For
 example, the above visualization is generated from this input:</p>
 
-<pre><code>An adjectival complement of a verb is an adjectival phrase which functions as the complement (see [ADJ]()).
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>An adjectival complement of a verb is an adjectival phrase which functions as the complement (see [ADJ]()).
 
 ~~~ sdparse
 She looks very beautiful
 acomp(looks, beautiful)
 ~~~
-</code></pre>
+</code></pre></div></div>
 
 <p>See the <a href="#more-information">links below</a> for more information.</p>
 
@@ -117,11 +117,11 @@ on how the visualized examples are created.</p>
 <p>A single tree in the Stanford Dependency format can be embedded using
 the following syntax:</p>
 
-<pre><code>~~~ sdparse
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~~~ sdparse
 Dogs run
 nsubj(run, Dogs)
 ~~~
-</code></pre>
+</code></pre></div></div>
 
 <p>which results in this embedded visualization:</p>
 
@@ -131,11 +131,11 @@ nsubj(run, Dogs)
 
 <p>The CoNLL-X format is also supported. For example,</p>
 
-<pre><code>~~~ conllx
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~~~ conllx
 1    Dogs   dog    _    NNS    _    2    nsubj
 2    run    run    _    VBP    _    0    ROOT
 ~~~
-</code></pre>
+</code></pre></div></div>
 
 <p>gives</p>
 
@@ -145,14 +145,14 @@ nsubj(run, Dogs)
 
 <p>Similarly, the new <a href="format.html">CoNLL-U format</a> is now supported as well:</p>
 
-<pre><code>~~~ conllu
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~~~ conllu
 # I wrote the letter with a quill.
 1   Я         ja         PRON   _   Case=Nom|Number=Sing|Person=1|PronType=Prs        2   nsubj   _   I
 2   написал   napisat'   VERB   _   Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act   0   root    _   wrote
 3   письмо    pis'mo     NOUN   _   Case=Acc|Gender=Neut|Number=Sing                  2   obj     _   the-letter
 4   пером     pero       NOUN   _   Case=Ins|Gender=Neut|Number=Sing                  2   nmod    _   with-a-quill
 ~~~
-</code></pre>
+</code></pre></div></div>
 
 <pre><code class="language-conllu"># I wrote the letter with a quill.
 1   Я         ja         PRON   _   Case=Nom|Number=Sing|Person=1|PronType=Prs        2   nsubj   _   I
@@ -165,7 +165,7 @@ nsubj(run, Dogs)
 to highlight a node / arc or to distinguish tree that does not adhere to
 the UD standard:</p>
 
-<pre><code>~~~ conllu
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~~~ conllu
 # This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
 # visual-style nodes yellow
 # visual-style arcs blue
@@ -177,7 +177,7 @@ the UD standard:</p>
 6   nehodě    nehoda    NOUN    _   _   5   Obj    _   accident
 7   .         .         PUNCT   _   _   0   AuxK   _   .
 ~~~
-</code></pre>
+</code></pre></div></div>
 
 <pre><code class="language-conllu"># This is not UD, it is Prague Dependency Treebank, and we want to clearly distinguish it from the UD examples.
 # visual-style nodes yellow
@@ -198,23 +198,23 @@ standard HTML content can be freely mixed with the visualizations.</p>
 
 <h2 id="alternative-form">Alternative form</h2>
 
-<p>As an alternative to the <code>~~~</code> syntax, you can use the equivalent HTML
+<p>As an alternative to the <code class="highlighter-rouge">~~~</code> syntax, you can use the equivalent HTML
 tag form:</p>
 
-<pre><code>&lt;div class="sd-parse"&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div class="sd-parse"&gt;
 Dogs run
 nsubj(run, Dogs)
 &lt;/div&gt;
-</code></pre>
+</code></pre></div></div>
 
 <p>This form is more flexible in allowing e.g. additional attributes
 to control aspects of the visualization. For example,</p>
 
-<pre><code>&lt;div class="sd-parse" id="simple-example-parse" tabs="yes"&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div class="sd-parse" id="simple-example-parse" tabs="yes"&gt;
 Dogs run
 nsubj(run, Dogs)
 &lt;/div&gt;
-</code></pre>
+</code></pre></div></div>
 
 <p>gives</p>
 
@@ -225,9 +225,9 @@ nsubj(run, Dogs)
 
 <h2 id="ambiguous-tokens">Ambiguous tokens</h2>
 
-<p>If your example has several instances of the same token, you can use their position to refer to the exact token. In the following example <code>can-5</code> refers to the fifth token of the sentence, <code>can</code>.</p>
+<p>If your example has several instances of the same token, you can use their position to refer to the exact token. In the following example <code class="highlighter-rouge">can-5</code> refers to the fifth token of the sentence, <code class="highlighter-rouge">can</code>.</p>
 
-<pre><code>~~~ sdparse
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~~~ sdparse
 I can can the can .
 nsubj(can-3, I)
 aux(can-3, can-2)
@@ -235,7 +235,7 @@ det(can-5,the)
 obj(can-3,can-5)
 punct(can-3,.)
 ~~~
-</code></pre>
+</code></pre></div></div>
 
 <p>will result in this visualization</p>
 
@@ -251,7 +251,7 @@ punct(can-3,.)
 
 <p>POS tags are optional and use the format “text/POS”.</p>
 
-<pre><code>~~~ sdparse
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~~~ sdparse
 POS/NNP tags/NNS can/MD be/VB attached/VBN to/TO ( any part of ) the/DT sentence/NN text/NN ./.
 dep(tags-2, POS-1)
 nsubjpass(attached-5, tags-2)
@@ -264,7 +264,7 @@ pobj(to-6, text-14)
 det(part, any)
 prep(part, of)
 ~~~
-</code></pre>
+</code></pre></div></div>
 
 <pre><code class="language-sdparse">POS/NNP tags/NNS can/MD be/VB attached/VBN to/TO ( any part of ) the/DT sentence/NN text/NN ./.
 dep(tags-2, POS-1)
@@ -281,11 +281,11 @@ prep(part, of)
 
 <p>Any literal slashes (“/”) can be escaped using backslash.</p>
 
-<pre><code> ~~~ sdparse
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ~~~ sdparse
  \\/\\ escapes/VBZ :/: \\o\//\\o\/
  nsubj(escapes, \)
  ~~~
-</code></pre>
+</code></pre></div></div>
 
 <pre><code class="language-sdparse">\\/\\ escapes/VBZ :/: \\o\//\\o\/
 nsubj(escapes, \)
@@ -296,24 +296,24 @@ nsubj(escapes, \)
 <p>Features can be specified using the syntax “text/POS[Name=Value]”.
 Multiple features for a single word are separated by a bar (“|”).</p>
 
-<pre><code>~~~ sdparse
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~~~ sdparse
 Token/TAG[Feat1=Val1|Feat2=Val2]
 ~~~
-</code></pre>
+</code></pre></div></div>
 
 <pre><code class="language-sdparse">Token/TAG[Feat1=Val1|Feat2=Val2]
 </code></pre>
 
 <h2 id="multiple-lines-of-text">Multiple lines of text</h2>
 
-<p>The literal sequence <code>\n</code> in the SD input text is interpreted as a
+<p>The literal sequence <code class="highlighter-rouge">\n</code> in the SD input text is interpreted as a
 newline. (This sequence should be separated by space from the rest of
 the input.)</p>
 
-<pre><code>~~~ sdparse
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~~~ sdparse
 One line \n and another.
 ~~~
-</code></pre>
+</code></pre></div></div>
 
 <p>gives:</p>
 
@@ -323,14 +323,14 @@ One line \n and another.
 <h2 id="editing">Editing</h2>
 
 <p>Controls for visualization editing and information is accessible in
-elements with the attribute <code>tabs="yes"</code> (or any other non-empty
+elements with the attribute <code class="highlighter-rouge">tabs="yes"</code> (or any other non-empty
 value):</p>
 
-<pre><code>&lt;div class="sd-parse" id="simple-example-parse" tabs="yes"&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div class="sd-parse" id="simple-example-parse" tabs="yes"&gt;
 Dogs run
 nsubj(run, Dogs)
 &lt;/div&gt;
-</code></pre>
+</code></pre></div></div>
 
 <p>This gives:</p>
 
@@ -347,12 +347,12 @@ server. This is mostly useful to build and debug examples.</p>
 
 <p>Everything is unicode-compliant.</p>
 
-<pre><code>~~~ sdparse
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~~~ sdparse
 ロボットは 東大に 入れる か 。
 nsubj(入れる, ロボットは)
 nommod(入れる, 東大に)
 ~~~
-</code></pre>
+</code></pre></div></div>
 
 <pre><code class="language-sdparse">ロボットは 東大に 入れる か 。
 nsubj(入れる, ロボットは)
@@ -365,14 +365,14 @@ nommod(入れる, 東大に)
 pages that are part of a <em>collection</em> (e.g. universal dependency
 types, POS tags, etc.).</p>
 
-<p>The basic syntax is <code>[COLL/DOC]()</code>, where <code>COLL</code> is the collection
-name and <code>DOC</code> the document title. For example, <code>[u-dep/aux]()</code> is
+<p>The basic syntax is <code class="highlighter-rouge">[COLL/DOC]()</code>, where <code class="highlighter-rouge">COLL</code> is the collection
+name and <code class="highlighter-rouge">DOC</code> the document title. For example, <code class="highlighter-rouge">[u-dep/aux]()</code> is
 linked as follows: <a href="">u-dep/aux</a>.</p>
 
-<p>The shorter form <code>[DOC]()</code> (omitting the collection) can be used when
+<p>The shorter form <code class="highlighter-rouge">[DOC]()</code> (omitting the collection) can be used when
 referring to another document in the current collection (e.g. linking
-between different documents in the <code>u-dep</code> collection) or when the
-document title is unique. For example, <code>[nmod:own]()</code> can be assured
+between different documents in the <code class="highlighter-rouge">u-dep</code> collection) or when the
+document title is unique. For example, <code class="highlighter-rouge">[nmod:own]()</code> can be assured
 to link to <a href="">nmod:own</a> as the type is unique to the Finnish
 annotation.</p>
 

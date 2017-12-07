@@ -69,27 +69,27 @@ guidelines.</p>
 
 <hr />
 
-<h2 id="rel-relativizer"><code>rel</code> (relativizer)</h2>
+<h2 id="rel-relativizer"><code class="highlighter-rouge">rel</code> (relativizer)</h2>
 <!-- this section originally from TDT guidelines section 2.44 -->
 
 <p>(The following section was lifted from the TDT documentation for
-<code>rel</code>, which is removed in UD Finnish. See
+<code class="highlighter-rouge">rel</code>, which is removed in UD Finnish. See
 <a href="https://github.com/UniversalDependencies/docs/issues/73">https://github.com/UniversalDependencies/docs/issues/73</a> for more
 information.)</p>
 
-<p>In TDT, the <em>relativizer</em> (<code>rel</code>) is the head of the phrase containing
+<p>In TDT, the <em>relativizer</em> (<code class="highlighter-rouge">rel</code>) is the head of the phrase containing
 the relative pronoun (or other relative word). Most often, but not
 always, this is the relative word itself. The governor of the
 dependency is the main predicate of the relative clause.</p>
 
 <p>For UD Finnish, relative markers are be mapped to the syntactic role
-that the relative is playing in the relative clause, such as <code>nsubj</code>
-or <code>obj</code>. This information is present in the second annotation layer
+that the relative is playing in the relative clause, such as <code class="highlighter-rouge">nsubj</code>
+or <code class="highlighter-rouge">obj</code>. This information is present in the second annotation layer
 of the TDT corpus.</p>
 
 <!-- TODO Annotation of relative clauses is more closely examined in Section [relclauses](#sec-relclauses). -->
 
-<p><strong>NOTE</strong>: this is TDT example using <code>rel</code>, not a UD Finnish example.</p>
+<p><strong>NOTE</strong>: this is TDT example using <code class="highlighter-rouge">rel</code>, not a UD Finnish example.</p>
 
 <!-- fname:rel_basic.pdf -->
 <pre><code class="language-sdparse">Auto , joka ohitti meidät , ajoi hyvin nopeasti . \n The_car , which passed us , drove very fast .
@@ -104,7 +104,7 @@ advmod(nopeasti-9, hyvin-8)
 punct(ajoi-7, .-10)
 </code></pre>
 
-<p><strong>NOTE</strong>: this is TDT example using <code>rel</code>, not a UD Finnish example.</p>
+<p><strong>NOTE</strong>: this is TDT example using <code class="highlighter-rouge">rel</code>, not a UD Finnish example.</p>
 
 <!-- fname:rel_phrase.pdf -->
 <pre><code class="language-sdparse">Nainen , jonka auto hajosi , pyysi apuamme . \n The_lady , whose car broke , asked_for our_help .
@@ -188,8 +188,8 @@ this distinction is made explicit with additional dependencies on top
 of the tree structure. That is, if an element modifies or governs
 multiple coordinated elements, it should be <em>propagated</em> to them. In
 principle, any dependency type introduced in Sections 2 and 3, with
-the exceptions of <a href=""><code>punct</code></a>, <a href=""><code>conj</code></a>, <a href=""><code>cc</code></a> and
-<a href=""><code>ellipsis</code></a>, can propagate in the second layer of annotation. Note
+the exceptions of <a href=""><code class="highlighter-rouge">punct</code></a>, <a href=""><code class="highlighter-rouge">conj</code></a>, <a href=""><code class="highlighter-rouge">cc</code></a> and
+<a href=""><code class="highlighter-rouge">ellipsis</code></a>, can propagate in the second layer of annotation. Note
 especially that the dependencies introduced in the second layer, that
 is, external subjects and syntactic functions of relativizers, are
 also allowed to propagate.</p>
@@ -236,8 +236,8 @@ dobj(sammutettiin-8, nuotio-4)
 <p>(see [xsubj] for start of section)</p>
 
 <p>External subjects interact with conjunct propagation in two ways: an
-external subject may propagate, and also a propagated <a href=""><code>nsubj</code></a>
-dependency may be the source of a new <a href=""><code>xsubj</code></a> dependency.</p>
+external subject may propagate, and also a propagated <a href=""><code class="highlighter-rouge">nsubj</code></a>
+dependency may be the source of a new <a href=""><code class="highlighter-rouge">xsubj</code></a> dependency.</p>
 
 <!-- fname:xsubj_propagation1.pdf -->
 <pre><code class="language-sdparse">Matti ryhtyi lukemaan ja kirjoittamaan . \n Matti started_to read and write .
@@ -266,14 +266,14 @@ xsubj(kirjoittamaan-5, Matti-1)
 
 <p>Relativizers, that is, the phrases containing the relative word are
 marked as such in the base layer of annotation, using the dependency
-type <a href=""><code>rel</code></a> (see Section 2.44).  However, the relativizers also
+type <a href=""><code class="highlighter-rouge">rel</code></a> (see Section 2.44).  However, the relativizers also
 always have a secondary syntactic function, such as a subject, which
 cannot be marked on the base layer of annotation due to the treeness
 restriction. Therefore these functions are marked on the <em>conjunct
 propagation and additional dependencies</em> layer on top of the tree
 structure. In principle any dependency type from Section 2 may
 represent the syntactic function of a relativizer, although in
-practice certain types (such as <a href=""><code>punct</code></a>) will not do so.</p>
+practice certain types (such as <a href=""><code class="highlighter-rouge">punct</code></a>) will not do so.</p>
 
 <!-- fname:rel_secondary.pdf -->
 <pre><code class="language-sdparse">Auto , joka ohitti meidät , ajoi hyvin nopeasti . \n The_car , which passed us , drove very fast .
@@ -326,14 +326,14 @@ xsubj(laulamaan-5, joka-3)
 
 <p>As described in Section 2.47, gapping in TDT is marked by inserting a
 so called null token to represent the omitted token. In addition, the
-second layer annotation uses the dependency type <a href=""><code>ellipsis</code></a> to
+second layer annotation uses the dependency type <a href=""><code class="highlighter-rouge">ellipsis</code></a> to
 mark the elided word so that the null token acts as the dependent, and
 the governor is the non-elided occurrence of the word (Note that the
 elided word can also precede the non-elided occurrence).</p>
 
 <p>Note that according to the policy of only inserting a null token where
 necessary for constructing an analysis (see Section 2.47), gapping is
-the only form of ellipsis marked using null tokens and <a href=""><code>ellipsis</code></a>
+the only form of ellipsis marked using null tokens and <a href=""><code class="highlighter-rouge">ellipsis</code></a>
 dependencies in TDT. Some other elliptical structures may be less
 explicitly marked as <em>conjunct propagation</em> (see Section 3.1).</p>
 
@@ -355,8 +355,8 @@ manual, and Figure 2 the hierarchy of the Finnish-specific version.</p>
 
 <p>To maintain a hierarchy similar to the original one, Figure 2 includes
 four intermediate types which have not been introduced above and are
-not used in TDT: <a href=""><code>arg</code></a> (argument), <a href=""><code>comp</code></a> (complement),
-<a href=""><code>subj</code></a> (subject) and <a href=""><code>mod</code></a> (modifier). This makes the overall
+not used in TDT: <a href=""><code class="highlighter-rouge">arg</code></a> (argument), <a href=""><code class="highlighter-rouge">comp</code></a> (complement),
+<a href=""><code class="highlighter-rouge">subj</code></a> (subject) and <a href=""><code class="highlighter-rouge">mod</code></a> (modifier). This makes the overall
 number of types in the Finnish SD scheme 53.</p>
 
 <h2 id="new-dependency-types-in-finnish-specific-sd">New dependency types in Finnish-specific SD</h2>
@@ -376,20 +376,20 @@ their arguments.
 -->
 
 <!-- 2nd layer only -->
-<p>Also we have moved the existing <a href=""><code>xsubj</code></a> type from under the
-<a href=""><code>sdep</code></a> category to under the <a href=""><code>subject</code></a> category, and added a
-new subtype for <a href=""><code>xsubj</code></a>, <a href=""><code>xsubj-cop</code></a>.  The external subject
+<p>Also we have moved the existing <a href=""><code class="highlighter-rouge">xsubj</code></a> type from under the
+<a href=""><code class="highlighter-rouge">sdep</code></a> category to under the <a href=""><code class="highlighter-rouge">subject</code></a> category, and added a
+new subtype for <a href=""><code class="highlighter-rouge">xsubj</code></a>, <a href=""><code class="highlighter-rouge">xsubj-cop</code></a>.  The external subject
 types are part of the <em>conjunct propagation and additional
 dependencies</em> layer of the treebank.</p>
 
 <!-- new wrt SD but not UD -->
-<p>The type <a href=""><code>vocative</code></a> is introduced to be able to analyze
-<em>vocatives</em>, and the type <a href=""><code>discourse</code></a> is for <em>interjections</em>. Both
+<p>The type <a href=""><code class="highlighter-rouge">vocative</code></a> is introduced to be able to analyze
+<em>vocatives</em>, and the type <a href=""><code class="highlighter-rouge">discourse</code></a> is for <em>interjections</em>. Both
 vocatives and interjections are fairly common in more informal genres,
 such as blog text.</p>
 
 <!-- 2nd layer only -->
-<p>The type <a href=""><code>ellipsis</code></a> is part of the <em>conjunct propagation and
+<p>The type <a href=""><code class="highlighter-rouge">ellipsis</code></a> is part of the <em>conjunct propagation and
 additional dependencies</em> layer and used to mark the elided word in
 gapping.</p>
 
@@ -399,12 +399,12 @@ gapping.</p>
 <p>Finally, there are two minor changes made in the SD hierarchy. First,
 as prepositional objects are no longer needed in the Finnish-specific
 scheme due to the changes made to handling adpositional phrases, and
-as indirect objects do not occur in Finnish, the type <a href=""><code>obj</code></a> was
-the sole subtype of the intermediate, unused type <a href=""><code>obj</code></a>, we have
-removed this intermediate type, and made <a href=""><code>obj</code></a> a direct subtype
-of <a href=""><code>complement</code></a>.</p>
+as indirect objects do not occur in Finnish, the type <a href=""><code class="highlighter-rouge">obj</code></a> was
+the sole subtype of the intermediate, unused type <a href=""><code class="highlighter-rouge">obj</code></a>, we have
+removed this intermediate type, and made <a href=""><code class="highlighter-rouge">obj</code></a> a direct subtype
+of <a href=""><code class="highlighter-rouge">complement</code></a>.</p>
 
-<p>Second, the <a href=""><code>neg</code></a> dependency type, for marking negations, has been
+<p>Second, the <a href=""><code class="highlighter-rouge">neg</code></a> dependency type, for marking negations, has been
 moved from under adverbial modifiers to under auxiliaries in the
 hierarchy. This is because in Finnish, the negation word ei is in most
 contexts a verb and acts in an auxiliary-like manner. It should be

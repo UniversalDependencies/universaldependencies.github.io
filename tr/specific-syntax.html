@@ -64,7 +64,7 @@
 
 <h2 id="existential-sentences">Existential sentences</h2>
 
-<p>In Turkish, existential sentences are (primarily) formed using <em>var</em> ‘there is/are’ and its negative counterpart <em>yok</em>. Although they do not exactly function like adjectives, following METU-Sabancı treebank, we mark them as <code>ADJ</code> and treat them like other nominals that require a copular suffix to function as predicates.  Note that, in the most common use, the 3rd person singular present copular marker is null. In general, we indicate this wit an additional IG, which marks the “predicatehood” of the verb, and also is in parallel with the other copular constructions.</p>
+<p>In Turkish, existential sentences are (primarily) formed using <em>var</em> ‘there is/are’ and its negative counterpart <em>yok</em>. Although they do not exactly function like adjectives, following METU-Sabancı treebank, we mark them as <code class="highlighter-rouge">ADJ</code> and treat them like other nominals that require a copular suffix to function as predicates.  Note that, in the most common use, the 3rd person singular present copular marker is null. In general, we indicate this wit an additional IG, which marks the “predicatehood” of the verb, and also is in parallel with the other copular constructions.</p>
 
 <p>We analyze this constructions like nominal predicates. <em>var</em> and <em>yok</em>
 act as the head of the predicate, the thing that “exists” is the
@@ -76,7 +76,7 @@ nsubj(var, beer)
 nmod(var, evde)
 </code></pre>
 
-<p>The same construction is used for expressing someone ‘have/has’ something or not. In this case, we mark the possessor with <code>nmod:own</code> (not to be confused with ``nmod:poss` used for nominal compounds with possessive marking).</p>
+<p>The same construction is used for expressing someone ‘have/has’ something or not. In this case, we mark the possessor with <code class="highlighter-rouge">nmod:own</code> (not to be confused with ``nmod:poss` used for nominal compounds with possessive marking).</p>
 
 <pre><code class="language-sdparse">Benim hiç param yok -tu . \n I did not have any money (lit: there was no money of mine)
 cop(yok, -tu)
@@ -138,15 +138,15 @@ nmod:own(olur, bunun)
 <em>Benim arkadaşlarım</em> ‘My friends’.</li>
 </ol>
 
-<p>We link the first kind with <code>compound</code>, while the other two are linked
-with <code>nmod:poss</code>.</p>
+<p>We link the first kind with <code class="highlighter-rouge">compound</code>, while the other two are linked
+with <code class="highlighter-rouge">nmod:poss</code>.</p>
 
 <p>Note that the compounds can be complex with arbitrary structure, as in
 ‘[[İstanbul üniversites-i]-nin [tahta kapı]-sı]’.</p>
 
 <p>Furthermore, the nominals can include subordinate clauses, like
 <em>[Ali’nin henüz görmediği] film</em> ‘the movie (that) Ali hasn’t seen
-yet’. In these cases, the relation is <code>ccomp</code> <code>xcomp</code>.</p>
+yet’. In these cases, the relation is <code class="highlighter-rouge">ccomp</code> <code class="highlighter-rouge">xcomp</code>.</p>
 
 <p><strong>We need more specific guidelines</strong>, or maybe a new relation for marking compounds with subordinate clauses.</p>
 
@@ -156,13 +156,13 @@ yet’. In these cases, the relation is <code>ccomp</code> <code>xcomp</code>.</
 (mı/mi/mu/mü). UD currently does not have a clear way of marking
 question particles.</p>
 
-<p>We mark question particles as <code>AUX</code>, and (for now) introduce a new
-feature <code>Question</code> that is set for question particles as well as
-other words that introduce questions (<code>PronType=Int</code> is also used, but
+<p>We mark question particles as <code class="highlighter-rouge">AUX</code>, and (for now) introduce a new
+feature <code class="highlighter-rouge">Question</code> that is set for question particles as well as
+other words that introduce questions (<code class="highlighter-rouge">PronType=Int</code> is also used, but
 likely it is not sufficient/suitable in this case).</p>
 
-<p>The relation between the main predicate and the question mark is <code>aux</code>
-(although we may want to subtype the relation and use <code>aux:q</code> in the future).</p>
+<p>The relation between the main predicate and the question mark is <code class="highlighter-rouge">aux</code>
+(although we may want to subtype the relation and use <code class="highlighter-rouge">aux:q</code> in the future).</p>
 
 <p>(<strong>??</strong>) If the <em>-mI</em> is attached to a copula, we chain the relations (the
 question particle is headed by the copula, not the main predicate).</p>
@@ -193,10 +193,9 @@ word modifies close to the verb, other word orders are also possible:</p>
 
 <pre><code class="language-sdparse">Yarın siz mi Ankara'ya gideceksiniz. \n Will YOU go to Ankara tomorrow?
 </code></pre>
-<p>or,
-~~~~ sdparse
-Siz mi yarın Ankara’ya gideceksiniz. \n Will YOU go to Ankara tomorrow?
-~~~~</p>
+<p>or,</p>
+<pre><code class="language-sdparse">Siz mi yarın Ankara'ya gideceksiniz. \n Will YOU go to Ankara tomorrow?
+</code></pre>
 
 <p>In these cases, we attach the question particle to the word/phrase it
 modifies, not to the predicate. Currently, we keep the same POS tag
@@ -205,23 +204,23 @@ and relation label.</p>
 <p>Above covers the use of <em>-mI</em> as question particle. <em>-mI</em> may also be
 used as a subordinating conjunction as in <em>Okulu bitirdin mi işin
 hazız</em> ‘when/if you finish the school, your job is waiting for you’.
-In this case, we treat it like a <code>SCONJ</code> introducing a conditional
+In this case, we treat it like a <code class="highlighter-rouge">SCONJ</code> introducing a conditional
 adverbial clause. It is attached to the head of the clause with
-<code>mark</code>.</p>
+<code class="highlighter-rouge">mark</code>.</p>
 
 <p>Another use of <em>-mI</em> is in emphatic reduplication, such as <em>güzel mi
 güzel</em> ‘very beautiful’, <em>hızlı mı hızlı</em> ‘very fast’. In these cases
-it is attached to the preceding word with relation <code>advmod:emph</code>.</p>
+it is attached to the preceding word with relation <code class="highlighter-rouge">advmod:emph</code>.</p>
 
 <h2 id="person-names-and-honorifics">Person names and honorifics</h2>
 
-<p>The person names are linked with <code>flat</code> relation, and headed by the last part of the name.</p>
+<p>The person names are linked with <code class="highlighter-rouge">flat</code> relation, and headed by the last part of the name.</p>
 
 <p>Turkish honorifics normally follow the (first) name, <em>Ahmet Bey</em>
 ‘Mr. Ahmet’, <em>Necla Hanım</em> ‘Ms. Necla’, <em>Ayşe öğretmen</em> ‘Teacher
 Ayşe’, <em>Mustafa Kemal Paşa</em> ‘general Mustafa Kemal’.
 A few others introduced later, <em>Sayın</em>/<em>Bay</em>/<em>Bayan</em>, precede the last name or first and last name.
-We use the relation <code>compound</code> and always mark the proper name as the head of the compound (although it is tempting to mark the title as head in the first case).</p>
+We use the relation <code class="highlighter-rouge">compound</code> and always mark the proper name as the head of the compound (although it is tempting to mark the title as head in the first case).</p>
 
 <h2 id="noun-verb-compounds--light-verbs">Noun-verb compounds / light verbs</h2>
 
@@ -233,7 +232,7 @@ For example, <em>çek-</em> ‘pull’ is used as a light verb in <em>fotoğraf 
 
 <p>The copula/auxiliary  <em>ol-</em> should only marked as part of a light-verb compound in clear lexicalized cases, e.g., <em>sebep ol-</em> ‘cause’ but not <em>hasta ol-</em> ‘be/become ill’.</p>
 
-<p>The relation between a light verb and the noun it modifies noun is <code>compound</code>.
+<p>The relation between a light verb and the noun it modifies noun is <code class="highlighter-rouge">compound</code>.
 The noun should be marked as the head of the compound.</p>
 
 <pre><code class="language-sdparse">Ali Ahmet'e yardım etti. \n Ali helped ahmet
@@ -244,8 +243,8 @@ dobj(yardim, Ahmet)
 
 <h2 id="numbers">Numbers</h2>
 
-<p>If numbers are spelled out completely, we use a combination of <code>conj</code>
-and <code>coord</code> to mark it in a head-final fashion.</p>
+<p>If numbers are spelled out completely, we use a combination of <code class="highlighter-rouge">conj</code>
+and <code class="highlighter-rouge">coord</code> to mark it in a head-final fashion.</p>
 
 <pre><code class="language-sdparse">iki yüz otuz üç
 comp(yüz, iki)

@@ -67,7 +67,7 @@
 <p>For v2, we propose</p>
 
 <ul>
-  <li>Rename <code>CONJ</code> to <a href="">u-pos/CCONJ</a>.</li>
+  <li>Rename <code class="highlighter-rouge">CONJ</code> to <a href="">u-pos/CCONJ</a>.</li>
   <li>Extend the use of <a href="">u-pos/AUX</a> to copula verbs and nonverbal TAMVE particles.</li>
   <li>Minimize usage of <a href="">u-pos/PART</a> – small language-specific list of words, case must be made for each.</li>
   <li>Loosen borderline between <a href="">u-pos/PRON</a> and <a href="">u-pos/DET</a>: set of recommendations instead of purely functional rule.</li>
@@ -80,44 +80,50 @@
   <li><a href="../u/overview/morphology.html">Morphology overview page</a> has a section on POS tags</li>
   <li><a href="../u/pos/index.html">Current guidelines for POS tags</a></li>
   <li><a href="../v2/form_vs_function.html">Form vs. function in POS tags</a></li>
-  <li><a href="http://github.com/UniversalDependencies/docs/issues/159">Issue 159</a> (<code>PRON</code> vs. <code>DET</code>) and the <a href="../2015-08-23-uppsala/determiners.html">Uppsala report on determiners</a></li>
+  <li><a href="http://github.com/UniversalDependencies/docs/issues/159">Issue 159</a> (<code class="highlighter-rouge">PRON</code> vs. <code class="highlighter-rouge">DET</code>) and the <a href="../2015-08-23-uppsala/determiners.html">Uppsala report on determiners</a></li>
   <li><a href="http://github.com/UniversalDependencies/docs/issues/178#issuecomment-212822810">Issue 178</a> (question particles)</li>
-  <li><a href="http://github.com/UniversalDependencies/docs/issues/237">Issue 237</a> (<code>ADV</code> vs. <code>CONJ</code>)</li>
-  <li><a href="http://github.com/UniversalDependencies/docs/issues/275">Issue 275</a> (copula <code>VERB</code> vs. <code>AUX</code>)</li>
+  <li><a href="http://github.com/UniversalDependencies/docs/issues/237">Issue 237</a> (<code class="highlighter-rouge">ADV</code> vs. <code class="highlighter-rouge">CONJ</code>)</li>
+  <li><a href="http://github.com/UniversalDependencies/docs/issues/275">Issue 275</a> (copula <code class="highlighter-rouge">VERB</code> vs. <code class="highlighter-rouge">AUX</code>)</li>
   <li><a href="http://github.com/UniversalDependencies/docs/issues?q=is%3Aissue%20is%3Aopen%20label%3APOS">List of open issues with the POS label</a></li>
 </ul>
 
 <h2 id="rename-conj-to-cconj">Rename CONJ to CCONJ</h2>
 
-<p>We propose to rename the <code>CONJ</code> tag to <code>CCONJ</code> <em>(coordinating conjunction)</em>
-and thus make it analogous to <code>SCONJ</code> <em>(subordinating conjunction).</em>
+<p>We propose to rename the <code class="highlighter-rouge">CONJ</code> tag to <code class="highlighter-rouge">CCONJ</code> <em>(coordinating conjunction)</em>
+and thus make it analogous to <code class="highlighter-rouge">SCONJ</code> <em>(subordinating conjunction).</em>
 That will hopefully reduce the confusion that we observed in v1:
-people have assumed that the <code>CONJ</code> tag would correspond to the <code>conj</code> relation,
-while in fact it usually went with the relation <code>cc</code> and practically never with <code>conj</code>.</p>
+people have assumed that the <code class="highlighter-rouge">CONJ</code> tag would correspond to the <code class="highlighter-rouge">conj</code> relation,
+while in fact it usually went with the relation <code class="highlighter-rouge">cc</code> and practically never with <code class="highlighter-rouge">conj</code>.</p>
 
 <h2 id="keep-propn">Keep PROPN</h2>
 
-<p>We considered removing <code>PROPN</code> as a separate POS tag because
-1. the motivation to have it is weak in some languages (no grammatical implications except for capital letters);
-2. the possibility to say that a language does not have <code>PROPN</code> does not really solve anything – these languages indeed have the category and typically will want to use it if it exists, to increase cross-linguistic parallelism;
-3. disambiguation from <code>NOUN</code> is hard in many languages;
-4. it would be better to have phrase-level named entity annotation, which would include non-noun words (adjectives) and nesting.</p>
+<p>We considered removing <code class="highlighter-rouge">PROPN</code> as a separate POS tag because</p>
+<ol>
+  <li>the motivation to have it is weak in some languages (no grammatical implications except for capital letters);</li>
+  <li>the possibility to say that a language does not have <code class="highlighter-rouge">PROPN</code> does not really solve anything – these languages indeed have the category and typically will want to use it if it exists, to increase cross-linguistic parallelism;</li>
+  <li>disambiguation from <code class="highlighter-rouge">NOUN</code> is hard in many languages;</li>
+  <li>it would be better to have phrase-level named entity annotation, which would include non-noun words (adjectives) and nesting.</li>
+</ol>
 
-<p>We decided to keep the tag in v2 because
-1. the category has been traditionally distinguished in a significant number of languages and tagsets, and people do not want to lose it there;
-2. the reasons above do not seem strong enough to remove it;
-3. we are not going to have named entity annotation in UD v2.</p>
+<p>We decided to keep the tag in v2 because</p>
+<ol>
+  <li>the category has been traditionally distinguished in a significant number of languages and tagsets, and people do not want to lose it there;</li>
+  <li>the reasons above do not seem strong enough to remove it;</li>
+  <li>we are not going to have named entity annotation in UD v2.</li>
+</ol>
 
 <h2 id="keep-part-but-minimize-its-usage">Keep PART but minimize its usage</h2>
 
-<p>We considered removing <code>PART</code> because it is a very small category, which is defined mostly negatively (it is particle if it is not anything else). We decided to keep it because
-1. we would have to take the current particles one-by-one in each language and decide where to put them;
-2. in some instances it would still be hard to find a suitable category;
-3. which may actually lead to creation of several new and even smaller categories.</p>
+<p>We considered removing <code class="highlighter-rouge">PART</code> because it is a very small category, which is defined mostly negatively (it is particle if it is not anything else). We decided to keep it because</p>
+<ol>
+  <li>we would have to take the current particles one-by-one in each language and decide where to put them;</li>
+  <li>in some instances it would still be hard to find a suitable category;</li>
+  <li>which may actually lead to creation of several new and even smaller categories.</li>
+</ol>
 
 <p>However, the lists of particles in individual languages should be reviewed anyways. Language-specific documentation must list all particles in the language, and ideally also explain why they are particles.</p>
 
-<p>Note that the current guidelines say that [en] <em>not</em>, [de] <em>nicht</em> etc. are negative particles (but negative determiners like [en] <em>no</em>, or negative auxiliary verbs like [cs] <em>není</em> are not particles). This is the only positive part of the current <code>PART</code> definition at the language-universal level, because such words were traditionally tagged as adverbs in some languages, and they could be adverbs in the other languages too, had we decided to remove <code>PART</code>.</p>
+<p>Note that the current guidelines say that [en] <em>not</em>, [de] <em>nicht</em> etc. are negative particles (but negative determiners like [en] <em>no</em>, or negative auxiliary verbs like [cs] <em>není</em> are not particles). This is the only positive part of the current <code class="highlighter-rouge">PART</code> definition at the language-universal level, because such words were traditionally tagged as adverbs in some languages, and they could be adverbs in the other languages too, had we decided to remove <code class="highlighter-rouge">PART</code>.</p>
 
 <h2 id="extend-the-use-of-aux">Extend the use of AUX</h2>
 
@@ -136,7 +142,7 @@ Removing the tag means changing it to `VERB` in data, removing all the `AUX` pag
 <p>Parts of speech have traditionally been defined using a mix of morphological, syntactic and semantic criteria. Given that UD is concerned with grammatical annotation, we in general want to give less priority to (purely) semantic criteria. Morphological criteria are very useful but are not applicable to all languages, or even to all categories within morphologically rich languages. It follows that, in many cases, we have to rely primarily on syntactic criteria. However, we believe that the part-of-speech classification is most useful if it captures regular, prevailing syntactic behavior and does not reflect sentence-specific exceptional behavior. Therefore, we should avoid completely functional guidelines for part-of-speech tags that make the tag completely predictable from the syntactic function. In addition to the obvious argument that such guidelines make (some) tags uninformative, they also make it harder to find interesting cross-lingual differences.
 For example, language X allows words of category A to have syntactic function b, but language Y doesn’t.</p>
 
-<p>We admit that there are ambiguous words that cannot be tagged without considering the context. However, we prefer distinctions based on <em>prevailing</em> syntactic behavior and (when relevant) morphological properties. We should avoid the extreme where (almost) all ambiguities between two categories are resolved solely by syntactic structure, as was the case with pronouns vs. determiners in v1. Here the current definition of <code>PRON</code> and <code>DET</code> should be loosened. It will be possible in many languages to enumerate words in both classes, and preferably the lists should be based on prevailing syntactic function and morphological properties, rather than the actual context in each sentence.</p>
+<p>We admit that there are ambiguous words that cannot be tagged without considering the context. However, we prefer distinctions based on <em>prevailing</em> syntactic behavior and (when relevant) morphological properties. We should avoid the extreme where (almost) all ambiguities between two categories are resolved solely by syntactic structure, as was the case with pronouns vs. determiners in v1. Here the current definition of <code class="highlighter-rouge">PRON</code> and <code class="highlighter-rouge">DET</code> should be loosened. It will be possible in many languages to enumerate words in both classes, and preferably the lists should be based on prevailing syntactic function and morphological properties, rather than the actual context in each sentence.</p>
 
 <!--The functional approach is not banned though, if there is no better way (reportedly Turkic languages). See below for more details.
   * Main verbs vs. auxiliary verbs. In many languages, (some of) the auxiliary verbs may also
@@ -152,32 +158,32 @@ For example, language X allows words of category A to have syntactic function b,
 <p>There are many pairs of categories with unclear border zones, although not all of them in all languages:</p>
 
 <ul>
-  <li><code>NOUN</code> can be confused with <code>PROPN</code>, <code>PRON</code>, <code>ADJ</code> and some forms of <code>VERB</code> (gerunds, infinitives)</li>
-  <li><code>PROPN</code> can be confused with <code>NOUN</code> and <code>X</code> (foreign names)</li>
-  <li><code>ADJ</code> can be confused with <code>DET</code>, <code>NUM</code> (ordinals) and some forms of <code>VERB</code> (participles)</li>
-  <li><code>PRON</code> can be confused with <code>DET</code>, <code>NUM</code> (pronominal quantifiers), <code>ADV</code> (pronominal adverbs) and possibly <code>NOUN</code></li>
-  <li><code>DET</code> can be confused with <code>PRON</code>, <code>NUM</code> (pronominal quantifiers), <code>ADV</code> (pronominal adverbs) and possibly <code>ADJ</code></li>
-  <li><code>NUM</code> can be confused with <code>ADJ</code> (ordinals), <code>NOUN</code> (high-value cardinals, e.g. “million”), <code>PRON</code>, <code>DET</code> (pronominal quantifiers) and <code>ADV</code> (adverbs of degree/quantity, multiplicative numerals like [cs] <em>sedmkrát</em> “seven times” etc.)</li>
-  <li><code>ADV</code> can be confused with <code>ADJ</code>, <code>PRON</code>, <code>DET</code> (pronominal adverbs), <code>NUM</code> (adverbial numerals and adverbs of degree/quantity) and some forms of <code>VERB</code> (transgressives/converbs); furthermore, some are on the border to <code>ADP</code>, <code>SCONJ</code> and <code>CCONJ</code></li>
-  <li><code>VERB</code> can be confused with <code>AUX</code> (but we are proposing to remove <code>AUX</code>), <code>NOUN</code> (gerunds), <code>ADJ</code> (participles), <code>ADV</code> (transgressives/converbs)</li>
-  <li><code>ADP</code> can be confused with <code>SCONJ</code>, <code>ADV</code>, some secondary prepositions also with <code>NOUN</code> and other categories</li>
-  <li><code>SCONJ</code> can be confused with <code>ADP</code>, <code>ADV</code> and <code>CCONJ</code></li>
-  <li><code>CCONJ</code> can be confused with <code>ADV</code> and <code>SCONJ</code></li>
-  <li><code>PART</code> should in theory not be confused with anything because then it should not be <code>PART</code>; nevertheless, at least some traditional particles are now <code>ADP</code>, <code>ADV</code>, <code>SCONJ</code> or <code>CCONJ</code>, and the particle <em>not</em> would be traditionally <code>ADV</code> in some languages</li>
-  <li><code>INTJ</code> can sometimes be confused with <code>NOUN</code>, <code>ADJ</code>, <code>VERB</code> or <code>ADV</code> if they are used like exclamations; but arguably these could then not be tagged <code>INTJ</code></li>
-  <li><code>PUNCT</code> can be confused with <code>SYM</code></li>
-  <li><code>SYM</code> can be confused with <code>PUNCT</code></li>
-  <li><code>X</code> as a tag for foreign word can be confused with <code>PROPN</code> when the word itself is not a proper noun in the foreign language, but is a part of a longer book/movie title</li>
+  <li><code class="highlighter-rouge">NOUN</code> can be confused with <code class="highlighter-rouge">PROPN</code>, <code class="highlighter-rouge">PRON</code>, <code class="highlighter-rouge">ADJ</code> and some forms of <code class="highlighter-rouge">VERB</code> (gerunds, infinitives)</li>
+  <li><code class="highlighter-rouge">PROPN</code> can be confused with <code class="highlighter-rouge">NOUN</code> and <code class="highlighter-rouge">X</code> (foreign names)</li>
+  <li><code class="highlighter-rouge">ADJ</code> can be confused with <code class="highlighter-rouge">DET</code>, <code class="highlighter-rouge">NUM</code> (ordinals) and some forms of <code class="highlighter-rouge">VERB</code> (participles)</li>
+  <li><code class="highlighter-rouge">PRON</code> can be confused with <code class="highlighter-rouge">DET</code>, <code class="highlighter-rouge">NUM</code> (pronominal quantifiers), <code class="highlighter-rouge">ADV</code> (pronominal adverbs) and possibly <code class="highlighter-rouge">NOUN</code></li>
+  <li><code class="highlighter-rouge">DET</code> can be confused with <code class="highlighter-rouge">PRON</code>, <code class="highlighter-rouge">NUM</code> (pronominal quantifiers), <code class="highlighter-rouge">ADV</code> (pronominal adverbs) and possibly <code class="highlighter-rouge">ADJ</code></li>
+  <li><code class="highlighter-rouge">NUM</code> can be confused with <code class="highlighter-rouge">ADJ</code> (ordinals), <code class="highlighter-rouge">NOUN</code> (high-value cardinals, e.g. “million”), <code class="highlighter-rouge">PRON</code>, <code class="highlighter-rouge">DET</code> (pronominal quantifiers) and <code class="highlighter-rouge">ADV</code> (adverbs of degree/quantity, multiplicative numerals like [cs] <em>sedmkrát</em> “seven times” etc.)</li>
+  <li><code class="highlighter-rouge">ADV</code> can be confused with <code class="highlighter-rouge">ADJ</code>, <code class="highlighter-rouge">PRON</code>, <code class="highlighter-rouge">DET</code> (pronominal adverbs), <code class="highlighter-rouge">NUM</code> (adverbial numerals and adverbs of degree/quantity) and some forms of <code class="highlighter-rouge">VERB</code> (transgressives/converbs); furthermore, some are on the border to <code class="highlighter-rouge">ADP</code>, <code class="highlighter-rouge">SCONJ</code> and <code class="highlighter-rouge">CCONJ</code></li>
+  <li><code class="highlighter-rouge">VERB</code> can be confused with <code class="highlighter-rouge">AUX</code> (but we are proposing to remove <code class="highlighter-rouge">AUX</code>), <code class="highlighter-rouge">NOUN</code> (gerunds), <code class="highlighter-rouge">ADJ</code> (participles), <code class="highlighter-rouge">ADV</code> (transgressives/converbs)</li>
+  <li><code class="highlighter-rouge">ADP</code> can be confused with <code class="highlighter-rouge">SCONJ</code>, <code class="highlighter-rouge">ADV</code>, some secondary prepositions also with <code class="highlighter-rouge">NOUN</code> and other categories</li>
+  <li><code class="highlighter-rouge">SCONJ</code> can be confused with <code class="highlighter-rouge">ADP</code>, <code class="highlighter-rouge">ADV</code> and <code class="highlighter-rouge">CCONJ</code></li>
+  <li><code class="highlighter-rouge">CCONJ</code> can be confused with <code class="highlighter-rouge">ADV</code> and <code class="highlighter-rouge">SCONJ</code></li>
+  <li><code class="highlighter-rouge">PART</code> should in theory not be confused with anything because then it should not be <code class="highlighter-rouge">PART</code>; nevertheless, at least some traditional particles are now <code class="highlighter-rouge">ADP</code>, <code class="highlighter-rouge">ADV</code>, <code class="highlighter-rouge">SCONJ</code> or <code class="highlighter-rouge">CCONJ</code>, and the particle <em>not</em> would be traditionally <code class="highlighter-rouge">ADV</code> in some languages</li>
+  <li><code class="highlighter-rouge">INTJ</code> can sometimes be confused with <code class="highlighter-rouge">NOUN</code>, <code class="highlighter-rouge">ADJ</code>, <code class="highlighter-rouge">VERB</code> or <code class="highlighter-rouge">ADV</code> if they are used like exclamations; but arguably these could then not be tagged <code class="highlighter-rouge">INTJ</code></li>
+  <li><code class="highlighter-rouge">PUNCT</code> can be confused with <code class="highlighter-rouge">SYM</code></li>
+  <li><code class="highlighter-rouge">SYM</code> can be confused with <code class="highlighter-rouge">PUNCT</code></li>
+  <li><code class="highlighter-rouge">X</code> as a tag for foreign word can be confused with <code class="highlighter-rouge">PROPN</code> when the word itself is not a proper noun in the foreign language, but is a part of a longer book/movie title</li>
 </ul>
 
 <p>Some pairs are less problematic than others because some categories are functionally more compatible than others.
-It is acceptable if <code>PRON</code> and <code>DET</code> are pre-categorized and distinguished mostly by word list or morphology,
-because they can be seen as two subcategories of a broader category of nominals; if a word is classified as <code>DET</code>
+It is acceptable if <code class="highlighter-rouge">PRON</code> and <code class="highlighter-rouge">DET</code> are pre-categorized and distinguished mostly by word list or morphology,
+because they can be seen as two subcategories of a broader category of nominals; if a word is classified as <code class="highlighter-rouge">DET</code>
 but it occurs in place of a noun phrase, it can be explained by ellipsis and we do not have to switch the tag
-to <code>PRON</code> in such contexts. However, some categories are not compatible and if a word occurs in both, it has to
+to <code class="highlighter-rouge">PRON</code> in such contexts. However, some categories are not compatible and if a word occurs in both, it has to
 be taken as two separate lemmas; consequently it has to be disambiguated according to sentence context.
 A good example is [en] <em>that</em> and [es] <em>que</em> which can be both a relative pronoun and a subordinating conjunction
-(complementizer). We cannot say that all occurrences are either <code>PRON</code> or <code>SCONJ</code> because a pronoun can
+(complementizer). We cannot say that all occurrences are either <code class="highlighter-rouge">PRON</code> or <code class="highlighter-rouge">SCONJ</code> because a pronoun can
 act as a core argument of a predicate, while complementizer cannot. So we have to distinguish the two functions,
 although historically the complementizer may actually come from a grammaticalized pronoun.</p>
 
@@ -211,9 +217,9 @@ So how do we know that the difference is “significant enough”?
 One clue is that the word, when translated to another language, gets two different translations with different POS tags
 (e.g. the English <em>no</em> as response interjection, vs. negative determiner).
 Another clue comes from contrasting the UD relations used for the two functions.
-For example, distinguishing <code>PRON</code> from <code>SCONJ</code> ([en] <em>that</em>, [es] <em>que</em>, [ru] <em>что</em> / <em>čto</em>) is important because pronouns,
+For example, distinguishing <code class="highlighter-rouge">PRON</code> from <code class="highlighter-rouge">SCONJ</code> ([en] <em>that</em>, [es] <em>que</em>, [ru] <em>что</em> / <em>čto</em>) is important because pronouns,
 unlike conjunctions, may become core arguments and fill valency slots of verbs.
-Distinguishing <code>SCONJ</code> from <code>ADP</code>, or <code>CCONJ</code> from <code>ADV</code> seems less crucial and we can probably
+Distinguishing <code class="highlighter-rouge">SCONJ</code> from <code class="highlighter-rouge">ADP</code>, or <code class="highlighter-rouge">CCONJ</code> from <code class="highlighter-rouge">ADV</code> seems less crucial and we can probably
 keep just one POS tag for each such word, based on prototypical usage.</li>
 </ul>
 
@@ -229,11 +235,11 @@ pronominal <a href="/u/pos/ADV.html">adverbs</a> <em>(where, when, how)</em>, an
   <li>In most cases it is straightforward to determine whether a word is pronominal (see also the <a href="/u/feat/PronType.html">PronType</a> feature)
 but the borderline between indefinite determiners and adjectives is slightly fuzzy. Related languages should synchronize the lists of words
 they treat as pronominal. The rest of these guidelines demarcate borders within the pronominal group.</li>
-  <li>Pronominal adverbs are tagged <code>ADV</code>. Their pronominality is encoded using the <code>PronType</code> feature. Their typical syntactic function is to modify verbs.</li>
-  <li>Articles <em>(the, a, an)</em> are always tagged <code>DET</code>; their <code>PronType</code> is <code>Art</code>.</li>
-  <li>Pronominal numerals (quantifiers) are tagged <code>DET</code>; besides <code>PronType</code>, they also use the <a href="/u/feat/NumType.html">NumType</a> feature.</li>
-  <li>Words that behave similar to adjectives are <code>DET</code>.
-(We understand the <code>DET</code> class as pro-adjectives, which is a slightly broader sense than what is usually regarded as determiners in English.
+  <li>Pronominal adverbs are tagged <code class="highlighter-rouge">ADV</code>. Their pronominality is encoded using the <code class="highlighter-rouge">PronType</code> feature. Their typical syntactic function is to modify verbs.</li>
+  <li>Articles <em>(the, a, an)</em> are always tagged <code class="highlighter-rouge">DET</code>; their <code class="highlighter-rouge">PronType</code> is <code class="highlighter-rouge">Art</code>.</li>
+  <li>Pronominal numerals (quantifiers) are tagged <code class="highlighter-rouge">DET</code>; besides <code class="highlighter-rouge">PronType</code>, they also use the <a href="/u/feat/NumType.html">NumType</a> feature.</li>
+  <li>Words that behave similar to adjectives are <code class="highlighter-rouge">DET</code>.
+(We understand the <code class="highlighter-rouge">DET</code> class as pro-adjectives, which is a slightly broader sense than what is usually regarded as determiners in English.
 In particular, it is possible that one nominal is modified by more than one determiner.) Similar behavior means:
     <ul>
       <li>They are more likely to be used attributively (modifying a noun phrase) than substantively (replacing a noun phrase). They may occur alone, though.
@@ -243,9 +249,9 @@ Especially the ability to inflect for gender is typical for adjectives and deter
 (Gender of nouns is determined lexically and determiners may be required by the grammar to agree with their nouns in gender; therefore they need to inflect for gender.)</li>
     </ul>
   </li>
-  <li>Non-possessive personal, reflexive or reciprocal pronouns are always tagged <code>PRON</code>.</li>
-  <li>Possessives vary across languages. In some languages the above tests put them in the <code>DET</code> category.
-In others, they are more like a normal personal pronoun in a specific case (often the genitive), or a personal pronoun with an adposition; they are tagged <code>PRON</code>.</li>
+  <li>Non-possessive personal, reflexive or reciprocal pronouns are always tagged <code class="highlighter-rouge">PRON</code>.</li>
+  <li>Possessives vary across languages. In some languages the above tests put them in the <code class="highlighter-rouge">DET</code> category.
+In others, they are more like a normal personal pronoun in a specific case (often the genitive), or a personal pronoun with an adposition; they are tagged <code class="highlighter-rouge">PRON</code>.</li>
   <li>When the above rules do not help, the category should be based on what the traditional grammar of the language says.</li>
   <li>Ideally, language-specific documentation should list pronominal words and their category. These are all closed classes so it should not be difficult.</li>
 </ul>

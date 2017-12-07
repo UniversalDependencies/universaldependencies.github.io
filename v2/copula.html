@@ -68,13 +68,13 @@ and to achieve better consistency cross-lingually and within a single language, 
 following changes in v2:</p>
 
 <ul>
-  <li>The <code>cop</code> relation is restricted to function words (verbal or nonverbal) whose sole function is to link a nonverbal predicate to its subject and which do not add any meaning other than grammaticalized TAME categories (only one word in most languages).</li>
+  <li>The <code class="highlighter-rouge">cop</code> relation is restricted to function words (verbal or nonverbal) whose sole function is to link a nonverbal predicate to its subject and which do not add any meaning other than grammaticalized TAME categories (only one word in most languages).</li>
   <li>The range of constructions that are analyzed using the cop relation is subject to language-specific variation but can be identified using universal guidelines specified below.</li>
 </ul>
 
 <h2 id="problems-with-the-current-copula-analysis">Problems with the current copula analysis</h2>
 
-<p>The main problem is the lack of standardisation. Leaving aside the Galician example, which appears to be a conversion error, the Spanish treebank has over 229 verbs with the <code>cop</code> relation, where the Swedish treebank has one.</p>
+<p>The main problem is the lack of standardisation. Leaving aside the Galician example, which appears to be a conversion error, the Spanish treebank has over 229 verbs with the <code class="highlighter-rouge">cop</code> relation, where the Swedish treebank has one.</p>
 
 <pre><code class="language-sdparse">Éste quedó sorprendido . \n He was/stayed surprised
 cop(sorprendido, quedó)
@@ -136,8 +136,8 @@ ccomp(is, keep)
 
 <ul>
   <li>If there is no overt linking word (or if such a word can be omitted at least in some persons or tenses), then the predicative nominal is treated as the head of the clause regardless of which of the six categories it falls in. In languages with fixed SVO order (like English), the final nominal is the predicate and the first nominal is the subject. In free-word-order languages it is possible that the first nominal is the predicate, and distinguishing the subject from the predicate is based on language-specific criteria.</li>
-  <li>If there is an overt linking word used in equational constructions (category 1), then that word is treated as a copula and marked with the <code>cop</code> dependency, and is not the head of the clause. <strong>Exception:</strong> If the predicative element in the equation is a clause, then the copula verb is treated as the head of the clause, with the following clause as a <code>ccomp</code> (to prevent that the head of the smaller clause gets two subjects). Note that in some languages it may be instead possible to analyze the clause as the subject (<code>csubj</code>), retaining the <code>cop</code> relation for the copula verb.</li>
-  <li>If there is an overt word used in existential constructions (category 6), which is different from the copula in equational constructions (either a different lemma or with different syntax), then it should be regarded as being the head of existence clauses, taking a subject (and often a locative <code>obl</code>).</li>
+  <li>If there is an overt linking word used in equational constructions (category 1), then that word is treated as a copula and marked with the <code class="highlighter-rouge">cop</code> dependency, and is not the head of the clause. <strong>Exception:</strong> If the predicative element in the equation is a clause, then the copula verb is treated as the head of the clause, with the following clause as a <code class="highlighter-rouge">ccomp</code> (to prevent that the head of the smaller clause gets two subjects). Note that in some languages it may be instead possible to analyze the clause as the subject (<code class="highlighter-rouge">csubj</code>), retaining the <code class="highlighter-rouge">cop</code> relation for the copula verb.</li>
+  <li>If there is an overt word used in existential constructions (category 6), which is different from the copula in equational constructions (either a different lemma or with different syntax), then it should be regarded as being the head of existence clauses, taking a subject (and often a locative <code class="highlighter-rouge">obl</code>).</li>
   <li>All other cases of putative copula constructions (categories 2-5) should be assimilated to the equational and existential cases as seems to make most sense according to the inherent logic of the language concerned.</li>
   <li>A language should normally have at most one copula, but exceptions can be made in case of defective paradigms or if there are two verbs alternating in categories 1-5 (but not in 6) and where any meaning difference reflect at most TAME categories.</li>
 </ul>
@@ -148,7 +148,7 @@ ccomp(is, keep)
 
 <h4 id="english">English</h4>
 
-<p>The English analysis more or less follows the analysis in the current <code>UD_English</code> treebank. A non-head copula is used in categories (1-5), except for equated clauses, but (6) is treated differently because the verb must be the head in pure existentials.</p>
+<p>The English analysis more or less follows the analysis in the current <code class="highlighter-rouge">UD_English</code> treebank. A non-head copula is used in categories (1-5), except for equated clauses, but (6) is treated differently because the verb must be the head in pure existentials.</p>
 
 <p>(1a)</p>
 
@@ -493,32 +493,30 @@ nsubj(hers, It)
 case(hers, for)
 </code></pre>
 
-<p>(6a)
-~~~ sdparse
-Yemek var . \n Food existing .
+<p>(6a)</p>
+<pre><code class="language-sdparse">Yemek var . \n Food existing .
 nsubj(var, Yemek)
 nsubj(existing, Food)
-~~~</p>
+</code></pre>
 
-<p>(6b)
-~~~ sdparse
-Mutfakta yemek var . \n Kitchen-in food existing .
+<p>(6b)</p>
+<pre><code class="language-sdparse">Mutfakta yemek var . \n Kitchen-in food existing .
 nsubj(var, yemek)
 obl(var, Mutfakta)
 nsubj(existing, food)
 obl(existing, Kitchen-in)
-~~~</p>
+</code></pre>
 
 <h2 id="status-quo">Status quo</h2>
 
-<p>The languages in UD with the tokens which have the <code>cop</code> relation. The vast majority will need converting in light of the new guidelines.</p>
+<p>The languages in UD with the tokens which have the <code class="highlighter-rouge">cop</code> relation. The vast majority will need converting in light of the new guidelines.</p>
 
 <table>
   <thead>
     <tr>
       <th>Treebank</th>
-      <th>Unique <code>cop</code></th>
-      <th>Top-5 lemmas[POS] with <code>cop</code> relation</th>
+      <th>Unique <code class="highlighter-rouge">cop</code></th>
+      <th>Top-5 lemmas[POS] with <code class="highlighter-rouge">cop</code> relation</th>
     </tr>
   </thead>
   <tbody>

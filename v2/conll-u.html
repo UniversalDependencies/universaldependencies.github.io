@@ -65,26 +65,26 @@
 <p>Some of the changes adopted in v2 require modifications to the CoNLL-U format. Whenever possible, we have tried to do this in the least disruptive fashion possible, keeping backward compatibility as far as we can. In particular, we have decided against changing the number of fields and/or their meaning for fear of breaking people’s tools. We make the following changes for v2:</p>
 
 <ul>
-  <li>Allow spaces in the <code>FORM</code> and <code>LEMMA</code> fields (see <a href="segmentation.html">word segmentation</a>)</li>
-  <li>Let the <code>DEPS</code> field contain the entire enhanced dependency graph (not only additional relations on top of the basic trees) (see <a href="enhanced.html">enhanced dependencies</a>)</li>
-  <li>Allow empty nodes with an indexing scheme distinct from both tokens and words and with relations in the <code>DEPS</code> field (see <a href="ellipsis.html">ellipsis</a>)</li>
+  <li>Allow spaces in the <code class="highlighter-rouge">FORM</code> and <code class="highlighter-rouge">LEMMA</code> fields (see <a href="segmentation.html">word segmentation</a>)</li>
+  <li>Let the <code class="highlighter-rouge">DEPS</code> field contain the entire enhanced dependency graph (not only additional relations on top of the basic trees) (see <a href="enhanced.html">enhanced dependencies</a>)</li>
+  <li>Allow empty nodes with an indexing scheme distinct from both tokens and words and with relations in the <code class="highlighter-rouge">DEPS</code> field (see <a href="ellipsis.html">ellipsis</a>)</li>
   <li>Standardize sentence-level metadata</li>
-  <li>Restrict the use of the <code>MISC</code> field for ease of processing</li>
+  <li>Restrict the use of the <code class="highlighter-rouge">MISC</code> field for ease of processing</li>
 </ul>
 
 <h2 id="enhanced-representation-in-the-deps-field">Enhanced representation in the DEPS field</h2>
 
-<p>The <code>deps</code> field holds the <em>enhanced</em> representation. Unlike previously thought, it seems a better idea for the <code>DEPS</code> field to hold the entire enhanced parsed graph, not only a smaller set of relations on top of the base layer in <code>HEAD+DEPREL</code>. The primary reason is that minimally the <em>ellipsis</em> relations and in future undoubtedly many others are not a part of the enhanced graph but are rather replaced by some relations in it. See <a href="enhanced.html">enhanced dependencies</a>.</p>
+<p>The <code class="highlighter-rouge">deps</code> field holds the <em>enhanced</em> representation. Unlike previously thought, it seems a better idea for the <code class="highlighter-rouge">DEPS</code> field to hold the entire enhanced parsed graph, not only a smaller set of relations on top of the base layer in <code class="highlighter-rouge">HEAD+DEPREL</code>. The primary reason is that minimally the <em>ellipsis</em> relations and in future undoubtedly many others are not a part of the enhanced graph but are rather replaced by some relations in it. See <a href="enhanced.html">enhanced dependencies</a>.</p>
 
 <h2 id="empty-nodes-in-the-enhanced-representation">Empty nodes in the enhanced representation</h2>
 
-<p>A mechanism is needed for empty nodes in the enhanced representation (the base representation will always be empty-node-free). These will be on their separate lines indexed as <code>2.1</code> which means “the first empty node after the syntactic word indexed 2”. This line would be placed right after the word 2. Naturally, these empty nodes can be
-referred to only from the <code>DEPS</code> field.</p>
+<p>A mechanism is needed for empty nodes in the enhanced representation (the base representation will always be empty-node-free). These will be on their separate lines indexed as <code class="highlighter-rouge">2.1</code> which means “the first empty node after the syntactic word indexed 2”. This line would be placed right after the word 2. Naturally, these empty nodes can be
+referred to only from the <code class="highlighter-rouge">DEPS</code> field.</p>
 
 <!--There doesn't seem to be a clear idea of whether the empty nodes should receive any values in the `FORM, LEMMA, UPOS, FEAT`
 fields. Probably `UPOS` could be somehow realistically filled.-->
 
-<p>Grepping out all lines which start with E is now sufficient to obtain a CoNLL-U file without empty nodes whose <code>HEAD</code> and <code>DEPREL</code> fields behave as usual.</p>
+<p>Grepping out all lines which start with E is now sufficient to obtain a CoNLL-U file without empty nodes whose <code class="highlighter-rouge">HEAD</code> and <code class="highlighter-rouge">DEPREL</code> fields behave as usual.</p>
 
 <pre>
 1	Mary	_	_	_	_	2	nsubj	2:nsubj	_
@@ -109,11 +109,11 @@ Phrase-level features are features which apply to the whole phrase rather than a
   <li>text = sentence text</li>
 </ul>
 
-<p><code>sent_id</code> is compulsory and as per <a href="https://github.com/UniversalDependencies/docs/issues/321">#321</a> it should not contain the <code>/</code> (slash) character.</p>
+<p><code class="highlighter-rouge">sent_id</code> is compulsory and as per <a href="https://github.com/UniversalDependencies/docs/issues/321">#321</a> it should not contain the <code class="highlighter-rouge">/</code> (slash) character.</p>
 
 <h2 id="misc-field">MISC field</h2>
 
-<p>The only global requirement on the <code>MISC</code> field is that it can be split on the <code>|</code> (bar) character without any complex processing of escaping. The requirement of <code>MISC</code> containing zero whitespace characters is dropped. Of course no TAB characters are allowed and no trailing whitespace is allowed. It is likely that <code>spacesBefore</code> and <code>spacesAfter</code> will be standardized as a part of the <code>MISC</code> field.</p>
+<p>The only global requirement on the <code class="highlighter-rouge">MISC</code> field is that it can be split on the <code class="highlighter-rouge">|</code> (bar) character without any complex processing of escaping. The requirement of <code class="highlighter-rouge">MISC</code> containing zero whitespace characters is dropped. Of course no TAB characters are allowed and no trailing whitespace is allowed. It is likely that <code class="highlighter-rouge">spacesBefore</code> and <code class="highlighter-rouge">spacesAfter</code> will be standardized as a part of the <code class="highlighter-rouge">MISC</code> field.</p>
 
 
 

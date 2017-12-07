@@ -125,7 +125,7 @@ rcmod(whatever, need)
 xcomp(need, to)
 </code></pre>
 
-<p>Similarly, when a preposition is stranded in a passive construction, the preposition receives the <code>nmod</code> label on account of lacking a nominal head.</p>
+<p>Similarly, when a preposition is stranded in a passive construction, the preposition receives the <code class="highlighter-rouge">nmod</code> label on account of lacking a nominal head.</p>
 
 <pre><code class="language-sdparse">That matter was talked about in detail already
 nmod(talked, about)
@@ -152,7 +152,7 @@ amod(red, big)
 not deleted. The other orphans (if any) are attached to the promoted node with the relation
 that they would have to the deleted node. This seems to be the current approach in UD.</li>
   <li>The relations have a special label that essentially just says “do not trust me, there is
-something missing here.” For example, the Prague treebanks use the <code>ExD</code> label.</li>
+something missing here.” For example, the Prague treebanks use the <code class="highlighter-rouge">ExD</code> label.</li>
   <li>A combination of the above. The relations are categorized but there is an additional flag that
 warns about the ellipsis. For example, the original annotation of the Danish treebank has this.</li>
 </ul>
@@ -181,10 +181,10 @@ the Ancient Greek &amp; Latin Dependency Treebanks.</li>
 <p>In the Latin sentence (segment) <em>beatus qui legit et qui audiunt verba prophetiae et servant ea
 quae in ea scripta sunt tempus enim prope est</em>, a copula is missing; this would not be a problem
 in UD but the Latin treebank uses the Prague annotation style and the copula was supposed to
-head the whole sentence. The orphans are attached directly to the artificial <code>ROOT</code> node and the
-relations are labeled with chained labels such as <code>PNOM_ExD0_PRED</code>. The first in the chain is
-the relation of the orphan to the missing copula: <code>PNOM</code>. The indexed <code>ExD</code> actually represents
-the missing node, not a relation. And the <code>PRED</code> is the Prague label for the root relation.</p>
+head the whole sentence. The orphans are attached directly to the artificial <code class="highlighter-rouge">ROOT</code> node and the
+relations are labeled with chained labels such as <code class="highlighter-rouge">PNOM_ExD0_PRED</code>. The first in the chain is
+the relation of the orphan to the missing copula: <code class="highlighter-rouge">PNOM</code>. The indexed <code class="highlighter-rouge">ExD</code> actually represents
+the missing node, not a relation. And the <code class="highlighter-rouge">PRED</code> is the Prague label for the root relation.</p>
 
 <pre><code class="language-sdparse">ROOT beatus qui legit et qui audiunt verba prophetiae et servant ea …
 PNOM_ExD0_PRED(ROOT, beatus)
@@ -201,27 +201,27 @@ OBJ(servant, ea)
 </code></pre>
 
 <p>One problem with the grandparent approach that can be also seen in the above example is that it
-may result in several nodes attached directly to the artificial <code>ROOT</code> node. In UD, this would
-mean that <strong>multiple nodes have the <code>root</code> relation.</strong> While this is not explicitly banned in the
+may result in several nodes attached directly to the artificial <code class="highlighter-rouge">ROOT</code> node. In UD, this would
+mean that <strong>multiple nodes have the <code class="highlighter-rouge">root</code> relation.</strong> While this is not explicitly banned in the
 version 1 of the guidelines (and it occasionally appears in the release 1.1 of the data), there
 is a community consensus that we want to avoid it. So we cannot use the grandparent solution,
 at least not in the top level of the tree.</p>
 
-<h3 id="an-empty-null-node">An empty <code>NULL</code> node</h3>
+<h3 id="an-empty-null-node">An empty <code class="highlighter-rouge">NULL</code> node</h3>
 
 <p>It is possible to insert an empty node that represents the elided word. The orphans are then
 attached to this empty node and all relations can keep their labels. We do not do this in the
 current version of UD but it is used e.g. in the Hindi treebank, in the Russian treebank and
-elswhere. Instead of the word forms, these nodes are often labeled <code>NULL</code>, in SynTagRus they
-are called <code>#Fantom</code>, elsewhere there may be just an underscore <code>_</code> representing an empty word.</p>
+elswhere. Instead of the word forms, these nodes are often labeled <code class="highlighter-rouge">NULL</code>, in SynTagRus they
+are called <code class="highlighter-rouge">#Fantom</code>, elsewhere there may be just an underscore <code class="highlighter-rouge">_</code> representing an empty word.</p>
 
 <p>While this is the most expressive mechanism, it also postulates content for which there is no
-direct evidence in the sentence. Hence we should be careful and the introduction of <code>NULL</code> nodes
+direct evidence in the sentence. Hence we should be careful and the introduction of <code class="highlighter-rouge">NULL</code> nodes
 should be restricted. The situation in which they are most needed is when there are several
 orphans and it is not clear whether and which of them could be promoted to the head position.</p>
 
-<p>There are concerns about the influence of <code>NULL</code> nodes on parsing (a parser now has to learn
-where to introduce a <code>NULL</code> node in the input sentence). Also, some people believe that
+<p>There are concerns about the influence of <code class="highlighter-rouge">NULL</code> nodes on parsing (a parser now has to learn
+where to introduce a <code class="highlighter-rouge">NULL</code> node in the input sentence). Also, some people believe that
 a structure with empty nodes is less intuitive for users lacking linguistic background (but other
 people think the opposite, and we are not aware of studies that would measure intuitivity :-)).</p>
 
@@ -263,7 +263,7 @@ lwg_psp(hoṭala, meṁ-25)
 lwg_psp(hotel, in-38)
 </code></pre>
 
-<h3 id="the-remnant-relation">The <code>remnant</code> relation</h3>
+<h3 id="the-remnant-relation">The <code class="highlighter-rouge">remnant</code> relation</h3>
 
 <p>This is an approach <a href="../u/dep/remnant.html">currently used in UD</a>
 and it is actually the only relation we designed
@@ -288,7 +288,7 @@ node. However, there are also drawbacks:</p>
   <li>technical links rather than linguistically motivated dependencies</li>
   <li>it cannot encode that corresponding dependents in one chain have different relations, although
 we may occasionally need it</li>
-  <li>there is evidence of cases where the <code>remnant</code> relation cannot be used (and promotion is not
+  <li>there is evidence of cases where the <code class="highlighter-rouge">remnant</code> relation cannot be used (and promotion is not
 suitable either, because we still have two or more orphans). The material where the remnants
 ought to be attached may be missing because it is understood from the extra-sentential context.
 It is possible that we will see an incomplete sentence—e.g. a part of the above example:
@@ -297,26 +297,26 @@ It is possible that we will see an incomplete sentence—e.g. a part of the abov
 
 <h2 id="recommendation">Recommendation</h2>
 
-<p>There was a consensus that the <code>remnant</code> relation is not a good solution and should be eventually
+<p>There was a consensus that the <code class="highlighter-rouge">remnant</code> relation is not a good solution and should be eventually
 replaced by something else. We did not reach a consensus of what that something else should be.
-Restricted usage of <code>NULL</code> nodes was found somewhat appealing by some group members, and
+Restricted usage of <code class="highlighter-rouge">NULL</code> nodes was found somewhat appealing by some group members, and
 opposed by others. Chains of labels is a possible alternative that almost encodes the same
-information as the <code>NULL</code> nodes (unless there are multiple nodes missing, resulting in attachment
+information as the <code class="highlighter-rouge">NULL</code> nodes (unless there are multiple nodes missing, resulting in attachment
 ambiguity). It was also proposed to use the promotion approach, even for the price that we will
 have to select one argument of the verb and attach the other arguments to it.</p>
 
 <p>Obviously we need to continue the discussion in a larger group online. This is a <strong>long-term goal</strong>
 anyway, as we are not allowed to modify the guidelines before October 1, 2015, and we are not
 going to implement any change in the planned November release. But we may want to put a warning
-to the description of <code>remnant</code> that a revision is under consideration.</p>
+to the description of <code class="highlighter-rouge">remnant</code> that a revision is under consideration.</p>
 
 <p>As a <strong>short-term goal,</strong> we should get rid of the multi-root structures in all the languages,
-although it is not explicitly required by the current guidelines. Since we cannot use <code>remnant</code>
+although it is not explicitly required by the current guidelines. Since we cannot use <code class="highlighter-rouge">remnant</code>
 for them, we have to resort to promotion. It is not clear which of the multiple orphans to
-promote (we could say that e.g. <code>dobj</code> has precedence over <code>nsubj</code>, but we would have to
+promote (we could say that e.g. <code class="highlighter-rouge">dobj</code> has precedence over <code class="highlighter-rouge">nsubj</code>, but we would have to
 construct large tables for all possible combinations of orphans), we propose that the first
 orphan is always selected, and the other orphans are attached directly to it. The promoted orphan
-inherits the <code>root</code> relation from the deleted verb, while the other orphans keep their dependency
+inherits the <code class="highlighter-rouge">root</code> relation from the deleted verb, while the other orphans keep their dependency
 relation labels as if they were attached to the verb. If the orphans have their own dependents,
 their relations will be preserved as in the following example:</p>
 

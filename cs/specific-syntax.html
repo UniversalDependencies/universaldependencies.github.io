@@ -82,10 +82,10 @@ Such instances are attached to the verb as <a href="">cs-dep/obj</a> or <a href=
 
 <ul>
   <li><em>Jan <b>se</b> bude bránit.</em> “Jan will defend himself.”
-(<code>obj</code>; substitution is grammatical:
+(<code class="highlighter-rouge">obj</code>; substitution is grammatical:
 <em>Jan <b>ho</b> bude bránit.</em> “Jan will defend him.”)</li>
   <li><em>Barbora <b>si</b> přidělí osobního strážce.</em> “Barbora will assign herself a bodyguard.”
-(<code>iobj</code>; substitution is grammatical:
+(<code class="highlighter-rouge">iobj</code>; substitution is grammatical:
 <em>Barbora <b>jí</b> přidělí osobního strážce.</em> “Barbora will assign her a bodyguard.”)</li>
 </ul>
 
@@ -100,7 +100,7 @@ iobj(will-assign, herself)
 </code></pre>
 
 <p>The Czech reflexive pronoun is also used in reciprocal actions where other languages use
-a special reciprocal pronoun. These instances are still attached as <code>obj</code> or <code>iobj</code>,
+a special reciprocal pronoun. These instances are still attached as <code class="highlighter-rouge">obj</code> or <code class="highlighter-rouge">iobj</code>,
 respectively:</p>
 
 <ul>
@@ -301,7 +301,7 @@ punct(expected, ,-15)
 punct(came, .-19)
 </code></pre>
 
-<p>As with qualitative comparisons, we use <code>nmod</code> instead of <code>advcl</code> and <code>case</code> instead of <code>mark</code>
+<p>As with qualitative comparisons, we use <code class="highlighter-rouge">nmod</code> instead of <code class="highlighter-rouge">advcl</code> and <code class="highlighter-rouge">case</code> instead of <code class="highlighter-rouge">mark</code>
 when the comparative complement is reduced to just a nominal:</p>
 
 <pre><code class="language-sdparse">Petr má více peněz než Pavel . \n Petr has more money than Pavel .
@@ -360,7 +360,7 @@ the most important and difficult are those where the missing word has dependents
 Where do we attach these <em>orphans</em> to?</p>
 
 <p>Several different solutions can be found in treebanks.
-One of them is to include an <strong>empty node</strong> (labeled <code>NULL</code>, <code>#Fantom</code> etc.) that represents the missing word.
+One of them is to include an <strong>empty node</strong> (labeled <code class="highlighter-rouge">NULL</code>, <code class="highlighter-rouge">#Fantom</code> etc.) that represents the missing word.
 Orphans are then attached to the empty node with their real dependency relation labels.
 Such analysis would be linguistically adequate but it would violate our principle that dependencies exist
 between real syntactic words. (It would also make parsing more difficult.)
@@ -371,7 +371,7 @@ i.e. to the parent of the missing parent node. Then they may</p>
 
 <ul>
   <li>keep the labels they would have if attached to the missing parent (but that would yield strange combinations of parts of speech and dependency relations)</li>
-  <li>get a special label such as the <code>ExD</code> in Prague-style treebanks (it does not say much but at least it warns the user that this relation is not a normal dependency)</li>
+  <li>get a special label such as the <code class="highlighter-rouge">ExD</code> in Prague-style treebanks (it does not say much but at least it warns the user that this relation is not a normal dependency)</li>
   <li>combine both (in the Danish treebank, the original labels are surrounded by angle brackets to indicate that this is not the real parent; in the Ancient Greek and Latin treebanks, the labels on the path via missing node(s) are chained into one long label)</li>
 </ul>
 
@@ -421,13 +421,13 @@ cc(Markéta-15, and)
 </code></pre>
 
 <p>Sometimes a verb is missing but there is no coordination and no overt copy of the verb,
-hence we cannot use the <code>orphan</code> analysis.
+hence we cannot use the <code class="highlighter-rouge">orphan</code> analysis.
 In particular, there are sentence-like segments that lack the main verb:
 <em>A co na to [říká] MF?</em>
 “And what [does] MF [say] to it?”</p>
 
 <p>Since release 1.2 of the Czech UD treebank,
-there is just one node with the <code>root</code> dependency relation in every
+there is just one node with the <code class="highlighter-rouge">root</code> dependency relation in every
 tree; when there are
 multiple orphaned dependents at the top level of the tree,
 the leftmost dependent is promoted to

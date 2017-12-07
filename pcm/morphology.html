@@ -74,17 +74,17 @@
 
 <h2 id="lemmas">Lemmas</h2>
 
-<p>The <code>LEMMA</code> field should contain the canonical or base form of the word, such as the form typically found in dictionaries. If the lemma is not available, an underscore (“<code>_</code>”) can be used to indicate its absence.</p>
+<p>The <code class="highlighter-rouge">LEMMA</code> field should contain the canonical or base form of the word, such as the form typically found in dictionaries. If the lemma is not available, an underscore (“<code class="highlighter-rouge">_</code>”) can be used to indicate its absence.</p>
 
 <h2 id="part-of-speech-tags">Part-of-Speech Tags</h2>
 
-<p>Naija uses the POS tags described in the <a href="../../u/pos/index.html">universal POS tags list</a>. This list cannot be extended to cover language-specific extensions. Instead, more fine-grained classification of words can be achieved via the use of <a href="../../pcm/feat/index.html">features</a> (see below). Just one tag per word is expected, and it should not be empty (use the <code>X</code> tag instead of underscore if no other tag is appropriate).</p>
+<p>Naija uses the POS tags described in the <a href="../../u/pos/index.html">universal POS tags list</a>. This list cannot be extended to cover language-specific extensions. Instead, more fine-grained classification of words can be achieved via the use of <a href="../../pcm/feat/index.html">features</a> (see below). Just one tag per word is expected, and it should not be empty (use the <code class="highlighter-rouge">X</code> tag instead of underscore if no other tag is appropriate).</p>
 
 <p>A description of each POS tag can be accessed through <a href="../../pcm/pos/index.html">this page</a>.</p>
 
 <h2 id="features">Features</h2>
 
-<p><a href="../../pcm/feat/index.html">Features</a> are additional pieces of information about the word, its part of speech and morphosyntactic properties. Every feature has the form <code>Name=Value</code> and every word can have any number of features, separated by the vertical bar, as in <code>Gender=Masc|Number=Sing</code>.</p>
+<p><a href="../../pcm/feat/index.html">Features</a> are additional pieces of information about the word, its part of speech and morphosyntactic properties. Every feature has the form <code class="highlighter-rouge">Name=Value</code> and every word can have any number of features, separated by the vertical bar, as in <code class="highlighter-rouge">Gender=Masc|Number=Sing</code>.</p>
 
 <ul>
   <li>There are two types of identifiers:
@@ -93,10 +93,10 @@
       <li>feature values = <em>values</em></li>
     </ul>
   </li>
-  <li>All identifiers (both features and values) consist of English letters or, occasionally, digits 0-9. The first letter is always uppercase. The other letters are generally lowercase, except for positions where new internal words are marked for better readability (e.g. <code>NumType</code> ). This makes features distinct from the <a href="../../u/pos/index.html">universal POS tags</a> (all uppercase) and from the <a href="../../u/dep/index.html">universal dependency relations</a> (all lowercase).</li>
-  <li>A feature of a word should always be fully specified in the data, i.e. both the feature name and the value should be identified: <code>PronType=Prs</code> . Note that the values are not guaranteed to be unique across features, e.g. <code>Sup</code> could denote the superessive case, superlative degree of comparison or supine (a verb form).</li>
+  <li>All identifiers (both features and values) consist of English letters or, occasionally, digits 0-9. The first letter is always uppercase. The other letters are generally lowercase, except for positions where new internal words are marked for better readability (e.g. <code class="highlighter-rouge">NumType</code> ). This makes features distinct from the <a href="../../u/pos/index.html">universal POS tags</a> (all uppercase) and from the <a href="../../u/dep/index.html">universal dependency relations</a> (all lowercase).</li>
+  <li>A feature of a word should always be fully specified in the data, i.e. both the feature name and the value should be identified: <code class="highlighter-rouge">PronType=Prs</code> . Note that the values are not guaranteed to be unique across features, e.g. <code class="highlighter-rouge">Sup</code> could denote the superessive case, superlative degree of comparison or supine (a verb form).</li>
   <li>Not mentioning a feature in the data implies the empty value, which means that the feature is either irrelevant for this part of speech, or its value cannot be determined for this word form due to language-specific reasons.</li>
-  <li>Canonical ordering: features of one word (appearing on the same line) are always ordered alphabetically; if a feature has multiple values, these are ordered alphabetically, too. This rule facilitates cases when it is necessary to compare feature sets of two words. Alphabetical sorting means that uppercase letters are considered identical to their lowercase counterparts. So for example, <code>Number</code> precedes <code>NumType</code> .</li>
+  <li>Canonical ordering: features of one word (appearing on the same line) are always ordered alphabetically; if a feature has multiple values, these are ordered alphabetically, too. This rule facilitates cases when it is necessary to compare feature sets of two words. Alphabetical sorting means that uppercase letters are considered identical to their lowercase counterparts. So for example, <code class="highlighter-rouge">Number</code> precedes <code class="highlighter-rouge">NumType</code> .</li>
   <li>Description of individual features usually hints what parts of speech the feature is likely to appear with. This information is intended to help understand the typical usage of the feature; however, it is <em>not a strict rule!</em> Applicability of features to parts of speech is very language-dependent and it should never be assumed that the feature cannot appear together with a particular POS tag.</li>
 </ul>
 

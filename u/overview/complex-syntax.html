@@ -100,7 +100,7 @@ cc(left, And)
 <p>Coordination is often combined with <em>ellipsis</em>, where one or more of the normally obligatory constituents
 of a clause or omitted because they can be inferred from material in another conjunct.</p>
 
-<p>If the main predicate is elided, an associated <code>aux</code> or <code>cop</code> can be promoted to head of the clause.</p>
+<p>If the main predicate is elided, an associated <code class="highlighter-rouge">aux</code> or <code class="highlighter-rouge">cop</code> can be promoted to head of the clause.</p>
 
 <pre><code class="language-sdparse">Sue likes pasta and Peter does , too .
 
@@ -120,7 +120,7 @@ nsubj(is-6, Peter-5)
 advmod(is-6, too-8)
 </code></pre>
 
-<p>In more complicated cases where a predicate is elided but no <code>aux</code> or <code>cop</code> is present, promotion can lead to unnatural and confusing relations. For example, in the following sentence, <em>you</em> would be the subject of <em>coffee</em>, suggesting that the second clause contains a nonverbal predication rather than an elided predicate.</p>
+<p>In more complicated cases where a predicate is elided but no <code class="highlighter-rouge">aux</code> or <code class="highlighter-rouge">cop</code> is present, promotion can lead to unnatural and confusing relations. For example, in the following sentence, <em>you</em> would be the subject of <em>coffee</em>, suggesting that the second clause contains a nonverbal predication rather than an elided predicate.</p>
 
 <pre><code class="language-sdparse">I like tea and you coffee .
 
@@ -130,7 +130,7 @@ nsubj(coffee-6, you-5)
 conj(like-2, coffee-6)
 </code></pre>
 
-<p>In such cases, we therefore use the special <code>orphan</code> relation to attach siblings to the promoted element.</p>
+<p>In such cases, we therefore use the special <code class="highlighter-rouge">orphan</code> relation to attach siblings to the promoted element.</p>
 
 <pre><code class="language-sdparse">I like tea and you coffee .
 
@@ -167,7 +167,7 @@ root(ROOT, Jenny)
 orphan(Jenny, CD)
 </code></pre>
 
-<p>Note that the <code>orphan</code> relation is only used when an ordinary relation would be misleading (for example, when attaching an object to a subject). In particular, the ordinary <code>cc</code> relation should be used for the coordinating conjunction, which attaches to the pseudo-constituent formed through the <code>orphan</code> dependency.</p>
+<p>Note that the <code class="highlighter-rouge">orphan</code> relation is only used when an ordinary relation would be misleading (for example, when attaching an object to a subject). In particular, the ordinary <code class="highlighter-rouge">cc</code> relation should be used for the coordinating conjunction, which attaches to the pseudo-constituent formed through the <code class="highlighter-rouge">orphan</code> dependency.</p>
 
 <h2 id="subordination">Subordination</h2>
 
@@ -186,7 +186,7 @@ We distinguish four basic types:</p>
 <h3 id="clausal-subjects">Clausal Subjects</h3>
 
 <p>A clausal subject is a clausal syntactic subject of a clause. Its governor may be a verb or a nonverbal predicate.
-If the governor is in the passive, the subtype <code>csubj:pass</code> can be used.</p>
+If the governor is in the passive, the subtype <code class="highlighter-rouge">csubj:pass</code> can be used.</p>
 
 <pre><code class="language-sdparse">What she said makes sense
 csubj(makes, said)
@@ -231,7 +231,7 @@ xcomp(started, digging)
 </code></pre>
 
 <p>The key difference here is that, in the first sentence, who will be starting to do the digging is a question of anaphora (it may be some contextually relevant individual or group, which may or may not include the boss), while in both sentences, the person or persons who are starting to do something are necessarily the same people who are digging (i.e., in the second sentence, the subject of <strong>digging</strong> can only be <strong>we</strong>).
-This is what distinguishes <code>ccomp</code> and <code>xcomp</code>.</p>
+This is what distinguishes <code class="highlighter-rouge">ccomp</code> and <code class="highlighter-rouge">xcomp</code>.</p>
 
 <p>The controlled subject of the <a href="">xcomp</a> can also be an <a href="">obj</a> – indeed, it is usually the <a href="">obj</a> when one is present (Visser’s generalization). UD adopts an object with infinitive (or “raising to object”) analysis of such constructions (rather than the “small clause” or “exceptional case marking” analyses that are prominent in many recent strands of generative grammar). So UD uses analyses like the following for cases where there is obligatory control between an object and the subject of a subordinate clause:</p>
 
@@ -247,7 +247,7 @@ obj(let, us)
 xcomp(let, know)
 </code></pre>
 
-<p>Finally, <code>ccomp</code> is used with copulas in equational constructions involving full clauses.</p>
+<p>Finally, <code class="highlighter-rouge">ccomp</code> is used with copulas in equational constructions involving full clauses.</p>
 
 <pre><code class="language-sdparse">The important thing is to keep calm.
 ccomp(is, keep)
@@ -318,7 +318,7 @@ acl(man, love)
 <p>Some languages allow finite clausal complements for nouns with
 a subset of nouns like <em>fact</em> or <em>report</em>. These look roughly like relative clauses, but do not have any
 omitted role in the dependent clause. This is the class of “content
-clauses” in Huddleston and Pullum 2002). These are also analyzed as <code>acl</code>.</p>
+clauses” in Huddleston and Pullum 2002). These are also analyzed as <code class="highlighter-rouge">acl</code>.</p>
 
 <pre><code class="language-sdparse">the fact that nobody cares
 acl(fact, cares)
@@ -350,7 +350,7 @@ acl(fact, cares)
   <li><em>He painted the house <strong>blue</strong>.</em> [optional, resultative, transitive host]</li>
 </ul>
 
-<p>In UD, obligatory predicatives are always treated as an <code>xcomp</code>: The secondary predicate is attached as an <code>xcomp</code> of the main predicate. In most cases, as well as an adjective depictive, you can use a verbal or nominal predicate in the same position (e.g., <em>He looked [an idiot]</em>; <em>This made me [seethe with anger]</em>).</p>
+<p>In UD, obligatory predicatives are always treated as an <code class="highlighter-rouge">xcomp</code>: The secondary predicate is attached as an <code class="highlighter-rouge">xcomp</code> of the main predicate. In most cases, as well as an adjective depictive, you can use a verbal or nominal predicate in the same position (e.g., <em>He looked [an idiot]</em>; <em>This made me [seethe with anger]</em>).</p>
 
 <pre><code class="language-sdparse">She declared the cake beautiful .
 nsubj(declared, She)
@@ -374,7 +374,7 @@ obj(jmenovat, někoho)
 xcomp(jmenovat, generálem)
 </code></pre>
 
-<p>The relation <code>xcomp</code> is used for core arguments of clausal predicates,
+<p>The relation <code class="highlighter-rouge">xcomp</code> is used for core arguments of clausal predicates,
 so it will not be used for some other instances of secondary predication.
 Optional depictives are analyzed as adjuncts, and made the <a href="">acl</a> of the nominal that they semantically modify (if one is present).</p>
 
@@ -386,7 +386,7 @@ On the other hand, leaving out <em>beautiful</em> in <em>She declared the cake b
 will either render the sentence ungrammatical or lead to a different interpretation of <em>declared.</em></p>
 
 <p>The result is that in <em>She entered the room sad,</em> <em>sad</em> will depend on <em>She</em>
-and the relation will be <a href="">acl</a> instead of <code>xcomp</code>:</p>
+and the relation will be <a href="">acl</a> instead of <code class="highlighter-rouge">xcomp</code>:</p>
 
 <pre><code class="language-sdparse">She entered the room sad .
 obj(entered, room)
@@ -408,7 +408,7 @@ advcl(She-entered, sad)
 </code></pre>
 
 <p>The remaining, most subtle case is optional resultatives. For these,
-we uniformly use <code>xcomp</code>:</p>
+we uniformly use <code class="highlighter-rouge">xcomp</code>:</p>
 
 <pre><code class="language-sdparse">He painted the house blue .
 obj(painted, house)
@@ -418,7 +418,7 @@ xcomp(painted, blue)
 <p>Even though the resultative is optional here, one may argue that it is still a complement (an argument) of the higher verb
 (he is painting something blue), in a way that is not true of depictives. Such an analysis of optional resultatives as core arguments is adopted for English by Huddleston and Pullum (p. 262). In LFG terms, we would say that the verb has acquired a new
 subcategorization frame by application of a lexical rule, and that this frame
-includes an additional <code>xcomp</code> argument. Such an analysis is buttressed by the fact that normally intransitive verbs like <em>to bark</em> can also form similar resultatives by gaining a new subcategorization which adds both a <code>obj</code> and an <code>xcomp</code>, as in the example below.</p>
+includes an additional <code class="highlighter-rouge">xcomp</code> argument. Such an analysis is buttressed by the fact that normally intransitive verbs like <em>to bark</em> can also form similar resultatives by gaining a new subcategorization which adds both a <code class="highlighter-rouge">obj</code> and an <code class="highlighter-rouge">xcomp</code>, as in the example below.</p>
 
 <pre><code class="language-sdparse">The dog barked the neighbors awake .
 obj(barked, neighbors)

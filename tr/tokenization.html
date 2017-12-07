@@ -70,30 +70,28 @@
 
 <p>In Turkish (and some/all other Turkic languages), the POS of a word may change with suffixation a way that diverge from derivational morphology observed in other lanuages. The important difference is that parts of the word may refer to different entities and/or predicates that carry their own inflectional features and participate in different syntactic relations.</p>
 
-<p>A typical example is the following sentence:
-<code>
-Mavi arabadakiler   gazete    okuyor.
+<p>A typical example is the following sentence:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Mavi arabadakiler   gazete    okuyor.
 blue car-LOC-KI-PLU newspaper read-PROG
 `the ones in the blue car are reading newspapers'
-</code>
-In this example, the suffix <em>-ki</em> in word <em>arabadakiler</em> creates a new IG. The first IG refers to a car, while the second IG refers to people (in the car). The set of inflections attached to these two IG’s are different. <em>araba</em> ‘car’ is singular (not marked for plural) and marked for locative case, while <em>arabadaki</em> ‘the one/person in the car’ is not marked for case, and receives the plural suffix. In other words, the locative marker only applies to the first IG, and plural marker to the second. Furhermore, the adjective <em>mavi</em> ‘blue’ modifies <em>araba</em>, the car is blue not not the people inside. And the subject of the verb <em>oku</em> ‘read’ is the second IG.</p>
+</code></pre></div></div>
+<p>In this example, the suffix <em>-ki</em> in word <em>arabadakiler</em> creates a new IG. The first IG refers to a car, while the second IG refers to people (in the car). The set of inflections attached to these two IG’s are different. <em>araba</em> ‘car’ is singular (not marked for plural) and marked for locative case, while <em>arabadaki</em> ‘the one/person in the car’ is not marked for case, and receives the plural suffix. In other words, the locative marker only applies to the first IG, and plural marker to the second. Furhermore, the adjective <em>mavi</em> ‘blue’ modifies <em>araba</em>, the car is blue not not the people inside. And the subject of the verb <em>oku</em> ‘read’ is the second IG.</p>
 
 <p>During tokenization, we introduce two syntactic words, and tokenize the above sentence in CoNLL-U as follows:</p>
 
-<p><code>
-1   Mavi            mavi
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1   Mavi            mavi
 2-3 arabadakiler    _
 2   _               araba
 3   _               ki
 4   gazete          gazete
 5   okuyor          oku
 6   .               .
-</code>
-In principle, instead of introducing null surface form for the parts, the word can be segmented. However, this is non-trivial in some cases. Given that lemma, POS tag and features are set correctly, the surface information for the parts of the word can be recovered if needed.</p>
+</code></pre></div></div>
+<p>In principle, instead of introducing null surface form for the parts, the word can be segmented. However, this is non-trivial in some cases. Given that lemma, POS tag and features are set correctly, the surface information for the parts of the word can be recovered if needed.</p>
 
 <p>METU-Sabancı treebank makes excessive use of IGs. In UD, we limit the suffixes/cases that introduce a new IG to the following.</p>
 
-<h4 id="ki">-ki</h4>
+<h4 id="-ki">-ki</h4>
 
 <p>The suffix <em>-ki</em> attaches to a genitive- or locative-marked noun and derives adjectivals. The scope of <em>-ki</em> is the whole noun phrase headed by the nominal it attaches (the noun may be modified by any other means nouns can be modified, including complex relative clauses). The adjectival, like any adjective in Turkish, can act as a (pro)noun. We treat the adjective and noun usage separately. In both cases we split the original word and introduce a new IG starting with <em>-ki</em>.</p>
 
@@ -102,7 +100,7 @@ In principle, instead of introducing null surface form for the parts, the word c
 <p>In this usage, <em>-ki</em>’s function is similar to English ‘that’ or ‘which’,
 <em>Evde<b>ki</b> kitap</em> ‘the book <b>that</b> is at home’.</p>
 
-<p>In this usage, we mark the IG with <em>-ki</em> as <code>ADJ</code>. The head of the word in this case is a <code>NOUN</code>, and the <em>-ki</em> is attached to the noun using the <code>case</code> relation. Although the resulting phrase functions as an adjective, since we mark the noun as the head, we also mark the relation between the <em>-ki</em> phrase and the noun it modifies as <code>nmod</code>. We do not use an subtypes since the necessary information can be recovered from the IG with <em>-ki</em>.</p>
+<p>In this usage, we mark the IG with <em>-ki</em> as <code class="highlighter-rouge">ADJ</code>. The head of the word in this case is a <code class="highlighter-rouge">NOUN</code>, and the <em>-ki</em> is attached to the noun using the <code class="highlighter-rouge">case</code> relation. Although the resulting phrase functions as an adjective, since we mark the noun as the head, we also mark the relation between the <em>-ki</em> phrase and the noun it modifies as <code class="highlighter-rouge">nmod</code>. We do not use an subtypes since the necessary information can be recovered from the IG with <em>-ki</em>.</p>
 
 <pre><code class="language-sdparse">Evde -ki kitap
 nmod(kitap, evde)
@@ -111,7 +109,7 @@ case(evde, ki)
 
 <h4 id="noun-case">Noun case</h4>
 
-<p>In this case <em>-ki</em> refers to the person/thing that is defined by the stem, <em>evdeki</em> ‘the one at home’, <em>annem-ler-in-ki</em> ‘the one that belongs to my parents’.  In this usage, we mark the IG with <em>-ki</em> as noun (without the intervening adjective IG). In this case the head is the IG with  <em>-ki</em>, and relation is <code>nmod</code>. We do not sub-categorize this relation, but other <code>nmod</code> subcategories apply.</p>
+<p>In this case <em>-ki</em> refers to the person/thing that is defined by the stem, <em>evdeki</em> ‘the one at home’, <em>annem-ler-in-ki</em> ‘the one that belongs to my parents’.  In this usage, we mark the IG with <em>-ki</em> as noun (without the intervening adjective IG). In this case the head is the IG with  <em>-ki</em>, and relation is <code class="highlighter-rouge">nmod</code>. We do not sub-categorize this relation, but other <code class="highlighter-rouge">nmod</code> subcategories apply.</p>
 
 <pre><code class="language-sdparse">Akşam yedide -ki  altyazılı \n the one at seven is with subtitles
 nmod(yedide, akşam)
@@ -122,41 +120,38 @@ nsubj(altyazılı, -ki)
 <h4 id="copular-markers">Copular markers</h4>
 
 <p>Copular suffixes attached to nouns an adjectives
-create predicates. For example, the word/sentence <em>arabadaydım</em>
-<code>
-Arabada -ydık.
+create predicates. For example, the word/sentence <em>arabadaydım</em></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Arabada -ydık.
 car-LOC -is.PAST.1PL
 I was in the car.
-</code>
-Note that the <code>Number</code> feature on the noun is <code>Sing</code>, while the
-predicate agrees with a <code>Plur</code> subject. If both IGs are combined
+</code></pre></div></div>
+<p>Note that the <code class="highlighter-rouge">Number</code> feature on the noun is <code class="highlighter-rouge">Sing</code>, while the
+predicate agrees with a <code class="highlighter-rouge">Plur</code> subject. If both IGs are combined
 resulting feature values would be confusing. Furthermore, in
 combination with the plural markers, we end up with situations with
 multiple subjects (see below for an example).</p>
 
 <h4 id="subordinating-suffixes">Subordinating suffixes</h4>
 
-<p>A set of suffixes in Turksih form subordinated clauses that functin as nouns, adjectives or adverbs.
-<code>
-(Benim) eve        dün        götür-düklerimden
+<p>A set of suffixes in Turksih form subordinated clauses that functin as nouns, adjectives or adverbs.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(Benim) eve        dün        götür-düklerimden
 I.GEN   house.DAT  yesterday  take.PAST.1SG-VN.PLU.ABL
 Some of the things I took home yesterday.
-</code>
-Here, if we do not split off the subordinating suffix, we end up an
-<code>Case</code> feature (<code>Abl</code>) on a verb, or <code>Tense</code> feature on a noun (which
+</code></pre></div></div>
+<p>Here, if we do not split off the subordinating suffix, we end up an
+<code class="highlighter-rouge">Case</code> feature (<code class="highlighter-rouge">Abl</code>) on a verb, or <code class="highlighter-rouge">Tense</code> feature on a noun (which
 may be fine if the noun was a predicate, but not in this case).
-Also note that predicate <em>götür</em> ‘take’ needs <code>Number=Sing</code>, while the resulting nominal phrase is plural.</p>
+Also note that predicate <em>götür</em> ‘take’ needs <code class="highlighter-rouge">Number=Sing</code>, while the resulting nominal phrase is plural.</p>
 
-<p>This becomes even more complicated if a copula is attached to the verbal noun:
-<code>
-(O)    (benim) eve       dün        götür-düklerimden-miş.
+<p>This becomes even more complicated if a copula is attached to the verbal noun:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(O)    (benim) eve       dün        götür-düklerimden-miş.
 It     I.GEN   house.DAT yesterday  take.PAST.1SG-VN.PLU.ABL-cop.EVID.3SG
 It was (aparently) one of those I took home yesterday.
-</code>
-Now, not only that all sorts of feature conflicts between two predicates and the intervening nominal are possible,
+</code></pre></div></div>
+<p>Now, not only that all sorts of feature conflicts between two predicates and the intervening nominal are possible,
 the two predicates have different subjects.</p>
 
-<p>Splitting these suffixes also makes syntactic relation parallel to other languages, where the word that causes the subordination marked with relation <code>mark</code>.</p>
+<p>Splitting these suffixes also makes syntactic relation parallel to other languages, where the word that causes the subordination marked with relation <code class="highlighter-rouge">mark</code>.</p>
 
 <h3 id="some-other-derivational-suffixes">Some other (derivational) suffixes</h3>
 

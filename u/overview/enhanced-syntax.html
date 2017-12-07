@@ -62,7 +62,7 @@
 
           <h1 id="enhanced-dependencies">Enhanced Dependencies</h1>
 
-<p>We always intended the Universal Dependencies representation to be used in shallow natural language understanding tasks such as relation extraction or biomedical event extraction. For such tasks, one is typically interested in the relation between certain entities, e.g., the relation between two persons or whether one protein interacts with another. UD is particularly well suited for such tasks as UD trees contain many direct dependencies between content words and many of the dependency labels provide a lot of information about the type of relation between two content words. However, for some constructions, the dependency path between two content words of interest can be very long in a UD tree, which complicates determining how the content words are related. Further, some dependency types such as <a href="u-dep/obl"><code>obl</code></a> or <a href="u-dep/nmod"><code>nmod</code></a> are used for many different types of arguments and modifiers, and therefore they are not very informative on their own. For these reasons, we also provide guidelines for an <em>enhanced</em> representation, which makes some of the implicit relations between words more explicit, and augments some of the dependency labels to facilitate the disambiguation of types of arguments and modifiers.</p>
+<p>We always intended the Universal Dependencies representation to be used in shallow natural language understanding tasks such as relation extraction or biomedical event extraction. For such tasks, one is typically interested in the relation between certain entities, e.g., the relation between two persons or whether one protein interacts with another. UD is particularly well suited for such tasks as UD trees contain many direct dependencies between content words and many of the dependency labels provide a lot of information about the type of relation between two content words. However, for some constructions, the dependency path between two content words of interest can be very long in a UD tree, which complicates determining how the content words are related. Further, some dependency types such as <a href="u-dep/obl"><code class="highlighter-rouge">obl</code></a> or <a href="u-dep/nmod"><code class="highlighter-rouge">nmod</code></a> are used for many different types of arguments and modifiers, and therefore they are not very informative on their own. For these reasons, we also provide guidelines for an <em>enhanced</em> representation, which makes some of the implicit relations between words more explicit, and augments some of the dependency labels to facilitate the disambiguation of types of arguments and modifiers.</p>
 
 <p><em>Enhanced</em> UD graphs may contain some or all of the following enhancements, which are described in the sections below.</p>
 
@@ -214,7 +214,7 @@
 </td></tr></tbody>
 </table>
 
-<p>Note that this is a case in which the <em>enhanced</em> UD graph is not a supergraph of the <em>basic</em> tree as the <em>basic</em> tree contains <code>orphan</code> relations, which are not present in the <em>enhanced</em> UD graph.</p>
+<p>Note that this is a case in which the <em>enhanced</em> UD graph is not a supergraph of the <em>basic</em> tree as the <em>basic</em> tree contains <code class="highlighter-rouge">orphan</code> relations, which are not present in the <em>enhanced</em> UD graph.</p>
 
 <h2 id="propagation-of-conjuncts">Propagation of Conjuncts</h2>
 
@@ -449,7 +449,7 @@
 
 <h3 id="conjoined-modifiers">Conjoined modifiers</h3>
 
-<p>Each conjunct in a conjoined modifier phrase gets attached to the governor of the modifier phrase. For example, the following phrase contains a conjoined adjectival phrase that modifies a noun. In the enhanced representation, there is an additional <code>amod</code> relation between the noun <em>river</em> and the second conjunct <em>wide</em>.</p>
+<p>Each conjunct in a conjoined modifier phrase gets attached to the governor of the modifier phrase. For example, the following phrase contains a conjoined adjectival phrase that modifies a noun. In the enhanced representation, there is an additional <code class="highlighter-rouge">amod</code> relation between the noun <em>river</em> and the second conjunct <em>wide</em>.</p>
 
 <table> <!--a long and wide river-->
 <tbody><tr><td width="600">
@@ -474,7 +474,7 @@
 
 <h2 id="relative-clauses">Relative clauses</h2>
 
-<p>In <em>basic</em> trees, relative pronouns are attached to the main predicate of the relative clause (typically with a <code>nsubj</code> or <code>obj</code> relation). In the corresponding <em>enhanced</em> graphs, the relative pronoun is attached to what it is referring to with the special <code>ref</code> relation and the governor of the relative clause is attached as an argument to the main predicate of the relative clause. Note that such graphs contain a cycle.</p>
+<p>In <em>basic</em> trees, relative pronouns are attached to the main predicate of the relative clause (typically with a <code class="highlighter-rouge">nsubj</code> or <code class="highlighter-rouge">obj</code> relation). In the corresponding <em>enhanced</em> graphs, the relative pronoun is attached to what it is referring to with the special <code class="highlighter-rouge">ref</code> relation and the governor of the relative clause is attached as an argument to the main predicate of the relative clause. Note that such graphs contain a cycle.</p>
 
 <table> <!--the boy who lived-->
 <tbody><tr><td width="600">
@@ -520,7 +520,7 @@
 </td></tr></tbody>
 </table>
 
-<p>The enhanced relations are semantic rather than syntactic. In case marking languages the enhanced dependencies may link verb dependents that are not in the expected morphological case, required by surface syntax. In the following Czech example, the relative modifier phrase <em>v němž</em> “in which” is obligatorily in the locative case form (<code>Case=Loc</code>). If it were a main clause, the referent <em>dům</em> “house” would have to be in locative too: <em>v domě</em> “in house”. However, here it is in the nominative (<code>Case=Nom</code>), and the enhanced dependency <code>obl</code> going to a nominative dependent is something we would not expect to see, given the morpho-syntactic rules of the language.</p>
+<p>The enhanced relations are semantic rather than syntactic. In case marking languages the enhanced dependencies may link verb dependents that are not in the expected morphological case, required by surface syntax. In the following Czech example, the relative modifier phrase <em>v němž</em> “in which” is obligatorily in the locative case form (<code class="highlighter-rouge">Case=Loc</code>). If it were a main clause, the referent <em>dům</em> “house” would have to be in locative too: <em>v domě</em> “in house”. However, here it is in the nominative (<code class="highlighter-rouge">Case=Nom</code>), and the enhanced dependency <code class="highlighter-rouge">obl</code> going to a nominative dependent is something we would not expect to see, given the morpho-syntactic rules of the language.</p>
 
 <table> <!--dům, v němž žijeme = the house we live in (lit. house, in that we-live)-->
 <tbody><tr><td width="600">
@@ -575,7 +575,7 @@ It may be embedded deeper as in the following example.</p>
 
 <h2 id="case-information">Case Information</h2>
 
-<p>Adding prepositions (or case information) to the relation name of non-core dependents often makes it possible to disambiguate its semantic role. We therefore augment <code>nmod</code>, <code>obl</code>, <code>acl</code> and <code>advcl</code> relation labels with the preposition or the case of the modifier.</p>
+<p>Adding prepositions (or case information) to the relation name of non-core dependents often makes it possible to disambiguate its semantic role. We therefore augment <code class="highlighter-rouge">nmod</code>, <code class="highlighter-rouge">obl</code>, <code class="highlighter-rouge">acl</code> and <code class="highlighter-rouge">advcl</code> relation labels with the preposition or the case of the modifier.</p>
 
 <table> <!--the house on the hill-->
 <tbody><tr><td width="600">

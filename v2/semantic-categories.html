@@ -62,16 +62,16 @@
 
           <h1 id="semantic-categories-in-ud-v2">Semantic Categories in UD v2</h1>
 
-<p>Some of the relations in v1, in particular <code>name</code> and <code>neg</code>), primarily encoded semantic distinctions (rather than syntactic). We therefore make the following changes for v2:</p>
+<p>Some of the relations in v1, in particular <code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">neg</code>), primarily encoded semantic distinctions (rather than syntactic). We therefore make the following changes for v2:</p>
 
 <ul>
-  <li>Remove <code>neg</code> and instead encode negation as a feature</li>
-  <li>Rename <code>name</code> to <a href="">u-dep/flat</a> and extend its usage beyond names (for example, include titles)</li>
+  <li>Remove <code class="highlighter-rouge">neg</code> and instead encode negation as a feature</li>
+  <li>Rename <code class="highlighter-rouge">name</code> to <a href="">u-dep/flat</a> and extend its usage beyond names (for example, include titles)</li>
 </ul>
 
 <h2 id="remove-neg">Remove neg</h2>
 
-<p>We have decided to get rid of the <code>neg</code> relation which is not syntactic. Instead we will use</p>
+<p>We have decided to get rid of the <code class="highlighter-rouge">neg</code> relation which is not syntactic. Instead we will use</p>
 
 <ul>
   <li>ordinary syntactic relations like <a href="">u-dep/advmod</a>, <a href="">u-dep/aux</a>, etc.</li>
@@ -80,7 +80,7 @@
 
 <h2 id="rename-name-and-modify-its-use">Rename name and modify its use</h2>
 
-<p>The <code>name</code> label is another one that has led to confusion. It was not intended to be used for all <strong>named entities</strong>, but only for names consisting of multiple nominal elements. We suggest keeping the relation but renaming it to <code>flat</code> to (a) avoid the impression that it should capture named entities in general, and (b) indicate that the relation is only appropriate when there is no clear syntactic head. After we have dropped the direct association with names, we can also extend the use of this relation to titles (“Mrs.”, “President”, etc.) in languages where they do not show clear head or dependent properties. A subtype <code>flat:name</code> can be used to preserve information in existing treebanks.</p>
+<p>The <code class="highlighter-rouge">name</code> label is another one that has led to confusion. It was not intended to be used for all <strong>named entities</strong>, but only for names consisting of multiple nominal elements. We suggest keeping the relation but renaming it to <code class="highlighter-rouge">flat</code> to (a) avoid the impression that it should capture named entities in general, and (b) indicate that the relation is only appropriate when there is no clear syntactic head. After we have dropped the direct association with names, we can also extend the use of this relation to titles (“Mrs.”, “President”, etc.) in languages where they do not show clear head or dependent properties. A subtype <code class="highlighter-rouge">flat:name</code> can be used to preserve information in existing treebanks.</p>
 
 <!-- Finally, consistent with the proposed changes for other headless constructions, we propose that arrows should be drawn from righ to left (see [multiword expressions](mwe.html)).-->
 
@@ -94,7 +94,7 @@ flat(Monsieur, Louis)
 flat(Monsieur, Pignon)
 </code></pre>
 
-<p>In case of foreign phrases that are phrasal or clausal names and where we do not (or cannot) give a compositional analysis, we now use the new relation <code>flat</code> instead of the old <code>foreign</code>, which is removed in v2. A subtype <code>flat:foreign</code> may be used to preserve information in existing treebanks.</p>
+<p>In case of foreign phrases that are phrasal or clausal names and where we do not (or cannot) give a compositional analysis, we now use the new relation <code class="highlighter-rouge">flat</code> instead of the old <code class="highlighter-rouge">foreign</code>, which is removed in v2. A subtype <code class="highlighter-rouge">flat:foreign</code> may be used to preserve information in existing treebanks.</p>
 
 <pre><code class="language-sdparse">The French title of the book is " Harry à l' école des sorciers ".
 flat(Harry, à)
