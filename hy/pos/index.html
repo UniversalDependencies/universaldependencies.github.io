@@ -62,6 +62,8 @@
 
           <h1 id="pos-tags">POS tags</h1>
 
+<p>These tags mark the core part-of-speech categories. To distinguish additional lexical and grammatical properties of words, use the <a href="feat/index.html">universal features</a>.</p>
+
 <table class="typeindex">
   <thead>
     <tr>
@@ -113,6 +115,2413 @@
     </tr>
   </tbody>
 </table>
+
+<hr />
+
+<p>Alphabetical listing</p>
+
+<p><code class="highlighter-rouge">compound</code> is one of the relations in UD for compounding in UD (together with <a href="">flat</a> and <a href="">fixed</a>). <code class="highlighter-rouge">compound</code> is used for:</p>
+
+<ul>
+  <li>numbers</li>
+</ul>
+
+<p>The most left numeral is the head, the other numerals are attached as its modifiers.</p>
+
+<pre><code class="language-sdparse">Սա առավելագույնը հինգ հազար դրամ կարժենա ։ \n It will cost at-most 5 thousand drams .
+nummod(դրամ, հինգ)
+nummod(drams, 5)
+compound(հինգ, հազար-4)
+compound(5, thousand-14)
+</code></pre>
+
+<pre><code class="language-sdparse">Սա առավելագույնը հարյուր հիսունհինգ հազար դրամ կարժենա ։ \n It will cost at-most hundred fifty-five thousand drams .
+nummod(դրամ, հարյուր)
+nummod(drams, hundred)
+compound(հարյուր, հիսունհինգ-4)
+compound(hundred, fifty-five)
+compound(հիսունհինգ, հազար-5)
+compound(fifty-five, thousand)
+</code></pre>
+<p><code class="highlighter-rouge">flat</code> is one of the relations for compounding in UD (together with <a href="">compound</a> and <a href="">fixed</a>).</p>
+
+<p>In Armenian it is used for proper nouns constituted of multiple nominal elements. For phrasal or clausal names the usual relations are used.</p>
+
+<p>The inflected name is always the head and the other name(s) are attached to it, the inflected name is usually the last name.</p>
+
+<pre><code class="language-sdparse">Նախագահ Լևոն Տեր - Պետրոսյանը երեկ այցելել է Երևանի պետական համալսարան ։ \n President Levon Ter - Petrosyan yesterday visited Yerevan State University .
+flat(Պետրոսյանը, Լևոն)
+flat(Petrosyan, Levon)
+flat(Պետրոսյանը, Տեր)
+flat(Petrosyan, Ter)
+nmod(Պետրոսյանը, Նախագահ)
+nmod(Petrosyan, President)
+amod(համալսարան, պետական)
+amod(University, State)
+nmod(համալսարան, Երևանի)
+nmod(University, Yerevan)
+</code></pre>
+
+<pre><code class="language-sdparse">Խոսրով Գ Կոտակը \n Khosrov III the Small
+flat(Կոտակը, Խոսրով)
+flat(Small, Khosrov)
+flat(Կոտակը, Գ)
+flat(Small, III)
+</code></pre>
+
+<pre><code class="language-sdparse">Նյու Յորքը \n New York
+flat(Յորքը, Նյու)
+flat(York, New)
+</code></pre>
+
+<pre><code class="language-sdparse">Վանա լիճը \n Lake Van
+flat(լիճը, Վանա)
+flat(Lake, Van)
+</code></pre>
+<p>This relation links two or more parts of a word that are separated in text that is not well edited.
+These parts should be written together as one word according to the ortographic rules of a given language.
+The head is always the first part, the other parts are attached to it with the <code class="highlighter-rouge">goeswith</code> relation
+(for consistency, similarly as in <a href="">flat</a>, <a href="">fixed</a> and <a href="">conj</a>).
+Note that only the last part may be annotated with <code class="highlighter-rouge">SpaceAfter=No</code>.</p>
+
+<pre><code class="language-sdparse">նա ի զուր էր այդքան անհանգստանում
+goeswith(ի-2, զուր-3)
+</code></pre>
+
+<pre><code class="language-sdparse">կարգ ու կանոն հաստատել
+goeswith(կարգ, ու)
+goeswith(կարգ, կանոն)
+</code></pre>
+<h1 id="features">Features</h1>
+
+<p>For core part-of-speech categories, see the <a href="pos/index.html">POS tags</a>. The features listed here distinguish additional lexical and grammatical properties of words, not covered by the POS tags.</p>
+
+<p>{% include hy-feat-table.html %}</p>
+
+<hr />
+
+<p>Alphabetical listing</p>
+
+<p>{% comment %}
+{% assign sorted = site.hy-feat | sort: ‘title’ %}{% for p in sorted %}</p>
+<ul>
+  <li><a href="">{{ p.title }}</a>: {{ p.shortdef }}{% endfor %}
+{% endcomment %}&lt;table class="typeindex" border="1"&gt;</li>
+</ul>
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Yes">Yes</a></td>
+</tr>
+<p>&lt;/table&gt;</p>
+
+<p>Boolean feature. Is this an abbreviation? Note that the abbreviated word typically belongs to a part of speech other than <a href="">X</a>.</p>
+
+<h3 id="yes-it-is-abbreviation"><a name="Yes"><code class="highlighter-rouge">Yes</code></a>: it is abbreviation</h3>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li>Acronyms:
+<em>ՀՀ (Հայաստանի Հանրապետություն) </em> “Republic of Armenia”,
+<em>ՄԱԿ (Միավորված ազգերի կազմակերպություն) </em> “United Nations Organization”,
+<em>բուհ (բարձրագույն ուսումնական հաստատություն) </em> “institute of higher education”,
+<em>հէկ (հիդրոէլեկտրակայան) </em> “hydroelectric power station”,
+<em>սոցապ (սոցիալական ապահովություն) </em> “social protection”,
+<em>շրջժողկրթբաժին (շրջանային ժողովրդական կրթության բաժին) </em> “local education authorities”,
+<em>ՀամԼԿԵՄ (Համամիութենական լենինյան կոմունիստական երիտասարդական միություն) </em> “The All-Union Leninist Young Communist League”</li>
+  <li>Initials: <em><b>Հովհ</b>., <b>Թ</b>., <b>Հր</b>., <b>Ք</b>., <b>Վ</b>., <b>Տ</b>.</em></li>
+  <li>Abbreviations:
+<em><b>թ</b>. (թվական) </em> “year”,
+<em><b>դդ</b>. (դարեր) </em> “centuries”,
+<em><b>օր</b>. (օրինակ) </em> “for example”,
+<em><b>փխբ</b>. (փոխաբերություն) </em> “metaphor”,
+<em><b>հեռ</b>. (հեռախոս) </em> “phone”,
+<em><b>հմմտ</b>. (համեմատել, համեմատիր) </em> “compare”,
+<em><b>դ-ր</b> (դոկտոր) </em> “Doctor”,
+<em><b>իմա</b> (իմացիր, այսինքն) </em> “to be known”</li>
+</ul>
+
+<p>Note that the <code class="highlighter-rouge">Abbr</code> feature will be mentioned for foreign acronyms written in Amrenian: <em>ՏԱՍՍ (Телеграфное агентство Советского Союза) </em> “TASS, Telegraph Agency of the Soviet Union”, <em>ՆԱՏՕ </em> “NATO”, <em>ՕՊԵԿ </em> “OPEC”.</p>
+
+<h4 id="countrexamples">Countrexamples</h4>
+
+<ul>
+  <li>Some Russian acronyms are loan words in Armenian:
+<em>զագս (ЗАГС / загс, запись актов гражданского состояния) </em> “registry office”,
+<em>սովխոզ (совхоз, советское хозяйство) </em> “state farm, sovkhoz”</li>
+</ul>
+
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Comadp">Comadp</a></td>
+  <td><a href="#Prep">Prep</a></td>
+  <td><a href="#Post">Post</a></td>
+</tr>
+</table>
+
+<p>Armenian has prepositions and postpositions, but not circumpositions.</p>
+
+<h3 id="prep-preposition"><a name="Prep"><code class="highlighter-rouge">Prep</code></a>: preposition</h3>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li><em><b>ի</b></em> “for the sake of”, <em><b>առ</b></em> “up to”, <em><b>դեպի</b></em> “to”, <em><b>առանց</b></em> “without”, <em><b>ըստ</b></em> “according to”, <em><b>հօգուտ</b></em> “in favour of”, <em><b>հանձին(ս)</b></em> “in person of”, <em><b>հանուն</b></em> “for the sake of”</li>
+</ul>
+
+<h3 id="post-postposition"><a name="Post"><code class="highlighter-rouge">Post</code></a>: postposition</h3>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li><em><b>անց</b></em> “after”, <em><b>մեջ</b></em> “in”, <em><b>հետ</b></em> “with”, <em><b>պես</b></em> “as”, <em><b>մոտ</b></em> “at”, <em><b>վրա</b></em> “on”, <em><b>համար</b></em> “for”, <em><b>զատ</b></em> “except”, <em><b>հետո</b></em> “after”</li>
+</ul>
+
+<h3 id="comadp-dependent-part-of-compound-adposition"><a name="Comadp"><code class="highlighter-rouge">Comadp</code></a>: dependent part of compound adposition</h3>
+
+<p>This value marks dependent first or second part of a compound adposition. This word cannot occur alone. Not all compound prepositions contain words marked <code class="highlighter-rouge">Comadp</code>. Many compound prepositions consist of prepositions and a noun (e.g. <em>ի սեր</em> “for the love of”, <em>ի պատիվ</em> “in honor of” ). Sometimes there are just two words, the first one is normal postposition and the second one
+is a secondary postposition (etymologically some other part of speech, but it has been frozen as
+a postposition) as in <em>դեմ հանդիման</em> “in front of”.</p>
+
+<h4 id="examples-3">Examples</h4>
+
+<ul>
+  <li><em>ի <b>հեճուկս</b></em> “to spite”, <em>ի <b>փառս</b></em> “in praise of”, <em><b>հիման</b> վրա</em> “on the basis of”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Hum">Hum</a></td>
+  <td><a href="#Inan">Inan</a></td>
+  <td><a href="#Nhum">Nhum</a></td>
+</tr>
+</table>
+
+<p>In Armenian animacy is a lexical feature of <a href="NOUN">nouns</a> and some <a href="PRON">pronouns</a>. Armenian distinguishes three values, human vs. non-human animate vs. inanimate:</p>
+
+<p>See also the related feature of <a href="">Definite</a>.</p>
+
+<p>Note that some school grammars of Armenian distinguish between lexical <code class="highlighter-rouge">Hum</code> vs. <code class="highlighter-rouge">Nhum</code> or <code class="highlighter-rouge">Anim</code> vs. <code class="highlighter-rouge">Inan</code> features of nouns.</p>
+
+<p>There is antother classifaction: nouns that are human and inflected as <code class="highlighter-rouge">Hum</code> (as <a href="hy-dep/obj">obj</a> in <a href="Case">Dat</a>) vs. nouns that are animate or inanimate and inflected as <code class="highlighter-rouge">Anim</code> (as <a href="hy-dep/obj">obj</a> in <a href="Case">Dat</a>) vs. nouns that are human, animate or inanimate and inflected as <code class="highlighter-rouge">Inan</code> (as <a href="hy-dep/obj">obj</a> in <a href="Case">Nom/Acc</a>).</p>
+
+<h3 id="hum-human"><a name="Hum"><code class="highlighter-rouge">Hum</code></a>: human</h3>
+
+<p>Human beings, fictional characters, names of professions etc. (but not animals) are all humans.</p>
+
+<ul>
+  <li><em>մարդ</em> “man”, <em>երեխա</em> “child”, <em>աղջիկ</em> “girl”, <em>ամուսին</em> “husband”, <em>ուսուցիչ</em> “teacher”, <em>նախագահ</em> “president”, <em>տնօրեն</em> “director”</li>
+</ul>
+
+<h3 id="nhum-non-human"><a name="Nhum"><code class="highlighter-rouge">Nhum</code></a>: non-human</h3>
+
+<p>This value is used for non-human animates (only animals).</p>
+
+<ul>
+  <li><em>ձի</em> “horse”, <em>կով</em> “cow”, <em>առյուծ</em> “lion”, <em>արագիլ</em> “stork”, <em>ձուկ</em> “fish”</li>
+</ul>
+
+<h3 id="inan-inanimate"><a name="Inan"><code class="highlighter-rouge">Inan</code></a>: inanimate</h3>
+
+<p>Nouns that are not animate are inanimate. Even nouns that are normally inanimate can be inflected as animate if they are personified. For instance, consider a children’s story about cars where cars live and talk as people; then the cars may become and be inflected as animates.</p>
+
+<ul>
+  <li><em>տարի</em> “year”, <em>օրենք</em> “law”, <em>պետություն</em> “state”, <em>լեռ</em> “mountain”, <em>ծառ</em> “tree”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Dur">Dur</a></td>
+  <td><a href="#Imp">Imp</a></td>
+  <td><a href="#Iter">Iter</a></td>
+  <td><a href="#Perf">Perf</a></td>
+  <td><a href="#Prosp">Prosp</a></td>
+
+</tr>
+</table>
+
+<p>Aspect is a feature that specifies duration of the action in time,
+whether the action has been completed etc. In Armenian some tenses are actually combinations of tense and aspect.</p>
+
+<p>Note, that some aspectual meanings in compound tenses may be expressed at participles.</p>
+
+<h3 id="imp-imperfect-aspect"><a name="Imp"><code class="highlighter-rouge">Imp</code></a>: imperfect aspect</h3>
+
+<p>The action took / takes / will take some time span and there is no
+information whether and when it was / will be completed.</p>
+
+<h4 id="examples-4">Examples</h4>
+
+<ul>
+  <li><em><b>վազում</b> եմ տուն </em> “I run / am running home”,</li>
+  <li><em><b>վազում</b> էի տուն </em> “I was running home”</li>
+</ul>
+
+<h3 id="perf-perfect-aspect"><a name="Perf"><code class="highlighter-rouge">Perf</code></a>: perfect aspect</h3>
+
+<p>The action has been / will have been completed. Since there is
+emphasis on one point on the time scale (the point of completion),
+this aspect does not work well with the present tense.</p>
+
+<p>The forms with resultative participles might better be defined as ‘perfect stative’.</p>
+
+<h4 id="examples-5">Examples</h4>
+
+<ul>
+  <li><em><b>վազեցի</b> տուն </em> “I ran home”,</li>
+  <li><em><b>վազել</b> եմ տուն </em> “I have run home”,</li>
+  <li><em><b>վազել</b> էի տուն </em> “I had run home”,</li>
+  <li><em><b>նստած </b> եմ տանը </em> “I am sitting at home”,</li>
+  <li><em><b>նստած </b> էի տանը </em> “I was sitting at home”</li>
+</ul>
+
+<h3 id="prosp-prospective-aspect"><a name="Prosp"><code class="highlighter-rouge">Prosp</code></a>: prospective aspect</h3>
+
+<p>In general, prospective aspect can be described as relative future:
+the action is/was/will be expected to take place at a moment that
+follows the reference point; the reference point itself can be
+in past, present or future.</p>
+
+<p>In some contexts subjunctive and conditional forms may also indicate prospective aspect and signal an event that expected to take place. <code class="highlighter-rouge">Prosp</code> meaning prevails in conditional imperfect forms.</p>
+
+<h4 id="examples-6">Examples</h4>
+
+<ul>
+  <li><em><b>վազելու</b> եմ տուն </em> “I shall run home”,</li>
+  <li><em><b>վազելու</b> էի տուն </em> “I should run home”,</li>
+  <li><em><b>վազեմ</b> տուն </em> “(I’d better) run home”,</li>
+  <li><em><b>վազեի</b> տուն </em> “I wish I ran home”</li>
+  <li><em><b>կվազեմ</b> տուն </em> “I shall run home”,</li>
+  <li><em><b>կվազեի</b> տուն </em> “I shall run home”</li>
+</ul>
+
+<h3 id="dur-durative-aspect"><a name="Dur"><code class="highlighter-rouge">Dur</code></a>: durative aspect</h3>
+
+<p>A situation or action that has persisted over a period of time and still continues.</p>
+
+<p>The finite form of auxilary <em>լինեմ </em> (in various tenses and moods or in the infinitive <em>լինել </em>) accombined with processual, resultative and future participles of main verb indicates this aspect. The first one might better be defined as ‘durative progressive’ and others as ‘durative stative’ and ‘durative prospective’.</p>
+
+<h4 id="examples-7">Examples</h4>
+
+<ul>
+  <li><em>գնալիս <b>լինեմ</b> </em> “(If / when) I will be going”,</li>
+  <li><em>գնացած <b>լինեմ</b> </em> “(If / when) I will be gone”,</li>
+  <li><em>գնալու <b>լինեմ</b> </em> “(If / when) I go”</li>
+</ul>
+
+<h3 id="iter-iterative--frequentative-aspect"><a name="Iter"><code class="highlighter-rouge">Iter</code></a>: iterative / frequentative aspect</h3>
+
+<p>Denotes repeated action, with multiplicative or distributive meanings. Armenian has three main iterative markers <em>-ատ , -ոտ , -տ </em> or reduplication.</p>
+
+<p>Note, that in Armenian iterative is considered as a lexical feature of <a href="VERB">verbs</a>, thus they have morphologically related not iterative counterparts, and the two verbs are represented by different lemmas.</p>
+
+<h4 id="examples-8">Examples</h4>
+
+<ul>
+  <li><em>ցատկել </em> “jump”, <em><b>ցատկոտել</b> </em> “jump several times”,</li>
+  <li><em>կտրել </em> “cut”, <em><b>կտրատել</b> </em> “cut several times”,</li>
+  <li><em>փնտրել </em> “search”, <em><b>փնտրտել</b> </em> “search several times”,</li>
+  <li><em>վազել </em> “to run”, <em><b>վազվզել</b> </em> “to run around, to run often”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Abl">Abl</a></td>
+  <td><a href="#Dat">Dat</a></td>
+  <td><a href="#Gen">Gen</a></td>
+  <td><a href="#Ins">Ins</a></td>
+  <td><a href="#Loc">Loc</a></td>
+  <td><a href="#Nom">Nom</a></td>
+</tr>
+</table>
+
+<p>Case is an inflectional feature of <a href="NOUN">nouns</a> and
+<a href="PRON">pronouns</a>. It is also valency feature of <a href="ADP">adpositions</a> (saying that
+the adposition requires its argument to be in that case).</p>
+
+<p>Case helps to specify the role of the noun phrase in the sentence.</p>
+
+<p>Here on the level of morphosyntactic features we are dealing with case expressed morphologically, i.e. by bound morphemes (affixes).  The descriptions of the individual case values below include semantic
+hints about the prototypical meaning of the case. Bear in mind that
+quite often a case will be used for a meaning that is totally
+unrelated to the meaning mentioned here. Valency of verbs,
+adpositions and other words will determine that the noun phrase must
+be in a particular grammatical case to fill a particular valency slot
+(semantic role).</p>
+
+<p>Armenian linguistics distinguishes between five (morphological) and seven (syntactic) cases:
+<code class="highlighter-rouge">Nom</code>, <code class="highlighter-rouge">Gen</code>, <code class="highlighter-rouge">Dat</code>, <code class="highlighter-rouge">Acc</code>, <code class="highlighter-rouge">Abl</code>, <code class="highlighter-rouge">Ins</code> and <code class="highlighter-rouge">Loc</code> (this ordering is fixed in the grammar).</p>
+
+<p>Note, that the direct object of the verb can be formed in nominative or dative (syntactic accusative), this is related to <a href="">Animacy</a>. They will be tagged <code class="highlighter-rouge">Case=Nom</code> and <code class="highlighter-rouge">Case=Dat</code> and not <code class="highlighter-rouge">Case=Nom,Acc</code> or <code class="highlighter-rouge">Case=Gen,Dat</code> as in some Armenian grammars.</p>
+
+<p>The difference between <code class="highlighter-rouge">Gen</code> and <code class="highlighter-rouge">Dat</code> is related to <a href="Definite">definiteness</a>. The <code class="highlighter-rouge">Gen</code> can not have <code class="highlighter-rouge">Definite=Def</code>.</p>
+
+<p>Note also, that vocatives, and noun modifiers as an attribute in nominative or as a genitive complement in genitive can not have <code class="highlighter-rouge">Definite=Def</code>. In these cases we declare <code class="highlighter-rouge">Definite=Ind</code>. Only this value will have also <code class="highlighter-rouge">Ins</code>, <code class="highlighter-rouge">Abl</code> and <code class="highlighter-rouge">Loc</code> cases.</p>
+
+<p>Personal and some demonstrative pronouns distinguish between <code class="highlighter-rouge">Case=Gen</code> and <code class="highlighter-rouge">Case=Dat</code>. In genitive they will have <code class="highlighter-rouge">Poss=Yes</code>.</p>
+
+<h4 id="examples-9">Examples</h4>
+
+<ul>
+  <li>singular nominative <em>դպրոց </em> “school”, dative <em>դպրոցի(ն), </em> ablativ <em>դպրոցից, </em> instrumental <em>դպրոցով, </em> locative <em>դպրոցում</em></li>
+  <li>singular nominative <em>ժամանակ </em> “time”, dative <em>ժամանակի(ն), ժամանակվա(ն), </em> ablativ <em>ժամանակից, ժամանակվանից, </em> instrumental <em>ժամանակով, </em> locative <em>ժամանակում</em></li>
+  <li>singular nominative <em>արյուն </em> “blood”, dative <em>արյան(ը), </em> ablativ <em>արյունից, </em> instrumental <em>արյունով, արյամբ </em></li>
+  <li>singular nominative <em>մայր </em> “mother”, dative <em>մոր(ը), </em> ablativ <em>մորից, </em> instrumental <em>մորով</em></li>
+</ul>
+
+<h3 id="nom-nominative"><a name="Nom"><code class="highlighter-rouge">Nom</code></a>: nominative</h3>
+
+<p>The base form of the noun, also used as citation form (lemma).
+In Armenian this is the word form used for subjects of clauses, for direct objects of verbs and for addressing someone.</p>
+
+<h3 id="gen-genitive"><a name="Gen"><code class="highlighter-rouge">Gen</code></a>: genitive</h3>
+
+<p>In many languages prototypical meaning of genitive is that the noun phrase somehow
+belongs to its governor.</p>
+
+<p>We not recognizing the genitive except for possessive personal, some demonstrative pronouns and <em>իր </em> “one’s own”.</p>
+
+<h3 id="dat-dative"><a name="Dat"><code class="highlighter-rouge">Dat</code></a>: dative</h3>
+
+<p>This is the word form often used for indirect objects of verbs.</p>
+
+<p>In Armenian this form is used also for cases when the noun phrase somehow
+belongs to its governor (adnominal dative) or depends on the verb (adverbal dative), see above.</p>
+
+<h4 id="examples-10">Examples</h4>
+
+<ul>
+  <li><em>Ես <b>եղբորս</b> նվեր տվեցի։ </em> “I gave my brother a present.”
+(<em>եղբորս </em> “my brother” is dative and <em>նվեր </em> “present” is nominative.)</li>
+  <li><em>Երևանը <b>Հայաստանի</b> մայրաքաղաքն է։ </em> “Yerevan is the
+capital <b>of Armenia</b>.”</li>
+</ul>
+
+<h3 id="abl-ablative"><a name="Abl"><code class="highlighter-rouge">Abl</code></a>: ablative</h3>
+
+<p>Prototypical meaning: direction from some point (object, location or time).</p>
+
+<h4 id="examples-11">Examples</h4>
+
+<ul>
+  <li><em>սեղանից </em> “from the table”</li>
+  <li><em>ծովափից </em> “from the beach”</li>
+  <li><em>ամառվանից </em> “from the summer”</li>
+</ul>
+
+<h3 id="ins-instrumental"><a name="Ins"><code class="highlighter-rouge">Ins</code></a>: instrumental</h3>
+
+<p>The role from which the name of the instrumental case is derived is
+that the noun is used as instrument to do something (as in <em>գրել
+<b>գրիչով</b> </em> “to write <b>using a pen</b>”). Many other meanings are
+possible, for example the instrumental is required and it includes the meaning expressed in
+other languages by adverbs of manner.</p>
+
+<p>In Armenian the instrumental is also used for the agent-object in passive
+constructions (cf. the English preposition <em>by</em>).</p>
+
+<h4 id="examples-12">Examples</h4>
+
+<ul>
+  <li><em>Օրինագիծը <b>դժվարությամբ</b> հաստատվեց։ </em> “This bill was approved <b>with difficulty</b>.”</li>
+  <li><em>Գետնինը ծածկվեց <b>ձյունով</b>։ </em> “The earth has been covered <b>by snow</b>.” (Passive example)</li>
+</ul>
+
+<h3 id="loc-locative"><a name="Loc"><code class="highlighter-rouge">Loc</code></a>: locative</h3>
+
+<p>The locative case often expresses location in space or time, which
+gave it its name. As elsewhere, non-locational meanings also exist and
+they are not rare. On the other hand, some location roles
+may be expressed using other cases (e.g. because those cases are
+required by a preposition).</p>
+
+<h4 id="examples-13">Examples</h4>
+
+<ul>
+  <li><em>Հուլիսին ես <b>Շվեդիայում</b> էի։ </em> “In July I was in <b>Sweden</b>.”</li>
+  <li><em>Մի <b>ժամում</b> հասավ։ </em> “lit: He got there in an <b>hour</b>.”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Comp">Comp</a></td>
+  <td><a href="#Oper">Oper</a></td>
+</tr>
+</table>
+
+<p>This feature further subclassifies the parts of speech <a href="">CCONJ</a> and <a href="">SCONJ</a>;
+in Armenian it is used only with <code class="highlighter-rouge">CCONJ</code>. The main distinction between coordinating and
+subordinating conjunctions is done already at the part-of-speech level.</p>
+
+<h3 id="comp-comparing-conjunction"><code class="highlighter-rouge">Comp</code>: comparing conjunction</h3>
+
+<h4 id="examples-14">Examples</h4>
+
+<ul>
+  <li><em><b>ոչ միայն</b>… <b>այլ նաև</b></em> “as… than”</li>
+  <li><em><b>եթե</b>… <b>ապա</b></em> “…”</li>
+</ul>
+
+<h3 id="oper-mathematical-operator"><code class="highlighter-rouge">Oper</code>: mathematical operator</h3>
+
+<p>Note that operators can be expressed either using <a href="SYM">symbols</a> or using words.
+The words are considered special kind of coordinating conjunctions and they are marked using
+<code class="highlighter-rouge">ConjType=Oper</code>.</p>
+
+<h4 id="examples-15">Examples</h4>
+
+<ul>
+  <li><em><b>x</b></em> “×”, <em><b>անգամ</b></em> “times”, <em><b>գումարած</b></em> “plus”, <em><b>հանած</b></em> “minus”, <em><b>բազմապատկած</b></em> “times”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Def">Def</a></td>
+  <td><a href="#Ind">Ind</a></td>
+</tr>
+</table>
+
+<p>Definiteness is typically a feature of nouns and
+articles. Its value distinguishes whether we are talking about
+something known and concrete, or something general or unknown. It can
+be marked on indefinite <a href="DET">articles</a>, or
+directly on <a href="NOUN">nouns</a>.</p>
+
+<p>See also the related features of <a href="">PossPerson</a> and <a href="">PossNumber</a>.</p>
+
+<h3 id="ind-indefinite"><a name="Ind"><code class="highlighter-rouge">Ind</code></a>: indefinite</h3>
+
+<h4 id="examples-16">Examples</h4>
+
+<ul>
+  <li><em>մի</em> “a/an”</li>
+  <li><em><b>(մի)</b> շուն</em> “<b>(a)</b> dog”</li>
+</ul>
+
+<h3 id="def-definite"><a name="Def"><code class="highlighter-rouge">Def</code></a>: definite</h3>
+
+<h4 id="examples-17">Examples</h4>
+
+<ul>
+  <li><em><b>շունը, շունն</b></em> “the dog”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Cmp">Cmp</a></td>
+  <td><a href="#Pos">Pos</a></td>
+  <td><a href="#Sup">Sup</a></td>
+</tr>
+</table>
+
+<p>Degree of comparison is inflectional feature of some <a href="hy-pos/ADJ">adjectives</a> and <a href="hy-pos/ADV">adverbs</a>.</p>
+
+<p>The second degree of adjective or adverb is modified through the adverb <em>ավելի</em> “more” e.g. <em>ավելի գեղեցիկ</em> “more beautiful”; <em>ավելի արագ</em> “more quickly”. We only annotate this adverb with the second degree feature.</p>
+
+<p>Note that the third degree of adverbs in Armenian is constructed with the feature of <a href="Definite">Definite</a>.</p>
+
+<h3 id="pos-positive-first-degree"><a name="Pos"><code class="highlighter-rouge">Pos</code></a>: positive, first degree</h3>
+
+<p>This is the base form that merely states a quality of something, without comparing it to qualities of others. Note that although this
+degree is traditionally called “positive”, negative properties can be compared, too.</p>
+
+<h4 id="examples-18">Examples</h4>
+
+<ul>
+  <li><em><b>խելացի</b> մարդ </em> “<b>clever</b> man”</li>
+  <li><em><b>լավ</b> երաժիշտ </em> “<b>good</b> musician”</li>
+  <li><em><b>նոր</b> նմուշ </em> “<b>new</b> exemplar”</li>
+  <li><em>նա <b>արագ</b> է քայլում </em> “he walks <b>quickly</b>”</li>
+</ul>
+
+<h3 id="cmp-comparative-second-degree"><a name="Cmp"><code class="highlighter-rouge">Cmp</code></a>: comparative, second degree</h3>
+
+<p>The quality of one object is compared to the same quality of another object.</p>
+
+<h4 id="examples-19">Examples</h4>
+
+<ul>
+  <li><em><b>ավելի</b> խելացի մարդ </em> “<b>cleverer</b> man”</li>
+  <li><em>այս մարդն ինձնից <b>(ավելի)</b> խելացի է </em> “the man is <b>cleverer</b> than me”</li>
+  <li><em><b>ավելի</b> լավ երաժիշտ </em> “<b>better</b> musician”</li>
+  <li><em><b>ավելի</b> նոր նմուշ </em> “<b>newer</b> exemplar”</li>
+  <li><em>նա <b>ավելի</b> արագ է քայլում </em> “he walks <b>more quickly</b>”</li>
+</ul>
+
+<h3 id="sup-superlative-third-degree"><a name="Sup"><code class="highlighter-rouge">Sup</code></a>: superlative, third degree</h3>
+
+<p>The quality of one object is compared to the same quality of all other objects within a set.</p>
+
+<h4 id="examples-20">Examples</h4>
+
+<ul>
+  <li><em>նա մեր խմբի <b>ամենախելացի</b> մարդն է </em> “he is the <b>cleverest</b> man in our group”</li>
+  <li><em>նա մեր խմբի <b>լավագույն</b> երաժիշտն է </em> “he is the <b>best</b> musician in our group”</li>
+  <li><em>սա <b>ամենանորագույն</b> նմուշն է </em> “this is the <b>very newest</b> exemplar”</li>
+  <li><em>նա <b>ամենաարագն</b> է քայլում </em> “he walks <b>the most quickly</b>”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Ech">Ech</a></td>
+  <td><a href="#Rdp">Rdp</a></td>
+</tr>
+</table>
+
+<p>Is this a reduplicative or echo word?</p>
+
+<p>Compound nouns, adjectives or adverbs with hyphens or prepositions get split during tokenization. The reduplicative or echoed part get the same POS tag as the head word.</p>
+
+<p>See also the related feature <a href="">Hyph</a>.</p>
+
+<h3 id="rdp-reduplicative"><a name="Rdp"><code class="highlighter-rouge">Rdp</code></a>: reduplicative</h3>
+
+<p>The word is a copy of a previous word. Тhis would add the meaning of distribution, separation, variety, diversity or just emphasis.</p>
+
+<h4 id="examples-21">Examples</h4>
+
+<ul>
+  <li><em>երկու-<b>երկու</b></em> “two by two”,</li>
+  <li><em>զույգ-<b>զույգ</b></em> “in pairs”</li>
+  <li><em>փունջ-<b>փունջ</b></em> “each bunch separately”,</li>
+  <li><em>մեծ-<b>մեծ</b></em> “too big”,</li>
+  <li><em>գույն-<b>գույն</b></em> “of many colors”,</li>
+  <li><em>պես-<b>պես</b></em> “different, of many types”,</li>
+  <li><em>ձեռք-<b>ձեռքի</b></em> “hand in hand”,</li>
+  <li><em>գյուղից-<b>գյուղ</b></em> “from town to town”,</li>
+  <li><em>տող առ <b>տող</b></em> “each line separately”,</li>
+  <li><em>րոպե առ <b>րոպե</b></em> “each minute separately”</li>
+</ul>
+
+<h3 id="ech-echo"><a name="Ech"><code class="highlighter-rouge">Ech</code></a>: echo</h3>
+
+<p>The word fully or partly rhymes with a previous or following word but it is not identical to it and
+typically it does not have any meaning of its own. The echoed part is a form that does not occur elsewhere than in compounds.
+In Armenian it generalizes or specifies the meaning of the previous or following word and is translated
+as “or something”, “etc.” etc.</p>
+
+<ul>
+  <li><em>տուն-<b>մուն</b></em> “house and etc.”,</li>
+  <li><em>աման-<b>չաման</b></em> “dishes and etc.”,</li>
+  <li><em><b>առոք</b>-փառոք</em> “good and proper”,</li>
+  <li><em>մարդ-<b>մուրդ</b></em> “some people”,</li>
+  <li><em><b>դափ</b>-դատարկ</em> “fully empty”,</li>
+  <li><em><b>նոփ</b>-նոր</em> “fully new”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Yes">Yes</a></td>
+</tr>
+</table>
+
+<p>Boolean feature. Is this a foreign word? Not a loan word
+but a genuinely foreign word appearing inside native
+text, e.g. inside direct speech, titles of books etc.</p>
+
+<p>This feature would apply either to the <a href="">X</a> part of speech (unanalyzable token), or to other parts of speech if we know and are willing to annotate the class to which the word belongs in its original language.</p>
+
+<h3 id="yes-it-is-foreign"><a name="Yes"><code class="highlighter-rouge">Yes</code></a>: it is foreign</h3>
+
+<h4 id="examples-22">Examples</h4>
+
+<ul>
+  <li><em>… <b>«ՌԻԱ Նովոստի»</b> գործակալությունը </em> (the news agency <b>RIA Novosti</b>)</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Yes">Yes</a></td>
+</tr>
+</table>
+
+<p>Boolean feature. Is this the first part of a hyphenated compound?</p>
+
+<p>Compound adjectives with hyphens, such as <em>անգլո-ամերիկյան </em> “Anglo-American” get split during
+tokenization. The last part, <em>ամերիկյան, </em> is an independent adjective. However, the first part, <em>անգլո, </em> is a form that does not occur elsewhere than in
+compounds (the independent form would be <em>անգլիական</em>).</p>
+
+<h3 id="yes-it-is-part-of-hyphenated-compound"><a name="Yes"><code class="highlighter-rouge">Yes</code></a>: it is part of hyphenated compound</h3>
+
+<h4 id="examples-23">Examples</h4>
+
+<ul>
+  <li><em><b>անգլո</b>-ամերիկյան </em> “Anglo-American”</li>
+  <li><em><b>իսրայելա</b>-պաղեստինյան </em> “Israeli–Palestinian”</li>
+  <li><em><b>կրոնա</b>-մշակութային </em> “religious-cultural”</li>
+  <li><em><b>նախա</b>- և հետպատերազմական </em> “pre- and postwar”</li>
+  <li><em><b>հեռուստա</b>- և ռադիոհեռարձակում </em> “TV and radio broadcasting”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Cnd">Cnd</a></td>
+  <td><a href="#Imp">Imp</a></td>
+  <td><a href="#Ind">Ind</a></td>
+  <td><a href="#Nec">Nec</a></td>
+  <td><a href="#Sub">Sub</a></td>
+</tr>
+</table>
+
+<p>Mood is a feature that expresses modality and subclassifies finite
+verb forms. Some mood markers also interact with tense and aspect of the verb.</p>
+
+<h3 id="ind-indicative"><a name="Ind"><code class="highlighter-rouge">Ind</code></a>: indicative</h3>
+
+<p>The indicative can be considered the default mood. A verb in
+indicative merely states that something happens, has happened or will
+happen, without adding any attitude of the speaker.</p>
+
+<h4 id="examples-24">Examples</h4>
+
+<ul>
+  <li><em>վազելու <b>եմ</b></em> “<b>I am going</b> to run”,</li>
+  <li><em>վազելու <b>էի</b></em> “<b>I was going</b> to run”,</li>
+  <li><em>վազելու <b>եղա</b></em> “(if) <b>I intended</b> to run”,</li>
+  <li><em>տուն <b>ունեմ</b></em> “<b>I have</b> a house”,</li>
+  <li><em>տուն <b>ունեի</b></em> “<b>I had</b> a house”,</li>
+  <li><em>տուն <b>ունեցա</b></em> “<b>I got</b> a house”,</li>
+  <li><em><b>գնացի</b> տուն</em> “<b>I went</b> home”</li>
+</ul>
+
+<h3 id="imp-imperative"><a name="Imp"><code class="highlighter-rouge">Imp</code></a>: imperative</h3>
+
+<p>The speaker uses imperative to order or ask the addressee to do the
+action of the verb.</p>
+
+<h4 id="examples-25">Examples</h4>
+
+<ul>
+  <li><em><b>գնա՛</b> տուն</em> “go home!”,</li>
+  <li><em><b>գնացե՛ք</b> տուն</em> “go home!” (plural),</li>
+  <li><em><b>եղի՛ր</b> առողջ</em> “be healthy!”,</li>
+  <li><em><b>եղե՛ք</b> առողջ</em> “be healthy!” (plural)</li>
+</ul>
+
+<h3 id="cnd-conditional"><a name="Cnd"><code class="highlighter-rouge">Cnd</code></a>: conditional</h3>
+
+<p>The conditional mood is used to express actions that would have taken
+place under some circumstances but they actually did not / do not
+happen. In Armenian it combines with two different
+tenses (imperfect and present).</p>
+
+<p>The negation of conditional mood is formed periphrastically using the special negative participle of main verb and negated auxiliary <em>չեմ</em> “not to be”. The participle of main verb is marked as conditional.</p>
+
+<h4 id="examples-26">Examples</h4>
+
+<ul>
+  <li><em><b>կգնայի</b> տուն</em> “<b>I would go</b> home, (if)”,</li>
+  <li><em><b>կգնամ</b> տուն</em> “<b>I will go</b> home, (if)”,</li>
+  <li><em>չեմ <b>գնա</b> տուն</em> “I will not <b>go</b> home, (if)”,</li>
+  <li><em>չէի <b>գնա</b> տուն</em> “I would not <b>go</b> home, (if)”,</li>
+  <li><em>վազելու <b>կլինեի</b></em> “<b>I would be going</b> to run, (if)”,</li>
+  <li><em>վազելու <b>կլինեմ</b></em> “<b>I will be going</b> to run, (if)”,</li>
+  <li><em>տուն <b>կունենայի</b></em> “<b>I would have</b> a house, (if)”,</li>
+  <li><em>տուն <b>կունենամ</b> տուն</em> “<b>I will have</b> a house, (if)”</li>
+</ul>
+
+<h3 id="sub-subjunctive--conjunctive--optative"><a name="Sub"><code class="highlighter-rouge">Sub</code></a>: subjunctive / conjunctive / optative</h3>
+
+<p>The subjunctive mood is used under certain circumstances in
+subordinate clauses, typically for actions that are subjective or
+otherwise uncertain. In some contexts the mood expresses also the desire that the action happens; it is thus close to both optative and jussive. In Armenian it combines with two different tenses (imperfect and present).</p>
+
+<h4 id="examples-27">Examples</h4>
+
+<ul>
+  <li><em><b>գնայի</b> տուն</em> “I wish <b>I went</b> home”,</li>
+  <li><em><b>գնամ</b> տուն</em> “<b>I’d (better) go</b> home”,</li>
+  <li><em>վազելու <b>լինեի</b></em> “(if) <b>I would intend</b> to run”,</li>
+  <li><em>վազելու <b>լինեմ</b></em> “(if) <b>I intend</b> to run”,</li>
+  <li><em>տուն <b>ունենայի</b></em> “I wish <b>I had</b> a house”,</li>
+  <li><em>տուն <b>ունենամ</b></em> “<b>I’d (better) have</b> a house; (if) <b>I have</b> a house”</li>
+</ul>
+
+<h3 id="nec-necessitative"><a name="Nec"><code class="highlighter-rouge">Nec</code></a>: necessitative</h3>
+
+<p>The necessitative mood expresses necessity and corresponds to the modal verbs “must, should, have to”.</p>
+
+<p>Armenian has present and imperfect necessitative, both formed periphrastically using the special mood particles <em><b>պիտի</b></em> or <em><b>պետք է</b></em>. The content verb expresses person, number, tense, aspect, voice and is in subjunctive mood.</p>
+
+<p>The mood particle <em><b>պիտի</b></em> is historically present tense of the verb <em><b>պիտիմ</b></em> (<code class="highlighter-rouge">Ind</code>, <code class="highlighter-rouge">Sing</code>, <code class="highlighter-rouge">Person=3</code>) “to by necessary, useful”. The impersonal predicative <em><b>պետք է</b></em> “lit: is needed” accompanied with subjunctive finite form of verbs is used as a variant of mood particle. This expresses compulsary, oblicative necessity.</p>
+
+<p>The content verb is not marked as necessitative because it can also be used in present or imperfect subjunctive. The mood particles  will have <code class="highlighter-rouge">Mood=Nec</code>. They can also inflect for <a href="">Polarity</a> (e.g. <em><b>չ</b>պիտի, <b>չ</b>պետք է</em>).</p>
+
+<h4 id="examples-28">Examples</h4>
+
+<ul>
+  <li>Նա <em><b>պիտի (պետք է)</b> գնա տուն</em> “He <b>must</b> go home”,</li>
+  <li>Նա <em><b>պիտի (պետք է)</b> գնար տուն</em> “He <b>had</b> to go home”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Com">Com</a></td>
+  <td><a href="#Geo">Geo</a></td>
+  <td><a href="#Giv">Giv</a></td>
+  <td><a href="#Oth">Oth</a></td>
+  <td><a href="#Pro">Pro</a></td>
+  <td><a href="#Prs">Prs</a></td>
+  <td><a href="#Sur">Sur</a></td>
+</tr>
+</table>
+
+<p>Classification of named entities (token-based, no nesting of entities etc.)
+The feature applies mainly to the <a href="">PROPN</a> tag;
+in multi-word foreign names, <a href="ADJ">adjectives</a> may also have this feature
+(they preserve the <code class="highlighter-rouge">ADJ</code>).</p>
+
+<h3 id="geo-geographical-name"><a name="Geo"><code class="highlighter-rouge">Geo</code></a>: geographical name</h3>
+
+<p>Names of cities, countries, rivers, mountains etc.</p>
+
+<h4 id="examples-29">Examples</h4>
+
+<ul>
+  <li><em><b>Երևան, ՀՀ, Եվրոպա, Գերմանիա</b> </em> “Yerevan, RA, Europe, Germany”</li>
+</ul>
+
+<h3 id="prs-name-of-person"><a name="Prs"><code class="highlighter-rouge">Prs</code></a>: name of person</h3>
+
+<p>This value is used if it is not known whether it is a given or a family name, but it is known that it is a personal name. We used this value for pseudonyms, nicknames, pen-names, patronyms, etc.</p>
+
+<ul>
+  <li><em><b>Բենեդիկտոս, Րաֆֆի, Նար-Դոս, Գամառ-Քատիպա, Քաչալ</b> </em> “Benedictus, Raffi, Nar-Dos, Gamar-Katipa, Kachal (skinhead)”</li>
+</ul>
+
+<h3 id="giv-given-name-of-person"><a name="Giv"><code class="highlighter-rouge">Giv</code></a>: given name of person</h3>
+
+<p>Given name (not family name). This is usually the first name.</p>
+
+<h4 id="examples-30">Examples</h4>
+
+<ul>
+  <li><em><b>Արամ, Անահիտ, Հովհաննես</b> </em> “Aram, Anahit, Hovhannes”</li>
+</ul>
+
+<h3 id="sur-surname--family-name-of-person"><a name="Sur"><code class="highlighter-rouge">Sur</code></a>: surname / family name of person</h3>
+
+<p>Family name (surname). This is usually the last name.</p>
+
+<h4 id="examples-31">Examples</h4>
+
+<ul>
+  <li><em><b>Սարոյան, Տեր-Պետրոսյան, Գրիգորյան</b> </em> “Saroyan, Ter-Petrosyan, Grigoryan”</li>
+</ul>
+
+<h3 id="com-company-organization-institution"><a name="Com"><code class="highlighter-rouge">Com</code></a>: company, organization, institution</h3>
+
+<h4 id="examples-32">Examples</h4>
+
+<ul>
+  <li><em><b>Սիմենս, ՄԱԿ, ԳԱԱ</b> </em> “Siemens, UN, NAS”</li>
+</ul>
+
+<h3 id="pro-product"><a name="Pro"><code class="highlighter-rouge">Pro</code></a>: product</h3>
+
+<h4 id="examples-33">Examples</h4>
+
+<ul>
+  <li><em><b>Երազ, ԿամԱԶ, Չայկա, Մերսեդես</b> </em> “Yeraz, Kamaz, Chaika, Mercedes”</li>
+</ul>
+
+<h3 id="oth-other"><a name="Oth"><code class="highlighter-rouge">Oth</code></a>: other</h3>
+
+<p>Names of stadiums, guerilla bases, events etc.</p>
+
+<h4 id="examples-34">Examples</h4>
+
+<ul>
+  <li><em><b>«Հրազդան», «Դինամո», «Զվարթնոց», Զատիկ</b> </em> “Hrazdan, Dinamo, Zvartnots, Easter”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Armenian">Armenian</a></td>
+  <td><a href="#Digit">Digit</a></td>
+  <td><a href="#Roman">Roman</a></td>
+  <td><a href="#Word">Word</a></td>
+</tr>
+</table>
+
+<p>Feature of cardinal and ordinal numbers. Is the number expressed by
+digits or as a word?</p>
+
+<h3 id="word-number-expressed-as-a-word"><a name="Word"><code class="highlighter-rouge">Word</code></a>: number expressed as a word</h3>
+
+<h4 id="examples-35">Examples</h4>
+
+<ul>
+  <li><em>մեկ</em> “one”, <em>երկու</em> “two”, <em>երեք</em> “three”</li>
+</ul>
+
+<h3 id="digit-number-expressed-using-digits"><a name="Digit"><code class="highlighter-rouge">Digit</code></a>: number expressed using digits</h3>
+
+<h4 id="examples-36">Examples</h4>
+
+<ul>
+  <li><em>1, 2, 3</em></li>
+</ul>
+
+<h3 id="roman-roman-numeral"><a name="Roman"><code class="highlighter-rouge">Roman</code></a>: roman numeral</h3>
+
+<h4 id="examples-37">Examples</h4>
+
+<ul>
+  <li><em>I, II, III</em></li>
+</ul>
+
+<h3 id="armenian-armenian-numeral"><a name="Armenian"><code class="highlighter-rouge">Armenian</code></a>: armenian numeral</h3>
+
+<h4 id="examples-38">Examples</h4>
+
+<ul>
+  <li><em>Ա, Բ, Գ</em></li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Card">Card</a></td>
+  <td><a href="#Dist">Dist</a></td>
+  <td><a href="#Frac">Frac</a></td>
+  <td><a href="#Ord">Ord</a></td>
+  <td><a href="#Range">Range</a></td>
+</tr>
+</table>
+
+<p>Armenian has a complex system of <a href="NUM">numerals</a>. In the school grammar of Armenian, the part of speech “numeral” includes only words where a precise counting or quantity is involved.</p>
+
+<p>From the syntactic point of view, some numtypes behave like adjectives and some behave like adverbs. We tag them <a href="">ADJ</a> and <a href="">ADV</a> respectively. Thus the <code class="highlighter-rouge">NumType</code> feature applies to several different parts of speech:</p>
+
+<ul>
+  <li><a href="">NUM</a>: cardinal numerals</li>
+  <li><a href="">ADJ</a>: adjectival ordinal numerals</li>
+  <li><a href="">ADV</a>: adverbial distributive numerals</li>
+</ul>
+
+<p>Note that there are no <em>adverbial ordinal</em> and <em>multiplicative numerals</em> in Armenian.</p>
+
+<h3 id="card-cardinal-number"><a name="Card"><code class="highlighter-rouge">Card</code></a>: cardinal number</h3>
+
+<p>Note that in some Indo-European languages there is a fuzzy borderline
+between numerals and nouns for <em>thousand, million</em> and <em>billion.</em></p>
+
+<h4 id="examples-39">Examples</h4>
+
+<ul>
+  <li><em>1, 2, 3</em></li>
+  <li><em>մեկ</em> “one”, <em>երկու</em> “two”, <em>երեք</em> “three”</li>
+</ul>
+
+<h3 id="ord-ordinal-number"><a name="Ord"><code class="highlighter-rouge">Ord</code></a>: ordinal number</h3>
+
+<p>This is a subtype of adjective.</p>
+
+<h4 id="examples-40">Examples</h4>
+
+<ul>
+  <li><em>1-ին, 2-րդ, 3-րդ</em></li>
+  <li><em>առաջին</em> “first”, <em>երկրորդ</em> “second”, <em>երրորդ</em> “third”</li>
+</ul>
+
+<h3 id="frac-fraction"><a name="Frac"><code class="highlighter-rouge">Frac</code></a>: fraction</h3>
+
+<p>This is a subtype of cardinal numbers. It may denote a fraction or just the denominator of the fraction.</p>
+
+<h4 id="examples-41">Examples</h4>
+
+<ul>
+  <li><em>երեք <b>քառորդ</b></em> “three-quarters”</li>
+  <li><em>կես</em> “half”, <em>մեկ <b>երրորդ</b></em> մասը “one <b>third</b> part”, <em>քառորդ</em> “quarter”</li>
+</ul>
+
+<h3 id="dist-distributive-numeral"><a name="Dist"><code class="highlighter-rouge">Dist</code></a>: distributive numeral</h3>
+
+<p>Used to express that the same quantity is distributed to each member in a set of targets.</p>
+
+<h4 id="examples-42">Examples</h4>
+
+<ul>
+  <li><em><b>երեքական (երեք-երեք)</b> խնձոր յուրաքանչյուրին</em> “three apples per / for each one”</li>
+</ul>
+
+<h3 id="range-range-of-values"><a name="Range"><code class="highlighter-rouge">Range</code></a>: range of values</h3>
+
+<p>This could be considered a subtype of cardinal numbers (provided tokenization leaves it as one token.)</p>
+
+<h4 id="examples-43">Examples</h4>
+
+<ul>
+  <li><em>չորս-հինգ</em> “four-five” (“eiter four or five”)</li>
+  <li><em>տասից-տասնհինգ</em> “ten-fifteen” (“from ten to fifteen”)</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Assoc">Assoc</a></td>
+  <td><a href="#Coll">Coll</a></td>
+  <td><a href="#Plur">Plur</a></td>
+  <td><a href="#Sing">Sing</a></td>
+</tr>
+</table>
+
+<p>In Armenian, <code class="highlighter-rouge">Number</code> is a feature of <a href="NOUN">nouns</a> and other parts of speech that mark agreement with nouns, i.e. personal <a href="PRON">pronouns</a>, and <a href="VERB">verbs</a>.</p>
+
+<p>Some geographical names appear only in the plural form (e.g. <em><b>Ալպեր</b></em> “The Alps”, <em><b>Ապալաչներ</b></em> “Appalachian Mountains”) even though they denote one thing (semantic singular). We don’t mark these <a href="PROPN">proper nouns</a> as <code class="highlighter-rouge">Ptan</code>. Grammatically they behave like plurals, so <code class="highlighter-rouge">Plur</code> is obviously the back-off value here.</p>
+
+<h3 id="sing-singular-number"><a name="Sing"><code class="highlighter-rouge">Sing</code></a>: singular number</h3>
+
+<p>A singular noun denotes one person, animal or thing.</p>
+
+<h4 id="examples-44">Examples:</h4>
+
+<ul>
+  <li><em><b>գիրք</b></em> “book”, <em><b>լեռ</b></em> “mountain”, <em><b>խնձոր</b></em> “apple”, <em><b>գնացք</b></em> “train”</li>
+</ul>
+
+<p>Pronouns that refer to a single person, an animal or a thing are also marked with this feature.</p>
+
+<ul>
+  <li><em><b>Ես, ինքս, իմ; դու, ինքդ, քո; նա, ինքը, նրա</b></em></li>
+  <li><em>I, myself, my; you, yourself, your; he, himself, his; she, herself, her; it, itself, its</em></li>
+</ul>
+
+<p>Demonstrative pronouns that refer to singular nouns, but not demonstrative determiners of singular or plural nouns (e.g. <em><b>այս գիրքը/գրքերը</b></em> “this/these book/books”; <em><b>այդ գիրքը/գրքերը</b></em> “that/those book/books (medial)”, <em><b>այն գիրքը/գրքերը</b></em> “that/those book/books”), are also marked with this feature.</p>
+
+<ul>
+  <li><em><b>սա</b></em> “this”</li>
+  <li><em><b>դա</b></em> “that (medial)”</li>
+  <li><em><b>նա</b></em> “that”</li>
+  <li><em><b>այն</b></em> “that, it”</li>
+</ul>
+
+<h3 id="plur-plural-number"><a name="Plur"><code class="highlighter-rouge">Plur</code></a>: plural number</h3>
+
+<p>A plural noun denotes several persons, animals or things.</p>
+
+<h4 id="examples-45">Examples:</h4>
+
+<ul>
+  <li><em><b>գրքեր</b></em> “books”, <em><b>լեռներ</b></em> “mountains”, <em><b>խնձորներ</b></em> “apples”, <em><b>գնացքներ</b></em> “trains”</li>
+</ul>
+
+<p>Pronouns that refer to several persons, animals or things are also marked with this feature.</p>
+
+<ul>
+  <li><em><b>մենք, ինքներս, մեր; դուք, ինքներդ, ձեր; նրանք, ինքները, նրանց</b></em></li>
+  <li><em>we, ourselves, our; you, yourselves, your; they, themselves, their</em></li>
+</ul>
+
+<p>Demonstrative pronouns that refer to plural nouns, but not demonstrative determiners of singular or plural nouns (e.g. <em><b>այս գիրքը/գրքերը</b></em> “this/these book/books”; <em><b>այդ գիրքը/գրքերը</b></em> “that/those book/books (medial)”, <em><b>այն գիրքը/գրքերը</b></em> “that/those book/books”), are also marked with this feature.</p>
+
+<ul>
+  <li><em><b>սրանք</b></em> “these”</li>
+  <li><em><b>դրանք</b></em> “those (medial)”</li>
+  <li><em><b>նրանք</b></em> “those”</li>
+</ul>
+
+<h3 id="assoc-associative-plural"><a name="Assoc"><code class="highlighter-rouge">Assoc</code></a>: associative plural</h3>
+
+<p>In Armenian some nouns, proper nouns and pronouns appear in the plural form, which denotes constructions like ‘X and other people associated with X’. These plural forms consist of a noun X (typically of human reference, usually a person’s name or a kin term) and one of the suffixes <em><b>-ենք</b></em>, <em><b>-անք</b></em>, <em><b>-ոնք</b></em>, <em><b>-ունք</b></em>.</p>
+
+<p>As nominal syntactic subjects, associative plural forms are grammaticalty indefinte (even though they are known and concrete).</p>
+
+<h4 id="examples-46">Examples:</h4>
+
+<ul>
+  <li><em><b>պապոնք</b></em> “the grandfather and other people associated with him”</li>
+  <li><em><b>հայրիկենք</b></em> “the father and other people associated with him”</li>
+  <li><em><b>իմոնք</b></em> “me and other people associated with me”</li>
+  <li><em><b>մերոնք</b></em> “we and other people associated with us”</li>
+  <li><em><b>քոնոնք</b></em> “you (<code class="highlighter-rouge">Sing</code>) and other people associated with you”</li>
+  <li><em><b>ձերոնք</b></em> “you (<code class="highlighter-rouge">Plur</code>) and other people associated with you”</li>
+  <li><em><b>Վարդանանք</b></em> “Vardan and other people associated with him”</li>
+  <li><em><b>Արամենք</b></em> “Aram and other people associated with him”</li>
+</ul>
+
+<h3 id="coll-collective--mass--singulare-tantum"><a name="Coll"><code class="highlighter-rouge">Coll</code></a>: collective / mass / singulare tantum</h3>
+
+<p>Collective or mass or singulare tantum is a special case of singular. It applies to words that use grammatical singular to describe sets of objects, i.e. semantic plural. Although in theory they might be able to form plural, in practice it would be rarely semantically plausible. Sometimes, the plural form exists and means “several sorts of” or “several packages of”.</p>
+
+<h4 id="examples-47">Examples:</h4>
+
+<ul>
+  <li><em><b>մարդկություն</b></em> “mankind”</li>
+  <li><em><b>գութ</b></em> “compassion”</li>
+  <li><em><b>կաթ</b></em> “milk”</li>
+  <li><em><b>պողպատ</b></em> “steel”</li>
+</ul>
+
+<h4 id="diffs">Diffs</h4>
+
+<h3 id="eastern-armenian-national-corpus">Eastern Armenian National Corpus</h3>
+
+<p>The EANC tagset grammaticaly does not distinguish <code class="highlighter-rouge">Coll</code> from <code class="highlighter-rouge">Sing</code>. Therefore, there is a lexical subcategory <em>“collective noun”</em> for <code class="highlighter-rouge">Coll</code>.</p>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#1">1</a></td>
+  <td><a href="#2">2</a></td>
+  <td><a href="#3">3</a></td>
+</tr>
+</table>
+
+<p>Person is a feature of personal and possessive
+<a href="PRON">pronouns</a>, <a href="DET">determiners</a>, and of <a href="AUX">auxiliaries</a> and <a href="VERB">verbs</a>. On verbs it is in
+fact an agreement feature that marks the person of the verb’s subject. Person
+marked on verbs makes it unnecessary to always add a personal pronoun
+as subject and thus subjects are sometimes dropped (Armenian is a pro-drop language).</p>
+
+<p>We also apply the feature <a href="">PossPerson</a> to denote the person of the possessor on nominal or pronominal elements.</p>
+
+<h3 id="1-first-person"><a name="1"><code class="highlighter-rouge">1</code></a>: first person</h3>
+
+<p>In singular, the first person refers just to the speaker / author. In
+plural, it must include the speaker and one or more additional
+persons.</p>
+
+<h4 id="examples-48">Examples</h4>
+
+<ul>
+  <li><em><b>անեմ</b> </em> “<b>I</b> do.<code class="highlighter-rouge">Cnd</code>”</li>
+  <li><em><b>անենք</b> </em> “<b>we</b> do.<code class="highlighter-rouge">Cnd</code>”</li>
+</ul>
+
+<h3 id="2-second-person"><a name="2"><code class="highlighter-rouge">2</code></a>: second person</h3>
+
+<p>In singular, the second person refers to the addressee of the
+utterance / text. In plural, it may mean several addressees and
+optionally some third persons too.</p>
+
+<h4 id="examples-49">Examples</h4>
+
+<ul>
+  <li><em><b>անես</b> </em> “<b>you</b>.<code class="highlighter-rouge">Sing</code> do.<code class="highlighter-rouge">Cnd</code>”</li>
+  <li><em><b>անեք</b> </em> “<b>you</b>.<code class="highlighter-rouge">Plur</code> do.<code class="highlighter-rouge">Cnd</code>”</li>
+</ul>
+
+<h3 id="3-third-person"><a name="3"><code class="highlighter-rouge">3</code></a>: third person</h3>
+
+<p>The third person refers to one or more persons that are neither
+speakers nor addressees.</p>
+
+<h4 id="examples-50">Examples</h4>
+
+<ul>
+  <li><em><b>անի</b> </em> “<b>he/she/it does</b>.<code class="highlighter-rouge">Cnd</code>”</li>
+  <li><em><b>անեն</b> </em> “<b>they</b> do.<code class="highlighter-rouge">Cnd</code>”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Neg">Neg</a></td>
+  <td><a href="#Pos">Pos</a></td>
+</tr>
+</table>
+
+<p>In Armenian, negation is mostly done using the bound morpheme <em>չ-, </em>
+and an independent negating particle (equivalent to English “not”)
+is rarely seen. Words that can take the morpheme of negation have
+the feature of polarity.</p>
+
+<p>It applies to <a href="VERB">verbs</a> and <a href="AUX">auxilaries</a>.</p>
+
+<p>Note that <code class="highlighter-rouge">Polarity=Neg</code> is not the same thing as
+<a href="">PronType</a><code class="highlighter-rouge">=Neg</code>. For pronouns and other pronominal parts of speech
+there is no such binary opposition as for verbs and auxilaries. (There
+is no such thing as “affirmative pronoun”.)</p>
+
+<p>Note that in Armenian adjectives, sometimes also <a href="ADV">adverbs</a> can be negated by adding the negating particle <em>ոչ </em>, denote the complement of the original adjective or adverb: e.g. <em>պաշտոնական </em> “official” vs. <em>ոչ պաշտոնական </em> “unofficial” (lit: “not official (something)”).</p>
+
+<p>A set of non-productive prefixes, <em>ան-,  ապ-,  դժ-,  տ-,  չ-, </em> can be used for negating a lexicalized set of adjectives, e.g. <em>անբախտ, ապաշնորհ, դժբախտ, տգեղ, չտես</em> “unlucky, dull, unfortunate, ugly, covetous”. We (currently) do not mark adjectives for the <code class="highlighter-rouge">Polarity</code> feature.</p>
+
+<h3 id="pos-positive-affirmative"><a name="Pos"><code class="highlighter-rouge">Pos</code></a>: positive, affirmative</h3>
+
+<h4 id="examples-51">Examples</h4>
+
+<ul>
+  <li><em><b>եկավ</b> </em> “he came”</li>
+  <li><em><b>են</b> </em> “they are”</li>
+</ul>
+
+<h3 id="neg-negative"><a name="Neg"><code class="highlighter-rouge">Neg</code></a>: negative</h3>
+
+<h4 id="examples-52">Examples</h4>
+
+<ul>
+  <li><em><b>չեկավ</b> </em> “he did not come”</li>
+  <li><em><b>չեն</b> </em> “they are not”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Yes">Yes</a></td>
+</tr>
+</table>
+
+<p>Boolean feature of noun, pronouns or determiners. It tells
+whether the word is possessive.</p>
+
+<p>While many tagsets would have “possessive” as one of the various
+pronoun types, this feature is intentionally separate from
+<a href="">PronType</a>, as it is orthogonal to pronominal types. Several of the
+pronominal types can be optionally possessive, and nouns can too.</p>
+
+<h3 id="yes-it-is-possessive"><a name="Yes"><code class="highlighter-rouge">Yes</code></a>: it is possessive</h3>
+
+<p>Note that there is no <code class="highlighter-rouge">No</code> value. If the word is not possessive, the
+<code class="highlighter-rouge">Poss</code> feature will just not be mentioned in the <code class="highlighter-rouge">FEAT</code> column (which
+means that empty value has the <code class="highlighter-rouge">No</code> meaning).</p>
+
+<h4 id="examples-53">Examples</h4>
+
+<ul>
+  <li>possessive personal determiners: <em>իմ, քո, նրա, մեր, ձեր, նրանց, իրենց </em> “my, your, his/her/its, our, your, their”</li>
+  <li>possessive reflexive determiners: <em>իր, իրենց </em> “one’s own, their own”</li>
+  <li>possessive relative determiners: <em>ում, որի </em> “whose”</li>
+  <li>possessive nouns: <em>հայրիկինը </em> “father’s”, <em>մայրիկինը </em> “mother’s”, <em>սեղանինը </em> “of table”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Plur">Plur</a></td>
+  <td><a href="#Sing">Sing</a></td>
+</tr>
+</table>
+
+<p>Possessives may have two different numbers: that of the possessed object (number
+agreement with modified noun) and that of the possessor. The
+<code class="highlighter-rouge">PossNumber</code> feature captures the possessor’s number.</p>
+
+<p>Note that in traditional Armenian grammars besides the definite article, possessive, demonstrative and personal articles (suffixes) are distinguished. These make a distinction between the objects, that are near to the speaker (proximal, first person), near to the addressee (second person), and far from both (third person) or are possessed to them. We do not distinguish them as separate features.</p>
+
+<p>See also the relatived feature <a href="">PossPerson</a>.</p>
+
+<h3 id="sing-singular-possessor"><a name="Sing"><code class="highlighter-rouge">Sing</code></a>: singular possessor</h3>
+
+<h4 id="examples-54">Examples</h4>
+
+<ul>
+  <li><em>տուն<b>ս</b></em> “<b>my</b> house” <code class="highlighter-rouge">PossNumber=Sing|Number=Sing</code></li>
+  <li><em>տներ<b>ս</b></em> “<b>my</b> houses” <code class="highlighter-rouge">PossNumber=Sing|Number=Plur</code></li>
+  <li><em>գալ<b>ս</b></em> “<b>my</b> coming” <code class="highlighter-rouge">PossNumber=Sing</code></li>
+  <li><em>ինք<b>ս</b></em> “<b>I myself</b>” <code class="highlighter-rouge">PossNumber=Sing|Number=Sing</code></li>
+  <li><em>հետ<b>ս</b></em> “with <b>me</b>” <code class="highlighter-rouge">PossNumber=Sing</code></li>
+</ul>
+
+<h3 id="plur-plural-possessor"><a name="Plur"><code class="highlighter-rouge">Plur</code></a>: plural possessor</h3>
+
+<h4 id="examples-55">Examples</h4>
+
+<ul>
+  <li><em>տուն<b>ն</b>եր<b>ս</b></em> “<b>our</b> houses” <code class="highlighter-rouge">PossNumber=Plur|Number=Plur</code></li>
+  <li><em>գալ<b>ներս</b></em> “<b>our</b> coming” <code class="highlighter-rouge">PossNumber=Plur</code></li>
+  <li><em>ինք<b>ներս</b></em> “<b>we ourselves</b>” <code class="highlighter-rouge">PossNumber=Plur|Number=Sing</code></li>
+  <li><em>հետ<b>ներս</b></em> “with <b>us</b>” <code class="highlighter-rouge">PossNumber=Plur</code></li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#1">1</a></td>
+  <td><a href="#2">2</a></td>
+  <td><a href="#3">3</a></td>
+</tr>
+</table>
+
+<p>PossPerson is possessor’s person, marked e.g. on <a href="NOUN">nouns</a>, <a href="PronType">emphatic pronouns/determiners</a>, <a href="VerbForm">infinitives</a>, or <a href="ADP">adpositions</a>. These forms would be translated in to English as possessive pronoun + noun.</p>
+
+<p>The <code class="highlighter-rouge">PossPerson</code> feature captures the possessor’s person. We do not distinguish <code class="highlighter-rouge">PossPerson</code> for possessive pronouns, as they are actually identical to personal pronouns in the genitive case.</p>
+
+<p>Note that in traditional Armenian grammars besides the definite article, possessive, demonstrative and personal articles (suffixes) are distinguished. These make a distinction between the objects, that are near to the speaker (proximal, first person), near to the addressee (second person), and far from both (third person) or are possessed to them. We do not distinguish them as separate features.</p>
+
+<p>See also the relatived feature <a href="">PossNumber</a>.</p>
+
+<h3 id="1-first-person-possessor"><a name="1"><code class="highlighter-rouge">1</code></a>: first person possessor</h3>
+
+<h4 id="examples-56">Examples</h4>
+
+<ul>
+  <li><em>տուն<b>ս</b></em> “<b>my</b> house” <code class="highlighter-rouge">PossPerson=1|PossNumber=Sing|Number=Sing</code></li>
+  <li><em>տներ<b>ս</b></em> “<b>my</b> houses” <code class="highlighter-rouge">PossPerson=1|PossNumber=Sing|Number=Plur</code></li>
+  <li><em>գալ<b>ս</b></em> “<b>my</b> coming” <code class="highlighter-rouge">PossPerson=1|PossNumber=Sing</code></li>
+  <li><em>օրեր<b>ս</b></em> “in <b>these</b> days” <code class="highlighter-rouge">PossPerson=1|Number=Plur</code></li>
+  <li><em>քաղաք<b>ս</b></em> “<b>this</b> town” <code class="highlighter-rouge">PossPerson=1|Number=Sing</code></li>
+  <li><em>(ես) ուսուցիչ<b>ս</b></em> “<b>I</b> the teacher” or “<b>my</b> teacher” <code class="highlighter-rouge">PossPerson=1|Number=Sing</code> or <code class="highlighter-rouge">PossPerson=1|PossNumber=Sing|Number=Sing</code></li>
+  <li><em>ինք<b>ս</b></em> “<b>I myself</b>” <code class="highlighter-rouge">PossPerson=1|PossNumber=Sing|Number=Sing</code></li>
+  <li><em>հետ<b>ս</b></em> “with <b>me</b>” <code class="highlighter-rouge">PossPerson=1|PossNumber=Sing</code></li>
+</ul>
+
+<h3 id="2-second-person-possessor"><a name="2"><code class="highlighter-rouge">2</code></a>: second person possessor</h3>
+
+<h4 id="examples-57">Examples</h4>
+
+<ul>
+  <li><em>տուն<b>դ</b></em> “<b>your</b>.<code class="highlighter-rouge">Sing</code> house” <code class="highlighter-rouge">PossPerson=2|PossNumber=Sing|Number=Sing</code></li>
+  <li><em>տներ<b>դ</b></em> “<b>your</b>.<code class="highlighter-rouge">Sing</code> houses” <code class="highlighter-rouge">PossPerson=2|PossNumber=Sing|Number=Plur</code></li>
+  <li><em>գալ<b>դ</b></em> “<b>your</b>.<code class="highlighter-rouge">Sing</code> coming” <code class="highlighter-rouge">PossPerson=2|PossNumber=Sing</code></li>
+  <li><em>(դու) ուսուցիչ<b>դ</b></em> “<b>You</b>.<code class="highlighter-rouge">Sing</code> the teacher” or “<b>your</b>.<code class="highlighter-rouge">Sing</code> teacher” <code class="highlighter-rouge">PossPerson=2|Number=Sing</code> or <code class="highlighter-rouge">PossPerson=2|PossNumber=Sing|Number=Sing</code></li>
+  <li><em>ինք<b>դ</b></em> “<b>you</b>.<code class="highlighter-rouge">Sing</code> <b>yourself</b>” <code class="highlighter-rouge">PossPerson=2|PossNumber=Sing|Number=Sing</code></li>
+  <li><em>հետ<b>դ</b></em> “with <b>you</b>.<code class="highlighter-rouge">Sing</code>” <code class="highlighter-rouge">PossPerson=2|PossNumber=Sing</code></li>
+</ul>
+
+<h3 id="3-third-person-possessor"><a name="3"><code class="highlighter-rouge">3</code></a>: third person possessor</h3>
+
+<h4 id="examples-58">Examples</h4>
+
+<ul>
+  <li><em>տուն<b>ն(ը)</b></em> “<b>his/her/its</b> house” <code class="highlighter-rouge">PossPerson=3|PossNumber=Sing|Number=Sing</code></li>
+  <li><em>տներ<b>ն(ը)</b></em> “<b>his/her/its</b> houses” <code class="highlighter-rouge">PossPerson=3|PossNumber=Sing|Number=Plur</code></li>
+  <li><em>(նա) ուսուցիչ<b>ն(ը)</b></em> “<b>He/She</b> the teacher” or “<b>his/her/its</b> teacher” <code class="highlighter-rouge">PossPerson=3|Number=Sing</code> or <code class="highlighter-rouge">PossPerson=3|PossNumber=Sing|Number=Sing</code></li>
+  <li><em>գալ<b>ն(ը)</b></em> “<b>his/her/its</b> coming” <code class="highlighter-rouge">PossPerson=3|PossNumber=Sing</code></li>
+  <li><em>ինք<b>ն(ը)</b></em> “<b>he/she/it himself/herself/itself</b>” <code class="highlighter-rouge">PossPerson=3|PossNumber=Sing|Number=Sing</code></li>
+  <li><em>հետ<b>ն(ը)</b></em> “with <b>him/her/it</b>” <code class="highlighter-rouge">PossPerson=3|PossNumber=Sing</code></li>
+</ul>
+
+<p>(Note that first three forms are ambiguous.)</p>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Art">Art</a></td>
+  <td><a href="#Dem">Dem</a></td>
+  <td><a href="#Emp">Emp</a></td>
+  <td><a href="#Ind">Ind</a></td>
+  <td><a href="#Int">Int</a></td>
+  <td><a href="#Neg">Neg</a></td>
+  <td><a href="#Prs">Prs</a></td>
+  <td><a href="#Rcp">Rcp</a></td>
+  <td><a href="#Rel">Rel</a></td>
+  <td><a href="#Tot">Tot</a></td>
+</tr>
+</table>
+
+<p>This feature typically applies to <a href="PRON">pronouns</a>,
+<a href="DET">determiners</a> and pronominal <a href="ADV">adverbs</a>.</p>
+
+<h3 id="prs-personal-or-possessive-personal-pronoun-or-determiner"><a name="Prs"><code class="highlighter-rouge">Prs</code></a>: personal or possessive personal pronoun or determiner</h3>
+
+<p>See also the <a href="">Poss</a> feature that distinguishes normal personal
+pronouns from possessives. Note that <code class="highlighter-rouge">Prs</code> also includes reflexive
+personal/possessive pronouns (e.g. <em>իրեն / իր </em> see the
+<a href="">Reflex</a> feature).</p>
+
+<h4 id="examples-59">Examples</h4>
+
+<ul>
+  <li><em>ես, դու, նա, մենք, դուք, նրանք </em> “I, you, he/she/it, we, you, they”</li>
+  <li><em>իմ, քո, նրա, մեր, ձեր, նրանց </em> “my, your, his/her/its, our, your, their”</li>
+  <li><em>ինձ, քեզ, իրեն, մեզ, ձեզ, իրենց </em> “myself, yourself, oneself, ourselves, yourselves, themselves”</li>
+  <li><em>իր, իրենց </em> “one’s own, their own”</li>
+</ul>
+
+<h3 id="int-interrogative-pronoun-determiner-or-adverb"><a name="Int"><code class="highlighter-rouge">Int</code></a>: interrogative pronoun, determiner or adverb</h3>
+
+<p>Note that possessive interrogative determiners (<em>whose</em>) can be distinguished by the <a href="">Poss</a> feature. Interrogative determiners can be used as exclamatives with exclamation mark or stress. We don’t distinguish them.</p>
+
+<h4 id="examples-60">Examples:</h4>
+
+<ul>
+  <li><em>ո՞վ, ովքե՞ր </em> “who”, <em>ո՞ւմ </em> “whose”</li>
+  <li><em>ի՞նչ </em> “what”, <em>ինչպիսի՞(ք) </em> “what kind of”, <em>ինչքա՞ն </em> “how many”, <em>ինչչա՞փ </em> “how much”, <em>ինչպե՞ս </em> “how”</li>
+  <li><em>ո՞ր, որո՞նք </em> “which”, <em>որպիսի՞(ք) </em> “which kind of”, <em>որքա՞ն </em> “how many”, <em>որչա՞փ </em> “how much”, <em>ո՞րերորդ </em> “which manyth” (ordinal quantifier)</li>
+  <li><em>քանի՞ </em> “how many”, <em>քանի՞սը </em> “how many”, <em>քանի՞երորդ </em> “how manyth” (ordinal quantifier)</li>
+  <li><em>որտե՞ղ </em> “where”, <em>ո՞ւր </em> “where to”</li>
+  <li><em>ե՞րբ </em> “when”</li>
+  <li><em>ինչո՞ւ </em> “why”</li>
+</ul>
+
+<h3 id="rel-relative-pronoun-or-determiner-or-adverb"><a name="Rel"><code class="highlighter-rouge">Rel</code></a>: relative pronoun or determiner or adverb</h3>
+
+<p>All pronouns and determiners that mark the beginning of a <a href="acl-relcl">relative clause</a> have this feature. Note that this class overlaps with interrogatives. There are no pronouns that are only relative.</p>
+
+<h3 id="rcp-reciprocal-pronoun"><a name="Rcp"><code class="highlighter-rouge">Rcp</code></a>: reciprocal pronoun</h3>
+
+<h4 id="examples-61">Examples</h4>
+
+<ul>
+  <li><em>մեկմեկու (մեկմեկի), իրար (իրարու), միմյանց </em> “one another, each other, each other”</li>
+</ul>
+
+<h3 id="art-article"><a name="Art"><code class="highlighter-rouge">Art</code></a>: article</h3>
+
+<p>Article is a special case of determiner that bears the feature of
+<a href="Definite">definiteness</a>. Note, that in Armenian <code class="highlighter-rouge">Def</code> value is marked directly on nouns.</p>
+
+<p>See also the related features <a href="">PossNumber</a> and <a href="">PossPerson</a>.</p>
+
+<h4 id="examples-62">Examples</h4>
+
+<ul>
+  <li><em>մի </em> “a/an”</li>
+</ul>
+
+<h3 id="dem-demonstrative-pronoun-determiner-or-adverb"><a name="Dem"><code class="highlighter-rouge">Dem</code></a>: demonstrative pronoun, determiner or adverb</h3>
+
+<p>Note that Armenian make a distinction between proximal or first person (objects near to the speaker), medial or second person (objects near to the addressee), and distal or third person (objects far from both) demonstratives. We do not distinguish a separate feature of distance.</p>
+
+<h4 id="examples-63">Examples</h4>
+
+<ul>
+  <li><em>սա, դա, նա </em> “this, that (medial), that”</li>
+  <li><em>այս, այդ, այն </em> “this, that (medial), that”</li>
+  <li><em>սույն, նույն, միևնույն </em> “this, same, same one”</li>
+  <li><em>այսպիսի, այդպիսի, այնպիսի, նույնպիսի </em> “such, such (medial), such (distal), same”</li>
+  <li><em>այսպես, այդպես, այնպես, նույնպես </em> “this way, that way (medial), that way, same way”</li>
+  <li><em>այսքան, այդքան, այնքան </em> “this many, that many, so many”</li>
+  <li><em>այսչափ, այդչափ, այնչափ </em> “this much, that much, so much”</li>
+  <li><em>այստեղ, այդտեղ, այնտեղ </em> “here, there (medial), there”</li>
+  <li><em>մյուս </em> “another”</li>
+</ul>
+
+<h3 id="emp-emphatic-pronoun-or-determiner"><a name="Emp"><code class="highlighter-rouge">Emp</code></a>: emphatic pronoun or determiner</h3>
+
+<p>As emphatic pro-adjectives (determiners) these emphasize the nominal they depend on. There are similarities with personal, demonstrative, reflexive and possessive pronouns / determiners.</p>
+
+<p>See also the <a href="">PossNumber</a> and <a href="">PossPerson</a> features for further details.</p>
+
+<h4 id="examples-64">Examples</h4>
+
+<ul>
+  <li><em>ինքը, ինքները / իրենք </em> “(he) himself, (they) themselves” as in <em>Նախագահն <b>ինքը</b> եկավ դա տեսնելու։</em> “President <b>himself</b> came to see it.”</li>
+</ul>
+
+<h3 id="tot-total-collective-pronoun-or-determiner"><a name="Tot"><code class="highlighter-rouge">Tot</code></a>: total (collective) pronoun or determiner</h3>
+
+<h4 id="examples-65">Examples</h4>
+
+<ul>
+  <li><em>ամեն(ը) </em> “every, all (of things)”</li>
+  <li><em>բոլոր(ը) </em> “all (of people)”</li>
+  <li><em>յուրաքանչյուր(ը) </em> “each (one)”</li>
+  <li><em>ողջ(ը)  </em> “whole”</li>
+  <li><em>ամբողջ(ը) </em> “all”</li>
+  <li><em>համայն </em> “all, whole”</li>
+  <li><em>ամենայն </em> “all, every”</li>
+</ul>
+
+<h3 id="neg-negative-pronoun-or-determiner"><a name="Neg"><code class="highlighter-rouge">Neg</code></a>: negative pronoun or determiner</h3>
+
+<p>Negative pronominal words are distinguished from negating <a href="PART">particles</a> and from words that inflect for polarity (verbs, adjectives etc.) Those words do not use <code class="highlighter-rouge">PronType=Neg</code>, they use <code class="highlighter-rouge">Polarity=Neg</code> instead. See the <a href="Polarity">Polarity</a> feature for further details.</p>
+
+<h4 id="examples-66">Examples</h4>
+
+<ul>
+  <li><em>ոչ ոք </em> “nobody”</li>
+  <li><em>ոչինչ </em> “nothing”</li>
+  <li><em>ոչ մեկը </em> “no one”</li>
+  <li><em>ոչ մի </em> “no”</li>
+</ul>
+
+<h3 id="ind-indefinite-pronoun-determiner-or-adverb"><a name="Ind"><code class="highlighter-rouge">Ind</code></a>: indefinite pronoun, determiner or adverb</h3>
+
+<h4 id="examples-67">Examples</h4>
+
+<ul>
+  <li><em>ինչ-որ </em> “some (of one thing)”, <em>ինչ-ինչ </em> “some (of many thing)”</li>
+  <li><em>մի քանի </em> “several”, <em>մի քանիսը </em> “several people”, <em>որոշ </em> “definite”</li>
+  <li><em>մեկը </em> “one”, <em>մեկնումեկը </em> “someone”, <em>մի </em> “some, several”</li>
+  <li><em>ոմն </em> “someone”, <em>ոմանք </em> “some people”</li>
+  <li><em>ուրիշ </em> “another”, <em>ուրիշը </em> “another one”, <em>այլ </em> “other”</li>
+  <li><em>որևէ, որևիցե </em> “one or another”</li>
+  <li><em>այսինչ, այնինչ </em> “this and that”</li>
+  <li><em>երբևէ, երբևիցե </em> “sometime”
+Boolean feature of <a href="PRON">pronouns</a> or
+<a href="DET">determiners</a>. It tells whether the word is reflexive,
+i.e. refers to the subject of its clause.</li>
+</ul>
+
+<p>In Armenian, reflexive pronouns do not have various functions:</p>
+
+<p>Reflexive object of a verb means that the object is the same entity as the subject:</p>
+
+<ul>
+  <li><em>Արմենն <b>իրեն</b> մեքենա է գնել։ </em> = “Armen bought <b>himself</b> a car.” vs.</li>
+  <li><em>Արմենը նրան մեքենա է գնել։ </em> = “Armen bought him [someone else] a car.”</li>
+</ul>
+
+<p>Reflexive possessives indicate that the subject of the clause is the possessor:</p>
+
+<ul>
+  <li><em>Արմենը վաճառել է <b>իր</b> մեքենան։ </em> “Armen sold <b>his</b> [own] car.”</li>
+  <li><em>Արմենը վաճառել է նրա մեքենան։ </em> “Armen sold his [someone else’s] car.”</li>
+</ul>
+
+<h3 id="yes-it-is-reflexive"><code class="highlighter-rouge">Yes</code>: it is reflexive</h3>
+
+<p>Note that there is no <code class="highlighter-rouge">No</code> value. If the word is not reflexive, the
+<code class="highlighter-rouge">Reflex</code> feature will just not be mentioned in the <code class="highlighter-rouge">FEAT</code>
+column. (Which means that empty value has the <code class="highlighter-rouge">No</code> meaning.)</p>
+
+<h4 id="examples-68">Examples</h4>
+
+<ul>
+  <li>reflexive personal pronouns: <em>ինձ, քեզ, իրեն, մեզ, ձեզ, իրենց</em> (occur in various cases but not in nominative and distinguish <a href="">Number</a>)</li>
+  <li>reflexive possessive determiners: <em>իր, իրենց</em></li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Intr">Intr</a></td>
+  <td><a href="#Tran">Tran</a></td>
+</tr>
+</table>
+
+<p>Lexical feature of <a href="Verb">verbs</a>.</p>
+
+<h3 id="intr-intransitive-verb"><a name="Intr"><code class="highlighter-rouge">Intr</code></a>: intransitive verb</h3>
+
+<p>A verb that does not take arguments other than the subject.</p>
+
+<h4 id="examples-69">Examples</h4>
+
+<ul>
+  <li><em><b>գնալ</b> տուն</em> “to <b>go</b> home”</li>
+</ul>
+
+<h3 id="tran-transitive-verb"><a name="Tran"><code class="highlighter-rouge">Tran</code></a>: transitive verb</h3>
+
+<p>A verb that takes a direct (accusative) object as argument (in addition to the subject).
+These verbs can be passivized, then the direct object becomes the subject.</p>
+
+<h4 id="examples-70">Examples</h4>
+
+<ul>
+  <li><em><b>խմել</b> գինի</em> “to <b>drink</b> wine”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Imp">Imp</a></td>
+  <td><a href="#Past">Past</a></td>
+  <td><a href="#Pres">Pres</a></td>
+  Imp: imperfect
+  
+</tr>
+</table>
+
+<p>Tense is a feature that specifies the time when the action took /
+takes / will take place, in relation to the current moment or to
+another action in the utterance.</p>
+
+<p>Armenian has a complex tense/aspect/mood system.</p>
+
+<p>Note, that we are defining features that apply to a single word. If a tense is constructed periphrastically (two words, e.g. auxiliary verb indicative + participle of the main verb), and none of the participating words are specific to this tense, then the features will probably not directly reveal the tense.</p>
+
+<p>Actions that happened before, during, and after a past or present event are constructed in Armenian by using perfect, resultative, imperfective and future participles.</p>
+
+<p>Actions that happen before or during a future event are expressed using an auxiliary. Imperfect or present finite form of auxilariy in periphrastic future (accompanied by future participle of main verb) is tagged <code class="highlighter-rouge">Tense=Imp</code> or <code class="highlighter-rouge">Tense=Pres</code> accordingly, not <code class="highlighter-rouge">Tense=Fut</code>, while there will be an aspect (<code class="highlighter-rouge">Aspect=Prosp</code>) information at the participle (e.g. <em>վազելու <b>էի</b> տուն </em> “I <b>should</b> run home” or <em>վազելու <b>եմ</b> տուն </em> “I <b>shall</b> run home”).</p>
+
+<p>Note also, that there is an elaborate system of parallel tense/aspect/mood forms (traditionally called “secondary compound tenses”) formed periphrastically by forms of the auxiliary <em>լինեմ </em> and the resultative, processual and future participles of the main verb. They express actions that happened before, during, and after past or present reference. For these periphrastical forms we use <code class="highlighter-rouge">Tense=Imp</code> or <code class="highlighter-rouge">Tense=Pres</code> with perfect (<code class="highlighter-rouge">Perf</code>), imperfective (<code class="highlighter-rouge">Imp</code>) or prospective (<code class="highlighter-rouge">Prosp</code>) <code class="highlighter-rouge">Aspect</code>.</p>
+
+<h3 id="past-past-tense--aorist"><a name="Past"><code class="highlighter-rouge">Past</code></a>: past tense / aorist</h3>
+
+<p>The past tense denotes actions that happened before the current
+moment, a (completed) past event. In Armenian this is aorist.</p>
+
+<h4 id="examples-71">Examples</h4>
+
+<ul>
+  <li><em>նա <b>գնաց</b> տուն </em> “he <b>went</b>.<code class="highlighter-rouge">Ind</code> home”</li>
+</ul>
+
+<h3 id="imp-imperfect"><a name="Imp"><code class="highlighter-rouge">Imp</code></a>: imperfect</h3>
+
+<p>Imperfect is a special case of the past tense. It denotes actions that are happening during some past moment. These actions might continue after the moment of speaking, but also might not, i.e. the evidence is not in the form itself, but it is in the context.</p>
+
+<p>The auxiliaries <em>էի </em> and <em>կայի </em> will have <code class="highlighter-rouge">Tense=Imp</code>.</p>
+
+<p>Note, that a limited set of verbs form imperfect and present morphologically with unmarked vs. marked stems (traditionally called “Defective Verbs with Secondary Expanded Stems”). The difference between them are related to <code class="highlighter-rouge">Mood</code> and <code class="highlighter-rouge">Aspect</code> rather than <code class="highlighter-rouge">Tense</code>. The verbs with “non-expanded” stems will have also morphologically <code class="highlighter-rouge">Tense=Imp</code> in indicative mood.</p>
+
+<h4 id="examples-72">Examples</h4>
+
+<ul>
+  <li><em><b>էի</b> </em> “<b>I was</b>.<code class="highlighter-rouge">Ind</code>”,</li>
+  <li><em><b>կայի</b> </em> “<b>I was / existed</b>.<code class="highlighter-rouge">Ind</code>”,</li>
+  <li><em><b>գնայի</b> տուն </em> “<b>I wish I went</b>.<code class="highlighter-rouge">Sub</code> home”,</li>
+  <li><em><b>վազեի</b> տուն </em> “<b>I wish I ran</b>.<code class="highlighter-rouge">Sub</code> home”,</li>
+  <li><em>պիտի <b>գնայի</b> տուն </em> “<b>I should go</b>.<code class="highlighter-rouge">Nec</code> home”,</li>
+  <li><em><b>ունեի</b> </em> “<b>I had</b>”.<code class="highlighter-rouge">Ind</code>,</li>
+  <li><em><b>գիտեի</b> </em> “<b>I knew</b>”.<code class="highlighter-rouge">Ind</code>,</li>
+  <li><em><b>արժեի</b> </em> “<b>I was worth</b>.<code class="highlighter-rouge">Ind</code>”,</li>
+  <li><em><b>ունենայի</b> </em> “<b>I wish I had</b>.<code class="highlighter-rouge">Sub</code>”,</li>
+  <li><em><b>գիտենայի</b> </em> “<b>I wish I knew</b>.<code class="highlighter-rouge">Sub</code>”,</li>
+  <li><em><b>արժենայի</b> </em> “<b>I wish I were worth</b>.<code class="highlighter-rouge">Sub</code>”</li>
+</ul>
+
+<h3 id="pres-present-tense"><a name="Pres"><code class="highlighter-rouge">Pres</code></a>: present tense</h3>
+
+<p>The present tense denotes actions that are happening right now or that
+usually happen.</p>
+
+<p>The auxiliaries <em>եմ </em> and <em>կամ </em> will have <code class="highlighter-rouge">Tense=Pres</code>.</p>
+
+<p>Present forms of verbs in subjunctive, conditional and necessitative moods have future meaning. These forms are tagged <code class="highlighter-rouge">Tense=Pres</code> not <code class="highlighter-rouge">Tense=Fut</code> as in traditional grammars.</p>
+
+<p>The remaining verbs with “non-expanded” stems (see above) will have also morphologically <code class="highlighter-rouge">Tense=Pres</code> in indicative mood.</p>
+
+<h4 id="examples-73">Examples</h4>
+
+<ul>
+  <li><em><b>եմ</b> </em> “<b>I am</b>.<code class="highlighter-rouge">Ind</code>”,</li>
+  <li><em><b>կամ</b> </em> “<b>I am / exist</b>.<code class="highlighter-rouge">Ind</code>”,</li>
+  <li><em><b>գնամ</b> տուն </em> “I’d better <b>go</b>.<code class="highlighter-rouge">Sub</code> home”,</li>
+  <li><em><b>կգնամ</b> տուն </em> “<b>I shall go</b>.<code class="highlighter-rouge">Cnd</code> home”,</li>
+  <li><em>պիտի <b>գնամ</b> տուն </em> “I must <b>go</b>.<code class="highlighter-rouge">Nec</code> home”,</li>
+  <li><em><b>ունեմ</b> </em> “<b>I have</b>.<code class="highlighter-rouge">Ind</code>”,</li>
+  <li><em><b>գիտեմ</b> </em> “<b>I know</b>.<code class="highlighter-rouge">Ind</code>”,</li>
+  <li><em><b>արժեմ</b> </em> “<b>I am worth</b>.<code class="highlighter-rouge">Ind</code>”,</li>
+  <li><em><b>ունենամ</b> </em> “(if) <b>I have</b>.<code class="highlighter-rouge">Sub</code>”,</li>
+  <li><em><b>գիտենամ</b> </em> “(if) <b>I know</b>.<code class="highlighter-rouge">Sub</code>”,</li>
+  <li><em><b>արժենամ</b> </em> “(if) <b>I am worth</b>.<code class="highlighter-rouge">Sub</code>”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Conv">Conv</a></td>
+  <td><a href="#Fin">Fin</a></td>
+  <td><a href="#Inf">Inf</a></td>
+  <td><a href="#Part">Part</a></td>
+</tr>
+</table>
+
+<p>Even though the name of the feature seems to suggest that it is used
+exclusively with <a href="VERB">verbs</a>, the <code class="highlighter-rouge">Part</code> value can be used also with <a href="ADJ">adjectives</a>. It distinguishes participles from other verb forms, and participial adjectives from other adjectives.</p>
+
+<h3 id="fin-finite-verb"><a name="Fin"><code class="highlighter-rouge">Fin</code></a>: finite verb</h3>
+
+<p>Rule of thumb: if it has non-empty <a href="">Mood</a>, it is finite. In Armenian this applies to conditional, indicative, imperative and subjunctive forms.</p>
+
+<h4 id="examples-74">Examples</h4>
+
+<ul>
+  <li><em>կգնամ, կգնաս, կգնա, կգնանք, կգնաք, կգնան</em>  “I will go, you will go, he/she/it will go, we will go, you will go, they will go”,</li>
+  <li><em>գիտեմ, գիտես, գիտի, գիտենք, գիտեք, գիտեն</em>  “I know, you know, he/she/it knows, we know, you know, they know”,</li>
+  <li><em>գնացի, գնացիր, գնաց, գնացինք, գնացիք, գնացին</em>  “I went, you went, he/she/it went, we went, you went, they went”,</li>
+  <li><em>եմ, ես, է, ենք, եք, են</em>  “I am, you are, he/she/it is, we are, you are, they are”,</li>
+  <li><em>գնա՛, գնացե՛ք</em>  “go” (imperative in different numbers),</li>
+  <li><em>գնամ, գնաս, գնա, գնանք, գնաք, գնան</em>  “I go.<code class="highlighter-rouge">Sub</code>, you go.<code class="highlighter-rouge">Sub</code>, he/she/it go.<code class="highlighter-rouge">Sub</code>, we go.<code class="highlighter-rouge">Sub</code>, you go.<code class="highlighter-rouge">Sub</code>, they go.<code class="highlighter-rouge">Sub</code>”</li>
+</ul>
+
+<h3 id="inf-infinitive"><a name="Inf"><code class="highlighter-rouge">Inf</code></a>: infinitive</h3>
+
+<p>Infinitive is the citation form of verbs. In Armenian it has non-finite form. It is used with the auxiliary <em>տալ </em> to form periphrastic causative voice, and it appears as the argument of modal and other verbs.</p>
+
+<p>Note, that in Armenian infinitves behave similarly to nouns and are used as such. Depending on context, they may be classified as either <code class="highlighter-rouge">VERB</code> or <a href="">NOUN</a>. The <code class="highlighter-rouge">Inf</code> value will be used also with nouns to distinguish infinitives from other verb forms, and from other nouns.</p>
+
+<p>Infinitves inflect for <a href="">Case</a>, <a href="">Definite</a>, <a href="">PossNumber</a> and <a href="">PossPerson</a>.</p>
+
+<h4 id="examples-75">Examples</h4>
+
+<ul>
+  <li><em><b>խմել</b> տվեցի</em>  “I made him <b>drink</b>”,</li>
+  <li><em>կարող ես <b>գնալ</b></em>  “you can <b>go</b>”,</li>
+  <li><em>որոշեցի անմիջապես <b>չասել</b></em>  “I decided <b>not to say</b> immediately”,</li>
+  <li><em><b>մտնելուց</b> հետո</em>  “after <b>entering</b>”,</li>
+  <li><em><b>սպանվելու</b> միտքը ծանր էր</em>  “lit: the thought <b>of to be killed</b> was hard”</li>
+</ul>
+
+<h3 id="part-participle-verbal-adjective"><a name="Part"><code class="highlighter-rouge">Part</code></a>: participle, verbal adjective</h3>
+
+<p>Participle is a non-finite verb form that shares properties of verbs and adjectives. In Armenian it may be used to form complex tenses and can be also used purely adjectively.</p>
+
+<p>In Armenian linguistics, these words are normally called <em>converbs</em>. However, since the UD definition <code class="highlighter-rouge">Part</code> partially covers the use of converbs, we use the same label.</p>
+
+<p>Armenian has eight types of participles:</p>
+
+<ul>
+  <li>The resultative participle is used to form the indicative mood in present perfect resultative, imperfect in the past resultative and proper resultative tense. It can be also used adjectively.</li>
+  <li>The subject participle can be used only adjectively.</li>
+  <li>The imperfective participle is used to form the indicative mood in present or imperfect tense.</li>
+  <li>The future-I participle is used to form the indicative mood in present prospective (future) or imperfect prospective (future in the past) tense.</li>
+  <li>The future-II (state of prospective action) participle can be used only adjectively.</li>
+  <li>The perfect participle is used to form the indicative mood in present perfect or imperfect in the past (past perfect) tense.</li>
+  <li>The negative participle is used to form the negated conditional mood in present or imperfect tense.</li>
+  <li>The processual (progressive) participle is used to form the indicative mood in present or imperfect tense for the verbs <em>գալ, լալ, տալ</em>.</li>
+</ul>
+
+<p>Note, that the processual (progressive), resultative and future-I participles can be used to form the secondary complex tenses (in any tense or mood).</p>
+
+<p>Participles will have also <a href="">Aspect</a> and <a href="">Voice</a>.</p>
+
+<h4 id="examples-76">Examples</h4>
+
+<ul>
+  <li><em>քնած, գրած, ուղարկված, կանգնեցված</em>  “slept, written, sent, raised” (resultative participle, in different voices),</li>
+  <li><em>գրող, մեռնող, տվող, եղող, բացվող</em>  “(smth.) writing, dying, giving, beeing, opening” (subject participle, in different voices),</li>
+  <li><em>սիրում, խոսվում, բարձրացվում</em>  “love; smth. to be speaking about; beeing raised” (imperfective participle, in different voices),</li>
+  <li><em>տեսնելու, լվացվելու, մեղմացվելու</em>  “for seeing, for washing, for beeing extenuated” (future-I participle, in different voices),</li>
+  <li><em>կարդալիք, կառուցվելիք</em>  “(smth.) to be read, to be built” (future-II participle, in different voices),</li>
+  <li><em>գնացել, խմել, դրել</em>  “have done, have drunk, have put” (perfect participle),</li>
+  <li><em>(չեմ) գրի, (չէի) ասի, (չեմ) կարդա, (չէի) մոտենա</em>  “I will not write, I would not say, I will not read, I woul not approach” (negative participle),</li>
+  <li><em><b>գալիս</b> եմ/էի, <b>տալիս</b> եմ/էի, <b>լալիս</b> եմ/էի, <b>աշխատելիս</b> է եղել</em>  “I am/was <b>coming</b>, I am/was <b>giving</b>, I am/was <b>crying</b>, he has been <b>working</b>” (processual participle in different moods and tenses)</li>
+</ul>
+
+<h3 id="conv-converb-adverbial-participle"><a name="Conv"><code class="highlighter-rouge">Conv</code></a>: converb, adverbial participle</h3>
+
+<p>The converb, also called adverbial participle or transgressive, is a non-finite
+verb form that shares properties of verbs and adverbs.</p>
+
+<p>Verbs form transgressive meaning “while doing”.</p>
+
+<h4 id="examples-77">Examples</h4>
+
+<ul>
+  <li><em><b>վազելիս</b> ընկա</em>  “I fell <b>while running</b>”,</li>
+  <li><em><b>կարդալիս</b> ննջեց</em>  “he slept <b>while reading</b>”,</li>
+  <li><em><b>ուտելիս</b> շտապում է</em>  “he hurries <b>while eating</b>”</li>
+</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Act">Act</a></td>
+  <td><a href="#Cau">Cau</a></td>
+  <td><a href="#Mid">Mid</a></td>
+  <td><a href="#Pass">Pass</a></td>
+</tr>
+</table>
+
+<p>Voice is a feature of verbs that helps to map the traditional syntactic functions,
+such as subject and object, to semantic roles, such as agent and patient. See also the related feature <a href="Subcat">subcategorization</a>.</p>
+
+<h3 id="act-active-voice"><a name="Act"><code class="highlighter-rouge">Act</code></a>: active voice</h3>
+
+<p>Prototypically, the subject of the verb is the doer of the action (agent), the object is affected by the action (patient).</p>
+
+<p>By default, the finite and non-finite forms of verbs are labeled <code class="highlighter-rouge">Voice=Act</code>, except for the cases when they are labeled <code class="highlighter-rouge">Voice=Pass</code>, <code class="highlighter-rouge">Voice=Mid</code> or <code class="highlighter-rouge">Voice=Cau</code> (see below).</p>
+
+<h4 id="examples-78">Examples</h4>
+
+<ul>
+  <li><em>Նա <b>ջարդեց</b> բաժակը </em> “He <b>broke</b> the cup”,</li>
+  <li><em>Նա <b>կորցրեց</b> գիրքը </em> “He <b>lost</b> the book” (but, <em>Գիրքը <b>կորավ</b> </em>.<code class="highlighter-rouge">Mid</code> “The book was <b>lost</b>.<code class="highlighter-rouge">Mid</code>”),</li>
+  <li><em>Նա <b>հանգցրեց</b> լույսը </em> “He <b>turned</b> the light off” (but, <em>Լույսը <b>հանգավ</b> </em>.<code class="highlighter-rouge">Mid</code> “The light <b>was off</b>.<code class="highlighter-rouge">Mid</code>”).</li>
+</ul>
+
+<h3 id="pass-passive-voice"><a name="Pass"><code class="highlighter-rouge">Pass</code></a>: passive voice</h3>
+
+<p>The subject of the verb is affected by the action (patient). The doer (agent) is either a non-obligatory oblique phrase of the verb or not overtly expressed.</p>
+
+<p>The finite and non-finite forms of verbs are labeled <code class="highlighter-rouge">Voice=Pass</code> in the passive constructions. In this case, the verbs are marked with passive infixe <em>-վ-</em> (for exeptions see below).</p>
+
+<h4 id="examples-79">Examples</h4>
+
+<ul>
+  <li><em>Առաջարկությունը <b>մերժվեց</b> (մասնակիցների կողմից) </em> “The suggestion <b>was denied</b> (by the participants)”,</li>
+  <li><em>Նա <b>արհամարվում</b> է ժողովրդից </em> “He is <b>despised</b> by the people”,</li>
+  <li><em>Անտառը <b>ծածկված</b> է ձյունով </em> “The forest is <b>covered</b> by snow”,</li>
+  <li><em>Դրա մասին շատ է <b>խոսվել</b> </em> “It was <b>spoken</b> much about that”.</li>
+</ul>
+
+<h3 id="mid-middle-voice"><a name="Mid"><code class="highlighter-rouge">Mid</code></a>: middle voice</h3>
+
+<p>Between active and passive. Needed also for the reflexive and reciprocal verbs (traditionally called medio-passiv); in this case, the verbs are marked with passiv infix <em>-վ-</em> (but the lemma is tagged as non-reflexive, non-reciprocal).</p>
+
+<p>Note, that there is a not large set of middle voice verbs marked with passive infix <em>-վ-</em> (so-called passivizied middle verbs). These forms are morphologically very close to the passive, do not have morphologically related non-marked counterparts and are tagged <code class="highlighter-rouge">Voice=Mid</code>. If there is a morphologically related non-marked counterpart, than the two verbs are represented by different lemmas (e.g. <em>վերաբերվել </em>.<code class="highlighter-rouge">Mid</code> “treat, be about”, but <em>վերաբերել </em>.<code class="highlighter-rouge">Act</code> “refer to”).</p>
+
+<h4 id="examples-80">Examples</h4>
+
+<ul>
+  <li><em>Նա <b>վախենում</b> է մթից </em> “He is <b>afraid</b> of darkness”,</li>
+  <li><em>Նա արագ <b>լվացվեց</b>, <b>հագնվեց</b> </em> “He <b>washed</b>, <b>dressed</b> quickly (lit: he washed himself, he dressed himself)”,</li>
+  <li><em>Նրանք <b>գրկախառնվեցին</b>, <b>համբուրվեցին</b> </em> “They <b>emraced</b> and <b>kissed</b> each other”,</li>
+  <li><em>Մենք <b>հարձակվեցինք</b> թշնամու վրա </em> “We <b>attacked</b> the enemy”,</li>
+  <li><em>Ամիսներ անց բոլորն էլ <b>հաշտվեցին</b> այդ մտքի հետ </em> “After several months everybody <b>stood</b> thought of it”.</li>
+</ul>
+
+<h3 id="cau-causative-voice"><a name="Cau"><code class="highlighter-rouge">Cau</code></a>: causative voice</h3>
+
+<p>Note, that in Armenian this is a feature of verbs. In causative constructions the subject is the entity “causing” the action. It is generally translated into English as ‘cause/make/have/let/allow’ someone to perform action described by the main verb.</p>
+
+<p>The causative is expressed by the infix <em>-ցն-</em>. It is quite productive and can be used also for transitivisation of intransitive (middle voice) verbs. They will have <code class="highlighter-rouge">Voice=Act</code>, not <code class="highlighter-rouge">Voice=Cau</code> (e.g. <em><b>կորցնել, հանգցնել</b></em>).</p>
+
+<p>Note, that the auxiliary <em>տալ </em> (in various tenses and moods) is accombined with infinitve of the content verb to construct the causative voice. Only the auxiliary will have <code class="highlighter-rouge">Voice=Cau</code>. There will be also voice information at the infinitive.</p>
+
+<h4 id="examples-81">Examples</h4>
+
+<ul>
+  <li><em>Մայրը <b>քնեցրեց</b> որդուն </em> “The mather <b>put</b> her son to sleep”,</li>
+  <li><em><b>Սովորեցնում</b> էր նրան լեզու </em> “He <b>tought</b> her a foreign language”,</li>
+  <li><em>Այդ բոլորը պատերազմ էր <b>հիշեցնում</b> նրան </em> “All these things <b>reminded</b> him a war”,</li>
+  <li><em>Ամիսներ անց այդ միտքը <b>հաշտեցրեց</b> նրանց </em> “After several months this thought <b>reconciled</b> them”,</li>
+  <li><em>Ո՞ր քամին <b>հանգցրեց</b> նրանց սերը </em> “Which wind <b>extinguished</b>.<code class="highlighter-rouge">Cau</code> their love (lit: made the love to extinguish)”,</li>
+  <li><em>վազել</em>.<code class="highlighter-rouge">Mid</code> <em><b>տալ</b></em>.<code class="highlighter-rouge">Cau</code> “to <b>make</b> somebody run”,</li>
+  <li><em><b>վազեցնել</b></em>.<code class="highlighter-rouge">Cau</code> <em><b>տալ</b></em>.<code class="highlighter-rouge">Cau</code> “lit: to <b>make</b> someone <b>make</b> someone run”,</li>
+  <li><em>հասկանալ</em>.<code class="highlighter-rouge">Act</code> <em><b>տալ</b> </em>.<code class="highlighter-rouge">Cau</code> “lit: to <b>make</b> somebody understand”,</li>
+  <li><em><b>հասկացնել</b> </em>.<code class="highlighter-rouge">Cau</code> “lit: to <b>make</b> somebody understand”,</li>
+  <li><em><b>հասկացնել</b></em>.<code class="highlighter-rouge">Cau</code> <em><b>տալ</b> </em>.<code class="highlighter-rouge">Cau</code> “lit: to <b>make</b> someone <b>make</b> someone understand”.
+    <h1 id="pos-tags-1">POS tags</h1>
+  </li>
+</ul>
+
+<p>These tags mark the core part-of-speech categories. To distinguish additional lexical and grammatical properties of words, use the <a href="feat/index.html">universal features</a>.</p>
+
+<p>{% include hy-pos-table.html %}</p>
+
+<hr />
+
+<p>Alphabetical listing</p>
+
+<p>{{ site.hy }}</p>
+
+<p>{% comment %}
+{% comment %} Commenting this out for the time being, I don’t know how to fix and it’s crashing the docs. -fginter {% endcomment %}
+{% assign sorted = site.hy-pos | sort: ‘title’ %}{% for p in sorted %}</p>
+<ul>
+  <li><a href="">{{ p.title }}</a>: {{ p.shortdef }}{% endfor %}
+{% endcomment %}
+    <h3 id="definition">Definition</h3>
+  </li>
+</ul>
+
+<p>Adjectives are words that typically modify nouns and specify their properties or attributes. They may also function as predicates, as in</p>
+
+<p><em>Մեքենան կանաչ է:</em> “The car is green.”</p>
+
+<p>The <code class="highlighter-rouge">ADJ</code> tag is intended for ordinary adjectives only. See <a href="">DET</a> for determiners and <a href="">NUM</a> for numerals.</p>
+
+<p>In accordance with the UD approach, adjectival ordinal numerals <em>(առաջին, երկրորդ, ութերորդ, հարյուր հիսուներորդ)</em> are tagged as adjectives, although the traditional grammar classifies them as numerals. They behave like adjectives both morphologically and syntactically, with the exception that they cannot be compared.</p>
+
+<p>Note that participles are word forms that may share properties and usage of adjectives and verbs. Depending on context, they may be classified as either <a href="">VERB</a> or <code class="highlighter-rouge">ADJ</code>.</p>
+
+<p>In Armenian adjectives inflect for <a href="">Degree</a>. Degree can also be specified by <a href="ADV">adverb</a> <em>ավելի</em>.</p>
+
+<p>Note that some adjectives and most adverbs in Armenian don’t have a degree feature.</p>
+
+<h3 id="examples-82">Examples</h3>
+
+<ul>
+  <li><em>մեծ</em> “big</li>
+  <li><em>հին</em> “old”</li>
+  <li><em>կանաչ</em> “green”</li>
+  <li><em>անընկալելի</em> “incomprehensible”</li>
+  <li><em>առաջին, երկրորդ, երրորդ</em> “first, second, third”</li>
+  <li><em><b>կառուցված, կառուցվող, կառուցվելիք</b> շենք</em> “a built house; a house, that is being built; a house that will be built” (resultative, subject, future-II passive participial adjective)</li>
+  <li><em><b>հնչած, հնչող, հնչելիք</b> զանգ</em> “a ringing call; a call that ringed; a call that will ring” (resultative, subject, future-II participial adjective)</li>
+</ul>
+
+<h3 id="border-cases">Border cases</h3>
+
+<p>Resultative, subject, future-II participles lie on the border between verbs and adjectives. Core participial forms are tagged <a href="">VERB</a> (used to form the moods). As participial adjectives they are tagged <code class="highlighter-rouge">ADJ</code> (used in nominal predication with <a href="cop">copula</a>, and to modify nouns), although they may have verbal features in addition to the adjectival ones.</p>
+<h3 id="definition-1">Definition</h3>
+
+<p>Armenian has prepositions and postpositions but no circumpositions. They occur before or after complement noun phrase (noun, pronoun) and they form a single structure with the complement to express its grammatical and semantic relation to another unit within a clause.</p>
+
+<p>Some prepositions take the form of fixed multiword expressions, e.g. <em>ի սեր </em> “for the love of”, <em>ի պատիվ </em> “in honor of”. The component words are then still tagged according to their basic use (<em>ի </em> is <a href="">ADP</a>, <em>սեր </em> is <a href="">NOUN</a>, etc.) and their status as multiword expressions is accounted for in the syntactic annotation.</p>
+
+<p>Note, that a closed set of adpositions (a group reffering to location) in Armenian inflect for <a href="">Case</a>, <a href="">PossNumber</a> and <a href="">PossPerson</a>. Examples include, <em>մոտ, մոտ<b>ից</b>, մոտ<b>ով</b>, մոտ<b>ս</b>, մոտ<b>ներս</b> </em> “at, from, by, at me, at us”, <em>վրա, վրայ<b>ից</b>, վրայ<b>ով</b> </em> “on, from off, over”, <em>մեջ, միջ<b>ից</b>, միջ<b>ով</b> </em> “in, out of, through”, <em>տակ, տակ<b>ից</b>, տակ<b>ով</b> </em> “under, from, under”.</p>
+
+<p>Note also, that there is a number of postpositions, derived from a closed set of nouns, e.g. <em>հասցե<b>ին</b> </em> “about”, <em>նպատակ<b>ով</b> </em> “in odrer to”, <em>միջոց<b>ով</b> </em> “by means of”, <em>կողմ<b>ից</b> </em> “by”.</p>
+
+<p>We mark these expressions as <code class="highlighter-rouge">ADP</code> when they are used as postpositions.</p>
+
+<h3 id="examples-83">Examples</h3>
+
+<ul>
+  <li><em>առ </em> “up to”</li>
+  <li><em>ի </em> “for”</li>
+  <li><em>ընթացքում </em> “during”
+    <h3 id="definition-2">Definition</h3>
+  </li>
+</ul>
+
+<p>Adverbs are words that typically modify <a href="VERB">verbs</a> for such categories as time, place, direction or manner. They may also modify
+<a href="ADJ">adjectives</a> and other adverbs, as in <em><b>հավանաբար</b> սխալ </em> “provably wrong” or <em><b>շատ</b> հազվադեպ </em> “very rarely”.</p>
+
+<p>There is a closed subclass of <em>pronominal adverbs</em> that refer to circumstances in context, rather than naming them directly; similarly
+to pronouns, these can be categorized as interrogative, relative, demonstrative, indefinite. Pronominal adverbs also get the <code class="highlighter-rouge">ADV</code> part-of-speech tag but they are differentiated by additional features.</p>
+
+<p>Note that verb forms such as <em>transgressives</em> (also called <em>adverbial participles</em>, e.g. <em>տեսա <b>գրելիս</b> </em> “I saw him writing” or <em><b>կարդալիս</b> քնեց </em> “when reading he slept”) share properties and usage of adverbs and verbs. Note that Armenian transgressives are tagged <a href="">VERB</a>, not <code class="highlighter-rouge">ADV</code>.</p>
+
+<p>Note that in Armenian some adverbs inflect for <a href="">Degree</a>. Second degree specified by adverb <em><b>ավելի</b></em> “more” e.g. <em><b>ավելի</b> արագ </em> “more quickly”. The third degree of adverbs in Armenian is constructed with the feature of <a href="">Definite</a>.</p>
+
+<h3 id="examples-84">Examples</h3>
+
+<ul>
+  <li><em>շատ </em> “very”</li>
+  <li><em>լավ </em> “well”</li>
+  <li><em>հստակորեն </em> “exactly”</li>
+  <li><em>վաղը </em> “tomorrow”</li>
+  <li><em>վեր, վար </em> “up, down”</li>
+  <li>interrogative adverbs: <em>որտեղ, ուր, երբ, ինչպես, ինչու, ինչքան, ինչչափ </em> “where, where to, when, how, why, how many, how much”</li>
+  <li>demonstrative adverbs: <em>այստեղ, այնտեղ, այսպես, այնպես, այսքան, այնչափ </em> “here, there, this way, that way, this many, so much”</li>
+  <li>indefinite adverbs: <em>երբևիցե, երբևէ </em> “sometime”
+    <h3 id="definition-3">Definition</h3>
+  </li>
+</ul>
+
+<p>The only truly auxiliary verb in Armenian is <em>եմ </em> “be”,
+and its variants (with separate lemma) <em>լինեմ (լինել) </em> “be repeatedly / habitually” and <em>կամ </em> “be, exist”.
+It accompanies the lexical verb of a verb phrase and expresses
+grammatical distinctions not carried by the lexical verb.</p>
+
+<p>Armenian auxiliary verbs can be divided into:</p>
+
+<ul>
+  <li>tense auxiliaries, used to form compound tenses represented by <em>եմ </em> and <em>էի </em> “be”;</li>
+  <li>aspectual auxiliaries, used to form so-called “secondary compound tenses” represented by <em>լինեմ (լինել) </em> “be repeatedly / habitually”,</li>
+  <li>voice auxiliary, used to form periphrastic causative represented by <em>տալ </em> “cause / make someone to perform action”.</li>
+</ul>
+
+<h3 id="examples-85">Examples</h3>
+
+<ul>
+  <li>
+    <p>Present tense. Finite present form of <em>եմ </em> is combined with imperfective and resultative participles of the lexical verb. The auxiliary expresses person, number, mood and tense, participles expresse tense / aspect and voice:
+<em>վազում <b>եմ</b> </em> “I run / I am running”,
+<em>վազում <b>ես</b> </em> “you run / you are running”,
+<em>կանգնած <b>են</b> </em> “they are standing”.
+Note that a limited set of verbs can form present morphologically, without the auxiliary.</p>
+  </li>
+  <li>
+    <p>Imperfect tense. Finite imperfect form of <em>էի </em> is combined with imperfective, perfect and resultative participles of the lexical verb. The auxiliary expresses person, number, mood and tense, participles expresse tense / aspect and voice:
+<em>վազում <b>էի</b> </em> “I was running”,
+<em>վազել <b>էիր</b> </em> “you were running”,
+<em>կանգնած <b>էին</b> </em> “they were standing”.</p>
+  </li>
+</ul>
+
+<p>Note, that fintie present and imperfect forms of <em>եմ </em> and <em>էի </em> are also used with the perfect and future participles of the lexical verbs to form periphrastic present perfect (e.g. <em>վազել <b>եմ</b> </em> “I have run”), (present-)future (e.g. <em>վազելու <b>եմ</b> </em> “I shall run”) and future-in-the-past (<em>վազելու <b>էի</b> </em> “I would (intended to) run”). The auxiliaries express person, number mood and tense (<code class="highlighter-rouge">Tense=Pres</code> and <code class="highlighter-rouge">Tense=Imp</code> accordingly), participles express tense / aspect and voice.</p>
+
+<ul>
+  <li>
+    <p>Durative / habitual aspect. The finite form of <em>լինեմ </em> (in various tenses and moods or in the infinitive <em>լինել </em>) is combined with processual, resultative and future participles of the lexical verb. The auxiliary expresses person, number, mood, tense and aspect, participles expresse tense / aspect and voice:
+<em>գնալու <b>լինեմ</b> </em> “(If / when) I intent to go.<code class="highlighter-rouge">Sub</code>”,
+<em>գնացած <b>լինեմ</b> </em> “(If / when) I will be gone.<code class="highlighter-rouge">Sub</code>”,
+<em>գնալիս <b>լինեմ</b> </em> “(If / when) I will be going.<code class="highlighter-rouge">Sub</code>”,
+<em>գնալու <b>լինել</b> </em> “to intend to go, to be going”,
+<em>գնացած <b>լինել</b> </em> “to be gone”,
+<em>գնալիս <b>լինել</b> </em> “to be in the process of going”.</p>
+  </li>
+  <li>
+    <p>Causative voice. The finite form of <em>տալ </em> (in various tenses and moods) is combined with infinitve of the content verb. The auxiliary expresses person, number, tense and mood. The auxiliary will have <code class="highlighter-rouge">Voice=Cau</code>. There will be also voice information at the infinitive:
+<em>հասկանալ</em>.<code class="highlighter-rouge">Act</code> <em><b>տալ</b> </em>.<code class="highlighter-rouge">Cau</code> “lit: to <b>make</b> somebody understand”,
+<em><b>հասկացնել</b> </em>.<code class="highlighter-rouge">Cau</code> “lit: to <b>make</b> somebody understand” (morphological causative),
+<em><b>հասկացնել</b></em>.<code class="highlighter-rouge">Cau</code> <em><b>տալ</b> </em>.<code class="highlighter-rouge">Cau</code> “lit: to <b>make</b> someone <b>make</b> someone understand”.</p>
+  </li>
+</ul>
+
+<p>Note, that in Armenian copulas are also tagged <code class="highlighter-rouge">AUX</code> and the definition of copula sentences has been extended
+to location-existentials (<em>Նա տանն <b>է</b>։ / Նա տանն է <b>լինում</b>։ </em> “He <b>is</b> at home.”) Hence almost all occurrences of <em>եմ </em> and <em>լինեմ (լինել) </em> should be now tagged <code class="highlighter-rouge">AUX</code>.
+Only pure existentials without location (<em>Այն <b>եղել</b> է ու <b>կա</b> որպես հուշ։ </em> “It <b>has been</b> and <b>is</b> as a memory.”) have a non-auxiliary <em>լինել </em> and <em>կամ </em> which should be tagged <code class="highlighter-rouge">VERB</code>.</p>
+
+<p>Note, that finite form of existentials <em>կամ </em> and <em>ունեմ </em> in combination with resultative participle (<em>Նա հագած <b>ուներ</b> թեթև վերարկու։</em> “He <b>had</b> a light coat dressed.” or <em>Երեկվանից ոչ մի տող գրած <b>չկամ</b>։</em> “I <b>do not have</b> a single line written since yesterday.” (lit: “I <b>do not exist</b> written a single row since yesterday.”) are also tagged <code class="highlighter-rouge">AUX</code> (so-called “experiential forms”, mainly negativ or interrogative).</p>
+<h3 id="definition-4">Definition</h3>
+
+<p>A coordinating conjunction is a word that links words or larger
+constituents without syntactically subordinating one to the other and
+expresses a semantic relationship between them.</p>
+
+<p>For <em>subordinating conjunctions,</em> see <a href="">SCONJ</a>.</p>
+
+<h3 id="examples-86">Examples</h3>
+
+<ul>
+  <li><em>և </em> “and”</li>
+  <li><em>կամ </em> “or”</li>
+  <li><em>բայց </em> “but”
+    <h3 id="definition-5">Definition</h3>
+  </li>
+</ul>
+
+<p>Determiners are words that modify <a href="NOUN">nouns</a> or noun phrases and express the reference of the noun phrase in context. That is, a determiner may indicate whether the noun is referring to a definite or indefinite element of a class, to a closer or more distant element, to an element belonging to a specified person or thing, to a particular number or quantity, etc.</p>
+
+<p>Determiners under this definition include both <em>articles</em> and <em>pro-adjectives (pronominal adjectives)</em>. An important point to note is that the traditional grammar of Armenian does not define determiners as a separate word class. Most determiners are traditionally called pronouns; that is, a UD-conformant annotation of Armenian must distinguish between substantive pronouns (UD tag <a href="">PRON</a>) and attributive pronouns (UD tag <code class="highlighter-rouge">DET</code>).</p>
+
+<p>Also note that the <code class="highlighter-rouge">DET</code> tag includes (pronominal) <em>quantifiers</em> (words
+like <em>քանի, այսքան, մի քանի, բոլոր, ողջ </em> “how many, this many, several, all, whole”), which the traditional grammar classifies
+as a special subclass of <a href="PRON">pronouns</a>.</p>
+
+<p>Note that an Armenian nominal usually allows one <code class="highlighter-rouge">DET</code> modifier, but there are occasional cases of <em>addeterminers</em>, which appear outside the usual determiner, such as <em>այս</em> in <em><b>այս</b> բոլոր հարցերը </em> “all <b>these</b> questions.” In such cases, both <em>այս </em> “these” and <em>բոլոր </em> “all” are given the POS <code class="highlighter-rouge">DET</code>.</p>
+
+<h3 id="examples-87">Examples</h3>
+
+<ul>
+  <li>possessive determiners: <em>իմ, քո, նրա, մեր, ձեր, նրանց, իրենց </em> “my, your, his/her/its, our, your, their”</li>
+  <li>reflexive possessive determiners: <em>իր, իրենց </em> “one’s own, themselves”</li>
+  <li>demonstrative determiners: <em>այս </em> as in <em><b>Այս</b> մեքենան ես երեկ տեսել եմ։ </em> “I saw <b>this</b> car yesterday.”</li>
+  <li>interrogative determiners: <em>ո՞ր </em> as in <em><b>Ո՞ր</b> մեքենան ես հավանում։ </em> “<b>Which</b> car do you like?”</li>
+  <li>relative determiners: <em>որ </em> as in <em>Հետաքրքիր է՝ <b>որ</b> մեքենան ես հավանում։ </em> “I wonder <b>which</b> car you like.”</li>
+  <li>relative possessive determiners: <em>ում, որի </em> “whose”</li>
+  <li>indefinite determiners: <em>ոմն, ինչ-որ, ինչ-ինչ, մի քանի, ուրիշ, այլ, որոշ, որևէ, որևիցե, այսինչ, այնինչ, մի </em> “someone, some (of one thing), some (of many thing), several, another, other, definite, one or another, one or another, such, such, some/several”</li>
+  <li>emphatic determiners։ <em>ինքը, ինքները </em> “himself, themselves” as in <em>Նախագահն <b>ինքը</b> եկավ դա տեսնելու։ </em> “President <b>himself</b> came to see it.”</li>
+  <li>total determiners: <em>ամեն, ամեն մի, բոլոր, յուրաքանչյուր, ողջ, ամբողջ, համայն, ամենյան;</em> “every, each, all, each, whole, all, whole, all”</li>
+  <li>negative determiner: <em>ոչ մի </em> “no” as in <em>Հիմա <b>ոչ մի</b> մեքենա չունենք։ </em> “We have <b>no</b> cars available.”
+    <h3 id="definition-6">Definition</h3>
+  </li>
+</ul>
+
+<p>An interjection is a word that is used most often as an exclamation or part of an exclamation. It typically expresses an emotional reaction, is not syntactically related to other accompanying expressions, and may include a combination of sounds not otherwise found in the language.</p>
+
+<p>Note that words primarily belonging to another part of speech retains their original category when used in exclamations. For example, <em>God</em> is a <a href="">NOUN</a> even in exclamatory uses.</p>
+
+<p>As a special case of interjections, we recognize feedback particles such as <em>այո՛</em>, <em>ո՛չ</em>, <em>անշո՛ւշտ</em>, etc.</p>
+
+<p>Interjections contain <em>infixed punctuation</em> (exclamation and emphasis marks).</p>
+
+<h3 id="examples-88">Examples</h3>
+
+<p>(Note that no direct translation of interjections is possible. The approximate translations below are for orientation purposes and they
+cannot serve to judge the part of speech from the English perspective.)</p>
+
+<ul>
+  <li><em>ա՜հ </em> “oh”</li>
+  <li><em>օհո՜ </em> “wow”</li>
+  <li><em>դե՛, դե՛հ </em> “well”</li>
+  <li><em>Աստծո սիրույն </em> “for God’s sake”
+    <h3 id="definition-7">Definition</h3>
+  </li>
+</ul>
+
+<p>Nouns are a part of speech typically denoting a person, place, thing, animal or idea.</p>
+
+<p>The <code class="highlighter-rouge">NOUN</code> tag is intended for common nouns only. See <a href="">PROPN</a> for proper nouns and <a href="">PRON</a> for pronouns.</p>
+
+<p>Armenian nouns have lexical features <a href="">Animacy</a> and <a href="">Materiality</a>. Furthermore, the nouns inflect for <a href="">Case</a>, <a href="">Definite</a>, <a href="">Number</a>, <a href="">PossNumber</a> and <a href="">PossPerson</a>.</p>
+
+<p>Note that <em>infinitives</em> in Armenian share properties and usage of nouns and verbs. Depending on context, they may be classified as either <a href="">VERB</a> or <code class="highlighter-rouge">NOUN</code> (e.g. <em>վազել</em>  “to run” and <em>վազել(ը)</em>  “running”). They have full case and reduced number inflectional paradigms.</p>
+
+<h3 id="examples-89">Examples</h3>
+
+<ul>
+  <li><em>աղջիկ</em>  “girl”</li>
+  <li><em>կատու</em>  “cat”</li>
+  <li><em>ծառ</em>  “tree”</li>
+  <li><em>օդ</em>  “air”</li>
+  <li><em>գեղեցկություն</em>  “beauty”</li>
+  <li><em>լող</em>  “swimming”</li>
+  <li><em>վազք</em>  “run”</li>
+  <li><em>վազել(ը)</em>  “running”
+    <h3 id="definition-8">Definition</h3>
+  </li>
+</ul>
+
+<p>A numeral is a word, functioning most typically as a determiner, adjective or pronoun, that expresses a number and a relation to the number, such as quantity, sequence, frequency or fraction.</p>
+
+<p>Note that cardinal numerals are covered by <code class="highlighter-rouge">NUM</code> whether they are used as determiners or not (as in <em>Windows <b>7</b></em>) and whether they are expressed as words <em>(չորս)</em>, digits <em>(4)</em>, Roman numerals <em>(IV)</em>, or Armenian alphabet tools <em>(Դ)</em>. Other words functioning as determiners (including pronominal quantifiers: interrogative and relative (<em>քանի</em> “how many”); demonstrative (<em>այսքան</em> “this many”); indefinite (<em>մի քանի</em> “several”); definite (<em>բոլոր, ողջ</em> “all, whole”) are tagged <a href="">DET</a>.</p>
+
+<p>Note that some words that may be traditionally called numerals, are not tagged <code class="highlighter-rouge">NUM</code>, based on their syntactic and morphological behavior.</p>
+
+<p>Note that there are no <em>adverbial ordinal</em> and <em>multiplicative numerals</em> in Armenian.</p>
+
+<p>If the numerals inflect as nouns, they are tagged <a href="">NOUN</a>.</p>
+
+<h3 id="examples-90">Examples</h3>
+
+<ul>
+  <li><em>0, 1, 2, 3, 4, 5, 2014, 1000000, 3.14159265359</em></li>
+  <li><em>I, II, III, IV, V, MMXIV</em></li>
+  <li><em>մեկ, երկու, երեք, չորս, հինգ, յոթանասուն </em> “one, two, three, four, five, seventy”</li>
+  <li><em>Ա, Ժ, Է, ԺԱ, Ն, Ռ</em> “1, 10, 7, 11, 400, 1000”</li>
+  <li><em>կես, քառորդ </em> “one-half, quarter”: denominators of fractions constitute a separate class of cardinal numerals (see <a href="">specific-syntax</a> on their morphosyntactic behavior).</li>
+</ul>
+
+<h3 id="counterexamples">Counterexamples</h3>
+
+<ul>
+  <li><em>առաջին, երկրորդ, երրորդ </em> “first, second, third”: adjectival ordinal numerals. They are tagged <a href="">ADJ</a>, and the <a href="">NumType</a> feature reveals their semantic relation to numbers.</li>
+  <li><em>մեկ-մեկ, երկու-երկու, երեք-երեք </em> “one at a time, two at a time, three at a time”: adverbial distibutive numerals. They are tagged <a href="">ADV</a>, and the <a href="">NumType</a> feature reveals their semantic relation to numbers.</li>
+  <li><em>մեկ, երկուս, երեք, չորս, հինգ </em> “number one, number two, number three, number four, number five”: names of numbers, or of objects identified by the number (e.g. of a bus route). They are not considered numerals and they are tagged <a href="">NOUN</a>.</li>
+</ul>
+
+<h3 id="border-cases-1">Border cases</h3>
+
+<ul>
+  <li><em>երիցս, չորիցս, բազմիցս, եռապատիկ, քառապատիկ, բազմապատիկ, եռակի, քառակի, բազմակի </em> “thrice, four-time(s), many-time(s)”: n-tuples <em>(n-tice) </em> are not considered numerals in the Armenian grammar. They are tagged either <a href="">ADJ</a> or <a href="">ADV</a>.</li>
+  <li><em>տասնյակ, հարյուրյակ, հնգանոց, իննոց, 20-ական, 30-ական (թվականներին) </em> “a ten, a hundred, five-note, nine-note, by twenty, thirthies” are not considered numerals in the Armenian grammar. They are tagged either <a href="">ADJ</a> or <a href="">NOUN</a>.</li>
+  <li><em>հարյուրավոր, հազարավոր, միլիոնավոր, միլիարդավոր </em> “hundreds of, thousands of, millions of, billions of”: expressions <em>-s of</em>, for instance, in phrases like <em><b>հազարավոր</b> մարդիկ էին դուրս եկել փողոց </em> “<b>thousands</b> of people went on the streets” are adjectives and tagged <a href="">ADJ</a>.</li>
+  <li><em>հարյուր, հազար </em> “hundred, thousand”: words for large quantities are ambiguous between cardinal numerals (tagged <code class="highlighter-rouge">NUM</code>) and nouns. If they inflect as nouns, they are tagged <a href="">NOUN</a>; but the borderline is fuzzy. For instance, in phrases like <em><b>հազար</b> ասացի </em> “I told thousand times”, <em><b>հազար</b> մարդ </em> “thousand (many different) people”, <em>հազար</em> is a noun. In numeric expressions, e.g. <em>110 <b>հազար</b> դոլար </em> (“110 thousand dollars”), it is a cardinal numeral (see <a href="">specific-syntax</a>).
+    <h3 id="definition-9">Definition</h3>
+  </li>
+</ul>
+
+<p>Particles are function words that must be associated with another word or phrase to impart meaning and that do not satisfy definitions of other universal parts of speech (e.g.  <a href="ADP">adpositions</a>, <a href="CCONJ">coordinating conjunctions</a>, <a href="SCONJ">subordinating conjunctions</a>
+or <a href="AUX">auxiliary verbs</a>). Particles may encode grammatical categories such as negation, mood, tense etc. Particles are not inflected.</p>
+
+<p>Note that particles like <em>այո</em> “yes”, <em>ոչ</em> “no”, <em>անշուշտ</em> “sure”, etc. as response words (as feedback particles) are considered as interjections under the UD standard.</p>
+
+<h3 id="examples-91">Examples</h3>
+
+<ul>
+  <li>Affirmativ particle: <em>անպատճառ, իհարկե, հարկավ</em></li>
+  <li>Concession particle: <em>ինչևէ, այնուամենայնիվ</em></li>
+  <li>Demonstration particle: <em>ահա, ահավասիկ</em></li>
+  <li>Dubitation particle: <em>ասես, գուցե, կարծես, հավանաբար</em></li>
+  <li>Emphatic particle: <em>ախար, մանավանդ, հատկապես</em></li>
+  <li>Limitation particle: <em>գեթ, լոկ, միայն</em></li>
+  <li>Negation particle: <em>ոչ, չէ, բնավ, ամենևին</em></li>
+  <li>Wish particle: <em>երանի, երնեկ</em></li>
+  <li>Volition particle: <em>ապա, դե, թող</em></li>
+  <li>Mood particle: <em>պիտի, պետք է</em>
+    <h3 id="definition-10">Definition</h3>
+  </li>
+</ul>
+
+<p>Pronouns are words that substitute for <a href="NOUN">nouns</a> or noun phrases, whose meaning is recoverable from the linguistic or extralinguistic context.</p>
+
+<p>Pronouns under this definition function like nouns. Note that
+Armenian grammar traditionally extends the term <em>pronoun</em> to words that
+substitute for <a href="ADJ">adjectives</a>. Such words are not tagged <code class="highlighter-rouge">PRON</code>
+under our universal scheme. They are tagged as <a href="DET">determiners</a> in
+order to annotate the same thing same way across languages.</p>
+
+<p>For instance, <em>այդ </em> “that” is traditionally called pronoun in Armenian grammar, regardless of context (for the notion of determiners in some Armenian grammars, terms exist like <em>attributive pronouns</em> or <em>pronominal adjectives</em>).
+To make the annotation parallel across languages, it should be now tagged <code class="highlighter-rouge">PRON</code> in <em><b>Այդ</b> քո՞ մեքենան է։ </em> “Is <b>that</b> your car?” and <code class="highlighter-rouge">DET</code> in <em>Ես <b>այդ</b> մեքենան երեկ եմ տեսել։ </em> “I saw <b>that</b> car yesterday.”</p>
+
+<h3 id="examples-92">Examples</h3>
+
+<ul>
+  <li>personal pronouns: <em>ես, դու, նա, մենք, դուք, նրանք </em> “I, you, he, she, it, we, you, they”</li>
+  <li>demonstrative pronouns: <em>սա, դա, նա </em> “this, that, that”</li>
+  <li>reflexive pronouns: <em>ինձ, քեզ, իրեն, մեզ, ձեզ, իրենց </em> “myself, yourself, oneself, ourselves, yourselves, themselves”</li>
+  <li>reciprocal pronouns:  <em>մեկմեկու (մեկմեկի), միմյանց, իրար </em> “one another, each other, each other”</li>
+  <li>interrogative pronouns: <em>ո՞վ, ի՞նչ </em> “who, what” as in <em><b>Ի՞նչ</b> ես կարծում։ </em> <b>“What</b> do you think?”</li>
+  <li>relative pronouns: <em>ով, ինչ </em> “who, what” as in <em>Արա <b>ինչ</b> ուզում ես։ </em> “Do <b>whatever</b> you like.”</li>
+  <li>indefinite pronouns: <em>մի քանիսը, մեկը, մեկնումեկը, ոմանք, ուրիշը </em> “several people, one, anyone, some people, another one”</li>
+  <li>emphatic pronouns։ <em>ինքը, իրենք </em> “(he) himself, (they) themselves”</li>
+  <li>total pronouns: <em>ամենը, ամենքը, ամեն մեկը, ամեն ոք, ամեն ինչ, բոլորը, յուրաքանչյուրը, յուրաքանչյուր ոք, ողջը, ամբողջը </em> “all (of things), all (of people), everyone, avery body, everything, all (of people), each one, each one, whole, all”</li>
+  <li>negative pronouns: <em>ոչ ոք, ոչինչ, ոչ մեկը </em> “nobody, nothing, no one”
+    <h3 id="definition-11">Definition</h3>
+  </li>
+</ul>
+
+<p>A proper noun is a noun (or nominal content word) that is the name (or
+part of the name) of a specific individual, place, or object. Armenian proper nouns are always written starting with an uppercase letter. Note that names of days of week
+<em>(երկուշաբթի, երեքշաբթի, չորեքշաբթի, հինգշաբթի, ուրբաթ, շաբաթ, կիրակի) </em>
+and names of months
+<em>(հունվար, փետրվար, մարտ, ապրիլ, մայիս, հունիս, հուլիս, օգոստոս, սեպտեմբեր, հոկտեմբեր, նոյեմբեր, դեկտեմբեր) </em>
+are not written capitalized (unlike English) and are not considered proper nouns.</p>
+
+<p>Single-word named entities should be tagged <code class="highlighter-rouge">PROPN</code> though they originate from a common noun (Աշտարակ, Իջևան) (towns) or an adjective (Սիզավետ, Որոտան) (village, river). Even if <em>սիզավետ</em> “grassy” is originally an adjective, syntactically it behaves as a noun. As a geographical name it denotes a concrete location (rather than a property of something).</p>
+
+<p>Note that names of languages (հայերեն, անգլերեն) and adjectives derived from geographical names (<em>հայկական, հայոց, անգլիական, երևանյան </em> “Armenian, English, of Yerevan”) are written in lowercase and are not tagged <code class="highlighter-rouge">PROPN</code>.</p>
+
+<p>Personal names are typically treated as a sequence of proper nouns (one or more given names and one or more surnames). If the name contains prepositions, conjunctions or articles (foreign names), these are tagged as <a href="">DET</a>, the morphological analysis do not includes their original part of speech.</p>
+
+<p>When other phrases or sentences are used as names, the component words retain their original tags. For example, in <em>«Մենք ենք, մեր սարերը» </em>, <em>Մենք </em> is <a href="">PRON</a>, <em>ենք </em> is <a href="">AUX</a>, <em>մեր </em> is <a href="">DET</a>, etc.</p>
+
+<p>Acronyms of proper nouns, such as <em>ՄԱԿ </em> “UN” and <em>ՆԱՏՕ </em> “NATO”, should be tagged <code class="highlighter-rouge">PROPN</code>. Even if they contain numbers (as in various product names), they are tagged <code class="highlighter-rouge">PROPN</code> and not <a href="">SYM</a>: <em>ՏՈՒ-154Մ </em>, <em>ԻԼ-76 </em>. However, if the token consists entirely of digits (like <em>7 </em> in <em>Windows 7 </em>), it is tagged <a href="">NUM</a>.</p>
+
+<p>Armenian multi-word named entities have internal syntactic
+structure, which is preserved in the annotation. The headword is always noun
+and there may be other nouns involved. They will be tagged <code class="highlighter-rouge">PROPN</code> if they are proper nouns as single-word named entities. Even if an adjective is the
+first word of a multi-word name, and thus it starts with an uppercase letter,
+it is still tagged <code class="highlighter-rouge">ADJ</code>.</p>
+
+<h3 id="examples-93">Examples</h3>
+
+<ul>
+  <li><em><b>Դոնի</b></em>.<code class="highlighter-rouge">PROPN</code> <em><b>Ռոստով</b></em>.<code class="highlighter-rouge">PROPN</code>, <em><b>Մայնի</b></em>.<code class="highlighter-rouge">PROPN</code> <em><b>Ֆրանկֆուրտ</b></em>.<code class="highlighter-rouge">PROPN</code> “Rostov-on-Don, Frankfurt am Main”. <em>Ռոստով </em> and <em>Ֆրանկֆուրտ </em> are the heads. The <em>Դոնի </em>, <em>Մայնի </em> parts refer to the rivers flowing through the city, and are tagged as <code class="highlighter-rouge">PROPN</code> too.</li>
+  <li><em>Վերին</em>.<code class="highlighter-rouge">ADJ</code> <em><b>Սասնաշեն</b></em>.<code class="highlighter-rouge">PROPN</code> is a village. <em>Սասնաշեն </em> is the head and it is
+tagged <code class="highlighter-rouge">PROPN</code> although it is a geographical name. <em>Վերին </em> is an adjective meaning “upper” and it is
+tagged <code class="highlighter-rouge">ADJ</code>.</li>
+  <li><em>Հյուսիսային</em>.<code class="highlighter-rouge">ADJ</code> <em>սառուցյալ</em>.<code class="highlighter-rouge">ADJ</code> <em>օվկիանոս</em>.<code class="highlighter-rouge">NOUN</code> “The Arctic Ocean”. Even though the three words
+together are a name of a particular ocean, <em>օվկիանոս</em> is a common noun and is
+tagged as such.</li>
+  <li><em>Միավորված</em>.<code class="highlighter-rouge">ADJ</code> <em>ազգերի</em>.<code class="highlighter-rouge">NOUN</code> <em>կազմակերպություն</em>.<code class="highlighter-rouge">NOUN</code> “United Nations Organization”
+consists of three words, none of which is proper noun. However, the acronym
+<em><b>ՄԱԿ</b> </em> “UNO” is a single-token name and is tagged <code class="highlighter-rouge">PROPN</code>. In <em>ԵԱՀԿ.<code class="highlighter-rouge">PROPN</code></em> <em>Մինսկի.<code class="highlighter-rouge">PROPN</code></em> <em>խումբ.<code class="highlighter-rouge">NOUN</code></em> “The OSCE Minsk Group” the first two words as single-tokens are proper nouns and are tagged as such.
+    <h3 id="definition-12">Definition</h3>
+  </li>
+</ul>
+
+<p>Punctuation marks are non-alphabetical characters and character groups
+used in many languages to delimit linguistic units in printed text.</p>
+
+<p>Punctuation is not taken to include logograms such as <em>$</em>, <em>%</em>, and
+<em>§</em>, which are instead tagged as <a href="">SYM</a>.</p>
+
+<p>There is <em>infixed punctuation</em> (exclamation, emphasis and question marks). We refer to such cases as <em>multiword tokens</em>.</p>
+
+<p>1-2 ինչո՞ւ</p>
+
+<p>1 ինչու</p>
+
+<p>2 ՞</p>
+
+<h3 id="examples-94">Examples</h3>
+
+<ul>
+  <li>Period: <em><b>։</b></em></li>
+  <li>Comma: <em><b>,</b></em></li>
+  <li>Parentheses: <em><b>()</b></em></li>
+  <li>Quotation mark: <em><b>«»</b></em></li>
+  <li>Exclamation mark: <em><b>՜</b></em></li>
+  <li>Question mark։ <em><b>՞</b></em></li>
+  <li>Emphasis mark, Acute accent: <em><b>՛</b></em>
+    <h3 id="definition-13">Definition</h3>
+  </li>
+</ul>
+
+<p>A subordinating conjunction is a conjunction that links constructions
+by making one of them a constituent of the other. The subordinating
+conjunction typically marks the incorporated constituent which has the
+status of a (subordinate) clause.</p>
+
+<p>We recognizing these two subclasses as subordinating conjunctions:</p>
+
+<ul>
+  <li>Complementizers like <em>որ, թե </em> “that”</li>
+  <li>Adverbial clause introducers like <em>երբ </em> “when”, <em>եթե միայն </em> “if only”, <em>որպեսզի </em> “in order”, <em>որովհետև </em> “beacuse”, or <em>նախքան </em> “before” (when introducing a clause not a nominal)</li>
+</ul>
+
+<p>Note also, that in Armenian there are no Relativizers.</p>
+
+<p>For <em>coordinating conjunctions,</em> see <a href="">CCONJ</a>.</p>
+
+<h3 id="examples-95">Examples</h3>
+
+<ul>
+  <li><em>որ, թե </em> “that”</li>
+  <li><em>թեև, թեպետ </em> “though”</li>
+  <li><em>եթե </em> “if”</li>
+  <li><em>քան </em> “than”</li>
+  <li><em>ուստի </em> “hence”
+    <h3 id="definition-14">Definition</h3>
+  </li>
+</ul>
+
+<p>A symbol is a word-like entity that differs from ordinary words by form, function, or both.</p>
+
+<p>Many symbols are or contain special non-alphanumeric characters, similarly to <a href="PUNCT">punctuation</a>. What makes them different from
+punctuation is that they can be substituted by normal words. This involves all currency symbols, e.g. <em>֏ 75</em> is identical to <em>յոթանասունհինգ դրամ</em> “seventy-five armenian drams”.</p>
+
+<p>Mathematical operators form another group of symbols.</p>
+
+<p>Another group of symbols is emoticons and emoji.</p>
+
+<p>Strings that consists entirely of alphanumeric characters are not symbols but they may be <a href="PROPN">proper nouns</a>: <em>130XE</em>, <em>DC10</em>; others may be tagged <code class="highlighter-rouge">PROPN</code> (rather than <code class="highlighter-rouge">SYM</code>) even if they contain special characters: <em>ՏՈՒ-154Մ</em> (“Tu-154M”). Similarly, abbreviations for single words are not symbols but are assigned the part of speech of the full form. For example, <em>պրն</em> (պարոն “Mr.; Mister”), <em>կգ</em> (կիլոգրամ “kg; kilogramm”), <em>կմ</em> (կիլոմետր “km; kilometer”) should be tagged <a href="NOUN">nouns</a>. Acronyms for proper names such as <em>ՄԱԿ</em> “OSN” and <em>ՆԱՏՕ</em> “NATO” should be tagged as <a href="PROPN">proper nouns</a>.</p>
+
+<p>Characters used as bullets in itemized lists <em>(•, ‣)</em> are not symbols, they are punctuation.</p>
+
+<h3 id="examples-96">Examples</h3>
+
+<ul>
+  <li><em>$, %, §, ©</em></li>
+  <li><em>+, −, ×, ÷, =, &lt;, &gt;</em></li>
+  <li>:), ♥‿♥, 😝</li>
+  <li><em>john.doe@universal.org, http://universaldependencies.org/, 1-800-COMPANY</em>
+    <h3 id="definition-15">Definition</h3>
+  </li>
+</ul>
+
+<p>A verb is a member of the syntactic class of words that typically
+signal events and actions, can constitute a minimal predicate in a
+clause, and govern the number and types of other constituents which
+may occur in the clause.</p>
+
+<p>Note that the <code class="highlighter-rouge">VERB</code> tag covers main verbs <em>(content verbs)</em>, but it does not cover <em>auxiliary verbs</em> and <em>copulas,</em> for which there is
+the <a href="">AUX</a> tag. (Armenian modal verbs are not considered auxiliaries.)
+See the description of <code class="highlighter-rouge">AUX</code> for more information on the borderline
+between <code class="highlighter-rouge">VERB</code> and <code class="highlighter-rouge">AUX</code>.</p>
+
+<p>Armenian verbs can take the following morphological forms:</p>
+
+<ul>
+  <li>Infinitive (this is the citation form),</li>
+  <li>Finite verb (indicative, imperative, subjunctive and conditional forms; necessitative is constructed periphrastically),</li>
+  <li>Resultative, subject, processual, imperfective, future-I, future-II, perfect and negative participles (used to construct (secondary) complex tenses and moods),</li>
+  <li>Converb (also called adverbial participle).</li>
+</ul>
+
+<p>There are participial forms that are tagged as adjectives (<a href="">ADJ</a>) rather than verbs.</p>
+
+<p>Infinitves behave similarly to nouns (<a href="">NOUN</a>) and are used as such. Depending on context, they may be tagged as either <code class="highlighter-rouge">VERB</code> or <code class="highlighter-rouge">NOUN</code>.</p>
+
+<h3 id="examples-97">Examples</h3>
+
+<ul>
+  <li><em>գրել, գրել(ը)</em>  “to write, (the) writing”,</li>
+  <li><em>գրեցի, գրեցիր, գրեց, գրեցինք, գրեցիք, գրեցին</em>  “I wrote, you wrote, he/she/it wrote, we wrote, you wrote, they wrote”,</li>
+  <li><em>ունեմ, ունես, ունի, ունենք, ունեք, ունեն</em>  “I have, you have, he/she/it has, we have, you have, they have”,</li>
+  <li><em>գրի՛, գրե՛ք, կարդա՛, կարդացե՛ք</em>  “write, read” (imperative in different numbers),</li>
+  <li><em>գրեմ, գրես, գրի, գրենք, գրեք, գրեն</em>  “I write.<code class="highlighter-rouge">Sub</code>, you write.<code class="highlighter-rouge">Sub</code>, he/she/it write.<code class="highlighter-rouge">Sub</code>, we write.<code class="highlighter-rouge">Sub</code>, you write.<code class="highlighter-rouge">Sub</code>, they write.<code class="highlighter-rouge">Sub</code>”</li>
+  <li><em>գնայի, գնայիր, գնար, գնայինք, գնայիք, գնային</em>  “I went.<code class="highlighter-rouge">Sub</code>, you went.<code class="highlighter-rouge">Sub</code>, he/she/it went.<code class="highlighter-rouge">Sub</code>, we went.<code class="highlighter-rouge">Sub</code>, you went.<code class="highlighter-rouge">Sub</code>, they went.<code class="highlighter-rouge">Sub</code>”</li>
+  <li><em>կգնամ, կգնաս, կգնա, կգնանք, կգնաք, կգնան</em>  “I will go, you will go, he/she/it will go, we will go, you will go, they will go”</li>
+  <li><em>կգրեի, կգրեիր, կգրեր, կգրեինք, կգրեիք, կգրեին</em>  “I would write, you would write, he/she/it would write, we would write, you would write, they would write”</li>
+  <li><em>գրած, կարդացած, գրող, կարդացող, գրելիս, կարդալիս, գրում, կարդում, գրելու, կարդալու, գրելիք, կարդալիք, գրել, կարդացել, գրի, կարդա</em>  “written, read, writing, reading, while writing, while reading, write, read, (will) write, (will) read, smth. to be written, smth. to be read, have written, have read, write, read” (participles)</li>
+  <li><em>գրելիս, կարդալիս</em>  “while writing, while reading” (converb)</li>
+</ul>
+
+<h3 id="border-cases-2">Border cases</h3>
+
+<p>Resultative, subject, future-II destinative participles lie on the border between verbs and adjectives. Core participial forms are tagged <a href="">VERB</a> and used to form the moods. As participial adjectives they are tagged <a href="">ADJ</a> (used in nominal predication with copula, and to modify nouns), although they may have verbal features in addition to the adjectival ones. For example:</p>
+
+<ul>
+  <li>Resultative: <em><b>կառուցված</b> շենք</em> “a <b>built</b> house”,</li>
+  <li>Subject: <em><b>կառուցվող</b> շենք</em> “a house, that is <b>being built</b>”</li>
+  <li>Future-II: <em><b>կառուցվելիք</b> շենք</em> “a house, that <b>will be built</b>”
+    <h3 id="definition-16">Definition</h3>
+  </li>
+</ul>
+
+<p>The tag <code class="highlighter-rouge">X</code> is used for words that for some reason cannot be assigned a real part-of-speech category. It should be used very restrictively.</p>
+
+<p>A special usage of <code class="highlighter-rouge">X</code> is for cases of code-switching where it is not possible (or meaningful) to analyze the intervening language grammatically (and where the dependency relation <a href="flat">flat:foreign</a> is typically used in the syntactic analysis). This usage does not extend to ordinary loan words which should be assigned a normal part-of-speech. For example, in <em>Նա նոր գաջեթների սիրահար է։</em> “He is fond of new gadgets”, <em>գաջեթ</em> is an ordinary <a href="">NOUN</a>.</p>
+
+<h3 id="examples-98">Examples</h3>
+
+<ul>
+  <li><em>Եվ ապա նա պարզապես <b>xfgh pdl jklw</b>։</em> “And then he just <b>xfgh pdl jklw</b>”
+    <h1 id="specific-constructions">Specific constructions</h1>
+  </li>
+</ul>
+
+<h2 id="clausal-structures">Clausal structures</h2>
+
+<p>In Armenian, the standard case pattern of a predicate-argument construction is as follows:</p>
+
+<ul>
+  <li>
+    <p>the first argument (subject) is in the Nominative case;</p>
+  </li>
+  <li>
+    <p>the second argument (direct object) is in the Nominative or Dative case;</p>
+  </li>
+  <li>
+    <p>all other arguments are coded in other cases or in the prepositional phrase depending their semantics.</p>
+  </li>
+</ul>
+
+<p>However, there is constructions which have non canonical case patterns.</p>
+
+<h3 id="ablative-subject">Ablative subject</h3>
+
+<p>The constructions are instantiated by a middle voice verb, the first argument of which is in the Ablative case with a partitive meaning and not in the canonical Nominative case. The Ablative argument is labeled <a href="">dep/iobj</a>.</p>
+
+<pre><code class="language-sdparse">Հնչեցին երգերից ։ \n Sounded songs.Abl .
+iobj(Հնչեցին, երգերից)
+iobj(Sounded, songs.Abl)
+</code></pre>
+
+<h2 id="adjectival-and-adverbial-constructions">Adjectival and adverbial constructions</h2>
+
+<h3 id="comparative-constructions">Comparative constructions</h3>
+
+<p>Armenian qualitative adjectives and adverbs have periphrastic comparative forms, most of them can have also a periphrastic superlative (see the <a href="">Degree</a> feature), e. g. <em>խելացի</em> “smart”, <em>ավելի խելացի</em> “smarter”, <em>ամենախելացի</em> “smartest”, <em>ամենից խելացի</em>, <em>բոլորից խելացի</em> “smartest”. The morphological superlative forms are assigned the <code class="highlighter-rouge">Sup</code> <a href="">Degree</a> feature.
+Equality comparisons are also periphrastic.</p>
+
+<p>The most frequently used comparative constructions are the following:</p>
+
+<ul>
+  <li><em>Արամը</em>.Nom <em>եղբորից</em>.Abl <b><em>խելացի</em></b> / <b><em>ավելի խելացի</em></b> / <em>է</em> ։ “Aram is <b>smarter</b> than his brother.”</li>
+</ul>
+
+<p>(with both types of comparatives)</p>
+
+<ul>
+  <li><em>Արամը</em>.Nom <b><em>ավելի խելացի</em></b> <em>է</em>, <em>քան (թե) եղբայրը</em>.Nom։ “Aram is <b>smarter</b> than his brother.”</li>
+  <li><em>Արամը</em>.Nom <b><em>самый умный</em></b> / <b><em>умнейший</em></b> <em>из</em>.PREP <em>всех</em>.Gen. “Misha is <b>the smartest</b> of them all.” (with both types of superlatives)</li>
+  <li><em>Миша</em>.Nom <b><em>такой же умный</em></b> / <b><em>так же умен</em></b> / <b><em>столь же умен</em></b>, <em>как</em> (<em>и</em>) <em>его брат</em>.Nom. “Misha is <b>as smart</b> as his brother.” (equality comparison)</li>
+</ul>
+
+<p>The “lesser degree” comparison (expressed periphrastically) is marked the same way:</p>
+
+<ul>
+  <li>
+    <p><em>Արամը</em>.Nom <b><em>նվազ խելացի</em></b> / <b><em>պակաս խելացի</em></b> <em>է</em>, <em>քան (թե) եղբայրը</em>.Nom։ “Aram is <b>less smart</b> than his brother.” (with both types of comparatives)</p>
+  </li>
+  <li>
+    <p><em>Миша</em>.Nom <b><em>наименее глупый</em></b> <em>из</em>.PREP <em>всех</em>.Gen. “Misha is <b>the least stupid</b> of them all.” (with both types of superlatives)</p>
+  </li>
+</ul>
+
+<pre><code class="language-sdparse">Արամը եղբորից խելացի է ։ \n Aram is smarter than-his-brother .
+nmod(խելացի, եղբորից)
+nmod(smarter, than-his-brother)
+</code></pre>
+
+<pre><code class="language-sdparse">Արամը ավելի խելացի է , քան եղբայրը ։ \n Aram is more smarter , than his-brother .
+nmod(խելացի, եղբայրը)
+nmod(smarter, his-brother)
+case(եղբայրը, քան)
+case(his-brother, than)
+</code></pre>
+
+<pre><code class="language-sdparse">Миша более опасен , чем Ваня . \n Misha is-more dangerous , than Vanya .
+nmod(опасен, Ваня)
+nmod(dangerous, Vanya)
+case(Ваня, чем)
+case(Vanya, than)
+advmod(опасен, более)
+advmod(dangerous, is-more)
+</code></pre>
+
+<pre><code class="language-sdparse">Миша самый умный из всех . \n Misha is-the-most smart of them-all .
+nmod(умный, всех)
+nmod(smart, them-all)
+case(всех, из)
+case(them-all, of)
+amod(умный, самый)
+amod(smart, is-the-most)
+</code></pre>
+
+<pre><code class="language-sdparse">Миша так же умен , как и его брат . \n Misha so then smart , as his brother .
+nmod(умен, брат)
+nmod(smart, brother)
+case(брат, как)
+case(brother, as)
+advmod(умен, так)
+advmod(smart, so)
+fixed(так, же)
+fixed(so, then)
+</code></pre>
+
+<pre><code class="language-sdparse">Миша умнее , чем хочет казаться . \n Misha is-smarter , than he-wants to-appear .
+advcl(умнее, хочет)
+advcl(is-smarter, he-wants)
+mark(хочет, чем)
+mark(he-wants, than)
+</code></pre>
+
+<h2 id="noun-phrases-with-quantifiers">Noun phrases with quantifiers</h2>
+
+<h3 id="constructions-with-cardinal-numerals">Constructions with cardinal numerals</h3>
+
+<p>See <a href="">compound</a> on the compound numerals: <em>հարյուր հիսունհինգ հազար</em>.</p>
+
+<p>Other types of QP:</p>
+
+<ul>
+  <li><em>երկու.Nom ամբողջ.Gen.Sg չորս.Nom տասնորդական.Gen.Sg միլիոն.Gen.Sg դրամ.Gen.Pl</em> “2.4 million drams” (i.e. “four tenth parts of million” with the ellipsis of “parts”)</li>
+  <li><em>հողամասի երկու երրորդ մասը</em></li>
+  <li><em>ութ գլուխ ոչխար</em></li>
+  <li><em>մեկ միլիոն բարել նավթ</em></li>
+</ul>
+
+<h3 id="constructions-of-more-and-less-quantity">Constructions of more and less quantity</h3>
+<h1 id="tokenization">Tokenization</h1>
+
+<p>The low-level tokenization of the Armenian UD treebank follows the tokenization of the
+<a href="http://armtreebank.yerevann.com/">ՀայՇտեմ - Armenian Dependency Treebank 1.0</a> (ArmDT):</p>
+
+<ul>
+  <li>In general, tokens are delimited by whitespace.</li>
+  <li>Punctuation (recognized by the corresponding Unicode property) that is conventionally written adjacent to the preceding or following word is separated during tokenization.
+Some special cases worth mentioning:
+    <ul>
+      <li>An abbreviation marked by a period, as in <em>թ.</em> “year”, becomes two tokens, <em><b>թ</b></em> and <em><b>.</b></em> .</li>
+      <li>A compound containing a hyphen becomes three tokens (two words and the hyphen), as in <em>անգլո-ամերիկյան</em> “anglo-american”, <em>պատմա-բանասիրական</em> “historical-philological”.
+In these cases, the first token is a special form of adjective that never occurs independently.
+Compounds without a hyphen are not split, thus <em>ռազմածովային</em> “navy” is one token but <em>հասարակական-քաղաքական</em> “civic-social” would be three tokens.
+Another common case of splitting-on-hyphen are reduplicative or echo words as in <em>մեծ-մեծ</em> “very big”, <em>շուն-մուն</em> “dog or something”.</li>
+      <li>Exception: Decimal numbers are normalized (the Armenian decimal comma is converted to the English decimal point) and kept as one token, e.g. <em><b>2.1</b></em>.</li>
+    </ul>
+  </li>
+  <li>Most of the time, every punctuation character constitutes a token of its own. Thus <em><b>»,—</b></em> will become three tokens.
+    <ul>
+      <li>Exceptions are conventional multi-character punctuation marks: <em><b>…</b></em> , <em><b>….</b></em> , and emojis and smileys: <em><b>:)</b></em> , <em><b>^_^</b></em>, etc.
+Conventional non-armenian multi-characte  punctuation marks and terms are tokenized as single tokens: <em><b>?!</b></em> , <em><b>°С</b></em> .</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="verb-forms-analytical-grammatical-forms-negation">Verb forms, analytical grammatical forms, negation</h3>
+
+<ul>
+  <li>the forms of necessitative mood, analytical causative, complex tenses, complex comparatives, etc. are splitted
+according to the orthographic principle: { <b>պիտի</b> , <b>վազեն</b> } “”, { <b>գրել</b> , <b>տվեց</b> } “”, { <b>վազում</b> , <b>եմ</b> } “”, { <b>ավելի</b> , <b>լուրջ</b> } “more serious”.</li>
+  <li><b>մի</b> and <b>ոչ</b> used as negation markers with verbs, adjectives, pronouns and other words are tokenized according to the orthographic rules: { <b>մի</b> , <b>գրիր</b> } “”, { <b>ոչ</b> , <b>պաշտոնական</b> } “unofficial”, { <b>ոչ</b> , <b>մի</b> , <b>կերպ</b> } “in no way”.</li>
+</ul>
 
 
 

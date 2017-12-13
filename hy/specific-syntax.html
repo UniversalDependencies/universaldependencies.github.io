@@ -47,8 +47,8 @@
       <hr/>
 
       
-      <div class="v1warning">
-	This page still pertains to UD version 1.
+      <div class="v2complete">
+	This page pertains to UD version 2.
       </div>
       
 
@@ -64,9 +64,110 @@
 
 <h2 id="clausal-structures">Clausal structures</h2>
 
+<p>In Armenian, the standard case pattern of a predicate-argument construction is as follows:</p>
+
+<ul>
+  <li>
+    <p>the first argument (subject) is in the Nominative case;</p>
+  </li>
+  <li>
+    <p>the second argument (direct object) is in the Nominative or Dative case;</p>
+  </li>
+  <li>
+    <p>all other arguments are coded in other cases or in the prepositional phrase depending their semantics.</p>
+  </li>
+</ul>
+
+<p>However, there is constructions which have non canonical case patterns.</p>
+
+<h3 id="ablative-subject">Ablative subject</h3>
+
+<p>The constructions are instantiated by a middle voice verb, the first argument of which is in the Ablative case with a partitive meaning and not in the canonical Nominative case. The Ablative argument is labeled <a href="">dep/iobj</a>.</p>
+
+<pre><code class="language-sdparse">Հնչեցին երգերից ։ \n Sounded songs.Abl .
+iobj(Հնչեցին, երգերից)
+iobj(Sounded, songs.Abl)
+</code></pre>
+
 <h2 id="adjectival-and-adverbial-constructions">Adjectival and adverbial constructions</h2>
 
 <h3 id="comparative-constructions">Comparative constructions</h3>
+
+<p>Armenian qualitative adjectives and adverbs have periphrastic comparative forms, most of them can have also a periphrastic superlative (see the <a href="">Degree</a> feature), e. g. <em>խելացի</em> “smart”, <em>ավելի խելացի</em> “smarter”, <em>ամենախելացի</em> “smartest”, <em>ամենից խելացի</em>, <em>բոլորից խելացի</em> “smartest”. The morphological superlative forms are assigned the <code class="highlighter-rouge">Sup</code> <a href="">Degree</a> feature.
+Equality comparisons are also periphrastic.</p>
+
+<p>The most frequently used comparative constructions are the following:</p>
+
+<ul>
+  <li><em>Արամը</em>.Nom <em>եղբորից</em>.Abl <b><em>խելացի</em></b> / <b><em>ավելի խելացի</em></b> / <em>է</em> ։ “Aram is <b>smarter</b> than his brother.”</li>
+</ul>
+
+<p>(with both types of comparatives)</p>
+
+<ul>
+  <li><em>Արամը</em>.Nom <b><em>ավելի խելացի</em></b> <em>է</em>, <em>քան (թե) եղբայրը</em>.Nom։ “Aram is <b>smarter</b> than his brother.”</li>
+  <li><em>Արամը</em>.Nom <b><em>самый умный</em></b> / <b><em>умнейший</em></b> <em>из</em>.PREP <em>всех</em>.Gen. “Misha is <b>the smartest</b> of them all.” (with both types of superlatives)</li>
+  <li><em>Миша</em>.Nom <b><em>такой же умный</em></b> / <b><em>так же умен</em></b> / <b><em>столь же умен</em></b>, <em>как</em> (<em>и</em>) <em>его брат</em>.Nom. “Misha is <b>as smart</b> as his brother.” (equality comparison)</li>
+</ul>
+
+<p>The “lesser degree” comparison (expressed periphrastically) is marked the same way:</p>
+
+<ul>
+  <li>
+    <p><em>Արամը</em>.Nom <b><em>նվազ խելացի</em></b> / <b><em>պակաս խելացի</em></b> <em>է</em>, <em>քան (թե) եղբայրը</em>.Nom։ “Aram is <b>less smart</b> than his brother.” (with both types of comparatives)</p>
+  </li>
+  <li>
+    <p><em>Миша</em>.Nom <b><em>наименее глупый</em></b> <em>из</em>.PREP <em>всех</em>.Gen. “Misha is <b>the least stupid</b> of them all.” (with both types of superlatives)</p>
+  </li>
+</ul>
+
+<pre><code class="language-sdparse">Արամը եղբորից խելացի է ։ \n Aram is smarter than-his-brother .
+nmod(խելացի, եղբորից)
+nmod(smarter, than-his-brother)
+</code></pre>
+
+<pre><code class="language-sdparse">Արամը ավելի խելացի է , քան եղբայրը ։ \n Aram is more smarter , than his-brother .
+nmod(խելացի, եղբայրը)
+nmod(smarter, his-brother)
+case(եղբայրը, քան)
+case(his-brother, than)
+</code></pre>
+
+<pre><code class="language-sdparse">Миша более опасен , чем Ваня . \n Misha is-more dangerous , than Vanya .
+nmod(опасен, Ваня)
+nmod(dangerous, Vanya)
+case(Ваня, чем)
+case(Vanya, than)
+advmod(опасен, более)
+advmod(dangerous, is-more)
+</code></pre>
+
+<pre><code class="language-sdparse">Миша самый умный из всех . \n Misha is-the-most smart of them-all .
+nmod(умный, всех)
+nmod(smart, them-all)
+case(всех, из)
+case(them-all, of)
+amod(умный, самый)
+amod(smart, is-the-most)
+</code></pre>
+
+<pre><code class="language-sdparse">Миша так же умен , как и его брат . \n Misha so then smart , as his brother .
+nmod(умен, брат)
+nmod(smart, brother)
+case(брат, как)
+case(brother, as)
+advmod(умен, так)
+advmod(smart, so)
+fixed(так, же)
+fixed(so, then)
+</code></pre>
+
+<pre><code class="language-sdparse">Миша умнее , чем хочет казаться . \n Misha is-smarter , than he-wants to-appear .
+advcl(умнее, хочет)
+advcl(is-smarter, he-wants)
+mark(хочет, чем)
+mark(he-wants, than)
+</code></pre>
 
 <h2 id="noun-phrases-with-quantifiers">Noun phrases with quantifiers</h2>
 
@@ -84,7 +185,6 @@
 </ul>
 
 <h3 id="constructions-of-more-and-less-quantity">Constructions of more and less quantity</h3>
-
 
 
       </div>
