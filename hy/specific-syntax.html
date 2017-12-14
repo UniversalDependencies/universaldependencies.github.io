@@ -93,8 +93,7 @@ iobj(Sounded, songs.Abl)
 
 <h3 id="comparative-constructions">Comparative constructions</h3>
 
-<p>Armenian qualitative adjectives and adverbs have only periphrastic comparative forms, most of them can have also a periphrastic superlative (see the <a href="">Degree</a> feature), e. g. <em>խելացի</em> “smart”, <em>ավելի խելացի</em> “smarter”, <em>ամենախելացի</em> “smartest”, <em>ամենից խելացի</em>, <em>բոլորից խելացի</em> “smartest”. The morphological superlative forms are assigned the <code class="highlighter-rouge">Sup</code> <a href="">Degree</a> feature.
-Equality comparisons are also periphrastic.</p>
+<p>Armenian qualitative adjectives and adverbs have only periphrastic comparative forms, most of them can have also a periphrastic superlative (see the <a href="">Degree</a> feature), e. g. <em>խելացի</em> “smart”, <em>ավելի խելացի</em> “smarter”, <em>ամենախելացի</em> “smartest”, <em>ամենից խելացի</em>, <em>բոլորից խելացի</em> “smartest”. The morphological superlative forms are assigned the <code class="highlighter-rouge">Sup</code> <a href="">Degree</a> feature.</p>
 
 <p>The most frequently used comparative constructions are the following:</p>
 
@@ -146,15 +145,35 @@ nmod(խելացին, ուսանողներից)
 nmod(smartest-one, the-students)
 det(ուսանողներից, բոլոր)
 det(the-students, of-all)
-amod(խելացին, ամենից)
-amod(smartest-one, the-most)
+advmod(խելացին, ամենից)
+advmod(smartest-one, the-most)
 </code></pre>
+
+<p>Equality comparisons (as well compared quantity):</p>
 
 <pre><code class="language-sdparse">Արամը եղբոր պես խելացի է ։ \n Aram is smart as his-brother .
 nmod(խելացի, եղբոր)
 nmod(smart, his-brother)
 case(եղբոր, պես)
 case(his-brother, as)
+</code></pre>
+
+<pre><code class="language-sdparse">Հարյուրին մոտ մարդ եկավ : \n Came about 100 people .
+nsubj(եկավ, մարդ)
+nsubj(Came, people)
+nmod(մարդ, հարյուրին)
+nmod(people, 100)
+case(հարյուրին, մոտ)
+case(100, about)
+</code></pre>
+
+<pre><code class="language-sdparse">Հարյուրի չափ մարդ եկավ : \n Came about 100 people .
+nsubj(եկավ, մարդ)
+nsubj(Came, people)
+nmod(մարդ, հարյուրի)
+nmod(people, 100)
+case(հարյուրի, չափ)
+case(100, about)
 </code></pre>
 
 <p>If a property is compared to a clause, the clause is attached as <a href="">advcl</a> instead of <a href="">nmod</a>
@@ -165,6 +184,81 @@ advcl(խելացի, թվում)
 advcl(smart, seems)
 mark(թվում, քան)
 mark(seems, than)
+</code></pre>
+
+<h3 id="comparatives-quantity">Comparatives (quantity)</h3>
+
+<p>In certain contexts the comparative complement combines both the action or adjective that is being compared
+and the quantity it is compared to:</p>
+
+<ul>
+  <li><em>ավելի քան 90 տոկոս</em> “more than 90 percent”</li>
+  <li><em>ավելի քան վստահելի գործընկեր</em> “more than trusted companion”</li>
+  <li><em>ավելի քան հավանական</em> “more than likely”</li>
+</ul>
+
+<p>In these cases we consider <em>ավելի քան</em> to be a fixed multi-word expression because the two words are inseparable.
+One cannot say <em>*ավելի գործընկեր քան վստահելի</em> (the word <em>գործընկներ</em> can be pulled to the front but then it will skip the whole MWE,
+as in <em>գործընկերն ավելի էր, քան վստահելի</em> lit. <em>the companion were more than trusted.</em>)</p>
+
+<pre><code class="language-sdparse">Դա ավելի քան հավանական է ։ \n That is more than likely .
+nsubj(հավանական, Դա)
+nsubj(likely, That)
+cop(հավանական, է)
+cop(likely, is)
+advmod(հավանական, ավելի)
+advmod(likely, more)
+fixed(ավելի, քան)
+fixed(more, than)
+punct(հավանական, ։-6)
+punct(likely, .-13)
+</code></pre>
+
+<h3 id="constructions-of-approximate-quantity">Constructions of approximate quantity</h3>
+
+<p>The determiner <em>մի</em> and adverbs <em>ավելի քան</em>, <em>մինչև</em>, <em>շուրջ</em>, <em>մոտավորապես</em>, <em>մոտ</em> “more than, till, around, approximately, about” etc. are used in constructions like <em>ավելի քան / մինչև / մոտ / մոտավորապես երկու հարյուր մարդ</em> “more than 100 people” and act as quantifiers.
+They behave syntactically like determiners or adverbs and we attach them as <a href="">det</a> or <a href="">advmod</a>.</p>
+
+<pre><code class="language-sdparse">Եկավ մի հարյուր մարդ ։ \n Came about 100 people .
+nsubj(Եկավ, մարդ)
+nsubj(Came, people)
+nummod(մարդ, հարյուր)
+nummod(people, 100)
+det(մի, հարյուր)
+det(about, 100)
+</code></pre>
+
+<pre><code class="language-sdparse">Եկավ ավելի քան հարյուր մարդ ։ \n Came more than 100 people .
+nsubj(Եկավ, մարդ)
+nsubj(Came, people)
+nummod(մարդ, հարյուր)
+nummod(people, 100)
+advmod(հարյուր, ավելի)
+advmod(100, more)
+fixed(ավելի, քան)
+fixed(more, than)
+</code></pre>
+
+<h3 id="constructions-more-and-less-quantity">Constructions more and less quantity</h3>
+
+<p><em>Ավելի</em> / <em>քիչ</em> / <em>պակաս</em> governs the case of the cardinal numeral.</p>
+
+<pre><code class="language-sdparse">Հարյուրից ավելի մարդ եկավ : \n Came more-than 100 people .
+nsubj(եկավ, մարդ)
+nsubj(Came, people)
+nummod(մարդ, հարյուրից)
+nummod(people, 100)
+advmod:gov(հարյուրից, ավելի)
+advmod:gov(100, more-than)
+</code></pre>
+
+<pre><code class="language-sdparse">Հարյուրից քիչ մարդ եկավ : \n Came less-than 100 people .
+nsubj(եկավ, մարդ)
+nsubj(Came, people)
+nummod(մարդ, հարյուրից)
+nummod(people, 100)
+advmod:gov(հարյուրից, քիչ)
+advmod:gov(100, less-than)
 </code></pre>
 
 <h2 id="noun-phrases-with-quantifiers">Noun phrases with quantifiers</h2>
@@ -181,8 +275,6 @@ mark(seems, than)
   <li><em>ութ գլուխ ոչխար</em></li>
   <li><em>մեկ միլիոն բարել նավթ</em></li>
 </ul>
-
-<h3 id="constructions-of-more-and-less-quantity">Constructions of more and less quantity</h3>
 
 
       </div>
