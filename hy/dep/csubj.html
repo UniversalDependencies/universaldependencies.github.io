@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>iobj</title>
+    <title>csubj</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-hy">home</a></span>
           <span class="header-text"><a href="http://universaldependencies.org/hy/hy">hy/hy</a></span>
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hy/dep/iobj.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hy/dep/csubj.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,202 +60,171 @@
 	  </div>
 	</noscript>
 
-          <h2><code>iobj</code>: indirect object</h2>
+          <h2><code>csubj</code>: clausal subject</h2>
 
-<p>The indirect object of a verb is any nominal phrase that is a core
-argument of the verb but is not its subject or <a href="obj">direct object</a>.
-The prototypical example is the recipient of ditransitive verbs of
-exchange:</p>
+<p>A clausal subject is a clausal syntactic subject of a clause, i.e.,
+the subject is itself a clause. The governor of this relation might
+not always be a verb: when the verb is a copular verb, the root of the
+clause is the complement of the copular verb. The dependent is the main lexical verb or other 
+predicate of the subject clause.</p>
 
-<pre><code class="language-sdparse">Արամը Արթուրին տանձ տվեց ։ \n Aram gave Arthur a-pear .
-iobj(տվեց, Արթուրին)
-iobj(gave, Arthur)
+<p>For the clausal subject of a passive verb or verb group the subtype <code class="highlighter-rouge">csubj:pass</code> is used.</p>
+
+<pre><code class="language-sdparse">Ինձ զարմացրեց այն , որ նա ոչինչ չասաց : \n Me surprised what , that he did-not-say anything .
+csubj(զարմացրեց, չասաց)
+csubj(surprised, did-not-say)
 </code></pre>
 
-<p>However, Armenian allows other semantic roles as additional objects.
-The morphological <a href="">Case</a> of the objects is dictated by verb valency.</p>
-
-<p>In the following Armenian example, the verb takes two arguments both are nouns in the dative case. One of them is direct object (patient), the other is indirect (addressee). It is parallel to how the English translation would be annotated (where there is no morphological case marking) and also to verbs of giving (cf. a similar sentence, <em>he introduces my son to the theacher</em>).</p>
-
-<pre><code class="language-sdparse">Նա իմ որդուն ներկայացրեց մարզիչին ։ \n He introduces my son.Dat to-the-teacher.Dat .
-obj(ներկայացրեց, որդուն)
-iobj(ներկայացրեց, մարզիչին)
-obj(introduces, son.Dat)
-iobj(introduces, to-the-teacher.Dat)
+<pre><code class="language-sdparse">Կատարվեց , ինչ սպասվում էր : \n Happened , what was expected .
+csubj(Կատարվեց, սպասվում)
+aux(սպասվում, էր)
+csubj(Happened, expected)
+aux(expected, was)
 </code></pre>
 
-<p>In general, if there is just one object, it should be labeled
-<a href="">obj</a>, regardless of the morphological case or semantic role.
-For example, <em>դասավանդել</em> “to teach” can take either the subject matter or the recipient as the only object,
-and in both cases it would be analyzed as the <a href="">obj</a>:</p>
-
-<pre><code class="language-sdparse">Նա դասավանդում է մաթեմատիկա ։ \n He teaches introduction to maths .
-obj(դասավանդում, մաթեմատիկա)
-obj(He teaches, introduction)
+<pre><code class="language-sdparse">Զինվորին հիվանդանոցից տուն փոխադրելը երկար տևեց : \n To-take the soldier to house from hospital took long .
+csubj(տևեց, փոխադրելը)
+csubj(took, To-take)
 </code></pre>
 
-<pre><code class="language-sdparse">Նա դասավանդում է առաջին կուրսեցիներին ։ \n He teaches students of-first year .
-obj(դասավանդում, կուրսեցիներին)
-obj(teaches, students)
+<p>We also analyze the nominal predicates with clausal subjects formed by subordinating conjunction որ similarly.</p>
+
+<pre><code class="language-sdparse">Լավ է , որ դու կարդացել ես գիրքը : \n Good is , that you have read the-book .
+csubj(Լավ, կարդացել)
+cop(Լավ, է)
+aux(կարդացել, ես)
+csubj(Good, read)
+cop(Good, is)
+aux(read, have)
 </code></pre>
-
-<p>The one exception is when there is a clausal complement.
-Then the clausal complement is regarded as a “clausal direct object” and an object nominal will be an <code class="highlighter-rouge">iobj</code>, parallel to
-the simple ditransitive case:</p>
-
-<pre><code class="language-sdparse">Նա տեղեկացրեց ուսանողներին , որ վաղվա քննությունները հետաձգվում են ։ \n He told students , that tomorrow's examinations are canceled .
-iobj(տեղեկացրեց, ուսանողներին)
-ccomp(տեղեկացրեց, հետաձգվում)
-iobj(told, students)
-ccomp(told, canceled)
-</code></pre>
-
-<pre><code class="language-sdparse">Նա ուսանողներին պատմեց իր ծրագրերից ։ \n He told students his some-plans .
-iobj(պատմեց, ուսանողներին)
-obj(պատմեց, ծրագրերից)
-iobj(told, students)
-obj(told, some-plans)
-</code></pre>
-
-<p>The other examples include all arguments of a head that are not direct objects or subjects, and are PPs introduced by various postpositions.</p>
-
-<pre><code class="language-sdparse">Նա գիրքը դրեց սեղանի վրա ։ \n He put the-book on the-table .
-iobj(դրեց, սեղանի)
-obj(դրեց, գիրքը)
-case(սեղանի, վրա)
-iobj(put, the-table)
-obj(put, the-book)
-case(the-table, on)
-</code></pre>
-
-<p>If there are two or
-more objects, one of them should be <a href="">obj</a> and the others should be
-<code class="highlighter-rouge">iobj</code>. In such cases it is necessary to decide what is the
-most directly affected object <em>(patient).</em></p>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-iobj in other languages:
+csubj in other languages:
 
-[<a href="../../am/dep/iobj.html">am</a>]
+[<a href="../../am/dep/csubj.html">am</a>]
 
-[<a href="../../ar/dep/iobj.html">ar</a>]
+[<a href="../../ar/dep/csubj.html">ar</a>]
 
-[<a href="../../bg/dep/iobj.html">bg</a>]
+[<a href="../../bg/dep/csubj.html">bg</a>]
 
-[<a href="../../bxr/dep/iobj.html">bxr</a>]
+[<a href="../../bxr/dep/csubj.html">bxr</a>]
 
-[<a href="../../ca/dep/iobj.html">ca</a>]
+[<a href="../../ca/dep/csubj.html">ca</a>]
 
-[<a href="../../ckb/dep/iobj.html">ckb</a>]
+[<a href="../../ckb/dep/csubj.html">ckb</a>]
 
-[<a href="../../cop/dep/iobj.html">cop</a>]
+[<a href="../../cop/dep/csubj.html">cop</a>]
 
-[<a href="../../cs/dep/iobj.html">cs</a>]
+[<a href="../../cs/dep/csubj.html">cs</a>]
 
-[<a href="../../cu/dep/iobj.html">cu</a>]
+[<a href="../../cu/dep/csubj.html">cu</a>]
 
-[<a href="../../da/dep/iobj.html">da</a>]
+[<a href="../../da/dep/csubj.html">da</a>]
 
-[<a href="../../de/dep/iobj.html">de</a>]
+[<a href="../../de/dep/csubj.html">de</a>]
 
-[<a href="../../el/dep/iobj.html">el</a>]
+[<a href="../../el/dep/csubj.html">el</a>]
 
-[<a href="../../en/dep/iobj.html">en</a>]
+[<a href="../../en/dep/csubj.html">en</a>]
 
-[<a href="../../es/dep/iobj.html">es</a>]
+[<a href="../../es/dep/csubj.html">es</a>]
 
-[<a href="../../et/dep/iobj.html">et</a>]
+[<a href="../../et/dep/csubj.html">et</a>]
 
-[<a href="../../eu/dep/iobj.html">eu</a>]
+[<a href="../../eu/dep/csubj.html">eu</a>]
 
-[<a href="../../fa/dep/iobj.html">fa</a>]
+[<a href="../../fa/dep/csubj.html">fa</a>]
 
-[<a href="../../fo/dep/iobj.html">fo</a>]
+[<a href="../../fi/dep/csubj.html">fi</a>]
 
-[<a href="../../fr/dep/iobj.html">fr</a>]
+[<a href="../../fo/dep/csubj.html">fo</a>]
 
-[<a href="../../gl/dep/iobj.html">gl</a>]
+[<a href="../../fr/dep/csubj.html">fr</a>]
 
-[<a href="../../got/dep/iobj.html">got</a>]
+[<a href="../../ga/dep/csubj.html">ga</a>]
 
-[<a href="../../grc/dep/iobj.html">grc</a>]
+[<a href="../../gl/dep/csubj.html">gl</a>]
 
-[<a href="../../he/dep/iobj.html">he</a>]
+[<a href="../../got/dep/csubj.html">got</a>]
 
-[<a href="../../hi/dep/iobj.html">hi</a>]
+[<a href="../../grc/dep/csubj.html">grc</a>]
 
-[<a href="../../hr/dep/iobj.html">hr</a>]
+[<a href="../../he/dep/csubj.html">he</a>]
 
-[<a href="../../hu/dep/iobj.html">hu</a>]
+[<a href="../../hi/dep/csubj.html">hi</a>]
 
-[<a href="../../id/dep/iobj.html">id</a>]
+[<a href="../../hr/dep/csubj.html">hr</a>]
 
-[<a href="../../it/dep/iobj.html">it</a>]
+[<a href="../../hu/dep/csubj.html">hu</a>]
 
-[<a href="../../ja/dep/iobj.html">ja</a>]
+[<a href="../../id/dep/csubj.html">id</a>]
 
-[<a href="../../kk/dep/iobj.html">kk</a>]
+[<a href="../../it/dep/csubj.html">it</a>]
 
-[<a href="../../kmr/dep/iobj.html">kmr</a>]
+[<a href="../../ja/dep/csubj.html">ja</a>]
 
-[<a href="../../ko/dep/iobj.html">ko</a>]
+[<a href="../../kk/dep/csubj.html">kk</a>]
 
-[<a href="../../la/dep/iobj.html">la</a>]
+[<a href="../../kmr/dep/csubj.html">kmr</a>]
 
-[<a href="../../lv/dep/iobj.html">lv</a>]
+[<a href="../../ko/dep/csubj.html">ko</a>]
 
-[<a href="../../mr/dep/iobj.html">mr</a>]
+[<a href="../../la/dep/csubj.html">la</a>]
 
-[<a href="../../nl/dep/iobj.html">nl</a>]
+[<a href="../../lv/dep/csubj.html">lv</a>]
 
-[<a href="../../no/dep/iobj.html">no</a>]
+[<a href="../../mr/dep/csubj.html">mr</a>]
 
-[<a href="../../pl/dep/iobj.html">pl</a>]
+[<a href="../../nl/dep/csubj.html">nl</a>]
 
-[<a href="../../pt/dep/iobj.html">pt</a>]
+[<a href="../../no/dep/csubj.html">no</a>]
 
-[<a href="../../ro/dep/iobj.html">ro</a>]
+[<a href="../../pl/dep/csubj.html">pl</a>]
 
-[<a href="../../ru/dep/iobj.html">ru</a>]
+[<a href="../../pt/dep/csubj.html">pt</a>]
 
-[<a href="../../sa/dep/iobj.html">sa</a>]
+[<a href="../../ro/dep/csubj.html">ro</a>]
 
-[<a href="../../sk/dep/iobj.html">sk</a>]
+[<a href="../../ru/dep/csubj.html">ru</a>]
 
-[<a href="../../sla/dep/iobj.html">sla</a>]
+[<a href="../../sa/dep/csubj.html">sa</a>]
 
-[<a href="../../sl/dep/iobj.html">sl</a>]
+[<a href="../../sk/dep/csubj.html">sk</a>]
 
-[<a href="../../so/dep/iobj.html">so</a>]
+[<a href="../../sla/dep/csubj.html">sla</a>]
 
-[<a href="../../sr/dep/iobj.html">sr</a>]
+[<a href="../../sl/dep/csubj.html">sl</a>]
 
-[<a href="../../sv/dep/iobj.html">sv</a>]
+[<a href="../../so/dep/csubj.html">so</a>]
 
-[<a href="../../swl/dep/iobj.html">swl</a>]
+[<a href="../../sr/dep/csubj.html">sr</a>]
 
-[<a href="../../ta/dep/iobj.html">ta</a>]
+[<a href="../../sv/dep/csubj.html">sv</a>]
 
-[<a href="../../tr/dep/iobj.html">tr</a>]
+[<a href="../../swl/dep/csubj.html">swl</a>]
 
-[<a href="../../u/dep/iobj.html">u</a>]
+[<a href="../../ta/dep/csubj.html">ta</a>]
 
-[<a href="../../ug/dep/iobj.html">ug</a>]
+[<a href="../../tr/dep/csubj.html">tr</a>]
 
-[<a href="../../uk/dep/iobj.html">uk</a>]
+[<a href="../../u/dep/csubj.html">u</a>]
 
-[<a href="../../ur/dep/iobj.html">ur</a>]
+[<a href="../../ug/dep/csubj.html">ug</a>]
 
-[<a href="../../urj/dep/iobj.html">urj</a>]
+[<a href="../../uk/dep/csubj.html">uk</a>]
 
-[<a href="../../vi/dep/iobj.html">vi</a>]
+[<a href="../../ur/dep/csubj.html">ur</a>]
 
-[<a href="../../yue/dep/iobj.html">yue</a>]
+[<a href="../../urj/dep/csubj.html">urj</a>]
 
-[<a href="../../zh/dep/iobj.html">zh</a>]
+[<a href="../../vi/dep/csubj.html">vi</a>]
+
+[<a href="../../yue/dep/csubj.html">yue</a>]
+
+[<a href="../../zh/dep/csubj.html">zh</a>]
 
 
 
