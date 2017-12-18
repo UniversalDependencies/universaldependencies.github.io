@@ -66,7 +66,7 @@
 
 <p>In Armenian the <code class="highlighter-rouge">nmod</code> relation can be expressed using all <a href="Case">cases</a> except locative. If a possessive <a href="DET">determiner</a> is used, the relation is labeled <a href="">det</a>.</p>
 
-<p>We also use the following language-specific subtypes for nmod:</p>
+<p>We also use the following language-specific subtypes for <code class="highlighter-rouge">nmod</code>:</p>
 
 <p>nmod:poss: possessor in in a genitive-possessive construction with the option of a subtype like nmod:poss to distinguish non-adpositional case
 nmod:comp: a comparative nominal modifier
@@ -99,17 +99,23 @@ nmod(kancelář, ředitele)
 nmod(office, of-the-director)
 </code></pre>
 
-<p>In conjunction with the <a href="case">case</a> relation, <code class="highlighter-rouge">nmod</code> provides a uniform analysis for the possessive alternation (with the option of a subtype like nmod:poss to distinguish non-adpositional case):</p>
+<p>In conjunction with the <a href="case">case</a> relation, <code class="highlighter-rouge">nmod</code> provides a uniform analysis for the possessive alternation</p>
 
-<pre><code class="language-sdparse">սեղանի վրայի գիրքը \n the-book on of-the-table 
+<p>(with the option of a subtype like nmod:poss to distinguish non-adpositional case):</p>
+
+<pre><code class="language-sdparse">սեղանի վրայի գիրքը \n the-book on.`Dat` of-the-table 
 nmod(գիրքը, սեղանի)
 case(սեղանի, վրայի)
 nmod(the-book, of-the-table)
-case(of-the-table, on)
+case(of-the-table, on.`Dat`)
 </code></pre>
 
-<p>նախագծի մասին որոշումը
-թշնամու դեմ պատերազմը</p>
+<pre><code class="language-sdparse">թշնամու դեմ պատերազմը \n the-war against the-enemy
+nmod(պատերազմը, թշնամու)
+case(թշնամու, դեմ)
+nmod(the-war, the-enemy)
+case(the-enemy, against)
+</code></pre>
 
 <h2 id="agreeing-attribute-of-a-noun">Agreeing attribute of a noun</h2>
 
@@ -122,32 +128,32 @@ amod(նախագահ, առաջին)
 nmod(Պետրոսյանը, նախագահ)
 flat(Պետրոսյանը, Լևոն)
 flat(Պետրոսյանը, Տեր)
-punct(Պետրոսյանը, -)
+punct(Պետրոսյանը, --5)
 amod(president, the-first)
 nmod(Petrosyan, president)
 flat(Petrosyan, Levon)
 flat(Petrosyan, Ter)
-punct(Petrosyan, -)
+punct(Petrosyan, --11)
 </code></pre>
 
 <p>Note that the same thing can be also expressed using an <a href="appos">apposition</a>.
 In the case of apposition, the title follows the modified name and is separated by a punctuation symbol:</p>
 
-<pre><code class="language-sdparse">Լևոն Տեր-Պետրոսյանը ՝ առաջին նախագահը , \n Levon Ter - Petrosyan , the-first president ,
+<pre><code class="language-sdparse">Լևոն Տեր - Պետրոսյանը ՝ առաջին նախագահը , \n Levon Ter - Petrosyan , the-first president ,
 flat(Պետրոսյանը, Լևոն)
 flat(Պետրոսյանը, Տեր)
-punct(Պետրոսյանը, -)
+punct(Պետրոսյանը, --3)
 punct(Պետրոսյանը, ՝)
 amod(նախագահը, առաջին)
-punct(նախագահը, ,)
+punct(նախագահը, ,-8)
 appos(Պետրոսյանը, նախագահը)
 
 flat(Petrosyan, Levon)
 flat(Petrosyan, Ter)
-punct(Petrosyan, -)
-punct(Petrosyan, ,)
+punct(Petrosyan, --11)
+punct(Petrosyan, ,-13)
 amod(president, the-first)
-punct(president, ,)
+punct(president, ,-16)
 appos(Petrosyan, president)
 </code></pre>
 
