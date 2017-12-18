@@ -68,13 +68,12 @@
 
 <p>We also use the following language-specific subtypes for <code class="highlighter-rouge">nmod</code>:</p>
 
-<p>nmod:poss: possessor in in a genitive-possessive construction with the option of a subtype like nmod:poss to distinguish non-adpositional case
-nmod:comp: a comparative nominal modifier
-nmod:part: noun modifier specifying the whole-part relation</p>
+<p>nmod: noun modifier which functionally corresponds to an attribute, and is in Nominative,
+<a href="">nmod:poss</a>: noun modifier which functionally corresponds to a possessive complement (non-nominative and adpositional cases).</p>
 
 <pre><code class="language-sdparse">տնօրենի գրասենյակը \n office of-the-director.`Dat`
-nmod(գրասենյակը, տնօրենի)
-nmod(office, of-the-director.`Dat`)
+nmod:poss(գրասենյակը, տնօրենի)
+nmod:poss(office, of-the-director.`Dat`)
 </code></pre>
 
 <pre><code class="language-sdparse">նրա գրասենյակը \n his office
@@ -94,33 +93,25 @@ det(office, his)
 <pre><code class="language-sdparse">տարիքով մարդ \n age-with.`Ins` man
 </code></pre>
 
-<pre><code class="language-sdparse">kancelář ředitele \n office of-the-director
-nmod(kancelář, ředitele)
-nmod(office, of-the-director)
-</code></pre>
-
-<p>In conjunction with the <a href="case">case</a> relation, <code class="highlighter-rouge">nmod</code> provides a uniform analysis for the possessive alternation</p>
-
-<p>(with the option of a subtype like nmod:poss to distinguish non-adpositional case):</p>
+<p>In conjunction with the <a href="case">case</a> relation, <code class="highlighter-rouge">nmod</code> provides a uniform analysis for the possessive alternation:</p>
 
 <pre><code class="language-sdparse">սեղանի վրայի գիրքը \n the-book on.`Dat` of-the-table 
-nmod(գիրքը, սեղանի)
+nmod:poss(գիրքը, սեղանի)
 case(սեղանի, վրայի)
-nmod(the-book, of-the-table)
+nmod:poss(the-book, of-the-table)
 case(of-the-table, on.`Dat`)
 </code></pre>
 
 <pre><code class="language-sdparse">թշնամու դեմ պատերազմը \n the-war against the-enemy
-nmod(պատերազմը, թշնամու)
+nmod:poss(պատերազմը, թշնամու)
 case(թշնամու, դեմ)
-nmod(the-war, the-enemy)
+nmod:poss(the-war, the-enemy)
 case(the-enemy, against)
 </code></pre>
 
-<h2 id="agreeing-attribute-of-a-noun">Agreeing attribute of a noun</h2>
+<h2 id="explicative-attribute-of-a-noun">Explicative attribute of a noun</h2>
 
-<p><code class="highlighter-rouge">nmod</code> noun phrases attached to nouns are usually in the dative <a href="">Case</a> and precedes the modified noun. However, there is also a different kind of <code class="highlighter-rouge">nmod</code> that precedes the modified noun and agrees with it in case and number.
-A typical example is a title attached to a name of a person. The relation is similar to the <a href="">flat</a> relation
+<p><code class="highlighter-rouge">nmod</code> noun phrases attached to nouns are usually in the dative <a href="">Case</a> and precedes the modified noun. However, there is also a different kind of <code class="highlighter-rouge">nmod</code> that precedes the modified noun also, is in Nominative and has a explicative meaning. A typical example is a title attached to a name of a person. The relation is similar to the <a href="">flat</a> relation
 that links the first and the last name, but it is not labeled <code class="highlighter-rouge">flat</code> because the title is not part of the name:</p>
 
 <pre><code class="language-sdparse">առաջին նախագահ Լևոն Տեր - Պետրոսյանը \n the-first president Levon Ter - Petrosyan 
