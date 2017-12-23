@@ -298,7 +298,9 @@ e.g.</p>
 <h2 id="repository-branches">Repository branches</h2>
 
 <p>While the official UD release is always through Lindat, many users of UD source their data from the GitHub language repositories. Therefore, the <code class="highlighter-rouge">master</code> branch of every language should contain the last, officially released version of the data for the given language. The development in between releases should happen on the <code class="highlighter-rouge">dev</code> branch of the repository.
-Although it is currently not locked, treebank maintainers should never touch the <code class="highlighter-rouge">master</code> branch, they should always push to <code class="highlighter-rouge">dev</code>. At release time, the release task force will take care of merging the contents of the <code class="highlighter-rouge">dev</code> branch into <code class="highlighter-rouge">master</code>.
+Treebank maintainers should never touch the <code class="highlighter-rouge">master</code> branch, they should always push to <code class="highlighter-rouge">dev</code>.
+(Ordinary contributors are not even able to push to <code class="highlighter-rouge">master</code>, the branch is protected.)
+At release time, the release task force will take care of merging the contents of the <code class="highlighter-rouge">dev</code> branch into <code class="highlighter-rouge">master</code>.
 <strong>Please do not submit pull requests from the dev branch (or from anywhere else) to the master branch.</strong>
 This is not needed for the release merge to take place, and if someone overlooks the destination branch and accepts the pull request,
 it will again result in a commit to the master branch at wrong time.</p>
@@ -386,9 +388,11 @@ $ git push
 
 <p>Since the <code class="highlighter-rouge">v2.0</code> release, whitespace is allowed in the <code class="highlighter-rouge">FORM</code> and <code class="highlighter-rouge">LEMMA</code> fields under conditions specified in <a href="v2/segmentation.html">here</a>. This is supported in the validator through the UD-wide file <code class="highlighter-rouge">data/tokens_w_space.ud</code> and its language-specific variants <code class="highlighter-rouge">data/tokens_w_space.xx</code>. In these files, each line is a <a href="https://docs.python.org/2/library/re.html">Python regular expression</a> defining the permissible forms and lemmas that can contain a whitespace.</p>
 
-<h1 id="syntax">Syntax</h1>
+<h1 id="content-validation">Content validation</h1>
 
-<p>For the <code class="highlighter-rouge">v1.3</code> release, we have created an additional number of tests which try to uncover possible logical inconsistencies in the treebank data. Automatic validation runs for this syntax validation are available <a href="http://universaldependencies.org/svalidation.html">here</a>. Unlike the data format and repository validation, this validation machinery is not streamlined enough to be distributed for offline use, therefore it is important to regularly push your data to the <code class="highlighter-rouge">dev</code> branch of the repository.</p>
+<p>For the <code class="highlighter-rouge">v1.3</code> release, we have created an additional number of tests which try to uncover possible logical inconsistencies in the treebank data. Automatic validation runs for this syntax validation are available <a href="http://universaldependencies.org/svalidation.html">here</a>. Unlike the data format and repository validation, this validation machinery is not streamlined enough to be distributed for offline use, therefore it is important to regularly push your data to the <code class="highlighter-rouge">dev</code> branch of the repository.
+(However, similar tests are now available in the
+<a href="https://github.com/udapi/udapi-python/blob/master/udapi/block/ud/markbugs.py">Udapi</a> tool.)</p>
 
 <p>The tests are specified in the file <code class="highlighter-rouge">gen_index/stests.yaml</code> and rely on the query language of the <a href="http://bionlp-www.utu.fi/dep_search">SETS search interface</a>.</p>
 
