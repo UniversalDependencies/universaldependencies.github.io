@@ -110,27 +110,27 @@ so that your treebank works well with our infrastructure and can be released.</p
 
 <h1 id="repository-and-files">Repository and files</h1>
 
-<p>Every language has its own GitHub repository called <code class="highlighter-rouge">UD_Language</code>, where <code class="highlighter-rouge">Language</code> is the name of the language. For example, the repository for Finnish is called <code class="highlighter-rouge">UD_Finnish</code>. Make sure to create the repository for your language if it does not already exist. Some languages have more than one treebank and the additional treebanks have their own repositories with a <code class="highlighter-rouge">-Treebank</code> identifier after the language name. For example, <code class="highlighter-rouge">UD_Finnish-FTB</code> is the repository for the FinnTreeBank, while the plain <code class="highlighter-rouge">UD_Finnish</code> holds the Turku Dependency Treebank.</p>
+<p>Every language has its own GitHub repository called <code class="highlighter-rouge">UD_Language</code>, where <code class="highlighter-rouge">Language</code> is the name of the language. For example, the repository for Finnish is called <code class="highlighter-rouge">UD_Finnish</code>. If your repository does not exist yet, get in touch with us (see above). Some languages have more than one treebank and the additional treebanks have their own repositories with a <code class="highlighter-rouge">-Treebank</code> identifier after the language name. For example, <code class="highlighter-rouge">UD_Finnish-FTB</code> is the repository for the FinnTreeBank, while the plain <code class="highlighter-rouge">UD_Finnish</code> holds the Turku Dependency Treebank.</p>
 
-<p>Every language repository should contain the following five files (where <code class="highlighter-rouge">xx</code> is the ISO code for the given language; if this is not the first treebank for the language, use <code class="highlighter-rouge">xx_y</code> instead, where <code class="highlighter-rouge">y</code> is the lowercased treebank identifier):</p>
+<p>Every treebank repository should contain the following files (where <code class="highlighter-rouge">xx</code> is the ISO code for the given language; if this is not the first treebank for the language, use <code class="highlighter-rouge">xx_y</code> instead, where <code class="highlighter-rouge">y</code> is the lowercased treebank identifier).
+Small treebanks may have just the test file but no training and development data
+(more detailed recommendations for train-dev-test data splits are currently under negotiation).</p>
 
 <ol>
+  <li><code class="highlighter-rouge">README.md</code> or <code class="highlighter-rouge">README.txt</code></li>
+  <li><code class="highlighter-rouge">LICENSE.txt</code></li>
+  <li><code class="highlighter-rouge">xx-ud-test.conllu</code></li>
   <li><code class="highlighter-rouge">xx-ud-train.conllu</code></li>
   <li><code class="highlighter-rouge">xx-ud-dev.conllu</code></li>
-  <li><del>xx-ud-test.conllu</del> temporary rule for UD 2.0: <strong>do not publish the test set!</strong> Validate it offline and then send it by e-mail to ud.conll.shared.task.2017@gmail.com.</li>
-  <li><code class="highlighter-rouge">README.txt</code> or <code class="highlighter-rouge">README.md</code></li>
-  <li><code class="highlighter-rouge">LICENSE.txt</code></li>
 </ol>
 
-<p>The first three files contain the treebank data split into a training, development and test set. These should be in <code class="highlighter-rouge">CONLL-U</code> format and conform to the universal guidelines. They need to be validated as described below.</p>
+<p>The <code class="highlighter-rouge">README.md</code> file contains basic documentation of the treebank and machine-readable metadata for the UD main page (see below) and the <code class="highlighter-rouge">LICENSE.txt</code> specifies under what license the treebank is made available.</p>
 
-<p>If the treebank consists of more than 20,000 words, make the test set and dev set at least 10,000 words each, even if it leaves you with training data smaller than development data (that is <a href="http://universaldependencies.org/conll17/inclusion-rules.html">necessary for the CoNLL 2017 shared task</a>). There is no upper limit on the size of dev/test. If you cannot reach 10,000 words of test data, use a more typical split, e.g. 80-10-10% (but the treebank will not be included in the shared task).</p>
+<p>The data files (training, development and test set) must be in the <code class="highlighter-rouge">CONLL-U</code> format and conform to the universal guidelines. They need to be validated as described below.</p>
 
-<p>The training-development-test data split should be stable across releases. It should not happen that a sentence that was once part of training data ever appears in the test data, and vice versa (except for sentences that are naturally occurring duplicates in independent texts). We want to prevent accidental misguided results of experiments where people take a parser trained on UD 1.1 and apply it to test data from UD 1.2. <strong>We decided to make an exception to this rule for UD 2.0 where it is needed to achieve 10K test or dev, on the ground that v2 annotation is not backward-compatible anyway.</strong></p>
+<p>The training-development-test data split should be stable across releases. It should not happen that a sentence that was once part of training data ever appears in the test data, and vice versa (except for sentences that are naturally occurring duplicates in independent texts). We want to prevent accidental misguided results of experiments where people take a parser trained on UD 1.1 and apply it to test data from UD 1.2.</p>
 
-<p>The <code class="highlighter-rouge">README.txt</code> file contains basic documentation of the treebank and machine-readable metadata for the UD main page (see below) and the <code class="highlighter-rouge">LICENSE.txt</code> specifies under what license the treebank is made available.</p>
-
-<p>Repositories of released treebanks also contain a <code class="highlighter-rouge">stats.xml</code> file, which is generated as part of the release-building process, using the script <code class="highlighter-rouge">conllu-stats.pl</code> available from the <code class="highlighter-rouge">tools</code> repository. Data providers do not have to care about this file.</p>
+<p>Repositories of released treebanks also contain a <code class="highlighter-rouge">stats.xml</code> file, which is generated as part of the release-building process, using the script <code class="highlighter-rouge">conllu-stats.pl</code> available from the <code class="highlighter-rouge">tools</code> repository. Data providers do not have to care about this file; it will be generated by the release task force.</p>
 
 <h2 id="the-readme-file">The README file</h2>
 
