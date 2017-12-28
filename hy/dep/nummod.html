@@ -89,6 +89,52 @@ det(some, apples)
 fixed(some, many)
 </code></pre>
 
+<h2 id="additional-remarks">Additional remarks</h2>
+
+<pre><code class="language-sdparse">50 միլիոն դրամ \n 50 million dram
+nummod(դրամ, 50-1)
+flat(50-1, միլիոն)
+nummod(dram, 50-5)
+flat(50-5, million)
+</code></pre>
+
+<pre><code class="language-sdparse">շուրջ 50 հազար դրամ \n about 50 thousand dram
+nummod(դրամ, 50-2)
+flat(50-2, հազար)
+advmod:emph(դրամ, շուրջ)
+nummod(dram, 50-7)
+flat(50-7, thousand)
+advmod:emph(dram, about)
+</code></pre>
+<p>Note that the two numeral words in the above example are joined using the <a href="">flat</a> relation.
+Also note that the <a href="advmod:emph">intensifier</a> <em>ավելի քան</em> is attached to the head of the phrase <em>(դրամ)</em> and not to the number.
+This is in accord both with the UD guidelines.</p>
+
+<p>Similarly there may be other nodes (such as punctuation) that are attached to the head of the phrase
+and they are related to the whole phrase rather than directly to the head noun:</p>
+
+<pre><code class="language-sdparse">( 9 օր ) \n ( 9 days )
+punct(օր, (-1)
+nummod(օր, 9-2)
+punct(օր, )-4)
+punct(days, (-6)
+nummod(days, 9-7)
+punct(days, )-9)
+</code></pre>
+
+<pre><code class="language-sdparse">քվեարկության վերջին 3 ժամվա ընթացքում \n during last 3 houres of-voting
+nummod(ժամվա, 3-3)
+case(ժամվա, ընթացքում)
+advmod:emph(ժամվա, վերջին)
+nmod:poss(ժամվա, քվեարկության)
+nummod(houres, 3-9)
+case(houres, during)
+advmod:emph(houres, last)
+nmod:poss(houres, of-voting)
+</code></pre>
+
+<h2 id="dates">Dates</h2>
+
 <p>Dates are annotated as follows: if present the day is the head, the months are <em>nmod:poss</em> and the year are <em>nummod</em>:</p>
 
 <pre><code class="language-sdparse">Նա ծնվել է 1955 թվականի մայիսի 4-ին ։ \n She was born on-4th of-May of-year 1955 .
@@ -101,6 +147,8 @@ nmod:poss(on-4th, of-May)
 nmod:poss(of-May of-year)
 nummod(of-year, 1955-16)
 </code></pre>
+
+<h2 id="numbered-objects">Numbered objects</h2>
 
 <p>House number in address is attached as <code class="highlighter-rouge">nummod</code> to the name of the street:</p>
 
