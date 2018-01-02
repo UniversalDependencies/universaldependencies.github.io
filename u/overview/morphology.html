@@ -87,9 +87,30 @@ and features. See also <a href="tokenization.html">Tokenization</a> and
 
 <h2 id="lemmas">Lemmas</h2>
 
-<p>The <code class="highlighter-rouge">LEMMA</code> field should contain the canonical or base form of the word, such as the form typically found in dictionaries.</p>
+<p>The <code class="highlighter-rouge">LEMMA</code> field should contain the canonical or base form of the word, such as the form typically found in dictionaries.
+If the lemma is not available, an underscore (“<code class="highlighter-rouge">_</code>”) can be used to indicate its absence.</p>
 
-<p>If the lemma is not available, an underscore (“<code class="highlighter-rouge">_</code>”) can be used to indicate its absence.</p>
+<p>At present, treebanks have considerable leeway in interpreting what “canonical or base form” means. 
+In general, a canonical form should collapse inflectional and minor orthographic/spelling variation 
+(such as casing, accents/diacritics, and typos). In the lemma field, some treebanks may choose 
+to aggressively normalize spelling variation that may reflect dialect or authorial style.</p>
+
+<p>In addition to normalizing spelling in lemmas, treebanks are encouraged to adopt the optional morphological feature 
+<code class="highlighter-rouge">Typo=Yes</code> for clear accidental misspellings of a word (e.g. <em>ltake</em> for <em>take</em> or <em>too</em> for <em>to</em>). 
+Typos of words in closed-class categories can be found in a corpus by inspecting word frequencies in each category.
+Treebank maintainers should take care not to use <code class="highlighter-rouge">Typo=Yes</code> for words that may reflect actual linguistic variation, 
+e.g., dialect, style, or nonnative grammar.</p>
+
+<p>Abbreviated/shortened forms can be mapped to their full spelling as the lemma
+in conjunction with the feature <a href="../feat/Abbr.html"><code class="highlighter-rouge">Abbr=Yes</code></a>, provided that the full spelling 
+is a single word. Abbreviations that would expand to multiple words should be retained in the lemma.</p>
+
+<p>On occasion, a typo or abbreviation will apply to an inflected word (e.g. <em>hadd</em> for <em>had</em>), and thus the lemma 
+should both normalize the spelling and remove the inflection. Treebanks may wish to use the <code class="highlighter-rouge">MISC</code> field 
+to store the normalized but not lemmatized form.</p>
+
+<p>(There is currently no UD-wide policy for lemmas of apparently erroneous extra words, missing words, 
+or incorrectly segmented words.)</p>
 
 <p>The <code class="highlighter-rouge">LEMMA</code> field should not be used to encode features or other similar properties of the word (use <code class="highlighter-rouge">FEATS</code> and <code class="highlighter-rouge">MISC</code> instead; see <a href="../../format.html">format</a>).</p>
 
