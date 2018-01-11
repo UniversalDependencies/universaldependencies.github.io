@@ -70,21 +70,21 @@
   <li>Punctuation (recognized by the corresponding Unicode property) that is conventionally written adjacent to the preceding or following word is separated during tokenization.
 Some special cases worth mentioning:
     <ul>
-      <li>An abbreviation marked by a period, as in <em>թ.</em> “year”, becomes two tokens, <em><b>թ</b></em> and <em><b>.</b></em> .</li>
+      <li>An abbreviation marked by a period, as in <em>թ.</em> “year”, becomes two tokens, { <em><b>թ</b></em> } and { <em><b>.</b></em> }.</li>
       <li>A compound containing a hyphen becomes three tokens (two words and the hyphen), as in <em>անգլո-ամերիկյան</em> “anglo-american”, <em>պատմա-բանասիրական</em> “historical-philological”.
 In these cases, the first token is a special form of adjective that never occurs independently.
 Compounds without a hyphen are not split, thus <em>ռազմածովային</em> “navy” is one token but <em>հասարակական-քաղաքական</em> “civic-social” would be three tokens.
 Another common case of splitting-on-hyphen are reduplicative or echo words as in <em>մեծ-մեծ</em> “very big”, <em>շուն-մուն</em> “dog or something”.</li>
-      <li>The words that contain “infixed” punctuation (question, exclamation, emphasis and Armenian abbrevation marks), as in <em>ինչո՞ւ</em> “why?”, are considered as multi-word token and become two tokens, <em><b>ինչու</b></em> and <em><b>՞</b></em> . EXEPTION is the apostrophe, as in <em>Ժաննա դ՚Արկ</em> “Joan of Arc”, which is split and belongs to the preceding part, <em><b>Ժաննա</b></em> , <em><b>դ՚</b></em> , <em><b>Արկ</b></em>.</li>
-      <li>Numerical expressions (including dates) are treated as single words as long as they do not contain spaces, for example, <em><b>355,089.40</b></em> , <em><b>01.01.1970</b></em> , <em><b>01/01/1970</b></em> , <em><b>11:00</b></em> , <em><b>11.00</b></em> , <em><b>1937-1938</b></em> , <em><b>10-15</b></em> . Decimal numbers also kept as one token, e.g. <em><b>2.1</b></em> or <em><b>2,1</b></em> , <em><b>0.5-1.5</b></em> .</li>
+      <li>The words that contain “infixed” punctuation (question, exclamation, emphasis and Armenian abbrevation marks), as in <em>ինչո՞ւ</em> “why?”, are considered as multi-word token and become two tokens, { <em><b>ինչու</b></em> } and { <em><b>՞</b></em> }. EXEPTION is the apostrophe, as in <em>Ժաննա դ՚Արկ</em> “Joan of Arc”, which is split and belongs to the preceding part, { <em><b>Ժաննա</b></em> } { <em><b>դ՚</b></em> } { <em><b>Արկ</b></em> }.</li>
+      <li>Numerical expressions (including dates) are treated as single words as long as they do not contain spaces, for example, { <em><b>355,089.40</b></em> }, { <em><b>01.01.1970</b></em> }, { <em><b>01/01/1970</b></em> }, { <em><b>11:00</b></em> }, { <em><b>11.00</b></em> }, { <em><b>1937-1938</b></em> }, { <em><b>10-15</b></em> }. Decimal numbers also kept as one token, e.g. { <em><b>2.1</b></em> }, { <em><b>2,1</b></em> }, { <em><b>0.5-1.5</b></em> }.</li>
       <li>Numerical expressions with hyphen and Armenian endings (e.g. { <em><b>1-ին</b></em> } “1st”, { <em><b>3-ով</b></em> } “3.Ins”) as well as adjectives and other non-numerals which contain digits (e.g. { <em><b>1000-ական</b></em> } “by 1000”, { <em><b>1950-ականներին</b></em> } “in 1950s”, { <em><b>20-ամյակ</b></em> } “20th anniversary”, { <em><b>1700-ամյա</b></em> } “1700-year-old”, { <em><b>ՆԱՏՕ-ական</b></em> } “belonging-to-NATO, <em><b>ՏՈՒ-154Մ</b></em> “TU-154M”) are treated as single tokens.</li>
       <li>Most of the time, every punctuation character constitutes a token of its own. Thus <em>»,—</em> will become three tokens.</li>
-      <li>Exceptions are conventional multi-character punctuation marks: <em><b>…</b></em> , <em><b>….</b></em> , and emojis and smileys: <em><b>:)</b></em> , <em><b>^_^</b></em>, etc.
+      <li>Exceptions are conventional multi-character punctuation marks: { <em><b>…</b></em> }, { <em><b>….</b></em> }, and emojis and smileys: { <em><b>:)</b></em> }, { <em><b>^_^</b></em> }, { <em><b>։ճ</b></em> } etc.
 Conventional non-armenian multi-character punctuation marks and terms are tokenized as single tokens: <em><b>?!</b></em> .</li>
     </ul>
   </li>
-  <li>Special symbols before and after numerical expressions, as in <em>$250</em> , <em>4,81%</em> , <em>+32°С</em> , are tokenised separately (so, the tokens are { <em><b>$</b></em> , <em><b>250</b></em> } , { <b>4,81</b> , <b>%</b> } , { <b>+</b> , <b>32</b> , <b>°С</b> }).</li>
-  <li>Email addresses, URLs, and tweet-style names are treated as single tokens: {muster@muster.am}, {https://github.com}, {@anna_il}</li>
+  <li>Special symbols before and after numerical expressions, as in <em>$250</em> , <em>4,81%</em> , <em>+32°С</em> , are tokenised separately (so, the tokens are { <em><b>$</b></em> } { <em><b>250</b></em> } , { <b>4,81</b> } { <b>%</b> } , { <b>+</b> } { <b>32</b> } { <b>°С</b> }).</li>
+  <li>Email addresses, URLs, and tweet-style names are treated as single tokens: { muster@muster.am }, { https://github.com }, {@gov_am}</li>
 </ul>
 
 <h3 id="multi-word-tokens">Multi-word tokens</h3>
@@ -94,15 +94,15 @@ Conventional non-armenian multi-character punctuation marks and terms are tokeni
 <h3 id="pronouns-and-adverbs">Pronouns and adverbs</h3>
 
 <ul>
-  <li>Indefinite pronouns and adverbs like <em><b>ինչ-որ*</b> , *<b>փոքր-ինչ</b></em> , <em><b>դույզն-ինչ</b></em> , <em><b>ինչ-ինչ</b></em> “something, somewhat”, etc. are treated as a single token.</li>
+  <li>Indefinite pronouns and adverbs like <em>ինչ-որ</em>, <em>փոքր-ինչ</em>, <em>դույզն-ինչ</em>, <em>ինչ-ինչ</em> “something, somewhat”, etc. are treated as a single token.</li>
 </ul>
 
 <h3 id="verb-forms-analytical-grammatical-forms-negation">Verb forms, analytical grammatical forms, negation</h3>
 
 <ul>
   <li>the forms of necessitative mood, analytical causative, complex tenses, complex comparatives, etc. are splitted
-according to the orthographic principle: { <em><b>պիտի</b></em> , <em><b>վազեն</b></em> } “they must run”, { <em><b>գրել</b></em> , <em><b>տվեց</b></em> } “made write”, { <em><b>վազում</b></em> , <em><b>եմ</b></em> } “I run”, { <em><b>ավելի</b></em> , <em><b>լուրջ</b></em> } “more serious”.</li>
-  <li><em><b>մի</b></em> and <em><b>ոչ</b></em> used as negation markers with verbs, adjectives, pronouns and other words are tokenized according to the orthographic rules: { <em><b>մի</b></em> , <em><b>գրիր</b></em> } “don’t write”, { <em><b>ոչ</b></em> , <em><b>պաշտոնական</b></em> } “unofficial”, { <em><b>ոչ</b></em> , <em><b>մի</b></em> , <em><b>կերպ</b></em> } “in no way”.</li>
+according to the orthographic principle: { <em><b>պիտի</b></em> } { <em><b>վազեն</b></em> } “they must run”, { <em><b>գրել</b></em> } { <em><b>տվեց</b></em> } “made write”, { <em><b>վազում</b></em> } { <em><b>եմ</b></em> } “I run”, { <em><b>ավելի</b></em> } { <em><b>լուրջ</b></em> } “more serious”.</li>
+  <li><em>մի</em> and <em>ոչ</em> used as negation markers with verbs, adjectives, pronouns and other words are tokenized according to the orthographic rules: { <em><b>մի</b></em> } { <em><b>գրիր</b></em> } “don’t write”, { <em><b>ոչ</b></em> } {<em><b>պաշտոնական</b></em> } “unofficial”, { <em><b>ոչ</b></em> } { <em><b>մի</b></em> } { <em><b>կերպ</b></em> } “in no way”.</li>
 </ul>
 
 <h1 id="sentence-splitting">Sentence splitting</h1>
