@@ -76,6 +76,35 @@
 
 <p>Note that the <em>enhanced</em> graph is not necessarily a supergraph of the basic tree, i.e., the graph is not required to contain all the basic dependency relations. For this reason, all relations of the enhanced graph (also the ones that are present in the basic UD tree) have to be included in the <em>DEPS</em> column of a CoNLL-U file. See the specificiation of the <a href="/format.html">CoNLL-U</a> file format for details.</p>
 
+<p>Furthermore, the dependency relation labels in the enhanced graph in DEPS may contain certain extensions that are not permitted
+in the basic relation type in the DEPREL column. The regular expression restricting relation labels in DEPREL is pretty simple;
+the label can contain only lowercase English letters and at most one colon, which separates the universal and the language-specific
+part of the label: <code class="highlighter-rouge">^[a-z]+(:[a-z]+)?$</code>. In contrast, the relation label in DEPS may contain up to three colons, separating up to
+four sections. One of the sections (never the first one) may also contain lowercase Unicode letters and the underscore character:
+<code class="highlighter-rouge">^[a-z]+(:[\p{Ll}\p{Lm}\p{Lo}\p{M}]+(_[\p{Ll}\p{Lm}\p{Lo}\p{M}]+)*(:[\p{Ll}\p{Lm}\p{Lo}\p{M}]+(_[\p{Ll}\p{Lm}\p{Lo}\p{M}]+)*(:[\p{Ll}\p{Lm}\p{Lo}\p{M}]+(_[\p{Ll}\p{Lm}\p{Lo}\p{M}]+)*)?)?)?$</code>.
+Only the first section, the universal relation, is mandatory. The other sections are optional but if they appear, they must appear
+in the order described below. The enhanced subtype is mutually exclusive with case information, thus the maximum number of
+colon-separated sections is 4. We provide a more detailed explanation of the extra sections later on this page; here is a summary:</p>
+
+<ol>
+  <li>Universal dependency relation. In addition to the <a href="http://universaldependencies.org/u/dep/index.html">37 relations</a>
+defined in the basic representation, the relation can also be <code class="highlighter-rouge">ref</code>.</li>
+  <li>Documented relation subtype (either language-specific or more general) from the basic representation.</li>
+  <li>Enhanced subtype: either <code class="highlighter-rouge">xcomp</code> or <code class="highlighter-rouge">relcl</code>.</li>
+  <li><a href="#case-information">Case information</a> –
+adposition or conjunction that occurs as a <code class="highlighter-rouge">case</code>, <code class="highlighter-rouge">mark</code> or <code class="highlighter-rouge">cc</code> dependent of the node whose relation to its
+parent is being enhanced. Note that this is the only part where non-ASCII letters are permitted within the enhanced relation label.
+The word should be normalized (lowercased, no typos), i.e., in general we take its lemma. However, if the case/mark/cc dependent is
+a fixed multi-word expression, the lemma of the expression is not necessarily composed of lemmas of the individual member words.
+For instance, the string representing the English expression “As Opposed To” is <code class="highlighter-rouge">as_opposed_to</code>. That is, the casing is normalized
+from “As” to “as” etc., but “opposed” is not replaced by its lemma “oppose” because the expression is fixed. We use the underscore
+character (“_”) to connect member words.</li>
+  <li><a href="#case-information">Case information</a> –
+morphological case of the node whose relation to its parent is being enhanced. Value corresponds to the value of
+the Case feature but it is lowercased (e.g., <code class="highlighter-rouge">gen</code> instead of <code class="highlighter-rouge">Gen</code>). Unlike in morphological features, multivalues with comma
+(<code class="highlighter-rouge">Case=Acc,Dat</code>) are not allowed. Case information in enhanced relations must be fully disambiguated.</li>
+</ol>
+
 <h2 id="controlledraised-subjects">Controlled/raised subjects</h2>
 
 <p>The <em>basic</em> trees lack a subject dependency between a controlled verb and its controller or between an embedded verb and its raised subject. In the <em>enhanced</em> graph, there is an additional dependency between the embedded verb and the subject of the matrix clause.</p>
