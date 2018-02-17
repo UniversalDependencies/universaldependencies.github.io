@@ -604,7 +604,30 @@ It may be embedded deeper as in the following example.</p>
 
 <h2 id="case-information">Case Information</h2>
 
-<p>Adding prepositions (or case information) to the relation name of non-core dependents often makes it possible to disambiguate its semantic role. We therefore augment <code class="highlighter-rouge">nmod</code>, <code class="highlighter-rouge">obl</code>, <code class="highlighter-rouge">acl</code> and <code class="highlighter-rouge">advcl</code> relation labels with the preposition or the case of the modifier.</p>
+<p>Adding prepositions (or case information) to the relation name of non-core dependents often makes it possible to disambiguate its
+semantic role. We therefore augment certain relation labels with the case information of the modifier.
+The augmented relations are <code class="highlighter-rouge">nmod</code>, <code class="highlighter-rouge">acl</code>, <code class="highlighter-rouge">obl</code> and <code class="highlighter-rouge">advcl</code>; if it makes sense in the language, some core relations may also be
+augmented: <code class="highlighter-rouge">obj</code>, <code class="highlighter-rouge">iobj</code>, <code class="highlighter-rouge">ccomp</code>.
+Case information may be represented by the lemma of an adposition attached via a <code class="highlighter-rouge">case</code> relation.
+For clauses, the corresponding information may be represented by the lemma of a <code class="highlighter-rouge">mark</code> dependent instead.
+<!-- DZ: Do we really want to include cc dependents here? How are they related to case? Don't we want to make them augment conj relations instead? -->
+Case information may also be represented by the value of the morphological feature <a href="/u/feat/Case.html">Case</a>.
+In some language, there is an adposition and the morphological case, and their combination must be reflected in the enhanced relation.</p>
+
+<p>The following formal rules apply (copied from the summary at the beginning of this page):</p>
+
+<ul>
+  <li>Adposition or conjunction that occurs as a <code class="highlighter-rouge">case</code> or <code class="highlighter-rouge">mark</code> <!--or `cc` ?--> dependent of the node whose relation to its
+parent is being enhanced. Note that this is the only part where non-ASCII letters are permitted within the enhanced relation label.
+The word should be normalized (lowercased, no typos), i.e., in general we take its lemma. However, if the case/mark dependent is
+a fixed multi-word expression, the lemma of the expression is not necessarily composed of lemmas of the individual member words.
+For instance, the string representing the English expression “As Opposed To” is <code class="highlighter-rouge">as_opposed_to</code>. That is, the casing is normalized
+from “As” to “as” etc., but “opposed” is not replaced by its lemma “oppose” because the expression is fixed. We use the underscore
+character (“_”) to connect member words.</li>
+  <li>Morphological case of the node whose relation to its parent is being enhanced. Value corresponds to the value of
+the Case feature but it is lowercased (e.g., <code class="highlighter-rouge">gen</code> instead of <code class="highlighter-rouge">Gen</code>). Unlike in morphological features, multivalues with comma
+(<code class="highlighter-rouge">Case=Acc,Dat</code>) are not allowed. Case information in enhanced relations must be fully disambiguated.</li>
+</ul>
 
 <table> <!--the house on the hill-->
 <tbody><tr><td width="600">
