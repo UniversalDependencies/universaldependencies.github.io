@@ -62,7 +62,13 @@
 
           <h1 id="conll-u-format">CoNLL-U Format</h1>
 
-<p>We use a revised version of <a href="http://anthology.aclweb.org/W/W06/W06-2920.pdf">the CoNLL-X format</a> called CoNLL-U. 
+<p>Quick links:
+[<a href="#words-tokens-and-empty-nodes">Word segmentation</a>]
+[<a href="#morphological-annotation">Morphology</a>]
+[<a href="#syntactic-annotation">Syntax</a>]
+[<a href="#miscellaneous">Miscellaneous</a>]</p>
+
+<p>We use a revised version of <a href="http://anthology.aclweb.org/W/W06/W06-2920.pdf">the CoNLL-X format</a> called CoNLL-U.
 Annotations are encoded in plain text files (UTF-8, using only the LF character as line break, including an LF character at the end of file) with three types of lines:</p>
 
 <ol>
@@ -77,8 +83,8 @@ Annotations are encoded in plain text files (UTF-8, using only the LF character 
   <li>ID: Word index, integer starting at 1 for each new sentence; may be a range for multiword tokens; may be a decimal number for empty nodes.</li>
   <li>FORM: Word form or punctuation symbol.</li>
   <li>LEMMA: Lemma or stem of word form.</li>
-  <li>UPOSTAG: <a href="u/pos/index.html">Universal part-of-speech tag</a>.</li>
-  <li>XPOSTAG: Language-specific part-of-speech tag; underscore if not available.</li>
+  <li>UPOS: <a href="u/pos/index.html">Universal part-of-speech tag</a>.</li>
+  <li>XPOS: Language-specific part-of-speech tag; underscore if not available.</li>
   <li>FEATS: List of morphological features from the <a href="u/feat/index.html">universal feature inventory</a> or from a defined <a href="ext-feat-index.html">language-specific extension</a>; underscore if not available.</li>
   <li>HEAD: Head of the current word, which is either a value of ID or zero (0).</li>
   <li>DEPREL: <a href="u/dep/index.html">Universal dependency relation</a> to the HEAD (<a href="u-dep/root">root</a> iff HEAD = 0) or a defined language-specific subtype of one.</li>
@@ -86,28 +92,28 @@ Annotations are encoded in plain text files (UTF-8, using only the LF character 
   <li>MISC: Any other annotation.</li>
 </ol>
 
-<p>The fields DEPS and MISC replace the obsolete fields PHEAD and PDEPREL of the CoNLL-X format. 
-In addition, we have modified the usage of the ID, FORM, LEMMA, XPOSTAG, FEATS and HEAD fields as explained below.</p>
+<p>The fields DEPS and MISC replace the obsolete fields PHEAD and PDEPREL of the CoNLL-X format.
+In addition, we have modified the usage of the ID, FORM, LEMMA, XPOS, FEATS and HEAD fields as explained below.</p>
 
 <p>The fields must additionally meet the following constraints:</p>
 
 <ul>
   <li>Fields must not be empty.</li>
   <li>Fields other than FORM and LEMMA must not contain space characters.</li>
-  <li>Underscore (_) is used to denote unspecified values in all fields except ID. Note that no format-level distinction is made for the rare cases where the FORM or LEMMA is the literal underscore – processing in such cases is application-dependent. Further, in UD treebanks the UPOSTAG, HEAD, and DEPREL columns are not allowed to be left unspecified.</li>
+  <li>Underscore (_) is used to denote unspecified values in all fields except ID. Note that no format-level distinction is made for the rare cases where the FORM or LEMMA is the literal underscore – processing in such cases is application-dependent. Further, in UD treebanks the UPOS, HEAD, and DEPREL columns are not allowed to be left unspecified.</li>
 </ul>
 
 <p>See the <a href="tools.html">tools page</a> for a list of tools that work with the CoNLL-U format. There is also a simple JavaScript-based <a href="conllu_viewer.html">CoNLL-U file viewer</a>.</p>
 
 <h1 id="words-tokens-and-empty-nodes">Words, Tokens and Empty Nodes</h1>
 
-<p>To accommodate the representation of both words and (multiword) tokens (see <a href="u/overview/tokenization.html">Tokenization and word segmentation</a>), 
-we adopt an extension of the original CoNLL-X token indexing scheme, where words are indexed with integers 1, 2, 3, …, 
-while (multiword) tokens are indexed with integer ranges like 1-2 or 3-5. 
+<p>To accommodate the representation of both words and (multiword) tokens (see <a href="u/overview/tokenization.html">Tokenization and word segmentation</a>),
+we adopt an extension of the original CoNLL-X token indexing scheme, where words are indexed with integers 1, 2, 3, …,
+while (multiword) tokens are indexed with integer ranges like 1-2 or 3-5.
 Lines representing such tokens are inserted before the first word in the range.
 These ranges must be nonempty and must not overlap.
 They have a FORM value – the string that occurs in the sentence – but have an underscore in all the remaining fields except MISC
-(because the token represents multiple words, each with its own lemma, part-of-speech tag, syntactic head, and so on). 
+(because the token represents multiple words, each with its own lemma, part-of-speech tag, syntactic head, and so on).
 This is illustrated in the following annotation snippet,
 showing only the first three fields for the Spanish sentence <em>vámonos al mar</em> (let’s go to the sea):</p>
 
@@ -117,7 +123,7 @@ showing only the first three fields for the Spanish sentence <em>vámonos al mar
 3-4    al        _
 3      a         a
 4      el        el
-5      mar       mar		
+5      mar       mar
 </code></pre></div></div>
 
 <p>We extract the word sequence by skipping all range IDs:</p>
@@ -126,14 +132,14 @@ showing only the first three fields for the Spanish sentence <em>vámonos al mar
 2      nos       nosotros
 3      a         a
 4      el        el
-5      mar       mar		
+5      mar       mar
 </code></pre></div></div>
 
 <p>We extract the raw token sequence by skipping all integer IDs that are included in a preceding range ID:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1-2    vámonos   _
 3-4    al        _
-5      mar       mar		
+5      mar       mar
 </code></pre></div></div>
 
 <p>To accommodate the use of empty nodes for the analysis of ellipsis in the enhanced dependency representation, we adopt
@@ -152,14 +158,14 @@ a further extension of the indexing scheme from v2. It is possible to insert one
 
 <h1 id="morphological-annotation">Morphological Annotation</h1>
 
-<p>The UPOSTAG field contains a part-of-speech tag from the <a href="u/pos/index.html">universal POS tag</a> set, while the XPOSTAG optionally contains a language-specific part-of-speech tag, normally from a traditional, more fine-grained tagset. If the XPOSTAG field is used, the treebank-specific documentation should define a mapping from XPOSTAG to UPOSTAG values (which may be context-sensitive 
-and refer to other fields as well). If no language-specific tags are available, the XPOSTAG field should contain an underscore for all words.</p>
+<p>The UPOS field contains a part-of-speech tag from the <a href="u/pos/index.html">universal POS tag</a> set, while the XPOS optionally contains a language-specific part-of-speech tag, normally from a traditional, more fine-grained tagset. If the XPOS field is used, the treebank-specific documentation should define a mapping from XPOS to UPOS values (which may be context-sensitive
+and refer to other fields as well). If no language-specific tags are available, the XPOS field should contain an underscore for all words.</p>
 
 <p>The FEATS field contains a list
 of morphological features, with vertical bar (|) as list separator and with underscore to represent the empty list.
 All features should be represented as attribute-value pairs, with an equals sign (=) separating the attribute from the value. In addition, features should as far as possible be selected from the <a href="u/feat/index.html">universal feature inventory</a> and be sorted alphabetically by attribute names. It is possible to declare that a feature has two or more values for a given word: <code class="highlighter-rouge">Case=Acc,Dat</code>. In this case, the values are sorted alphabetically. In sorting, uppercase letters are considered identical to their lowercase counterparts. Feature names must have the form <code class="highlighter-rouge">[A-Z0-9][A-Z0-9a-z]*(\[[a-z0-9]+\])?</code> and feature values must have the form <code class="highlighter-rouge">[A-Z0-9][a-zA-Z0-9]*</code>.</p>
 
-<p>Here is an example, showing only the first five fields for the 
+<p>Here is an example, showing only the first five fields for the
 Swedish sentence <em>Då var han elva år</em> (Then he was eleven years old):</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1    Då      då     ADV      AB                    _
@@ -170,12 +176,12 @@ Swedish sentence <em>Då var han elva år</em> (Then he was eleven years old):</
 6    .       .      PUNCT    DL.MAD                _
 </code></pre></div></div>
 
-<p>Morphological annotation is only provided for words. 
-Tokens that are not words have an underscore in the UPOSTAG, XPOSTAG and FEATS fields.</p>
+<p>Morphological annotation is only provided for words.
+Tokens that are not words have an underscore in the UPOS, XPOS and FEATS fields.</p>
 
 <h1 id="syntactic-annotation">Syntactic Annotation</h1>
 
-<p>The HEAD and DEPREL fields are used to encode a dependency tree over words. The DEPREL value should be a <a href="u/dep/index.html">universal dependency relation</a> or a language-specific subtype of such a relation (defined in the language-specific documentation). 
+<p>The HEAD and DEPREL fields are used to encode a dependency tree over words. The DEPREL value should be a <a href="u/dep/index.html">universal dependency relation</a> or a language-specific subtype of such a relation (defined in the language-specific documentation).
 As in the case of morphology, syntactic annotation is only provided for words, and
 tokens that are not words have an underscore in both the HEAD and DEPREL fields.</p>
 
@@ -191,7 +197,7 @@ Before uncommenting this part, we may want to use an example from another langua
     4     a         a      DET     DT    Definite=Ind|PronType=Art         5   det
     5     clue      clue   NOUN    NN    Number=Sing                       2   obj
     6     .         .      PUNCT   .     _                                 2   punct
- 
+
 We can extract the following approximation at the token level (with token indexing):
 
     1     I         I      PRON    PRP   Case=Nom|Number=Sing|Person=1                  2   nsubj
@@ -220,7 +226,7 @@ Certain extensions of this basic format will be allowed in DEPS but not in DEPRE
 <h1 id="miscellaneous">Miscellaneous</h1>
 
 <p>The final MISC field is for storing any additional information that does not fit into any of the other fields, such as language-specific annotation, any information about other linguistic levels such as discourse,
-or projective heads and dependency relations (cf. the old PHEAD and PDEPREL fields of 
+or projective heads and dependency relations (cf. the old PHEAD and PDEPREL fields of
 the CoNLL-X format). The exact format used in this field should be specified in the
 treebank-specific documentation, but it has to be formatted as a list that can be split on the bar character (|)
 without special escaping. If the MISC field is not used, it should contain an underscore.</p>
@@ -303,7 +309,7 @@ Empty sentences are not allowed.</p>
 <p>Example:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># sent_id = 1
-# text = They buy and sell books. 
+# text = They buy and sell books.
 1   They     they    PRON    PRP    Case=Nom|Number=Plur               2   nsubj   2:nsubj|4:nsubj   _
 2   buy      buy     VERB    VBP    Number=Plur|Person=3|Tense=Pres    0   root    0:root            _
 3   and      and     CONJ    CC     _                                  4   cc      4:cc              _
