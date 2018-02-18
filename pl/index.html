@@ -119,6 +119,7 @@ Another auxiliary, <em>zostać</em> “become” (and its habitual version <em>z
       <li>Verbal noun <code class="highlighter-rouge">Vnoun</code> (a gerund), tagged <a href="">NOUN</a>.</li>
     </ul>
   </li>
+  <li>Inherently impersonal forms ending in <em>-no/-to</em> (a specialty of Polish and Ukrainian) are marked as finite verbs with <code class="highlighter-rouge">Person=0</code> (and <code class="highlighter-rouge">Tense=Past</code>).</li>
 </ul>
 
 <h3 id="nominal-features">Nominal Features</h3>
@@ -143,6 +144,26 @@ It can occur with de-verbal forms but only with those tagged as <code class="hig
   <li><a href="">Polite</a> is used in Polish as a nominal feature, with the language-specific value <code class="highlighter-rouge">Depr</code> in case of special derogatory forms of some human masculine nouns, e.g., <em>profesory</em> “professors (derogatory)”, as opposed to <em>profesorowie</em> “professors (neutral)”.</li>
 </ul>
 
+<h3 id="pronouns-determiners-numerals">Pronouns, Determiners, Numerals</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>), as well as with the word <em>co</em> when it plays the dual role of a complementiser (<a href="">SCONJ</a>) introducing a special kind of relative clause (one that may involve resumptive pronouns).</li>
+  <li><a href="">NumType</a> (<code class="highlighter-rouge">Card</code> or <code class="highlighter-rouge">Frac</code>) is used with numerals (<a href="">NUM</a>) and determiners (<a href="">DET</a>).</li>
+  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>mój</em> “my”).</li>
+  <li>The <a href="">Reflex</a> feature marks so-called reflexive pronouns <em>(się, sobie)</em> and determiners <em>(swój)</em>, even when they are not used reflexively.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="highlighter-rouge">1</code>, <code class="highlighter-rouge">2</code> and <code class="highlighter-rouge">3</code>.
+With personal possessive determiners (<a href="">DET</a>), the feature actually encodes the person of the possessor.
+Person is not marked on other types of pronouns and on nouns, although they can be almost always interpreted as the 3rd person.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
+  <li>A <a href="../../u/overview/feat-layers.html">layered feature</a>, <a href="">Number[psor]</a>,
+appears with certain possessive determiners and encodes the lexical number of the possessor.
+The extra layer is needed to distinguish this lexical number from the inflectional number
+that marks agreement with the modified (possessed) noun.</li>
+</ul>
+
 <h3 id="degree-and-polarity">Degree and Polarity</h3>
 
 <ul>
@@ -158,11 +179,9 @@ It can occur with de-verbal forms but only with those tagged as <code class="hig
 <h3 id="verbal-features">Verbal Features</h3>
 
 <ul>
-  <li>Verbs have a lexical <a href="">Aspect</a>, either imperfective (<code class="highlighter-rouge">Imp</code>) or perfective (<code class="highlighter-rouge">Perf</code>). A few verbs are biaspectual and they lack the <code class="highlighter-rouge">Aspect</code>
-feature. Some imperfective verbs could be further classified as iteratives but they are not marked as such (although UD provides <code class="highlighter-rouge">Aspect=Iter</code>).
+  <li>Typical Polish verbs (including auxiliaries) have lexical <a href="">Aspect</a>, either imperfective (<code class="highlighter-rouge">Imp</code>) or perfective (<code class="highlighter-rouge">Perf</code>). There is, however, a class of verb-like words, marked as <a href="">VERB</a> with the universal <code class="highlighter-rouge">VerbType</code> feature with the language-specific <code class="highlighter-rouge">Quasi</code> value, which do not inflect for person and do not have aspect.
     <ul>
-      <li>The <code class="highlighter-rouge">Aspect</code> feature should be also used with the corresponding derived nouns and adjectives (participles), if they have the
-<code class="highlighter-rouge">VerbForm</code> feature.</li>
+      <li>The <code class="highlighter-rouge">Aspect</code> feature is also used with the corresponding derived nouns (gerunds) and adjectives (participles), if they have the <code class="highlighter-rouge">VerbForm</code> feature.</li>
     </ul>
   </li>
   <li>Finite verbs always have one of three values of <a href="">Mood</a>: <code class="highlighter-rouge">Ind</code>, <code class="highlighter-rouge">Imp</code> or <code class="highlighter-rouge">Cnd</code>. The conditional mood is only used with conditional
@@ -174,52 +193,37 @@ Hence both <em>idę do domu</em> “I am going home” and <em>przyjdę do domu<
 On the other hand, a few imperfective verbs can form a genuine future form using prefixes, and they are marked <code class="highlighter-rouge">Tense=Fut</code>:
 <em>pójdę do domu</em> “I will go home”.
     <ul>
-      <li>Imperative and conditional forms do not have the <code class="highlighter-rouge">Tense</code> feature (note that past and present conditionals are distinguished
-analytically).</li>
+      <li>Imperative and conditional forms do not have the <code class="highlighter-rouge">Tense</code> feature (note that past and present conditionals are distinguished analytically).</li>
       <li>The <code class="highlighter-rouge">Tense</code> feature is also used to distinguish present and past converbs (<em>robiąc</em> “while doing” vs. <em>zrobiwszy</em> “having done”),
 and present and past participles (<em>robiący</em> “doing” vs. <em>zrobiwszy</em> “having done”).
 The l-participle (tagged <code class="highlighter-rouge">VERB</code> or <code class="highlighter-rouge">AUX</code>) also has <code class="highlighter-rouge">Tense=Past</code> because its primary function is to form the past tense.
 The passive participle does not have the <code class="highlighter-rouge">Tense</code> feature.</li>
     </ul>
   </li>
-  <li>There are two values of the <a href="">Voice</a> feature: <code class="highlighter-rouge">Act</code> and <code class="highlighter-rouge">Pass</code>. Only the passive participle has <code class="highlighter-rouge">Voice=Pass</code>. All other verb forms have
-<code class="highlighter-rouge">Voice=Act</code>.</li>
-</ul>
-
-<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
-
-<ul>
-  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
-  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>), adjectives (<a href="">ADJ</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
-  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>mój</em> “my”).</li>
-  <li>The <a href="">Reflex</a> feature marks reflexive pronouns <em>(się, sobie)</em> and determiners <em>(swój)</em>.
-In Polish it is always used together with <code class="highlighter-rouge">PronType=Prs</code>.</li>
-  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="highlighter-rouge">1</code>, <code class="highlighter-rouge">2</code> and <code class="highlighter-rouge">3</code>.
-With personal possessive determiners (<a href="">DET</a>), the feature actually encodes the person of the possessor.
-Person is not marked on other types of pronouns and on nouns, although they can be almost always interpreted as the 3rd person.
-    <ul>
-      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
-    </ul>
-  </li>
-  <li>A <a href="../../u/overview/feat-layers.html">layered feature</a>, <a href="">Number[psor]</a>,
-appears with certain possessive determiners and encodes the lexical number of the possessor.
-The extra layer is needed to distinguish this lexical number from the inflectional number
-that marks agreement with the modified (possessed) noun.</li>
+  <li>There are two values of the <a href="">Voice</a> feature: <code class="highlighter-rouge">Act</code> and <code class="highlighter-rouge">Pass</code>. Only the passive participle has <code class="highlighter-rouge">Voice=Pass</code>. All other verb forms have <code class="highlighter-rouge">Voice=Act</code>.</li>
 </ul>
 
 <h3 id="other-features">Other Features</h3>
 
 <ul>
-  <li>Besides the layered features listed above, there are several other language-specific features:
+  <li>Other universal features used in Polish include:
     <ul>
-      <li><a href="">AdpType</a></li>
-      <li><a href="">Hyph</a></li>
-      <li><a href="">PrepCase</a></li>
-      <li><a href="">Variant</a> … distinguishes short and long forms of adjectives, a Slavic-wide phenomenon</li>
-      <li><a href="">Typo</a></li>
+      <li><a href="">AdpType</a> – almost always <code class="highlighter-rouge">Prep</code>, but in the case of the adposition <em>temu</em> “ago” it is <code class="highlighter-rouge">Post</code>.</li>
+      <li><a href="">Hyph</a> – marks forms such as <em>biało</em> “white” in <em>biało-czerwony</em> “white-and-red”.</li>
+      <li><a href="">PartType</a> – used (as of release 2.2, only in the <a href="http://universaldependencies.org/treebanks/pl_lfg/index.html">LFG</a> treebank) only to mark question particles (<code class="highlighter-rouge">Int</code>).</li>
+      <li><a href="">PrepCase</a> – distinguishes those pronominal forms which may only occur as dependents of prepositions (<code class="highlighter-rouge">Pre</code>) from those which may only occur in other contexts (<code class="highlighter-rouge">Npr</code>).</li>
+      <li><a href="">PunctSide</a> and <a href="">PunctType</a></li>
+      <li><a href="">Typo</a> – marks typos (as of release 2.2, only used in the <a href="http://universaldependencies.org/treebanks/pl/index.html">Original</a> treebank).</li>
     </ul>
   </li>
-  <li>The following universal features are not used in Polish: <a href="">Definite</a>, <a href="">Evident</a>, <a href="">Polite</a>.</li>
+  <li>The following universal features are not used in Polish: <a href="">Definite</a>, <a href="">Evident</a>.</li>
+  <li>Apart from <a href="">SubGender</a>, other language-specific features include:
+    <ul>
+      <li><a href="">Agglutination</a> – distinguishes these rare situation where the l-participle has different forms depending on whether the “mobile inflection” auxiliary attaches to it or not, e.g., <em>on mógł</em> “he could” (<code class="highlighter-rouge">Agglutination=Nagl</code>) vs. <em>mogł</em> in <em>ja mogłem</em> “I could” (<code class="highlighter-rouge">Agglutination=Agl</code>); as of release 2.2, only used in the <a href="http://universaldependencies.org/treebanks/pl_lfg/index.html">LFG</a> treebank).</li>
+      <li><a href="">Emphatic</a> – present on those traditional pronouns (hence, various parts of speech here) which include the emphatic particle <em>ż(e)</em>, e.g., <em>co</em> “what” (neutral) vs. <em>cóż</em> “what” (emphatic); as of release 2.2, only used in the <a href="http://universaldependencies.org/treebanks/pl_lfg/index.html">LFG</a> treebank).</li>
+      <li><a href="">Variant</a> – distinguishes short and long forms of adjectives, a Slavic-wide phenomenon; in Polish also used to distinguish basic from vocalised versions of some pronouns (e.g., <em>z</em> vs. <em>ze</em> “from”), basic from vocalised versions of the “mobile inflection” auxiliary (e.g., <em>m</em> from <em>em</em>), and short (not accentable) from long (accentable) forms of some pronouns.</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="syntax">Syntax</h2>
