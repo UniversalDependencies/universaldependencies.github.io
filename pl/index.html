@@ -64,6 +64,8 @@
      If we agree on a scheme like this, the old proposal should be updated and made visible in the “How to Contribute” section;
      right now it is probably not linked from anywhere. -->
 
+<p><strong>ATTENTION: This page is currently (as of 18 February 2018) being revised, so it may be in an inconsistent state at the moment.  Please come back later.</strong></p>
+
 <h1 id="ud-for-polish-">UD for Polish <span class="flagspan"><img class="flag" src="../../flags/svg/PL.svg" /></span></h1>
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
@@ -90,7 +92,7 @@
   <li>Pronouns (<a href="">PRON</a>) are here understood as personal pronouns, so-called reflexive pronouns (also in their non-reflexive and – generally – non-pronominal uses), and such nominal pronouns as <em>kto</em> “who”, <em>nic</em> “nothing” and <em>wszyscy</em> “everybody”.</li>
   <li>As Polish grammars do not include a separate part of speech <em>determiner</em>, the <a href="">DET</a> class is based on a word list and includes words treated by standard Polish tagsets as adjectives, numerals or even nouns:
     <ul>
-      <li>determiners treated elsewhere as adjectives inlclude possessive pronouns, as well as words such as <em>ten</em> “this”, <em>każdy</em> “each”, <em>taki</em> “such”, <em>którykolwiek</em> “whichever”, etc.,</li>
+      <li>determiners treated elsewhere as adjectives include possessive pronouns, as well as words such as <em>ten</em> “this”, <em>każdy</em> “each”, <em>taki</em> “such”, <em>którykolwiek</em> “whichever”, etc.,</li>
       <li>determiners treated elsewhere as numerals include indefinite numerals (e.g., <em>wiele</em> “many”, <em>niedużo</em> “not much, not many”, <em>kilka</em> “several”), as well as fractional numerals such as <em>pół</em> “half”,</li>
       <li>one determiner treated elsewhere as a noun is <em>mnóstwo</em> “a lot”.</li>
     </ul>
@@ -112,7 +114,7 @@ Another auxiliary, <em>zostać</em> “become” (and its habitual version <em>z
     <ul>
       <li>Infinitive <code class="highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
       <li>Finite verb <code class="highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
-      <li>Converb <code class="highlighter-rouge">Conv</code> (an adverbial participle), tagged <a href="">VERB</a>.</li>
+      <li>Converb <code class="highlighter-rouge">Conv</code> (an adverbial participle), tagged <a href="">VERB</a> or (in principle, but not in release 2.2) <a href="">AUX</a>.</li>
       <li>Participle <code class="highlighter-rouge">Part</code> (an adjectival participle), tagged <a href="">ADJ</a>.</li>
       <li>Verbal noun <code class="highlighter-rouge">Vnoun</code> (a gerund), tagged <a href="">NOUN</a>.</li>
     </ul>
@@ -122,28 +124,20 @@ Another auxiliary, <em>zostać</em> “become” (and its habitual version <em>z
 <h3 id="nominal-features">Nominal Features</h3>
 
 <ul>
-  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with one of three values: <code class="highlighter-rouge">Masc</code>, <code class="highlighter-rouge">Fem</code> or <code class="highlighter-rouge">Neut</code>.
-In some cases the masculine gender is further subclassified by the <a href="">Animacy</a> values <code class="highlighter-rouge">Hum</code>, <code class="highlighter-rouge">Nhum</code> and <code class="highlighter-rouge">Inan</code>.
-Feminine and neuter nominals do not distinguish animacy grammatically.
+  <li>Nouns words (<a href="">NOUN</a> and <a href="">PROPN</a>) have an inherent <a href="">Gender</a> feature.  Five genders are standardly assumed in Polish linguistics (and in Polish tagsets): three masculine, one feminine and one neuter.  The three masculine genders are often called “human masculine”, “animate masculine” and “inanimate masculine”, but the correlation with the semantic animacy feature is far from perfect.  In particular, there are many “animate masculine” semantically inanimate nouns (including all masculine names of dances, and many more), as well as “animate masculine” nouns which are, semantically, human and feminine (some derogatory nouns for women, e.g., <em>babsztyl</em>) or which are human and no longer animate (<em>trup</em> “corpse”).  For the sake of cross-linugal consistency, three values are assume for the <code class="highlighter-rouge">Gender</code> feature, i.e., <code class="highlighter-rouge">Masc</code>, <code class="highlighter-rouge">Fem</code> and <code class="highlighter-rouge">Neut</code>, but there must be another feature which distinguishes the three masculine genders.
     <ul>
-      <li>The following parts of speech inflect for <code class="highlighter-rouge">Gender</code> and <code class="highlighter-rouge">Animacy</code> because they must agree with nouns: <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>,
-<a href="">VERB</a>, <a href="">AUX</a>. For verbs (including auxiliaries), only participles and converbs inflect for gender. Finite verbs don’t.</li>
+      <li>In the <a href="http://universaldependencies.org/treebanks/pl/index.html">Original</a> treebank, the masculine gender is further subclassified by the <a href="">Animacy</a> values <code class="highlighter-rouge">Hum</code>, <code class="highlighter-rouge">Nhum</code> and <code class="highlighter-rouge">Inan</code>.</li>
+      <li>In the <a href="http://universaldependencies.org/treebanks/pl_lfg/index.html">LFG</a> treebank, the masculine gender is further subclassified by the language-specific <a href="">SubGender</a> feature with values <code class="highlighter-rouge">Masc1</code>, <code class="highlighter-rouge">Masc2</code> and <code class="highlighter-rouge">Masc3</code>.</li>
+      <li>The following parts of speech in general inflect for gender (they agree with nouns): <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>, <a href="">PRON</a>, <a href="">VERB</a>, <a href="">AUX</a>. In the case of pronouns, only personal pronouns inflect for gender; other nominal pronouns (as well as the nominal determiner <em>wszyscy</em> “everybody”) have this feature defined lexically, and so-called reflexive pronouns lack this feature altogether.  In the case of tokens tagged as <code class="highlighter-rouge">VERB</code> or <code class="highlighter-rouge">AUX</code>, only past forms of finite verbs overtly inflect for gender.</li>
     </ul>
   </li>
-  <li>The two main values of the <a href="">Number</a> feature are <code class="highlighter-rouge">Sing</code> and <code class="highlighter-rouge">Plur</code>. The following parts of speech inflect for number:
-<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite, participles and converbs), marginally <a href="">NUM</a>.
-    <ul>
-      <li>Remnants of the <code class="highlighter-rouge">Dual</code> number occur only in the instrumental <a href="">Case</a> of a few nouns and all the agreeing parts of speech.</li>
-      <li>Selected nouns are plurale tantum (<code class="highlighter-rouge">Ptan</code>) or singulare tantum (<code class="highlighter-rouge">Coll</code>). These two values are lexical and cannot be used with
-the agreeing adjectives, determiners or verbs. They also never occur with pronouns.</li>
-    </ul>
-  </li>
+  <li>The two values of the <a href="">Number</a> feature are <code class="highlighter-rouge">Sing</code> and <code class="highlighter-rouge">Plur</code>. The following parts of speech inflect for number:
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a> (only finite verbs and auxiliaries).</li>
   <li><a href="">Case</a> has 7 possible values: <code class="highlighter-rouge">Nom</code>, <code class="highlighter-rouge">Gen</code>, <code class="highlighter-rouge">Dat</code>, <code class="highlighter-rouge">Acc</code>, <code class="highlighter-rouge">Voc</code>, <code class="highlighter-rouge">Loc</code>, <code class="highlighter-rouge">Ins</code>.
 It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>.
-It can occur with participles but only with those tagged as <code class="highlighter-rouge">ADJ</code>. It never occurs with verbs.
+It can occur with de-verbal forms but only with those tagged as <code class="highlighter-rouge">ADJ</code> (adjectival participles) or <code class="highlighter-rouge">NOUN</code> (gerunds).  It never occurs with purely verbal forms.
     <ul>
-      <li>The <code class="highlighter-rouge">Case</code> feature also occurs with prepositions (<a href="">ADP</a>). Here it is a lexical feature. Prepositions do not inflect for case
-but they subcategorize for the case of their noun phrase.</li>
+      <li>Some tagsets also include <code class="highlighter-rouge">Case</code> as a feature of prepositions (<a href="">ADP</a>), although in this case it is a valency feature.  As such, as of release 2.2, it is only present in the MISC column in the <a href="http://universaldependencies.org/treebanks/pl_lfg/index.html">LFG</a> treebank (but still in the FEATS column in the <a href="http://universaldependencies.org/treebanks/pl/index.html">Original</a> treebank).</li>
     </ul>
   </li>
 </ul>
