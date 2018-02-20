@@ -113,10 +113,17 @@ so that your treebank works well with our infrastructure and can be released.</p
 
 <h1 id="repository-and-files">Repository and files</h1>
 
-<p>Every language has its own GitHub repository called <code class="highlighter-rouge">UD_Language</code>, where <code class="highlighter-rouge">Language</code> is the name of the language. For example, the repository for Finnish is called <code class="highlighter-rouge">UD_Finnish</code>. If your repository does not exist yet, get in touch with us (see above). Some languages have more than one treebank and the additional treebanks have their own repositories with a <code class="highlighter-rouge">-Treebank</code> identifier after the language name. For example, <code class="highlighter-rouge">UD_Finnish-FTB</code> is the repository for the FinnTreeBank, while the plain <code class="highlighter-rouge">UD_Finnish</code> holds the Turku Dependency Treebank.</p>
+<p>Every treebank has its own GitHub repository called <code class="highlighter-rouge">UD_Language-Treebank</code>, where <code class="highlighter-rouge">Language</code> is the name of the language and
+<code class="highlighter-rouge">Treebank</code> is a unique identifier of a treebank within a language. For example, <code class="highlighter-rouge">UD_Finnish-TDT</code> and <code class="highlighter-rouge">UD_Finnish-FTB</code> are repositories
+of two different treebanks of Finnish: <code class="highlighter-rouge">TDT</code> stands for “Turku Dependency Treebank”, and <code class="highlighter-rouge">FTB</code> stands for “FinnTreeBank”.
+If treebanks in different languages are strongly related (especially if they are parallel translations of the same text),
+it is desirable that they have the same treebank identifier. For example, <code class="highlighter-rouge">UD_English-LinES</code> and <code class="highlighter-rouge">UD_Swedish-LinES</code> are two halves
+of an English-Swedish parallel treebank. On the other hand, it is allowed that two unrelated treebanks in different languages have
+identical identifiers simply by chance. For example, <code class="highlighter-rouge">UD_French-FTB</code> (standing for “French TreeBank”) uses the identifier <code class="highlighter-rouge">FTB</code>
+although it is not related to FinnTreeBank.</p>
 
-<p>Every treebank repository should contain the following files (where <code class="highlighter-rouge">xx</code> is the ISO code for the given language;
-if this is not the first treebank for the language, use <code class="highlighter-rouge">xx_y</code> instead, where <code class="highlighter-rouge">y</code> is the lowercased treebank identifier).
+<p>Every treebank repository should contain the following files (where <code class="highlighter-rouge">xx</code> is the ISO code for the given language,
+and <code class="highlighter-rouge">y</code> is the lowercased treebank identifier). For example, <code class="highlighter-rouge">fi_tdt</code> is the code used in the Turku Dependency Treebank of Finnish.
 Small treebanks may have just the test file but no training and development data; see below for
 more detailed recommendations for train-dev-test data splits.</p>
 
