@@ -1446,15 +1446,28 @@ iobj(izprati, rabotnika)
 case(rabotnika, na)
 </code></pre>
 
+<h2 id="reflexives">Reflexives</h2>
+
 <p>The expletive relation is also used for reflexive pronouns (see the feature <a href="">u-feat/Reflex</a>)
 attached to inherently reflexive verbs, i.e. verbs that cannot occur without the reflexive
 pronoun and thus the pronoun does not play the role of a normal object
-(otherwise it would be possible to substitute it with an irreflexive pronoun or other nominal).
-A Czech example:</p>
+(otherwise it would be possible to substitute it with an irreflexive pronoun or other nominal).</p>
+
+<p>UD recognizes several functions of reflexive pronouns (clitics) that are usually distinguished with the help of subtypes
+of the <code class="highlighter-rouge">expl</code> relation (see also the report from the <a href="/2015-08-23-uppsala/clitics.html">2015 Uppsala discussion of clitics</a> where
+this approach was approved):</p>
+
+<ul>
+  <li><a href="">expl:pv</a> for reflexive clitics attached to inherently reflexive verbs (also called pronominal verbs in some grammars)</li>
+  <li><a href="">expl:pass</a> for reflexive clitics attached to transitive verbs and acting as a voice marker (passive or mediopassive)</li>
+  <li><a href="">expl:impers</a> for impersonal usage (works also with intransitive verbs)</li>
+</ul>
+
+<p>A Czech example:</p>
 
 <pre><code class="language-sdparse">Martin se bojí zvířat . \n Martin REFLEX fears animals .
-expl(bojí, se)
-expl(fears, REFLEX)
+expl:pv(bojí, se)
+expl:pv(fears, REFLEX)
 </code></pre>
 
 <p>Further general discussion of expletives can be found in Postal, P. M., and G. K. Pullum (1988) “Expletive Noun Phrases in Subcategorized Positions,” <em>Linguistic Inquiry</em> 19(4): 635–670. The status of clitic doubling, and arguments for the lexical nominal being an argument with the clitic a kind of pronominal copy, appear inter alia in Boris Harizanov (2014) <a href="http://stanford.edu/~bharizan/pdfs/Harizanov_2014_NLLT.pdf">Clitic doubling at the syntax-morphology interface: A-movement and morphological merger in Bulgarian</a>. <em>Natural Language and Linguistic Theory</em>.</p>
