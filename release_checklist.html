@@ -418,12 +418,19 @@ $ python validate.py -h
 </code></pre></div></div>
 
 <p>Among other items, the script also validates the language-specific set
-of tags and relations and therefore it needs to know about these. The
-language-specific lists are stored in <code class="highlighter-rouge">data/deprel.xx</code>
-(language-specific relations) and <code class="highlighter-rouge">data/feat_val.xx</code>
-(language-specific features). In addition <code class="highlighter-rouge">data/*.ud</code> stores the UD
-taglists. Before you can validate data for a given language, you need to
-produce and commit the necessary tag lists and add them to the
+of morphological features and relations and therefore it needs to know about these. The
+language-specific lists are stored in:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">data/feat_val.xx</code> (language-specific feature-value pairs)</li>
+  <li><code class="highlighter-rouge">data/deprel.xx</code> (language-specific relations valid in the <em>basic representation,</em> i.e., the DEPREL column)</li>
+  <li><code class="highlighter-rouge">data/edeprel.xx</code> (additional language-specific relations that are valid <em>only</em> in the <em>enhanced representation,</em> i.e., the DEPS column;
+do not put these in <code class="highlighter-rouge">deprel.xx</code>!)</li>
+</ul>
+
+<p>In addition <code class="highlighter-rouge">data/*.ud</code> stores the UD POS tags, features and relations.
+Before you can validate data for a given language, you need to
+produce and commit the necessary label lists and add them to the
 repository:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git add data/deprel.xx data/feat_val.xx
