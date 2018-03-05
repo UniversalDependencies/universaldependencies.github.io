@@ -444,6 +444,22 @@ types, <code class="highlighter-rouge">deprel.fi</code> and <code class="highlig
 beginning the UD policy is that all treebanks of one language adhere to the same language-specific
 guidelines. Therefore, all Finnish treebanks must now validate according to <code class="highlighter-rouge">deprel.fi</code>.</p>
 
+<p>If there are no label lists for the language yet, it is possible to create the initial lists
+by collecting labels from the data. However, such lists must be carefully examined by a human
+before they are deployed! Obviously it would not make sense to look for erroneous labels in the
+data using label lists based on the same data. Here is an example of a Bash command that collects
+the language-specific relation subtypes from the DEPREL column:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat pl_lfg-ud-*.conllu | grep -P '^\d+\t' | cut -f8 | sort -u | grep ':'
+</code></pre></div></div>
+
+<p>Here is an example of a Bash (+Perl) command that collects the relations from the DEPS column.
+Note that it cannot know which subtypes are also allowed in the DEPREL column and which are
+used only in the enhanced representation. Only the latter should be listed in <code class="highlighter-rouge">edeprel.xx</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat pl_lfg-ud-*.conllu | perl -CDS -e 'while(&lt;&gt;) { if(m/^[\d\.]+\t/) { @f=split(/\t/); @d=split(/\|/, $f[8]); foreach my $d (@d) { $d =~ s/^\d+://; $h{$d}++ } } } @k=sort(keys(%h)); foreach my $k (@k) { print $k, "\n"; }' | grep ':'
+</code></pre></div></div>
+
 <p>Since the <code class="highlighter-rouge">v2.0</code> release, whitespace is allowed in the <code class="highlighter-rouge">FORM</code> and <code class="highlighter-rouge">LEMMA</code> fields under conditions
 specified <a href="v2/segmentation.html">here</a>. This is supported in the validator through the UD-wide
 file <code class="highlighter-rouge">data/tokens_w_space.ud</code> and its language-specific variants <code class="highlighter-rouge">data/tokens_w_space.xx</code>. In
