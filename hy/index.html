@@ -77,6 +77,7 @@
 
 <p>This is an overview only. For more detailed discussion and examples, see the list of <a href="pos/index.html">Armenian POS tags</a>
 and <a href="feat/index.html">Armenian features</a>.</p>
+
 <ul>
   <li>Armenian uses all 17 universal POS categories, including particles (<a href="">PART</a>). The exact list of particles yet to be worked out.</li>
   <li>The tag <a href="">DET</a> is used for articles and pronominal words used with a determiner function, including possessives (the traditional grammar does not define determiners, but distinguish pronominal modifiers). The tag <a href="">PRON</a> is reserved for pronouns occurring as the head of a noun phrase. Pronominal quantifiers (which the traditional grammar includes in pronouns) are <a href="">DET</a> as well.</li>
@@ -94,7 +95,7 @@ Auxiliaries are all verbal in Eastern Armenian and can be grouped into three typ
       <li>Periphrastic causative (any form of <em>տալ</em>, including periphrastic forms, + infinitve of the main verb).</li>
     </ul>
   </li>
-  <li>In other words, <em>եմ, լինել</em> and <em>տալ</em> are the only lemmas that occur with the <a href="">AUX</a> tag (exception: finite existentials <em>կամ</em> and <em>ունեմ</em> in combination with resultative participle).
+  <li>In other words, <em>եմ, լինել</em> and <em>տալ</em> are the only lemmas that occur with the <a href="">AUX</a> tag (Exception: finite existentials <em>կամ</em> and <em>ունեմ</em> in combination with resultative participle).
 They may still occur also as normal <a href="">VERB</a> if they are used in purely existential sentences
 (i.e. such that don’t even indicate location because if they do, then <em>եմ</em> is treated as copula).</li>
   <li>Verbs with modal meaning are not considered auxiliary in Armenian.</li>
@@ -120,19 +121,19 @@ They may still occur also as normal <a href="">VERB</a> if they are used in pure
     <ul>
       <li>Selected nouns are plurale tantum (<code class="highlighter-rouge">Ptan</code>) or singulare tantum (<code class="highlighter-rouge">Coll</code>). These two values are lexical, and cannot be used with
 the agreeing verbs. They also never occur with pronouns. (<code class="highlighter-rouge">Coll</code>) occurs with gerundives.</li>
-      <li>There is a language-specific value <code class="highlighter-rouge">Assoc</code> (associative plural). This is also lexical. Only two pronouns (<em>մերոնք, ձերոնք</em>) are associative.</li>
+      <li>There is a language-specific value <code class="highlighter-rouge">Assoc</code> (associative plural). This is also lexical and occurs with <code class="highlighter-rouge">NOUN</code> and <code class="highlighter-rouge">PROPN</code>. Only two pronouns (<em>մերոնք, ձերոնք</em>) are associative.</li>
     </ul>
   </li>
   <li><a href="">Case</a> has 6 possible values: <code class="highlighter-rouge">Nom</code>, <code class="highlighter-rouge">Gen</code>, <code class="highlighter-rouge">Dat</code>, <code class="highlighter-rouge">Abl</code>, <code class="highlighter-rouge">Ins</code>, <code class="highlighter-rouge">Loc</code>.
 It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">DET</a>. Note, that <code class="highlighter-rouge">Gen</code> occurs only with pronouns and determiners.
 It can also occur with gerundives (they are tagged as <code class="highlighter-rouge">VERB</code>).
     <ul>
-      <li>The <code class="highlighter-rouge">Case</code> feature also occurs with some of adpositions, with “locatives” (<a href="">ADP</a>). Here it is an inflectional feature.</li>
+      <li>The <code class="highlighter-rouge">Case</code> feature also occurs with some of adpositions, subclassified as “locatives” (<a href="">ADP</a>). Here it is an inflectional feature.</li>
     </ul>
   </li>
   <li>The two main values of the <a href="">Definite</a> feature are <code class="highlighter-rouge">Def</code> and <code class="highlighter-rouge">Ind</code>. The following parts of speech inflect for definitness:
-<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">DET</a>.</li>
-  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and some of adverbs (<a href="">ADV</a>) and has one of four possible values: <code class="highlighter-rouge">Pos</code>, <code class="highlighter-rouge">Cmp</code>, <code class="highlighter-rouge">Sup</code>, <code class="highlighter-rouge">Abs</code>.</li>
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">DET</a>. With gerundives, resultative and subject participles the feature sometimes encodes the person/deixis of the possessor, although they can be almost interpreted as the 3rd person or distal deixis. We mark them as <code class="highlighter-rouge">Def</code>.</li>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and some adverbs (<a href="">ADV</a>) and has one of four possible values: <code class="highlighter-rouge">Pos</code>, <code class="highlighter-rouge">Cmp</code>, <code class="highlighter-rouge">Sup</code>, <code class="highlighter-rouge">Abs</code>.</li>
 </ul>
 
 <h3 id="verbal-features">Verbal Features</h3>
@@ -151,10 +152,7 @@ It can also occur with gerundives (they are tagged as <code class="highlighter-r
       <li>The negated conditional mood is only used with indicative auxiliaries <em>(եմ, էի)</em>. The connegative of the main verb, that is needed to form a periphrastic negated conditional, is also marked with this feature.</li>
     </ul>
   </li>
-  <li>Verbs in indicative mood always have one of three values of <a href="">Tense</a>: <code class="highlighter-rouge">Past</code>, <code class="highlighter-rouge">Pres</code> or <code class="highlighter-rouge">Imp</code>.
-Hence both <em>jdu domů</em> “I am going home” and <em>přijdu domů</em> “I will come home” end up marked as <code class="highlighter-rouge">Tense=Pres</code>.
-On the other hand, a few imperfective verbs can form a genuine future form using prefixes, and they are marked <code class="highlighter-rouge">Tense=Fut</code>:
-<em>půjdu domů</em> “I will go home”.
+  <li>Verbs in indicative mood always have one of three values of <a href="">Tense</a>: mainly <code class="highlighter-rouge">Past</code> and for auxilaries and some content verbs <code class="highlighter-rouge">Pres</code> or <code class="highlighter-rouge">Imp</code>.
     <ul>
       <li>Imperative and necessitative forms do not have the <code class="highlighter-rouge">Tense</code> feature (note that imperfect and present necessitatives are distinguished
 analytically).</li>
@@ -178,7 +176,56 @@ The <code class="highlighter-rouge">PronType=Neg</code> feature is used there in
   </li>
 </ul>
 
-<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
+<h3 id="pronouns-determiners">Pronouns, Determiners</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>), adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>իմ</em> “my”),
+possessive interrogative, relative determiners (e.g. <em>ում, որի</em> “whose”),
+possessive nouns (e.g. <em>հայրիկինը</em> “father’s”)
+and possessive adjectives (e.g. <em>հայոց</em> “armenian, armenians’, refer to armenians”).</li>
+  <li>The <a href="">Reflex</a> feature marks reflexive pronouns <em>(ինձ, քեզ, իրեն, մեզ, ձեզ, իրենց)</em> and determiners <em>(իր, իրենց)</em>.
+In Armenian it is always used together with <code class="highlighter-rouge">PronType=Emp</code> or <code class="highlighter-rouge">PronType=Prs</code>.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="highlighter-rouge">1</code>, <code class="highlighter-rouge">2</code> and <code class="highlighter-rouge">3</code>.
+With personal possessive determiners (<a href="">DET</a>), the feature actually encodes the person of the possessor.
+Person is not marked on other types of pronouns and on nouns, although they can be almost always interpreted as the 3rd person.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
+  <li>There are two <a href="../../u/overview/feat-layers.html">layered features</a>, <a href="">Person[psor]</a> and <a href="">Number[psor]</a>.
+They appear with nouns, gerundives, certain determiners and adpositions and encode the lexical person(deixis)/number of the possessor.</li>
+</ul>
+
+<h3 id="other-features">Other Features</h3>
+
+<ul>
+  <li>Besides the layered features listed above, there are several other language-specific features:
+    <ul>
+      <li><a href="">NumForm</a></li>
+      <li><a href="">NameType</a></li>
+      <li><a href="">AdpType</a></li>
+      <li><a href="">ConjType</a></li>
+      <li><a href="">Hyph</a></li>
+      <li><a href="">Style</a></li>
+      <li><a href="">Distance</a></li>
+      <li><a href="">Echo</a></li>
+      <li><a href="">Typo</a></li>
+    </ul>
+  </li>
+  <li>The following universal features are not used in Armenian: <a href="">Gender</a>, <a href="">Evident</a>.</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is just one Eastern Armenian UD treebanks</p>
+
+<ul>
+  <li><a href="http://universaldependencies.org/treebanks/hy/index.html">Armenian-ArmTDP</a></li>
+</ul>
 
 
       </div>
