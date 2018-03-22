@@ -66,15 +66,11 @@
 
 <p>There are two modes of annotation: using portmanteau dependency tags, and pure universal dependencies.</p>
 
-<p><em>Portmanteau functions</em></p>
+<p><em>Portmanteau token tags and their functions</em></p>
 
-<p>For portmanteau tags, tokens which carry a fused portmanteau POS tag receive both functions associated with those components, separated by an underscore. For example, the form ⲉⲕϣⲁⲛ, which is tokenized as one fused token with the POS tag ACOND_PPERS, is both an auxiliary and a subject pronoun. Therefore, its associated verb dominates it as aux_nsubj, by analogy to the POS tag.</p>
+<p>For portmanteau tags, tokens which carry a fused portmanteau POS tag receive the function associated with the lexical or argument bearing component. For example, the fused form ⲉⲕϣⲁⲛ ‘if-you-if’, which is tokenized as one token with the POS tag ACOND_PPERS, is both an auxiliary and a subject pronoun. Since the subject is an argument, it receives the label <code class="highlighter-rouge">nsubj</code>, rather than the function word label <code class="highlighter-rouge">aux</code>.</p>
 
-<p><em>Pure universal dependencies</em></p>
-
-<p>When using pure dependencies, more ‘lexical’ functions trump more ‘grammatical’ ones, so that examples like ACOND_PPERS are still labeled nsubj, omitting the aux label entirely. This preserves the pure universal dependency tag set.</p>
-
-<p>Alternatively, if the intended application of the annotation project supports sub-tokenization, the CoNLL-U format can be used as follows, specifying subtokens/supertokens for fused units:</p>
+<p>Alternatively, if the intended application of the annotation project supports sub-tokenization, the CoNLL-U format could be used as follows, specifying subtokens/supertokens for fused units:</p>
 
 <table>
   <tbody>
@@ -124,6 +120,48 @@
     </tr>
   </tbody>
 </table>
+
+<p>However in practice, the Coptic Treebank uses super tokens to express bound groups, so we prefer the following analysis:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1-2</td>
+      <td>ⲉⲕϣⲁⲛⲥⲱⲧⲙ</td>
+      <td>_</td>
+      <td>_</td>
+      <td>_</td>
+      <td>_</td>
+      <td>_</td>
+      <td>_</td>
+      <td>_</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>ⲉⲕϣⲁⲛ</td>
+      <td>_</td>
+      <td>ACOND_PPERS</td>
+      <td>_</td>
+      <td>_</td>
+      <td>2</td>
+      <td>nsubj</td>
+      <td>_</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>ⲥⲱⲧⲙ</td>
+      <td>_</td>
+      <td>PPERS</td>
+      <td>_</td>
+      <td>_</td>
+      <td>0</td>
+      <td>root</td>
+      <td>_</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This is the type of analysis found in the Coptic Scriptorium treebank.</p>
 
 
       </div>
