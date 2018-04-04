@@ -103,7 +103,7 @@ nmod:poss(from-songs, of-Komitas)
   <li><em>Արամը</em>.Nom <em>եղբորից</em>.Abl <b><em>խելացի</em></b> / <b><em>ավելի խելացի</em></b> / <em>է</em> ։ “Aram is <b>smarter</b> than his brother.” (with both types of comparatives)</li>
   <li><em>Արամը</em>.Nom <b><em>ավելի խելացի</em></b> <em>է</em>, <em>քան (թե) եղբայրը</em>.Nom։ “Aram is <b>smarter</b> than his brother.”</li>
   <li><em>Արամը</em>.Nom <em>բոլոր</em> <em>ուսանողներից</em>.Abl <b><em>ամենից խելացին</em></b> / <b><em>ամենախելացին</em></b> <em>է</em> ։ “Aram is <b>the smartest one</b> of all the students.” (with both types of superlatives)</li>
-  <li><em>Արամը</em>.Nom <em>եղբոր</em>.Dat <em>պես / նման / չափ</em>.POST <b><em>խելացի</em></b> <em>է</em> ։ “Aram is <b>smart</b> as his brother.” (equality comparison)</li>
+  <li><em>Արամը</em>.Nom <em>եղբոր</em>.Dat <em>պես / նման / չափ</em>.ADP <b><em>խելացի</em></b> <em>է</em> ։ “Aram is <b>smart</b> as his brother.” (equality comparison)</li>
 </ul>
 
 <p>The “lesser degree” comparison (expressed periphrastically) is marked the same way:</p>
@@ -170,18 +170,27 @@ obl(smart, of-all)
 
 <pre><code class="language-sdparse">Նա/PRON ինձնից/PRON[Case=Abl] շատ/ADV[Degree=Pos] է/AUX կարդում/VERB ։ \n He reads more than-me .
 advmod(կարդում, շատ)
-obl(կարդում, ինձնից)
+obl(շատ, ինձնից)
 advmod(reads, more)
-obl(reads, than-me)
+obl(more, than-me)
 </code></pre>
 
 <h3 id="relations-in-equality-comparison">Relations in Equality Comparison</h3>
+
+<p>In constructions of the form <em>as X as Y</em> or <em>the same X as Y</em>, X and Y can be of a range of syntactic types. However, this first <em>as</em> may not modify the head of X, it may modify an existing modifier of the head of X. Its role is adverbial (<a href="">advmod</a>), consistent with other kinds of degree modification.</p>
+
+<p>We take the complement of the comparative (that is, the standard of comparison) as an oblique dependent of the first part.</p>
 
 <pre><code class="language-sdparse">Արամը/PROPN եղբոր/NOUN պես/ADP խելացի/ADJ[Degree=Pos] է/AUX ։ \n Aram is smart as his-brother .
 obl(խելացի, եղբոր)
 obl(smart, his-brother)
 case(եղբոր, պես)
 case(his-brother, as)
+</code></pre>
+
+<pre><code class="language-sdparse">մթին/ADJ[Degree=Pos] ու/CCONJ սառը/ADJ[Degree=Pos], ինչպես/SCONJ շիրիմ/NOUN \n
+case(շիրիմ, ինչպես)
+obl(մթին, շիրիմ)
 </code></pre>
 
 <pre><code class="language-sdparse">Նպատակասլացությունը/NOUN նույնքան/ADV[PronType=Dem] կարևոր/ADJ[Degree=Pos] է/AUX , որքան/SCONJ խաղացողի/NOUN տաղանդը/NOUN ։ \n Commitment is as important as a-player's talent .
@@ -193,8 +202,7 @@ obl(կարևոր, տաղանդը)
 obl(important, talent)
 </code></pre>
 
-<p>If a property is compared to a clause, the clause is attached as <a href="">advcl</a> instead of <a href="">obl</a>
-and the conjunction <em>(քան)</em> is attached to the subordinate clause as <a href="">mark</a>.</p>
+<p>It is clear that the material in the complement <em>as Y</em> can be clausal. It is also usually optional, as indicated above. For that reason, we usually make the complement an <a href="">advcl</a>, with the second as analyzed as <a href="">mark</a>. That gives us:</p>
 
 <pre><code class="language-sdparse">Նա/PRON որքան/SCONJ աներկյուղ/ADJ[Degree=Pos] էր/AUX , նույնքան/ADV[PronType=Dem] գեղեցիկ/ADJ[Degree=Pos] ։ \n She is as brave as beautiful .
 advmod(աներկյուղ, որքան)
@@ -214,7 +222,7 @@ mark(ասվում, որքան)
 mark(called-for, as)
 </code></pre>
 
-<pre><code class="language-sdparse">Նա/PRON այնքան/SCONJ հրապուրիչ/ADJ էր/AUX , որ/SCONJ խմբագիրը/NOUN հիացավ/VERB ։ \n She was so attractive , that the-editor admired her.
+<pre><code class="language-sdparse">Նա/PRON այնքան/ADV[PronType=Dem] հրապուրիչ/ADJ էր/AUX , որ/SCONJ խմբագիրը/NOUN հիացավ/VERB ։ \n She was so attractive , that the-editor admired her.
 advmod(հրապուրիչ, այնքան)
 advmod(attractive, so)
 advcl(այնքան, հիացավ)
@@ -224,6 +232,9 @@ mark(admired, that)
 </code></pre>
 
 <h3 id="inequality-scalar-comparison">Inequality Scalar Comparison</h3>
+
+<p>If a property is compared to a clause, the clause is attached as <a href="">advcl</a> instead of <a href="">obl</a>
+and the conjunction <em>(քան)</em> is attached to the subordinate clause as <a href="">mark</a>.</p>
 
 <pre><code class="language-sdparse">Արամը/PROPN շատ/ADV ավելի/ADV[Degree=Cmp] խելացի/ADJ[Degree=Pos] է/AUX , քան/SCONJ թվում/VERB է/AUX ։ \n Aram is much more smart , than it seems .
 advcl(խելացի, թվում)
