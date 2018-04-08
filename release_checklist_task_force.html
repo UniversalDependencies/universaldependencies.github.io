@@ -91,7 +91,7 @@ It will also collect information such as the list of contributors (we need this 
   <li>Merge the <code class="highlighter-rouge">dev</code> branch into <code class="highlighter-rouge">master</code> in the shared task repositories.
 The <code class="highlighter-rouge">master</code> branch should not be touched the next seven months and it should have exactly the contents that was officially
 released and used in the shared task.<br />
-<code>for i in $(cat shared_task_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev ; git push ; git checkout dev ; cd .. ; echo ; done</code></li>
+<code>for i in $(cat shared_task_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev --no-edit ; git push ; git checkout dev ; cd .. ; echo ; done</code></li>
   <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code class="highlighter-rouge">master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the <code class="highlighter-rouge">master</code> branch and git will not allow any further operations with them!<br />
 <code>for i in $(cat shared_task_treebanks.txt) ; do echo $i ; cd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 2 ; else echo OK ; fi ; cd .. ; echo ; done</code>
     <ul>
@@ -153,7 +153,7 @@ It will also collect information such as the list of contributors (we need this 
 The <code class="highlighter-rouge">master</code> branch should not be touched the next six months and it should have exactly the contents that was officially
 released. In fact, the individual data providers should never commit anything to the <code class="highlighter-rouge">master</code> branch, only to <code class="highlighter-rouge">dev</code> branch.
 (But we currently do not have means to enforce it. If someone commits to <code class="highlighter-rouge">master</code>, we will have to remove the commits from the history manually, using <code class="highlighter-rouge">git revert</code>.)<br />
-<code>for i in UD_* ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev ; git push ; git checkout dev ; cd .. ; echo ; done</code></li>
+<code>for i in UD_* ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev --no-edit ; git push ; git checkout dev ; cd .. ; echo ; done</code></li>
   <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code class="highlighter-rouge">master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the <code class="highlighter-rouge">master</code> branch and git will not allow any further operations with them!<br />
 <code>for i in UD_* ; do echo $i ; cd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 2 ; else echo OK ; fi ; cd .. ; echo ; done</code>
     <ul>
