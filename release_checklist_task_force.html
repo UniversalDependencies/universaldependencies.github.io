@@ -84,6 +84,8 @@ but make sure that no repository is missing there).<br />
 (Its source code was temporarily modified to contain the list of shared task treebanks and only look at these!)
 It will visit all UD_* repositories and report any missing files, unexpected or unexpectedly named files.
 It will also collect information such as the list of contributors (we need this metadata for Lindat).</li>
+  <li>Update statistics in the <code class="highlighter-rouge">stats.xml</code> file in each repository:<br />
+<code>for i in $(cat shared_task_treebanks.txt) ; do echo $i ; cd $i ; ( cat *.conllu | ../tools/conllu-stats.pl &gt; stats.xml ) ; git add stats.xml ; git commit -m 'Updated statistics.' ; git push ; cd .. ; echo ; done</code></li>
 </ul>
 
 <h2 id="full-checklist">Full checklist</h2>
