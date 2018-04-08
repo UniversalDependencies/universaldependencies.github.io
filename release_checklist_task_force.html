@@ -86,6 +86,15 @@ It will visit all UD_* repositories and report any missing files, unexpected or 
 It will also collect information such as the list of contributors (we need this metadata for Lindat).</li>
   <li>Update statistics in the <code class="highlighter-rouge">stats.xml</code> file in each repository:<br />
 <code>for i in $(cat shared_task_treebanks.txt) ; do echo $i ; cd $i ; ( cat *.conllu | ../tools/conllu-stats.pl &gt; stats.xml ) ; git add stats.xml ; git commit -m 'Updated statistics.' ; git push ; cd .. ; echo ; done</code></li>
+  <li>Merge the <code class="highlighter-rouge">dev</code> branch into <code class="highlighter-rouge">master</code> in the shared task repositories.
+The <code class="highlighter-rouge">master</code> branch should not be touched the next seven months and it should have exactly the contents that was officially
+released and used in the shared task.<br />
+<code>for i in $(cat shared_task_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev ; git push ; git checkout dev ; cd .. ; echo ; done</code></li>
+</ul>
+
+<p>Až to bude v masteru:</p>
+<ul>
+  <li>Run the script that refreshes the title page of Universal Dependencies (list of languages, treebanks and their properties).</li>
 </ul>
 
 <h2 id="full-checklist">Full checklist</h2>
