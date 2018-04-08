@@ -90,11 +90,29 @@ It will also collect information such as the list of contributors (we need this 
 The <code class="highlighter-rouge">master</code> branch should not be touched the next seven months and it should have exactly the contents that was officially
 released and used in the shared task.<br />
 <code>for i in $(cat shared_task_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev ; git push ; git checkout dev ; cd .. ; echo ; done</code></li>
+  <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code class="highlighter-rouge">master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the <code class="highlighter-rouge">master</code> branch and git will not allow any further operations with them!<br />
+<code>for i in $(cat shared_task_treebanks.txt) ; do echo $i ; cd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 2 ; else echo OK ; fi ; cd .. ; echo ; done</code>
+    <ul>
+      <li><code>cd UD_...(the-one-with-conflict) ; git status</code> will show what files have a problem. Let’s assume that only <code class="highlighter-rouge">README.txt</code> has a problem. This is how we replace it with the version from the <code class="highlighter-rouge">dev</code> branch and conclude the merge:<br />
+<code>git checkout --theirs README.txt ; git add README.txt ; git commit -m 'Merge branch dev' ; git push ; git checkout dev ; cd ..</code></li>
+    </ul>
+  </li>
+  <li>After resolving the conflicts do not forget to checkout the <code class="highlighter-rouge">dev</code> branch again! (If there were no conflicts, we are already back in <code class="highlighter-rouge">dev</code>.)<br />
+<code>for i in $(cat shared_task_treebanks.txt) ; do echo $i ; cd $i ; git checkout dev ; cd .. ; echo ; done</code></li>
 </ul>
 
 <p>Až to bude v masteru:</p>
 <ul>
   <li>Run the script that refreshes the title page of Universal Dependencies (list of languages, treebanks and their properties).</li>
+  <li>Tag the current commit in all repositories with the tag of the current release (<code class="highlighter-rouge">git tag r2.1</code> for UD 2.1).
+Push the tag to Github: <code class="highlighter-rouge">git push origin --tags</code>.
+You may even tag a particular commit retroactively: <code class="highlighter-rouge">git tag -a r2.1 9fceb02</code>.
+If the repository is updated after you assigned the tag and you need to re-assign the tag to a newer commit,
+this is how you remove the tag from where it is now: <code class="highlighter-rouge">git tag -d r2.1</code>.
+And this is how you remove it from Github: <code class="highlighter-rouge">git push origin :refs/tags/r2.1</code>.
+WARNING: The following command tags all UD repositories, including those that are not part of the current release.<br />
+<code>for i in UD_* docs tools ; do echo $i ; cd $i ; git tag r2.1 ; git push --tags ; cd .. ; echo ; done</code></li>
+  <li>Tell Anša Vernerová that she can start importing the data to Kontext (ideally the announcement about the release would include links to PML-TQ, Kontext and SETS).</li>
 </ul>
 
 <h2 id="full-checklist">Full checklist</h2>
