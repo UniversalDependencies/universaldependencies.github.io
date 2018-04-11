@@ -101,6 +101,8 @@ released and used in the shared task.<br />
   </li>
   <li>After resolving the conflicts do not forget to checkout the <code class="highlighter-rouge">dev</code> branch again! (If there were no conflicts, we are already back in <code class="highlighter-rouge">dev</code>.)<br />
 <code>for i in $(cat shared_task_treebanks.txt) ; do echo $i ; cd $i ; git checkout dev ; cd .. ; echo ; done</code></li>
+  <li>Re-evaluate the treebanks for the star ranking on the website. This is done only in the master branch and the result is stored there.<br />
+<code>for i in $(cat shared_task_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; cd .. ; perl -I tools tools/evaluate_treebank.pl $i --verbose &gt;&amp; $i/eval.log ; cd $i ; git add eval.log ; git commit -m 'Updated treebank evaluation.' ; git push ; git checkout dev ; cd .. ; done</code></li>
 </ul>
 
 <p>Až to bude v masteru:</p>
