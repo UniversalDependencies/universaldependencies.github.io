@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>UD_Croatian</title>
+    <title>UD_Croatian-SET</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -65,7 +65,7 @@
 
      Please do not edit this page directly. -->
 
-<h1 id="ud-croatian">UD Croatian</h1>
+<h1 id="ud-croatian-set">UD Croatian SET</h1>
 
 <p>Language: <a href="../hr/overview/hr-hub.html">Croatian</a> (code: <code class="highlighter-rouge">hr</code>)<br />
 Family: Indo-European, Slavic</p>
@@ -74,7 +74,8 @@ Family: Indo-European, Slavic</p>
 
 <p>The following people have contributed to making this treebank part of UD: Željko Agić, Nikola Ljubešić, Daniel Zeman.</p>
 
-<p>Repository: <a href="https://github.com/UniversalDependencies/UD_Croatian">UD_Croatian</a></p>
+<p>Repository: <a href="https://github.com/UniversalDependencies/UD_Croatian-SET">UD_Croatian-SET</a><br />
+Search this treebank on-line: <a href="https://lindat.mff.cuni.cz/services/pmltq/#!/treebank/udhr_set">PML-TQ</a></p>
 
 <p>License: CC BY-SA 4.0</p>
 
@@ -82,8 +83,11 @@ Family: Indo-European, Slavic</p>
 
 <p>Questions, comments?
 General annotation questions (either Croatian-specific or cross-linguistic) can be raised in the <a href="https://github.com/UniversalDependencies/docs/issues">main UD issue tracker</a>.
-You can report bugs in this treebank in the <a href="https://github.com/UniversalDependencies/UD_Croatian/issues">treebank-specific issue tracker on Github</a>.
-If you want to collaborate, please contact [zeljko • agic (æt) gmail • com].</p>
+You can report bugs in this treebank in the <a href="https://github.com/UniversalDependencies/UD_Croatian-SET/issues">treebank-specific issue tracker on Github</a>.
+If you want to collaborate, please contact [zeljko • agic (æt) gmail • com].
+Development of the treebank happens outside the UD repository.
+If there are bugs, either the original data source or the conversion procedure must be fixed.
+Do not submit pull requests against the UD repository.</p>
 
 <table>
   <thead>
@@ -95,52 +99,124 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
   <tbody>
     <tr>
       <td>Lemmas</td>
-      <td>(undocumented)</td>
+      <td>annotated manually in non-UD style, automatically converted to UD</td>
     </tr>
     <tr>
       <td>UPOS</td>
-      <td>(undocumented)</td>
+      <td>annotated manually in non-UD style, automatically converted to UD</td>
     </tr>
     <tr>
       <td>XPOS</td>
-      <td>(undocumented)</td>
+      <td>annotated manually</td>
     </tr>
     <tr>
       <td>Features</td>
-      <td>(undocumented)</td>
+      <td>annotated manually in non-UD style, automatically converted to UD</td>
     </tr>
     <tr>
       <td>Relations</td>
-      <td>(undocumented)</td>
+      <td>annotated manually, natively in UD style</td>
     </tr>
   </tbody>
 </table>
 
 <h2 id="description">Description</h2>
 
+<p>The Croatian UD treebank is based on the SETimes-HR corpus.</p>
+
+<p>The sentences are partially parallel with the smaller Serbian UD treebank, which
+comes from the Serbian edition of SETimes. For the CoNLL 2018 shared task in parsing
+(and for UD release 2.2), the Croatian corpus was re-split so that corresponding
+sentences are in the same section (train/dev/test) in Croatian and Serbian.
+The re-split had to be done on the Croatian side because the Serbian corpus is smaller
+and most of it correspond to what used to be training data in Croatian.</p>
+
+<p>For the time being, sentence ids have not been changed although they contain references
+to train/dev/test. Therefore it is now possible that e.g. sentence id “train-s2852”
+occurs in the development data, not in training data. This may be changed in future
+releases.</p>
+
+<p>Also note that the following description of data split and sources refers to the <em>old</em>
+data split. Thus, sentences 0001-3557 of the “training set” have ids “train-s1” to
+“train-s3557” but some of them are now in the dev file and some in the test file.</p>
+
+<h3 id="training-set">Training set.</h3>
+
+<p>Contains 7,689 sentences (169,283 tokens) from three sources:</p>
+
+<ol>
+  <li>Sentences 0001-3557: Newspaper text from the <a href="http://en.wikipedia.org/wiki/Southeast_European_Times">Southeast European Times</a> news website, obtained from the <a href="http://nlp.ffzg.hr/resources/corpora/setimes/">SETimes parallel corpus</a>. This part of the treebank is built on top of the <a href="https://github.com/ffnlp/sethr">SETimes.HR dependency treebank of Croatian</a>;</li>
+  <li>Sentences 3558-5792: Text from various <a href="http://nl.ijs.si/isjt14/proceedings/isjt2014_10.pdf">Croatian web sources</a>.</li>
+  <li>Sentences 5793-7689: Croatian news web sources.</li>
+</ol>
+
+<h3 id="development-set">Development set.</h3>
+
+<p>Contains 600 sentences (14,533 tokens) from two sources:</p>
+
+<ol>
+  <li>001-200: newspaper text from the Croatian SETimes,</li>
+  <li>201-600: Croatian news web sources.</li>
+</ol>
+
+<h3 id="test-set">Test set.</h3>
+
+<p>Contains 600 sentences (13,228 tokens) from three sources:</p>
+
+<ol>
+  <li>sentences 001-100: newspaper text,</li>
+  <li>sentences 101-200: Wikipedia,</li>
+  <li>sentences 201-297: web sources, and</li>
+  <li>sentences 298-600: Croatian news web sources.</li>
+</ol>
+
+<h3 id="details">Details</h3>
+
+<p>Sentence and word segmentation was manually checked. The treebank does not include multiword tokens. No language-specific features and relations were used. The POS tags and features were converted from <a href="http://nlp.ffzg.hr/data/tagging/msd-hr.html">Multext East v4</a> and manually checked. The syntactic annotation was done manually.</p>
+
 <h2 id="acknowledgments">Acknowledgments</h2>
 
-<h1 id="statistics-of-ud-croatian">Statistics of UD Croatian</h1>
+<p>When using the Croatian UD treebank, please cite the following paper:</p>
+
+<ul>
+  <li>Željko Agić and Nikola Ljubešić. 2015. <a href="http://aclweb.org/anthology/W/W15/W15-5301.pdf">Universal Dependencies for Croatian (that work for Serbian, too).</a>. In Proc. BSNLP, pp. 1–8 (<a href="http://aclweb.org/anthology/W/W15/W15-5301.bib">bib</a>).</li>
+</ul>
+
+<p>See file LICENSE.txt for further licensing information.</p>
+
+<h1 id="statistics-of-ud-croatian-set">Statistics of UD Croatian SET</h1>
 
 <h2 id="pos-tags">POS Tags</h2>
 
-<p><a href="hr-pos-ADJ.html">ADJ</a> – <a href="hr-pos-ADP.html">ADP</a> – <a href="hr-pos-ADV.html">ADV</a> – <a href="hr-pos-AUX.html">AUX</a> – <a href="hr-pos-CCONJ.html">CCONJ</a> – <a href="hr-pos-DET.html">DET</a> – <a href="hr-pos-INTJ.html">INTJ</a> – <a href="hr-pos-NOUN.html">NOUN</a> – <a href="hr-pos-NUM.html">NUM</a> – <a href="hr-pos-PART.html">PART</a> – <a href="hr-pos-PRON.html">PRON</a> – <a href="hr-pos-PROPN.html">PROPN</a> – <a href="hr-pos-PUNCT.html">PUNCT</a> – <a href="hr-pos-SCONJ.html">SCONJ</a> – <a href="hr-pos-SYM.html">SYM</a> – <a href="hr-pos-VERB.html">VERB</a> – <a href="hr-pos-X.html">X</a></p>
+<p><a href="hr_set-pos-ADJ.html">ADJ</a> – <a href="hr_set-pos-ADP.html">ADP</a> – <a href="hr_set-pos-ADV.html">ADV</a> – <a href="hr_set-pos-AUX.html">AUX</a> – <a href="hr_set-pos-CCONJ.html">CCONJ</a> – <a href="hr_set-pos-DET.html">DET</a> – <a href="hr_set-pos-INTJ.html">INTJ</a> – <a href="hr_set-pos-NOUN.html">NOUN</a> – <a href="hr_set-pos-NUM.html">NUM</a> – <a href="hr_set-pos-PART.html">PART</a> – <a href="hr_set-pos-PRON.html">PRON</a> – <a href="hr_set-pos-PROPN.html">PROPN</a> – <a href="hr_set-pos-PUNCT.html">PUNCT</a> – <a href="hr_set-pos-SCONJ.html">SCONJ</a> – <a href="hr_set-pos-SYM.html">SYM</a> – <a href="hr_set-pos-VERB.html">VERB</a> – <a href="hr_set-pos-X.html">X</a></p>
 
 <h2 id="features">Features</h2>
 
-<p><a href="hr-feat-Animacy.html">Animacy</a> – <a href="hr-feat-Case.html">Case</a> – <a href="hr-feat-Definite.html">Definite</a> – <a href="hr-feat-Degree.html">Degree</a> – <a href="hr-feat-Gender.html">Gender</a> – <a href="hr-feat-Gender-psor.html">Gender[psor]</a> – <a href="hr-feat-Mood.html">Mood</a> – <a href="hr-feat-Number.html">Number</a> – <a href="hr-feat-Number-psor.html">Number[psor]</a> – <a href="hr-feat-NumType.html">NumType</a> – <a href="hr-feat-Person.html">Person</a> – <a href="hr-feat-Polarity.html">Polarity</a> – <a href="hr-feat-Poss.html">Poss</a> – <a href="hr-feat-PronType.html">PronType</a> – <a href="hr-feat-Reflex.html">Reflex</a> – <a href="hr-feat-Tense.html">Tense</a> – <a href="hr-feat-VerbForm.html">VerbForm</a> – <a href="hr-feat-Voice.html">Voice</a></p>
+<p><a href="hr_set-feat-Animacy.html">Animacy</a> – <a href="hr_set-feat-Case.html">Case</a> – <a href="hr_set-feat-Definite.html">Definite</a> – <a href="hr_set-feat-Degree.html">Degree</a> – <a href="hr_set-feat-Gender.html">Gender</a> – <a href="hr_set-feat-Gender-psor.html">Gender[psor]</a> – <a href="hr_set-feat-Mood.html">Mood</a> – <a href="hr_set-feat-Number.html">Number</a> – <a href="hr_set-feat-Number-psor.html">Number[psor]</a> – <a href="hr_set-feat-NumType.html">NumType</a> – <a href="hr_set-feat-Person.html">Person</a> – <a href="hr_set-feat-Polarity.html">Polarity</a> – <a href="hr_set-feat-Poss.html">Poss</a> – <a href="hr_set-feat-PronType.html">PronType</a> – <a href="hr_set-feat-Reflex.html">Reflex</a> – <a href="hr_set-feat-Tense.html">Tense</a> – <a href="hr_set-feat-VerbForm.html">VerbForm</a> – <a href="hr_set-feat-Voice.html">Voice</a></p>
 
 <h2 id="relations">Relations</h2>
 
-<p><a href="hr-dep-acl.html">acl</a> – <a href="hr-dep-advcl.html">advcl</a> – <a href="hr-dep-advmod.html">advmod</a> – <a href="hr-dep-advmod-emph.html">advmod:emph</a> – <a href="hr-dep-amod.html">amod</a> – <a href="hr-dep-appos.html">appos</a> – <a href="hr-dep-aux.html">aux</a> – <a href="hr-dep-aux-pass.html">aux:pass</a> – <a href="hr-dep-case.html">case</a> – <a href="hr-dep-cc.html">cc</a> – <a href="hr-dep-ccomp.html">ccomp</a> – <a href="hr-dep-compound.html">compound</a> – <a href="hr-dep-conj.html">conj</a> – <a href="hr-dep-cop.html">cop</a> – <a href="hr-dep-csubj.html">csubj</a> – <a href="hr-dep-csubj-pass.html">csubj:pass</a> – <a href="hr-dep-dep.html">dep</a> – <a href="hr-dep-det.html">det</a> – <a href="hr-dep-discourse.html">discourse</a> – <a href="hr-dep-dislocated.html">dislocated</a> – <a href="hr-dep-expl.html">expl</a> – <a href="hr-dep-expl-pv.html">expl:pv</a> – <a href="hr-dep-fixed.html">fixed</a> – <a href="hr-dep-flat.html">flat</a> – <a href="hr-dep-flat-foreign.html">flat:foreign</a> – <a href="hr-dep-goeswith.html">goeswith</a> – <a href="hr-dep-iobj.html">iobj</a> – <a href="hr-dep-list.html">list</a> – <a href="hr-dep-mark.html">mark</a> – <a href="hr-dep-nmod.html">nmod</a> – <a href="hr-dep-nsubj.html">nsubj</a> – <a href="hr-dep-nsubj-pass.html">nsubj:pass</a> – <a href="hr-dep-nummod.html">nummod</a> – <a href="hr-dep-obj.html">obj</a> – <a href="hr-dep-obl.html">obl</a> – <a href="hr-dep-orphan.html">orphan</a> – <a href="hr-dep-parataxis.html">parataxis</a> – <a href="hr-dep-punct.html">punct</a> – <a href="hr-dep-root.html">root</a> – <a href="hr-dep-vocative.html">vocative</a> – <a href="hr-dep-xcomp.html">xcomp</a></p>
+<p><a href="hr_set-dep-acl.html">acl</a> – <a href="hr_set-dep-advcl.html">advcl</a> – <a href="hr_set-dep-advmod.html">advmod</a> – <a href="hr_set-dep-advmod-emph.html">advmod:emph</a> – <a href="hr_set-dep-amod.html">amod</a> – <a href="hr_set-dep-appos.html">appos</a> – <a href="hr_set-dep-aux.html">aux</a> – <a href="hr_set-dep-aux-pass.html">aux:pass</a> – <a href="hr_set-dep-case.html">case</a> – <a href="hr_set-dep-cc.html">cc</a> – <a href="hr_set-dep-ccomp.html">ccomp</a> – <a href="hr_set-dep-compound.html">compound</a> – <a href="hr_set-dep-conj.html">conj</a> – <a href="hr_set-dep-cop.html">cop</a> – <a href="hr_set-dep-csubj.html">csubj</a> – <a href="hr_set-dep-csubj-pass.html">csubj:pass</a> – <a href="hr_set-dep-dep.html">dep</a> – <a href="hr_set-dep-det.html">det</a> – <a href="hr_set-dep-discourse.html">discourse</a> – <a href="hr_set-dep-dislocated.html">dislocated</a> – <a href="hr_set-dep-expl.html">expl</a> – <a href="hr_set-dep-expl-pv.html">expl:pv</a> – <a href="hr_set-dep-fixed.html">fixed</a> – <a href="hr_set-dep-flat.html">flat</a> – <a href="hr_set-dep-flat-foreign.html">flat:foreign</a> – <a href="hr_set-dep-goeswith.html">goeswith</a> – <a href="hr_set-dep-iobj.html">iobj</a> – <a href="hr_set-dep-list.html">list</a> – <a href="hr_set-dep-mark.html">mark</a> – <a href="hr_set-dep-nmod.html">nmod</a> – <a href="hr_set-dep-nsubj.html">nsubj</a> – <a href="hr_set-dep-nsubj-pass.html">nsubj:pass</a> – <a href="hr_set-dep-nummod.html">nummod</a> – <a href="hr_set-dep-obj.html">obj</a> – <a href="hr_set-dep-obl.html">obl</a> – <a href="hr_set-dep-orphan.html">orphan</a> – <a href="hr_set-dep-parataxis.html">parataxis</a> – <a href="hr_set-dep-punct.html">punct</a> – <a href="hr_set-dep-root.html">root</a> – <a href="hr_set-dep-vocative.html">vocative</a> – <a href="hr_set-dep-xcomp.html">xcomp</a></p>
 
 <h2>Tokenization and Word Segmentation</h2>
 
 <ul>
 <li>This corpus contains 8889 sentences and 197044 tokens.</li>
+</ul>
+
+<ul>
 <li>This corpus contains 23092 tokens (12%) that are not followed by a space.</li>
+</ul>
+
+<ul>
 <li>This corpus does not contain words with spaces.</li>
+</ul>
+
+<ul>
 <li>This corpus contains 627 types of words that contain both letters and punctuation. Examples: UN-a, NATO-u, NATO-a, dr., OESS-a, EBRD-a, MMF-a, KFOR-a, tzv., BDP-a, UNMIK-a, prof., EU-a, HDZ-a, SAD-u, SAD-a, SDP-a, g., npr., Pop-Lazić, tj., Index.hr, sl., sv., ICTY-em, Izbori.net, Lukić-Nagy, OHR-a, r., web-stranica, Bukumirić-Katić, EP-a, MMF-om, Moody's, PDV-a, UN-ova, UNESCO-a, e-mail, engl., sc., EULEX-a, HAMAG-a, ICTY-a, KBC-u, NLO-ima, UN-ovog, on-line, st., Alpe-Adria, CiO-a</li>
+</ul>
+
+<ul>
 </ul>
 
 <h2>Morphology</h2>
@@ -149,6 +225,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
 
 <ul>
 <li>This corpus uses 17 UPOS tags out of 17 possible: <a>ADJ</a>, <a>ADP</a>, <a>ADV</a>, <a>AUX</a>, <a>CCONJ</a>, <a>DET</a>, <a>INTJ</a>, <a>NOUN</a>, <a>NUM</a>, <a>PART</a>, <a>PRON</a>, <a>PROPN</a>, <a>PUNCT</a>, <a>SCONJ</a>, <a>SYM</a>, <a>VERB</a>, <a>X</a></li>
+</ul>
+
+<ul>
 <li>This corpus contains 31 word types tagged as particles (PART): Eto, ali, ama, bar, baš, bilo, da, dakle, evo, god, i, jedva, kako, li, ma, naime, ne, neka, nešto, ni, niti, ono, pak, samo, sve, tako, to, ustvari, više, zar, što</li>
 </ul>
 
@@ -172,25 +251,36 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
 </ul>
 
 <ul>
-<li>There are 4 <a href="../feat/VerbForm.html">(de)verbal forms:</a>
+<li>There are 4 <a href="../feat/VerbForm.html">(de)verbal forms:</a></li>
+</ul>
+
 <ul>
   <li>Conv
   <ul>
     <li>ADV: zahvaljujući, uključujući, govoreći, Budući, dodavši, koristeći, sudeći, tražeći, Komentirajući, baveći</li>
   </ul>
   </li>
+</ul>
+
+<ul>
   <li>Fin
   <ul>
     <li>AUX: je, su, će, bi, nije, smo, sam, neće, nisu, ćete</li>
     <li>VERB: može, ima, kaže, treba, mogu, nema, mora, postoji, možete, imaju</li>
   </ul>
   </li>
+</ul>
+
+<ul>
   <li>Inf
   <ul>
     <li>AUX: biti, bit</li>
     <li>VERB: imati, pomoći, raditi, pronaći, vidjeti, reći, nastaviti, dobiti, doći, morati</li>
   </ul>
   </li>
+</ul>
+
+<ul>
   <li>Part
   <ul>
     <li>ADJ: održana, otvorena, održan, povećana, objavljenom, održano, otvoren, rođen, namijenjen, objavljen</li>
@@ -199,12 +289,11 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
   </ul>
   </li>
 </ul>
-</li>
-</ul>
 
 <h3>Nominal Features</h3>
 
 <li><a>Gender</a>
+
   <ul>
     <li>Fem
       <ul>
@@ -219,12 +308,15 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>VERB-Part: mogla, trebala, izjavila, dobila, priopćila, rekla, postala, kazala, imala, objavila</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Masc
       <ul>
         <li>ADJ: novi, prvi, drugi, vanjskih, glavni, hrvatski, najveći, novog, bivši, prošlog</li>
         <li>ADJ-Part: održan, otvoren, rođen, namijenjen, objavljen, postignut, uhićen, nazvan, osuđen, povećan</li>
         <li>ADV: najviše</li>
-        <li>AUX: bio, bili, Ivan, autor</li>
+        <li>AUX-Fin: Ivan, autor</li>
         <li>AUX-Part: bio, bili</li>
         <li>DET: koji, svi, svoj, taj, koje, ovaj, ovog, kojem, kojim, sve</li>
         <li>NOUN: milijuna, eura, ljudi, dana, predsjednik, način, poslova, dio, ministar, posto</li>
@@ -234,6 +326,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>VERB-Part: izjavio, rekao, kazao, mogli, dodao, mogao, dobili, trebao, trebali, imali</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Neut
       <ul>
         <li>ADJ: potrebno, moguće, važno, dobro, drugo, internetskog, prvo, ljudskih, pravo, radno</li>
@@ -248,9 +343,13 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Animacy</a>
+
   <ul>
     <li>Anim
       <ul>
@@ -263,6 +362,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>PROPN: Đinđića, Boga, Erdogana, Antu, Borisa, Burkaya, Gruevskog, Ivanova, Krasniqia, Krista</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Inan
       <ul>
         <li>ADJ: prvi, novi, veći, drugi, isti, velik, veliki, manji, najbolji, najveći</li>
@@ -275,9 +377,13 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Number</a>
+
   <ul>
     <li>Plur
       <ul>
@@ -295,11 +401,13 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>VERB-Part: mogli, dobili, trebali, imali, uspjeli, potpisali, mogle, morali, odlučili, postigli</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Sing
       <ul>
         <li>ADJ: prvi, novi, glavni, prošle, drugi, novog, prošlog, bivši, potrebno, europske</li>
         <li>ADJ-Part: održana, održan, otvorena, povećana, objavljenom, održano, otvoren, rođen, namijenjen, objavljen</li>
-        <li>AUX: je, će, bi, nije, bio, bilo, sam, bila, neće, bude</li>
         <li>AUX-Fin: je, će, bi, nije, sam, neće, bude, jest, bih, nisam</li>
         <li>AUX-Part: bio, bilo, bila</li>
         <li>DET: to, koji, koja, toga, koje, ove, koju, svoj, tome, taj</li>
@@ -312,16 +420,20 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Case</a>
+
   <ul>
     <li>Acc
       <ul>
         <li>ADJ: prvi, novi, novu, nove, veliku, druge, ratne, brojne, drugi, političke</li>
         <li>ADJ-Part: usmjerene, usmjerenu, dodanu, ispunjene, iznesene, izrečeno, optuženog, organizirani, oročene, oročenu</li>
         <li>ADP: za, na, u, uz, kroz, po, pred, pod, među, nad</li>
-        <li>AUX: za</li>
+        <li>AUX-Fin: za</li>
         <li>DET: to, koje, svoje, koju, svoj, sve, svoju, koji, taj, tu</li>
         <li>NOUN: način, vrijeme, ponedjeljak, srijedu, godinu, petak, utorak, mjesto, pomoć, potporu</li>
         <li>NUM: jedan, jednu, dvije, dva, jednog, jedno, tri, oba, obje, četiri</li>
@@ -329,6 +441,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>PROPN: SETimes, EU, Kosovo, Hrvatsku, BiH, Srbiju, NATO, Tursku, Bugarsku, Europu</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Dat
       <ul>
         <li>ADJ: drugima, europskoj, međunarodnim, drugim, gospodarskom, bivšem, državnim, europskim, hrvatskim, mnogima</li>
@@ -341,6 +456,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>PROPN: EU, NATO-u, Beogradu, Srbiji, Hrvatskoj, Europi, Kosovu, Turskoj, Bugarskoj, HDZ-u</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Gen
       <ul>
         <li>ADJ: vanjskih, novih, prošle, drugih, prošlog, novog, europske, unutarnjih, političkih, hrvatske</li>
@@ -355,6 +473,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>SYM: %</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Ins
       <ul>
         <li>ADJ: drugim, ostalim, velikim, novim, političkim, brojnim, međunarodnim, samim, većim, najvećim</li>
@@ -367,6 +488,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>PROPN: Srbijom, Crnom, Gorom, Grčkom, Kosovom, EU, Hrvatskom, ICTY-em, Makedonijom, Beogradom</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Loc
       <ul>
         <li>ADJ: prvom, novom, drugom, drugim, prvoj, međunarodnim, hrvatskom, svjetskom, velikoj, bivšoj</li>
@@ -379,11 +503,14 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>PROPN: Hrvatskoj, Kosovu, Srbiji, EU, Europi, Beogradu, BiH, Makedoniji, NATO-u, Zagrebu</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Nom
       <ul>
         <li>ADJ: drugi, novi, glavni, prvi, hrvatski, bivši, potrebno, mnogi, moguće, najveći</li>
         <li>ADJ-Part: održana, otvorena, održan, povećana, održano, rođen, otvoren, namijenjen, objavljen, postignut</li>
-        <li>AUX: Ivan, autor</li>
+        <li>AUX-Fin: Ivan, autor</li>
         <li>DET: koji, to, koja, koje, svi, ta, ovo, ovaj, sve, taj</li>
         <li>NOUN: predsjednik, ministar, vlada, dio, premijer, zemlja, ljudi, broj, većina, zemlje</li>
         <li>NUM: jedan, jedna, dvije, jedno, jedni, dva, obje, oba, deseci, Dvoje</li>
@@ -391,6 +518,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>PROPN: Hrvatska, Srbija, Kosovo, Makedonija, Bugarska, Turska, Windows, EU, Rusija, Albanija</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Voc
       <ul>
         <li>ADJ: Nespretni, Uzoriti, dobri, dragi, izviješteno, mala, prvi, svemogući</li>
@@ -402,9 +532,13 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Definite</a>
+
   <ul>
     <li>Def
       <ul>
@@ -414,6 +548,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>DET: svi, sve, svih, svim, sva, svima, svu, svoj, svega, svime</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Ind
       <ul>
         <li>ADJ: velik, sam, dobar, novi, prvi, gospodarski, značajan, čitav, poznat, rođen</li>
@@ -422,11 +559,15 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <h3>Degree and Polarity</h3>
 
 <li><a>Degree</a>
+
   <ul>
     <li>Cmp
       <ul>
@@ -435,6 +576,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>ADV: više, dalje, kasnije, bolje, ranije, manje, brže, češće, lakše, dulje</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Pos
       <ul>
         <li>ADJ: novi, vanjskih, glavni, novih, nove, prošle, hrvatski, novog, hrvatske, moguće</li>
@@ -442,6 +586,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>ADV: samo, još, također, već, međutim, posto, oko, danas, kada, ipak</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Sup
       <ul>
         <li>ADJ: najveći, najbolji, najveća, najveće, najvećih, najbolje, najboljeg, najvažnije, najvećim, najviši</li>
@@ -450,9 +597,13 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Polarity</a>
+
   <ul>
     <li>Neg
       <ul>
@@ -464,29 +615,42 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>PROPN: Department, Grka, Yalcinkaya</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Pos
       <ul>
         <li>PART: da</li>
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <h3>Verbal Features</h3>
 
 <li><a>Mood</a>
+
   <ul>
     <li>Cnd
       <ul>
         <li>AUX-Fin: bi, biste, bih, bismo</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Imp
       <ul>
         <li>AUX-Fin: budite</li>
         <li>VERB-Fin: kliknite, recimo, izbjegavajte, koristite, potražite, pročitajte, čuvajte, daj, odaberite, otiđite</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Ind
       <ul>
         <li>AUX-Fin: je, su, će, nije, smo, sam, neće, nisu, ćete, ćemo</li>
@@ -494,15 +658,22 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Tense</a>
+
   <ul>
     <li>Imp
       <ul>
         <li>AUX-Fin: bijaše</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Past
       <ul>
         <li>ADV-Conv: dodavši, rekavši, Izrazivši, Upucavši, darovavši, došavši, iskusivši, ispričavši, istaknuvši, nadmašivši</li>
@@ -512,6 +683,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>VERB-Part: izjavio, rekao, kazao, mogli, dodao, mogla, moglo, mogao, trebala, dobili</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Pres
       <ul>
         <li>ADV-Conv: zahvaljujući, uključujući, govoreći, Budući, koristeći, sudeći, tražeći, Komentirajući, baveći, dodajući</li>
@@ -520,9 +694,13 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Voice</a>
+
   <ul>
     <li>Act
       <ul>
@@ -530,17 +708,24 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>VERB-Part: izjavio, rekao, kazao, mogli, dodao, mogla, moglo, mogao, trebala, dobili</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Pass
       <ul>
         <li>ADJ-Part: održana, otvorena, održano, otvoren, postignut, povećana, ubijen, pronađeno, provedena, uhićen</li>
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <h3>Pronouns, Determiners, Quantifiers</h3>
 
 <li><a>PronType</a>
+
   <ul>
     <li>Dem
       <ul>
@@ -549,6 +734,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>PRON: ovakav, ovakve, ovakvih, ovakvim, ovakva, ovakvi, ovakvo, ovakvom, onakve, onakvi</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Ind
       <ul>
         <li>ADV: više, vrlo, manje, malo, mnogo, najviše, najmanje, dosta, ponekad, nekada</li>
@@ -556,11 +744,17 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>PRON: neki, neke, nešto, nekim, neka, nekog, netko, nekih, neku, nekoga</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Int
       <ul>
         <li>DET: Koji, Kakav, Kakva, Kakvi, Kakvu, Koje</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Int,Rel
       <ul>
         <li>ADV: kada, kad, kako, gdje, koliko, zašto, odakle</li>
@@ -568,6 +762,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>PRON: što, tko, čime, čega, čemu, koga, čim, kim, kome, kime</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Neg
       <ul>
         <li>ADV: nikako, nigdje, ikad</li>
@@ -575,12 +772,18 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>PRON: ništa, nitko, nikome, nikoga, ničeg, NIKOG</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Prs
       <ul>
         <li>DET: svoje, svoj, svoju, svojim, njegova, svojih, njegov, naše, svojoj, njihov</li>
         <li>PRON: se, ih, mi, ga, im, mu, on, njih, nam, vam</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Tot
       <ul>
         <li>ADV: uvijek, svakako, svuda</li>
@@ -589,9 +792,13 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>NumType</a>
+
   <ul>
     <li>Card
       <ul>
@@ -600,21 +807,31 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>NUM: tri, dva, jedan, 20, pet, 10, četiri, dvije, 15, 2</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Mult
       <ul>
         <li>NUM: desetak, oba, obje, stotinjak, obiju, dvadesetak, tridesetak, dvoje, 17:00, 3:00</li>
         <li>SYM: 50%, 20%, 30%, 9%, 13%, 14%, 16%, 40%, 45%, 60%</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Ord
       <ul>
         <li>ADJ: 1., 2004., 2009., 2008., prvi, 2007., 2., 2005., 2006., 2010.</li>
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Poss</a>
+
   <ul>
     <li>Yes
       <ul>
@@ -623,9 +840,13 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Reflex</a>
+
   <ul>
     <li>Yes
       <ul>
@@ -634,9 +855,13 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Person</a>
+
   <ul>
     <li>1
       <ul>
@@ -646,6 +871,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>VERB-Fin: možemo, mislim, imamo, moramo, želimo, mogu, vjerujem, nadamo, znam, imam</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>2
       <ul>
         <li>AUX-Fin: ćete, ste, biste, niste, Jeste, bi, nećete, si, ćeš, budite</li>
@@ -654,6 +882,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
         <li>VERB-Fin: možete, želite, kliknite, imate, morate, nemojte, koristite, nemate, očekujete, tražite</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>3
       <ul>
         <li>AUX-Fin: je, su, će, bi, nije, neće, nisu, bude, jest, budu</li>
@@ -663,35 +894,52 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Gender[psor]</a>
+
   <ul>
     <li>Fem
       <ul>
         <li>DET: njezina, njezine, njezin, njen, njezinu, njezinih, njezino, njene, njena, njezinim</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Masc,Neut
       <ul>
         <li>DET: njegova, njegov, njegove, njegovu, njegovim, njegovoj, njegovog, njegovih, njegovo, njegovom</li>
       </ul>
     </li>
   </ul>
+
+  <ul>
+  </ul>
 </li>
 
 <li><a>Number[psor]</a>
+
   <ul>
     <li>Plur
       <ul>
         <li>DET: naše, njihov, njihova, naš, njihove, naša, njihovu, naših, našim, njihovo</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
     <li>Sing
       <ul>
         <li>DET: njegova, njegov, njegove, njegovu, njezina, moj, njegovim, njezine, moja, njegovoj</li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
   </ul>
 </li>
 
@@ -703,6 +951,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
 
 <ul>
 <li>This corpus uses 13 lemmas as copulas (<a>cop</a>). Examples: biti, sebe, Ivan, autor, bilo, bivati, budeti, davati, gladovati, smjeti, težiti, za, željeti.</li>
+</ul>
+
+<ul>
 <li>This corpus uses 23 lemmas as auxiliaries (<a>aux</a>). Examples: biti, htjeti, sebe, li, neka, on, u, od, taj, za, Dimitar, bilo, državni, isto, iz, na, o, ploviti, prav, protiv, s, svaki, svečan.</li>
 <li>This corpus uses 9 lemmas as passive auxiliaries (<a>aux:pass</a>). Examples: biti, sebe, htjeti, dozvoliti, ja, na, po, također, u.</li>
 </ul>
@@ -717,7 +968,7 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       <li>VERB-Fin--NOUN-Acc (26)</li>
       <li>VERB-Fin--NOUN-Acc-ADP(od) (1)</li>
       <li>VERB-Fin--NOUN-Dat (2)</li>
-      <li>VERB-Fin--NOUN-Gen (118)</li>
+      <li>VERB-Fin--NOUN-Gen (115)</li>
       <li>VERB-Fin--NOUN-Gen-ADP(do) (3)</li>
       <li>VERB-Fin--NOUN-Gen-ADP(od) (13)</li>
       <li>VERB-Fin--NOUN-Nom (2489)</li>
@@ -735,7 +986,7 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       <li>VERB-Part--NOUN (7)</li>
       <li>VERB-Part--NOUN-Acc (11)</li>
       <li>VERB-Part--NOUN-Acc-ADP(na) (1)</li>
-      <li>VERB-Part--NOUN-Gen (78)</li>
+      <li>VERB-Part--NOUN-Gen (77)</li>
       <li>VERB-Part--NOUN-Gen-ADP(između) (1)</li>
       <li>VERB-Part--NOUN-Gen-ADP(od) (20)</li>
       <li>VERB-Part--NOUN-Gen-ADP(oko) (1)</li>
@@ -754,13 +1005,12 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
   <li><a>obj</a>
     <ul>
       <li>VERB-Fin--NOUN (5)</li>
-      <li>VERB-Fin--NOUN-Acc (1884)</li>
+      <li>VERB-Fin--NOUN-Acc (1881)</li>
       <li>VERB-Fin--NOUN-Acc-ADP(na) (3)</li>
       <li>VERB-Fin--NOUN-Acc-ADP(od) (2)</li>
       <li>VERB-Fin--NOUN-Acc-ADP(velik) (1)</li>
       <li>VERB-Fin--NOUN-Dat (118)</li>
       <li>VERB-Fin--NOUN-Gen (216)</li>
-      <li>VERB-Fin--NOUN-Gen-ADP(do) (1)</li>
       <li>VERB-Fin--NOUN-Gen-ADP(od) (11)</li>
       <li>VERB-Fin--NOUN-Gen-ADP(po) (1)</li>
       <li>VERB-Fin--NOUN-Gen-ADP(preko) (1)</li>
@@ -777,7 +1027,7 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       <li>VERB-Fin--PRON-Loc (1)</li>
       <li>VERB-Fin--PRON-Nom (11)</li>
       <li>VERB-Inf--NOUN (1)</li>
-      <li>VERB-Inf--NOUN-Acc (1237)</li>
+      <li>VERB-Inf--NOUN-Acc (1236)</li>
       <li>VERB-Inf--NOUN-Dat (42)</li>
       <li>VERB-Inf--NOUN-Gen (98)</li>
       <li>VERB-Inf--NOUN-Gen-ADP(do) (2)</li>
@@ -793,12 +1043,12 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
       <li>VERB-Inf--PRON-Ins (2)</li>
       <li>VERB-Inf--PRON-Nom (2)</li>
       <li>VERB-Part--NOUN (1)</li>
-      <li>VERB-Part--NOUN-Acc (1786)</li>
+      <li>VERB-Part--NOUN-Acc (1784)</li>
       <li>VERB-Part--NOUN-Acc-ADP(na) (1)</li>
       <li>VERB-Part--NOUN-Acc-ADP(po) (1)</li>
       <li>VERB-Part--NOUN-Acc-ADP(za) (1)</li>
       <li>VERB-Part--NOUN-Dat (111)</li>
-      <li>VERB-Part--NOUN-Gen (164)</li>
+      <li>VERB-Part--NOUN-Gen (163)</li>
       <li>VERB-Part--NOUN-Gen-ADP(do) (1)</li>
       <li>VERB-Part--NOUN-Gen-ADP(od) (6)</li>
       <li>VERB-Part--NOUN-Ins (25)</li>
@@ -859,6 +1109,9 @@ If you want to collaborate, please contact [zeljko • agic (æt) gmail •
 
 <ul>
   <li>This corpus contains 260 lemmas that occur at least once with a reflexive core object (<a>obj</a> or <a>iobj</a>). Examples: baviti se, nalaziti se, vratiti se, kretati se, moći se, nadati se, pojaviti se, boriti se, odlučiti se, trebati se, činiti se, dogoditi se, odnositi se, osjećati se, pridružiti se, priključiti se, vraćati se, zalagati se, događati se, grijati se, okladiti se, očitovati se, pokazati se, pripremati se, raditi se, sastati se, sastojati se, uvjeriti se, dizati se, morati se, naći se, obratiti se, okupljati se, pitati se, probuditi se, razvijati se, služiti se, suočiti se, temeljiti se, upoznati se, širiti se, aktivirati se, brinuti se, fokusirati se, gaditi se, izjasniti se, javiti se, mijenjati se, odlučivati se, odreći se</li>
+    <ul>
+      <li>Out of those, 13 lemmas occurred more than once, but never without a reflexive dependent. Examples: boriti, zalagati, grijati, okladiti, probuditi, fokusirati, gaditi, izjasniti, oslanjati, požaliti, pridruživati, spojiti, zaduživati</li>
+    </ul>
 </ul>
 
 <h3>Relations Overview</h3>
