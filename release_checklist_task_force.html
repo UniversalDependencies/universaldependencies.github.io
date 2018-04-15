@@ -112,7 +112,13 @@ Do not push the tag to Github now; wait for the full release in July.
   <li>Run the script <tt>tools/package_ud_release.sh</tt>, which must find the release number in the environment,
 and its arguments are names of folders to be released.<br />
 <code>RELEASE=2.2 tools/package_ud_release.sh $(cat shared_task_treebanks.txt)</code></li>
-  <li>Tell Anša Vernerová that she can start importing the data to Kontext (ideally the announcement about the release would include links to PML-TQ, Kontext and SETS).</li>
+  <li>
+    <p>Tell Anša Vernerová that she can start importing the data to Kontext (ideally the announcement about the release would include links to PML-TQ, Kontext and SETS).</p>
+  </li>
+  <li>Run the same script again (but with different settings) and generate the long statistics that are displayed in the docs:<br />
+<code>cd docs ; git pull --no-edit ; cd .. ; for i in $(cat shared_task_treebanks.txt) ; do echo $i ; tools/conllu-stats.pl --oformat newdetailed --treebank $i --docs docs ; echo ; done ; cd docs ; git add treebanks/*/*.md ; git commit -m 'Updated statistics.' ; git push ; cd ..</code></li>
+  <li>Generate side-by-side comparison whenever there are multiple treebanks of one language:<br />
+<code>perl tools/generate_comparison_of_treebanks.pl ; cd docs ; git add treebanks/*-comparison.md ; git commit -m 'Updated comparison of treebanks.' ; git push ; cd ..</code></li>
 </ul>
 
 <p>Až to bude v masteru:</p>
