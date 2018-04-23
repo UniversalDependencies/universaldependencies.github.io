@@ -66,7 +66,7 @@
 
 <p>The purpose of this page is to serve as a basis for discussion for the improvement of multi-word annotation in UD.</p>
 
-<p>UD is a syntactic annotation scheme. Thus, <strong>these three relations should encode syntactically problematic constructions that cannot be analyzed by other "regular" dependency relations</strong>. The objective of a syntactic annotation scheme is not primarily to encode idioms and named entities.</p>
+<p>UD is a syntactic annotation scheme. Thus, <strong>these three relations should encode syntactically problematic constructions that cannot be analyzed by other “regular” dependency relations</strong>. The objective of a syntactic annotation scheme is not primarily to encode idioms and named entities.</p>
 
 <h3 id="proposals-for-the-mwe-relations-fixed-flat-and-compound">Proposals for the MWE relations <code class="highlighter-rouge">fixed</code>, <code class="highlighter-rouge">flat</code>, and <code class="highlighter-rouge">compound</code>:</h3>
 
@@ -74,17 +74,17 @@
 
 <p>The current definitions of the three relations are problematic or not applied consistently:</p>
 
-<p>The definition of the <code class="highlighter-rouge">fixed</code> relation states that <code class="highlighter-rouge">fixed</code> constructions "do not have any internal syntactic structure (except from a historical perspective)" and that their structural annotation would be "in principle arbitrary". Currently <code class="highlighter-rouge">fixed</code> is used for quite many idioms with the role of function words or short adverbials even when they clearly have an internal regular structure ("on top of", "à côté de")</p>
+<p>The definition of the <code class="highlighter-rouge">fixed</code> relation states that <code class="highlighter-rouge">fixed</code> constructions “do not have any internal syntactic structure (except from a historical perspective)” and that their structural annotation would be “in principle arbitrary”. Currently <code class="highlighter-rouge">fixed</code> is used for quite many idioms with the role of function words or short adverbials even when they clearly have an internal regular structure (“on top of”, “à côté de”)</p>
 
-<p>Following the definition, <code class="highlighter-rouge">compound</code> should be used for "any kind of X0 compounding" (which seems quite circular and cryptic) and lists a few examples: noun-noun compounds, verb-particles, serial verbs and, strangely enough, light-verb constructions in Persian and Japanese.</p>
+<p>Following the definition, <code class="highlighter-rouge">compound</code> should be used for “any kind of X0 compounding” (which seems quite circular and cryptic) and lists a few examples: noun-noun compounds, verb-particles, serial verbs and, strangely enough, light-verb constructions in Persian and Japanese.</p>
 
-<p>The definition of <code class="highlighter-rouge">flat</code> states that it should be used for "exocentric (headless) semi-fixed MWEs", while it is not clear what "semi-fixed" means. It is used for many constructions where it seems straightforward to determine a head, such as "President Obama", where Obama can be used alone instead of the whole construction, but not President. President Obama went to Paris. Obama went to Paris. *President went to Paris.</p>
+<p>The definition of <code class="highlighter-rouge">flat</code> states that it should be used for “exocentric (headless) semi-fixed MWEs”, while it is not clear what “semi-fixed” means. It is used for many constructions where it seems straightforward to determine a head, such as “President Obama”, where Obama can be used alone instead of the whole construction, but not President. President Obama went to Paris. Obama went to Paris. *President went to Paris.</p>
 
-<p>All syntactically regular constructions should receive a normal compositional analysis. Their idiomatic status can be annotated on a different level of (semantic) annotation. This includes semantically compositional (<em>the dog slept</em>), semi-compositional (<em>[wide] awake, [heavy] smoker, rain [cats and dogs]</em>), and semantically non-compositional constructions (<em>kick the bucket, green card, cats and dogs, in the light (of), Fr. pomme de terre 'potato'</em>). See the article Kahane, Courtin, Gerdes "<a href="http://www.anthology.aclweb.org/W/W17/W17-7622.pdf">Multi-word annotation in syntactic treebanks</a>", TLT 2018 for a detailed definition of the terms.</p>
+<p>All syntactically regular constructions should receive a normal compositional analysis. Their idiomatic status can be annotated on a different level of (semantic) annotation. This includes semantically compositional (<em>the dog slept</em>), semi-compositional (<em>[wide] awake, [heavy] smoker, rain [cats and dogs]</em>), and semantically non-compositional constructions (<em>kick the bucket, green card, cats and dogs, in the light (of), Fr. pomme de terre 'potato'</em>). See the article Kahane, Courtin, Gerdes “<a href="http://www.anthology.aclweb.org/W/W17/W17-7622.pdf">Multi-word annotation in syntactic treebanks</a>”, TLT 2018 for a detailed definition of the terms.</p>
 
 <p>Constraining more precisely the extent of headless and irregular relations is generally expected to lead to a much smaller set of constructions using <code class="highlighter-rouge">flat</code>, <code class="highlighter-rouge">compound</code>, or <code class="highlighter-rouge">fixed</code>. A mainly syntactic definition will also make the semantic extent of the usage of these relations more variable among languages: We cannot expect, for example, that all person or organization names will syntactically behave the same in different languages.</p>
 
-<p>In addition to the more precise definition, we also have to make proposals on how to preserve previously annotated units of MWE. Here we explore to which extent some basic non-embedded structures can be expressed using the dual cc/component features, that will be presented below.</p>
+<p>In addition to the more precise definition, we also have to make proposals on how to preserve previously annotated units of MWE. Here we explore to which extent some basic non-embedded structures can be expressed using the dual MWEPOS/INMWE features, that will be presented below (see thread https://github.com/bguil/UD-French-discussion/issues/16 for a discussion in French on the feature names).</p>
 
 <h2 id="headless-structures">Headless structures</h2>
 
@@ -96,7 +96,7 @@
 
 <p>He reads El Païs. *He reads El. *He reads Païs.</p>
 
-<p>Idem for "ad hoc" and "parce que"</p>
+<p>Idem for “ad hoc” and “parce que”</p>
 
 <p>We will determine below which relation, <code class="highlighter-rouge">flat</code> or <code class="highlighter-rouge">fixed</code>, should be used in these cases.</p>
 
@@ -106,11 +106,11 @@
 
 <p>Note that this description also fits to appos relations. We will have to provide criteria to distinguish when <code class="highlighter-rouge">flat</code>, <code class="highlighter-rouge">fixed</code>, or appos should be used.</p>
 
-<p>For "Hillary Clinton", both parts can replace the whole. Thus, we cannot determine a head. Note that we can not permute the tokens: *Clinton Hillary</p>
+<p>For “Hillary Clinton”, both parts can replace the whole. Thus, we cannot determine a head. Note that we can not permute the tokens: *Clinton Hillary</p>
 
-<p>"the president Obama" can be replaced by "the president" and by "Obama". Again, we cannot determine a head. This time we can permute word order: Obama, the president.</p>
+<p>“the president Obama” can be replaced by “the president” and by “Obama”. Again, we cannot determine a head. This time we can permute word order: Obama, the president.</p>
 
-<p>However, "Mister Miller" can be replaced by Miller and not by Mister (Mister can only be used alone as a vocative). It's a headed construction Mister ← Miller. Cf. the section on compounds for noun-noun constructions in English. The same holds for "President Obama" and "French actor Gaspard Ulliel".</p>
+<p>However, “Mister Miller” can be replaced by Miller and not by Mister (Mister can only be used alone as a vocative). It's a headed construction Mister ← Miller. Cf. the section on compounds for noun-noun constructions in English. The same holds for “President Obama” and “French actor Gaspard Ulliel”.</p>
 
 <h2 id="which-relation-names-for-headless-constructions">Which relation names for headless constructions?</h2>
 
@@ -124,7 +124,7 @@
   <li>has a permutable word order (and case B), we use <strong>appos</strong>.</li>
   <li>designates as a whole a proper noun, i.e. we would like to give it PROPN as POS, we use <strong><code class="highlighter-rouge">flat</code></strong>. A test could include whether the sentence remains grammatical if the construction is replaced by a single proper noun. Depending on the language, this might also include dates and addresses. This does by no means imply that all proper nouns, dates, or addresses should be <code class="highlighter-rouge">flat</code>. They should be <code class="highlighter-rouge">flat</code> if and only if they are also headless. Question: maybe include POS NOUN for oran utang?</li>
   <li>cannot be analyzed in any way by the annotator, we use <strong><code class="highlighter-rouge">flat</code></strong>.</li>
-  <li>is in a foreign language known to the annotator, we use <strong><code class="highlighter-rouge">flat:foreign</code></strong> and add a language feature lang=xxx to each token. This does not imply that all foreign text segments should be <code class="highlighter-rouge">flat</code>. Firstly, if the annotator knows the structure, the structures are no longer headless and should be annotated. Secondly, if the construction is a proper noun that is used in the main language of the corpus, the word is not foreign. Hong Kong is <code class="highlighter-rouge">flat</code> but not foreign even if we don't know the internal structure in Cantonese ("Perfumed Harbor").</li>
+  <li>is in a foreign language known to the annotator, we use <strong><code class="highlighter-rouge">flat:foreign</code></strong> and add a language feature lang=xxx to each token. This does not imply that all foreign text segments should be <code class="highlighter-rouge">flat</code>. Firstly, if the annotator knows the structure, the structures are no longer headless and should be annotated. Secondly, if the construction is a proper noun that is used in the main language of the corpus, the word is not foreign. Hong Kong is <code class="highlighter-rouge">flat</code> but not foreign even if we don't know the internal structure in Cantonese (“Perfumed Harbor”).</li>
   <li>Remaining headless constructions will be annotated with <code class="highlighter-rouge">fixed</code> relations.</li>
 </ol>
 
@@ -132,23 +132,23 @@
 
 <ol>
   <li>
-    <p>"the president -appos→ Obama", idem: "le président Macron", "the billionaire Perot", "the Prophet Mohammed"</p>
+    <p>“the president -appos→ Obama”, idem: “le président Macron”, “the billionaire Perot”, “the Prophet Mohammed”</p>
   </li>
   <li>
-    <p>"Hillary -<code class="highlighter-rouge">flat</code>→Clinton", "Hong -<code class="highlighter-rouge">flat</code>→ Kong", Burkina -<code class="highlighter-rouge">flat</code>→ Faso,</p>
+    <p>“Hillary -<code class="highlighter-rouge">flat</code>→Clinton”, “Hong -<code class="highlighter-rouge">flat</code>→ Kong”, Burkina -<code class="highlighter-rouge">flat</code>→ Faso,</p>
   </li>
   <li>
-    <p>"Al  -<code class="highlighter-rouge">flat</code>→ Quaida", "El -<code class="highlighter-rouge">flat</code>→ Païs", "He sang Mahna -<code class="highlighter-rouge">flat</code>→ Mahna badi bidibi" (see Title section below)</p>
+    <p>“Al  -<code class="highlighter-rouge">flat</code>→ Quaida”, “El -<code class="highlighter-rouge">flat</code>→ Païs”, “He sang Mahna -<code class="highlighter-rouge">flat</code>→ Mahna badi bidibi” (see Title section below)</p>
   </li>
   <li>
-    <p>orang -<code class="highlighter-rouge">flat:foreign</code>→ utan, And then she went : <em>gjiko</em> -<code class="highlighter-rouge">flat:foreign</code>→ <em>frac zen</em></p>
+    <p>“orang -<code class="highlighter-rouge">flat:foreign</code>→ utan”, “And then she went : <em>gjiko</em> -<code class="highlighter-rouge">flat:foreign</code>→ <em>frac zen</em>”</p>
   </li>
   <li>
-    <p>"ad -<code class="highlighter-rouge">fixed</code>→ hoc", "parce -<code class="highlighter-rouge">fixed</code>→ que".</p>
+    <p>“ad -<code class="highlighter-rouge">fixed</code>→ hoc”, “parce -<code class="highlighter-rouge">fixed</code>→ que”.</p>
   </li>
 </ol>
 
-<p>Note that we do not have <code class="highlighter-rouge">fixed</code>:foreign which could be a worthwhile distinction if cases such as the Latin construction "ad -<code class="highlighter-rouge">fixed</code>→ hoc" are common in a language.</p>
+<p>Note that we do not have <code class="highlighter-rouge">fixed</code>:foreign which could be a worthwhile distinction if cases such as the Latin construction “ad -<code class="highlighter-rouge">fixed</code>→ hoc” are common in a language.</p>
 
 <h2 id="flat"><code class="highlighter-rouge">flat</code>:</h2>
 
@@ -157,14 +157,14 @@
 <p>Discussion of some putative <code class="highlighter-rouge">flat</code> constructions:</p>
 
 <ul>
-  <li>For "Louis XIV of France" it is clear that Louis is the head since he cannot be called XIV. The relation Louis → XIV should be appos, and not <code class="highlighter-rouge">flat</code>.</li>
-  <li>Equally, titles are appositive: "President ←appos- bama", "Milliardär ←appos- Ross -<code class="highlighter-rouge">flat</code>→ Perot", French ←<code class="highlighter-rouge">amod</code>- ctor ←appos-Gaspard  -<code class="highlighter-rouge">flat</code>→ Ulliel</li>
-  <li>"Natural Resources Conservation Service" is a named entity with a transparent syntactic analysis. Only <code class="highlighter-rouge">amod</code> and <code class="highlighter-rouge">compound</code> (for noun-noun) to be used here.</li>
-  <li><code class="highlighter-rouge">flat</code> should not be used for "New York", which is syntactically transparent in English (<code class="highlighter-rouge">amod</code>). idem to be analyzed with the usual compositional structure: United Kingdom, North Dakota, Rhode Island, Victoria Lake, Croke Park (by means of <code class="highlighter-rouge">amod</code>, <code class="highlighter-rouge">compound</code>, etc). Idem for hyphened entities: Stratford-upon-Avon or Southend-on-Sea ? They are analyzed just as their counterpart without hyphens: "Newcastle upon Tyne". The hyphens are just to be attached as punct relations.</li>
-  <li>For "Hillary Rodham Clinton", Rodham alone cannot be used alone to address this person, only Hillary Rodham. Thus Rodham should depend on Hillary but not with a <code class="highlighter-rouge">flat</code> relation, possibly appos is a better choice.</li>
-  <li>Dates such as "the 4th of July" have a transparent syntactic analysis. Equally "der 1. März 2018". "1 December 2016" however, seems headless because none of the components can replace the whole. Thus, <code class="highlighter-rouge">flat</code> seems like a good solution.</li>
-  <li>Idem for numbers such as "four thousands". These numbers might be more syntactically transparent in other languages and would receive a compositional analysis in that case.</li>
-  <li>In current English treebanks, "the Bush administration" is annotated with Bush <code class="highlighter-rouge">flat</code>&gt; administration. This should simply be a <code class="highlighter-rouge">compound</code>, see compounds.</li>
+  <li>For “Louis XIV of France” it is clear that Louis is the head since he cannot be called XIV. The relation Louis → XIV should be appos, and not <code class="highlighter-rouge">flat</code>.</li>
+  <li>Equally, titles are appositive: “President ←appos- bama”, “Milliardär ←appos- Ross -<code class="highlighter-rouge">flat</code>→ Perot”, French ←<code class="highlighter-rouge">amod</code>- ctor ←appos-Gaspard  -<code class="highlighter-rouge">flat</code>→ Ulliel</li>
+  <li>“Natural Resources Conservation Service” is a named entity with a transparent syntactic analysis. Only <code class="highlighter-rouge">amod</code> and <code class="highlighter-rouge">compound</code> (for noun-noun) to be used here.</li>
+  <li><code class="highlighter-rouge">flat</code> should not be used for “New York”, which is syntactically transparent in English (<code class="highlighter-rouge">amod</code>). idem to be analyzed with the usual compositional structure: United Kingdom, North Dakota, Rhode Island, Victoria Lake, Croke Park (by means of <code class="highlighter-rouge">amod</code>, <code class="highlighter-rouge">compound</code>, etc). Idem for hyphened entities: Stratford-upon-Avon or Southend-on-Sea ? They are analyzed just as their counterpart without hyphens: “Newcastle upon Tyne”. The hyphens are just to be attached as punct relations.</li>
+  <li>For “Hillary Rodham Clinton”, Rodham alone cannot be used alone to address this person, only Hillary Rodham. Thus Rodham should depend on Hillary but not with a <code class="highlighter-rouge">flat</code> relation, possibly appos is a better choice.</li>
+  <li>Dates such as “the 4th of July” have a transparent syntactic analysis. Equally “der 1. März 2018”. “1 December 2016” however, seems headless because none of the components can replace the whole. Thus, <code class="highlighter-rouge">flat</code> seems like a good solution.</li>
+  <li>Idem for numbers such as “four thousands”. These numbers might be more syntactically transparent in other languages and would receive a compositional analysis in that case.</li>
+  <li>In current English treebanks, “the Bush administration” is annotated with Bush <code class="highlighter-rouge">flat</code>&gt; administration. This should simply be a <code class="highlighter-rouge">compound</code>, see compounds.</li>
 </ul>
 
 <h5 id="difficult-cases">Difficult cases:</h5>
@@ -179,7 +179,7 @@
 
 <p>Ludwig van Beethoven</p>
 
-<p>Although "van" is not a German word (it is mistaken as such in the current guidelines) it is sufficiently similar to the German preposition "von" that the structure is transparent to any German speaker and many family names have a "von" eg <em>Hildegard von Bingen</em>. However, the lang=nl feature can be applied to the ADP <em>van</em>.</p>
+<p>Although “van” is not a German word (it is mistaken as such in the current guidelines) it is sufficiently similar to the German preposition “von” that the structure is transparent to any German speaker and many family names have a “von” eg <em>Hildegard von Bingen</em>. However, the lang=nl feature can be applied to the ADP <em>van</em>.</p>
 
 <p>Equally, for</p>
 
@@ -196,10 +196,10 @@
     <p>OS and relations should be correct for the given language,</p>
   </li>
   <li>
-    <p>he lang feature should be specified on each word,</p>
+    <p>the lang feature should be specified on each word,</p>
   </li>
   <li>
-    <p>he head noun could receive a cc=PROPN</p>
+    <p>the head noun could receive a MWEPOS=PROPN</p>
   </li>
 </ul>
 
@@ -211,13 +211,13 @@
 
 <ul>
   <li>
-    <p>he whole expression gets a <code class="highlighter-rouge">flat</code> bouquet</p>
+    <p>the whole expression gets a <code class="highlighter-rouge">flat</code> bouquet</p>
   </li>
   <li>
-    <p>ll POS should be PROPN</p>
+    <p>all POS should be PROPN</p>
   </li>
   <li>
-    <p>he lang feature can still be specified if it is known to the annotator.</p>
+    <p>the lang feature can still be specified if it is known to the annotator.</p>
   </li>
 </ul>
 
@@ -227,7 +227,7 @@
 
 <p>Question:</p>
 
-<p>Is it a problem if some annotators know that we have "Los &lt;det Angeles", "Al &lt;det Qaida" or "Hong &lt;<code class="highlighter-rouge">amod</code> Kong" and annotate accordingly and others don't?</p>
+<p>Is it a problem if some annotators know that we have “Los &lt;det Angeles”, “Al &lt;det Qaida” or “Hong &lt;<code class="highlighter-rouge">amod</code> Kong” and annotate accordingly and others don't?</p>
 
 <p>Another problem is personal names in different cultures (see the Hillary Rodham Clinton problem above). In order to analyze the name, one will have to know something about the language. But the same holds for any journalist that mentions such a name: How to abbreviate Xi Jinping? Xi or Jinping? If the journalist knows that, the head question can be answered, too.</p>
 
@@ -239,31 +239,31 @@
 
 <p>Text elements that are of foreign origin, not named entities, and the language is known receive the <strong>lang</strong> feature on each token. For example to Hong and to Kong we add lang=Cantonese or with the ISO abbreviation lang=yue.</p>
 
-<p>In order to preserve existing MWE annotation of syntactically transparent text segments that are now analyzed compositionally, such as "New York", we can follow losely the PARSEME proposal: the head (here "York") can carry a special feature <em>cc</em> "<code class="highlighter-rouge">compound</code> category" cc=PROPN and the other members (here only <em>New</em>) of the <code class="highlighter-rouge">compound</code> can carry a <em>component=Yes</em> feature</p>
+<p>In order to preserve existing MWE annotation of syntactically transparent text segments that are now analyzed compositionally, such as “New York”, we can follow losely the PARSEME proposal: the head (here “York”) can carry a special feature <em>MWEPOS</em> “<code class="highlighter-rouge">compound</code> category” MWEPOS=PROPN and the other members (here only <em>New</em>) of the <code class="highlighter-rouge">compound</code> can carry a <em>INMWE=Yes</em> feature</p>
 
 <h2 id="titles-of-art-work">Titles of art work</h2>
 
-<p>In the same vein, titles that have an internal structure should be analyzed syntactically, for example: "The Lord of the Rings"</p>
+<p>In the same vein, titles that have an internal structure should be analyzed syntactically, for example: “The Lord of the Rings”</p>
 
-<p>The head, "Lord" should have a cc=PROPN and all the other element should have component=Yes</p>
+<p>The head, “Lord” should have a MWEPOS=PROPN and all the other element should have INMWE=Yes</p>
 
-<p>Problem: this simple cc, complement feature cannot capture embedded groupings:</p>
+<p>Problem: this simple MWEPOS, complement feature cannot capture embedded groupings:</p>
 
-<p>"<em>I've finally seen Dr. Strangelove or: How I learned to love the bomb.</em>"</p>
+<p>“<em>I've finally seen Dr. Strangelove or: How I learned to love the bomb.</em>”</p>
 
-<p>The sentence has no <code class="highlighter-rouge">flat</code> relation and "Strangelove", the head of the title, has a cc=PROPN feature and all other words of the title have a complement=Yes feature. This does not capture the extent of the name Dr. Strangelove but in this case the <code class="highlighter-rouge">compound</code> relation Strangelove <code class="highlighter-rouge">compound</code>&gt; Dr is endocentric as it carries PROPN on Strangelove.</p>
+<p>The sentence has no <code class="highlighter-rouge">flat</code> relation and “Strangelove”, the head of the title, has a MWEPOS=PROPN feature and all other words of the title have a complement=Yes feature. This does not capture the extent of the name Dr. Strangelove but in this case the <code class="highlighter-rouge">compound</code> relation Strangelove <code class="highlighter-rouge">compound</code>&gt; Dr is endocentric as it carries PROPN on Strangelove.</p>
 
-<p>Equally, for the following example, we can only encode one level of MWE, but it is sufficient to express that Sun Yat-Sen University is one semantic unit with cc=PROPN on University:</p>
+<p>Equally, for the following example, we can only encode one level of MWE, but it is sufficient to express that Sun Yat-Sen University is one semantic unit with MWEPOS=PROPN on University:</p>
 
 <p>the Sun <code class="highlighter-rouge">flat</code>&gt; Yat-Sen &lt;<code class="highlighter-rouge">compound</code> University</p>
 
 <h2 id="fixed"><code class="highlighter-rouge">fixed</code></h2>
 
-<p><code class="highlighter-rouge">fixed</code> is used for "certain <code class="highlighter-rouge">fixed</code> grammaticized expressions that behave like function words or short adverbials".</p>
+<p><code class="highlighter-rouge">fixed</code> is used for “certain <code class="highlighter-rouge">fixed</code> grammaticized expressions that behave like function words or short adverbials”.</p>
 
 <p>It concerns mainly complex prepositions, complementizers and determiners.</p>
 
-<p>Currently this relation is used too extensively because many of these function words are actually syntactically transparent such as "on top of", "top of the range"</p>
+<p>Currently this relation is used too extensively because many of these function words are actually syntactically transparent such as “on top of”, “top of the range”</p>
 
 <p>Three main changes:</p>
 
@@ -273,32 +273,32 @@
   <li>To cover all cases in different languages, we simply reserve <code class="highlighter-rouge">fixed</code> for all headless constructions that are not permutable, understandable for the annotator, not foreign, and do not form a PROPN or NOUN.</li>
 </ul>
 
-<p>If we regularize an existing <code class="highlighter-rouge">fixed</code> MWE, we use the same dual cc/component feature encoding, introduced above for <code class="highlighter-rouge">fixed</code>, to keep the information of the extent of the MWE in the treebank (excluding the case/preposition sub-categorization)</p>
+<p>If we regularize an existing <code class="highlighter-rouge">fixed</code> MWE, we use the same dual MWEPOS/INMWE feature encoding, introduced above for <code class="highlighter-rouge">fixed</code>, to keep the information of the extent of the MWE in the treebank (excluding the case/preposition sub-categorization)</p>
 
 <p>Currently, in many languages, many of the multi-word prepositions and determiners that form semantic units are already annotated compositionally, often with the noun as the head. For example</p>
 
-<p>"on top of that" and similar complex prepositions should now coherently have "top" as NOUN as head, "on" as case and "that" as <code class="highlighter-rouge">nmod</code>. "top" could also have a cc=ADP feature and "on" a component=Yes feature. "of" shall not be marked in any special way.</p>
+<p>“on top of that” and similar complex prepositions should now coherently have “top” as NOUN as head, “on” as case and “that” as <code class="highlighter-rouge">nmod</code>. “top” could also have a MWEPOS=ADP feature and “on” a INMWE=Yes feature. “of” shall not be marked in any special way.</p>
 
-<p>Equally, "because of" shall not receive any <code class="highlighter-rouge">fixed</code> relation or special MWE features.</p>
+<p>Equally, “because of” shall not receive any <code class="highlighter-rouge">fixed</code> relation or special MWE features.</p>
 
 <p>Cases where we keep the <code class="highlighter-rouge">fixed</code> relation:</p>
 
-<p>French: "parce que" 'because'. Reason: We cannot even assign a POS to "parce" and the relation between the two tokens.</p>
+<p>French: “parce que” 'because'. Reason: We cannot even assign a POS to “parce” and the relation between the two tokens.</p>
 
 <p>German: als ob, nach wie vor,
-we no longer use <code class="highlighter-rouge">fixed</code> for: "unter anderem" because the expression is a transparent PP. Idem for the postpositions in expression such as "von x an" that should have a common compositional analysis (-case→ADP).</p>
+we no longer use <code class="highlighter-rouge">fixed</code> for: “unter anderem” because the expression is a transparent PP. Idem for the postpositions in expression such as “von x an” that should have a common compositional analysis (-case→ADP).</p>
 
-<p>Proposal for English: We keep "Of course"? "As of"? "As well"? "Rather than"? "Kind of"?</p>
+<p>Proposal for English: We keep “Of course”? “As of”? “As well”? “Rather than”? “Kind of”?</p>
 
 <p>And no longer should be analyzed as <code class="highlighter-rouge">fixed</code>:</p>
 
-<p>"be up to sth", "instead of", "according, due, prior to", "so that", "more than", "whether or not"</p>
+<p>“be up to sth”, “instead of”, “according, due, prior to”, “so that”, “more than”, “whether or not”</p>
 
 <h2 id="compound"><code class="highlighter-rouge">compound</code>:</h2>
 
 <p>Compound should be used for very cohesive regular constructions that are neighboring morphology. Cohesive means that the meaning is often non-compositional although the construction remains productive.</p>
 
-<p>Currently it is used for regular systems of "compounding" in different languages</p>
+<p>Currently it is used for regular systems of “compounding” in different languages</p>
 
 <p>In particular</p>
 
@@ -310,7 +310,7 @@ we no longer use <code class="highlighter-rouge">fixed</code> for: "unter andere
 
 <p>If a language does not have a regular system of compounding, the <code class="highlighter-rouge">compound</code> relation is not used. In most current French treebank noun-noun compounding is annotated by different means than the <code class="highlighter-rouge">compound</code> relation, see discussion below, and <code class="highlighter-rouge">compound</code> only appears for foreign segments of text.</p>
 
-<p>Just like for the two other MWE relations, <code class="highlighter-rouge">compound</code> should only be used if no other regular dependency is available. For example, in English, <code class="highlighter-rouge">compound</code> is currently used for "Prime Minister" although prime is just an adjective and the structure is transparently <code class="highlighter-rouge">amod</code>.</p>
+<p>Just like for the two other MWE relations, <code class="highlighter-rouge">compound</code> should only be used if no other regular dependency is available. For example, in English, <code class="highlighter-rouge">compound</code> is currently used for “Prime Minister” although prime is just an adjective and the structure is transparently <code class="highlighter-rouge">amod</code>.</p>
 
 <p>Question: Even Lake Michigan, Mount Rushmore, Fort Alamo should be a left-to-right <code class="highlighter-rouge">compound</code>? Yes That would use <code class="highlighter-rouge">compound</code> for two (slightly) different constructions.</p>
 
@@ -320,11 +320,11 @@ we no longer use <code class="highlighter-rouge">fixed</code> for: "unter andere
 
 <p><em>This paragraph briefly records some of the arguments that have been made in the past on relations for name structure. It is an issue over which there has historically been variation and about which there is some continuing debate.</em> Examples like <em>French actor Gaspard Ulliel:</em> Some treebanks have used <code class="highlighter-rouge">nmod</code> for titles and honorifics like <em>Mr.</em> or <em>French actor</em>. Most people think this is inappropriate, since an <code class="highlighter-rouge">nmod</code> dependent should be a full phrase, which will typically take its own case as a modifier in a cased language. In contrast, these titles seem to be part of the same phrase as the name that follows them; they show case agreement concord in a cased language.</p>
 
-<p><strong>Answer: This argument would imply that all languages use <code class="highlighter-rouge">nmod</code> only where the modifier is a complete sentence. This would make the very productive noun-noun <code class="highlighter-rouge">compound</code>s in French impossible to analyze:</strong></p>
+<p><strong>Answer: This argument would imply that all languages use <code class="highlighter-rouge">nmod</code> only where the modifier is a complete sentence. This would make the very productive noun-noun compounds in French impossible to analyze:</strong></p>
 
 <p><strong>Imprimante →? laser; accès → handicapés; espace → fumeur</strong></p>
 
-<p>Some grammatical traditions, descending from Latin, call <em>French actor</em> in such cases a "<code class="highlighter-rouge">fixed</code> (or close) apposition" and take the name as the head. UD has restricted the appos relation to following appositives (corresponding to "loose (or wide) apposition" in the Latin tradition). The relation appos is only used when you have two full nominals, typically joined loosely, and often separated by a punctuation mark like a comma. So appos is not correct for these cases. Sometimes the relation <code class="highlighter-rouge">compound</code> has been used, but this does not seem right. It implies headedness, and titles do not usually behave like <code class="highlighter-rouge">compound</code>s: in German, they are not joined to the following words, as <code class="highlighter-rouge">compound</code>s are normally joined in German, and they appear at the beginning of names in both German and Hebrew, even though German <code class="highlighter-rouge">compound</code>s are head last and Hebrew <code class="highlighter-rouge">compound</code>s are head first.</p>
+<p>Some grammatical traditions, descending from Latin, call <em>French actor</em> in such cases a “<code class="highlighter-rouge">fixed</code> (or close) apposition” and take the name as the head. UD has restricted the appos relation to following appositives (corresponding to “loose (or wide) apposition” in the Latin tradition). The relation appos is only used when you have two full nominals, typically joined loosely, and often separated by a punctuation mark like a comma. So appos is not correct for these cases. Sometimes the relation <code class="highlighter-rouge">compound</code> has been used, but this does not seem right. It implies headedness, and titles do not usually behave like compounds: in German, they are not joined to the following words, as compounds are normally joined in German, and they appear at the beginning of names in both German and Hebrew, even though German compounds are head last and Hebrew compounds are head first.</p>
 
 <p><strong>Answer: Is this an argument based on spelling conventions?</strong></p>
 
@@ -398,7 +398,7 @@ we no longer use <code class="highlighter-rouge">fixed</code> for: "unter andere
 <h2 id="bibliography">Bibliography</h2>
 
 <ul>
-  <li>Kahane, Courtin, Gerdes " <a href="http://www.anthology.aclweb.org/W/W17/W17-7622.pdf">Multi-word annotation in syntactic treebanks</a>", TLT 2018.</li>
+  <li>Kahane, Courtin, Gerdes “ <a href="http://www.anthology.aclweb.org/W/W17/W17-7622.pdf">Multi-word annotation in syntactic treebanks</a>”, TLT 2018.</li>
   <li>PARSEME annotation <a href="http://parsemefr.lif.univ-mrs.fr/parseme-st-guidelines/1.1">guidelines</a>v 1.1</li>
 </ul>
 
