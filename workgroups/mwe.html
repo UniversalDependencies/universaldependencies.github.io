@@ -127,11 +127,11 @@
 <p>If a headless construction…</p>
 
 <ol>
-  <li>has a permutable word order (and case B), we use <strong>appos</strong>.</li>
-  <li>designates as a whole a proper noun, i.e. we would like to give it PROPN as POS, we use <strong><code class="highlighter-rouge">flat</code></strong>. A test could include whether the sentence remains grammatical if the construction is replaced by a single proper noun. Depending on the language, this might also include dates and addresses. This does by no means imply that all proper nouns, dates, or addresses should be <code class="highlighter-rouge">flat</code>. They should be <code class="highlighter-rouge">flat</code> if and only if they are also headless. Question: maybe include POS NOUN for oran utang?</li>
+  <li>has a permutable word order (and case B), we use <strong>appos</strong>. <span style="color:blue"><strong>Joakim:</strong> This does not seem consistent with the v2 guidelines. The <code class="highlighter-rouge">appos</code> relation is currently restricted to the case of loose (or wide) apposition (as discussed below). This may be changed in future versions, although I would personally prefer subsuming all appositions under <code class="highlighter-rouge">nmod</code> (possibly with special subtypes). Under the current guidelines, <code class="highlighter-rouge">nmod</code> seems to be the best candidate here. </span></li>
+  <li>designates as a whole a proper noun, i.e. we would like to give it PROPN as POS, we use <strong><code class="highlighter-rouge">flat</code></strong>. A test could include whether the sentence remains grammatical if the construction is replaced by a single proper noun. Depending on the language, this might also include dates and addresses. This does by no means imply that all proper nouns, dates, or addresses should be <code class="highlighter-rouge">flat</code>. They should be <code class="highlighter-rouge">flat</code> if and only if they are also headless. Question: maybe include POS NOUN for oran utang? <span style="color:blue"><strong>Joakim:</strong> It seems a bit arbitrary to single out the name category and put (almost) all other headless constructions into <code class="highlighter-rouge">fixed</code>. What if they are not fixed expressions but productive constructions?</span></li>
   <li>cannot be analyzed in any way by the annotator, we use <strong><code class="highlighter-rouge">flat</code></strong>.</li>
   <li>is in a foreign language known to the annotator, we use <strong><code class="highlighter-rouge">flat:foreign</code></strong> and add a language feature lang=xxx to each token. This does not imply that all foreign text segments should be <code class="highlighter-rouge">flat</code>. Firstly, if the annotator knows the structure, the structures are no longer headless and should be annotated. Secondly, if the construction is a proper noun that is used in the main language of the corpus, the word is not foreign. Hong Kong is <code class="highlighter-rouge">flat</code> but not foreign even if we don't know the internal structure in Cantonese (“Perfumed Harbor”).</li>
-  <li>Remaining headless constructions will be annotated with <code class="highlighter-rouge">fixed</code> relations.</li>
+  <li>Remaining headless constructions will be annotated with <code class="highlighter-rouge">fixed</code> relations. <span style="color:blue"><strong>Joakim:</strong> As noted above, it seems wrong to me to use <code class="highlighter-rouge">fixed</code> unless the expression is really fixed. And what happened to the idea that <code class="highlighter-rouge">fixed</code> is only used for irregular constructions?</span></li>
 </ol>
 
 <p>Thus, we obtain</p>
@@ -163,10 +163,11 @@
 <p>Discussion of some putative <code class="highlighter-rouge">flat</code> constructions:</p>
 
 <ul>
-  <li>For “Louis XIV of France” it is clear that Louis is the head since he cannot be called XIV. The relation Louis → XIV should be appos, and not <code class="highlighter-rouge">flat</code>.</li>
-  <li>Equally, titles are appositive: “President ←appos- bama”, “Milliardär ←appos- Ross -<code class="highlighter-rouge">flat</code>→ Perot”, French ←<code class="highlighter-rouge">amod</code>- ctor ←appos-Gaspard  -<code class="highlighter-rouge">flat</code>→ Ulliel</li>
+  <li>For “Louis XIV of France” it is clear that Louis is the head since he cannot be called XIV. The relation Louis → XIV should be appos, and not <code class="highlighter-rouge">flat</code>. <span style="color:blue"><strong>Joakim:</strong> Why not <code class="highlighter-rouge">nummod</code>?</span></li>
+  <li>Equally, titles are appositive: “President ←<code class="highlighter-rouge">appos</code>- Obama”, “Milliardär ←<code class="highlighter-rouge">appos</code>- Ross -<code class="highlighter-rouge">flat</code>→ Perot”, French ←<code class="highlighter-rouge">amod</code>- actor ←<code class="highlighter-rouge">appos</code>- Gaspard -<code class="highlighter-rouge">flat</code>→ Ulliel <span style="color:blue"><strong>Joakim:</strong> Use <code class="highlighter-rouge">nmod</code> instead of <code class="highlighter-rouge">appos</code>.</span></li>
   <li>“Natural Resources Conservation Service” is a named entity with a transparent syntactic analysis. Only <code class="highlighter-rouge">amod</code> and <code class="highlighter-rouge">compound</code> (for noun-noun) to be used here.</li>
-  <li><code class="highlighter-rouge">flat</code> should not be used for “New York”, which is syntactically transparent in English (<code class="highlighter-rouge">amod</code>). idem to be analyzed with the usual compositional structure: United Kingdom, North Dakota, Rhode Island, Victoria Lake, Croke Park (by means of <code class="highlighter-rouge">amod</code>, <code class="highlighter-rouge">compound</code>, etc). Idem for hyphened entities: Stratford-upon-Avon or Southend-on-Sea ? They are analyzed just as their counterpart without hyphens: “Newcastle upon Tyne”. The hyphens are just to be attached as punct relations.</li>
+  <li><code class="highlighter-rouge">flat</code> should not be used for “New York”, which is syntactically transparent in English (<code class="highlighter-rouge">amod</code>). idem to be analyzed with the usual compositional structure: United Kingdom, North Dakota, Rhode Island, Victoria Lake, Croke Park (by means of <code class="highlighter-rouge">amod</code>, <code class="highlighter-rouge">compound</code>, etc). Idem for hyphened entities: Stratford-upon-Avon or Southend-on-Sea ? They are analyzed just as their counterpart without hyphens: “Newcastle upon Tyne”. The hyphens are just to be attached as punct relations.
+<span style="color:blue"><strong>Joakim:</strong> I am willing to defend the use of <code class="highlighter-rouge">flat</code> for “New York”. Neither “New” nor “York” can replace the whole, so it seems to satisfy the criterion. By contrast, <code class="highlighter-rouge">amod</code> implies an endocentric construction.</span></li>
   <li>For “Hillary Rodham Clinton”, Rodham alone cannot be used alone to address this person, only Hillary Rodham. Thus Rodham should depend on Hillary but not with a <code class="highlighter-rouge">flat</code> relation, possibly appos is a better choice.</li>
   <li>Dates such as “the 4th of July” have a transparent syntactic analysis. Equally “der 1. März 2018”. “1 December 2016” however, seems headless because none of the components can replace the whole. Thus, <code class="highlighter-rouge">flat</code> seems like a good solution.</li>
   <li>Idem for numbers such as “four thousands”. These numbers might be more syntactically transparent in other languages and would receive a compositional analysis in that case.</li>
@@ -180,6 +181,8 @@
 <p>Proposal: No <code class="highlighter-rouge">flat</code>: Papua &lt;<code class="highlighter-rouge">compound</code> Guinea, Rhine -<code class="highlighter-rouge">conj</code>&gt; Westphalia, Tamil &lt;<code class="highlighter-rouge">compound</code> Nadu (Tamil is a language and an English word), la Nouvelle-Orléans.</p>
 
 <h2 id="flatforeign"><code class="highlighter-rouge">flat:foreign</code></h2>
+
+<p><span style="color:blue"><strong>Joakim:</strong> This and the following two sections seem to presuppose conventions that are neither part of the current guidelines, nor described on this page, such as “MWEPOS=PROPN”. This needs to be clarified. I think it will be much clearer if the section entitled <code class="highlighter-rouge">flat</code> is followed by a section entitled <code class="highlighter-rouge">fixed</code>. The intervening sections should either be marked as subsections of the <code class="highlighter-rouge">flat</code> section or marked elsewhere.</span></p>
 
 <p>Discussion of some putative <code class="highlighter-rouge">flat:foreign</code> constructions:</p>
 
@@ -199,7 +202,7 @@
 
 <ul>
   <li>
-    <p>OS and relations should be correct for the given language,</p>
+    <p>POS and relations should be correct for the given language,</p>
   </li>
   <li>
     <p>the lang feature should be specified on each word,</p>
