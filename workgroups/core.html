@@ -70,6 +70,131 @@ Arguments realized as clauses are discussed <a href="#clausal-complements">at th
 
 <p><span style="color:red">TO DO: write most of the chapter :-)</span></p>
 
+<h2 id="core-arguments-vs-oblique-modifiers">Core Arguments vs. Oblique Modifiers</h2>
+
+<p>The UD taxonomy is centered around the fairly clear distinction between
+core arguments (subjects, objects, clausal complements) versus other dependents.
+It does not make a distinction between adjuncts (general modifiers) versus
+oblique arguments (arguments said to be selected by a head but not expressed
+as a core argument).</p>
+
+<h3 id="the-definition-of-core-arguments">The Definition of Core Arguments</h3>
+
+<p>The core/oblique distinction is ultimately an information packaging distinction.
+All or nearly all languages have a basic way of expressing the one or two arguments
+of most verbs (intransitive and transitive verbs), and this unmarked form
+of argument expression is as a core argument. If additional arguments can appear
+that are treated similarly to these arguments, they may also be regarded as
+core arguments. (Some languages have no additional core arguments, while other
+languages allow multiple object arguments, for instance.)
+Status as a core argument is decoupled from the semantic roles of participants.
+Normally, depending on the meaning of a verb, many different semantic roles can
+be expressed by the same means of encoding core arguments. Nevertheless, there
+is a correlation: agent and patient or theme roles of predicates in their
+unmarked valence are normally realized as core arguments.</p>
+
+<p>Syntactically, there is not a single criterion which can be used crosslinguistically
+to distinguish core arguments from obliques, though there are often good and useful
+criteria for particular languages. These include:</p>
+
+<ul>
+  <li>Verbs usually only agree with core arguments</li>
+  <li>Oblique arguments may usually or always appear marked by an adposition while core arguments appear as bare nominals</li>
+  <li>Certain cases, traditionally called nominative, accusative, and absolutive typically mark core arguments</li>
+  <li>Core arguments in many languages occupy special positions in the clause, often adjacent to the verb</li>
+  <li>Syntactic phenomena such as being the controller of a subordinate clause argument or the target of relativization are limited to core arguments in some languages</li>
+</ul>
+
+<p>At the end of the day, the distinction must be drawn and documented on language
+particular grounds. For example, many languages have certain verbs which take
+arguments in oblique cases such as dative or an experiencer case, but these
+arguments should be regarded as core arguments based on their syntactic
+behavior being parallel to the arguments of other transitive verbs.</p>
+
+<h3 id="avoiding-an-argumentadjunct-distinction">Avoiding an Argument/Adjunct Distinction</h3>
+
+<p>Many grammatical frameworks suggest that some obliques are selected by or are
+arguments of a head (for instance, a source argument of <em>from the Queen</em> is
+an argument of the head <em>receive</em>), while other obliques are general adjuncts,
+which can appear with any predicate without the head selecting for them (for
+instance, a temporal argument such as <em>after the holidays</em>).</p>
+
+<p>However, the argument/adjunct distinction is subtle, unclear, and frequently
+argued over. For instance, syntacticians at certain times have argued for
+various obliques to be arguments, while at other times arguing that they are
+adjuncts, particularly for certain semantic roles such as oblique instruments
+or sources. We take the distinction to be sufficiently subtle (and its
+existence as a categorical distinction sufficiently questionable) that the
+best practical solution is to eliminate it. Nevertheless, if the distinction
+is available in a treebank that is being converted to UD, it can be preserved
+using subtypes of dependency relations: <code class="highlighter-rouge">obl:arg</code> is used for oblique
+arguments, and bare <code class="highlighter-rouge">obl</code> then denotes adjuncts.</p>
+
+<p>The core-oblique distinction is generally accepted in language typology as
+being both more relevant and easier to apply cross-linguistically than the
+argument-adjunct distinction. See, for example:</p>
+
+<ul>
+  <li>Avery D. Andrews. 2007. The Major Functions of the Noun Phrase. In Timothy Shopen (ed.) Language Typology and Syntactic Description: Clause Structure (2nd ed), Cambridge University Press, Cambridge, United Kingdom, pp. 132-223. (1st edition, 1985.)</li>
+  <li>Sandra A. Thompson. 1997. Discourse Motivations for the Core-Oblique Distinction as a Language Universal. In Akio Kamio (ed.) Directions in Functional Linguistics. Benjamins, Amsterdam, the Netherlands, pp. 59-82.</li>
+</ul>
+
+<h2 id="coding-strategies">Coding Strategies</h2>
+
+<h3 id="english">English</h3>
+
+<p>In English, nominal core arguments are bare noun phrases (that is, without preposition).
+Oblique arguments and nominal adjuncts are prepositional phrases.
+There is one exception: a bare nominal may be used as a temporal adjunct expressing
+duration:</p>
+
+<ul>
+  <li><em>He works the whole week.</em></li>
+</ul>
+
+<p>In an unmarked declarative sentence, the core argument preceding the verb is
+the subject, and if there is another core argument following the verb, it is
+the object. A finite verb agrees in number with its subject:</p>
+
+<ul>
+  <li><em>The boy eats one apple.</em></li>
+  <li><em>The boy eats many apples.</em></li>
+  <li><em>The boys eat one apple.</em></li>
+  <li><em>The boys eat many apples.</em></li>
+</ul>
+
+<p>If the arguments are realized as personal pronouns, the subject is in the
+nominative form <em>(I, he, she, we, they)</em> and the object is in the accusative
+<em>(me, him, her, us, them).</em> Nouns do not inflect for case in English.</p>
+
+<p>Transitive clauses (those that have an object) can be passivized, which means:</p>
+
+<ol>
+  <li>Active verb form is replaced by passive (finite auxiliary + participle).</li>
+  <li>Former object becomes subject.</li>
+  <li>Former subject either disappears or becomes an oblique argument.</li>
+</ol>
+
+<ul>
+  <li><em>One apple is eaten (by the boy(s)).</em></li>
+  <li><em>Many apples are eaten (by the boy(s)).</em></li>
+</ul>
+
+<p>The inability to passivize of <em>He works the whole week</em> is an argument in
+support of the claim that the clause is intransitive and <em>the whole week</em>
+is an adjunct rather than an object.
+However, this test is not sufficient because there is a small set of verbs
+that have objects but do not passivize:</p>
+
+<ul>
+  <li><em>John has a new car. (*New car is had by John.)</em></li>
+  <li><em>Friday does not suit me. (*I am not suited by Friday.)</em></li>
+</ul>
+
+<p>Therefore, durational temporal adjuncts have to be stated as an exception,
+and this is the one case where the argument/adjunct distinction cannot be
+avoided in UD.</p>
+
 <h2 id="can-adjectives-have-core-arguments">Can Adjectives Have Core Arguments?</h2>
 
 <p>Under certain circumstances, yes.
