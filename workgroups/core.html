@@ -81,6 +81,7 @@ Arguments realized as clauses are discussed <a href="#clausal-complements">at th
     <ul>
       <li><a href="#english">English</a></li>
       <li><a href="#spanish">Spanish</a></li>
+      <li><a href="#czech">Czech</a></li>
     </ul>
   </li>
   <li><a href="#can-adjectives-have-core-arguments">Can adjectives have core arguments?</a></li>
@@ -529,6 +530,116 @@ Hence the indirect object is less core than the direct object.</p>
 9	.	.	PUNCT	_	_	4	punct	_	Gloss=.
 
 </code></pre>
+
+<h3 id="czech">Czech</h3>
+
+<p>Classification of verbal arguments in Czech depends on <a href="/u/feat/Case.html">case morphology</a>.
+There are certain anomalies of the case system when the argument is a quantified
+phrase (with a cardinal number or a pronominal quantifier, the head noun
+may have different case than the entire phrase). We exclude quantified phrases
+from the following overview.</p>
+
+<p>The coding strategy most typical for Czech core arguments is bare noun phrase
+in nominative or accusative.
+Some authors claim that core arguments are not marked for case. This is not
+true and Czech is one of the counter-examples. The nominative can be considered
+unmarked in the vague sense that it is the default case that is used if
+there are no external factors requiring another case. However, it is not
+unmarked in the morphological sense: many nouns must use suffixes to form
+the nominative (and the same holds for the accusative).</p>
+
+<p>The nominative argument is the subject, the
+accusative is object.
+The subject’s person, number, and sometimes also gender and animacy are
+cross-referenced by verbal inflection.
+Czech is a pro-drop language, meaning that the subject can be omitted if it is
+a personal pronoun.</p>
+
+<ul>
+  <li><em>Snědl jsem jablko.</em> “I ate an apple.” (masculine)</li>
+  <li><em>Snědla jsem jablko.</em> “I ate an apple.” (feminine)</li>
+  <li><em>Snědl jsi jablko.</em> “You ate an apple.” (masculine singular)</li>
+  <li><em>Snědla jsi jablko.</em> “You ate an apple.” (feminine singular)</li>
+  <li><em>Chlapec snědl jablko.</em> “The boy ate an apple.”</li>
+  <li><em>Snědl jablko.</em> “He ate an apple.”</li>
+  <li><em>Snědla jablko.</em> “She ate an apple.”</li>
+  <li><em>Snědlo jablko.</em> “It ate an apple.”</li>
+  <li><em>Snědli jsme jablko.</em> “We ate an apple.” (masculine animate)</li>
+  <li><em>Snědly jsme jablko.</em> “We ate an apple.” (feminine)</li>
+  <li><em>Snědli jste jablko.</em> “You ate an apple.” (masculine animate plural)</li>
+  <li><em>Snědly jste jablko.</em> “You ate an apple.” (feminine plural)</li>
+  <li><em>Snědli jablko.</em> “They ate an apple.” (masculine animate)</li>
+  <li><em>Snědly jablko.</em> “They ate an apple.” (feminine or masculine inanimate)</li>
+  <li><em>Snědla jablko.</em> “They ate an apple.” (neuter)</li>
+</ul>
+
+<pre><code class="language-conllu"># text = Chlapec snědl jablko.
+# text_en = The boy ate an apple.
+1	Chlapec	chlapec	NOUN	_	Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos	2	nsubj	_	Gloss=boy
+2	snědl	sníst	VERB	_	Gender=Masc|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part	0	root	_	Gloss=eaten
+3	jablko	jablko	NOUN	_	Case=Acc|Gender=Neut|Number=Sing|Polarity=Pos	2	obj	_	Gloss=apple|SpaceAfter=No
+4	.	.	PUNCT	_	_	2	punct	_	_
+
+</code></pre>
+
+<p>Czech word order is free and while the SVO order is preferred by default, other
+permutations are possible and may be required to distinguish topic and focus.</p>
+
+<ul>
+  <li><em>Chlapec snědl jablko.</em> “The/a boy ate an apple.”</li>
+  <li><em>Jablko snědl chlapec.</em> “It was a/the boy who ate the apple.”</li>
+  <li><em>Chlapec jablko snědl.</em> “What the boy did to the apple was that he ate it.”</li>
+  <li><em>Jablko chlapec snědl.</em> “As for the apple, what the boy did to it was that he ate it.”</li>
+  <li><em>Snědl chlapec jablko.</em> “A boy ate an apple.”</li>
+  <li><em>Snědl jablko chlapec.</em> “A boy ate an apple.” (Most unusual order but not impossible.)</li>
+</ul>
+
+<p>Transitive clauses (those that have an accusative object) can be passivized.</p>
+
+<ul>
+  <li><em>Jablko bylo snědeno chlapcem.</em> “The apple was eaten by the boy.”</li>
+  <li><em>Jablka byla snědena chlapcem.</em> “The apples were eaten by the boy.”</li>
+</ul>
+
+<pre><code class="language-conllu"># text = Jablko bylo snědeno chlapcem.
+# text_en = The apple was eaten by the boy.
+1	Jablko	jablko	NOUN	_	Case=Nom|Gender=Neut|Number=Sing|Polarity=Pos	3	nsubj:pass	_	Gloss=apple
+2	bylo	být	AUX	_	Gender=Neut|Number=Sing|Tense=Past|VerbForm=Part	3	aux:pass	_	Gloss=was
+3	snědeno	sníst	ADJ	_	Case=Nom|Gender=Neut|Number=Sing|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass	0	root	_	Gloss=eaten
+4	chlapcem	chlapec	NOUN	_	Animacy=Anim|Case=Ins|Gender=Masc|Number=Sing|Polarity=Pos	3	obl:agent	_	Gloss=by-boy|SpaceAfter=No
+5	.	.	PUNCT	_	_	3	punct	_	Gloss=.
+
+</code></pre>
+
+<p>There are a few verbs with accusative objects that cannot passivize, for
+instance:</p>
+
+<ul>
+  <li><em>Chlapec dostal čokoládu.</em> “The boy got chocolate.” <em>(*Čokoláda byla dostána chlapcem.)</em></li>
+  <li><em>Chlapec má čokoládu.</em>  “The boy has chocolate.” <em>(*Čokoláda je mána chlapcem.)</em></li>
+</ul>
+
+<p>It is not guaranteed that a bare accusative nominal is a core argument. It can
+also be a durational temporal adjunct, as in:</p>
+
+<ul>
+  <li><em>Pracuje celý týden.</em></li>
+</ul>
+
+<pre><code class="language-conllu"># text = Pracuje celý týden.
+# text_en = He works the whole week.
+1	Pracuje	pracovat	VERB	_	Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin	0	root	_	Gloss=works
+2	celý	celý	ADJ	_	Animacy=Inan|Case=Acc|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos	3	amod	_	Gloss=whole
+3	týden	týden	NOUN	_	Animacy=Inan|Case=Acc|Gender=Masc|Number=Sing|Polarity=Pos	1	obl:tmod	_	Gloss=week|SpaceAfter=No
+4	.	.	PUNCT	_	_	1	punct	_	Gloss=.
+
+</code></pre>
+
+<p>The nominal <em>celý týden</em> cannot be promoted to subject via passivization, which
+supports the claim that it is not an object; however, this test is not sufficient
+because of the exceptional verbs like <em>dostat</em> “to get” and <em>mít</em> “to have”.
+Therefore, durational temporal adjuncts have to be stated as an exception and
+the argument/adjunct distinction cannot be avoided in this case.</p>
 
 <h2 id="can-adjectives-have-core-arguments">Can Adjectives Have Core Arguments?</h2>
 
