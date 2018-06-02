@@ -1168,40 +1168,83 @@ feature empty.</p>
 
 </code></pre>
 
-<h2 id="further-discussion">Further Discussion</h2>
+<h2 id="morphological-features-relevant-to-this-chapter">Morphological Features Relevant to this Chapter</h2>
 
-<!---------------------------------------------------------------------------->
-<p><span style="color:red">TO DO: Discuss somewhere the layered features that are
-needed when multiple arguments are cross-referenced by verbal morphology. Try
-to standardize the layer names.</span></p>
+<p>This chapter is primarily about relations between a <a href="">VERB</a> (possibly
+accompanied by an <a href="">AUX</a>), and its <a href="simple_noun_phrases.html">nominal</a>
+dependents (typically headed by a <a href="">NOUN</a>, <a href="">PROPN</a> or <a href="">PRON</a>).</p>
+
+<p>If the language uses morphological case to mark the relation between the
+predicate and its arguments, the <a href="">Case</a> feature should be used to annotate
+the form of the nominal. If nouns are unmarked and only personal pronouns
+inflect for case, then nouns omit the feature. However, if one form of a lemma
+has a non-empty <code class="highlighter-rouge">Case</code> feature, then preferably all other forms should also
+receive that feature (that is, morphologically “unmarked” forms should get
+nominative or absolutive rather than an empty value). If the noun itself does
+not inflect but its case is determined by a function word that modifies it
+(such as a <a href="">DET</a>), then the function word will bear the <code class="highlighter-rouge">Case</code> feature.
+The UD guidelines currently do not specify whether the same approach should be
+taken when the case is determined by an adposition (<a href="">ADP</a>), i.e., whether
+the adposition should bear the <code class="highlighter-rouge">Case</code> feature. (Some languages can combine
+morphological case of nouns with prepositions. The noun paradigm defines the
+repertory of case values in the language, while the preposition would typically
+add meaning corresponding to cases that are not known in the language, although
+they are known in other languages. Hence it would look unnatural to add the
+new case values to the description of the language, and to use them only with
+adpositions.)</p>
+
+<p>In languages like Plains Cree, nominals will also have the feature
+<a href="">Obviation</a> with values <code class="highlighter-rouge">Prx</code> and <code class="highlighter-rouge">Obv</code>. Depending on language, some other
+nominal features may be relevant because they are cross-referenced by the
+verb (<a href="">Number</a>, <a href="">Gender</a>, <a href="">Animacy</a> etc.) but marking the verb-noun
+relation is usually not their only purpose. Personal pronouns also bear the
+<a href="">Person</a> feature, often cross-referenced by verbs, but nouns do not.
+A noun almost always denotes a third-person participant.
+For more details on nominal features see <a href="simple_noun_phrases.html">Simple Noun Phrases</a>.</p>
+
+<p>If the verb cross-references one core argument in its own morphology, the
+verb should be annotated with the same features (<a href="">Person</a>, <a href="">Number</a>,
+<a href="">Gender</a>, <a href="">Animacy</a>, <a href="">Polite</a>, <a href="">Obviation</a>). In some languages these
+features are not marked directly on the main verb but rather on an auxiliary
+verb that accompanies it; the annotation should appear on the word that
+really bears the morphology.</p>
+
+<p>If the verb cross-references two or more arguments, <a href="/u-overview/feat-layers.html">layered features</a>
+must be used. Language-specific guidelines must specify whether all layers
+will have identifiers in square brackets, or whether one of the layers
+(typically the one cross-referencing the subject) can be treated as default.
+Identifiers of non-default layers consist of lowercase English letters and
+typically refer to either grammatical relations ([subj] and [obj]) or case
+of the argument ([erg], [abs], [dat], [nom], [acc]), whichever suits the
+situation in the concrete language better. For example, auxiliary verbs in
+Basque cross-reference one, two or three arguments, and their cases are
+ergative, absolutive or dative. So the auxiliary <em>die</em> will have features
+<code class="highlighter-rouge">Number[erg]=Sing</code>, <code class="highlighter-rouge">Person[erg]=3</code>, <code class="highlighter-rouge">Number[dat]=Plur</code>, <code class="highlighter-rouge">Person[dat]=3</code>,
+<code class="highlighter-rouge">Number[abs]=Sing</code>, and <code class="highlighter-rouge">Person[abs]=3</code>. None of the three layers is treated
+as default in Basque UD, all features have explicit layer identifiers.</p>
+
+<p>Of course, there are many other verbal features but they are not relevant to
+the topic of this chapter and they are described elsewhere.</p>
 
 <h2 id="summary-of-relations">Summary of Relations</h2>
 
+<p>The features discussed in this chapter are <a href="">nsubj</a>, <a href="">obj</a> (core arguments), <a href="">obl</a> and <a href="">obl:arg</a> (oblique dependents).</p>
+
 <ul>
-  <li><a href="">nsubj</a> — nominal subject, corresponding to the S function in intransitive clauses and to the A function in transitive clauses.
-If some of the <code class="highlighter-rouge">nsubj</code> subtypes are used in the language, then the bare <code class="highlighter-rouge">nsubj</code> denotes the remaining situations not covered by the subtypes.
-    <ul>
-      <li><a href="">nsubj:pass</a> — nominal subject in a passive clause</li>
-      <li><a href="">nsubj:caus</a> — nominal subject in a causative clause</li>
-    </ul>
-  </li>
+  <li><a href="">nsubj</a> — nominal subject, corresponding to the S function in intransitive clauses and to the A function in transitive clauses.</li>
   <li><a href="">obj</a> — nominal object, corresponding to the P function in transitive clauses.</li>
-  <li><a href="">iobj</a> — nominal indirect object, one of two objects in ditransitive clauses, the one that is “less core-like” of the two.
-If the two objects are equal in there core-likelihood, none of them is <code class="highlighter-rouge">iobj</code>.
-If some of the <code class="highlighter-rouge">iobj</code> subtypes are used in the language, then the bare <code class="highlighter-rouge">iobj</code> denotes the remaining situations not covered by the subtypes.
-    <ul>
-      <li><a href="">iobj:agent</a> — true agent in a causative clause, if encoded as an indirect object.</li>
-    </ul>
-  </li>
   <li><a href="">obl</a> — nominal oblique argument or adjunct.
 If some of the <code class="highlighter-rouge">obl</code> subtypes are used in the language, then the bare <code class="highlighter-rouge">obl</code> denotes the remaining situations not covered by the subtypes.
     <ul>
-      <li><a href="">obl:agent</a> — true agent in a passive clause, demoted from active subject</li>
-      <li><a href="">obl:arg</a> — oblique argument other than <code class="highlighter-rouge">obl:agent</code></li>
-      <li><a href="">obl:tmod</a> — temporal adjunct</li>
+      <li><a href="">obl:arg</a> — oblique argument (if the data provider decides to distinguish it from adjuncts)</li>
     </ul>
   </li>
 </ul>
+
+<p>There are other optional subtypes of these relations defined elsewhere in
+this documentation or in language-specific guidelines. If such subtypes exist,
+then quite naturally the label without subtype denotes only the remaining
+cases, not covered by subtypes.</p>
 
 
       </div>
