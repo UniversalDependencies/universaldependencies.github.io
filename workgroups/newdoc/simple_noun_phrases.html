@@ -88,15 +88,15 @@
 
 <p>In the simplest case, a noun phrase consists of a single head word, which is typically a noun, proper noun or pronoun.</p>
 
-<pre><code class="language-sdparse">hon/PRON såg filmen/NOUN \n she saw the-film
+<pre><code class="language-sdparse">hon/PRON såg/VERB filmen/NOUN \n she saw the-film
 nsubj(såg, hon)
 obj(såg, filmen)
 </code></pre>
-<pre><code class="language-sdparse">hon/PRON såg Batman/PROPN \n she saw Batman
+<pre><code class="language-sdparse">hon/PRON såg/VERB Batman/PROPN \n she saw Batman
 nsubj(såg, hon)
 obj(såg, Batman)
 </code></pre>
-<pre><code class="language-sdparse">hon/PRON såg den/PRON \n she saw it
+<pre><code class="language-sdparse">hon/PRON såg/VERB den/PRON \n she saw it
 nsubj(såg, hon)
 obj(såg, den)
 </code></pre>
@@ -127,13 +127,13 @@ obj(såg, den)
 <p>Case marking is one of the strategies that languages use to encode the grammatical function of a noun phrase. Case marking can be realized through morphological inflection (captured by the feature <a href="">Case</a> mentioned above) or by clitics or adpositions (prepositions and postpositions). In the interest of cross-linguistic parallelism, UD takes a radical approach and treats all adpositions as case markers, attaching them to the nominal head with the <a href="">case</a> relation.
 This allows us to analyze the following examples as both having a direct dependency relations from the predicate to the noun phrase filling the (oblique) agent role of a passive, despite the fact that Czech uses a noun in the instrumental case (“kočkou”) while Swedish adds a preposition (“av”):</p>
 
-<pre><code class="language-sdparse">pes byl honěn kočkou \n (a/the) cat was chased by (a/the) dog
+<pre><code class="language-sdparse">pes/NOUN byl/AUX honěn/VERB kočkou/NOUN \n cat was chased by dog
 nsubj:pass(honěn, pes)
 obl(honěn, kočkou)
 aux:pass(honěn, byl)
 </code></pre>
 
-<pre><code class="language-sdparse">hunden jagades av katten \n the-dog was-chased by the-cat
+<pre><code class="language-sdparse">hunden/NOUN jagades/NOUN av/ADP katten/NOUN \n the-dog was-chased by the-cat
 nsubj:pass(jagades, hunden)
 case(katten, av)
 obl(jagades, katten)
@@ -147,12 +147,12 @@ obl(jagades, katten)
 
 <p>While adpositions are normally tagged <a href="">ADP</a>, the tag <a href="">PART</a> may be more appropriate for case markers that differ from morphological case markers only by being clitics instead of inflectional morphemes. For example, in Ungarinjin (an Australian language), locative case is marked by a phrase-final clitic (Rumsey, 1978; cited in Velupillai, 2012):</p>
 
-<pre><code class="language-sdparse">dambun nininga ra \n camp my LOC
+<pre><code class="language-sdparse">dambun/NOUN nininga/PRON ra/PART:Case=Loc \n camp my LOC
 nmod:poss(dambun, nininga)
 case(dambun, ra)
 </code></pre>
 
-<p>The clitic “ra” will be tagged <a href="">PART</a> and carry the feature <span style="color: blue">Case=Loc</span> feature, whereas ordinary adpositions do not have a <a href="">Case</a> features.</p>
+<p>The clitic “ra” will be tagged <a href="">PART</a> and carry the feature <span style="color: blue">Case=Loc</span> feature, whereas ordinary adpositions do not have a <a href="">Case</a> feature.</p>
 
 <h2 id="determiners">Determiners</h2>
 
