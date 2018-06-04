@@ -70,7 +70,9 @@
   <li>Elliptical noun phrases</li>
 </ul>
 
-<p><span style="color: blue"><strong>TO DO:</strong> Decide on groupings and provide links to later chapters.</span></p>
+<p><span style="color: blue"><strong>TO DO:</strong> Decide on groupings and provide links to later chapters (above).</span></p>
+
+<p>This chapter is structured as follows:</p>
 
 <ul>
   <li><a href="#nominal-heads">Nominal Heads</a></li>
@@ -101,9 +103,9 @@ obj(såg, den)
 
 <p>In all of the Swedish examples above, the subject is the pronoun “hon” (she), while the object is respectively the noun “filmen” (the-movie), the proper noun “Batman”, and the pronoun “den” (it).</p>
 
-<h3 id="morphological-analysis-of-nominal-heads">Morphological Analysis of Nominal Heads</h3>
+<h3 id="morphological-annotation-of-nominal-heads">Morphological Annotation of Nominal Heads</h3>
 
-<p>Nominal head words should be tagged <a href="">NOUN</a>, <a href="">PROPN</a>, or <a href="">PRON</a>.</p>
+<p>Nominal head words should normally be tagged <a href="">NOUN</a>, <a href="">PROPN</a>, or <a href="">PRON</a>.</p>
 
 <p>Depending on the language, nominal head words may in addition carry a number of morphological features, of which the most common are:</p>
 
@@ -122,7 +124,7 @@ obj(såg, den)
 
 <h2 id="case-markers">Case Markers</h2>
 
-<p>Case marking is one of the strategies that languages use to encode the grammatical function of a noun phrase. Case marking can be realized through morphological inflection (captured by the feature <a href="">Case</a> mentioned above) or by various kinds of clitics or adpositions (prepositions and postpositions). In the interest of cross-linguistic parallelism, UD takes a radical approach and treats all adpositions as case markers, attaching them to the nominal head with the <a href="">case</a> relation.
+<p>Case marking is one of the strategies that languages use to encode the grammatical function of a noun phrase. Case marking can be realized through morphological inflection (captured by the feature <a href="">Case</a> mentioned above) or by clitics or adpositions (prepositions and postpositions). In the interest of cross-linguistic parallelism, UD takes a radical approach and treats all adpositions as case markers, attaching them to the nominal head with the <a href="">case</a> relation.
 This allows us to analyze the following examples as both having a direct dependency relations from the predicate to the noun phrase filling the (oblique) agent role of a passive, despite the fact that Czech uses a noun in the instrumental case (“kočkou”) while Swedish adds a preposition (“av”):</p>
 
 <pre><code class="language-sdparse">pes byl honěn kočkou \n (a/the) cat was chased by (a/the) dog
@@ -140,6 +142,17 @@ obl(jagades, katten)
 <p>This means that prepositional (and postpositional) phrases are treated in UD as extended noun phrases, where the nominal head is the referential core while the adposition is a functional marker. This can be seen as an instantiation of Tesnière’s notion of a dissociated nucleus (Tesnière, 1959) and does not entail that the adposition is seen as a syntactic dependent of the noun in the narrow sense.</p>
 
 <p><span style="color: blue"><strong>TO DO:</strong> Provide links to a central bibliography?</span></p>
+
+<h3 id="morphological-analysis-of-case-markers">Morphological Analysis of Case Markers</h3>
+
+<p>While adpositions are normally tagged <a href="">ADP</a>, the tag <a href="">PART</a> may be more appropriate for case markers that differ from morphological case markers only by being clitics instead of inflectional morphemes. For example, in Ungarinjin (an Australian language), locative case is marked by a phrase-final clitic (Rumsey, 1978; cited in Velupillai, 2012):</p>
+
+<pre><code class="language-sdparse">dambun nininga ra \n camp my LOC
+nmod:poss(dambun, nininga)
+case(dambun, ra)
+</code></pre>
+
+<p>The clitic “ra” will be tagged <a href="">PART</a> and carry the feature <span style="color: blue">Case=Loc</span> feature, whereas ordinary adpositions do not have a <a href="">Case</a> features.</p>
 
 <h2 id="determiners">Determiners</h2>
 
