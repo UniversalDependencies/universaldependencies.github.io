@@ -72,6 +72,16 @@
 
 <p><span style="color: blue"><strong>TO DO:</strong> Decide on groupings and provide links to later chapters.</span></p>
 
+<ul>
+  <li><a href="#nominal-heads">Nominal Heads</a></li>
+  <li><a href="#case-markers">Case Markers</a></li>
+  <li><a href="#determiners">Determiners</a></li>
+  <li><a href="#numerals">Numerals</a></li>
+  <li><a href="#classifiers">Classifiers</a></li>
+  <li><a href="#nominal-modifiers">Nominal Modifiers</a></li>
+  <li><a href="#adjectival-modifiers">Adjectival Modifiers</a></li>
+</ul>
+
 <h2 id="nominal-heads">Nominal Heads</h2>
 
 <p>In the simplest case, a noun phrase consists of a single head word, which is typically a noun, proper noun or pronoun.</p>
@@ -110,7 +120,7 @@ obj(såg, den)
   <li>For “den”: <span style="color: blue">PRON + Definite=Yes|Gender=Com|Number=Sing|Person=3|PronType=Prs</span></li>
 </ul>
 
-<h2 id="case-marking">Case Marking</h2>
+<h2 id="case-markers">Case Markers</h2>
 
 <p>Case marking is one of the strategies that languages use to encode the grammatical function of a noun phrase. Case marking can be realized through morphological inflection (captured by the feature <a href="">Case</a> mentioned above) or by various kinds of clitics or adpositions (prepositions and postpositions). In the interest of cross-linguistic parallelism, UD takes a radical approach and treats all adpositions as case markers, attaching them to the nominal head with the <a href="">case</a> relation.
 This allows us to analyze the following examples as both having a direct dependency relations from the predicate to the noun phrase filling the (oblique) agent role of a passive, despite the fact that Czech uses a noun in the instrumental case (“kočkou”) while Swedish adds a preposition (“av”):</p>
@@ -133,17 +143,31 @@ obl(jagades, katten)
 
 <h2 id="determiners">Determiners</h2>
 
-<p><span style="color: blue"><strong>CONTINUE HERE!</strong> </span></p>
+<p>Nominal heads may be further specified by determiners, which can be roughly divided into three classes:</p>
 
-<p>A nominal head does not take any core arguments but may be associated with different types of modifiers:</p>
+<ul>
+  <li>Articles</li>
+  <li>Demonstratives</li>
+  <li>Quantifiers</li>
+</ul>
 
-<ol>
-  <li>An <code class="highlighter-rouge">nmod</code> is a nominal phrase modifying the head of another nominal phrase, with or without a special case marker. Treebanks may optionally use <code class="highlighter-rouge">nmod:poss</code> to distinguish non-adpositional possessives.</li>
-  <li>An <code class="highlighter-rouge">appos</code> is a nominal phrase that follows the head of another nominal phrase and stands in a co-reference or other equivalence relation to it.</li>
-  <li>An <code class="highlighter-rouge">amod</code> is an adjective modifying the head of a nominal phrase.</li>
-  <li>A <code class="highlighter-rouge">nummod</code> is a numeral modifying the head of a nominal phrase.</li>
-  <li>An <code class="highlighter-rouge">acl</code> is a clause modifying the head of a nominal phrase, with the relative clause <code class="highlighter-rouge">acl:relcl</code> as an important subtype.</li>
-</ol>
+<p>The determiner (<a href="">det</a>) relation is used</p>
+
+<p>Examples</p>
+
+<p>Not for numerals and possessives (see below).</p>
+
+<h3 id="morphological-analysis-of-determiners">Morphological Analysis of Determiners</h3>
+
+<h2 id="numerals">Numerals</h2>
+
+<p>A <code class="highlighter-rouge">nummod</code> is a numeral modifying the head of a nominal phrase.</p>
+
+<h2 id="classifiers">Classifiers</h2>
+
+<h2 id="nominal-modifiers">Nominal Modifiers</h2>
+
+<p>An <code class="highlighter-rouge">nmod</code> is a nominal phrase modifying the head of another nominal phrase, with or without a special case marker. Treebanks may optionally use <code class="highlighter-rouge">nmod:poss</code> to distinguish non-adpositional possessives.</p>
 
 <pre><code class="language-sdparse">the office of the Chair
 nmod(office-2, Chair-5)
@@ -152,6 +176,12 @@ nmod(office-2, Chair-5)
 <pre><code class="language-sdparse">the Chair 's office
 nmod:poss(office-4, Chair-2)
 </code></pre>
+
+<h3 id="possessives">Possessives</h3>
+
+<h2 id="adjectival-modifiers">Adjectival Modifiers</h2>
+
+<p>An <code class="highlighter-rouge">amod</code> is an adjective modifying the head of a nominal phrase.</p>
 
 <pre><code class="language-sdparse">Sam , the manager
 appos(Sam, manager)
