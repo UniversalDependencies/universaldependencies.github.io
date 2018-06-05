@@ -81,6 +81,24 @@ English, where both options are available:
 <p>For more details on the distinction between core and oblique arguments, see
 <a href="simple_verbal_clauses.html">Simple Verbal Clauses</a>.</p>
 
+<p>When a clause contains two non-subject core arguments, it is sometimes
+possible to say that one of them is “direct” and the other “indirect”;
+then the direct object will be labeled <a href="">obj</a> and the indirect <a href="">iobj</a>.
+Criteria for the distinction are language-specific. On the “coreness scale”,
+the direct object is considered more “core-like” than the indirect one,
+therefore one language-specific criterion might be that in the passive voice,
+the direct object is promoted as the new subject, while the indirect object
+does not change. Another possible criterion is that the role expressed by
+the indirect object can be alternatively encoded as an oblique argument,
+while such an option is not available for the direct object.
+The right to use the <a href="">obj</a> label is not bound to one of the two semantic
+roles; in some languages, the theme will be the direct object and the
+recipient will be indirect, but in other languages the opposite will hold,
+or none of the two objects will be clearly indirect.</p>
+
+<p>If it cannot be established that one object is superior to the other, both
+will be labeled <a href="">obj</a>.</p>
+
 <ul>
   <li><a href="#coding-strategies">Coding strategies</a>
     <ul>
@@ -113,10 +131,9 @@ the verb):</p>
 <p>The traditional approach outside UD is to call the first object <em>indirect</em>
 and the second object <em>direct;</em> it is often defined in terms of semantic
 roles, saying that the recipient is the indirect object. UD avoids referring
-to semantic roles and says instead that <a href="/u/dep/iobj.html">indirect object</a>
-is a core argument of the verb that is not its subject or direct
-<a href="/u/dep/obj.html">object</a>; the (direct) object is then defined as
-“the second most core argument of a verb after the subject.”
+to semantic roles but it is not so easy to provide supporting evidence that
+is based on syntax. The passivization criterion actually slightly prefers
+the recipient to be considered direct.
 In the above examples, the recipient <em>(Kate, me)</em> is arguably more core than
 the theme <em>(book, mathematics)</em> because the recipient can be promoted in
 passivization more readily than the theme (promotion of the theme is not
@@ -150,20 +167,23 @@ is removed (in the case of <em>to teach</em>):</p>
   <li><em>Mathematics is taught by Tom. (*Mathematics is taught by Tom to me.)</em></li>
 </ul>
 
-<p>Therefore, we have identified one property of core objects that works better
-with the first object (the recipient) than with the second object (the theme);
-thus the UD v2 guidelines actually require that the second object
-be labeled <code class="highlighter-rouge">iobj</code>. Yet in the current English data (UD 2.1), it is still
-the first object that is labeled <code class="highlighter-rouge">iobj</code>, and the second object is <code class="highlighter-rouge">obj</code>.
-This has to be resolved by either modifying the guidelines, or the data
-(diverging from what people traditionally understand under indirect object).</p>
+<p>On the other hand, the recipient can alternatively be expressed as an
+oblique argument, at least for the verb <em>to give:
+Peter gave a book to Kate.</em>
+For the theme, no alternative is available, it has to be encoded as a bare
+noun phrase (accusative in case of pronouns), which makes it closer to the
+patient in a primary transitive clause.
+The evidence thus seems to be conflicting and indecisive. However, in the
+interest of not causing unnecessary confusion by using the terminology
+opposite to the traditional grammar, recipients are labeled as indirect
+objects in English.</p>
 
 <pre><code class="language-conllu"># text = Peter gave Kate a book.
 1	Peter	Peter	PROPN	_	Number=Sing	2	nsubj	_	_
 2	gave	give	VERB	_	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
-3	Kate	Kate	PROPN	_	Number=Sing	2	obj	_	_
+3	Kate	Kate	PROPN	_	Number=Sing	2	iobj	_	_
 4	a	a	DET	_	Definite=Ind|PronType=Art	5	det	_	_
-5	book	book	NOUN	_	Number=Sing	2	iobj	_	SpaceAfter=No
+5	book	book	NOUN	_	Number=Sing	2	obj	_	SpaceAfter=No
 6	.	.	PUNCT	_	_	2	punct	_	_
 
 </code></pre>
@@ -173,55 +193,41 @@ This has to be resolved by either modifying the guidelines, or the data
 2	was	be	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	3	aux:pass	_	_
 3	given	give	VERB	_	Tense=Past|VerbForm=Part	0	root	_	_
 4	a	a	DET	_	Definite=Ind|PronType=Art	5	det	_	_
-5	book	book	NOUN	_	Number=Sing	3	iobj	_	_
+5	book	book	NOUN	_	Number=Sing	3	obj	_	_
 6	by	by	ADP	_	_	7	case	_	_
 7	Peter	Peter	PROPN	_	Number=Sing	3	obl:agent	_	SpaceAfter=No
 8	.	.	PUNCT	_	_	3	punct	_	_
 
 </code></pre>
 
-<p><span style="color:green"><b>Dan:</b> If we do not accept that the less
-accepted passivization of the theme is enough to say that the second object
-is inferior to the first one, then we will have to label both objects as <code class="highlighter-rouge">obj</code>.
-There is no way of saying that the first object should be <code class="highlighter-rouge">iobj</code> without
-resorting to semantic role labeling. Admittedly it would be advantageous for
-some downstream tasks to be able to always identify the recipient; however,
-it is not a goal of the basic UD representation to resolve such
-syntax-semantic clashes. There are several other options how downstream tasks
-are helped with these: 1. relation subtypes within basic UD (for example,
-we could use <code class="highlighter-rouge">obj:rcpt</code> here); 2. same as 1, but only done in the enhanced
-representation, where labels of oblique dependents are extended too, for the
-same reason; 3. full-fledged semantic-role labeling, done as a stand-off
-extension on top of UD.</span></p>
-
-<p><span style="color: blue"><b>Joakim:</b> I don’t think this is specified by the v2 guidelines.
+<!-- span style="color: blue"><b>Joakim:</b> I don't think this is specified by the v2 guidelines.
 I tried to
-<a href="https://github.com/UniversalDependencies/UD_English-EWT/issues/55#issuecomment-361508801">argue for it on GitHub</a>,
+[argue for it on GitHub](https://github.com/UniversalDependencies/UD_English-EWT/issues/55#issuecomment-361508801),
 based on syntactic criteria, but people pushed back saying that
 it is convenient for NLP applications to have the same relation for the recipient role in both cases.
-This needs to be resolved.</span></p>
+This needs to be resolved.</span>
 
-<p><span style="color:green"><b>Chris</b> had some comments on <code class="highlighter-rouge">iobj</code> at the end
-of <a href="http://universaldependencies.org/v2_prelim/core_dependents.html#what-are-core-arguments">this section</a>
+<span style="color:green"><b>Chris</b> had some comments on `iobj` at the end
+of [this section](http://universaldependencies.org/v2_prelim/core_dependents.html#what-are-core-arguments)
 of our discussion before UD v2. There are references (LFG, Huddleston and Pullum 2002)
 that we may want to consult before making a final judgment; nevertheless, the
 summary there still sounds to me like “UD does not do semantic role labeling,
-except for cases where it does.”</span></p>
+except for cases where it does.”</span>
 
-<p><span style="color:green"><b>Dan:</b> A tentative solution for UD v2 (where we
-can neither ban <code class="highlighter-rouge">iobj</code> nor rename it): Allow more flexibility for language-specific
+<span style="color:green"><b>Dan:</b> A tentative solution for UD v2 (where we
+can neither ban `iobj` nor rename it): Allow more flexibility for language-specific
 documentation to decide whether there is an indirect object. Require though
 that the language-specific rules are supported by solid argumentation that
-does not clash with the spirit of UD. Rephrase the definition of <a href="">iobj</a> so
+does not clash with the spirit of UD. Rephrase the definition of [iobj]() so
 that it does not automatically entail the least core-like argument that is
 still not oblique (even now the guidelines do not say this explicitly, but it
-follows from the definitions of <a href="">obj</a> and <a href="">iobj</a>. That way English can
-keep its <code class="highlighter-rouge">iobj</code> for recipients in UD v2, and users will not be confused by
+follows from the definitions of [obj]() and [iobj](). That way English can
+keep its `iobj` for recipients in UD v2, and users will not be confused by
 the label appearing at the opposite of what has been traditionally understood
 as indirect object. In other languages, different criteria may apply, or it
-may be even possible to have two <code class="highlighter-rouge">obj</code> under one verb. And for UD v3, we may
-decide that the English-like <code class="highlighter-rouge">iobj</code> becomes language-specific subtype,
-referring directly to the semantic role, i.e., <code class="highlighter-rouge">obj:rcpt</code>.</span></p>
+may be even possible to have two `obj` under one verb. And for UD v3, we may
+decide that the English-like `iobj` becomes language-specific subtype,
+referring directly to the semantic role, i.e., `obj:rcpt`.</span -->
 
 <!---------------------------------------------------------------------------->
 
@@ -269,7 +275,7 @@ pronoun, thus forming a ditransitive clause:</p>
 </code></pre>
 
 <p>We have two different constructions depending on whether the recipient is a
-pronoun or a noun. This alone could be an argument for saying that <em>lui</em> is
+pronoun or a noun. This alone could be used as an argument for saying that <em>lui</em> is
 the indirect object (<a href="">iobj</a>) and <em>un livre</em> is the direct object (<a href="">obj</a>).
 Another argument is that only the direct object can be promoted to subject in
 a passive construction:</p>
@@ -278,20 +284,66 @@ a passive construction:</p>
   <li><em>Un livre lui a été donné.</em> “A book was given to her.” <em>(*Elle a été donnée un livre.)</em></li>
 </ul>
 
-<p><span style="color:red">Joakim, please check that the above is correct.</span></p>
+<p>Note that a nominative-accusative-dative construction can be used also in
+situations where the dative argument is better described as beneficiary rather
+than recipient. If the beneficiary is expressed as a dative pronoun (that is,
+a core argument), it is still labeled <code class="highlighter-rouge">iobj</code>:
+<!-- But the same holds in German and Czech, where we have ruled that dative
+is not core. Yet in those languages the situation is more complex, the case
+applies also for nouns, and there are other cases that behave the same way,
+genitives, instrumentals and even prepositional phrases, so there it would not
+be possible to draw the line anywhere else. --></p>
 
-<p><span style="color:red">TO DECIDE: French seems to be using the term
-<em>indirect object</em> also in clauses that are not ditransitive because there
-is no other object: <em>Je lui parle. (Je parle à Pierre.)</em>
-However, this seems to be the same problem as the dative in Czech and German
-(the difference is that French does not have other cases and even the dative
-is limited to pronouns).
-In French the dative can also be used for benefactives, as in Czech and German:
-<em>Il leur achète des livres.</em> “He buys books for them.”</span></p>
+<ul>
+  <li><em>Il leur achète des livres.</em> “He buys books for them.”</li>
+</ul>
+
+<pre><code class="language-conllu"># text = Il leur achète des livres.
+# text_en = He buys books for them.
+1	Il	il	PRON	_	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	Gloss=he
+2	leur	lui	PRON	_	Case=Dat|Number=Plur|Person=3|PronType=Prs	3	iobj	_	Gloss=them
+3	achète	acheter	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	Gloss=buys
+4	des	des	DET	_	Definite=Ind|Number=Plur|PronType=Art	5	det	_	Gloss=some
+5	livres	livre	NOUN	_	Gender=Masc|Number=Plur	3	obj	_	Gloss=books|SpaceAfter=No
+6	.	.	PUNCT	_	_	3	punct	_	Gloss=.
+
+</code></pre>
+
+<p>Finally, it is possible that the dative pronoun (representing an oblique noun
+phrase) occurs with a verb that takes just two core arguments, e.g., <em>parler</em>
+“to speak”. The dative argument behaves here like an indirect object in a
+ditransitive clause: it is not promoted to subject in passive constructions.
+Therefore it is also labeled <code class="highlighter-rouge">iobj</code>, although normally a monotransitive
+clause would have a <code class="highlighter-rouge">nsubj</code> and a direct <code class="highlighter-rouge">obj</code>.
+<!-- again, the same happens in German and Czech, except that there are
+other possibilities that make it more complex --></p>
+
+<ul>
+  <li><em>Je lui parle. (Je parle à Pierre.)</em> “I speak to him. (I speak to Pierre.)”</li>
+</ul>
+
+<pre><code class="language-conllu"># text = Je lui parle.
+# text_en = I speak to him.
+1	Je	je	PRON	_	Case=Nom|Number=Sing|Person=1|PronType=Prs	3	nsubj	_	Gloss=I
+2	lui	lui	PRON	_	Case=Dat|Number=Sing|Person=3|PronType=Prs	3	iobj	_	Gloss=him
+3	parle	parler	VERB	_	Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin	0	root	_	Gloss=speak|SpaceAfter=No
+4	.	.	PUNCT	_	_	3	punct	_	Gloss=.
+
+</code></pre>
 
 <!---------------------------------------------------------------------------->
 
 <h3 id="spanish">Spanish</h3>
+
+<p>In Spanish, like in French, a recipient realized as a noun must take a
+preposition <em>(a)</em> but it can be substituted by a dative pronoun (<em>le, les,</em>
+both genders), which appears without the preposition.
+However, the situation in Spanish is different in two aspects:</p>
+
+<ul>
+  <li><em>a</em> is core coding of direct object</li>
+  <li>clitic doubling - if clitic is core and noun is noncore, then clitic should be iobj?</li>
+</ul>
 
 <p>Some Spanish verbs allow two objects:</p>
 
@@ -360,7 +412,14 @@ Hence the indirect object is less core than the direct object.</p>
 
 </code></pre>
 
-<p><span style="color: blue"><b>Joakim:</b> Why do we treat the recipient as core in Spanish but not in English when they both have prepositions? Is this because prepositions are found with direct objects in Spanish but not in English? And what would we then do in French, where the recipient takes a prepositions but where prepositions are never used with prepositions? Same as English? It would also be possible (at least in French) to argue for a mixed system, where full noun phrases are oblique (because they take a preposition) but pronouns are core (because they have dative case).</span></p>
+<p><span style="color: blue"><b>Joakim:</b> Why do we treat the recipient as core
+in Spanish but not in English when they both have prepositions? Is this because
+prepositions are found with direct objects in Spanish but not in English? And
+what would we then do in French, where the recipient takes a prepositions but
+where prepositions are never used with prepositions? Same as English? It would
+also be possible (at least in French) to argue for a mixed system, where full
+noun phrases are oblique (because they take a preposition) but pronouns are
+core (because they have dative case).</span></p>
 
 <p><span style="color:green"><b>Dan:</b> One option is to say that the preposition
 <em>a</em> together with an animate noun phrase counts as core coding in Spanish,
