@@ -77,24 +77,23 @@ command assumes you have not modified your local copy of the data without pushin
 back; if this is the case, you will see lists of modified files in the output and you
 will have to resolve it). Also make sure that you are working with the <code class="highlighter-rouge">dev</code> branch:<br />
 <code>for i in UD_* ; do echo $i ; cd $i ; git checkout dev ; git pull --no-edit ; cd .. ; echo ; done</code></li>
-  <li>Freeze the list of treebanks that will be released (i.e., contain valid data). There are two sources from
-which the list can be derived: the online validation report, and output of <code class="highlighter-rouge">tools/check_files.pl</code>.
-Save the list as <code class="highlighter-rouge">released_treebanks.txt</code> (just one line, names of UD folders separated
-by whitespace).</li>
   <li>Run <code class="highlighter-rouge">tools/check_files.pl |&amp; tee release-2.2-report.txt | less</code>.
 (Since the partial shared task releases, the source code is modified to only look at
-pre-selected UD folders. Check the code to make sure it visits all UD_* repositories.)
-It will visit all repositories and report any missing files, unexpected or unexpectedly named files.
+pre-selected UD folders. Check the code to make sure it visits all UD_* repositories.
+Also check other parameters that are currently hard-coded, such as the release number.)
+The script will visit all repositories and report any missing files, unexpected or unexpectedly named files.
+It will download the <a href="http://quest.ms.mff.cuni.cz/cgi-bin/zeman/unidep/validation-report.pl">online validation report</a>
+and check whether the treebanks are valid (prerequisite: all UD repositories are registered
+on the validation server <code class="highlighter-rouge">quest.ms.mff.cuni.cz</code>).
 It will also collect information such as the list of contributors (we need this metadata for Lindat).</li>
+  <li>Freeze the list of treebanks that will be released (i.e., contain valid data).
+Take the list from the output of <code class="highlighter-rouge">tools/check_files.pl</code> and save it as
+<code class="highlighter-rouge">released_treebanks.txt</code> (just one line, names of UD folders separated by whitespace).</li>
 </ul>
 
-<h2 id="processing-the-data">Processing the data</h2>
+<h2 id="processing-the-data-before-releasing-them">Processing the data before releasing them</h2>
 
 <ul>
-  <li>Make sure that all CoNLL-U files are formally valid
-(results of the validator are <a href="http://quest.ms.mff.cuni.cz/cgi-bin/zeman/unidep/validation-report.pl">available on-line</a>
-but make sure that no repository is missing there).<br />
-<code>for i in $(cat released_treebanks.txt) ; do cd $i ; if [ -f *-test.conllu ] ; then for j in *.conllu ; do x=$(echo $j | perl -pe 'chomp; s/_.*//') ; if ../tools/validate.py --lang $x $j &gt;&amp; /dev/null ; then echo $j valid ; else echo $j INVALID ==================== ; fi ; done ; fi ; cd .. ; done</code></li>
   <li>Make sure that there are not significant overlaps between training and dev/test files of treebanks of one language.<br />
 <code>check_overlaps.pl $(cat released_treebanks.txt) |&amp; tee overlap.log</code></li>
   <li>Update statistics in the <code class="highlighter-rouge">stats.xml</code> file in each repository:<br />
@@ -102,20 +101,21 @@ but make sure that no repository is missing there).<br />
   <li>Merge the <code class="highlighter-rouge">dev</code> branch into <code class="highlighter-rouge">master</code> in the released repositories.
 The <code class="highlighter-rouge">master</code> branch should not be touched the next seven months and it should have exactly the contents that was officially
 released and used in the shared task.<br />
-<code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev --no-edit ; git push ; git checkout dev ; cd .. ; echo ; done</code></li>
-  <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code class="highlighter-rouge">master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the <code class="highlighter-rouge">master</code> branch and git will not allow any further operations with them!<br />
-<code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 2 ; else echo OK ; fi ; cd .. ; echo ; done</code>
+<code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev --no-edit ; git push ; git checkout dev ; cd .. ; echo ; done</code>
     <ul>
-      <li><code>cd UD_...(the-one-with-conflict) ; git status</code> will show what files have a problem. Let’s assume that only <code class="highlighter-rouge">README.txt</code> has a problem. This is how we replace it with the version from the <code class="highlighter-rouge">dev</code> branch and conclude the merge:<br />
+      <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code class="highlighter-rouge">master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the <code class="highlighter-rouge">master</code> branch and git will not allow any further operations with them!<br />
+<code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 2 ; else echo OK ; fi ; cd .. ; echo ; done</code>
+        <ul>
+          <li><code>cd UD_...(the-one-with-conflict) ; git status</code> will show what files have a problem. Let’s assume that only <code class="highlighter-rouge">README.txt</code> has a problem. This is how we replace it with the version from the <code class="highlighter-rouge">dev</code> branch and conclude the merge:<br />
 <code>git checkout --theirs README.txt ; git add README.txt ; git commit -m 'Merge branch dev' ; git push ; git checkout dev ; cd ..</code></li>
+        </ul>
+      </li>
+      <li>After resolving the conflicts do not forget to checkout the <code class="highlighter-rouge">dev</code> branch again! (If there were no conflicts, we are already back in <code class="highlighter-rouge">dev</code>.)<br />
+<code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout dev ; cd .. ; echo ; done</code></li>
     </ul>
   </li>
-  <li>After resolving the conflicts do not forget to checkout the <code class="highlighter-rouge">dev</code> branch again! (If there were no conflicts, we are already back in <code class="highlighter-rouge">dev</code>.)<br />
-<code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout dev ; cd .. ; echo ; done</code></li>
   <li>Re-evaluate the treebanks for the star ranking on the website. This is done only in the master branch and the result is stored there.<br />
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; cd .. ; perl -I tools tools/evaluate_treebank.pl $i --verbose &gt;&amp; $i/eval.log ; cd $i ; git add eval.log ; git commit -m 'Updated treebank evaluation.' ; git push ; git checkout dev ; cd .. ; done</code></li>
-  <li>Run the script that refreshes the title page of Universal Dependencies (list of languages, treebanks and their properties).<br />
-<code>cd docs-automation ; make all<br />(and git commit ; git push)</code></li>
   <li>Tag the current commit in all repositories with the tag of the current release (<code class="highlighter-rouge">git tag r2.2</code> for UD 2.2).
 Push the tag to Github: <code class="highlighter-rouge">git push origin --tags</code>.
 You may even tag a particular commit retroactively: <code class="highlighter-rouge">git tag -a r2.1 9fceb02</code>.
@@ -124,6 +124,13 @@ this is how you remove the tag from where it is now: <code class="highlighter-ro
 And this is how you remove it from Github: <code class="highlighter-rouge">git push origin :refs/tags/r2.1</code>.
 WARNING: The following command tags all UD repositories, including those that are not part of the current release.<br />
 <code>for i in $(cat released_treebanks.txt) docs tools ; do echo $i ; cd $i ; git tag r2.2 ; git push --tags ; cd .. ; echo ; done</code></li>
+</ul>
+
+<h2 id="updating-automatically-generated-parts-of-documentation">Updating automatically generated parts of documentation</h2>
+
+<ul>
+  <li>Run the script that refreshes the title page of Universal Dependencies (list of languages, treebanks and their properties).<br />
+<code>cd docs-automation ; make all<br />(and git commit ; git push)</code></li>
   <li>Run the script <tt>tools/package_ud_release.sh</tt>, which must find the release number in the environment,
 and its arguments are names of folders to be released.<br />
 <code>RELEASE=2.2 tools/package_ud_release.sh $(cat released_treebanks.txt)</code></li>
