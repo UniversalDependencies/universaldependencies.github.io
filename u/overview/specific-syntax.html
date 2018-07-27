@@ -192,9 +192,22 @@ xcomp(want-7, to-8)
 7 .      .      _ .   _ 2 punct _ _
 </div>
 
-<p>In such cases, we promote dependents in the following order: <code class="highlighter-rouge">nsubj</code> &gt; <code class="highlighter-rouge">obj</code> &gt; <code class="highlighter-rouge">iobj</code> &gt; <code class="highlighter-rouge">obl</code> &gt; <code class="highlighter-rouge">advmod</code> &gt; <code class="highlighter-rouge">csubj</code> &gt; <code class="highlighter-rouge">xcomp</code> &gt; <code class="highlighter-rouge">ccomp</code> &gt; <code class="highlighter-rouge">advcl</code>
-and for the non-promoted dependents, we use the special relation <code class="highlighter-rouge">orphan</code> to signal a non-standard dependency.
-If it is necessary to select among several orphans of the same type (e.g. there are just two orphans and both are <code class="highlighter-rouge">advmod</code>),
+<p>Of course, one may decide to promote <em>you</em> instead of <em>coffee,</em> but suggesting that <em>coffee</em> is a direct object of <em>you</em> is no better:</p>
+
+<div class="conllu-parse" tabs="yes">
+# visual-style 5 6 obj color:red
+1 I      I      _ PRP _ 2 nsubj _ _
+2 like   like   _ VBP _ 0 root  _ _
+3 tee    tee    _ NN  _ 2 obj   _ _
+4 and    and    _ CC  _ 5 cc    _ _
+5 you    you    _ PRP _ 2 conj _ _
+6 coffee coffee _ VBP _ 5 obj  _ SpaceAfter=No
+7 .      .      _ .   _ 2 punct _ _
+</div>
+
+<p>To avoid confusion and signal that the dependency structure is incomplete, we use the special relation <code class="highlighter-rouge">orphan</code> to connect the non-promoted dependents with the promoted dependent. Orphaned dependents are considered for promotion in the following order:
+<code class="highlighter-rouge">nsubj</code> &gt; <code class="highlighter-rouge">obj</code> &gt; <code class="highlighter-rouge">iobj</code> &gt; <code class="highlighter-rouge">obl</code> &gt; <code class="highlighter-rouge">advmod</code> &gt; <code class="highlighter-rouge">csubj</code> &gt; <code class="highlighter-rouge">xcomp</code> &gt; <code class="highlighter-rouge">ccomp</code> &gt; <code class="highlighter-rouge">advcl</code>.
+If it is necessary to select among several orphans of the same type (e.g., there are just two orphans and both are <code class="highlighter-rouge">advmod</code>),
 the orphan occurring first (closer to the sentence start) is promoted.</p>
 
 <pre><code class="language-sdparse">I like tea and you coffee .
