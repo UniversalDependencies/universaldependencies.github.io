@@ -3,15 +3,15 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Uppsala Group on Clitics and Reflexive Pronouns</title>
+    <title>Uppsala Group on Future of UD</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
-    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
-    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-2015">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_2015-08-23-uppsala/clitics.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/workgroups/2015-08-23-uppsala/future.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,63 +60,64 @@
 	  </div>
 	</noscript>
 
-          <h1 id="uppsala-group-on-clitics-and-reflexive-pronouns">Uppsala Group on Clitics and Reflexive Pronouns</h1>
+          <h1 id="uppsala-group-on-future-of-ud">Uppsala Group on Future of UD</h1>
 
-<p><em>(Kiril Simov, Petya Osenova, Simonetta Montemagni, Mojgan Seraji, Nizar Habash, Marie-Catherine de Marneffe)</em></p>
+<p>Aitziber, Anders, Filip, Jan, Jenna, Tommi, Veronika, Zeljko</p>
 
-<h2 id="clitic-doubling">Clitic doubling</h2>
+<p>This group discussed possible extensions towards annotation of semantics.</p>
 
-<p>In languages where real clitic doubling can appear (such as Bulgarian or Greek), the clitic elements should be tagged as <code class="highlighter-rouge">expl</code> and depend on the predicate:</p>
+<h2 id="discussion-covered-the-following-topics">Discussion covered the following topics:</h2>
 
-<pre><code class="language-sdparse">I will him it read the book to the boy
-expl(read, him)
-expl(read, it)
-dobj(read, book)
-nmod(read, boy)
-</code></pre>
+<ul>
+  <li>semantic roles: which ones, extent, representation</li>
+  <li>word senses: which “ontology”, difficulties with IAA</li>
+  <li>propbanking/valency</li>
+  <li>conjunct propagation</li>
+  <li>Named entities (wrt to existing annotation guidelines in UD)</li>
+  <li>Grounding</li>
+  <li>co-reference, information structure, discourse</li>
+  <li>ellipsis / NULL element addition</li>
+  <li>in view of preceding group discussions, especially MWE group, LVCs and idioms</li>
+  <li>principles, minimal set of annotation to be called “semantic annotation”</li>
+</ul>
 
-<p>When the direct or indirect objects are realized with a clitic only, there are tagged as <code class="highlighter-rouge">dobj</code> or <code class="highlighter-rouge">iobj</code>.</p>
+<h2 id="group-internal-consensus">Group-internal consensus:</h2>
 
-<p>We suggest that if needed, languages can have subtypes indicating the relation (dobj, iobj), though it is unclear whether that is really the best idea.</p>
+<ul>
+  <li>no change to current format and structure - if anything, must be “add-on” (only addition to current scheme and format)</li>
+  <li>basis features to include in “UD Semantics 1.0”:
+    <ul>
+      <li>exlicitly identified content words</li>
+      <li>graph structure over content words, with conjunct propagated (“effective heads”)</li>
+      <li>labeled relations on every “semantic” edge (~30 types: not semantic roles, but rather arguments as in propbank, plus non-argument relations as in PDT)</li>
+      <li>LVCs and idioms annotated</li>
+      <li>Named entities, labeled at least on “top level” hierarchy (~5-7 classes)</li>
+      <li>NULL words: only positively defined</li>
+      <li>WSD with caution (maybe not in UD Semantics 1.0 - which ontology??)</li>
+      <li>something should be out by end of next year (process: survey of treebanks, guidelines, annotation)</li>
+    </ul>
+  </li>
+  <li>minimal set for a treebank to be considered as having semantic annotation: content words, all relations (with effective heads resolved), labels at least for verbs and their arguments</li>
+</ul>
 
-<p>For languages with dislocation, such as French, we use the dislocated relation, consistent with the existing guidelines.</p>
+<h2 id="report-and-discussion-with-all">Report and discussion with all</h2>
 
-<h2 id="clitic-acting-as-part-of-the-verbal-inflection">Clitic acting as part of the verbal inflection</h2>
-
-<p>If the pronoun has a real grammatical function (dobj, iobj, advmod), we use that function as relation. If not, we use <code class="highlighter-rouge">expl</code>, possibly with the following subtypes.</p>
-
-<pre><code class="language-sdparse">Maria si lava \n Maria washes herself
-dobj(lava, si)
-</code></pre>
-
-<h3 id="pv-pronominal-verb">“pv”: pronominal verb</h3>
-
-<pre><code class="language-sdparse">la finestra si è rotta \n the window broke
-expl:pv(rotta, si)
-</code></pre>
-
-<h3 id="pass-passivazing-uses">“pass”: passivazing uses</h3>
-
-<pre><code class="language-sdparse">la neve si vede dal balcone \n Snow can be seen from the balcony
-expl:pass(vede, si)
-</code></pre>
-
-<h3 id="impers-impersonal-construction">“impers”: impersonal construction</h3>
-
-<pre><code class="language-sdparse">qui si parla francese  \n here French is spoken
-expl:impers(parla, si)
-</code></pre>
-
-<h2 id="existential-constructions">Existential constructions</h2>
-<p>For existential constructions, <code class="highlighter-rouge">expl</code> is used, consistent with the existing guidelines.</p>
-
+<ul>
+  <li>several concerns raised
+    <ul>
+      <li>do “enhanced” things first</li>
+      <li>named entities, LVCs, idioms perhaps the most pressing in terms of need?</li>
+    </ul>
+  </li>
+  <li>several non-group people expressed interest to contribute to the process</li>
+</ul>
 
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../'; // filled in by jekyll
+    var root = '../../'; // filled in by jekyll
     head.js(
         // External libraries
         root + 'lib/ext/jquery.min.js',
@@ -222,7 +223,7 @@ expl:impers(parla, si)
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = '2015-08-23-uppsala';
+        Collections.listing['_current'] = '';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);

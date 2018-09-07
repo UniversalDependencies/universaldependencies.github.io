@@ -3,15 +3,15 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Uppsala Group on Multiword Expressions</title>
+    <title>Uppsala Group on Coordination and Names</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
-    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
-    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-2015">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_2015-08-23-uppsala/mwe.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/workgroups/2015-08-23-uppsala/coordination.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,46 +60,61 @@
 	  </div>
 	</noscript>
 
-          <h1 id="uppsala-group-on-multiword-expressions">Uppsala Group on Multiword Expressions</h1>
+          <h1 id="uppsala-group-on-coordination-and-names">Uppsala Group on Coordination and Names</h1>
 
-<p><em>(Aaron Smith, Alessandro Lenci, Anders Johannsen, Jan Hajic, Marie-Catherine de Marneffe, Veronika Vincze)</em></p>
+<h2 id="coordination">Coordination</h2>
 
-<p>The group discussion involved three main topics: the treatment of light verb constructions, the treatment of other MWEs and multiword abbreviations.</p>
+<p>The universal guidelines specify that the first conjunct is the head in a coordinated phrase. It has been suggested that some languages show inflection patterns indicating that the last conjunct is instead the head. We considered a number of examples but concluded that they could all be analyzed as cases where the inflection applies to the entire coordinated phrase but shows up only on one of the conjuncts. Hence, we don’t find any reason to change the guidelines.</p>
 
-<h2 id="light-verb-constructions-lvcs">Light verb constructions (LVCs)</h2>
+<h3 id="conjunct-sensitive-agreement">Conjunct-sensitive agreement</h3>
 
-<p>Currently there are three different approaches in the UD treebanks concerning the treatment of LVCs (see a forthcoming poster at the next PARSEME meeting):</p>
+<p>One type of example is conjunct-sensitive agreement, that is, where the verb of a coordinated subject agrees with only one of the conjuncts. This happens in Latin as well as in Slavic languagues. As far as we could tell, however, the crucial factor here is proximity, meaning that the verb agrees with the first conjunct if it precedes the subject but with the last conjunct if it succeeds the subject. This is illustrated by the following contrasting examples from Serbo-Croatian:</p>
 
-<ul>
-  <li>LVCs are not distinguished from normal verb+argument phrases (as in English), e.g. <em>take a flight to Stockholm</em> is annotated similarly to <em>give a book to Mary</em>: both arguments are attached to the verb</li>
-  <li>LVCs are marked structurally (as in Swedish), e.g. in <em>take a flight to Stockholm</em>, <em>Stockholm</em> is attached to <em>flight</em> rather than to the verb</li>
-  <li>LVCs are marked with extended labels (as in Hungarian), e.g. in <em>take a flight</em>, <em>flight</em> has a special label (<code class="highlighter-rouge">dobj:lvc</code>) that marks its syntactic function and its being an LVC component</li>
-</ul>
+<pre><code class="language-sdparse">Juce su uništena sva sela i sve varošice . \n yesterday are destroyed-PL.N all villages-N and all towns-F .
+conj(sela, varošice)
+nsubj(uništena, sela)
+</code></pre>
 
-<p>During the discussion, we argued that in LVCs, the syntactic and semantic heads of the structure are different, hence we should treat syntactic and semantic aspects differently. We propose to apply a simple syntactic relation between the verb and its argument at the syntactic level, whereas the argument of the construction should be attached to the noun whenever it is possible (i.e. the noun and the argument can stand on their own without the verb). However, the LVC-ness of the construction should be marked at the semantic level, i.e. as an enhanced relation.</p>
+<pre><code class="language-sdparse">Sva sela i sve varošice su uništene . \n all villages-N and all towns-F are destroyed-PL.F .
+conj(sela, varošice)
+nsubj(uništene, sela)
+</code></pre>
 
-<h2 id="multiword-expressions">Multiword expressions</h2>
+<p>We conclude that the conjunct-sensitive agreement patterns do not provide clear evidence of headedness in coordination.</p>
 
-<p>As for idioms, we propose a similar annotation scheme: general syntactic labels should be given and idiomacity should be marked at the enhanced (semantic) level.</p>
+<h3 id="delayed-suffixation">Delayed suffixation</h3>
 
-<p>We clarified the definitions of the relations <code class="highlighter-rouge">compound</code> and <code class="highlighter-rouge">mwe</code> (the existing guidelines do not change):</p>
+<p>Another type of example is found in Turkish, where inflectional suffixes may show up only on the final conjunct, as in this example.</p>
 
-<ul>
-  <li><code class="highlighter-rouge">compound</code> should be applied only for morphosyntactically non-standard constructions (e.g. noun-noun compounds, adjective-adjective compounds, etc.)</li>
-  <li><code class="highlighter-rouge">mwe</code> should be applied to less transparent constructions that are similar to collocations (e.g. multiword conjunctions)</li>
-</ul>
+<pre><code class="language-sdparse">Süt  içer , diş fırcalar , bir hikaye dinler ve uyurDUK . \n milk drink-AOR , teeth brush-AOR , a   story  listen-AOR and sleep-AOR-PAST-2PL .
+conj(içer, fırcalar)
+conj(içer, dinler)
+conj(içer, uyurDUK)
+</code></pre>
 
-<h2 id="multiword-abbreviations">Multiword abbreviations</h2>
+<p>The fact that PAST and 2PL are only marked overtly on the final coordinated verb might be taken as an indication that the final conjunct is the head. However, we think it is also possible to analyze it as an inflection that applies to the entire coordination but is visible only on the last conjunct. In this respect, it is similar to constructions like “Tom and Jerry’s Diner”, where the clitic/suffix “‘s” has scope over the entire coordination.</p>
 
-<p>Most tokenizers treat MW abbreviations differently, depending on the fact whether it includes a delimiter within (e.g. <em>e.g.</em>) or not (e.g. <em>etc.</em>). Thus this issue is related to tokenization and is still to be resolved. As a preliminary suggestion, however, we agreed that the relation <code class="highlighter-rouge">mwe</code> (or the enhanced relation <code class="highlighter-rouge">mwe:abbrev</code>) should be applied in between the tokens in case MW abbreviations are to be split up.</p>
+<h2 id="names">Names</h2>
 
+<p>The universal guidelines specify that multiword names without regular syntactic structure should be annotated as head-initial structures with the name relation. Again it has been suggested that some languages show inflection patterns indicating that the last word is the head and again we concluded that these can be analyzed as cases where the inflection applies to the entire name but shows up only on the last element. Hence, we don’t find any reason to change the guidelines here either.</p>
+
+<p>A typical example is the genitive inflection in Swedish, which goes on the last name regardless of whether it is the last name or the first name.</p>
+
+<pre><code class="language-sdparse">Fia Janssons bröder \n Fia Jansson's brothers
+name(Fia, Janssons)
+nmod:poss(Fia, bröder)
+</code></pre>
+
+<pre><code class="language-sdparse">Fias bröder \n Fia's brothers
+nmod:poss(Fias, bröder)
+</code></pre>
 
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../'; // filled in by jekyll
+    var root = '../../'; // filled in by jekyll
     head.js(
         // External libraries
         root + 'lib/ext/jquery.min.js',
@@ -205,7 +220,7 @@
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = '2015-08-23-uppsala';
+        Collections.listing['_current'] = '';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);

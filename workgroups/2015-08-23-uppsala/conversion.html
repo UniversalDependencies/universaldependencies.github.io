@@ -3,15 +3,15 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Uppsala Group on Coordination and Names</title>
+    <title>Uppsala Group on Conversion Best Practice and Tools</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
-    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
-    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-2015">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_2015-08-23-uppsala/coordination.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/workgroups/2015-08-23-uppsala/conversion.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,61 +60,62 @@
 	  </div>
 	</noscript>
 
-          <h1 id="uppsala-group-on-coordination-and-names">Uppsala Group on Coordination and Names</h1>
+          <h1 id="uppsala-group-on-conversion-best-practice-and-tools">Uppsala Group on Conversion Best Practice and Tools</h1>
 
-<h2 id="coordination">Coordination</h2>
+<p>Aitziber, Barbara, Filip, Giuseppe, Lilian, Natalia, Verginica, Željko</p>
 
-<p>The universal guidelines specify that the first conjunct is the head in a coordinated phrase. It has been suggested that some languages show inflection patterns indicating that the last conjunct is instead the head. We considered a number of examples but concluded that they could all be analyzed as cases where the inflection applies to the entire coordinated phrase but shows up only on one of the conjuncts. Hence, we don’t find any reason to change the guidelines.</p>
+<h2 id="minimal-requirements-for-a-ud-treebank">Minimal requirements for a UD treebank</h2>
 
-<h3 id="conjunct-sensitive-agreement">Conjunct-sensitive agreement</h3>
+<ul>
+  <li>No lower limit on size, the only compulsory annotation fields are <code class="highlighter-rouge">ID</code>, <code class="highlighter-rouge">FORM</code>, <code class="highlighter-rouge">CPOS</code>, <code class="highlighter-rouge">HEAD</code>, and <code class="highlighter-rouge">DEPREL</code></li>
+  <li><strong>Incorrect/suspect dependencies</strong>: best marked in MISC, if we use an agreed-upon keyword maybe this could be honored by the visualizer</li>
+  <li><strong>Diffs</strong>: a list of the most important diffs would be good to have, because this information is currently not available in one place. This is especially important for treebanks that are being used as a reference, so as not to propagate diffs</li>
+  <li><strong>Docs</strong>: as precise as possible, encourage code release, minimally list the main steps</li>
+  <li><strong>Consistency</strong>: patterns to check consistency could be written down during the conversion and included in the validator. The problem here is that universally true/false patterns which would be useful at the same time are hard to find.</li>
+  <li><strong>XML</strong>: The toolchain should support CoNLL-X (both for tokens and words). No UD XML scheme needed.</li>
+</ul>
 
-<p>One type of example is conjunct-sensitive agreement, that is, where the verb of a coordinated subject agrees with only one of the conjuncts. This happens in Latin as well as in Slavic languagues. As far as we could tell, however, the crucial factor here is proximity, meaning that the verb agrees with the first conjunct if it precedes the subject but with the last conjunct if it succeeds the subject. This is illustrated by the following contrasting examples from Serbo-Croatian:</p>
+<h2 id="annotation-tools">Annotation tools</h2>
 
-<pre><code class="language-sdparse">Juce su uništena sva sela i sve varošice . \n yesterday are destroyed-PL.N all villages-N and all towns-F .
-conj(sela, varošice)
-nsubj(uništena, sela)
-</code></pre>
+<p>At least these were mentioned, feel free to expand!</p>
 
-<pre><code class="language-sdparse">Sva sela i sve varošice su uništene . \n all villages-N and all towns-F are destroyed-PL.F .
-conj(sela, varošice)
-nsubj(uništene, sela)
-</code></pre>
+<ul>
+  <li><a href="http://ufal.mff.cuni.cz/tred/">TrED</a></li>
+  <li><a href="http://www.di.unipi.it/~attardi/software.html">DgAnnotator</a></li>
+  <li><a href="http://brat.nlplab.org">brat</a></li>
+  <li><a href="http://www.yworks.com/en/products/yfiles/yed/">yEd</a></li>
+  <li><a href="https://github.com/riedelcastro/whatswrong">whatswrong</a></li>
+  <li><a href="http://sosol.perseids.org/tools/arethusa/app/#/">Arethusa</a></li>
+</ul>
 
-<p>We conclude that the conjunct-sensitive agreement patterns do not provide clear evidence of headedness in coordination.</p>
+<h2 id="conversion-tools">Conversion tools</h2>
 
-<h3 id="delayed-suffixation">Delayed suffixation</h3>
+<ul>
+  <li>The Copenhagen group may release their networkx-based solution</li>
+  <li>Prague uses <a href="http://ufal.mff.cuni.cz/treex/">Treex</a> for nearly all tree manipulations. It is a framework written in Perl and it is open-source. More details on how to use it to transform a treebank to Universal Dependencies are given at the website of <a href="http://ufal.mff.cuni.cz/hamledt/">HamleDT</a> (go to the section called “Obtaining”). Treex includes <a href="http://ufal.mff.cuni.cz/interset/">Interset</a>, a universal tool for conversion between various morphological tagsets, including the universal POS tags and features. (Interset can be used also separately from Treex. There is an Interset-based Perl script <a href="http://github.com/UniversalDependencies/tools/blob/master/conll_convert_tags_to_uposf.pl">in our tools repository</a>.)</li>
+</ul>
 
-<p>Another type of example is found in Turkish, where inflectional suffixes may show up only on the final conjunct, as in this example.</p>
+<h2 id="search-and-visualization-tools">Search and visualization tools</h2>
 
-<pre><code class="language-sdparse">Süt  içer , diş fırcalar , bir hikaye dinler ve uyurDUK . \n milk drink-AOR , teeth brush-AOR , a   story  listen-AOR and sleep-AOR-PAST-2PL .
-conj(içer, fırcalar)
-conj(içer, dinler)
-conj(içer, uyurDUK)
-</code></pre>
+<ul>
+  <li><a href="https://ufal-point.mff.cuni.cz/services/pmltq/">PML-TreeQuery</a> in Prague</li>
+  <li><a href="http://bionlp-www.utu.fi/dep_search/">SETS</a> in Turku</li>
+</ul>
 
-<p>The fact that PAST and 2PL are only marked overtly on the final coordinated verb might be taken as an indication that the final conjunct is the head. However, we think it is also possible to analyze it as an inflection that applies to the entire coordination but is visible only on the last conjunct. In this respect, it is similar to constructions like “Tom and Jerry’s Diner”, where the clitic/suffix “‘s” has scope over the entire coordination.</p>
+<h2 id="tokenization">Tokenization</h2>
 
-<h2 id="names">Names</h2>
+<p>Nearly none of the treebanks distribute the untokenized sentences. This complicates automatic induction of tokenizers from the data. It would be great to include the untokenized text, use the <a href="http://universaldependencies.org/format.html">SpaceAfter</a> mechanism of the CoNLL-U format, or at least provide data for training the tokenizers privately.</p>
 
-<p>The universal guidelines specify that multiword names without regular syntactic structure should be annotated as head-initial structures with the name relation. Again it has been suggested that some languages show inflection patterns indicating that the last word is the head and again we concluded that these can be analyzed as cases where the inflection applies to the entire name but shows up only on the last element. Hence, we don’t find any reason to change the guidelines here either.</p>
+<h2 id="parallel-treebank">Parallel treebank</h2>
 
-<p>A typical example is the genitive inflection in Swedish, which goes on the last name regardless of whether it is the last name or the first name.</p>
-
-<pre><code class="language-sdparse">Fia Janssons bröder \n Fia Jansson's brothers
-name(Fia, Janssons)
-nmod:poss(Fia, bröder)
-</code></pre>
-
-<pre><code class="language-sdparse">Fias bröder \n Fia's brothers
-nmod:poss(Fias, bröder)
-</code></pre>
+<p>Maybe it would be good to expand on the Cairo initiative and have a parallel text which could be annotated, so as to help new corpora get started as well as gather some UD parallel data. About 10K tokens would seem like the right size. The Cairo corpus should be mentioned somewhere on the main UD page.</p>
 
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../'; // filled in by jekyll
+    var root = '../../'; // filled in by jekyll
     head.js(
         // External libraries
         root + 'lib/ext/jquery.min.js',
@@ -220,7 +221,7 @@ nmod:poss(Fias, bröder)
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = '2015-08-23-uppsala';
+        Collections.listing['_current'] = '';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);

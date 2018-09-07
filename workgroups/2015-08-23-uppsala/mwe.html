@@ -3,15 +3,15 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Uppsala Group on Future of UD</title>
+    <title>Uppsala Group on Multiword Expressions</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
-    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
-    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-2015">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_2015-08-23-uppsala/future.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/workgroups/2015-08-23-uppsala/mwe.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,64 +60,46 @@
 	  </div>
 	</noscript>
 
-          <h1 id="uppsala-group-on-future-of-ud">Uppsala Group on Future of UD</h1>
+          <h1 id="uppsala-group-on-multiword-expressions">Uppsala Group on Multiword Expressions</h1>
 
-<p>Aitziber, Anders, Filip, Jan, Jenna, Tommi, Veronika, Zeljko</p>
+<p><em>(Aaron Smith, Alessandro Lenci, Anders Johannsen, Jan Hajic, Marie-Catherine de Marneffe, Veronika Vincze)</em></p>
 
-<p>This group discussed possible extensions towards annotation of semantics.</p>
+<p>The group discussion involved three main topics: the treatment of light verb constructions, the treatment of other MWEs and multiword abbreviations.</p>
 
-<h2 id="discussion-covered-the-following-topics">Discussion covered the following topics:</h2>
+<h2 id="light-verb-constructions-lvcs">Light verb constructions (LVCs)</h2>
 
-<ul>
-  <li>semantic roles: which ones, extent, representation</li>
-  <li>word senses: which “ontology”, difficulties with IAA</li>
-  <li>propbanking/valency</li>
-  <li>conjunct propagation</li>
-  <li>Named entities (wrt to existing annotation guidelines in UD)</li>
-  <li>Grounding</li>
-  <li>co-reference, information structure, discourse</li>
-  <li>ellipsis / NULL element addition</li>
-  <li>in view of preceding group discussions, especially MWE group, LVCs and idioms</li>
-  <li>principles, minimal set of annotation to be called “semantic annotation”</li>
-</ul>
-
-<h2 id="group-internal-consensus">Group-internal consensus:</h2>
+<p>Currently there are three different approaches in the UD treebanks concerning the treatment of LVCs (see a forthcoming poster at the next PARSEME meeting):</p>
 
 <ul>
-  <li>no change to current format and structure - if anything, must be “add-on” (only addition to current scheme and format)</li>
-  <li>basis features to include in “UD Semantics 1.0”:
-    <ul>
-      <li>exlicitly identified content words</li>
-      <li>graph structure over content words, with conjunct propagated (“effective heads”)</li>
-      <li>labeled relations on every “semantic” edge (~30 types: not semantic roles, but rather arguments as in propbank, plus non-argument relations as in PDT)</li>
-      <li>LVCs and idioms annotated</li>
-      <li>Named entities, labeled at least on “top level” hierarchy (~5-7 classes)</li>
-      <li>NULL words: only positively defined</li>
-      <li>WSD with caution (maybe not in UD Semantics 1.0 - which ontology??)</li>
-      <li>something should be out by end of next year (process: survey of treebanks, guidelines, annotation)</li>
-    </ul>
-  </li>
-  <li>minimal set for a treebank to be considered as having semantic annotation: content words, all relations (with effective heads resolved), labels at least for verbs and their arguments</li>
+  <li>LVCs are not distinguished from normal verb+argument phrases (as in English), e.g. <em>take a flight to Stockholm</em> is annotated similarly to <em>give a book to Mary</em>: both arguments are attached to the verb</li>
+  <li>LVCs are marked structurally (as in Swedish), e.g. in <em>take a flight to Stockholm</em>, <em>Stockholm</em> is attached to <em>flight</em> rather than to the verb</li>
+  <li>LVCs are marked with extended labels (as in Hungarian), e.g. in <em>take a flight</em>, <em>flight</em> has a special label (<code class="highlighter-rouge">dobj:lvc</code>) that marks its syntactic function and its being an LVC component</li>
 </ul>
 
-<h2 id="report-and-discussion-with-all">Report and discussion with all</h2>
+<p>During the discussion, we argued that in LVCs, the syntactic and semantic heads of the structure are different, hence we should treat syntactic and semantic aspects differently. We propose to apply a simple syntactic relation between the verb and its argument at the syntactic level, whereas the argument of the construction should be attached to the noun whenever it is possible (i.e. the noun and the argument can stand on their own without the verb). However, the LVC-ness of the construction should be marked at the semantic level, i.e. as an enhanced relation.</p>
+
+<h2 id="multiword-expressions">Multiword expressions</h2>
+
+<p>As for idioms, we propose a similar annotation scheme: general syntactic labels should be given and idiomacity should be marked at the enhanced (semantic) level.</p>
+
+<p>We clarified the definitions of the relations <code class="highlighter-rouge">compound</code> and <code class="highlighter-rouge">mwe</code> (the existing guidelines do not change):</p>
 
 <ul>
-  <li>several concerns raised
-    <ul>
-      <li>do “enhanced” things first</li>
-      <li>named entities, LVCs, idioms perhaps the most pressing in terms of need?</li>
-    </ul>
-  </li>
-  <li>several non-group people expressed interest to contribute to the process</li>
+  <li><code class="highlighter-rouge">compound</code> should be applied only for morphosyntactically non-standard constructions (e.g. noun-noun compounds, adjective-adjective compounds, etc.)</li>
+  <li><code class="highlighter-rouge">mwe</code> should be applied to less transparent constructions that are similar to collocations (e.g. multiword conjunctions)</li>
 </ul>
+
+<h2 id="multiword-abbreviations">Multiword abbreviations</h2>
+
+<p>Most tokenizers treat MW abbreviations differently, depending on the fact whether it includes a delimiter within (e.g. <em>e.g.</em>) or not (e.g. <em>etc.</em>). Thus this issue is related to tokenization and is still to be resolved. As a preliminary suggestion, however, we agreed that the relation <code class="highlighter-rouge">mwe</code> (or the enhanced relation <code class="highlighter-rouge">mwe:abbrev</code>) should be applied in between the tokens in case MW abbreviations are to be split up.</p>
+
 
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../'; // filled in by jekyll
+    var root = '../../'; // filled in by jekyll
     head.js(
         // External libraries
         root + 'lib/ext/jquery.min.js',
@@ -223,7 +205,7 @@
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = '2015-08-23-uppsala';
+        Collections.listing['_current'] = '';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);

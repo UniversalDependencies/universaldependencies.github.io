@@ -3,15 +3,15 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Uppsala Group on Conversion Best Practice and Tools</title>
+    <title>Uppsala Group on Clitics and Reflexive Pronouns</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
-    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
-    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-2015">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_2015-08-23-uppsala/conversion.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/workgroups/2015-08-23-uppsala/clitics.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,62 +60,63 @@
 	  </div>
 	</noscript>
 
-          <h1 id="uppsala-group-on-conversion-best-practice-and-tools">Uppsala Group on Conversion Best Practice and Tools</h1>
+          <h1 id="uppsala-group-on-clitics-and-reflexive-pronouns">Uppsala Group on Clitics and Reflexive Pronouns</h1>
 
-<p>Aitziber, Barbara, Filip, Giuseppe, Lilian, Natalia, Verginica, Željko</p>
+<p><em>(Kiril Simov, Petya Osenova, Simonetta Montemagni, Mojgan Seraji, Nizar Habash, Marie-Catherine de Marneffe)</em></p>
 
-<h2 id="minimal-requirements-for-a-ud-treebank">Minimal requirements for a UD treebank</h2>
+<h2 id="clitic-doubling">Clitic doubling</h2>
 
-<ul>
-  <li>No lower limit on size, the only compulsory annotation fields are <code class="highlighter-rouge">ID</code>, <code class="highlighter-rouge">FORM</code>, <code class="highlighter-rouge">CPOS</code>, <code class="highlighter-rouge">HEAD</code>, and <code class="highlighter-rouge">DEPREL</code></li>
-  <li><strong>Incorrect/suspect dependencies</strong>: best marked in MISC, if we use an agreed-upon keyword maybe this could be honored by the visualizer</li>
-  <li><strong>Diffs</strong>: a list of the most important diffs would be good to have, because this information is currently not available in one place. This is especially important for treebanks that are being used as a reference, so as not to propagate diffs</li>
-  <li><strong>Docs</strong>: as precise as possible, encourage code release, minimally list the main steps</li>
-  <li><strong>Consistency</strong>: patterns to check consistency could be written down during the conversion and included in the validator. The problem here is that universally true/false patterns which would be useful at the same time are hard to find.</li>
-  <li><strong>XML</strong>: The toolchain should support CoNLL-X (both for tokens and words). No UD XML scheme needed.</li>
-</ul>
+<p>In languages where real clitic doubling can appear (such as Bulgarian or Greek), the clitic elements should be tagged as <code class="highlighter-rouge">expl</code> and depend on the predicate:</p>
 
-<h2 id="annotation-tools">Annotation tools</h2>
+<pre><code class="language-sdparse">I will him it read the book to the boy
+expl(read, him)
+expl(read, it)
+dobj(read, book)
+nmod(read, boy)
+</code></pre>
 
-<p>At least these were mentioned, feel free to expand!</p>
+<p>When the direct or indirect objects are realized with a clitic only, there are tagged as <code class="highlighter-rouge">dobj</code> or <code class="highlighter-rouge">iobj</code>.</p>
 
-<ul>
-  <li><a href="http://ufal.mff.cuni.cz/tred/">TrED</a></li>
-  <li><a href="http://www.di.unipi.it/~attardi/software.html">DgAnnotator</a></li>
-  <li><a href="http://brat.nlplab.org">brat</a></li>
-  <li><a href="http://www.yworks.com/en/products/yfiles/yed/">yEd</a></li>
-  <li><a href="https://github.com/riedelcastro/whatswrong">whatswrong</a></li>
-  <li><a href="http://sosol.perseids.org/tools/arethusa/app/#/">Arethusa</a></li>
-</ul>
+<p>We suggest that if needed, languages can have subtypes indicating the relation (dobj, iobj), though it is unclear whether that is really the best idea.</p>
 
-<h2 id="conversion-tools">Conversion tools</h2>
+<p>For languages with dislocation, such as French, we use the dislocated relation, consistent with the existing guidelines.</p>
 
-<ul>
-  <li>The Copenhagen group may release their networkx-based solution</li>
-  <li>Prague uses <a href="http://ufal.mff.cuni.cz/treex/">Treex</a> for nearly all tree manipulations. It is a framework written in Perl and it is open-source. More details on how to use it to transform a treebank to Universal Dependencies are given at the website of <a href="http://ufal.mff.cuni.cz/hamledt/">HamleDT</a> (go to the section called “Obtaining”). Treex includes <a href="http://ufal.mff.cuni.cz/interset/">Interset</a>, a universal tool for conversion between various morphological tagsets, including the universal POS tags and features. (Interset can be used also separately from Treex. There is an Interset-based Perl script <a href="http://github.com/UniversalDependencies/tools/blob/master/conll_convert_tags_to_uposf.pl">in our tools repository</a>.)</li>
-</ul>
+<h2 id="clitic-acting-as-part-of-the-verbal-inflection">Clitic acting as part of the verbal inflection</h2>
 
-<h2 id="search-and-visualization-tools">Search and visualization tools</h2>
+<p>If the pronoun has a real grammatical function (dobj, iobj, advmod), we use that function as relation. If not, we use <code class="highlighter-rouge">expl</code>, possibly with the following subtypes.</p>
 
-<ul>
-  <li><a href="https://ufal-point.mff.cuni.cz/services/pmltq/">PML-TreeQuery</a> in Prague</li>
-  <li><a href="http://bionlp-www.utu.fi/dep_search/">SETS</a> in Turku</li>
-</ul>
+<pre><code class="language-sdparse">Maria si lava \n Maria washes herself
+dobj(lava, si)
+</code></pre>
 
-<h2 id="tokenization">Tokenization</h2>
+<h3 id="pv-pronominal-verb">“pv”: pronominal verb</h3>
 
-<p>Nearly none of the treebanks distribute the untokenized sentences. This complicates automatic induction of tokenizers from the data. It would be great to include the untokenized text, use the <a href="http://universaldependencies.org/format.html">SpaceAfter</a> mechanism of the CoNLL-U format, or at least provide data for training the tokenizers privately.</p>
+<pre><code class="language-sdparse">la finestra si è rotta \n the window broke
+expl:pv(rotta, si)
+</code></pre>
 
-<h2 id="parallel-treebank">Parallel treebank</h2>
+<h3 id="pass-passivazing-uses">“pass”: passivazing uses</h3>
 
-<p>Maybe it would be good to expand on the Cairo initiative and have a parallel text which could be annotated, so as to help new corpora get started as well as gather some UD parallel data. About 10K tokens would seem like the right size. The Cairo corpus should be mentioned somewhere on the main UD page.</p>
+<pre><code class="language-sdparse">la neve si vede dal balcone \n Snow can be seen from the balcony
+expl:pass(vede, si)
+</code></pre>
+
+<h3 id="impers-impersonal-construction">“impers”: impersonal construction</h3>
+
+<pre><code class="language-sdparse">qui si parla francese  \n here French is spoken
+expl:impers(parla, si)
+</code></pre>
+
+<h2 id="existential-constructions">Existential constructions</h2>
+<p>For existential constructions, <code class="highlighter-rouge">expl</code> is used, consistent with the existing guidelines.</p>
+
 
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../'; // filled in by jekyll
+    var root = '../../'; // filled in by jekyll
     head.js(
         // External libraries
         root + 'lib/ext/jquery.min.js',
@@ -221,7 +222,7 @@
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = '2015-08-23-uppsala';
+        Collections.listing['_current'] = '';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
