@@ -60,7 +60,14 @@
 	  </div>
 	</noscript>
 
-          <h1 id="conll-u-plus-format">CoNLL-U Plus Format</h1>
+          <p><strong style="color:red">DISCLAIMER:</strong> As of 2018-09-07,
+this page is work in progress and the contents may change in the near future.</p>
+
+<!-- This specification was drafted in collaboration between the UD core group (Joakim Nivre, Dan Zeman, Filip Ginter) and the PARSEME initiative (Agata Savary, Carlos Ramisch, Silvio Cordeiro). -->
+<!-- Minutes from the Skype talk 2018-01-17 https://docs.google.com/document/d/108tEbDZyngpc-zqfy7phnSxRVaEzmiHDTzzRLINVgUM/edit?usp=sharing -->
+<!-- UD-to-Any format interface (CoNLL-U Plus first specification) https://docs.google.com/document/d/1_P5FK9yTRcTPEXU_iQ4SNvgUHKIWoUG9J5hk5B45584/edit#heading=h.kpu17fj0h6x7 -->
+
+<h1 id="conll-u-plus-format">CoNLL-U Plus Format</h1>
 
 <p>In theory, the <a href="format.html">basic CoNLL-U format</a> can encode any kind of annotation
 using a combination of the sentence-level comments and the MISC attributes. However,
@@ -70,6 +77,10 @@ it becomes impractical to pack everything into these two places.</p>
 <p>We define a general technique of extending the CoNLL-U format, with the hope that
 various extensions will remain as compatible with each other as possible. We call
 this generic format “CoNLL-U Plus,” with the filename extension <code class="highlighter-rouge">.conllup</code>.</p>
+
+<p>Note that this page is not about the <a href="/u/overview/enhanced-syntax.html">enhanced UD representation</a>,
+which, despite being arguably an extension in its own right, is part of the standard
+CoNLL-U format.</p>
 
 <h2 id="new-columns">New columns</h2>
 
@@ -86,7 +97,7 @@ layer).</p>
 its columns is inserted as the first line (here the column names are separated by
 a simple space character instead of a TAB):</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ID FORM LEMMA UPOS XPOS FEATS HEAD DEPREL DEPS MISC
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># global.columns = ID FORM LEMMA UPOS XPOS FEATS HEAD DEPREL DEPS MISC
 # newdoc id = mf920901-001
 # newpar id = mf920901-001-p1
 # sent_id = mf920901-001-p1s1A
@@ -116,14 +127,31 @@ and of a colon as the namespace delimiter:</p>
 </code></pre></div></div>
 
 <p>The internal requirements and semantics of the new column must be documented by
-the initiative that defined the column. The only global requirement specified by
+the initiative that defined the column. The only global limitation specified by
 CoNLL-U Plus is that the column does not contain a TAB, CR or LF character (but it may
-contain other whitespace characters if allowed by the column specification).</p>
+contain other whitespace characters if allowed by the column specification).
+In addition:</p>
+
+<ul>
+  <li>The underscore <code class="highlighter-rouge">_</code>, when it occurs alone in the field, is reserved for underspecified
+annotations. It can be used in incomplete annotations or in blind versions of the
+annotated files. (Note that in the FORM and LEMMA fields of the basic CoNLL-U file,
+the underscore may also mean a literal underscore appearing in the underlying text.)</li>
+  <li>The asterisk <code class="highlighter-rouge">*</code>, when it occurs alone in a field, is reserved for empty annotations,
+which are different from underspecified. This concerns sporadic annotations (where
+not necessarily all tokens receive annotation).</li>
+  <li>The use of the underscore <code class="highlighter-rouge">_</code> and of the asterisk <code class="highlighter-rouge">*</code> is unconstrained when they
+occur with other characters (e.g. in feature names or values, as in <code class="highlighter-rouge">spec_char=*</code>).</li>
+</ul>
+
+<p>If the file is an extension of an existing UD treebank, it is assumed that sentence-level
+metadata defined in UD (in particular, the <code class="highlighter-rouge">text</code> attribute), as well as the contents of
+the core UD columns, is identical to the source treebank.</p>
 
 <h2 id="cross-reference-to-a-ud-treebank">Cross-reference to a UD treebank</h2>
 
 <p>In case of stand-off annotation, it becomes crucial to be able to identify the underlying UD file.
-Any official UD release is permanently identified by its permanent URI in the LINDAT/CLARIN repository,
+Any official UD release is identified by its permanent URI in the LINDAT/CLARIN repository,
 e.g.,</p>
 
 <ul>
@@ -145,6 +173,51 @@ regardless of operating system:
 but for easier processing we keep the filename in the identification string).
 Within a sentence, the token/word id from the <code class="highlighter-rouge">ID</code> column unambiguously
 points to a tree node or a multi-word token.</p>
+
+<p>In the CoNLL-U Plus file, the reference appears in a sentence-level attribute
+called <code class="highlighter-rouge">source_sent_id</code>, where the id string contains three parts discussed above:
+release id, file path and sentence id. These three parts are separated by spaces,
+not slashes, because the release id itself contains slashes.</p>
+
+<h3 id="cross-reference-to-another-source">Cross-reference to another source</h3>
+
+<p>Other cross-references are in principle similar to referring to UD treebanks.
+Instead of UD release handle, another URI identifying the download site can be
+used; however, it must permanently refer to the same version of the corpus, i.e.,
+the corpus must be immutable. Using <a href="https://lindat.mff.cuni.cz/repository/xmlui/">LINDAT/CLARIN</a>
+handles is highly recommended.</p>
+
+<p>If the source treebank is local or if there is no source treebank, the release id
+is a single period (<code class="highlighter-rouge">.</code>).</p>
+
+<p>If the release id identifies just one file, the file path is also a single period (<code class="highlighter-rouge">.</code>).</p>
+
+<p>The sentence id must be identical to the <code class="highlighter-rouge">sent_id</code> in the corresponding source CoNLL-U file.
+If there is no source, the sentence id must be unique corpus-wide, just like in
+Universal Dependencies.</p>
+
+<h1 id="known-extensions-of-ud">Known extensions of UD</h1>
+
+<p>A few projects ran before this specification was created; their data probably do not
+comply with this specification.</p>
+
+<ul>
+  <li>Universal Semantic Roles (IBM Research, Alan Akbik et al.)</li>
+</ul>
+
+<p>New extensions:</p>
+
+<ul>
+  <li>PARSEME annotation of <a href="http://multiword.sourceforge.net/PHITE.php?sitesig=CONF&amp;page=CONF_04_LAW-MWE-CxG_2018___lb__COLING__rb__&amp;subpage=CONF_45_Format_specification">multi-word expressions</a></li>
+</ul>
+
+<p>Planned extensions:</p>
+
+<ul>
+  <li>Unimorph annotation of morphology</li>
+  <li>Several projects on named-entity annotation</li>
+  <li>Various semantic extensions</li>
+</ul>
 
 
       </div>
