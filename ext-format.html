@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Universal Dependencies</title>
+    <title>CoNLL-U Plus Format</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/guidelines.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/ext-format.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,51 +60,85 @@
 	  </div>
 	</noscript>
 
-          <h1 id="ud-guidelines">UD Guidelines</h1>
+          <h1 id="conll-u-plus-format">CoNLL-U Plus Format</h1>
+
+<p>In theory, the <a href="format.html">basic CoNLL-U format</a> can encode any kind of annotation
+using a combination of the sentence-level comments and the MISC attributes. However,
+in projects that systematically add a new annotation layer to existing UD treebanks
+it becomes impractical to pack everything into these two places.</p>
+
+<p>We define a general technique of extending the CoNLL-U format, with the hope that
+various extensions will remain as compatible with each other as possible. We call
+this generic format “CoNLL-U Plus,” with the filename extension <code class="highlighter-rouge">.conllup</code>.</p>
+
+<h2 id="new-columns">New columns</h2>
+
+<p>The extension is actually very simple. While a CoNLL-U file has always precisely ten
+columns separated by TAB characters, a CoNLL-U Plus file can have any non-zero number
+of columns. In addition, the first line must be a sentence-level comment (i.e., starting
+with a <code class="highlighter-rouge">#</code> character) that lists the names of the columns used in this file.
+There ten predefined column names that identify the original columns of the core
+CoNLL-U files (<a href="format.html">see specification</a>). A CoNLL-U file may contain any
+subset of them (or none of them, making the file a completely stand-off annotation
+layer).</p>
+
+<p>A valid CoNLL-U file thus becomes valid CoNLL-U Plus file when the comment listing
+its columns is inserted as the first line:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ID FORM LEMMA UPOS XPOS FEATS HEAD DEPREL DEPS MISC
+# newdoc id = mf920901-001
+# newpar id = mf920901-001-p1
+# sent_id = mf920901-001-p1s1A
+# text = Slovenská ústava: pro i proti
+# text_en = Slovak constitution: pros and cons
+1   Slovenská   slovenský   ADJ     AAFS1----1A---- Case=Nom|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos 2 amod _ _
+2   ústava      ústava      NOUN    NNFS1-----A---- Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos 0 root _ SpaceAfter=No
+3   :           :           PUNCT   Z:------------- _          2       punct   _       _
+4   pro         pro         ADP     RR--4---------- Case=Acc   2       appos   _       LId=pro-1
+5   i           i           CCONJ   J^------------- _          6       cc      _       LId=i-1
+6   proti       proti       ADP     RR--3---------- Case=Dat   4       conj    _       LId=proti-1
+</code></pre></div></div>
+
+<p>Note that the comment can safely reside in a CoNLL-U file and it stays a valid
+CoNLL-U file as long as no columns are added, reordered or removed. However, we
+intentionally do not make the comment mandatory in basic CoNLL-U files.
+We want to be able to simply split a basic CoNLL-U file on sentence boundary
+and get two valid CoNLL-U files—something that is not possible with CoNLL-U Plus.</p>
+
+<p>Any column names other than the original ten are considered project-specific.
+It is advisable though that each project uses a namespace identifier to distinguish
+its own columns from columns defined by other initiatives, should they eventually
+end up in the same file. A column name may consist of uppercase English letters
+and of a colon as the namespace delimiter:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ID FORM PARSEME:MWE
+</code></pre></div></div>
+
+<h2 id="cross-reference-to-a-ud-treebank">Cross-reference to a UD treebank</h2>
+
+<p>In case of stand-off annotation, it becomes crucial to be able to identify the underlying UD file.
+Any official UD release is permanently identified by its permanent URI in the LINDAT/CLARIN repository,
+e.g.,</p>
 
 <ul>
-  <li>Basic principles
-    <ul>
-      <li><a href="u/overview/tokenization.html">Tokenization and word segmentation</a></li>
-      <li><a href="u/overview/morphology.html">Morphology</a></li>
-      <li><a href="u/overview/syntax.html">Syntax</a></li>
-      <li><a href="u/overview/enhanced-syntax.html">Enhanced dependencies</a></li>
-      <li><a href="format.html">CoNLL-U format</a> and its <a href="ext-format.html">extensions</a></li>
-    </ul>
-  </li>
-  <li>Annotation guidelines
-    <ul>
-      <li><a href="u/overview/nominal-syntax.html">Nominals</a></li>
-      <li><a href="u/overview/simple-syntax.html">Simple clauses</a></li>
-      <li><a href="u/overview/complex-syntax.html">Complex clauses</a></li>
-      <li><a href="/workgroups/comparatives.html">Comparative constructions – working group materials</a></li>
-      <li><a href="u/overview/specific-syntax.html">Other constructions</a></li>
-    </ul>
-  </li>
-  <li>Documentation of tags, features and relations
-    <ul>
-      <li><a href="u/pos/index.html">POS tags</a> (<a href="u/pos/all.html">single document</a>)</li>
-      <li><a href="u/feat/index.html">Features</a> (<a href="u/feat/all.html">single document</a>)
-        <ul>
-          <li><a href="u/overview/feat-layers.html">Layered features</a></li>
-          <li><a href="ext-feat-index.html">Language-specific features</a></li>
-        </ul>
-      </li>
-      <li><a href="u/dep/index.html">Syntactic relations</a> (<a href="u/dep/all.html">single document</a>)
-        <ul>
-          <li><a href="ext-dep-index.html">Relation subtypes</a></li>
-        </ul>
-      </li>
-      <li><a href="tagset-conversion/index.html">Conversion from other tagsets to UD tags and features</a></li>
-    </ul>
-  </li>
+  <li><code class="highlighter-rouge">http://hdl.handle.net/11234/1-1983</code> for UD 2.0.</li>
+  <li><code class="highlighter-rouge">http://hdl.handle.net/11234/1-2515</code> for UD 2.1.</li>
 </ul>
 
-<p><small>
-This is the online documentation of UD guidelines v2 (2016-12-01). For earlier versions,
-see <a href="docsv1/index.html">archived v1 guidelines</a>
-and <a href="v2/summary.html">changes from v1 to v2</a>.
-</small></p>
+<p>Within a release, each file can be identified by a path.
+For UD releases, the path consists of the name of the treebank folder
+(corresponding to the name of the Github repository, e.g., <code class="highlighter-rouge">UD_German-PUD</code>)
+and of the actual name of the file
+(e.g., <code class="highlighter-rouge">de_pud-ud-test.conllu</code>).
+The delimiter character is always the slash and never the backslash,
+regardless of operating system:
+<code class="highlighter-rouge">UD_German-PUD/de_pud-ud-test.conllu</code>.</p>
+
+<p>Within a file, each sentence has a unique sentence id
+(UD actually requires that the sentence id be unique treebank-wide,
+but for easier processing we keep the filename in the identification string).
+Within a sentence, the token/word id from the <code class="highlighter-rouge">ID</code> column uniquely
+points to a tree node or a multi-word token.</p>
 
 
       </div>
