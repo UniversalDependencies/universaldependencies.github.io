@@ -80,8 +80,8 @@
   <li><a href="#determiners">Determiners</a></li>
   <li><a href="#numerals">Numerals</a></li>
   <li><a href="#classifiers">Classifiers</a></li>
-  <li><a href="#nominal-modifiers">Nominal Modifiers</a></li>
   <li><a href="#adjectival-modifiers">Adjectival Modifiers</a></li>
+  <li><a href="#nominal-modifiers">Nominal Modifiers</a></li>
 </ul>
 
 <h2 id="nominal-heads">Nominal Heads</h2>
@@ -216,21 +216,10 @@ such as <a href="">Gender</a>, <a href="">Number</a>, and <a href="">Case</a>.</
 
 <p>A <code class="highlighter-rouge">clf</code> (classifier) is a word which accompanies a noun in certain grammatical contexts.</p>
 
-<h2 id="nominal-modifiers">Nominal Modifiers</h2>
-
-<p>An <code class="highlighter-rouge">nmod</code> is a nominal phrase modifying the head of another nominal phrase, with or without a special case marker. Treebanks may optionally use <code class="highlighter-rouge">nmod:poss</code> to distinguish non-adpositional possessives.</p>
-
-<pre><code class="language-sdparse">the office of the Chair
-nmod(office-2, Chair-5)
+<pre><code class="language-sdparse">sān gè xuéshēng \n three clf student
+nummod(xuéshēng, sān)
+clf(sān, gè)
 </code></pre>
-
-<pre><code class="language-sdparse">the Chair 's office
-nmod:poss(office-4, Chair-2)
-</code></pre>
-
-<h3 id="possessives">Possessives</h3>
-
-<p>Special case of <code class="highlighter-rouge">nmod</code> with subtype <code class="highlighter-rouge">nmod:poss</code>.</p>
 
 <h2 id="adjectival-modifiers">Adjectival Modifiers</h2>
 
@@ -257,15 +246,21 @@ acl:relcl(everything, had)
 obj(had, that)
 </code></pre>
 
-<h2 id="function-word-dependents">Function Word Dependents</h2>
+<h2 id="nominal-modifiers">Nominal Modifiers</h2>
 
-<p>Nominals may also contain the following typical function word dependents:</p>
+<p>An <code class="highlighter-rouge">nmod</code> is a nominal phrase modifying the head of another nominal phrase, with or without a special case marker. Treebanks may optionally use <code class="highlighter-rouge">nmod:poss</code> to distinguish non-adpositional possessives.</p>
 
-<ul>
-  <li>Determiners attach to the head of the nominal with the <code class="highlighter-rouge">det</code> relation.</li>
-  <li>Adpositions attach to the head of the nominal with the <code class="highlighter-rouge">case</code> relation.</li>
-  <li>Classifiers attach to a numeral or possessive with the <code class="highlighter-rouge">clf</code> relation.</li>
-</ul>
+<pre><code class="language-sdparse">the office of the Chair
+nmod(office-2, Chair-5)
+</code></pre>
+
+<pre><code class="language-sdparse">the Chair 's office
+nmod:poss(office-4, Chair-2)
+</code></pre>
+
+<h3 id="possessives">Possessives</h3>
+
+<p>Special case of <code class="highlighter-rouge">nmod</code> with subtype <code class="highlighter-rouge">nmod:poss</code>.</p>
 
 <pre><code class="language-sdparse">the Chair 's office
 det(Chair-2, the-1)
@@ -280,10 +275,6 @@ case(Chair-5, of-3)
 det(Chair-5, the-4)
 </code></pre>
 
-<pre><code class="language-sdparse">sān gè xuéshēng \n three clf student
-nummod(xuéshēng, sān)
-clf(sān, gè)
-</code></pre>
 
 
       </div>
