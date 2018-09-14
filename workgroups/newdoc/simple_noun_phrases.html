@@ -210,7 +210,28 @@ such as <a href="">Gender</a>, <a href="">Number</a>, and <a href="">Case</a>.</
 
 <h2 id="numerals">Numerals</h2>
 
-<p>A <code class="highlighter-rouge">nummod</code> is a numeral modifying the head of a nominal phrase.</p>
+<p>Noun phrases headed by nouns may also contain numerals, which express exact numerical quantities (1, 2, 3, …). Numerals resemble determiners and can often replace them (“one book” vs. “a book” or “this book”) but have special properties in many languages, in particular in relation to classifiers (see below). UD uses the <a href="">nummod</a> relation to connect a numeral to the head noun.</p>
+
+<p><strong>NB:</strong> The <a href="">num</a> relation is only used for cardinal numerals (“one”, “two”, “three”). Ordinal numerals (“first”, “second”, “third”) are instead treated as adjectives both morphologically and syntactically.</p>
+
+<pre><code class="language-sdparse"> three/NUM  books/NOUN
+nummod(books, three)
+</code></pre>
+
+<pre><code class="language-sdparse">these/DET three/NUM  books/NOUN
+nummod(books, three)
+det(books, these)
+</code></pre>
+
+<pre><code class="language-sdparse">all/DET these/DET three/NUM books/NOUN 
+nummod(books, three)
+det(books, these)
+det(books, all)
+</code></pre>
+
+<h3 id="morphological-analysis-of-numerals">Morphological Analysis of Numerals</h3>
+
+<p>Cardinal numerals will be tagged <a href="">NUM</a> and may carry features like <a href="">Number</a>, <a href="">NumType</a>, <a href="">NumForm</a> and <a href="">NumValue</a>. <span style="color: blue"><strong>QUESTIONS:</strong> Should Number be obligatory? Are other features relevant?</span></p>
 
 <h2 id="classifiers">Classifiers</h2>
 
@@ -220,6 +241,8 @@ such as <a href="">Gender</a>, <a href="">Number</a>, and <a href="">Case</a>.</
 nummod(xuéshēng, sān)
 clf(sān, gè)
 </code></pre>
+
+<h3 id="morphological-analysis-of-classifiers">Morphological Analysis of Classifiers</h3>
 
 <h2 id="adjectival-modifiers">Adjectival Modifiers</h2>
 
@@ -245,6 +268,8 @@ acl:relcl(everything, had)
 acl:relcl(everything, had)
 obj(had, that)
 </code></pre>
+
+<h3 id="morphological-analysis-of-adjectival-modifiers">Morphological Analysis of Adjectival Modifiers</h3>
 
 <h2 id="nominal-modifiers">Nominal Modifiers</h2>
 
@@ -275,6 +300,7 @@ case(Chair-5, of-3)
 det(Chair-5, the-4)
 </code></pre>
 
+<h3 id="morphological-analysis-of-nominal-modifiers">Morphological Analysis of Nominal Modifiers</h3>
 
 
       </div>
