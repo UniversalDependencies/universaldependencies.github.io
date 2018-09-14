@@ -212,8 +212,6 @@ such as <a href="">Gender</a>, <a href="">Number</a>, and <a href="">Case</a>.</
 
 <p>Noun phrases headed by nouns may also contain numerals, which express exact numerical quantities (1, 2, 3, …). Numerals resemble determiners and can often replace them (“one book” vs. “a book” or “this book”) but have special properties in many languages, in particular in relation to classifiers (see below). UD uses the <a href="">nummod</a> relation to connect a numeral to the head noun.</p>
 
-<p><strong>NB:</strong> The <a href="">num</a> relation is only used for cardinal numerals (“one”, “two”, “three”). Ordinal numerals (“first”, “second”, “third”) are instead treated as adjectives both morphologically and syntactically.</p>
-
 <pre><code class="language-sdparse"> three/NUM  books/NOUN
 nummod(books, three)
 </code></pre>
@@ -229,20 +227,29 @@ det(books, these)
 det(books, all)
 </code></pre>
 
+<p><strong>NB:</strong> The <a href="">nummod</a> relation is only used for cardinal numerals (“one”, “two”, “three”). Ordinal numerals (“first”, “second”, “third”) are instead treated as adjectives both morphologically and syntactically.</p>
+
 <h3 id="morphological-analysis-of-numerals">Morphological Analysis of Numerals</h3>
 
 <p>Cardinal numerals will be tagged <a href="">NUM</a> and may carry features like <a href="">Number</a>, <a href="">NumType</a>, <a href="">NumForm</a> and <a href="">NumValue</a>. <span style="color: blue"><strong>QUESTIONS:</strong> Should Number be obligatory? Are other features relevant?</span></p>
 
 <h2 id="classifiers">Classifiers</h2>
 
-<p>A <code class="highlighter-rouge">clf</code> (classifier) is a word which accompanies a noun in certain grammatical contexts.</p>
+<p>A classifier is a word which accompanies a noun in certain grammatical contexts. The prototypical case is that of numeral classifiers, where the word is used with a numeral for counting objects and where the numeral normally cannot occur without the classifier. A classifier generally reflects some kind of conceptual classification of nouns, based principally on features of their referents. UD uses the <a href="">clf</a> relation to connect the classifier to the numeral (or determiner) together with which it modifies the noun. Examples below are from Chinese.</p>
 
-<pre><code class="language-sdparse">sān gè xuéshēng \n three clf student
+<pre><code class="language-sdparse">sān gè xuéshēng \n three CLF student
 nummod(xuéshēng, sān)
 clf(sān, gè)
 </code></pre>
 
+<pre><code class="language-sdparse">zhè liàng bāshì \n this CLF bus
+det(bāshì, zhè)
+clf(zhè, liàng)
+</code></pre>
+
 <h3 id="morphological-analysis-of-classifiers">Morphological Analysis of Classifiers</h3>
+
+<p>The morphological analysis of classifiers is debated. Etymologically, classifiers are normally nouns, and UD generally recommends using the <a href="">NOUN</a> tag. It has been suggested that a special feature should be added to distinguish the classifier use, since the words can normally also be used as regular nouns.</p>
 
 <h2 id="adjectival-modifiers">Adjectival Modifiers</h2>
 
