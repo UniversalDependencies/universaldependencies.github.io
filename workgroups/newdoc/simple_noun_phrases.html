@@ -212,7 +212,7 @@ such as <a href="">Gender</a>, <a href="">Number</a>, and <a href="">Case</a>.</
 
 <p>Noun phrases headed by nouns may also contain numerals, which express exact numerical quantities (1, 2, 3, …). Numerals resemble determiners and can often replace them (“one book” vs. “a book” or “this book”) but have special properties in many languages, in particular in relation to classifiers (see below). UD uses the <a href="">nummod</a> relation to connect a numeral to the head noun.</p>
 
-<pre><code class="language-sdparse"> three/NUM  books/NOUN
+<pre><code class="language-sdparse">three/NUM  books/NOUN
 nummod(books, three)
 </code></pre>
 
@@ -257,12 +257,12 @@ clf(zhè, liàng)
 
 <p>Adjectives modifying the head of a noun phrase are linked to the head noun with the <a href="">amod</a> relation. Unlike case markers, determiners, numerals and classifiers, adjectives can be multiplies and can themselves be the head of complex phrases involving modifiers of various kinds, as illustrated in the examples below.</p>
 
-<pre><code class="language-sdparse">det(problem, a)
-a hard problem
+<pre><code class="language-sdparse">a hard problem
+det(problem, a)
 amod(problem, hard)
 </code></pre>
-<pre><code class="language-sdparse">det(problem, a)
-a new hard problem
+<pre><code class="language-sdparse">a new hard problem
+det(problem, a)
 amod(problem, hard)
 amod(problem, new)
 </code></pre>
@@ -291,32 +291,37 @@ amod(man, third)
 
 <h2 id="nominal-modifiers">Nominal Modifiers</h2>
 
-<p>An <code class="highlighter-rouge">nmod</code> is a nominal phrase modifying the head of another nominal phrase, with or without a special case marker. Treebanks may optionally use <code class="highlighter-rouge">nmod:poss</code> to distinguish non-adpositional possessives.</p>
-
-<pre><code class="language-sdparse">the office of the Chair
-nmod(office-2, Chair-5)
-</code></pre>
-
-<pre><code class="language-sdparse">the Chair 's office
-nmod:poss(office-4, Chair-2)
-</code></pre>
-
-<h3 id="possessives">Possessives</h3>
-
-<p>Special case of <code class="highlighter-rouge">nmod</code> with subtype <code class="highlighter-rouge">nmod:poss</code>.</p>
-
-<pre><code class="language-sdparse">the Chair 's office
-det(Chair-2, the-1)
-nmod(office-4, Chair-2)
-case(Chair-2, 's-3)
-</code></pre>
+<p>The head of a noun phrase may be modified by another noun phrase. The head of the modifying noun phrase is then linked to the higher noun with the <a href="">nmod</a> relation. A typical case is the genitive construction, which may occur with or without overt case markers.</p>
 
 <pre><code class="language-sdparse">the office of the Chair
 det(office-2, the-1)
 nmod(office-2, Chair-5)
-case(Chair-5, of-3)
 det(Chair-5, the-4)
+case(Chair-5, of-3)
 </code></pre>
+
+<pre><code class="language-sdparse">the Chair 's office
+det(office-4, the-1)
+nmod(office-4, Chair-2)
+case(Chair-2, 's-3)
+</code></pre>
+
+<h3 id="possessives">Possessives</h3>
+
+<p>Possessive pronouns, when used to modify nouns, are treated as a special case of nominal modifiers (and not as determiners), given that they are noun phrases and alternate with full noun phrases in the genitive construction. In many treebanks, the subtype <a href="">nmod:poss</a> is used both for possessive pronouns and full genitive noun phrases.</p>
+
+<pre><code class="language-sdparse">her office
+nmod:poss(office-2, her-1)
+</code></pre>
+
+<pre><code class="language-sdparse">the Chair 's office
+det(office-4, the-1)
+nmod:poss(office-4, Chair-2)
+case(Chair-2, 's-3)
+</code></pre>
+
+<p><span style="color: blue"><strong>TO DO:</strong> Add partitive constructions (and other tricky nmod cases).</span></p>
+
 
 
       </div>
