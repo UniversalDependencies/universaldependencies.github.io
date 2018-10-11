@@ -181,8 +181,16 @@ Within a sentence, the token/word id from the <code class="highlighter-rouge">ID
 points to a tree node or a multi-word token.</p>
 
 <p>In the CoNLL-U Plus file, the reference appears in a sentence-level attribute
-called <code class="highlighter-rouge">source_sent_id</code>, where the id string contains three parts discussed above:
-release id, file path and sentence id. These three parts are separated by spaces,
+called <code class="highlighter-rouge">source_sent_id</code>, where the id string contains a source format specifier,
+followed by three of the reference parts discussed above:
+release id, file path and sentence id.
+The format specifier is a single word consisting of lowercase English letters.
+As long as we are referring to a CoNLL-U file, the format specifier is always
+“conllu”. This allows us to distinguish references to source corpora that are
+not saved in CoNLL-U; nevertheless, we do not define the other formats here
+and whoever uses them must also document them.</p>
+
+<p>These four parts are separated by spaces,
 not slashes, because the release id itself contains slashes.</p>
 
 <p>The <code class="highlighter-rouge">source_sent_id</code> attribute is optional and may be omitted if the file belongs
@@ -199,7 +207,7 @@ characters).</p>
 
 <pre>
 # global.columns = ID FORM UPOS HEAD DEPREL MISC PARSEME:MWE
-# source_sent_id = http://hdl.handle.net/11234/1-2837 UD_German-GSD/de_gsd-ud-train.conllu train-s1682
+# source_sent_id = conllu http://hdl.handle.net/11234/1-2837 UD_German-GSD/de_gsd-ud-train.conllu train-s1682
 # sent_id = train-s1682
 # text = Der CDU-Politiker strebt einen einheitlichen Wohnungsmarkt an, auf dem sich die Preise an der ortsüblichen Vergleichsmiete orientieren.
 1	Der	DET	2	det	_	*
@@ -251,7 +259,8 @@ comply with this specification.</p>
   <li><a href="https://github.com/System-T/UniversalPropositions">Universal Proposition Banks</a> (IBM Research; see also <a href="https://github.com/UniversalDependencies/docs/issues/344">issue #344</a>)</li>
 </ul>
 
-<p>New extensions should comply with the specification:</p>
+<p>One extension was based on an early draft of this specification.
+It is not 100% compliant with the final version but it is close:</p>
 
 <ul>
   <li>PARSEME annotation of <a href="http://multiword.sourceforge.net/PHITE.php?sitesig=CONF&amp;page=CONF_04_LAW-MWE-CxG_2018___lb__COLING__rb__&amp;subpage=CONF_45_Format_specification">multi-word expressions</a></li>
