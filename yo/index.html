@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title><LanguageName> UD</title>
+    <title>Yoruba UD</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-yo">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_yo/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_yo/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,61 +60,94 @@
 	  </div>
 	</noscript>
 
-          <h1 id="ud-for-language-">UD for LANGUAGE <span class="flagspan"><img class="flag" src="../../flags/svg/AQ.svg" /></span></h1>
+          <h1 id="ud-for-yorùbá-">UD for Yorùbá <span class="flagspan"><img class="flag" src="../../flags/svg/NG.svg" /></span></h1>
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>Following most tokenization patterns, words are delimited by whitespace. Generally, words are  delimited by whitespace or punctuation except:
+    <ul>
+      <li>Hyphenated words that cannot be correctly annotated when split (níhìn-ín) are not split.</li>
+      <li>Multiword tokens are not used in Yorùbá; “what you see is what you tokenize”. Contractions are not undone for words that can be correctly assigned a category.</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Yorùbá uses 15 universal tags. (SYM and INTJ not present in the corpus at present)</li>
+  <li>Some words are difficult to categorize because they are semantically and syntactically redundant; at present they are tagged “X” (e.g. when “kí” follows “jẹ́”, “ó” after “wọn”).
+If they can’t be categorized as Preposition, Adverb or Adjectives, they can be left uncategorized. Most importantly, their presence or absence does not affect a construction.</li>
+  <li>The only word tagged as PART is kò; kò is a negation marker.</li>
+  <li>Auxiliaries (AUX) are verbal in Yorùbá and grouped into:
+    <ul>
+      <li>Copula (jẹ́ - be)</li>
+      <li>kìí - be</li>
+      <li>Temporal (ti – have) usually occurring before the main verb in a given construction.</li>
+      <li>Modal (yóò – shall) also followed by the main verb.</li>
+    </ul>
+  </li>
+  <li>The tag DET is used for articles and pronominal words used with a determiner function; they can precede or appear after the Noun they quantify. The tag PRON is used for subjects or objects of a noun phrase and to show possession.
+    <ul>
+      <li>A word can belong to both categories DET and PRON (àwọn)</li>
+      <li>Gender of a pronoun is only determined by the antecedent (ó – can be he, she or it). It is not explicitly stated.</li>
+    </ul>
+  </li>
+  <li>Polysemy is an important phenomenon in Yorùbá, to correctly categorize a word, the context where it occurs is the determining factor. Tone can distinguish meaning but a word with the same tone can mean different things in different circumstance (e.g. bí - “procreate”, “if”, “not” )</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Determiners must agree with noun in Number.</li>
+  <li>The numeral tag NUM is used for quantity. Number words follow words they quantify.</li>
+  <li>Adjectives agree with nouns (in attributive position) and they only have the positive Degree.</li>
+  <li>There is no morphological Case; instead, adpositions (ADP) are used as case markers and specify the role of a noun in a phrase.</li>
+  <li>Verb forms are past/perfect (ti), continuous (preverbial particle - ń), future (yóò). Verb serialization is prominent in Yorùbá, the first verb marks tense while the second indicates the direction of an action.</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<ul>
+  <li>Yorùbá is an SVO language with a Strict word order</li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<h3 id="subjects">Subjects</h3>
+
+<ul>
+  <li>Nominal subjects are in initial position followed by adjectives, demonstrative and relative clauses.</li>
+  <li>Nominal subject (nsubj) is a noun phrase without preposition.</li>
+  <li>A finite subordinate clause may serve as the subject and is labeled csubj.</li>
+</ul>
+
+<h3 id="objects">Objects</h3>
+
+<ul>
+  <li>Objects follow the main verb.</li>
+  <li>
+    <p>When a verb has two objects, the second one is preceded by a preposition.</p>
+  </li>
+  <li>Verb phrases and prepositional phrases are also head initial.</li>
+</ul>
+
+<p>Yoruba uses 2 relation subtypes:</p>
+<ul>
+  <li><code class="highlighter-rouge">compound:prt</code> to attach verbal particles to verbs</li>
+  <li><code class="highlighter-rouge">compound:svc</code> to connect verbs in a serial verb construction</li>
+</ul>
 
 <hr />
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is only one Yoruba UD treeban at present:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/yo_ytb/index.html">Yoruba-YTB</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="highlighter-rouge">*-index.html</code> page in the <code class="highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
 
       </div>
