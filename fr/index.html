@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Tokenization</title>
+    <title><LanguageName> UD</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-fr">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr/tokenization.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,107 +60,73 @@
 	  </div>
 	</noscript>
 
-          <h1 id="tokenization">Tokenization</h1>
+          <h1 id="ud-for-french-">UD for French <span class="flagspan"><img class="flag" src="../../flags/svg/FR.svg" /></span></h1>
 
-<p>The French tokenization follows the universal guidelines: contractions are undone (e.g., <em>au</em> becomes two tokens <em>à</em> + <em>le</em>).
-Otherwise the tokenization is based on white spaces and punctuations (except for multiword expressions with hyphens which are not split, e.g., <em>Etats-Unis</em> “United States”, <em>sous-marin</em> “submarine” stay one token).</p>
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th style="text-align: center">UD-French-GSD</th>
-      <th style="text-align: center">UD_French-FTB</th>
-      <th style="text-align: center">UD_French-PUD</th>
-      <th style="text-align: center">UD-French-ParTUT</th>
-      <th style="text-align: center">UD-French-Sequoia</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Proper names (<code class="highlighter-rouge">Saint-Denis</code>)</td>
-      <td style="text-align: center"><strong>1</strong></td>
-      <td style="text-align: center"><strong>3</strong></td>
-      <td style="text-align: center"><strong>?</strong></td>
-      <td style="text-align: center"><strong>1</strong> (<code class="highlighter-rouge">Wulf-Mathies</code>)</td>
-      <td style="text-align: center"><strong>1</strong></td>
-    </tr>
-    <tr>
-      <td>Nom communs (<code class="highlighter-rouge">procès-verbal</code>)</td>
-      <td style="text-align: center"><strong>1</strong></td>
-      <td style="text-align: center"><strong>3</strong></td>
-      <td style="text-align: center"><strong>?</strong></td>
-      <td style="text-align: center"><strong>3</strong> (punct, compound) / <strong>1</strong> (<code class="highlighter-rouge">sud-est</code>)</td>
-      <td style="text-align: center"><strong>1</strong></td>
-    </tr>
-    <tr>
-      <td>Nom communs (<code class="highlighter-rouge">vice-président</code>)</td>
-      <td style="text-align: center"><strong>1</strong></td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"><strong>?</strong></td>
-      <td style="text-align: center"><strong>3</strong> (punct, compound)</td>
-      <td style="text-align: center"><strong>1</strong></td>
-    </tr>
-    <tr>
-      <td>Pronom (<code class="highlighter-rouge">celui-ci</code>, <code class="highlighter-rouge">elle-même</code>)</td>
-      <td style="text-align: center"><strong>1</strong></td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"><strong>?</strong></td>
-      <td style="text-align: center"><strong>1</strong></td>
-      <td style="text-align: center"><strong>1</strong></td>
-    </tr>
-    <tr>
-      <td>Adverbe (<code class="highlighter-rouge">peut-être</code>; <code class="highlighter-rouge">ci-dessous</code>)</td>
-      <td style="text-align: center"><strong>1</strong></td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"><strong>?</strong></td>
-      <td style="text-align: center"><strong>1</strong></td>
-      <td style="text-align: center"><strong>1</strong></td>
-    </tr>
-    <tr>
-      <td>Determinant (<code class="highlighter-rouge">trente-six</code>)</td>
-      <td style="text-align: center"><strong>1</strong></td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"><strong>?</strong></td>
-      <td style="text-align: center"><strong>None</strong></td>
-      <td style="text-align: center"><strong>1</strong></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">-t-il</code></td>
-      <td style="text-align: center"><strong>2</strong> (<code class="highlighter-rouge">-t</code> + <code class="highlighter-rouge">-il</code>)</td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"><strong>?</strong></td>
-      <td style="text-align: center"><strong>None</strong></td>
-      <td style="text-align: center"><strong>2</strong></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">-il</code> (dans <code class="highlighter-rouge">fait-il</code>)</td>
-      <td style="text-align: center"><strong>1</strong></td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"><strong>?</strong></td>
-      <td style="text-align: center"><strong>1</strong></td>
-      <td style="text-align: center"><strong>1</strong></td>
-    </tr>
-  </tbody>
-</table>
+<ul>
+  <li>In general, words are delimited by whitespace characters and punctuations are considered as separated words.</li>
+  <li>Only numbers can contain spaces (following <code class="highlighter-rouge">[0-9 ,]+</code> regexp).</li>
+  <li>There are several closed classes of contractions that are treated as multi-word tokens and segmented to individual syntactic words.
+For instance, <code class="highlighter-rouge">au</code> -&gt; <code class="highlighter-rouge">à</code> + <code class="highlighter-rouge">le</code>, <code class="highlighter-rouge">auquel</code> -&gt; <code class="highlighter-rouge">de</code> + <code class="highlighter-rouge">lequel</code>.
+Note that <code class="highlighter-rouge">du</code> and <code class="highlighter-rouge">des</code> are ambiguous and can be split or not depending of their usage.</li>
+</ul>
 
-<h2 id="tokenization-in-frenchspoken">Tokenization in FrenchSpoken</h2>
-<p>FrenchSpoken does a strictly formal tokenizing where the hyphens are considered as tokens.
-This means that, in a sentence like  <em>A-t-elle bien dormi ?</em>,  there are five tokens in <em>a-t-elle</em>: <em>a</em>, <em>-</em>, <em>t</em>, <em>-</em> and <em>elle</em>.
-The first hyphen is the head (i.e. it receives the link <code class="highlighter-rouge">nsubj</code>) and the other tokens are linked with a <code class="highlighter-rouge">goeswith</code>:</p>
+<p>For more details, see <a href="tokenisation.md">tokenization</a>.</p>
 
-<pre><code class="language-sdparse">a - t - elle bien dormi ? \n did she sleep well?
-nsubj(a,-)
-goeswith(-,t)
-goeswith(--2,--4)
-goeswith(-,elle)
-</code></pre>
+<h2 id="morphology">Morphology</h2>
 
-<p>As for the POS, the hyphens could be tagged with PUNCT and the <em>t</em> with PART (and of course <em>elle</em> with PRON).
-This way of tokanizing and segmentating seems easier for the parsing and does not require an external source since we keep everything separated.	We also don’t have to wonder where to attach the hyphens as they constitute separated tokens.
-Thus it becomes easier to automatically analyze together cases like <em>là-dessus</em> and <em>là-bas</em> where the hyphen belongs to the left part (<em>là-</em> and <em>dessus</em> or <em>bas</em>) and cases like <em>est-elle</em> where we can choose to attach the hyphen to the right part (<em>-elle</em>).</p>
+<h3 id="tags">Tags</h3>
 
-<p>N.B.: This tokenizing and segmentating choice is arbitrary and other French treebanks could choose to do otherwise (for example they could consider <em>a-t-</em> or <em>-t-elle</em> as a token, or annotate the <em>-t-</em> with <code class="highlighter-rouge">expl</code>).</p>
+<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="pos/index.html">French POS tags</a>
+and <a href="feat/index.html">French features</a>.</p>
+
+<ul>
+  <li>French uses all 17 universal POS categories, including particles (<a href="">PART</a>). <a href="">PART</a> is used differently among treebanks. Most common usages are for euphonic element (like <em>t</em> in <em>a-t-il</em>) or for <em>-là</em> and <em>-ci</em> when they follow a pronoun (<em>celle-là</em>) or a noun (<em>cette fois-ci</em>). Some corpora uses <a href="">PART</a> for negation words <em>ne</em> and <em>pas</em>.</li>
+  <li>Most French corpora has just three auxiliary verb (<a href="">AUX</a>)
+    <ul>
+      <li><em>être</em> (to be) is used as a copule, as a tense auxiliary and as a passive auxiliary,</li>
+      <li><em>avoir</em> (to have) is used as a tense auxiliary,</li>
+      <li><em>faire</em> (to make) is used in causative constructions.</li>
+    </ul>
+  </li>
+  <li><strong>UD_French-ParTUT</strong> uses a few more auxiliaries (<em>aller</em>, <em>devoir</em>, <em>pouvoir</em>, …).</li>
+</ul>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>TODO</li>
+</ul>
+
+<hr />
+<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+
+<hr />
+
+<h2 id="syntax">Syntax</h2>
+
+<ul>
+  <li>TODO</li>
+</ul>
+
+<hr />
+<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+
+<hr />
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There are <a href="../treebanks/fr-comparison.html">six</a> French UD treebanks:</p>
+
+<ul>
+  <li><a href="../treebanks/fr_partut">UD_French-ParTUT</a></li>
+  <li><a href="../treebanks/fr_gsd">UD_French-GSD</a></li>
+  <li><a href="../treebanks/fr_sequoia">UD_French-Sequoia</a></li>
+  <li><a href="../treebanks/fr_pud">UD_French-PUD</a></li>
+  <li><a href="../treebanks/fr_ftb">UD_French-FTB</a></li>
+  <li><a href="../treebanks/fr_spoken">UD_French-Spoken</a></li>
+</ul>
 
 
       </div>
