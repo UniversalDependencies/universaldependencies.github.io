@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>vocative</title>
+    <title>parataxis:rel</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-uk">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk/dep/vocative.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk/dep/parataxis-rel.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,166 +60,53 @@
 	  </div>
 	</noscript>
 
-          <h2><code>vocative</code>: vocative</h2>
+          <h2><code>parataxis:rel</code>: relative clause for clauses</h2>
 
-<p>The <code class="highlighter-rouge">vocative</code> relation is used to mark dialogue participant addressed in text.
-The relation links the addressee’s name to its host sentence.
-In Ukrainian, the addressee’s name must also appear in the vocative <a href="">uk-feat/Case</a> form.</p>
+<p><code class="highlighter-rouge">parataxis:rel</code> is for clauses relative to the whole upper clause, that is, the relativizer refers to the predication in a higher clause and not to a particular noun.</p>
 
-<pre><code class="language-sdparse">Пане Президенте , скільки можна ? \n Mister President , you-should-stop-it !
-vocative(можна, Президенте)
-vocative(you-should-stop-it, President)
-</code></pre>
+<pre><code class="language-conllu"># doc_title = Пуститися берега
+# newdoc id = 25r2
+# newpar id = 25r3
+# sent_id = 25r4
+# text = Ім'я Волтера Вайта нагадує поета Волта Вітмена, що відіграло важливу роль у сюжеті, аж до середини фінального п'ятого сезону.
+# translit = Imja Voltera Vajta nahaduě poeta Volta Vitmena, ščo vidihralo važlyvu roľ u śužeti, až do seredyny finaľnoho pjatoho sezonu.
+# visual-style 4 10 parataxis:rel color:green
+1	Ім'я	ім’я	NOUN	Ncnsnn	Animacy=Inan|Case=Nom|Gender=Neut|Number=Sing	4	nsubj	_	Id=25r5|LTranslit=imja|Translit=Imja
+2	Волтера	Волтер	PROPN	Npmsgy	Animacy=Anim|Case=Gen|Gender=Masc|NameType=Sur|Number=Sing	1	nmod	_	Id=25r6|LTranslit=Volter|Translit=Voltera
+3	Вайта	Вайт	PROPN	Npmsgy	Animacy=Anim|Case=Gen|Gender=Masc|NameType=Sur|Number=Sing	2	flat:name	_	Id=25r7|LTranslit=Vajt|Translit=Vajta
+4	нагадує	нагадувати	VERB	Vmpip3s	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	Id=25r8|LTranslit=nahaduvaty|Translit=nahaduě
+5	поета	поет	NOUN	Ncmsay	Animacy=Anim|Case=Acc|Gender=Masc|Number=Sing	4	obj	_	Id=25r9|LTranslit=poet|Translit=poeta
+6	Волта	Волт	PROPN	Npmsay	Animacy=Anim|Case=Acc|Gender=Masc|NameType=Giv|Number=Sing	5	flat:title	_	Id=25ra|LTranslit=Volt|Translit=Volta
+7	Вітмена	Вітмен	PROPN	Npmsay	Animacy=Anim|Case=Acc|Gender=Masc|NameType=Sur|Number=Sing	6	flat:name	_	Id=25rb|LTranslit=Vitmen|SpaceAfter=No|Translit=Vitmena
+8	,	,	PUNCT	U	_	10	punct	_	Id=25rc|LTranslit=,|Translit=,
+9	що	що	PRON	Pr--nnsnn	Animacy=Inan|Case=Nom|Gender=Neut|Number=Sing|PronType=Rel	10	nsubj	_	Id=25rd|LTranslit=ščo|Translit=ščo
+10	відіграло	відіграти	VERB	Vmeis-sn	Aspect=Perf|Gender=Neut|Mood=Ind|Number=Sing|Tense=Past|VerbForm=Fin	4	parataxis:rel	_	Id=25re|LTranslit=vidihraty|Translit=vidihralo
+11	важливу	важливий	ADJ	Afpfsas	Case=Acc|Degree=Pos|Gender=Fem|Number=Sing	12	amod	_	Id=25rf|LTranslit=važlyvyj|Translit=važlyvu
+12	роль	роль	NOUN	Ncfsan	Animacy=Inan|Case=Acc|Gender=Fem|Number=Sing	10	obj	_	Id=25rg|LTranslit=roľ|Translit=roľ
+13	у	у	ADP	Spsl	Case=Loc	14	case	_	Id=25rh|LTranslit=u|Translit=u
+14	сюжеті	сюжет	NOUN	Ncmsln	Animacy=Inan|Case=Loc|Gender=Masc|Number=Sing	12	nmod	_	Id=25ri|LTranslit=śužet|SpaceAfter=No|Translit=śužeti
+15	.	.	PUNCT	U	_	4	punct	_	Id=25rq|LTranslit=.|Translit=.
 
-<pre><code class="language-conllu"># sent_id = 02a4
-# text = Влаштовуйтесь, товаришу, як вдома.
-# translit = Vlaštovujteś, tovaryšu, jak vdoma.
-# visual-style 1 3 vocative color:green
-1 Влаштовуйтесь влаштовуватися VERB Vmpm-2p Aspect=Imp|Mood=Imp|Number=Plur|Person=2|VerbForm=Fin 0 root _ Id=02a5|LTranslit=vlaštovuvatyśа|SpaceAfter=No|Translit=Vlaštovujteś
-2 , , PUNCT U _ 3 punct _ Id=02a6|LTranslit=,|Translit=,
-3 товаришу товариш NOUN Ncmsvy Animacy=Anim|Case=Voc|Gender=Masc|Number=Sing 1 vocative _ Id=02a7|LTranslit=tovaryš|SpaceAfter=No|Translit=tovaryšu
-4 , , PUNCT U _ 3 punct _ Id=02a8|LTranslit=,|Translit=,
-5 як як SCONJ Css _ 6 mark _ Id=02a9|LTranslit=jak|Translit=jak
-6 вдома вдома ADV R _ 1 advcl _ Id=02aa|LTranslit=vdoma|SpaceAfter=No|Translit=vdoma
-7 . . PUNCT U _ 1 punct _ Id=02ab|LTranslit=.|Translit=.
-
-1 Make-yourself _ _ _ _ 0 root _ _
-2 , _ _ _ _ 0 root _ _
-3 mate _ _ _ _ 0 root _ _
-4 , _ _ _ _ 0 root _ _
-5 like _ _ _ _ 0 root _ _
-6 at-home _ _ _ _ 0 root _ _
-7 . _ _ _ _ 0 root _ _
+1	The-name	_	_	_	_	0	root	_	_
+2	of-Walter	_	_	_	_	0	root	_	_
+3	White	_	_	_	_	0	root	_	_
+4	reminds	_	_	_	_	0	root	_	_
+5	of-poet	_	_	_	_	0	root	_	_
+6	Walt	_	_	_	_	0	root	_	_
+7	Whitman	_	_	_	_	0	root	_	_
+8	,	_	_	_	_	0	root	_	_
+9	which	_	_	_	_	0	root	_	_
+10	played	_	_	_	_	0	root	_	_
+11	an-important	_	_	_	_	0	root	_	_
+12	role	_	_	_	_	0	root	_	_
+13	in	_	_	_	_	0	root	_	_
+14	the-plot	_	_	_	_	0	root	_	_
+15	.	_	_	_	_	0	root	_	_
 </code></pre>
 
 
 <!-- "in other languages" links -->
 <hr/>
-
-vocative in other languages:
-
-[<a href="../../am/dep/vocative.html">am</a>]
-
-[<a href="../../ar/dep/vocative.html">ar</a>]
-
-[<a href="../../bg/dep/vocative.html">bg</a>]
-
-[<a href="../../bxr/dep/vocative.html">bxr</a>]
-
-[<a href="../../ca/dep/vocative.html">ca</a>]
-
-[<a href="../../ckb/dep/vocative.html">ckb</a>]
-
-[<a href="../../cop/dep/vocative.html">cop</a>]
-
-[<a href="../../cs/dep/vocative.html">cs</a>]
-
-[<a href="../../cu/dep/vocative.html">cu</a>]
-
-[<a href="../../da/dep/vocative.html">da</a>]
-
-[<a href="../../de/dep/vocative.html">de</a>]
-
-[<a href="../../el/dep/vocative.html">el</a>]
-
-[<a href="../../en/dep/vocative.html">en</a>]
-
-[<a href="../../es/dep/vocative.html">es</a>]
-
-[<a href="../../et/dep/vocative.html">et</a>]
-
-[<a href="../../eu/dep/vocative.html">eu</a>]
-
-[<a href="../../fa/dep/vocative.html">fa</a>]
-
-[<a href="../../fi/dep/vocative.html">fi</a>]
-
-[<a href="../../fo/dep/vocative.html">fo</a>]
-
-[<a href="../../fr/dep/vocative.html">fr</a>]
-
-[<a href="../../ga/dep/vocative.html">ga</a>]
-
-[<a href="../../gl/dep/vocative.html">gl</a>]
-
-[<a href="../../got/dep/vocative.html">got</a>]
-
-[<a href="../../grc/dep/vocative.html">grc</a>]
-
-[<a href="../../he/dep/vocative.html">he</a>]
-
-[<a href="../../hi/dep/vocative.html">hi</a>]
-
-[<a href="../../hr/dep/vocative.html">hr</a>]
-
-[<a href="../../hu/dep/vocative.html">hu</a>]
-
-[<a href="../../id/dep/vocative.html">id</a>]
-
-[<a href="../../it/dep/vocative.html">it</a>]
-
-[<a href="../../ja/dep/vocative.html">ja</a>]
-
-[<a href="../../kk/dep/vocative.html">kk</a>]
-
-[<a href="../../kmr/dep/vocative.html">kmr</a>]
-
-[<a href="../../ko/dep/vocative.html">ko</a>]
-
-[<a href="../../la/dep/vocative.html">la</a>]
-
-[<a href="../../lv/dep/vocative.html">lv</a>]
-
-[<a href="../../mr/dep/vocative.html">mr</a>]
-
-[<a href="../../nl/dep/vocative.html">nl</a>]
-
-[<a href="../../no/dep/vocative.html">no</a>]
-
-[<a href="../../pl/dep/vocative.html">pl</a>]
-
-[<a href="../../pt/dep/vocative.html">pt</a>]
-
-[<a href="../../ro/dep/vocative.html">ro</a>]
-
-[<a href="../../ru/dep/vocative.html">ru</a>]
-
-[<a href="../../sa/dep/vocative.html">sa</a>]
-
-[<a href="../../sk/dep/vocative.html">sk</a>]
-
-[<a href="../../sla/dep/vocative.html">sla</a>]
-
-[<a href="../../sl/dep/vocative.html">sl</a>]
-
-[<a href="../../so/dep/vocative.html">so</a>]
-
-[<a href="../../sr/dep/vocative.html">sr</a>]
-
-[<a href="../../sv/dep/vocative.html">sv</a>]
-
-[<a href="../../swl/dep/vocative.html">swl</a>]
-
-[<a href="../../ta/dep/vocative.html">ta</a>]
-
-[<a href="../../tr/dep/vocative.html">tr</a>]
-
-[<a href="../../u/dep/vocative.html">u</a>]
-
-[<a href="../../ug/dep/vocative.html">ug</a>]
-
-[<a href="../../uk/dep/vocative.html">uk</a>]
-
-[<a href="../../ur/dep/vocative.html">ur</a>]
-
-[<a href="../../urj/dep/vocative.html">urj</a>]
-
-[<a href="../../vi/dep/vocative.html">vi</a>]
-
-[<a href="../../yue/dep/vocative.html">yue</a>]
-
-[<a href="../../zh/dep/vocative.html">zh</a>]
-
 
 
 
