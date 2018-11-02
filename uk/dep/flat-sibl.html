@@ -62,9 +62,9 @@
 
           <h2><code>flat:sibl</code>: siblings</h2>
 
-<p>Whenever two or more tokens are to be connected to the same head, but cannot be connected in parallel, <code class="highlighter-rouge">flat:sibl</code> is used.</p>
+<p>Whenever two or more tokens are supposed to be connected to the same head but cannot be connected in parallel, <code class="highlighter-rouge">flat:sibl</code> is used.</p>
 
-<p>In the following example, the predicate consists of two uncoordinated adjectives. However, there can only be one <a href="root.html"><code class="highlighter-rouge">root</code></a> in the sentence.</p>
+<p>In the following example, the predicate consists of two uncoordinated adjectives. However, there can only be one <a href="root.html"><code class="highlighter-rouge">root</code></a> per sentence, so we threrefore connect the second adjective as <code class="highlighter-rouge">flat:sibl</code> to the first one to treat both of them as a single unit.</p>
 
 <pre><code class="language-conllu"># visual-style 2 3 flat:sibl color:green
 1	Листки	листок	NOUN	Ncmpnn	Animacy=Inan|Case=Nom|Gender=Masc|Number=Plur	2	nsubj	_	Id=2053|LTranslit=lystok|Translit=Lystky
@@ -82,7 +82,7 @@
 </code></pre>
 <p>(<em>Entire</em> and <em>linear</em> are the terms for the form of leaf’s edge and body respectively and do not depend on each other.)</p>
 
-<p>In the second example <code class="highlighter-rouge">flat:sibl</code> is used to pack uncoordinated modifiers into a single conjunct, that is, conjoined here are oil ‘specifications’.</p>
+<p>In the second example, <code class="highlighter-rouge">flat:sibl</code> is used to pack uncoordinated modifiers into a single conjunct, that is, conjoined here are oil ‘specifications’.</p>
 
 <pre><code class="language-conllu"># visual-style 4 5 flat:sibl color:green
 1	Люблю	любити	VERB	_	Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin	0	root	_	_
@@ -104,7 +104,7 @@
 
 </code></pre>
 
-<p>(In Ukrainian, ‘oil’ is considered to be sunflower by default.)</p>
+<p>(In Ukrainian, ‘oil’ is sunflower by default.)</p>
 
 <p>Mention that the following analysis is incorrect:</p>
 <pre><code class="language-conllu"># visual-style 6 5 amod_(wrong) color:darkred
@@ -115,19 +115,22 @@
 5	organic	_	_	_	_	6	amod_(wrong)	_	_
 6	oil	_	_	_	_	0	root	_	_
 7	.	_	_	_	_	0	root	_	_
+
 </code></pre>
 
-<p>It’s incorrect because if you unroll the coordination, you will get (wrong):</p>
+<p>It’s incorrect because if you unroll the coordination, you will get:</p>
 <ul>
-  <li><em>I like olive organic oil.</em></li>
+  <li><em>I like olive organic oil.</em> — wrong</li>
   <li><em>I like real organic oil.</em></li>
 </ul>
 
-<p>instead of (correct):</p>
+<p>instead of:</p>
 <ul>
-  <li><em>I like olive oil.</em></li>
+  <li><em>I like olive oil.</em> — correct</li>
   <li><em>I like real organic oil.</em></li>
 </ul>
+
+<p>Do not confuse <code class="highlighter-rouge">flat:sibl</code> with <a href="flat-abs.html"><code class="highlighter-rouge">flat:abs</code></a> used for absolutive constructions.</p>
 
 <p>For the discussion on <code class="highlighter-rouge">flat:sibl</code>, see issue <a href="https://github.com/UniversalDependencies/docs/issues/556">#556</a>.</p>
 
