@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>nsubj</title>
+    <title>nsubj:x</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-uk">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk/dep/nsubj.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk/dep/nsubj-x.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,148 +60,52 @@
 	  </div>
 	</noscript>
 
-          <h2><code>nsubj</code>: nominal subject</h2>
+          <h2><code>nsubj:x</code>: controlling subject (enhanced dependency)</h2>
 
-<p>A nominal subject is a nominal phrase which is the syntactic subject of a clause; in Ukrainian, the phrase is in the nominative <a href="">uk-feat/Case</a>. (See <a href="">csubj</a> for when the subject is clausal.) The governor of the <code class="highlighter-rouge">nsubj</code> relation might not always be a verb: when the verb is a copular verb, the root of the clause is the complement of the copular verb, which can be an adjective or noun. Copular verbs in the present tense are in most cases omitted in Ukrainian.</p>
+<p><code class="highlighter-rouge">nsubj:x</code> is an Enhanced dependency which distinguishes subjects of controlled verbs
+as described in <em>Controlled/raised subjects</em> section of Enhanced Dependencies <a href="http://universaldependencies.org/u/overview/enhanced-syntax.html">documentation</a> and in <a href="../../u/dep/xcomp.html"><code class="highlighter-rouge">xcomp</code></a>.</p>
 
-<pre><code class="language-sdparse">Заповіт написав Тарас Шевченко . \n The Will was written by Taras Shevchenko .
-nsubj(написав, Шевченко)
-nsubj(written, Shevchenko)
+<pre><code class="language-conllu"># visual-style 4 1 nsubj:x color:blue
+1	Вінстон	він	PRON	_	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	4:nsubj:x	LTranslit=vin|Translit=vin
+2	не	не	PART	_	Polarity=Neg	3	advmod	_	LTranslit=ne|Translit=ne
+3	звик	звикнути	VERB	_	Aspect=Perf|Gender=Masc|Mood=Ind|Number=Sing|Tense=Past|VerbForm=Fin	0	root	_	LTranslit=zvyknuty|Translit=zvyk
+4	писати	писати	VERB	_	Aspect=Imp|VerbForm=Inf	3	xcomp	_	LTranslit=pysaty|Translit=pysaty
+5	рукою	рука	NOUN	_	Animacy=Inan|Case=Ins|Gender=Fem|Number=Sing	4	obl	_	LTranslit=ruka|SpaceAfter=No|Translit=ruky
+6	.	.	PUNCT	_	_	3	punct	_	LTranslit=.|Translit=.
+
+# visual-style 4 1 nsubj:x color:blue
+1	Winston 	_	_	_	_	3	nsubj	4:nsubj:x	_
+2	not	_	_	_	_	0	root	_	_
+3	got-used	_	_	_	_	0	root	_	_
+4	to-write	_	_	_	_	3	xcomp	_	_
+5	by-hand	_	_	_	_	0	root	_	_
+6	.	_	_	_	_	0	root	_	_
+
 </code></pre>
 
-<pre><code class="language-sdparse">Машина — червона . \n Car is red .
-nsubj(червона, Машина)
-nsubj(red, Car)
+<pre><code class="language-conllu"># visual-style 3 2 nsubj:x color:blue
+1	Прошу	просити	VERB	_	Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin	0	root	_	_
+2	тебе	ти	PRON	_	Animacy=Anim|Case=Acc|Number=Sing|Person=2|PronType=Prs	1	obj	3:nsubj:x	_
+3	лишитись	лишитися	VERB	_	Aspect=Perf|Reverse=Yes|VerbForm=Inf	1	xcomp	_	SpaceAfter=No
+4	.	.	PUNCT	_	_	1	punct	_	_
+
+# visual-style 3 2 nsubj:x color:blue
+1	I-ask	_	_	_	_	0	root	_	_
+2	you	_	_	_	_	1	obj	3:nsubj:x	_
+3	to-stay	_	_	_	_	1	xcomp	_	_
+4	.	_	_	_	_	1	punct	_	_
+
 </code></pre>
+
+<p><code class="highlighter-rouge">nsubj:x</code> is used when the controlling subject is overt.</p>
+
+<p>For related discussions, see issues <a href="https://github.com/UniversalDependencies/docs/issues/567">#567</a> and <a href="https://github.com/UniversalDependencies/docs/issues/568">#568</a>.</p>
+
+<p><!-- If the subject is not overt but is deducible from the form of the verb, there is no `nsubj:x`. --></p>
 
 
 <!-- "in other languages" links -->
 <hr/>
-
-nsubj in other languages:
-
-[<a href="../../am/dep/nsubj.html">am</a>]
-
-[<a href="../../ar/dep/nsubj.html">ar</a>]
-
-[<a href="../../bg/dep/nsubj.html">bg</a>]
-
-[<a href="../../bxr/dep/nsubj.html">bxr</a>]
-
-[<a href="../../ca/dep/nsubj.html">ca</a>]
-
-[<a href="../../ckb/dep/nsubj.html">ckb</a>]
-
-[<a href="../../cop/dep/nsubj.html">cop</a>]
-
-[<a href="../../cs/dep/nsubj.html">cs</a>]
-
-[<a href="../../cu/dep/nsubj.html">cu</a>]
-
-[<a href="../../da/dep/nsubj.html">da</a>]
-
-[<a href="../../de/dep/nsubj.html">de</a>]
-
-[<a href="../../el/dep/nsubj.html">el</a>]
-
-[<a href="../../en/dep/nsubj.html">en</a>]
-
-[<a href="../../es/dep/nsubj.html">es</a>]
-
-[<a href="../../et/dep/nsubj.html">et</a>]
-
-[<a href="../../eu/dep/nsubj.html">eu</a>]
-
-[<a href="../../fa/dep/nsubj.html">fa</a>]
-
-[<a href="../../fi/dep/nsubj.html">fi</a>]
-
-[<a href="../../fo/dep/nsubj.html">fo</a>]
-
-[<a href="../../fr/dep/nsubj.html">fr</a>]
-
-[<a href="../../ga/dep/nsubj.html">ga</a>]
-
-[<a href="../../gl/dep/nsubj.html">gl</a>]
-
-[<a href="../../got/dep/nsubj.html">got</a>]
-
-[<a href="../../grc/dep/nsubj.html">grc</a>]
-
-[<a href="../../he/dep/nsubj.html">he</a>]
-
-[<a href="../../hi/dep/nsubj.html">hi</a>]
-
-[<a href="../../hr/dep/nsubj.html">hr</a>]
-
-[<a href="../../hu/dep/nsubj.html">hu</a>]
-
-[<a href="../../id/dep/nsubj.html">id</a>]
-
-[<a href="../../it/dep/nsubj.html">it</a>]
-
-[<a href="../../ja/dep/nsubj.html">ja</a>]
-
-[<a href="../../kk/dep/nsubj.html">kk</a>]
-
-[<a href="../../kmr/dep/nsubj.html">kmr</a>]
-
-[<a href="../../ko/dep/nsubj.html">ko</a>]
-
-[<a href="../../la/dep/nsubj.html">la</a>]
-
-[<a href="../../lv/dep/nsubj.html">lv</a>]
-
-[<a href="../../mr/dep/nsubj.html">mr</a>]
-
-[<a href="../../nl/dep/nsubj.html">nl</a>]
-
-[<a href="../../no/dep/nsubj.html">no</a>]
-
-[<a href="../../pl/dep/nsubj.html">pl</a>]
-
-[<a href="../../pt/dep/nsubj.html">pt</a>]
-
-[<a href="../../ro/dep/nsubj.html">ro</a>]
-
-[<a href="../../ru/dep/nsubj.html">ru</a>]
-
-[<a href="../../sa/dep/nsubj.html">sa</a>]
-
-[<a href="../../sk/dep/nsubj.html">sk</a>]
-
-[<a href="../../sla/dep/nsubj.html">sla</a>]
-
-[<a href="../../sl/dep/nsubj.html">sl</a>]
-
-[<a href="../../so/dep/nsubj.html">so</a>]
-
-[<a href="../../sr/dep/nsubj.html">sr</a>]
-
-[<a href="../../sv/dep/nsubj.html">sv</a>]
-
-[<a href="../../swl/dep/nsubj.html">swl</a>]
-
-[<a href="../../ta/dep/nsubj.html">ta</a>]
-
-[<a href="../../tr/dep/nsubj.html">tr</a>]
-
-[<a href="../../u/dep/nsubj.html">u</a>]
-
-[<a href="../../ug/dep/nsubj.html">ug</a>]
-
-[<a href="../../uk/dep/nsubj.html">uk</a>]
-
-[<a href="../../ur/dep/nsubj.html">ur</a>]
-
-[<a href="../../urj/dep/nsubj.html">urj</a>]
-
-[<a href="../../vi/dep/nsubj.html">vi</a>]
-
-[<a href="../../yue/dep/nsubj.html">yue</a>]
-
-[<a href="../../zh/dep/nsubj.html">zh</a>]
-
 
 
 
