@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>det:complex</title>
+    <title>appos:conj</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-fr">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr/dep/det-complex.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr/dep/appos-conj.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,41 +60,24 @@
 	  </div>
 	</noscript>
 
-          <h2><code>det:complex</code>: complex determiner</h2>
+          <h2><code>appos:conj</code>: apposed conjunct</h2>
 
-<p>In FrenchSpoken the <code class="highlighter-rouge">det:complex</code> relation is used to annotate complex determiners. Some corpora of the French treebank analyze them with a <a href="">fixed</a> relation but FrenchSpoken does not: complex determiners are considered as regular constructions and as such, they are syntactically analyzed.
-Like complex prepositions (see the <a href="">case:complex</a> relation), complex determiners can be coordinated: <em>Il y a trop de beurre et de sucre dans ce gâteau.</em></p>
+<p>Only <strong>UD_French-Spoken</strong> uses the <code class="highlighter-rouge">appos:conj</code> relation instead of <code class="highlighter-rouge">appos</code> for appositions which respect the prosody of lists.
+The elements in a <code class="highlighter-rouge">appos:conj</code> are not bound to a particular sequence, they can be rearranged in a different order.
+The elements of a <code class="highlighter-rouge">appos:conj</code> are in the same paradigm (i.e they fulfill the same role in relation to their governor).
+his choice of relation is meant to emphasize the similarity between some appositions and ordinary coordination.
+Contrary to the conjuncts of a <a href="">conj:coord</a> relation, the conjuncts of a <code class="highlighter-rouge">appos:conj</code> relation have the same referent.</p>
 
-<p>Here are come examples of complex determiners that follow the pattern “Adv+de+N” like <em>trop de chocolat</em>, <em>beaucoup de fraises</em>, <em>énormément d’étoiles</em> etc.</p>
-
-<pre><code class="language-sdparse">Pierre a mangé trop de chocolat . \n Pierre ate too much chocolate.
-det:complex(chocolat,trop)
-case(chocolat,de)
+<pre><code class="language-sdparse">Sa cousine , une grande psychiatre , habite à Charleville-Mézière. \n His cousin, a great psychiatrist, lives in Charleville-Mézière.
+appos:conj(cousine,psychiatre)
+nsubj(habite,cousine)
 </code></pre>
 
-<pre><code class="language-sdparse">Je pense que tu as mis assez de peinture sur ce mur. \n I think you put enough paint on this wall.
-det:complex(peinture,assez)
-case(peinture,de)
+<pre><code class="language-sdparse">Bruno , mon oncle , est un grand fan de rugby \n Bruno, my uncle, is a big fan of rugby
+appos:conj(Bruno, oncle)
 </code></pre>
 
-<p>Other types of complex determiner are anotated with the <code class="highlighter-rouge">det:complex</code> relation:</p>
-
-<pre><code class="language-sdparse">Julien a acheté un tas de vêtements pendant les soldes. \n Julien bought a lot of clothing during the sales.
-det:complex(vêtements,tas)
-det(tas,un)
-case(vêtements,de)
-</code></pre>
-
-<pre><code class="language-sdparse">Hier soir, plein de gens étaient présents au concert d'hier soir. \n Many people attended the concert yesterday night.
-det:complex(gens,plein)
-case(gens,de)
-</code></pre>
-
-<pre><code class="language-sdparse">La plupart des bactéries ont été tuées par cet antibiotique. \n Most of the bacteria were killed by this antibiotic.
-det:complex(bactéries,plupart)
-det(plupart,La)
-case(bactéries,des)
-</code></pre>
+<p>Not all appositions respect these critierias, for appositions which modify nominal elements but without showing these similarities to coordinations we use the <a href="">appos:nmod</a> relation instead.</p>
 
 
 <!-- "in other languages" links -->

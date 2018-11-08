@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>conj:appos</title>
+    <title>advcl:cleft</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-fr">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr/dep/conj-appos.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr/dep/advcl-cleft.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,21 +60,47 @@
 	  </div>
 	</noscript>
 
-          <h2><code>conj:appos</code>: apposed conjunct</h2>
+          <h2><code>advcl:cleft</code>: cleft adverbial clause modifier</h2>
 
-<p>FrenchSpoken uses the <code class="highlighter-rouge">conj:appos</code> relation instead of <code class="highlighter-rouge">appos</code> for appositions which respect the prosody of lists. The elements in a <code class="highlighter-rouge">conj:appos</code> are not bound to a particular sequence, they can be rearranged in a different order. The elements of a <code class="highlighter-rouge">conj:appos</code> are in the same paradigm (i.e they fulfill the same role in relation to their governor). This choice of relation is meant to emphasize the similarity between some appositions and ordinary coordination.
-Contrary to the conjuncts of a <a href="">conj:coord</a> relation, the conjuncts of a <code class="highlighter-rouge">conj:appos</code> relation have the same referent.</p>
+<p>The <code class="highlighter-rouge">advcl:cleft</code> relation is used in two corpora (<strong>UD_French-Spoken</strong> and <strong>UD_French-GSD</strong>).
+It is used to link the clefted element and the clause of the cleft sentence.
+This link is used for every type of cleft element (nominal phrase, prepositional phrase etc.).</p>
 
-<pre><code class="language-sdparse">Sa cousine , une grande psychiatre , habite à Charleville-Mézière. \n His cousin, a great psychiatrist, lives in Charleville-Mézière.
-conj:appos(cousine,psychiatre)
-nsubj(habite,cousine)
+<pre><code class="language-sdparse">Les vendanges commencent aujourd'hui. C' est un vigneron du coin qui me l'a dit . \n Harvest starts today. It's a wine-grower who told me so.
+nsubj:expl(vigneron, C')
+advcl:cleft(vigneron, dit)
+nsubj(dit, qui)
 </code></pre>
 
-<pre><code class="language-sdparse">Bruno , mon oncle , est un grand fan de rugby \n Bruno, my uncle, is a big fan of rugby
-conj:appos(Bruno, oncle)
+<pre><code class="language-sdparse">Il y a Marie qui danse dans la pièce. \n Marie dances in the room.
+nsubj(a,Il)
+advmod(a,y)
+obj(a,Marie)
+advcl:cleft(Marie,danse)
 </code></pre>
 
-<p>Not all appositions respect these critierias, for appositions which modify nominal elements but without showing these similarities to coordinations we use the <a href="">nmod:appos</a> relation instead.</p>
+<pre><code class="language-sdparse">J' ai le mari de ma voisine qui est réparateur de voiture. \n I've got a neighbour whose husband is a car repairer.
+nsubj(ai,J')
+obj(ai,mari)
+advcl:cleft(mari,réparateur)
+</code></pre>
+
+<pre><code class="language-sdparse">Juliette n'est pas ma confidente. C' est à Camille que je raconte tout. \n Juliette isn't my confidante. I tell everything to Camille.
+advcl:cleft(Camille,raconte)
+nsubj:expl(Camille,C')
+</code></pre>
+
+<pre><code class="language-sdparse">Il y a longtemps que j' habite ici. \n I've lived here for a long time.
+advcl:cleft(longtemps, habite)
+nsubj:expl(a,Il)
+advmod(a,y)
+obj(a,longtemps)
+</code></pre>
+
+<pre><code class="language-sdparse">Nager avec les dauphins ne me fait pas rêver. C' est explorer la forêt tropicale qui m' intéresse. \n Swimming with the dolphins isn't my dream. It's exploring the rainforest that interests me.
+advcl:cleft(explorer, intéresse.)
+nsubj:expl(explorer,C')
+</code></pre>
 
 
 <!-- "in other languages" links -->
