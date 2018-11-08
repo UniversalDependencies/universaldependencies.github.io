@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>parataxis:dislocated</title>
+    <title>acl:cleft</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-fr">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr/dep/parataxis-dislocated.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fr/dep/acl-cleft.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,20 +60,34 @@
 	  </div>
 	</noscript>
 
-          <h2><code>parataxis:dislocated</code>: parataxis dislocated</h2>
+          <h2><code>acl:cleft</code>: cleft clause modifier</h2>
 
-<p>In <strong>UD_French-Spoken</strong>, the <code class="highlighter-rouge">parataxis:dislocated</code> relation is used for pre-nucleus clauses that function like dislocations.
-They  cannot be considered as illocutary units since they are not autonomous.</p>
+<p><code class="highlighter-rouge">acl:cleft</code> is used in two corpora (<strong>UD_French-Spoken</strong> and <strong>UD_French-GSD</strong>).
+The <code class="highlighter-rouge">acl:cleft</code> relation to link the clefted nominal element (i.e. the head of the cleft construction) and the clause of the cleft sentence.</p>
 
-<p>For instance, in the following example, <em>j’ai le copain de ma copine</em> could not be an autonomous sentence. Furthermore it commutes with the nominal phrase <em>le copain de ma copine</em> and works like a dislocation, that is why the <code class="highlighter-rouge">parataxis:dislocated</code> relation is appropriate.</p>
+<p>In <strong>UD_French-Spoken</strong> only, the <a href="">nsubj:expl</a> relation is used to annotate the syntactical subject of the cleft construction.</p>
 
-<pre><code class="language-sdparse">j' ai le copain de ma copine il a un petit bateau dans le port de Toulon \n this boyfriend of my friend, he's got a little boat in the port of Toulon
-parataxis:dislocated(a,ai)
+<pre><code class="language-sdparse">Les vendanges commencent aujourd'hui. C' est un vigneron du coin qui me l'a dit . \n Harvest starts today. It's a wine-grower who told me so.
+nsubj:expl(vigneron, C')
+acl:cleft(vigneron, dit)
+nsubj(dit, qui)
 </code></pre>
 
-<p>N.B.: Since pre-nucleus clause functions like a dislocation, it could be annotated with a simple <a href="">dislocated</a> link.</p>
+<pre><code class="language-sdparse">Il y a Marie qui danse dans la pièce. \n Marie dances in the room.
+nsubj(a,Il)
+advmod(a,y)
+obj(a,Marie)
+acl:cleft(Marie,danse)
+</code></pre>
 
-<p>There are five more subrelations that <strong>UD_French-Spoken</strong> uses: <a href="">parataxis:discourse</a>, <a href="">parataxis:insert</a>, [parataxis:obj], <a href="">parataxis:parenth</a> and <a href="">parataxis:conj</a>.</p>
+<pre><code class="language-sdparse">J' ai le mari de ma voisine qui est réparateur de voiture. \n I've got a neighbour whose husband is a car repairer.
+nsubj(ai,J')
+obj(ai,mari)
+acl:cleft(mari,réparateur)
+</code></pre>
+
+<p>N.B.: <code class="highlighter-rouge">acl:cleft</code> is only used for clefted nominal subjects or objects.
+All other cases are annotated with the <a href="">ccomp:cleft</a> relation (for example when the clefted element is a verb or an adverb). Also see the <a href="http://universaldependencies.org/fr/specific-syntax.html">specific-syntax</a> page.</p>
 
 
 <!-- "in other languages" links -->
