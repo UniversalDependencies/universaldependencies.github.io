@@ -107,8 +107,8 @@ released.<br />
       <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code class="highlighter-rouge">master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the <code class="highlighter-rouge">master</code> branch and git will not allow any further operations with them!<br />
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 2 ; else echo OK ; fi ; cd .. ; echo ; done</code>
         <ul>
-          <li><code>cd UD_...(the-one-with-conflict) ; git status</code> will show what files have a problem. Let’s assume that only <code class="highlighter-rouge">README.txt</code> has a problem. This is how we replace it with the version from the <code class="highlighter-rouge">dev</code> branch and conclude the merge:<br />
-<code>git checkout --theirs README.txt ; git add README.txt ; git commit -m 'Merge branch dev' ; git push ; git checkout dev ; cd ..</code></li>
+          <li><code>cd UD_...(the-one-with-conflict) ; git status</code> will show what files have a problem. Let’s assume that only <code class="highlighter-rouge">README.md</code> has a problem. This is how we replace it with the version from the <code class="highlighter-rouge">dev</code> branch and conclude the merge:<br />
+<code>git checkout --theirs README.md ; git add README.md ; git commit -m 'Merge branch dev' ; git push ; git checkout dev ; cd ..</code></li>
         </ul>
       </li>
       <li>After resolving the conflicts do not forget to checkout the <code class="highlighter-rouge">dev</code> branch again! (If there were no conflicts, we are already back in <code class="highlighter-rouge">dev</code>.)<br />
