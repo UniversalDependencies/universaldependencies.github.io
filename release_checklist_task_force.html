@@ -117,14 +117,13 @@ released.<br />
   </li>
   <li>Re-evaluate the treebanks for the star ranking on the website. This is done only in the master branch and the result is stored there.<br />
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; cd .. ; perl -I tools tools/evaluate_treebank.pl $i --verbose &gt;&amp; $i/eval.log ; cd $i ; git add eval.log ; git commit -m 'Updated treebank evaluation.' ; git push ; git checkout dev ; cd .. ; done</code></li>
-  <li>Tag the current commit in all repositories with the tag of the current release (<code class="highlighter-rouge">git tag r2.2</code> for UD 2.2).
+  <li>Tag the current commit in all repositories with the tag of the current release (<code class="highlighter-rouge">git tag r2.3</code> for UD 2.3).
 Push the tag to Github: <code class="highlighter-rouge">git push origin --tags</code>.
 You may even tag a particular commit retroactively: <code class="highlighter-rouge">git tag -a r2.1 9fceb02</code>.
 If the repository is updated after you assigned the tag and you need to re-assign the tag to a newer commit,
 this is how you remove the tag from where it is now: <code class="highlighter-rouge">git tag -d r2.1</code>.
-And this is how you remove it from Github: <code class="highlighter-rouge">git push origin :refs/tags/r2.1</code>.
-WARNING: The following command tags all UD repositories, including those that are not part of the current release.<br />
-<code>for i in $(cat released_treebanks.txt) docs tools ; do echo $i ; cd $i ; git tag r2.2 ; git push --tags ; cd .. ; echo ; done</code></li>
+And this is how you remove it from Github: <code class="highlighter-rouge">git push origin :refs/tags/r2.1</code>.<br />
+<code>for i in $(cat released_treebanks.txt) docs tools ; do echo $i ; cd $i ; git tag r2.3 ; git push --tags ; cd .. ; echo ; done</code></li>
 </ul>
 
 <h2 id="updating-automatically-generated-parts-of-documentation">Updating automatically generated parts of documentation</h2>
