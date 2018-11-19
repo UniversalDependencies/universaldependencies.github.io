@@ -79,20 +79,20 @@ usually a lexical feature of <a href="u-pos/NOUN">nouns</a> and inflectional fea
 of other parts of speech (<a href="u-pos/PRON">pronouns</a>,
 <a href="u-pos/ADJ">adjectives</a>, <a href="u-pos/DET">determiners</a>, <a href="u-pos/NUM">numerals</a>,
 <a href="u-pos/VERB">verbs</a>) that mark agreement with
-nouns. It is
-independent of gender, therefore it is encoded separately in some
-tagsets (e.g. all the Multext-East tagsets). On the other hand, in
-Czech the (almost) only grammatical implications occur within the
-masculine gender, which is why the PDT tagset does not have
-animateness as separate feature and instead defines four genders:
-masculine animate, masculine inanimate, feminine and neuter.  We
-follow the two-feature approach used in Multext-East (many languages)
-because it is safer.</p>
+nouns. Some languages distinguish only gender, some only animacy,
+and in some languages both gender and animacy play a role in the grammar.
+(Some non-UD tagsets then combine the two features into an extended system
+of genders; however, in UD the two features are annotated separately.)</p>
 
-<p>Polish is special in that it also distinguishes grammatically human
-vs. non-human animates. It can be demonstrated by inflection of words with
-adjectival inflection, for example, the word <em>który</em> “which” (boldface forms differ from the middle
-row):</p>
+<p>Similarly to gender, the values of animacy refer to semantic properties of the
+noun, but this is only an approximation, referring to the prototypical members
+of the categroy. There are nouns that are treated as grammatically animate,
+although semantically the are inanimate.</p>
+
+<p>The following table is an example of a three-way animacy distinction
+(human – animate nonhuman – inanimate) in the declension of the masculine
+determiner <em>który</em> “which” in Polish (boldface forms in the upper and lower
+rows differ from the middle row):</p>
 
 <table cellpadding="2" cellspacing="0">
   <thead>
@@ -144,7 +144,7 @@ row):</p>
       <td>których</td>
     </tr>
     <tr>
-      <td>in-animate</td>
+      <td>inanimate</td>
       <td>który</td>
       <td>którego</td>
       <td>któremu</td>
@@ -161,6 +161,61 @@ row):</p>
   </tbody>
 </table>
 
+<p>In the corresponding paradigm of Czech, only two values are distinguished:
+masculine animate and masculine inanimate:</p>
+
+<table cellpadding="2" cellspacing="0">
+  <thead>
+    <tr>
+      <th>gender</th>
+      <th>sg-nom</th>
+      <th>sg-gen</th>
+      <th>sg-dat</th>
+      <th>sg-acc</th>
+      <th>sg-ins</th>
+      <th>sg-loc</th>
+      <th>pl-nom</th>
+      <th>pl-gen</th>
+      <th>pl-dat</th>
+      <th>pl-acc</th>
+      <th>pl-ins</th>
+      <th>pl-loc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>animate</td>
+      <td>který</td>
+      <td>kterého</td>
+      <td>kterému</td>
+      <td><strong>kterého</strong></td>
+      <td>kterým</td>
+      <td>kterém</td>
+      <td><strong>kteří</strong></td>
+      <td>kterých</td>
+      <td>kterým</td>
+      <td>které</td>
+      <td>kterými</td>
+      <td>kterých</td>
+    </tr>
+    <tr>
+      <td>inanimate</td>
+      <td>který</td>
+      <td>kterého</td>
+      <td>kterému</td>
+      <td><strong>který</strong></td>
+      <td>kterým</td>
+      <td>kterém</td>
+      <td><strong>které</strong></td>
+      <td>kterých</td>
+      <td>kterým</td>
+      <td>které</td>
+      <td>kterými</td>
+      <td>kterých</td>
+    </tr>
+  </tbody>
+</table>
+
 <p>More generally: Some languages distinguish animate vs. inanimate (e.g. Czech
 masculines), some languages distinguish human vs. non-human (e.g. Yuwan, a
 Ryukyuan language), and others distinguish three values, human vs. non-human
@@ -169,10 +224,10 @@ animate vs. inanimate (e.g. Polish masculines).</p>
 <h3 id="anim-animate"><a name="Anim"><code class="highlighter-rouge">Anim</code></a>: animate</h3>
 
 <p>Human beings, animals, fictional characters, names of professions
-etc. are all animate. Even nouns that are normally inanimate can be
-inflected as animate if they are personified. For instance, consider a
-children’s story about cars where cars live and talk as people; then
-the cars may become and be inflected as animates.</p>
+etc. are normally animate. Even nouns that are normally inanimate can be
+inflected as animate if they are personified. And some words in some
+languages can grammatically behave like animates although there is no
+obvious semantic reason for that.</p>
 
 <h3 id="inan-inanimate"><a name="Inan"><code class="highlighter-rouge">Inan</code></a>: inanimate</h3>
 
@@ -180,8 +235,9 @@ the cars may become and be inflected as animates.</p>
 
 <h3 id="hum-human"><a name="Hum"><code class="highlighter-rouge">Hum</code></a>: human</h3>
 
-<p>A subset of animates that only includes human beings (and personified characters)
-but not animals.</p>
+<p>A subset of animates where the prototypical member is a human being but not
+an animal. Again, there may be exceptions that do not fit the class semantically
+but belong to it grammatically.</p>
 
 <h3 id="nhum-non-human"><a name="Nhum"><code class="highlighter-rouge">Nhum</code></a>: non-human</h3>
 
