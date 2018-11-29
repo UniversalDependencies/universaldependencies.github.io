@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title><LanguageName> UD</title>
+    <title>Latvian UD</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
@@ -60,14 +60,18 @@
 	  </div>
 	</noscript>
 
-          <h1 id="ud-for-language-">UD for LANGUAGE <span class="flagspan"><img class="flag" src="../../flags/svg/AQ.svg" /></span></h1>
+          <h1 id="ud-for-latvian-">UD for Latvian <span class="flagspan"><img class="flag" src="../../flags/svg/LV.svg" /></span></h1>
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
+<p>In general, words are delimited by whitespace characters and punctuation is separated. Description of exceptions follows:</p>
+<ul>
+  <li>A whitespace separating digits in a large number is not treated as a word separator. For example, <em>1 000 000</em> (“1,000,000” by English rules) is one token.</li>
+  <li>Abbreviations without spaces are treated as single words and may contain punctuation (<em>utt.</em> “etc.”). In following cases we treat abbreviation as a single token even if whitespace is used between part of abbreviation and punctuation mark: <em>u.t.jpr.</em>, <em>u.c.</em>, <em>u.tml.</em>, <em>v.tml</em>, <em>u.t.t.</em>, <em>N.B.</em>, <em>P.S.</em> and <em>P.P.S</em>.</li>
+  <li>Double surnames such as <em>Vīķe-Freiberga</em> and words abbreviated with dashes such as <em>e-pasts</em> “e-mail”, <em>k-dze</em> “Ms.” are tokenized as a single token.</li>
+  <li>In Latvian ordinal numerals are written with punctuation mark without whitespace like abbreviations (<em>1.</em>), so we tokenize ordinal numeral together with punctuation mark as one token.</li>
+  <li>Multiple dots (<em>…</em> and <em>..</em> ) are considered as one token. Multiple <em>?!</em> are considered one token, <em>?!…</em> is considered to be two tokens (<em>?!</em> and <em>…</em>).</li>
+</ul>
 
 <hr />
 
@@ -75,12 +79,19 @@
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<p>Latvian uses all 17 universal POS categories.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li><a href="">PART</a> tag is used for following function words: <em>acīmredzot</em>, <em>ak</em>, <em>ar</em>, <em>arī</em>, <em>arīdzan</em>, <em>da</em>, <em>diemžēl</em>, <em>diez</em>, <em>diezin</em>, <em>droši</em>, <em>gan</em>, <em>i</em>, <em>ij</em>, <em>ik</em>, <em>ir</em>, <em>it</em>, <em>itin</em>, <em>ja</em>, <em>jau</em>, <em>jā</em>, <em>jel</em>, <em>jo</em>, <em>kaut</em>, <em>kā</em>, <em>lai</em>, <em>laikam</em>, <em>mjā</em>, <em>ne</em>, <em>nea</em>, <em>nebūt</em>, <em>nez</em>, <em>nezin</em>, <em>nē</em>, <em>nu</em>, <em>nudien</em>, <em>nujā</em>, <em>nū</em>, <em>nūja</em>, <em>nūjā</em>, <em>pat</em>, <em>patiesi</em>, <em>patiešām</em>, <em>protams</em>, <em>proti</em>, <em>taču</em>, <em>tad</em>, <em>tak</em>, <em>tā</em>, <em>tāpat</em>, <em>tātad</em>, <em>tiešām</em>, <em>tik</em>, <em>tikai</em>, <em>tikpat</em>, <em>tipa</em>, <em>tomēr</em>, <em>turklāt</em>, <em>vai</em>, <em>varbūt</em>, <em>vēl</em>, <em>vien</em>, <em>vienīgi</em>, <em>vis</em>.</li>
+  <li>Effectively distinguishing <a href="">PRON</a> and <a href="">DET</a> categories in Latvian is very hard as words used as <code class="highlighter-rouge">DET</code> can also be used as PRON, and, thus, traditional Latvian grammar does not define determiners as a distinct POS. The pronoun (<code class="highlighter-rouge">PRON</code>) vs. determiner (<code class="highlighter-rouge">DET</code>) distinction is based on the role of the word in the UD tree: if the role in current sentence is <a href="">det</a> the word is tagged as DET. In turn the role <code class="highlighter-rouge">det</code> is used for Latvian pronoun category, which modify nouns in the sentence and agree with this noun in gender, number and case. If these words are used independently in a given sentence, they are tagged as <a href="">PRON</a>. Pronominal quantifiers <em>daudzi</em> “many” and <em>vairāki</em> “several” , and personal possessives <em>manējais</em>, <em>tavējais</em>, <em>mūsējais</em>, <em>jūsējais</em>, <em>viņējais</em> are <code class="highlighter-rouge">DET</code> as well if they modify the noun in the sentence, however in Latvian grammar they are described as adjectives.</li>
+  <li>Latvian has dour auxiliary verbs <a href="">AUX</a>: <em>būt</em> “to be”, <em>kļūt</em> “to become”, <em>tikt</em> “to get”, and <em>tapt</em> “to become” (obsolete). The auxiliary verb is used in several types of constructions:</li>
+  <li>Analytic word forms of verbs (<em>būt</em>, <em>tikt</em>).</li>
+  <li>The copula in non-verbal predicates (<em>būt</em>, <em>kļūt</em>) .</li>
+  <li>The copula in infinitive predicates (<em>būt</em>).</li>
+  <li><em>Būt</em>, <em>tikt</em> and <em>tapt</em> may still occur as normal <a href="">VERB</a> if they are used in purely existential sentences or indicate location. Word <em>kļūt</em> always is tagged as <a href="">AUX</a>.</li>
+  <li>Verbs with modal meaning are not considered auxiliary in Latvian.</li>
+  <li>Deverbal nouns with endings <em>-šana</em>, <em>-šanās</em> (<em>skriešana</em> “running”) are tagged as <a href="">NOUN</a>. Most converbs with endings <em>-ot</em>, <em>-oties</em>, <em>-am</em>, <em>-ām</em>, <em>-amies</em>, <em>-āmies</em>, <em>-dams</em>, <em>-damies</em>, <em>-damās</em> are tagged as <code class="highlighter-rouge">VERB</code> or <code class="highlighter-rouge">AUX</code>. Most adjectival participles (<em>redzams</em>, <em>aizgājis</em>, <em>negaidīts</em>, <em>velkošs</em>) are tagged as <code class="highlighter-rouge">VERB</code>.  Exceptions are lexicalized uses with separate meaning, like_protams_ “of course”, <em>acīmredzot</em> “obvious”, which are tagged as <code class="highlighter-rouge">PART</code>, and <em>iespējams</em> “possible”, which is tagged as <code class="highlighter-rouge">ADJ</code>.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
@@ -102,19 +113,11 @@
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is <a href="../treebanks/lv-comparison.html">1</a> Latvian UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/lv-lvtb/index.html">Latvian-LVTB</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="highlighter-rouge">*-index.html</code> page in the <code class="highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
 
       </div>
