@@ -81,7 +81,7 @@
 
 <ul>
   <li><a href="">PART</a> tag is used for following function words: <em>acīmredzot</em>, <em>ak</em>, <em>ar</em>, <em>arī</em>, <em>arīdzan</em>, <em>da</em>, <em>diemžēl</em>, <em>diez</em>, <em>diezin</em>, <em>droši</em>, <em>gan</em>, <em>i</em>, <em>ij</em>, <em>ik</em>, <em>ir</em>, <em>it</em>, <em>itin</em>, <em>ja</em>, <em>jau</em>, <em>jā</em>, <em>jel</em>, <em>jo</em>, <em>kaut</em>, <em>kā</em>, <em>lai</em>, <em>laikam</em>, <em>mjā</em>, <em>ne</em>, <em>nea</em>, <em>nebūt</em>, <em>nez</em>, <em>nezin</em>, <em>nē</em>, <em>nu</em>, <em>nudien</em>, <em>nujā</em>, <em>nū</em>, <em>nūja</em>, <em>nūjā</em>, <em>pat</em>, <em>patiesi</em>, <em>patiešām</em>, <em>protams</em>, <em>proti</em>, <em>taču</em>, <em>tad</em>, <em>tak</em>, <em>tā</em>, <em>tāpat</em>, <em>tātad</em>, <em>tiešām</em>, <em>tik</em>, <em>tikai</em>, <em>tikpat</em>, <em>tipa</em>, <em>tomēr</em>, <em>turklāt</em>, <em>vai</em>, <em>varbūt</em>, <em>vēl</em>, <em>vien</em>, <em>vienīgi</em>, <em>vis</em>.</li>
-  <li>Effectively distinguishing <a href="">PRON</a> and <a href="">DET</a> categories in Latvian is very hard as words used as <code class="highlighter-rouge">DET</code> can also be used as PRON, and, thus, traditional Latvian grammar does not define determiners as a distinct POS. The pronoun (<code class="highlighter-rouge">PRON</code>) vs. determiner (<code class="highlighter-rouge">DET</code>) distinction is based on the role of the word in the UD tree: if the role in current sentence is <a href="">det</a> the word is tagged as DET. In turn the role <code class="highlighter-rouge">det</code> is used for Latvian pronoun category, which modify nouns in the sentence and agree with this noun in gender, number and case. If these words are used independently in a given sentence, they are tagged as <a href="">PRON</a>. Pronominal quantifiers <em>daudzi</em> “many” and <em>vairāki</em> “several” , and personal possessives <em>manējais</em>, <em>tavējais</em>, <em>mūsējais</em>, <em>jūsējais</em>, <em>viņējais</em> are <code class="highlighter-rouge">DET</code> as well if they modify the noun in the sentence, however in Latvian grammar they are described as adjectives.</li>
+  <li>Effectively distinguishing <a href="">PRON</a> and <a href="">DET</a> categories in Latvian is very hard as words used as <code class="highlighter-rouge">DET</code> can also be used as <code class="highlighter-rouge">PRON</code>, and, thus, traditional Latvian grammar does not define determiners as a distinct POS. The pronoun (<code class="highlighter-rouge">PRON</code>) vs. determiner (<code class="highlighter-rouge">DET</code>) distinction is based on the role of the word in the UD tree: if the role in current sentence is <a href="">det</a> the word is tagged as DET. In turn the role <code class="highlighter-rouge">det</code> is used for Latvian pronoun category, which modify nouns in the sentence and agree with this noun in gender, number and case. If these words are used independently in a given sentence, they are tagged as <a href="">PRON</a>. Pronominal quantifiers <em>daudzi</em> “many” and <em>vairāki</em> “several” , and personal possessives <em>manējais</em>, <em>tavējais</em>, <em>mūsējais</em>, <em>jūsējais</em>, <em>viņējais</em> are <code class="highlighter-rouge">DET</code> as well if they modify the noun in the sentence, however in Latvian grammar they are described as adjectives.</li>
   <li>Latvian has dour auxiliary verbs <a href="">AUX</a>: <em>būt</em> “to be”, <em>kļūt</em> “to become”, <em>tikt</em> “to get”, and <em>tapt</em> “to become” (obsolete). The auxiliary verb is used in several types of constructions:
     <ul>
       <li>Analytic word forms of verbs (<em>būt</em>, <em>tikt</em>).</li>
@@ -107,6 +107,7 @@
 </ul>
 
 <h4 id="degree-and-polarity">Degree and Polarity</h4>
+
 <ul>
   <li><code class="highlighter-rouge">Degree</code> applies to adjectives (<a href="">ADJ</a>), adverbs (<a href="">ADV</a>), and some participles (<a href="">VERB</a>, <a href="">AUX</a>), and has one of three possible values: <code class="highlighter-rouge">Pos</code>, <code class="highlighter-rouge">Cmp</code>, <code class="highlighter-rouge">Sup</code>.</li>
   <li><code class="highlighter-rouge">Polarity</code> has two values, <code class="highlighter-rouge">Pos</code> and <code class="highlighter-rouge">Neg</code>, and applies to verbs (<a href="">VERB</a>, <a href="">AUX</a>).
@@ -117,6 +118,35 @@
       <li>The <code class="highlighter-rouge">Polarity</code> feature is not used with pronouns and determiners, although there is a subset of pronouns and determiners which are considered to be negated traditionally. The <code class="highlighter-rouge">PronType=Neg</code> feature is used there instead.</li>
     </ul>
   </li>
+</ul>
+
+<h4 id="verbal-features">Verbal Features</h4>
+
+<ul>
+  <li>There are five main (de)verbal form types, distinguished by the UPOS tag and the value of the <code class="highlighter-rouge">VerbForm</code> feature:
+    <ul>
+      <li>Infinitive <code class="highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Finite verb <code class="highlighter-rouge">Fin</code>, tagged <code class="highlighter-rouge">VERB</code> or <code class="highlighter-rouge">AUX</code>.</li>
+      <li>Participle <code class="highlighter-rouge">Part</code>, tagged <code class="highlighter-rouge">VERB</code> or <code class="highlighter-rouge">AUX</code>.</li>
+      <li>Converb <code class="highlighter-rouge">Conv</code>, tagged <code class="highlighter-rouge">VERB</code> or <code class="highlighter-rouge">AUX</code>.</li>
+      <li>Verbal noun <code class="highlighter-rouge">Vnoun</code>, tagged <code class="highlighter-rouge">NOUN</code>.</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">Aspect</code> applies only to part of participles (<code class="highlighter-rouge">VERB</code>, <code class="highlighter-rouge">AUX</code>) and is either imperfective <code class="highlighter-rouge">Imp</code> or perfective <code class="highlighter-rouge">Perf</code>.</li>
+  <li>Finite verbs always have one of five values of <code class="highlighter-rouge">Mood</code>: <code class="highlighter-rouge">Ind</code>, <code class="highlighter-rouge">Imp</code>, <code class="highlighter-rouge">Cnd</code>, <code class="highlighter-rouge">Qot</code> or <code class="highlighter-rouge">Nec</code>.</li>
+  <li>Verbs in the indicative mood always have one of three <code class="highlighter-rouge">Tense</code> values: <code class="highlighter-rouge">Past</code>, <code class="highlighter-rouge">Pres</code> or <code class="highlighter-rouge">Fut</code>.
+    <ul>
+      <li>Imperative, conditional, quotative, and necessitative forms do not have the <code class="highlighter-rouge">Tense</code> feature.</li>
+      <li>The <code class="highlighter-rouge">Tense</code> feature is also used to distinguish present and past declinable participles (<em>ziedošs</em> “[it is] flowering” and <em>lasāms</em> “[it is] readable” vs. <em>darījis</em> “[he has] been doing” and <em>pateikts</em> “[it is] said”; tagged <code class="highlighter-rouge">VERB</code> or <code class="highlighter-rouge">AUX</code>).</li>
+    </ul>
+  </li>
+  <li>There are two values used for the <code class="highlighter-rouge">Voice</code> feature: <code class="highlighter-rouge">Act</code> and <code class="highlighter-rouge">Pass</code>.
+    <ul>
+      <li>Passive participles (<em>lasāms</em> “[it is] readable” and_pateikts_ “[it is] said”) has <code class="highlighter-rouge">Voice=Pass</code>.</li>
+      <li>Finite verb forms and active participles (<em>ziedošs</em> “[it is] flowering” and <em>darījis</em> “[he has] been doing”) have <code class="highlighter-rouge">Voice=Act</code>.</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">Evident</code> applies to finite verb forms (<code class="highlighter-rouge">VERB</code>, <code class="highlighter-rouge">AUX</code>) and depends on value of <code class="highlighter-rouge">Mood</code>: quotatives have value <code class="highlighter-rouge">Nfh</code>, but indicative have value <code class="highlighter-rouge">Fh</code>.</li>
 </ul>
 
 <hr />
