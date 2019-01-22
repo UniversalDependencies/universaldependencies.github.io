@@ -68,6 +68,8 @@
 
 <p>The recommendations on this page are designed with sporadic errors in mind. Technically they could be also applied to learner corpora, which are full of errors; however, learner corpora usually require more thinking, and the main question is: Do we want to guess what the author would have written if they knew the language better, or do we want to approximate “the grammar in their head,” which is probably a mixture of the intended language and a language they know better?</p>
 
+<p>Mechanisms similar to typo handling could also be used to annotate historical corpora with historical spelling; see <a href="#historical-spelling">below</a> for more details.</p>
+
 <h2 id="misspelled-word">Misspelled Word</h2>
 
 <p>The easiest type of error is a simple typo in a single word, especially if the result is a non-word. (If the result is another word of the language, e.g. if one writes <em>too</em> instead of <em>two</em> in English, then we must decide that the author really wanted to say something else, and it may not be always obvious.)</p>
@@ -135,6 +137,34 @@
 6	.	.	PUNCT	_	_	5	punct	_	_
 
 </pre>
+
+<h2 id="wrong-morphology-or-syntax">Wrong Morphology or Syntax</h2>
+
+<p>For example, the grammar requires dative but the actual form is nominative. Or a singular occurs instead of plural <em>(the cars is produced in Detroit).</em> Such errors could be treated as simple typos but intuitively they are not in the same category (although they could co-occur with a typo, as in <em>the cars iss produced…</em>) It is not always obvious what is the correct form. We could either correct <em>cars</em> to <em>car</em>, or <em>is</em> to <em>are</em> (but not both). Similarly, it may be clear that the actual word form is the nominative case and that it is wrong, but several other morphological cases may be plausible in the given context.</p>
+
+<p>Sometimes it will not be obvious whether such errors should be classified as errors. In some languages it may be dialectal or other variety. (This actually applies to certain typos too: <em>color</em> is correct in American English but in Britain it should be <em>colour</em>.)</p>
+
+<p>Suggestion: Keep the word as it was in the source text. Add morphological features that correspond to the actual form, not to the hypothetical correct form: English <em>is</em> is <code class="highlighter-rouge">Number=Sing</code>, and <em>cars</em> is <code class="highlighter-rouge">Number=Plur</code>. (Note that some cases will be hard to decide. Czech <em>auto</em> “car” is singular nominative or accusative. If the context requires the dative <em>(autu),</em> we only know that the actual form is wrong. But we don’t know whether it is <code class="highlighter-rouge">Case=Nom</code> or <code class="highlighter-rouge">Case=Acc</code>, thus we may have to annotate <code class="highlighter-rouge">Case=Acc,Nom</code>. If there were the correct form <em>autu,</em> which besides the dative could also mean locative, we will disambiguate it by the context and annotate <code class="highlighter-rouge">Case=Dat</code>, not <code class="highlighter-rouge">Case=Dat,Loc</code>.)</p>
+
+<p>In the MISC column, we should indicate the correct form as we did with simple typos: <code class="highlighter-rouge">CorrectForm=autu</code>. We also add in the MISC column those features from the FEAT column that would differ for the correct form, and prefix them with “Correct”, e.g. <code class="highlighter-rouge">CorrectCase=Dat</code>. We will not add the <code class="highlighter-rouge">Typo=Yes</code> feature in FEAT because the word form in FORM reflects the values of the morphological features in FEAT.</p>
+
+<p>As for the syntactic annotation, there does not seem to be a simple and easy-to-follow rule. Each sentence will have to be decided separately, seeking a compromise between the actual surface form and the assumed intended reading. For example, consider the Czech preposition <em>k</em> “to” which requires noun phrases in the dative. If the text contains (wrong) <em>k auto</em> instead of (correct) <em>k autu,</em> using the relation <code class="highlighter-rouge">case(auto, k)</code> is probably the only thing we can do, regardless that the nominative <em>auto</em> is ungrammatical with the preposition.</p>
+
+<pre>
+# text = The cars is produced in Detroit.
+1	The	the	DET	_	Definite=Def|PronType=Art	2	det	_	_
+2	cars	car	NOUN	_	Number=Plur	4	nsubj:pass	_	_
+3	is	be	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	aux:pass	_	CorrectForm=are|CorrectNumber=Plur
+4	produced	produce	VERB	_	Tense=Past|VerbForm=Part	0	root	_	_
+5	in	in	ADP	_	_	6	case	_	_
+6	Detroit	Detroit	PROPN	_	Number=Sing	4	obl	_	SpaceAfter=No
+7	.	.	PUNCT	_	_	4	punct	_	_
+
+</pre>
+
+<h2 id="historical-spelling">Historical Spelling</h2>
+
+<p>Similar mechanisms could also be used to mark historical spelling in older texts. For instance, German <em>sein</em> “to be” used to be spelled <em>seyn</em>. It is not a typo because this form was correct in the time the text was produced. Thus in the FEATS column, we may use <a href="">Style</a><code class="highlighter-rouge">=Arch</code> to mark that this is an archaic form. In the MISC column, we can add <code class="highlighter-rouge">ModernForm=sein</code> (an analogy to <code class="highlighter-rouge">CorrectForm=sein</code>, which we would use if we wanted to mark it as a typo).</p>
 
 
       </div>
