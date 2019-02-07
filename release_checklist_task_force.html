@@ -97,7 +97,7 @@ Take the list from the output of <code class="highlighter-rouge">tools/check_fil
   <li>Make sure that there are not significant overlaps between training and dev/test files of treebanks of one language.<br />
 <code>check_overlaps.pl $(cat released_treebanks.txt) |&amp; tee overlap.log</code></li>
   <li>Update statistics in the <code class="highlighter-rouge">stats.xml</code> file in each repository:<br />
-<code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; ( cat *.conllu | ../tools/conllu-stats.pl &gt; stats.xml ) ; git add stats.xml ; git commit -m 'Updated statistics.' ; git push ; cd .. ; echo ; done</code></li>
+<code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; ( ../tools/conllu-stats.pl *.conllu &gt; stats.xml ) ; git add stats.xml ; git commit -m 'Updated statistics.' ; git push ; cd .. ; echo ; done</code></li>
   <li>Merge the <code class="highlighter-rouge">dev</code> branch into <code class="highlighter-rouge">master</code> in the released repositories.
 (Note: the script <code class="highlighter-rouge">package_ud_release.sh</code>, that we will later use to create the release, generates plain text files from the CoNLL-U files. So far, the plain text files appear only in the released package but not in the Github treebank repository. Maybe we want to add these files to the master branch as well? But then we would have to generate them before we merge the branches here. And we must decide whether we want to have the files in the dev branch as well, like we do with <code class="highlighter-rouge">stats.xml</code>.)
 The <code class="highlighter-rouge">master</code> branch should not be touched the next six months and it should have exactly the contents that was officially
