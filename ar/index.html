@@ -81,41 +81,14 @@ that holds even for hyphenated compounds and for abbreviations.</li>
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>Czech uses all 17 universal POS categories, including particles (<a href="">PART</a>).
-At present, more than 70 word types are tagged <a href="">PART</a>. This is a legacy of an existing Czech morphological analyzer
-and many of these words should probably belong to another category in UD; however, the exact list has yet to be worked out.</li>
-  <li>The pronoun (<a href="">PRON</a>) vs. determiner (<a href="">DET</a>) distinction is based on word lists because the traditional grammar does not define determiners.
-In general, words that inflect for gender, to be able to agree with a modified noun, are tagged <a href="">DET</a>, even if they
-act independently in a given sentence; that includes possessives.
-Pronominal quantifiers (which the traditional grammar includes in numerals) are <a href="">DET</a> as well.</li>
-  <li>Czech has just one auxiliary verb (<a href="">AUX</a>), <em>být</em> (“to be”), but lemmas <em>bývat</em> and <em>bývávat</em> are also possible.
-They are in fact just variants of <em>být</em>, but they are separate lemmas because
-the morphological process that relates them to <em>být</em> is considered derivational.
-The auxiliary verb is used in several types of constructions:
+  <li>Arabic uses 16 universal POS categories; at present, subordinating and coordinating conjunctions are not distinguished
+(the <a href="">CCONJ</a> tag is used).</li>
+  <li>Some Arabic auxiliaries inflect like verbs, some do not inflect at all.
+The following auxiliaries are found in the data:
     <ul>
-      <li>The copula with non-verbal predicates.</li>
-      <li>Periphrastic future tense (future form of <em>být</em> + infinitive of the main verb).</li>
-      <li>Periphrastic past tense (present form of <em>být</em> + l-participle of the main verb; the auxiliary is omitted with 3rd-person subjects).</li>
-      <li>Periphrastic conditional (conditional form of <em>být</em> + l-participle of the main verb).</li>
-      <li>Periphrastic passive (any form of <em>být</em>, including periphrastic forms, + passive participle of the main verb).</li>
-    </ul>
-  </li>
-  <li>In other words, <em>být, bývat</em> and <em>bývávat</em> are the only lemmas that occur with the <a href="">AUX</a> tag.
-They may still occur also as normal <a href="">VERB</a> if they are used in purely existential sentences
-(i.e. such that don’t even indicate location because if they do, then <em>být</em> is treated as copula).
-    <ul>
-      <li>Note that this may be changed in future. Existential sentences could be treated as elliptical versions of locational sentences;
-then the verb would be the root, but it could still be tagged as <code class="highlighter-rouge">AUX</code> and the <code class="highlighter-rouge">AUX</code>-<code class="highlighter-rouge">VERB</code> distinction could be anchored in the lexicon.</li>
-    </ul>
-  </li>
-  <li>Verbs with modal meaning are not considered auxiliary in Czech.</li>
-  <li>There are five main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
-    <ul>
-      <li>Infinitive <code class="highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
-      <li>Finite verb <code class="highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
-      <li>Participle <code class="highlighter-rouge">Part</code>, tagged <a href="">VERB</a> or <a href="">AUX</a> (the so-called l-participle) or <a href="">ADJ</a> (all other participle types).</li>
-      <li>Converb <code class="highlighter-rouge">Conv</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
-      <li>Verbal noun <code class="highlighter-rouge">Vnoun</code>, tagged <a href="">NOUN</a>.</li>
+      <li>The copula كَان <em>(kān)</em> and the negative copulas لَيس <em>(lays)</em> and لسنا <em>(lasnā).</em></li>
+      <li>Future tense particle سَ <em>(sa)</em> “will”</li>
+      <li>Modal particle قَد <em>(qad)</em> “may”</li>
     </ul>
   </li>
 </ul>
@@ -123,100 +96,39 @@ then the verb would be the root, but it could still be tagged as <code class="hi
 <h3 id="nominal-features">Nominal Features</h3>
 
 <ul>
-  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with one of three values: <code class="highlighter-rouge">Masc</code>, <code class="highlighter-rouge">Fem</code> or <code class="highlighter-rouge">Neut</code>.
-In some cases the masculine gender is further subclassified by the <a href="">Animacy</a> values <code class="highlighter-rouge">Anim</code> and <code class="highlighter-rouge">Inan</code>.
-Feminine and neuter nominals do not distinguish animacy grammatically.
+  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with one of three values: <code class="highlighter-rouge">Masc</code> or <code class="highlighter-rouge">Fem</code>.
     <ul>
-      <li>The following parts of speech inflect for <code class="highlighter-rouge">Gender</code> and <code class="highlighter-rouge">Animacy</code> because they must agree with nouns: <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>,
-<a href="">VERB</a>, <a href="">AUX</a>. For verbs (including auxiliaries), only participles and converbs inflect for gender. Finite verbs don’t.</li>
+      <li>Verbs inflect for <code class="highlighter-rouge">Gender</code> because they must agree with nouns.</li>
     </ul>
   </li>
-  <li>The two main values of the <a href="">Number</a> feature are <code class="highlighter-rouge">Sing</code> and <code class="highlighter-rouge">Plur</code>. The following parts of speech inflect for number:
-<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite, participles and converbs), marginally <a href="">NUM</a>.
-    <ul>
-      <li>Remnants of the <code class="highlighter-rouge">Dual</code> number occur only in the instrumental <a href="">Case</a> of a few nouns and all the agreeing parts of speech.</li>
-      <li>Selected nouns are plurale tantum (<code class="highlighter-rouge">Ptan</code>) or singulare tantum (<code class="highlighter-rouge">Coll</code>). These two values are lexical and cannot be used with
-the agreeing adjectives, determiners or verbs. They also never occur with pronouns.</li>
-    </ul>
-  </li>
-  <li><a href="">Case</a> has 7 possible values: <code class="highlighter-rouge">Nom</code>, <code class="highlighter-rouge">Gen</code>, <code class="highlighter-rouge">Dat</code>, <code class="highlighter-rouge">Acc</code>, <code class="highlighter-rouge">Voc</code>, <code class="highlighter-rouge">Loc</code>, <code class="highlighter-rouge">Ins</code>.
-It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>.
-It can occur with participles but only with those tagged as <code class="highlighter-rouge">ADJ</code>. It never occurs with verbs.
-    <ul>
-      <li>The <code class="highlighter-rouge">Case</code> feature also occurs with prepositions (<a href="">ADP</a>). Here it is a lexical feature. Prepositions do not inflect for case
-but they subcategorize for the case of their noun phrase.</li>
-    </ul>
-  </li>
+  <li><a href="">Number</a> has 3 possible values: <code class="highlighter-rouge">Sing</code>, <code class="highlighter-rouge">Dual</code> and <code class="highlighter-rouge">Plur</code>.</li>
+  <li><a href="">Case</a> has 3 possible values: <code class="highlighter-rouge">Nom</code>, <code class="highlighter-rouge">Gen</code>, <code class="highlighter-rouge">Acc</code>.
+It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>.</li>
 </ul>
 
 <h3 id="degree-and-polarity">Degree and Polarity</h3>
 
 <ul>
-  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>) and has one of three possible values: <code class="highlighter-rouge">Pos</code>, <code class="highlighter-rouge">Cmp</code>, <code class="highlighter-rouge">Sup</code>.</li>
-  <li><a href="">Polarity</a> has two values, <code class="highlighter-rouge">Pos</code> and <code class="highlighter-rouge">Neg</code>, and applies primarily to verbs (<a href="">VERB</a>, <a href="">AUX</a>), adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>)
-that can be negated using the bound morpheme <em>ne-</em>.
-    <ul>
-      <li>Occasionally <em>ne</em> occurs as an independent negation particle (<a href="">PART</a>) and is marked with <code class="highlighter-rouge">Polarity=Neg</code>.</li>
-      <li>Negating nouns is usually limited to those derived from verbs <em>(neúspěch, nedůvěra, nevydávání)</em> but in principle every noun can be negated.</li>
-      <li>The <code class="highlighter-rouge">Polarity</code> feature is not used with pronouns and determiners, although there is a subset of negative pronouns and determiners.
-The <code class="highlighter-rouge">PronType=Neg</code> feature is used there instead.</li>
-    </ul>
-  </li>
+  <li><a href="">Polarity</a> has two values, <code class="highlighter-rouge">Pos</code> and <code class="highlighter-rouge">Neg</code>, and applies to adjectives (<a href="">ADJ</a>).</li>
 </ul>
 
 <h3 id="verbal-features">Verbal Features</h3>
 
 <ul>
-  <li>Verbs have a lexical <a href="">Aspect</a>, either imperfective (<code class="highlighter-rouge">Imp</code>) or perfective (<code class="highlighter-rouge">Perf</code>). A few verbs are biaspectual and they lack the <code class="highlighter-rouge">Aspect</code>
-feature. Some imperfective verbs could be further classified as iteratives but they are not marked as such (although UD provides <code class="highlighter-rouge">Aspect=Iter</code>).
-    <ul>
-      <li>The <code class="highlighter-rouge">Aspect</code> feature should be also used with the corresponding derived nouns and adjectives (participles), if they have the
-<code class="highlighter-rouge">VerbForm</code> feature.</li>
-    </ul>
-  </li>
-  <li>Finite verbs always have one of three values of <a href="">Mood</a>: <code class="highlighter-rouge">Ind</code>, <code class="highlighter-rouge">Imp</code> or <code class="highlighter-rouge">Cnd</code>. The conditional mood is only used with conditional
-auxiliaries <em>(bych, bys, by, bychom, byste)</em>. The l-participle of the main verb, that is needed to form a periphrastic conditional,
-is not marked with this feature.</li>
-  <li>Verbs in the indicative mood always have one of three values of <a href="">Tense</a>: <code class="highlighter-rouge">Past</code>, <code class="highlighter-rouge">Pres</code> or <code class="highlighter-rouge">Fut</code>.
-Note that <code class="highlighter-rouge">Tense=Pres</code> is also used with forms of perfective verbs, which are formally present, but semantically future.
-Hence both <em>jdu domů</em> “I am going home” and <em>přijdu domů</em> “I will come home” end up marked as <code class="highlighter-rouge">Tense=Pres</code>.
-On the other hand, a few imperfective verbs can form a genuine future form using prefixes, and they are marked <code class="highlighter-rouge">Tense=Fut</code>:
-<em>půjdu domů</em> “I will go home”.
-    <ul>
-      <li>Imperative and conditional forms do not have the <code class="highlighter-rouge">Tense</code> feature (note that past and present conditionals are distinguished
-analytically).</li>
-      <li>The <code class="highlighter-rouge">Tense</code> feature is also used to distinguish present and past converbs (<em>dělaje</em> “while doing” vs. <em>udělav</em> “having done”),
-and present and past participles (<em>dělající</em> “doing” vs. <em>udělavší</em> “having done”).
-The l-participle (tagged <code class="highlighter-rouge">VERB</code> or <code class="highlighter-rouge">AUX</code>) also has <code class="highlighter-rouge">Tense=Past</code> because its primary function is to form the past tense.
-The passive participle does not have the <code class="highlighter-rouge">Tense</code> feature.</li>
-    </ul>
-  </li>
-  <li>There are two values of the <a href="">Voice</a> feature: <code class="highlighter-rouge">Act</code> and <code class="highlighter-rouge">Pass</code>. Only the passive participle has <code class="highlighter-rouge">Voice=Pass</code>. All other verb forms have
-<code class="highlighter-rouge">Voice=Act</code>.</li>
+  <li><a href="">Aspect</a> is inflectional, either imperfective (<code class="highlighter-rouge">Imp</code>) or perfective (<code class="highlighter-rouge">Perf</code>).</li>
+  <li><a href="">Mood</a> has 4 possible values: <code class="highlighter-rouge">Ind</code>, <code class="highlighter-rouge">Imp</code>, <code class="highlighter-rouge">Jus</code>, <code class="highlighter-rouge">Sub</code>.</li>
+  <li><a href="">Voice</a> has 2 possible values: <code class="highlighter-rouge">Act</code>, <code class="highlighter-rouge">Pass</code>.</li>
 </ul>
 
 <h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
 
 <ul>
-  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
-  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>), adjectives (<a href="">ADJ</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
-  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>můj</em> “my”),
-possessive interrogative, indefinite or negative determiners (e.g. <em>čí</em> “whose”),
-possessive relative determiners (e.g. <em>jehož</em> “whose”)
-and possessive adjectives (e.g. <em>otcův</em> “father’s”).</li>
-  <li>The <a href="">Reflex</a> feature marks reflexive pronouns <em>(se, si)</em> and determiners <em>(svůj)</em>.
-In Czech it is always used together with <code class="highlighter-rouge">PronType=Prs</code>.</li>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>) and determiners (<a href="">DET</a>).</li>
   <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="highlighter-rouge">1</code>, <code class="highlighter-rouge">2</code> and <code class="highlighter-rouge">3</code>.
-With personal possessive determiners (<a href="">DET</a>), the feature actually encodes the person of the possessor.
-Person is not marked on other types of pronouns and on nouns, although they can be almost always interpreted as the 3rd person.
     <ul>
       <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
     </ul>
   </li>
-  <li>There are two <a href="../../u/overview/feat-layers.html">layered features</a>, <a href="">Gender[psor]</a> and <a href="">Number[psor]</a>.
-They appear with certain possessive adjectives and determiners and encode the lexical gender/number of the possessor.
-The extra layer is needed to distinguish these lexical features from the inflectional gender and number
-that mark agreement with the modified (possessed) noun.</li>
 </ul>
 
 <h3 id="other-features">Other Features</h3>
@@ -226,16 +138,10 @@ that mark agreement with the modified (possessed) noun.</li>
     <ul>
       <li><a href="">NumForm</a></li>
       <li><a href="">NumValue</a></li>
-      <li><a href="">NameType</a></li>
       <li><a href="">AdpType</a></li>
       <li><a href="">ConjType</a></li>
-      <li><a href="">Hyph</a></li>
-      <li><a href="">Style</a></li>
-      <li><a href="">PrepCase</a></li>
-      <li><a href="">Variant</a> … distinguishes short and long forms of adjectives, a Slavic-wide phenomenon</li>
     </ul>
   </li>
-  <li>The following universal features are not used in Czech: <a href="">Definite</a>, <a href="">Evident</a>, <a href="">Polite</a>.</li>
 </ul>
 
 <h2 id="syntax">Syntax</h2>
