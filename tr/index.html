@@ -64,17 +64,24 @@
 
 <p>This is a <strong>work-in-progress</strong> overview of the UD annotation for Turkish.</p>
 
+<p>Unfortunately, different treebanks follow (slightly) different
+annotation guidelines,
+and at present (as of v2.4) multiple uncoordinated attempts of
+correction efforts are known.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
   <li>In general, words are delimited by white spaces or punctuation,
-  Whitespeces or punctuation may appear in some abbreviations
+  Whitespaces or punctuation may appear in some abbreviations
   or numeric expressions.</li>
-  <li>The question clitic <em>-mI</em> (or other clitics) is treated as a separate word.</li>
+  <li>Clitics are treated as a separate words. This includes 
+  the clitics that follow word-internal processes (e.g., vowel
+  harmony) such as question clitic  <em>mI</em> and  adverbial <em>DA</em>.</li>
   <li>Due to the interaction of syntax and rich morphology,
   the following list  affixes introduce new “syntactic words”.
       - Copular suffix attached to nouns or adverbs (if not null),
-          including the confiditional <em>-(y)sA</em> and converbial <em>-(y)ken</em>
+          including the conditional <em>-(y)sA</em> and converbial <em>-(y)ken</em>
       - <em>-ki</em>
       - <em>-lI</em>
       - <em>-sIz</em>
@@ -85,28 +92,38 @@
 
 <h2 id="morphology">Morphology</h2>
 
+<p>Turkish has a rich inflectional and derivational morphology.
+Some of the morphological phenomena are not satisfactorily annotated as of UD v2.
+This includes some missing feature-value pairs,
+e.g., ‘reflexive voice’ which is marked using language specific value <code class="highlighter-rouge">Voice=Rfl</code>.
+Another open issue is multiple values for certain UD morphological features.
+For example, a <em>gelemeselerdi</em> “if they were not able to come_ expresses
+two different modalities, requiring assigning both <code class="highlighter-rouge">Pot</code> and <code class="highlighter-rouge">Cnd</code>
+to the <a href="feat/mood">Mood</a> feature.
+Currently these multiple features are expressed
+by concatenating the values together in alphabetic order,
+resulting in feature-value pairs like <code class="highlighter-rouge">Mood=CndPot</code>.
+Besides <code class="highlighter-rouge">Mood</code>, <code class="highlighter-rouge">Voice</code> may also have multiple values.</p>
+
 <h3 id="tags">Tags</h3>
 
 <p>This is an overview only. For more detailed discussion and examples,
 see the list of <a href="pos/index.html">Turkish POS tags</a>
 and <a href="feat/index.html">Turkish features</a>.</p>
 
+<ul>
+  <li>The use of UD POS tags vary among different treebanks. <code class="highlighter-rouge">PART</code> is
+  not used in any of the current treebanks.</li>
+  <li>Negation particle <em>değil</em> is marked either as <code class="highlighter-rouge">AUX</code> in some treebanks, and <code class="highlighter-rouge">VERB</code> in others.</li>
+  <li>The question particle <em>mI</em> is tagged as <code class="highlighter-rouge">AUX</code>.</li>
+  <li>The copular suffix -_(y)<em>-, which is treated as a syntactic word, and its clitic counterpart _i-</em> is marked as AUX.</li>
+  <li>Treatment of auxiliary/copula <em>ol</em> differs among different treebanks.</li>
+</ul>
+
 <h2 id="syntax">Syntax</h2>
 
 <p>This is an overview only. For more detailed discussion and examples,
 see the list of <a href="dep/index.html">relations</a>,</p>
-
-<h3 id="arguments-of-verbs">Arguments of verbs</h3>
-
-<ul>
-  <li></li>
-</ul>
-
-<h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
-
-<ul>
-  <li></li>
-</ul>
 
 <h3 id="relations-overview">Relations Overview</h3>
 
