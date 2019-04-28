@@ -47,8 +47,8 @@
       <hr/>
 
       
-      <div class="v1warning">
-	This page still pertains to UD version 1.
+      <div class="v2complete">
+	This page pertains to UD version 2.
       </div>
       
 
@@ -60,53 +60,24 @@
 	  </div>
 	</noscript>
 
-          <h2><code>flat</code>: name</h2>
+          <h2><code>flat</code>: flat multiword expression</h2>
 
-<p><code>name</code> is one of the three relations for compounding in UD (together with <code>compound</code> and <code>mwe</code>). It is used for proper nouns constituted of multiple nominal elements. It is not used to replace the usual relations in a phrasal or clausal name, like titles of books, where the actual dependencies should be preserved.</p>
+<p>The <code class="highlighter-rouge">flat</code> relation is one of three relations for multiword expressions multiword expressions (MWEs) in UD 
+(the other two being <a href="">fixed</a> and <a href="">compound</a>). It used for names and dates.</p>
 
-<pre><code class="language-sdparse">Ecco l'arringa di Tiziana Maiolo . 
-name(Tiziana, Maiolo)
+<p>It is not used to replace the usual relations in a phrasal or clausal name, like titles of books, where the actual dependencies should be preserved. 
+ An exception is for foreign phrases which cannot be given a compositional analysis.</p>
+
+<pre><code class="language-sdparse">1 dicembre 2016
+flat(1, dicembre)
+flat(1, 2016)
 </code></pre>
 
-<p>Names are annotated in a flat, head-initial structure, in which all words in the name modify the first one using the <code>name</code> label. This also works for prepostions or determiners and numerals that are part of the names.</p>
-
-<pre><code class="language-sdparse">Formula 1/NUM . 
-name(Formula, 1)
-</code></pre>
-<pre><code class="language-sdparse">Marcello Dell' Utri . 
-name(Marcello, Dell')
-name(Marcello, Utri)
-</code></pre>
-
-<p>Words joined by <code>name</code> should all be part of a minimal noun phrase; otherwise regular syntactic relations should be used. For organization names with clear syntactic modification structure, the dependencies should reflect the syntactic modification structure using regular syntactic relation.</p>
-
-<pre><code class="language-sdparse">L' ordine Mauriziano . 
-det(ordine, L')
-amod(ordine, Mauriziano)
-</code></pre>
-<pre><code class="language-sdparse">Il Ministero di gli Interni 
-det(Ministero, Il)
-nmod(Ministero, Interni)
-det(Interni, gli)
-case(Interni, di)
-</code></pre>
-
-<p>In addition, regular syntactic relations are used:</p>
-
+<p>The following specialisations of <code class="highlighter-rouge">flat</code> are used in Italian:</p>
 <ul>
-  <li>for a modifying determiner or</li>
-  <li>to connect together the words of a description or name which involve embedded prepositional phrases, sentences, etc.</li>
+  <li><a href="flat-name">flat:name</a> for names.</li>
+  <li><a href="flat-foreign">flat:foreign</a> for foreign phrases.</li>
 </ul>
-
-<pre><code class="language-sdparse">Mariatersa Di Lascia
-name(Mariatersa, Lascia)
-case(Lascia, Di)
-</code></pre>
-<pre><code class="language-sdparse">Università di Pristina 
-name(Università, Pristina)
-case(Pristina, di)
-</code></pre>
-
 
 
 <!-- "in other languages" links -->
