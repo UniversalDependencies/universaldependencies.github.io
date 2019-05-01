@@ -124,31 +124,27 @@
 
 <h2 id="syntax">Syntax</h2>
 
-<p>In Italian, UD relations that can designate core arguments are nsubj, obj and iobj for nominal arguments, and ccomp, xcomp and csubj for clausal arguments.</p>
-
-<p>Italian core arguments are the following:</p>
+<p>In Italian, UD relations that can designate core arguments are nsubj, obj and iobj for nominal arguments, and ccomp, xcomp and csubj for clausal arguments. In particular:</p>
 <ul>
-  <li>in Italian, core arguments always appear as bare nominals with no adposition.</li>
-  <li>relative order of core arguments: although the linear order of elements in a sentence is not rigidly defined, Italian <em>nsubj</em> and <em>obj</em> relations show preferences about their position with respect to the governing verb. Italian is a SVO language, which means that <em>nsubj</em> typically occurs in pre-verbal position, while <em>obj</em>’s canonical position is usually post-verbal.</li>
-  <li><em>nsubj</em> agrees in number and person with the governing verb. Consider as an example the sentence <em>Al balcone si affacciano donne anziane</em> where the nominal subject is represented as <em>nsubj(affacciano, donne)</em>. Note that the <em>nsubj</em> role is only applied to semantic arguments of a predicate.</li>
-  <li>When there is an empty argument in a grammatical subject position (sometimes called a pleonastic or expletive), it is labeled as an <em>expl</em> subtype:
+  <li>in Italian, core arguments always appear as bare nominals with no adposition;</li>
+  <li>relative order of core arguments: although the linear order of elements in a sentence is not rigidly defined, Italian <em>nsubj</em> and <em>obj</em> relations show preferences about their position with respect to the governing verb. Italian is a SVO language, which means that <em>nsubj</em> typically occurs in pre-verbal position, while <em>obj</em>’s canonical position is usually post-verbal;</li>
+  <li><em>nsubj</em> agrees in number and person with the governing verb. Consider as an example the sentence <em>Al balcone si affacciano donne anziane</em> “old women overlook the balcony” where the nominal subject is represented as <em>nsubj(affacciano, donne)</em>.</li>
+  <li>the <em>nsubj</em> role is only applied to semantic arguments of a predicate. When there is an empty argument in a grammatical subject position (sometimes called a pleonastic or expletive), it is labeled as an <em>expl</em> subtype, i.e.:
     <ul>
-      <li><em>expl:impers</em>, which is specific for the impersonal use of clitic pronouns (used as an undefined subject), e.g. <em>Si può procedere</em> expl:impers(procedere, si);</li>
-      <li><em>expl:pass</em>, marking passive constructions, e.g. <em>domani si apre la mostra</em> expl:pass(aprire,si);</li>
+      <li><em>expl:impers</em>, marking the impersonal use of clitic pronouns (used as an undefined subject), e.g. <em>Si può procedere</em> “we can proceed”  expl:impers(procedere, si);</li>
+      <li><em>expl:pass</em>, marking passive constructions, e.g. <em>domani si apre la mostra</em> “tomorrow the exhibition opens” expl:pass(aprire,si);</li>
     </ul>
   </li>
-  <li>Italian is a pro-drop language, thus subjects can be omitted: the features of the subject can be inferred from the inflectional morphological features associated with the verb.</li>
-  <li><em>iobj</em> refers to the indirect object of a verb only when realized as a dative pronominal clitic complement. In Italian <em>iobj</em> only appears in the form of a clitic pronoun, as in <em>dovranno cercarsi un lavoro</em> <em>iobj(cercare,si)</em>. Otherwise, the indirect object is realized as a prepositional phrase, which it is labeled as <em>obl</em> (e.g.  <em>Dare a qualcuno qualcosa</em>, “give something to someone”).</li>
+  <li>Italian is a pro-drop language, thus subjects can be omitted: the features of the subject can be inferred from the inflectional morphological features associated with the verb;</li>
+  <li><em>iobj</em> refers to the indirect object of a verb only when realized as a dative pronominal clitic complement. In Italian <em>iobj</em> only appears in the form of a clitic pronoun, as in <em>dovranno cercarsi un lavoro</em> “(they) will have to look for a job” with iobj(cercare,si). When the indirect object is realized as a prepositional phrase, it is labeled as <em>obl</em> (e.g.  <em>Dare a qualcuno qualcosa</em>, “give something to someone”, obl(dare,qualcuno)).</li>
 </ul>
-
-<p>There are specific subtypes for marking subjects in passive clauses (see below).</p>
 
 <p>Dependency analysis of clitic pronouns</p>
 <ul>
-  <li>Clitics are a subtype of the class of personal pronouns, differing from tonic personal pronouns in many respects. While tonic personal and clitic pronouns are rather uniform in their functional and referential characteristics, they are clearly differentiated on the morphological and syntactic levels. In Italian, the dependency relations used to annotate clitics are <em>obj</em>, <em>iobj</em> (see above), <em>expl</em>, <em>expl:impers</em> (see above) and <em>expl:pass</em>.
+  <li>Clitics are a subtype of the class of personal pronouns, differing from tonic personal pronouns in many respects. While tonic personal and clitic pronouns are rather uniform in their functional and referential characteristics, they are clearly differentiated on the morphological and syntactic levels. In Italian, the dependency relations used to annotate clitics are <em>obj</em>, <em>iobj</em> (see above), <em>expl</em>, <em>expl:impers</em> (see above) and <em>expl:pass</em>. In particular:
     <ul>
-      <li>Whenever possible, clitic pronouns are assigned a label that reflects their grammatical function. For this reason, if the pronoun appears in a reflexive construction of a transitive or intransitive active verb, then it’s treated as <em>dobj</em> or <em>iobj</em> (see above). The <em>dobj</em> relation is used to mark real reflexive constructions where the clitic pronoun is a direct object of the verb, e.g. <em>la bambina si lava</em> “the girl washes herself” *dobj(lavare,si).</li>
-      <li>clitics can also be used to mark passive and impersonal constructions: see the relation subtypes <em>expl:pass</em> and <em>expl:impers</em>.</li>
+      <li>Whenever possible, clitic pronouns are assigned a label that reflects their grammatical function. For this reason, if the pronoun appears in a reflexive construction of a transitive or intransitive active verb, then it’s treated as <em>dobj</em> or <em>iobj</em> (see above). The <em>dobj</em> relation is used to mark real reflexive constructions where the clitic pronoun is a direct object of the verb, e.g. <em>la bambina si lava</em> “the girl washes herself” *dobj(lavare,si);</li>
+      <li>clitics can also be used to mark passive and impersonal constructions: see the relation subtypes <em>expl:pass</em> and <em>expl:impers</em>, exemplified above;</li>
       <li><em>expl</em> is used for expletive or pleonastic nominals (nominal core arguments of a predicate but which do not themselves satisfy any of the semantic roles of the predicate), as in pronominal verbs where clitics do not have a semantic role, such as <em>rompersi</em> “break” or <em>vergognarsi</em> “feel ashamed”.</li>
     </ul>
   </li>
@@ -161,11 +157,17 @@
 
     <ul>
       <li>Equation<br />
-<em>Loro sono amici</em> “they are friends” &gt; cop(amici,sono) nsubj(amici,loro)</li>
+<em>Loro sono amici</em> “they are friends” 
+cop(amici,sono)<br />
+nsubj(amici,loro)</li>
       <li>Attribution <br />
-<em>I cinque sarebbero tutti immigrati clandestini</em> &gt; cop(immigrati,sarebbero) nsubj(immigrati,cinque)</li>
+<em>I cinque sarebbero tutti immigrati clandestini</em><br />
+cop(immigrati,sarebbero)<br />
+nsubj(immigrati,cinque)</li>
       <li>Location<br />
-<em>Anna è a Roma</em> “Anna is in Rome” &gt; cop(Roma,è) nsubj(Roma,Anna)</li>
+<em>Anna è a Roma</em> “Anna is in Rome”<br />
+cop(Roma,è)<br />
+nsubj(Roma,Anna)</li>
       <li>Possession<br />
 <em>La scultura è del pachistano Hamad Butt</em> &gt; cop(pachistano,è) nsubj(pachistano,scultura)</li>
       <li>Benefactory<br />
