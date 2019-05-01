@@ -64,106 +64,86 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>In general, words are delimited by whitespace characters. Compounds in Erzya are usually written separated, and in these cases the relation (<a href="">compound</a>) is used to connect the tokens.</li>
+  <li>According to typographical rules, many punctuation marks are attached to a neighboring word. At the moment hyphenated compounds such as командно-политической “command political” or косо-бути “somewhere” are analysed as individual tokens.</li>
+  <li>A whitespace separating digits in a large number is not treated as a word separator. For example, 1 000 000 (“1,000,000” by English rules) is one token.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<ul>
+  <li>Erzya uses 16 of the universal POS categories (ADJ, ADP, ADV, AUX, CCONJ, DET, INTJ, NOUN, NUM, PART, PRON, PROPN, PUNCT, SCONJ, VERB, X). Some of the ideophones have been tagged as NOUN, ADV and INTJ due to there syntactic use, but their analysis is being worked on.</li>
+  <li>There are four copulas ульнемс, улемс, оль and арась. The first three mean “to be” with a distribution (i) preterit, (ii) non-past free and (iii) both bound, whereas the fourth means “not to be” in locative, existential copula constructions. Besides these there are words still under consideration that have a secondary meaning “to be” эрямс and эрсемс (habitual).</li>
+  <li>Verbs of negation and negative particles have been labled AUX with an aux:neg relation, there are still issues with aux:q used for the question particle.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
+<h4 id="nominal-features">Nominal features</h4>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<ul>
+  <li>Case has 13 possible values: Nom, Gen, Abl, Dat, Ine, Ill, Ela, Tra, Prl, Loc, Lat, Comp, Temp. They occur with following word POS: NOUN, PROPN, PRON, NUM, ADJ and ADP, ADV.</li>
+  <li>Besides nouns the cases are widely used with adpositions and adverbs, which are also tagged separately for case and may be cause for reanalysis as relator nouns.</li>
+  <li>Erzya has possessor indices that distinguish three categories of person and two for number. These suffixes may occur not only on nominals: NOUN, PROPN, PRON, NUM, ADJ but ADP and non-finite VERB, as well.</li>
+</ul>
 
-<hr />
+<h4 id="degree-and-polarity">Degree and Polarity</h4>
+
+<ul>
+  <li>The comparative and superlative are formed analytically with the adverbs седе ‘more’ and сех, сехте, веседе, весемеде ‘most’.</li>
+  <li>Polarity in Erzya is found in the negative verbs and particles.</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-
 <ul>
-  <li>Subjects have the following characteristics:
-    <ul>
-      <li>Word order:</li>
-      <li>Case marking:</li>
-      <li>Passivisation:</li>
-      <li>Control:</li>
-      <li>Relativisation:</li>
-    </ul>
+  <li>
+    <p>Word order may be used for function best described in discourse. There is a normative tendency to say that the subject comes before the verb and the object, but, in fact, discourse or other strategies may show it elsewhere. This holds for the claim that the object occurs after the verb.</p>
   </li>
-  <li>Objects have the following characteristics:
-    <ul>
-      <li>Word order:</li>
-      <li>Case marking:</li>
-      <li>Passivisation:</li>
-      <li>Control:</li>
-      <li>Relativisation:</li>
-    </ul>
+  <li>
+    <p>Passivization is not a feature that would affect Erzya syntax.</p>
   </li>
-  <li>The following subtypes are used in Erzya:
+  <li>
+    <p>Nominal subject (<a href="">nsubj</a>) is a noun phrase in the nominative case, without an adposition.</p>
+  </li>
+  <li>
+    <p>Clausal subject (<a href="">csubj</a>) is a clause that functions as the subject and has.</p>
+  </li>
+  <li>
+    <p>Nominal objects are noun phrases which are generally either in the nominative or genitive case, but they may also occur in the ablative or inessive case.</p>
+  </li>
+  <li>
+    <p>The following subtypes are used in Erzya:</p>
     <ul>
-      <li><a href="">nmod:poss</a> for</li>
-      <li><a href="">aux:neg</a> for the negative auxiliary verb</li>
-      <li><a href="">nsubj:exist</a> for</li>
-      <li><a href="">nsubj:cop</a> for</li>
-      <li><a href="">acl:relcl</a> for</li>
-      <li><a href="">acl:conv</a> for</li>
-      <li><a href="">advmod:comp</a> for</li>
-      <li><a href="">obl:tmod</a> for</li>
-      <li><a href="">cop:exist</a> for</li>
-      <li><a href="">xcomp:ds</a> for</li>
-      <li><a href="">obl:agent</a> for</li>
-      <li><a href="">flat:name</a> for</li>
-      <li><a href="">compound:appos</a> for</li>
-      <li><a href="">aux:q</a> for</li>
-      <li><a href="">nmod:gsubj</a> for</li>
-      <li><a href="">nmod:gobj</a> for</li>
-      <li><a href="">obl:exist</a> for</li>
-      <li><a href="">cop:negexist</a> for</li>
-      <li><a href="">compound:svc</a> for</li>
-      <li><a href="">nmod:comp</a> for</li>
-      <li><a href="">advmod:tmod</a> for</li>
-      <li><a href="">nmod:own</a> for</li>
-      <li><a href="">nmod:bahuv</a> for</li>
-      <li><a href="">cc:preconj</a> for</li>
-      <li><a href="">cop:neg</a> for</li>
-      <li><a href="">cop:own</a> for</li>
-      <li><a href="">compound:redup</a> for</li>
-      <li><a href="">aux:opt</a> for</li>
-      <li><a href="">advcl:tcl</a> for</li>
-      <li><a href="">advcl:conv</a> for</li>
-      <li><a href="">nummod:equ</a> for</li>
-      <li><a href="">nsubj:coploc</a> for</li>
-      <li><a href="">nsubj:copbelong</a> for</li>
-      <li><a href="">nmod:appos</a> for</li>
-      <li><a href="">csubj:cop</a> for</li>
-      <li><a href="">cop:existneg</a> for</li>
-      <li><a href="">cop:belong</a> for</li>
-      <li><a href="">conj:obj</a> for</li>
-      <li><a href="">compound:equ</a> for</li>
-      <li><a href="">compound:coll</a> for</li>
-      <li><a href="">aux:negexist</a> for</li>
-      <li><a href="">advmod:qnt</a> for</li>
+      <li><a href="">aux:neg</a> for the negative auxiliary verbs and particles</li>
+      <li><a href="">acl:relcl</a> for relative clause</li>
+      <li><a href="">obl:tmod</a> for obl relation with temporal value</li>
+      <li><a href="">xcomp:ds</a> for xcomp with a different subject from the one in the matrix verb</li>
+      <li><a href="">obl:agent</a> for obl with agent relation, such as genitive form personal pronouns with non-finite</li>
+      <li><a href="">flat:name</a> for flat used in person names</li>
+      <li><a href="">aux:q</a> for question adv in indirect questions of the Russian type</li>
+      <li><a href="">nmod:gsubj</a> for nmod with a genitive subject noun, with deverbal noun</li>
+      <li><a href="">nmod:gobj</a> for nmod with a genitive object noun, with deverbal	noun</li>
+      <li><a href="">compound:svc</a> for second verb in consecutive events</li>
+      <li><a href="">nmod:comp</a> for nmod before adverb requiring a standard of comparison</li>
+      <li><a href="">advmod:tmod</a> for advmod with temporal value</li>
+      <li><a href="">cc:preconj</a> for conjunctor preceding first conjunct where the construction involves a pair</li>
+      <li><a href="">compound:redup</a> for compound involving reduplication</li>
+      <li><a href="">compound:coll</a> for compound constructions indicating collectives according to mentioned elements or possibly more abstract</li>
     </ul>
   </li>
 </ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
+<p>There is one Erzya UD treebank</p>
+
+<ul>
+  <li><a href="../treebanks/myv_jr/index.html">UD_Erzya-JR</a></li>
+</ul>
 
 
       </div>
