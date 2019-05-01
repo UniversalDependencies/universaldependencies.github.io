@@ -128,27 +128,30 @@
 
 <p>Italian core arguments are the following:</p>
 <ul>
-  <li>in Italian, core arguments always appear as bare nominals with no adposition;</li>
-  <li>order of core arguments: although the linear order of elements in a sentence is not rigidly defined, Italian <em>nsubj</em> and <em>obj</em> relations show preferences about their position with respect to the verb. Italian is a SVO language, which means that <em>nsubj</em> typically occurs in pre-verbal position, while <em>obj</em> canonical position is usually post-verbal.</li>
+  <li>in Italian, core arguments always appear as bare nominals with no adposition.</li>
+  <li>relative order of core arguments: although the linear order of elements in a sentence is not rigidly defined, Italian <em>nsubj</em> and <em>obj</em> relations show preferences about their position with respect to the verb. Italian is a SVO language, which means that <em>nsubj</em> typically occurs in pre-verbal position, while <em>obj</em> canonical position is usually post-verbal.</li>
+  <li><em>nsubj</em> agrees in number and person with the governing verb. Consider as an example the sentence <em>Al balcone si affacciano donne anziane</em> where the nominal subject is represented as <em>nsubj(affacciano, donne)</em>. Note that the <em>nsubj</em> role is only applied to semantic arguments of a predicate. When there is an empty argument in a grammatical subject position (sometimes called a pleonastic or expletive), it is labeled as an <em>expl</em> subtype, <em>expl:impers</em> which is specific for the impersonal use of clitic pronouns (used as an undefined subject); e.g. <em>Si può procedere</em> expl:impers(procedere, si). 
+Consider also that Italian is a pro-drop language, thus subjects can be omitted: the features of the subject can be inferred from the inflectional morphological features associated with the verb.</li>
   <li>
-    <p><em><b>nsubj</b></em> agrees in number and person with the governing verb. Consider as an example the sentence <em>Al balcone si affacciano donne anziane</em> where the nominal subject is represented as <em>nsubj(affacciano, donne)</em>. Note that the <em>nsubj</em> role is only applied to semantic arguments of a predicate. When there is an empty argument in a grammatical subject position (sometimes called a pleonastic or expletive), it is labeled as an <em>expl</em> subtype, <em>expl:impers</em> which is specific for the impersonal use of clitic pronouns (used as an undefined subject); e.g. <em>Si può procedere</em> expl:impers(procedere, si). 
-Consider also that Italian is a pro-drop language, thus subjects can be omitted: the features of the subject can be inferred from the inflectional morphological features associated with the verb.</p>
+    <p><em>iobj</em> refers to the indirect object of a verb only when realized as a dative pronominal complement. In Italian <em>iobj</em> only appears in the form of a clitic pronoun, as in <em>dovranno cercarsi un lavoro</em> <em>iobj(cercare,si)</em>. Otherwise, the indirect object is realized as a prepositional phrase, which it is labeled as <em>obl</em> (e.g.  <em>Dare a qualcuno qualcosa</em>, “give something to someone”).</p>
   </li>
-  <li>Clitic vs Tonic Pronouns
-Clitics are generally classified as a subtype of personal pronouns, but as a special case that differs from tonic pronouns of the same class for many aspects. In fact, while personal and clitic pronouns are rather uniform in their functional and referential characteristics, they are clearly differentiated on the morphological and syntactic levels. For this reason we provide language specific guidelines for the annotation of clitic pronouns  in Italian. 
-The dependency relations used in IUDT to annotate clitics are iobj, expl, expl:impers and expl:pass.</li>
+  <li>Dependency analysis of clitic Pronouns
+Clitics are a subtype of the class of personal pronouns, differing from tonic personal pronouns in many respects. While tonic personal and clitic pronouns are rather uniform in their functional and referential characteristics, they are clearly differentiated on the morphological and syntactic levels. In Italian, the dependency relations used to annotate clitics are <em>obj</em>, <em>iobj</em> (see above), <em>expl</em>, <em>expl:impers</em> (see above) and <em>expl:pass</em>.</li>
+  <li>Whenever possible, clitic pronouns are assigned a label that reflects their grammatical function. For this reason, if the pronoun appears in a reflexive construction of a transitive or intransitive active verb, then it’s treated as <em>dobj</em> or <em>iobj</em> (see above).
+    <ul>
+      <li>the <em>dobj</em> relation is used to mark real reflexive constructions where the clitic pronoun is a direct object of the verb, e.g. <em>la bambina si lava</em> “the girl washes herself” *dobj(lavare,si).</li>
+      <li>In Italian,  clitics can also be used to mark passive and impersonal constructions: see the relation subtypes <em>expl:pass</em> and <em>expl:impers</em>.</li>
+      <li>expl: for expletive or pleonastic nominals (nominal core arguments of a predicate but which do not themselves satisfy any of the semantic roles of the predicate), as in pronominal verbs where clitics do not have a semantic role, such as <em>rompersi</em> or <em>vergognarsi</em>
+. E.g. <em>Il proprietario non può opporsi</em> “the owner cannot oppose hi or <em>sedersi per terra</em>
+expl(oppor,si)
+expl(seder,si)</li>
+    </ul>
+  </li>
 </ul>
 
-<p>•	iobj: for reflexive pronouns when the personal pronouns plays the role of indirect object
-es: “dovranno cercarsi un lavoro”
-iobj(cercar,si)</p>
+<p>This relation captures expletive or pleonastic nominals. These are nominals that appear in an argument position of a predicate but which do not themselves satisfy any of the semantic roles of the predicate. The main predicate of the clause (the verb or predicate adjective) is the governor. In Italian, this relation is used only with clitic pronouns in the following cases:</p>
 
-<p>•	expl: for expletive or pleonastic nominals (nominal core arguments of a predicate but which do not themselves satisfy any of the semantic roles of the predicate). 
-es: “Il proprietario non può opporsi…”, “sedersi per terra…”
-expl(oppor,si)
-expl(seder,si)</p>
-
-<p>In Italian clitics also appears in passive and impersonal constructions. For that, subclasses expl:pass and expl:impers are used.</p>
+<p>Pronouns in pronominal verbs which do not have a semantic role, such as si in vergognarsi.</p>
 
 <p>Copula
 The only copula verb for Italian is the verb “essere” and the cop relation is used between the complement of a copular verb and the copula verb. The cop relation is used in all cases of:</p>
