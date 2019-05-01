@@ -119,9 +119,78 @@
   <li>Determiners agree with nouns in the same way as adjectives. They can be definite or indefinite <a href="feat/Definite.md">Definite</a>.</li>
 </ul>
 
+<!--SM: the part on features needs to be revised and expanded-->
 <!--For more information, see the list of [Italian features](feat-index.md).-->
 
 <h2 id="syntax">Syntax</h2>
+
+<p>In Italian, the UD relations that can designate core arguments are nsubj, obj and iobj for nominal arguments, and ccomp, xcomp and csubj for clausal arguments. There are specific subtypes for marking subjects in passive clauses (see below).</p>
+
+<p>Italian core arguments are the following:</p>
+<ul>
+  <li>in Italian, core arguments always appear as bare nominals with no adposition;</li>
+  <li>order of core arguments: although the linear order of elements in a sentence is not rigidly defined, Italian <em>nsubj</em> and <em>obj</em> relations show preferences about their position with respect to the verb. Italian is a SVO language, which means that <em>nsubj</em> typically occurs in pre-verbal position, while <em>obj</em> canonical position is usually post-verbal.</li>
+  <li>
+    <p><em><b>nsubj</b></em> agrees in number and person with the governing verb. Consider as an example the sentence <em>Al balcone si affacciano donne anziane</em> where the nominal subject is represented as <em>nsubj(affacciano, donne)</em>. Note that the <em>nsubj</em> role is only applied to semantic arguments of a predicate. When there is an empty argument in a grammatical subject position (sometimes called a pleonastic or expletive), it is labeled as an <em>expl</em> subtype, <em>expl:impers</em> which is specific for the impersonal use of clitic pronouns (used as an undefined subject); e.g. <em>Si può procedere</em> expl:impers(procedere, si). 
+Consider also that Italian is a pro-drop language, thus subjects can be omitted: the features of the subject can be inferred from the inflectional morphological features associated with the verb.</p>
+  </li>
+  <li>Clitic vs Tonic Pronouns
+Clitics are generally classified as a subtype of personal pronouns, but as a special case that differs from tonic pronouns of the same class for many aspects. In fact, while personal and clitic pronouns are rather uniform in their functional and referential characteristics, they are clearly differentiated on the morphological and syntactic levels. For this reason we provide language specific guidelines for the annotation of clitic pronouns  in Italian. 
+The dependency relations used in IUDT to annotate clitics are iobj, expl, expl:impers and expl:pass.</li>
+</ul>
+
+<p>•	iobj: for reflexive pronouns when the personal pronouns plays the role of indirect object
+es: “dovranno cercarsi un lavoro”
+iobj(cercar,si)</p>
+
+<p>•	expl: for expletive or pleonastic nominals (nominal core arguments of a predicate but which do not themselves satisfy any of the semantic roles of the predicate). 
+es: “Il proprietario non può opporsi…”, “sedersi per terra…”
+expl(oppor,si)
+expl(seder,si)</p>
+
+<p>In Italian clitics also appears in passive and impersonal constructions. For that, subclasses expl:pass and expl:impers are used.</p>
+
+<p>Copula
+The only copula verb for Italian is the verb “essere” and the cop relation is used between the complement of a copular verb and the copula verb. The cop relation is used in all cases of:</p>
+
+<p>•	Equation
+es: Loro sono amici
+cop(amici,sono)
+nsubj(amici,Loro)</p>
+
+<p>•	Attribution 
+es: I cinque sarebbero tutti immigrati clandestini
+cop(immigrati,sarebbero)
+nsubj(immigrati,cinque)</p>
+
+<p>•	Location
+es: Anna è a Roma
+cop(Roma,è)
+nsubj(Roma,Anna)</p>
+
+<p>•	Possession
+es: ROOT La scultura è di il pachistano Hamad Butt
+cop(pachistano,è)
+nsubj(pachistano,scultura)</p>
+
+<p>•	Benefaction 
+es: Il libro è per Anna
+cop(Anna,è)
+nsubj(Anna,libro)</p>
+
+<p>There are cases when the verb essere is not marked as copula, thus becoming the main verb of the clause. This analysis is generally adopted when:</p>
+
+<p>•	Presentational or existential constructions
+	es: ROOT Vi sono migliaia di casi di questo genere
+	expl(sono,Vi)
+	nsubj(sono,migliaia)
+	root(ROOT,sono)</p>
+
+<p>•	the argument of the verb essere is a subordinate clause
+	es: ROOT La verità è che la spesa sanitaria sta esplodendo
+	nsubj(è,verità)
+	root(ROOT,è)
+	ccomp(è,esplodendo)</p>
 
 <ul>
   <li>Criteria for identifying core arguments …</li>
@@ -153,17 +222,17 @@
 
 <!--For more information, see the list of [Italian relations](dep-index.md).-->
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<!-----
+**Instruction**: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.
 
-<hr />
+----->
 
 <h2 id="treebanks">Treebanks</h2>
 
 <p>There are <a href="../treebanks/it-comparison.html">five</a> Italian UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/it_isdt/index.html">ISDT</a></li>
+  <li><a href="../treebanks/it_isdt/index.html">IUDT</a></li>
   <li><a href="../treebanks/it_partut/index.html">PARTUT</a></li>
   <li><a href="../treebanks/it_postwita/index.html">POSTWITA</a></li>
   <li><a href="../treebanks/it_pud/index.html">PUD</a></li>
