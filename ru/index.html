@@ -91,13 +91,93 @@ If the period overlaps with the end of sentence period then it is written only o
 
 <h3 id="tags">Tags</h3>
 
-<p>TBD</p>
+<p>All corpora use the full range of UPOS tags. The XPOS column uses a version of the Penn Treebank tagset in GSD and Taiga treebanks, see <a href="https://github.com/olesar/ruUD/blob/master/conversion/RussianUD_XPOSlist.md">https://github.com/olesar/ruUD/blob/master/conversion/RussianUD_XPOSlist.md</a>.</p>
 
 <h3 id="features">Features</h3>
 
-<p>TBD</p>
+<p>Morphological features are included in all corpora. In GSD and Taiga, they are tagged manually, in Syntagrus, they are converted from the features manually tagged in the source treebank. In PUD, they are added automatically.</p>
+
+<p>The following feature subtypes are used in Russian:</p>
+
+<ul>
+  <li><a href="">Variant</a> distinguishes short and long forms of adjectives.</li>
+</ul>
+
+<p>The following universal features are not used in Russian: <a href="">Definite</a>, <a href="">Evident</a>, <a href="">NounClass</a>, <a href="">Polite</a>, <a href="">Clusivity</a>.</p>
 
 <h2 id="syntax">Syntax</h2>
+
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
+
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is prototypically a noun phrase in the nominative case, without preposition.
+    <ul>
+      <li>If the noun phrase is quantified, it may be in the genitive, which is required by the quantifier. 
+If this is the case, then the quantifier is attached using a special relation, either <a href="">nummod</a> or <a href="">nummod:gov</a>.</li>
+      <li>In distributive construction, the nominal subject is used in the dative case, to which the preposition <em>po</em> is attached.</li>
+      <li>Under negation, the noun phrase is used in the genitive case.</li>
+    </ul>
+  </li>
+  <li>Clausal subjects (<a href="">csubj</a>) are typically infinitival verbs or the head of subordinate clauses. These are mostly the case of predicative constructions or nominative copular constructions.
+    <ul>
+      <li>Note that verbal nouns as subjects are labeled <code class="highlighter-rouge">nsubj</code>.</li>
+    </ul>
+  </li>
+  <li>In passive clauses, the subject is labelled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively. The auxiliary verb in periphrastic passive is labelled <a href="">aux:pass</a>.
+    <ul>
+      <li>If the semantic agent is present, it has the form of the instrumental case, and its relation is labelled <a href="">obl:agent</a>.</li>
+    </ul>
+  </li>
+  <li>Nominal direct objects are labeled <a href="">obj</a>. They usually occur in the accusative case (but not all bare accusative nominals are objects), but also some instrumental and genitive nominals may be direct objects.</li>
+  <li>All other required dependents of verbs in the dative and instrumental case are indirect objects (iobj).</li>
+  <li>Required clausal dependents of verbs are marked as <a href="">ccomp</a>, unless they are subjects (<a href="">csubj</a>).</li>
+  <li>Open (“controlled”) clausal dependents are labeled <a href="">xcomp</a>; they are mostly infinitival complements of verbs such as <em>начать</em> “begin”.
+    <ul>
+      <li>Instrumental/nominative nominal dependents of verbs such as <em>быть</em> “be”, <em>стать</em> “become”, <em>работать</em> “work (as)”, <em>считать</em> “consider (as)” are also labeled <a href="">xcomp</a>.</li>
+    </ul>
+  </li>
+  <li>Prepositional phrases are labeled <a href="">obl</a>. These include:
+    <ul>
+      <li>core arguments of verbs, adjectives and other predicates;</li>
+      <li>adjuncts (or, following the Russian grammar, adverbial modifiers realized as prepositional noun phrases).</li>
+    </ul>
+  </li>
+  <li>Temporal and other circumstantial modifiers as well as benefactives realized as bare noun phrases: <em>подумал минуту</em> “he thought for a minute”, <em>сварила ему обед</em> “she cooked (for) him a lunch” are also labeled <a href="">obl</a>.</li>
+  <li>In comparative constructions, genitive noun phrase that refers to the standard of comparison is labeled <a href="">obl</a>.</li>
+</ul>
+
+<h3 id="copula-clauses">Copula Clauses</h3>
+
+<ul>
+  <li>The copula verb <em>быть</em> “be” is used in equational, attributional, locative, and benefactive nonverbal clauses.
+Purely existential clauses use <em>быть</em> as well but it is treated as the head of the clause and tagged <a href="">VERB</a>.
+In possessive clauses, <em>быть</em> is treated differently in different treebanks.<br />
+Note that the copula verb is rarely used in the present tense in Russian.</li>
+</ul>
+
+<h3 id="expletives">Expletives</h3>
+
+<ul>
+  <li>The particle <em>это</em> “this” used in equational clauses with meaningful subject is labeled <a href="">expl</a>: <em>Государство - это я</em> “The state is Me.” Pleonastic <em>это</em> in clauses with overt nominative subject is also labeled <a href="">expl</a>: <em>Это Лена пришла</em> “This (is) Lena came.”
+    <ul>
+      <li>If there is no other subject, <em>это</em> “this” is treated as a subject and tagged <a href="">PRON</a>:
+<em>Это Лена</em> “This (is) Lena”, <em>Это еще к чему?</em> “What purpose is it for?”</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="adjectival-clauses">Adjectival Clauses</h3>
+
+<ul>
+  <li>Relational clauses are labeled <a href="">acl:relcl</a>.</li>
+  <li>Participle phrases are labeled <a href="">acl</a>.
+    <ul>
+      <li>Participles that do not have dependents are labeled <a href="">amod</a>.</li>
+    </ul>
+  </li>
+  <li>Floating quantifiers <em>сам</em> “oneself”, <em>один</em> “alone”, <em>весь</em> “all”, <em>оба</em> “both” are labeled <a href="">acl</a>.</li>
+  <li>Secondary non-core arguments in depictive constructions are labeled <a href="">acl</a>: <em>Он пришел домой усталый</em> “He came home tired.”</li>
+</ul>
 
 <h3 id="relations-overview">Relations Overview</h3>
 
@@ -115,7 +195,7 @@ If the period overlaps with the end of sentence period then it is written only o
       <li><a href="">flat:name</a> for non-first words in multiword proper names</li>
     </ul>
   </li>
-  <li><a href="">clf</a> is not used in Russians at all.</li>
+  <li><a href="">clf</a> is not used in Russian.</li>
 </ul>
 
 <h2 id="treebanks">Treebanks</h2>
