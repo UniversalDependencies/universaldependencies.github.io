@@ -81,11 +81,27 @@ If the period overlaps with the end of sentence period then it is written only o
       <li>time expressions such as 20:55 are treated as a single token;</li>
       <li>dates such as 20.04.2012 are treated as a single token;</li>
       <li>email addresses, URLs, and tweet-style names are treated as a single token: {no@mail.ru}, {https://github.com}, {@anna_li};</li>
+      <li>discoursive particles such as <em>-то</em> and <em>-с</em> are tokenised as separate tokens, e.g. <em>Вася-то</em> is tokenized as 3 tokens. Exceptions: indefinite pronouns and adverbs, see below.</li>
+    </ul>
+  </li>
+  <li><strong>Pronouns and adverbs</strong>
+    <ul>
+      <li>Indefinite pronouns and adverbs like <em>кто-нибудь</em>, <em>кто-либо</em>, <em>кто-то</em>, <em>кое-кто</em> “someone, somebody”, etc. are treated as a single token;</li>
+      <li>In prepositional phrases, the pronouns with <em>кое-</em> are treated as separate tokens: e.g. <em>кое к кому</em> “to someone” is tokenized as 3 tokens;</li>
+      <li>Negative pronouns, adverbs and adverbial predicatives are treated as a single token, e.g. <em>никто</em> “no one”, <em>никакой</em> “no, neither”, <em>нигде</em> “nowhere”, <em>негде</em> “there is no place”. 
+However, in prepositional phrases, negative pronouns and predicatives are splitted into 3 tokens: e.g. <em>ни к кому</em> “to no one”, <em>не от кого</em> “from no one”.</li>
+    </ul>
+  </li>
+  <li><strong>Verb forms, analytical grammatical forms, negation</strong>
+    <ul>
+      <li>reflexive verbs are treated as a single token (orthographic rule): <em>моется</em> “wash oneself”;</li>
+      <li><em>не</em> and <em>ни</em> used as negation markers are tokenized according to the orthographic rules: e.g. <em>не реагируя</em> “not reacting”, <em>ни в какую</em> “in no way”, but <em>непоправимый</em> “irrecoverable”, <em>назавершенный</em> “unfinished”;</li>
+      <li><em>пол-</em> and <em>полу-</em> “half” are treated as single tokens: <em>поллитра</em> “half a liter”, <em>пол-яблока</em> “half an apple”.</li>
     </ul>
   </li>
 </ul>
 
-<p>The Russian UD treebanks do not contain multiword tokens.</p>
+<p>Russian UD treebanks do not contain multiword tokens.</p>
 
 <h2 id="morphology">Morphology</h2>
 
@@ -95,7 +111,7 @@ If the period overlaps with the end of sentence period then it is written only o
 
 <h3 id="features">Features</h3>
 
-<p>Morphological features are included in all corpora. In GSD and Taiga, they are tagged manually, in Syntagrus, they are converted from the features manually tagged in the source treebank. In PUD, they are added automatically.</p>
+<p>Morphological features are included in all corpora. In GSD and Taiga, they are tagged manually, in Syntagrus, they are converted from the features manually tagged in the source treebank. In PUD, they are added automatically and then manually checked.</p>
 
 <p>The following feature subtypes are used in Russian:</p>
 
@@ -103,7 +119,7 @@ If the period overlaps with the end of sentence period then it is written only o
   <li><a href="">Variant</a> distinguishes short and long forms of adjectives.</li>
 </ul>
 
-<p>The following universal features are not used in Russian: <a href="">Definite</a>, <a href="">Evident</a>, <a href="">NounClass</a>, <a href="">Polite</a>, <a href="">Clusivity</a>.</p>
+<p>The following universal features are not used in Russian: <a href="">Clusivity</a>, <a href="">Definite</a>, <a href="">Evident</a>, <a href="">NounClass</a>, <a href="">Polite</a>,  <a href="">Poss</a>, <a href="">PronType</a>.</p>
 
 <h2 id="syntax">Syntax</h2>
 
