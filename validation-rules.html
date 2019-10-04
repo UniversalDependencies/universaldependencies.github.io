@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Validation and Release Rules 2.5</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hint.css"/>
+    <script type="text/javascript" src="lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/validation-rules.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="ud-validation-25">UD Validation 2.5</h1>
+
+<p>The following mechanism ensures that we can add new validation tests on one hand, and we do not lose old treebanks on the other hand. Note that “new tests” do not really mean new guidelines. These tests typically check guidelines that were already valid before but we were not able to test them.</p>
+
+<h2 id="new-treebanks">New Treebanks</h2>
+
+<p>Treebanks that have not yet been released in UD must pass all currently required tests before they can be released for the first time.</p>
+
+<h2 id="previously-released-treebanks">Previously Released Treebanks</h2>
+
+<h3 id="treebanks-with-unfinished-new-development-undev">Treebanks with Unfinished New Development (UNDev)</h3>
+
+<p>The treebank has been valid and released under the current major version of the UD guidelines (v2 at present). Since then, data were modified or added and new errors were introduced. These are new errors, not newly discovered old errors. If the errors are not fixed before the upcoming data freeze, the treebank will be released in the same form in which it was released last time. The current contents of the dev branch will not be merged into the master branch.</p>
+
+<h3 id="legacy-treebanks">Legacy Treebanks</h3>
+
+<p>The treebank has been successfully released under the current major version of the UD guidelines (v2 at present) and passed all mandatory tests that were available at the time of that release. Legacy treebanks are not required to pass newly added tests (although their maintainers are of course encouraged to fix the newly found errors) and they will be included in future releases as long as the major version of the guidelines has not changed. If they are being fixed, they can be also fixed incrementally. For example: The treebank passed all tests required for UD 2.3 and became part of that release. After UD 2.3, several new tests were added and the treebank does not pass two of them, labeled A and B. The maintainers manage to fix all type A errors but not type B errors; they do not introduce any new errors of other types. The partially fixed treebank will be released in UD 2.4, still as a legacy treebank, but the exception is now granted only to the type B errors. It is not allowed to reintroduce any type A error in the future.</p>
+
+<h3 id="obsolete-treebanks">Obsolete Treebanks</h3>
+
+<p>The UD Japanese KTC treebank was part of UD 1.* releases and it was never converted to the v2 guidelines. Therefore it was not part of UD 2.* releases.</p>
+
+<p>If there is a new version of the guidelines in the future (v3), it must specify how the legacy treebanks are to be treated. Especially if the new version of the guidelines is not backwards-compatible.</p>
+
+<h1 id="levels-of-validity">Levels of Validity</h1>
+
+<p>The validation tests are organized to several levels. The validation script can be optionally invoked to only test validity up to level L (but the official on-line validation will still require passing the higher levels in order for the treebank to be released).</p>
+
+<h2 id="level-1-backbone-conll-u-format">Level 1: Backbone CoNLL-U Format</h2>
+
+<p>These are the core tests that check the file integrity. Software tools can crash if their input is not valid at this level. Level 1 should be relatively stable; it is not expected that new tests will be added here. (And if they are, all treebanks including legacy treebanks must be made to pass them.)</p>
+
+<p>Example tests: each token line has 10 columns, there is an empty line after each sentence. Except for token ID, values in columns can be unspecified, as in partially processed data. The file could also contain non-UD annotation and be level-1 valid.</p>
+
+<h2 id="level-2-basic-ud-concepts">Level 2: Basic UD Concepts</h2>
+
+<p>The UPOS tag must be present and it must be one of the 17 tags defined in UD. HEAD and DEPREL must be present, universal part of DEPREL must be one of the 37 known labels, the structure must be a rooted tree. Morphological features, if present, must follow the prescribed format. Enhanced dependencies in DEPS, if present, are checked as well.</p>
+
+<p>The annotation in LEMMA, XPOS, FEATS, DEPS and MISC is optional and it can be unspecified. A few treebanks omit even the word FORM; this is for copyright reasons, the user must obtain a licensed copy of the underlying text and then run specialized software to merge it with the UD annotation.</p>
+
+<p>Note that any feature-value pair and any relation subtype is valid on level 2 if it has the expected form (checked by a regular expression). To disallow language-specific features and relation subtypes, use the validation level 4 but set the language to “ud”.</p>
+
+<p>Level 2 should be relatively stable; it is not expected that new tests will be added here. (And if they are, all treebanks including legacy treebanks must be made to pass them.)</p>
+
+<h2 id="level-3-universal-guidelines">Level 3: Universal Guidelines</h2>
+
+<p>Any language-independent rule that follows from the guidelines and can be reliably checked automatically will be checked here unless it was already checked at level 2. Typical rules involve (in)compatibility between particular UPOS tags, relation types and tree topology. If enhanced dependencies are present, the rules can apply to them too.</p>
+
+<p>The first rule of this type was introduced between the releases 2.1 and 2.2. It verifies that certain types of relations (e.g., conj) always go left-to-right. Numerous other level-3 tests were added later; legacy treebanks can be released without passing them.</p>
+
+<h2 id="level-4-language-specific-labels">Level 4: Language-specific Labels</h2>
+
+<p>Morphological features (FEATS) and relation types (DEPREL and DEPS) allow language-specific extensions. Therefore the lower levels checked only the general format of these columns but not the actual labels. Level 4 assumes that we know the language of the data we are validating and we can check a list of available labels in a separate file. The current practice is that maintainers of treebanks of a given language collectively maintain the lists of labels for that language. A feature-value pair is considered valid if it is either documented in the universal guidelines or it is listed in the language-specific list. A relation subtype is considered valid if it is listed in the language-specific list.</p>
+
+<p>In addition to features and deprels, language-specific configuration may also describe the permitted types of “words with spaces”. These are currently described using regular expressions.</p>
+
+<p>In the future, this level could be modified in the following ways:</p>
+
+<ul>
+  <li>It is not enough that a label is listed. It must be also documented. If the validator does not find a corresponding page in the UD documentation, or if the page does not say that this label can be used in the given language, the label is not valid.</li>
+  <li>Usage of universally defined labels can be restricted if they do not apply to a language.</li>
+</ul>
+
+<p>The present implementation of level 4 does not pose a problem to legacy treebanks: their labels can be simply added to the list. If a stricter approach is taken in the future, legacy treebanks will need exceptions.</p>
+
+<p>Note that it could make sense to check level 4 for a treebank that is valid on levels 1 and 2 but not 3. It would mean that we want to test the general file format and label inventory, but not the more intricate interplay between various pieces of the annotation. However, the current implementation of the validator assumes that a treebank valid on a level is also valid on all lower levels.</p>
+
+<p>Note that language-specific guidelines can change between releases and do not have to wait until the next major UD guidelines upgrade, as long as they do not contradict the current universal guidelines.</p>
+
+<h2 id="level-5-language-specific-guidelines">Level 5: Language-specific Guidelines</h2>
+
+<p>Any other reliably testable rules that apply to one language or a group of languages but not to all languages. At present there is an experimental set of level-5 rules that lists for each language the lemmas that can be auxiliary verbs/particles, and lemmas that can be copulas.</p>
+
+<p>Future rules could specify that a particular feature must or must not occur with a particular UPOS tag; however, we would have to account for the fact that features in general are optional and the treebank may not have them at all.</p>
+
+<h2 id="level-6-treebank-specific-requirements">Level 6: Treebank-specific Requirements</h2>
+
+<p>One may want to test that some kind of annotation, which is generally optional, is always present in their treebank. For example, all words should have the Translit and Gloss attributes in the MISC column. No such tests have been implemented so far.</p>
+
+<h2 id="warnings">Warnings</h2>
+
+<p>Many potential rules on levels 3-5 cannot be implemented as strict tests because there are legitimate exceptions. However, if it is still probable that a violation of the rule signals an actual annotation error, the rule could issue a warning. No such tests have been implemented so far.</p>
+
+<h1 id="other-notes">Other Notes</h1>
+
+<p>We should have a section in the documentation that would list all validation tests, explain them, link to the relevant parts of the guidelines and possibly also to the relevant part of the source code of the validation script. Some newly added rules are discussed and refined; in such cases, we may want to link to the corresponding issues in the issue tracker too.</p>
+
+<p>It would be nice if the validator could output the relevant CoNLL-U snippet with the errors highlighted, possibly even visualizing the tree. This would be in addition to providing the id of the problematic sentence/line, and it would be output on demand only. UDAPI already does this, so maybe we could run the validator together with UDAPI.</p>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = ''; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = '';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014–2017
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
