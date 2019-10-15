@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-krl">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_krl/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_krl/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -64,57 +64,118 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>The main tokenisation is standard white-space delimited approach with
+punctuations separated.</li>
+  <li>The punctuation is used as part of the token for ordinals written with digits:
+“123.” as well some abbreviations.</li>
+  <li>The initial tokenisation for the currently only treebank was made based on
+<a href="https://giellatekno.uit.no">morphological analyser from giellatekno</a> and
+<a href="https://wiki.apertium.org">tooling from apertium</a>.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Karelian uses all 17 universal POS categories
+    <ul>
+      <li><a href="">PART</a> is currently not used</li>
+      <li><a href="">PRON</a> with <a href="">PronType</a>=<a href="">Dem</a> is usually preferred over <a href="">DET</a> where
+possible</li>
+    </ul>
+  </li>
+  <li>Karelian has following auxiliaries:
+    <ul>
+      <li>“olla” (to be, also to own etc.)</li>
+      <li>“ei” (inflected negation verb)</li>
+      <li>modals: “voija” (can). “piteä” (must), …
+(list will be extended as the corpora gets larger)</li>
+    </ul>
+  </li>
+  <li>For proadjectives etc., <a href="">ADJ</a> is used as the UPOS tag, similarly <a href="">ADV</a> for
+proadverbs and so forth.</li>
+  <li>Ordinal numerals are tagged <a href="">ADJ</a></li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
+<h3 id="verbal-features">Verbal Features</h3>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<ul>
+  <li>There are three main verbal forms distinguished by the value of <a href="">VerbForm</a>
+feature:
+    <ul>
+      <li>Finite verb <a href="">Fin</a></li>
+      <li>Infinite verb <a href="">Inf</a></li>
+      <li>Participle verb <a href="">Part</a></li>
+    </ul>
+  </li>
+  <li><a href="">Mood</a> has four values: <code class="highlighter-rouge">Cnd</code>, <code class="highlighter-rouge">Imp</code>, <code class="highlighter-rouge">Ind</code> or <code class="highlighter-rouge">Pot</code>.</li>
+  <li><a href="">Tense</a> has two values: <code class="highlighter-rouge">Past</code> or <code class="highlighter-rouge">Pres</code>.</li>
+  <li><a href="">Voice</a> has two values: <code class="highlighter-rouge">Act</code> and <code class="highlighter-rouge">Pass</code>.</li>
+  <li><a href="">Person</a> has four values, <code class="highlighter-rouge">0</code>, <code class="highlighter-rouge">1</code>, <code class="highlighter-rouge">2</code> and <code class="highlighter-rouge">3</code>.</li>
+  <li><a href="">Number</a> has values <code class="highlighter-rouge">Sing</code> or <code class="highlighter-rouge">Plur</code>.</li>
+</ul>
 
-<hr />
+<h4 id="nominal-features">Nominal Features</h4>
+
+<ul>
+  <li>Karelian does not have Gender feature</li>
+  <li><a href="">Number</a> feature has two possible values: <code class="highlighter-rouge">Sing</code> and <code class="highlighter-rouge">Plur</code></li>
+  <li><a href="">Case</a> has 15 possible values: <code class="highlighter-rouge">Abe</code>, <code class="highlighter-rouge">Abl</code>, <code class="highlighter-rouge">Acc</code>, <code class="highlighter-rouge">Ade</code>, <code class="highlighter-rouge">All</code>, <code class="highlighter-rouge">Com</code>,
+<code class="highlighter-rouge">Ela</code>, <code class="highlighter-rouge">Ess</code>, <code class="highlighter-rouge">Gen</code>, <code class="highlighter-rouge">Ill</code>, <code class="highlighter-rouge">Ine</code>, <code class="highlighter-rouge">Ins</code>, <code class="highlighter-rouge">Nom</code>, <code class="highlighter-rouge">Par</code>, <code class="highlighter-rouge">Tra</code></li>
+</ul>
+
+<h4 id="degree-and-polarity">Degree and Polarity</h4>
+
+<ul>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>), adverbs (<a href="">ADV</a>) and participles
+(<a href="">VERB</a> or <a href="">AUX</a>), and has one of three possible values: <code class="highlighter-rouge">Pos</code>,
+<code class="highlighter-rouge">Cmp</code>, <code class="highlighter-rouge">Sup</code>.</li>
+  <li><a href="">Polarity</a> has only value <code class="highlighter-rouge">Neg</code>, and applies to negative verb ‘ei’</li>
+  <li><a href="">Connegative</a> has only value <code class="highlighter-rouge">Yes</code> and applies to verbs which have been
+negated by ‘ei’</li>
+</ul>
+
+<h4 id="possessives">Possessives</h4>
+
+<ul>
+  <li>Layered features are used for possessive suffixes:
+    <ul>
+      <li><a href="">Number[psor]</a> for number and <a href="">Person[psor]</a> for person of possessor</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is typically a nominal in the nominative,
+genitive or partitive case, without preposition.</li>
+  <li>Objects (<a href="">obj</a>) can be nominals in nominative, genitive, partitive
+or accusative case</li>
+  <li>The copula verb <em>olla</em> (be) is used in equational, attributional, locative,
+possessive and benefactory nonverbal clauses.
+    <ul>
+      <li>for possessive structure <a href="">cop:own</a> subtype is used</li>
+    </ul>
+  </li>
+  <li>genetive modifier uses <a href="">nmod:poss</a> subtype</li>
+  <li><a href="">acl:relcl</a> is used for relative clauses</li>
+</ul>
 
 <hr />
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is <a href="../treebanks/krl-comparison.html">one</a> Karelian UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/krl_kkpp/index.html">Karelian-KKPP</a></li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="highlighter-rouge">*-index.html</code> page in the <code class="highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
 
       </div>
