@@ -406,24 +406,29 @@ git pull
 
 <h1 id="validation">Validation</h1>
 
-<p>A proposal of additional validation-release rules for UD 2.5 is available <a href="validation-rules.html">on this page</a>.</p>
+<p>Up-to-date automatic validation runs of the repositories are available
+<a href="http://quest.ms.mff.cuni.cz/cgi-bin/zeman/unidep/validation-report.pl">here</a>.
+These are based on the <code class="highlighter-rouge">dev</code> branch of the data and use the <code class="highlighter-rouge">validate.py</code> script
+described below. Note that the validation script evolved significantly between
+releases 2.3 and 2.5. Now it includes many content-focused tests that check
+conformity with the guidelines. See a separate page on
+<a href="validation-rules.html">validation rules</a>, which explains the various
+validation levels, as well as the consequences of your treebank’s not being
+valid at release time.</p>
 
-<h2 id="data-format-and-repository">Data format and repository</h2>
-
-<p>Up-to-date automatic validation runs of the repositories are available <a href="http://quest.ms.mff.cuni.cz/cgi-bin/zeman/unidep/validation-report.pl">here</a>.
-These are based on the <code class="highlighter-rouge">dev</code> branch of the data and use the <code class="highlighter-rouge">validate.py</code> script described below.</p>
-
-<p>The final data validation is an important step and each file released
-in the project is expected to validate as conforming to the basic
-requirements on the data and format. For this purpose, there is a
-validation script in the tools repository.</p>
+<p>The validation script is available in the tools repository and you can use
+it to test your data locally before you upload them to Github. Make sure that
+you always have the latest update of the tools repository.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone git@github.com:UniversalDependencies/tools.git
 $ cd tools
 $ python validate.py -h
 </code></pre></div></div>
 
-<p>Note that you need Python 3 to run the validator, and you need a third-party Python module called <code class="highlighter-rouge">regex</code> installed via pip. See also the <a href="https://github.com/UniversalDependencies/tools/blob/master/README.txt">README file</a> in the tools repository.</p>
+<p>Note that you need Python 3 to run the validator, and you need a third-party
+Python module called <code class="highlighter-rouge">regex</code> installed via pip. See also the
+<a href="https://github.com/UniversalDependencies/tools/blob/master/README.txt">README file</a>
+in the tools repository.</p>
 
 <p>In general, you validate the data like so:</p>
 
@@ -487,11 +492,21 @@ defining the permissible forms and lemmas that can contain a whitespace.</p>
 
 <h1 id="content-validation">Content validation</h1>
 
-<p>For the <code class="highlighter-rouge">v1.3</code> release, we have created an additional number of tests which try to uncover possible logical inconsistencies in the treebank data. Automatic validation runs for this syntax validation are available <a href="http://universaldependencies.org/svalidation.html">here</a>. Unlike the data format and repository validation, this validation machinery is not streamlined enough to be distributed for offline use, therefore it is important to regularly push your data to the <code class="highlighter-rouge">dev</code> branch of the repository.
-(However, similar tests are now available in the
-<a href="https://github.com/udapi/udapi-python/blob/master/udapi/block/ud/markbugs.py">Udapi</a> tool.)</p>
+<p><strong>WARNING: This section is outdated.</strong></p>
 
-<p>The tests are specified in the file <code class="highlighter-rouge">gen_index/stests.yaml</code> and rely on the query language of the <a href="http://bionlp-www.utu.fi/dep_search">SETS search interface</a>.</p>
+<p>For the <code class="highlighter-rouge">v1.3</code> release, we created an additional number of tests which try to
+uncover possible logical inconsistencies in the treebank data. Automatic
+validation runs for this syntax validation are available
+<a href="http://universaldependencies.org/svalidation.html">here</a>.
+The tests are specified in the file <code class="highlighter-rouge">gen_index/stests.yaml</code> and rely on the
+query language of the <a href="http://bionlp-www.utu.fi/dep_search">SETS search interface</a>.</p>
+
+<p>At present (October 2019) this validation machinery does not function correctly.
+However, similar tests are now included as level 3 and 5 tests in the official
+validation script described in the previous section. Selected tests of this kind
+are also available in the
+<a href="https://github.com/udapi/udapi-python/blob/master/udapi/block/ud/markbugs.py">Udapi</a>
+tool.</p>
 
 <h1 id="language-specific-guidelines">Language-specific guidelines</h1>
 
