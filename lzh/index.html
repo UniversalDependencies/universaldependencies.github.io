@@ -72,9 +72,9 @@
 
 <h3 id="tags">Tags</h3>
 
-<ul>
-  <li><code class="highlighter-rouge">ADJ</code> <code class="highlighter-rouge">DET</code> <code class="highlighter-rouge">PUNCT</code> <code class="highlighter-rouge">X</code> are not used.</li>
-</ul>
+<p>The predicate-object-final structure of very early Chinese texts had only three categories of words:　predicate, object, and final. Here in our linguistic model we tentatively call them “verb” “noun” and “particle” respectively. Several words were specialised to be used as verbs,　several as nouns, but most of them had been used in two or three categories around Zhou (周) dynasty.
+At that era, we can observe very early modifier usages of verbs. Several verbs were specialised to be used as adverbial modifiers, afterwards caused adverbs. In between verbs and adverbs, auxiliary verbs were almost specialised to auxiliary uses, but incidentally used as verbs. Adjective usages of verbs were not specialised as adjectives at that era, on the other hand, some caused prepositions.
+For POS-tagging of classical Chinese texts in UD, we use <code class="highlighter-rouge">VERB</code> <code class="highlighter-rouge">ADV</code> <code class="highlighter-rouge">AUX</code> <code class="highlighter-rouge">ADP</code> and <code class="highlighter-rouge">SCONJ</code> to fill UPOS field of each verb-origin word, following the overview of modifier usages mentioned above. For noun-origin words we use <code class="highlighter-rouge">NOUN</code> <code class="highlighter-rouge">PROPN</code> <code class="highlighter-rouge">PRON</code> <code class="highlighter-rouge">NUM</code> and <code class="highlighter-rouge">ADV</code> (noun-origin adverbs including 何), categorising them in rather nowadays point of view. For particle-origin words we use <code class="highlighter-rouge">PART</code> <code class="highlighter-rouge">CCONJ</code> and <code class="highlighter-rouge">INTJ</code>, keeping up with the guideline of UD v2. We rarely use <code class="highlighter-rouge">SYM</code>, and do not use <code class="highlighter-rouge">ADJ</code> <code class="highlighter-rouge">DET</code> <code class="highlighter-rouge">PUNCT</code> or <code class="highlighter-rouge">X</code>.</p>
 
 <h3 id="features">Features</h3>
 
@@ -108,12 +108,13 @@
         <tr>
           <td><code class="highlighter-rouge">PronType=Prs</code> with <code class="highlighter-rouge">Person=1</code></td>
           <td><code class="highlighter-rouge">2</code></td>
-          <td><code class="highlighter-rouge">3</code> or <code class="highlighter-rouge">Reflex=Yes</code> for personal <code class="highlighter-rouge">PRON</code>, <code class="highlighter-rouge">PronType=Dem</code></td>
-          <td><code class="highlighter-rouge">Int</code> for other <code class="highlighter-rouge">PRON</code>.</td>
+          <td><code class="highlighter-rouge">3</code> or <code class="highlighter-rouge">Reflex=Yes</code> for personal <code class="highlighter-rouge">PRON</code>.</td>
         </tr>
       </tbody>
     </table>
   </li>
+  <li><code class="highlighter-rouge">PronType=Dem</code> for demonstrative <code class="highlighter-rouge">PRON</code>.</li>
+  <li><code class="highlighter-rouge">PronType=Int</code> for interrogative <code class="highlighter-rouge">PRON</code>.</li>
   <li><code class="highlighter-rouge">NumType=Ord</code> for zodiac <code class="highlighter-rouge">NUM</code>.</li>
   <li>
     <table>
@@ -159,7 +160,11 @@
 <h2 id="syntax">Syntax</h2>
 
 <ul>
-  <li>TBD</li>
+  <li><code class="highlighter-rouge">discourse:sp</code> to annotate the final sentence particles in the predicate-object-final structure.</li>
+  <li><code class="highlighter-rouge">obl:tmod</code> to annotate temporal oblique nominals.</li>
+  <li><code class="highlighter-rouge">obl:lmod</code> to annotate locational oblique nominals.</li>
+  <li><code class="highlighter-rouge">compound:redup</code> (left-to-right) to annotate reduplicated compounds.</li>
+  <li><code class="highlighter-rouge">flat:vv</code> (left-to-right) to annotate serial verbs (rather exocentric).</li>
 </ul>
 
 <h2 id="treebanks">Treebanks</h2>
