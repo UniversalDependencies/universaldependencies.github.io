@@ -3,15 +3,15 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Scottish Gaelic UD</title>
+    <title>flat</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
-    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
-    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-gd">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-gsw">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gd/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gsw/dep/flat.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -47,8 +47,8 @@
       <hr/>
 
       
-      <div class="v2complete">
-	This page pertains to UD version 2.
+      <div class="v1warning">
+	This page still pertains to UD version 1.
       </div>
       
 
@@ -60,68 +60,108 @@
 	  </div>
 	</noscript>
 
-          <h1 id="ud-for-scottish-gaelic-">UD for Scottish Gaelic <span class="flagspan"><img class="flag" src="../../flags/svg/GB-SCT.svg" /></span></h1>
+          <h2><code>flat</code>: flat</h2>
 
-<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+<p>The <code class="highlighter-rouge">flat</code> relation is one of the three relations for compounding in UD (together with <a href="">compound</a> and <a href="">fixed</a>). It is used for proper nouns constituted of multiple nominal elements. For example, <code class="highlighter-rouge">flat</code> would be used between the words of <em>Hillary Rodham Clinton</em>, <em>New York</em>, or <em>Carl XVI Gustaf</em> but not to replace the usual relations in a phrasal or clausal name like <em>The king of Sweden</em> or the novels <em>The Lord of the Rings</em> and <em>Captured By Aliens</em>.</p>
 
-<p>*</p>
+<p>Words joined by <code class="highlighter-rouge">flat</code> should all be part of a minimal noun phrase; otherwise regular syntactic relations should be used. This is basically similar to the treatment of noun compounds with <a href="">compound</a>, except that in many cases parts of the name may be another nominal element such as an adjective (<em>United Airlines</em>).</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
+<p>In general, names are annotated in a flat, head-initial structure, in which all words in the name modify the first one using the <code class="highlighter-rouge">flat</code> label.</p>
 
-<hr />
+<pre><code class="language-sdparse">Carl XVI Gustav
+flat(Carl, XVI)
+flat(Carl, Gustav)
+</code></pre>
 
-<h2 id="morphology">Morphology</h2>
+<pre><code class="language-sdparse">Frankfurt an dem Main
+nmod(Frankfurt, Main)
+case(Main, an)
+det(Main, dem)
+</code></pre>
 
-<h3 id="tags">Tags</h3>
+<p>The relation <code class="highlighter-rouge">flat</code> is also used with titles that would otherwise not be considered a complete noun phrase on their own.</p>
 
-<p>*</p>
+<pre><code class="language-sdparse">Herr Meier
+flat(Herr, Meier)
+</code></pre>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<p>Moreover, dates are also connected with the relation <code class="highlighter-rouge">flat</code>.</p>
 
-<hr />
+<pre><code class="language-sdparse">24 Dezember 2011
+flat(24, Dezember)
+flat(24, 2011)
+</code></pre>
 
-<h3 id="features">Features</h3>
 
-<p>*</p>
+<!-- "in other languages" links -->
+<hr/>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+flat in other languages:
 
-<hr />
+[<a href="../../bm/dep/flat.html">bm</a>]
 
-<h2 id="syntax">Syntax</h2>
+[<a href="../../cop/dep/flat.html">cop</a>]
 
-<p>*</p>
+[<a href="../../cs/dep/flat.html">cs</a>]
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+[<a href="../../de/dep/flat.html">de</a>]
 
-<hr />
+[<a href="../../el/dep/flat.html">el</a>]
 
-<h2 id="treebanks">Treebanks</h2>
+[<a href="../../en/dep/flat.html">en</a>]
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+[<a href="../../et/dep/flat.html">et</a>]
 
-<ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
-</ul>
+[<a href="../../eu/dep/flat.html">eu</a>]
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="highlighter-rouge">*-index.html</code> page in the <code class="highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
+[<a href="../../fi/dep/flat.html">fi</a>]
 
-<hr />
+[<a href="../../fr/dep/flat.html">fr</a>]
+
+[<a href="../../ga/dep/flat.html">ga</a>]
+
+[<a href="../../hu/dep/flat.html">hu</a>]
+
+[<a href="../../hy/dep/flat.html">hy</a>]
+
+[<a href="../../it/dep/flat.html">it</a>]
+
+[<a href="../../ja/dep/flat.html">ja</a>]
+
+[<a href="../../kk/dep/flat.html">kk</a>]
+
+[<a href="../../kpv/dep/flat.html">kpv</a>]
+
+[<a href="../../myv/dep/flat.html">myv</a>]
+
+[<a href="../../no/dep/flat.html">no</a>]
+
+[<a href="../../pcm/dep/flat.html">pcm</a>]
+
+[<a href="../../pt/dep/flat.html">pt</a>]
+
+[<a href="../../ru/dep/flat.html">ru</a>]
+
+[<a href="../../sv/dep/flat.html">sv</a>]
+
+[<a href="../../swl/dep/flat.html">swl</a>]
+
+[<a href="../../tr/dep/flat.html">tr</a>]
+
+[<a href="../../u/dep/flat.html">u</a>]
+
+[<a href="../../yue/dep/flat.html">yue</a>]
+
+[<a href="../../zh/dep/flat.html">zh</a>]
+
+
 
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../'; // filled in by jekyll
+    var root = '../../'; // filled in by jekyll
     head.js(
         // External libraries
         root + 'lib/ext/jquery.min.js',
@@ -227,7 +267,7 @@ and the treebank code in the file name.</p>
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'gd';
+        Collections.listing['_current'] = 'gsw';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);

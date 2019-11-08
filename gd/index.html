@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Scottish Gaelic UD</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-gd">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gd/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h1 id="ud-for-scottish-gaelic-">UD for Scottish Gaelic <span class="flagspan"><img class="flag" src="../../flags/svg/GB-SCT.svg" /></span></h1>
+
+<p>At present UD for Scottish Gaelic contains a single corpus, the Annotated Reference Corpus of Scottish Gaelic.</p>
+
+<h2 id="tokenisation-and-word-segmentation">Tokenisation and Word Segmentation</h2>
+
+<p>Words are delimited by whitespace or punctuation. There are no multiword tokens.</p>
+
+<h3 id="reconstructing-spacing">Reconstructing spacing</h3>
+<p>Context: ARCOSG does not contain the original texts, so we have to reconstruct them in a consistent way.
+We use GOC (Gaelic Orthographic Conventions, https://www.sqa.org.uk/files_ccc/SQA-Gaelic_Orthographic_Conventions-En-e.pdf) for consistency in reconstructing spacing, but don’t apply any other corrections.</p>
+
+<p>According to the latest GOC:</p>
+<ul>
+  <li>There are spaces after <em>a’</em>, <em>b’</em>, <em>d’</em> or <em>m’</em>.</li>
+  <li>There are no spaces after <em>dh’</em>.</li>
+  <li>Do not close up before <em>‘m</em> or <em>‘n</em>.</li>
+</ul>
+
+<p>Also (not covered explicitly by GOC but shown in examples):</p>
+<ul>
+  <li>Close up <em>h-</em>, <em>t-</em>, and <em>n-</em>.</li>
+  <li>Don’t close up after <em>th’</em> and <em>bh’</em>.</li>
+</ul>
+
+<p>If an elided <em>a’</em> or <em>ag</em> before a verbal noun is indicated by <em>‘</em>, close this up.</p>
+
+<p>Close up around the hyphen in <em>a-measg</em>, <em>a-rèir</em>, <em>a-thaobh</em> and similar but don’t close up around hyphens if they’re being used as dashes.
+Also don’t attempt to bring into line with GOC by adding or taking away hyphens.</p>
+
+<p>Also close up <em>dhà-na-tri</em> (see fp05_012).</p>
+
+<h3 id="multiword-tokens">Multiword tokens</h3>
+
+<p>The original version of ARCOSG contains multiword tokens.
+For UD, however, we need to split these up. For the moment we duplicate the UPOS and the XPOS for each of the words.
+PROPNs have a <code class="highlighter-rouge">flat</code> relation; others have a <code class="highlighter-rouge">fixed</code> relation but this needs to be improved.</p>
+
+<p>Some difficult cases follow:</p>
+<h4 id="na-bna-bu"><em>na b’</em>/<em>na bu</em></h4>
+<p>Ideally this should be exactly parallel with <em>nas</em>.</p>
+<h4 id="sam-bith"><em>sam bith</em></h4>
+<p>Currently both are marked as <code class="highlighter-rouge">ADJ</code> but there is clearly internal structure.</p>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<p>Standard UPOS tags are used throughout. Generally we follow the choices made in the Irish UD treebanks.</p>
+<ul>
+  <li>AUX is used for <em>is</em> (the copula) only. <em>bi</em> is tagged as VERB.</li>
+  <li>The following words are tagged PART: the adverbialiser <em>gu</em> (<em>gu math</em> ‘well’), the comparative particle <em>nas</em>, the superlative particle <em>as</em>, the agreement particle <em>a</em> (<em>a dol</em> ‘to go’), the vocative particle <em>a</em> (<em>a Sheumais</em> ‘James’), the patronymic particles <em>Mac</em> and <em>Nic</em>, the numerical particle <em>a</em> (<em>a h-aon) ‘one’), the past tense marker _do</em>, the negative particles <em>cha</em> and <em>nach</em>, the interrogative particles <em>a</em> and <em>an</em> and the relative particle <em>a</em>.</li>
+  <li>Verbal nouns are tagged as NOUN.</li>
+  <li>Deverbal adjectives are tagged as ADJ.</li>
+  <li>The aspectual particles <em>ag</em>/<em>a’</em>, <em>air</em>, <em>gu</em> and <em>ri</em> (all prototypically adpositions) are tagged as ADP.</li>
+  <li>Demonstrative pronouns, <em>seo</em>, <em>sin</em> and <em>siud</em> are tagged as PRON as in Irish.</li>
+  <li>If they are acting as determiners (and tagged as Dd in ARCOSG) then they are tagged DET, as in Irish again.</li>
+</ul>
+
+<h3 id="features">Features</h3>
+
+<p>Gaelic has two genders (masculine and feminine), four cases (nominative/accusative, genitive, dative and vocative), three numbers (singular, dual and plural), the usual three persons and an impersonal form.</p>
+
+<p>The words <em>fèin</em> and <em>cheile</em> take Reflex = Yes.</p>
+
+<p>The indicative mood is default and we mark the conditional (Cnd), imperative (Imp) and interrogative (Int) moods. The tenses we mark are</p>
+
+<p>We also follow Irish in marking three pronoun types (Emp = emphatic, Int = interrogative and Rel = relative), polarity (Neg on negative particles) and the following particle types: Ad (adverbialiser), Comp (comparative), Cmpl (complement), Inf (agreement particle), Int (interrogative), Num (numerical), Pat (patronymic), Vb (verbal) and Voc (vocative).</p>
+
+<p>We also have Foreign=Yes for words that are in Irish or English according to the original ARCOSG tagging.</p>
+
+<h2 id="syntax">Syntax</h2>
+
+<h3 id="vso-clause-structure">VSO clause structure</h3>
+
+<p>Main clauses and subordinate clauses are VSO.
+The subject almost invariably follows the verb but</p>
+<ul>
+  <li><em>Chuala mi sin gun teagamh.</em> ‘I heard that without a doubt’ (V S O ADV)</li>
+  <li><em>Can gun do chaith thu e</em> ‘Say that you did it’ (V SCONJ past-tense-marker V S O)</li>
+</ul>
+
+<p>However, if there is an externally-controlled complement then the object follows the verbal noun if it is in the progressive aspect with a nominal object, but precedes it if it is in the progressive aspect with a pronominal object.</p>
+<ul>
+  <li><em>Bha iad a’ toirt an teachd-an-tìr</em> ‘They were making a living’ (V S asp V O)</li>
+  <li><em>Bheil thu ga mo leantainn?</em> ‘Are you following me?’ (V S asp O V)</li>
+  <li><em>Bha esan air a bhean a chaill</em> ‘He had lost his wife’ (V S asp O V)</li>
+</ul>
+
+<p>The same applies to the usual form of the passive:</p>
+<ul>
+  <li><em>Chaidh rannsachadh a dhèanamh</em> (V O V)</li>
+</ul>
+
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core arguments, oblique arguments and adjuncts</h3>
+
+<p>The core arguments are marked by <code class="highlighter-rouge">nsubj</code> and <code class="highlighter-rouge">obj</code> if they are noun phrases. Oblique arguments and adjuncts are marked by <code class="highlighter-rouge">obl</code> when they are prepositional phrases. Occasionally they are noun phrases in which case we use <code class="highlighter-rouge">obl:tmod</code> if they indicate a stretch of time or <code class="highlighter-rouge">obl:smod</code> if they indicate a distance.</p>
+
+<p>In terms of clausal subjects <code class="highlighter-rouge">csubj:cop</code> is used for expressions like:</p>
+<ul>
+  <li><em>B’ àbhaist do dhaoine saoilsinn…</em> ‘People usually think…’
+where <em>àbhaist do dhaoine</em> is the root, <em>bu</em> (here in the reduced form <em>b’</em>) is the copula and <em>saoilsinn</em> is the clausal subject. In Gaelic clefting constructions are much more common than in Irish:</li>
+  <li><em>‘se caoraich a th’ aice</em> ‘it is sheep that they have’</li>
+  <li><em>chan e gearrain aon duine a th’ ann</em> (lit. it is not the complaint of one person that is in it) ‘it is not the complaint of one person’
+The expletive particle <em>e</em> or <em>ann</em> is linked to the copula with <code class="highlighter-rouge">fixed</code>.</li>
+</ul>
+
+<h3 id="language-specific-labels">Language-specific labels</h3>
+<p>With one exception, these follow Irish:</p>
+<ul>
+  <li><code class="highlighter-rouge">acl:relcl</code> for relative clauses</li>
+  <li><code class="highlighter-rouge">case:voc</code> for vocative particles</li>
+  <li><code class="highlighter-rouge">csubj:cleft</code> for cleft subjects</li>
+  <li><code class="highlighter-rouge">csubj:cop</code> for copular clausal subjects</li>
+  <li><code class="highlighter-rouge">mark:prt</code> for particles not otherwise marked</li>
+  <li><code class="highlighter-rouge">nmod:poss</code> for possessive pronouns (but we use <code class="highlighter-rouge">obj</code> where the use of the possessive pronoun indicates an object)</li>
+  <li><code class="highlighter-rouge">obl:smod</code> (not in Irish) for spatial modifiers</li>
+  <li><code class="highlighter-rouge">obl:tmod</code> for temporal modifiers</li>
+  <li><code class="highlighter-rouge">xcomp:pred</code> for predicates of the substantive verb <em>bi</em> ‘to be’. <em>bi</em> does not take an object. To identify the predicate: the most likely is a verbal noun, followed by an existential prepositional phrase <em>ann</em> or a prepositional phrase expressing location, a noun phrase expressing temporal extent, spatial extent or cost, and lastly an adverb.</li>
+</ul>
+
+<hr />
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is one Scottish Gaelic UD treebank:</p>
+
+<ul>
+  <li><a href="../treebanks/UD_Scottish_Gaelic-ARCOSG/index.html">ARCOSG</a></li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li>Colin Batchelor, 2019. Universal dependencies for Scottish Gaelic: syntax, in Proceedings of CLTW2019 at Machine Translation Summit XVII, Dublin, August</li>
+  <li>Lamb, William, Sharon Arbuthnot, Susanna Naismith, and Samuel Danso. 2016. Annotated Reference Corpus of Scottish Gaelic (ARCOSG), 1997–2016 [dataset]. Technical report, University of Edinburgh; School of Literatures, Languages and Cultures; Celtic and Scottish Studies. https://doi.org/10.7488/ds/1411.</li>
+  <li>Lynn, Teresa and Jennifer Foster, [Universal Dependencies for Irish] (http://www.nclt.dcu.ie/~tlynn/Lynn_CLTW2016.pdf), CLTW 2016, Paris, France, July 2016</li>
+</ul>
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'gd';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014–2017
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

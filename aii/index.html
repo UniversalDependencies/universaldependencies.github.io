@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title><Assyrian> UD</title>
+    <title>Assyrian UD</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
@@ -71,58 +71,77 @@
   <li>Multiword tokens are not used in Assyrian.</li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
-
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>The tags INT, SYM and X are not used.</li>
+  <li>The tags <code class="highlighter-rouge">NUM</code>, <code class="highlighter-rouge">INTJ</code>, <code class="highlighter-rouge">SYM</code>, and <code class="highlighter-rouge">X</code> are not used.</li>
   <li>In this Assyrian treebank, 13 universal tags have been used.</li>
-  <li>Certain words like “ܒܜ , ܩܡ ,ܟܝ , ܚܘܫ , ܫܘܩ” are tagged as PART and have a dependency relation as AUX. Together with the following VERB, these words change the verb tense.</li>
+  <li>Certain words like “ܒܜ , ܩܡ ,ܟܝ , ܚܘܫ , ܫܘܩ” are tagged as <a href="">PART</a> and have a dependency relation as <a href="">aux</a>. Together with the following <a href="">VERB</a>, these words change the verb tense.</li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
 
 <h3 id="features">Features</h3>
 
 <ul>
-  <li>Nominal words (NOUN, PROPN and PRON) have an inherent Gender feature with values Masc or Fem.</li>
-  <li>Verbs inflect for Gender, Number and Person.</li>
-  <li>Number has 2 possible values: Sing and Plur.</li>
+  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with values <code class="highlighter-rouge">Masc</code> or <code class="highlighter-rouge">Fem</code>.
+    <ul>
+      <li>The following parts of speech inflect for <code class="highlighter-rouge">Gender</code> because they must agree with nouns: <a href="">ADJ</a>, <a href="">DET</a>,
+<a href="">VERB</a>, <a href="">AUX</a>.</li>
+    </ul>
+  </li>
+  <li><a href="">Number</a> has 2 possible values: Sing and Plur.</li>
+  <li>Verbs inflect for <a href="">Gender</a>, <a href="">Number</a>, <a href="">Person</a>, <a href="">Tense</a> and <a href="">Mood</a>. There are two types of verb forms (<a href="">VerbForm</a>): the finite verb (<code class="highlighter-rouge">Fin</code>) and the participle (<code class="highlighter-rouge">Part</code>).
+    <ul>
+      <li><a href="">Voice</a> is marked only for passive forms; we do not use <code class="highlighter-rouge">Voice=Act</code>.</li>
+    </ul>
+  </li>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>) and determiners (<a href="">DET</a>).</li>
+  <li>The <a href="">Poss</a> feature marks possessive personal pronouns.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="highlighter-rouge">1</code>, <code class="highlighter-rouge">2</code> and <code class="highlighter-rouge">3</code>.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>There are no morphological cases.</li>
+  <li>Nominal subject is a bare noun phrase. It typically precedes the verb. Its <a href="">Person</a>, <a href="">Number</a> and <a href="">Gender</a> are cross-referenced by the verb.</li>
+  <li>Nominal object is a bare noun phrase or a prepositional phrase. It typically follows the verb.</li>
+</ul>
 
-<hr />
+<h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
+
+<ul>
+  <li>The copula verb ܗܵܘܹܐ (be) is used in <!-- ??? equational, attributional, locative, possessive and benefactory nonverbal clauses. --></li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Assyrian:
+    <ul>
+      <li><a href="">acl:relcl</a> for relative clauses</li>
+      <li><a href="">aux:poss</a></li>
+      <li><a href="">nmod:poss</a></li>
+    </ul>
+  </li>
+  <li>The following relation types are not used in Assyrian at all:
+<a href="">expl</a>, <a href="">dislocated</a>, <a href="">vocative</a>, <a href="">appos</a>, <a href="">nummod</a>, <a href="">clf</a>, <a href="">fixed</a>, <a href="">flat</a>, <a href="">list</a>, <a href="">orphan</a>, <a href="">goeswith</a>, <a href="">reparandum</a>, <a href="">dep</a></li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">0</a> Assyrian UD treebanks:</p>
+<p>There is only one Assyrian UD treebank at present:</p>
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="highlighter-rouge">*-index.html</code> page in the <code class="highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
+<ul>
+  <li><a href="../treebanks/aii_as/index.html">Assyrian-AS</a></li>
+</ul>
 
 
       </div>
