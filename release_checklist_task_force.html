@@ -103,9 +103,14 @@ instead of the invalid new version.)</li>
   <li>Update statistics in the <code class="highlighter-rouge">stats.xml</code> file in each repository:<br />
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; ( ../tools/conllu-stats.pl *.conllu &gt; stats.xml ) ; git add stats.xml ; git commit -m 'Updated statistics.' ; git push ; cd .. ; echo ; done</code></li>
   <li>Merge the <code class="highlighter-rouge">dev</code> branch into <code class="highlighter-rouge">master</code> in the released repositories.
-(Note: the script <code class="highlighter-rouge">package_ud_release.sh</code>, that we will later use to create the release, generates plain text files from the CoNLL-U files. So far, the plain text files appear only in the released package but not in the Github treebank repository. Maybe we want to add these files to the master branch as well? But then we would have to generate them before we merge the branches here. And we must decide whether we want to have the files in the dev branch as well, like we do with <code class="highlighter-rouge">stats.xml</code>.)
 The <code class="highlighter-rouge">master</code> branch should not be touched the next six months and it should have exactly the contents that was officially
-released.<br />
+released.
+(Exceptions: the script <code class="highlighter-rouge">package_ud_release.sh</code>, that we will later use to create the release,
+generates plain text files from the CoNLL-U files. The plain text files appear only in the
+released package but not in the Github treebank repository.
+On the other hand, below we generate treebank evaluation log that appears only in the <code class="highlighter-rouge">master</code>
+branch but not in the <code class="highlighter-rouge">dev</code> branch nor in the released package.)
+<br />
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev --no-edit ; git push ; git checkout dev ; cd .. ; echo ; done</code>
     <ul>
       <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code class="highlighter-rouge">master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the <code class="highlighter-rouge">master</code> branch and git will not allow any further operations with them!<br />
