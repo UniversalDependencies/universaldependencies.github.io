@@ -68,9 +68,9 @@
   <li>Words are delimited based on whitespace and punctuation.</li>
   <li>No multi-word tokens occur. However, multi-word units exist and have been segmented based on whitespace as well. In the current dataset, they appear in the following forms:
     <ul>
-      <li>adjectives, i.e. i madh (big)</li>
-      <li>pronouns, i.e. i cili (who)</li>
-      <li>nouns (nominalized participle), i.e. të vdekurit (the dead)</li>
+      <li>adjectives, i.e. <em>i madh</em> (big)</li>
+      <li>pronouns, i.e. <em>i cili</em> (who)</li>
+      <li>nouns (nominalized participle), i.e. <em>të vdekurit</em> (the dead)</li>
     </ul>
   </li>
 </ul>
@@ -80,14 +80,14 @@
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>Out of the 17 tags, only 14 were used (<code class="highlighter-rouge">SYM</code>, <code class="highlighter-rouge">INT</code> and <code class="highlighter-rouge">X</code> did not occur).</li>
+  <li>Out of the 17 tags, only 14 were used (<code class="highlighter-rouge">SYM</code>, <code class="highlighter-rouge">INTJ</code> and <code class="highlighter-rouge">X</code> did not occur).</li>
   <li>The following words were tagged as <a href="">PART</a>:
     <ul>
       <li>the negative markers: <em>s’</em>, <em>nuk</em></li>
       <li>the particle used to build the comparative and superlative degree of adjectives and adverbs: <em>më</em></li>
       <li>the particle which functions as an adverbial: <em>madje</em></li>
       <li>the particle <em>të</em> when occuring in front of verbs.</li>
-      <li>the particle <em>duke</em> which is used to build he gerund form of verbs.</li>
+      <li>the particle <em>duke</em> which is used to build the gerund form of verbs.</li>
     </ul>
   </li>
   <li>Auxiliaries (<a href="">AUX</a>) can be listed as follows:
@@ -98,20 +98,20 @@
       <li>The copula <em>jam</em> (to be)</li>
     </ul>
   </li>
-  <li>The tag DET is used for articles/clitics (<em>i/e/të/një</em>) both for those forming adjectival and pronomial multi-word units and those forming the genitive/ablative/dative case of nouns.</li>
-  <li>The tag PRON is used for all types of pronouns.</li>
-  <li>Participles (past) are mainly used adjectivally in Albanian and are generally tagged as <a href="">ADJ</a>. The only exception is when these occur in a nominalized form, in which case they are tagged as NOUN i.e. të vdekurit (the dead).</li>
+  <li>The tag <a href="">DET</a> is used for articles/clitics (<em>i/e/të/një</em>) both for those forming adjectival and pronomial multi-word units and those forming the genitive/ablative/dative case of nouns.</li>
+  <li>The tag <a href="">PRON</a> is used for all types of pronouns.</li>
+  <li>Participles (past) are mainly used adjectivally in Albanian and are generally tagged as <a href="">ADJ</a>. The only exception is when these occur in a nominalized form, in which case they are tagged as <a href="">NOUN</a> i.e. të vdekurit (the dead).</li>
 </ul>
 
 <h3 id="features">Features</h3>
 
 <ul>
-  <li>Nouns have inherent <a href="">Gender</a>, <code class="highlighter-rouge">MASC</code> or<code class="highlighter-rouge">FEM</code>. They inflect for <a href="">Definite</a> (definite or indefinite, marked as suffix), <a href="">Number</a> (singular or plural) and <a href="">Case</a> (nominative, genitive, dative, accusative, vocative and ablative). For those nouns that change gender in plural, the feature NounType=Het has been provided additionally.</li>
-  <li>Verbs inflect for <a href="">Aspect</a> (imperfect, perfect), <a href="">Mood</a> (indicative, subjunctive, admirative, imperative, conditional, optative) <a href="">Number</a> (singular or plural), <a href="">Person</a> (first, second, third), tense (past or present) and <a href="">Voice</a> (active or passive/mediopassive). There are three types of nonfinite forms: infinitives, past participle/supine (used to form perfect tenses together with the auxiliary to have/to be or other verb constructions, i.e. <em>për të shkruajtur</em> (in order to write). However, in case of non-finite verb forms only the feature <a href="">VerbForm</a> has been provided.</li>
+  <li>Nouns have inherent <a href="">Gender</a>, <code class="highlighter-rouge">Masc</code> or<code class="highlighter-rouge">Fem</code>. They inflect for <a href="">Definite</a> (definite or indefinite, marked as suffix), <a href="">Number</a> (singular or plural) and <a href="">Case</a> (nominative, genitive, dative, accusative, vocative and ablative). For those nouns that change gender in plural, the feature <code class="highlighter-rouge">NounType=Het</code> has been provided additionally.</li>
+  <li>Verbs inflect for <a href="">Aspect</a> (imperfect, perfect), <a href="">Mood</a> (indicative, subjunctive, admirative, imperative, conditional, optative) <a href="">Number</a> (singular or plural), <a href="">Person</a> (first, second, third), <a href="">Tense</a> (past or present) and <a href="">Voice</a> (active or passive/mediopassive). There are three types of nonfinite forms: infinitives, past participle/supine (used to form perfect tenses together with the auxiliary to have/to be or other verb constructions, i.e. <em>për të shkruajtur</em> (in order to write). However, in case of non-finite verb forms only the feature <a href="">VerbForm</a> has been provided.</li>
   <li>Adjectives agree with nouns with respect to the features <a href="">Gender</a>, <a href="">Number</a>, <a href="">Case</a> and <a href="">Definite</a>. In addition, many adjectives inflect for <a href="">Degree</a> (positive, comparative, superlative). In this Treebank, only the features <a href="">Gender</a>, <a href="">Number</a> and <a href="">VerbForm</a> were included in the morphological analysis.</li>
   <li>Adverbs inflect only for <a href="">Degree</a>.</li>
   <li>Personal pronouns inflect for <a href="">Case</a> with four values (nominative, accusative, dative, ablative), <a href="">Number</a> and <a href="">Gender</a>. Here, the following features were stated: <a href="">Gender</a>, <a href="">Number</a> and <a href="">PronType</a>.</li>
-  <li>For Determiners, only <a href="">Gender</a> has been provided, although number, and case apply as well.
+  <li>For Determiners, only <a href="">Gender</a> has been provided, although number and case apply as well.
     <ul>
       <li>Note about DET: Determiners (which only preceed nouns in order to form cases) agree in Gender and Number with the head of the noun phrase and not the noun that is their head (the noun for which they act as case markers). i.e. shkronjat (FEM, PL) e (FEM, PL) librit (MASC, SING) (The letters of the book). This is why, when inflecting nouns for case, one leaves undetermined the gender of the DET in grammar books and provides all options.</li>
     </ul>
@@ -131,12 +131,12 @@
   <li>The copula verb <em>jam</em> (to be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses.                  Existential clauses normally use the verb <em>kam</em> (have), i.e. <em>nuk ka njeri</em> (Gloss 1-1: not has person, freely translated as: there is no one).</li>
   <li>The following subtypes are used in Albanian:
     <ul>
-      <li>acl:relcl for relative clauses</li>
-      <li>csubj:pass for clausal subjects of passive verbs or impersonal verb constructions (i.e. it is my duty <em>to say</em>…)</li>
-      <li>nmod:poss for possessive/genitive modifiers</li>
-      <li>det:adj for prearticulated adjectives</li>
-      <li>det:pron for prearticulated pronouns</li>
-      <li>det:noun for prearticulated nouns</li>
+      <li><a href="">acl:relcl</a> for relative clauses</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs or impersonal verb constructions (i.e. it is my duty <em>to say</em>…)</li>
+      <li><a href="">nmod:poss</a> for possessive/genitive modifiers</li>
+      <li><a href="">det:adj</a> for prearticulated adjectives</li>
+      <li><a href="">det:pron</a> for prearticulated pronouns</li>
+      <li><a href="">det:noun</a> for prearticulated nouns</li>
     </ul>
   </li>
 </ul>
