@@ -99,7 +99,7 @@ flat(4, 1997)
 
 <h4 id="days-of-the-week">Days of the week</h4>
 
-<p><em>Dé</em> is a particle that introduces days of the week. The particular day of the week follows <em>Dé</em> in the genitive case. We treat this like a proper noun string, i.e. with the flat relation.</p>
+<p><em>Dé</em> is a particle that introduces days of the week. The particular day of the week follows <em>Dé</em> in the genitive case. We treat this as having no phrasal structure, i.e. with the flat relation.</p>
 
 <p><em>Dé <b>Sathairn</b></em> ‘(on) Saturday’</p>
 
@@ -117,6 +117,37 @@ flat(Dé, Domhnaigh)
 
 <pre><code class="language-sdparse">ranganna seteanna agus céilí do dhaoine fásta gach oíche Dé Luain ag 8.30. \n Classes of_sets and of_céilí for people grown every night [] of_Monday at 8.30 
 flat(Dé,Luain)
+</code></pre>
+
+<h4 id="months-of-the-year">Months of the year</h4>
+
+<p>Per the UD guidelines regarding the treatment of <a href="https://universaldependencies.org/u/dep/all.html#dates-and-complex-numerals">Dates and Complex Numerals</a>, date expressions with a clear syntactic structure should be annotated with regular dependency relations.</p>
+
+<p><em>Phós siad ar an 10ú lá de mhí na Nollag</em> ‘They got married on the 10th of December’</p>
+
+<pre><code class="language-sdparse">Phós siad ar an 10ú lá de mhí na Nollag \n Married they on the 10th day of_the month of December []
+nummod(lá,10ú)
+obl(lá,Phós)
+nmod(lá,mhí)
+nmod(mhí,Nollag)
+</code></pre>
+
+<p>However, the <code class="highlighter-rouge">flat</code> relation should be used for date expressions which have a flat structure with no clearly discernible head.</p>
+
+<p><em>10-12 Deireadh <b>Fómhair</b></em> ‘10-12 December’</p>
+
+<pre><code class="language-sdparse">10-12 Deireadh Fómhair \n 10-12 December []
+flat(10,12)
+flat(10,Deireadh)
+flat(10,Fómhair)
+</code></pre>
+
+<p>NOTE: Several months of the year in Irish are composed of two nouns. In this case, the second noun is treated as <code class="highlighter-rouge">flat</code> on the first.</p>
+
+<p><em>Meán <b>Fómhair</b></em> ‘September’</p>
+
+<pre><code class="language-sdparse">Meán Fómhair \n September []
+flat(Meán,Fómhair)
 </code></pre>
 
 
