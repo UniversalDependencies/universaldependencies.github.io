@@ -67,7 +67,7 @@ Note, we use the language specific labels <a href="https://universaldependencies
 
 <p>The <code class="highlighter-rouge">flat</code> label is also used to attach what was previously labelled as <code class="highlighter-rouge">foreign</code>.</p>
 
-<h3 id="example">Example</h3>
+<h3 id="proper-nouns">Proper nouns</h3>
 
 <p><em>Tá muintir Chorcaí an-mhíshásta le Fianna <b>Fáil</b></em> ‘Cork people are very unhappy with Fianna <b>Fáil</b>’</p>
 
@@ -84,30 +84,9 @@ flat(Bhaile, Thiar)
 flat(Bhaile, Thuaidh)
 </code></pre>
 
-<p>NOTE: Information clusters that contain dates/times should be labelled in the following way:</p>
-
-<p><em>Ní mór na foirmeacha (…) a <b>bheith</b> san Ardoifig roimh 5.00 <b>p.m.</b>, <b>Aoine</b>, <b>4</b> <b>Aibreán</b> <b>1997</b>.</em> The forms must be submitted to Head Office before 5:00 <b>p.m.</b>, <b>Friday</b>, <b>4</b> <b>April</b> <b>1997</b>.</p>
-
-<pre><code class="language-sdparse">Ní mór na foirmeacha (...) a bheith san Ardoifig roimh 5.00 p.m. , Aoine , 4 Aibreán 1997 . \n Must be the forms (...) to being in_the Head_office before 5.00 p.m. , Friday , 4 April 1997 .
-obl:tmod(bheith, p.m.)
-obl:tmod(bheith, Aoine)
-obl:tmod(bheith, 4)
-nummod(p.m., 5.00)
-flat(4, Aibreán)
-flat(4, 1997)
-</code></pre>
-
-<p>Similarly, date strings with no discernible internal syntactic structure should also be treated as flat per the UD guidelines.</p>
-
-<p><em>sa bhliain <b>1975</b></em> `in the year <b>1975</b>’</p>
-
-<pre><code class="language-sdparse">sa bhliain 1975 \n in year 1975
-flat(bhliain, 1975)
-</code></pre>
-
 <h4 id="days-of-the-week">Days of the week</h4>
 
-<p><em>Dé</em> is a particle that introduces days of the week. The particular day of the week follows <em>Dé</em> in the genitive case. We treat this as having no phrasal structure, i.e. with the flat relation.</p>
+<p><em>Dé</em> is a particle that introduces days of the week. The particular day of the week follows <em>Dé</em> in the genitive case. We treat this as having no phrasal structure, i.e. with the <code class="highlighter-rouge">flat</code> dependency relation.</p>
 
 <p><em>Dé <b>Sathairn</b></em> ‘(on) Saturday’</p>
 
@@ -127,7 +106,7 @@ flat(Dé, Domhnaigh)
 flat(Dé,Luain)
 </code></pre>
 
-<h4 id="months-of-the-year">Months of the year</h4>
+<h4 id="date-strings">Date strings</h4>
 
 <p>Per the UD guidelines regarding the treatment of <a href="https://universaldependencies.org/u/dep/all.html#dates-and-complex-numerals">Dates and Complex Numerals</a>, date expressions with a clear syntactic structure should be annotated with regular dependency relations.</p>
 
@@ -150,7 +129,28 @@ flat(10,Deireadh)
 flat(10,Fómhair)
 </code></pre>
 
-<p>NOTE: Several months of the year in Irish are composed of two nouns. In this case, the second noun is treated as <code class="highlighter-rouge">flat</code> on the first.</p>
+<p><em>Ní mór na foirmeacha (…) a <b>bheith</b> san Ardoifig roimh 5.00 <b>p.m.</b>, <b>Aoine</b>, <b>4</b> <b>Aibreán</b> <b>1997</b>.</em> The forms must be submitted to Head Office before 5:00 <b>p.m.</b>, <b>Friday</b>, <b>4</b> <b>April</b> <b>1997</b>.</p>
+
+<pre><code class="language-sdparse">Ní mór na foirmeacha (...) a bheith san Ardoifig roimh 5.00 p.m. , Aoine , 4 Aibreán 1997 . \n Must be the forms (...) to being in_the Head_office before 5.00 p.m. , Friday , 4 April 1997 .
+obl:tmod(bheith, p.m.)
+obl:tmod(bheith, Aoine)
+obl:tmod(bheith, 4)
+nummod(p.m., 5.00)
+flat(4, Aibreán)
+flat(4, 1997)
+</code></pre>
+
+<p>Similarly, simpler date strings with no internal syntactic structure should also be treated as <code class="highlighter-rouge">flat</code> per the UD guidelines.</p>
+
+<p><em>sa bhliain <b>1975</b></em> `in the year <b>1975</b>’</p>
+
+<pre><code class="language-sdparse">sa bhliain 1975 \n in year 1975
+flat(bhliain, 1975)
+</code></pre>
+
+<h4 id="months-of-the-year">Months of the year</h4>
+
+<p>Several months of the year in Irish are composed of two nouns with the second in the genitive case. In cases like these, the second noun is treated as <code class="highlighter-rouge">flat</code> on the first.</p>
 
 <p><em>Meán <b>Fómhair</b></em> ‘September’</p>
 
