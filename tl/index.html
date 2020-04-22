@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-tl">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_tl/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_tl/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -64,57 +64,82 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>Words are generally delimited by whitespace. Exceptions:
+    <ul>
+      <li>compound words separated by a hyphen are tokenized independently (e.g. <em>bukod</em>  + <em>-</em> + <em>tangi</em>) if each word can be taken as a separate semantic expression forming a whole</li>
+      <li>contractions are tokenized independently whenever possible (e.g. <em>iba</em> + <em>‘t</em>)</li>
+      <li>occurrences of the linker <em>-ng</em> are annotated as multi-word tokens, (e.g. surface form: <em>maraming</em>, underlying words: <em>marami</em> + <em>-ng</em>)</li>
+    </ul>
+  </li>
+  <li>Words with spaces do not regularly occur in Tagalog.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Tagalog uses 16 out of the 17 universal POS tags. The auxiliary (<a href="https://universaldependencies.org/u/pos/AUX_.html">AUX</a>) tag is not used, as equivalent function words in Tagalog are classified as verbs or adverbs, and no copulas exist.
+    <ul>
+      <li>Note: the UD_Tagalog-TRG treebank incorrectly labels the verb <em>may</em> “there is” as <a href="https://universaldependencies.org/u/pos/AUX_.html">AUX</a>. This will be updated in a future release.</li>
+    </ul>
+  </li>
+  <li>Several word types are classified as particles (<a href="https://universaldependencies.org/u/pos/PART.html">PART</a>). These fall under two categories:
+    <ul>
+      <li>grammatical particles (the inversion marker <em>ay</em>; and relative or linking markers <em>na</em> and <em>-ng</em>)</li>
+      <li>lexical particles (the question marker <em>ba</em>, the negation marker <em>hindi</em>, fillers such as <em>e</em>, <em>o</em>, and <em>a</em>, and the honorific <em>po</em>)</li>
+    </ul>
+  </li>
+  <li>Quantifiers (including the pluralizer <em>mga</em> and indefinite quantifiers such as <em>marami</em> “many” and <em>ilan</em> “some”) are classified as determiners (<a href="https://universaldependencies.org/u/pos/DET.html">DET</a>). Possessive pronouns are classified under pronouns (<a href="https://universaldependencies.org/u/pos/PRON.html">PRON</a>) since several identical word forms are also used to indicate the objective case.
+    <ul>
+      <li>Note: the UD_Tagalog-TRG treebank incorrectly labels the adposition <em>ang</em> as <a href="https://universaldependencies.org/u/pos/DET.html">DET</a>. This will be updated in a future release.</li>
+    </ul>
+  </li>
+  <li>Case-marking function words are tagged as adpositions (<a href="https://universaldependencies.org/u/pos/ADP.html">ADP</a>). These include:
+    <ul>
+      <li>the topic marker <em>ang</em></li>
+      <li>the non-topic marker <em>ng</em></li>
+      <li>oblique markers such as <em>sa</em>, <em>mula sa</em>, <em>para sa</em>, <em>sa pamamamgitan ng</em>, etc.</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<ul>
+  <li>To be determined.</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h3 id="core-arguments-and-adjuncts">Core Arguments and Adjuncts</h3>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>Tagalog uses the (Austronesian voice system)[https://en.wikipedia.org/wiki/Austronesian_alignment], a typologically unusual class of morphosyntactic alignment. In Tagalog, two core arguments (the topic argument and non-topic argument) are marked by prepositions, with their semantic roles determined by voice affixes on the verb. For the purposes of UD annotation, the following guidelines are used:
+    <ul>
+      <li>The topic argument (marked by the preposition <em>ang</em>) is attached to the predicate using the (nsubj)[https://universaldependencies.org/u/dep/nsubj.html] relation.</li>
+      <li>The non-topic argument (marked by the preposition <em>ng</em>) is attached to the predicate using the (obj)[https://universaldependencies.org/u/dep/obj.html] relation.</li>
+      <li>Other adjuncts are attached to the predicate using the (obl)[https://universaldependencies.org/u/dep/obl.html] relation.</li>
+    </ul>
+  </li>
+</ul>
 
-<hr />
+<h3 id="non-verbal-predicates">Non-verbal Predicates</h3>
+
+<ul>
+  <li>Non-verbal clauses (such as noun, adverb, or adjective phrases) may be used as predicates in Tagalog. In these instances, the highest node of the clause is labeled as (root)[https://universaldependencies.org/u/dep/root.html], and all other nodes typically connected to the root verb are instead connected to this node.</li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There are <a href="../treebanks/tl-comparison.html">2</a> Tagalog UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/tl_trg/index.html">Tagalog-TRG</a></li>
+  <li><a href="../treebanks/tl_ugnayan/index.html">Tagalog-Ugnayan</a></li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="highlighter-rouge">*-index.html</code> page in the <code class="highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
 
       </div>
