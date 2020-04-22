@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Serbian UD</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-hr">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hr/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <!-- Inspired by an old proposal for language-specific documentation here: http://universaldependencies.org/v2/minimaldoc.html
+     If we agree on a scheme like this, the old proposal should be updated and made visible in the “How to Contribute” section;
+     right now it is probably not linked from anywhere. -->
+
+<h1 id="ud-for-croatian-and-serbian----">UD for Croatian and Serbian  <span class="flagspan"> <img class="flag" src="../../flags/svg/HR.svg" /> <img class="flag" src="../../flags/svg/SR.svg" /></span></h1>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>In general, words are delimited by whitespace characters. In cases where a word is immediately followed or preceded by a punctuation sign (comma, full stop, parentheses, etc.), a white space is inserted between the word and the punctuation. In this way, punctuation signs are treated as separate tokens, with a few exceptions:
+    <ul>
+      <li>Full stops separating digits in a large number (“65.000” stands for sixty-five-thousand, one token)</li>
+      <li>Hyphens in compounds such as <em>etno-selo</em> “ethnic (traditional) village” (one tokens) and for abbreviations such as <em>atd.</em> “etc.”
+(two tokens).</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<ul>
+  <li>All 17 universal POS categories are used.</li>
+  <li>Pronominal quantifiers (which the traditional grammar includes in numerals) are <a href="">DET</a>.</li>
+  <li>There are two auxiliary verbs (<a href="">AUX</a>), <em>biti</em> (“to be”, past tense) and <em>ht(j)eti</em> (“will”, future tense); the latter can be attached to a verb in Serbian (e.g. <em>pružiće</em> “will provide”), but NOT in Croatian (e.g. <em>pružit će</em> “will provide”).</li>
+</ul>
+
+<h3 id="nominal-features">Nominal Features</h3>
+
+<ul>
+  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with one of three values: <code class="highlighter-rouge">Masc</code>, <code class="highlighter-rouge">Fem</code> or <code class="highlighter-rouge">Neut</code>.
+In some cases the masculine gender is further subclassified by the <a href="">Animacy</a> values <code class="highlighter-rouge">Anim</code> and <code class="highlighter-rouge">Inan</code>.
+Feminine and neuter nominals do not distinguish animacy grammatically.
+    <ul>
+      <li>The following parts of speech inflect for <code class="highlighter-rouge">Gender</code> and <code class="highlighter-rouge">Animacy</code> because they must agree with nouns: <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>,
+<a href="">VERB</a>, <a href="">AUX</a>. For verbs (including auxiliaries), only participles and converbs inflect for gender. Finite verbs don’t.</li>
+    </ul>
+  </li>
+  <li>There are two values of the <a href="">Number</a> feature are <code class="highlighter-rouge">Sing</code> and <code class="highlighter-rouge">Plur</code>. The following parts of speech inflect for number:
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite, participles and converbs), marginally <a href="">NUM</a>.</li>
+  <li><a href="">Case</a> has 7 possible values: <code class="highlighter-rouge">Nom</code>, <code class="highlighter-rouge">Gen</code>, <code class="highlighter-rouge">Dat</code>, <code class="highlighter-rouge">Acc</code>, <code class="highlighter-rouge">Voc</code>, <code class="highlighter-rouge">Loc</code>, <code class="highlighter-rouge">Ins</code>.
+    <ul>
+      <li>It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>.</li>
+      <li>The <code class="highlighter-rouge">Case</code> feature also occurs with prepositions (<a href="">ADP</a>). Here it is a lexical feature. Prepositions do not inflect for case but they subcategorize for the case of their noun phrase.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="degree-and-polarity">Degree and Polarity</h3>
+
+<ul>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>) and has one of three possible values: <code class="highlighter-rouge">Pos</code>, <code class="highlighter-rouge">Cmp</code>, <code class="highlighter-rouge">Sup</code>.</li>
+  <li><a href="">Polarity</a> has two values, <code class="highlighter-rouge">Pos</code> and <code class="highlighter-rouge">Neg</code>, and applies primarily to verbs (<a href="">VERB</a>, <a href="">AUX</a>), adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>)
+that can be negated using the bound morpheme <em>ne-</em>.
+    <ul>
+      <li>Typically <em>ne</em> occurs as an independent negation particle (<a href="">PART</a>) and is marked with <code class="highlighter-rouge">Polarity=Neg</code>.</li>
+      <li>Negated nouns are rare and considered lexical derivations (e.g <em>nepravda</em> “injustice”)</li>
+      <li>The <code class="highlighter-rouge">Polarity</code> feature is not used with pronouns and determiners, although there is a subset of negative pronouns and determiners.
+The <code class="highlighter-rouge">PronType=Neg</code> feature is used there instead.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="verbal-features">Verbal Features</h3>
+
+<ul>
+  <li>Although verbs have a lexical <a href="">Aspect</a>, either imperfective (<code class="highlighter-rouge">Imp</code>) or perfective (<code class="highlighter-rouge">Perf</code>), like in Czech, this category is not included in the language-specific features.</li>
+  <li>Finite verbs always have one of three values of <a href="">Mood</a>: <code class="highlighter-rouge">Ind</code>, <code class="highlighter-rouge">Imp</code> or <code class="highlighter-rouge">Cnd</code>.</li>
+  <li>Verbs in the indicative mood always have one of three values of <a href="">Tense</a>: <code class="highlighter-rouge">Past</code>, <code class="highlighter-rouge">Pres</code> or <code class="highlighter-rouge">Fut</code>.
+    <ul>
+      <li>There are two values of the <a href="">Voice</a> feature: <code class="highlighter-rouge">Act</code> and <code class="highlighter-rouge">Pass</code>. Only the passive participle has <code class="highlighter-rouge">Voice=Pass</code>. All other verb forms have
+<code class="highlighter-rouge">Voice=Act</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>) and adjectives (<a href="">ADJ</a>).</li>
+  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>moj</em> “my”),
+possessive interrogative and possessive relative determiners (e.g. <em>čiji</em> “whose”)
+and possessive adjectives (e.g. <em>očev</em> “father’s”).</li>
+  <li>The <a href="">Reflex</a> feature marks reflexive particles <em>(se, si)</em> and determiners <em>(svoj)</em>. It is always used together with <code class="highlighter-rouge">PronType=Prs</code>.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="highlighter-rouge">1</code>, <code class="highlighter-rouge">2</code> and <code class="highlighter-rouge">3</code>.
+With personal possessive determiners (<a href="">DET</a>), the feature actually encodes the person of the possessor.
+Person is not marked on other types of pronouns and on nouns, although they can be almost always interpreted as the 3rd person.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
+  <li>There are two <a href="../../u/overview/feat-layers.html">layered features</a>, <a href="">Gender[psor]</a> and <a href="">Number[psor]</a>.
+They appear with certain possessive adjectives and determiners and encode the lexical gender/number of the possessor.
+The extra layer is needed to distinguish these lexical features from the inflectional gender and number
+that mark agreement with the modified (possessed) noun.</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<p>This is an overview of the implementation of the general UD guidelines for Croatian and Serbian. As the syntax of these two languages is very similar to Czech, Czech-specific examples scattered across the general UD guidelines might be helpful too.</p>
+
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
+
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase in the nominative case, without preposition.
+    <ul>
+      <li>If the noun phrase is quantified, it may be in the genitive, which is required by the quantifier.
+If this is the case, then the quantifier is attached using a special relation, either <a href="">nummod:gov</a> or <a href="">det:numgov</a>.</li>
+      <li>An infinitive verb may serve as the subject and is labeled as clausal subject, <a href="">csubj</a>.
+On the other hand, verbal nouns as subjects are just <code class="highlighter-rouge">nsubj</code>.</li>
+      <li>A finite subordinate clause may serve as the subject and is labeled <code class="highlighter-rouge">csubj</code>.</li>
+    </ul>
+  </li>
+  <li>While traditional grammars distinguish between direct and indirect objects (like in Czech), we do not annotate any indirect object, but distinguish between objects labeled <a href="">obj</a> and oblique constituents labeled <a href="">obl</a>.
+    <ul>
+      <li>Bare accusative phrases considered objects.</li>
+      <li>All other constituents (bare phrases in oblique cases, prepositional phrases) are considered oblique.</li>
+      <li>Accusative objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
+      <li>If a verb subcategorizes for the infinitive (e.g. modal verbs or verbs of control), the infinitival complement is labeled <a href="">xcomp</a>.</li>
+    </ul>
+  </li>
+  <li>Adjuncts (adverbial modifiers realized as noun phrases) are usually
+  prepositional phrases, but they can be bare noun phrases as well. These dependencies , including temporal modifiers (e.g.  <em>svake godine</em> “every year” are all labeled <a href="">obl</a>.</li>
+  <li>Extra attention has to be paid to clitic forms of reflexive pronouns <em>se</em> (accusative) and <em>si</em> (dative, more used in Croatian than in Serbian). Traditional grammars distinguish many different functions of these words, including (but not limited to) those listed in the documentation for Czech. We do not distinguish between most of these functions and label these words as <a href="">expl</a> unless they clearly function as <a href="">obj</a>. This decision is motivated by theoretical finings showing that traditional distinctions do not hold in most of the cases. Instead, the common function of the reflexive particle across different uses is to mark a reduction in the number of core arguments of the verb (either object or subject is not expressed).</li>
+  <li>Passive voice is not marked in syntactic relations (e.g. no distinction between active and passive subjects), only in verbal features (as described above).</li>
+</ul>
+
+<h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
+
+<ul>
+  <li>The copula verb <em>biti/jeste</em> (be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses.</li>
+</ul>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<ul>
+  <li><a href="../treebanks/hr_set/index.html">Croatian-SET</a></li>
+  <li><a href="../treebanks/sr_set/index.html">Serbian-SET</a></li>
+</ul>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'hr';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014–2020
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
