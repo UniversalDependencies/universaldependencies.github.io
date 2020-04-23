@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-is">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_is/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_is/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -64,57 +64,83 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>Words are generally delimited by whitespace or punctuation. Exceptions:
+    <ul>
+      <li>Numerical expressions (including dates) are treated as single words and may contain punctuation or whitespace. Dot following the last digit of a number indicates an ordinal numeral in Icelandic: <em>5.</em>, <em>1.1.1970</em>, <em>11:00</em>, <em>2.000</em>.</li>
+      <li>Abbreviations are treated as single words: <em>e.t.v.</em>, <em>t.d.</em>.</li>
+    </ul>
+  </li>
+  <li>Words with spaces are not used.</li>
+  <li>
+    <h2 id="imperative-verbal-form-and-cliticized-verbal-question-form-are-treated-as-multi-word-tokens-and-segmented-to-individual-syntactic-words">Imperative verbal form and cliticized verbal question form are treated as multi-word tokens and segmented to individual syntactic words.</h2>
+  </li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
+<p>The PoS-tags follow the universal tag set and do not add any language-specific PoS-tags. The morphological features follow the Icelandic tagging scheme described in (Helgadóttir et. al., 2012). PoS-tags and morphological features were converted automatically to the UD scheme, see details in (Jónsdóttir, 2020).</p>
+
+<p>Sigrún Helgadóttir, Ásta Svavarsdóttir, Eiríkur Rögnvaldsson, Kristín Bjarnadóttir and Hrafn Loftsson. 2012. The Tagged Icelandic Corpus (MÍM). Proceedings of the Workshop on Language Technology for Normalisation of Less-Resourced Languages -SaLTMiL 8 – AfLaT2012, s. 67-72. Istanbul, Turkey. Available online at malheildir.arnastofnun.is/mim
+Hildur Jónsdóttir. 2020. A Parallel Icelandic Dependency Treebank: Creation, Annotation and Evaluation. MA thesis, University of Iceland.  https://skemman.is/handle/1946/34784.</p>
+
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Icelandic uses all 17 universal tags.</li>
+  <li>The only word tagged with <a href="">PART</a> is the infinitive marker <em>að</em>.</li>
+  <li>Auxiliaries (<a href="">AUX</a>) are all verbal in Icelandic and can be grouped into four types:
+    <ul>
+      <li>The copula <em>vera</em> (be).</li>
+      <li>The auxiliary <em>hafa</em> (have), selects the supine form of the main verb to form perfect tenses.</li>
+      <li>The passive auxiliary verða (become), geta (can), fá (can) which combines with the past participle of the main verb to form passives.</li>
+      <li>Modal and aspectual verbs that combine with the bare infinitive of the main verb, such as mega (may), vilja (want), munu (will) and skulu (shall).</li>
+    </ul>
+  </li>
+  <li>The tag <a href="">DET</a> is used for articles and pronominal words used with a determiner function, including possessives. The tag <a href="">PRON</a> is reserved for pronouns occurring as the head of a noun phrase.</li>
+  <li>Participles (both present and past) are tagged with <a href="">ADJ</a>.</li>
+  <li>Foreign proper names are tagged <a href="">PROPN</a>.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<p>Features</p>
+<ul>
+  <li>Nouns have inherent gender (masc, fem or neutral), inflect for number (singular or plural), case (nominative, accusative, dative or genitive) and can take indefinite or definite article.</li>
+  <li>Verbs can be used in the passive and the active voice. Finite forms in indicative or subjunctive mood in addition inflect for Tense (present or past), person (1, 2 or 3) and number (singular or plural). The imperative mood inflects for number (singular or plural). There are three types of nonfinite forms: infinitives, participles (present and past), and supine (used to form perfect tenses together with the auxiliary have). The past participle additionally inflects for gender (masc, fem or neutral), number (singular or plural) and case (nom or acc).</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<p>Subjects have the following characteristics:</p>
+<ul>
+  <li>Word order: Icelandic is an SVO language although SVO and VS(O) structures may occur as well as OVS (rare).</li>
+  <li>Case marking: Subjects usually occur in nominative case but quirky subjects take accusative, dative or genitive case (rare).</li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<p>Objects have the following characteristics:</p>
+<ul>
+  <li>Word order: Objects usually follow the main verb unless topicalized.</li>
+  <li>Case marking: Objects occur in accusative, dative or genitive case.</li>
+  <li>
+    <p>Passivization: Objects become (non-expletive) subjects when verbs are passivized.</p>
+  </li>
+  <li>The copula verb vera (be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses. Existential clauses normally use the verb participle til (vera til) or finnast.</li>
+</ul>
 
-<hr />
+<p>The following subtypes are used:
+acl:relcl for relative clauses
+compound:prt for verb particles
+flat:name for exocentric complex names
+flat:foreign for foreign names
+nmod:poss for possessive/genitive modifiers
+obl:arg for oblique arguments that are not adjuncts</p>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>Icelandic-PUD
+Icelandic-UniTree</p>
 
-<ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
-</ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="highlighter-rouge">*-index.html</code> page in the <code class="highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
 
       </div>
