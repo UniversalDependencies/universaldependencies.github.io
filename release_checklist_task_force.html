@@ -77,7 +77,7 @@ command assumes you have not modified your local copy of the data without pushin
 back; if this is the case, you will see lists of modified files in the output and you
 will have to resolve it). Also make sure that you are working with the <code class="highlighter-rouge">dev</code> branch:<br />
 <code>for i in UD_* ; do echo $i ; cd $i ; git checkout dev ; git pull --no-edit ; cd .. ; echo ; done</code></li>
-  <li>Run <code class="highlighter-rouge">tools/check_files.pl |&amp; tee release-2.5-report.txt | less</code>.
+  <li>Run <code class="highlighter-rouge">tools/check_files.pl |&amp; tee release-2.6-report.txt | less</code>.
 (Check the code for parameters that are currently hard-coded, such as the release number.)
 The script will visit all repositories and report any missing files, unexpected or unexpectedly named files.
 It will download the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">online validation report</a>
@@ -126,13 +126,13 @@ branch but not in the <code class="highlighter-rouge">dev</code> branch nor in t
   </li>
   <li>Re-evaluate the treebanks for the star ranking on the website. This is done only in the master branch and the result is stored there.<br />
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; cd .. ; perl -I tools tools/evaluate_treebank.pl $i --verbose &gt;&amp; $i/eval.log ; cd $i ; git add eval.log ; git commit -m 'Updated treebank evaluation.' ; git push ; git checkout dev ; cd .. ; done</code></li>
-  <li>Tag the current commit in all repositories with the tag of the current release (<code class="highlighter-rouge">git tag r2.5</code> for UD 2.5).
+  <li>Tag the current commit in all repositories with the tag of the current release (<code class="highlighter-rouge">git tag r2.6</code> for UD 2.6).
 Push the tag to Github: <code class="highlighter-rouge">git push origin --tags</code>.
 You may even tag a particular commit retroactively: <code class="highlighter-rouge">git tag -a r2.1 9fceb02</code>.
 If the repository is updated after you assigned the tag and you need to re-assign the tag to a newer commit,
 this is how you remove the tag from where it is now: <code class="highlighter-rouge">git tag -d r2.1</code>.
 And this is how you remove it from Github: <code class="highlighter-rouge">git push origin :refs/tags/r2.1</code>.<br />
-<code>for i in $(cat released_treebanks.txt) docs tools ; do echo $i ; cd $i ; git tag r2.5 ; git push --tags ; cd .. ; echo ; done</code>
+<code>for i in $(cat released_treebanks.txt) docs tools ; do echo $i ; cd $i ; git tag r2.6 ; git push --tags ; cd .. ; echo ; done</code>
 <strong>Note: We will later update certain files in the <code class="highlighter-rouge">docs</code> repository (statistics etc.)
 It may be thus better to wait with tagging the repositories until <code class="highlighter-rouge">docs</code> is in its final state.</strong></li>
 </ul>
@@ -143,7 +143,7 @@ It may be thus better to wait with tagging the repositories until <code class="h
   <li>Run the script that refreshes the title page of Universal Dependencies (list of languages, treebanks and their properties).<br />
 <code>cd docs-automation ; make all ; cd ../docs ; git pull --no-edit ; git commit -a -m 'Updated title page.' ; git push</code></li>
   <li>Run the <code class="highlighter-rouge">conllu-stats.pl</code> script again (but with different settings) and generate the long statistics that are displayed in the docs; note that the script takes the release number as a parameter and puts it in the generated index page:<br />
-<code>cd docs ; git pull --no-edit ; cd .. ; for i in $(cat released_treebanks.txt) ; do echo $i ; tools/conllu-stats.pl --oformat newdetailed --release 2.5 --treebank $i --docs docs ; echo ; done ; cd docs ; git add treebanks/*/*.md ; git commit -m 'Updated statistics.' ; git push ; cd ..</code></li>
+<code>cd docs ; git pull --no-edit ; cd .. ; for i in $(cat released_treebanks.txt) ; do echo $i ; tools/conllu-stats.pl --oformat newdetailed --release 2.6 --treebank $i --docs docs ; echo ; done ; cd docs ; git add treebanks/*/*.md ; git commit -m 'Updated statistics.' ; git push ; cd ..</code></li>
   <li>Generate side-by-side comparison whenever there are multiple treebanks of one language:<br />
 <code>perl tools/generate_comparison_of_treebanks.pl ; cd docs ; git add treebanks/*-comparison.md ; git commit -m 'Updated comparison of treebanks.' ; git push ; cd ..</code></li>
   <li>Run two other scripts that generate the lists of language-specific features and dependency
@@ -169,10 +169,10 @@ affected MarkDown file but it is an ugly approach.</li>
 <ul>
   <li>Run the script <tt>tools/package_ud_release.sh</tt>, which must find the release number in the environment,
 and its arguments are names of folders to be released.<br />
-<code>RELEASE=2.5 tools/package_ud_release.sh $(cat released_treebanks.txt)</code>
+<code>RELEASE=2.6 tools/package_ud_release.sh $(cat released_treebanks.txt)</code>
     <ul>
       <li>If we later find out that we need to fix a bug in one (or a few) repository, we can update the release folder without building everything from scratch:<br />
-<code>RELEASE=2.5 tools/package_ud_release.sh --update UD_X UD_Y</code></li>
+<code>RELEASE=2.6 tools/package_ud_release.sh --update UD_X UD_Y</code></li>
     </ul>
   </li>
   <li>Make the release packages temporarily available for download somewhere and ask the treebank providers to check them before we archive them in Lindat.</li>
@@ -212,7 +212,7 @@ change on approval and you can save it; however, it will not be operational as a
 
 <p><small><code style="color:lightgrey">
 \# copy metadata to biblio<br />
-rel="2.5"<br />
+rel="2.6"<br />
 path=$(pwd)<br />
 cd /net/data<br />
 tar xzf $path/release-$rel/ud-treebanks-v$rel.tgz<br />
