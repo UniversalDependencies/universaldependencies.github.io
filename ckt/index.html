@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-ckt">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ckt/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ckt/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -62,20 +62,37 @@
 
           <h1 id="ud-for-chukchi-">UD for Chukchi <span class="flagspan"><img class="flag" src="../../flags/svg/RU-CHU.svg" /></span></h1>
 
-<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+<h2 id="tokenisation-and-word-segmentation">Tokenisation and Word Segmentation</h2>
 
-<p>*</p>
+<p>Tokens in the corpus are defined as sequences of non-whitespace or punctuation
+characters separated by whitespace.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
+<p>Underneath tokens are syntactic words. These are words which take part
+in dependency relations.</p>
 
-<hr />
+<p>A single token may be split into more than one word based on the following criteria:</p>
+
+<ul>
+  <li>Emphatic clitics are split (notably <em>-ъм</em> and <em>-а</em>)</li>
+  <li>In non-absolutive noun phrases, attributive modifiers (nouns, adjectives and numerals)
+which have been incorporated are split. The splits are based on the provided gloss.</li>
+</ul>
+
+<p>Incorporation into lexical verbs does not involve splitting in the basic representation,
+sentences are annotated according to their surface syntax, e.g. a verb
+with an incorporated object is annotated as intransitive following its
+agreement morphology.</p>
+
+<p>In the enhanced representation, the argument structure is recovered,
+incorporated items are given nodes.</p>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<ul>
+  <li><code class="highlighter-rouge">ADJ</code> <code class="highlighter-rouge">ADP</code> <code class="highlighter-rouge">ADV</code> <code class="highlighter-rouge">AUX</code> <code class="highlighter-rouge">CCONJ</code> <code class="highlighter-rouge">DET</code>? <code class="highlighter-rouge">INTJ</code> <code class="highlighter-rouge">NOUN</code> <code class="highlighter-rouge">NUM</code> <code class="highlighter-rouge">PART</code> <code class="highlighter-rouge">PRON</code> <code class="highlighter-rouge">PROPN</code> <code class="highlighter-rouge">PUNCT</code> <code class="highlighter-rouge">SCONJ</code>? <code class="highlighter-rouge">VERB</code> <code class="highlighter-rouge">X</code></li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
@@ -84,35 +101,26 @@
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
-
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>
+    <p>Core arguments are marked on the verb. Subjects of intransitive verbs have agreement markers with <code class="highlighter-rouge">subj</code>, e.g. <code class="highlighter-rouge">Person[subj]=1</code>. Subjects of transitive verbs have agreement markers with <code class="highlighter-rouge">agent</code>, e.g. <code class="highlighter-rouge">Person[agent]=1</code>. Objects are marked with <code class="highlighter-rouge">obj</code>, e.g. <code class="highlighter-rouge">Person[obj]=3</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">acl:attr</code> <code class="highlighter-rouge">acl:relat</code> <code class="highlighter-rouge">advmod:emph</code> <code class="highlighter-rouge">aux:neg</code> <code class="highlighter-rouge">flat:foreign</code> <code class="highlighter-rouge">flat:name</code> <code class="highlighter-rouge">nmod:attr</code> <code class="highlighter-rouge">nmod:poss</code> <code class="highlighter-rouge">nmod:relat</code> <code class="highlighter-rouge">parataxis:speech</code></p>
+  </li>
+</ul>
 
 <hr />
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/ckt-comparison.html">N</a> Chukchi UD treebanks:</p>
+<p>There is <a href="../treebanks/ckt-comparison.html">1</a> Chukchi UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/ckt_a/index.html">Chukchi-A</a></li>
-  <li><a href="../treebanks/ckt_b/index.html">Chukchi-B</a></li>
+  <li>Chukchi-HSE</li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="highlighter-rouge">*-index.html</code> page in the <code class="highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
 
 <hr />
 
