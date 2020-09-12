@@ -126,7 +126,7 @@
     <ul>
       <li>The following word types are tagged as PRON:
         <ul>
-          <li>personal pronouns: <em>saya/aku/ku</em> “I”, <em>kamu/mu/anda</em> “you”, <em>dia/ia/nya</em> “he/she/it”, <em>kami/kita</em> “our”, <em>mereka</em> “them”</li>
+          <li>personal pronouns: <em>saya/aku/ku</em> “I”, <em>kamu/mu/anda</em> “you”, <em>dia/ia/nya</em> “he/she/it/him/her/its”, <em>kami/kita</em> “we/us/our”, <em>mereka</em> “they/them/their”</li>
           <li>interrogative pronouns: <em>apa</em> “what”, <em>siapa</em> “who” as in <em>Apa yang kamu inginkan?</em> “What do you want?”</li>
           <li>relative pronouns are tagged as PRON: <em>apa</em> “what”, <em>siapa</em> “who” as in <em>Saya tahu siapa yang kamu maksud.</em> “I know who you mean”</li>
           <li>indefinite pronouns: <em>seseorang</em> “seomeone/somebody”, <em>sesuatu</em> “something”</li>
@@ -172,38 +172,65 @@
 <ul>
   <li>We propose the use of 13 of 24 features defines in UDv2 that relevant to Indonesian grammar:
     <ol>
-      <li>Abbr</li>
-      <li>Clusivity</li>
-      <li>Degree</li>
-      <li>Foreign</li>
-      <li>Number</li>
-      <li>NumType</li>
-      <li>Person</li>
-      <li>Polarity</li>
-      <li>Poss</li>
-      <li>PronType</li>
-      <li>VerbForm</li>
-      <li>Voice</li>
-      <li>Typo</li>
+      <li>Abbr, with one possible value: Yes. This feature can be applied to all UPOS, except PUNCT and SYM.</li>
+      <li>Clusivity, applies to PRON with two possible values: Ex and In.</li>
     </ol>
-  </li>
-  <li>Nominal features
     <ul>
-      <li>NOUN only uses one feature, Number, with two possible values: Sing or Plur.</li>
-      <li>PRON can have four features:
+      <li>Clusivity=Ex for <em>kami</em> “we/our”</li>
+      <li>Clusivity=In for <em>kita</em> “we/our”
+    3. Degree, applies to ADJ with two possible values: Pos and Sup.</li>
+      <li>Degree=Pos is used for <em>baik</em> “good”, <em>cantik</em> “beautiful”, etc.</li>
+      <li>Degree=Sup us used for <em>terbaik</em> “best”, <em>tercantik</em> “most beautiful”, etc.
+    4. Foreign, with one possible value: Yes. This feature only applies to X.
+    5. Number, applies to NOUN and PRON with two possible values: Sing and Plur.<br />
+    6. NumType, applies to NUM and ADJ.</li>
+      <li>NumType=Card is used for NUM</li>
+      <li>NumType=Ord is used for ordinal numbers tagged as ADJ
+    7. Person, applies to PRON with three possible values: 1, 2, 3.
+    8. Polarity, with one possible value: Neg, applies to PART and INTJ.</li>
+      <li>Polarity=Neg for PART applies for negation words as in <em>Saya tidak menyukainya</em> “I do not like him/her/it”. Word <em>tidak</em> “no” will be tagged with Polarity=Neg.</li>
+      <li>Polarity=Neg for INTJ as in <em>Tidak, terima kasih</em> “No, thanks”. Word <em>tidak</em> “no” will be given feature Polarity=Neg.
+    9. Poss, applies to DET, with one possible value: Yes. This feature will be applied to all PRON that serve as possessive pronouns.
+    10. PronType, applies to PRON, DET, and ADV. For Indonesian, 7 possible values can be applied:</li>
+      <li>PronType=Dem, applies to PRON such as for <em>itu</em> “that” in <em>Itu masalahmu.</em> “That is your problem.”</li>
+      <li>PronType=Emp, applies to PRON such as for <em>sendiri</em> “self” in <em>Kamu harus percaya pada dirimu sendiri</em> “You have to believe in yourself”.</li>
+      <li>PronType=Ind, applies to PRON such as for <em>seseorang</em> “someone/somebody” or <em>sesuatu</em> “something”</li>
+      <li>PronType=Int, applies to PRON and ADV.
         <ul>
-          <li>Number, with two possible values relevan to Indonesian grammar: Sing and Plur.</li>
-          <li>Clusivity, for kami (our) with Clusivity=Ex, and kita (our) with Clusivity=In</li>
-          <li>Person, for personal pronoun</li>
-          <li>PronType, with 7 possible values relavan to Indonesian grammar: Dem, Emp, Ind, Int, Prs, Rel, Tot</li>
+          <li>PronType=Int for PRON, such as for <em>apa</em> “what” and <em>siapa</em> “who” in interrogative sentences</li>
+          <li>PronType=Int for ADV, such as for <em>bagaimana</em> “how” and <em>kapan</em> “when” in interrogative sentences</li>
         </ul>
       </li>
-    </ul>
-  </li>
-  <li>Verbal features.
-    <ul>
-      <li>VerbForm, with two possible values: Part and Vnoun</li>
-      <li>Voice, with two possible values: Act and Pass.</li>
+      <li>PronType=Prs, applies to PRON or DET for all personal pronouns that serve as PRON or DET.</li>
+      <li>PronType=Rel, applies to PRON and ADV.
+        <ul>
+          <li>PronType=Rel for PRON, such as for <em>apa</em> “what”, <em>siapa</em> “who”, <em>yang</em> “that”.</li>
+          <li>PronType=Rel for ADV, such as for <em>bagaimana</em> “how” and <em>kapan</em> “when” in non-interrogative sentences</li>
+        </ul>
+      </li>
+      <li>PronType=Tot, applies to PRON, DET, or ADV.
+        <ul>
+          <li>PronType=Tot for PRON, such as for <em>semua</em> “all” in <em>Semua adalah milikmu.</em> “All is yours.”</li>
+          <li>PronType=Tot for DET, such as for <em>semua</em> “all” in <em>Semua siswa terlihat senang.</em> “All student looks happy.”
+            <ol>
+              <li>VerbForm</li>
+              <li>Voice, applies to VERB with two possible values: Act and Pass.</li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+      <li>Voice=Act for active verbs such as <em>mencintai</em> “love”, <em>berdiskusi</em> “discuss”</li>
+      <li>Voice=Pass for passive verbs, that in Indonesian has characteristics of using prefix <em>di-, ter-</em> or confix <em>ke-an</em>.
+        <ul>
+          <li>Passive verbs with prefix <em>di-</em> : <em>dikatakan</em> “be said”, <em>dilepaskan</em> “be released”</li>
+          <li>Passive verbs with prefix <em>ter-</em>: <em>terbakar</em> “be burned”, <em>terjatuh</em> “fell”</li>
+          <li>Passive verbs with confix <em>ke-an</em>: <em>kehilangan</em> “lost”, <em>kecurian</em> “be stolen”
+            <ol>
+              <li>Typo, with one possible value, Yes. This feature can be applied to all UPOS, except PUNCT and SYM.</li>
+            </ol>
+          </li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
