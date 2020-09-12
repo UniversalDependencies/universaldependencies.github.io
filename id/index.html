@@ -64,7 +64,22 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
+<ul>
+  <li>In general, words are delimited by whitespace characters. Special treatments are given to multiword tokens and punctuations.</li>
+  <li>Special treatments for multiword tokens:</li>
+  <li>Multiword tokens that ended with particles of <em>lah/kah/pun</em>” are split into two tokens. For example: <em>bacalah</em> “read” is split into <em>baca</em> “read” and <em>lah</em>.</li>
+  <li>Multiword tokens that contains clitics of <em>ku</em> “me/my”, <em>mu</em> “you/your”, <em>nya</em> “he/him/she/her/it” are split into two tokens. For example: <em>mencintainya</em> “love him/her/it” is split into <em>mencintai</em> “love” and <em>nya</em> “him/her/it”. However there are exceptions for words ending with -nya. All <em>nya</em> that has role as pronoun and determiner will be separated from the main word, but if the word ending with -nya has a role as adverb or adjective, we let them unseparated. For example:</li>
+  <li>words ended by <em>nya</em> as adverb: <em>khususnya</em> “especially”, <em>awalnya</em> “initially”, <em>akhirnya</em> “finally”</li>
+  <li>words ended by <em>nya</em> as adjective: <em>sebelumnya</em> “previous”, <em>sesudahnya</em> “next”</li>
+  <li>Special treatment for punctuations. All punctuations are separated from the words, except in two cases:</li>
+  <li>For reduplicated words. Indonesian has so many reduplicated words as noun (both singular and plural), verb, adjective, adverb, and so on. These reduplicated words are not split and remain become one token. The examples of reduplicated words are:</li>
+  <li>Singular noun: <em>mata-mata</em> “spy”</li>
+  <li>Pluran noun: <em>anak-anak</em> “children”</li>
+  <li>Verb: <em>merobek-robek</em> “shredding”</li>
+  <li>Adjective: <em>hiruk-pikuk</em> “noisy”</li>
+  <li>Adverb: <em>terus-menerus</em> (continuously)</li>
+  <li>For abbreviations. All abbreviations such as Mr., M.Sc. Tn., are not split and remain one token.</li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
@@ -76,7 +91,11 @@
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>Indonesian has the following auxiliary verbs (<a href="">AUX</a>):
+  <li>Indonesian PUD uses all 17 universal POS categories. We refer to [KBBI] (https://kbbi.kemdikbud.go.id/) (Kamus Besar Bahasa Indonesia/Indonesian Great Dictionary) as the reference dictionary. However, since this dictionary only defined 7 word classes: noun, verb, adjective, adverb, pronoun, particle and number, we need to make adjustments so that the tags conforms to UDv2.</li>
+  <li>PART is used for:</li>
+  <li>Negation words, such as <em>tidak</em> “no”, <em>tak</em> “no”, <em>bukan</em> “no”</li>
+  <li>Particles of <em>lah, kah, pun</em> that usually used to emphasize the word before them</li>
+  <li>The auxiliary ([AUX]) vs. [VERB] distinction is based on examples for English treebank, since initially there is no AUX type in KBBI. We defined 12 Indonesian words as AUX as follows:
     <ul>
       <li><em>akan</em> “will” for the future tense.</li>
       <li><em>sedang</em> “be” for the present tense.</li>
@@ -88,6 +107,24 @@
       <li><em>adalah</em> and <em>ialah</em> “be” serve as copulas.</li>
     </ul>
   </li>
+  <li>There is another copula in Indonesian KBBI: <em>merupakan</em> (be) that we tagged as VERB, not AUX since its morphology closes to verb.</li>
+  <li>The pronoun (PRON) vs. determiner (DET) distinction is also based on examples for English treebank, since DET word class also is not defined in KBBI.</li>
+  <li>The following word types are tagged as PRON:</li>
+  <li>personal pronouns: <em>saya/aku</em> “I”, <em>kamu/anda</em> “you”, <em>dia/ia/nya</em> “he/she/it”, <em>kami/kita</em> “our”, <em>mereka</em> “them”</li>
+  <li>interrogative pronouns: <em>apa</em> “what”, <em>siapa</em> “who” as in <em>Apa yang kamu inginkan?</em> “What do you want?”</li>
+  <li>relative pronouns are tagged as PRON: <em>apa</em> “what”, <em>siapa</em> “who” as in <em>Saya tahu siapa yang kamu maksud.</em> “I know who you mean”</li>
+  <li>indefinite pronouns: <em>seseorang</em> “seomeone/somebody”, <em>sesuatu</em> “something”</li>
+  <li>total pronouns: <em>semua</em> “all” as in <em>Semua kecuali kamu</em> “All but you”.</li>
+  <li>The following word types are tagged as DET:
+    <ul>
+      <li>possessive pronouns: <em>ku</em> “my”, <em>mu</em> “your”, <em>nya</em> “his/her/it”. All personal pronouns in Indonesian can also be used as possessive pronouns, but not the opposite.</li>
+      <li>pronominal numerals: <em>beberapa</em> “some/many”, <em>semua</em> “all” as in <em>semua siswa</em> “all students”</li>
+    </ul>
+  </li>
+  <li>Indonesian has the following coordinating conjuncion words ([CCONJ]):</li>
+  <li><em>dan, serta, maupun</em> as the equivalents of “and” in English</li>
+  <li><em>atau</em> “or”</li>
+  <li><em>tapi, tetapi, namun, melainkan</em> as the equivalents of “but” in English</li>
 </ul>
 
 <hr />
@@ -97,7 +134,37 @@
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
+<ul>
+  <li>We propose the use of 13 of 24 features defines in UDv2 features that relevant to Indonesian grammar:
+    <ol>
+      <li>Abbr</li>
+      <li>Clusivity</li>
+      <li>Degree</li>
+      <li>Foreign</li>
+      <li>Number</li>
+      <li>NumType</li>
+      <li>Person</li>
+      <li>Polarity</li>
+      <li>Poss</li>
+      <li>PronType</li>
+      <li>VerbForm</li>
+      <li>Voice</li>
+      <li>Typo</li>
+    </ol>
+  </li>
+  <li>Nominal features</li>
+  <li>NOUN only uses one feature, Number, with two possible values: Sing or Plur.</li>
+  <li>PRON can have four features:</li>
+  <li>Number, with two possible values relevan to Indonesian grammar: Sing and Plur.</li>
+  <li>Clusivity, for kami (our) with Clusivity=Ex, and kita (our) with Clusivity=In</li>
+  <li>Person, for personal pronoun</li>
+  <li>
+    <p>PronType, with 7 possible values relavan to Indonesian grammar: Dem, Emp, Ind, Int, Prs, Rel, Tot</p>
+  </li>
+  <li>Verbal features.</li>
+  <li>VerbForm, with two possible values: Part and Vnoun</li>
+  <li>Voice, with two possible values: Act and Pass.</li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
@@ -106,7 +173,44 @@
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
+
+<ul>
+  <li>Nominal subject (nsubj) is a noun phrase in the nominative case, without preposition.</li>
+  <li>Transitive verbs will have noun phrase as the object (obj)</li>
+  <li>Passive verbs could be followed by agent (obl:agent)</li>
+  <li>Verbs can have oblique arguments, if the argument with preposition, we label it as obl. However if without preposition, we label it as obl:mod</li>
+</ul>
+
+<h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
+
+<ul>
+  <li>The copula ialah or adalah (be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses. For example: <em>Ini adalah rumahku.</em> “This is my house”</li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Indonesian:
+    <ol>
+      <li>acl:relcl</li>
+      <li>advmod:emph for particles that emphasize noun phrases</li>
+      <li>case:adv</li>
+      <li>cc:preconj</li>
+      <li>csubj:pass for clausal subjects of passive verbs</li>
+      <li>flat:foreign</li>
+      <li>flat:range</li>
+      <li>nmod:npmod</li>
+      <li>nmod:poss</li>
+      <li>nmod:tmod</li>
+      <li>nsubj:pass for nominal subjects of passive verbs</li>
+      <li>obl:agent for agents of passive verbs</li>
+      <li>obl:mod</li>
+      <li>obl:tmod</li>
+    </ol>
+  </li>
+  <li>The following relation types are not used in Indonesian PUD: clf, expl, reparandum.</li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
