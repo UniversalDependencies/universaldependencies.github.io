@@ -276,9 +276,9 @@
       <li>Aspect, with the same reason for Tense.</li>
     </ul>
   </li>
-  <li>These UDv2 might be relevant to Indonesian grammar, but as far as we know there is no Indonesian grammar reference that has discussed them:
+  <li>These UDv2 might be relevant to Indonesian grammar, but due to limited references, we will cover this in future work:
     <ul>
-      <li>Definite. Indonesian does not have articles like <em>a/an/the</em> in English. Implicitly, a noun phrase can be determined whether it is infinite or definite. However, due to limited references, we will cover this in future work.</li>
+      <li>Definite. Indonesian does not have articles like <em>a/an/the</em> in English. Implicitly, a noun phrase can be determined whether it is infinite or definite.</li>
       <li>Mood</li>
       <li>Polite</li>
     </ul>
@@ -312,7 +312,7 @@
 <ul>
   <li>The following 14 relation subtypes are used in Indonesian PUD:
     <ul>
-      <li>acl:relcl</li>
+      <li>acl:relcl for relative clause that describe a noun phrase. In Indonesian, relative clause usually uses <em>yang</em> as the subject of the clause.</li>
       <li>advmod:emph for particles (PART) <em>-lah, -kah, -tah, pun</em> that emphasize other words that could be a NOUN, PRON, VERB, or SCONJ. For example, in <em>itu<strong>lah</strong></em> that in tokenization phase was split into <em>itu</em> “that” and <em><strong>lah</strong></em>, <em>lah</em> is annotated as the dependent of <em>itu</em> and the dependency relation between them is advmod:emph.</li>
       <li>case:adv for adposition (ADP) that together with its following word of ADJ/ADV/VERB serve as an adverb. In this case the ADP word is annotated as the dependent of ADJ/ADV/VERB and the deprel between them is case:adv, and the relation between the ADJ/ADV/VERB word with its head is advmod. For example:
         <ul>
@@ -321,17 +321,23 @@
           <li>ADP + VERB as adverb, such as <em>secara terpisah</em> “separately”, that consists of <em>secara</em> “with” (ADP) + <em>terpisah</em> “separated” (VERB).</li>
         </ul>
       </li>
-      <li>cc:preconj</li>
-      <li>csubj:pass for clausal subjects of passive verbs</li>
-      <li>flat:foreign</li>
-      <li>flat:range</li>
-      <li>nmod:npmod</li>
-      <li>nmod:poss</li>
-      <li>nmod:tmod</li>
+      <li>cc:preconj, such as in <em>baik Mongolia maupun Tingkok</em> “both Mongolia and China”, <em>baik</em> “both” is considered as preconjunct.</li>
+      <li>csubj:pass for clausal subjects of passive verbs.</li>
+      <li>flat:foreign to label sequences of foreign words.</li>
+      <li>flat:range for noun phrases that consist of range, such as <em>2019-2020</em> will be separated into three tokens, and the relation between 2020 to 2019 is annotated as flat:range.</li>
+      <li>nmod:npmod for the head of noun phrase that describes another noun phrase without preposition. We use this deprel in several cases:
+        <ul>
+          <li>NOUN - NOUN relation, such as in <em>penggerak utama pengeluaran modal</em> “main driver of capital expenditure” that consist of two noun phrases, <em>penggerak utama</em> “main driver” and <em>pengeluaran modal</em> “capital expenditure”. In Indonesian version, there is no ADP <em>of</em> as in English version, that’s why we can’t simply use nmod to link the head of <em>pengeluaran modal</em> “capital expenditure” to the head of <em>penggerak utama</em> “main driver. We propose the use of nmod:npmod for this case.</li>
+          <li>NOUN - PROPN relation, such as in <em>orang Indonesia</em> “Indonesian people”. The token Indonesia is annotated as the dependent of <em>orang</em> “people” with deprel nmod:npmod</li>
+          <li>locative NOUN - NOUN relation. In Indonesian, <em>dalam</em> “in”, <em>luar</em> “out are considered as locative nouns. For noun phrases like <em>dalam ruangan</em> “in a/the room”, locative noun is annotated as the dependent of the noun phrase that it modify. We propose the use of nmod:npmod for this case</li>
+        </ul>
+      </li>
+      <li>nmod:poss for possessive relationship between NOUN/PROPN and its owner. For example, in <em>temanku</em> “my friend” that is split into <em>teman</em> “friend” and <em>ku</em> “my”, token <em>ku</em> “my” will be given deprel nmod:poss.</li>
+      <li>nmod:tmod for the head of time-related noun phrases that becomes dependent of a noun phrase. For example, in <em>pengeluaran tahun ini</em> “this year spending”, <em>tahun ini</em> “this year” modifies <em>pengeluaran</em> “spending”, and the head of this phrase, <em>tahun</em> “year” will be annotated as the dependent of <em>pengeluaran</em> “spending” with the deprel nmod:tmod.</li>
       <li>nsubj:pass for nominal subjects of passive verbs</li>
       <li>obl:agent for agents of passive verbs</li>
-      <li>obl:mod</li>
-      <li>obl:tmod</li>
+      <li>obl:mod for adjunct of predicates</li>
+      <li>obl:tmod for head of time-related noun phrases that becomes dependent of a VERB/ADJ. For example, in <em>Kali ini saya setuju.</em> “This time I agree.”, <em>kali ini</em> “this time” describes the predicate <em>setuju</em> “agree”, and the head of this noun phrase, <em>kali</em> “time” will be annotated as the dependent of <em>setuju</em> “agree” with the deprel obl:tmod</li>
     </ul>
   </li>
   <li>The following relation types are not used in Indonesian PUD:
