@@ -65,14 +65,23 @@
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
-  <li>In general, words are delimited by whitespace characters. Special treatments are given to multiword tokens and punctuations.</li>
+  <li>
+    <p>In general, words are delimited by whitespace characters. Special treatments are given to multiword tokens and punctuations.</p>
+  </li>
   <li>Special treatments for multiword tokens:
     <ul>
-      <li>Multiword tokens that ended with particles of <em>lah/kah/pun</em> are split into two tokens. For example, <em>bacalah</em> “read” is split into <em>baca</em> “read” and <em>lah</em>.</li>
-      <li>Multiword tokens that contains clitics of <em>ku</em> “me/my”, <em>mu</em> “you/your”, <em>nya</em> “he/him/she/her/it” are split into two tokens. For example: <em>mencintainya</em> “love him/her/it” is split into <em>mencintai</em> “love” and <em>nya</em> “him/her/it”. However there are exceptions for words ending with -nya. All <em>nya</em> that has role as pronoun and determiner will be separated from the main word, but if the word ended with -nya has a role as adverb or adjective, we let them unseparated. For example:
+      <li>Multiword tokens that ended with particles of <em>-lah/-kah/-tah/-pun</em> are split into two tokens. These particles are usually used to emphasize the word before them. Particles of -lah/-kah/-tah are clitics, while particle pun can be written as clitic or a single token. The examples of how to tokenize these clitic particles are as follows:
         <ul>
-          <li>words ended with <em>nya</em> as adverb: <em>khususnya</em> “especially”, <em>awalnya</em> “initially”, <em>akhirnya</em> “finally”</li>
-          <li>words ended with <em>nya</em> as adjective: <em>sebelumnya</em> “previous”, <em>sesudahnya</em> “next”</li>
+          <li><em>baca<strong>lah</strong></em> is split into <em>baca</em> “read” and <em><strong>lah</strong></em></li>
+          <li><em>dia<strong>kah</strong></em> is split into <em>dia</em> “he/she” and <em><strong>kah</strong></em></li>
+          <li><em>apa<strong>tah</strong></em> is split into <em>apa</em> “what” and <em><strong>tah</strong></em></li>
+          <li><em>walau<strong>pun</strong></em> is split into <em>walau</em> “although” and <em><strong>pun</strong></em></li>
+        </ul>
+      </li>
+      <li>Multiword tokens that contains clitics of <em>-ku</em> “me/my”, <em>-mu</em> “you/your”, <em>-nya</em> “he/him/she/her/it” are split into two tokens. For example: <em>mencintai<strong>nya</strong></em> “love him/her/it” is split into <em>mencintai</em> “love” and <em><strong>nya</strong></em> “him/her/it”. However there are exceptions for words ending with <em>-nya</em>. All <em>-nya</em> that has role as pronoun and determiner will be separated from the main word, but if the word ended with <em>-nya</em> has a role as adverb or adjective, we let them unseparated. For example:
+        <ul>
+          <li>words ended with <em>-nya</em> as adverb: <em>khusus<strong>nya</strong></em> “especially”, <em>awal<strong>nya</strong></em> “initially”, <em>akhir<strong>nya</strong></em> “finally”</li>
+          <li>words ended with <em>-nya</em> as adjective: <em>sebelum<strong>nya</strong></em> “previous”, <em>sesudah<strong>nya</strong></em> “next”</li>
         </ul>
       </li>
     </ul>
@@ -103,11 +112,12 @@
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>Indonesian PUD uses all 17 universal POS categories. We refer to <a href="https://kbbi.kemdikbud.go.id/">KBBI</a> (Kamus Besar Bahasa Indonesia/Indonesian Great Dictionary) as the reference dictionary. However, since this dictionary only defined 7 word classes: noun, verb, adjective, adverb, pronoun, particle and number, we need to make adjustments so that the tags conform to UDv2.</li>
+  <li>We refer to <a href="https://kbbi.kemdikbud.go.id/">KBBI</a> (Kamus Besar Bahasa Indonesia/Indonesian Great Dictionary) as the reference dictionary. However, since this dictionary only defined 7 word classes: noun, verb, adjective, adverb, pronoun, particle and number, we need to make adjustments so that the tags conform to UDv2.</li>
+  <li>Indonesian PUD uses all 17 universal POS categories.</li>
   <li>PART is used for:
     <ul>
       <li>negation words: <em>tidak</em> “no”, <em>tak</em> “no”, <em>bukan</em> “no”</li>
-      <li>particles of <em>lah, kah, pun</em>, that usually used to emphasize the word before them</li>
+      <li>particles of <em>-lah, -kah, -tah, pun</em>, that has been discussed in the previous section.</li>
     </ul>
   </li>
   <li>The auxiliary (AUX) vs. VERB distinction is based on examples for English treebank, since initially there is no AUX type in KBBI. We defined 12 Indonesian words as AUX as follows:
@@ -119,26 +129,26 @@
       <li><em>boleh</em> as the equivalent of modal “may”.</li>
       <li><em>mungkin</em> as the equivalent of modal “might”.</li>
       <li><em>harus</em> as the equivalent of modal “must”.</li>
-      <li><em>adalah</em> and <em>ialah</em> “be” serve as copulas. Another copula in Indonesian KBBI, <em>merupakan</em> (be), is tagged as VERB, not AUX since its morphology is closer to VERB.</li>
+      <li><em>adalah</em> and <em>ialah</em> “be” serve as copulas. Another copula in Indonesian KBBI, <em>merupakan</em> (be), is tagged as VERB, not AUX since its morphology of using confix <em>me-kan</em> is closer to VERB.</li>
     </ul>
   </li>
   <li>The pronoun (PRON) vs. determiner (DET) distinction is also based on examples for English treebank, since DET word class also is not defined in KBBI.
     <ul>
       <li>The following word types are tagged as PRON:
         <ul>
-          <li>personal pronouns: <em>saya/aku/ku</em> “I”, <em>kamu/mu/anda</em> “you”, <em>dia/ia/nya</em> “he/she/it/him/her/its”, <em>kami/kita</em> “we/us/our”, <em>mereka</em> “they/them/their”</li>
-          <li>interrogative pronouns: <em>apa</em> “what”, <em>siapa</em> “who” as in <em><strong>Ap</strong>a yang kamu inginkan?</em> “What do you want?”</li>
-          <li>relative pronouns are tagged as PRON: <em>apa</em> “what”, <em>siapa</em> “who” as in <em>Saya tahu <strong>siapa</strong> yang kamu maksud.</em> “I know who you mean”</li>
+          <li>personal pronouns, such as <em>saya/aku/ku</em> “I”, <em>kamu/mu/anda</em> “you”, <em>dia/ia/nya</em> “he/she/it/him/her/its”, <em>kami/kita</em> “we/us/our”, <em>mereka</em> “they/them/their”</li>
+          <li>interrogative pronouns, <em>apa</em> “what”, <em>siapa</em> “who” as in <em><strong>Apa</strong> yang kamu inginkan?</em> “<strong>What</strong> do you want?”</li>
+          <li>relative pronouns: <em>apa</em> “what”, <em>siapa</em> “who” as in <em>Saya tahu <strong>siapa</strong> yang kamu maksud.</em> “I know <strong>who</strong> you mean”</li>
           <li>indefinite pronouns: <em>seseorang</em> “seomeone/somebody”, <em>sesuatu</em> “something”</li>
-          <li>total pronouns: <em>semua</em> “all” as in <em><strong>Semua</strong> kecuali bukumu</em> “All except your books”.</li>
+          <li>total pronouns, such as <em>semua</em> “all” as in <em><strong>Semua</strong> kecuali bukumu</em> “<strong>All</strong> except your books”.</li>
         </ul>
       </li>
       <li>The following word types are tagged as DET:
         <ul>
           <li>possessive pronouns. All personal pronouns in Indonesian can also be used as possessive pronouns. For example:
             <ul>
-              <li>-nya as PRON as in <em>Aku membawa<strong>nya</strong> ke sini.</em> “I bring it here.”</li>
-              <li>-nya as DET as in <em>Rumah<strong>nya</strong> di Depok.</em> “His/her house is in Depok.”</li>
+              <li><em>-nya</em> as PRON as in <em>Aku membawa<strong>nya</strong> ke sini.</em> “I bring <strong>it</strong> here.”</li>
+              <li><em>-nya</em> as DET as in <em>Rumah<strong>nya</strong> di Depok.</em> “<strong>His/her</strong> house is in Depok.”</li>
             </ul>
           </li>
           <li>pronominal numerals: <em>beberapa</em> “some/many”, <em>semua</em> “all” as in <em><strong>semua siswa</strong></em> “all students”</li>
@@ -155,9 +165,9 @@
   </li>
   <li>Indonesian also has (de)verbal form as ADJ, ADV or NOUN
     <ul>
-      <li>Verbal adjecive as in <em>pesawat terbang</em> (plane). Word <em>terbang</em> “fly” is a verb, but in this noun phrase it functions as an adjective.</li>
-      <li>Verbal adverb as in <em>secara terpisah</em> “separately”. Word <em>terpisah</em> “separated” is a verb, but when used together with <em>secara</em> “with”, the two tokens serve as an adverb.</li>
-      <li>Verbal noun as in <em>Hobinya adalah memancing</em> “His hobby is fishing”. In this sentence, <em>memancing</em> “fishing” functions as a noun.</li>
+      <li>Verbal adjecive as in <em>pesawat <strong>terbang</strong></em> (plane). Word <em>terbang</em> “fly” is a verb, but in this noun phrase it functions as an adjective.</li>
+      <li>Verbal adverb as in <em>secara <strong>terpisah</strong></em> “separately”. Word <em>terpisah</em> “separated” is a verb, but when used together with <em>secara</em> “with”, the two tokens serve as an adverb.</li>
+      <li>Verbal noun as in <em>Hobinya adalah <strong>memancing</strong></em> “His hobby is fishing”. In this sentence, <em>memancing</em> “fishing” functions as a noun.</li>
     </ul>
   </li>
 </ul>
@@ -248,6 +258,23 @@
         </ul>
       </li>
       <li>Typo, with one possible value, Yes. This feature can be applied to all UPOS, except PUNCT and SYM.</li>
+    </ul>
+  </li>
+  <li>These UDv2 features are not relevant to Indonesian grammar:
+    <ul>
+      <li>Gender. Indonesian words have no gender.</li>
+      <li>Animacy. Similar with Gender, there is no requirements of agreements between words in Indonesian.</li>
+      <li>NounClass, with the same reason for Gender and Animacy</li>
+      <li>Case, with the same reason for Gender, Animacy, and NounClass</li>
+      <li>Tense. Indonesian verbs has the same form in any tenses.</li>
+      <li>Aspect, with the same reason for Tense.</li>
+    </ul>
+  </li>
+  <li>These UDv2 might be relevan for Indonesian grammar, but as far as we know there is no Indonesian grammar reference that has discussed about them:
+    <ul>
+      <li>Definite. Indonesian does not have articles like <em>a/an/the</em> in English. Implicitly, a noun phrase can be determined whether it is infinite or definite. However, due to limited references, we will cover this in a future work.</li>
+      <li>Mood</li>
+      <li>Polite</li>
     </ul>
   </li>
 </ul>
