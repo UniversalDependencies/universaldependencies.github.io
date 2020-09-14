@@ -64,12 +64,14 @@
 
 <h2 id="tokenisation-and-word-segmentation">Tokenisation and Word Segmentation</h2>
 
-<p>*</p>
+<p>Tokenisation was originally done using the Apertium morphological analyser for Breton. This joins certain multiword
+tokens with spaces as single tokens. Where the number of spaces in the original token matches the number of spaces
+in the multiword token, these are split into separate tokens in UD, where the part of speech of the multiword token
+is given to the first token, and subsequent tokens are given the part of speech <a href="">X</a> and attached with the <a href="">fixed</a> relation.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<p>The most important tokenisation factor is with the words traditionally described as <em>inflected</em> or <em>conjugated</em> prepositions. Here
+we analyse them as contractions of prepositions and pronouns. For example, <em>dit</em> is tokenised as a multiword token
+constructed from <em>da</em> “for” and <em>it</em> “you”.</p>
 
 <h2 id="morphology">Morphology</h2>
 
@@ -79,8 +81,7 @@
   <li><a href="">ADJ</a> <a href="">ADP</a> <a href="">ADV</a> <a href="">AUX</a> <a href="">CCONJ</a> <a href="">DET</a> <a href="">INTJ</a> <a href="">NOUN</a> <a href="">NUM</a> <a href="">PART</a> <a href="">PRON</a> <a href="">PROPN</a> <a href="">PUNCT</a> <a href="">SCONJ</a> <a href="">SYM</a> <a href="">VERB</a> <a href="">X</a></li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<p>Some comments on various parts of speech:</p>
 
 <ul>
   <li><a href="">X</a> Used for parts of multiword tokens that do not necessary have a part of speech of their own.</li>
@@ -88,23 +89,64 @@
   <li><a href="">PART</a> Words described in the literature as <em>verbal particles</em> are tagged as <a href="">AUX</a>.</li>
 </ul>
 
+<p>Words tagged as <a href="">AUX</a>:</p>
+
+<p>Copulae:</p>
+
+<ul>
+  <li><em>bezañ</em></li>
+</ul>
+
+<p>Auxiliary verbs:</p>
+
+<ul>
+  <li><em>kaout</em></li>
+  <li><em>ober</em></li>
+</ul>
+
+<p>Verbal “particles”:</p>
+
+<ul>
+  <li><em>a</em></li>
+  <li><em>en ur</em></li>
+  <li><em>en em</em></li>
+  <li><em>e</em></li>
+  <li><em>o</em></li>
+  <li><em>na</em></li>
+  <li><em>ra</em></li>
+</ul>
+
 <hr />
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
+<p>Inherent:</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<ul>
+  <li>Gender (in NOUNs)</li>
+  <li>NumType</li>
+  <li>Polarity</li>
+  <li>Case</li>
+  <li>PronType</li>
+  <li>Reflex</li>
+  <li>Poss</li>
+  <li>Person</li>
+  <li>Gender[psor]</li>
+</ul>
 
-<hr />
+<p>Inflectional:</p>
+
+<ul>
+  <li>Aspect</li>
+  <li>Degree</li>
+  <li>Gender (other than NOUNs)</li>
+  <li>Mood</li>
+  <li>Number</li>
+  <li>Tense</li>
+  <li>VerbForm</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
-
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
 
 <p>The following relation subtypes are used in the Breton data:</p>
 
@@ -112,14 +154,13 @@
   <li><a href="">acl:focus</a></li>
   <li><a href="">acl:relcl</a></li>
   <li><a href="">advmod:neg</a></li>
-  <li><a href="">aux:pass</a></li>
-  <li><a href="">fixed:name</a></li>
+  <li><a href="">aux:pass</a> Auxiliary verb used in the construction of the passive</li>
   <li><a href="">flat:name</a></li>
-  <li><a href="">nmod:gen</a></li>
+  <li><a href="">nmod:gen</a> Nominal modification with genitive meaning using Celtic-style conjunctive genitive</li>
   <li><a href="">nmod:poss</a></li>
   <li><a href="">nsubj:appos</a></li>
   <li><a href="">nsubj:cop</a></li>
-  <li><a href="">obl:agent</a></li>
+  <li><a href="">obl:agent</a> An oblique introduced with <em>gant</em> “with” that expresses the agent in a passive construction</li>
   <li><a href="">obl:x</a></li>
 </ul>
 
