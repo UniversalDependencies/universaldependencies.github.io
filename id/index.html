@@ -263,20 +263,10 @@
       <li><code class="highlighter-rouge">Tense</code>. Indonesian verbs have the same form in all tenses.</li>
       <li><code class="highlighter-rouge">Aspect</code>, with the same reason for Tense.</li>
       <li><code class="highlighter-rouge">Evident</code></li>
-    </ul>
-  </li>
-  <li>These UDv2 features might be relevant to Indonesian grammar, but due to limited references, we will cover them in future work:
-    <ul>
-      <li><a href="">Definite</a>. Indonesian does not have articles like <em>a/an/the</em> in English. Implicitly, a noun phrase can be determined whether it is infinite or definite.</li>
-      <li><a href="">Mood</a></li>
-      <li><a href="">Polite</a></li>
-      <li><a href="">VerbForm</a>, could be applied to <a href="">ADJ</a>, <a href="">ADV</a>, and <a href="">NOUN</a>, with 3 possible values: <code class="highlighter-rouge">Conv</code>, <code class="highlighter-rouge">Part</code>, and <code class="highlighter-rouge">Vnoun</code>.
-        <ul>
-          <li><code class="highlighter-rouge">VerbForm=Conv</code> is applied to verbal adverbs, such as for <em>terpisah</em> “be separated” in <em>secara terpisah</em> “separately”</li>
-          <li><code class="highlighter-rouge">VerbForm=Part</code> is applied to verbal adjectives, such as for <em>terbang</em> “fly” in <em>kapal <strong>terbang</strong></em> “plane”, <em>renang</em> “swim” in <em>kolam <strong>renang</strong></em> “swimming pool”</li>
-          <li><code class="highlighter-rouge">VerbForm=Vnoun</code> is applied to verbal nouns, such as for <em>memancing</em> “fishing”, <em>memasak</em> “cooking” as nouns.</li>
-        </ul>
-      </li>
+      <li><code class="highlighter-rouge">Definite</code></li>
+      <li><code class="highlighter-rouge">Mood</code></li>
+      <li><code class="highlighter-rouge">Polite</code></li>
+      <li><code class="highlighter-rouge">VerbForm</code></li>
     </ul>
   </li>
 </ul>
@@ -286,11 +276,11 @@
 <h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
 <ul>
-  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase, without preposition.</li>
+  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase, usually written before the predicate.</li>
   <li>A verb may serve as the subject and is labeled as clausal subject, either as csubj or csubj:pass.</li>
   <li>Transitive verbs will have a noun phrase as the object (<a href="">obj</a>). The default word order is SVO, so the subject normally precedes and the object follows the verb (with the exception of inverted sentences).</li>
   <li>Passive verbs could be followed by agent (<a href="">obl:agent</a>), such as in <em>Pesan yang dikirimkan <strong>presiden</strong></em> “Messages sent by <strong>president</strong>”, <em>presiden</em> “president” is the agent of predicate <em>dikirimkan</em> “be sent”.</li>
-  <li>Verbs can have oblique arguments. If the argument includes a preposition, we label it as <a href="">obl</a>. However if it appears without preposition, we label it as <a href="">obl:mod</a>. Special for temporal modifiers, we label it as <a href="">obl:tmod</a>.</li>
+  <li>Verbs can have oblique arguments. If the argument includes a preposition, we label it as <a href="">obl</a>. Special for temporal modifiers, we label it as <a href="">obl:tmod</a>.</li>
 </ul>
 
 <h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
@@ -307,7 +297,7 @@
 <h3 id="relations-overview">Relations Overview</h3>
 
 <ul>
-  <li>The following 14 relation subtypes are used in Indonesian PUD:
+  <li>The following 13 relation subtypes are used in Indonesian PUD:
     <ul>
       <li><a href="">acl:relcl</a> for relative clauses that modify a noun phrase. In Indonesian, relative clauses usually use <em>yang</em> as the subject of the clause.</li>
       <li><a href="">advmod:emph</a> for particles (<a href="">PART</a>) <em>-lah, -kah, -tah, pun</em> that emphasize other words that could be a <a href="">NOUN</a>, <a href="">PRON</a>, <a href="">VERB</a>, or <a href="">SCONJ</a>. For example, token <em>itu<strong>lah</strong></em> “that” in tokenization phase was split into <em>itu</em> “that” and <em><strong>lah</strong></em>, then <em>lah</em> is annotated as the dependent of <em>itu</em> and the relation between them is <code class="highlighter-rouge">advmod:emph</code>.</li>
@@ -327,7 +317,6 @@
       <li><a href="">nmod:tmod</a> for the head of time-related noun phrases that becomes dependent of a noun phrase. For example, in <em>pengeluaran <strong>tahun ini</strong></em> “<strong>this year</strong> spending”, <em>tahun ini</em> “this year” modifies <em>pengeluaran</em> “spending”, and the head of this phrase, <em>tahun</em> “year” will be annotated as the dependent of <em>pengeluaran</em> “spending” with the deprel <code class="highlighter-rouge">nmod:tmod</code>.</li>
       <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
       <li><a href="">obl:agent</a> for agents of passive verbs</li>
-      <li><a href="">obl:mod</a> for have oblique arguments of predicates with no preposition</li>
       <li><a href="">obl:tmod</a> for head of time-related noun phrases that depend on a <code class="highlighter-rouge">VERB/ADJ</code>. For example, in <em><strong>Kali ini</strong> saya setuju.</em> “<strong>This time</strong> I agree.”, <em>kali ini</em> “this time” describes the predicate <em>setuju</em> “agree”, and the head of this noun phrase, <em>kali</em> “time”, will be annotated as the dependent of <em>setuju</em> “agree” with the deprel <code class="highlighter-rouge">obl:tmod</code></li>
     </ul>
   </li>
