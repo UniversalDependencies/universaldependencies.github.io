@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-gv">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gv/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gv/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -64,56 +64,118 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
+<p>Generally speaking, tokens in Manx are delimited by whitespace characters
+and punctuation, with the following exceptions:</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>
+    <p>We diverge from the Irish and Scottish Gaelic treebanks in 
+treating so-called “inflected prepositions” as multiword tokens.
+So for example, <em>lhiam</em> “with me” (Irish <em>liom</em>, Scottish Gaelic <em>leam</em>)
+is split into <em>lesh</em> “with” and <em>mee</em> ”me”.</p>
+  </li>
+  <li>Some words containing apostrophes are treated as multiword tokens. Here are a few examples:
+    <ul>
+      <li><em>ta’n</em> = <em>ta</em> “is” + <em>‘n</em> “the”</li>
+      <li><em>t’eh</em> = <em>t’</em> “is” + <em>eh</em> ”he, it”</li>
+      <li><em>v’ee</em> = <em>v’</em> “was” + <em>ee</em> ”she, it”</li>
+      <li><em>shoh’n</em> = <em>shoh</em> ”this” + <em>‘n</em> “the”</li>
+      <li><em>dt’inneen</em> = <em>dty</em> ”your (s.)” + <em>inneen</em> ”daughter”
+But the apostrophe is also used in other
+cases where we choose not to split as a multiword token:</li>
+      <li>In some emphatic endings: <em>e chree’s</em> (“<em>his</em> heart”)</li>
+      <li>When used word initially, it usually indicates an <em>f</em> dropped by lenition: <em>toan yn ‘ockle</em> “tone of the word” (cf. <em>fockle</em> “word”)</li>
+      <li>In some orthographic variants: <em>nee’m</em> “I will do” (more often <em>neeym</em>), or <em>bee’m</em> “I will be” (more often <em>beem</em> or <em>beeym</em>), etc.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Hyphens are treated as internal word characters. This is the only reasonable choice in cases like <em>neu-shickyr</em> lit. “non-certain”, or <em>h-awin</em> (a mutated form of <em>awin</em> “river”). In other cases, especially noun-noun compounds like <em>magher-etlee</em> ”airfield” or <em>shamyr-vrastyl</em> “classroom”, one could argue that we ought to split into two words at the hyphen (indeed, compounds like this in Irish are written with a space instead of a hyphen). For simplicity’s sake we have not done so, since not all cases are clear cut.</p>
+  </li>
+  <li>
+    <p>Numbers and dates can contain internal punctuation, e.g. <em>12,000</em> or <em>9.7.96</em>.</p>
+  </li>
+  <li>
+    <p>Some abbreviations containing periods are treated as single tokens, 
+e.g. <em>R.U.</em> for <em>Reeriaght Unnaneyssit</em> ”United Kingdom”, or
+<em>a.r.e.</em> for <em>as reddyn elley</em> “and other things, etc.”</p>
+  </li>
+  <li>There are no words containing spaces.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<ul>
+  <li>
+    <p>Manx uses the full set of 17 UD part-of-speech tags.</p>
+  </li>
+  <li>
+    <p>The AUX tag is used only for the copula <em>she</em>. All other verbs, 
+including the substantive verb <em>bee</em> “to be”, are tagged VERB.</p>
+  </li>
+  <li>
+    <p>The PART tag is used for the following words:</p>
+    <ul>
+      <li>The adverbalizer <em>dy</em>: <em>dy moal</em> “slowly”</li>
+      <li>The negative verbal particles <em>cha</em> and <em>nagh</em></li>
+      <li>The comparative particle <em>ny</em>: <em>ny syrjey</em> “higher”</li>
+      <li>The relativizer <em>dy</em>:</li>
+    </ul>
+  </li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<pre><code class="language-sdparse">Strooys dy row aggle orroo \n Methinks that was fear on-them
+mark(row, dy)
+ccomp(Strooys, row)
+nsubj(row, aggle)
+</code></pre>
 
-<hr />
+<ul>
+  <li>
+    <p>Verbal nouns (<em>jannoo</em>, <em>cur</em>, etc.) are tagged NOUN and verbal
+adjectives (e.g. <em>ruggit</em> “born”) are tagged ADJ,
+following the Irish and Scottish Gaelic treebanks.</p>
+  </li>
+  <li>demonstrative pronouns are tagged as PRON,
+e.g. <em><b>shen</b> va’n vea aym</em> “that was my life”.</li>
+  <li>demonstrative determiners are tagged as DET,
+e.g. <em>yn lioar <b>shen</b></em> “that book”.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<p>The initial version of the Cadhan Aonair Manx treebank does not specify any
+morphological features, although we hope to add these
+to a future version.</p>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<p>The Manx treebank uses 31 of the 37 
+dependency relations in v2 of the UD guidelines
+(all but <code class="highlighter-rouge">expl</code>, <code class="highlighter-rouge">dislocated</code>, <code class="highlighter-rouge">aux</code>, <code class="highlighter-rouge">clf</code>, <code class="highlighter-rouge">list</code>, and <code class="highlighter-rouge">goeswith</code>).</p>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<h3 id="subtype-relations">Subtype relations</h3>
 
-<hr />
+<p>The Manx treebank uses the following six subtype relations;
+all but <code class="highlighter-rouge">flat:foreign</code> are used in the Irish treebank.</p>
+
+<ul>
+  <li>[acl:relcl] for relative clauses</li>
+  <li>[csubj:cleft] for cleft subjects</li>
+  <li>[csubj:cop] for copular clausal subjects</li>
+  <li>[flat:foreign] for non-first words in quoted foreign phrases</li>
+  <li>[obl:tmod] for temporal modifiers</li>
+  <li>[xcomp:pred] for predicates of the substantive verb “to be”</li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There is 1 Manx UD treebank:</p>
+<p>There is one Manx UD treebank:</p>
 
 <ul>
   <li><a href="../treebanks/gv_cadhan/index.html">Manx-Cadhan</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="highlighter-rouge">*-index.html</code> page in the <code class="highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
 
       </div>
