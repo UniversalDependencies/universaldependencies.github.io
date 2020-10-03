@@ -94,8 +94,9 @@ Also don’t attempt to bring into line with GOC by adding or taking away hyphen
 
 <h3 id="multiword-tokens">Multiword tokens</h3>
 
-<p>The original version of ARCOSG contains multiword tokens.
-For UD, however, we need to split these up. For the moment we duplicate the UPOS and the XPOS for each of the words.
+<p>The original version of ARCOSG contains tokens that contain spaces.
+For UD, however, we need to split these up.
+For the moment we duplicate the UPOS and the XPOS for each of the words.
 PROPNs have a <code class="highlighter-rouge">flat</code> relation; others have a <code class="highlighter-rouge">fixed</code> relation but this needs to be improved.</p>
 
 <p>Some difficult cases follow:</p>
@@ -104,32 +105,41 @@ PROPNs have a <code class="highlighter-rouge">flat</code> relation; others have 
 <h4 id="sam-bith"><em>sam bith</em></h4>
 <p><em>rud sam bith</em>, ‘whatever’ and so forth. Currently both <em>sam</em> and <em>bith</em> are marked as <code class="highlighter-rouge">ADJ</code> but there is clearly internal structure.</p>
 
+<p>Conversely, there are single tokens in ARCOSG that correspond to more than one word in the UD sense.
+Here are the most common families:</p>
+<ul>
+  <li>Inflected prepositions (tagged <code class="highlighter-rouge">Pr*</code> in ARCOSG) such as <em>orm</em>, <em>agam</em> and <em>ann</em> are divided into the preposition which is <code class="highlighter-rouge">ADP</code> and the personal pronoun which is <code class="highlighter-rouge">PRON</code>.</li>
+  <li>Similarly prepositions (tagged <code class="highlighter-rouge">Spa-s</code> in ARCOSG) which have been fused with a following article such as <em>dhan</em>, <em>mun</em>, <em>tron</em> are divided into a preposition and an article. <em>‘san</em> and the like, which are short for <em>anns an</em>, are divided into two <code class="highlighter-rouge">ADP</code>s with a <code class="highlighter-rouge">fixed</code> relation between the two.</li>
+  <li>Prepositions and aspect markers (see below) which have been fused with a possessive pronoun (tagged <code class="highlighter-rouge">Sap*</code> or <code class="highlighter-rouge">Spp*</code>) in ARCOSG.</li>
+  <li>Where <em>‘se</em> and <em>‘sann</em> are a single orthographical word they too are separated out. See the section on <em>is</em> below for details.</li>
+</ul>
+
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
 <p>Standard UPOS tags are used throughout. Generally we follow the choices made in the Irish UD treebanks.</p>
 <ul>
-  <li>AUX is used for <em>is</em> (the copula) only. <em>bi</em> is tagged as VERB.</li>
-  <li>The following words are tagged PART: the adverbialiser <em>gu</em> (<em>gu math</em> ‘well’), the comparative particle <em>nas</em>, the superlative particle <em>as</em>, the agreement particle <em>a</em> (<em>a dol</em> ‘to go’), the vocative particle <em>a</em> (<em>a Sheumais</em> ‘James’), the patronymic particles <em>Mac</em> and <em>Nic</em>, the numerical particle <em>a</em> (<em>a h-aon) ‘one’), the past tense marker _do</em>, the negative particles <em>cha</em> and <em>nach</em>, the interrogative particles <em>a</em> and <em>an</em> and the relative particle <em>a</em>.</li>
-  <li>Verbal nouns are tagged as NOUN.</li>
-  <li>Deverbal adjectives are tagged as ADJ.</li>
-  <li>The aspectual particles <em>ag</em>/<em>a’</em>, <em>air</em>, <em>gu</em> and <em>ri</em> (all prototypically adpositions) are tagged as ADP.</li>
-  <li>Demonstrative pronouns, <em>seo</em>, <em>sin</em> and <em>siud</em> are tagged as PRON as in Irish.</li>
-  <li>If they are acting as determiners (and tagged as Dd in ARCOSG) then they are tagged DET, as in Irish again.</li>
+  <li><code class="highlighter-rouge">AUX</code> is used for <em>is</em> (the copula) only. <em>bi</em> is tagged as <code class="highlighter-rouge">VERB</code>.</li>
+  <li>The following words are tagged <code class="highlighter-rouge">PART</code>: the adverbialiser <em>gu</em> (<em>gu math</em> ‘well’), the comparative particle <em>nas</em>, the superlative particle <em>as</em>, the agreement particle <em>a</em> (<em>a dol</em> ‘to go’), the vocative particle <em>a</em> (<em>a Sheumais</em> ‘James’), the patronymic particles <em>Mac</em> and <em>Nic</em>, the numerical particle <em>a</em> (<em>a h-aon) ‘one’), the past tense marker _do</em>, the negative particles <em>cha</em> and <em>nach</em>, the interrogative particles <em>a</em> and <em>an</em> and the relative particle <em>a</em>.</li>
+  <li>Verbal nouns are tagged as <code class="highlighter-rouge">NOUN</code>.</li>
+  <li>Deverbal adjectives are tagged as <code class="highlighter-rouge">ADJ</code>.</li>
+  <li>The aspectual particles <em>ag</em>/<em>a’</em>, <em>air</em>, <em>gu</em> and <em>ri</em> (all prototypically adpositions) are tagged as <code class="highlighter-rouge">ADP</code>.</li>
+  <li>Demonstrative pronouns, <em>seo</em>, <em>sin</em> and <em>siud</em> are tagged as <code class="highlighter-rouge">PRON</code> as in Irish.</li>
+  <li>If they are acting as determiners (and tagged as <code class="highlighter-rouge">Dd</code> in ARCOSG) then they are tagged <code class="highlighter-rouge">DET</code>, as in Irish again.</li>
 </ul>
 
 <h3 id="features">Features</h3>
 
 <p>Gaelic has two genders (masculine and feminine), four cases (nominative/accusative, genitive, dative and vocative), three numbers (singular, dual and plural), the usual three persons and an impersonal form.</p>
 
-<p>The words <em>fèin</em> and <em>cheile</em> take Reflex = Yes.</p>
+<p>The words <em>fèin</em> and <em>cheile</em> take <code class="highlighter-rouge">Reflex=Yes</code>.</p>
 
-<p>The indicative mood is default and we mark the conditional (Cnd), imperative (Imp) and interrogative (Int) moods. The tenses we mark are</p>
+<p>The indicative mood is default and we mark the conditional (<code class="highlighter-rouge">Cnd</code>), imperative (<code class="highlighter-rouge">Imp</code>) and interrogative (<code class="highlighter-rouge">Int</code>) moods. The tenses we mark are</p>
 
-<p>We also follow Irish in marking three pronoun types (Emp = emphatic, Int = interrogative and Rel = relative), polarity (Neg on negative particles) and the following particle types: Ad (adverbialiser), Comp (comparative), Cmpl (complement), Inf (agreement particle), Int (interrogative), Num (numerical), Pat (patronymic), Vb (verbal) and Voc (vocative).</p>
+<p>We also follow Irish in marking three pronoun types (<code class="highlighter-rouge">Emp</code> = emphatic, <code class="highlighter-rouge">Int</code> = interrogative and <code class="highlighter-rouge">Rel</code> = relative), polarity (<code class="highlighter-rouge">Neg</code> on negative particles) and the following particle types: <code class="highlighter-rouge">Ad</code> (adverbialiser), <code class="highlighter-rouge">Comp</code> (comparative), <code class="highlighter-rouge">Cmpl</code> (complement), <code class="highlighter-rouge">Inf</code> (agreement particle), <code class="highlighter-rouge">Int</code> (interrogative), <code class="highlighter-rouge">Num</code> (numerical), <code class="highlighter-rouge">Pat</code> (patronymic), <code class="highlighter-rouge">Vb</code> (verbal) and <code class="highlighter-rouge">Voc</code> (vocative).</p>
 
-<p>We also have Foreign=Yes for words that are in Irish or English according to the original ARCOSG tagging.</p>
+<p>We also have <code class="highlighter-rouge">Foreign=Yes</code> for words that are in Irish or English according to the original ARCOSG tagging.</p>
 
 <h2 id="syntax">Syntax</h2>
 
@@ -230,12 +240,15 @@ For example n04<em>002: _… gu robh e ‘dol a dh’fhalbh feuch a faigheadh…
 <h3 id="is"><em>is</em></h3>
 <p><em>‘S</em>, <em>b’</em>, <em>bu</em>, <em>‘se</em>, <em>‘sann</em> and so on are <code class="highlighter-rouge">cop</code> and the root is whatever has been fronted by it.
 We treat <em>‘S e</em> as a fixed expression where <em>e</em> has a <code class="highlighter-rouge">fixed</code> relation with the <code class="highlighter-rouge">AUX</code>.
-Again we follow Irish and whatever comes after the root is a subject, be it a nominal subject, <code class="highlighter-rouge">nsubj</code>, or a clausal subject, <code class="highlighter-rouge">csubj:cop</code>.</p>
+Likewise <em>‘S ann</em>, except of course <em>ann</em> is divided up into <em>an</em> and <em>e</em> and both have a <code class="highlighter-rouge">fixed</code> relation with the <code class="highlighter-rouge">AUX</code>.</p>
+
+<p>Following Cox in <em>Geàrr Ghràmar na Gàidhlig</em>, p. 284, in phrases like <em>is ann a cheannaich mi bainne</em>, <em>cheannaich</em> is still the root even though it’s preceded by a relative particle.</p>
+
+<p>Again we follow Irish and whatever comes after the root is a subject, be it a nominal subject, <code class="highlighter-rouge">nsubj</code>, or a clausal subject, <code class="highlighter-rouge">csubj:cleft</code> or <code class="highlighter-rouge">csubj:cop</code>.</p>
 
 <h3 id="mas"><em>mas</em></h3>
 
-<p><em>Mas</em> (‘if’) has a <code class="highlighter-rouge">cop</code> relation to the <em>e</em> that follows and has UPOS <code class="highlighter-rouge">AUX</code>.
-(It has XPOS <code class="highlighter-rouge">Csw</code> and usually <code class="highlighter-rouge">Cs</code> words are <code class="highlighter-rouge">SCONJ</code>.)</p>
+<p><em>Mas</em> (‘if’) is divided into the two words <em>ma</em> (<code class="highlighter-rouge">SCONJ</code>) and <em>is</em> (<code class="highlighter-rouge">AUX</code>).</p>
 
 <h3 id="nach-maireann"><em>nach maireann</em></h3>
 
