@@ -62,7 +62,7 @@
 
           <h1 id="enhanced-dependencies">Enhanced Dependencies</h1>
 
-<p>We always intended the Universal Dependencies representation to be used in shallow natural language understanding tasks such as relation extraction or biomedical event extraction. For such tasks, one is typically interested in the relation between certain entities, e.g., the relation between two persons or whether one protein interacts with another. UD is particularly well suited for such tasks as UD trees contain many direct dependencies between content words and many of the dependency labels provide a lot of information about the type of relation between two content words. However, for some constructions, the dependency path between two content words of interest can be very long in a UD tree, which complicates determining how the content words are related. Further, some dependency types such as <a href="u-dep/obl"><code class="highlighter-rouge">obl</code></a> or <a href="u-dep/nmod"><code class="highlighter-rouge">nmod</code></a> are used for many different types of arguments and modifiers, and therefore they are not very informative on their own. For these reasons, we also provide guidelines for an <em>enhanced</em> representation, which makes some of the implicit relations between words more explicit, and augments some of the dependency labels to facilitate the disambiguation of types of arguments and modifiers.</p>
+<p>We always intended the Universal Dependencies representation to be used in shallow natural language understanding tasks such as relation extraction or biomedical event extraction. For such tasks, one is typically interested in the relation between certain entities, e.g., the relation between two persons or whether one protein interacts with another. UD is particularly well suited for such tasks as UD trees contain many direct dependencies between content words and many of the dependency labels provide a lot of information about the type of relation between two content words. However, for some constructions, the dependency path between two content words of interest can be very long in a UD tree, which complicates determining how the content words are related. Further, some dependency types such as <a href="u-dep/obl"><code class="language-plaintext highlighter-rouge">obl</code></a> or <a href="u-dep/nmod"><code class="language-plaintext highlighter-rouge">nmod</code></a> are used for many different types of arguments and modifiers, and therefore they are not very informative on their own. For these reasons, we also provide guidelines for an <em>enhanced</em> representation, which makes some of the implicit relations between words more explicit, and augments some of the dependency labels to facilitate the disambiguation of types of arguments and modifiers.</p>
 
 <p><em>Enhanced</em> UD graphs may contain some or all of the following enhancements, which are described in the sections below.</p>
 
@@ -79,9 +79,9 @@
 <p>Furthermore, the dependency relation labels in the enhanced graph in DEPS may contain certain extensions that are not permitted
 in the basic relation type in the DEPREL column. The regular expression restricting relation labels in DEPREL is pretty simple;
 the label can contain only lowercase English letters and at most one colon, which separates the universal and the language-specific
-part of the label: <code class="highlighter-rouge">^[a-z]+(:[a-z]+)?$</code>. In contrast, the relation label in DEPS may contain up to three colons, separating up to
+part of the label: <code class="language-plaintext highlighter-rouge">^[a-z]+(:[a-z]+)?$</code>. In contrast, the relation label in DEPS may contain up to three colons, separating up to
 four sections. One of the sections (never the first one) may also contain lowercase Unicode letters and the underscore character:
-<code class="highlighter-rouge">^[a-z]+(:[a-z]+)?(:[\p{Ll}\p{Lm}\p{Lo}\p{M}]+(_[\p{Ll}\p{Lm}\p{Lo}\p{M}]+)*)?(:[a-z]+)?$</code>.
+<code class="language-plaintext highlighter-rouge">^[a-z]+(:[a-z]+)?(:[\p{Ll}\p{Lm}\p{Lo}\p{M}]+(_[\p{Ll}\p{Lm}\p{Lo}\p{M}]+)*)?(:[a-z]+)?$</code>.
 Only the first section, the universal relation, is mandatory. The other sections are optional but if they appear, they must appear
 in the order described below. We provide a more detailed explanation of the extra sections later on this page; here is a summary:</p>
 
@@ -90,17 +90,17 @@ in the order described below. We provide a more detailed explanation of the extr
 defined in the basic representation, the relation can also be <tt><a href="#relative-clauses">ref</a></tt>.</li>
   <li>Documented <a href="/ext-dep-index.html">relation subtype</a> (either language-specific or more general) from the basic representation.</li>
   <li><a href="#case-information">Case information</a> –
-adposition or conjunction that occurs as a <code class="highlighter-rouge">case</code> or <code class="highlighter-rouge">mark</code> dependent of the node whose relation to its
+adposition or conjunction that occurs as a <code class="language-plaintext highlighter-rouge">case</code> or <code class="language-plaintext highlighter-rouge">mark</code> dependent of the node whose relation to its
 parent is being enhanced. Note that this is the only part where non-ASCII letters are permitted within the enhanced relation label.
 The word should be normalized (lowercased, no typos), i.e., in general we take its lemma. However, if the case/mark dependent is
 a fixed multi-word expression, the lemma of the expression is not necessarily composed of lemmas of the individual member words.
-For instance, the string representing the English expression “As Opposed To” is <code class="highlighter-rouge">as_opposed_to</code>. That is, the casing is normalized
+For instance, the string representing the English expression “As Opposed To” is <code class="language-plaintext highlighter-rouge">as_opposed_to</code>. That is, the casing is normalized
 from “As” to “as” etc., but “opposed” is not replaced by its lemma “oppose” because the expression is fixed. We use the underscore
 character (“_”) to connect member words.</li>
   <li><a href="#case-information">Case information</a> –
 morphological case of the node whose relation to its parent is being enhanced. Value corresponds to the value of
-the Case feature but it is lowercased (e.g., <code class="highlighter-rouge">gen</code> instead of <code class="highlighter-rouge">Gen</code>). Unlike in morphological features, multivalues with comma
-(<code class="highlighter-rouge">Case=Acc,Dat</code>) are not allowed. Case information in enhanced relations must be fully disambiguated.</li>
+the Case feature but it is lowercased (e.g., <code class="language-plaintext highlighter-rouge">gen</code> instead of <code class="language-plaintext highlighter-rouge">Gen</code>). Unlike in morphological features, multivalues with comma
+(<code class="language-plaintext highlighter-rouge">Case=Acc,Dat</code>) are not allowed. Case information in enhanced relations must be fully disambiguated.</li>
 </ol>
 
 <h2 id="ellipsis">Ellipsis</h2>
@@ -184,7 +184,7 @@ the Case feature but it is lowercased (e.g., <code class="highlighter-rouge">gen
 </td></tr></tbody>
 </table>
 
-<p>Note that this is a case in which the <em>enhanced</em> UD graph is not a supergraph of the <em>basic</em> tree as the <em>basic</em> tree contains <code class="highlighter-rouge">orphan</code> relations, which are not present in the <em>enhanced</em> UD graph.</p>
+<p>Note that this is a case in which the <em>enhanced</em> UD graph is not a supergraph of the <em>basic</em> tree as the <em>basic</em> tree contains <code class="language-plaintext highlighter-rouge">orphan</code> relations, which are not present in the <em>enhanced</em> UD graph.</p>
 
 <h2 id="propagation-of-conjuncts">Propagation of Conjuncts</h2>
 
@@ -419,7 +419,7 @@ the Case feature but it is lowercased (e.g., <code class="highlighter-rouge">gen
 
 <h3 id="conjoined-modifiers">Conjoined modifiers</h3>
 
-<p>Each conjunct in a conjoined modifier phrase gets attached to the governor of the modifier phrase. For example, the following phrase contains a conjoined adjectival phrase that modifies a noun. In the enhanced representation, there is an additional <code class="highlighter-rouge">amod</code> relation between the noun <em>river</em> and the second conjunct <em>wide</em>.</p>
+<p>Each conjunct in a conjoined modifier phrase gets attached to the governor of the modifier phrase. For example, the following phrase contains a conjoined adjectival phrase that modifies a noun. In the enhanced representation, there is an additional <code class="language-plaintext highlighter-rouge">amod</code> relation between the noun <em>river</em> and the second conjunct <em>wide</em>.</p>
 
 <table> <!--a long and wide river-->
 <tbody><tr><td width="600">
@@ -501,7 +501,7 @@ the Case feature but it is lowercased (e.g., <code class="highlighter-rouge">gen
 
 <h2 id="relative-clauses">Relative clauses</h2>
 
-<p>In <em>basic</em> trees, relative pronouns are attached to the main predicate of the relative clause (typically with a <code class="highlighter-rouge">nsubj</code> or <code class="highlighter-rouge">obj</code> relation). In the corresponding <em>enhanced</em> graphs, the relative pronoun is attached to its antecedent with the special <code class="highlighter-rouge">ref</code> relation and the antecedent is attached as an argument to the main predicate of the relative clause. In the case where there is no explicit relative pronoun, only the latter arc is added. Note that such graphs contain a cycle.</p>
+<p>In <em>basic</em> trees, relative pronouns are attached to the main predicate of the relative clause (typically with a <code class="language-plaintext highlighter-rouge">nsubj</code> or <code class="language-plaintext highlighter-rouge">obj</code> relation). In the corresponding <em>enhanced</em> graphs, the relative pronoun is attached to its antecedent with the special <code class="language-plaintext highlighter-rouge">ref</code> relation and the antecedent is attached as an argument to the main predicate of the relative clause. In the case where there is no explicit relative pronoun, only the latter arc is added. Note that such graphs contain a cycle.</p>
 
 <table> <!--the boy who lived-->
 <tbody><tr><td width="600">
@@ -591,7 +591,7 @@ the Case feature but it is lowercased (e.g., <code class="highlighter-rouge">gen
 </td></tr></tbody>
 </table>
 
-<p>The enhanced relations include deep syntactic relations. Therefore, in case marking languages the enhanced dependencies may link verb dependents that are not in the expected morphological case, required by surface syntax. In the following Czech example, the relative modifier phrase <em>v němž</em> “in which” is obligatorily in the locative case form (<code class="highlighter-rouge">Case=Loc</code>). If it were a main clause, the referent <em>dům</em> “house” would have to be in locative too: <em>v domě</em> “in house”. However, here it is in the nominative (<code class="highlighter-rouge">Case=Nom</code>), and the enhanced dependency <code class="highlighter-rouge">obl</code> going to a nominative dependent is something we would not expect to see, given the morpho-syntactic rules of the language.</p>
+<p>The enhanced relations include deep syntactic relations. Therefore, in case marking languages the enhanced dependencies may link verb dependents that are not in the expected morphological case, required by surface syntax. In the following Czech example, the relative modifier phrase <em>v němž</em> “in which” is obligatorily in the locative case form (<code class="language-plaintext highlighter-rouge">Case=Loc</code>). If it were a main clause, the referent <em>dům</em> “house” would have to be in locative too: <em>v domě</em> “in house”. However, here it is in the nominative (<code class="language-plaintext highlighter-rouge">Case=Nom</code>), and the enhanced dependency <code class="language-plaintext highlighter-rouge">obl</code> going to a nominative dependent is something we would not expect to see, given the morpho-syntactic rules of the language.</p>
 
 <table> <!--dům, v němž žijeme = the house we live in (lit. house, in that we-live)-->
 <tbody><tr><td width="600">
@@ -646,9 +646,9 @@ It may be embedded deeper as in the following example.</p>
 
 <p>If the relative clause has a nominal predicate, the relative pronoun may occupy the head position
 within the clause. In such cases no relation should be added from its parent to its co-referential
-element (because they are the same node). We should only add a <code class="highlighter-rouge">nsubj</code> relation from the antecedent
-to the <code class="highlighter-rouge">nsubj</code> of the relative clause (and remove the corresponding <code class="highlighter-rouge">nsubj</code> relation between the
-relative pronoun and the subject). The <code class="highlighter-rouge">acl:relcl</code> should remain the same as in basic
+element (because they are the same node). We should only add a <code class="language-plaintext highlighter-rouge">nsubj</code> relation from the antecedent
+to the <code class="language-plaintext highlighter-rouge">nsubj</code> of the relative clause (and remove the corresponding <code class="language-plaintext highlighter-rouge">nsubj</code> relation between the
+relative pronoun and the subject). The <code class="language-plaintext highlighter-rouge">acl:relcl</code> should remain the same as in basic
 dependencies.</p>
 
 <!-- https://github.com/UniversalDependencies/docs/issues/531 -->
@@ -687,10 +687,10 @@ dependencies.</p>
 
 <p>Adding prepositions (or case information) to the relation name of non-core dependents often makes it possible to disambiguate its
 semantic role. We therefore augment certain relation labels with the case information of the modifier.
-The augmented relations are <code class="highlighter-rouge">nmod</code>, <code class="highlighter-rouge">acl</code>, <code class="highlighter-rouge">obl</code> and <code class="highlighter-rouge">advcl</code>; if it makes sense in the language, some core relations may also be
-augmented: <code class="highlighter-rouge">obj</code>, <code class="highlighter-rouge">iobj</code>, <code class="highlighter-rouge">ccomp</code>.
-Case information may be represented by the lemma of an adposition attached via a <code class="highlighter-rouge">case</code> relation.
-For clauses, the corresponding information may be represented by the lemma of a <code class="highlighter-rouge">mark</code> dependent instead.
+The augmented relations are <code class="language-plaintext highlighter-rouge">nmod</code>, <code class="language-plaintext highlighter-rouge">acl</code>, <code class="language-plaintext highlighter-rouge">obl</code> and <code class="language-plaintext highlighter-rouge">advcl</code>; if it makes sense in the language, some core relations may also be
+augmented: <code class="language-plaintext highlighter-rouge">obj</code>, <code class="language-plaintext highlighter-rouge">iobj</code>, <code class="language-plaintext highlighter-rouge">ccomp</code>.
+Case information may be represented by the lemma of an adposition attached via a <code class="language-plaintext highlighter-rouge">case</code> relation.
+For clauses, the corresponding information may be represented by the lemma of a <code class="language-plaintext highlighter-rouge">mark</code> dependent instead.
 <!-- DZ: Do we really want to include cc dependents here? How are they related to case? Don't we want to make them augment conj relations instead? -->
 Case information may also be represented by the value of the morphological feature <a href="/u/feat/Case.html">Case</a>.
 In some languages, there is both the adposition and the morphological case, and their combination must be reflected in the enhanced relation.</p>
@@ -698,22 +698,22 @@ In some languages, there is both the adposition and the morphological case, and 
 <p>The following formal rules apply (copied from the summary at the beginning of this page):</p>
 
 <ul>
-  <li>Adposition or conjunction that occurs as a <code class="highlighter-rouge">case</code> or <code class="highlighter-rouge">mark</code> <!--or `cc` ?--> dependent of the node whose relation to its
+  <li>Adposition or conjunction that occurs as a <code class="language-plaintext highlighter-rouge">case</code> or <code class="language-plaintext highlighter-rouge">mark</code> <!--or `cc` ?--> dependent of the node whose relation to its
 parent is being enhanced. Note that this is the only part where non-ASCII letters are permitted within the enhanced relation label.
 The word should be normalized (lowercased, no typos), i.e., in general we take its lemma. However, if the case/mark dependent is
 a fixed multi-word expression, the lemma of the expression is not necessarily composed of lemmas of the individual member words.
-For instance, the string representing the English expression “As Opposed To” is <code class="highlighter-rouge">as_opposed_to</code>. That is, the casing is normalized
+For instance, the string representing the English expression “As Opposed To” is <code class="language-plaintext highlighter-rouge">as_opposed_to</code>. That is, the casing is normalized
 from “As” to “as” etc., but “opposed” is not replaced by its lemma “oppose” because the expression is fixed. We use the underscore
 character (“_”) to connect member words.
     <ul>
-      <li>Multiple <code class="highlighter-rouge">case</code> or <code class="highlighter-rouge">mark</code> nodes may occur even if it is not a fixed expression. For example, a type of adverbial clause
+      <li>Multiple <code class="language-plaintext highlighter-rouge">case</code> or <code class="language-plaintext highlighter-rouge">mark</code> nodes may occur even if it is not a fixed expression. For example, a type of adverbial clause
 in Dutch uses two markers <em>om</em> and <em>te</em>, the first one roughly corresponding to English “so that”, the second one being
-an infinitive marker. The incoming dependency of the subordinate clause will then be labeled <code class="highlighter-rouge">advcl:om_te</code>.</li>
+an infinitive marker. The incoming dependency of the subordinate clause will then be labeled <code class="language-plaintext highlighter-rouge">advcl:om_te</code>.</li>
     </ul>
   </li>
   <li>Morphological case of the node whose relation to its parent is being enhanced. Value corresponds to the value of
-the Case feature but it is lowercased (e.g., <code class="highlighter-rouge">gen</code> instead of <code class="highlighter-rouge">Gen</code>). Unlike in morphological features, multivalues with comma
-(<code class="highlighter-rouge">Case=Acc,Dat</code>) are not allowed. Case information in enhanced relations must be fully disambiguated.</li>
+the Case feature but it is lowercased (e.g., <code class="language-plaintext highlighter-rouge">gen</code> instead of <code class="language-plaintext highlighter-rouge">Gen</code>). Unlike in morphological features, multivalues with comma
+(<code class="language-plaintext highlighter-rouge">Case=Acc,Dat</code>) are not allowed. Case information in enhanced relations must be fully disambiguated.</li>
 </ul>
 
 <table> <!--the house on the hill-->

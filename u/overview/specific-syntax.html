@@ -105,12 +105,12 @@ cc(two, or)
   <li>If the elided element has no overt dependents, we do nothing.</li>
   <li>If the elided element has overt dependents, we promote one of these to take the role of the head.</li>
   <li>If the elided element is a predicate and the promoted element is one of its arguments or adjuncts,
-we use the <code class="highlighter-rouge">orphan</code> relation when attaching other non-functional dependents to the promoted head.</li>
+we use the <code class="language-plaintext highlighter-rouge">orphan</code> relation when attaching other non-functional dependents to the promoted head.</li>
 </ol>
 
 <h3 id="ellipsis-in-nominals">Ellipsis in Nominals</h3>
 
-<p>If the head nominal is elided, we promote dependents in the following order: <code class="highlighter-rouge">amod</code> &gt; <code class="highlighter-rouge">nummod</code> &gt; <code class="highlighter-rouge">det</code> &gt; <code class="highlighter-rouge">nmod</code> &gt; <code class="highlighter-rouge">case</code>.</p>
+<p>If the head nominal is elided, we promote dependents in the following order: <code class="language-plaintext highlighter-rouge">amod</code> &gt; <code class="language-plaintext highlighter-rouge">nummod</code> &gt; <code class="language-plaintext highlighter-rouge">det</code> &gt; <code class="language-plaintext highlighter-rouge">nmod</code> &gt; <code class="language-plaintext highlighter-rouge">case</code>.</p>
 
 <p>Examples:</p>
 
@@ -147,7 +147,7 @@ obj(saw-7, two-8)
 
 <h3 id="ellipsis-in-clauses">Ellipsis in Clauses</h3>
 
-<p>If the main predicate is elided, we use simple promotion only if there is an <code class="highlighter-rouge">aux</code> or <code class="highlighter-rouge">cop</code>, or a <code class="highlighter-rouge">mark</code> in the case of an infinitival marker.</p>
+<p>If the main predicate is elided, we use simple promotion only if there is an <code class="language-plaintext highlighter-rouge">aux</code> or <code class="language-plaintext highlighter-rouge">cop</code>, or a <code class="language-plaintext highlighter-rouge">mark</code> in the case of an infinitival marker.</p>
 
 <p>Example:</p>
 
@@ -179,7 +179,7 @@ nsubj(want-7, they-6)
 xcomp(want-7, to-8)
 </code></pre>
 
-<p>In more complicated cases where a predicate is elided but no <code class="highlighter-rouge">aux</code> or <code class="highlighter-rouge">cop</code> is present, simple promotion (without <code class="highlighter-rouge">orphan</code> deprels) could lead to very unnatural and confusing relations. For example, in the following sentence, <em>you</em> would be the subject of <em>coffee</em>, suggesting that the second clause contains a copular construction rather than an elided predicate.</p>
+<p>In more complicated cases where a predicate is elided but no <code class="language-plaintext highlighter-rouge">aux</code> or <code class="language-plaintext highlighter-rouge">cop</code> is present, simple promotion (without <code class="language-plaintext highlighter-rouge">orphan</code> deprels) could lead to very unnatural and confusing relations. For example, in the following sentence, <em>you</em> would be the subject of <em>coffee</em>, suggesting that the second clause contains a copular construction rather than an elided predicate.</p>
 
 <div class="conllu-parse" tabs="yes">
 # visual-style 6 5 nsubj color:red
@@ -205,9 +205,9 @@ xcomp(want-7, to-8)
 7 .      .      _ .   _ 2 punct _ _
 </div>
 
-<p>To avoid confusion and signal that the dependency structure is incomplete, we use the special relation <code class="highlighter-rouge">orphan</code> to connect the non-promoted dependents with the promoted dependent. Orphaned dependents are considered for promotion in the following order:
-<code class="highlighter-rouge">nsubj</code> &gt; <code class="highlighter-rouge">obj</code> &gt; <code class="highlighter-rouge">iobj</code> &gt; <code class="highlighter-rouge">obl</code> &gt; <code class="highlighter-rouge">advmod</code> &gt; <code class="highlighter-rouge">csubj</code> &gt; <code class="highlighter-rouge">xcomp</code> &gt; <code class="highlighter-rouge">ccomp</code> &gt; <code class="highlighter-rouge">advcl</code> &gt; <code class="highlighter-rouge">dislocated</code> &gt; <code class="highlighter-rouge">vocative</code>.
-If it is necessary to select among several orphans of the same type (e.g., there are just two orphans and both are <code class="highlighter-rouge">advmod</code>),
+<p>To avoid confusion and signal that the dependency structure is incomplete, we use the special relation <code class="language-plaintext highlighter-rouge">orphan</code> to connect the non-promoted dependents with the promoted dependent. Orphaned dependents are considered for promotion in the following order:
+<code class="language-plaintext highlighter-rouge">nsubj</code> &gt; <code class="language-plaintext highlighter-rouge">obj</code> &gt; <code class="language-plaintext highlighter-rouge">iobj</code> &gt; <code class="language-plaintext highlighter-rouge">obl</code> &gt; <code class="language-plaintext highlighter-rouge">advmod</code> &gt; <code class="language-plaintext highlighter-rouge">csubj</code> &gt; <code class="language-plaintext highlighter-rouge">xcomp</code> &gt; <code class="language-plaintext highlighter-rouge">ccomp</code> &gt; <code class="language-plaintext highlighter-rouge">advcl</code> &gt; <code class="language-plaintext highlighter-rouge">dislocated</code> &gt; <code class="language-plaintext highlighter-rouge">vocative</code>.
+If it is necessary to select among several orphans of the same type (e.g., there are just two orphans and both are <code class="language-plaintext highlighter-rouge">advmod</code>),
 the orphan occurring first (closer to the sentence start) is promoted.</p>
 
 <pre><code class="language-sdparse">I like tea and you coffee .
@@ -261,12 +261,12 @@ det(flower, a-11)
 punct(gave, .)
 </code></pre>
 
-<p>Note that the <code class="highlighter-rouge">orphan</code> relation is only used when an ordinary relation would be misleading (for example, when attaching an object to a subject). In particular, the ordinary <code class="highlighter-rouge">cc</code> relation should be used for the coordinating conjunction, which attaches to the pseudo-constituent formed through the <code class="highlighter-rouge">orphan</code> dependency.</p>
+<p>Note that the <code class="language-plaintext highlighter-rouge">orphan</code> relation is only used when an ordinary relation would be misleading (for example, when attaching an object to a subject). In particular, the ordinary <code class="language-plaintext highlighter-rouge">cc</code> relation should be used for the coordinating conjunction, which attaches to the pseudo-constituent formed through the <code class="language-plaintext highlighter-rouge">orphan</code> dependency.</p>
 
 <p>In German the grammar requires that non-finite verbs are at the end of the clause, which may mean that they are far away from
 their finite auxiliary verbs, possibly with intervening conjuncts. In the following example we do not try to keep <em>wurde geschieden</em>
 in one constituent. Instead, the auxiliary verb <em>wurde</em> is promoted as the head of the first conjunct, and the content participle
-<em>geschieden</em> heads the third conjunct. There is no verb in the middle conjunct and the <code class="highlighter-rouge">orphan</code> relation is used instead.
+<em>geschieden</em> heads the third conjunct. There is no verb in the middle conjunct and the <code class="language-plaintext highlighter-rouge">orphan</code> relation is used instead.
 See also <a href="https://github.com/UniversalDependencies/docs/issues/522">issue 522</a>.</p>
 
 <pre><code class="language-sdparse">Der Genuß wurde von der Arbeit , das Mittel vom Zweck , die Anstrengung von der Belohnung geschieden . \n The pleasure was from the work , the means from-the goal , the effort from the reward distinguished .
@@ -656,7 +656,7 @@ parataxis(agree, apply)
 
 <h2 id="punctuation">Punctuation</h2>
 
-<p>Tokens with the relation <a href="">u-dep/punct</a> always attach to content words (except in cases of ellipsis) and can never have dependents. Since <code class="highlighter-rouge">punct</code> is not a normal dependency relation, the usual criteria for determining the head word do not apply.
+<p>Tokens with the relation <a href="">u-dep/punct</a> always attach to content words (except in cases of ellipsis) and can never have dependents. Since <code class="language-plaintext highlighter-rouge">punct</code> is not a normal dependency relation, the usual criteria for determining the head word do not apply.
 Instead, we use the following principles:</p>
 
 <ol>

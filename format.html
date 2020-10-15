@@ -118,7 +118,7 @@ They have a FORM value – the string that occurs in the sentence – but have a
 This is illustrated in the following annotation snippet,
 showing only the first three fields for the Spanish sentence <em>vámonos al mar</em> (let’s go to the sea):</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1-2    vámonos   _
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1-2    vámonos   _
 1      vamos     ir
 2      nos       nosotros
 3-4    al        _
@@ -129,7 +129,7 @@ showing only the first three fields for the Spanish sentence <em>vámonos al mar
 
 <p>We extract the word sequence by skipping all range IDs:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1      vamos     ir
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1      vamos     ir
 2      nos       nosotros
 3      a         a
 4      el        el
@@ -138,7 +138,7 @@ showing only the first three fields for the Spanish sentence <em>vámonos al mar
 
 <p>We extract the raw token sequence by skipping all integer IDs that are included in a preceding range ID:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1-2    vámonos   _
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1-2    vámonos   _
 3-4    al        _
 5      mar       mar
 </code></pre></div></div>
@@ -146,7 +146,7 @@ showing only the first three fields for the Spanish sentence <em>vámonos al mar
 <p>To accommodate the use of empty nodes for the analysis of ellipsis in the enhanced dependency representation, we adopt
 a further extension of the indexing scheme from v2. It is possible to insert one or more empty nodes indexed <em>i</em>.1, <em>i</em>.2, etc. immediately after a word with index <em>i</em> (where <em>i</em> = 0 for sentence-initial empty nodes). Note that the the numbers after the decimal point must form a sequence starting at 1, i.e. it is not allowed to skip <em>i</em>.1 and use <em>i</em>.2. In the unlikely case that there are ten or more empty nodes between two real tokens, <em>i</em>.10 comes after <em>i</em>.9, that is, the entire ID is not ordered numerically as a decimal number. Here is an example showing the use of an empty node in the analysis of the sentence <em>Sue likes coffee and Bill tea</em>:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1      Sue       Sue
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1      Sue       Sue
 2      likes     like
 3      coffee    coffee
 4      and       and
@@ -164,12 +164,12 @@ and refer to other fields as well). If no language-specific tags are available, 
 
 <p>The FEATS field contains a list
 of morphological features, with vertical bar (|) as list separator and with underscore to represent the empty list.
-All features should be represented as attribute-value pairs, with an equals sign (=) separating the attribute from the value. In addition, features should as far as possible be selected from the <a href="u/feat/index.html">universal feature inventory</a> and be sorted alphabetically by attribute names. It is possible to declare that a feature has two or more values for a given word: <code class="highlighter-rouge">Case=Acc,Dat</code>. In this case, the values are sorted alphabetically. In sorting, uppercase letters are considered identical to their lowercase counterparts. Feature names must have the form <code class="highlighter-rouge">[A-Z0-9][A-Z0-9a-z]*(\[[a-z0-9]+\])?</code> and feature values must have the form <code class="highlighter-rouge">[A-Z0-9][a-zA-Z0-9]*</code>.</p>
+All features should be represented as attribute-value pairs, with an equals sign (=) separating the attribute from the value. In addition, features should as far as possible be selected from the <a href="u/feat/index.html">universal feature inventory</a> and be sorted alphabetically by attribute names. It is possible to declare that a feature has two or more values for a given word: <code class="language-plaintext highlighter-rouge">Case=Acc,Dat</code>. In this case, the values are sorted alphabetically. In sorting, uppercase letters are considered identical to their lowercase counterparts. Feature names must have the form <code class="language-plaintext highlighter-rouge">[A-Z0-9][A-Z0-9a-z]*(\[[a-z0-9]+\])?</code> and feature values must have the form <code class="language-plaintext highlighter-rouge">[A-Z0-9][a-zA-Z0-9]*</code>.</p>
 
 <p>Here is an example, showing only the first five fields for the
 Swedish sentence <em>Då var han elva år</em> (Then he was eleven years old):</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1    Då      då     ADV      AB                    _
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1    Då      då     ADV      AB                    _
 2    var     vara   VERB     VB.PRET.ACT           Tense=Past|Voice=Act
 3    han     han    PRON     PN.UTR.SIN.DEF.NOM    Case=Nom|Definite=Def|Gender=Com|Number=Sing
 4    elva    elva   NUM      RG.NOM                Case=Nom|NumType=Card
@@ -209,11 +209,11 @@ We can extract the following approximation at the token level (with token indexi
 
 The usefulness of this approximate representation will vary from language to language, depending on the divergence between tokens and words and on the arbitrariness of the heuristic mapping.
 -->
-<p>The HEAD and DEPREL values define the basic dependencies which must be strictly a tree. However, in addition to these basic dependencies, treebanks may optionally provide an enhanced dependency representation that specifies additional dependency relations, for example, when dependencies propagate over coordinate structures. The enhanced dependency representation, which in general is a graph and not a tree, is specified in the DEPS field, using a list of head-relation pairs. We use colon (:) to separate the head and relation and (as usual) vertical bar (|) to separate list items and underscore for the empty list. The list is to be sorted by the index of the head: <code class="highlighter-rouge">4:nsubj|11:nsubj</code>.</p>
+<p>The HEAD and DEPREL values define the basic dependencies which must be strictly a tree. However, in addition to these basic dependencies, treebanks may optionally provide an enhanced dependency representation that specifies additional dependency relations, for example, when dependencies propagate over coordinate structures. The enhanced dependency representation, which in general is a graph and not a tree, is specified in the DEPS field, using a list of head-relation pairs. We use colon (:) to separate the head and relation and (as usual) vertical bar (|) to separate list items and underscore for the empty list. The list is to be sorted by the index of the head: <code class="language-plaintext highlighter-rouge">4:nsubj|11:nsubj</code>.</p>
 
 <p>Note that the DEPS field should be a self-contained representation of the enhanced dependency graph, which means that dependencies that are shared between the basic and the enhanced dependency representations must be repeated in the DEPS field. Here is an example, showing the first nine fields for the English sentence <em>They buy and sell books</em>:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1    They     they    PRON    PRP    Case=Nom|Number=Plur               2    nsubj    2:nsubj|4:nsubj
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1    They     they    PRON    PRP    Case=Nom|Number=Plur               2    nsubj    2:nsubj|4:nsubj
 2    buy      buy     VERB    VBP    Number=Plur|Person=3|Tense=Pres    0    root     0:root
 3    and      and     CONJ    CC     _                                  4    cc       4:cc
 4    sell     sell    VERB    VBP    Number=Plur|Person=3|Tense=Pres    2    conj     0:root|2:conj
@@ -221,7 +221,7 @@ The usefulness of this approximate representation will vary from language to lan
 6    .        .       PUNCT   .      _                                  2    punct    2:punct
 </code></pre></div></div>
 
-<p>The dependency relations in DEPREL must have the form <code class="highlighter-rouge">[a-z]+(:[a-z]+)?</code>.
+<p>The dependency relations in DEPREL must have the form <code class="language-plaintext highlighter-rouge">[a-z]+(:[a-z]+)?</code>.
 Certain extensions of this basic format will be allowed in DEPS but not in DEPREL;
 see the guidelines for the <a href="/u/overview/enhanced-syntax.html">enhanced representation</a> for details.</p>
 
@@ -238,9 +238,9 @@ If the MISC field is not used, it should contain an underscore.</p>
 
 <h2 id="untokenized-text">Untokenized Text</h2>
 
-<p>To facilitate reconstruction of original (pre-tokenization) text, the information on original word segmentation should be kept if available. If it is not available, UD treebanks since release 2.0 must approximate it using detokenization heuristics (see also the sentence-level attribute <code class="highlighter-rouge">text</code> below).</p>
+<p>To facilitate reconstruction of original (pre-tokenization) text, the information on original word segmentation should be kept if available. If it is not available, UD treebanks since release 2.0 must approximate it using detokenization heuristics (see also the sentence-level attribute <code class="language-plaintext highlighter-rouge">text</code> below).</p>
 
-<p>Every token after which there was no space in the original text should contain <code class="highlighter-rouge">SpaceAfter=No</code> in its MISC field. Note that this feature applies to the token level, not to the word level. Syntactic words that are just part of surface tokens will be ignored during detokenization and thus do not need the feature. In the example below, the line indexed 3 does not contain the <code class="highlighter-rouge">SpaceAfter</code> feature even though there was no space between <em>für</em> and <em>das</em> in the underlying sentence. However, if there were no space between <em>fürs</em> and the following token, the 3-4 line would have <code class="highlighter-rouge">SpaceAfter=No</code>.</p>
+<p>Every token after which there was no space in the original text should contain <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> in its MISC field. Note that this feature applies to the token level, not to the word level. Syntactic words that are just part of surface tokens will be ignored during detokenization and thus do not need the feature. In the example below, the line indexed 3 does not contain the <code class="language-plaintext highlighter-rouge">SpaceAfter</code> feature even though there was no space between <em>für</em> and <em>das</em> in the underlying sentence. However, if there were no space between <em>fürs</em> and the following token, the 3-4 line would have <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code>.</p>
 
 <!--WARNING: The multi-word tokens "he's, haven't" etc. may clash with usual low-level tokenization of English, see issue #322.
 Let's use an example from another language instead.
@@ -260,7 +260,7 @@ Let's use an example from another language instead.
 
 <p>Note that columns 5 to 9 are collapsed in the following example.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># text = Er arbeitet fürs FBI (deutsch etwa: „Bundesamt für Ermittlung“).
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># text = Er arbeitet fürs FBI (deutsch etwa: „Bundesamt für Ermittlung“).
 # text_en = He works for the FBI (German approx: “Bundesamt für Ermittlung”).
 1     Er           er           PRON    …   _
 2     arbeitet     arbeiten     VERB    …   _
@@ -283,16 +283,16 @@ Let's use an example from another language instead.
 
 <h2 id="other-miscellaneous-attributes">Other Miscellaneous Attributes</h2>
 
-<p>Besides <code class="highlighter-rouge">SpaceAfter=No</code>, there are some other token- or word-level attributes that may be useful in multiple treebanks.
+<p>Besides <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code>, there are some other token- or word-level attributes that may be useful in multiple treebanks.
 These are not required; but if this sort of information is available, it is desirable that it is encoded the same way in
 all treebanks.</p>
 
 <ul>
-  <li><code class="highlighter-rouge">Translit</code> … transliteration or transcription of the word form to another writing system. Typically this attribute is used in languages that do not write using the Latin script, and the attribute provides some standard romanization.</li>
-  <li><code class="highlighter-rouge">LTranslit</code> … analogy of <code class="highlighter-rouge">Translit</code> for lemmas.</li>
-  <li><code class="highlighter-rouge">Gloss</code> … approximate translation of the word form or the lemma to another language (typically English). If the translation consists of multiple words, they are connected using a hyphen.</li>
-  <li><code class="highlighter-rouge">MSeg</code> … morphemic segmentation as commonly used in interlinear glossed text in linguistic literature: a hyphen (“-”) denotes boundary between morphemes, “=” is placed between a clitic and its host word.</li>
-  <li><code class="highlighter-rouge">MGloss</code> … glossing of individual morphemes as commonly used in interlinear glossed text in linguistic literature. Hypens and equals-to symbols delimit morphemes as in <code class="highlighter-rouge">MSeg</code>, and there should be the same number of morphemes as in <code class="highlighter-rouge">MSeg</code> (if <code class="highlighter-rouge">MSeg</code> is missing, a single morpheme is assumed). A gloss is either a lexical meaning in English, or a grammatical tag; if multiple words/tags are needed in the gloss of one morpheme, they are joined by a period (“.”). There are no guidelines for the tags (<a href="https://www.eva.mpg.de/lingua/resources/glossing-rules.php">Leipzig glossing rules</a> are a source of tags that are commonly used). However, most of the tags should probably have a corresponding feature in the FEATS column, and there it must follow the UD guidelines.</li>
+  <li><code class="language-plaintext highlighter-rouge">Translit</code> … transliteration or transcription of the word form to another writing system. Typically this attribute is used in languages that do not write using the Latin script, and the attribute provides some standard romanization.</li>
+  <li><code class="language-plaintext highlighter-rouge">LTranslit</code> … analogy of <code class="language-plaintext highlighter-rouge">Translit</code> for lemmas.</li>
+  <li><code class="language-plaintext highlighter-rouge">Gloss</code> … approximate translation of the word form or the lemma to another language (typically English). If the translation consists of multiple words, they are connected using a hyphen.</li>
+  <li><code class="language-plaintext highlighter-rouge">MSeg</code> … morphemic segmentation as commonly used in interlinear glossed text in linguistic literature: a hyphen (“-”) denotes boundary between morphemes, “=” is placed between a clitic and its host word.</li>
+  <li><code class="language-plaintext highlighter-rouge">MGloss</code> … glossing of individual morphemes as commonly used in interlinear glossed text in linguistic literature. Hypens and equals-to symbols delimit morphemes as in <code class="language-plaintext highlighter-rouge">MSeg</code>, and there should be the same number of morphemes as in <code class="language-plaintext highlighter-rouge">MSeg</code> (if <code class="language-plaintext highlighter-rouge">MSeg</code> is missing, a single morpheme is assumed). A gloss is either a lexical meaning in English, or a grammatical tag; if multiple words/tags are needed in the gloss of one morpheme, they are joined by a period (“.”). There are no guidelines for the tags (<a href="https://www.eva.mpg.de/lingua/resources/glossing-rules.php">Leipzig glossing rules</a> are a source of tags that are commonly used). However, most of the tags should probably have a corresponding feature in the FEATS column, and there it must follow the UD guidelines.</li>
 </ul>
 
 <h1 id="sentence-boundaries-and-comments">Sentence Boundaries and Comments</h1>
@@ -300,23 +300,23 @@ all treebanks.</p>
 <p>There must be exactly one blank line <em>after</em> every sentence, including the last sentence in the file.
 Empty sentences are not allowed.</p>
 
-<p>Lines starting with the <code class="highlighter-rouge">#</code> character and preceding a sentence are considered as carrying comments or metadata relevant to the following sentence. These lines are an integral part of the format as they give the ability to embed metadata together with the sentences. Consequently, any tools compatible with the CoNLL-U format should carry these lines over into their output (unless specifically designed to process them in some way). Comment and metadata lines inside sentences (i.e., between the token lines) are disallowed.</p>
+<p>Lines starting with the <code class="language-plaintext highlighter-rouge">#</code> character and preceding a sentence are considered as carrying comments or metadata relevant to the following sentence. These lines are an integral part of the format as they give the ability to embed metadata together with the sentences. Consequently, any tools compatible with the CoNLL-U format should carry these lines over into their output (unless specifically designed to process them in some way). Comment and metadata lines inside sentences (i.e., between the token lines) are disallowed.</p>
 
 <p>The contents of the comments and metadata is basically unrestricted and will vary depending on the application, but from v2 the following two comments are compulsory for every sentence (and there must be just one comment of each kind per sentence):</p>
 
 <ul>
-  <li>A treebank-wide unique sentence id (<code class="highlighter-rouge">sent_id</code>), formatted as in the examples below. It is assumed that the actual identifier does not contain whitespace characters (while the comment line may contain whitespace around the <code class="highlighter-rouge">sent_id</code> keyword and the equals-to sign). In sentence ids, the slash character (“/”) is reserved for specialized downstream use and should be avoided in UD treebanks. (The specialized use deals with multiple annotations of one sentence within one file, or with parallel data within one file. See <a href="https://github.com/UniversalDependencies/docs/issues/321">Issue 321</a> for more details. UD releases include some parallel treebanks but these are distributed separately by languages, hence sentence ids with slashes are not used.)</li>
-  <li>Comments used to specify the unannotated sentence as a single string (<code class="highlighter-rouge">text</code>) should also be formatted as below. If the original text is not available, the providers of the UD treebanks must approximate the <code class="highlighter-rouge">text</code> attribute using detokenization heuristics.
+  <li>A treebank-wide unique sentence id (<code class="language-plaintext highlighter-rouge">sent_id</code>), formatted as in the examples below. It is assumed that the actual identifier does not contain whitespace characters (while the comment line may contain whitespace around the <code class="language-plaintext highlighter-rouge">sent_id</code> keyword and the equals-to sign). In sentence ids, the slash character (“/”) is reserved for specialized downstream use and should be avoided in UD treebanks. (The specialized use deals with multiple annotations of one sentence within one file, or with parallel data within one file. See <a href="https://github.com/UniversalDependencies/docs/issues/321">Issue 321</a> for more details. UD releases include some parallel treebanks but these are distributed separately by languages, hence sentence ids with slashes are not used.)</li>
+  <li>Comments used to specify the unannotated sentence as a single string (<code class="language-plaintext highlighter-rouge">text</code>) should also be formatted as below. If the original text is not available, the providers of the UD treebanks must approximate the <code class="language-plaintext highlighter-rouge">text</code> attribute using detokenization heuristics.
     <ul>
-      <li>If you provided the <code class="highlighter-rouge">Translit</code> attribute in MISC (see above), maybe you want to also provide the transliteration of the entire sentence as a sentence-level comment; use <code class="highlighter-rouge"># translit = ...</code>. In contrast to the <code class="highlighter-rouge">text</code> attribute, <code class="highlighter-rouge">translit</code> is optional.</li>
-      <li>Whether or not you provided the <code class="highlighter-rouge">Gloss</code> attribute in MISC (see above), you may want to provide the fluent translation of the sentence to English or another language. Use <code class="highlighter-rouge"># text_en = ...</code> for English (and a similar comment with the corresponding language code for other languages). In contrast to the <code class="highlighter-rouge">text</code> attribute, <code class="highlighter-rouge">text_en</code> is optional.</li>
+      <li>If you provided the <code class="language-plaintext highlighter-rouge">Translit</code> attribute in MISC (see above), maybe you want to also provide the transliteration of the entire sentence as a sentence-level comment; use <code class="language-plaintext highlighter-rouge"># translit = ...</code>. In contrast to the <code class="language-plaintext highlighter-rouge">text</code> attribute, <code class="language-plaintext highlighter-rouge">translit</code> is optional.</li>
+      <li>Whether or not you provided the <code class="language-plaintext highlighter-rouge">Gloss</code> attribute in MISC (see above), you may want to provide the fluent translation of the sentence to English or another language. Use <code class="language-plaintext highlighter-rouge"># text_en = ...</code> for English (and a similar comment with the corresponding language code for other languages). In contrast to the <code class="language-plaintext highlighter-rouge">text</code> attribute, <code class="language-plaintext highlighter-rouge">text_en</code> is optional.</li>
     </ul>
   </li>
 </ul>
 
 <p>Example:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># sent_id = 1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># sent_id = 1
 # text = They buy and sell books.
 1   They     they    PRON    PRP    Case=Nom|Number=Plur               2   nsubj   2:nsubj|4:nsubj   _
 2   buy      buy     VERB    VBP    Number=Plur|Person=3|Tense=Pres    0   root    0:root            _
@@ -356,16 +356,16 @@ applications, including but not limited to sentence segmentation.</p>
 in the middle of a sentence (bulleted list items, verse etc.) Document and/or paragraph boundaries are encoded as follows:</p>
 
 <ul>
-  <li>The first sentence of a new document contains a comment that says <code class="highlighter-rouge"># newdoc</code>, which can be optionally followed by a document id (<code class="highlighter-rouge">newdoc id = wsj2012-01-05</code>). It is not necessary that the first sentence of a CoNLL-U file has the <code class="highlighter-rouge">newdoc</code> comment (e.g. if the document is split between development and test data).</li>
-  <li>When a paragraph starts at sentence boundary, the first sentence of the paragraph contains a comment that says <code class="highlighter-rouge"># newpar</code>, which can be optionally followed by a paragraph id (<code class="highlighter-rouge">newpar id = wsj2012-01-05-p1</code>).</li>
-  <li>When a new paragraph starts between two tokens of a sentence, the first token of the new paragraph contains the attribute <code class="highlighter-rouge">NewPar=Yes</code> in the MISC column. If it is a multi-word token, the attribute will appear in the line of the multi-word token, not in the line of its first syntactic word.</li>
+  <li>The first sentence of a new document contains a comment that says <code class="language-plaintext highlighter-rouge"># newdoc</code>, which can be optionally followed by a document id (<code class="language-plaintext highlighter-rouge">newdoc id = wsj2012-01-05</code>). It is not necessary that the first sentence of a CoNLL-U file has the <code class="language-plaintext highlighter-rouge">newdoc</code> comment (e.g. if the document is split between development and test data).</li>
+  <li>When a paragraph starts at sentence boundary, the first sentence of the paragraph contains a comment that says <code class="language-plaintext highlighter-rouge"># newpar</code>, which can be optionally followed by a paragraph id (<code class="language-plaintext highlighter-rouge">newpar id = wsj2012-01-05-p1</code>).</li>
+  <li>When a new paragraph starts between two tokens of a sentence, the first token of the new paragraph contains the attribute <code class="language-plaintext highlighter-rouge">NewPar=Yes</code> in the MISC column. If it is a multi-word token, the attribute will appear in the line of the multi-word token, not in the line of its first syntactic word.</li>
 </ul>
 
 <p>Note that the annotation defined in this section is observed by the <a href="https://github.com/UniversalDependencies/tools/blob/master/conllu_to_text.pl">conllu_to_text.pl</a> script from the tools repository.</p>
 
 <p>Example:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># newdoc id = mf920901-001
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># newdoc id = mf920901-001
 # newpar id = mf920901-001-p1
 # sent_id = mf920901-001-p1s1A
 # text = Slovenská ústava: pro i proti

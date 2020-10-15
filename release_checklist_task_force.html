@@ -75,23 +75,23 @@ repositories belonging to the UniversalDependencies organization).</li>
   <li>Make sure you have the most current content of all the repositories (note that this
 command assumes you have not modified your local copy of the data without pushing it
 back; if this is the case, you will see lists of modified files in the output and you
-will have to resolve it). Also make sure that you are working with the <code class="highlighter-rouge">dev</code> branch:<br />
+will have to resolve it). Also make sure that you are working with the <code class="language-plaintext highlighter-rouge">dev</code> branch:<br />
 <code>for i in UD_* ; do echo $i ; cd $i ; git checkout dev ; git pull --no-edit ; cd .. ; echo ; done</code></li>
-  <li>Run <code class="highlighter-rouge">tools/check_files.pl |&amp; tee release-2.6-report.txt | less</code>.
+  <li>Run <code class="language-plaintext highlighter-rouge">tools/check_files.pl |&amp; tee release-2.6-report.txt | less</code>.
 (Check the code for parameters that are currently hard-coded, such as the release number.)
 The script will visit all repositories and report any missing files, unexpected or unexpectedly named files.
 It will download the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">online validation report</a>
 and check whether the treebanks are valid (prerequisite: all UD repositories are registered
-on the validation server <code class="highlighter-rouge">quest.ms.mff.cuni.cz</code>).
+on the validation server <code class="language-plaintext highlighter-rouge">quest.ms.mff.cuni.cz</code>).
 It will also collect information such as the list of contributors (we need this metadata for Lindat).</li>
   <li>Freeze the list of treebanks that will be released (i.e., contain valid data).
-Take the list from the output of <code class="highlighter-rouge">tools/check_files.pl</code> and save it as
-<code class="highlighter-rouge">released_treebanks.txt</code> (just one line, names of UD folders separated by whitespace).</li>
-  <li>List the treebanks that are published for the first time in the hash <code class="highlighter-rouge">%new_treebanks_by_release</code>
-in <code class="highlighter-rouge">tools/check_files.pl</code>.</li>
+Take the list from the output of <code class="language-plaintext highlighter-rouge">tools/check_files.pl</code> and save it as
+<code class="language-plaintext highlighter-rouge">released_treebanks.txt</code> (just one line, names of UD folders separated by whitespace).</li>
+  <li>List the treebanks that are published for the first time in the hash <code class="language-plaintext highlighter-rouge">%new_treebanks_by_release</code>
+in <code class="language-plaintext highlighter-rouge">tools/check_files.pl</code>.</li>
   <li>Check the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">validation report</a>
-for legacy exceptions that are no longer needed. Edit the script <code class="highlighter-rouge">update-validation-report.pl</code>
-in the <code class="highlighter-rouge">docs-automation</code> repository and remove those exceptions. Also update the back-up release
+for legacy exceptions that are no longer needed. Edit the script <code class="language-plaintext highlighter-rouge">update-validation-report.pl</code>
+in the <code class="language-plaintext highlighter-rouge">docs-automation</code> repository and remove those exceptions. Also update the back-up release
 numbers for treebanks that are part of the current release. (If the treebank is not valid but it
 has been previously released, its last valid release serves as back up and will be re-released
 instead of the invalid new version.)</li>
@@ -102,27 +102,27 @@ instead of the invalid new version.)</li>
 <ul>
   <li>Make sure that there are not significant overlaps between training and dev/test files of treebanks of one language.<br />
 <code>check_overlaps.pl $(cat released_treebanks.txt) |&amp; tee overlap.log</code></li>
-  <li>Update statistics in the <code class="highlighter-rouge">stats.xml</code> file in each repository:<br />
+  <li>Update statistics in the <code class="language-plaintext highlighter-rouge">stats.xml</code> file in each repository:<br />
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; ( ../tools/conllu-stats.pl *.conllu &gt; stats.xml ) ; git add stats.xml ; git commit -m 'Updated statistics.' ; git push ; cd .. ; echo ; done</code></li>
-  <li>Merge the <code class="highlighter-rouge">dev</code> branch into <code class="highlighter-rouge">master</code> in the released repositories.
-The <code class="highlighter-rouge">master</code> branch should not be touched the next six months and it should have exactly the contents that was officially
+  <li>Merge the <code class="language-plaintext highlighter-rouge">dev</code> branch into <code class="language-plaintext highlighter-rouge">master</code> in the released repositories.
+The <code class="language-plaintext highlighter-rouge">master</code> branch should not be touched the next six months and it should have exactly the contents that was officially
 released.
-(Exceptions: the script <code class="highlighter-rouge">package_ud_release.sh</code>, that we will later use to create the release,
+(Exceptions: the script <code class="language-plaintext highlighter-rouge">package_ud_release.sh</code>, that we will later use to create the release,
 generates plain text files from the CoNLL-U files. The plain text files appear only in the
 released package but not in the Github treebank repository.
-On the other hand, below we generate treebank evaluation log that appears only in the <code class="highlighter-rouge">master</code>
-branch but not in the <code class="highlighter-rouge">dev</code> branch nor in the released package.)
+On the other hand, below we generate treebank evaluation log that appears only in the <code class="language-plaintext highlighter-rouge">master</code>
+branch but not in the <code class="language-plaintext highlighter-rouge">dev</code> branch nor in the released package.)
 <br />
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev --no-edit ; git push ; git checkout dev ; cd .. ; echo ; done</code>
     <ul>
-      <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code class="highlighter-rouge">master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the <code class="highlighter-rouge">master</code> branch and git will not allow any further operations with them!<br />
+      <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code class="language-plaintext highlighter-rouge">master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the <code class="language-plaintext highlighter-rouge">master</code> branch and git will not allow any further operations with them!<br />
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 2 ; else echo OK ; fi ; cd .. ; echo ; done</code>
         <ul>
-          <li><code>cd UD_...(the-one-with-conflict) ; git status</code> will show what files have a problem. Let’s assume that only <code class="highlighter-rouge">README.md</code> has a problem. This is how we replace it with the version from the <code class="highlighter-rouge">dev</code> branch and conclude the merge:<br />
+          <li><code>cd UD_...(the-one-with-conflict) ; git status</code> will show what files have a problem. Let’s assume that only <code class="language-plaintext highlighter-rouge">README.md</code> has a problem. This is how we replace it with the version from the <code class="language-plaintext highlighter-rouge">dev</code> branch and conclude the merge:<br />
 <code>git checkout --theirs README.md ; git add README.md ; git commit -m 'Merge branch dev' ; git push ; git checkout dev ; cd ..</code></li>
         </ul>
       </li>
-      <li>After resolving the conflicts do not forget to checkout the <code class="highlighter-rouge">dev</code> branch again! (If there were no conflicts, we are already back in <code class="highlighter-rouge">dev</code>.)<br />
+      <li>After resolving the conflicts do not forget to checkout the <code class="language-plaintext highlighter-rouge">dev</code> branch again! (If there were no conflicts, we are already back in <code class="language-plaintext highlighter-rouge">dev</code>.)<br />
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout dev ; cd .. ; echo ; done</code></li>
     </ul>
   </li>
@@ -135,7 +135,7 @@ branch but not in the <code class="highlighter-rouge">dev</code> branch nor in t
 <ul>
   <li>Run the script that refreshes the title page of Universal Dependencies (list of languages, treebanks and their properties).<br />
 <code>cd docs-automation ; make all ; cd ../docs ; git pull --no-edit ; git commit -a -m 'Updated title page.' ; git push</code></li>
-  <li>Run the <code class="highlighter-rouge">conllu-stats.pl</code> script again (but with different settings) and generate the long statistics that are displayed in the docs; note that the script takes the release number as a parameter and puts it in the generated index page:<br />
+  <li>Run the <code class="language-plaintext highlighter-rouge">conllu-stats.pl</code> script again (but with different settings) and generate the long statistics that are displayed in the docs; note that the script takes the release number as a parameter and puts it in the generated index page:<br />
 <code>cd docs ; git pull --no-edit ; cd .. ; for i in $(cat released_treebanks.txt) ; do echo $i ; tools/conllu-stats.pl --oformat newdetailed --release 2.6 --treebank $i --docs docs ; echo ; done ; cd docs ; git add treebanks/*/*.md ; git commit -m 'Updated statistics.' ; git push ; cd ..</code></li>
   <li>Generate side-by-side comparison whenever there are multiple treebanks of one language:<br />
 <code>perl tools/generate_comparison_of_treebanks.pl ; cd docs ; git add treebanks/*-comparison.md ; git commit -m 'Updated comparison of treebanks.' ; git push ; cd ..</code></li>
@@ -147,7 +147,7 @@ Once the two files are updated, we must commit and push them to Github of course
 <code>perl tools/survey_features.pl --tbklist released_treebanks.txt &gt; docs/ext-feat-index.md<br />
 perl tools/survey_deprel_subtypes.pl --tbklist released_treebanks.txt<br />
 cd docs ; git pull --no-edit ; git status ; git commit -a -m 'Updated list of features and relations.' ; git push ; cd ..</code></li>
-  <li>Run the script <code class="highlighter-rouge">makedata.sh</code> in the docs repository. It will regenerate the YAML files in the folder <code class="highlighter-rouge">_data</code>; this is needed
+  <li>Run the script <code class="language-plaintext highlighter-rouge">makedata.sh</code> in the docs repository. It will regenerate the YAML files in the folder <code class="language-plaintext highlighter-rouge">_data</code>; this is needed
 for cross-lingual links between documentation pages devoted to individual UPOS tags, features and relations.<br />
 <code>cd docs ; ./makedata.sh ; git commit -a -m 'Updated crosslingual links.' ; git push ; cd ..</code><br />
 Note that the script updates the data files that are used in many MarkDown pages but it does not update the MarkDown pages directly.
@@ -155,12 +155,12 @@ Jekyll thus will not notice that almost all documentation must be re-generated; 
 directly in a MarkDown file, and then it will re-generate only the HTML page based on this MarkDown file.
 We probably need to ask Filip or Sampo to re-run Jekyll manually? A possible hack would be to insert a blank line at the end of every
 affected MarkDown file but it is an ugly approach.</li>
-  <li>Tag the current commit in all repositories including docs with the tag of the current release (<code class="highlighter-rouge">git tag r2.6</code> for UD 2.6).
-Push the tag to Github: <code class="highlighter-rouge">git push origin --tags</code>.
-You may even tag a particular commit retroactively: <code class="highlighter-rouge">git tag -a r2.1 9fceb02</code>.
+  <li>Tag the current commit in all repositories including docs with the tag of the current release (<code class="language-plaintext highlighter-rouge">git tag r2.6</code> for UD 2.6).
+Push the tag to Github: <code class="language-plaintext highlighter-rouge">git push origin --tags</code>.
+You may even tag a particular commit retroactively: <code class="language-plaintext highlighter-rouge">git tag -a r2.1 9fceb02</code>.
 If the repository is updated after you assigned the tag and you need to re-assign the tag to a newer commit,
-this is how you remove the tag from where it is now: <code class="highlighter-rouge">git tag -d r2.1</code>.
-And this is how you remove it from Github: <code class="highlighter-rouge">git push origin :refs/tags/r2.1</code>.<br />
+this is how you remove the tag from where it is now: <code class="language-plaintext highlighter-rouge">git tag -d r2.1</code>.
+And this is how you remove it from Github: <code class="language-plaintext highlighter-rouge">git push origin :refs/tags/r2.1</code>.<br />
 <code>for i in $(cat released_treebanks.txt) docs tools ; do echo $i ; cd $i ; git tag r2.6 ; git push --tags ; cd .. ; echo ; done</code></li>
 </ul>
 
@@ -205,8 +205,8 @@ The item will get a persistent URL (handle.net); that is the URL that we want to
 Note that you can now see the persistent URL in the record even before it has been approved. It will not
 change on approval and you can save it; however, it will not be operational as a URL until the item is archived.</li>
   <li>Update the title page of Universal Dependencies. Send out announcement to ud@stp.lingfil.uu.se, corpora@uib.no, ACL list etc.</li>
-  <li>In the script that serves the online validation report (<code class="highlighter-rouge">docs-automation/valdan/validation-report.pl</code>),
-locate the function <code class="highlighter-rouge">get_timer()</code> and update the date to the next data freeze deadline.</li>
+  <li>In the script that serves the online validation report (<code class="language-plaintext highlighter-rouge">docs-automation/valdan/validation-report.pl</code>),
+locate the function <code class="language-plaintext highlighter-rouge">get_timer()</code> and update the date to the next data freeze deadline.</li>
   <li>Upload the data to the search engines (PML-TQ, Kontext, SETS etc.)</li>
   <li>Check the issues of the docs repository on Github, close the ones that have been solved, and create a new milestone for the others.</li>
   <li>Generate Deep UD based on the new UD release.</li>
