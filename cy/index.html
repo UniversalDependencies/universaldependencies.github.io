@@ -109,7 +109,7 @@
   </li>
   <li>VERB is used for all verbs, including <em>bod</em> if it is the main verb (followed by a verbnoun). Verbnouns however are marked as NOUN (with XPOS verbnoun) since they function syntactically as nouns (the direct object is in a genetive construction, the subject is marked with a preposition). 
 See <a href="conjugation.md">conjugation tables</a> for forms and corresponding UD Tense/Mood values</li>
-  <li>ADP: inflected prepostions are marked with the XPOS cprep, other preposition have the XPOS prep)</li>
+  <li>ADP: inflected prepostions are marked with the XPOS iprep, other preposition have the XPOS prep)</li>
   <li>PART is only used for the predicative marker <em>yn</em> (which triggers soft mutation on the following word, in difference to the TAM marker <em>yn</em> with does not trigger any mutation and the preposition <em>yn</em> which triggers nasal mutation). The predicative <em>yn</em> is used before nouns and adjectives in head position <em>Mae Siôn yn athro</em> «Siôn is a teacher», <em>Roedd Nia yn gyflym</em> «Nia was fast»</li>
   <li>The ADV class also contains <em>dyma</em>, <em>dyna</em> and <em>dacw</em>, even though they can function as a copula.</li>
 </ul>
@@ -184,6 +184,39 @@ See <a href="conjugation.md">conjugation tables</a> for forms and corresponding 
     </ul>
   </li>
 </ul>
+
+<h2 id="inflected-prepositions">Inflected prepositions</h2>
+<p>Originally inflected prepositions (Gender, Person, Number) were annotated as single words. If followed by the corresponding pronoun, they were attached as <code class="language-plaintext highlighter-rouge">case</code> to the pronoun, else they were attached as <code class="language-plaintext highlighter-rouge">nmod</code> or <code class="language-plaintext highlighter-rouge">obl</code> to their nominal or verbal head, as if it were case marked pronouns.</p>
+
+<p><em>gwrando arni</em> (listening to her)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1  gwrando   gwrando   VERB   ...
+2  arni      ar        ADP    ...  1  obl
+</code></pre></div></div>
+
+<p><em>gwrando arni hi</em> (listening to her)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1  gwrando   gwrando   VERB   ...
+2  arni      ar        ADP    ...  3  case
+3  hi        hi        PRON   ...  1  obl
+</code></pre></div></div>
+
+<p>From version 2.7 inflected pronouns are annotated as multiword tokens, the preposition is attached to the following pronoun with <code class="language-plaintext highlighter-rouge">case</code>. An additional pronoun is attached with <code class="language-plaintext highlighter-rouge">compound:redup</code></p>
+
+<p><em>gwrando arni</em></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1    gwrando  gwrando   VERB   ...
+2-3  arni
+2    ar       ar        ADP    ...  3  case
+3    hi       hi        PRON   ...  1  obl
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1    gwrando  gwrando   VERB   ...
+2-3  arni
+2    ar       ar        ADP    ...  3  case
+3    hi       hi        PRON   ...  1  obl
+4    hi       hi        PRON   ...  3  compound:redup
+</code></pre></div></div>
 
 <hr />
 <p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
