@@ -84,6 +84,7 @@
             <ul>
               <li>Word <em>-nya</em> as pronoun, as in <em>mencintai<strong>nya</strong></em> “love <strong>him/her/it</strong>”, this token is split into <em>mencintai</em> “love” and <em><strong>nya</strong></em> “him/her/it”.</li>
               <li>Word <em>-nya</em> as posessive pronoun, as in <em>buku<strong>nya</strong></em> “<strong>his/her/its</strong> book”, this token is split into <em>buku</em> “book” and <em><strong>nya</strong></em> “his/her/its”.</li>
+              <li>Word <em>-nya</em> as determiner in predicate nominalisation case, as in <em>meningkat<strong>nya</strong></em> “<strong>the</strong> increase”, this token is split into <em>meningkat</em> “increase” and <em><strong>nya</strong></em> “the”.</li>
             </ul>
           </li>
           <li>Words ended with <em>-nya</em> that functions as adverbs, adjectives or auxiliary are <strong>not</strong> split. For example:
@@ -140,7 +141,7 @@
         <ul>
           <li><em>harus, mesti, wajib</em> as the equivalents of modal “must”.</li>
           <li><em>sebaiknya, seharusnya</em> as the equivalents of modal ‘shall/should’.</li>
-          <li><em>bisa, dapat</em> and <em>mampu</em> as the equivalents of modal “can/could”.</li>
+          <li><em>bisa, dapat, sanggup</em> and <em>mampu</em> as the equivalents of modal “can/could”.</li>
           <li><em>boleh</em> as the equivalent of modal “may”.</li>
           <li><em>mungkin</em> as the equivalent of modal “might”.</li>
         </ul>
@@ -179,7 +180,7 @@
 <h3 id="features">Features</h3>
 
 <ul>
-  <li>We propose the use of 3 of 24 features defined in UD v2 that are relevant to Indonesian grammar:
+  <li>We propose the use of 14 of 24 features defined in UD v2 that are relevant to Indonesian grammar:
     <ul>
       <li><a href="">Abbr</a>, with one possible value: <code class="language-plaintext highlighter-rouge">Yes</code>. This feature can be applied to all UPOS categories, except <a href="">PUNCT</a> and <a href="">SYM</a>.</li>
       <li><a href="">Clusivity</a>, applies to <a href="">PRON</a> with two possible values: <code class="language-plaintext highlighter-rouge">Ex</code> and <code class="language-plaintext highlighter-rouge">In</code>.
@@ -188,7 +189,89 @@
           <li><code class="language-plaintext highlighter-rouge">Clusivity=In</code> for <em>kita</em> “we/our”</li>
         </ul>
       </li>
+      <li><a href="">Degree</a>, applies to <a href="">ADJ</a> with one possible value: <code class="language-plaintext highlighter-rouge">Sup</code>.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">Degree=Sup</code> for superlative adjectives, such as <em>terbaik</em> “best”, <em>tercantik</em> “most beautiful”, etc.</li>
+        </ul>
+      </li>
       <li><a href="">Foreign</a>, with one possible value: <code class="language-plaintext highlighter-rouge">Yes</code>. This feature only applies to <a href="">X</a>.</li>
+      <li><a href="">Mood</a>, with two possinle values: <code class="language-plaintext highlighter-rouge">Ind</code>, and <code class="language-plaintext highlighter-rouge">Imp</code></li>
+      <li><a href="">Number</a>, applies to <a href="">DET</a>, <a href="">NOUN</a>, and <a href="">PRON</a>, with two possible values: <code class="language-plaintext highlighter-rouge">Sing</code>, or <code class="language-plaintext highlighter-rouge">Plur</code>.</li>
+      <li><a href="">NumType</a>, applies to <a href="">NUM</a> and <a href="">ADJ</a>, with two possible values: <code class="language-plaintext highlighter-rouge">Card</code> or <code class="language-plaintext highlighter-rouge">Ord</code>.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">NumType=Card</code> is used for <code class="language-plaintext highlighter-rouge">NUM</code>.</li>
+          <li><code class="language-plaintext highlighter-rouge">NumType=Ord</code> is used for ordinal numbers tagged as <code class="language-plaintext highlighter-rouge">ADJ</code>.</li>
+        </ul>
+      </li>
+      <li><a href="">Person</a>, applies to <a href="">PRON</a> with three possible values: <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code>.</li>
+      <li><a href="">Polarity</a>, with one possible value: <code class="language-plaintext highlighter-rouge">Neg</code>, applies to <a href="">PART</a> and <a href="">INTJ</a>.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">Polarity=Neg</code> for <a href="">PART</a> applies for negation particles as in <em>Saya <strong>tidak</strong> menyukainya</em> “I do <strong>not</strong> like him/her/it”. The word <em>tidak</em> “no” will be tagged with <code class="language-plaintext highlighter-rouge">Polarity=Neg</code>.</li>
+          <li><code class="language-plaintext highlighter-rouge">Polarity=Neg</code> for <a href="">INTJ</a> as in <em><strong>Tidak</strong>, terima kasih</em> “<strong>No</strong>, thanks”. The word <em>tidak</em> “no” will be given feature <code class="language-plaintext highlighter-rouge">Polarity=Neg</code>.</li>
+        </ul>
+      </li>
+      <li><a href="">Poss</a>, applies to <a href="">PRON</a>, with one possible value: <code class="language-plaintext highlighter-rouge">Yes</code> for <a href="">PRON</a> that serves as possessive pronouns.</li>
+      <li><a href="">PronType</a>, applies to <a href="">PRON</a>, <a href="">DET</a>, and <a href="">ADV</a>. For Indonesian, 7 possible values can be applied:
+        <ol>
+          <li><code class="language-plaintext highlighter-rouge">PronType=Dem</code>, applies to <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">DET</code>, and <code class="language-plaintext highlighter-rouge">PRON</code> such as for <em>itu</em> “that” in <em><strong>Itu</strong> masalahmu.</em> “<strong>That</strong> is your problem.”</li>
+          <li><code class="language-plaintext highlighter-rouge">PronType=Emp</code>, applies to <code class="language-plaintext highlighter-rouge">DET</code> such as for <em>sendiri</em> “self” in <em>Kamu harus percaya pada dirimu <strong>sendiri</strong></em> “You have to believe in your<strong>self</strong>”.</li>
+          <li><code class="language-plaintext highlighter-rouge">PronType=Ind</code>, applies to <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">DET</code>, and <code class="language-plaintext highlighter-rouge">PRON</code> such as for <em>seseorang</em> “someone/somebody” or <em>sesuatu</em> “something”</li>
+          <li><code class="language-plaintext highlighter-rouge">PronType=Int</code>, applies to <code class="language-plaintext highlighter-rouge">PRON</code> and <code class="language-plaintext highlighter-rouge">ADV</code>.
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">PronType=Int</code> for <code class="language-plaintext highlighter-rouge">PRON</code>, such as for <em>apa</em> “what” and <em>siapa</em> “who” in interrogative sentences</li>
+              <li><code class="language-plaintext highlighter-rouge">PronType=Int</code> for <code class="language-plaintext highlighter-rouge">ADV</code>, such as for <em>bagaimana</em> “how” and <em>kapan</em> “when” in interrogative sentences</li>
+            </ul>
+          </li>
+          <li><code class="language-plaintext highlighter-rouge">PronType=Prs</code>, applies to <code class="language-plaintext highlighter-rouge">PRON</code>for all personal pronouns.</li>
+          <li><code class="language-plaintext highlighter-rouge">PronType=Rel</code>, applies to <code class="language-plaintext highlighter-rouge">PRON</code> and <code class="language-plaintext highlighter-rouge">ADV</code>.
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">PronType=Rel</code> for <code class="language-plaintext highlighter-rouge">PRON</code>, such as for <em>apa</em> “what”, <em>siapa</em> “who”, <em>yang</em> “that”.</li>
+              <li><code class="language-plaintext highlighter-rouge">PronType=Rel</code> for <code class="language-plaintext highlighter-rouge">ADV</code>, such as for <em>di mana</em> “where”, <em>bagaimana</em> “how” and <em>kapan/saat/ketika</em> “when” in non-interrogative sentences</li>
+            </ul>
+          </li>
+          <li><code class="language-plaintext highlighter-rouge">PronType=Tot</code>, applies to <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">DET</code>, and <code class="language-plaintext highlighter-rouge">PRON</code>.
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">PronType=Tot</code> for <code class="language-plaintext highlighter-rouge">PRON</code>, such as for <em>semua</em> “all” in <em><strong>Semua</strong> adalah milikmu.</em> “<strong>All</strong> is yours.”</li>
+              <li><code class="language-plaintext highlighter-rouge">PronType=Tot</code> for <code class="language-plaintext highlighter-rouge">DET</code>, such as for <em>semua</em> “all” in <em><strong>Semua</strong> siswa terlihat senang.</em> “<strong>All</strong> students look happy.”</li>
+              <li><code class="language-plaintext highlighter-rouge">PronType=Tot</code> for <code class="language-plaintext highlighter-rouge">ADV</code>, such as for <em>selalu</em> “always” in <em>Dia <strong>selalu</strong> terlambat</em>. “She is <strong>always</strong> late.”</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li><a href="">Reflex</a>, applies to <a href="">PRON</a> with one possible value: Yes.</li>
+      <li><a href="">Typo</a>, with one possible value, <code class="language-plaintext highlighter-rouge">Yes</code>. This feature can be applied to all UPOS categories except <a href="">PUNCT</a> and <a href="">SYM</a>.</li>
+      <li><a href="">Voice</a>, applies to <a href="">VERB</a> with two possible values: <code class="language-plaintext highlighter-rouge">Act</code> and <code class="language-plaintext highlighter-rouge">Pass</code>. Voice alternation is treated as inflection and the active and passive counterparts have the same lemma.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">Voice=Act</code> for active verbs that have characteristic of using base word, prefixes <em>me-, ber-</em>
+            <ul>
+              <li>Active verbs without affix: <em>duduk</em> “sit”, <em>pergi</em> “go”</li>
+              <li>Active verbs with prefix <em>me-</em>: <em>memperbaiki</em> “fix”, <em>mengakui</em> “admit”</li>
+              <li>Active verbs with prefix <em>ber-</em>: <em>belajar</em> “study”, <em>bekerja</em> “work”</li>
+            </ul>
+          </li>
+          <li><code class="language-plaintext highlighter-rouge">Voice=Pass</code> for passive verbs that have characteristic of using prefixes <em>di-, ter-</em> or circumfix <em>ke-an</em>.
+            <ul>
+              <li>Passive verbs with prefix <em>di-</em> : <em>dipublikasikan</em> “be published”, <em>dilepaskan</em> “be released”</li>
+              <li>Passive verbs with prefix <em>ter-</em>: <em>terbakar</em> “on fire”, <em>terjatuh</em> “fell”, <em>terkejut</em> “shocked”</li>
+              <li>Passive verbs with confix <em>ke-an</em>: <em>ketinggalan</em> “lag behind”, <em>kecurian</em> “be stolen”</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>We consider these 10 UD v2 features are not relevant to Indonesian grammar:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Gender</code>. Indonesian words have no gender.</li>
+      <li><code class="language-plaintext highlighter-rouge">Animacy</code>. Similar with Gender, there is no requirements of agreements between words in Indonesian.</li>
+      <li><code class="language-plaintext highlighter-rouge">NounClass</code>, with the same reason for Gender and Animacy</li>
+      <li><code class="language-plaintext highlighter-rouge">Case</code>, with the same reason for Gender, Animacy, and NounClass</li>
+      <li><code class="language-plaintext highlighter-rouge">Tense</code>. Indonesian verbs have the same form in all tenses.</li>
+      <li><code class="language-plaintext highlighter-rouge">Aspect</code>, with the same reason for Tense.</li>
+      <li><code class="language-plaintext highlighter-rouge">Definite</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Evident</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Polite</code></li>
+      <li><code class="language-plaintext highlighter-rouge">VerbForm</code></li>
     </ul>
   </li>
 </ul>
@@ -219,16 +302,7 @@
 <h3 id="relations-overview">Relations Overview</h3>
 
 <ul>
-  <li>Indonesian PUD uses 32 of 37 main dependency relation defined in UD v2. The following relation types are not used:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">clf</code></li>
-      <li><code class="language-plaintext highlighter-rouge">dep</code></li>
-      <li><code class="language-plaintext highlighter-rouge">expl</code></li>
-      <li><code class="language-plaintext highlighter-rouge">list</code></li>
-      <li><code class="language-plaintext highlighter-rouge">reparandum</code></li>
-    </ul>
-  </li>
-  <li>The following 15 relation subtypes are used in Indonesian PUD:
+  <li>The following 15 relation subtypes could be used in Indonesian UD treebank:
     <ul>
       <li><a href="">acl:relcl</a> for relative clauses that modify a noun phrase. In Indonesian, relative clauses usually use <em>yang</em> as the subject of the clause.</li>
       <li><a href="">advmod:emph</a> for particles (<a href="">PART</a>) <em>-lah, -kah, -tah, pun</em> that emphasize other words that could be a <a href="">NOUN</a>, <a href="">PRON</a>, <a href="">VERB</a>, or <a href="">SCONJ</a>. For example, token <em>itu<strong>lah</strong></em> “that” in tokenization phase was split into <em>itu</em> “that” and <em><strong>lah</strong></em>, then <em>lah</em> is annotated as the dependent of <em>itu</em> and the relation between them is <code class="language-plaintext highlighter-rouge">advmod:emph</code>.</li>
@@ -253,16 +327,27 @@
       <li><a href="">obl:tmod</a> for head of time-related noun phrases that depend on a <code class="language-plaintext highlighter-rouge">VERB/ADJ</code>. For example, in <em><strong>Kali ini</strong> saya setuju.</em> “<strong>This time</strong> I agree.”, <em>kali ini</em> “this time” describes the predicate <em>setuju</em> “agree”, and the head of this noun phrase, <em>kali</em> “time”, will be annotated as the dependent of <em>setuju</em> “agree” with the deprel <code class="language-plaintext highlighter-rouge">obl:tmod</code></li>
     </ul>
   </li>
+  <li>Indonesian PUD uses 32 of 37 main dependency relation defined in UD v2. The following relation types are not used:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">clf</code></li>
+      <li><code class="language-plaintext highlighter-rouge">dep</code></li>
+      <li><code class="language-plaintext highlighter-rouge">expl</code></li>
+      <li><code class="language-plaintext highlighter-rouge">list</code></li>
+      <li><code class="language-plaintext highlighter-rouge">reparandum</code></li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/id-comparison.html">2</a> Indonesian UD treebanks:</p>
+<p>There are <a href="../treebanks/id-comparison.html">3</a> Indonesian UD treebanks:</p>
 
 <ul>
   <li><a href="../treebanks/id_gsd/index.html">Indonesian-GSD</a></li>
   <li><a href="../treebanks/id_pud/index.html">Indonesian-PUD</a></li>
+  <li><a href="../treebanks/id_csui/index.html">Indonesian-CSUI</a></li>
 </ul>
+
 
 
       </div>
