@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-qtd">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_qtd/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_qtd/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,14 +60,36 @@
 	  </div>
 	</noscript>
 
-          <h1 id="ud-for-turkish-german-">UD for Turkish German <span class="flagspan"><img class="flag" src="../../flags/svg/TR.svg" /></span></h1>
+          <h1 id="ud-for-turkish-german-">UD for Turkish-German <span class="flagspan"><img class="flag" src="../../flags/svg/TR.svg" /></span></h1>
+
+<p>In general the Turkish-German code-switching treebank follows the guidelines of individual Turkish and German treebanks.</p>
+
+<h2 id="language-ids-and-intra-word-code-switching">Language IDs and Intra-word Code-switching</h2>
+
+<ul>
+  <li>
+    <p>All sentences in the treebank include at least one intrasentential code-switching point. The language information of tokens are represented in the MISC column with the 
+<code class="language-plaintext highlighter-rouge">LangID</code> feature. The values of this feature are: <code class="language-plaintext highlighter-rouge">TR</code> for Turkish, <code class="language-plaintext highlighter-rouge">DE</code> for German, <code class="language-plaintext highlighter-rouge">MIXED</code> for intra-word code-switching (see below), <code class="language-plaintext highlighter-rouge">LANG3</code> for non-Turkish, non-German languages (mostly English in the treebank), and <code class="language-plaintext highlighter-rouge">OTHER</code> for punctuation.</p>
+  </li>
+  <li>
+    <p>Some tokens employ intra-word code-switching, e.g. <em>Terminim</em>, where <em>Termin</em> ‘appointment’ is in German and <em>-im</em> ‘my’ is Turkish possessive suffix.
+Code-switching points are marked on the surface forms as the values of the <code class="language-plaintext highlighter-rouge">CSPoint</code> feature in the MISC column, e.g., <code class="language-plaintext highlighter-rouge">CSPoint=Termin§im</code>. <code class="language-plaintext highlighter-rouge">§</code> indicates the switch point.</p>
+  </li>
+</ul>
+
+<hr />
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
+<ul>
+  <li>In general, words are delimited by white spaces or punctuation. Punctuation may appear in some abbreviations or numeric expressions.</li>
+  <li>German compounds are written as one word, and they are kept as is in the treebank.</li>
+  <li>Contractions of German prepositions and definite articles are segmented, e.g., <em>zum</em>  <em>zu</em> →  <em>dem</em> ‘to the’.</li>
+  <li>Turkish copular suffix and a group of productive derivational suffixes are segmented, e.g., <em>-lI</em> deriving nouns and adjectives from a noun (N) with the meaning of ‘with N’
+(<em>mavi elbise</em> “blue dress” → <em>mavi elbiseli</em> ‘(the one) with a blue dress’.</li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
+<p>Segmentation, code-switching points, and their interaction are described and exemplified in (Çetinoğlu and Çöltekin, 2016)</p>
 
 <hr />
 
@@ -75,46 +97,61 @@
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<ul>
+  <li>Turkish uses all 17 universal POS categories, German uses all except <code class="language-plaintext highlighter-rouge">SYM</code>.</li>
+  <li>The Turkish and German negation particles, <em>değil</em> and <em>nicht</em> respectively are <code class="language-plaintext highlighter-rouge">PART</code>. German infinitive marker <em>zu</em> ‘to’ is also <code class="language-plaintext highlighter-rouge">PART</code>.</li>
+  <li>The Turkish question particle <em>mI</em> is tagged as <code class="language-plaintext highlighter-rouge">AUX</code>.</li>
+  <li>The Turkish copular suffix <em>-(y)-</em>, which is treated as a syntactic word, and its clitic counterpart <em>i</em> is marked as <code class="language-plaintext highlighter-rouge">AUX</code>.</li>
+  <li>The German <code class="language-plaintext highlighter-rouge">AUX</code> are <em>dürfen</em>, <em>haben</em>, <em>können</em>, <em>mögen</em>, <em>müssen</em>, <em>sein</em>, <em>sollen</em>, <em>tun</em>, <em>werden</em>, <em>wollen</em>.</li>
+</ul>
 
 <hr />
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<ul>
+  <li>The treebank uses the features of individual <a href="https://github.com/UniversalDependencies/docs/blob/pages-source/_tr/index.md">Turkish</a> and <a href="https://github.com/UniversalDependencies/docs/blob/pages-source/_de/index.md">German</a> treebanks.</li>
+  <li>Features introduced with this treebank are <code class="language-plaintext highlighter-rouge">LangID</code> and <code class="language-plaintext highlighter-rouge">CSPoint</code> as described in Section <em>Language IDs and Intra-word Code-switching</em></li>
+</ul>
 
 <hr />
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>
+    <p>The treebank uses the standard UD relations and the subtype relations of individual <a href="https://github.com/UniversalDependencies/docs/blob/pages-source/_tr/index.md">Turkish</a> and <a href="https://github.com/UniversalDependencies/docs/blob/pages-source/_de/index.md">German</a> treebanks.</p>
+  </li>
+  <li>
+    <p>Subtype relations introduced with this treebank are <code class="language-plaintext highlighter-rouge">appos:trans</code> and <code class="language-plaintext highlighter-rouge">parataxis:trans</code>. Both are introduced to handle translation pairs , that is, a word, phrase or
+clause in one language and its repetition as a translation in the other language. Further description and examples can be found in (Çetinoğlu and Çöltekin, 2019)</p>
+  </li>
+</ul>
 
 <hr />
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/qtd-comparison.html">N</a> Turkish German UD treebanks:</p>
+<p>There is one Turkish-German UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/qtd_a/index.html">Turkish German-A</a></li>
-  <li><a href="../treebanks/qtd_b/index.html">Turkish German-B</a></li>
+  <li><a href="../treebanks/qtd_sagt/index.html">Turkish-German-SAGT</a></li>
 </ul>
 
 <hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
 
-<hr />
+<h2 id="references">References</h2>
+
+<ul>
+  <li>
+    <p>Özlem Çetinoğlu and Çağrı Çöltekin (2016). Part-of-speech annotation of a Turkish-German code-switching corpus. In <em>Proceedings of the 10th Linguistic Annotation Workshop (LAW-X)</em>. Berlin, Germany.
+https://www.aclweb.org/anthology/W16-1714.pdf</p>
+  </li>
+  <li>
+    <p>Özlem Çetinoğlu and Çağrı Çöltekin (2019). “Challenges of Annotating a Code-Switching Treebank”. In <em>Proceedings of the 18th International Workshop on Treebanks and Linguistic Theories (TLT, SyntaxFest 2019)</em>. Paris, France.</p>
+  </li>
+</ul>
+<p><a href="https://www.aclweb.org/anthology/W19-7809.pdf">https://www.aclweb.org/anthology/W19-7809.pdf</a></p>
 
 
       </div>
