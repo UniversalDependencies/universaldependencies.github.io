@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-sme">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_sme/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_sme/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -64,57 +64,110 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>The tokenisation is mainly based on white-space.</li>
+  <li>The punctuation is used as part of the token for ordinals written with
+digits: “123.” as well some abbreviations.</li>
+  <li>The initial tokenisation for the currently only treebank was made based on
+<a href="https://giellatekno.uit.no">morphological analyser from giellatekno</a>.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>North Sámi uses all 17 universal POS categories
+    <ul>
+      <li><a href="">PART</a> is currently not used</li>
+      <li><a href="">DET</a> is currently not used</li>
+    </ul>
+  </li>
+  <li>North sámi has following auxiliaries:
+    <ul>
+      <li>“leat” (to be, also to own etc.)</li>
+      <li>“ii” (inflected negation verb)</li>
+      <li>modals: … (list will be extended as the corpora gets larger)</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
+<h3 id="verbal-features">Verbal Features</h3>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<ul>
+  <li>There are three main verbal forms distinguished by the value of <a href="">VerbForm</a>
+feature:
+    <ul>
+      <li>Finite verb <a href="">Fin</a></li>
+      <li>Infinite verb <a href="">Inf</a></li>
+      <li>Participle verb <a href="">Part</a></li>
+      <li>Gerund <a href="">Ger</a></li>
+    </ul>
+  </li>
+  <li><a href="">Mood</a> has four values: <code class="language-plaintext highlighter-rouge">Cnd</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Ind</code> or <code class="language-plaintext highlighter-rouge">Pot</code>.</li>
+  <li><a href="">Tense</a> has two values: <code class="language-plaintext highlighter-rouge">Past</code> or <code class="language-plaintext highlighter-rouge">Pres</code>.</li>
+  <li><a href="">Voice</a> has two values: <code class="language-plaintext highlighter-rouge">Act</code> and <code class="language-plaintext highlighter-rouge">Pass</code>.</li>
+  <li><a href="">Person</a> has three values, <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">3</code>.</li>
+  <li><a href="">Number</a> has values <code class="language-plaintext highlighter-rouge">Sing</code>, <code class="language-plaintext highlighter-rouge">Plur</code> and <code class="language-plaintext highlighter-rouge">Dual</code>.</li>
+</ul>
 
-<hr />
+<h4 id="nominal-features">Nominal Features</h4>
+
+<ul>
+  <li>North Sámi does not have Gender feature</li>
+  <li><a href="">Number</a> feature has values: <code class="language-plaintext highlighter-rouge">Sing</code>, <code class="language-plaintext highlighter-rouge">Plur</code> and <code class="language-plaintext highlighter-rouge">Dual</code></li>
+  <li><a href="">Case</a> has 8 possible values:  <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Gen</code>, <code class="language-plaintext highlighter-rouge">Acc</code>, <code class="language-plaintext highlighter-rouge">Loc</code>, <code class="language-plaintext highlighter-rouge">Ill</code>, <code class="language-plaintext highlighter-rouge">Ess</code>,
+<code class="language-plaintext highlighter-rouge">Com</code>, <code class="language-plaintext highlighter-rouge">Abe</code></li>
+</ul>
+
+<h4 id="degree-and-polarity">Degree and Polarity</h4>
+
+<ul>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>), adverbs (<a href="">ADV</a>) and participles
+(<a href="">VERB</a> or <a href="">AUX</a>), and has one of three possible values: <code class="language-plaintext highlighter-rouge">Pos</code>,
+<code class="language-plaintext highlighter-rouge">Cmp</code>, <code class="language-plaintext highlighter-rouge">Sup</code>.</li>
+  <li><a href="">Polarity</a> has only value <code class="language-plaintext highlighter-rouge">Neg</code>, and applies to negative verb ‘ei’</li>
+  <li><a href="">Connegative</a> has only value <code class="language-plaintext highlighter-rouge">Yes</code> and applies to verbs which have been
+negated by ‘ii’</li>
+</ul>
+
+<h4 id="possessives">Possessives</h4>
+
+<ul>
+  <li>Layered features are used for possessive suffixes:
+    <ul>
+      <li><a href="">Number[psor]</a> for number and <a href="">Person[psor]</a> for person of possessor</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is typically a nominal in the nominative,
+genitive or partitive case, without preposition.</li>
+  <li>Objects (<a href="">obj</a>) can be nominals in nominative, genitive, partitive
+or accusative case</li>
+  <li>The copula verb <em>leat</em> (be) is used in equational, attributional, locative,
+possessive and benefactory nonverbal clauses.</li>
+  <li>genetive modifier uses <a href="">nmod:poss</a> subtype</li>
+  <li><a href="">acl:relcl</a> is used for relative clauses</li>
+  <li><a href="">aux:neg</a> is used for negation</li>
+  <li><a href="">compound:nn</a> is used for titles etc compounds structures</li>
+</ul>
 
 <hr />
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is <a href="../treebanks/sme-comparison.html">1</a> North Sámi UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/sme_giella/index.html">Northern Sámi-Giella</a></li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
 
       </div>
