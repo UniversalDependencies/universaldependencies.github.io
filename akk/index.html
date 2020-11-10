@@ -65,15 +65,12 @@
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
-  <li>
-    <p>Words are only exceptionally delimited by whitespace or punctuation in the original cuneiform texts. Thus, this treebank is based on the bound transcription (normalized text)</p>
-  </li>
-  <li>
-    <p>In <a href="../treebanks/akk_RIAO/index.html">RIAO</a>, sentence boundaries were arrived at by syntactically annotating the unsegmented corpus, and identifying words that are head words but are not themselves dependents of other words. The separate trees produced this way were considered to be separate sentences.</p>
-  </li>
+  <li>In <a href="../treebanks/akk_RIAO/index.html">RIAO</a>, sentence boundaries were arrived at by syntactically annotating the unsegmented corpus, and identifying words that are head words but are not themselves dependents of other words. The separate trees produced this way were considered to be separate sentences.</li>
+  <li>Words are only exceptionally delimited by whitespace or punctuation in the original cuneiform texts. Thus, <a href="../treebanks/akk_RIAO/index.html">RIAO</a> is based on the bound transcription (normalized text).</li>
   <li>
     <p>Enclitic pronouns and clitics are separated during tokenization and marked as multi-word tokens with a syntactic relation.</p>
   </li>
+  <li>Enclitic pronouns and clitics are separated during tokenization and marked as multi-word tokens with a syntactic relation.</li>
 </ul>
 
 <h2 id="morphology">Morphology</h2>
@@ -82,11 +79,49 @@
 
 <ul>
   <li>In <a href="../treebanks/akk_RIAO/index.html">RIAO</a>, 13 universal tags have been used.</li>
+  <li>The tags AUX, INTJ, PUNCT and SYM were not used.</li>
+  <li>The words tagged PART are the emphatic <em>lū</em>, the quotation paricle <em>mā</em>, the clitics <em>ma</em> and <em>ni</em>, and the negation particles <em>lā</em> and <em>ul</em>.</li>
+  <li>The tag DET is used for the personal pronouns <em>šī</em>, <em>šū</em>, <em>šâtu</em>, <em>šuāti/u</em>, <em>šâtunu</em>, <em>šuātunu</em> when they modify the meaning of a noun; for the quantifiers <em>gabbu</em>, <em>kalāma</em> and <em>kalû</em>; for the demonstratives <em>ammiu</em> “that” and <em>annû</em> “this” and for the indefinite pronoun <em>mimma</em> “anything”. The tag PRON is reserved for independent personal pronouns, including oblique forms (<em>yâši</em>, <em>šuāšu</em>) and possessives, as well as pronominal suffixes; for the relative pronoun <em>ša</em> “which, who”; for <em>ammar</em> in its function as a relative pronoun; for the indefinite pronoun <em>mamma(n)</em> “somebody” and the interrogatives <em>mannu</em> “who?” and <em>mīnu</em> “what?”</li>
+</ul>
+
+<h3 id="nominal-features">Nominal Features</h3>
+
+<ul>
+  <li>
+    <p>Nominal words (NOUN, PROPN and PRON), adjectives (ADJ) and non-finite verbal forms have the subcategories:</p>
+  </li>
+  <li><a href="https://universaldependencies.org/u/feat/Case.html">Case</a> with 3 possible values (nominative, accusative, genitive).</li>
+  <li><a href="https://universaldependencies.org/u/feat/Number.html">Number</a> with 2 possible values (singular, plural).</li>
+  <li><a href="https://universaldependencies.org/u/feat/Gender.html">Gender</a> with 2 possible values (masculine, feminine).</li>
+  <li>Base, which can have four different values:
+    <ul>
+      <li>free (status rectus),</li>
+      <li>bound (status constructus),</li>
+      <li>suffixal (followed by pronominal suffixes) and</li>
+      <li>terminal (status absolutus).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="verbal-features">Verbal Features</h3>
+
+<p>In <a href="../treebanks/akk_RIAO/index.html">RIAO</a>, the following subcategories of verbs are annotated:</p>
+<ul>
+  <li>Finiteness (Finite, Infinitive, Stative),</li>
+  <li>Stem (G, D, Š, N, etc.),</li>
+  <li>Mood (Indicative, Imperative, Precative, Prohibitive),</li>
+  <li>Tense (Present, Past, Pgp), person (1, 2, 3),</li>
+  <li>Number (Singular, Plural) and</li>
+  <li>Gender (Masculine, Feminine).</li>
+</ul>
+
+<p>We consider subordinative and ventive as subcategories of their own, which we tag as boolean values.</p>
+<ul>
   <li>The tags AUX, INTJ, PUNCT, SYM were not used.</li>
   <li>The words tagged PART are the emphatic <em>lū</em>, the quotation particle <em>mā</em>, the clitics <em>ma</em> and <em>ni</em>, and the negation particles <em>lā</em> and <em>ul</em>.</li>
 </ul>
 
-<h3 id="nominal-features">Nominal Features</h3>
+<h3 id="nominal-features-1">Nominal Features</h3>
 
 <ul>
   <li>Nominal words (NOUN, PROPN and PRON) and adjectives (ADJ) have an inherent Gender feature with values Masc or Fem.</li>
@@ -106,7 +141,7 @@ c) suffixal (followed by pronominal suffixes) and
 d) terminal (status absolutus).</li>
 </ul>
 
-<h3 id="verbal-features">Verbal Features</h3>
+<h3 id="verbal-features-1">Verbal Features</h3>
 
 <p>In <a href="../treebanks/akk_RIAO/index.html">RIAO</a>, the following subcategories of verbs are annotated:</p>
 <ul>
@@ -122,22 +157,24 @@ Following Streck (2011: 363), we consider subordinative and ventive as subcatego
 <h2 id="syntax">Syntax</h2>
 
 <h3 id="word-order">Word order</h3>
-<p>For the most part, Akkadian word order is SOV structure.</p>
+<p>For the most part, Akkadian word order is SOV.</p>
 
 <h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 <ul>
   <li>Nominal subjects are in the nominative case without an adposition.</li>
+  <li>Usually objects occur in accusative case, but if not, their position after the subject is decisive. Due to emphasis, an object may also be fronted with the adposition <em>ana</em> but be then tagged as obl.</li>
+  <li>Prepositional objects are considered oblique.</li>
 </ul>
 
 <h3 id="relations-overview">Relations Overview</h3>
 
 <ul>
-  <li>The following relation main types are not used in this treebank: aux, clf, compound, cop, dislocated, expl, flat, orphan, punct, reparandum.</li>
+  <li>The following relation main types are not used in <a href="../treebanks/akk_RIAO/index.html">RIAO</a>: aux, clf, compound, dislocated, expl, flat, orphan, punct, reparandum.</li>
   <li>The following relation subtypes are used in Akkadian:
     <ul>
       <li>acl:relcl for relative clauses</li>
-      <li>advmod:emph for the particle lū in its asseverative function</li>
-      <li>advmod:neg for the negation particles lā and ul</li>
+      <li>advmod:emph for the particle <em>lū</em> in its asseverative function</li>
+      <li>advmod:neg for the negation particles <em>lā</em> and <em>ul</em></li>
       <li>det:poss for possessive determiners</li>
       <li>nmod:poss for the construct state</li>
     </ul>
