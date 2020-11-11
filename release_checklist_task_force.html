@@ -101,7 +101,7 @@ instead of the invalid new version.)</li>
 
 <ul>
   <li>Make sure that there are not significant overlaps between training and dev/test files of treebanks of one language.<br />
-<code>check_overlaps.pl $(cat released_treebanks.txt) |&amp; tee overlap.log</code></li>
+<code>tools/check_overlaps.pl $(cat released_treebanks.txt) |&amp; tee overlap.log</code></li>
   <li>Update statistics in the <code class="language-plaintext highlighter-rouge">stats.xml</code> file in each repository:<br />
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; ( ../tools/conllu-stats.pl *.conllu &gt; stats.xml ) ; git add stats.xml ; git commit -m 'Updated statistics.' ; git push ; cd .. ; echo ; done</code></li>
   <li>Merge the <code class="language-plaintext highlighter-rouge">dev</code> branch into <code class="language-plaintext highlighter-rouge">master</code> in the released repositories.
