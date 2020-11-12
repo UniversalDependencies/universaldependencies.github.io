@@ -176,9 +176,10 @@ In the Ugnayan treebank, linkers are treated as separate syntactic words and the
 <ul>
   <li>Tagalog uses the <a href="https://en.wikipedia.org/wiki/Austronesian_alignment">Austronesian voice system</a>, a typologically unusual class of morphosyntactic alignment. In Tagalog, two core arguments (the topic argument and non-topic argument) are marked by prepositions, with their semantic roles determined by voice affixes on the verb. For the purposes of UD annotation, the following guidelines are used:
     <ul>
-      <li>The topic argument (marked by the preposition <em>ang</em>) is attached to the predicate using the <a href="https://universaldependencies.org/u/dep/nsubj.html">nsubj</a> relation.</li>
-      <li>The non-topic argument (marked by the preposition <em>ng</em>) is attached to the predicate using the <a href="https://universaldependencies.org/u/dep/obj.html">obj</a> relation.</li>
-      <li>Other adjuncts are attached to the predicate using the <a href="https://universaldependencies.org/u/dep/obl.html">obl</a> relation.</li>
+      <li>The topic/nominative argument (marked by the preposition <em>ang</em>) is attached to the predicate using the <a href="https://universaldependencies.org/u/dep/nsubj.html">nsubj</a> relation.</li>
+      <li>The non-topic/genitive argument (marked by the preposition <em>ng</em>) is attached to the predicate using the <a href="https://universaldependencies.org/u/dep/obj.html">obj</a> relation.</li>
+      <li>If there are two <em>ng</em>-arguments, the more agent-like argument is attached as <a href="">obj</a> and the more patient-like argument is attached as <a href="">iobj</a>.</li>
+      <li>Other nominals are attached to the predicate using the <a href="https://universaldependencies.org/u/dep/obl.html">obl</a> relation.</li>
     </ul>
   </li>
 </ul>
@@ -186,7 +187,7 @@ In the Ugnayan treebank, linkers are treated as separate syntactic words and the
 <h3 id="non-verbal-predicates">Non-verbal Predicates</h3>
 
 <ul>
-  <li>Non-verbal clauses (such as noun, adverb, or adjective phrases) may be used as predicates in Tagalog. In these instances, the highest node of the clause is labeled as <a href="https://universaldependencies.org/u/dep/root.html">root</a>, and all other nodes typically connected to the root verb are instead connected to this node.</li>
+  <li>Non-verbal clauses (such as noun, adverb, or adjective phrases) may be used as predicates in Tagalog. In these instances, the highest node of the clause is labeled as <a href="https://universaldependencies.org/u/dep/root.html">root</a>, and all other nodes typically connected to the root verb are instead connected to this node. There is no copula.</li>
 </ul>
 
 <h3 id="relations-overview">Relations Overview</h3>
@@ -194,13 +195,14 @@ In the Ugnayan treebank, linkers are treated as separate syntactic words and the
 <ul>
   <li>The following relation subtypes are used in Tagalog:
     <ul>
-      <li><a href="">nsubj:pass</a> for nominal subjects of verbs in undergoer-focused voice</li>
+      <li><a href="">nsubj:pass</a> for nominal subjects of verbs in patient-focused voice</li>
       <li><a href="">nsubj:lfoc</a> for nominal subjects of verbs in location-focused voice</li>
       <li><a href="">nsubj:bfoc</a> for nominal subjects of verbs in beneficiary-focused voice</li>
-      <li><a href="">csubj:pass</a> for clausal subjects of verbs in undergoer-focused voice</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of verbs in patient-focused voice</li>
       <li><a href="">csubj:lfoc</a> for clausal subjects of verbs in location-focused voice</li>
       <li><a href="">csubj:bfoc</a> for clausal subjects of verbs in beneficiary-focused voice</li>
       <li><a href="">obj:agent</a> for agents (actors) of verbs in a non-actor-focused voice</li>
+      <li><a href="">iobj:patient</a> for patients (undergoers) of verbs in a voice where neither agent nor patient is the subject</li>
       <li><a href="">compound:redup</a> for reduplicated nouns and adjectives (reduplication intensifies their meaning)</li>
       <li><a href="">nmod:poss</a> for possessive relation between nominals</li>
       <li><a href="">acl:relcl</a> for relative adnominal clauses</li>
