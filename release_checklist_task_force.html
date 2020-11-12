@@ -149,12 +149,7 @@ perl tools/survey_deprel_subtypes.pl --tbklist released_treebanks.txt<br />
 cd docs ; git pull --no-edit ; git status ; git commit -a -m 'Updated list of features and relations.' ; git push ; cd ..</code></li>
   <li>Run the script <code class="language-plaintext highlighter-rouge">makedata.sh</code> in the docs repository. It will regenerate the YAML files in the folder <code class="language-plaintext highlighter-rouge">_data</code>; this is needed
 for cross-lingual links between documentation pages devoted to individual UPOS tags, features and relations.<br />
-<code>cd docs ; ./makedata.sh ; git commit -a -m 'Updated crosslingual links.' ; git push ; cd ..</code><br />
-Note that the script updates the data files that are used in many MarkDown pages but it does not update the MarkDown pages directly.
-Jekyll thus will not notice that almost all documentation must be re-generated; it will update nothing, until a change happens
-directly in a MarkDown file, and then it will re-generate only the HTML page based on this MarkDown file.
-We probably need to ask Filip or Sampo to re-run Jekyll manually? A possible hack would be to insert a blank line at the end of every
-affected MarkDown file but it is an ugly approach.</li>
+<code>cd docs ; ./makedata.sh ; git commit -a -m 'Updated crosslingual links.' ; git push ; cd ..</code><br /></li>
   <li>Tag the current commit in all repositories including docs with the tag of the current release (<code class="language-plaintext highlighter-rouge">git tag r2.7</code> for UD 2.7).
 Push the tag to Github: <code class="language-plaintext highlighter-rouge">git push origin --tags</code>.
 You may even tag a particular commit retroactively: <code class="language-plaintext highlighter-rouge">git tag -a r2.1 9fceb02</code>.
