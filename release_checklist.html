@@ -495,6 +495,20 @@ file <code class="language-plaintext highlighter-rouge">data/tokens_w_space.ud</
 these files, each line is a <a href="https://docs.python.org/3/library/re.html">Python regular expression</a>
 defining the permissible forms and lemmas that can contain a whitespace.</p>
 
+<p>The validator also checks that certain closed classes (currently auxiliaries and copula) appear
+only with documented lemmas. Since release 2.7, auxiliaries can be <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_auxiliary.pl">defined at the on-line validation
+site</a>.
+When adding an auxiliary (or the copula), the user can see some relevant points from the UD
+guidelines, as well as the list of auxiliaries that have been defined in other languages
+(related languages are shown first). This is to improve cross-lingual parallelism and to reduce
+the danger that maintainers of neighboring languages will employ dramatically different interpretations
+of the guidelines and end up with divergent notions of what qualifies as an auxiliary.
+All auxiliaries must be explained and accompanied by an example; in the future, the information
+collected this way could be propagated to the UD documentation. The site initially includes some
+auxiliaries that were previously listed (but not documented) in the source code of the validator.
+The user has to provide the missing information for all existing auxiliaries before they can add
+new ones.</p>
+
 <p>Some additional tests are available in the
 <a href="https://github.com/udapi/udapi-python/blob/master/udapi/block/ud/markbugs.py">Udapi</a>
 tool. They may reveal configurations that are not necessarily invalid but are suspicious and should be checked manually.</p>
