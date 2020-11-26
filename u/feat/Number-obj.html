@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>AbsErgDatPolite</title>
+    <title>Number[obj]</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/AbsErgDatPolite.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Number-obj.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -47,8 +47,8 @@
       <hr/>
 
       
-      <div class="v1warning">
-	This page still pertains to UD version 1.
+      <div class="v2complete">
+	This page pertains to UD version 2.
       </div>
       
 
@@ -62,13 +62,16 @@
 
           <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<h2><code>AbsErgDatPolite</code>: politeness agreement with absolutive/ergative/dative argument</h2>
+<h2><code>Number[obj]</code>: number agreement with object</h2>
 
-<h2 id="politeabs-politeerg-politedat">Polite[abs], Polite[erg], Polite[dat]</h2>
+<h2 id="numberobj">Number[obj]</h2>
 
-<p>Finite verbs in many Indo-European languages agree in person and number with their subject;
-for the second person this also affects the politeness register.
-In Basque (a <a href="http://en.wikipedia.org/wiki/Polypersonal_agreement">polypersonal language</a>),
+<p>Finite verbs in many Indo-European languages agree in person and <a href="u-feat/Number">number</a> with their subject.
+Some languages in other families are head-marking, which means that the verbal morphology can cross-reference
+multiple core arguments, not just the subject. If the cross-reference involves the <code class="language-plaintext highlighter-rouge">Number</code> of the argument,
+we have two layers of <code class="language-plaintext highlighter-rouge">Number</code> on the verb: <code class="language-plaintext highlighter-rouge">Number[subj]</code>, and (for transitive verbs) <code class="language-plaintext highlighter-rouge">Number[obj]</code>.</p>
+
+<p>In Basque (a <a href="http://en.wikipedia.org/wiki/Polypersonal_agreement">polypersonal language</a>),
 certain verbs overtly mark agreement with up to three arguments:
 one in the absolutive <a href="u-feat/Case">case</a>,
 one in ergative and
@@ -81,34 +84,37 @@ Thus in <em>dakarkiogu</em> “we bring it to him/her”,
 <em>gu</em> stands for “we” (ergative argument is the subject of transitive verbs).</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">Polite[abs]</code> is the politeness of the absolutive argument of the verb. The corresponding feature in Interset 2.041 is called <code class="language-plaintext highlighter-rouge">abspoliteness</code>.</li>
-  <li><code class="language-plaintext highlighter-rouge">Polite[erg]</code> is the politeness of the ergative argument of the verb. The corresponding feature in Interset 2.041 is called <code class="language-plaintext highlighter-rouge">ergpoliteness</code>.</li>
-  <li><code class="language-plaintext highlighter-rouge">Polite[dat]</code> is the politeness of the dative argument of the verb. The corresponding feature in Interset 2.041 is called <code class="language-plaintext highlighter-rouge">datpoliteness</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Number[abs]</code> is the number of the absolutive argument of the verb. The corresponding feature in Interset 2.041 is called <code class="language-plaintext highlighter-rouge">absnumber</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Number[erg]</code> is the number of the ergative argument of the verb. The corresponding feature in Interset 2.041 is called <code class="language-plaintext highlighter-rouge">ergnumber</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Number[dat]</code> is the number of the dative argument of the verb. The corresponding feature in Interset 2.041 is called <code class="language-plaintext highlighter-rouge">datnumber</code>.</li>
 </ul>
 
-<p>One may want to use just <code class="language-plaintext highlighter-rouge">Polite</code> instead of <code class="language-plaintext highlighter-rouge">Polite[abs]</code>.
+<p>One may want to use just <code class="language-plaintext highlighter-rouge">Number</code> instead of <code class="language-plaintext highlighter-rouge">Number[abs]</code>.
 However, there are two issues with that (at least in Basque).
 First, the absolutive argument is not always the subject. For transitive verbs, it is the object, so the parallelism with nominative-accusative languages would be weak anyway.
-Second, we cannot avoid <code class="language-plaintext highlighter-rouge">Number[abs]</code> (both <code class="language-plaintext highlighter-rouge">Number</code> and <code class="language-plaintext highlighter-rouge">Number[abs]</code> can occur at one word)
-and thus we keep <code class="language-plaintext highlighter-rouge">Polite[abs]</code> to demonstrate that it is the same layer of agreement for both the features.</p>
+Second, and more important, some Basque finite verbs have additional morphemes of nominal inflection.
+Thus their form reflects the person-number agreement with the absolutive argument <em>(nor)</em>, and nominal inflection (case, number etc.) at the same time.
+Examples: <em>dena</em> (<code class="language-plaintext highlighter-rouge">Number=Sing|Number[abs]=Sing</code>),
+<em>dituena</em> (<code class="language-plaintext highlighter-rouge">Number=Sing|Number[abs]=Plur|Number[erg]=Sing</code>),
+<em>dugunak</em> (<code class="language-plaintext highlighter-rouge">Number=Plur|Number[abs]=Sing|Number[erg]=Plur</code>),
+<em>direnak</em> (<code class="language-plaintext highlighter-rouge">Number=Plur|Number[abs]=Plur</code>).
+So we reserve the <code class="language-plaintext highlighter-rouge">Number</code> feature for nominal inflection, and the <code class="language-plaintext highlighter-rouge">Number[abs]</code> feature for agreement.</p>
 
-<h3 id="inf-informal">Inf: informal</h3>
+<p>Note that we also define <code class="language-plaintext highlighter-rouge">Person[abs]</code> and <code class="language-plaintext highlighter-rouge">Polite[abs]</code>, although there is no direct conflict for these features.
+But it is better to have these features aligned with <code class="language-plaintext highlighter-rouge">Person[erg]</code>, <code class="language-plaintext highlighter-rouge">Polite[erg]</code>, <code class="language-plaintext highlighter-rouge">Person[dat]</code> and <code class="language-plaintext highlighter-rouge">Polite[dat]</code>.</p>
 
-<p>Examples: [eu] <em>ezan, ezak</em> <code class="language-plaintext highlighter-rouge">Polite[erg]=Inf</code></p>
+<h3 id="sing-singular-object"><a name="Sing"><code class="language-plaintext highlighter-rouge">Sing</code></a>: singular object</h3>
 
-<h3 id="pol-polite-formal">Pol: polite, formal</h3>
+<p>Examples: [eu] <em><b>d</b>akarki<b>o</b>gu</em> <code class="language-plaintext highlighter-rouge">Number[abs]=Sing|Number[dat]=Sing</code></p>
 
-<p>Examples: [eu] <em>ezazu</em> <code class="language-plaintext highlighter-rouge">Polite[erg]=Pol</code> (politeness-neutral form is <em>ezazue</em>)
+<h3 id="plur-plural-object"><a name="Plur"><code class="language-plaintext highlighter-rouge">Plur</code></a>: plural object</h3>
+
+<p>Examples: [eu] <em>dakarkio<b>gu</b></em> <code class="language-plaintext highlighter-rouge">Number[erg]=Plur</code>
 <!-- Interlanguage links updated Čt lis 12 09:42:59 CET 2020 --></p>
 
 
 <!-- "in other languages" links -->
 <hr/>
-
-AbsErgDatPolite in other languages:
-
-[<a href="../../u/feat/AbsErgDatPolite.html">u</a>]
-
 
 
 
