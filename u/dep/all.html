@@ -1150,6 +1150,38 @@ obj(bé, èbi)
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/compound.md" target="#">edit compound</a></p>
 
+<p><a id="al-u-dep/compound:lvc" class="al-dest"></a></p>
+<h2><code>compound:lvc</code>: light verb construction</h2>
+
+<p>This subtype of <a href="">compound</a> covers light verbs.
+In a  light-verb construction the verb that does not have much semantic content.
+The semantics of the construction is determined by the non-head word,
+often a noun or adjective.</p>
+
+<pre><code class="language-sdparse">Onlar treni tercih ediyor . \n The prefer the train .
+compound:lvc(ediyor, tercih)
+obj(ediyor, treni)
+subj(ediyor, Onlar)
+</code></pre>
+
+<p>Most common verbs that act like as a light verb is <em>et-</em>.
+However, many other are possible.</p>
+
+<pre><code class="language-sdparse">Yıllarca çile çektiler . \n They suffered for years .
+compound:lvc(çektiler, çile)
+</code></pre>
+
+<p>Although the semantically loaded component of a light-verb construction is
+generally an adjective or a noun,
+it is common to observe verbs in this position particularly in code-switching settings.</p>
+
+<pre><code class="language-sdparse">Partiyi  cancel ettik . \n We canceled the party
+compound:lvc(ettik, cancel)
+</code></pre>
+<!-- Interlanguage links updated Čt lis 12 09:43:18 CET 2020 -->
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/compound-lvc.md" target="#">edit compound:lvc</a></p>
+
 <p><a id="al-u-dep/compound:prt" class="al-dest"></a></p>
 <h2><code>compound:prt</code>: phrasal verb particle</h2>
 
@@ -1178,6 +1210,190 @@ advmod(pulled, out)
 <!-- Interlanguage links updated Čt lis 12 09:43:19 CET 2020 -->
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/compound-prt.md" target="#">edit compound:prt</a></p>
+
+<p><a id="al-u-dep/compound:redup" class="al-dest"></a></p>
+<h2><code>compound:redup</code>: reduplicated compounds</h2>
+
+<p>This subtype of <a href="">compound</a> covers a range of reduplicated forms in Turkish.
+Reduplication is a common process especially for <a href="tr-pos/ADV">adverbs</a> and <a href="tr-pos/ADJ">adjectives</a>.
+Except for m-reduplication (see below),
+the head is the last word.</p>
+
+<p>The reduplication typically involves two identical words,
+but some morpho-phonological alternations (as in m-reduplication in example 3 below) are possible.</p>
+
+<pre><code class="language-sdparse">Koca koca adamlar oyun oynuyorlar . \n _Big (+emph)_ men are playing games .
+compound:redup(koca-2, Koca-1)
+</code></pre>
+
+<pre><code class="language-sdparse">Açık açık söylüyorum . \n I am telling it _clearly_
+compound:redup(açık-2, Açık-1)
+</code></pre>
+
+<pre><code class="language-sdparse">Araba maraba almışlar . \n They bought (a) car (and things like that)
+compound:redup(Araba, maraba)
+</code></pre>
+
+<p>For lexicalized multi-word items with repetition where one or more of the words are not free lexemes, (e.g. <em>paldır küldür</em>, <em>ufak tefek</em>), we use <a href="">fixed</a>.
+<!-- Interlanguage links updated Čt lis 12 09:43:19 CET 2020 --></p>
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/compound-redup.md" target="#">edit compound:redup</a></p>
+
+<p><a id="al-u-dep/compound:svc" class="al-dest"></a></p>
+<h2><code>compound:svc</code>: serial verb compounds</h2>
+
+<p>The relation <code class="language-plaintext highlighter-rouge">compound:svc</code> is used for serial verb constructions. In this type of construction, several verbs are combined to describe the same action.</p>
+
+<pre><code class="language-conllu"># visual-style 2 4 compound:svc	color:blue
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+1	dem	them	PRON	PRON	_	2	nsubj	_
+2	enter	enter	VERB	VERB	_	0	root	_	_
+3	bus	bus	NOUN	NOUN	_	2	obj	_	_
+4	go	go	VERB	VERB	_	2	compound:svc	_	_
+5	work	work	NOUN	NOUN	_	4	obj	_	_
+
+1	they	_	_	_	_	0	_	_	_
+2	enter	_	_	_	_	0	_	_	_
+3	bus	_	_	_	_	0	_	_	_
+4	go	_	_	_	_	0	_	_	_
+5	work	_	_	_	_	0	_	_	_
+
+1	They	_	_	_	_	0	_	_	_
+2	take	_	_	_	_	0	_	_	_
+3	the	_	_	_	_	0	_	_	_
+4	bus	_	_	_	_	0	_	_	_
+5	to	_	_	_	_	0	_	_	_
+6	work	_	_	_	_	0	_	_	_
+</code></pre>
+
+<p>The verbs in a serial verb construction share the same subject but not necessarily the same object.</p>
+
+<pre><code class="language-conllu"># visual-style 4 7 compound:svc	color:blue
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 7	bgColor:blue
+# visual-style 7	fgColor:white
+# visual-style 13 15 compound:svc	color:blue
+# visual-style 13	bgColor:blue
+# visual-style 13	fgColor:white
+# visual-style 15	bgColor:blue
+# visual-style 15	fgColor:white
+1	so	so	ADV	SCONJ	_	4	advmod	_	_
+2	we	we	PRON	PRON	_	4	nsubj	_	_
+3	don	don	AUX	AUX	_	4	aux	_	_
+4	carry	carry	VERB	VERB	_	0	root	_	_
+5	di	the	DET	DET	_	6	det	_	_
+6	matter	matter	NOUN	NOUN	_	4	obj	_	_
+7	come	come	VERB	VERB	_	4	compound:svc	_	_
+8	again	again	ADV	ADV	_	7	advmod	_	_
+9	as	as	SCONJ	ADP	_	13	mark	_	_
+10	we	we	PRON	PRON	_	13	nsubj	_	_
+11	dey	be	AUX	AUX	_	13	aux	_	_
+12	always	always	ADV	ADV	_	13	advmod	_	_
+13	carry	carry	VERB	VERB	_	7	advcl	_	_
+14	am	he	PRON	PRON	_	13	obj	_	_
+15	come	come	VERB	VERB	_	13	compound:svc	_	_
+
+1	so	_	_	_	_	0	_	_	_
+2	we	_	_	_	_	0	_	_	_
+3	have	_	_	_	_	0	_	_	_
+4	carry	_	_	_	_	0	_	_	_
+5	the	_	_	_	_	0	_	_	_
+6	matter	_	_	_	_	0	_	_	_
+7	come	_	_	_	_	0	_	_	_
+8	again	_	_	_	_	0	_	_	_
+9	as	_	_	_	_	0	_	_	_
+10	we	_	_	_	_	0	_	_	_
+11	be	_	_	_	_	0	_	_	_
+12	always	_	_	_	_	0	_	_	_
+13	carry	_	_	_	_	0	_	_	_
+14	it	_	_	_	_	0	_	_	_
+15	come	_	_	_	_	0	_	_	_
+
+1	so	_	_	_	_	0	_	_	_
+2	we	_	_	_	_	0	_	_	_
+3	have	_	_	_	_	0	_	_	_
+4	brought	_	_	_	_	0	_	_	_
+5	the	_	_	_	_	0	_	_	_
+6	issue	_	_	_	_	0	_	_	_
+7	again	_	_	_	_	0	_	_	_
+8	as	_	_	_	_	0	_	_	_
+9	we	_	_	_	_	0	_	_	_
+10	always	_	_	_	_	0	_	_	_
+11	do	_	_	_	_	0	_	_	_
+</code></pre>
+
+<p>An adjective may be used in place of a verb in a serial verb construction.</p>
+
+<pre><code class="language-conllu"># visual-style 3 4 compound:svc	color:blue
+# visual-style 4	bgColor:blue
+# visual-style 4	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+1	di	the	DET	DET	_	2	det	_	_
+2	guy	guy	NOUN	NOUN	_	3	nsubj	_	_
+3	fine	fine	ADJ	ADJ	_	0	root	_	_
+4	reach	arrive	VERB	VERB	_	3	compound:svc	_	_
+5	me	I	PRON	PRON	_	4	obj	_	_
+
+1	the	_	_	_	_	0	_	_	_
+2	guy	_	_	_	_	0	_	_	_
+3	fine	_	_	_	_	0	_	_	_
+4	reach	_	_	_	_	0	_	_	_
+5	me	_	_	_	_	0	_	_	_
+
+1	Is	_	_	_	_	0	_	_	_
+2	the	_	_	_	_	0	_	_	_
+3	guy	_	_	_	_	0	_	_	_
+4	as	_	_	_	_	0	_	_	_
+5	handsome	_	_	_	_	0	_	_	_
+6	as	_	_	_	_	0	_	_	_
+7	I	_	_	_	_	0	_	_	_
+8	am	_	_	_	_	0	_	_	_
+</code></pre>
+
+<h3 id="comparatives">Comparatives</h3>
+
+<p>In Naija serial verbs constructions are also used for comparatives. In these constructions the adjective which is being used to draw the comparison is followed by the verb <em>pass</em>.</p>
+
+<pre><code class="language-conllu"># visual-style 2 3 compound:svc	color:blue
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+1	farmer	farmer	NOUN	NOUN	_	2	nsubj	_	_
+2	happy	happy	ADJ	ADJ	_	0	root	_	_
+3	pass	pass	VERB	VERB	_	2	compound:svc	
+4	when	when	ADV	ADV	_	6	mark	_	_
+5	rain	rain	NOUN	NOUN	_	6	nsubj	_	_
+6	fall	fall	VERB	VERB	_	2	advcl	_	_
+7	like	like	ADP	ADP	_	8	case	_	_
+8	dis	this	DET	DET	_	6	obl	_	_
+
+1	farmers	_	_	_	_	0	_	_	_
+2	happy	_	_	_	_	0	_	_	_
+3	exceed	_	_	_	_	0	_	_	_
+4	when	_	_	_	_	0	_	_	_
+5	rain	_	_	_	_	0	_	_	_
+6	fall	_	_	_	_	0	_	_	_
+7	like	_	_	_	_	0	_	_	_
+8	this	_	_	_	_	0	_	_	_
+
+1	Farmers	_	_	_	_	0	_	_	_
+2	become	_	_	_	_	0	_	_	_
+3	happier	_	_	_	_	0	_	_	_
+4	when	_	_	_	_	0	_	_	_
+5	rain	_	_	_	_	0	_	_	_
+6	falls	_	_	_	_	0	_	_	_
+7	like	_	_	_	_	0	_	_	_
+8	this	_	_	_	_	0	_	_	_
+</code></pre>
+<!-- Interlanguage links updated Čt lis 12 09:43:19 CET 2020 -->
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/compound-svc.md" target="#">edit compound:svc</a></p>
 
 <p><a id="al-u-dep/conj" class="al-dest"></a></p>
 <h2><code>conj</code>: conjunct</h2>
