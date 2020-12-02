@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>obl:arg</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/obl-arg.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+	This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+	<noscript>
+	  <div id="noscript">
+	    It appears that you have Javascript disabled.
+	    Please consider enabling Javascript for this page to see the visualizations.
+	  </div>
+	</noscript>
+
+          <h2><code>obl:arg</code>: oblique argument</h2>
+
+<p>The relation <code class="language-plaintext highlighter-rouge">obl:arg</code> is used for oblique arguments and distinguishes them from
+adjuncts, which use the plain <a href="">obl</a> relation. It is thus possible to preserve
+the notion of <em>object</em> as it is defined in the Czech grammar and annotated in
+the Prague family of treebanks.</p>
+
+<p>Objects in Czech can be bare noun phrases in accusative, dative, genitive or
+instrumental cases, and prepositional phrases in accusative, dative, genitive,
+instrumental or locative. Most of these coding strategies are also used for
+adjuncts (called <em>adverbial modifiers</em> in the Czech grammar).
+However, Universal Dependencies reserve the relation <a href="">obj</a> (object) for the
+core object, and exclude oblique arguments. In Czech UD, we treat bare nominals
+(including non-accusatives) as core arguments and prepositional phrases as
+obliques. Within obliques, the <code class="language-plaintext highlighter-rouge">obl:arg</code> subtype is used for oblique arguments
+(i.e., prepositional objects), and the plain <a href="">obl</a> is used for adjuncts.</p>
+
+<pre><code class="language-sdparse">Spoléhám se na jeho instinkt . \n I-rely REFL on his instinct .
+obl:arg(Spoléhám, instinkt)
+obl:arg(I-rely, instinct)
+case(instinkt, na)
+case(instinct, on)
+</code></pre>
+
+<p>The relation <code class="language-plaintext highlighter-rouge">obl:arg</code> is a language-specific subtype (as opposed to universal type)
+because the argument-adjunct distinction is not made at the universal level
+(some discussion is <a href="../../u/overview/syntax.html#avoiding-an-argumentadjunct-distinction">here</a>).
+However, it is available in Czech treebanks and <code class="language-plaintext highlighter-rouge">obl:arg</code> ensures that it is
+not lost. Users that require reliable comparison across languages can easily
+reduce it to <code class="language-plaintext highlighter-rouge">obl</code>.</p>
+
+<p>Arguments are selected by the predicate. Their coding (preposition and
+morphological case) is determined by the predicate; within the set of
+arguments of this predicate, the coding maps the argument to a particular
+semantic role.
+In contrast, the semantics of an adjunct is relatively independent of the
+predicate, and typical adjuncts (such as specifications of time, location,
+manner or instrument) can combine with a large number of different predicates.</p>
+
+<p>Hence in the above example, the preposition <em>na</em> and the accusative case of
+the noun <em>instinkt</em> are selected by the verb <em>spoléhat.</em> Other verbs may
+also select the same preposition and case but the meaning will be different:
+for instance, <em>myslet na někoho</em> “to think of someone.”
+Finally, the preposition <em>na</em> itself has an adessive or allative meaning
+(see the corresponding values of the <a href="../../u/feat/Case.html">Case</a> feature). This meaning is suppressed
+when the preposition is selected by a predicate but it is more recognizable
+in adjuncts. In the following example, the preposition combines with a noun
+phrase in the locative case and marks a locational modifier:</p>
+
+<pre><code class="language-sdparse">Konference se koná na Slovensku . \n Conference REFL takes-place in Slovakia .
+obl(koná, Slovensku)
+obl(takes-place, Slovakia)
+case(Slovensku, na)
+case(Slovakia, in)
+</code></pre>
+<!-- Interlanguage links updated Čt lis 12 09:43:36 CET 2020 -->
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+obl:arg in other languages:
+
+[<a href="../../cs/dep/obl-arg.html">cs</a>]
+
+[<a href="../../fr/dep/obl-arg.html">fr</a>]
+
+[<a href="../../pl/dep/obl-arg.html">pl</a>]
+
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'u-dep';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+	  <p class="footer-text">&copy; 2014–2020
+	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
