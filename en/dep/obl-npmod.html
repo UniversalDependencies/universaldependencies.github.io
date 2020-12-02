@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>AUX_</title>
+    <title>obl:npmod</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-ja">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-en">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ja/pos/AUX_.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en/dep/obl-npmod.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,25 +60,42 @@
 	  </div>
 	</noscript>
 
-          <h2><code>AUX_</code>: auxiliary verb</h2>
+          <h2><code>obl:npmod</code>: noun phrase as adverbial modifier</h2>
 
-<h3 id="definition">Definition</h3>
+<p>This relation is a subtype of the <a href="">obl</a> relation, which captures
+the following cases where something syntactically a noun phrase is
+used as an adverbial modifier in a sentence:</p>
 
-<p>The definition of Japanese <code class="language-plaintext highlighter-rouge">AUX</code> is different from that in European language focused on modal verbs.<br />
-The <code class="language-plaintext highlighter-rouge">AUX</code> tag is used for words tagged by <code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞 in UniDic.
-In addition, <code class="language-plaintext highlighter-rouge">AUX</code> is also used for functional verbs / adjectives tagged by <code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能 or <code class="language-plaintext highlighter-rouge">adjective_i (bound)</code> / 形容詞-非自立可能 / <code class="language-plaintext highlighter-rouge">auxiliary_verb_stem</code> 形状詞-助動詞語幹 or 名詞-助動詞語幹/ when they are followed by a main verb or an adjective.</p>
+<p>(i) a measure phrase, which is the relation between the head of an
+adjectival/adverbial or prepositional phrase and the head of a measure
+phrase modifying it:</p>
 
-<h3 id="examples">Examples</h3>
+<pre><code class="language-sdparse">The director is 65 years old
+obl:npmod(old, years)
+</code></pre>
 
-<ul>
-  <li><em>食べ<b>た</b> </em> “eat”+PAST (<code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞) : <code class="language-plaintext highlighter-rouge">AUX</code> for past tense marker which follows a `VERB’ “食べ”</li>
-  <li><em>勉強<b>する</b> </em> “study” (<code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能) : verbify a functional noun</li>
-  <li><em>食べて<b>いる</b> </em> “be eating” (progressive) (<code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能) : a functional verb for progressive aspect</li>
-  <li><em>食べ<b>ない</b> </em> “not eat” (negation) (<code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞) : <code class="language-plaintext highlighter-rouge">AUX</code> for negation marker</li>
-  <li><em>食べる<b>よう</b>だ </em> “seem to eat”  (<code class="language-plaintext highlighter-rouge">adjective auxiliary_verb_stem</code> / 形状詞-助動詞語幹)</li>
-  <li><em>食べる<b>そう</b>だ </em> “hear that … eat” (<code class="language-plaintext highlighter-rouge">adjective auxiliary_verb_stem</code> / 名詞-助動詞語幹)
-<!-- Interlanguage links updated Čt lis 12 09:42:51 CET 2020 --></li>
-</ul>
+<pre><code class="language-sdparse">6 feet long
+obl:npmod(long, feet)
+</code></pre>
+
+<p>(ii) noun phrases giving an extent to a verb, which are not objects:</p>
+
+<pre><code class="language-sdparse">Shares eased a fraction
+obl:npmod(eased, fraction)
+</code></pre>
+
+<p>(iv) floating reflexives</p>
+
+<pre><code class="language-sdparse">The silence is itself significant
+obl:npmod(significant, itself)
+</code></pre>
+
+<p>and (v) certain other absolutive nominal constructions.</p>
+
+<p>A temporal modifier <a href="">obl:tmod</a> is a subclass of <a href="">obl</a> which is
+distinguished as a separate relation.</p>
+
+<!-- Interlanguage links updated Čt lis 12 09:43:31 CET 2020 -->
 
 
 <!-- "in other languages" links -->
@@ -196,7 +213,7 @@ In addition, <code class="language-plaintext highlighter-rouge">AUX</code> is al
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'ja';
+        Collections.listing['_current'] = 'en';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
