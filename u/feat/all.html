@@ -1595,11 +1595,9 @@ handsome</b>”
 <table class="typeindex" border="1">
 <tr>
   <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
-  <td><a href="#Com">Com</a></td>
-  <td><a href="#Cons">Cons</a></td>
-  <td><a href="#Def">Def</a></td>
-  <td><a href="#Ind">Ind</a></td>
-  <td><a href="#Spec">Spec</a></td>
+  <td><a href="#Med">Med</a></td>
+  <td><a href="#Prox">Prox</a></td>
+  <td><a href="#Remt">Remt</a></td>
 </tr>
 </table>
 
@@ -1612,7 +1610,12 @@ of the speaker or of the hearer. The common distinction is distance (proximate v
 remote entities); in some languages, elevation is distinguished as well (e.g., the
 entity is located higher or lower than the speaker).</p>
 
-<h3 id="prox-proximate"><a name="Proxx"><code class="language-plaintext highlighter-rouge">Prox</code></a>: proximate</h3>
+<p>If it is necessary to distinguish the person whose location is the reference point (speaker or hearer),
+the feature <a href="">DeixisRef</a> can be used in addition to <code class="language-plaintext highlighter-rouge">Deixis</code>. See also the Wolof examples below.
+<code class="language-plaintext highlighter-rouge">DeixisRef</code> is not needed if all deictic expressions in the language are relative to the same person
+(probably the speaker).</p>
+
+<h3 id="prox-proximate"><a name="Prox"><code class="language-plaintext highlighter-rouge">Prox</code></a>: proximate</h3>
 
 <p>The entity is close to the reference point (e.g., to the speaker).</p>
 
@@ -1622,6 +1625,8 @@ entity is located higher or lower than the speaker).</p>
   <li>[en] <em><b>this</b> dog</em></li>
   <li>[en] <em><b>here</b></em></li>
   <li>[es] <em><b>aquí</b></em> “<b>here</b>”</li>
+  <li>[wo] <em>xaj <b>bii</b></em> “<b>this</b> dog” (close to me, wherever you may be) <code class="language-plaintext highlighter-rouge">Deixis=Prox|DeixisRef=1</code></li>
+  <li>[wo] <em>xaj <b>boobu</b></em> “<b>that</b> dog / the dog in question” (close to you, far from me) <code class="language-plaintext highlighter-rouge">Deixis=Prox|DeixisRef=2</code></li>
 </ul>
 
 <h3 id="med-medial"><a name="Med"><code class="language-plaintext highlighter-rouge">Med</code></a>: medial</h3>
@@ -1632,6 +1637,7 @@ entity is located higher or lower than the speaker).</p>
 
 <ul>
   <li>[es] <em><b>ahí</b></em> “there”</li>
+  <li>[wo] <em>xaj <b>boobale</b></em> “<b>that</b> dog” (far away from both of us, but closer to you than to me) <code class="language-plaintext highlighter-rouge">Deixis=Med|DeixisRef=2</code></li>
 </ul>
 
 <h3 id="remt-remote-distal"><a name="Remt"><code class="language-plaintext highlighter-rouge">Remt</code></a>: remote, distal</h3>
@@ -1644,11 +1650,55 @@ entity is located higher or lower than the speaker).</p>
   <li>[en] <em><b>that</b> dog</em></li>
   <li>[en] <em><b>there</b></em></li>
   <li>[es] <em><b>allí</b></em> “<b>there</b>”</li>
+  <li>[wo] <em>xaj <b>bale</b></em> “<b>that</b> dog” (far away from me, wherever you may be) <code class="language-plaintext highlighter-rouge">Deixis=Remt|DeixisRef=1</code></li>
 </ul>
 
 <!-- Interlanguage links updated Čt lis 12 09:43:01 CET 2020 -->
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Deixis.md" target="#">edit Deixis</a></p>
+
+<p><a id="al-u-feat/DeixisRef" class="al-dest"></a></p>
+<h2><code>DeixisRef</code>: person to which deixis is relative</h2>
+
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#1">1</a></td>
+  <td><a href="#2">2</a></td>
+</tr>
+</table>
+
+<!-- https://github.com/UniversalDependencies/docs/issues/592 -->
+<!-- see also Unimorph -->
+
+<p>DeixisRef is a feature of demonstrative <a href="u-pos/PRON">pronouns</a>, <a href="u-pos/DET">determiners</a>,
+and <a href="u-pos/ADV">adverbs</a>, accompanying <a href="">Deixis</a> when necessary. <code class="language-plaintext highlighter-rouge">Deixis</code> encodes position of
+an entity relative to either the speaker or the hearer. If it is necessary to distinguish
+the person whose location is the reference point (speaker or hearer), <code class="language-plaintext highlighter-rouge">DeixisRef</code> is used.
+<code class="language-plaintext highlighter-rouge">DeixisRef</code> is not needed if all deictic expressions in the language are relative to the same
+person (probably the speaker), or if they do not distinguish the reference point.</p>
+
+<h3 id="1-deixis-relative-to-the-first-person-participant-speaker"><a name="1"><code class="language-plaintext highlighter-rouge">1</code></a>: deixis relative to the first person participant (speaker)</h3>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li>[wo] <em>xaj <b>bii</b></em> “<b>this</b> dog” (close to me, wherever you may be) <code class="language-plaintext highlighter-rouge">Deixis=Prox|DeixisRef=1</code></li>
+  <li>[wo] <em>xaj <b>bale</b></em> “<b>that</b> dog” (far away from me, wherever you may be) <code class="language-plaintext highlighter-rouge">Deixis=Remt|DeixisRef=1</code></li>
+</ul>
+
+<h3 id="2-deixis-relative-to-the-second-person-participant-hearer"><a name="2"><code class="language-plaintext highlighter-rouge">2</code></a>: deixis relative to the second person participant (hearer)</h3>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li>[wo] <em>xaj <b>boobu</b></em> “<b>that</b> dog / the dog in question” (close to you, far from me) <code class="language-plaintext highlighter-rouge">Deixis=Prox|DeixisRef=2</code></li>
+  <li>[wo] <em>xaj <b>boobale</b></em> “<b>that</b> dog” (far away from both of us, but closer to you than to me) <code class="language-plaintext highlighter-rouge">Deixis=Med|DeixisRef=2</code></li>
+</ul>
+
+<!-- Interlanguage links updated Čt lis 12 09:43:01 CET 2020 -->
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/DeixisRef.md" target="#">edit DeixisRef</a></p>
 
 <p><a id="al-u-feat/Echo" class="al-dest"></a></p>
 <h2><code>Echo</code>: is this an echo word or a reduplicative?</h2>
