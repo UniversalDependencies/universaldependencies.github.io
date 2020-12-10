@@ -450,18 +450,35 @@ in the tools repository.</p>
 </code></pre></div></div>
 
 <p>Among other items, the script also validates the language-specific set
-of morphological features and relations and therefore it needs to know about these. The
+of morphological features and relations and therefore it needs to know about these.
+Until release 2.7, language-specific lists were stored in the <code class="language-plaintext highlighter-rouge">data</code> folder in the <code class="language-plaintext highlighter-rouge">tools</code>
+repository and they could be edited directly by users working on individual languages. This
+practice is now deprecated. The <code class="language-plaintext highlighter-rouge">data</code> folder will contain necessary information in JSON files
+that cannot be edited directly. Instead, language-specific labels will be registered through
+a web interface and the data in the <code class="language-plaintext highlighter-rouge">tools</code> repository will be automatically updated when a change
+is saved in the web interface.</p>
+
+<p>At present, morphological features can be registered
+<a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_feature.pl">here</a>
+while dependency relations are still registered in the old text lists.</p>
+
+<p>It is possible to register language-specific features and relations only if they
+<a href="contributing_language_specific.html">have been properly documented</a>. If a feature does not have
+its own documentation page in the <code class="language-plaintext highlighter-rouge">docs</code> repository (either as part of the universal guidelines
+or in the language-specific folder), or if the page is not in the prescribed (machine-recognizable)
+format, the web interface will not allow to register the feature as valid, and consequently, the
+validator will not accept it in the data.</p>
+
+<p>The
 language-specific lists are stored in:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">data/feat_val.xx</code> (language-specific feature-value pairs)</li>
   <li><code class="language-plaintext highlighter-rouge">data/deprel.xx</code> (language-specific relations valid in the <em>basic representation,</em> i.e., the DEPREL column)</li>
   <li><code class="language-plaintext highlighter-rouge">data/edeprel.xx</code> (additional language-specific relations that are valid <em>only</em> in the <em>enhanced representation,</em> i.e., the DEPS column;
 do not put these in <code class="language-plaintext highlighter-rouge">deprel.xx</code>!)</li>
 </ul>
 
-<p>In addition <code class="language-plaintext highlighter-rouge">data/*.ud</code> stores the UD POS tags, features and relations.
-Before you can validate data for a given language, you need to
+<p>Before you can validate data for a given language, you need to
 produce and commit the necessary label lists and add them to the
 repository:</p>
 
@@ -469,12 +486,6 @@ repository:</p>
 $ git commit -m "Adding language-specific data for xx."
 $ git push
 </code></pre></div></div>
-
-<p><strong>IMPORTANT:</strong> Before UD release 2.2, the language specific lists of labels were in fact
-treebank-specific: for example, the two Finnish treebanks had separate lists of relation
-types, <code class="language-plaintext highlighter-rouge">deprel.fi</code> and <code class="language-plaintext highlighter-rouge">deprel.fi_ftb</code>, respectively. This is no longer supported. From the very
-beginning the UD policy is that all treebanks of one language adhere to the same language-specific
-guidelines. Therefore, all Finnish treebanks must now validate according to <code class="language-plaintext highlighter-rouge">deprel.fi</code>.</p>
 
 <p>If there are no label lists for the language yet, it is possible to create the initial lists
 by collecting labels from the data. However, such lists must be carefully examined by a human
@@ -502,19 +513,6 @@ specified <a href="v2/segmentation.html">here</a>. This is supported in the vali
 file <code class="language-plaintext highlighter-rouge">data/tokens_w_space.ud</code> and its language-specific variants <code class="language-plaintext highlighter-rouge">data/tokens_w_space.xx</code>. In
 these files, each line is a <a href="https://docs.python.org/3/library/re.html">Python regular expression</a>
 defining the permissible forms and lemmas that can contain a whitespace.</p>
-
-<p>Since release 2.8, the validator also checks that language-specific feature values
-<a href="contributing_language_specific.html">have been properly documented</a>. It is thus not enough to list
-a Finnish-specific feature in <code class="language-plaintext highlighter-rouge">data/feat_val.fi</code>. You must also document the feature and all
-its values in the <code class="language-plaintext highlighter-rouge">docs</code> repository in <code class="language-plaintext highlighter-rouge">_fi/feat/FeatureName.md</code>. If the file does not exist
-or if it does not follow the prescribed format, the validator will not accept the feature
-in the data.</p>
-
-<p>Similarly, the validator now checks that language-specific relation subtypes have been properly
-documented. It is thus not enough to list a Finnish-specific subtype in <code class="language-plaintext highlighter-rouge">data/deprel.fi</code>. You must
-also document it in the <code class="language-plaintext highlighter-rouge">docs</code> repository in <code class="language-plaintext highlighter-rouge">_fi/dep/maintype-subtype.md</code>. If the file does not
-exist or if it does not follow the prescribed format, the validator will not accept the relation
-in the data.</p>
 
 <p>The validator also checks that certain closed classes (currently auxiliaries and copula) appear
 only with documented lemmas. Since release 2.7, auxiliaries can be <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_auxiliary.pl">defined at the on-line validation
