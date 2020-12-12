@@ -1,8 +1,8 @@
 
 ---
 layout: feature
-title: 'Reduplicatoin'
-shortdef: 'reduplication'
+title: 'Aspect'
+shortdef: 'aspect'
 udver: '2'
 ---
 
@@ -17,7 +17,8 @@ udver: '2'
 </tr>
 </table>
 
-`Aspect` in Mundurukú, .
+`Aspect` in Mundurukú is threefold. The default from of the verb is perfective. Reduplication indicates imperfective aspect. The addition 
+of an *m* or nasalisation of the last vowel/syllable signalizes duration.
 
 ### <a name="DurIprf">`DurIprf`</a>: 
 
@@ -32,7 +33,7 @@ The exmaple below has the root *bu* 'finger' in classifier function.
 The exmaple below has the root *bu* 'finger' in classifier function.
 #### Examples
 
-* _<b>orog̃</b>&nbsp;_ “Hunt(ing)” (perfective form *orok*
+* _<b>orog̃</b>&nbsp;_ “Hunt(ing)” (perfective form *orok*)
 
 
 ### <a name="Perf">`Perf`</a>: 
