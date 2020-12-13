@@ -157,87 +157,87 @@ o
 
 <p>• Variant short distinguishes the words written with hyphen, whish loss some characters in RRT.</p>
 
-<p>Syntax</p>
+<h2 id="syntax">Syntax</h2>
 
-<p>Core Arguments, Oblique Arguments and Adjuncts</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
-<p>•	Nominal subject (nsubj) is a noun phrase in the nominative case, without preposition.</p>
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase in the nominative case, without preposition.
+    <ul>
+      <li>An infinitive verb may serve as the subject and is labeled as clausal subject, <a href="">csubj</a>.</li>
+      <li>A finite subordinate clause may serve as the subject and is labeled <code class="language-plaintext highlighter-rouge">csubj</code>.</li>
+    </ul>
+  </li>
+  <li>For the purpose of UD the objects are divided to core objects, labeled <a href="">obj</a> or <a href="">iobj</a>, and oblique objects, labeled <a href="">obl</a>.
+    <ul>
+      <li>All prepositional objects are considered oblique.</li>
+      <li>Accusative objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
+      <li>If a verbal construction expands the <code class="language-plaintext highlighter-rouge">iobj</code>, it is labeled <a href="">xcomp</a>.</li>
+      <li>If a verb subcategorizes for two core objects, one of them accusative (or ccomp) and the other non-accusative,
+then the non-accusative object is labeled <code class="language-plaintext highlighter-rouge">iobj</code>. Core nominal objects in other situations are labeled just <code class="language-plaintext highlighter-rouge">obj</code>.</li>
+    </ul>
+  </li>
+  <li>Adjuncts are usually prepositional phrases, but they can be bare noun phrases as well. They are labeled <code class="language-plaintext highlighter-rouge">obl</code>.</li>
+  <li>For the prepositional objects which cannot be omitted we used the label <a href="">nmod:pmod</a>.</li>
+  <li>This label is also used for the direct object which in Romanian language is preceded by the preposition <em>pe</em>
+to show that it names a person.
+    <ul>
+      <li>Temporal modifiers are annotated as: <a href="">nmod:tmod</a>; <a href="">advmod:tmod</a> or <a href="">advcl:tcl</a>.</li>
+    </ul>
+  </li>
+  <li>Extra attention has to be paid to clitic forms of pronouns (accusative) and (dative). They can function as:
+    <ul>
+      <li>Core objects with weak form can be (<code class="language-plaintext highlighter-rouge">obj</code> or <code class="language-plaintext highlighter-rouge">iobj</code>): or <code class="language-plaintext highlighter-rouge">expl</code> if the <code class="language-plaintext highlighter-rouge">obj</code>. <code class="language-plaintext highlighter-rouge">iobj</code> is named also by a noun or another pronoun.</li>
+      <li>The reflexive can be <a href="">expl:pv</a>, <a href="">expl:impers</a>, <a href="">expl:poss</a>, <a href="">expl:pass</a>.</li>
+    </ul>
+  </li>
+  <li>In passive clauses (both reflexive and periphrastic passive), the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.
+    <ul>
+      <li>The auxiliary verb in periphrastic passive is labeled <a href="">aux:pass</a>.</li>
+      <li>If the demoted agent is present, it has the form of a bare instrumental phrase and its relation is labeled <a href="">nmod:agent</a>.</li>
+    </ul>
+  </li>
+</ul>
 
-<p>o	An infinitive verb may serve as the subject and is labeled as clausal subject, csubj.</p>
+<h2 id="non-verbal-clauses">Non-verbal Clauses</h2>
 
-<p>o	A finite subordinate clause may serve as the subject and is labeled csubj.</p>
+<ul>
+  <li>The copula verb <em>fi</em> (“be”) is used in equational, attributional, possessive and benefactory
+nonverbal clauses. Purely existential clauses use <em>fi</em> as well but it is treated as the head
+of the clause and tagged <a href="">VERB</a>.</li>
+</ul>
 
-<p>•	For the purpose of UD the objects are divided to core objects, labeled obj or iobj, and oblique objects, labeled obl.</p>
+<h2 id="relations-overview">Relations Overview</h2>
 
-<p>o	All prepositional objects are considered oblique.</p>
+<ul>
+  <li>The following relation subtypes are used in Romanian:
+    <ul>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
+      <li><a href="">nmod:agent</a> for agents of passive verbs</li>
+      <li><a href="">nmod:pmod</a> for prepositional objects which cannot be omitted as determiners of some verbs.</li>
+      <li><a href="">expl:impers</a> for impersonal value of the reflexive</li>
+      <li><a href="">expl:pv</a> for reflexive clitics of inherently reflexive verbs</li>
+      <li><a href="">expl:pass</a> for reflexive clitics with passive value</li>
+      <li><a href="">expl:poss</a> for reflexive clitics with possessive value</li>
+      <li><a href="">aux:pass</a> for passive auxiliaries</li>
+      <li><a href="">nmod:tmod</a> for prepositional nouns with temporal value</li>
+      <li><a href="">advcl:tcl</a>  for adverbial clauses with temporal value</li>
+      <li><a href="">advmod:tmod</a> for adverbs with temporal value</li>
+    </ul>
+  </li>
+  <li>The following main types are also used alone: <a href="">expl</a> if a <a href="">nsubj</a>, <a href="">obj</a> or <a href="">iobj</a> is repeated by a pronoun.</li>
+</ul>
 
-<p>o	Accusative objects of some verbs alternate with finite clausal complements, which are labeled ccomp.</p>
+<h2 id="treebanks">Treebanks</h2>
 
-<p>o	If a verbal construction expand the iobj, it is labeled xcomp.</p>
+<p>There are <a href="../treebanks/ro-comparison.html">three</a> Romanian UD treebanks:</p>
 
-<p>o	If a verb subcategorizes for two core objects, one of them accusative (or ccomp) and the other non-accusative, then the non-accusative object is labeled iobj. Core nominal objects in other situations are labeled just obj.</p>
-
-<p>•	Adjuncts are usually prepositional phrases, but they can be bare noun phrases as well. They are labeled obl.</p>
-
-<p>• For the prepositional objects which cannot be omitted we used the label nmod:pmod.</p>
-
-<p>• This label is also used for the direct object which in Romanian language is preceded by the preposition “pe” to show that it names a person.</p>
-
-<p>o	Temporal modifiers are annotated as: nmod:tmod; advmod:tmod or advcl:tcl.</p>
-
-<p>•	Extra attention has to be paid to clitic forms of pronouns (accusative) and (dative). They can function as:</p>
-
-<p>o	Core objects with weak form can be (obj or iobj): or expl if the obj. iobj is named also by a noun or another pronoun.</p>
-
-<p>o	The reflexive can be expl:pv, expl:impers, expl:poss, expl:pass.</p>
-
-<p>•	In passive clauses (both reflexive and periphrastic passive), the subject is labeled with nsubj:pass or csubj:pass, respectively.</p>
-
-<p>o	The auxiliary verb in periphrastic passive is labeled aux:pass.</p>
-
-<p>o	If the demoted agent is present, it has the form of a bare instrumental phrase and its relation is labeled nmod:agent.</p>
-
-<p>Non-verbal Clauses</p>
-
-<p>•	The copula verb fi (be) is used in equational, attributional, possessive and benefactory nonverbal clauses. Purely existential clauses use fi as well but it is treated as the head of the clause and tagged VERB.</p>
-
-<p>Relations Overview</p>
-
-<p>•	The following relation subtypes are used in Romanian:</p>
-
-<p>o	nsubj:pass for nominal subjects of passive verbs</p>
-
-<p>o	csubj:pass for clausal subjects of passive verbs</p>
-
-<p>o	nmod:agent for agents of passive verbs</p>
-
-<p>o	nmod:pmod for prepositional objects which cannot be omitted as determiners of some verbs.</p>
-
-<p>o	expl:impers for impersonal value of the reflexive</p>
-
-<p>o	expl:pv for reflexive clitics of inherently reflexive verbs</p>
-
-<p>o	expl:pass for reflexive clitics with passive value</p>
-
-<p>o	expl:poss for reflexive clitics with possessive value</p>
-
-<p>o	aux:pass for passive auxiliaries</p>
-
-<p>o	nmod:tmod for prepositional nouns with temporal value</p>
-
-<p>o	advcl:tcl  for adverbial clauses with temporal value</p>
-
-<p>o	advmod:tmod for adverbs with temporal value</p>
-
-<p>•	The following main types are also used alone: expl if a nsubj, obj or iobj is repeated by a pronoun.</p>
-
-<p>Treebanks
-There are two UD-Romanian treebanks:</p>
-
-<p>UD_Romanian-RRT</p>
-
-<p>UD_Romanian-Nonstandard</p>
-
+<ul>
+  <li><a href="../treebanks/ro_rrt/index.html">RRT</a></li>
+  <li><a href="../treebanks/ro_nonstandard/index.html">Nonstandard</a></li>
+  <li><a href="../treebanks/ro_simonero/index.html">SiMoNERo</a></li>
+</ul>
 
 
       </div>
