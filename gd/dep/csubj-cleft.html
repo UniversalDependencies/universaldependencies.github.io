@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>xcomp:pred</title>
+    <title>csubj:cleft</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-gd">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gd/dep/xcomp-pred.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gd/dep/csubj-cleft.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,28 +60,48 @@
 	  </div>
 	</noscript>
 
-          <h2><code>xcomp:pred</code>: predicate</h2>
+          <h2><code>csubj:cleft</code>: relative clause modifier</h2>
 
-<p>We follow Irish and subtype the label <code class="language-plaintext highlighter-rouge">xcomp</code> as a UD Irish as <code class="language-plaintext highlighter-rouge">xcomp:pred</code> to mark predicates of the substantive verb <em>bi</em> (to be), which can have predicate arguments in the form of adverbial, adjectival and prepositional phrases and for cases where a secondary predicate occurs.</p>
+<p>There are two constructions that use a copula and a relative clause modifier.
+They differ from Irish in some respects.</p>
+
+<ul>
+  <li><em>‘S ann</em> or <em>Sann</em> fronts anything that isn’t an NP.
+This is then linked to the relative clause modifier by <code class="language-plaintext highlighter-rouge">csubj:cleft</code>.</li>
+  <li><em>‘S e</em> or <em>‘Se</em> fronts an NP, which is linked to a relative clause modifier of indefinite reference by <code class="language-plaintext highlighter-rouge">csubj:cleft</code>.</li>
+  <li>Where there is a definite NP, this is not in a relative clause but linked by <code class="language-plaintext highlighter-rouge">nsubj</code>.</li>
+</ul>
+
+<p>Note that as in Irish the verbal particle that introduces <code class="language-plaintext highlighter-rouge">csubj:cleft</code> is always labelled <code class="language-plaintext highlighter-rouge">mark:prt</code>.</p>
 
 <h3 id="examples">Examples</h3>
 
-<p><em>Tha m’ amhaich goirt ‘s tha mi a’ call mo ghuth</em> “My throat is sore and I am losing my voice” (c02_002b)</p>
+<ul>
+  <li><em>Air m’ onair, ‘s e gnothaich cudromach a tha sa chontract.</em> “On my honour, the contract is important business.” (f02_078)</li>
+</ul>
 
-<pre><code class="language-sdparse">Tha m' amhaich goirt 's tha mi a' call mo ghuth \n is my throat sore and am I ASP losing my voice
-xcomp:pred(Tha, goirt)
-xcomp:pred(tha, call)
+<pre><code class="language-sdparse">Air m' onair, 's e gnothaich cudromach a tha sa chontract. \n On my honour, COP EXPL business important PART is in\_the contract
+csubj:cleft(gnothaich, tha)
+cop(gnothaich, 's)
+fixed('s, e)
+</code></pre>
+
+<ul>
+  <li><em>Sann á bàrdachd a bha iad a’ faighinn am beò-shlàint.</em> “It is from poetry they were getting their livelihood.” (pw07_037)</li>
+</ul>
+
+<pre><code class="language-sdparse">Sann á bàrdachd a bha iad a' faighinn am beò-shlàint. \n COP EXPL from poetry PART was they PART getting their livelihood.
+csubj:cleft(bàrdachd, bha)
+cop(bàrdachd, Sann)
 </code></pre>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-xcomp:pred in other languages:
+csubj:cleft in other languages:
 
-[<a href="../../ga/dep/xcomp-pred.html">ga</a>]
-
-[<a href="../../pl/dep/xcomp-pred.html">pl</a>]
+[<a href="../../ga/dep/csubj-cleft.html">ga</a>]
 
 
 
