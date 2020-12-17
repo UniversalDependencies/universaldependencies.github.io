@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-bxr">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_bxr/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_bxr/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -64,57 +64,84 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>In general, words are delimited by whitespace characters. Description of exceptions follows.</li>
+  <li>According to typographical rules, many punctuation marks are attached to a neighboring word.
+In most cases we tokenize them as separate tokens (words). The exception is
+hyphenated compounds such as <em>монгол-буряадуудай</em> / <em>mongol-burjaaduudaj</em> “Mongol-Buryat” (one token).</li>
+  <li>There are no fused multi-word tokens, nor words with spaces.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<ul>
+  <li>All 17 universal POS categories are relevant for Buryat, although the current data does not contain any instance of <a href="">X</a>.</li>
+  <li>At present, 177 lemma types are tagged <a href="">PART</a>.</li>
+  <li>There are five main types of verbal forms, distinguished by the value of the <a href="">VerbForm</a> feature
+(all of them are tagged <a href="">VERB</a> or <a href="">AUX</a>, not as other derived categories):
+    <ul>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code> can act as a predicate of a main clause without an auxiliary; it inflects for the <a href="">Person</a> of the subject.</li>
+      <li>Converb (verbal adverb) <code class="language-plaintext highlighter-rouge">Conv</code> functions as a predicate in a dependent adverbial clause.
+The literature distinguishes several types of converbs in Buryat; unlike in Indo-European languages,
+they do not necessarily share their subject with the matrix clause.
+We use <code class="language-plaintext highlighter-rouge">VerbForm=Conv</code> for the conditional converbs (“if doing X, the matrix clause happens”), ending in <em>-бал, -бол, -бэл.</em></li>
+      <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>. The non-finite form ending in <em>-жа, -жо, -жэ</em> normally has to be accompanied by an auxiliary; together
+they can form a predicate of a main or a dependent clause. This makes the form different from verbal adverbs and thus worth
+a separate label. Calling them infinitives is in line with what Washington and Tyers (2019) propose for Turkic languages;
+note that in earlier releases of the Buryat treebank, these forms were labeled <code class="language-plaintext highlighter-rouge">Coverb</code>.
+Some authors (e.g., Skribnik 2011) label them as imperfective converbs.</li>
+      <li>Gerund <code class="language-plaintext highlighter-rouge">Ger</code> is used for various other forms that are classified as types of converbs in the literature.
+Gerunds may function as predicates in main clauses (without an auxiliary, and with an overt subject).
+        <ul>
+          <li><em>бүтээ</em> / <em>bütee</em> “create” → <em>бүтээхэеэ</em> / <em>büteexeyee</em> “willing to create” (intention)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<h3 id="nominal-features">Nominal Features</h3>
 
-<hr />
-
-<h3 id="features">Features</h3>
-
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<ul>
+  <li><a href="">Case</a> has 6 possible values: <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Gen</code>, <code class="language-plaintext highlighter-rouge">Dat</code>, <code class="language-plaintext highlighter-rouge">Acc</code>, <code class="language-plaintext highlighter-rouge">Abl</code>, <code class="language-plaintext highlighter-rouge">Com</code>.
+It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">NUM</a>.</li>
+  <li><a href="">Number</a>: only plural is annotated with <code class="language-plaintext highlighter-rouge">Number=Plur</code>, while singular is unmarked.
+However, both numbers are annotated for finite verbs (cross-reference of the subject).</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Nominal subject is normally in the nominative case. It triggers agreement on the finite verb and
+it determines the use of the reflexive marker in the clause, if any.</li>
+  <li>Direct object may be in the accusative but it is often in the nominative form, too.
+The unmarked stem (nominative) implies an unspecified unfocused object.</li>
+  <li>The dominant and unmarked word order is subject-object-verb (SOV).</li>
+  <li>The verb <em>бай</em> / <em>bay</em> “be” can be used as a copula.
+    <ul>
+      <li>If combined with a nominal in the comitative case, its meaning is possessively existential,
+corresponding to English “have”: <em>Хүзүүбшэ улан үнгэтэй байгаа.</em> / <em>Xüzüübše ulan üngetey baygaa.</em>
+lit. “neck red fox.with is” = “The red fox has a neck.”</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is one Buryat UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/bxr_bdt/index.html">Buryat-BDT</a></li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
+<h2 id="references">References</h2>
 
-<hr />
+<ul>
+  <li>Elena Skribnik. 2011. Buryat. In: <em>The Mongolic Languages.</em> Routledge</li>
+  <li>Jonathan North Washington, Francis M. Tyers. 2019. Delineating Turkic non-finite verb forms by syntactic function. In: <em>Proceedings of the Workshop on Turkic and Languages in Contact with Turkic 4.</em> 132–146</li>
+</ul>
 
 
       </div>
