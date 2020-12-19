@@ -62,13 +62,16 @@
 
           <h2><code>case:adv</code>: case marking to form adverbs</h2>
 
-<p>This deprel is a special class of <a href="">case</a>.
-While deprel ‘case’ is usually a nominal dependent, in Indonesian it also can be used to form adverbs. The tokens that can be labeled as <em>case:adv</em> are preposition <em>secara</em> “in a manner” and <em>dengan</em> “with/in a manner of”. These prepositions are followed by tokens with POS tags ADJ/VERB/NOUN that serve as their parents. For example:</p>
-<ul>
+<p>This deprel is a special class of <a href="">case</a>. While deprel ‘case’ is usually used for ADP as a nominal dependent, for this subtype ADP can be a dependent of ADJ or VERB and together with its parent, they form adverbs.</p>
+
+<p>In Indonesian grammar, we can use syntax <em>secara/dengan</em> + ADJ/VERB/NOUN to form adverbs. For example:</p>
+<ol>
   <li><em>secara/dengan</em> + ADJ: <em>dengan sengaja</em> “purposely/intentionally” = <em>dengan</em> “in a manner of” (ADP) + <em>sengaja</em> “on purpose” (ADJ)</li>
   <li><em>secara/dengan</em> + VERB: <em>secara terbuka</em> “openly” = <em>secara</em> “in a manner of” (ADP) + <em>terbuka</em> “open” (VERB)</li>
   <li><em>secara/dengan</em> + NOUN: <em>secara keseluruhan</em> “overall” = <em>secara</em> “in a manner of” (ADP) + <em>keseluruhan</em> “whole” (NOUN)</li>
-</ul>
+</ol>
+
+<p>Since we can not use deprel ‘case’ for syntax 1 and 2 for ADP + ADJ/VERB, we propose the use of subtype ‘case:adv’. For syntax 3, we use the basic ‘case’.</p>
 
 <pre><code class="language-sdparse">dijual secara legal \n sold legally
 advmod(dijual, legal)
@@ -87,7 +90,7 @@ case:adv(terbuka, secara)
 
 <pre><code class="language-sdparse">menguntungkan secara keseluruhan \n beneficial as a whole
 obl(menguntungkan, keseluruhan)
-case:adv(keseluruhan, secara)
+case(keseluruhan, secara)
 </code></pre>
 
 
