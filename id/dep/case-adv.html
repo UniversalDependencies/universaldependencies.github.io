@@ -62,16 +62,18 @@
 
           <h2><code>case:adv</code>: case marking to form adverbs</h2>
 
-<p>This deprel is a special class of <a href="">case</a>. While deprel ‘case’ is usually used for ADP as a nominal dependent, for this subtype ADP can be a dependent of ADJ or VERB and together with its parent, they form adverbs.</p>
+<p>This deprel is a special class of <a href="">case</a>. While deprel ‘case’ is usually used for ADP as a nominal dependent, for this subtype ADP can be a dependent of ADJ/ADV/VERB and together with its parent, they form adverbs.</p>
 
-<p>In Indonesian grammar, we can use syntax <em>secara/dengan</em> + ADJ/VERB/NOUN to form adverbs. For example:</p>
+<p>In Indonesian grammar, we can use syntax ADP + ADJ/VERB/NOUN to form adverbs. For example:</p>
 <ol>
   <li><em>secara/dengan</em> + ADJ: <em>dengan sengaja</em> “purposely/intentionally” = <em>dengan</em> “in a manner of” (ADP) + <em>sengaja</em> “on purpose” (ADJ)</li>
   <li><em>secara/dengan</em> + VERB: <em>secara terbuka</em> “openly” = <em>secara</em> “in a manner of” (ADP) + <em>terbuka</em> “open” (VERB)</li>
   <li><em>secara/dengan</em> + NOUN: <em>secara keseluruhan</em> “overall” = <em>secara</em> “in a manner of” (ADP) + <em>keseluruhan</em> “whole” (NOUN)</li>
 </ol>
 
-<p>Since we can not use deprel ‘case’ for syntax 1 and 2 for ADP + ADJ/VERB, we propose the use of subtype ‘case:adv’. For syntax 3, we use the basic ‘case’.</p>
+<p>Since we can not use deprel ‘case’ for syntax 1 and 2 for ADP + ADJ/VERB, we propose the use of subtype ‘case:adv’.</p>
+
+<p>The examples of annotation for ADP + ADJ:</p>
 
 <pre><code class="language-sdparse">dijual secara legal \n sold legally
 advmod(dijual, legal)
@@ -83,10 +85,14 @@ advmod(dipilih, sengaja)
 case:adv(sengaja, dengan)
 </code></pre>
 
+<p>The examples of annotation for ADP + VERB:</p>
+
 <pre><code class="language-sdparse">merespon secara terbuka \n to respon openly
 advcl(merespon, terbuka)
 case:adv(terbuka, secara)
 </code></pre>
+
+<p>For syntax 3 (ADP + NOUN = ADV), we use the basic ‘case’.</p>
 
 <pre><code class="language-sdparse">menguntungkan secara keseluruhan \n beneficial as a whole
 obl(menguntungkan, keseluruhan)
