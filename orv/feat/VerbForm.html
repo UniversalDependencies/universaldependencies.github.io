@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>PronType</title>
+    <title>VerbForm</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-gub">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-orv">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gub/feat/PronType.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_orv/feat/VerbForm.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -62,112 +62,154 @@
 
           <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<h2><code>PronType</code>: prontype</h2>
+<h2><code>VerbForm</code>: form of verb or deverbative</h2>
 
 <table class="typeindex" border="1">
 <tr>
   <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
-  <td><a href="#Prs">Prs</a></td>
-  <td><a href="#Dem">Dem</a></td>
-  <td><a href="#Ind">Ind</a></td>
-  <td><a href="#Int">Int</a></td>
-  
-  
-
+  <td><a href="#Conv">Conv</a></td>
+  <td><a href="#Fin">Fin</a></td>
+  <td><a href="#Inf">Inf</a></td>
+  <td><a href="#Part">Part</a></td>
+  <td><a href="#PartRes">PartRes</a></td>
 </tr>
 </table>
 
-<p><code class="language-plaintext highlighter-rouge">PronType</code></p>
+<p>The feature is used exclusively with <a href="orv-pos/VERB">verbs</a> and <a href="orv-pos/VERB">auxiliaries</a>. 
+Participles are treated as <a href="orv-pos/VERB">verbs</a> and not <a href="orv-pos/ADJ">adjectives</a> in Old East Slavic treebanks.</p>
 
-<h3 id="prs-personal"><a name="Prs"><code class="language-plaintext highlighter-rouge">Prs</code></a>: Personal</h3>
+<h3 id="fin-finite-verb"><a name="Fin"><code class="language-plaintext highlighter-rouge">Fin</code></a>: finite verb</h3>
+
+<p>Rule of thumb: if it has non-empty <a href="">Mood</a>, it is finite.
+In East Slavic this applies to indicative and imperative forms.</p>
 
 <h4 id="examples">Examples</h4>
 
 <ul>
-  <li><em><b>ihe</b> </em> “I”</li>
-  <li><em><b>a’e</b> </em> “He/she/it/they”</li>
+  <li><em>да ѧзъ ти тѹ <b>сѣжѹ</b></em>  “I sit here”</li>
 </ul>
 
-<p>&lt;/tr&gt;
-&lt;/table&gt;</p>
+<h3 id="inf-infinitive"><a name="Inf"><code class="language-plaintext highlighter-rouge">Inf</code></a>: infinitive</h3>
 
-<h3 id="dem-demonstrative"><a name="Dem"><code class="language-plaintext highlighter-rouge">Dem</code></a>: Demonstrative</h3>
+<p>Infinitive is the citation form of verbs.
+It is also used with the auxiliary <em>быти</em> to form periphrastic future tense,
+and it appears as the argument of modal and other verbs.</p>
 
 <h4 id="examples-1">Examples</h4>
 
 <ul>
-  <li><em><b>agwer ma’e</b> </em> “This kind of things”</li>
+  <li><em>велѣно <b>сбирать</b> пошлины</em>  “it was ordered to collect the fee”</li>
 </ul>
 
-<h3 id="ind-indefinite"><a name="Ind"><code class="language-plaintext highlighter-rouge">Ind</code></a>: Indefinite</h3>
+<h3 id="part-participle"><a name="Part"><code class="language-plaintext highlighter-rouge">Part</code></a>: participle</h3>
+
+<p>Participle is a non-finite verb form that shares properties of verbs
+and adjectives. Old East Slavic has two types of participles:</p>
+
+<ul>
+  <li>The active present and past participle
+is used to form the active voice.</li>
+  <li>The passive present and past participle
+is used to form the passive voice.</li>
+</ul>
+
+<p>Participles inflect for <a href="">Gender</a> and <a href="">Number</a> but not for <a href="">Person</a>.</p>
 
 <h4 id="examples-2">Examples</h4>
 
 <ul>
-  <li><em><b>amo awa</b> </em> “some men”</li>
+  <li><em>добре <b>правяй</b> скипетро</em>  “properly governing scepter”</li>
+  <li><em><b>писавы</b></em>  “who wrote”</li>
+  <li><em><b>любимъ</b> отьцемъ</em>  “he is loved by his father”</li>
+  <li><em><b>велѣно</b> сбирать пошлины</em>  “it was ordered to collect the fee”</li>
 </ul>
 
-<h3 id="int-interrogative"><a name="Int"><code class="language-plaintext highlighter-rouge">Int</code></a>: Interrogative</h3>
+<h3 id="partres-resultative-participle-l-form"><a name="PartRes"><code class="language-plaintext highlighter-rouge">PartRes</code></a>: resultative participle, l-form</h3>
+
+<p>This is a special case of participles. The value <code class="language-plaintext highlighter-rouge">PartRes</code> reflects the use of the l-form as transitional 
+from perfective/resultative participle in Old Russian to the simple past form in Modern Russian, Belarussian and Ukrainian. 
+Just as other verb forms, l-forms differentiate between the imperfective and perfective aspect losing their original 
+resultative meaning in Old and Middle East Slavic period. 
+Since the feature <code class="language-plaintext highlighter-rouge">Aspect</code> is taken, we use a language-specific value <code class="language-plaintext highlighter-rouge">VerbForm=PartRes</code> for l-forms. We also use the value 
+<code class="language-plaintext highlighter-rouge">Tense=Past</code> for them to make annotations consistent in Middle and Modern treebanks.</p>
+
+<p>Resultative participles inflect for <a href="">Gender</a> and <a href="">Number</a> but not for <a href="">Person</a>.</p>
 
 <h4 id="examples-3">Examples</h4>
 
 <ul>
-  <li><em><b>Mo</b> </em> “Who?”</li>
+  <li><em>послалъ, послала, послало, послали</em>  “sent”</li>
+  <li><em>посылалъ, посылала, посылало, посылали</em>  “was sending”</li>
 </ul>
 
-<h2 id="diffs">Diffs</h2>
+<h3 id="conv-converb-transgressive"><a name="Conv"><code class="language-plaintext highlighter-rouge">Conv</code></a>: converb, transgressive</h3>
 
-<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+<p>The converb, also called transgressive, adverbial participle or gerund, is a non-finite
+verb form that shares properties of verbs and adverbs.</p>
 
-<p>The PDT tagset does not distinguish <code class="language-plaintext highlighter-rouge">Ptan</code> from <code class="language-plaintext highlighter-rouge">Plur</code> and <code class="language-plaintext highlighter-rouge">Coll</code> from <code class="language-plaintext highlighter-rouge">Sing</code>,
-therefore this distinction is not being made in the converted data.
-<!-- Interlanguage links updated Čt lis 12 09:43:03 CET 2020 --></p>
+<p>Imperfective verbs form present converb, meaning “while doing”.</p>
+
+<p>Perfective verbs form past converb, meaning “having done”.</p>
+
+<h4 id="examples-4">Examples</h4>
+
+<ul>
+  <li><em><b>будучи</b> головою</em>  “being the head”</li>
+  <li><em>и вы</em>, <em>то <b>услышавъ</b></em>, <em>тои товаръ отъималѣ&lt;/b&gt;</em>  “and you, hearing (having heard) this, took away that product”</li>
+</ul>
+
+<h2 id="diff">Diff</h2>
+
+<p>In the TOROT treebank, l-forms are annotated as <code class="language-plaintext highlighter-rouge">VerbForm=Part</code> and <code class="language-plaintext highlighter-rouge">Aspect=Res</code>. 
+In the Old Russian-RNC and Ruthenian treebanks , l-forms are annotated as <code class="language-plaintext highlighter-rouge">VerbForm=PartRes</code>, <code class="language-plaintext highlighter-rouge">Tense=Past</code>, and <code class="language-plaintext highlighter-rouge">Aspect=Imp</code> or <code class="language-plaintext highlighter-rouge">Aspect=Perf</code>, depending their aspect.</p>
+
+<p>Converbs are annotated as participles in TOROT. (These forms originate in the Proto-Slavic participles but are interpreted as adverbial forms in later texts, see Zalizniak 2004, Lyashevskaya 2010).</p>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-PronType in other languages:
+VerbForm in other languages:
 
-[<a href="../../bg/feat/PronType.html">bg</a>]
+[<a href="../../bg/feat/VerbForm.html">bg</a>]
 
-[<a href="../../bm/feat/PronType.html">bm</a>]
+[<a href="../../bm/feat/VerbForm.html">bm</a>]
 
-[<a href="../../cs/feat/PronType.html">cs</a>]
+[<a href="../../cs/feat/VerbForm.html">cs</a>]
 
-[<a href="../../en/feat/PronType.html">en</a>]
+[<a href="../../en/feat/VerbForm.html">en</a>]
 
-[<a href="../../fi/feat/PronType.html">fi</a>]
+[<a href="../../fi/feat/VerbForm.html">fi</a>]
 
-[<a href="../../fr/feat/PronType.html">fr</a>]
+[<a href="../../fr/feat/VerbForm.html">fr</a>]
 
-[<a href="../../ga/feat/PronType.html">ga</a>]
+[<a href="../../ga/feat/VerbForm.html">ga</a>]
 
-[<a href="../../hu/feat/PronType.html">hu</a>]
+[<a href="../../hu/feat/VerbForm.html">hu</a>]
 
-[<a href="../../hy/feat/PronType.html">hy</a>]
+[<a href="../../hy/feat/VerbForm.html">hy</a>]
 
-[<a href="../../it/feat/PronType.html">it</a>]
+[<a href="../../it/feat/VerbForm.html">it</a>]
 
-[<a href="../../kpv/feat/PronType.html">kpv</a>]
+[<a href="../../kpv/feat/VerbForm.html">kpv</a>]
 
-[<a href="../../myv/feat/PronType.html">myv</a>]
+[<a href="../../myv/feat/VerbForm.html">myv</a>]
 
-[<a href="../../pcm/feat/PronType.html">pcm</a>]
+[<a href="../../pcm/feat/VerbForm.html">pcm</a>]
 
-[<a href="../../ru/feat/PronType.html">ru</a>]
+[<a href="../../ru/feat/VerbForm.html">ru</a>]
 
-[<a href="../../sl/feat/PronType.html">sl</a>]
+[<a href="../../sl/feat/VerbForm.html">sl</a>]
 
-[<a href="../../sv/feat/PronType.html">sv</a>]
+[<a href="../../sv/feat/VerbForm.html">sv</a>]
 
-[<a href="../../tr/feat/PronType.html">tr</a>]
+[<a href="../../tr/feat/VerbForm.html">tr</a>]
 
-[<a href="../../u/feat/PronType.html">u</a>]
+[<a href="../../u/feat/VerbForm.html">u</a>]
 
-[<a href="../../uk/feat/PronType.html">uk</a>]
+[<a href="../../uk/feat/VerbForm.html">uk</a>]
 
-[<a href="../../urj/feat/PronType.html">urj</a>]
+[<a href="../../urj/feat/VerbForm.html">urj</a>]
 
 
 
@@ -282,7 +324,7 @@ PronType in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'gub';
+        Collections.listing['_current'] = 'orv';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
