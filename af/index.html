@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-af">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_af/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_af/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -64,57 +64,89 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>Words are generally delimited by whitespace or punctuation. Exceptions:
+    <ul>
+      <li>Numerical expressions (including dates) are treated as single words and may contain punctuation or whitespace: <em>1-1-1970</em>, <em>11:00</em>, <em>2 000</em>. This still needs be partially implemented.</li>
+      <li>Abbreviations are treated as single words and may contain punctuation or whitespace: <em>art.</em></li>
+    </ul>
+  </li>
+  <li>Contractions like <em>dis</em> are considered to be one token.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="pos/index.html">Czech POS tags</a>
+and <a href="feat/index.html">Czech features</a>.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Afrikaans uses all 17 universal POS categories. Currently interjections are not covered by the treebank, as it contains legal texts from government websites.</li>
+  <li>Particle ([PART]) is used for <em>te</em> introducing an infinitive, for the negation particle <em>nie</em>, the contraction <em>dis</em> (<em>dit is</em>), and the genitival particle <em>se</em>.</li>
+  <li>The tag [DET] is used for articles, demonstrative and indefinite pronouns. Other pronouns get the tag [PRON].</li>
+  <li>Auxiliaries ([AUX]) are all verbal in Swedish and can be grouped into four types:
+    <ul>
+      <li>The copula <em>wees</em>.</li>
+      <li>The temporal auxiliary _het _(have), which combines with the past participle of the main verb to form perfect tenses.</li>
+      <li>The passive auxiliaries <em>word</em> (present) and <em>wees</em> (past), which combine with the past participle of the main verb passives.</li>
+      <li>The modal verbs  <em>sal</em>, <em>wil</em>, <em>mag</em>, <em>durf</em>, <em>kan</em>, <em>moet</em>, <em>moenie</em>, <em>behoort</em>, <em>hoef</em>.</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Nouns ([NOUN]) and proper names ([PROPN]) inflect for number and degree (diminutives).</li>
+  <li>Most adjectives ([ADJ]) have different forms in attributive and predicative positions, which is indicate by the <code class="language-plaintext highlighter-rouge">AdjType</code> feature. In addition, many adjectives inflect for <code class="language-plaintext highlighter-rouge">Degree</code> (positive, comparative, superlative), and rarely for Case, which could be genitive when used independently.</li>
+  <li>Adverbs inflect only for <code class="language-plaintext highlighter-rouge">Degree</code>.</li>
+  <li>Verbs can be Finite or Infinite (reflected in <code class="language-plaintext highlighter-rouge">VerbType</code>). Finite forms inflect for <code class="language-plaintext highlighter-rouge">Tense</code>. For auxiliaries, the type (copula, modal, temporal/passive) is reflected in <code class="language-plaintext highlighter-rouge">VerbType</code>.</li>
+  <li>The type of determiner and pronoun is reflected in <code class="language-plaintext highlighter-rouge">PronType</code>. Articles are definite or indefinite (<code class="language-plaintext highlighter-rouge">Definiteness</code>). Personal pronouns are inflected for number, case (nominative or accusative/oblique) and person; possessive and reflexive pronouns for number and person.</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<ul>
+  <li>Subjects have the following characteristics:
+    <ul>
+      <li>Word order: Subjects immediately follow the finite verb and precede negation in verb-initial main clauses.</li>
+      <li>Case marking: Subjects occur in nominative case without adpositions.</li>
+      <li>Passivization: Subjects are suppressed when verbs (both intransitive and transitive) are passivized.</li>
+      <li>Control: Subjects control the subjects of absolute adverbials.</li>
+      <li>Relativization: Relative pronouns with subject function cannot be omitted.</li>
+    </ul>
+  </li>
+  <li>Objects have the following characteristics:
+    <ul>
+      <li>Word order: Objects immediately follow the main verb unless topicalized.</li>
+      <li>Case marking: Objects occur in nominative case (if nouns) or accusative case (if pronouns) without adpositions.</li>
+      <li>Passivization: Objects become (non-expletive) subjects when verbs are passivized.</li>
+    </ul>
+  </li>
+  <li>The copula verb <em>wees</em> (be) is used in equational, attributional, locative, possessive, existential and benefactory nonverbal clauses.</li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<h3 id="relations-overview">Relations Overview</h3>
 
-<hr />
+<ul>
+  <li>The following relation subtypes can be used in Afrikaans:
+    <ul>
+      <li>[nsubj:pass] for nominal subjects of passive verbs</li>
+      <li>[csubj:pass] for clausal subjects of passive verbs (currently not present)</li>
+      <li>[aux:pass] for passive auxiliaries</li>
+      <li>[compound:prt] for verb particles</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is one Afrikaanse UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/af_afribooms/index.html">Afrikaans</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
 
       </div>
