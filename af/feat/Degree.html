@@ -3,15 +3,15 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Afrikaans UD</title>
+    <title>Degree</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
-    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
-    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-af">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_af/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_af/feat/Degree.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -60,99 +60,89 @@
 	  </div>
 	</noscript>
 
-          <h1 id="ud-for-afrikaans-">UD for Afrikaans <span class="flagspan"><img class="flag" src="../../flags/svg/ZA.svg" /></span></h1>
+          <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+<h2><code>Degree</code>: degree</h2>
 
-<ul>
-  <li>Words are generally delimited by whitespace or punctuation. Exceptions:
-    <ul>
-      <li>Numerical expressions (including dates) are treated as single words and may contain punctuation or whitespace: <em>1-1-1970</em>, <em>11:00</em>, <em>2 000</em>. This still needs be partially implemented.</li>
-      <li>Abbreviations are treated as single words and may contain punctuation or whitespace: <em>art.</em></li>
-    </ul>
-  </li>
-  <li>Contractions like <em>dis</em> are considered to be one token. However, they don’t occur in this treebank.</li>
-</ul>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Dim">Dim</a></td>
+</tr>
+</table>
 
-<h2 id="morphology">Morphology</h2>
+<p>Most nouns and proper names in Afrikaans can be diminutivized.</p>
 
-<h3 id="tags">Tags</h3>
+<h3 id="dim-diminutive-form"><a name="Dim"><code class="language-plaintext highlighter-rouge">Dim</code></a>: diminutive form</h3>
 
-<ul>
-  <li>Afrikaans uses all 17 universal POS categories. Currently interjections are not covered by the treebank, as it contains legal texts from government websites.</li>
-  <li>Particle (<a href="">PART</a>) is used for <em>te</em> introducing an infinitive, for the negation particle <em>nie</em>, and the genitival particle <em>se</em>.</li>
-  <li>The tag <a href="">DET</a> is used for articles, demonstrative and indefinite pronouns. Other pronouns get the tag <a href="">PRON</a>.</li>
-  <li>Auxiliaries (<a href="">AUX</a>) are all verbal in Afrikaans and can be grouped into four types:
-    <ul>
-      <li>The copula <em>wees</em>.</li>
-      <li>The temporal auxiliary <em>het</em> (have), which combines with the past participle of the main verb to form perfect tenses.</li>
-      <li>The passive auxiliaries <em>word</em> (present) and <em>wees</em> (past), which combine with the past participle of the main verb passives.</li>
-      <li>The modal verbs  <em>sal</em>, <em>wil</em>, <em>mag</em>, <em>durf</em>, <em>kan</em>, <em>moet</em>, <em>moenie</em>, <em>behoort</em>, <em>hoef</em>.</li>
-    </ul>
-  </li>
-</ul>
+<p>A diminutive form is labelled as such; as its lemma, the non-diminutive form is given.</p>
 
-<h3 id="features">Features</h3>
+<h4 id="examples">Examples</h4>
 
 <ul>
-  <li>Nouns (<a href="">NOUN</a>) and proper names (<a href="">PROPN</a>) inflect for <a href="">Number</a> and <a href="feat/Degree.html">Degree</a> (diminutives).</li>
-  <li>Most adjectives (<a href="">ADJ</a>) have different forms in attributive and predicative positions, which is indicated by the <a href="feat/AdjType.html">AdjType</a> feature. In addition, many adjectives inflect for <a href="">Degree</a> (positive, comparative, superlative), and rarely for <a href="">Case</a>, which could be genitive when used independently.</li>
-  <li>Adverbs inflect only for <a href="">Degree</a>.</li>
-  <li>Verbs can be finite or infinite (reflected in <a href="">VerbForm</a>). Finite forms inflect for <a href="">Tense</a>. For auxiliaries, the type (copula, modal, temporal/passive) is reflected in <a href="feat/VerbType.html">VerbType</a>. Transitivity of a verb is indicate by <a href="feat/Subcat.html">Subcat</a>.</li>
-  <li>The type of determiner and pronoun is reflected in <a href="">PronType</a>. Articles are definite or indefinite (<a href="">Definite</a>). Personal and reflexive pronouns are inflected for <a href="">Number</a>, <a href="">Case</a> (nominative or accusative/oblique) and <a href="">Person</a>; possessive pronouns for <a href="">Number</a> and <a href="">Person</a>.</li>
-  <li>The type of particle is reflected in <a href="feat/PartType.html">PartType</a>.</li>
-  <li>The type of adposition is reflected in <a href="">AdpType</a>.</li>
+  <li><em>Tree vir tree sal ons dit maak, soos die spreekwoord lui, landsgenote, groot dinge begin met klein <b>treetjies</b>.</em> “We will do this step by step, as the proverb says, big things start with little steps.”</li>
 </ul>
 
-<h2 id="syntax">Syntax</h2>
+<!-- Interlanguage links updated Čt lis 12 09:43:08 CET 2020 -->
 
-<ul>
-  <li>Subjects have the following characteristics:
-    <ul>
-      <li>Word order: Subjects immediately follow the finite verb and precede negation in verb-initial main clauses.</li>
-      <li>Case marking: Subjects occur in nominative case without adpositions.</li>
-      <li>Passivization: Subjects are suppressed when verbs (both intransitive and transitive) are passivized.</li>
-      <li>Control: Subjects control the subjects of absolute adverbials.</li>
-      <li>Relativization: Relative pronouns with subject function cannot be omitted.</li>
-    </ul>
-  </li>
-  <li>Objects have the following characteristics:
-    <ul>
-      <li>Word order: Objects immediately follow the main verb unless topicalized.</li>
-      <li>Case marking: Objects occur in nominative case (if nouns) or accusative case (if pronouns) without adpositions.</li>
-      <li>Passivization: Objects become (non-expletive) subjects when verbs are passivized.</li>
-    </ul>
-  </li>
-  <li>The copula verb <em>wees</em> (be) is used in equational, attributional, locative, possessive, existential and benefactory nonverbal clauses.</li>
-</ul>
 
-<h3 id="relations-overview">Relations Overview</h3>
+<!-- "in other languages" links -->
+<hr/>
 
-<ul>
-  <li>The following relation subtypes can be used in Afrikaans:
-    <ul>
-      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
-      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs (currently not present)</li>
-      <li><a href="">aux:pass</a> for passive auxiliaries</li>
-      <li><a href="">compound:prt</a> for verb particles</li>
-    </ul>
-  </li>
-</ul>
+Degree in other languages:
 
-<h2 id="treebanks">Treebanks</h2>
+[<a href="../../bg/feat/Degree.html">bg</a>]
 
-<p>There is one Afrikaans UD treebank:</p>
+[<a href="../../cs/feat/Degree.html">cs</a>]
 
-<ul>
-  <li><a href="../treebanks/af_afribooms/index.html">Afrikaans</a></li>
-</ul>
+[<a href="../../en/feat/Degree.html">en</a>]
+
+[<a href="../../et/feat/Degree.html">et</a>]
+
+[<a href="../../fi/feat/Degree.html">fi</a>]
+
+[<a href="../../fr/feat/Degree.html">fr</a>]
+
+[<a href="../../ga/feat/Degree.html">ga</a>]
+
+[<a href="../../grc/feat/Degree.html">grc</a>]
+
+[<a href="../../hu/feat/Degree.html">hu</a>]
+
+[<a href="../../hy/feat/Degree.html">hy</a>]
+
+[<a href="../../it/feat/Degree.html">it</a>]
+
+[<a href="../../kpv/feat/Degree.html">kpv</a>]
+
+[<a href="../../myv/feat/Degree.html">myv</a>]
+
+[<a href="../../pcm/feat/Degree.html">pcm</a>]
+
+[<a href="../../pt/feat/Degree.html">pt</a>]
+
+[<a href="../../ru/feat/Degree.html">ru</a>]
+
+[<a href="../../sl/feat/Degree.html">sl</a>]
+
+[<a href="../../sv/feat/Degree.html">sv</a>]
+
+[<a href="../../tr/feat/Degree.html">tr</a>]
+
+[<a href="../../u/feat/Degree.html">u</a>]
+
+[<a href="../../uk/feat/Degree.html">uk</a>]
+
+[<a href="../../urj/feat/Degree.html">urj</a>]
+
+
 
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../'; // filled in by jekyll
+    var root = '../../'; // filled in by jekyll
     head.js(
         // External libraries
         root + 'lib/ext/jquery.min.js',
