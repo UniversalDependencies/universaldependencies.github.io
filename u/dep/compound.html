@@ -62,15 +62,21 @@
 
           <h2><code>compound</code>: compound</h2>
 
-<p>The <code class="language-plaintext highlighter-rouge">compound</code> relation is one of three relations for multiword expressions (MWEs) (the other two being <code class="language-plaintext highlighter-rouge">fixed</code> and <code class="language-plaintext highlighter-rouge">flat</code>). It is used for</p>
+<p>The <code class="language-plaintext highlighter-rouge">compound</code> relation is one of three relations for multiword expressions (MWEs) (the other two being <code class="language-plaintext highlighter-rouge">fixed</code> and <code class="language-plaintext highlighter-rouge">flat</code>). It is used</p>
 
 <ul>
-  <li>any kind of X<sup>0</sup> compounding: noun compounds (e.g., <em>phone book</em>), but also verb and
-adjective compounds that are more common in other languages (such as Persian or Japanese light verb constructions).</li>
+  <li>for any kind of X<sup>0</sup> compounding: noun compounds (e.g., <em>phone book</em>), but also verb and
+adjective compounds that are more common in other languages (such as Persian or Japanese light verb constructions). 
+See further discussion at <a href="/workgroups/newdoc/two_nominals.html">Two Nominals</a>.</li>
 </ul>
 
-<pre><code class="language-sdparse">Phone book
-compound(book, Phone)
+<pre><code class="language-sdparse">phone book
+compound(book, phone)
+</code></pre>
+
+<pre><code class="language-sdparse">ice cream flavors
+compound(cream, ice)
+compound(flavors, cream)
 </code></pre>
 
 <ul>
@@ -91,8 +97,29 @@ compound:svc(bé, lá)
 obj(bé, èbi)
 </code></pre>
 
-<p>The <code class="language-plaintext highlighter-rouge">compound</code> relation (nor any subtype thereof) is not used to link an inherently reflexive verb with the reflexive morpheme, despite the similarity of this construction to particle verbs. The current UD guideline is to use an appropriate <a href="/u/dep/expl.html#reflexives">subtype</a> of the <a href="">expl</a> relation.
-<!-- Interlanguage links updated Čt lis 12 09:43:18 CET 2020 --></p>
+<p>The <code class="language-plaintext highlighter-rouge">compound</code> relation (nor any subtype thereof) is not used to link an inherently reflexive verb with the reflexive morpheme, despite the similarity of this construction to particle verbs. The current UD guideline is to use an appropriate <a href="/u/dep/expl.html#reflexives">subtype</a> of the <a href="">expl</a> relation.</p>
+
+<p>Each language that uses <code class="language-plaintext highlighter-rouge">compound</code> should develop its own specific criteria based on morphosyntax (rather than lexicalization or semantic idiomaticity),
+though elsewhere the terms “compound” and “multiword expression” may be used more broadly.
+In English, for example, adjective-noun combinations, prepositional phrases, and light verb constructions are better described 
+with other relations:</p>
+
+<pre><code class="language-sdparse">hot dog
+amod(dog, hot)
+</code></pre>
+
+<pre><code class="language-sdparse">the state of play
+det(state, the)
+nmod(state, play)
+case(play, of)
+</code></pre>
+
+<pre><code class="language-sdparse">make a decision
+obj(make, decision)
+det(a, decision)
+</code></pre>
+
+<!-- Interlanguage links updated Čt lis 12 09:43:18 CET 2020 -->
 
 
 <!-- "in other languages" links -->
