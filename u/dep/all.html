@@ -15,6 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
     <script>
       (function() {
         var cx = '001145188882102106025:dl1mehhcgbo';
@@ -25,7 +26,7 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(gcse, s);
       })();
-    </script>
+    </script> -->
 <!--     <link rel="shortcut icon" href="favicon.ico"/> -->
 
 
@@ -528,10 +529,12 @@ advmod:emph(percent, only)
 <h2><code>amod</code>: adjectival modifier</h2>
 
 <p>An adjectival modifier of a noun (or pronoun) is any adjectival phrase that serves
-to modify the meaning of the noun (or pronoun).</p>
+to modify the noun (or pronoun). The relation applies whether the meaning of the noun 
+is modified in a compositional way (e.g., <em>large house</em>) or an idiomatic way (<em>hot dogs</em>).</p>
 
-<pre><code class="language-sdparse">Sam eats red meat
-amod(meat, red)
+<pre><code class="language-sdparse">Sam eats large hot dogs
+amod(dogs, large)
+amod(dogs, hot)
 </code></pre>
 
 <pre><code class="language-sdparse">Sam took out  a 3 million dollar loan
@@ -1132,15 +1135,21 @@ nmod(cups, oats)
 <p><a id="al-u-dep/compound" class="al-dest"></a></p>
 <h2><code>compound</code>: compound</h2>
 
-<p>The <code class="language-plaintext highlighter-rouge">compound</code> relation is one of three relations for multiword expressions (MWEs) (the other two being <code class="language-plaintext highlighter-rouge">fixed</code> and <code class="language-plaintext highlighter-rouge">flat</code>). It is used for</p>
+<p>The <code class="language-plaintext highlighter-rouge">compound</code> relation is one of three relations for multiword expressions (MWEs) (the other two being <code class="language-plaintext highlighter-rouge">fixed</code> and <code class="language-plaintext highlighter-rouge">flat</code>). It is used</p>
 
 <ul>
-  <li>any kind of X<sup>0</sup> compounding: noun compounds (e.g., <em>phone book</em>), but also verb and
-adjective compounds that are more common in other languages (such as Persian or Japanese light verb constructions).</li>
+  <li>for any kind of X<sup>0</sup> compounding: noun compounds (e.g., <em>phone book</em>), but also verb and
+adjective compounds that are more common in other languages (such as Persian or Japanese light verb constructions). 
+See further discussion at <a href="/workgroups/newdoc/two_nominals.html">Two Nominals</a>.</li>
 </ul>
 
-<pre><code class="language-sdparse">Phone book
-compound(book, Phone)
+<pre><code class="language-sdparse">phone book
+compound(book, phone)
+</code></pre>
+
+<pre><code class="language-sdparse">ice cream flavors
+compound(cream, ice)
+compound(flavors, cream)
 </code></pre>
 
 <ul>
@@ -1161,8 +1170,29 @@ compound:svc(bé, lá)
 obj(bé, èbi)
 </code></pre>
 
-<p>The <code class="language-plaintext highlighter-rouge">compound</code> relation (nor any subtype thereof) is not used to link an inherently reflexive verb with the reflexive morpheme, despite the similarity of this construction to particle verbs. The current UD guideline is to use an appropriate <a href="/u/dep/expl.html#reflexives">subtype</a> of the <a href="">expl</a> relation.
-<!-- Interlanguage links updated Čt lis 12 09:43:18 CET 2020 --></p>
+<p>The <code class="language-plaintext highlighter-rouge">compound</code> relation (nor any subtype thereof) is not used to link an inherently reflexive verb with the reflexive morpheme, despite the similarity of this construction to particle verbs. The current UD guideline is to use an appropriate <a href="/u/dep/expl.html#reflexives">subtype</a> of the <a href="">expl</a> relation.</p>
+
+<p>Each language that uses <code class="language-plaintext highlighter-rouge">compound</code> should develop its own specific criteria based on morphosyntax (rather than lexicalization or semantic idiomaticity),
+though elsewhere the terms “compound” and “multiword expression” may be used more broadly.
+In English, for example, adjective-noun combinations, prepositional phrases, and light verb constructions are better described 
+with other relations:</p>
+
+<pre><code class="language-sdparse">hot dog
+amod(dog, hot)
+</code></pre>
+
+<pre><code class="language-sdparse">the state of play
+det(state, the)
+nmod(state, play)
+case(play, of)
+</code></pre>
+
+<pre><code class="language-sdparse">make a decision
+obj(make, decision)
+det(decision, a)
+</code></pre>
+
+<!-- Interlanguage links updated Čt lis 12 09:43:18 CET 2020 -->
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/compound.md" target="#">edit compound</a></p>
 
