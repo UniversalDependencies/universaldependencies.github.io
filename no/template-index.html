@@ -65,57 +65,57 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
+<p>White space always indicates a token boundary and punctuation constitute separate tokens, except:</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
+<ul>
+  <li>numbers with periods, commas or colons, e.g. <em>1.3</em>, <em>0,6</em>, <em>10:13</em></li>
+  <li>abbreviations, e.g. <em>f.eks.</em>, <em>Carl J. Hambro</em></li>
+  <li>URLs, e.g. <em>http://www.ifi.uio.no</em></li>
+</ul>
 
-<hr />
+<p>The treebank does not contain multiword tokens.</p>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li><a href="">PART</a> is used only for the infinitival marker <em>å</em> “to”.</li>
+  <li>the <a href="">VERB</a> tag covers main verbs (content verbs) and copulas but it does not cover temporal, passive and modal auxiliary verbs, for which there is the <a href="">AUX</a> tag</li>
+  <li><a href="">DET</a> is used for possessives, demonstratives and quantifiers, which usually modify nominal heads. <a href="">PRON</a> is used for pro-words that substitute for nouns or noun phrases.</li>
+  <li>Participles are tagged either as <a href="">VERB</a> or <a href="">ADJ</a> based on syntactic criteria.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Common nouns are associated with the features <code class="language-plaintext highlighter-rouge">Definite=Def/Ind</code>, <code class="language-plaintext highlighter-rouge">Gender=Masc/Fem/Neut</code>,  <code class="language-plaintext highlighter-rouge">Number=Sing/Plur</code> and, where applicable, <code class="language-plaintext highlighter-rouge">Case=Gen</code></li>
+  <li>Non-finite verbs are distinguished by their <code class="language-plaintext highlighter-rouge">VerbForm</code> feature: <code class="language-plaintext highlighter-rouge">VerbForm=Part</code> and <code class="language-plaintext highlighter-rouge">VerbForm=Inf</code>. Finite verbs have <code class="language-plaintext highlighter-rouge">VerbForm=Fin</code>.</li>
+  <li>Finite verbs have the following features: <code class="language-plaintext highlighter-rouge">Mood=Ind/Imp</code>. Indicative verbs are marked for tense: <code class="language-plaintext highlighter-rouge">Tense=Pres/Past</code></li>
+  <li>Passive verbforms are marked with <code class="language-plaintext highlighter-rouge">Voice=Pass</code></li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
-
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
-
-<hr />
+<ul>
+  <li>An important test for subjecthood in Norwegian is word order: In sentences with matrix clause word order, subjects are either in the position right before or right after the finite verb. Moreover, in relative clauses, the relativizer, <em>som</em>, ‘that’, cannot be omitted if the subject is relativized. Case-marked pronouns in subject position will have nominative case.</li>
+  <li>The unmarked position of the object is immediately after the verb of which it is a complement. Case-marked pronouns in object position will have accusative case.</li>
+  <li>These subtype relations are used in the written language treebanks:</li>
+  <li><a href="">acl:relcl</a> is used for relative clauses</li>
+  <li><a href="">compound:prt</a> for verbal particles</li>
+  <li>The LIA treebank, containing spoken language data, has these subtype relations in addition to those described above:</li>
+  <li>…</li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There are three Norwegian UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="https://universaldependencies.org/treebanks/no_bokmaal/index.html">Norwegian Bokmaal</a></li>
+  <li><a href="https://universaldependencies.org/treebanks/no_nynorsk/index.html">Norwegian Nynorsk</a></li>
+  <li><a href="https://universaldependencies.org/treebanks/no_nynorsklia/index.html">Norwegian Nynorsk LIA</a></li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
 
       </div>
