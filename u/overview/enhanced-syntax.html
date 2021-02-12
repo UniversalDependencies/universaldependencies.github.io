@@ -69,7 +69,8 @@
 
 <ul>
   <li><a href="#ellipsis">Empty (null) nodes for elided predicates</a></li>
-  <li><a href="#propagation-of-conjuncts">Propagation of conjuncts</a></li>
+  <li><a href="#propagation-of-incoming-dependencies-to-conjuncts">Propagation of incoming dependencies to conjuncts</a></li>
+  <li><a href="#propagation-of-outgoing-dependencies-from-conjuncts">Propagation of outgoing dependencies from conjuncts</a></li>
   <li><a href="#controlledraised-subjects">Additional subject relations for control and raising constructions</a></li>
   <li><a href="#relative-clauses">Coreference in relative clause constructions</a></li>
   <li><a href="#case-information">Modifier labels that contain the preposition or other case-marking information</a></li>
@@ -190,99 +191,9 @@ values; here they can be copied from the overt occurrence of the predicate.)</p>
 
 <p>Note that this is a case in which the <em>enhanced</em> UD graph is not a supergraph of the <em>basic</em> tree as the <em>basic</em> tree contains <code class="language-plaintext highlighter-rouge">orphan</code> relations, which are not present in the <em>enhanced</em> UD graph.</p>
 
-<h2 id="propagation-of-conjuncts">Propagation of Conjuncts</h2>
+<h2 id="propagation-of-incoming-dependencies-to-conjuncts">Propagation of incoming dependencies to conjuncts</h2>
 
 <p>In the <em>basic</em> representation, the governor and dependents of a conjoined phrase are all attached to the first conjunct. This often leads to very long dependency paths between content words. The <em>enhanced</em> representation therefore also contains dependencies between the other conjuncts and the governor and dependents of the phrase.</p>
-
-<h3 id="conjoined-verbs-and-verb-phrases">Conjoined verbs and verb phrases</h3>
-
-<p>When two verbs share their objects (or other complements), the subject and the object of the conjoined verbs are attached to every conjunct.</p>
-
-<table> <!--The store buys and sells cameras .-->
-<tbody><tr><td width="600">
-<div class="conllu-parse">
-1 The     _ _ _ _ 2 det   _ _
-2 store   _ _ _ _ 3 nsubj _ _
-3 buys    _ _ _ _ 0 root  _ _
-4 and     _ _ _ _ 5 cc    _ _
-5 sells   _ _ _ _ 3 conj  _ _
-6 cameras _ _ _ _ 3 obj   _ _
-7 .       _ _ _ _ 3 punct _ _
-</div>
-</td><td width="600">
-<div class="conllu-parse">
-# visual-style 5 2 nsubj color:blue
-# visual-style 5 6 obj color:blue
-1 The     _ _ _ _ 2 det   _ _
-2 store   _ _ _ _ 3 nsubj 5:nsubj _
-3 buys    _ _ _ _ 0 root  _ _
-4 and     _ _ _ _ 5 cc    _ _
-5 sells   _ _ _ _ 3 conj  _ _
-6 cameras _ _ _ _ 3 obj   5:obj _
-7 .       _ _ _ _ 3 punct _ _
-</div>
-</td></tr></tbody>
-</table>
-
-<p>However, if the complements of the second verb are not shared, only the shared dependents are attached to every conjunct.</p>
-
-<table> <!--She was reading or watching a movie .-->
-<tbody><tr><td width="600">
-<div class="conllu-parse">
-1 She      _ _ _ _ 3 nsubj _ _
-2 was      _ _ _ _ 3 aux   _ _
-3 reading  _ _ _ _ 0 root  _ _
-4 or       _ _ _ _ 5 cc    _ _
-5 watching _ _ _ _ 3 conj  _ _
-6 a        _ _ _ _ 7 det   _ _
-7 movie    _ _ _ _ 5 obj   _ _
-8 .        _ _ _ _ 3 punct _ _
-</div>
-</td><td width="600">
-<div class="conllu-parse">
-# visual-style 5 1 nsubj color:blue
-# visual-style 5 2 aux color:blue
-1 She      _ _ _ _ 3 nsubj 5:nsubj _
-2 was      _ _ _ _ 3 aux   5:aux _
-3 reading  _ _ _ _ 0 root  _ _
-4 or       _ _ _ _ 5 cc    _ _
-5 watching _ _ _ _ 3 conj  _ _
-6 a        _ _ _ _ 7 det   _ _
-7 movie    _ _ _ _ 5 obj   _ _
-8 .        _ _ _ _ 3 punct _ _
-</div>
-</td></tr></tbody>
-</table>
-
-<p>Similarly, the enhanced representation can also distinguish private dependents of the first verb. Note however that in this case it cannot be inferred from the basic representation automatically.</p>
-
-<table> <!--She was reading or watching a movie .-->
-<tbody><tr><td width="600">
-<div class="conllu-parse">
-1 She      _ _ _ _ 3 nsubj _ _
-2 was      _ _ _ _ 3 aux   _ _
-3 watching _ _ _ _ 0 root  _ _
-4 a        _ _ _ _ 5 det   _ _
-5 movie    _ _ _ _ 3 obj   _ _
-6 or       _ _ _ _ 7 cc    _ _
-7 reading  _ _ _ _ 3 conj  _ _
-8 .        _ _ _ _ 3 punct _ _
-</div>
-</td><td width="600">
-<div class="conllu-parse">
-# visual-style 7 1 nsubj color:blue
-# visual-style 7 2 aux color:blue
-1 She      _ _ _ _ 3 nsubj 7:nsubj _
-2 was      _ _ _ _ 3 aux   7:aux _
-3 watching _ _ _ _ 0 root  _ _
-4 a        _ _ _ _ 5 det   _ _
-5 movie    _ _ _ _ 3 obj   _ _
-6 or       _ _ _ _ 7 cc    _ _
-7 reading  _ _ _ _ 3 conj  _ _
-8 .        _ _ _ _ 3 punct _ _
-</div>
-</td></tr></tbody>
-</table>
 
 <h3 id="conjoined-subjects-and-objects">Conjoined subjects and objects</h3>
 
@@ -442,6 +353,100 @@ values; here they can be copied from the overt occurrence of the predicate.)</p>
 3 and   _ _ _ _ 4 cc   _ _
 4 wide  _ _ _ _ 2 conj 5:amod _
 5 river _ _ _ _ 0 root _ _
+</div>
+</td></tr></tbody>
+</table>
+
+<h2 id="propagation-of-outgoing-dependencies-from-conjuncts">Propagation of outgoing dependencies from conjuncts</h2>
+
+<p>In the <em>basic</em> representation, the governor and dependents of a conjoined phrase are all attached to the first conjunct. This often leads to very long dependency paths between content words. The <em>enhanced</em> representation therefore also contains dependencies between the other conjuncts and the governor and dependents of the phrase.</p>
+
+<h3 id="conjoined-verbs-and-verb-phrases">Conjoined verbs and verb phrases</h3>
+
+<p>When two verbs share their objects (or other complements), the subject and the object of the conjoined verbs are attached to every conjunct.</p>
+
+<table> <!--The store buys and sells cameras .-->
+<tbody><tr><td width="600">
+<div class="conllu-parse">
+1 The     _ _ _ _ 2 det   _ _
+2 store   _ _ _ _ 3 nsubj _ _
+3 buys    _ _ _ _ 0 root  _ _
+4 and     _ _ _ _ 5 cc    _ _
+5 sells   _ _ _ _ 3 conj  _ _
+6 cameras _ _ _ _ 3 obj   _ _
+7 .       _ _ _ _ 3 punct _ _
+</div>
+</td><td width="600">
+<div class="conllu-parse">
+# visual-style 5 2 nsubj color:blue
+# visual-style 5 6 obj color:blue
+1 The     _ _ _ _ 2 det   _ _
+2 store   _ _ _ _ 3 nsubj 5:nsubj _
+3 buys    _ _ _ _ 0 root  _ _
+4 and     _ _ _ _ 5 cc    _ _
+5 sells   _ _ _ _ 3 conj  _ _
+6 cameras _ _ _ _ 3 obj   5:obj _
+7 .       _ _ _ _ 3 punct _ _
+</div>
+</td></tr></tbody>
+</table>
+
+<p>However, if the complements of the second verb are not shared, only the shared dependents are attached to every conjunct.</p>
+
+<table> <!--She was reading or watching a movie .-->
+<tbody><tr><td width="600">
+<div class="conllu-parse">
+1 She      _ _ _ _ 3 nsubj _ _
+2 was      _ _ _ _ 3 aux   _ _
+3 reading  _ _ _ _ 0 root  _ _
+4 or       _ _ _ _ 5 cc    _ _
+5 watching _ _ _ _ 3 conj  _ _
+6 a        _ _ _ _ 7 det   _ _
+7 movie    _ _ _ _ 5 obj   _ _
+8 .        _ _ _ _ 3 punct _ _
+</div>
+</td><td width="600">
+<div class="conllu-parse">
+# visual-style 5 1 nsubj color:blue
+# visual-style 5 2 aux color:blue
+1 She      _ _ _ _ 3 nsubj 5:nsubj _
+2 was      _ _ _ _ 3 aux   5:aux _
+3 reading  _ _ _ _ 0 root  _ _
+4 or       _ _ _ _ 5 cc    _ _
+5 watching _ _ _ _ 3 conj  _ _
+6 a        _ _ _ _ 7 det   _ _
+7 movie    _ _ _ _ 5 obj   _ _
+8 .        _ _ _ _ 3 punct _ _
+</div>
+</td></tr></tbody>
+</table>
+
+<p>Similarly, the enhanced representation can also distinguish private dependents of the first verb. Note however that in this case it cannot be inferred from the basic representation automatically.</p>
+
+<table> <!--She was reading or watching a movie .-->
+<tbody><tr><td width="600">
+<div class="conllu-parse">
+1 She      _ _ _ _ 3 nsubj _ _
+2 was      _ _ _ _ 3 aux   _ _
+3 watching _ _ _ _ 0 root  _ _
+4 a        _ _ _ _ 5 det   _ _
+5 movie    _ _ _ _ 3 obj   _ _
+6 or       _ _ _ _ 7 cc    _ _
+7 reading  _ _ _ _ 3 conj  _ _
+8 .        _ _ _ _ 3 punct _ _
+</div>
+</td><td width="600">
+<div class="conllu-parse">
+# visual-style 7 1 nsubj color:blue
+# visual-style 7 2 aux color:blue
+1 She      _ _ _ _ 3 nsubj 7:nsubj _
+2 was      _ _ _ _ 3 aux   7:aux _
+3 watching _ _ _ _ 0 root  _ _
+4 a        _ _ _ _ 5 det   _ _
+5 movie    _ _ _ _ 3 obj   _ _
+6 or       _ _ _ _ 7 cc    _ _
+7 reading  _ _ _ _ 3 conj  _ _
+8 .        _ _ _ _ 3 punct _ _
 </div>
 </td></tr></tbody>
 </table>
