@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>AUX_</title>
+    <title>xcomp:ds</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -36,9 +36,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-ja">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-myv">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ja/pos/AUX_.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_myv/dep/xcomp-ds.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -61,29 +61,33 @@
 	  </div>
 	</noscript>
 
-          <h2><code>AUX_</code>: auxiliary verb</h2>
+          <h2><code>xcomp:ds</code>: clausal complement with different subject</h2>
 
-<h3 id="definition">Definition</h3>
+<p>The dependency type <code class="language-plaintext highlighter-rouge">xcomp:ds</code>, which stands for <em>clausal
+complement with different subject</em>, is a subtype of <a href="">xcomp</a> (<em>open clausal complement</em>).
+It is used for clausal complements where the subject of the complement clause is inherited from the higher clause, but it’s not a subject of the governing clause (if it is a subject, <a href="">xcomp</a> is used instead). Basically, this means that the subject of the complementing clause must be the object of the complemented clause. These complements are always non-finite.</p>
 
-<p>The definition of Japanese <code class="language-plaintext highlighter-rouge">AUX</code> is different from that in European language focused on modal verbs.<br />
-The <code class="language-plaintext highlighter-rouge">AUX</code> tag is used for words tagged by <code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞 in UniDic.
-In addition, <code class="language-plaintext highlighter-rouge">AUX</code> is also used for functional verbs / adjectives tagged by <code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能 or <code class="language-plaintext highlighter-rouge">adjective_i (bound)</code> / 形容詞-非自立可能 / <code class="language-plaintext highlighter-rouge">auxiliary_verb_stem</code> 形状詞-助動詞語幹 or 名詞-助動詞語幹/ when they are followed by a main verb or an adjective.</p>
+<p>Note that this subtype represents a departure from the general UD
+taxonomy approach in differentiating between inherited subject and object
+(see <a href="http://universaldependencies.org/u/overview/syntax.html#clausal-dependents">Syntax: General Principles</a>).</p>
 
-<h3 id="examples">Examples</h3>
-
-<ul>
-  <li><em>食べ<b>た</b> </em> “eat”+PAST (<code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞) : <code class="language-plaintext highlighter-rouge">AUX</code> for past tense marker which follows a `VERB’ “食べ”</li>
-  <li><em>勉強<b>する</b> </em> “study” (<code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能) : verbify a functional noun</li>
-  <li><em>食べて<b>いる</b> </em> “be eating” (progressive) (<code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能) : a functional verb for progressive aspect</li>
-  <li><em>食べ<b>ない</b> </em> “not eat” (negation) (<code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞) : <code class="language-plaintext highlighter-rouge">AUX</code> for negation marker</li>
-  <li><em>食べる<b>よう</b>だ </em> “seem to eat”  (<code class="language-plaintext highlighter-rouge">adjective auxiliary_verb_stem</code> / 形状詞-助動詞語幹)</li>
-  <li><em>食べる<b>そう</b>だ </em> “hear that … eat” (<code class="language-plaintext highlighter-rouge">adjective auxiliary_verb_stem</code> / 名詞-助動詞語幹)
-<!-- Interlanguage links updated Čt lis 12 09:42:51 CET 2020 --></li>
-</ul>
+<pre><code class="language-sdparse">Атятне кадызь Миколонь оймсеме,... \n The old men left Mikol to rest,...
+nsubj(кадызь-2, Атятне-1)
+obj(кадызь-2, Миколонь-3)
+xcomp:ds(кадызь-2, оймсеме-4)
+</code></pre>
+<!-- Interlanguage links updated Čt lis 12 09:43:41 CET 2020 -->
 
 
 <!-- "in other languages" links -->
 <hr/>
+
+xcomp:ds in other languages:
+
+[<a href="../../fi/dep/xcomp-ds.html">fi</a>]
+
+[<a href="../../myv/dep/xcomp-ds.html">myv</a>]
+
 
 
 
@@ -197,7 +201,7 @@ In addition, <code class="language-plaintext highlighter-rouge">AUX</code> is al
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'ja';
+        Collections.listing['_current'] = 'myv';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
