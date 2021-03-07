@@ -78,14 +78,14 @@ Fixed expressions are annotated in a flat, head-initial structure, in which all 
 
 <pre><code class="language-sdparse">I like dogs as well
 advmod(like, as)
-mwe(as, well)
+fixed(as, well)
 </code></pre>
 
 <p><em>as well as</em></p>
 
 <pre><code class="language-sdparse">I like dogs as well as cats
-mwe(as-4, well)
-mwe(as-4, as-6)
+fixed(as-4, well)
+fixed(as-4, as-6)
 cc(dogs, as-4)
 </code></pre>
 
@@ -93,44 +93,44 @@ cc(dogs, as-4)
 
 <pre><code class="language-sdparse">I like fluffy animals , such as dogs
 case(dogs, such)
-mwe(such, as)
+fixed(such, as)
 </code></pre>
 
 <p><em>due to</em> (and other forms, such as <em>d t</em> and <em>d/t</em>)</p>
 
 <pre><code class="language-sdparse">He cried due to the fact that you hurt him
 case(fact, due)
-mwe(due, to)
+fixed(due, to)
 </code></pre>
 
 <p><em>because of</em> (and other forms, such as <em>b c of</em> and <em>b/c of</em>)</p>
 
 <pre><code class="language-sdparse">He cried because of you
 case(you, because)
-mwe(because, of)
+fixed(because, of)
 </code></pre>
 
 <p><em>instead of</em></p>
 
 <pre><code class="language-sdparse">John went instead of Mary
-mwe(instead, of)
+fixed(instead, of)
 case(Mary, instead)
 </code></pre>
 
 <pre><code class="language-sdparse">John left early instead of staying for the whole thing
-mwe(instead, of)
+fixed(instead, of)
 mark(staying, instead)
 </code></pre>
 
 <p><em>in case</em></p>
 
 <pre><code class="language-sdparse">I always back up my files in case my computer crashes
-mwe(in, case)
+fixed(in, case)
 mark(crashes, in)
 </code></pre>
 
 <pre><code class="language-sdparse">I always back up my files just in case
-mwe(in, case)
+fixed(in, case)
 advmod(back, in)
 advmod(in, just)
 </code></pre>
@@ -138,8 +138,8 @@ advmod(in, just)
 <p><em>in case of</em></p>
 
 <pre><code class="language-sdparse">I always back up my files in case of a crash
-mwe(in, case)
-mwe(in, of)
+fixed(in, case)
+fixed(in, of)
 case(crash, in)
 </code></pre>
 
@@ -147,41 +147,41 @@ case(crash, in)
 
 <pre><code class="language-sdparse">I like dogs , of course
 advmod(like, of)
-mwe(of, course)
+fixed(of, course)
 </code></pre>
 
 <p><em>so that</em></p>
 
 <pre><code class="language-sdparse">He cried so that you would feel bad
 mark(feel, so)
-mwe(so, that)
+fixed(so, that)
 </code></pre>
 
 <p><em>more than</em> (when used synonymously with “over” in a quantity)</p>
 
 <pre><code class="language-sdparse">More than 90 percent
 advmod(percent, More)
-mwe(More, than)
+fixed(More, than)
 </code></pre>
 
 <p><em>less than</em> (when used synonymously with “under” in a quantity)</p>
 
 <pre><code class="language-sdparse">Less than ten percent
 advmod(percent, Less)
-mwe(Less, than)
+fixed(Less, than)
 </code></pre>
 
 <p><em>up to</em> (when used in quantities)</p>
 
 <pre><code class="language-sdparse">Up to fifty percent
-mwe(Up, to)
+fixed(Up, to)
 advmod(percent, Up)
 </code></pre>
 
 <p><em>according to</em></p>
 
 <pre><code class="language-sdparse">According to John
-mwe(According, to)
+fixed(According, to)
 case(John, According)
 </code></pre>
 
@@ -189,79 +189,79 @@ case(John, According)
 
 <pre><code class="language-sdparse">He cried in order to make you feel bad
 mark(feel, in)
-mwe(in, order)
+fixed(in, order)
 </code></pre>
 
 <pre><code class="language-sdparse">He cried in order that you might feel bad
 mark(feel, in)
-mwe(in, order)
+fixed(in, order)
 </code></pre>
 
 <pre><code class="language-sdparse">He cried in order for you to have something to feel bad about
 mark(have, in)
-mwe(in, order)
+fixed(in, order)
 </code></pre>
 
 <p><em>rather than</em></p>
 
 <pre><code class="language-sdparse">I decided to get a dog rather than a cat
-mwe(rather, than)
+fixed(rather, than)
 cc(rather, dog)
 </code></pre>
 
 <p><em>at least</em> (when not used for quantities)</p>
 
 <pre><code class="language-sdparse">At least I like dogs
-mwe(At, least)
+fixed(At, least)
 advmod(like, At)
 </code></pre>
 
 <p><em>as if</em></p>
 
 <pre><code class="language-sdparse">It was as if he cried to make you feel bad
-mwe(as, if)
+fixed(as, if)
 mark(cried, as)
 </code></pre>
 
 <p><em>prior to</em></p>
 
 <pre><code class="language-sdparse">John left prior to the meeting
-mwe(prior, to)
+fixed(prior, to)
 case(meeting, prior)
 </code></pre>
 
 <p><em>as to</em></p>
 
 <pre><code class="language-sdparse">As to whether I love dogs ...
-mwe(As, to)
+fixed(As, to)
 mark(love, As)
 </code></pre>
 
 <pre><code class="language-sdparse">As to my love of dogs ...
-mwe(As, to)
+fixed(As, to)
 case(love, As)
 </code></pre>
 
-<p><em>kind of</em></p>
+<p><em>kind of</em> (as a hedge)</p>
 
 <pre><code class="language-sdparse">I kind of like dogs
-mwe(kind, of)
+fixed(kind, of)
 advmod(like, kind)
 </code></pre>
 
 <p><em>whether or not</em></p>
 
 <pre><code class="language-sdparse">He 's crying whether or not you feel bad about it
-mwe(whether, or)
-mwe(whether, not)
+fixed(whether, or)
+fixed(whether, not)
 mark(feel, whether)
 </code></pre>
 
 <p><em>not to mention</em></p>
 
 <pre><code class="language-sdparse">This restaurant is pretty cheap with good food, not to mention their friendly staff
-mwe(not, to)
-mwe(not, mention)
+fixed(not, to)
+fixed(not, mention)
 cc(cheap, not)
 conj(staff, cheap)
 </code></pre>
@@ -269,15 +269,15 @@ conj(staff, cheap)
 <p><em>as opposed to</em></p>
 
 <pre><code class="language-sdparse">John decided to leave early , as opposed to Mary
-mwe(as, opposed)
-mwe(as, to-9)
+fixed(as, opposed)
+fixed(as, to-9)
 case(Mary, as)
 </code></pre>
 
 <p><em>let alone</em></p>
 
 <pre><code class="language-sdparse">He could n't handle being hurt , let alone hurt by you
-mwe(let, alone)
+fixed(let, alone)
 cc(hurt-6, alone)
 conj(hurt-6, hurt-10)
 </code></pre>
@@ -285,43 +285,43 @@ conj(hurt-6, hurt-10)
 <p><em>so as to</em></p>
 
 <pre><code class="language-sdparse">John left early so as to miss the meeting
-mwe(so, as)
-mwe(so, to)
+fixed(so, as)
+fixed(so, to)
 mark(so, miss)
 </code></pre>
 
 <p><em>in between</em></p>
 
 <pre><code class="language-sdparse">John left in between meetings
-mwe(in, between)
+fixed(in, between)
 case(in, meetings)
 </code></pre>
 
 <p><em>all but</em></p>
 
 <pre><code class="language-sdparse">John has all but left
-mwe(all, but)
+fixed(all, but)
 advmod(all, left)
 </code></pre>
 
 <p><em>that is</em></p>
 
 <pre><code class="language-sdparse">The dogs need to be housebroken -- that is , '' potty - trained ''
-mwe(that, is)
+fixed(that, is)
 advmod(trained, that)
 </code></pre>
 
 <p><em>how come</em></p>
 
 <pre><code class="language-sdparse">How come John left early ?
-mwe(How, come)
+fixed(How, come)
 mark(left, How)
 </code></pre>
 
 <p><em>had better</em> (and <em>‘d better</em>)</p>
 
 <pre><code class="language-sdparse">You had better apologize
-mwe(had, better)
+fixed(had, better)
 aux(had, apologize)
 </code></pre>
 
