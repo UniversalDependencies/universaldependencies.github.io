@@ -63,8 +63,58 @@
 
           <h2><code>fixed</code>: multi-word expression</h2>
 
-<p>For light verb constructions, we introduced the additional label lvc, which is appended to the normal dependency relation like dobj:lvc, nsubj:lvc etc.
-<!-- Interlanguage links updated Čt lis 12 09:43:26 CET 2020 --></p>
+<p>For light verb constructions, we introduced the additional label <code class="language-plaintext highlighter-rouge">lvc</code>, which is appended to the normal dependency relation like <code class="language-plaintext highlighter-rouge">obj:lvc</code>, <code class="language-plaintext highlighter-rouge">nsubj:lvc</code>, <code class="language-plaintext highlighter-rouge">obl:lvc</code> etc.</p>
+
+<p>“the apparatus of László Kövér took steps to substantiate the statement of the Prime Minister”</p>
+
+<pre><code class="language-sdparse">a miniszterelnök kijelentésének igazolására Kövér László apparátusa lépéseket tett \n the prime-minister his-statement-of its-substantiation-under Kövér László his-apparatus steps took
+det(miniszterelnök, a)
+nmod:att(kijelentésének, miniszterelnök)
+nmod:att(igazolására, kijelentésének)
+obl(tett, igazolására)
+nmod:att(apparátusa, Kövér)
+flat:name(Kövér, László)
+nsubj(tett, apparátusa)
+obj:lvc(tett, lépéseket)
+</code></pre>
+
+<p>“it took place after the close of our first edition”</p>
+
+<pre><code class="language-sdparse">első kiadásunk zárása után került sor \n first our-edition closing after cost row
+amod:att(kiadásunk, első)
+nmod:att(zárása, kiadásunk)
+case(zárása, után)
+obl(került, zárása)
+nsubj:lvc(került, sor)
+</code></pre>
+
+<!-- Van viszont üldözés sítalpakon és sárkányrepülőn, motorcsónakon és olajvezetékben, és még egy atom-tengeralattjáró belseje is fontos szerepet kap, de ott már Bond az idővel is harcban áll, hogy megmenthesse az emberiséget. -->
+<!-- There is, however, chasing on skis and kites, speedboats and oil pipelines, and even the inside of a nuclear submarine is given an important role, but there Bond is already fighting over time to save humanity. -->
+<p>“Bond is fighting against time”</p>
+
+<pre><code class="language-sdparse">Bond az idővel harcban áll \n Bond the time-with fight-in stands
+nsubj(áll, Bond)
+det(idővel, az)
+obl(áll, idővel)
+obl:lvc(áll, harcban)
+</code></pre>
+
+<p>If the verbal part of the light-verb construction is a participle and syntactically it is used
+as an attribute of the nominal part, then the relation is reversed (analogously to ordinary
+participial attributes) and the relation <code class="language-plaintext highlighter-rouge">amod:attlvc</code> is used:</p>
+
+<p>“during their visit to the Vatican in mid-November”</p>
+
+<pre><code class="language-sdparse">november közepén a Vatikánban tett látogatásuk alatt \n November mid-in the Vatican-in done visit-their under
+nmod:att(közepén, november)
+obl(tett, közepén)
+det(Vatikánban, a)
+obl(tett, Vatikánban)
+amod:attlvc(látogatásuk, tett)
+case(látogatásuk, alatt)
+</code></pre>
+
+<!-- Interlanguage links updated Čt lis 12 09:43:26 CET 2020 -->
 
 
 <!-- "in other languages" links -->
