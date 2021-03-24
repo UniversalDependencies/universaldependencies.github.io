@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>ConjType</title>
+    <title>Compound</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -38,7 +38,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-la">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/feat/ConjType.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/feat/Compound.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -63,60 +63,40 @@
 
           <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<h2><code>ConjType</code>: semantic type of conjugation</h2>
+<h2><code>Compound</code>: univerbation</h2>
 
 <table class="typeindex" border="1">
 <tr>
   <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
-  <td><a href="#Cmpr">Cmpr</a></td>
+  <td><a href="#Yes">Yes</a></td>
 </tr>
 </table>
 
-<p>This feature is used on a subordinating conjunction (if present) to mark the semantic type of adverbial clause it introduces.</p>
+<p>This is a binary (yes/no) morphological feature that is only annotated when its value is <code class="language-plaintext highlighter-rouge">Yes</code>.</p>
 
-<h3 id="cmpr-subordinating-conjunction-introducing-a-comparative-clause"><a name="Cmpr"><code class="language-plaintext highlighter-rouge">Cmpr</code></a>: subordinating conjunction introducing a comparative clause</h3>
+<h3 id="yes-univerbation-of-two-or-more-words"><a name="Yes"><code class="language-plaintext highlighter-rouge">Yes</code></a>: univerbation of two or more words</h3>
 
-<p>This value is used for conjunctions introducing (possibly elliptic) <a href="la-pos/advcl-cmpr">comparative clauses</a>. Since a clausal interpretation is favoured even when the comparative clause is reduced to a noun phrase or similar, the introducing elements (such as <em>ut</em>, <em>sicut</em>…) are regularly treated as <a href="la-pos/SCONJ"><code class="language-plaintext highlighter-rouge">SCONJ</code></a> rather than as <code class="language-plaintext highlighter-rouge">ADV</code>.</p>
+<p>When two or more otherwise independent words (i.e. not considering <a href="la-feat/Clitic">clitics</a> or bound morphemes) have become fused and crystallised into a single word that is no more the “sum of its parts”, and this word is set down as such in writing, the corresponding token is marked with <code class="language-plaintext highlighter-rouge">Compound=Yes</code>.</p>
 
-<p>Such conjunctions usually originate from relative elements (e.g. <em>quam</em>, related to the <a href="la-feat/PronType">relative pronoun</a> <em>qui</em>), and can have come to incorporate originally correlated demonstrative elements (like <em>sic</em> in in <em>sicut</em>, from <em>sic … ut …</em>).</p>
+<p>The single components have to be still discernible and to have an independent counterpart: words which are compounds from an etymological point of view but are synchronically no longer recognizable as such, or processes of derivational morphology, are not taken into account for this feature. Often, the components appear in some reduced form.</p>
 
-<p>Note: the <code class="language-plaintext highlighter-rouge">Cmpr</code> value has been preferred over <code class="language-plaintext highlighter-rouge">Comp</code>, so as to parallel the <code class="language-plaintext highlighter-rouge">:cmpr</code> subrelation for clauses.</p>
+<p>Depending on the source, two (or more) words which act as a single unit may appear separate in writing: in this case, the actual univerbation is represented by the dependency relation <a href="la-dep/fixed"><code class="language-plaintext highlighter-rouge">fixed</code></a>. Conversely, it would be moot to split a token with <code class="language-plaintext highlighter-rouge">Compound=Yes</code> only to link the resulting components by means of <code class="language-plaintext highlighter-rouge">fixed</code>.</p>
 
 <h4 id="examples">Examples</h4>
 
-<p>In the following sentences, comparative conjunctions (and their equivalents in translation) are highlighted with bold typeface.</p>
-
 <ul>
-  <li><em>Quedam est in qua tantum eptasillabum intexitur unum: et hoc esse non potest nisi ubi frons est vel cauda, quoniam, <strong>ut</strong> dictum est, in pedibus atque versibus actenditur equalitas carminum et sillabarum.</em> (Dante, <em>De vulgari eloquentia</em>)
+  <li><strong><em>scilicet</em></strong> ‘it is obvious; that is’, from <em>scio</em> ‘to know’ and <em>licet</em> ‘it is allowed’; acting in Late Latin as an <a href="la-dep/conj-expl">explicative conjunction</a></li>
+  <li><strong><em>idest</em></strong> ‘that is’, from <em>id</em> ‘it’ and <em>est</em> ‘is’, form of <em>sum</em> ‘to be’; a phrase which, like <em>scilicet</em>, ultimately became an explicative conjunction
     <ul>
-      <li>‘There exists one kind of stanza in which a single heptasyllable is included; but this can only occur where there is a <em>frons</em> or a <em>cauda</em>, since, <strong>as</strong> I said, in <em>pedes</em> and <em>versus</em> the principle of equal numbers of lines and syllables must be strictly observed. ‘</li>
+      <li>one often finds this expression written separately as <em>id est</em>, or abbreviated as <em>i.e.</em>: in such cases, <code class="language-plaintext highlighter-rouge">fixed</code> is used</li>
     </ul>
   </li>
-  <li><em>Nam illud quod est alterius gratia necessitatur ab illo cuius gratia est, <strong>sicut</strong> via necessitatur a termino.</em> (Dante, <em>De Monarchia</em>)
-    <ul>
-      <li>‘For a thing which exists for the sake of something else is necessarily conditioned by that other for whose sake it exists, <strong>as</strong> a route is necessarily conditioned by its terminus’</li>
-    </ul>
-  </li>
-  <li><em>Manifestum sit omnibus vobis quod, existente me Mantue, questio quedam exorta est, que dilatrata multotiens ad apparentiam magis <strong>quam</strong> ad veritatem, indeterminata restabat.</em> (Dante, <em>Questio de aqua et terra</em>)
-    <ul>
-      <li>‘Be it known to you all that when I was in Mantua a certain discussion arose, which, following the appearance rather <strong>than</strong> truth, received manifold expansion, but remained undecided.’</li>
-    </ul>
-  </li>
+  <li><strong><em>animaduerto</em></strong> ‘to give attention to’, from <em>anima</em> ‘soul’ and <em>aduerto</em> ‘to turn to’</li>
 </ul>
-
 
 
 <!-- "in other languages" links -->
 <hr/>
-
-ConjType in other languages:
-
-[<a href="../../cs/feat/ConjType.html">cs</a>]
-
-[<a href="../../hy/feat/ConjType.html">hy</a>]
-
-[<a href="../../u/feat/ConjType.html">u</a>]
-
 
 
 
