@@ -85,36 +85,41 @@
 
 <h3 id="tags">Tags</h3>
 
-<ol>
-  <li>
+<ul>
+  <li>Polish in principle uses all 17 universal POS categories: <a href="">SYM</a> is only used in the <a href="http://universaldependencies.org/treebanks/pl_pdb/index.html">PDB</a> treebank to mark symbols, e.g. <em>%</em> (percent), <em>°</em> (degree), <em>+</em> (plus), <em>-</em> (minus), <em>$</em> (dollar), or emojis, e.g. <em>:-)</em>, and <a href="">X</a> is only used in the <a href="http://universaldependencies.org/treebanks/pl_pdb/index.html">PDB</a> treebank (to mark abbreviations and digits).</li>
+  <li>The <a href="">NOUN</a> tag is used not only for prototypical nouns, but also – somewhat arbitrarily – for gerunds (the so-called <em>-nie/-cie</em> forms), which have both nominal and verbal properties.</li>
+  <li>Pronouns (<a href="">PRON</a>) are here understood as personal pronouns, so-called reflexive pronouns (also in their non-reflexive and – generally – non-pronominal uses), and such nominal pronouns as <em>kto</em> “who”, <em>nic</em> “nothing” and <em>wszyscy</em> “everybody”.</li>
+  <li>As Polish grammars do not include a separate part of speech <em>determiner</em>, the <a href="">DET</a> class is based on a word list and includes words treated by standard Polish tagsets as adjectives, numerals or even nouns:
     <ul>
-      <li>Polish in principle uses all 17 universal POS categories: <a href="">SYM</a> is only used in the <a href="http://universaldependencies.org/treebanks/pl_pdb/index.html">PDB</a> treebank to mark symbols, e.g. <em>%</em> (percent), <em>°</em> (degree), <em>+</em> (plus), <em>-</em> (minus), <em>$</em> (dollar), or emojis, e.g. <em>:-)</em>, and <a href="">X</a> is only used in the <a href="http://universaldependencies.org/treebanks/pl_pdb/index.html">PDB</a> treebank (to mark abbreviations and digits).
-     * The <a href="">NOUN</a> tag is used not only for prototypical nouns, but also – somewhat arbitrarily – for gerunds (the so-called <em>-nie/-cie</em> forms), which have both nominal and verbal properties.
-     * Pronouns (<a href="">PRON</a>) are here understood as personal pronouns, so-called reflexive pronouns (also in their non-reflexive and – generally – non-pronominal uses), and such nominal pronouns as <em>kto</em> “who”, <em>nic</em> “nothing” and <em>wszyscy</em> “everybody”.
-     * As Polish grammars do not include a separate part of speech <em>determiner</em>, the <a href="">DET</a> class is based on a word list and includes words treated by standard Polish tagsets as adjectives, numerals or even nouns:
-       * determiners treated elsewhere as adjectives include possessive pronouns, as well as words such as <em>ten</em> “this”, <em>każdy</em> “each”, <em>taki</em> “such”, <em>którykolwiek</em> “whichever”, etc.,
-       * determiners treated elsewhere as numerals include indefinite numerals (e.g., <em>wiele</em> “many”, <em>niedużo</em> “not much, not many”, <em>kilka</em> “several”), as well as fractional numerals such as <em>pół</em> “half”,
-       * one determiner treated elsewhere as a noun is <em>mnóstwo</em> “a lot”.
-     * The main auxiliary verb (<a href="">AUX</a>) in Polish is <em>być</em> (“to be”), with the aspectual variant <em>bywać</em> “to be (habitual)”.
-This auxiliary verb is used in several types of constructions:
-       * the copula with predicative phrases,
-       * periphrastic future tense (future form of <em>być</em> + infinitive or so-called l-participle form of the main verb),
-       * periphrastic conditional (any form of <em>być</em> + the conditional mood marker <em>by</em> + l-participle of the main verb),
-       * (imperfective) periphrastic passive (any form of <em>być</em>, including periphrastic forms, + passive participle of the main verb).
-     * Another auxiliary, <em>zostać</em> “become” (and its habitual version <em>zostawać</em>), is used for the perfective periphrastic passive (any form of <em>zostać</em> + passive participle of the main verb).  Additionally, mood markers <em>by</em> (conditional) and <em>niech</em> (imperative, also its variants <em>niechaj</em>, <em>niechże</em>, <em>niechby</em>) are marked as <code class="language-plaintext highlighter-rouge">AUX</code>, as are “mobile inflections” and the copular uses of <em>to</em> (usually, but inappropriately in this context, translated as “this”).
-     * The words <em>być</em>, <em>bywać</em>, <em>zostać</em> and <em>zostawać</em> may also occur as normal <a href="">VERB</a> if they are used in purely existential sentences
-(i.e., ones that do not even indicate location because if they do, then they should be treated as copulas).
-     * Verbs with modal meaning are not considered auxiliary in Polish.
-     * There are five main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
-       * Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.
-       * Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.
-       * Converb <code class="language-plaintext highlighter-rouge">Conv</code> (an adverbial participle), tagged <a href="">VERB</a> or (in principle, but not in release 2.2) <a href="">AUX</a>.
-       * Participle <code class="language-plaintext highlighter-rouge">Part</code> (an adjectival participle), tagged <a href="">ADJ</a>.
-       * Verbal noun <code class="language-plaintext highlighter-rouge">Vnoun</code> (a gerund), tagged <a href="">NOUN</a>.
-     * Inherently impersonal forms ending in <em>-no/-to</em> (a specialty of Polish and Ukrainian) are marked as finite verbs with <code class="language-plaintext highlighter-rouge">Person=0</code> (and <code class="language-plaintext highlighter-rouge">Tense=Past</code>).</li>
+      <li>determiners treated elsewhere as adjectives include possessive pronouns, as well as words such as <em>ten</em> “this”, <em>każdy</em> “each”, <em>taki</em> “such”, <em>którykolwiek</em> “whichever”, etc.,</li>
+      <li>determiners treated elsewhere as numerals include indefinite numerals (e.g., <em>wiele</em> “many”, <em>niedużo</em> “not much, not many”, <em>kilka</em> “several”), as well as fractional numerals such as <em>pół</em> “half”,</li>
+      <li>one determiner treated elsewhere as a noun is <em>mnóstwo</em> “a lot”.</li>
     </ul>
   </li>
-</ol>
+  <li>The main auxiliary verb (<a href="">AUX</a>) in Polish is <em>być</em> (“to be”), with the aspectual variant <em>bywać</em> “to be (habitual)”.
+This auxiliary verb is used in several types of constructions:
+    <ul>
+      <li>the copula with predicative phrases,</li>
+      <li>periphrastic future tense (future form of <em>być</em> + infinitive or so-called l-participle form of the main verb),</li>
+      <li>periphrastic conditional (any form of <em>być</em> + the conditional mood marker <em>by</em> + l-participle of the main verb),</li>
+      <li>(imperfective) periphrastic passive (any form of <em>być</em>, including periphrastic forms, + passive participle of the main verb).</li>
+    </ul>
+  </li>
+  <li>Another auxiliary, <em>zostać</em> “become” (and its habitual version <em>zostawać</em>), is used for the perfective periphrastic passive (any form of <em>zostać</em> + passive participle of the main verb).  Additionally, mood markers <em>by</em> (conditional) and <em>niech</em> (imperative, also its variants <em>niechaj</em>, <em>niechże</em>, <em>niechby</em>) are marked as <code class="language-plaintext highlighter-rouge">AUX</code>, as are “mobile inflections” and the copular uses of <em>to</em> (usually, but inappropriately in this context, translated as “this”).</li>
+  <li>The words <em>być</em>, <em>bywać</em>, <em>zostać</em> and <em>zostawać</em> may also occur as normal <a href="">VERB</a> if they are used in purely existential sentences
+(i.e., ones that do not even indicate location because if they do, then they should be treated as copulas).</li>
+  <li>Verbs with modal meaning are not considered auxiliary in Polish.</li>
+  <li>There are five main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Converb <code class="language-plaintext highlighter-rouge">Conv</code> (an adverbial participle), tagged <a href="">VERB</a> or (in principle, but not in release 2.2) <a href="">AUX</a>.</li>
+      <li>Participle <code class="language-plaintext highlighter-rouge">Part</code> (an adjectival participle), tagged <a href="">ADJ</a>.</li>
+      <li>Verbal noun <code class="language-plaintext highlighter-rouge">Vnoun</code> (a gerund), tagged <a href="">NOUN</a>.</li>
+    </ul>
+  </li>
+  <li>Inherently impersonal forms ending in <em>-no/-to</em> (a specialty of Polish and Ukrainian) are marked as finite verbs with <code class="language-plaintext highlighter-rouge">Person=0</code> (and <code class="language-plaintext highlighter-rouge">Tense=Past</code>).</li>
+</ul>
 
 <h3 id="nominal-features">Nominal Features</h3>
 
