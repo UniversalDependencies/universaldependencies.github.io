@@ -74,6 +74,7 @@
   <td><a href="#Geo">Geo</a></td>
   <td><a href="#Giv">Giv</a></td>
   <td><a href="#Let">Let</a></td>
+  <td><a href="#Lit">Lit</a></td>
   <td><a href="#Nat">Nat</a></td>
   <td><a href="#Rel">Rel</a></td>
   <td><a href="#Sur">Sur</a></td>
@@ -83,7 +84,7 @@
 
 <p>The type of a named entity is applied to (<a href="la-pos/PROPN">proper</a>) <a href="la-pos/NOUN">nouns</a> and <a href="la-pos/ADJ">adjectives</a> to broadly describe the category this nominal element is referring to.</p>
 
-<p>This feature is token-based and does not take into account nested entities or additional layers of reference: this means, for example, that there is no value for titles of literary works, since these are usually made up of common nouns or other kinds of named entities. Still, the lexical feature <a href="la-feat/Proper"><code class="language-plaintext highlighter-rouge">Proper</code></a> can be used to distinguish such strings.</p>
+<p>This feature is token-based and does not take into account nested entities or additional layers of reference: this means, for example, that there is no value for titles of literary works, since these are usually made up of common nouns or other kinds of named entities (but see <code class="language-plaintext highlighter-rouge">Lit</code>). Still, the lexical feature <a href="la-feat/Proper"><code class="language-plaintext highlighter-rouge">Proper</code></a> can be used to distinguish such strings.</p>
 
 <h3 id="ast-name-of-astronomicalastrological-entity"><a name="Ast"><code class="language-plaintext highlighter-rouge">Ast</code></a>: name of astronomical/astrological entity</h3>
 
@@ -125,12 +126,15 @@
 
 <p>Name of any geographical entity: a city, a country, a mountain, a sea… also used for mythical or legendary places.</p>
 
+<p>Also used for <a href="la-pos/ADJ">adjectives</a> which refer to geographical (real or mythical) features rather than to dwellers of those (it has to be said that the distinction with respect to <code class="language-plaintext highlighter-rouge">Nat</code> may be blurry at times).</p>
+
 <h4 id="examples-3">Examples</h4>
 
 <ul>
   <li><strong><em>Roma</em></strong></li>
   <li><strong><em>Padus</em></strong>, the Po river in Northern Italy</li>
   <li><strong><em>Atlantis</em></strong>, the mythical island described by Plato</li>
+  <li><strong><em>hadriaticus</em></strong>, of/relative to the Adriatic sea (adjective: <em>Hadriaticum mare</em>)</li>
 </ul>
 
 <h3 id="giv-given-name-of-person"><a name="Giv"><code class="language-plaintext highlighter-rouge">Giv</code></a>: given name of person</h3>
@@ -159,13 +163,24 @@
   <li><strong><em>alpha</em></strong>, <strong><em>beta</em></strong>, <strong><em>gamma</em></strong>… (Greek letters)</li>
 </ul>
 
+<h3 id="lit-name-of-literary-work"><a name="Lit"><code class="language-plaintext highlighter-rouge">Lit</code></a>: name of literary work</h3>
+
+<p>Specific <em>name</em> for a literary work, different from the <em>title</em> of a book or similar, which often is a phrase consisting of common terms.</p>
+
+<h4 id="examples-6">Examples</h4>
+
+<ul>
+  <li><strong><em>Aeneis</em></strong>, the Aeneid, the poem by Virgil</li>
+  <li><strong><em>Vulgata</em></strong>, the Latin translation of the Bible (actually a participle from <em>vulgata editio</em> ‘popularised edition’)</li>
+</ul>
+
 <h3 id="nat-designation-of-nationality"><a name="Nat"><code class="language-plaintext highlighter-rouge">Nat</code></a>: designation of nationality</h3>
 
-<p>Term which indicates some kind of national or ethnic membership, or inhabitants of a particular territory.</p>
+<p>Term which indicates some kind of national or ethnic membership, possibly defined by ancestry, or inhabitants of a particular territory.</p>
 
 <p>In Latin, it is very often an <a href="la-pos/ADJ">adjective</a>, which can be used for persons and inanimated entites alike, and can be substantivised.</p>
 
-<h4 id="examples-6">Examples</h4>
+<h4 id="examples-7">Examples</h4>
 
 <ul>
   <li><strong><em>romanus</em></strong> (m.; f. <em>romana</em>, n. <em>romanum</em>) ‘of/related to Rome’; <strong><em>aquileiensis</em></strong> (m./f.; n. <em>aquileiense</em>) ‘of/related to Aquileia’; <strong><em>ravennàs</em></strong> (gen. <em>ravennatis</em>) ‘of/related to Ravenna’ (all adjectives)</li>
@@ -178,13 +193,16 @@
 
 <p>Mortal beings “regularly” receive the feature <code class="language-plaintext highlighter-rouge">Giv</code> instead.</p>
 
-<h4 id="examples-7">Examples</h4>
+<p>It can also be assigned to <a href="la-pos/ADJ">adjectives</a>, if they e.g. directly refer to a deity.</p>
+
+<h4 id="examples-8">Examples</h4>
 
 <ul>
   <li><strong><em>Deus</em></strong> ‘God’, intended as the Christian god</li>
   <li><strong><em>Proserpina</em></strong>, <strong><em>Saturnus</em></strong>, Roman gods</li>
   <li><strong><em>Helius</em></strong>, Greek divinity, a Titan identified with the Sun</li>
   <li><strong><em>Hercules</em></strong>, demigod</li>
+  <li><strong><em>saturnius</em></strong> ‘belonging to Saturn (the god)’ (adjective)</li>
 </ul>
 
 <h3 id="sur-surname--family-name-of-person"><a name="Sur"><code class="language-plaintext highlighter-rouge">Sur</code></a>: surname / family name of person</h3>
@@ -195,7 +213,7 @@
 
 <p>Other epithets are treated by means of the feature <a href="la-feat/Proper">Proper</a>.</p>
 
-<h4 id="examples-8">Examples</h4>
+<h4 id="examples-9">Examples</h4>
 
 <ul>
   <li><strong><em>Iulius</em></strong> ‘of the gens Iulia’; <strong><em>Quinctilius</em></strong> ‘of the gens Quinctilia’ (<em>nomina</em>)</li>
@@ -207,7 +225,7 @@
 
 <p>Names of other entities not covered by the existing features, such as buildings, events, and so on.</p>
 
-<h4 id="examples-9">Examples</h4>
+<h4 id="examples-10">Examples</h4>
 
 <ul>
   <li><strong><em>Colosseum</em></strong>, originally named <em>Amphitheatrum Flavium</em></li>
