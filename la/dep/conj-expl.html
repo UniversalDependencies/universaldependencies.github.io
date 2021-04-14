@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>parataxis:rep</title>
+    <title>conj:expl</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -38,7 +38,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-la">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/parataxis-rep.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/conj-expl.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -61,27 +61,53 @@
 	  </div>
 	</noscript>
 
-          <h2><code>parataxis:rep</code>: reported speech or digression in discursive form</h2>
+          <h2><code>conj:expl</code>: explicative conjunct</h2>
 
-<p>As a subtype of <a href="u-dep/parataxis"><code class="language-plaintext highlighter-rouge">parataxis</code></a>, <code class="language-plaintext highlighter-rouge">rep</code> is principally used to mark direct speech inserted into the sentence.</p>
+<p>This subtype of the <a href="u-dep/conj">co-ordination</a> relation (by itself not a <em>dependency</em> relation) is used for explicative conjuncts, that is, phrases that more in-depth explain, reformulate or expand upon another phrase in the preceding clause (or the whole clause itself).</p>
 
-<p>Direct or reported speech can be syntactically ambivalent, because on the one hand, as a whole, it behaves in a similar manner to a nominal argument (e.g. <a href="la-dep/obj"><code class="language-plaintext highlighter-rouge">obj</code></a> or <a href="la-dep/nsubj"><code class="language-plaintext highlighter-rouge">nsubj</code></a>), but, on the other hand, it constitutes a completely independent uttering with respect to the main sentence.</p>
+<p>Even if, traditionally, explicative conjuncts are sometimes described as “appositions”, they represent a more general construction than UD’s <a href="la-dep/appos">appos</a>, which is limited to (almost) immediately adjoined noun phrases; while both are in a sense co-referential, explicative conjuncts differ from appositions mainly under the aspect that explicative conjuncts show to be at the same foregrounding level than the phrases they are related to (whereas <code class="language-plaintext highlighter-rouge">appos</code> rather implies background information). This makes them a subclass of co-ordination.</p>
 
-<pre><code class="language-sdparse">Virgilius primo Eneidorum dicit « Arma virumque cano » \n Virgil in-first of-Aeneis says « Arms and-man I-sing »
-parataxis:rep(dicit, cano)
-parataxis:rep(says, I-sing)
+<p>Any phrase can be the explicative conjunct of any other phrase, but it will show an alignment in its syntactic encoding towards the latter, e.g. a clausal explicative conjunct of a noun phrase will be usually introduced by a complementiser. The explicative conjunct, as any regular conjunct (or apposition), will make a reprise of the case of the expanded phrase, as far as this is applicable. The explicative conjunct may be elliptical.</p>
+
+<p>Often, but not always, an explicative conjunct is introduced by a conjunctional element, which is coherently labeled as <a href="la-pos/CCONJ"><code class="language-plaintext highlighter-rouge">CCONJ</code></a> and bears the feature <a href="la-feat/ConjType"><code class="language-plaintext highlighter-rouge">ConjType=Expl</code></a>, in parallel to this subrelation. In Late and Medieval Latin, the grammaticalised verbal phrases <em>scilicet</em> ‘you may know’ and <em>id est</em> ‘that is’ (sometimes <a href="la-feat/Compound">univerbated</a>) are amongst the most common ones. The relation might also be pointed to by dedicated punctuation marks.</p>
+
+<pre><code class="language-sdparse">et Adalbertus dux derexit misso suo , id est Aggelmanno , qui ambulaverunt ... \n and Adalbertus leader he-sent legate his , that is Agelmannus , who they-went ... (LLCT)
+conj:expl(misso,Aggelmanno)
+cc(Aggelmanno,id)
+fixed(id,est)
+conj:expl(legate,Agelmannus)
+cc(Agelmannus,id)
+fixed(that,is)
 </code></pre>
 
-<p>The same logic and subrelation is applied to digressions in the sentence that take the form of independent and complex clauses themselves, factually beginning a new sentence. The two blocks are however still in a (loose) syntactical relation, because the digression is not infrequently introduced by some element in the main clause, in a similar way to <a href="la-feat/conj-expl">explicative co-ordinations</a>. The relation might also be pointed to by dedicated punctuation marks.</p>
-
-<pre><code class="language-sdparse">Sed nunc queritur : Cum illa regio celi circulariter feratur , quare illa elevatio non fuit circularis ? \n But now is-asked : When that region of-sky circularly be-brought , for-which-reason that lifting not was circular ?
-parataxis:rep(queritur, circularis)
-parataxis:rep(is-asked, circular)
-advcl(circularis, feratur)
-advcl(circular, be-brought)
+<pre><code class="language-sdparse">hoc igitur nomen homo , et de christo et de aliis hominibus dictum , semper eandem formam significat , scilicet naturam humanam . \n this then name man , and about Christ and about other men said , always the-same form-ACC means , that-is nature-ACC human . \n 'Therefore, this name "man" said of Christ and of other men always signifies the same form; namely, human nature.' (*Summa contra Gentiles*, ITTB)
+conj:expl(formam,naturam)
+cc(naturam,scilicet)
+conj:expl(form-ACC,nature-ACC)
+cc(nature-ACC,that-is)
 </code></pre>
 
-<p>In both cases, the strategy is that of juxtaposition, and any morphosyntactical marks of subordination (e.g. <a href="la-pos/SCONJ">subordinating conjunctions</a>, <a href="la-feat/VerbForm">non-finite verb forms</a>, <a href="la-dep/advcl-abs">constructions in oblique cases</a>…) are lacking, hence the use of <code class="language-plaintext highlighter-rouge">parataxis</code>; at the same time, the subrelation <code class="language-plaintext highlighter-rouge">rep</code> acknowledges that the two juxtaposed (sometimes even interwoven) blocks are conceptually more connected than with usual parataxis.</p>
+<pre><code class="language-sdparse">Neque sine ratione ipsum vulgare illustre decusamus adiectione secunda , videlicet ut id cardinale vocetur . \n Nor without reason itself vulgar illustrious we-decorate addition second , that-is that it cardinal be-called . \n 'Nor are we without justification if we adorn this illustrious vernacular with our second epithet, by calling it "cardinal".' (*De Vulgari Eloquentia*, UDante)
+conj:expl(decusamus,vocetur)
+cc(vocetur,videlicet)
+mark(vocetur,ut)
+conj:expl(we-decorate,be-called)
+cc(be-called,that-is)
+mark(be-called,that)
+</code></pre>
+
+<pre><code class="language-sdparse">Sed Monarcha non habet quod possit optare : sua nanque iurisdictio terminatur Occeano solum : quod non contingit principibus aliis , quorum principatus ad alios terminantur , ut puta regis Castelle ad illum qui regis Aragonum . \n But Monarch not has what he-can choose : his in-fact jurisdiction is-ended by-Ocean only : what not touches to-rulers others , whose reigns to other are-ended , like for-example of-king of-Castille to that which of-king of-the-Aragonese . \n 'But there is nothing the monarch could covet, for his jurisdiction is bounded only by the ocean; whereas this is not the case with other rulers, whose sovereignty extends only as far as the neighbouring kingdom, as is the case, for instance, with the kings of Castille and of Aragon. ' (*De Monarchia*, UDante)
+conj:expl(habet,terminatur)
+conj:expl(regis-30,terminantur)
+cc(regis-30,puta)
+mark(regis-30,ut)
+orphan(regis-30,illum)
+conj:expl(has,is-ended)
+conj:expl(of-king-69,are-ended)
+cc(of-king-69,for-example)
+mark(of-king-69,like)
+orphan(of-king-69,that)
+</code></pre>
 
 
 
