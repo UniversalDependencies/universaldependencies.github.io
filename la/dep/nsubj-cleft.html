@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>conj:expl</title>
+    <title>nsubj:cleft</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -38,7 +38,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-la">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/conj-expl.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/nsubj-cleft.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -61,62 +61,88 @@
 	  </div>
 	</noscript>
 
-          <h2><code>conj:expl</code>: explicative conjunct</h2>
+          <h2><code>nsubj:cleft</code>: nominal residual subject of a cleft sentence</h2>
 
-<p>This subtype of the <a href="u-dep/conj">co-ordination</a> relation (by itself not a <em>dependency</em> relation) is used for explicative conjuncts, that is, phrases that more in-depth explain, reformulate or expand upon another phrase in the preceding clause (or the whole clause itself).</p>
+<p>Cleft sentences arise when a phrase in a matrix clause is extracted for emphasis and put into a prominent position with respect to the other elements of the clause (cf. <a href="la-dep/csubj-cleft"><code class="language-plaintext highlighter-rouge">csubj:cleft</code></a>).</p>
 
-<p>Even if, traditionally, explicative conjuncts are sometimes described as “appositions”, they represent a more general construction than UD’s <a href="la-dep/appos">appos</a>, which is limited to (almost) immediately adjoined noun phrases; while both are in a sense co-referential, explicative conjuncts differ from appositions mainly under the aspect that explicative conjuncts show to be at the same foregrounding level than the phrases they are related to (whereas <code class="language-plaintext highlighter-rouge">appos</code> rather implies background information). This makes them a subclass of co-ordination.</p>
+<p>When the relative clause acting as the subject of a cleft sentence does have an antecedent, we have a nominal type of subject; if not, the subject will be treated as <a href="la-dep/csubj-cleft">clausal</a>. This construction can appear with any extracted argument, and is obligatory if the extracted element is a modifier of another element in the original matrix clause, in which case the antecedent will (usually) correspond to the originally modified element.</p>
 
-<p>Any phrase can be the explicative conjunct of any other phrase, but it will show an alignment in its syntactic encoding towards the latter, e.g. a clausal explicative conjunct of a noun phrase will be usually introduced by a complementiser. The explicative conjunct, as any regular conjunct (or apposition), will recover the case of the expanded phrase, as far as this is applicable. The explicative conjunct may be elliptical.</p>
+<p>As with clausal subjects, some minor readjustments in the components of the cleft sentence may be needed to make the whole sentence grammatical.</p>
 
-<p>Often, but not always, an explicative conjunct is introduced by a conjunctional element, which is coherently labeled as <a href="la-pos/CCONJ"><code class="language-plaintext highlighter-rouge">CCONJ</code></a> and bears the feature <a href="la-feat/ConjType"><code class="language-plaintext highlighter-rouge">ConjType=Expl</code></a>, in parallel to this subrelation. In Late and Medieval Latin, the grammaticalised verbal phrases <em>scilicet</em> ‘you may know’ and <em>id est</em> ‘that is’ (sometimes <a href="la-feat/Compound">univerbated</a>) are amongst the most common ones. The relation might also be pointed to by dedicated punctuation marks.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>In the following example, *</td>
+      <td>* points to the splitting point in the cleft sentence.</td>
+    </tr>
+  </tbody>
+</table>
 
-<pre><code class="language-sdparse">et Adalbertus dux derexit misso suo , id est Aggelmanno , qui ambulaverunt ... \n and Adalbertus leader he-sent legate his , that is Agelmannus , who they-went ...
-conj:expl(misso,Aggelmanno)
-cc(Aggelmanno,id)
-fixed(id,est)
-conj:expl(legate,Agelmannus)
-cc(Agelmannus,that)
-fixed(that,is)
+<pre><code class="language-sdparse">ROOT Fuit ergo hebraicum ydioma | illud quod primi loquentis labia fabricarunt . \n ROOT Was so Hebrew language that which first of-the-speaking lips they-made .
+root(ROOT-1,ydioma)
+amod(ydioma,hebraicum)
+nsubj:cleft(ydioma,illud)
+cop(ydioma,fuit)
+acl:relcl(illud,fabricarunt)
+obj(fabricarunt,quod)
+root(ROOT-15,language)
+amod(language,Hebrew)
+nsubj:cleft(language,that)
+cop(language,was)
+acl:relcl(that,they-made)
+obj(they-made,which)
 </code></pre>
 
-<p>‘And so <em>dux</em> Adalbertus sent his legate, that is Agelmannus, who went…’ (LLCT)</p>
+<p>‘So the Hebrew language was that which the lips of the first speaker moulded.’ (<em>De Vulgari Eloquentia</em>, UDante)</p>
 
-<pre><code class="language-sdparse">hoc igitur nomen homo , et de christo et de aliis hominibus dictum , semper eandem formam significat , scilicet naturam humanam . \n this then name man , and about Christ and about other men said , always the-same form-ACC means , that-is nature-ACC human .
-conj:expl(formam,naturam)
-cc(naturam,scilicet)
-conj:expl(form-ACC,nature-ACC)
-cc(nature-ACC,that-is)
+<ul>
+  <li>Matrix clause:
+    <ul>
+      <li><em>Primi loquentis labia <strong>hebraicum ydioma</strong> fabricarunt.</em> (object argument)</li>
+    </ul>
+  </li>
+  <li></li>
+</ul>
+
+<pre><code class="language-sdparse">ROOT Ego sum | ille qui longas terras et ignotas regiones peragravi , ego | ille qui tam longe abieram ut in patriam redire non possem . \n ROOT I am that who long lands and unknown regions I-have-traversed , I that who so long I-had-went-away so-that in fatherland to-go-back not may .
+root(ROOT-1,Ego)
+nsubj:cleft(Ego,ille-5)
+cop(Ego,sum)
+acl:relcl(ille-5,peragravi)
+nsubj(peragravi,qui-6)
+conj(Ego,ego)
+nsubj:cleft(ego,ille-16)
+acl:relcl(ille-16,abieram)
+obj(abieram,qui-17)
+root(ROOT-29,I-30)
+nsubj:cleft(I-30,that-33)
+cop(I-30,am)
+acl:relcl(that-33,I-have-traversed)
+nsubj(I-have-traversed,who-34)
+conj(I-30,I-42)
+nsubj:cleft(I-42,that-43)
+acl:relcl(that-43,I-had-went-away)
+obj(I-had-went-away,who-44)
 </code></pre>
 
-<p>‘Therefore, this name “man” said of Christ and of other men always signifies the same form; namely, human nature.’ (<em>Summa contra Gentiles</em>, ITTB)</p>
+<p>‘I am the one who went through faraway and unknown lands, me who got so far that I could not even return home.’ (<em>Declamationes</em>, Quintilian)</p>
 
-<pre><code class="language-sdparse">Neque sine ratione ipsum vulgare illustre decusamus adiectione secunda , videlicet ut id cardinale vocetur . \n Nor without reason itself vulgar illustrious we-decorate addition second , that-is that it cardinal be-called .
-conj:expl(adiectione,vocetur)
-cc(vocetur,videlicet)
-mark(vocetur,ut)
-conj:expl(addition,be-called)
-cc(be-called,that-is)
-mark(be-called,that)
-</code></pre>
+<ul>
+  <li>Matrix clauses:
+    <ul>
+      <li><em>(<strong>Ego</strong>) longas terras et ignotas regiones peragravi.</em> (subject argument)</li>
+      <li><em>(<strong>Ego</strong>) tam longe abieram ut in patriam redire non possem.</em> (subject argument)</li>
+    </ul>
+  </li>
+  <li>Note that the second conjunct shows ellipsis of the copula.</li>
+  <li>The subject does not need to be made explicit in Latin, but can be extracted nonetheless.</li>
+</ul>
 
-<p>‘Nor are we without justification if we adorn this illustrious vernacular with our second epithet, by calling it “cardinal”.’ (<em>De Vulgari Eloquentia</em>, UDante)</p>
+<p>####References</p>
 
-<pre><code class="language-sdparse">Sed Monarcha non habet quod possit optare : sua nanque iurisdictio terminatur Occeano solum : quod non contingit principibus aliis , quorum principatus ad alios terminantur , ut puta regis Castelle ad illum qui regis Aragonum . \n But Monarch not has what he-can choose : his in-fact jurisdiction is-ended by-Ocean only : what not touches to-rulers others , whose reigns to other are-ended , like for-example of-king of-Castille to that which of-king of-the-Aragonese .
-conj:expl(habet,terminatur)
-conj:expl(regis-30,terminantur)
-cc(regis-30,puta)
-mark(regis-30,ut)
-orphan(regis-30,illum)
-conj:expl(has,is-ended)
-conj:expl(of-king-68,are-ended)
-cc(of-king-68,for-example)
-mark(of-king-68,like)
-orphan(of-king-68,that)
-</code></pre>
-
-<p>‘But there is nothing the monarch could covet, for his jurisdiction is bounded only by the ocean; whereas this is not the case with other rulers, whose sovereignty extends only as far as the neighbouring kingdom, as is the case, for instance, with the kings of Castille and of Aragon. ‘ (<em>De Monarchia</em>, UDante)</p>
-
+<ul>
+  <li>Goria, E. (2013). <em>Towards a taxonomy of Latin cleft sentences</em>, Journal of Latin Linguistics, 12(2): 147 – 172</li>
+</ul>
 
 
 <!-- "in other languages" links -->
