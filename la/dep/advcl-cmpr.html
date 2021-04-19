@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>csubj:cleft</title>
+    <title>advcl:cmpr</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -38,7 +38,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-la">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/csubj-cleft.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/advcl-cmpr.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -61,102 +61,87 @@
 	  </div>
 	</noscript>
 
-          <h2><code>csubj:cleft</code>: clausal residual subject of a cleft sentence</h2>
+          <h2><code>advcl:cmpr</code>: comparative clause</h2>
 
-<p>Cleft sentences arise when an element (i.e. a phrase) in a matrix clause is extracted for emphasis and put into a prominent position with respect to the other elements of the clause.</p>
+<p>The <code class="language-plaintext highlighter-rouge">cmpr</code> subtype is used to point out comparative constructions unitarily: <code class="language-plaintext highlighter-rouge">advcl:pred</code> for comparative (adverbial) clauses and <a href="la-dep/obl-cmpr"><code class="language-plaintext highlighter-rouge">obl:cmpr</code></a> for comparative oblique arguments.</p>
 
-<p>In Latin, cleft sentences are sentences that have the structure of a non-verbal, <a href="la-dep/cop">copular</a> predication where the extracted element is in focus position as the non-verbal predicate, and the residual elements of the matrix clause act together as the <a href="la-dep/nsubj">subject</a>, which can be introduced by a nominal element (cf. <a href="la-dep/nsubj-cleft"><code class="language-plaintext highlighter-rouge">nsubj:cleft</code></a>) or be left <a href="la-dep/csubj">clausal</a>, without an antecedent. The copula usually agrees with the extracted element (mostly in the third person singular). The common <code class="language-plaintext highlighter-rouge">cleft</code> subrelation captures</p>
+<p><a href="la-dep/advcl">Adverbial clauses</a> with a comparative function are by far the most common strategy for comparative constructions in Latin. They are treated as dependents of the predicate in the main clause, which may or may not be modified by adverbial elements expressing some form of <a href="la-feat/Degree">degree</a> (including equivalence and similarity) or contrast (like e.g. <a href="la-feat/Polarity">negation</a>). Comparative clauses are <a href="la-feat/VerbForm">finite</a> and can be expressed in the indicative or subjunctive <a href="la-feat/Mood">mood</a>, according to the type and plausibility of the comparison. They are introduced by (subordinating) <a href="la-pos/SCONJ">conjunctions</a>, which can be specialized (like <em>quam</em>) or polysemous (like <em>ut</em>, which also has, among others, final uses); a conjunction in this context is in any case marked with the <code class="language-plaintext highlighter-rouge">Cmpr</code> value of the feature <a href="la-feat/ConjType"><code class="language-plaintext highlighter-rouge">ConjType</code></a>.</p>
 
-<p>In the subject of a cleft sentence, the gap left by the extracted phrase is recovered by means of a relative element, usually a pronoun (e.g. <em>qui</em>, <em>ubi</em>) but also possibly a determiner (e.g. <em>qualis</em>). This element is put in first position and morphosyntactically acts the same way the original phrase did (i.e. same case, number, gender…). A cleft sentence with clausal residual subject is thus characterised by the apparent mismatch of a relative clause which does not actually act in an attributive function with respect to the non-verbal predicate and does not have an antecedent.</p>
+<p>In a way similar to <a href="la-dep/conj">co-ordinations</a>, comparative clauses are often seen to exhibit predicate <strong>ellipsis</strong> to quite a notable extent. This comes from the fact that the comparison often works by varying some arguments with respect to the main clause, while simultaneously being based on the same predicate: this repetition is tendentially avoided, and so elliptical clauses arise. This has as a consequence that many comparative clauses appear just as bare nominals introduced by a conjunctional element (like <em>quam</em> or <em>ut</em>), but they are still marked by means of <code class="language-plaintext highlighter-rouge">advcl</code>: on the one hand to keep the parallelism with (not rare) “full-predicate” comparative clauses, and on the other hand, more importantly, to recognize that there always subsists the potential for a non-elliptical construction. The last point is supported by the fact that the remaining nominal element always follows the same case as the corresponding elements in the main clause. This kind of ellipsis can also equivalently appear in the main clause for thesam reasons. We observe that proper <a href="la-feat/obl-cmpr">nominal comparative constructions</a> use a different strategy, and are rarer.</p>
 
-<p>Any kind of phrase at any nesting level can be extracted; sometimes the cleft subject will be introduced by a <a href="la-dep/ccomp">complementiser</a>, or some other minor adjustments are introduced in order for the sentence to be grammatically acceptable.</p>
+<p>Comparative conjunctions are often derived from <a href="la-feat/PronType">relative</a> stems, which, for comparative clauses of equivalence or similarity, are often matched in the main clause by correlated (usually demonstrative) terms: a typical example is the conjunction <em>quam</em> (originally ‘how much’) matched to the adverb <em>tam</em> ‘so much’. These elements can become <a href="la-feat/Compound">univerbated</a> to form new conjunctions (e.g. <em>tamquam</em>). Such cases are still preferably treated as subordinations. In general, a comparative adverbial clause can appear without the need of such a correlated term, or any term of degree at all.</p>
 
-<p>In the following examples, <em>|</em> points to the splitting point in the cleft sentence.</p>
+<p>In the following examples, the passages in the translations corresponding to comparative clauses are boldfaced.</p>
 
-<pre><code class="language-sdparse">ROOT Hic est | quem Petrus , Dei vicarius , honorificare nos monet ; quem Clemens , nunc Petri successor , luce Apostolice benedictionis illuminat ; ut ubi radius spiritualis non sufficit , ibi splendor minoris luminaris illustret . \n ROOT This is whom Peter , of-God vicar , to-honour us reminds ; whom Clemens , now of-Peter successor , with-light Apostolic of-blessing lightens ; so-that where ray spiritual not suffices , there splendor minor of-luminary illuminate .
-root(ROOT-1,Hic)
-csubj:cleft(Hic,monet)
-cop(Hic,est)
-obj(honorificare,quem-5)
-conj(monet,illuminat)
-obj(illuminat,quem-15)
-root(ROOT-41,This)
-csubj:cleft(This,reminds)
-cop(This,is)
-obj(to-honour,whom-44)
-conj(reminds,illuminate)
-obj(illuminate,whom-54)
+<pre><code class="language-sdparse">Pater ergo filio praecipit ut subiecto sibi secundum humanam naturam . \n Father then to-son orders like to-subject to-self according-to human nature . 
+advcl:cmpr(praecipit,subiecto)
+mark(subiecto,ut)
+obl:arg(subiecto,sibi)
+obl(subiecto,naturam)
+advcl:cmpr(orders,to-subject)
+mark(to-subject,like)
+obl:arg(to-subject,to-self)
+obl(to-subject,nature)
 </code></pre>
 
-<p>‘This is he whom Peter, the Vicar of God, exhorts us to honour, and whom Clement, the present successor of Peter, illumines with the light of the Apostolic benediction; [so] that where the spiritual ray suffices not, there the splendour of the lesser luminary may lend its light.’ (<em>Letters</em> V, UDante)</p>
+<p>‘For, all these things are suitable to the Son <strong>inasmuch as He is subject to the Father</strong>.’ (<em>Summa contra Gentiles</em>, ITTB; rather free translation)</p>
+
+<p>‘The Father, then, gives orders to His Son as to one who is subject to Himself according to the human nature.’ (more literal translation)</p>
 
 <ul>
-  <li>Matrix clauses:
-    <ul>
-      <li><em>Petrus, Dei vicarius, monet nos <strong>hunc</strong> honorificare.</em> (object argument)</li>
-      <li><em>Clemens, nunc Petri successor, luce Apostolice benedictionis <strong>hunc</strong> illuminat.</em> (object argument)</li>
-    </ul>
-  </li>
-  <li>Note that in the first conjunct the <a href="la-dep/object">object</a> <em>hunc</em> ‘him’ is extracted from the clausal complement of <em>monet</em> ‘he exhorts’ headed by <em>honorificare</em> ‘to honour’, i.e. from a nested argument.</li>
+  <li>Ellipsis of <em>praecipit</em> ‘gives orders’ in the comparative clause.</li>
 </ul>
 
-<pre><code class="language-sdparse">ROOT Hic est | apud quem cubitum ponitis . \n ROOT This is by whom elbow ye-set-down .
-root(ROOT-1,Hic)
-csubj:cleft(Hic,ponitis)
-cop(Hic,est)
-obl(ponitis,quem)
-root(ROOT-11,This)
-csubj:cleft(This,ye-set-down)
-cop(This,is)
-obl(ye-set-down,whom)
+<pre><code class="language-sdparse">Preterea , sicut Ecclesia suum habet fundamentum , sic et Imperium suum . \n Further , like Church its-own has foundation , so also Empire its-own .
+advcl:cmpr(Imperium,habet)
+mark(habet,sicut)
+advcl:cmpr(Empire,has)
+mark(has,like)
 </code></pre>
 
-<p>‘It is at this man’s table that you are dining.’ (<em>Satyricon</em>, C. Petronius)</p>
+<p>‘Moreover, <strong>just as the church has its foundation</strong>, so too the empire [has] its own.’ (<em>De Monarchia</em>, UDante)</p>
 
 <ul>
-  <li>Matrix clause:
-    <ul>
-      <li><em>Apud <strong>hunc</strong> cubitum ponitis.</em> (<a href="la-dep/obl">oblique</a> argument)</li>
-    </ul>
-  </li>
+  <li>Ellipsis of <em>habet</em> ‘has’ in the main clause.</li>
 </ul>
 
-<pre><code class="language-sdparse">ROOT Hanc domum | iam multos annos est | cum possideo et colo . \n ROOT This house already many years is when I-own and I-tend .
-root(ROOT-1,annos)
-csubj:cleft(annos,possideo)
-cop(annos,est)
-mark(possideo,cum)
-root(ROOT-16,years)
-csubj:cleft(years,I-own)
-cop(years,is)
-mark(I-own,when)
+<pre><code class="language-sdparse">In quantum de res ipsam abere videris , in tantum inde ipsam duodecimam portionem ad ipsam ecclesiam sancti Simeonis relaxare debes . \n In how-much of thing same to-have you-are-seen , in that-much thence same twelfth part to same church saint of-Simeon yield you-will-have-to .
+advcl:cmpr(debes, videris)
+mark(videris,In)
+fixed(In-1,quantum)
+advmod(debes,in-9)
+fixed(in-9,tantum)
+advcl:cmpr(you-will-have-to, you-are-seen)
+mark(videyou-are-seenris,In-24)
+fixed(In-24,how-much)
+advmod(you-will-have-to,in-32)
+fixed(in-32,that-much)
 </code></pre>
 
-<p>‘This house, it is many years that I own it and live in it.’ (<em>Aulularia</em>, Plautus)</p>
+<p>‘<strong>[According to] how many such things you are seen to own</strong>, you will have to yield the twelfth part thereof to the church of St. Simeon.’ (LLCT)</p>
 
 <ul>
-  <li>Matrix clause:
-    <ul>
-      <li><em>Hanc domum <strong>iam multos annos</strong> possideo et colo.</em> (temporal <a href="la-dep/obl">oblique</a> argument)</li>
-    </ul>
-  </li>
-  <li><em>hanc domum</em> ‘this house’ is itself dislocated at the beginning of the sentence, but belongs to the clausal subject. This is probably an example of Latin as it was actually spoken.</li>
+  <li>Correlation of the <a href="la-dep/fixed">fixed</a> expressions <em>in quantum</em> ‘inasmuch’ (acting as the comparative conjunction formed on the basis of the relative element <em>quantum</em>) with <em>in tantum</em> ‘(in) that much’.</li>
 </ul>
 
-<p>###References</p>
+<pre><code class="language-sdparse">Hi tibi silvestres capreas , hi tergora lincum orbiculata ferent , tuus ut Melibeus amabat . \n These to-you of-wood roes , these backs of-lynxes circular they-will-bring , your like Moelibeus was-loving . 
+advcl:cmpr(ferent,amabat)
+mark(amabat,ut)
+advcl:cmpr(they-will-bring,was-loving)
+mark(was-loving,like)
+</code></pre>
 
-<ul>
-  <li>Goria, E. (2013). <em>Towards a taxonomy of Latin cleft sentences</em>, Journal of Latin Linguistics, 12(2): 147 – 172</li>
-</ul>
+<p>‘They shall bring woodland roes to thee and spotted hides
+of lynxes, <strong>as was thy Melibœus’ wont</strong>.’ (<em>Eclogues</em> II, UDante)</p>
 
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-csubj:cleft in other languages:
+advcl:cmpr in other languages:
 
-[<a href="../../ga/dep/csubj-cleft.html">ga</a>]
+[<a href="../../pl/dep/advcl-cmpr.html">pl</a>]
 
 
 

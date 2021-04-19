@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>csubj:cleft</title>
+    <title>advcl:pred</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -38,7 +38,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-la">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/csubj-cleft.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/advcl-pred.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -61,103 +61,71 @@
 	  </div>
 	</noscript>
 
-          <h2><code>csubj:cleft</code>: clausal residual subject of a cleft sentence</h2>
+          <h2><code>advcl:pred</code>: adverbial secondary predication</h2>
 
-<p>Cleft sentences arise when an element (i.e. a phrase) in a matrix clause is extracted for emphasis and put into a prominent position with respect to the other elements of the clause.</p>
+<p>The <code class="language-plaintext highlighter-rouge">pred</code> subrelation aims at unitarily representing the phenomenon of <strong>secondary predications</strong> (also “conjoined participles”, it. <em>participio congiunto</em>, “double nominative/accusative”, “subject/object complements”, “adverbial appositions”, “depictives”, and so on) in its different realisations.</p>
 
-<p>In Latin, cleft sentences are sentences that have the structure of a non-verbal, <a href="la-dep/cop">copular</a> predication where the extracted element is in focus position as the non-verbal predicate, and the residual elements of the matrix clause act together as the <a href="la-dep/nsubj">subject</a>, which can be introduced by a nominal element (cf. <a href="la-dep/nsubj-cleft"><code class="language-plaintext highlighter-rouge">nsubj:cleft</code></a>) or be left <a href="la-dep/csubj">clausal</a>, without an antecedent. The copula usually agrees with the extracted element (mostly in the third person singular). The common <code class="language-plaintext highlighter-rouge">cleft</code> subrelation captures</p>
+<p>In a sense, secondary predications are reminding of the phenomenon of <a href="la-dep/advcl-abs">ablativus absolutus</a>, in that they are embedded predications by means of bare nominal elements (including <a href="la-feat/VerbForm">nominal verbal forms</a>), but with the crucial difference that they are co-referent to an argument of the clause, most of the time the <a href="la-dep/nsubj">subject</a> or the <a href="la-dep/obj">object</a> (but not limited to them). This has as a consequence that the involved noun/adjective/participle/… agrees, if applicable, in <a href="la-feat/Case">case</a> (and of course <a href="la-feat/Number">number</a> and <a href="la-feat/Gender">gender</a>) with the predicated element (so most of the time in the nominative or accusative). A <a href="la-pos/VERB">verbal</a> secondary predicate not infrequently has its own arguments, which take the expected cases for their roles.</p>
 
-<p>In the subject of a cleft sentence, the gap left by the extracted phrase is recovered by means of a relative element, usually a pronoun (e.g. <em>qui</em>, <em>ubi</em>) but also possibly a determiner (e.g. <em>qualis</em>). This element is put in first position and morphosyntactically acts the same way the original phrase did (i.e. same case, number, gender…). A cleft sentence with clausal residual subject is thus characterised by the apparent mismatch of a relative clause which does not actually act in an attributive function with respect to the non-verbal predicate and does not have an antecedent.</p>
+<p>The difference between adverbial and “core” (cf. <a href="la-dep/xcomp-pred"><code class="language-plaintext highlighter-rouge">xcomp:pred</code></a>) secondary predication is mostly of foregrounding: adverbial secondary predication is given as background information and thus distinct and subordinated to the main clause. It cannot be selected for <a href="la-feat/Voice">passivisation</a>, even if it refers to the object; this means that secondary predication of the object is not a <a href="la-dep/iobj">secondary object</a> itself (i.e. a proper “double accusative”). If it refers to the subject, it is independent from the actual presence of an explicit subject (and even then, most of the times neither contiguous to it), so it cannot be made dependent from it. The adverbial predicate can also consist of a determiner, in which case it is sometimes called a “floating quantifier”. It is observed that some terms have a preference for appearing or not appearing as secondary predications rather than as attributes (cf. Pinkster 1990, §8).</p>
 
-<p>Any kind of phrase at any nesting level can be extracted; sometimes the cleft subject will be introduced by a <a href="la-dep/ccomp">complementiser</a>, or some other minor adjustments are introduced in order for the sentence to be grammatically acceptable.</p>
-
-<p>In the following examples, <em>|</em> points to the splitting point in the cleft sentence.</p>
-
-<pre><code class="language-sdparse">ROOT Hic est | quem Petrus , Dei vicarius , honorificare nos monet ; quem Clemens , nunc Petri successor , luce Apostolice benedictionis illuminat ; ut ubi radius spiritualis non sufficit , ibi splendor minoris luminaris illustret . \n ROOT This is whom Peter , of-God vicar , to-honour us reminds ; whom Clemens , now of-Peter successor , with-light Apostolic of-blessing lightens ; so-that where ray spiritual not suffices , there splendor minor of-luminary illuminate .
-root(ROOT-1,Hic)
-csubj:cleft(Hic,monet)
-cop(Hic,est)
-obj(honorificare,quem-5)
-conj(monet,illuminat)
-obj(illuminat,quem-15)
-root(ROOT-41,This)
-csubj:cleft(This,reminds)
-cop(This,is)
-obj(to-honour,whom-44)
-conj(reminds,illuminate)
-obj(illuminate,whom-54)
-</code></pre>
-
-<p>‘This is he whom Peter, the Vicar of God, exhorts us to honour, and whom Clement, the present successor of Peter, illumines with the light of the Apostolic benediction; [so] that where the spiritual ray suffices not, there the splendour of the lesser luminary may lend its light.’ (<em>Letters</em> V, UDante)</p>
+<p>An adverbial secondary predication (like the <em>ablativus absolutus</em>) is underspecified in its type (temporal, concessive, and so on), and is different both from an <a href="la-dep/acl">adnominal modifier</a> and an <a href="la-pos/ADV">adverbial</a> element modifying the main predicate. For example (example from Pinkster 1990):</p>
 
 <ul>
-  <li>Matrix clauses:
-    <ul>
-      <li><em>Petrus, Dei vicarius, monet nos <strong>hunc</strong> honorificare.</em> (object argument)</li>
-      <li><em>Clemens, nunc Petri successor, luce Apostolice benedictionis <strong>hunc</strong> illuminat.</em> (object argument)</li>
-    </ul>
-  </li>
-  <li>Note that in the first conjunct the <a href="la-dep/object">object</a> <em>hunc</em> ‘him’ is extracted from the clausal complement of <em>monet</em> ‘he exhorts’ headed by <em>honorificare</em> ‘to honour’, i.e. from a nested argument.</li>
+  <li><em>[Britanni] ex silvis rari propugnabant</em> ‘The Britons made sorties from the woods in small groups’ (<em>De Bello Gallico</em>, Caesar)</li>
 </ul>
 
-<pre><code class="language-sdparse">ROOT Hic est | apud quem cubitum ponitis . \n ROOT This is by whom elbow ye-set-down .
-root(ROOT-1,Hic)
-csubj:cleft(Hic,ponitis)
-cop(Hic,est)
-obl(ponitis,quem)
-root(ROOT-11,This)
-csubj:cleft(This,ye-set-down)
-cop(This,is)
-obl(ye-set-down,whom)
+<p>The <a href="la-pos/ADJ">adjective</a> <em>rari</em>, from <em>rarus</em>, here ‘scattered’, predicates that <u>while</u> doing that, the Britons are scattered (temporal interpretation), whereas an adverbial use, e.g. <em>raro</em>, would imply that they <u>rarely</u> made sorties, and a use as an adnominal modifier would mean that the <u>scattered (few) Britons</u> made sorties, but neither is the meaning of the original sentence.</p>
+
+<p>However, sometimes this difference may be very subtle, and the correct identification of an adverbial secondary predicate with respect to an adnominal modifier or an <a href="la-dep/appos">apposition</a> may not be obvious.</p>
+
+<p>In the following examples, the passages in the translations corresponding to adverbial secondary predications are boldfaced, and quite a variation in their renditions can be observed.</p>
+
+<pre><code class="language-sdparse">Nec margaritas profliga prodigus apris , nec preme Castalias indigna veste sorores ; at , precor , ora cie que te distinguere possint carmine vatisono , sorti comunis utrique . \n Nor pearls cast lavish to-boars , nor press Castalian undeign robe sisters ; but , I-pray , mouths stir which you distinguish they-may with-poetry diviner-sounding , to-sort common either .
+advcl:pred(profliga,prodigus)
+advcl:pred(cieo,communis)
+obl(communis,sorti)
+det(sorti,utrique)
+advcl:pred(cast,lavish)
+advcl:pred(stir,common)
+obl(common,to-sort)
+det(to-sort,either)
 </code></pre>
 
-<p>‘It is at this man’s table that you are dining.’ (<em>Satyricon</em>, C. Petronius)</p>
+<p>‘Cast not <strong>in prodigality</strong> thy pearls before the swine, nor load the Castalian sisters with a garb unworthy of them; but I pray thee summon utterance which may out-single thee, with bard-like song <strong>common to either lot</strong>.’ (<em>Eclogues</em> I, UDante; secondary predication of the subject)</p>
 
-<ul>
-  <li>Matrix clause:
-    <ul>
-      <li><em>Apud <strong>hunc</strong> cubitum ponitis.</em> (<a href="la-dep/obl">oblique</a> argument)</li>
-    </ul>
-  </li>
-</ul>
-
-<pre><code class="language-sdparse">ROOT Hanc domum | iam multos annos est | cum possideo et colo . \n ROOT This house already many years is when I-own and I-tend .
-root(ROOT-1,annos)
-csubj:cleft(annos,possideo)
-cop(annos,est)
-mark(possideo,cum)
-root(ROOT-16,years)
-csubj:cleft(years,I-own)
-cop(years,is)
-mark(I-own,when)
+<pre><code class="language-sdparse">Non ne dulcissimas veritates potero speculari ubique sub celo , ni prius inglorium , ymo ignominiosum populo Florentino , civitati me reddam ? \n Not maybe sweetest truths will-I-be-able to-observe anywhere under sky , when-not before inglorious , even ignominious to-people Florentine , to-city me-ACC I-will-give-back ?advcl:pred(reddam,inglorium)
+conj(inglorium,ignominiosum)
+advmod:emph(ignominiosum,ymo)
+obj(reddam,me)
+advcl:pred(I-will-give-back,inglorious)
+conj(inglorious,ignominious)
+advmod:emph(ignominious,even)
+obj(I-will-give-back,me-ACC)
 </code></pre>
 
-<p>‘This house, it is many years that I own it and live in it.’ (<em>Aulularia</em>, Plautus)</p>
+<p>‘Can I not under any sky contemplate the most precious truths, without I first return to Florence, <strong>disgraced, nay dishonoured</strong>, in the eyes of my fellow citizens?’ (<em>Letters</em> XII, UDante; secondary predication of the object)</p>
 
-<ul>
-  <li>Matrix clause:
-    <ul>
-      <li><em>Hanc domum <strong>iam multos annos</strong> possideo et colo.</em> (temporal <a href="la-dep/obl">oblique</a> argument)</li>
-    </ul>
-  </li>
-  <li><em>hanc domum</em> ‘this house’ is itself dislocated at the beginning of the sentence, but belongs to the clausal subject. This is probably an example of Latin as it was actually spoken.</li>
-</ul>
+<pre><code class="language-sdparse">vobis patres conscripti singulis et egi et agam gratias \n to-ye fathers enrolled single and I-have-moved and I-will-move thanks
+advcl:pred(egi,singulis)
+conj(egi,agam)
+obl:arg(egi,vobis)
+advcl:pred(I-have-moved,single)
+conj(I-have-moved,I-will-move)
+obl:arg(I-have-moved,to-ye)
+</code></pre>
+
+<p>‘You, members of the Senate, I have thanked <strong>separately</strong>, and will do so again.’ (<em>Post reditum in Senatu</em>, Cicero; secondary predication of the oblique)</p>
 
 <p>###References</p>
 
 <ul>
-  <li>Goria, E. (2013). <em>Towards a taxonomy of Latin cleft sentences</em>, Journal of Latin Linguistics, 12(2): 147 – 172</li>
+  <li>Pinkster, H. (1990). <em>Latin syntax and semantics</em>, Routledge.</li>
 </ul>
-
 
 
 <!-- "in other languages" links -->
 <hr/>
-
-csubj:cleft in other languages:
-
-[<a href="../../ga/dep/csubj-cleft.html">ga</a>]
-
 
 
 
