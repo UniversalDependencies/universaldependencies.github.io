@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>AUX_</title>
+    <title>xcomp:pred</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -36,9 +36,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-ja">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-sme">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ja/pos/AUX_.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_sme/dep/xcomp-pred.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -61,29 +61,95 @@
 	  </div>
 	</noscript>
 
-          <h2><code>AUX_</code>: auxiliary verb</h2>
+          <h2><code>xcomp:pred</code>: predicate</h2>
 
-<h3 id="definition">Definition</h3>
-
-<p>The definition of Japanese <code class="language-plaintext highlighter-rouge">AUX</code> is different from that in European language focused on modal verbs.<br />
-The <code class="language-plaintext highlighter-rouge">AUX</code> tag is used for words tagged by <code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞 in UniDic.
-In addition, <code class="language-plaintext highlighter-rouge">AUX</code> is also used for functional verbs / adjectives tagged by <code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能 or <code class="language-plaintext highlighter-rouge">adjective_i (bound)</code> / 形容詞-非自立可能 / <code class="language-plaintext highlighter-rouge">auxiliary_verb_stem</code> 形状詞-助動詞語幹 or 名詞-助動詞語幹/ when they are followed by a main verb or an adjective.</p>
+<p>We extend the label <code class="language-plaintext highlighter-rouge">xcomp</code> as a UD Irish subtype <code class="language-plaintext highlighter-rouge">xcomp:pred</code> to mark predicates of the substantive verb <em>bí</em> (to be), which can have predicate arguments in the form of adverbial, adjectival and prepositional phrases and for cases where a secondary predicate occurs.
+Note that this differs from Irish (<a href="">cop</a>) constructions.</p>
 
 <h3 id="examples">Examples</h3>
 
-<ul>
-  <li><em>食べ<b>た</b> </em> “eat”+PAST (<code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞) : <code class="language-plaintext highlighter-rouge">AUX</code> for past tense marker which follows a `VERB’ “食べ”</li>
-  <li><em>勉強<b>する</b> </em> “study” (<code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能) : verbify a functional noun</li>
-  <li><em>食べて<b>いる</b> </em> “be eating” (progressive) (<code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能) : a functional verb for progressive aspect</li>
-  <li><em>食べ<b>ない</b> </em> “not eat” (negation) (<code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞) : <code class="language-plaintext highlighter-rouge">AUX</code> for negation marker</li>
-  <li><em>食べる<b>よう</b>だ </em> “seem to eat”  (<code class="language-plaintext highlighter-rouge">adjective auxiliary_verb_stem</code> / 形状詞-助動詞語幹)</li>
-  <li><em>食べる<b>そう</b>だ </em> “hear that … eat” (<code class="language-plaintext highlighter-rouge">adjective auxiliary_verb_stem</code> / 名詞-助動詞語幹)
-<!-- Interlanguage links updated Čt lis 12 09:42:51 CET 2020 --></li>
-</ul>
+<p><em>Bhí sé <b>dochreidte</b> go raibh sé fós beo</em> `It was <b>unbelieveable</b> that he was still alive’</p>
+
+<h4 id="adjectival-predicate">Adjectival Predicate</h4>
+
+<pre><code class="language-sdparse">Bhí sé dochreidte go raibh sé fós beo \n Was it unbelieveable that was he still alive
+xcomp:pred(Bhí, dochreidte)
+</code></pre>
+
+<p><em>Tá aibítir iaraiglifeach na hÉigipte <b>léirithe</b> ar clé.</em> The Egyptian hieroglyphic alphabet is <b>shown</b> to the left.</p>
+
+<pre><code class="language-sdparse">Tá aibítir iaraiglifeach na hÉigipte léirithe ar clé. \n Is alphabet hieroglyphic of_the Egypt shown on left.
+xcomp:pred(Tá, léirithe)
+</code></pre>
+
+<h4 id="pp-predicate">PP Predicate</h4>
+
+<p><em>Bhí teas ollmhór <b>ann</b></em> `It was very hot <b>there</b>’</p>
+
+<pre><code class="language-sdparse">Bhí teas ollmhór ann \n Was heat great in_it 
+xcomp:pred(Bhí, ann)
+</code></pre>
+
+<p>a bhí ina dhiaidh sin ina <b>T.D.</b> `who was later a <b>T.D.</b>’</p>
+<pre><code class="language-sdparse">a bhí ina dhiaidh sin ina T.D. \n who was in_its after a T.D. 
+xcomp:pred(bhí, T.D.)
+</code></pre>
+
+<p>Note that the head of the prepositional phrase is the noun.</p>
+
+<p><em>Tá duine eile <b>i_mbun</b> peannaireachta</em> `Someone else is <b>in charge of</b> writing’</p>
+
+<pre><code class="language-sdparse">Tá duine eile i_mbun peannaireachta \n Is someone else in_charge_of writing 
+xcomp:pred(Tá, peannaireachta)
+case(peannaireachta, i_mbun)
+</code></pre>
+
+<h4 id="adverbial-predicate">Adverbial Predicate</h4>
+
+<p><em>Tá Meryl Streep go <b>hiontach</b> sa scannán sin</em> `Meryl Streep is <b>wonderful</b> in that movie’</p>
+
+<pre><code class="language-sdparse">Tá Meryl Streep go hiontach sa scannán sin \n Is Meryl Streep [] wonderful in movie that
+xcomp:pred(Tá, hiontach)
+</code></pre>
+
+<h4 id="secondary-predicate">Secondary Predicate</h4>
+
+<p>This label is also used for secondary predicates, i.e. where two predicates occur within one clause.</p>
+
+<p><em>Shín mé amach díreach romham í agus <b>fuair</b> mé an áit <b>folamh</b></em> `I stretched it out in front of me and <b>found</b> the place <b>empty</b>’</p>
+
+<pre><code class="language-sdparse">Shín mé amach díreach romham í agus fuair mé an áit folamh \n Stretched I out straight in_front_of_me it and found I the place empty 
+xcomp:pred(fuair, folamh)
+</code></pre>
+
+<p>Note that the secondary predicate can also attach either to the verbal noun of verbs other than the substantive verb <em>bí</em> (to be) or to a noun.</p>
+
+<p><em>D’fhéadfadh imreoir nó dhó seal a chaitheamh <b>díomhaoin</b> ón imirt dá bharr.</em> `Some players could spend <b>a while</b> off the pitch because of it’</p>
+
+<pre><code class="language-sdparse">D'fhéadfadh imreoir nó dhó seal a chaitheamh díomhaoin ón imirt dá bharr. \n Could a_player or two a_while to spending idle from playing to_its reason.
+xcomp:pred(chaitheamh, díomhaoin)
+</code></pre>
+
+<p>In the case of an adjectival secondary predicate attaching to a noun, note that the adjective in question does not agree with the noun in terms of gender or number.</p>
+
+<p><em>Bhí Monte Carlo faoi fhurú, an áit <b>beo</b> le Sasanaigh.</em> `Monte Carlo was a hive of activity, the place <b>teeming</b> with English people’</p>
+
+<pre><code class="language-sdparse">Bhí Monte Carlo faoi fhurú, an áit beo le Sasanaigh. \n Was Monte Carlo under activity, the place alive with English_people.
+xcomp:pred( áit, beo)
+</code></pre>
+
+<!-- Interlanguage links updated Čt lis 12 09:43:41 CET 2020 -->
 
 
 <!-- "in other languages" links -->
 <hr/>
+
+xcomp:pred in other languages:
+
+[<a href="../../ga/dep/xcomp-pred.html">ga</a>]
+
+[<a href="../../pl/dep/xcomp-pred.html">pl</a>]
+
 
 
 
@@ -197,7 +263,7 @@ In addition, <code class="language-plaintext highlighter-rouge">AUX</code> is al
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'ja';
+        Collections.listing['_current'] = 'sme';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
