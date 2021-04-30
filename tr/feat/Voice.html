@@ -69,8 +69,15 @@
 <tr>
   <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
   <td><a href="#Cau">Cau</a></td>
+  <td><a href="#CauCau">CauCau</a></td>
+  <td><a href="#CauCauPass">CauCau</a></td>
   <td><a href="#CauPass">CauPass</a></td>
+  <td><a href="#CauPassRcp">CauPassRcp</a></td>
+  <td><a href="#CauRcp">CauPass</a></td>
   <td><a href="#Pass">Pass</a></td>
+  <td><a href="#PassPass">PassPass</a></td>
+  <td><a href="#PassRfl">PassRfl</a></td>
+  <td><a href="#PassRcp">PassRcp</a></td>
   <td><a href="#Rcp">Rcp</a></td>
   <td><a href="#Rfl">Rfl</a></td>
 </tr>
@@ -79,25 +86,65 @@
 <p>Voice is a feature of verbs that helps map the traditional syntactic functions,
 such as subject and object, to semantic roles, such as agent and patient.</p>
 
-<p>(<strong>This feature, as defined currently, cannot correctly handle voice features on Turkish verbs.</strong>) See https://github.com/UniversalDependencies/docs/issues/197 for the discussion.</p>
+<p>(<strong>This feature, as defined currently, cannot correctly handle voice features on Turkish verbs.</strong>)
+The above combinations (of camel-case voice values) are a temporary solution to indicate “multiple
+voice” features, but they are certainly not the best way to indicate
+these features.
+See https://github.com/UniversalDependencies/docs/issues/197 and
+<a href="https://github.com/UniversalDependencies/docs/issues/125#issuecomment-112512320">#125</a>
+for the discussion.</p>
 
 <h3 id="pass-passive-voice"><a name="Pass"><code class="language-plaintext highlighter-rouge">Pass</code></a>: passive voice</h3>
 
 <p>The subject of the verb is affected by the action (patient).
 The doer (agent) is either unexpressed or it appears as a noun phrase marked with postposition <em>tarafından</em> “by” or suffix <em>-IncA</em>.</p>
 
-<p>In Turkish, a passive verb may get double passive suffixes, and intransitive verb may also be passivized.
+<p>In Turkish, a (transitive) verb may get two passive affixes (see below), and intransitive verb may also be passivized.
 These result in a voice that is called <a href="https://en.wikipedia.org/wiki/Impersonal_passive_voice">impersonal passive</a>.
+Similarly a single passive affix on an intransitive verb also
+indicates impersonal passive.
 The verb’s valency is reduced to zero with impersonal passives constructions,
-the verb cannot have a subject.
-(<strong>TODO</strong> We probably need a different label for impersonal passives)</p>
+the verb cannot have a subject.</p>
 
 <h4 id="examples">Examples</h4>
 
 <ul>
   <li><em>Ev boy<b>an</b>dı</em>  “The house was painted”</li>
   <li><em>Buradan düş<b>ül</b>ebilir</em> “One may fall from here” (impersonal, intransitive verb passivized)</li>
+</ul>
+
+<h2 id="passpass-double-passive-voice"><a name="PassPass"><code class="language-plaintext highlighter-rouge">PassPass</code></a>: double passive voice</h2>
+
+<p>When two passive suffixes are attached to a transitive verb, 
+typically it indicates an impersonal passive (see the discussion
+above). However, in some speakers may also use multiple passives for
+stylistic reasons (even for intransitive verbs), e.g.,</p>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
   <li><em>Böyle lafa kır-<b>ıl</b>-<b>ın</b>ır</em> “[One] can be hurt by such words” (Double passive resulting in impersonal. Göksel &amp; Kerslake 2005,p136)</li>
+  <li><em>Burada uyu-<b>n</b>-<b>ul</b>-abilir</em>  “One may sleep here / this place is good for sleeping” (stylistic, single passive suffix attached to an intransitive verb is sufficient for impersonal meaning, second one is redundant).</li>
+</ul>
+
+<h2 id="passrfl-combination-of-passive-and-reflexive-voices"><a name="PassRfl"><code class="language-plaintext highlighter-rouge">PassRfl</code></a>: combination of passive and reflexive voices</h2>
+
+<p>This language-specific value indicates that a verb with a reflexive suffix is passivized.</p>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li><em>Burada yıka-<b>n-ıl</b>-dı</em> “[one] washed himself here”</li>
+</ul>
+
+<h2 id="passrcp-combination-of-passive-and-reciprocal-voices"><a name="PassRcp"><code class="language-plaintext highlighter-rouge">PassRcp</code></a>: combination of passive and reciprocal voices</h2>
+
+<p>This language-specific value indicates that a verb with a reciprocal suffix is passivized.</p>
+
+<h4 id="examples-3">Examples</h4>
+
+<ul>
+  <li><em>Burada gör-<b>üş-ül</b>-dü</em> “[two or more people] met here” (lit: [two or more people] saw each other here)</li>
 </ul>
 
 <h3 id="rcp-reciprocal-voice"><a name="Rcp"><code class="language-plaintext highlighter-rouge">Rcp</code></a>: reciprocal voice</h3>
@@ -107,7 +154,7 @@ the verb cannot have a subject.
 <p>The reciprocal is expressed by the suffix <em>-Iş</em> however,
 the verb roots that can become reciprocal is limited.</p>
 
-<h4 id="examples-1">Examples</h4>
+<h4 id="examples-4">Examples</h4>
 
 <ul>
   <li><em>gör<b>üş</b>tüler</em> “they meet (lit: they see each other)”</li>
@@ -115,27 +162,30 @@ the verb roots that can become reciprocal is limited.</p>
 
 <h3 id="cau-causative-voice"><a name="Cau"><code class="language-plaintext highlighter-rouge">Cau</code></a>: causative voice</h3>
 
-<p>In Turkish, that this is a feature of verbs.
-Not to be caused with causative case of nouns in some languages.</p>
-
 <p>In causative constructions the subject is the entity “causing” the action. It generally translate to English as ‘cause/make/have/let/allow’ someone to perform action described by the main verb.
 Many (lexicalized) verbs that have unrelated roots in other languages are formed are related by the causative suffix in Turkish,
-e.g., <em>öl-</em> “die” and <em>öl-<b>dür</b></em> “kill” (to cause someone to die).
-Causative suffix is quite productive.
+e.g., <em>öl-</em> “die” and <em>öl-<b>dür</b></em> “kill” (to cause someone to die).</p>
+
+<h4 id="examples-5">Examples</h4>
+
+<ul>
+  <li><em>Evi boya-t-tık</em> “We had the house painted”</li>
+  <li><em>Ali evi Ahmet’e boya<b>t</b>tı</em> “Ali caused (paid/convinced/forced) Ahmet to paint the house”</li>
+  <li><em>Babam arabayı Ali ustaya yap<b>tır</b>mış</em> “My father made master Ali fix the car” (lit. father-my car-ACC Ali master-DAT fix-CAUS-PAST.NFH)</li>
+</ul>
+
+<h3 id="caucau-double-causative-voice"><a name="CauCau"><code class="language-plaintext highlighter-rouge">CauCau</code></a>: double causative voice</h3>
+
+<p>Causative suffix is quite productive.
 Multiple causative suffixes can be attached to a verb,
 and the number of causative suffixes are theoretically unbounded.
 In practice, however, the cases where more than two causative suffixes attached to a verb is rather rare.
 Often, two or more causative suffixes are used for emphasis and do not express multiple levels of causation.</p>
 
-<p>(<strong>TODO:</strong> multiple causatives need a solution.  See this <a href="https://github.com/UniversalDependencies/docs/issues/197">issue</a> for details.)</p>
-
-<h4 id="examples-2">Examples</h4>
+<h4 id="examples-6">Examples</h4>
 
 <ul>
-  <li><em>Evi boya-t-tık</em> “We had the house painted”</li>
-  <li><em>Evi boya-t-tır-tık</em> “We had someone to have the house painted”</li>
-  <li><em>Ali evi Ahmet’e boya<b>t</b>tı</em> “Ali caused (paid/convinced/forced) Ahmet to paint the house”</li>
-  <li><em>Babam arabayı Ali ustaya yap<b>tır</b>mış</em> “My father made master Ali fix the car” (lit. father-my car-ACC Ali master-DAT fix-CAUS-PAST.NFH)</li>
+  <li><em>Evi boya-<b>t</b>-&lt;/b&gt;tır&lt;/b&gt;-dık</em> “We had someone to have the house painted”</li>
 </ul>
 
 <h3 id="caupass-passive-causative-voice"><a name="CauPass"><code class="language-plaintext highlighter-rouge">CauPass</code></a>: passive causative voice</h3>
@@ -143,14 +193,40 @@ Often, two or more causative suffixes are used for emphasis and do not express m
 <p>This language-specific value indicates that a verb has been first causativized, then passivized.
 The meaning is “the subject was caused (by somebody) to do the action.”</p>
 
-<p>(<strong>TODO:</strong> Defining language-specific values as concatenations of existing values is a suboptimal
-solution, yet it is currently used in several UD languages. See issues <a href="https://github.com/UniversalDependencies/docs/issues/197">#197</a>
-and <a href="https://github.com/UniversalDependencies/docs/issues/125#issuecomment-112512320">#125</a>.)</p>
-
-<h4 id="examples-3">Examples</h4>
+<h4 id="examples-7">Examples</h4>
 
 <ul>
   <li><em>Ev Ahmet’e boya<b>-t-ıl-</b>dı</em> “Somebody caused Ahmet to paint the house / Ahmet was caused to paint the house”</li>
+</ul>
+
+<h3 id="caupass-passive-causative-causative-voice"><a name="CauCauPass"><code class="language-plaintext highlighter-rouge">CauPass</code></a>: passive causative causative voice</h3>
+
+<p>This language-specific value indicates that a verb has been first causativized twice, then passivized.
+The meaning is “the subject was caused (by somebody) to cause (by likely somebody else) do the action.”</p>
+
+<h4 id="examples-8">Examples</h4>
+
+<ul>
+  <li><em>Ev Ahmet’e boya<b>-t-tır-ıl-</b>dı</em> “Somebody caused someone else to cause Ahmet to paint the house (e.g., we asked Ahmet’s company to ask Ahmet to paint the house.)”</li>
+</ul>
+
+<h3 id="caurcp-causative-reciprocal-voice"><a name="CauRcp"><code class="language-plaintext highlighter-rouge">CauRcp</code></a>: causative reciprocal voice</h3>
+
+<p>This language-specific value indicates that a verb with a reciprocal suffix is causativized.
+The meaning is “the subject was caused (by somebody) to do the action.”</p>
+
+<p>It describes an event in which two agents (or groups of agents) perform the same action upon each other and another entity causes the action.</p>
+
+<h3 id="caupassrcp-causative-reciprocal-passive-voice"><a name="CauPassRcp"><code class="language-plaintext highlighter-rouge">CauPassRcp</code></a>: causative reciprocal passive voice</h3>
+
+<p>This language-specific value indicates that a verb with a reciprocal suffix is passivized and causativized.
+The meaning is “the subject was caused (by somebody) to do the action.”</p>
+
+<p>It describes an event in which two agents (or groups of agents) perform the same action upon each other and another entity causes the action.</p>
+<h4 id="examples-9">Examples</h4>
+
+<ul>
+  <li><em>Onlar gör<b>üş-tür-ül</b>mediler</em> “They were not allowed to meet (lit: they were made (by someone) not to see each other)”</li>
 </ul>
 
 <h3 id="rfl-reflexive-voice"><a name="Rfl"><code class="language-plaintext highlighter-rouge">Rfl</code></a>: reflexive voice</h3>
@@ -167,9 +243,10 @@ Like reciprocal, reflexive is rather unproductive, and a very limited set of ver
 
 <ul>
   <li><em>yıka<b>n</b></em> “to wash oneself”</li>
-  <li><em>giy<b>in</b></em> “to dress oneself”
-<!-- Interlanguage links updated Čt lis 12 09:43:08 CET 2020 --></li>
+  <li><em>giy<b>in</b></em> “to dress oneself”</li>
 </ul>
+
+<!-- Interlanguage links updated Čt lis 12 09:43:08 CET 2020 -->
 
 
 <!-- "in other languages" links -->
