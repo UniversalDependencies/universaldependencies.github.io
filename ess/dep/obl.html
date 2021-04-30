@@ -3,15 +3,15 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Yupik UD</title>
+    <title>obl</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
-    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
-    <script type="text/javascript" src="../lib/ext/jquery.timeago.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -38,7 +38,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-ess">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ess/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ess/dep/obl.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -61,74 +61,68 @@
 	  </div>
 	</noscript>
 
-          <h1 id="ud-for-yupik-">UD for Yupik <span class="flagspan"><img class="flag" src="../../flags/svg/US-AK.svg" /></span></h1>
+          <h2><code>obl</code>: oblique argument or adjunct</h2>
 
-<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+<p>The <code class="language-plaintext highlighter-rouge">obl</code> relation is used for oblique nominal arguments and adjuncts of verbs, adjectives or adverbs.</p>
 
-<ul>
-  <li>Words are generally delimited by whitespace or punctuation.</li>
-  <li>Hyphenated words are not further tokenized as hyphens may be used to separate foreign words (e.g. English words) from Yupicizing postbase and/or Yupik ending.</li>
-  <li>Words consisting of multiple morphemes are further analyzed into morphemes based on the Yupik morphological analyzer (Chen et al., 2020).</li>
-  <li>In order to enable the use of morphemes as tokens, we adapted the existing “multiword expressions” annotation mechanism.</li>
-  <li>A script is provided in the treebank repo to convert the morpheme-level annotations to word-level annotations.</li>
-</ul>
+<p><code class="language-plaintext highlighter-rouge">obl</code> is a <a href="cs-pos/NOUN">noun</a> (or noun phrase) functioning as a
+non-core (oblique) argument or adjunct.
+This means that it functionally corresponds to an adverbial when it attaches to a verb, adjective or other adverb.</p>
 
-<h2 id="morphology">Morphology</h2>
+<pre><code class="language-sdparse">Potkal jsem ho minulý čtvrtek . \n Met I-have him last Thursday .
+obl(Potkal, čtvrtek)
+obl(Met, Thursday)
+</code></pre>
+<!-- Interlanguage links updated Čt lis 12 09:43:35 CET 2020 -->
 
-<h3 id="tags">Tags</h3>
 
-<ul>
-  <li>A typical Yupik word is nominals (<a href="">NOUN</a>), verbals (<a href="">VERB</a>) or particles (<a href="">PART</a>).</li>
-  <li>If a word is further analyzed into morphemes, noun-yielding derivational morphemes are tagged as <a href="">NOUN</a> and verb-yielding derivational morphemes are tagged as <a href="">VERB</a>. See the POS tag documentations for examples.</li>
-  <li>Particles (<a href="">PART</a>) do not inflect, so they are not further analyzed into morphemes.</li>
-  <li><a href="">ADV</a> is used for interrogative adverbs.</li>
-  <li><a href="">PRON</a> is used for demonstrative pronouns and interrogative pronouns.</li>
-  <li><a href="">DET</a> is used for interrogative determiners.</li>
-  <li><a href="">CCONJ</a> is used for an Yupik enclitic (<em>=llu</em> “and”).</li>
-  <li><a href="">NUM</a> is used for numerals.</li>
-  <li><a href="">X</a> is used for inflectional suffixes.</li>
-  <li><a href="">ADJ</a>, <a href="">ADP</a>, <a href="">AUX</a>, <a href="">INTJ</a>, <a href="">PROPN</a>, <a href="">SCONJ</a>, and <a href="">SYM</a> do not occur in the corpus.</li>
-</ul>
+<!-- "in other languages" links -->
+<hr/>
 
-<h3 id="features">Features</h3>
+obl in other languages:
 
-<ul>
-  <li>Unpossessed nouns inflect for <a href="">Case</a> and <a href="">Number</a>.</li>
-  <li>Possessed nouns also inflect for <a href="">Number[psor]</a> and <a href="">Person[psor]</a> to encode the possessor’s number and person information.</li>
-  <li>Verbs inflect for <a href="">Mood</a>, <a href="">Number[obj]</a>, <a href="">Number[subj]</a>, <a href="">Person[obj]</a> and <a href="">Person[subj]</a>. Depending on the verb’s valency (<a href="">Subcat</a>), the verb may to encode the number and person information about the subject only or both the subject and object.</li>
-  <li>Yupik inflections distinguish third person reflexive (also known as fourth person) from third person. In possessed nouns, <a href="">Reflex</a> is used when the possessor refers back to the subject. In verbs, <a href="">Reflex[obj]</a> or <a href="">Reflex[subj]</a> is used when the verb’s object or subject refers back to the subject.</li>
-</ul>
+[<a href="../../bg/dep/obl.html">bg</a>]
 
-<h2 id="syntax">Syntax</h2>
+[<a href="../../bm/dep/obl.html">bm</a>]
 
-<ul>
-  <li>Yupik does not have a fixed word order.</li>
-  <li>Yupik uses absolutive-ergative to distinguish subjects (<a href="">nsubj</a>) and objects (<a href="">obj</a>). The subject of an intransitive verb is in absolutive case. The subject of a transitive verb is in ergative case. The direct object of a transitive verb is in absolutive case.</li>
-  <li>Nouns in ablative-modalis case may be used as an object of an intransitive verb. In such cases, those nouns are understood as “an indefinite object” (Jacobson 2001, p.20). Because such nouns are not encoded in the verb, we tagged them as oblique nominals in ablative-modalis case (<a href="">obl:mod</a>) and distinguish them from other oblique nominals (<a href="">obl</a>).</li>
-  <li>There are no known auxiliaries or copulas as stand-alone words. However, some derivational suffixes seem to play the role of auxiliaries or copulas and tagged as such.</li>
-  <li>We used <a href="">dep:aux</a> to tag those derivational suffixes that act like auxiliaries.</li>
-  <li>We used <a href="">dep:cop</a> for a copula-like derviational suffix.</li>
-  <li><a href="">dep:mark</a> is used for derivational suffixes that act like a marker (c.f. <a href="">mark</a>)</li>
-  <li><a href="">nmod:arg</a> is used when a nominal base is used as the argument of a noun-elaborating (N$\rightarrow$N) derivational suffix.</li>
-  <li><a href="">dep:infl</a> is used for inflectional suffixes.</li>
-  <li><a href="">dep:ana</a> is used for the anaphoric prefix.</li>
-  <li><a href="">dep:emo</a> is used for emotional roots.</li>
-  <li><a href="">dep:pos</a> is used for postural roots.</li>
-</ul>
+[<a href="../../cop/dep/obl.html">cop</a>]
 
-<h2 id="treebanks">Treebanks</h2>
+[<a href="../../cs/dep/obl.html">cs</a>]
 
-<p>There is <a href="../treebanks/ess-comparison.html">1</a> Yupik UD treebank:</p>
+[<a href="../../de/dep/obl.html">de</a>]
 
-<ul>
-  <li><a href="../treebanks/ess_sli/index.html">Yupik-SLI</a></li>
-</ul>
+[<a href="../../fr/dep/obl.html">fr</a>]
 
-<h2 id="references">References</h2>
-<ul>
-  <li>Emily Chen, Hyunji Hayley Park, and Lane Schwartz. 2020. <a href="https://www.aclweb.org/anthology/2020.lrec-1.326">Improved finite-state morphological analysis for St. Lawrence Island Yupik using paradigm function morphology.</a> In Proceedings of the 12th Language Resources and Evaluation Conference, pages 2676–2684, Marseille, France. European Language Resources Association.</li>
-  <li>Steven A. Jacobson. 2001. A Practical Grammar of the St. Lawrence Island / Siberian Yupik Eskimo Language, Preliminary Edition, 2nd edition. Alaska Native Language Center, Fairbanks, Alaska.</li>
-</ul>
+[<a href="../../fro/dep/obl.html">fro</a>]
+
+[<a href="../../ga/dep/obl.html">ga</a>]
+
+[<a href="../../gsw/dep/obl.html">gsw</a>]
+
+[<a href="../../hy/dep/obl.html">hy</a>]
+
+[<a href="../../ja/dep/obl.html">ja</a>]
+
+[<a href="../../kpv/dep/obl.html">kpv</a>]
+
+[<a href="../../myv/dep/obl.html">myv</a>]
+
+[<a href="../../pcm/dep/obl.html">pcm</a>]
+
+[<a href="../../ru/dep/obl.html">ru</a>]
+
+[<a href="../../sv/dep/obl.html">sv</a>]
+
+[<a href="../../swl/dep/obl.html">swl</a>]
+
+[<a href="../../tr/dep/obl.html">tr</a>]
+
+[<a href="../../u/dep/obl.html">u</a>]
+
+[<a href="../../yue/dep/obl.html">yue</a>]
+
+[<a href="../../zh/dep/obl.html">zh</a>]
+
 
 
 
@@ -136,7 +130,7 @@
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../'; // filled in by jekyll
+    var root = '../../'; // filled in by jekyll
     head.js(
         // External libraries
         root + 'lib/ext/jquery.min.js',
