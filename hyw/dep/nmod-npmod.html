@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>AUX_</title>
+    <title>nmod:npmod</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -36,9 +36,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-ja">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-hyw">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ja/pos/AUX_.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hyw/dep/nmod-npmod.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -61,29 +61,54 @@
 	  </div>
 	</noscript>
 
-          <h2><code>AUX_</code>: auxiliary verb</h2>
+          <h2><code>nmod:npmod</code>: noun phrase as nominal modifier</h2>
 
-<h3 id="definition">Definition</h3>
+<p>This relation is a subtype of the <a href="">nmod</a> relation, which captures the cases where something syntactically a noun phrase is used as a nominal modifier in a sentence.</p>
 
-<p>The definition of Japanese <code class="language-plaintext highlighter-rouge">AUX</code> is different from that in European language focused on modal verbs.<br />
-The <code class="language-plaintext highlighter-rouge">AUX</code> tag is used for words tagged by <code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞 in UniDic.
-In addition, <code class="language-plaintext highlighter-rouge">AUX</code> is also used for functional verbs / adjectives tagged by <code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能 or <code class="language-plaintext highlighter-rouge">adjective_i (bound)</code> / 形容詞-非自立可能 / <code class="language-plaintext highlighter-rouge">auxiliary_verb_stem</code> 形状詞-助動詞語幹 or 名詞-助動詞語幹/ when they are followed by a main verb or an adjective.</p>
+<pre><code class="language-sdparse">text = Ամէն կողմ շլացուցիչ սպիտակութիւն։ \n ...
+1	Ամէն	ամէն	DET	_	PronType=Tot	2	det	_	Translit=Amēn|LTranslit=amēn
+2	կողմ	կողմ	NOUN	_	Animacy=Nhum|Case=Nom|Definite=Ind|Number=Sing	4	nmod:npmod	_	Translit=koġm|LTranslit=koġm
+3	շլացուցիչ	շլացուցիչ	ADJ	_	Degree=Pos	4	amod	_	Translit=šlac’owc’ič|LTranslit=šlac’owc’ič
+4	սպիտակութիւն	սպիտակութիւն	NOUN	_	Animacy=Nhum|Case=Nom|Definite=Ind|Number=Coll	0	root	_	Translit=spitakowt’iwn|LTranslit=spitakowt’iwn|SpaceAfter=No
+5	։	։	PUNCT	_	_	4	punct	_	Translit=.|LTranslit=.
+</code></pre>
 
-<h3 id="examples">Examples</h3>
+<pre><code class="language-sdparse">Հրաւիրեալներէն հազիւ մէկ երկուքը գիտէին այդ հանգամանքը։ \n ...
+1	Հրաւիրեալներէն	հրաւիրեալ	NOUN	_	Animacy=Hum|Case=Abl|Definite=Def|Number=Plur	3	nmod:npmod	_	Translit=Hrawirealnerēn|LTranslit=hrawireal
+2	հազիւ	հազիւ	ADV	_	_	3	advmod:emph	_	Translit=haziw|LTranslit=haziw
+3	մէկ	մէկ	NOUN	_	Animacy=Hum|Case=Nom|Definite=Ind|Number=Sing	5	nsubj	_	Translit=mēk|LTranslit=mēk
+4	երկուքը	երկուք	NOUN	_	Animacy=Hum|Case=Nom|Definite=Def|Number=Sing	3	flat:range	_	Translit=erkowk’ë|LTranslit=erkowk’
+5	գիտէին	գիտեմ	VERB	_	Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Subcat=Tran|Tense=Imp|VerbForm=Fin|Voice=Act	0	root	_	Translit=gitēin|LTranslit=gitem
+6	այդ	այդ	DET	_	Deixis=Med|PronType=Dem	7	det	_	Translit=ayd|LTranslit=ayd
+7	հանգամանքը	հանգամանք	NOUN	_	Animacy=Nhum|Case=Nom|Definite=Def|Number=Sing	5	obj	_	Translit=hangamank’ë|LTranslit=hangamank’|SpaceAfter=No
+8	։	։	PUNCT	_	_	5	punct	_	Translit=.|LTranslit=.
+</code></pre>
 
-<ul>
-  <li><em>食べ<b>た</b> </em> “eat”+PAST (<code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞) : <code class="language-plaintext highlighter-rouge">AUX</code> for past tense marker which follows a `VERB’ “食べ”</li>
-  <li><em>勉強<b>する</b> </em> “study” (<code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能) : verbify a functional noun</li>
-  <li><em>食べて<b>いる</b> </em> “be eating” (progressive) (<code class="language-plaintext highlighter-rouge">verb (bound)</code> / 動詞-非自立可能) : a functional verb for progressive aspect</li>
-  <li><em>食べ<b>ない</b> </em> “not eat” (negation) (<code class="language-plaintext highlighter-rouge">auxiliary_verb</code> / 助動詞) : <code class="language-plaintext highlighter-rouge">AUX</code> for negation marker</li>
-  <li><em>食べる<b>よう</b>だ </em> “seem to eat”  (<code class="language-plaintext highlighter-rouge">adjective auxiliary_verb_stem</code> / 形状詞-助動詞語幹)</li>
-  <li><em>食べる<b>そう</b>だ </em> “hear that … eat” (<code class="language-plaintext highlighter-rouge">adjective auxiliary_verb_stem</code> / 名詞-助動詞語幹)
-<!-- Interlanguage links updated Čt lis 12 09:42:51 CET 2020 --></li>
-</ul>
+<p>In conjunction with the <a href="">case</a> relation, <code class="language-plaintext highlighter-rouge">nmod:npmod</code> provides a uniform analysis:</p>
+
+<pre><code class="language-sdparse">Համբուրեց զայն, աչքին մէջ արցունքէ կաթիլով մը: \n ...
+1	Համբուրեց	համբուրել	VERB	_	Aspect=Perf|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Subcat=Tran|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	Translit=Hambowrec’|LTranslit=hambowrel
+2	զայն	ան	PRON	_	Case=Acc|Number=Sing|Person=3|PronType=Prs	1	obj	_	Translit=zayn|LTranslit=an|SpaceAfter=No
+3	,	,	PUNCT	_	_	7	punct	_	Translit=,|LTranslit=,
+4	աչքին	աչք	NOUN	_	Animacy=Nhum|Case=Dat|Definite=Def|Number=Sing	7	nmod:npmod	_	Translit=ačk’in|LTranslit=ačk’
+5	մէջ	մէջ	ADP	_	AdpType=Post	4	case	_	Translit=mēǰ|LTranslit=mēǰ
+6	արցունքէ	արցունք	NOUN	_	Animacy=Nhum|Case=Abl|Definite=Ind|Number=Sing	7	nmod	_	Translit=arc’ownk’ē|LTranslit=arc’ownk’
+7	կաթիլով	կաթիլ	NOUN	_	Animacy=Nhum|Case=Ins|Definite=Ind|Number=Sing	1	obl	_	Translit=kat’ilov|LTranslit=kat’il
+8	մը	մը	DET	_	PronType=Art	7	det	_	Translit=më|LTranslit=më|SpaceAfter=No
+9	:	:	PUNCT	_	Foreign=Yes	1	punct	_	Translit=.|LTranslit=.
+</code></pre>
+<!-- Interlanguage links updated Čt lis 12 09:43:31 CET 2020 -->
 
 
 <!-- "in other languages" links -->
 <hr/>
+
+nmod:npmod in other languages:
+
+[<a href="../../en/dep/nmod-npmod.html">en</a>]
+
+[<a href="../../hy/dep/nmod-npmod.html">hy</a>]
+
 
 
 
@@ -197,7 +222,7 @@ In addition, <code class="language-plaintext highlighter-rouge">AUX</code> is al
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'ja';
+        Collections.listing['_current'] = 'hyw';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
