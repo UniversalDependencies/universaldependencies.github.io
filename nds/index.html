@@ -202,7 +202,56 @@ while <code class="language-plaintext highlighter-rouge">Number=Sing|Person=2|Po
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
+
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase in the nominative case, without preposition.
+    <ul>
+      <li>A finite subordinate clause may serve as the subject and is labeled <code class="language-plaintext highlighter-rouge">csubj</code>.</li>
+      <li>If a verb is to serve as the subject, it becomes a verbal noun
+(its form resembles the infinitive, or especially in older language the present participle, but it gets the neuter singular nominative article),
+thus it is labeled <code class="language-plaintext highlighter-rouge">nsubj</code>.</li>
+    </ul>
+  </li>
+  <li>Objects defined in the Low Saxon grammar may be bare noun phrases in accusative, and in dialects which have preserved the dative-accusative distinction, a dative object is possible as well. Bare genitive phrases do not generally occur as objects in the modern language anymore. 
+Prepositional phrases in accusative (or also dative, in some dialects) can function as objects as well. 
+For the purpose of UD the objects are divided to core objects, labeled <a href="">obj</a> or <a href="">iobj</a>,
+and oblique objects, labeled <a href="">obl:arg</a>.
+    <ul>
+      <li>Bare accusative (and dative) objects are considered core.</li>
+      <li>All prepositional objects are considered oblique.</li>
+      <li>Accusative objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
+      <li>If a verb subcategorizes for the infinitive (e.g. phasal verbs or verbs of control), the infinitival complement is labeled <a href="">xcomp</a>.</li>
+      <li>If a verb subcategorizes for two core objects, one of them accusative (or <code class="language-plaintext highlighter-rouge">ccomp</code>) and the other non-accusative,
+then the non-accusative object is labeled <a href="">iobj</a>.
+Core nominal objects in other situations are labeled just <a href="">obj</a>.</li>
+    </ul>
+  </li>
+  <li>Adjuncts (or, following the German grammar, adverbial modifiers realized as noun phrases) are usually
+prepositional phrases, but they can be bare noun phrases as well. They are labeled <a href="">obl</a>:
+    <ul>
+      <li>Temporal modifiers realized as accusative noun phrases: <em>ik werke elken dag</em> “I work every day.”</li>
+      <li>All prepositional phrases that are not prepositional objects (i.e., their role and form is not defined lexically by the predicate)
+are adjuncts.</li>
+    </ul>
+  </li>
+  <li>Extra attention has to be paid to the reflexive pronoun <em>sik</em>. It can function as:
+    <ul>
+      <li>Core object (<a href="">obj</a> or <a href="">iobj</a>): <em>hee sügt sik in’n spegel</em> “he sights himself in the mirror.”</li>
+      <li>Reciprocal core objects (<code class="language-plaintext highlighter-rouge">obj</code> or <code class="language-plaintext highlighter-rouge">iobj</code>): <em>see küsset sik</em> “they are kissing each other.”</li>
+      <li>Inherently reflexive verb, cannot exist without the reflexive clitic, and the clitic cannot be substituted by an irreflexive pronoun
+or a noun phrase.
+In accord with the current UD guidelines, we label the relation
+between the verb and the clitic as <a href="">expl:pv</a>, not <code class="language-plaintext highlighter-rouge">compound</code>. Example: <em>wy mussen uns spoden</em> “we had to hurry.”</li>
+    </ul>
+  </li>
+  <li>In passive clauses, the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.
+    <ul>
+      <li>The auxiliary verb in periphrastic passive is labeled <a href="">aux:pass</a>.</li>
+      <li>If the demoted agent is present, it has the form of a bare instrumental phrase and its relation is labeled <a href="">obl:agent</a>.</li>
+    </ul>
+  </li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
