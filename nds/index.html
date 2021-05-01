@@ -67,6 +67,8 @@
 
 <p>A part of this documentation is copied from the current German documentation <a href="https://universaldependencies.org/de/index.html">UD for German</a>, which can mostly be applied to Low Saxon as well.</p>
 
+<p>Since there is no official common standard spelling for Low Saxon, the examples provided here are given in the interregional spelling suggestion used e.g. by the Dutch Low Saxon Wikipedia (<em>Nysassiske Skryvwyse</em>, abbreviated “NSS”, described in more detail here: https://skryvwyse.eu/ (only in Low Saxon)) and lemma forms are given in both the NSS and normalised Middle Low Saxon following the <em>Mittelniederdeutsches Handwörterbuch</em> by Agathe Lasch et al.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
@@ -101,7 +103,7 @@ act independently in a given sentence; that includes possessives.</li>
       <li><em>sköälen</em>/<em>schȫlen¹</em>, <em>willen</em>/<em>willen¹</em> and <em>werden</em>/<em>wērden¹</em> for future tense (<em>ik skal binnenkört dår weasen</em> “I will arrive soon”)</li>
       <li>modal verbs <em>dörven</em> “may”, <em>künnen</em> “can”, <em>möägen</em>/<em>mȫgen</em> “may, want”, <em>möten</em>/<em>mö̂ten²</em> “must”, <em>sköälen</em>/<em>schȫlen¹</em> “shall”, <em>willen</em>/<em>willen¹</em> “want”</li>
       <li><em>doon</em>/<em>dôn¹</em>, <em>willen</em>/<em>willen¹</em> and <em>werden</em>/<em>wērden¹</em> for a periphrastic conditional (<em>see dea em lever besöken</em> “she would prefer to visit him“)</li>
-      <li>The verbs <em>weasen/_wēsen²</em>, <em>hebben</em>, <em>doon</em>/<em>dôn¹</em> and <em>werden</em>/<em>wērden¹</em> can also occur as normal verbs (<a href="">VERB</a>), meaning “be, have, do, become”.</li>
+      <li>The verbs <em>weasen</em>/<em>wēsen²</em>, <em>hebben</em>, <em>doon</em>/<em>dôn¹</em> and <em>werden</em>/<em>wērden¹</em> can also occur as normal verbs (<a href="">VERB</a>), meaning “be, have, do, become”.</li>
     </ul>
   </li>
   <li>There are four main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
@@ -141,7 +143,56 @@ However, case forms of nouns are extremely ambiguous and most of the time the ca
 
 <ul>
   <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>) and has one of three possible values: <code class="language-plaintext highlighter-rouge">Pos</code>, <code class="language-plaintext highlighter-rouge">Cmp</code>, <code class="language-plaintext highlighter-rouge">Sup</code>.</li>
-  <li><a href="">Polarity</a> is used to mark the negative particle <em>nicht,</em> i.e., only the <code class="language-plaintext highlighter-rouge">Neg</code> value is used.</li>
+  <li><a href="">Polarity</a> is used to mark the negative particle <em>nich/_nicht¹</em>, i.e., only the <code class="language-plaintext highlighter-rouge">Neg</code> value is used.</li>
+</ul>
+
+<h4 id="verbal-features">Verbal Features</h4>
+
+<ul>
+  <li>Finite verbs always have one of two values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Ind</code> or <code class="language-plaintext highlighter-rouge">Imp</code>. Some dialects have preserved separate forms for <code class="language-plaintext highlighter-rouge">Sub</code> (called <em>konjunktiv</em> in Low Saxon).</li>
+  <li>Indicative and subjunctive verbs always have one of two values of <a href="">Tense</a>: <code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Pres</code>.
+    <ul>
+      <li>In the subjunctive mood, the tense feature is used to distinguish <em>konjunktiv I</em> (<code class="language-plaintext highlighter-rouge">Pres</code>) and <em>konjunktiv II</em> (<code class="language-plaintext highlighter-rouge">Past</code>).</li>
+      <li>Imperative forms do not have the <code class="language-plaintext highlighter-rouge">Tense</code> feature.</li>
+      <li>The <code class="language-plaintext highlighter-rouge">Tense</code> feature is also used to distinguish present and past participles (<em>singen(d)</em> “singing” vs. <em>sungen</em> “sung”).</li>
+    </ul>
+  </li>
+  <li>In the plural, verbs do not commonly distinguish person and consequently are only tagged for <code class="language-plaintext highlighter-rouge">Plur</code>. Some dialects may show occasional exceptions to this rule in particular verbs (maybe due to influence from German or Dutch?), in case of which the person should be tagged.</li>
+  <li>The features <a href="">Aspect</a> and <a href="">Voice</a> are not used in Low Saxon because
+both the perfect aspect and the passive voice are expressed periphrastically.</li>
+</ul>
+
+<h4 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h4>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>), adjectives (<a href="">ADJ</a>) and determiners (<a href="">DET</a>).</li>
+  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>myn</em>/<em>mîn²</em> “my”).</li>
+  <li>The <a href="">Reflex</a> feature is always used together with <code class="language-plaintext highlighter-rouge">PronType=Prs</code> and it marks reflexive pronouns <em>(my/mî, dy/dî, sik/sik¹, uns/uns², ju/iü²).</em>
+Note that their forms in the first and second person are ambiguous with irreflexive accusative forms, and the <code class="language-plaintext highlighter-rouge">Reflex</code> feature
+must be decided by context.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">3</code>.
+With personal possessive determiners (<a href="">DET</a>), the feature actually encodes the person of the possessor.
+Person is not marked on other types of pronouns and on nouns, although they can be almost always interpreted as the 3rd person.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
+  <li>The <a href="">Polite</a> feature distinguishes informal second-person pronouns (<em>du</em>/<em>dû¹</em>, <em>jy</em>/<em>gî²</em>, <code class="language-plaintext highlighter-rouge">Polite=Infm</code>)
+from the formal <em>Jy</em>/<em>gî²</em> and <em>See</em>/<em>sê²</em> (<code class="language-plaintext highlighter-rouge">Polite=Form</code>).
+The formal pronoun <em>Jy</em>/<em>gî²</em> is phonologically equivalent in all its case forms to the second-person plural <em>Jy</em>/<em>gî²</em>, 
+and the formal pronoun <em>See</em>/<em>sê²</em> is phonologically equivalent in part of its case forms to the third-person plural <em>see</em>/<em>sê²</em>
+but they are distinguished in orthography by the capital letters <em>J</em> and <em>S</em>.
+We tag the formal pronoun <em>See</em>/<em>sê²</em> as second person (because that is its meaning) and we do not tag formal pronouns for number (because they are used both
+for singular and plural addressees) despite the fact that they combine with plural verbs.
+The parser must learn that <code class="language-plaintext highlighter-rouge">Person=2|Polite=Form</code> subject attaches to <code class="language-plaintext highlighter-rouge">Number=Plur</code> verbs,
+while <code class="language-plaintext highlighter-rouge">Number=Sing|Person=2|Polite=Infm</code> subject attaches to <code class="language-plaintext highlighter-rouge">Number=Sing|Person=2</code> verbs.</li>
+</ul>
+
+<h4 id="other-features">Other Features</h4>
+
+<ul>
+  <li>The following universal features are not used in German: <a href="">Animacy</a>, <a href="">Evident</a>.</li>
 </ul>
 
 <hr />
