@@ -104,6 +104,271 @@
   <li><a href="../treebanks/hyw_armtdp/index.html">Western_Armenian-ArmTDP</a></li>
 </ul>
 
+<hr />
+
+<h1 id="ud-for-armenian-eastern-">UD for Armenian (Eastern) <span class="flagspan"><img class="flag" src="../../flags/svg/AM.svg" /></span></h1>
+
+<h2 id="tokenization-and-word-segmentation-1">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>Words are generally delimited by whitespace or punctuation. Description of exceptions follows.</li>
+  <li>According to typographical rules, many punctuation marks are attached to a neighboring word. We always tokenize them as separate tokens (words); this holds even for hyphenated compounds such as <em>անգլո-ամերիկյան</em> “anglo-american” (three tokens) and for abbreviations such as <em>թ.</em> “year” (two tokens).</li>
+  <li>Numerical expressions (including dates, expressions with hyphen and Armenian endings) are treated as single words and may contain punctuation or whitespace: <em>1.1.1970</em>, <em>1/1/1970</em>, <em>11:00</em>, <em>2 000</em>, <em>10-15</em>, <em>2,15</em>, <em>1-ին</em> “1st”, <em>1700-ամյա</em> “1700-year-old”, <em>ՆԱՏՕ-ական</em> “belonging-to-NATO”.</li>
+  <li>Words, containing “infixed” punctuation (e.g. question, exclamation, emphasis and Armenian abbreviation marks), as in <em>ինչո՞ւ = ինչու + ՞</em> “why?”, are treated as multi-word tokens and segmented to individual syntactic words. For more details, see <a href="tokenization.html">tokenization</a>.</li>
+</ul>
+
+<h2 id="morphology-1">Morphology</h2>
+
+<h3 id="tags-1">Tags</h3>
+
+<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="pos/index.html">Armenian POS tags</a>
+and <a href="feat/index.html">Armenian features</a>.</p>
+
+<ul>
+  <li>Armenian uses all 17 universal POS categories, including particles (<a href="">PART</a>). The exact list of particles is in the stage of being worked out.</li>
+  <li>The tag <a href="">DET</a> is used for articles and pronominal words used with a determiner function, including possessives (the traditional grammar does not define determiners, but distinguishes pronominal modifiers). The tag <a href="">PRON</a> is reserved for pronouns occurring as the head of a noun phrase. Pronominal quantifiers (which the traditional grammar includes in pronouns) are <a href="">DET</a> as well.</li>
+  <li>Eastern Armenian has one auxiliary verb (<a href="">AUX</a>), <em>եմ</em> (“to be”), but the lemma <em>լինել</em> is also possible.
+This is in fact just an aspectual variant of <em>եմ</em>, but this is a separate lemma because
+the morphological process that relates it to <em>եմ</em> is considered derivational. There is another auxiliary <em>տալ</em> (“cause/make someone to perform action”) for periphrastic causatives.
+Auxiliaries are all verbal in Eastern Armenian and can be grouped into three types:
+    <ul>
+      <li>The copula with non-verbal predicates.</li>
+      <li>Periphrastic present tense (present form of <em>եմ</em> + resultative participle of the main verb).</li>
+      <li>Periphrastic past tense (present form of <em>եմ</em> + perfect of the main verb; imperfect form of <em>եմ</em> + imperfective, perfect, future-I and resultative participles of the main verb).</li>
+      <li>Periphrastic future tense (present form of <em>եմ</em> + future-I participle of the main verb).</li>
+      <li>Periphrastic negated conditional (negated present or imperfect form of <em>եմ</em> + connegative form of the main verb).</li>
+      <li>Periphrastic “secondary compound tenses” (any form of <em>լինել</em>, including periphrastic forms, + processual, resultative and future-I participles of the main verb).</li>
+      <li>Periphrastic causative (any form of <em>տալ</em>, including periphrastic forms, + infinitve of the main verb).</li>
+    </ul>
+  </li>
+  <li>In other words, <em>եմ, լինել</em> and <em>տալ</em> are the only lemmas that occur with the <a href="">AUX</a> tag (Exception: finite existentials <em>կամ</em> and <em>ունեմ</em> in combination with resultative participle).
+Note, that <em>եմ</em> and <em>լինել</em> may also occur as normal <a href="">VERB</a> if they are used in purely existential sentences
+(i.e. they don’t indicate location because if they do, then <em>եմ</em> and <em>լինել</em> will be treated as copula).</li>
+  <li>Verbs with modal meaning are not considered to be auxiliaries in Armenian.</li>
+  <li>There are five main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Participle <code class="language-plaintext highlighter-rouge">Part</code>, tagged <a href="">VERB</a> or <a href="">AUX</a> (in so-called “secondary compound tenses”).</li>
+      <li>Converb <code class="language-plaintext highlighter-rouge">Conv</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Gerundive <code class="language-plaintext highlighter-rouge">Gdv</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Verbal noun <code class="language-plaintext highlighter-rouge">Vnoun</code>, tagged <a href="">NOUN</a>.</li>
+    </ul>
+  </li>
+  <li>Though the resultative, subject and future-I participles can be used adjectivally and can be negated they are generally tagged <a href="">VERB</a>. The only exception is future-II participles, they are tagged <a href="">ADJ</a>.</li>
+</ul>
+
+<h3 id="nominal-features-1">Nominal Features</h3>
+
+<ul>
+  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and some of <a href="">PRON</a>) have an inherent <a href="">Animacy</a> feature with one of three values: <code class="language-plaintext highlighter-rouge">Hum</code>, <code class="language-plaintext highlighter-rouge">Nhum</code>. Note that this may be changed in future. Nominal words could be treated as having inherent <code class="language-plaintext highlighter-rouge">Hum</code>, <code class="language-plaintext highlighter-rouge">Nhum</code> and further would be subclassified by the layered <code class="language-plaintext highlighter-rouge">Animacy[gram]</code> values <code class="language-plaintext highlighter-rouge">Anim</code> vs. <code class="language-plaintext highlighter-rouge">Inan</code>.</li>
+  <li>The two main values of the <a href="">Number</a> feature are <code class="language-plaintext highlighter-rouge">Sing</code> and <code class="language-plaintext highlighter-rouge">Plur</code>. The following parts of speech inflect for number:
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite).
+    <ul>
+      <li>Selected nouns are plurale tantum (<code class="language-plaintext highlighter-rouge">Ptan</code>) or singulare tantum (<code class="language-plaintext highlighter-rouge">Coll</code>). These two values are lexical, and cannot be used with
+the agreeing verbs. They also never occur with pronouns. <code class="language-plaintext highlighter-rouge">Coll</code> occurs with gerundives.</li>
+      <li>There is a language-specific value <code class="language-plaintext highlighter-rouge">Assoc</code> (associative plural). This is also lexical and occurs with <code class="language-plaintext highlighter-rouge">NOUN</code> and <code class="language-plaintext highlighter-rouge">PROPN</code>. Some of pronouns (<em>մերոնք, ձերոնք, իմոնք, քոնոնք</em>) are also associative.</li>
+    </ul>
+  </li>
+  <li><a href="">Case</a> has 6 possible values: <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Gen</code>, <code class="language-plaintext highlighter-rouge">Dat</code>, <code class="language-plaintext highlighter-rouge">Abl</code>, <code class="language-plaintext highlighter-rouge">Ins</code>, <code class="language-plaintext highlighter-rouge">Loc</code>.
+It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">DET</a>, and gerundives. Note, that <code class="language-plaintext highlighter-rouge">Gen</code> occurs only with pronouns and determiners.
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">Case</code> feature also occurs with some of adpositions, subclassified as “localizers” (<a href="">ADP</a>). It is an inflectional feature here.</li>
+    </ul>
+  </li>
+  <li>The two main values of the <a href="">Definite</a> feature are <code class="language-plaintext highlighter-rouge">Def</code> and <code class="language-plaintext highlighter-rouge">Ind</code>. The following parts of speech inflect for definitness:
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>. With gerundives, resultative and subject participles the feature sometimes encodes the lexical person of the possessor, although they can be almost interpreted as the 3rd person. We mark them as <code class="language-plaintext highlighter-rouge">Def</code> (see the layered features below).</li>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and some adverbs (<a href="">ADV</a>) and has one of four possible values: <code class="language-plaintext highlighter-rouge">Pos</code>, <code class="language-plaintext highlighter-rouge">Cmp</code>, <code class="language-plaintext highlighter-rouge">Sup</code>, <code class="language-plaintext highlighter-rouge">Abs</code>.</li>
+</ul>
+
+<h3 id="verbal-features-1">Verbal Features</h3>
+
+<ul>
+  <li>Verbs have a lexical <a href="">Subcat</a>, either intransitive (<code class="language-plaintext highlighter-rouge">Intr</code>) or transitive (<code class="language-plaintext highlighter-rouge">Tran</code>).</li>
+  <li>Verbs have one of six values of <a href="">Aspect</a>: <code class="language-plaintext highlighter-rouge">Dur</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Iter</code>, <code class="language-plaintext highlighter-rouge">Perf</code>, <code class="language-plaintext highlighter-rouge">Prog</code> or <code class="language-plaintext highlighter-rouge">Prosp</code>.
+    <ul>
+      <li>Note, that in Armenian iterative is considered as a lexical feature of verbs, thus they have morphologically related not iterative counterparts, but it is not a regular system and the two verbs are represented by different lemmas. We mark them as biaspectual.</li>
+      <li>The <code class="language-plaintext highlighter-rouge">Aspect</code> feature should be also used with the corresponding deverbatives, if they have the <code class="language-plaintext highlighter-rouge">VerbForm</code> feature.</li>
+    </ul>
+  </li>
+  <li>Finite verbs always have one of five values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Cnd</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Nec</code> of <code class="language-plaintext highlighter-rouge">Sub</code>.
+    <ul>
+      <li>The necessitative mood is only used with necessitative particle <em>պիտի</em> or the impersonal predicative <em>պետք է</em>. The subjuncitve finite form of the main verb, that is needed to form a periphrastic necessitative, is not marked with this feature.</li>
+      <li>The negated conditional mood is only used with indicative auxiliaries <em>(եմ, էի)</em>. The connegative of the main verb, that is needed to form a periphrastic negated conditional, is also marked with this feature.</li>
+    </ul>
+  </li>
+  <li>Verbs in indicative mood always have one of three values of <a href="">Tense</a>: mainly <code class="language-plaintext highlighter-rouge">Past</code> and for auxilaries and some content verbs <code class="language-plaintext highlighter-rouge">Pres</code> or <code class="language-plaintext highlighter-rouge">Imp</code>.
+    <ul>
+      <li>Imperative and necessitative forms do not have the <code class="language-plaintext highlighter-rouge">Tense</code> feature (note that imperfect and present necessitatives are distinguished
+analytically).</li>
+      <li>Subjunctve and conditional forms have one of the <code class="language-plaintext highlighter-rouge">Tense=Imp</code> or <code class="language-plaintext highlighter-rouge">Tense=Pres</code> features, which are formally imperfect or present, but semantically future.</li>
+      <li>There are five values of the <a href="">Voice</a> feature: <code class="language-plaintext highlighter-rouge">Act</code>, <code class="language-plaintext highlighter-rouge">Cau</code>, <code class="language-plaintext highlighter-rouge">Mid</code>, <code class="language-plaintext highlighter-rouge">Pass</code>, <code class="language-plaintext highlighter-rouge">Rcp</code>. Active and causative verbs have <code class="language-plaintext highlighter-rouge">Subcate=Tran</code>, the other three <code class="language-plaintext highlighter-rouge">Subcate=Intr</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="polarity-1">Polarity</h3>
+
+<ul>
+  <li><a href="">Polarity</a> has two values, <code class="language-plaintext highlighter-rouge">Pos</code> and <code class="language-plaintext highlighter-rouge">Neg</code>, and applies primarily to verbs (<a href="">VERB</a>, <a href="">AUX</a>) that can be negated using the bound morpheme <em>չ-</em>.
+    <ul>
+      <li>Occasionally <em>ոչ</em> occurs as an independent negation particle (<a href="">PART</a>) and is marked with <code class="language-plaintext highlighter-rouge">Polarity=Neg</code>. The <code class="language-plaintext highlighter-rouge">Polarity=Neg</code> feature is also used with necessitative mood particles <em>(չ)պիտի, (չ)պետք է</em> .</li>
+      <li>Negating nouns are usually limited to those derived from verbs <em>(չունեցողի, չգրվածները)</em>.</li>
+      <li>The <code class="language-plaintext highlighter-rouge">Polarity</code> feature is not used with pronouns and determiners, although there is a subset of negative pronouns and determiners.
+The <code class="language-plaintext highlighter-rouge">PronType=Neg</code> feature is used there instead.</li>
+      <li>The <code class="language-plaintext highlighter-rouge">Polarity=Neg</code> feature is not used with negated conditional mood, the <code class="language-plaintext highlighter-rouge">Connegative=Yes</code> feature is used there instead.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="pronouns-determiners-quantifiers-1">Pronouns, Determiners, Quantifiers</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>), adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>իմ</em> “my”),
+possessive interrogative, relative determiners (e.g. <em>ում, որի</em> “whose”),
+possessive nouns (e.g. <em>հայրիկինը</em> “father’s”)
+and possessive adjectives (e.g. <em>հայոց</em> “armenian, armenians’, refer to armenians”).</li>
+  <li>The <a href="">Reflex</a> feature marks reflexive pronouns <em>(ինձ, քեզ, իրեն, մեզ, ձեզ, իրենց)</em> and determiners <em>(իր, իրենց)</em>.
+In Armenian it is always used together with <code class="language-plaintext highlighter-rouge">PronType=Emp</code> or <code class="language-plaintext highlighter-rouge">PronType=Prs</code>.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">3</code>.
+With personal possessive determiners (<a href="">DET</a>), the feature actually encodes the person of the possessor.
+Person is not marked on other types of pronouns and on nouns, although they can almost always be interpreted as the 3rd person.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
+  <li>The <a href="">Polite</a> feature distinguishes informal second-person pronouns (<em>դու, դուք,</em> <code class="language-plaintext highlighter-rouge">Polite=Infm</code>)
+from the formal <em>Դուք</em> (<code class="language-plaintext highlighter-rouge">Polite=Form</code>).
+The formal pronoun is phonologically equivalent in all its case forms to the second-person plural <em>դուք</em>
+but it is distinguished in orthography by the capital letter <em>Դ.</em>
+We tag it as second person (because that is its meaning) and we tag also its number (it is used for singular addressees) despite the fact that it combines with second-person plural verbs.
+The parser must learn that <code class="language-plaintext highlighter-rouge">Number=Sing|Person=2|Polite=Form</code> subject attaches to <code class="language-plaintext highlighter-rouge">Number=Plur|Person=2</code> verbs,
+while <code class="language-plaintext highlighter-rouge">Number=Sing|Person=2|Polite=Infm</code> subject attaches to <code class="language-plaintext highlighter-rouge">Number=Sing|Person=2</code> verbs.</li>
+  <li>There are two <a href="../../u/overview/feat-layers.html">layered features</a>, <a href="">Person[psor]</a> and <a href="">Number[psor]</a>.
+They appear with nouns, gerundives, certain determiners and adpositions and encode the lexical person(deixis)/number of the possessor. The extra layer is needed to distinguish these lexical features from the inflectional person and number
+that mark agreement with the modified (possessed) noun.</li>
+</ul>
+
+<h3 id="other-features-1">Other Features</h3>
+
+<ul>
+  <li>Besides the layered features listed above, there are several other language-specific features:
+    <ul>
+      <li><a href="">NumForm</a></li>
+      <li><a href="">NameType</a></li>
+      <li><a href="">AdpType</a></li>
+      <li><a href="">ConjType</a></li>
+      <li><a href="">Hyph</a></li>
+      <li><a href="">Style</a></li>
+      <li><a href="">Deixis</a></li>
+      <li><a href="">Echo</a></li>
+      <li><a href="">Typo</a></li>
+    </ul>
+  </li>
+  <li>The following universal features are not used in Armenian: <a href="">Gender</a>, <a href="">Evident</a>.</li>
+</ul>
+
+<h2 id="syntax-1">Syntax</h2>
+
+<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="dep/index.html">Armenian relations</a>,
+as well as Armenian-specific examples scattered across the documentation of constructions.</p>
+
+<h3 id="core-arguments-oblique-arguments-and-adjuncts-1">Core Arguments, Oblique Arguments and Adjuncts</h3>
+
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase in the nominative case, without preposition.
+    <ul>
+      <li>If the noun is quantified in partitive meaning, it may be in the ablative: <em>Հնչեցին Կոմիտասի երգերից</em> “Sounded from songs of Komitas.”</li>
+      <li>An infinitive verb may serve as the subject and is labeled as clausal subject, <a href="">csubj</a>.
+On the other hand, verbal nouns or gerundives as subjects are just <code class="language-plaintext highlighter-rouge">nsubj</code>.</li>
+      <li>A finite subordinate clause may serve as the subject and is labeled <code class="language-plaintext highlighter-rouge">csubj</code>.</li>
+    </ul>
+  </li>
+  <li>Objects defined in the Armenain grammar may be bare noun phrases in nominative or dative (as direct objects or “voice objects”) and in dative, ablative, instrumental or locative, or adpositional phrases mainly in dative (as indirect / “objects of nature” or adpositional objects).
+For the purpose of UD the objects are divided to core objects, labeled <a href="">obj</a> or <a href="">iobj</a>.
+Oblique objects are labeled <a href="">obl</a>.
+    <ul>
+      <li>Bare nominative and dative objects are considered core. Verbs that subcategorize for a single dative object are also considered core. Example: <em>մոտենում էր քաղաքին</em> “He was approaching the city.”</li>
+      <li>All adpositional objects are considered oblique.</li>
+      <li>Nominative objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
+      <li>If a verb subcategorizes for the infinitive (e.g. modal verbs or verbs of control), the infinitival complement is labeled <a href="">xcomp</a>.</li>
+      <li>If a verb subcategorizes for two core objects, one of them nominative (or <code class="language-plaintext highlighter-rouge">ccomp</code>) and the other non-nominative (mainly dative),
+then the non-nominative object is labeled <a href="">iobj</a>.
+Core nominal objects in other situations are labeled just <a href="">obj</a>.</li>
+    </ul>
+  </li>
+  <li>Adjuncts are usually adpositional phrases, but they can be bare noun phrases as well (following the Armenian grammar, adverbial modifiers are realized as noun phrases). They are labeled <a href="">obl</a>:
+    <ul>
+      <li>Temporal or locational modifiers realized as noun phrases: <em>կեսգիշերին եկավ</em> “He came at midnight.”</li>
+      <li>Dative noun phrases with benefactive or possessive role (i.e. if the verb does not subcategorize for a single dative object
+and if it is not a verb of giving (or similar), where the dative could be interpreted as the recipient.
+Example: <em>նրան սուրճ եփեց</em> “he made (for) him coffee.”</li>
+      <li>Instrumental or directional noun phrases expressing the way or means with which something was done or direction from some point.
+Example: <em>հաճույքով լսում էր</em> “He was listening with pleasure.”</li>
+      <li>All adpositional phrases (i.e., their role and form is not defined lexically by the predicate) are adjuncts.</li>
+    </ul>
+  </li>
+  <li>In passive clauses (both reflexive and reciprocal), the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.
+    <ul>
+      <li>The auxiliary verb in periphrastic passive is labeled <a href="">aux</a>.</li>
+      <li>If the demoted agent is present, it has the form of a bare instrumental or adpositional phrase and its relation is labeled <a href="">obl:agent</a>.</li>
+    </ul>
+  </li>
+  <li>In causative clauses (both bare and periphrastic causative), the subject is labeled with <a href="">nsubj:caus</a>.
+    <ul>
+      <li>The auxiliary verb in periphrastic causative is labeled <a href="">aux:caus</a>.</li>
+      <li>The demoted agent of the action (if present) has the form of a bare dative and is labeled [iobj:agent].</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="non-verbal-clauses-1">Non-verbal Clauses</h3>
+
+<ul>
+  <li>The copula verb <em>եմ</em> (be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses.
+    <ul>
+      <li>Purely existential clauses (without indicating location) normally use different lemmas, <em>լինել</em> or <em>կամ</em>, and they are treated as the head of the clause and tagged <a href="">VERB</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="relations-overview-1">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Armenian:
+    <ul>
+      <li><a href="">acl:relcl</a> for relative clauses</li>
+      <li><a href="">advmod:emph</a> for adverbs or particles that modify noun phrases and emphasize or negate them</li>
+      <li><a href="">aux:caus</a> for causative auxiliaries</li>
+      <li><a href="">aux:ех</a> for existentials as auxiliary</li>
+      <li><a href="">case:loc</a> for postpositional localizers</li>
+      <li><a href="">compound:lvc</a> for light compound verbs</li>
+      <li><a href="">compound:redup</a> for reduplicated compounds</li>
+      <li><a href="">compound:svc</a> for serial compound verbs</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
+      <li><a href="">det:poss</a> for possessive determiners</li>
+      <li><a href="">iobj:agent</a> for agentive indirect objects of causative verbs</li>
+      <li><a href="">nmod:npmod</a> for noun phrases</li>
+      <li><a href="">nmod:poss</a> for possessive modifiers</li>
+      <li><a href="">nsubj:caus</a> for nominal subjects of causative verbs</li>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+      <li><a href="">obl:agent</a> for agents of passive verbs</li>
+    </ul>
+  </li>
+  <li>The following relation types are not used in Armenian at all:
+<a href="">clf</a></li>
+</ul>
+
+<h2 id="treebanks-1">Treebanks</h2>
+
+<p>There is just one Eastern Armenian UD treebank.</p>
+
+<ul>
+  <li><a href="../treebanks/hy_armtdp/index.html">Armenian-ArmTDP</a></li>
+</ul>
+
 
       </div>
 
