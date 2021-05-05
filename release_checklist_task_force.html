@@ -87,6 +87,8 @@ It will download the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">online v
 and check whether the treebanks are valid (prerequisite: all UD repositories are registered
 on the validation server <code class="language-plaintext highlighter-rouge">quest.ms.mff.cuni.cz</code>).
 It will also collect information such as the list of contributors (we need this metadata for Lindat).</li>
+  <li>In addition, you can get an estimate of what the treebanks do in enhanced graphs by calling this:
+<code>( for i in UD_* ; do echo $i ; ( cat $i/*.conllu | enhanced_graph_properties.pl ) ; echo ; done ) |&amp; tee estats.log</code></li>
   <li>Freeze the list of treebanks that will be released (i.e., contain valid data).
 Take the list from the output of <code class="language-plaintext highlighter-rouge">tools/check_files.pl</code> and save it as
 <code class="language-plaintext highlighter-rouge">released_treebanks.txt</code> (just one line, names of UD folders separated by whitespace).</li>
