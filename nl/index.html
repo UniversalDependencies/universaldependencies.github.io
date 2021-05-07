@@ -67,9 +67,9 @@
 
 <ul>
   <li>Words are delimited by whitespace or punctuation</li>
-  <li>Words do not contain spaces</li>
-  <li>Words (e.g. abbreviations, names, URLs etc.) may contain arbitrary punctuation signs</li>
-  <li>No multiword tokens occur</li>
+  <li>Words do not contain spaces, although some lemma’s for multi-word expressions do (<em>au serieux, dat wil zeggen, onder ander, onder veel, ter plaatse, tot en met</em>)</li>
+  <li>Words (e.g. abbreviations, names, URLs etc.) may contain arbitrary punctuation signs (http://www.speelgoedmuseum.be, vroeg-renaissance, o.a., ex-VU&amp;ID)</li>
+  <li>No multiword tokens occur (i.e. forms like <em>ten</em> are treated as a single token, not as <em>te+een</em>)</li>
 </ul>
 
 <hr />
@@ -82,53 +82,333 @@
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>All tags are used except PART.</li>
-  <li>AUX is used for
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>ADJ</strong> (XPOS=ADJ) is used for adjectives. Adjectives occur as prenominal modifiers, as predicates, as seperable verb-particles, as adverbs, as part of fixed expressions and names. Also, in cases where an adjective functions as noun (<em>om Nederlandstaligen te pesten</em>) the POS is still ADJ. Ordinal number words such as <em>eerste, 60ste</em> (XPOS=TW</td>
+          <td>rang) are also ADJ.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><strong>ADP</strong> (XPOS=VZ) is used for prepositions and postpositions. They introduce nominal and verbal modifiers. They also occur as seperable verb-particles, as part of fixed expressions and names. The verbal inflexion element <em>te</em> is also an ADP.  In prepositional phrases such as <em>ten opzichte van</em> <em>ten</em> and <em>van</em> are ADP and <em>opzichte</em> is a NOUN.</li>
+  <li><strong>ADV</strong> (XPOS=BW) is used for adverbs. Also, some adverbial pronouns (R-pronouns) such as <em>daar, er, ergens, waar</em> are ADV.</li>
+  <li><strong>AUX</strong> (XPOS=WW) is used for
     <ul>
       <li>perfect tense auxiliaries <em>hebben</em> and <em>zijn</em></li>
-      <li>the passive tense auxiliary <em>worden</em></li>
-      <li>the modal verbs <em>kunnen, zullen, moeten, mogen, blijken, hoeven</em> (The treebank annotation on which the conversion to UD is based does not distinguish between auxiliaries and main verbs. Here we take a conservative approach in labeling modals as auxiliaries. )</li>
-      <li>the copula verbs <em>zijn, worden, blijven, heten, blijken and lijken</em> (These are the Dutch copula verbs according to Dutch grammar, excluding cases where the copula takes an additional (non-subject, non-predicative) argument)</li>
+      <li>the passive tense auxiliaries <em>worden</em> and <em>zijn</em> and <em>krijgen</em> (in so-called cases of <em>krijgen-passive</em> such as <em>U krijgt een bewegwijzering toegezonden</em>)</li>
+      <li>the modal verbs <em>kunnen, zullen, moeten, mogen</em> (The treebank annotation on which the conversion to UD is based does not distinguish between auxiliaries and main verbs. Here we take a conservative approach in labeling only these modals as auxiliaries. )</li>
+      <li>the copula verb <em>zijn</em> (UD allows only one copula verb per language, even though traditional Dutch syntax lists several verbs as copula-verbs.)</li>
     </ul>
   </li>
-  <li>DET is used for words that are part of a noun phrase and function as determiner. They are:
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>CCONJ</strong> (XPOS=VG</td>
+          <td>neven) is used for coordinating conjunctions such as <em>en</em> and <em>of</em>, <em>zowel</em> (X <em>als</em> Y). (ISSUE: Note that <em>als</em> in this context is labeled SCONJ as it is XPOS=VG</td>
+          <td>onder)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>DET</strong> (XPOS=LID, XPOS=VNW</td>
+          <td>prenom) is used for words that are part of a noun phrase and function as determiner. They are:</td>
+        </tr>
+      </tbody>
+    </table>
     <ul>
-      <li>words that have pt=lid in the original data. These are words traditionally seen as determiners in Dutch</li>
-      <li>words that have pt=vnw and rel=det and not vwtype=bez in the original data. These are pronominal forms functioning as determiner, with the exception of possessive pronouns (which are labeled PRON)</li>
+      <li>words that have XPOS LID in the original data (<em>de, het, een</em>). These are words traditionally seen as determiners in Dutch</li>
+      <li>Prenominal pronouns (<em>deze, welke, meerdere, sommige</em>) with the exception of possessive pronouns (<em>mijn</em>). They are labeled PRON.</li>
+      <li>ISSUE: In multi-word determiner expressions such as <em>maar weinig</em>, <em>helemaal geen</em>, <em>al mijn</em>, both words are DET. The modifiers should be ADV and <em>mijn</em> should be PRON.</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>ISSUE: Numeric elements such as +11,77 or 26% (XPOS=SPEC</td>
+              <td>symb) are labeled as DET if their grammatical function is det, where this should be NUM. (Note that regular numeric values such as 11 or 26 have XPOS=TW and are labeled NUM.)</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
     </ul>
   </li>
-  <li>PRON is used for non-adverbial pronominal elements. They are:
+  <li><strong>INTJ</strong> (XPOS=TSW) Elements that are not part of the syntactic structure such as <em>ach, verrek, jazeker</em></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>NOUN</strong> (XPOS=N</td>
+          <td>soort) Nouns can be the head of a variety of dependents, such as subject, object, oblique, etc.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>NUM</strong> (XPOS=TW</td>
+          <td>hoofd). Tokens such as <em>1, 0,80, +4,20 -1, 1.000, 040-12280, drieduizend, iv, twaalf</em>. Note that elements such as <em>eerste</em> are labeled ADJ.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><strong>PART</strong> is not used. In particular, seperable verb prefixes are assigned their regular POS and are a compound:prt dependent of the verb.</li>
+  <li><strong>PRON</strong> (XPOS=VNW) is used for
     <ul>
-      <li>words with pt=vnw in the original annotation that do not function as determiner and that are not of pdtype=adv-pron.</li>
+      <li>possessive pronouns</li>
+      <li>pronominal elements that do not occur in prenominal position but are depedents of a verb, like personal and impersonal pronouns (_ik, u, iemand _)</li>
     </ul>
   </li>
-  <li>VERB is used for words labeled pt=ww in the original data and that are not AUX. Note that according to this method, in nominalizations, the head is a VERB.</li>
-  <li>ADJ is used for words labeled pt=adj in the original data.</li>
-  <li>NOUN is used for words labeled pt=n in the original data that do not have ntype=deeleigen. (The latter are part of a proper name and are labeled PROPN)</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>PROPN</strong> (XPOS=N</td>
+          <td>eigen, SPEC</td>
+          <td>deeleigen) is used for proper names (<em>Achterberg</em>) and the parts of multi-word names (_ Gerrit Achterberg_). When used as adjective (<em>Amsterdamse</em>), names are labeled ADJ.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><strong>PUNCT</strong> (XPOS=LET) is used for punctuation.</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>SCONJ</strong> (XPOS=VG</td>
+          <td>onder) is used for subordinating conjunctions (<em>als, dat, of, omdat, toen</em>).</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>ISSUE: in multi-word expressions such as <em>dan wel</em> <em>dan</em> is VG</td>
+              <td>onder but could also be VG</td>
+              <td>neven and thus CCONJ with seems more appropriate as it also introduces a cc in syntax.</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>SYM</strong> (XPOS=SPEC</td>
+          <td>sym, SPEC</td>
+          <td>afgebr, SPEC</td>
+          <td>vreemd, LET) is used for symbols (), foreign words (<em>unit, vici, walkover</em>), incomplete words (<em>welzijns-, zorg-</em>) and interpunction that does not introduce a punc relation in syntax (i.e. as it is part of a name/title (<em>ZinderZlam !</em>) or a multi-word unit (<em>en / of</em>) ).</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><strong>VERB</strong> (XPOS=WW) is used for verbs that are not AUX. Note that adjectively used verbs and nominalized verbs are VERB (<em>passende maatregelen, het verplaatsen van voorwerpen</em>).</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>X</strong> (XPOS=SPEC</td>
+          <td>afk) is used for abbreviations (_ v.Chr., o.a., nr._)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
 </ul>
 
 <p>Detailed documentation of the decisions w.r.t. POS-tags in the original data can be found in the <a href="https://www.let.rug.nl/vannoord/Lassy/POS_manual.pdf">D-COI POS-tagging and lemmatization manual</a></p>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
-
 <h3 id="features">Features</h3>
 
-<p>*</p>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Abbr=Yes</strong> for abbreviations (POS=X, XPOS=SPEC</td>
+          <td>afk)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Case=Acc,Nom</strong> for PRON (Nom for XPOS=VNW</td>
+          <td>nomin, Acc for XPOS=VNW</td>
+          <td>obl).</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Definite=Def,Ind</strong> for DET (Def for XPOS=LID</td>
+          <td>bep, Ind for XPOS=LID</td>
+          <td>onbep)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Degree=Pos,Cmp,Sup</strong> for adjectives (POS=ADJ, Pos for XPOS=ADJ</td>
+          <td>basis, Sup for ADJ</td>
+          <td>sup, Cmp for ADJ</td>
+          <td>comp)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Gender=Com,Neut</strong> for NOUN and PROPN, Com for N</td>
+          <td>onz, Neut for N</td>
+          <td>onz, Com,Neut for N</td>
+          <td>genus</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Person=1,2,3</strong> for PRON (1 for XPOS=VNW</td>
+          <td>1, 2 for XPOS=VNW</td>
+          <td>2,2v,2b, 3 for XPOS=VNW</td>
+          <td>3,3p,3v,3p,3o</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>PronType=Int,Prs,Ind,Rel,Dem</strong> for PRON (Dem for demonstratives, VNW</td>
+          <td>aanw, Rel for relative pronouns, VNW</td>
+          <td>betr, Prs for personal and possessive pronouns, VNW</td>
+          <td>pers and VNW</td>
+          <td>bez, Ind for indefinite pronouns,  VNW</td>
+          <td>onbep, Int for interoggative pronouns, VNW</td>
+          <td>vb).</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Number=Sing,Plur</strong> for AUX, NOUN, VERB, PROPN, Sing for WW</td>
+          <td>ev, WW</td>
+          <td>met-t, N</td>
+          <td>ev, Plur for WW</td>
+          <td>mv, N</td>
+          <td>mv</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Poss=Yes</strong> for PRON with VNW</td>
+          <td>bez</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Reflex=Yes</strong> for PRON with VNW</td>
+          <td>refl</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>VerbForm=Inf,Fin,Part</strong> for AUX and VERB with Inf for WW</td>
+          <td>inf, Fin for WW</td>
+          <td>pv and Part for WW</td>
+          <td>od or WW</td>
+          <td>vd</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<p>Detailed documentation of the decisions w.r.t. features in the original data can be found in the <a href="https://www.let.rug.nl/vannoord/Lassy/POS_manual.pdf">D-COI POS-tagging and lemmatization manual</a></p>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<p>The Dutch treebanks are automatically converted from annotated and manually corrected treebanks. Detailed documentation of the  the original syntactic annotation is in the <a href="http://www.let.rug.nl/~vannoord/Lassy/sa-man_lassy.pdf">syntactic annotation manual</a> of the Lassy project. The data included in the UD treebanks can be explored using the <a href="https://paqu.let.rug.nl:8068/xpath">PaQu</a> interface, which supports querying both the original and UD annotation.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li><strong>acl, acl:relcl</strong> acl is used for phrases headed by a verb modifying a noun. These can be prenominal (as in <em>thans geldende rentestand</em>) postnominal (as in <em>de vraag of de rente zal stijgen</em>). acl:relcl is used for relative clauses. In the original syntactic annotation these are nodes with an <em>mod</em> dependency relation that occur as sister to a nominal head, and which have a category ppres, ppart (prenominal), or cp, oti (postnominal) or rel (relative clauses). Verbs without dependents in prenominal position are considered to be amod.</li>
+  <li><strong>advcl</strong>  is used for phrases that occur as modifying phrases (adjuncts) and are dependents of a verbal head. In the original annotation they have relation <em>mod</em> and they can be of category cp, oti, ppart, among others.</li>
+  <li><strong>advmod</strong>  is used for adverbs and adverbial phrases modifying a verb. The POS of advmod elements is almost always ADV or ADJ.</li>
+  <li><strong>amod</strong>  is used for adjectives and other elements modifying a noun. The POS of amod elements is usually ADJ, but ADV and NOUN and others occur as well. ADV is used for elements such as <em>slechts (5 euro), vele (kookboeken), zo’n (25 optredens)</em> and occurs in nominalisations (<em>het niet doen terugkeren</em>, where <em>niet</em> is amod of the verb <em>terugkeren</em>, which itself is being used nominatively), and is used for adverbial pronouns (<em>de verlenging ervan</em>)</li>
+  <li><strong>appos</strong> is used for appositions. In the original annotation, the relation app is used for a wide range of nominal phrases occurring in postnominal position (<em>de fotograaf Philip Mechanicus, Nooteboom’s debuut ‘Philip en de anderen’, de jaren 1979-1981, de wethouder cultuur, presentatie Slibreeks, Hans Groenewegen, dichter en publicist, ZUiderzinnen, Festival van het woord, zondag 18 september 2005</em>. All these are mapped to the appos dependency relation, even though this stretches the intended use of appos in UD.</li>
+  <li><strong>aux, aux:pass</strong> aux is used for auxiliaries as defined above in the section on POS tags. Note that this implies that auxiliaries are dependents of the main verb with which they co-occur. In the original annotation, no distinction between verbs and auxiliaries is made, and auxiliaries always have a sister that is a clause headed by the main verb. Note that this also means that elements such as subjects, complementizers, and even the marker ‘<em>te</em>’ become dependents of the main verb, and not the auxiliary.</li>
+  <li><strong>case</strong> is used for prepositions (ADP) that introduce a prepositional phrase. The preposition is a dependent of the head of the nominal phrase. Where there is both a preposition and a postposition (<em>door de eeuwen heen</em>, <em>om hem heen</em>) both elements are case dependents of the nominal head. In cases where the nominal element is replaced by an R-pronoun (<em>er</em> etc), the R-pronoun precedes the preposition, and may be nonadjacent to the preposition  (<em>U doet er verstandig aan</em>). Note that this is a source of non-projective annotations.</li>
+  <li><strong>cc</strong> is used for coordination words such as <em>en, of, maar</em>.</li>
+  <li><strong>ccomp</strong> is used for complement clauses that are dependents of a verb. Complement clauses are phrases with relation vc in the original annotation and that are headed by a finite verb or a te-infinitive, so they can be of category cp, whsub, ti, oti. In ccomp clauses, there is no controlled subject.</li>
+  <li>compound:prt is used for seperable verbal prefixes (_ groeide uit, aan te wijzen_) and the non-verbal part of phrasal verbs (_ op prijs stellen, bekend staan, kenbaar maken_)</li>
+  <li><strong>conj</strong> is used for conjuncts.</li>
+  <li><strong>cop</strong> is used for the copula <em>zijn</em> only. Thus, the copula is a dependent of the predicate. If the copula is preceded by the inflection marker <em>te</em>, the marker also becomes a dependent of the predicate (In _ wordt aangeraden waakzaam te zijn_, we have (waakzaam,mark,te) )</li>
+  <li><strong>csubj</strong> is used for clausal subjects. Clausal subjects are sometimes introduced by expletive <em>het</em> (marked as expl), as in <em>het blijft onduidelijk wat Japix bedoelt</em>. Clausal subjects can be of category cp, whsub, ti, or oti in the original annotation.</li>
+  <li><strong>det</strong> is used for determiners, ie for elements with DET POS-tag, as explained above.</li>
+  <li><strong>expl, expl:pv</strong> Expletives are <em>het</em> or <em>er</em> when used to introduce a clausal subject (<em>het is verstanding u te laten adviseren</em>, <em>u dient er rekening mee te houden dat…</em>) expl:pv is used for inherent reflexives (_ richt zich op, bevindt zich in, scheidt zich af, jaagt NP tegen zich in het harnas_)</li>
+  <li><strong>fixed</strong> is used for the non-initial parts of multi-word expressions, such as <em>ten aanzien van</em>, <em>voor zover</em>, <em>dan wel</em>, <em>fine fleur</em>) Also, titles of books and other works of art and some institutions are annotated as fixed expressions (<em>De ontdekking van de hemel, Faculteit Kunst en Cultuur</em>) and some amounts (<em>EUR  37,50, 15 uur</em>) Note that the decision on what to label as fixed or not follows largely from the original annotation (ie phrases with category mwu where the parts are not labeled as proper names).  Also note that fixed elements can in fact be coordinated (_ maandag 18 t/m zaterdag 23 april 2005<em>, where _april 2005</em> is shared between to two conjuncts in the original annotatin) and that discontinous fixed expressions exist (exclusively in the so-called <em>wat-voor</em> construction as in <em>wat is dit voor een kutfilm</em>)</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>flat</strong> is used for the non-initial tokens of multi-word proper names (<em>Kees van Kooten</em>) and other multi-word expressions that contain at least one proper name. In particular, in dates like <em>20 augustus 2000</em> , 20 is the head with augustus and 2000 as flat dependents, as augustus is a name. Also, some titles of works of art are labeled flat, if at least one of the tokens was labeled as SPEC</td>
+          <td>deeleigen in the original annotation. ISSUE: there is some inconsistency between when a multi-word unit introduces flat or fixed dependents, but this is caused at least in part by the underlying annotation.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><strong>iobj</strong> is used for indirect objects that are NOT introduced by a preposition. The original annotation has both prepositional (<em>geef het boek aan haar</em>) and nominal (<em>geef haar het boek</em>) obj2 constituents. In UD, only the latter are iobj, while the former are obl dependents.</li>
+  <li><strong>mark</strong> is used for subordinating conjunctions (<em>dat, omdat, wanneer, hoewel, etc.</em>). The word <em>om</em> is also a mark if it introduces a te-infinitive. The word <em>te</em> preceding a verb is also a mark dependent of the verb. As auxiliaries take no dependents, the <em>te</em> that may precede an auxiliary is attached, somewhat counterintuitively, to the main verb (<em>na door het moeras gedwaald te hebben</em>, here <em>te</em> is a dependent of <em>gedwaald</em>)</li>
+  <li><strong>nmod, nmod:poss</strong> nmod is used for nominal and prepositional phrases modifying a noun (<em>een neiging to dalen, de rente in de VS</em>). In <em>het Dow Jones gemiddelde</em>, Dow is an nmod dependent of <em>gemiddelde</em>. Note also that some nouns can be used as adjective as in <em>de afzijdige waarnemer</em>, where <em>afzijdige</em> is a NOUN and thus an nmod dependent of <em>waarnemer</em>. In <em>Enkele malen</em> the pronoun <em>Enkele</em> is a modifier of the noun in the original annotation, and thus also labeled as nmod.  Nmod:poss is used for possessive pronouns (<em>hun oude boeken</em>) en genitives (<em>Nootebooms debuut</em>).</li>
+  <li><strong>nsubj, nsubj:pass</strong> Nsubj is used for the nominal subject of finite sentences. Nsubj:pass is used for the subject of passives. Clausal subjects are labeled csubj.</li>
+  <li>nummod Nummod is used for NUM elements occurring in pre-nominal position (<em>tien arrestaties, 450.000 mark</em>) In <em>zeven miljard gulden</em> we have <em>zeven</em> as nummod dependent of <em>miljard</em>, while <em>miljard</em> (a NOUN) is a nmod of <em>gulden</em>.</li>
+  <li><strong>obj</strong> is used for the direct object of verbal heads (<em>winst boeken, _een shock oplopen</em>). Note that reflexives are labeled as obj if the verb is not inherently reflexive (in <em>zich emanciperen</em>, <em>zich</em> is an obj).</li>
+  <li><strong>obl, obl:agent</strong> Obl is used for prepositional arguments and adjuncts of a verbal head (<em>klopt met de werkelijkheid,</em> ). In (temporal) nominal adjuncts can appear without preposition (<em>enkele malen</em>), these are also obl. Obl:agent is used for the door-phrase that can be present in passives (<em>hij moet door zijn vrouw tot kalmte worden gebracht</em>). As the underlying annotation does not mark such prepositional phrases, the labeling is based on heuristics and may contain errors.</li>
+  <li><strong>orphan</strong> is used in elliptic constructions where the syntactic head has been elided and more than one dependent remains. The leftmost dependent is attached to the preceding constituent, while the remaining dependents are attached as orphan to the initial dependent (In <em>850 fondsen boekten winst tegenover 512 een verlies</em>, <em>een verlies</em> is an orphan dependent of <em>512</em> which itself is a <em>conj</em> dependent of <em>boekten</em>).</li>
+  <li><strong>parataxis</strong> is used to label utterances that do not form a syntactic unit, but consist of a number of phrases for which no obvious dependency label can be given( In <em>dit in verband met de langere levensduur van de vrouw</em>, <em>dit</em> is the root, with the rest of the phrase headed by <em>levensduur</em> being a parataxis dependent of <em>dit</em>). Note that in cases of ellipsis, there is a preceding conjunction which also contains a predicate that can be seen as identical to the elided element. In parataxis constructions, this is not the case. Parataxis is also used in attribution, as in <em>Het deksel was er afgeslagen, zei Rijkers</em> where the speech verb <em>zei</em> is a parataxis dependent of <em>afgeslagen</em>.</li>
+  <li><strong>punct</strong> is used for punctuation signs.</li>
+  <li><strong>root</strong> is the root of the utterance. This is usually the main verb, but in copula constructions it is the head of the predicate.</li>
+  <li><strong>xcomp</strong> is used for the head of non-finite verbal complements of verbs (<em>de burgemeester wil een traditie handhaven</em>, <em>de debiteuren staan te dringen</em>, <em>hij vraagt om een krediet beschikbaar te stellen</em>), and for predicative complements of non-copula verbs (<em>Fennema werd raadslid</em>, <em>de aandeelhouders vonden het bod onaanvaardbaar</em>). In the enhanced dependencies, the subject of xcomp dependents that are non-finite clauses are added. For other predicative elements no controlled subject is identified.</li>
+</ul>
 
 <hr />
 
