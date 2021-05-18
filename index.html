@@ -103,7 +103,7 @@ If you want to discuss individual annotation questions, use the
 
 <div id="accordion" class="jquery-ui-accordion">
 
-  <div class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="false" tabindex="0"><span class="ui-icon ui-icon-triangle-1-e"></span>   <!-- start of Abaza accordion row -->
+  <div>   <!-- start of Abaza accordion row -->
     <span class="flagspan"><img class="flag" src="flags/svg/RU-ABAZA.svg" /></span>
     <span class="doublewidespan">Abaza</span>
     <span class="widespan"><span class="hint--top hint--info" data-hint="1 treebank">1</span></span>
@@ -11360,49 +11360,9 @@ More information about the treebank can be found in our publication (AmericasNLP
 </ul>
 
 
-      </div>
-
-<!-- support for embedded visualizations -->
+<!-- support for accordions -->
+<!-- Support for accordion user interface on the home page. -->
 <script type="text/javascript">
-    var root = ''; // filled in by jekyll
-    head.js(
-        // External libraries
-        root + 'lib/ext/jquery.min.js',
-        root + 'lib/ext/jquery.svg.min.js',
-        root + 'lib/ext/jquery.svgdom.min.js',
-        root + 'lib/ext/jquery.timeago.js',
-        root + 'lib/ext/jquery-ui.min.js',
-        root + 'lib/ext/waypoints.min.js',
-        root + 'lib/ext/jquery.address.min.js',
-
-        // brat helper modules
-        root + 'lib/brat/configuration.js',
-        root + 'lib/brat/util.js',
-        root + 'lib/brat/annotation_log.js',
-        root + 'lib/ext/webfont.js',
-        // brat modules
-        root + 'lib/brat/dispatcher.js',
-        root + 'lib/brat/url_monitor.js',
-        root + 'lib/brat/visualizer.js',
-
-        // embedding configuration
-        root + 'lib/local/config.js',
-        // project-specific collection data
-        root + 'lib/local/collections.js',
-
-        // Annodoc
-        root + 'lib/annodoc/annodoc.js',
-
-        // NOTE: non-local libraries
-        'https://spyysalo.github.io/conllu.js/conllu.js'
-    );
-
-    var webFontURLs = [
-//        root + 'static/fonts/Astloch-Bold.ttf',
-        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
-        root + 'static/fonts/Liberation_Sans-Regular.ttf'
-    ];
-
     var setupAccordions = function() {
 	// Preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
@@ -11471,10 +11431,57 @@ More information about the treebank can be found in our publication (AmericasNLP
         setupTabs();
         setupAccordions();
         setupTimeago();
+    });
+</script>
 
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = ''; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    head.ready(function() {
         // mark current collection (filled in by Jekyll)
         Collections.listing['_current'] = '';
-
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
     });
