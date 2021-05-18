@@ -454,6 +454,8 @@ The feature is used with 8 part-of-speech tags: <tt><a href="fi_ftb-pos-NOUN.htm
         // Make subaccordions first, make them active to get height, and then close later
         $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
 
+        // If the user clicks on an accordion line, get its language code
+        // and save it as the hash #lcode in the current window's URL.
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -467,6 +469,7 @@ The feature is used with 8 part-of-speech tags: <tt><a href="fi_ftb-pos-NOUN.htm
 	$(".jquery-ui-accordion").accordion({
 	    collapsible: true,
 	    active: false,
+	    heightStyle: content, // each panel will be only as tall as its content
 	    change: accordionChange
 	});
 	if ($(".jquery-ui-accordion").length) {
@@ -501,7 +504,7 @@ The feature is used with 8 part-of-speech tags: <tt><a href="fi_ftb-pos-NOUN.htm
             $.address.change(function(event){
 	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
 	    });
-	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) {
 	        window.location.hash = ui.tab.hash;
 	    });
         }
