@@ -233,26 +233,7 @@ Examples: ھەر، نەچچە، قانچە، ھەممە، شۇنداق، ئۇن�
         jQuery("time.timeago").timeago();
     };
 
-    var setupTabs = function() {
-        // standard jQuery UI "tabs" element initialization
-        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
-
-        // use jQuery address to preserve tab state
-        // (see https://github.com/UniversalDependencies/docs/issues/65,
-        // http://stackoverflow.com/a/3330919)
-        if ($(".jquery-ui-tabs").length > 0) {
-            $.address.change(function(event){
-	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
-	    });
-	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) {
-	        window.location.hash = ui.tab.hash;
-	    });
-        }
-    };
-
     head.ready(function() {
-        // set up UI tabs on page
-        setupTabs();
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
