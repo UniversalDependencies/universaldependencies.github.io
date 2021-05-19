@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
     <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="../../lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -78,14 +79,16 @@
 <pre><code class="language-sdparse">she left
 nsubj(left, she)
 </code></pre>
+
 <pre><code class="language-sdparse">she left a note
 nsubj(left, she)
 obj(left, note)
+det(note, a)
 </code></pre>
 
 <p>An intransitive verb takes a single argument (usually referred to as S in the literature on linguistic typology) with the <a href="">u-dep/nsubj</a> relation. A transitive verb in addition takes an argument with the <a href="">u-dep/obj</a> relation. When deciding which relation to use with which argument in a transitive clause, the <a href="">u-dep/nsubj</a> relation should be used with the argument that most resembles the proto-agent (often called A in linguistic typology) and that satisfies additional language-internal criteria for subjecthood based on case-marking, agreement and/or linear position with respect to the predicate. The <a href="">u-dep/obj</a> relation should be used for the argument that most resembles the proto-patient (often called O or P in linguistic typology) and that satisfies relevant language-internal criteria. Note that, while case-marking (whether morphological or analytic) can provide important evidence in specific languages, case alignment should not be used to decide the assignment of core argument roles. Thus, in ergative languages, the patient-like argument of a transitive verb (O/P) will take the the <a href="">u-dep/obj</a> relation despite the fact that it carries the same case marking as the <a href="">u-dep/nsubj</a> argument (S) of an intranstive verb.</p>
 
-<p>Some languages allow extended transitive clauses, where more than two dependents are realized as core arguments. The additional core arguments then receive the <a href="">u-dep/iobj</a> relation (for “indirect object”), while the <a href="">u-dep/obj</a> relation 
+<p>Some languages allow extended transitive clauses, where more than two dependents are realized as core arguments. The additional core arguments then receive the <a href="">u-dep/iobj</a> relation (for “indirect object”), while the <a href="">u-dep/obj</a> relation
 is reserved for the most patient-like non-subject argument. The criterion for deciding whether an additional dependent is a core argument is whether it has the typical encoding of a core argument with respect to case-marking, agreement and word order. For example, the English double object construction qualifies as an extended transitive clause because all three nominals appear without prepositions:</p>
 
 <pre><code class="language-sdparse">she left him a note
@@ -108,7 +111,7 @@ obl(left, him)
 
 <h3 id="valency-changing-operations">Valency-Changing Operations</h3>
 
-<p>If passivization involves the promotion of an argument to subject position, then this argument can be 
+<p>If passivization involves the promotion of an argument to subject position, then this argument can be
 annotated with a special subtype <code class="language-plaintext highlighter-rouge">nsubj:pass</code> to indicate that promotion has taken place. The subtype
 <code class="language-plaintext highlighter-rouge">obl:agent</code> can be used to annotate the demoted subject (if present).</p>
 
@@ -540,9 +543,9 @@ obl(existing, Kitchen-in)
 
 <h2 id="non-core-dependents">Non-Core Dependents</h2>
 
-<p>In addition to the core arguments, a predicate may have additional dependents whose grammatical encoding differs 
+<p>In addition to the core arguments, a predicate may have additional dependents whose grammatical encoding differs
 from that of core arguments with respect to case marking, agreement and/or linear position in the clause. All such
-dependents are said to be oblique, regardless of whether they can be considered as arguments in the semantic sense. 
+dependents are said to be oblique, regardless of whether they can be considered as arguments in the semantic sense.
 The <a href="">obl</a> relation is used for oblique nominals, and the <a href="">advmod</a> relation is used for adverbial modifiers.</p>
 
 <pre><code class="language-sdparse">she left a note on the table
@@ -653,7 +656,7 @@ sentence. These elements often appear to be in the periphery of the sentence, an
 dislocated(長い-5, 象-1)
 </code></pre>
 
-<pre><code class="language-sdparse">to jani ton kserume poli kala \n the John-Acc him know-1pl very well 
+<pre><code class="language-sdparse">to jani ton kserume poli kala \n the John-Acc him know-1pl very well
 dislocated(kserume, jani)
 </code></pre>
 
@@ -668,7 +671,7 @@ obj(eat, it-13)
 dislocated(eat, playdough)
 </code></pre>
 
-<pre><code class="language-sdparse">ton kserume oli mas edho poli kala, to jani 
+<pre><code class="language-sdparse">ton kserume oli mas edho poli kala, to jani
 dislocated(kserume, jani)
 </code></pre>
 
@@ -720,6 +723,122 @@ mark(raining, because)
 
       </div>
 
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+	// preserve state in URL hash, following in part
+	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
+
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
+
+	var accordionChange = function(event, ui) {
+	    var context = ui.newHeader ? ui.newHeader.context : null;
+	    if (context) {
+		var languageCode = context.getAttribute('data-lc');
+		if (languageCode !== null) {
+		    window.location.hash = languageCode;
+		}
+	    }
+	}
+        // jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false,
+	    change: accordionChange
+	});
+	if ($(".jquery-ui-accordion").length) {
+	    var matches = window.location.hash.match(/^\#(.*)$/);
+	    console.log(matches);
+	    if (matches !== null) {
+		var languageCode = matches[1];
+		var tab = $('[data-lc="'+languageCode+'"]');
+		// the following will only work after accordion is initialized
+		var index = $('.jquery-ui-accordion div.ui-accordion-header').index(tab);
+		if (index !== -1) {
+		    $(".jquery-ui-accordion").accordion({ active: index });
+		}
+	    }
+	}
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'u-overview';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
 <!-- google analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -734,7 +853,7 @@ mark(raining, because)
 
 
       <div id="footer">
-	  <p class="footer-text">&copy; 2014–2021
+	  <p class="footer-text">&copy; 2014–2020
 	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
 	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
       </div>

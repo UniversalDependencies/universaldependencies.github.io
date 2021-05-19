@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/style-vis.css"/>
     <link rel="stylesheet" type="text/css" href="css/hint.css"/>
     <script type="text/javascript" src="lib/ext/head.load.min.js"></script>
+    <script type="text/javascript" src="lib/ext/jquery.timeago.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -102,7 +103,7 @@ If you want to discuss individual annotation questions, use the
 
 <div id="accordion" class="jquery-ui-accordion">
 
-  <div>   <!-- start of Abaza accordion row -->
+  <div class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="false" tabindex="0"><span class="ui-icon ui-icon-triangle-1-e"></span>   <!-- start of Abaza accordion row -->
     <span class="flagspan"><img class="flag" src="flags/svg/RU-ABAZA.svg" /></span>
     <span class="doublewidespan">Abaza</span>
     <span class="widespan"><span class="hint--top hint--info" data-hint="1 treebank">1</span></span>
@@ -11359,8 +11360,9 @@ More information about the treebank can be found in our publication (AmericasNLP
 </ul>
 
 
-<!-- support for accordions -->
-<!-- Support for accordion user interface on the home page. -->
+      </div>
+
+<!-- support for embedded visualizations -->
 <script type="text/javascript">
     var root = ''; // filled in by jekyll
     head.js(
@@ -11368,20 +11370,46 @@ More information about the treebank can be found in our publication (AmericasNLP
         root + 'lib/ext/jquery.min.js',
         root + 'lib/ext/jquery.svg.min.js',
         root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery.timeago.js',
         root + 'lib/ext/jquery-ui.min.js',
         root + 'lib/ext/waypoints.min.js',
-        root + 'lib/ext/jquery.address.min.js'
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
     );
 
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
     var setupAccordions = function() {
-	// Preserve state in URL hash, following in part
+	// preserve state in URL hash, following in part
 	// http://www.boduch.ca/2011/05/remembering-jquery-ui-accordion.html
 
-        // Make subaccordions first, make them active to get height, and then close later.
-        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled: false, active: 0, heightStyle: "content"});
+        // Make subaccordions first, make them active to get height, and then close later
+        $(".jquery-ui-subaccordion-closed").accordion({collapsible: true, disabled:false, active:0});
 
-        // If the user clicks on an accordion line, get its language code
-        // and save it as the hash #lcode in the current window's URL.
 	var accordionChange = function(event, ui) {
 	    var context = ui.newHeader ? ui.newHeader.context : null;
 	    if (context) {
@@ -11395,7 +11423,6 @@ More information about the treebank can be found in our publication (AmericasNLP
 	$(".jquery-ui-accordion").accordion({
 	    collapsible: true,
 	    active: false,
-	    heightStyle: "content", // each panel will be only as tall as its content
 	    change: accordionChange
 	});
 	if ($(".jquery-ui-accordion").length) {
@@ -11411,13 +11438,17 @@ More information about the treebank can be found in our publication (AmericasNLP
 		}
 	    }
 	}
-        // now reclose these accordions
-        $(".jquery-ui-subaccordion-closed").accordion("option", "active", false);
+        //now reclose these accordions
+        $(".jquery-ui-subaccordion-closed").accordion("option","active",false);
+    };
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
     };
 
     var setupTabs = function() {
         // standard jQuery UI "tabs" element initialization
-        $(".jquery-ui-tabs").tabs({ heightStyle: "content" });
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
 
         // use jQuery address to preserve tab state
         // (see https://github.com/UniversalDependencies/docs/issues/65,
@@ -11426,7 +11457,7 @@ More information about the treebank can be found in our publication (AmericasNLP
             $.address.change(function(event){
 	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
 	    });
-	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) {
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
 	        window.location.hash = ui.tab.hash;
 	    });
         }
@@ -11436,12 +11467,16 @@ More information about the treebank can be found in our publication (AmericasNLP
         // set up UI tabs on page
         setupTabs();
         setupAccordions();
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = '';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
     });
 </script>
 
-
-
-      </div>
 
 <!-- google analytics -->
 <script>
@@ -11457,7 +11492,7 @@ More information about the treebank can be found in our publication (AmericasNLP
 
 
       <div id="footer">
-	  <p class="footer-text">&copy; 2014–2021
+	  <p class="footer-text">&copy; 2014–2020
 	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
 	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
       </div>
