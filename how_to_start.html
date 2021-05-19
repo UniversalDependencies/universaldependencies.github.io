@@ -48,19 +48,34 @@
 
       
       <div class="v2complete">
-	This page pertains to UD version 2.
+        This page pertains to UD version 2.
       </div>
       
 
       <div id="content">
-	<noscript>
-	  <div id="noscript">
-	    It appears that you have Javascript disabled.
-	    Please consider enabling Javascript for this page to see the visualizations.
-	  </div>
-	</noscript>
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
 
-          <h1 id="how-to-create-a-ud-treebank">How to Create a (UD) Treebank</h1>
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            var root = ''; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="how-to-create-a-ud-treebank">How to Create a (UD) Treebank</h1>
 
 <p>The purpose of this document is to provide some advice to people who are interested in building a treebank for a new language and do not know where to start. This complements the existing guidelines on <a href="http://universaldependencies.org/contribute.html">how to contribute to Universal Dependencies</a>, which describe the technical steps needed to make the data released, but not the actual annotation process.</p>
 
@@ -102,21 +117,14 @@
 
 <p>Similarly, there are means of providing fluent English translation of the sentence, as well as glosses of individual words. If the translation is available, it may be quite useful, especially for languages that are more exotic for an average user. Typical situations where English translation can be available include treebanks based on parallel data (such as the European Parliament proceedings or the Bible) and treebanks based on sentence examples from reference grammars or typological literature.</p>
 
-
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
     var root = ''; // filled in by jekyll
     head.js(
-        // External libraries
-        root + 'lib/ext/jquery.min.js',
-        root + 'lib/ext/jquery.svg.min.js',
-        root + 'lib/ext/jquery.svgdom.min.js',
-        root + 'lib/ext/jquery.timeago.js',
-        root + 'lib/ext/jquery-ui.min.js',
-        root + 'lib/ext/waypoints.min.js',
-        root + 'lib/ext/jquery.address.min.js',
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
 
         // brat helper modules
         root + 'lib/brat/configuration.js',
@@ -195,9 +203,9 @@
 
 
       <div id="footer">
-	  <p class="footer-text">&copy; 2014–2021
-	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
-	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+          <p class="footer-text">&copy; 2014–2021
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
       </div>
     </div>
   </body>

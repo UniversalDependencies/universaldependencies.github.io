@@ -48,19 +48,34 @@
 
       
       <div class="v2complete">
-	This page pertains to UD version 2.
+        This page pertains to UD version 2.
       </div>
       
 
       <div id="content">
-	<noscript>
-	  <div id="noscript">
-	    It appears that you have Javascript disabled.
-	    Please consider enabling Javascript for this page to see the visualizations.
-	  </div>
-	</noscript>
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
 
-          <h1 id="enhanced-dependencies">Enhanced Dependencies</h1>
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="enhanced-dependencies">Enhanced Dependencies</h1>
 
 <p>We always intended the Universal Dependencies representation to be used in shallow natural language understanding tasks such as relation extraction or biomedical event extraction. For such tasks, one is typically interested in the relation between certain entities, e.g., the relation between two persons or whether one protein interacts with another. UD is particularly well suited for such tasks as UD trees contain many direct dependencies between content words and many of the dependency labels provide a lot of information about the type of relation between two content words. However, for some constructions, the dependency path between two content words of interest can be very long in a UD tree, which complicates determining how the content words are related. Further, some dependency types such as <a href="u-dep/obl"><code class="language-plaintext highlighter-rouge">obl</code></a> or <a href="u-dep/nmod"><code class="language-plaintext highlighter-rouge">nmod</code></a> are used for many different types of arguments and modifiers, and therefore they are not very informative on their own. For these reasons, we also provide guidelines for an <em>enhanced</em> representation, which makes some of the implicit relations between words more explicit, and augments some of the dependency labels to facilitate the disambiguation of types of arguments and modifiers.</p>
 
@@ -906,21 +921,14 @@ treebanks that already contain some enhanced annotation).</p>
   <li>Besides adding case information to <code class="language-plaintext highlighter-rouge">nmod</code>, <code class="language-plaintext highlighter-rouge">obl</code>, <code class="language-plaintext highlighter-rouge">acl</code>, and <code class="language-plaintext highlighter-rouge">advcl</code>, the Stanford Enhancer also adds conjunction information to <code class="language-plaintext highlighter-rouge">conj</code>. This is not allowed in the guidelines and thus illegal; however, several UD treebanks already contain it and, arguably, its usefulness can be compared to that of case information.</li>
 </ul>
 
-
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
     var root = '../../'; // filled in by jekyll
     head.js(
-        // External libraries
-        root + 'lib/ext/jquery.min.js',
-        root + 'lib/ext/jquery.svg.min.js',
-        root + 'lib/ext/jquery.svgdom.min.js',
-        root + 'lib/ext/jquery.timeago.js',
-        root + 'lib/ext/jquery-ui.min.js',
-        root + 'lib/ext/waypoints.min.js',
-        root + 'lib/ext/jquery.address.min.js',
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
 
         // brat helper modules
         root + 'lib/brat/configuration.js',
@@ -999,9 +1007,9 @@ treebanks that already contain some enhanced annotation).</p>
 
 
       <div id="footer">
-	  <p class="footer-text">&copy; 2014–2021
-	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
-	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+          <p class="footer-text">&copy; 2014–2021
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
       </div>
     </div>
   </body>

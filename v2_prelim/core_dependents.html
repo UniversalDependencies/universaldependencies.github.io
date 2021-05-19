@@ -48,19 +48,34 @@
 
       
       <div class="v1warning">
-	This page still pertains to UD version 1.
+        This page still pertains to UD version 1.
       </div>
       
 
       <div id="content">
-	<noscript>
-	  <div id="noscript">
-	    It appears that you have Javascript disabled.
-	    Please consider enabling Javascript for this page to see the visualizations.
-	  </div>
-	</noscript>
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
 
-          <h1 id="core-dependents-in-ud-v2">Core Dependents in UD v2</h1>
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="core-dependents-in-ud-v2">Core Dependents in UD v2</h1>
 
 <p>The distinction between core dependents and the rest is fundamental to the whole taxonomy.
 Having specific and cross-linguistically consistent guidelines for core dependents is therefore
@@ -193,21 +208,14 @@ nsubj:dem(ikaseta, Ziroo)
 <p><strong>Chris on -pass relations:</strong> I can totally see Joakim’s point, and would agree that the treatment of causatives was certainly not very developed in the original UD proposals but my general belief is that we should adopt the kind of lexicalist approach to causatives that he outlines. The ideas of dobj:prom and nsubj:dem would be possible for an enhanced representation, but seem too complex for UD basic dependencies. I’d be okay with losing the -pass relations. However, the big reason for putting them in was that they are very useful on practical grounds. If you are writing a relation extraction system and are using lemmas, then for most verb forms picking out the path “nsubj” will consistently pick out one semantic role (say, the agent of an <em>acquiring</em> event), but if the verb is passivized, it then picks out the acquired company instead. Our feeling was that if you did mark -pass and you had a primary/other object distinction then in practice you had enough resources that a surface syntactic representation would almost always be enough that features for relation extraction would work well, with much less cost and less representational difficulty than attempting to build such systems on semantic roles. I still sort of feel that way. So, possible futures are: (i) Use a feature to show passive and to make sure everyone uses them (features weren’t part of SD, after all, so we needed -pass to have some representation); (ii) Allow nsubj:pass etc. as “language-particular” relations for people who like them; (iii) Attempt a useful typological definition that still has -pass.  If the last were to be attempted, I would do it like this: “Languages have a basic mapping of A, S, O roles onto grammatical relations, which is unmarked, common, and available to at least nearly all verbs. Many languages then have one or more syntactic processes whereby an A/S/proto-agent argument which would normally become a core role is demoted. In many but not all languages, another role then serves as syntactic subject. In such cases, this “replacement subject” is marked with a -pass to show that it is not the unmarked filler of the subject role for that verb.</p>
 
 
-
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
     var root = '../'; // filled in by jekyll
     head.js(
-        // External libraries
-        root + 'lib/ext/jquery.min.js',
-        root + 'lib/ext/jquery.svg.min.js',
-        root + 'lib/ext/jquery.svgdom.min.js',
-        root + 'lib/ext/jquery.timeago.js',
-        root + 'lib/ext/jquery-ui.min.js',
-        root + 'lib/ext/waypoints.min.js',
-        root + 'lib/ext/jquery.address.min.js',
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
 
         // brat helper modules
         root + 'lib/brat/configuration.js',
@@ -286,9 +294,9 @@ nsubj:dem(ikaseta, Ziroo)
 
 
       <div id="footer">
-	  <p class="footer-text">&copy; 2014–2021
-	    <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
-	    Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+          <p class="footer-text">&copy; 2014–2021
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
       </div>
     </div>
   </body>
