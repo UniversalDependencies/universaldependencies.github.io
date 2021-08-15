@@ -82,14 +82,15 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>Words are generally delimited by whitespace or punctuation. No tokens in any of the UD English corpora currently contain whitespace. Most corpora do not use multiword tokens, since clitics in English can usually be expressed using <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> (for forms like “don’t” = “do” + “n’t”). The <code class="language-plaintext highlighter-rouge">SpaceAfter</code> annotation also allows the distinction between otherwise identical token sequences, such as “can not” versus “cannot”. An exception regarding complex unit is Eng-ParTUT, which does use multiword tokens.</p>
+<p>Words are generally delimited by whitespace or punctuation. No tokens in any of the UD English corpora currently contain whitespace. Multiword tokens should be used for English clitics, such as <em>‘ll</em> (reduced form of the auxiliary <em>will), _n’t</em> (reduced form of <em>not</em>) and <em>‘s</em> (possessive clitic). For example, <em>don’t</em> = <em>do</em> + <em>n’t</em>). As of mid 2021, multiword tokens are used in the following English corpora: GUM, GUMReddit, and EWT, are partially used in ParTUT (used for forms like <em>ain’t</em> and <em>can’t</em> but not for forms that are concatenative like <em>John’s</em> or <em>she’ll</em>), but are not used in: PUD, LinES, Pronouns, or ESL. If multiword tokens are not present, clitics in English can usually be identified by using the <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> annotation and it also allows distinguishing between otherwise identical token sequences, such as “can not” versus “cannot”.</p>
 
-<p>Units that are generally tokenized apart include:</p>
+<p>Units that should be regarded as separate syntactic words include:</p>
 
 <ul>
-  <li>Clitic auxiliaries (‘ll, ‘m, ‘s, ‘ve …)</li>
+  <li>Clitic auxiliaries (‘ll, ‘m, ‘s, ‘ve, ‘d, …)</li>
   <li>Possessive genitive markers (‘s, ‘)</li>
-  <li>Clitic negation (n’t, but also not in cannot)</li>
+  <li>Clitic negation (n’t, and also not in cannot)</li>
+  <li>Most hyphenated terms (search-engine becomes 3 words: search, -, engine)</li>
 </ul>
 
 <p>Units that are not tokenized apart include:</p>
@@ -97,14 +98,14 @@
 <ul>
   <li>Acronyms (FBI, U.S.)</li>
   <li>Abbreviations without spaces (e.g., i.e.)</li>
-  <li>Hyphenated words, which are treated as tokens and not as compounds (part-time, [a] follow-up)</li>
+  <li>Some hyphenated words, with common prefixes or occasionally suffixes, such as <em>e-mail</em> or <em>co-ordinated</em></li>
 </ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>All corpora use the full range of UPOS tags. The XPOS column uses the Penn Treebank tagset. Note that XPOS does not have a simple mapping to UPOS tags, as UD guidelines enforce complex relations between dependency relations and POS tags: for example, since the relation <code class="language-plaintext highlighter-rouge">advmod</code> must generally have the tag <code class="language-plaintext highlighter-rouge">ADV</code>, UPOS may have <code class="language-plaintext highlighter-rouge">ADV</code> for some non-adverbial XPOS tags, and vice versa.</p>
+<p>All corpora use the full range of UPOS tags. The XPOS column uses the Penn Treebank tagset (as extended in subsequent LDC corpus releases). Note that XPOS does not have a simple mapping to UPOS tags, as UD guidelines enforce complex relations between dependency relations and POS tags: for example, since the relation <code class="language-plaintext highlighter-rouge">advmod</code> must generally have the tag <code class="language-plaintext highlighter-rouge">ADV</code>, UPOS may have <code class="language-plaintext highlighter-rouge">ADV</code> for some non-adverbial XPOS tags, and vice versa.</p>
 
 <p>Closed class auxiliaries (tagged <code class="language-plaintext highlighter-rouge">AUX</code>) include:</p>
 <ul>
@@ -118,7 +119,7 @@
 
 <h2 id="syntax">Syntax</h2>
 
-<p>Standard deprels are used, except for <code class="language-plaintext highlighter-rouge">clf</code> which is not used in any treebank. Commonly used custom subtypes include <code class="language-plaintext highlighter-rouge">obl:npmod</code> for oblique nominals (corresponds to Stanford Dependencies <code class="language-plaintext highlighter-rouge">npadvmod</code>), <code class="language-plaintext highlighter-rouge">nmod:tmod</code> and <code class="language-plaintext highlighter-rouge">obl:tmod</code> for temporal nouns used adverbially (e.g. “today”), based on the Stanford Dependencies label <code class="language-plaintext highlighter-rouge">tmod</code>. Additionally, passives are distinguished (<code class="language-plaintext highlighter-rouge">nsubj:pass</code>, <code class="language-plaintext highlighter-rouge">csubj:pass</code>), possessived (<code class="language-plaintext highlighter-rouge">nmod:poss</code>), predeterminers (<code class="language-plaintext highlighter-rouge">det:predet</code> for “both” in “both the children), preconj (<code class="language-plaintext highlighter-rouge">cc:preconj</code> for “either” in “either X or Y”) and a special compound subtype for phrasal verb particles (<code class="language-plaintext highlighter-rouge">compound:prt</code> for “up” in “pick up”).</p>
+<p>Standard deprels are used, except for <code class="language-plaintext highlighter-rouge">clf</code> which is not used in any treebank. Commonly used custom subtypes include <code class="language-plaintext highlighter-rouge">obl:npmod</code> for oblique nominals (corresponds to Stanford Dependencies <code class="language-plaintext highlighter-rouge">npadvmod</code>), <code class="language-plaintext highlighter-rouge">nmod:tmod</code> and <code class="language-plaintext highlighter-rouge">obl:tmod</code> for temporal nouns used adverbially (e.g. “today”), based on the Stanford Dependencies label <code class="language-plaintext highlighter-rouge">tmod</code>. Additionally, passives are distinguished (<code class="language-plaintext highlighter-rouge">nsubj:pass</code>, <code class="language-plaintext highlighter-rouge">csubj:pass</code>), pre-nominal possessives (<code class="language-plaintext highlighter-rouge">nmod:poss</code>), predeterminers (<code class="language-plaintext highlighter-rouge">det:predet</code> for “both” in “both the children), preconj (<code class="language-plaintext highlighter-rouge">cc:preconj</code> for “either” in “either X or Y”) and a special compound subtype for phrasal verb particles (<code class="language-plaintext highlighter-rouge">compound:prt</code> for “up” in “pick up”).</p>
 
 <p>For more information, see the list of <a href="dep/index.html">English relations</a>.</p>
 
