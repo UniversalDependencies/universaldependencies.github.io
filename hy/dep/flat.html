@@ -84,15 +84,15 @@
 
 <h2 id="names">Names</h2>
 
-<p>In Armenian the <code class="language-plaintext highlighter-rouge">flat</code> relation is used to join the first (or middle) and the last name of a person. In general, names are annotated in a <code class="language-plaintext highlighter-rouge">flat</code>, head-initial structure, in which all words in the name modify the head using the <code class="language-plaintext highlighter-rouge">flat</code> label.</p>
+<p>In Armenian (Eastern, Western) the <code class="language-plaintext highlighter-rouge">flat:name</code> relation as a specialization of <code class="language-plaintext highlighter-rouge">flat</code> is used to join the first (or middle) and the last name of a person. In general, names are annotated in a <code class="language-plaintext highlighter-rouge">flat:name</code>, head-initial structure, in which all words in the name modify the head using the <code class="language-plaintext highlighter-rouge">flat:name</code> label.</p>
 
 <p>For phrasal or clausal names the usual relations are used (e.g. multi-word names of places, organizations etc. <em>Երևանի պետական համալսարան, Պարսից ծով, Խաղաղ օվկիանոս, Ալանաց դշխուհի</em>).</p>
 
 <pre><code class="language-sdparse">Նախագահ Լևոն Տեր - Պետրոսյանը երեկ այցելել է Երևանի պետական համալսարան ։ \n President Levon Ter - Petrosyan yesterday visited Yerevan State University .
-flat(Լևոն, Պետրոսյանը)
-flat(Levon, Petrosyan)
-flat(Լևոն, Տեր)
-flat(Levon, Ter)
+flat:name(Լևոն, Պետրոսյանը)
+flat:name(Levon, Petrosyan)
+flat:name(Լևոն, Տեր)
+flat:name(Levon, Ter)
 nmod(Լևոն, Նախագահ)
 nmod(Levon, President)
 amod(համալսարան, պետական)
@@ -102,8 +102,8 @@ nmod:poss(University, Yerevan)
 </code></pre>
 
 <pre><code class="language-sdparse">Նյու Յորք \n New York
-flat(Նյու, Յորք)
-flat(New, York)
+flat:name(Նյու, Յորք)
+flat:name(New, York)
 </code></pre>
 
 <pre><code class="language-sdparse">Վանա/ADJ[NameType=Geo|Poss=Yes] լիճ/NOUN \n Lake Van
@@ -116,45 +116,38 @@ amod(ծոց, Պարսից)
 amod(Gulf, Persian)
 </code></pre>
 
-<p>Note, that the titles/honorifics, when immediately following the first noun, are analyzed using the <code class="language-plaintext highlighter-rouge">flat</code> relation. They are treated as a part of the names: (see also <a href="">nmod</a> and <a href="appos">apposition</a>):</p>
+<p>Note, that the titles/honorifics, when immediately following the first noun, are analyzed using the <code class="language-plaintext highlighter-rouge">flat:name</code> relation. They are treated as a part of the names: (see also <a href="">nmod</a> and <a href="appos">apposition</a>):</p>
 
 <pre><code class="language-sdparse">Խոսրով Գ Կոտակ \n Khosrov III the-Small
-flat(Խոսրով, Կոտակ)
-flat(Khosrov, the-Small)
-flat(Խոսրով, Գ)
-flat(Khosrov, III)
+flat:name(Խոսրով, Կոտակ)
+flat:name(Khosrov, the-Small)
+flat:name(Խոսրով, Գ)
+flat:name(Khosrov, III)
 </code></pre>
 
 <pre><code class="language-sdparse">Արշակ թագավորը \n King Arshak 
-flat(Արշակ, թագավորը)
-flat(King, Arshak)
+flat:name(Արշակ, թագավորը)
+flat:name(King, Arshak)
 </code></pre>
 
 <pre><code class="language-sdparse">Զարեհ էֆենդին \n Zareh Efendi 
-flat(Զարեհ, էֆենդին)
-flat(Zareh, Efendi)
+flat:name(Զարեհ, էֆենդին)
+flat:name(Zareh, Efendi)
 </code></pre>
 
 <pre><code class="language-sdparse">Անդրանիկ փաշան \n Andranik Pasha
-flat(Անդրանիկ, փաշան)
-flat(Andranik, Pasha)
+flat:name(Անդրանիկ, փաշան)
+flat:name(Andranik, Pasha)
 </code></pre>
 
 <pre><code class="language-sdparse">Մարկոս աղան \n Markos Agha
-flat(Մարկոս, աղան)
-flat(Markos, Agha)
+flat:name(Մարկոս, աղան)
+flat:name(Markos, Agha)
 </code></pre>
 
 <h2 id="dates-and-complex-numerals">Dates and Complex Numerals</h2>
 
-<p>The <code class="language-plaintext highlighter-rouge">flat</code> relation is also used for numerals and numerical expressions that lack phrasal structure. The most left numeral is the head, the other numerals are attached as its modifiers. Note, that for fraction or range <a href="NumType">numbers</a> the <a href="">compound</a> relation is used.</p>
-
-<pre><code class="language-sdparse">Սա առավելագույնը հինգ հազար դրամ կարժենա ։ \n It will cost at-most 5 thousand drams .
-nummod(դրամ, հինգ)
-nummod(drams, 5)
-flat(հինգ, հազար-4)
-flat(5, thousand-14)
-</code></pre>
+<p>The <code class="language-plaintext highlighter-rouge">flat</code> relation is also used for numerals and numerical expressions that lack phrasal structure. The most left numeral is the head, the other numerals are attached as its modifiers. Note, that for fraction or range <a href="NumType">numbers</a> the <a href="">flat:frac</a> and <a href="">flat:range</a> relations are used.</p>
 
 <pre><code class="language-sdparse">Սա առավելագույնը հարյուր հիսունհինգ հազար դրամ կարժենա ։ \n It will cost at-most hundred fifty-five thousand drams .
 nummod(դրամ, հարյուր)
