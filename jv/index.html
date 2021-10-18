@@ -86,7 +86,7 @@
   </li>
   <li>Special treatments of multiword tokens:
     <ul>
-      <li>Multiword tokens that contain clitics of <em>-ku</em> “me/my”, <em>-mu</em> “you/your”, <em>-né/-é/-ipun</em> “he/him/she/her/it” are split into two tokens.</li>
+      <li>Multiword tokens that contain clitics of <em>-ku</em> “me/my”, <em>-mu</em> “you/your”, <em>-é/-ipun</em> “he/him/she/her/it” are split into two tokens.</li>
     </ul>
   </li>
   <li>Special treatments for punctuations. All punctuation symbols are separated from the words, except in two cases:
@@ -107,29 +107,30 @@
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>UD Javanese treebank uses (all) X universal POS categories.</li>
-  <li>The auxiliary (<a href="">AUX</a>). We defined X Javanese words as AUX as follows:
+  <li>UD Javanese treebank uses all universal POS categories.</li>
+  <li>Javanese has three language levels: Krama, Madya, and Ngoko. For certain words, we will add information about its level: Kr. for Krama, and Ng. for Ngoko.</li>
+  <li>The auxiliary (<a href="">AUX</a>). We defined these Javanese words as AUX:
     <ul>
-      <li><em>yaiku</em> “be” serve as copulas.</li>
+      <li><em>yaiku</em> (Ng.) or <em>inggih punika</em> (Kr.) “be” serve as copulas.</li>
       <li>Tenses-related AUX:
         <ul>
-          <li><em>bakal/bade/arep</em> “will/would” for the future tense.</li>
-          <li><em>lagi/lagek</em> “be” for the present tense.</li>
-          <li><em>wis/sampun</em> “have/has/had” for the simple/past perfect tense.</li>
+          <li><em>bakal</em> (Ng.), <em>bade</em> (Kr.), <em>arep</em> “will/would” for the future tense.</li>
+          <li><em>lagi</em> (Ng.), <em>lagek</em> “be” for the present tense.</li>
+          <li><em>wis</em> (Ng.) or <em>sampun</em> (Kr.) “have/has/had” for the simple/past perfect tense.</li>
         </ul>
       </li>
       <li>Modal-related AUX:
         <ul>
-          <li><em>kudu/mesti</em> as the equivalents of modal “must”.</li>
+          <li><em>kudu</em> (Ng.) or <em>mesti</em> (Kr.) as the equivalents of modal “must”.</li>
           <li><em>sekuduné/semestiné</em> as the equivalents of modal ‘shall/should’.</li>
-          <li><em>iso/saget</em> as the equivalents of modal “can/could”.</li>
+          <li><em>isa</em> (Ng.) or <em>saget</em> (Kr.) as the equivalents of modal “can/could”.</li>
         </ul>
       </li>
     </ul>
   </li>
   <li><a href="">PART</a> is used for:
     <ul>
-      <li>negation words: <em>ora/mboten</em> “no/not”</li>
+      <li>negation words: <em>ora</em> (Ng.), <em>mboten</em> (Kr.) “no/not”</li>
       <li>particles of <em>ko, mbok, tho</em></li>
     </ul>
   </li>
@@ -148,12 +149,7 @@
   <li>We propose the use of 12 of 24 features defined in UD v2 that are relevant to Javanese grammar:
     <ul>
       <li><a href="">Abbr</a>, with one possible value: <code class="language-plaintext highlighter-rouge">Yes</code>. This feature can be applied to all UPOS categories, except <a href="">PUNCT</a> and <a href="">SYM</a>.</li>
-      <li>[Definite(), applies to <a href="">DET</a> with two possible values: <code class="language-plaintext highlighter-rouge">Def</code> and <code class="language-plaintext highlighter-rouge">Ind</code> .</li>
-      <li><a href="">Degree</a>, applies to <a href="">ADJ</a> with one possible value: <code class="language-plaintext highlighter-rouge">Sup</code>.
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">Degree=Sup</code> for superlative adjectives</li>
-        </ul>
-      </li>
+      <li><a href="">Definite</a>, applies to <a href="">DET</a> with two possible values: <code class="language-plaintext highlighter-rouge">Def</code> and <code class="language-plaintext highlighter-rouge">Ind</code> .</li>
       <li><a href="">Foreign</a>, with one possible value: <code class="language-plaintext highlighter-rouge">Yes</code>. This feature only applies to <a href="">X</a>.</li>
       <li><a href="">Number</a>, applies to <a href="">DET</a>, <a href="">NOUN</a>, and <a href="">PRON</a>, with two possible values: <code class="language-plaintext highlighter-rouge">Sing</code>, or <code class="language-plaintext highlighter-rouge">Plur</code>.</li>
       <li><a href="">NumType</a>, applies to <a href="">NUM</a> and <a href="">ADJ</a>, with two possible values: <code class="language-plaintext highlighter-rouge">Card</code> or <code class="language-plaintext highlighter-rouge">Ord</code>.
@@ -165,17 +161,18 @@
       <li><a href="">Person</a>, applies to <a href="">PRON</a> with three possible values: <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code>.</li>
       <li><a href="">Polarity</a>, with one possible value: <code class="language-plaintext highlighter-rouge">Neg</code>, applies to <a href="">PART</a> and <a href="">INTJ</a>.
         <ul>
-          <li><code class="language-plaintext highlighter-rouge">Polarity=Neg</code> for <a href="">PART</a> applies for negation particles</li>
+          <li><code class="language-plaintext highlighter-rouge">Polarity=Neg</code> for <a href="">PART</a> applies for negating particles</li>
           <li><code class="language-plaintext highlighter-rouge">Polarity=Neg</code> for <a href="">INTJ</a> as in <em><strong>Mboten</strong></em> “<strong>No</strong>”. The word <em>mboten</em> “no” will be given feature <code class="language-plaintext highlighter-rouge">Polarity=Neg</code>.</li>
         </ul>
       </li>
-      <li><a href="">Poss</a>, applies to <a href="">PRON</a>, with one possible value: <code class="language-plaintext highlighter-rouge">Yes</code> for <a href="">PRON</a> that serves as possessive pronouns.</li>
-      <li><a href="">PronType</a></li>
+      <li><a href="">Polite</a> with four possible values: <code class="language-plaintext highlighter-rouge">Infm</code>, <code class="language-plaintext highlighter-rouge">Form</code>, <code class="language-plaintext highlighter-rouge">Elev</code>, <code class="language-plaintext highlighter-rouge">Humb</code></li>
+      <li><a href="">PronType</a> with six possible values: <code class="language-plaintext highlighter-rouge">Art</code>, <code class="language-plaintext highlighter-rouge">Dem</code>, <code class="language-plaintext highlighter-rouge">Emp</code>, <code class="language-plaintext highlighter-rouge">Prs</code>, <code class="language-plaintext highlighter-rouge">Rel</code>, and <code class="language-plaintext highlighter-rouge">Tot</code>,</li>
+      <li><a href="">Reflex</a> with one possible value: <code class="language-plaintext highlighter-rouge">Yes</code></li>
       <li><a href="">Typo</a>, with one possible value, <code class="language-plaintext highlighter-rouge">Yes</code>. This feature can be applied to all UPOS categories except <a href="">PUNCT</a> and <a href="">SYM</a>.</li>
-      <li><a href="">Voice</a>, applies to <a href="">VERB</a> with two possible values: <code class="language-plaintext highlighter-rouge">Act</code> and <code class="language-plaintext highlighter-rouge">Pass</code>. Voice alternation is treated as inflection and the active and passive counterparts have the same lemma.
+      <li><a href="">Voice</a>, applies to <a href="">VERB</a> with two possible values: <code class="language-plaintext highlighter-rouge">Act</code> and <code class="language-plaintext highlighter-rouge">Pass</code>.
         <ul>
-          <li><code class="language-plaintext highlighter-rouge">Voice=Act</code> for active verbs that have characteristic of using base word</li>
-          <li><code class="language-plaintext highlighter-rouge">Voice=Pass</code> for passive verbs that have characteristic of using prefixes <em>di-, ter-</em> or circumfix <em>ke-an</em>.</li>
+          <li><code class="language-plaintext highlighter-rouge">Voice=Act</code> for active verbs</li>
+          <li><code class="language-plaintext highlighter-rouge">Voice=Pass</code> for passive verbs</li>
         </ul>
       </li>
     </ul>
@@ -195,7 +192,7 @@
 <h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
 
 <ul>
-  <li>The copula <em>yaiku</em> (be) is optionally used in equational, attributional, locative, possessive and benefactory nonverbal clauses.</li>
+  <li>The copula <em>yaiku</em> (Ng.) or <em>inggih punika</em> (Kr.) (be) is optionally used in equational, attributional, locative, possessive and benefactory nonverbal clauses.</li>
 </ul>
 
 <h3 id="relations-overview">Relations Overview</h3>
