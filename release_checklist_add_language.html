@@ -162,12 +162,13 @@ In the README file, add a line to the Changelog, e.g.:
     <pre>* 2018-04-15 v2.2
   * Repository renamed from UD_Czech to UD_Czech-PDT.</pre>
   </li>
-  <li>Commit and push the changes. This should also trigger an automatic re-validation of the treebank under the new name.</li>
+  <li>Commit and push the changes. This should also trigger an automatic re-validation of the treebank under the new name.
+There will be a README error because the treebank is not recognized as previously released; see the next step.</li>
   <li>Go to the <code class="language-plaintext highlighter-rouge">tools</code> repository to the script <code class="language-plaintext highlighter-rouge">check_files.pl</code> and locate the function <code class="language-plaintext highlighter-rouge">check_metadata()</code>.
 There is a back up list of treebanks and their “Data available since” metadata. Replace <code class="language-plaintext highlighter-rouge">UD_Czech</code> with <code class="language-plaintext highlighter-rouge">UD_Czech-PDT</code>,
-keeping it in the list for the release where <code class="language-plaintext highlighter-rouge">UD_Czech</code> appeared for the first time.</li>
+keeping it in the list for the release where <code class="language-plaintext highlighter-rouge">UD_Czech</code> appeared for the first time. (We will probably change the way how this is checked in the future.)</li>
   <li>Go to the <code class="language-plaintext highlighter-rouge">docs-automation</code> repository to the script <code class="language-plaintext highlighter-rouge">valdan/update-validation-report.pl</code>.
-Inspect the two lists of treebanks in the <code class="language-plaintext highlighter-rouge">BEGIN</code> block and replace each occurrence of <code class="language-plaintext highlighter-rouge">UD_Czech</code> with <code class="language-plaintext highlighter-rouge">UD_Czech-PDT</code>.</li>
+Inspect the two lists of treebanks in the <code class="language-plaintext highlighter-rouge">BEGIN</code> block and replace each occurrence of <code class="language-plaintext highlighter-rouge">UD_Czech</code> with <code class="language-plaintext highlighter-rouge">UD_Czech-PDT</code>. (We will probably change the way how this is done in the future.)</li>
   <li>If there are other places where you maintain local clones of UD repositories (e.g., one is your laptop and the other is your
 university network), go to each of them, do a new git clone ; git checkout dev ; rm old clone.</li>
   <li>Finally, we want to regenerate the title page of Universal Dependencies.
