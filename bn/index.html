@@ -80,27 +80,74 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>In general, words are delimited by whitespace characters. Description of exceptions follows.</li>
+  <li>According to typographical rules, some punctuation marks (e.g., comma) are attached to a neighboring word,
+while others (e.g., the sentence-terminating danda) are not.
+We tokenize punctuation as separate tokens (words).</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<ul>
+  <li>Bengali uses all 17 universal POS categories, including particles (<a href="">PART</a>).</li>
+  <li>At present, only some modal verbs are treated as auxiliaries (<a href="">AUX</a>):
+    <ul>
+      <li>পারা <em>pārā</em> (“be able, can, could”) combines with the imperfect participle (also called the infinitive) of the main verb</li>
+      <li>হওয়া <em>haoŷā</em> (“be, become”) combines with the imperfect participle (also called the infinitive) of the main verb to create a necessitative meaning (“to have to”)</li>
+      <li>চাওয়া <em>cāoŷā</em> (“want”) combines with the infinitive (also called the verbal noun) of the main verb</li>
+    </ul>
+  </li>
+  <li>There are verb-verb compounds, where the semantically more salient verb comes first in the form
+of a participle, and the semantically less salient verb comes second and has a finite form.
+There is a restricted set of verbs that can occur at the second position of verb-verb compounds.
+Note that these are not considered auxiliary verbs in UD.
+    <ul>
+      <li>যাওয়া <em>yāoŷā</em> (“to go”)</li>
+      <li>নেয়া <em>neŷā</em> (“to take”)</li>
+      <li>দেত্তয়া <em>dettaŷā</em> (“to give”)</li>
+      <li>বসা <em>basā</em> (“to sit”)</li>
+      <li>আসা <em>āsā</em> (“to come”)</li>
+    </ul>
+  </li>
+  <li>There are noun-verb compounds where the noun is the semantically more salient part and it comes first.
+These are treated as light-verb constructions, i.e., the noun is attached to the verb as <a href="">compound:lvc</a>
+rather than an object. The verb is not treated as auxiliary. Examples:
+    <ul>
+      <li>শেষ করা <em>śeṣa karā</em> “to finish” (lit. “end do”)</li>
+    </ul>
+  </li>
+  <li>There are five main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>. This is the citation form (lemma) of the verb.
+When used in a nominal position (as a subject of another verb, with a case suffix, with possessive modifiers etc.),
+it is instead tagged <a href="">NOUN</a> and its <code class="language-plaintext highlighter-rouge">VerbForm</code> is <code class="language-plaintext highlighter-rouge">Vnoun</code> (verbal noun) rather than <code class="language-plaintext highlighter-rouge">Inf</code>.</li>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Participle <code class="language-plaintext highlighter-rouge">Part</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>. It does not express person.
+The two main types of participles are distinguished by <a href="">Aspect</a>. The third type, conditional participle, is distinguished by <a href="">Mood</a>.
+        <ul>
+          <li>Imperfect participle. Some sources (e.g., Wiktionary) may use the term infinitive for this form and verbal noun for what we call infinitive.</li>
+          <li>Perfect participle.</li>
+          <li>Conditional participle: <code class="language-plaintext highlighter-rouge">Mood=Cnd</code>.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<h3 id="verbal-features">Verbal Features</h3>
 
-<hr />
-
-<h3 id="features">Features</h3>
-
-<p>*</p>
+<ul>
+  <li>Two participle types are distinguished by <a href="">Aspect</a>, either imperfective (<code class="language-plaintext highlighter-rouge">Imp</code>) or perfective (<code class="language-plaintext highlighter-rouge">Perf</code>).
+<code class="language-plaintext highlighter-rouge">Aspect=Perf</code> is further used with finite verbs in the present perfect form.
+Similarly, present continuous (progressive) finite forms will get <code class="language-plaintext highlighter-rouge">Aspect=Prog</code>.</li>
+  <li>Finite verbs always have one of two values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Ind</code> or <code class="language-plaintext highlighter-rouge">Imp</code>.
+The conditional mood <code class="language-plaintext highlighter-rouge">Cnd</code> is only used with the conditional participle.</li>
+  <li>Verbs in the indicative mood always have one of three values of <a href="">Tense</a>: <code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Pres</code> or <code class="language-plaintext highlighter-rouge">Fut</code>.</li>
+  <li>There are two values of the <a href="">Voice</a> feature: <code class="language-plaintext highlighter-rouge">Act</code> and <code class="language-plaintext highlighter-rouge">Pass</code>.</li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
@@ -118,19 +165,12 @@
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/bn-comparison.html">N</a> Bengali UD treebanks:</p>
+<p>There are <a href="../treebanks/bn-comparison.html">2</a> Bengali UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/bn_a/index.html">Bengali-A</a></li>
-  <li><a href="../treebanks/bn_b/index.html">Bengali-B</a></li>
+  <li><a href="../treebanks/bn_bru/index.html">Bengali-BRU</a></li>
+  <li><a href="../treebanks/bn_pud/index.html">Bengali-PUD</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
