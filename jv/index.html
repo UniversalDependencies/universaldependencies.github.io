@@ -79,7 +79,7 @@
         <h1 id="ud-for-javanese-">UD for Javanese <span class="flagspan"><img class="flag" src="../../flags/svg/ID.svg" /></span></h1>
 
 <ul>
-  <li>Javanese has several language levels, such as Krama, Krama Inggil, Ngoko. For certain words, we will add information about its level: Kr. for Krama, KI for Krama Inggil, and Ng. for Ngoko.</li>
+  <li>Javanese has several language levels, such as Krama, Krama Inggil, and Ngoko. For certain words, we will add information about its level: Kr. for Krama, KI for Krama Inggil, and Ng. for Ngoko.</li>
 </ul>
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
@@ -90,19 +90,30 @@
   </li>
   <li>Special treatments of multiword tokens:
     <ul>
-      <li>Multiword tokens that contain clitics are split into two tokens.
+      <li>Multiword tokens that contain clitics are split into two tokens. Examples of clitics in Javanese:
         <ul>
-          <li><em>-ku</em> (Ng.) “me/my”</li>
-          <li><em>-mu</em> (Ng.) “you/your”,</li>
-          <li><em>-é</em> (Ng.) “he/him/she/her/it”</li>
-          <li><em>-ipun</em> (Kr.) “he/him/she/her/it”</li>
+          <li>Examples of enclitics:
+            <ul>
+              <li><em>-ku</em> (Ng.) “me/my”, as in <em>bojoku</em> “my wife”</li>
+              <li><em>-mu</em> (Ng.) “you/your”, as in <em>omahmu</em> “your house”</li>
+              <li><em>-é</em> (Ng.) “he/him/she/her/it”, as in <em>gawéané</em> “his/her work”</li>
+              <li><em>-ipun</em> (Kr.) “he/him/she/her/it”, as in <em>ramanipun</em> “his/her father”</li>
+            </ul>
+          </li>
+          <li>Examples of proclitics:
+            <ul>
+              <li><em>tak-</em> “I”, as in <em>takbukak</em> “I open”</li>
+              <li><em>kok-, _mbok-</em> “you”, as in <em>kokjupuk</em> “you take”, <em>mbokpangan</em> “you eat”</li>
+              <li><em>ma-, me-</em> “to”, as in <em>mangulon</em> “to the west”, <em>mengetan</em> “to the east”</li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
   </li>
   <li>Special treatments for punctuations. All punctuation symbols are separated from the words, except in two cases:
     <ul>
-      <li>Hyphen in reduplicated words. Javanese has many reduplicated words as nouns, verbs, and so on. These reduplicated words are not split and remain one token. The examples of reduplicated words are:
+      <li>Hyphen in reduplicated words. Javanese has many reduplicated words as nouns, verbs, determiner, adverb, and so on. These reduplicated words are not split and remain one token. The examples of reduplicated words are:
         <ul>
           <li>Plural noun: <em>bangsa-bangsa</em> “nations”</li>
           <li>Verb: <em>mlaku-mlaku</em> (Ng.) “traveling”</li>
@@ -110,7 +121,7 @@
           <li>Adverb: <em>akèh-akèhan</em> (Ng.) “as much as possible”</li>
         </ul>
       </li>
-      <li>For abbreviations. All abbreviations such as Dr., Tn. “Mr.” are not split and remain one token.</li>
+      <li>For abbreviations. All abbreviations such as Dr., <em>Tn.</em> “Mr.”, <em>Ny.</em> “Mrs.”  are not split and remain one token.</li>
     </ul>
   </li>
 </ul>
@@ -132,15 +143,15 @@
       </li>
       <li>Tenses-related AUX:
         <ul>
-          <li><em>bakal</em> (Ng.) or <em>bade</em> (Kr.) “will/would” for the future tense.</li>
-          <li><em>lagi</em> (Ng.) “be” for the present tense.</li>
-          <li><em>wis</em> (Ng.) or <em>sampun</em> (Kr.) “have/has/had” for the simple/past perfect tense.</li>
+          <li><em>bakal</em> (Ng.), <em>bade</em> (Kr.) “will/would” for the future tense.</li>
+          <li><em>lagi</em> (Ng.), <em>saweg</em> (Kr.) “be” for the present tense.</li>
+          <li><em>wis</em> (Ng.), <em>sampun</em> (Kr.) “have/has/had” for the simple/past perfect tense.</li>
         </ul>
       </li>
       <li>Modal-related AUX:
         <ul>
           <li><em>kudu</em> (Ng.), <em>mesti</em> (Kr.) as the equivalents of modal “must”.</li>
-          <li><em>sekuduné/semestiné</em> as the equivalents of modal ‘shall/should’.</li>
+          <li><em>sekuduné</em> (Ng.), <em>semestiné</em> (Kr.) as the equivalents of modal ‘shall/should’.</li>
           <li><em>bisa</em> (Ng.), <em>saged</em> (Kr.) as the equivalents of modal “can/could”.</li>
         </ul>
       </li>
@@ -149,7 +160,7 @@
   <li><a href="">PART</a> is used for:
     <ul>
       <li>negation words: <em>ora</em> (Ng.) or <em>boten</em> (Kr.): “no/not”</li>
-      <li>particles of <em>ko, mbok, tho, ya</em></li>
+      <li>particles like <em>tho, ya</em> that are used to emphasized something</li>
     </ul>
   </li>
   <li>Javanese has the following coordinating conjunction words (<a href="">CCONJ</a>):
@@ -196,7 +207,7 @@
       <li><a href="">Polarity</a>, with one possible value: <code class="language-plaintext highlighter-rouge">Neg</code>, applies to <a href="">PART</a> and <a href="">INTJ</a>.
         <ul>
           <li><code class="language-plaintext highlighter-rouge">Polarity=Neg</code> for <a href="">PART</a> applies for negating particles</li>
-          <li><code class="language-plaintext highlighter-rouge">Polarity=Neg</code> for <a href="">INTJ</a> as in <em><strong>Mboten</strong></em> “<strong>No</strong>”. The word <em>mboten</em> “no” will be given feature <code class="language-plaintext highlighter-rouge">Polarity=Neg</code>.</li>
+          <li><code class="language-plaintext highlighter-rouge">Polarity=Neg</code> for <a href="">INTJ</a> as in <em><strong>boten</strong></em> “<strong>no</strong>”. The word <em>boten</em> “no” will be given feature <code class="language-plaintext highlighter-rouge">Polarity=Neg</code>.</li>
         </ul>
       </li>
       <li><a href="">Polite</a> with four possible values: <code class="language-plaintext highlighter-rouge">Infm</code>, <code class="language-plaintext highlighter-rouge">Form</code>, <code class="language-plaintext highlighter-rouge">Elev</code>, <code class="language-plaintext highlighter-rouge">Humb</code>
