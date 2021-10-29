@@ -78,46 +78,57 @@
         </script>
         <h1 id="ud-for-old-french-">UD for Old French <span class="flagspan"><img class="flag" src="../../flags/svg/FR-ROYAL.svg" /></span></h1>
 
+<h2 id="sentence-segmentation">Sentence segmentation</h2>
+
+<p>Due to the nature of the original texts where sentences are not usually clearly marked by punctuation, we keep only one main clause per tree regardless of the punctuation added by modern transcriptions. See for instance in <em>La queste del saint Graal</em>,</p>
+
+<blockquote>
+  <p>Certes, fet li rois, Keus, vos dites voir, ceste costume ai je toz jorz tenue et la tendrai tant com je porrai mes je avoie si grant joie de Lancelot et de ses cousins qui estoient venu a cort sain et haitié qu’il ne me sovenoit de la costume.</p>
+</blockquote>
+
+<p>Is split in four trees:</p>
+
+<ul>
+  <li>“Certes, fet li rois, Keus, vos dites voir”</li>
+  <li>“ceste costume ai je toz jorz tenue”</li>
+  <li>“et la tendrai tant com je porrai”</li>
+  <li>“mes je avoie si grant joie de Lancelot et de ses cousins qui estoient venu a cort sain et haitié qu’il ne me sovenoit de la costume.”</li>
+</ul>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
   <li>Words are delimited by whitespace or punctuation</li>
-  <li>Contractions such as <em>sin</em> = <em>si</em> + <em>en</em> are rendered as single words instead of multiword tokens, though this will probably change in the future</li>
+  <li>Contractions such as <em>sin</em> = <em>si</em> + <em>en</em> are rendered as single words instead of multiword tokens, though this will probably change in the future. This is also reflected in their relation subtypes (see below).</li>
 </ul>
 
 <h2 id="morphology">Morphology</h2>
 
-<p>The following custom morphological features are used</p>
+<p>The following custom morphological features are used:</p>
 
 <ul>
   <li>Morph=VFin : finite verb</li>
   <li>Morph=VInf : non finite verb</li>
   <li>Morph=VPar : verbal participle</li>
-  <li>Polarity=Int : interrogative</li>
-  <li>PronType=Ord : numeral</li>
 </ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>The following relation subtypes are used</p>
+<p>The following relation subtypes are used:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">acl:relcl</code> : relative clause</li>
-  <li><code class="language-plaintext highlighter-rouge">advmod:obl</code> : contracted <code class="language-plaintext highlighter-rouge">advmod</code> + <code class="language-plaintext highlighter-rouge">obl</code> (eg. <em>sin</em> = <em>si</em> + <em>en</em>)</li>
-  <li><code class="language-plaintext highlighter-rouge">aux:pass</code> : passive auxiliary</li>
-  <li><code class="language-plaintext highlighter-rouge">case:det</code> : contracted <code class="language-plaintext highlighter-rouge">case</code> + <code class="language-plaintext highlighter-rouge">det</code> (eg. <em>del</em> = <em>de</em> + <em>le</em>)</li>
-  <li><code class="language-plaintext highlighter-rouge">cc:nc</code> : non coordinating conjunction (eg. <em>et</em> at the beginning of a sentence)</li>
-  <li><code class="language-plaintext highlighter-rouge">mark:advmod</code> : <code class="language-plaintext highlighter-rouge">mark</code> and <code class="language-plaintext highlighter-rouge">advmod</code> (eg. <em>coment</em> at the beginning of a subordinate clause)</li>
-  <li><code class="language-plaintext highlighter-rouge">mark:obj</code> : <code class="language-plaintext highlighter-rouge">mark</code> and <code class="language-plaintext highlighter-rouge">obj</code> (eg. relative pronoun <em>que</em>)</li>
-  <li><code class="language-plaintext highlighter-rouge">mark:obl</code> : <code class="language-plaintext highlighter-rouge">mark</code> and <code class="language-plaintext highlighter-rouge">obl</code> (eg. relative pronoun <em>cui</em> / <em>qui</em> )</li>
-  <li><code class="language-plaintext highlighter-rouge">nmod:appos</code></li>
-  <li><code class="language-plaintext highlighter-rouge">nsubj:advmod</code> : contracted <code class="language-plaintext highlighter-rouge">nsubj</code> + <code class="language-plaintext highlighter-rouge">advmod</code> (eg. <em>jon</em> = <em>jo</em> + <em>en</em>)</li>
-  <li><code class="language-plaintext highlighter-rouge">nsubj:obj</code> : contracted <code class="language-plaintext highlighter-rouge">nsubj</code> + <code class="language-plaintext highlighter-rouge">obj</code> (eg. <em>quil</em> = <em>qui</em> + <em>le</em>)</li>
-  <li><code class="language-plaintext highlighter-rouge">obj:advmod</code> : contracted <code class="language-plaintext highlighter-rouge">advmod</code> + <code class="language-plaintext highlighter-rouge">obj</code> (eg. <em>sis</em> = <em>si</em> + <em>les</em>)</li>
-  <li><code class="language-plaintext highlighter-rouge">obj:advneg</code> : contracted <code class="language-plaintext highlighter-rouge">negation</code> + <code class="language-plaintext highlighter-rouge">obj</code> (eg. <em>nes</em> = <em>ne</em> + <em>les</em>)</li>
-  <li><code class="language-plaintext highlighter-rouge">obj:obl</code> : contracted <code class="language-plaintext highlighter-rouge">obl</code> + <code class="language-plaintext highlighter-rouge">obj</code> (eg. <em>oul</em> = <em>ou</em> + <em>le</em>)</li>
-  <li><code class="language-plaintext highlighter-rouge">obl:advmod </code>: the double labelling accounts for the difficulty to decide between obl and advmod relations (<code class="language-plaintext highlighter-rouge">en</code> and <code class="language-plaintext highlighter-rouge">i</code>).</li>
-  <li><code class="language-plaintext highlighter-rouge">obl:mod</code></li>
+  <li><code class="language-plaintext highlighter-rouge">acl:relcl</code>: relative clause</li>
+  <li><code class="language-plaintext highlighter-rouge">advmod:obl</code>: contracted <code class="language-plaintext highlighter-rouge">advmod</code> and <code class="language-plaintext highlighter-rouge">obl</code> (eg. <em>sin</em> = <em>si</em> + <em>en</em>)</li>
+  <li><code class="language-plaintext highlighter-rouge">aux:pass</code>: passive auxiliary</li>
+  <li><code class="language-plaintext highlighter-rouge">case:det</code>: contracted <code class="language-plaintext highlighter-rouge">case</code> and <code class="language-plaintext highlighter-rouge">det</code> (eg. <em>del</em> = <em>de</em> + <em>le</em>)</li>
+  <li><code class="language-plaintext highlighter-rouge">cc:nc</code>: non coordinating conjunction (eg. <em>et</em> at the beginning of a sentence)</li>
+  <li><code class="language-plaintext highlighter-rouge">mark:advmod</code>: <code class="language-plaintext highlighter-rouge">mark</code> and <code class="language-plaintext highlighter-rouge">advmod</code> (eg. <em>coment</em> at the beginning of a subordinate clause)</li>
+  <li><code class="language-plaintext highlighter-rouge">nsubj:advmod</code>: contracted <code class="language-plaintext highlighter-rouge">nsubj</code> and <code class="language-plaintext highlighter-rouge">advmod</code> (eg. <em>jon</em> = <em>jo</em> + <em>en</em>)</li>
+  <li><code class="language-plaintext highlighter-rouge">nsubj:obj</code>: contracted <code class="language-plaintext highlighter-rouge">nsubj</code> and <code class="language-plaintext highlighter-rouge">obj</code> (eg. <em>quil</em> = <em>qui</em> + <em>le</em>)</li>
+  <li><code class="language-plaintext highlighter-rouge">obj:advmod</code>: contracted <code class="language-plaintext highlighter-rouge">advmod</code> and <code class="language-plaintext highlighter-rouge">obj</code> (eg. <em>sis</em> = <em>si</em> + <em>les</em>)</li>
+  <li><code class="language-plaintext highlighter-rouge">obj:advneg</code>: contracted <code class="language-plaintext highlighter-rouge">negation</code> and <code class="language-plaintext highlighter-rouge">obj</code> (eg. <em>nes</em> = <em>ne</em> + <em>les</em>)</li>
+  <li><code class="language-plaintext highlighter-rouge">obj:obl</code>: contracted <code class="language-plaintext highlighter-rouge">obl</code> and <code class="language-plaintext highlighter-rouge">obj</code> (eg. <em>oul</em> = <em>ou</em> + <em>le</em>)</li>
+  <li><code class="language-plaintext highlighter-rouge">obl:advmod</code>: the double labelling accounts for the difficulty to decide between obl and advmod relations (<code class="language-plaintext highlighter-rouge">en</code> and <code class="language-plaintext highlighter-rouge">i</code>).</li>
 </ul>
 
 <h2 id="treebanks">Treebanks</h2>
