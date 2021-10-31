@@ -113,7 +113,7 @@ Also don’t attempt to bring into line with GOC by adding or taking away hyphen
 <p>The original version of ARCOSG contains tokens that contain spaces.
 For UD, however, we need to split these up.
 For the moment we duplicate the UPOS and the XPOS for each of the words.
-PROPNs have a <code class="language-plaintext highlighter-rouge">flat</code> relation; others have a <code class="language-plaintext highlighter-rouge">fixed</code> relation but this needs to be improved.</p>
+PROPNs have a <code class="language-plaintext highlighter-rouge">flat:name</code> relation; others have a <code class="language-plaintext highlighter-rouge">fixed</code> relation but this needs to be improved.</p>
 
 <p>Some difficult cases follow:</p>
 <h4 id="na-bna-bu"><em>na b’</em>/<em>na bu</em></h4>
@@ -138,7 +138,7 @@ Here are the most common families:</p>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">AUX</code> is used for <em>is</em> (the copula) only. <em>bi</em> is tagged as <code class="language-plaintext highlighter-rouge">VERB</code>.</li>
   <li>The following words are tagged <code class="language-plaintext highlighter-rouge">PART</code>: the adverbialiser <em>gu</em> (<em>gu math</em> ‘well’), the comparative particle <em>nas</em>, the superlative particle <em>as</em>, the agreement particle <em>a</em> (<em>a dol</em> ‘to go’), the vocative particle <em>a</em> (<em>a Sheumais</em> ‘James’), the patronymic particles <em>Mac</em> and <em>Nic</em>, the numerical particle <em>a</em> (<em>a h-aon) ‘one’), the past tense marker _do</em>, the negative particles <em>cha</em> and <em>nach</em>, the interrogative particles <em>a</em> and <em>an</em> and the relative particle <em>a</em>.</li>
-  <li>Verbal nouns are tagged as <code class="language-plaintext highlighter-rouge">NOUN</code>.</li>
+  <li>Verbal nouns are tagged as <code class="language-plaintext highlighter-rouge">NOUN</code> with <code class="language-plaintext highlighter-rouge">VerbType=Vnoun</code>.</li>
   <li>Deverbal adjectives are tagged as <code class="language-plaintext highlighter-rouge">ADJ</code>.</li>
   <li>The aspectual particles <em>ag</em>/<em>a’</em>, <em>air</em>, <em>gu</em> and <em>ri</em> (all prototypically adpositions) are tagged as <code class="language-plaintext highlighter-rouge">ADP</code>.</li>
   <li>Demonstrative pronouns, <em>seo</em>, <em>sin</em> and <em>siud</em> are tagged as <code class="language-plaintext highlighter-rouge">PRON</code> as in Irish.</li>
@@ -231,29 +231,29 @@ The expletive particle <em>e</em> or <em>ann</em> is linked to the copula with <
 
 <h3 id="air-ais"><em>air ais</em></h3>
 
-<p>While <em>ais</em> is tagged as <em>Nf</em> in phrases like <em>air ais no air adhart</em> there seems to be no good reason to treat the first half differently from the second half, so <em>air</em> is <code class="language-plaintext highlighter-rouge">case</code> of <em>ais</em> and <em>ais</em> is the head and <code class="language-plaintext highlighter-rouge">obl</code> of whatever it is modifying.</p>
+<p>While <em>ais</em> is tagged as <code class="language-plaintext highlighter-rouge">Nf</code> in phrases like <em>air ais no air adhart</em> there seems to be no good reason to treat the first half differently from the second half, so <em>air</em> is <code class="language-plaintext highlighter-rouge">case</code> of <em>ais</em> and <em>ais</em> is the head and <code class="language-plaintext highlighter-rouge">obl</code> of whatever it is modifying.</p>
 
 <h3 id="bi"><em>bi</em></h3>
 <p>Auxiliary use: we follow the Irish UD treebank and treat <em>bi</em> as a <code class="language-plaintext highlighter-rouge">VERB</code>, and the verbal noun as a <code class="language-plaintext highlighter-rouge">NOUN</code> linked back to <em>bi</em> with an <code class="language-plaintext highlighter-rouge">xcomp:pred</code> deprel.</p>
 
-<p>Predicative use: again, we follow Irish and use <code class="language-plaintext highlighter-rouge">xcomp:pred</code> for predicative adjectives, PPs and adverbs. There is a construction exemplified in c02<em>009a, c02_009b and c02_010 _bi… agam… ri dhol…</em> and in this case we assume that the PP with <em>aig</em> is the quirky experiencer and <em>ri</em> is the predicate.</p>
+<p>Predicative use: again, we follow Irish and use <code class="language-plaintext highlighter-rouge">xcomp:pred</code> for predicative adjectives, PPs and adverbs. There is a construction exemplified in c02_009a, c02_009b and c02_010 <em>bi… agam… ri dhol…</em> and in this case we assume that the PP with <em>aig</em> is the quirky experiencer and <em>ri</em> is the predicate.</p>
 
-<p>However (see f01<em>028), there are also uses of _bi</em> for extent in time (n03_041) and space.</p>
+<p>However (see f01_028), there are also uses of <em>bi</em> for extent in time (n03_041) and space.</p>
 
 <h3 id="còrr-is-and-friends"><em>còrr is</em> and friends</h3>
 
-<p>Example taken from pw01<em>015a: in _còrr is deich bliadhna</em>, <em>bliadhna</em> is conjoined with <em>còrr</em> and <em>deich</em> is a <code class="language-plaintext highlighter-rouge">nummod</code> of <em>bliadhna</em>.</p>
+<p>Example taken from pw01_015a: in <em>còrr is deich bliadhna</em>, <em>bliadhna</em> is conjoined with <em>còrr</em> and <em>deich</em> is a <code class="language-plaintext highlighter-rouge">nummod</code> of <em>bliadhna</em>.</p>
 
-<p>From ns04<em>053: in _thachair an tubaist còrr is bliadhna gu leth</em> <em>còrr</em> is <code class="language-plaintext highlighter-rouge">obl:tmod</code> of <em>thachair</em> because the phrase as a whole is a time phrase.</p>
+<p>From ns04_053: in <em>thachair an tubaist còrr is bliadhna gu leth</em> <em>còrr</em> is <code class="language-plaintext highlighter-rouge">obl:tmod</code> of <em>thachair</em> because the phrase as a whole is a time phrase.</p>
 
 <h3 id="dè-cho"><em>dè cho…</em></h3>
 
-<p>‘how’ as in ‘how big’. Retag <em>dè</em> as <code class="language-plaintext highlighter-rouge">ADV</code> and both it and <em>cho</em> are <code class="language-plaintext highlighter-rouge">advmod</code> of the adjective.</p>
+<p>‘how’ as in ‘how big’. <em>dè</em> remains <code class="language-plaintext highlighter-rouge">PRON</code> and <em>cho</em> is <code class="language-plaintext highlighter-rouge">advmod</code> of the succeeding adjective.</p>
 
 <h3 id="feuch"><em>feuch</em></h3>
 
 <p>When this is tagged as <code class="language-plaintext highlighter-rouge">Vm-2s</code> the sense in which it is usually used is ‘to try to’, in which case it is linked to the higher clause with an <code class="language-plaintext highlighter-rouge">xcomp</code> deprel.
-For example n04<em>002: _… gu robh e ‘dol a dh’fhalbh feuch a faigheadh…</em>, <em>feuch</em> is an <code class="language-plaintext highlighter-rouge">xcomp</code> of <em>dh’fhalbh</em>.</p>
+For example n04_002: <em>… gu robh e ‘dol a dh’fhalbh feuch a faigheadh…</em>, <em>feuch</em> is an <code class="language-plaintext highlighter-rouge">xcomp</code> of <em>dh’fhalbh</em>.</p>
 
 <h3 id="fhios-agad-and-variants"><em>fhios agad</em> and variants</h3>
 
@@ -286,11 +286,11 @@ Likewise <em>‘S ann</em>, except of course <em>ann</em> is divided up into <em
 
 <h3 id="an-t-seachdain-seo-chaidh-and-others"><em>an t-seachdain seo chaidh</em> and others</h3>
 
-<p>‘last week’, literally ‘this week that went’. Treat <em>chaidh</em> as being <code class="language-plaintext highlighter-rouge">acl:relcl</code> of <em>t-seachdain</em> (pw05<em>005, also _ceud</em> in the sense of ‘century’: see fp01_034).</p>
+<p>‘last week’, literally ‘this week that went’. Treat <em>chaidh</em> as being <code class="language-plaintext highlighter-rouge">acl:relcl</code> of <em>t-seachdain</em> (pw05_005, also <em>ceud</em> in the sense of ‘century’: see fp01_034).</p>
 
 <h3 id="urrainn"><em>urrainn</em></h3>
 
-<p>In most dialects the person (or thing) that can follows the preposition <em>do</em> so is of course <code class="language-plaintext highlighter-rouge">obl</code>. In some, however, you can say, for example, <em>’s urrainn mi</em>, so in this case <em>mi</em> is <code class="language-plaintext highlighter-rouge">obl</code> of <em>urrainn</em>.</p>
+<p>In most dialects the person (or thing) that can follows the preposition <em>do</em> so is of course <code class="language-plaintext highlighter-rouge">obl</code>. In some, however, you can say, for example, <em>’s urrainn mi</em>, so in this case <em>mi</em> is <code class="language-plaintext highlighter-rouge">nmod</code> of <em>urrainn</em>.</p>
 
 <hr />
 
