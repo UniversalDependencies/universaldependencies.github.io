@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-tt">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_tt/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_tt/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -78,57 +78,85 @@
         </script>
         <h1 id="ud-for-tatar-">UD for Tatar <span class="flagspan"><img class="flag" src="../../flags/svg/RU-TA.svg" /></span></h1>
 
+<p>This is a <strong>work-in-progress</strong> overview of the UD annotation for Tatar.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
+<ul>
+  <li>In general, words are delimited by white spaces or punctuation,
+  Whitespaces or punctuation may appear in some abbreviations
+  or numeric expressions.</li>
+</ul>
 
 <hr />
 
 <h2 id="morphology">Morphology</h2>
 
-<h3 id="tags">Tags</h3>
+<p>Tatar is an agglutinative language with suffixation, and has a rich inflectional and derivational morphology.
+This morphological complexities cause some conflicts with the current UD v2 feature inventory.
+For example, a verb’s voice can contain more than one values.
+To this problem, the treebank temporarily employs a manner proposed by the Turkish treebanks,
+and just concatenates the values together in the alphabetical order.</p>
 
-<p>*</p>
+<h3 id="tags-and-features">Tags and Features</h3>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<p>This is an overview only. For more detailed discussion and examples,
+see the list of <a href="pos/index.html">Tatar POS tags</a>.</p>
 
-<hr />
-
-<h3 id="features">Features</h3>
-
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">PART</code> is not currently used in the treebank.</li>
+  <li>Negation particle <em>түгел</em> is marked as <code class="language-plaintext highlighter-rouge">AUX</code>.</li>
+  <li>Copular and modal <em>иде</em> is marked as <code class="language-plaintext highlighter-rouge">AUX</code>.</li>
+  <li>Non-firsthand evidentiality particle <em>икән</em> is marked as <code class="language-plaintext highlighter-rouge">AUX</code>.</li>
+  <li>In a certain set of grammaticalized converb construction, the finite verb is marked as <code class="language-plaintext highlighter-rouge">AUX</code>.</li>
+  <li>There are four main (de)verbal forms, distinguished by the value of the <a href="">VerbForm</a> feature. They are always tagged as <code class="language-plaintext highlighter-rouge">VERB</code>:
+    <ul>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code></li>
+      <li>Participle <code class="language-plaintext highlighter-rouge">Part</code></li>
+      <li>Converb <code class="language-plaintext highlighter-rouge">Conv</code></li>
+      <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code></li>
+      <li>Verbal noun <code class="language-plaintext highlighter-rouge">Vnoun</code></li>
+    </ul>
+  </li>
+</ul>
 
 <hr />
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<ul>
+  <li>Subject <code class="language-plaintext highlighter-rouge">nsubj</code> is typically an actor of the predicate and is marked with a nominative case.</li>
+  <li>Object <code class="language-plaintext highlighter-rouge">obj</code> is typically an undergoer of the transitive predicate and is marked with an accusative case when it is definite, but is not marked (bare form) when it is indefinite.</li>
+  <li>Oblique <code class="language-plaintext highlighter-rouge">obl</code> is an argument that directly modifies the predicate and is marked with dative, locative, ablative, and equative case. Also, time expressions and other adverbial expressions in nominative (e.g., <em>ике тапкыр</em> “two times”) are categorized as <code class="language-plaintext highlighter-rouge">obl</code>. Note that this notion of oblique is rather optimized for UD, and is not precisely the best categorization with regard to descriptive linguistics of Tatar.</li>
+  <li>Tatar is a partly zero-copula language; the copula is usually zero in the present tense, but in the past tense it is expressed by means of an auxiliary <code class="language-plaintext highlighter-rouge">AUX</code> <em>иде</em> and in the future tense a verb <code class="language-plaintext highlighter-rouge">VERB</code> <em>бул-</em>. Note that the latter <em>бул-</em> is tagged as <code class="language-plaintext highlighter-rouge">VERB</code>, not <code class="language-plaintext highlighter-rouge">AUX</code>, and the relation from nominal or adjectival predicate is <code class="language-plaintext highlighter-rouge">xcomp</code>, though this needs cross-linguistic discussions in detail.</li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are currently used in Tatar:
+    <ul>
+      <li><a href="">compound:lvc</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>However, more relation subtypes are considered to be used in later versions, such as:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">advmod:emph</code></li>
+  <li><code class="language-plaintext highlighter-rouge">nmod:poss</code></li>
+  <li><code class="language-plaintext highlighter-rouge">obl:tmod</code></li>
+</ul>
 
 <hr />
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/tt-comparison.html">N</a> Tatar UD treebanks:</p>
+<p>There is <a href="../treebanks/tt-comparison.html">one</a> Tatar UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/tt_a/index.html">Tatar-A</a></li>
-  <li><a href="../treebanks/tt_b/index.html">Tatar-B</a></li>
+  <li><a href="../treebanks/tt_nmctt/index.html">Tatar-NMCTT</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
 
 <hr />
 
