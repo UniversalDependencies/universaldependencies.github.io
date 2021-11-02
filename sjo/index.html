@@ -91,15 +91,60 @@
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>The current Xibe treebank uses 17 UPOS tags.</li>
+  <li>The current Xibe treebank uses all 17 universal POS categories, including particles (<a href="">PART</a>).</li>
+  <li>There are five main (de)verbal forms, distinguished by the value of the <a href="">VerbForm</a> feature;
+they all keep the <a href="">VERB</a> (or <a href="">AUX</a>) UPOS tag:
+    <ul>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>.</li>
+      <li>Participle <code class="language-plaintext highlighter-rouge">Part</code>.</li>
+      <li>Converb <code class="language-plaintext highlighter-rouge">Conv</code>.</li>
+      <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>.</li>
+      <li>Verbal noun <code class="language-plaintext highlighter-rouge">Vnoun</code>.</li>
+    </ul>
+  </li>
 </ul>
 
 <!--**Instruction**: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.-->
 
-<h3 id="features">Features</h3>
+<h3 id="nominal-features">Nominal Features</h3>
 
 <ul>
-  <li>To be added.</li>
+  <li>The two main values of the <a href="">Number</a> feature are <code class="language-plaintext highlighter-rouge">Sing</code> and <code class="language-plaintext highlighter-rouge">Plur</code>. The following parts of speech inflect for number:
+<a href="">NOUN</a>, <a href="">PRON</a>, <a href="">DET</a>, <a href="">PART</a>.</li>
+  <li><a href="">Case</a> has 10 possible values: <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Gen</code>, <code class="language-plaintext highlighter-rouge">Dat</code>, <code class="language-plaintext highlighter-rouge">Acc</code>, <code class="language-plaintext highlighter-rouge">Loc</code>, <code class="language-plaintext highlighter-rouge">Lat</code>, <code class="language-plaintext highlighter-rouge">Abl</code>, <code class="language-plaintext highlighter-rouge">Ins</code>, <code class="language-plaintext highlighter-rouge">Com</code>, <code class="language-plaintext highlighter-rouge">Cmp</code>.
+It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">DET</a>, <a href="">NUM</a>, as well as nominalized forms of <a href="">VERB</a>.
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">Case</code> feature also occurs with adpositions (<a href="">ADP</a>). Here it is a lexical feature.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="degree-and-polarity">Degree and Polarity</h3>
+
+<ul>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and has one of three possible values: <code class="language-plaintext highlighter-rouge">Pos</code>, <code class="language-plaintext highlighter-rouge">Cmp</code>, <code class="language-plaintext highlighter-rouge">Sup</code>.</li>
+  <li><a href="">Polarity</a> has one value, <code class="language-plaintext highlighter-rouge">Neg</code> (while positive polarity is not explicitly annotated), and applies primarily to verbs (<a href="">VERB</a>, <a href="">AUX</a>) and adverbs (<a href="">ADV</a>).</li>
+</ul>
+
+<h3 id="verbal-features">Verbal Features</h3>
+
+<ul>
+  <li>Verbs inflect for <a href="">Aspect</a>, either imperfective (<code class="language-plaintext highlighter-rouge">Imp</code>), perfective (<code class="language-plaintext highlighter-rouge">Perf</code>), or progressive (<code class="language-plaintext highlighter-rouge">Prog</code>).</li>
+  <li>Finite verbs always have one of five values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Cnd</code>, <code class="language-plaintext highlighter-rouge">Sub</code> or <code class="language-plaintext highlighter-rouge">Opt</code>.</li>
+  <li>Verbs in the indicative mood always have one of three values of <a href="">Tense</a>: <code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Pres</code> or <code class="language-plaintext highlighter-rouge">Fut</code>.</li>
+  <li>There are four values of the <a href="">Voice</a> feature: <code class="language-plaintext highlighter-rouge">Act</code>, <code class="language-plaintext highlighter-rouge">Pass</code>, <code class="language-plaintext highlighter-rouge">Rcp</code> and <code class="language-plaintext highlighter-rouge">Cau</code>.</li>
+</ul>
+
+<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>), adjectives (<a href="">ADJ</a>), and pronouns (<a href="">PRON</a>).</li>
+  <li>The <a href="">Poss</a> feature marks possessive personal pronouns.</li>
+  <li>The <a href="">Reflex</a> feature marks reflexive pronouns.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">3</code>.</li>
+  <li><a href="">Clusivity</a> is a lexical feature of first person plural pronouns and distinguishes inclusive (<code class="language-plaintext highlighter-rouge">In</code>) from exclusive (<code class="language-plaintext highlighter-rouge">Ex</code>) pronouns.</li>
+  <li><a href="">Polite</a>ness has one value <code class="language-plaintext highlighter-rouge">Elev</code> for honorific pronouns.</li>
 </ul>
 
 <!--**Instruction**: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.-->
