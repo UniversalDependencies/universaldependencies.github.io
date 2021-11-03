@@ -102,10 +102,10 @@ It will download the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">online v
 and check whether the treebanks are valid (prerequisite: all UD repositories are registered
 on the validation server <code class="language-plaintext highlighter-rouge">quest.ms.mff.cuni.cz</code>).
 It will also collect information such as the list of contributors (we need this metadata for Lindat).</li>
-  <li>In addition, you can get an estimate of what the treebanks do in enhanced graphs by calling this:
+  <li>In addition, you can get an estimate of what the treebanks do in enhanced graphs by calling this:<br />
 <code>( for i in UD_* ; do echo $i ; ( cat $i/*.conllu | enhanced_graph_properties.pl ) ; echo ; done ) |&amp; tee estats.log</code>
     <ul>
-      <li>Or, alternatively, this:
+      <li>Or, alternatively, this:<br />
 <code>( for i in UD_* ; do echo $i ; ( cat $i/*.conllu | enhanced_classify_relations.pl &gt; /dev/null ) ; echo ; done ) |&amp; tee estats.log</code></li>
     </ul>
   </li>
@@ -118,11 +118,10 @@ code of the script; instead, we will use <code class="language-plaintext highlig
   <li>Check the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">validation report</a>
 for legacy exceptions that are no longer needed.
 Edit <a href="https://github.com/UniversalDependencies/docs-automation/blob/master/valdan/dispensations.json">valdan/dispensations.json</a>
-and remove those exceptions.
-Also update the back-up release
-numbers for treebanks that are part of the current release. (If the treebank is not valid but it
-has been previously released, its last valid release serves as back up and will be re-released
-instead of the invalid new version.)</li>
+and remove those exceptions.</li>
+  <li>Save the list of the released treebanks in <a href="https://github.com/UniversalDependencies/docs-automation/blob/master/valdan/releases.json">valdan/releases.json</a>
+by running<br />
+<code>docs-automation/valdan/save-release-json.pl --releasenum 2.9 --releasedate 2021-11-15 $(cat released-treebanks.txt)</code></li>
 </ul>
 
 <h2 id="processing-the-data-before-releasing-them">Processing the data before releasing them</h2>
