@@ -104,13 +104,17 @@ on the validation server <code class="language-plaintext highlighter-rouge">ques
 It will also collect information such as the list of contributors (we need this metadata for Lindat).</li>
   <li>In addition, you can get an estimate of what the treebanks do in enhanced graphs by calling this:
 <code>( for i in UD_* ; do echo $i ; ( cat $i/*.conllu | enhanced_graph_properties.pl ) ; echo ; done ) |&amp; tee estats.log</code>
-Or, alternatively, this:
+    <ul>
+      <li>Or, alternatively, this:
 <code>( for i in UD_* ; do echo $i ; ( cat $i/*.conllu | enhanced_classify_relations.pl &gt; /dev/null ) ; echo ; done ) |&amp; tee estats.log</code></li>
+    </ul>
+  </li>
   <li>Freeze the list of treebanks that will be released (i.e., contain valid data).
 Take the list from the output of <code class="language-plaintext highlighter-rouge">tools/check_files.pl</code> and save it as
 <code class="language-plaintext highlighter-rouge">released_treebanks.txt</code> (just one line, names of UD folders separated by whitespace).</li>
   <li>List the treebanks that are published for the first time in the hash <code class="language-plaintext highlighter-rouge">%new_treebanks_by_release</code>
-in <code class="language-plaintext highlighter-rouge">tools/check_files.pl</code>.</li>
+in <code class="language-plaintext highlighter-rouge">tools/check_files.pl</code>. Note: In the future, this information will be removed from the source
+code of the script; instead, we will use <code class="language-plaintext highlighter-rouge">valdan/releases.json</code> in <code class="language-plaintext highlighter-rouge">docs-automation</code>.</li>
   <li>Check the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">validation report</a>
 for legacy exceptions that are no longer needed. Edit the script <code class="language-plaintext highlighter-rouge">update-validation-report.pl</code>
 in the <code class="language-plaintext highlighter-rouge">docs-automation</code> repository and remove those exceptions. Also update the back-up release
