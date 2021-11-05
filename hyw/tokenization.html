@@ -107,7 +107,7 @@ Conventional non-armenian multi-character punctuation marks and terms are tokeni
 <ul>
   <li>Numerical expressions are treated as single words as long as they do not contain spaces or hyphen, for example, <b>355,089.40</b> . Decimal numbers (with Armenian decimal comma or English decimal point) are also kept as one token, e.g. <b>2.1</b> , <b>2,1</b> .</li>
   <li>EXCEPTION: Time expressions and dates like <em>19:45</em> or <em>20.05.2000</em> , <em>20/05/2000&gt;</em> are splitted into separate tokens (in this case, three { <b>19</b> , <b>:</b> , <b>45</b> } and five { <b>20</b> , <b>.</b> , <b>05</b> , <b>.</b> , <b>2000</b> } , { <b>20</b> , <b>/</b> , <b>05</b> , <b>/</b> , <b>2000</b> }).</li>
-  <li>Numerical expressions with or without hyphen and Armenian endings as well as adjectives and other non-numerals which contain digits (e.g. <b>2րդ</b> “2nd” , <b>44օրեայ</b> “—-” , <b>1700ամյա</b> “1700-year-old” , <b>5նոց</b> “in5ts” , <b>ՆԱՏՕ-ական</b> “belonging-to-NATO , <b>ՏՈՒ-154Մ</b> “TU-154M”) are treated as single tokens as long as they do not contain inflectional endings (e.g. <em>96ի</em> “of 96.Dat” , <em>1956ին</em> “in 1956.Dat” , <em>196-ամեակի</em> “196th anniversary.Dat” ) which are splitted into separate tokens (in this case, two or three { <b>96</b> , <b>ի</b> } , { <b>1956</b> , <b>ին</b> } , { <b>196</b> , <b>-</b> , <b>ամեակի</b> }).</li>
+  <li>Numerical expressions with or without hyphen and Armenian endings as well as adjectives and other non-numerals which contain digits (e.g. <b>2րդ</b> “2nd” , <b>44օրեայ</b> “—-” , <b>1700ամյա</b> “1700-year-old” , <b>5նոց</b> “in 5tհs” , <b>ՆԱՏՕ-ական</b> “belonging-to-NATO , <b>ՏՈՒ-154Մ</b> “TU-154M”) are treated as single tokens as long as they do not contain inflectional endings (e.g. <em>96ի</em> “of 96.Dat” , <em>1956ին</em> “in 1956.Dat” , <em>196-ամեակի</em> “196th anniversary.Dat” ) which are splitted into separate tokens (in this case, two or three { <b>96</b> , <b>ի</b> } , { <b>1956</b> , <b>ին</b> } , { <b>196</b> , <b>-</b> , <b>ամեակի</b> }).</li>
 </ul>
 
 <h3 id="multi-word-tokens">Multi-word tokens</h3>
@@ -117,15 +117,19 @@ Conventional non-armenian multi-character punctuation marks and terms are tokeni
 <h3 id="pronouns-and-adverbs">Pronouns and adverbs</h3>
 
 <ul>
-  <li>Indefinite pronouns and adverbs like <em>ինչ-որ, փոքր-ինչ, դույզն-ինչ, ինչ-ինչ</em> “something, somewhat”, etc. are splitted as compounds containing a hyphen and become three tokens (two words and the hyphen).</li>
+  <li>Indefinite pronouns and adverbs like <em>ինչ-որ, ինչ-ինչ</em> “something, somewhat”, etc. are splitted as compounds containing a hyphen and become three tokens (two words and the hyphen).</li>
 </ul>
 
 <h3 id="verb-forms-analytical-grammatical-forms-negation">Verb forms, analytical grammatical forms, negation</h3>
 
 <ul>
-  <li>the forms of necessitative mood, analytical causative, complex tenses, complex comparatives, etc. are splitted
-according to the orthographic principle: { <b>պիտի</b> , <b>վազեն</b> } “they must run”, { <b>գրել</b> , <b>տվեց</b> } “made write”, { <b>վազում</b> , <b>եմ</b> } “I run”, { <b>ավելի</b> , <b>լուրջ</b> } “more serious”.</li>
-  <li><b>մի</b> and <b>ոչ</b> used as negation markers with verbs, adjectives, pronouns and other words are tokenized according to the orthographic rules: { <b>մի</b> , <b>գրիր</b> } “don’t write”, { <b>ոչ</b> , <b>պաշտոնական</b> } “unofficial”, { <b>ոչ</b> , <b>մի</b> , <b>կերպ</b> } “in no way”.</li>
+  <li>
+    <p>the forms of indicative mood, complex tenses, analytical causative, complex comparatives, etc. are splitted
+according to the orthographic principle: { <b>կ՚</b> , <b>ըսուի</b> } “—-”, { <b>պայքարած</b> , <b>են</b> } “—-”, { <b>պէտք</b> , <b>է</b> , <b>սկսած</b> , <b>ըլլար</b> } “—-”, { <b>շինել</b> , <b>տուեր</b> , <b>էին</b> } “made write”, { <b>աւելի</b> , <b>յաճախ</b> } “—-”.</p>
+  </li>
+  <li>
+    <p><b>մի՛</b> and <b>ոչ</b> used as negation markers with verbs, adjectives, adverbs, pronouns and other words are tokenized according to the orthographic rules: { <b>մի</b> , <b>՛</b> , <b>ընէք</b> } “don’t —-”, { <b>ոչ</b> , <b>հինցած</b> } “—-”, { <b>ոչ </b> , <b>հիմա</b> } “—-” , { <b>ոչ</b> , <b>մէկ</b> , <b>տեղ</b> } “—”.</p>
+  </li>
 </ul>
 
 <h1 id="sentence-splitting">Sentence splitting</h1>
