@@ -424,7 +424,7 @@ of the morphemes.</p>
 
 <h3 id="mwe">MWE</h3>
 
-<p>See also <a href="#mwepos">MWEPOS</a>.</p>
+<p>See also <a href="#mwepos">MWEPOS</a> and <a href="#namedentity">NamedEntity</a>.</p>
 
 <p>Multi-word expression. The value serves to preserve a multi-word expression from the source corpus.
 This attribute is typically used at places where in the source corpus the MWE was treated as one
@@ -456,7 +456,7 @@ It is typically placed either at the first word of the MWE, or at the head word.
 
 <h3 id="mwepos">MWEPOS</h3>
 
-<p>See also <a href="#mwe">MWE</a>.</p>
+<p>See also <a href="#mwe">MWE</a> and <a href="#namedentity">NamedEntity</a>.</p>
 
 <p>The part of speech of a multi-word expression. The value is taken from the set of <a href="u/overview/pos-index.html">universal
 part-of-speech tags (UPOS)</a> but it is not necessarily identical
@@ -494,6 +494,33 @@ Ideally, these two attribute names should be merged into one.</p>
 8	confirmat   confirmar   VERB    _   _   0    root    _   _
 9	la          el          DET     _   _   10   det     _   _
 10	condemna    condemna    NOUN    _   _   8    obj     _   _
+</code></pre></div></div>
+
+<h3 id="namedentity">NamedEntity</h3>
+
+<p>See also <a href="#mwe">MWE</a> and <a href="#mwepos">MWEPOS</a>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">NamedEntity=Yes</code> preserves the information that the word was tagged <code class="language-plaintext highlighter-rouge">PROPN</code> when it was first
+imported to UD. Typically of Google-annotated data (GSD and PUD), all words in multi-word named entities are
+tagged <code class="language-plaintext highlighter-rouge">PROPN</code>, which is <a href="u/pos/PROPN.html">wrong in UD</a>. Determiners, numerals, adjectives,
+common nouns and other words should get their usual UPOS tags even inside titles of books or
+movies, names of organizations etc. However, as we fix the UPOS tag, we may want to still preserve
+the information that a sequence of words were tagged <code class="language-plaintext highlighter-rouge">PROPN</code> because we could later convert it
+to genuine annotation of named entities.</p>
+
+<p>Attested in German GSD and Irish IDT.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># sent_id = train-s203
+# text = Unser Erlebnis auf dem Leuchtturm Roter Sand war einmalig
+1   Unser        unser        DET    _   _   2   det     _   _
+2   Erlebnis     Erlebnis     NOUN   _   _   9   nsubj   _   _
+3   auf          auf          ADP    _   _   5   case    _   _
+4   dem          der          DET    _   _   5   det     _   _
+5   Leuchtturm   Leuchtturm   NOUN   _   _   2   nmod    _   _
+6   Roter        rot          ADJ    _   _   5   appos   _   NamedEntity=Yes
+7   Sand         Sand         NOUN   _   _   6   flat    _   NamedEntity=Yes
+8   war          sein         AUX    _   _   9   cop     _   _
+9   einmalig     einmalig     ADJ    _   _   0   root    _   _
 </code></pre></div></div>
 
 <h3 id="newpar">NewPar</h3>
@@ -648,8 +675,7 @@ e.g. in Ukrainian, Armenian, Sanskrit, Telugu, and Tamil.</p>
 
 <h3 id="to-be-documented">to be documented</h3>
 
-<p>NamedEntity: German GSD, Irish IDT
-Proper: Arabic PUD, English PUD, French PUD, German PUD, Hindi PUD, Chinese PUD, Italian PUD, Korean PUD, Portuguese PUD, Russian PUD, Spanish PUD, Thai PUD, Turkish PUD</p>
+<p>Proper: Arabic PUD, English PUD, French PUD, German PUD, Hindi PUD, Chinese PUD, Italian PUD, Korean PUD, Portuguese PUD, Russian PUD, Spanish PUD, Thai PUD, Turkish PUD</p>
 
 <p>Orig OrigLang in Coptic</p>
 
