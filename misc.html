@@ -118,6 +118,20 @@ for you. It is thus safer to avoid such practices.</p>
 <p>MISC attributes already attested in UD treebanks are listed here in alphabetical order
 together with brief documentation (and possibly with links to additional information).</p>
 
+<h3 id="correctform">CorrectForm</h3>
+
+<p>Shows the expected correct word form when there is a typo in the underlying text.
+The FORM column contains the form from the text including the error, and the FEATS
+column contains <code class="language-plaintext highlighter-rouge">Typo=Yes</code>, as described in the <a href="u/overview/typos.html">guidelines for typos</a>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># text = I have two kats.
+1	I	I	PRON	_	_	2	nsubj	_	_
+2	have	have	VERB	_	_	0	root	_	_
+3	two	two	NUM	_	_	4	nummod	_	_
+4	kats	cat	NOUN	_	Typo=Yes	2	obj	_	CorrectForm=cats|SpaceAfter=No
+5	.	.	PUNCT	_	_	2	punct	_	_
+</code></pre></div></div>
+
 <h3 id="gloss">Gloss</h3>
 
 <p>See also <a href="#translit">Translit</a>, <a href="#mgloss">MGloss</a> and <a href="#lgloss">LGloss</a>.</p>
@@ -455,19 +469,23 @@ e.g. in Ukrainian, Armenian, Sanskrit, Telugu, and Tamil.</p>
 4     ।      	।	PUNCT   _   _                         3   punct    _   Translit=.|LTranslit=.|Gloss=.
 </code></pre></div></div>
 
-<p>things for typos and the like: CorrectLemma
-ohter lemma-level things from Czech: LId, LGloss, LNumValue, LDeriv
+<p>things for typos and the like: CorrectForm, CorrectLemma, CorrectSpaceAfter, CorrectCase, CorrectDegree, CorrectGender, CorrectMood, CorrectNumber, CorrectPerson, CorrectTense, CorrectVerbForm, CorrectionType (Latvian LVTB), ModernForm
 Arabic PADT: Root, Vform
-REF for Bible</p>
+Ref for Bible and other classical texts (but the treebanks currently use “ref”; should we change it?)</p>
 
 <p>MWEPOS, ExtPos
-MWE, MWEPOS: Catalan AnCora
-ExtPos: Beja NSC
-Proper: Arabic PUD</p>
+MWE, MWEPOS: Catalan AnCora, Indonesian CSUI, Indonesian GSD (taky jednou MEPOS!), Indonesian PUD, perhaps Portuguese Bosque (but in different form: _MWE, POSMWE), Portuguese GSD, Spanish AnCora
+ExtPos: Beja NSC, various French treebanks, Naija NSC
+Proper: Arabic PUD, English PUD, French PUD, German PUD, Hindi PUD, Chinese PUD, Italian PUD, Korean PUD, Portuguese PUD, Russian PUD, Spanish PUD, Thai PUD, Turkish PUD
+NamedEntity: German GSD, Irish IDT
+OrigForm: English PUD, Galician CTG, Hindi PUD, Italian PUD, Korean PUD, Portuguese PUD, Russian PUD, Spanish PUD, Thai PUD
+MorphInd: Indonesian GSD</p>
 
-<p>??? Morf in Bambara or Buryat
+<p>??? Morf in Bambara or Buryat or Uyghur
+??? Analysis in Yupik
 ??? Morphs in Coptic
-Orig OrigLang in Coptic</p>
+Orig OrigLang in Coptic
+Hindi HDTB, Urdu UDTB: AltTag, ChunkId, ChunkType, Stype, Tam, Vib</p>
 
 <p>entity, coreference</p>
 
