@@ -198,6 +198,8 @@ directly from fieldwork.</p>
 
 <h3 id="lang">Lang</h3>
 
+<p>See also <a href="#origlang">OrigLang</a>.</p>
+
 <p>Language of the current token, if different from the main language of the file (code switching).
 The value is the ISO 639 language code, as registered for the language in UD (either two letters
 from ISO 639-1, or three letters from ISO 639-3, lowercased!) The validation script will take
@@ -424,7 +426,7 @@ of the morphemes.</p>
 
 <h3 id="mwe">MWE</h3>
 
-<p>See also <a href="#mwepos">MWEPOS</a>, <a href="#namedentity">NamedEntity</a> and <a href="#proper">Proper</a>.</p>
+<p>See also <a href="#mwepos">MWEPOS</a>, <a href="#namedentity">NamedEntity</a>, <a href="#proper">Proper</a> and <a href="#entity">Entity</a>.</p>
 
 <p>Multi-word expression. The value serves to preserve a multi-word expression from the source corpus.
 This attribute is typically used at places where in the source corpus the MWE was treated as one
@@ -456,7 +458,7 @@ It is typically placed either at the first word of the MWE, or at the head word.
 
 <h3 id="mwepos">MWEPOS</h3>
 
-<p>See also <a href="#mwe">MWE</a>, <a href="#namedentity">NamedEntity</a> and <a href="#proper">Proper</a>.</p>
+<p>See also <a href="#mwe">MWE</a>, <a href="#namedentity">NamedEntity</a>, <a href="#proper">Proper</a> and <a href="#entity">Entity</a>.</p>
 
 <p>The part of speech of a multi-word expression. The value is taken from the set of <a href="u/overview/pos-index.html">universal
 part-of-speech tags (UPOS)</a> but it is not necessarily identical
@@ -498,7 +500,7 @@ Ideally, these two attribute names should be merged into one.</p>
 
 <h3 id="namedentity">NamedEntity</h3>
 
-<p>See also <a href="#mwe">MWE</a>, <a href="#mwepos">MWEPOS</a> and <a href="#proper">Proper</a>.</p>
+<p>See also <a href="#mwe">MWE</a>, <a href="#mwepos">MWEPOS</a>, <a href="#proper">Proper</a> and <a href="#entity">Entity</a>.</p>
 
 <p><code class="language-plaintext highlighter-rouge">NamedEntity=Yes</code> preserves the information that the word was tagged <code class="language-plaintext highlighter-rouge">PROPN</code> when it was first
 imported to UD. Typically of Google-annotated data (GSD and PUD), all words in multi-word named entities are
@@ -566,9 +568,43 @@ and is attested in Swedish and Ukrainian.</p>
 24   konst           konst          NOUN    _   _   13   conj     _   _
 </code></pre></div></div>
 
+<h3 id="origlang">OrigLang</h3>
+
+<p>See also <a href="#lang">Lang</a>.</p>
+
+<p>Original language of the current token, if different from the main language of the file.
+Similarly to the <code class="language-plaintext highlighter-rouge">Lang</code> attribute, the value is the (lowercase) ISO 639 language code
+(ISO 639-1 if it exists, ISO 639-3 otherwise). However, unlike the <code class="language-plaintext highlighter-rouge">Lang</code> attribute,
+<code class="language-plaintext highlighter-rouge">OrigLang</code> does not switch the validator to the other language, i.e., the token must still
+adhere to the guidelines specific for the main language of the file.</p>
+
+<p>See also <a href="https://github.com/UniversalDependencies/docs/issues/776">issue #776</a>.</p>
+
+<p>Attested e.g. in Coptic or Komi Zyrian.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># sent_id = shenoute_fox-XH204-216_s0003
+# text_en = ...
+# text = ⲁⲗⲗⲁ ⲉⲕϯⲟⲩⲃⲉⲓⲏⲥⲟⲩⲥ ⲉⲧⲟⲩⲏϩ ϩⲛⲛⲉⲭⲣⲉⲓⲥⲧⲓⲁⲛⲟⲥ .
+1	ⲁⲗⲗⲁ	ⲁⲗⲗⲁ	CCONJ	CONJ	Foreign=Yes	4	cc	_	OrigLang=grc
+2-6	ⲉⲕϯⲟⲩⲃⲉⲓⲏⲥⲟⲩⲥ	_	_	_	_	_	_	_	_
+2	ⲉ	ⲉⲣⲉ	PART	CFOC	_	4	mark	_	_
+3	ⲕ	ⲛⲧⲟⲕ	PRON	PPERS	Definite=Def|Gender=Masc|Number=Sing|Person=2|PronType=Prs	4	nsubj	_	_
+4	ϯ	ϯ	VERB	V	VerbForm=Fin	0	root	_	_
+5	ⲟⲩⲃⲉ	ⲟⲩⲃⲉ	ADP	PREP	_	6	case	_	_
+6	ⲓⲏⲥⲟⲩⲥ	ⲓⲏⲥⲟⲩⲥ	PROPN	NPROP	Foreign=Yes	4	obl	_	Entity=(person-Jesus|Orig=ⲓ︤ⲥ︥|OrigLang=he
+7-8	ⲉⲧⲟⲩⲏϩ	_	_	_	_	_	_	_	_
+7	ⲉⲧ	ⲉⲧⲉⲣⲉ	SCONJ	CREL	_	8	mark	_	_
+8	ⲟⲩⲏϩ	ⲟⲩⲱϩ	VERB	VSTAT	VerbForm=Fin	6	acl	_	_
+9-11	ϩⲛⲛⲉⲭⲣⲉⲓⲥⲧⲓⲁⲛⲟⲥ	_	_	_	_	_	_	_	_
+9	ϩⲛ	ϩⲛ	ADP	PREP	_	11	case	_	Orig=ϩ︤ⲛ︥
+10	ⲛⲉ	ⲡ	DET	ART	Definite=Def|Number=Plur|PronType=Art	11	det	_	Entity=(person
+11	ⲭⲣⲉⲓⲥⲧⲓⲁⲛⲟⲥ	ⲭⲣⲉⲓⲥⲧⲓⲁⲛⲟⲥ	NOUN	N	Foreign=Yes	8	obl	_	Entity=person)person-Jesus)|Orig=ⲭⲣⲉⲓⲥⲧⲓⲁⲛⲟⲥ⳿|OrigLang=grc
+12	.	.	PUNCT	PUNCT	_	4	punct	_	_
+</code></pre></div></div>
+
 <h3 id="proper">Proper</h3>
 
-<p>See also <a href="#mwe">MWE</a>, <a href="#mwepos">MWEPOS</a> and <a href="#namedentity">NamedEntity</a>.</p>
+<p>See also <a href="#mwe">MWE</a>, <a href="#mwepos">MWEPOS</a>, <a href="#namedentity">NamedEntity</a> and <a href="#entity">Entity</a>.</p>
 
 <p><code class="language-plaintext highlighter-rouge">Proper=True</code> preserves a same-named feature from the original Google annotation in the PUD
 treebanks, but only for words that could not be tagged <code class="language-plaintext highlighter-rouge">PROPN</code> in UD (e.g., adjectives).
@@ -702,8 +738,6 @@ e.g. in Ukrainian, Armenian, Sanskrit, Telugu, and Tamil.</p>
 </code></pre></div></div>
 
 <h3 id="to-be-documented">to be documented</h3>
-
-<p>Orig OrigLang in Coptic</p>
 
 <p>MorphInd: Indonesian GSD
 ??? Morf in Bambara or Buryat or Uyghur
