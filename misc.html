@@ -163,6 +163,27 @@ as it could occur in German as well; but we mark it as a part of the quoted Engl
 will now allow the lemma <em>be</em> as a copula (because it is listed for English), while otherwise
 it would only allow the German copula <em>sein</em>.</p>
 
+<h3 id="lid">LId</h3>
+
+<p>Some non-UD corpora use numeric indices in lemmas to distinguish different lexemes with otherwise
+homonymous lemmas. In UD, the LEMMA column is supposed to contain just the citation form of the
+lexeme: it should be a valid surface form, hence it should not contain any disambiguating indices.</p>
+
+<p>In order to preserve the disambiguated lexeme identifier, it can be stored as a <code class="language-plaintext highlighter-rouge">LId</code> attribute
+in MISC. Attested e.g. in Czech or Ancient Greek.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># sent_id = 1
+# text = Tato politika stojí český stát miliardu ročně.
+1   Tato       tento      DET     _   _   2   det      _   _
+2   politika   politika   NOUN    _   _   3   nsubj    _   LGloss=(věda)
+3   stojí      stát       VERB    _   _   0   root     _   LId=stát-4|LGloss=(něco_stojí_peníze)
+4   český      český      ADJ     _   _   5   amod     _   _
+5   stát       stát       NOUN    _   _   3   iobj     _   LId=stát-1|LGloss=(státní_útvar)
+6   miliardu   miliarda   NOUN    _   _   3   obj      _   LNumValue=1000000000
+7   ročně      ročně      ADV     _   _   3   advmod   _   SpaceAfter=No|LDeriv=roční
+8   .          .          PUNCT   _   _   3   punct    _   _
+</code></pre></div></div>
+
 <h3 id="ltranslit">LTranslit</h3>
 
 <p>See also <a href="#translit">Translit</a> and <a href="#gloss">Gloss</a>.</p>
@@ -356,7 +377,8 @@ e.g. in Ukrainian, Armenian, Sanskrit, Telugu, and Tamil.</p>
 4     ।      	।	PUNCT   _   _                         3   punct    _   Translit=.|LTranslit=.|Gloss=.
 </code></pre></div></div>
 
-<p>ohter lemma-level things from Czech
+<p>things for typos and the like: CorrectLemma
+ohter lemma-level things from Czech: LId, LGloss, LNumValue, LDeriv
 REF for Bible</p>
 
 <p>MWEPOS, ExtPos</p>
