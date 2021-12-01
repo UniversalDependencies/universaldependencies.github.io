@@ -165,7 +165,7 @@ it would only allow the German copula <em>sein</em>.</p>
 
 <h3 id="lgloss">LGloss</h3>
 
-<p>See also <a href="#lid">LId</a> and <a href="#gloss">Gloss</a>.</p>
+<p>See also <a href="#lid">LId</a>, <a href="#gloss">Gloss</a> and <a href="#lnumvalue">LNumValue</a>.</p>
 
 <p>An explanation of the meaning of the lemma/lexeme. This is particularly useful in connection
 with the <code class="language-plaintext highlighter-rouge">LId</code> attribute, although it can also appear alone as in the example below. While
@@ -191,7 +191,7 @@ describe or illustrate the usage of the word.</p>
 
 <h3 id="lid">LId</h3>
 
-<p>See also <a href="#lgloss">LGloss</a>.</p>
+<p>See also <a href="#lgloss">LGloss</a> and <a href="#lnumvalue">LNumValue</a>.</p>
 
 <p>Some non-UD corpora use numeric indices in lemmas to distinguish different lexemes with otherwise
 homonymous lemmas. In UD, the <a href="u/overview/morphology.html#lemmas">LEMMA column</a> is supposed to
@@ -200,6 +200,28 @@ lexeme: it should be a valid surface form, hence it should not contain any disam
 
 <p>In order to preserve the disambiguated lexeme identifier, it can be stored as a <code class="language-plaintext highlighter-rouge">LId</code> attribute
 in MISC. Attested e.g. in Czech or Ancient Greek.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># sent_id = 1
+# text = Tato politika stojí český stát miliardu ročně.
+1   Tato       tento      DET     _   _   2   det      _   _
+2   politika   politika   NOUN    _   _   3   nsubj    _   LGloss=(věda)
+3   stojí      stát       VERB    _   _   0   root     _   LId=stát-4|LGloss=(něco_stojí_peníze)
+4   český      český      ADJ     _   _   5   amod     _   _
+5   stát       stát       NOUN    _   _   3   iobj     _   LId=stát-1|LGloss=(státní_útvar)
+6   miliardu   miliarda   NOUN    _   _   3   obj      _   LNumValue=1000000000
+7   ročně      ročně      ADV     _   _   3   advmod   _   SpaceAfter=No|LDeriv=roční
+8   .          .          PUNCT   _   _   3   punct    _   _
+</code></pre></div></div>
+
+<h3 id="lnumvalue">LNumValue</h3>
+
+<p>See also <a href="#lid">LId</a> and <a href="#lgloss">LGloss</a>.</p>
+
+<p>The numeric value of lexemes whose meaning relates to a number, expressed in Arabic digits.
+In the Czech dependency treebanks, the
+value of <code class="language-plaintext highlighter-rouge">LNumValue</code> is directly embedded in the lemma and it has to be separated in UD where
+the <a href="u/overview/morphology.html#lemmas">LEMMA column</a> is supposed to contain just the citation
+form of the lexeme.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># sent_id = 1
 # text = Tato politika stojí český stát miliardu ročně.
