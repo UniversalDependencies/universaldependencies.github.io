@@ -424,7 +424,7 @@ of the morphemes.</p>
 
 <h3 id="mwe">MWE</h3>
 
-<p>See also <a href="#mwepos">MWEPOS</a> and <a href="#namedentity">NamedEntity</a>.</p>
+<p>See also <a href="#mwepos">MWEPOS</a>, <a href="#namedentity">NamedEntity</a> and <a href="#proper">Proper</a>.</p>
 
 <p>Multi-word expression. The value serves to preserve a multi-word expression from the source corpus.
 This attribute is typically used at places where in the source corpus the MWE was treated as one
@@ -456,7 +456,7 @@ It is typically placed either at the first word of the MWE, or at the head word.
 
 <h3 id="mwepos">MWEPOS</h3>
 
-<p>See also <a href="#mwe">MWE</a> and <a href="#namedentity">NamedEntity</a>.</p>
+<p>See also <a href="#mwe">MWE</a>, <a href="#namedentity">NamedEntity</a> and <a href="#proper">Proper</a>.</p>
 
 <p>The part of speech of a multi-word expression. The value is taken from the set of <a href="u/overview/pos-index.html">universal
 part-of-speech tags (UPOS)</a> but it is not necessarily identical
@@ -498,7 +498,7 @@ Ideally, these two attribute names should be merged into one.</p>
 
 <h3 id="namedentity">NamedEntity</h3>
 
-<p>See also <a href="#mwe">MWE</a> and <a href="#mwepos">MWEPOS</a>.</p>
+<p>See also <a href="#mwe">MWE</a>, <a href="#mwepos">MWEPOS</a> and <a href="#proper">Proper</a>.</p>
 
 <p><code class="language-plaintext highlighter-rouge">NamedEntity=Yes</code> preserves the information that the word was tagged <code class="language-plaintext highlighter-rouge">PROPN</code> when it was first
 imported to UD. Typically of Google-annotated data (GSD and PUD), all words in multi-word named entities are
@@ -564,6 +564,34 @@ and is attested in Swedish and Ukrainian.</p>
 22   teknik          teknik         NOUN    _   _   13   conj     _   _
 23   *               *              PUNCT   _   _   24   punct    _   NewPar=Yes
 24   konst           konst          NOUN    _   _   13   conj     _   _
+</code></pre></div></div>
+
+<h3 id="proper">Proper</h3>
+
+<p>See also <a href="#mwe">MWE</a>, <a href="#mwepos">MWEPOS</a> and <a href="#namedentity">NamedEntity</a>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Proper=True</code> preserves a same-named feature from the original Google annotation in the PUD
+treebanks, but only for words that could not be tagged <code class="language-plaintext highlighter-rouge">PROPN</code> in UD (e.g., adjectives).
+Typically of Google-annotated data (GSD and PUD), all words in multi-word named entities are
+labeled as proper, which is <a href="u/pos/PROPN.html">wrong in UD</a>. Determiners, numerals, adjectives,
+common nouns and other words should get their usual UPOS tags even inside titles of books or
+movies, names of organizations etc.</p>
+
+<p>The information that a non-proper-noun was annotated as <code class="language-plaintext highlighter-rouge">Proper</code> could be later converted
+to genuine annotation of multi-word named entities.</p>
+
+<p>Attested in the following PUD treebanks: Arabic, English, French, German, Hindi, Chinese,
+Italian, Korean, Portuguese, Russian, Spanish, Thai, Turkish.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># sent_id = n01035013
+# text = Полиция в Британской Колумбии сказала,
+# english_text = Police in B.C. said
+1   Полиция      полиция      NOUN    _   _   5    nsubj   _   _
+2   в            в            ADP     _   _   4    case    _   _
+3   Британской   британский   ADJ     _   _   4    amod    _   Proper=True
+4   Колумбии     Колумбия     PROPN   _   _   1    nmod    _   _
+5   сказала      сказать      VERB    _   _   0    root    _   SpaceAfter=No
+6   ,            ,            PUNCT   _   _   15   punct   _   _
 </code></pre></div></div>
 
 <h3 id="ref">Ref</h3>
@@ -674,8 +702,6 @@ e.g. in Ukrainian, Armenian, Sanskrit, Telugu, and Tamil.</p>
 </code></pre></div></div>
 
 <h3 id="to-be-documented">to be documented</h3>
-
-<p>Proper: Arabic PUD, English PUD, French PUD, German PUD, Hindi PUD, Chinese PUD, Italian PUD, Korean PUD, Portuguese PUD, Russian PUD, Spanish PUD, Thai PUD, Turkish PUD</p>
 
 <p>Orig OrigLang in Coptic</p>
 
