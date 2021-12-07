@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-hit">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hit/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hit/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -80,10 +80,12 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
+<ul>
+  <li>In HitTB, tokens are delimited using whitespace. This is reflected in the original writing, as Hittite cuneiform also used whitespace to delineate.</li>
+  <li>Cuneiform is sometimes difficult to display. The treebank instead displays forms in a way that closely approximates the cuneiform writing, using narrow transcription, where each cuneiform character transliteration is separated with hyphens. Broad transcription, which more closely approximates the pronounciation, is used for lemmas.</li>
+  <li>In Hittite, clitics do not stand as independent tokens. However, clitics most often function grammatically differently from the other word or words in that token. Therefore, in HitTB, clitics are separated out as unique words. For ease, clitics are always introduced by ‘=’.</li>
+  <li>Other multiword tokens include Sumerian compound-word borrowings and words with determinatives. A determinative acts as a class for the noun it modifies, such as the determinative <em>LÚ</em> “man”, which is used for people. The determinative is treated as a separate word to preserve the determinatives in the treebank.</li>
+</ul>
 
 <hr />
 
@@ -91,25 +93,49 @@
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<ul>
+  <li>In HitTB, 15 part-of-speech tags are used.</li>
+  <li>Only SYM and PUNCT remain unused.</li>
+  <li>AUX is used for the copula <em>ēš-</em> (which, like in English, also can function as a true auxiliary), as well as the auxiliary verbs <em>ḫar(k)-</em> and <em>dai-</em>. A final word tagged AUX is <em>NUGÁL</em>, which functions as a negative copula.</li>
+  <li>DET is used for the demonstratives <em>kā-</em>, <em>apā-</em>, and <em>aši</em> (before nouns), the interrogative <em>kuiš</em> “which” (before nouns), and the word <em>mekki</em> “many”.</li>
+  <li>PART is used for <em>nu</em> and <em>-(m)a</em> (when they clearly do not act as coordinating conjunctions), the clitics <em>-za</em>, <em>-ašta</em>, <em>-pát</em>, <em>-kán</em>, and <em>-šan</em>, and the negatives <em>lē</em> and <em>natta</em>.</li>
+</ul>
 
 <hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
 
-<hr />
+<h3 id="nominal-features">Nominal Features</h3>
 
-<h3 id="features">Features</h3>
+<p>For nouns, the following features are possible:</p>
+<ul>
+  <li>Case, which has 10 possibilities (Nom, Acc, Gen, Dat, Abl, Ins, All, Erg, Voc, Abs)</li>
+  <li>Definite, which is used to model the Akkadian construct form and has 1 possibility (Cons)</li>
+  <li>Gender, which has 4 possibilities (Com, Neut, Masc, Fem)</li>
+  <li>Number, which has 2 possibilities (Sing, Plur)</li>
+</ul>
 
-<p>*</p>
+<p>The <em>Case</em>, <em>Gender</em>, and <em>Number</em> features can also be used with verbs (in participle form), pronouns, numerals, adjectives, and determiners.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<h3 id="verbal-features">Verbal Features</h3>
+
+<p>Verbs (not including participles) in HitTB can have the following features:</p>
+<ul>
+  <li>Person (1, 2, 3)</li>
+  <li>Mood (Ind, Imp)</li>
+  <li>Tense (Pres, Past)</li>
+  <li>VerbForm (Fin, Inf, Part, Sup, Vnoun)</li>
+  <li>Voice (Act, Mid)</li>
+</ul>
+
+<h3 id="language-specific-features">Language-Specific Features</h3>
+<p>HitTB contains one language-specific feature, called Language. Since Hittite uses forms from both Akkadian and Sumerian, it is important to know which of these two languages the word originated from, especially in the event that the word displays Akkadian or Sumerian syntax. The possible values of Language are <em>Language=Akk</em> and <em>Language=Sum</em></p>
 
 <hr />
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<ul>
+  <li>Hittite is most often a SOV language.</li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
@@ -118,11 +144,10 @@
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/hit-comparison.html">N</a> Hittite UD treebanks:</p>
+<p>There is 1 Hittite UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/hit_a/index.html">Hittite-A</a></li>
-  <li><a href="../treebanks/hit_b/index.html">Hittite-B</a></li>
+  <li><a href="../treebanks/hittb/index.html">HitTB</a></li>
 </ul>
 
 <hr />
