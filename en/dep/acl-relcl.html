@@ -91,6 +91,8 @@ The head is said to be “extracted” from the RC.</p>
 acl:relcl(man, love)
 </code></pre>
 
+<p>TODO: Add edeprels to examples</p>
+
 <p>The RC may begin with a <strong>relativizer</strong> (<em>that</em>, <em>which</em>, <em>who</em>, or another WH-word); in some contexts (e.g., object relativization) the relativizer is optional. 
 See <a href="">PronType=Rel</a>. 
 The relativizer can be understood as an anaphor whose antecedent is the head of the relative clause.</p>
@@ -101,15 +103,16 @@ The relativizer can be understood as an anaphor whose antecedent is the head of 
 
 <pre><code class="language-sdparse">I saw the book which you bought
 acl:relcl(book, bought)
+obj(bought, which)
 </code></pre>
 
-<p>(A relative clause with no relativizer, like (1), is called a <em>reduced relative clause</em>. One with a relativizer, like (2), is called a <em>nonreduced relative clause</em>.)</p>
+<p>(A relative clause with no relativizer, like (1), is called a <strong>reduced relative clause</strong>. One with a relativizer, like (2), is called a <strong>nonreduced relative clause</strong>.)</p>
 
 <p>Relativization can create unbounded dependency—an element can be extracted from several levels of embedding:</p>
 
 <pre><code class="language-sdparse">I saw the book which you pretended to want to read
 acl:relcl(book, pretended)
-obj(read, book)
+obj(read, which)
 xcomp(pretended, want)
 xcomp(want, read)
 </code></pre>
@@ -152,7 +155,7 @@ nsubj(idea, which)
 
 <p>The Basic UD analysis depends on whether it is a reduced or nonreduced RC. 
 In a nonreduced RC, the relativizer is available to fill a role in the RC, and thus gets marked with 
-the preposition (even if this makes the tree nonprojective):</p>
+the preposition (even if this contributes to the nonprojectivity of the tree):</p>
 
 <pre><code class="language-sdparse">the house that you said you wanted to live in
 acl:relcl(house, said)
