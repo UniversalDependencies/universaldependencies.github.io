@@ -83,13 +83,38 @@
 <p>A relative clause (RC) is a finite clause modifying some head (typically a noun) that is understood to fulfill some grammatical role in the RC. 
 The head is said to be “extracted” from the RC.</p>
 
-<p>In the Basic Dependencies representation, the main predicate of the RC attaches to the head as <code class="language-plaintext highlighter-rouge">acl:relcl</code>.</p>
+<p>In the Basic Dependencies representation, the main predicate of the RC attaches to the head as <code class="language-plaintext highlighter-rouge">acl:relcl</code>. This is shown in the example on the left.</p>
 
-<p>In the <a href="">Enhanced Dependencies</a> layer, there is an additional dependency in the opposite direction to indicate the role from which the head was “extracted”.</p>
+<p>In the <a href="">Enhanced Dependencies</a> layer, there is an additional dependency in the opposite direction to indicate the role from which the head was “extracted”. This is shown on the right.</p>
 
 <pre><code class="language-sdparse">I saw the man you love
 acl:relcl(man, love)
 </code></pre>
+
+<table id="rc-example1"> <!--I saw the man you love . -->
+<tbody><tr><td width="600">
+<div class="conllu-parse">
+1 I      _ _ _ _ _ _ _ _
+2 saw    _ _ _ _ _ _ _ _
+3 the    _ _ _ _ _ _ _ _
+4 man    _ _ _ _ 2 obj _ _
+5 you    _ _ _ _ 6 nsubj   _ _
+6 love   _ _ _ _ 4 acl:relcl _ _
+7 .      _ _ _ _ _ _ _ _
+</div>
+</td><td width="600">
+<div class="conllu-parse">
+# visual-style 6 4 obj color:blue
+1 I      _ _ _ _ _ _ _ _
+2 saw    _ _ _ _ _ _ _ _
+3 the    _ _ _ _ _ _ _ _
+4 man    _ _ _ _ 2 obj 6:obj _
+5 you    _ _ _ _ 6 nsubj   _ _
+6 love   _ _ _ _ 4 acl:relcl _ _
+7 .      _ _ _ _ _ _ _ _
+</div>
+</td></tr></tbody>
+</table>
 
 <p>TODO: Add edeprels to examples</p>
 
@@ -97,9 +122,9 @@ acl:relcl(man, love)
 See <a href="">PronType=Rel</a>. 
 The relativizer can be understood as an anaphor whose antecedent is the head of the relative clause.</p>
 
-<p>Basic UD analyzes the relativizer, if present, as filling a role in the RC such as subject, object, or oblique (if nominal) or <a href="">mark</a> (if an adverb).</p>
+<p>Basic UD analyzes the relativizer, if present, as filling a role in the RC such as subject, object, or oblique (if nominal) or <a href="">mark</a> (if an adverb). This is shown in the example on the left.</p>
 
-<p>In the Enhanced Dependencies layer, the relativizer instead attaches to its antecedent via the <code class="language-plaintext highlighter-rouge">ref</code> relation (as the antecedent is directly connected to a role in the RC).</p>
+<p>In the Enhanced Dependencies layer, the relativizer instead attaches to its antecedent via the <code class="language-plaintext highlighter-rouge">ref</code> relation (as the antecedent is directly connected to a role in the RC). This is shown in the example on the right.</p>
 
 <pre><code class="language-sdparse">I saw the book which you bought
 acl:relcl(book, bought)
