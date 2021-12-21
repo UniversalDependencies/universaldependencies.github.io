@@ -81,7 +81,16 @@
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
-  <li>Words are generally delimited by whitespace or punctuation. For more details, see <a href="tokenization.html">tokenization</a>.</li>
+  <li>In general, words are delimited by whitespace characters. Description of exceptions follows.</li>
+  <li>According to typographical rules, a punctuation mark is attached to a neighbouring (usually following) word. Punctuation marks are usually tokenised as separate tokens (words), unless they are considered an integral part of the lemma (as in <em>2-րդ</em> “2nd”, <em>44-օրեայ</em> “44-day”, or <em>85-ամեայ</em> “85th anniversary”). On the other hand, hyphens in constructions such as <em>ռուսա-իրանա-սուրիական</em> “Russian-Iranian-Syrian” or before inflectional endings (as in <em>96-ի</em> “of 96.Dat”, <em>1956-ին</em> “in 1956.Dat”, <em>196-ամեակի</em> “196th anniversary.Dat” ) are treated as separate tokens.</li>
+  <li>A whitespace separating digits in a large number is not treated as a word separator. For example, <em>1 000 000</em> (“1,000,000” by English rules) is one token. (However, such tokens do not occur in Western Armenian treebanks as of release 2.8.)</li>
+  <li>There are two classes of “orthographic words” (sequences of letters without spaces inside) that are split into several syntactic tokens.
+    <ul>
+      <li>The most prominent type is so-called “infixed punctuation”, i.e. words containing question, exclamation, emphasis and Armenian abbreviation marks, as in <em>ինչպէ՞ս = ինչպէս + ՞</em> “How?”, are treated as multi-word tokens and segmented to individual syntactic words.</li>
+      <li>Orthographic words of the other class consist of a indicative or negative particles <em>կ՚</em> and <em>չ՚</em> (followed by a vocal and treated as auxiliaries), as in <em>կ՚այցելեմ = կ՚ + այցելեմ</em> “(I am) visiting” and <em>չ՚ուզեր = չի + ուզեր</em> “(He/She) does not want”.</li>
+    </ul>
+  </li>
+  <li>For more details, see <a href="tokenization.html">tokenization</a>.</li>
 </ul>
 
 <h2 id="morphology">Morphology</h2>
