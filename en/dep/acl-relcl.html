@@ -307,6 +307,8 @@ advmod(well, how)
 acl:relcl(well, behaved)
 </code></pre>
 
+<h3 id="versus-other-constructions">Versus other constructions</h3>
+
 <p>Free relatives are subtly different from <strong>interrogative clauses</strong>, where the WH-word making it interrogative is inside the clause.
 Verbs such as <em>wonder</em>, <em>know</em>, and <em>tell</em> license interrogative complement clauses (including ones beginning with <em>whether</em>).
 According to <em>CGEL</em> (Huddleston and Pullum 2002, pp. 1070–1079), in contrast to interrogative clauses, free relatives</p>
@@ -365,6 +367,35 @@ advcl(sure, leave)
 <p>TODO: the above would be <code class="language-plaintext highlighter-rouge">mark</code> not <code class="language-plaintext highlighter-rouge">advmod</code> in EWT</p>
 
 <p>TODO: is plain <code class="language-plaintext highlighter-rouge">acl</code> ever correct for a WH-clause? “the time when”, “the reason why”? <a href="http://match.grew.fr/?corpus=UD_English-EWT@dev&amp;custom=61c1f3622bda6">http://match.grew.fr/?corpus=UD_English-EWT@dev&amp;custom=61c1f3622bda6</a></p>
+
+<h3 id="cyclic-cases">Cyclic cases</h3>
+
+<p>In some cases, the <em>wh</em>-phrase would be analyzed as the head of the <em>wh</em>-clause. For example, in the sentence <em>I love how appreciative everyone was</em>, the word <em>appreciative</em> would normally be a predicative head (since the verb <em>was</em> is a copula and would receive the <code class="language-plaintext highlighter-rouge">cop</code> relation). Since <em>appreciative</em> cannot be an <code class="language-plaintext highlighter-rouge">acl:relcl</code> dependent on itself, the auxiliary is promoted to the head of the relative clause and assigned the <code class="language-plaintext highlighter-rouge">acl:relcl</code> relation.</p>
+
+<pre><code class="language-sdparse">I love how appreciative everyone was .
+obj(love, appreciative)
+acl:relcl(appreciative, was)
+advmod(appreciative, how)
+</code></pre>
+
+<p>TODO: Also copied from the v1 guidelines:</p>
+
+<pre><code class="language-sdparse">This is the key to how worthy the effort might be .
+nmod(key, worthy)
+case(worthy, to)
+advmod(worthy, how)
+acl:relcl(worthy, be)
+</code></pre>
+
+<p>But I am not sure whether this is a free relative. Cf. “This is the key to whether the effort might be worthy.” (suggests clause-like) “This is the key to its worthiness.” (suggests NP-like). Maybe it’s ambiguous? How about:</p>
+
+<pre><code class="language-sdparse">This is the key to how worthy the effort might be .
+nmod(key, worthy)
+mark(worthy, to)
+advmod(worthy, how)
+acl(key, worthy)
+cop(worthy, be)
+</code></pre>
 
 <h2 id="clefts">Clefts</h2>
 
