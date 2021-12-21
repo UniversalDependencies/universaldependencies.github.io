@@ -3,14 +3,14 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>VerbForm</title>
+    <title>Ancient Hebrew UD</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
-    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-hbo">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hbo/feat/VerbForm.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hbo/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -63,7 +63,7 @@
         <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
         <script type="text/javascript">
             console.time('loading libraries');
-            var root = '../../'; // filled in by jekyll
+            var root = '../'; // filled in by jekyll
             head.js(
                 // External libraries
                 // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
@@ -76,103 +76,56 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <style>h3 {display:block;background-color:#dfeffc}</style>
+        <h1 id="ud-for-ancient-hebrew-">UD for Ancient Hebrew <span class="flagspan"><img class="flag" src="../../flags/svg/IL.svg" /></span></h1>
 
-<h2><code>VerbForm</code>: verb form</h2>
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<h3 id="fin-finite-verb"><a name="Fin"><code class="language-plaintext highlighter-rouge">Fin</code></a>: finite verb</h3>
-
-<h4 id="examples">Examples</h4>
+<p>No tokens in the Ancient Hebrew treebank should contain whitespace. The following are treated as clitics and made into separate tokens:</p>
 
 <ul>
-  <li><em>שׁומרתי</em> “I have guarded”</li>
+  <li>Prepositions (ב, ל, מ, …)</li>
+  <li>Possessive and object pronouns (ני, נו, ו, ם, …)
+    <ul>
+      <li>The corresponding independent pronoun is used as the lemma</li>
+    </ul>
+  </li>
+  <li>Conjunction ו</li>
+  <li>Definite determiner ה</li>
 </ul>
 
-<h3 id="inf-infinitive"><a name="Inf"><code class="language-plaintext highlighter-rouge">Inf</code></a>: infinitive</h3>
+<h2 id="morphology">Morphology</h2>
 
-<h4 id="examples-1">Examples</h4>
+<h3 id="tags">Tags</h3>
+
+<p>All tags are used except <code class="language-plaintext highlighter-rouge">X</code> and <code class="language-plaintext highlighter-rouge">SYM</code>. <code class="language-plaintext highlighter-rouge">AUX</code> is used for the copula היה and the positive and negative existentials ישׁ and אין.</p>
+
+<h3 id="features">Features</h3>
 
 <ul>
-  <li><em>שׁמור</em> “to guard”</li>
+  <li><a href="hbo-feat/Gender">Gender</a>: <a href="hbo-pos/NOUN">NOUN</a>, <a href="hbo-pos/PRON">PRON</a>, <a href="hbo-pos/ADJ">ADJ</a>, <a href="hbo-pos/VERB">VERB</a></li>
+  <li><a href="hbo-feat/Number">Number</a>: <a href="hbo-pos/NOUN">NOUN</a>, <a href="hbo-pos/PRON">PRON</a>, <a href="hbo-pos/ADJ">ADJ</a>, <a href="hbo-pos/VERB">VERB</a></li>
 </ul>
 
-<h3 id="part-participle"><a name="Part"><code class="language-plaintext highlighter-rouge">Part</code></a>: participle</h3>
-
-<h4 id="examples-2">Examples</h4>
+<h2 id="syntax">Syntax</h2>
 
 <ul>
-  <li><em>שׁומר</em> “guarding”</li>
+  <li>Unused: <code class="language-plaintext highlighter-rouge">iobj</code>, <code class="language-plaintext highlighter-rouge">expl</code>, <code class="language-plaintext highlighter-rouge">clf</code></li>
+  <li>Subtypes: <a href="hbo-dep/compound-smixut">compound:smixut</a>, <a href="hbo-dep/nmod-poss">nmod:poss</a></li>
 </ul>
 
+<h2 id="treebanks">Treebanks</h2>
 
-<!-- "in other languages" links -->
-<hr/>
+<p>There is <a href="../treebanks/hbo-comparison.html">1</a> Ancient Hebrew UD treebank:</p>
 
-VerbForm in other languages:
-
-[<a href="../../akk/feat/VerbForm.html">akk</a>]
-
-[<a href="../../bej/feat/VerbForm.html">bej</a>]
-
-[<a href="../../bg/feat/VerbForm.html">bg</a>]
-
-[<a href="../../bm/feat/VerbForm.html">bm</a>]
-
-[<a href="../../cs/feat/VerbForm.html">cs</a>]
-
-[<a href="../../cu/feat/VerbForm.html">cu</a>]
-
-[<a href="../../cy/feat/VerbForm.html">cy</a>]
-
-[<a href="../../en/feat/VerbForm.html">en</a>]
-
-[<a href="../../fi/feat/VerbForm.html">fi</a>]
-
-[<a href="../../fr/feat/VerbForm.html">fr</a>]
-
-[<a href="../../ga/feat/VerbForm.html">ga</a>]
-
-[<a href="../../gub/feat/VerbForm.html">gub</a>]
-
-[<a href="../../gun/feat/VerbForm.html">gun</a>]
-
-[<a href="../../hu/feat/VerbForm.html">hu</a>]
-
-[<a href="../../hy/feat/VerbForm.html">hy</a>]
-
-[<a href="../../it/feat/VerbForm.html">it</a>]
-
-[<a href="../../kpv/feat/VerbForm.html">kpv</a>]
-
-[<a href="../../la/feat/VerbForm.html">la</a>]
-
-[<a href="../../orv/feat/VerbForm.html">orv</a>]
-
-[<a href="../../pcm/feat/VerbForm.html">pcm</a>]
-
-[<a href="../../ru/feat/VerbForm.html">ru</a>]
-
-[<a href="../../sl/feat/VerbForm.html">sl</a>]
-
-[<a href="../../sv/feat/VerbForm.html">sv</a>]
-
-[<a href="../../tr/feat/VerbForm.html">tr</a>]
-
-[<a href="../../tt/feat/VerbForm.html">tt</a>]
-
-[<a href="../../u/feat/VerbForm.html">u</a>]
-
-[<a href="../../uk/feat/VerbForm.html">uk</a>]
-
-[<a href="../../urj/feat/VerbForm.html">urj</a>]
-
-
+<ul>
+  <li><a href="../treebanks/hbo_ptnk/index.html">Ancient Hebrew-PTNK</a></li>
+</ul>
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../../'; // filled in by jekyll
+    var root = '../'; // filled in by jekyll
     head.js(
         // We assume that external libraries such as jquery.min.js have already been loaded outside!
         // (See _layouts/base.html.)
