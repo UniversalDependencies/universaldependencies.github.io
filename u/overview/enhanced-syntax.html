@@ -78,7 +78,16 @@
         </script>
         <h1 id="enhanced-dependencies">Enhanced Dependencies</h1>
 
-<p>We always intended the Universal Dependencies representation to be used in shallow natural language understanding tasks such as relation extraction or biomedical event extraction. For such tasks, one is typically interested in the relation between certain entities, e.g., the relation between two persons or whether one protein interacts with another. UD is particularly well suited for such tasks as UD trees contain many direct dependencies between content words and many of the dependency labels provide a lot of information about the type of relation between two content words. However, for some constructions, the dependency path between two content words of interest can be very long in a UD tree, which complicates determining how the content words are related. Further, some dependency types such as <a href="u-dep/obl"><code class="language-plaintext highlighter-rouge">obl</code></a> or <a href="u-dep/nmod"><code class="language-plaintext highlighter-rouge">nmod</code></a> are used for many different types of arguments and modifiers, and therefore they are not very informative on their own. For these reasons, we also provide guidelines for an <em>enhanced</em> representation, which makes some of the implicit relations between words more explicit, and augments some of the dependency labels to facilitate the disambiguation of types of arguments and modifiers.</p>
+<p>We always intended the Universal Dependencies representation to be used in shallow natural language understanding tasks such as
+relation extraction or biomedical event extraction. For such tasks, one is typically interested in the relation between certain
+entities, e.g., the relation between two persons or whether one protein interacts with another. UD is particularly well suited
+for such tasks as UD trees contain many direct dependencies between content words and many of the dependency labels provide a
+lot of information about the type of relation between two content words. However, for some constructions, the dependency path
+between two content words of interest can be very long in a UD tree, which complicates determining how the content words are
+related. Further, some dependency types such as <a href="u-dep/obl"><code class="language-plaintext highlighter-rouge">obl</code></a> or <a href="u-dep/nmod"><code class="language-plaintext highlighter-rouge">nmod</code></a> are used for many different types of
+arguments and modifiers, and therefore they are not very informative on their own. For these reasons, we also provide guidelines
+for an <em>enhanced</em> representation, which makes some of the implicit relations between words more explicit, and augments some of
+the dependency labels to facilitate the disambiguation of types of arguments and modifiers.</p>
 
 <p><em>Enhanced</em> UD graphs may contain some or all of the following enhancements, which are described in the sections below.</p>
 
@@ -88,10 +97,13 @@
   <li><a href="#propagation-of-outgoing-dependencies-from-conjuncts">Propagation of outgoing dependencies from conjuncts</a></li>
   <li><a href="#controlledraised-subjects">Additional subject relations for control and raising constructions</a></li>
   <li><a href="#relative-clauses">Coreference in relative clause constructions</a></li>
-  <li><a href="#case-information">Modifier labels that contain the preposition or other case-marking information</a></li>
+  <li><a href="#case-information">Modifier labels that contain the preposition, other case marker or conjunction</a></li>
 </ul>
 
-<p>Note that the <em>enhanced</em> graph is not necessarily a supergraph of the basic tree, i.e., the graph is not required to contain all the basic dependency relations. For this reason, all relations of the enhanced graph (also the ones that are present in the basic UD tree) have to be included in the <em>DEPS</em> column of a CoNLL-U file. See the specificiation of the <a href="/format.html">CoNLL-U</a> file format for details.</p>
+<p>Note that the <em>enhanced</em> graph is not necessarily a supergraph of the basic tree, i.e., the graph is not required to contain all
+the basic dependency relations. For this reason, all relations of the enhanced graph (also the ones that are present in the basic
+UD tree) have to be included in the <em>DEPS</em> column of a CoNLL-U file. See the specificiation of the <a href="/format.html">CoNLL-U</a> file
+format for details.</p>
 
 <p>Furthermore, the dependency relation labels in the enhanced graph in DEPS may contain certain extensions that are not permitted
 in the basic relation type in the DEPREL column. The regular expression restricting relation labels in DEPREL is pretty simple;
@@ -109,8 +121,8 @@ defined in the basic representation, the relation can also be <tt><a href="#rela
   <li>The string <tt><a href="#controlledraised-subjects">xsubj</a></tt>, denoting external subject relations of <a href="">xcomp</a> predicates.
 This extension is used only with <a href="">nsubj</a>, <a href="">csubj</a>, and their subtypes such as <a href="">nsubj:pass</a>.
 It does not combine with the other extensions described below because they do not apply to subjects.</li>
-  <li><a href="#case-information">Case information</a> –
-adposition or conjunction that occurs as a <code class="language-plaintext highlighter-rouge">case</code> or <code class="language-plaintext highlighter-rouge">mark</code> dependent of the node whose relation to its
+  <li><a href="#case-information">Case and similar information</a> –
+adposition or conjunction that occurs as a <code class="language-plaintext highlighter-rouge">case</code>, <code class="language-plaintext highlighter-rouge">mark</code> or <code class="language-plaintext highlighter-rouge">cc</code> dependent of the node whose relation to its
 parent is being enhanced. Note that this is the only part where non-ASCII letters are permitted within the enhanced relation label.
 The word should be normalized (lowercased, no typos), i.e., in general we take its lemma. However, if the case/mark dependent is
 a fixed multi-word expression, the lemma of the expression is not necessarily composed of lemmas of the individual member words.
@@ -778,14 +790,17 @@ The augmented relations are <code class="language-plaintext highlighter-rouge">n
 augmented: <code class="language-plaintext highlighter-rouge">obj</code>, <code class="language-plaintext highlighter-rouge">iobj</code>, <code class="language-plaintext highlighter-rouge">ccomp</code>.
 Case information may be represented by the lemma of an adposition attached via a <code class="language-plaintext highlighter-rouge">case</code> relation.
 For clauses, the corresponding information may be represented by the lemma of a <code class="language-plaintext highlighter-rouge">mark</code> dependent instead.
-<!-- DZ: Do we really want to include cc dependents here? How are they related to case? Don't we want to make them augment conj relations instead? -->
 Case information may also be represented by the value of the morphological feature <a href="/u/feat/Case.html">Case</a>.
 In some languages, there is both the adposition and the morphological case, and their combination must be reflected in the enhanced relation.</p>
+
+<p>In a similar manner, enhanced UD graphs also contain <code class="language-plaintext highlighter-rouge">conj</code> relations that are augmented with their coordinating conjunction.
+This makes the type of coordination between two phrases more explicit which is particularly useful in phrases with multiple
+coordinating conjunctions.</p>
 
 <p>The following formal rules apply (copied from the summary at the beginning of this page):</p>
 
 <ul>
-  <li>Adposition or conjunction that occurs as a <code class="language-plaintext highlighter-rouge">case</code> or <code class="language-plaintext highlighter-rouge">mark</code> <!--or `cc` ?--> dependent of the node whose relation to its
+  <li>Adposition or conjunction that occurs as a <code class="language-plaintext highlighter-rouge">case</code> or <code class="language-plaintext highlighter-rouge">mark</code> or <code class="language-plaintext highlighter-rouge">cc</code> dependent of the node whose relation to its
 parent is being enhanced. Note that this is the only part where non-ASCII letters are permitted within the enhanced relation label.
 The word should be normalized (lowercased, no typos), i.e., in general we take its lemma. However, if the case/mark dependent is
 a fixed multi-word expression, the lemma of the expression is not necessarily composed of lemmas of the individual member words.
@@ -972,6 +987,32 @@ the Case feature but it is lowercased (e.g., <code class="language-plaintext hig
 </td></tr></tbody>
 </table>
 
+<table> <!--apples and bananas, or oranges-->
+<tbody><tr><td width="600">
+<div class="conllu-parse">
+# visual-style 1 3 conj color:green
+# visual-style 1 6 conj color:green
+1  apples  _ _ _ _ 0 root  _ _
+2  and     _ _ _ _ 3 cc    _ _
+3  bananas _ _ _ _ 1 conj  _ SpaceAfter=No
+4  ,       _ _ _ _ 6 punct _ _
+5  or      _ _ _ _ 6 cc    _ _
+6  oranges _ _ _ _ 1 conj  _ _
+</div>
+</td><td width="600">
+<div class="conllu-parse">
+# visual-style 1 3 conj:and color:blue
+# visual-style 1 6 conj:or color:blue
+1  apples  _ _ _ _ 0 root     _ _
+2  and     _ _ _ _ 3 cc       _ _
+3  bananas _ _ _ _ 1 conj:and _ SpaceAfter=No
+4  ,       _ _ _ _ 6 punct    _ _
+5  or      _ _ _ _ 6 cc       _ _
+6  oranges _ _ _ _ 1 conj:or  _ _
+</div>
+</td></tr></tbody>
+</table>
+
 <h2 id="additional-enhancements">Additional enhancements</h2>
 
 <p>Some postprocessing steps such as demoting light nouns that behave like quantificational determiners (as, for example, described in <a href="http://www.lrec-conf.org/proceedings/lrec2016/pdf/779_Paper.pdf">Schuster and Manning (2016)</a>) can improve the usability of the dependency graphs for downstream applications. However, as most of these additions are highly language-specific, we do not provide any universal guidelines for such a representation and anything beyond the above additions is not part of the UD standard and should not be added to the officially released treebanks.</p>
@@ -987,7 +1028,6 @@ treebanks that already contain some enhanced annotation).</p>
   <li>If one sentence in a corpus has the enhanced graph, then all sentences in the corpus must have it. It will facilitate processing of the corpus.</li>
   <li>While individual enhancement types are optional, once a particular enhancement type is annotated somewhere in the corpus, the authors should annotate it everywhere in the corpus. This cannot be checked automatically for some enhancement types, but obviously the user will then assume that non-presence of the annotation in a sentence means that the phenomenon does not occur there.</li>
   <li>It would be useful if one could recognize from the enhanced relation type what type of enhancement it represents. (Some relations may be a result of two enhancement types combined.) The Stanford Enhancer does this at least for the controlled subjects (generating <code class="language-plaintext highlighter-rouge">nsubj:xsubj</code>, <code class="language-plaintext highlighter-rouge">nsubj:pass:xsubj</code>, <code class="language-plaintext highlighter-rouge">csubj:xsubj</code>, or <code class="language-plaintext highlighter-rouge">csubj:pass:xsubj</code> for the new enhanced relation).</li>
-  <li>Besides adding case information to <code class="language-plaintext highlighter-rouge">nmod</code>, <code class="language-plaintext highlighter-rouge">obl</code>, <code class="language-plaintext highlighter-rouge">acl</code>, and <code class="language-plaintext highlighter-rouge">advcl</code>, the Stanford Enhancer also adds conjunction information to <code class="language-plaintext highlighter-rouge">conj</code>. This is not allowed in the guidelines and thus illegal; however, several UD treebanks already contain it and, arguably, its usefulness can be compared to that of case information.</li>
 </ul>
 
       </div>
