@@ -89,7 +89,11 @@ arguments and modifiers, and therefore they are not very informative on their ow
 for an <em>enhanced</em> representation, which makes some of the implicit relations between words more explicit, and augments some of
 the dependency labels to facilitate the disambiguation of types of arguments and modifiers.</p>
 
-<p><em>Enhanced</em> UD graphs may contain some or all of the following enhancements, which are described in the sections below.</p>
+<p><em>Enhanced</em> UD graphs may contain some or all of the following enhancements, which are described in the sections below.
+If a corpus does not annotate any of the enhancements defined in the guidelines, it should always have the underscore
+character in the DEPS column. That is, the enhanced graph should not be just an exact copy of the basic tree for all
+sentences in the corpus. Otherwise it creates the impression that the user can expect some enhancements while there are
+actually none.</p>
 
 <ul>
   <li><a href="#ellipsis">Empty (null) nodes for elided predicates</a></li>
@@ -1024,7 +1028,6 @@ but I think that they should be considered for addition in the future (based on 
 treebanks that already contain some enhanced annotation).</p>
 
 <ul>
-  <li>If a corpus does not annotate any of the enhancements defined in the guidelines, it should always have the underscore character in the DEPS column. That is, the enhanced graph should not be just an exact copy of the basic tree. Otherwise it creates the impression that the user can expect some enhancements while there are actually none.</li>
   <li>While individual enhancement types are optional, once a particular enhancement type is annotated somewhere in the corpus, the authors should annotate it everywhere in the corpus. This cannot be checked automatically for some enhancement types, but obviously the user will then assume that non-presence of the annotation in a sentence means that the phenomenon does not occur there.</li>
   <li>It would be useful if one could recognize from the enhanced relation type what type of enhancement it represents. (Some relations may be a result of two enhancement types combined.) The Stanford Enhancer does this at least for the controlled subjects (generating <code class="language-plaintext highlighter-rouge">nsubj:xsubj</code>, <code class="language-plaintext highlighter-rouge">nsubj:pass:xsubj</code>, <code class="language-plaintext highlighter-rouge">csubj:xsubj</code>, or <code class="language-plaintext highlighter-rouge">csubj:pass:xsubj</code> for the new enhanced relation).</li>
 </ul>
