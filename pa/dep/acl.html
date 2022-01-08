@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>xcomp</title>
+    <title>acl</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-cs">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-pa">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cs/dep/xcomp.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pa/dep/acl.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,119 +76,126 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>xcomp</code>: open clausal complement</h2>
+        <h2><code>acl</code>: clausal modifier of noun</h2>
 
-<p>An open clausal complement (<code class="language-plaintext highlighter-rouge">xcomp</code>) of a verb or an adjective is a
-predicative or clausal complement without its own subject. The
-reference of the subject is necessarily determined by an argument
-external to the xcomp (normally by the subject of the next higher
-clause). This is often referred to as <em>obligatory control</em>. 
-These complements are always non-finite, and they are
-complements (arguments of the higher verb or adjective) rather than
-adjuncts/modifiers, such as a purpose clause. The name <code class="language-plaintext highlighter-rouge">xcomp</code> is
-borrowed from Lexical-Functional Grammar.</p>
+<p>Clausal modifiers do not have relative pronouns. The prototypical case is a verb preceding the noun.</p>
 
-<pre><code class="language-sdparse">Nechceš si zaplavat ? \n Don't-you-want yourself to-swim ?
-xcomp(Nechceš, zaplavat)
-xcomp(Don't-you-want, to-swim)
+<pre><code class="language-sdparse">ਤੁਰਦੀ ਰੇਲ ਗੱਡੀ \n moving rail car
+compound(ਗੱਡੀ, ਰੇਲ)
+compound(rail, car)
+acl(ਗੱਡੀ, ਤੁਰਦੀ)
+acl(car, moving)
 </code></pre>
 
-<pre><code class="language-sdparse">Začal jsem tam pracovat včera . \n Started I-have there to-work yesterday .
-xcomp(Začal, pracovat)
-xcomp(Started, to-work)
+<p>Some other ways of phrasing this:</p>
+
+<pre><code class="language-sdparse">ਬੈਠਿਆ ਹੋਇਆ ਮੁੰਡਾ \n sitting being boy
+acl(ਮੁੰਡਾ, ਬੈਠਿਆ)
+acl(boy, sitting)
+aux(ਬੈਠਿਆ, ਹੋਇਆ)
+aux(sitting, being)
 </code></pre>
 
-<p>Note that the above condition “without its own subject” does not mean that a 
-clause is an <code class="language-plaintext highlighter-rouge">xcomp</code> just because its subject is not <em>overt.</em>
-The subject must be necessarily inherited from a fixed position in the higher clause.
-That is, there should be no available interpretation where the subject of the lower clause may be distinct
-from the specified role of the upper clause.
-In cases where the missing subject may or must be distinct from a fixed role in the higher clause,
-<a href="">ccomp</a> should be used instead, as below.  This includes cases of arbitrary subjects and anaphoric control.</p>
-
-<pre><code class="language-sdparse">Šéf nařídil vykopat příkop . \n Boss ordered to-dig ditch .
-ccomp(nařídil, vykopat)
-ccomp(ordered, to-dig)
+<pre><code class="language-sdparse">ਆਖਣ ਵਾਲਾ ਮੁੰਡਾ \n saying (vālā) boy
+acl(ਮੁੰਡਾ, ਆਖਣ)
+acl(boy, saying)
+mark(ਆਖਣ, ਵਾਲਾ)
+mark(saying, (vālā))
 </code></pre>
 
-<p>Pro-drop languages have clauses where the subject is not present as a separate word,
-yet it is inherently present (and often deducible from the form of the verb)
-and it does not depend on arguments from a higher clause.
-Thus in neither of the following two Czech examples is there any overt subject,
-yet only the second example contains an <code class="language-plaintext highlighter-rouge">xcomp</code>.</p>
+<p>This kind of verb can take some arguments, but the subject can never take the ergative, instead a passive agentive case marker like ਵੱਲੋਂ.</p>
 
-<pre><code class="language-sdparse">Píšu , protože jsem to slíbil . \n I-write , because I-have it promised .
-advcl(Píšu, slíbil)
-advcl(I-write, promised)
+<pre><code class="language-sdparse">ਸੱਸ ਵੱਲੋਂ ਨੂੰਹ ਨੂੰ ਦਿੱਤੇ ਅਸ਼ੀਰਵਾਦ \n mother.in.law by daughter.in.law DAT given blessings
+nsubj:pass(ਦਿੱਤੇ, ਸੱਸ)
+nsubj:pass(given, mother.in.law)
+iobj(ਦਿੱਤੇ, ਨੂੰਹ)
+iobj(given, daughter.in.law)
+acl(ਅਸ਼ੀਰਵਾਦ, ਦਿੱਤੇ)
+acl(blessings, given)
 </code></pre>
 
-<pre><code class="language-sdparse">Slíbil jsem psát . \n Promised I-have to-write .
-xcomp(Slíbil, psát)
-xcomp(Promised, to-write)
+<h2 id="with-case-markers">With case markers</h2>
+
+<pre><code class="language-sdparse">ਭਾਰਤ ਜਾਣ ਦੀ ਗੱਲ \n India going GEN talk
+acl(ਗੱਲ, ਜਾਣ)
+acl(talk, going)
+obj(ਜਾਣ, ਭਾਰਤ)
+obj(going, India)
+mark(ਜਾਣ, ਦੀ)
+mark(going, GEN)
 </code></pre>
-<!-- Interlanguage links updated St lis 3 20:59:11 CET 2021 -->
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-xcomp in other languages:
+acl in other languages:
 
-[<a href="../../bg/dep/xcomp.html">bg</a>]
+[<a href="../../bej/dep/acl.html">bej</a>]
 
-[<a href="../../bm/dep/xcomp.html">bm</a>]
+[<a href="../../bg/dep/acl.html">bg</a>]
 
-[<a href="../../cop/dep/xcomp.html">cop</a>]
+[<a href="../../bm/dep/acl.html">bm</a>]
 
-[<a href="../../cs/dep/xcomp.html">cs</a>]
+[<a href="../../cop/dep/acl.html">cop</a>]
 
-[<a href="../../de/dep/xcomp.html">de</a>]
+[<a href="../../cs/dep/acl.html">cs</a>]
 
-[<a href="../../el/dep/xcomp.html">el</a>]
+[<a href="../../de/dep/acl.html">de</a>]
 
-[<a href="../../en/dep/xcomp.html">en</a>]
+[<a href="../../el/dep/acl.html">el</a>]
 
-[<a href="../../es/dep/xcomp.html">es</a>]
+[<a href="../../en/dep/acl.html">en</a>]
 
-[<a href="../../eu/dep/xcomp.html">eu</a>]
+[<a href="../../es/dep/acl.html">es</a>]
 
-[<a href="../../fi/dep/xcomp.html">fi</a>]
+[<a href="../../et/dep/acl.html">et</a>]
 
-[<a href="../../fr/dep/xcomp.html">fr</a>]
+[<a href="../../eu/dep/acl.html">eu</a>]
 
-[<a href="../../fro/dep/xcomp.html">fro</a>]
+[<a href="../../fi/dep/acl.html">fi</a>]
 
-[<a href="../../ga/dep/xcomp.html">ga</a>]
+[<a href="../../fr/dep/acl.html">fr</a>]
 
-[<a href="../../gsw/dep/xcomp.html">gsw</a>]
+[<a href="../../fro/dep/acl.html">fro</a>]
 
-[<a href="../../hy/dep/xcomp.html">hy</a>]
+[<a href="../../ga/dep/acl.html">ga</a>]
 
-[<a href="../../it/dep/xcomp.html">it</a>]
+[<a href="../../gsw/dep/acl.html">gsw</a>]
 
-[<a href="../../kk/dep/xcomp.html">kk</a>]
+[<a href="../../hy/dep/acl.html">hy</a>]
 
-[<a href="../../no/dep/xcomp.html">no</a>]
+[<a href="../../it/dep/acl.html">it</a>]
 
-[<a href="../../pa/dep/xcomp.html">pa</a>]
+[<a href="../../ja/dep/acl.html">ja</a>]
 
-[<a href="../../pcm/dep/xcomp.html">pcm</a>]
+[<a href="../../kk/dep/acl.html">kk</a>]
 
-[<a href="../../pt/dep/xcomp.html">pt</a>]
+[<a href="../../no/dep/acl.html">no</a>]
 
-[<a href="../../ru/dep/xcomp.html">ru</a>]
+[<a href="../../pa/dep/acl.html">pa</a>]
 
-[<a href="../../sv/dep/xcomp.html">sv</a>]
+[<a href="../../pcm/dep/acl.html">pcm</a>]
 
-[<a href="../../swl/dep/xcomp.html">swl</a>]
+[<a href="../../pt/dep/acl.html">pt</a>]
 
-[<a href="../../tr/dep/xcomp.html">tr</a>]
+[<a href="../../ro/dep/acl.html">ro</a>]
 
-[<a href="../../u/dep/xcomp.html">u</a>]
+[<a href="../../ru/dep/acl.html">ru</a>]
 
-[<a href="../../yue/dep/xcomp.html">yue</a>]
+[<a href="../../sv/dep/acl.html">sv</a>]
 
-[<a href="../../zh/dep/xcomp.html">zh</a>]
+[<a href="../../swl/dep/acl.html">swl</a>]
+
+[<a href="../../tr/dep/acl.html">tr</a>]
+
+[<a href="../../u/dep/acl.html">u</a>]
+
+[<a href="../../urj/dep/acl.html">urj</a>]
+
+[<a href="../../yue/dep/acl.html">yue</a>]
+
+[<a href="../../zh/dep/acl.html">zh</a>]
 
 
 
@@ -237,7 +244,7 @@ xcomp in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'cs';
+        Collections.listing['_current'] = 'pa';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
