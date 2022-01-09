@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>ccomp</title>
+    <title>nsubj</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-pa">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pa/dep/ccomp.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pa/dep/nsubj.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,118 +76,142 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>ccomp</code>: clausal complement</h2>
+        <h2><code>nsubj</code>: nominal subject</h2>
 
-<p>Some verbs (e.g. of feeling or mental perception, or communicating) take clausal complements, which generally go after the verb in unmarked position. Nominal objects, on the other hand, are generally pre-verbal.</p>
+<p>A nominal subject is the syntactic subject of a clause. In Punjabi, this is protypically the nominative (unmarked) argument to an intransitive or non-perfective transitive verb, or ergative argument to a perfective-aspect transitive verb. Some dialects also only mark the ergative on the third person. See also <a href="">cop</a>.</p>
 
-<pre><code class="language-sdparse">ਉਹ ਜਾਣਦਾ ਹੈ ਕਿ ਕੁੜੀ ਉੱਥੇ ਗਈ \n He knows is that girl there went
-ccomp(ਜਾਣਦਾ, ਗਈ)
-ccomp(knows, went)
-nsubj(ਜਾਣਦਾ, ਉਹ)
-nsubj(knows, He)
-mark(ਗਈ, ਕਿ)
-mark(went, that)
+<pre><code class="language-sdparse">ਮੈਂ ਗਿਆ \n I went
+nsubj(ਗਿਆ, ਮੈਂ)
+nsubj(went, I)
 </code></pre>
 
-<h2 id="clausal-complements-to-the-copula">Clausal complements to the copula</h2>
+<p>Some less prototypical, but equally valid nominal subjects exist too. Dative, locative, and genitive subjects exist and have properties such as control of reflexives which qualify them for subject hood.</p>
 
-<p>When a clause is a predicative complement and the main verb is a copula, we analyse it like a non-copular verb.</p>
+<h2 id="dative-subjects">Dative subjects</h2>
 
-<pre><code class="language-sdparse">ਮੇਰਾ ਖ਼ਿਆਲ ਹੈ ਕਿ ਉਹ ਜਾਵੇਗਾ \n my thought is that he will.go
-nsubj(ਹੈ, ਖ਼ਿਆਲ)
-nsubj(is, thought)
-ccomp(ਹੈ, ਜਾਵੇਗਾ)
-ccomp(is, will.go)
-mark(ਜਾਵੇਗਾ, ਕਿ)
-mark(will.go, that)
+<p>These tend to be dependents of experiencer verbs.</p>
+
+<pre><code class="language-sdparse">ਸਾਨੂੰ ਗੁੱਸਾ ਆਇਆ \n to.us anger came
+nsubj(ਆਇਆ, ਸਾਨੂੰ)
+nsubj(came, to.us)
+obj(ਆਇਆ, ਗੁੱਸਾ)
+obj(came, anger)
 </code></pre>
 
-<p>But sometime the clause may be subordinate to a pronoun like ਇਹ <em>ih</em> “this”, in which case we do treat it like a normal copula.</p>
+<pre><code class="language-sdparse">ਤੁਹਾਨੂੰ ਸ਼ੋਰ ਸੁਣਾਈ ਦਿੱਤਾ \n to.you noise hearing gave
+nsubj(ਦਿੱਤਾ, ਤੁਹਾਨੂੰ)
+compound:lvc(ਦਿੱਤਾ, ਸੁਣਾਈ)
+obj(ਦਿੱਤਾ, ਸ਼ੋਰ)
+nsubj(gave, to.you)
+compound:lvc(gave, hearing)
+obj(gave, noise)
+</code></pre>
 
-<pre><code class="language-sdparse">ਮੇਰਾ ਖ਼ਿਆਲ ਇਹ ਹੈ ਕਿ ਉਹ ਜਾਵੇਗਾ \n my thought this is that he will.go
-nsubj(ਇਹ, ਖ਼ਿਆਲ)
-nsubj(this, thought)
-cop(ਇਹ, ਹੈ)
-cop(this, is)
-acl(ਇਹ, ਜਾਵੇਗਾ)
-acl(this, will.go)
-mark(ਜਾਵੇਗਾ, ਕਿ)
-mark(will.go, that)
+<h2 id="locative-subjects">Locative subjects</h2>
+
+<p>These are mostly copular clauses, indicating the existence of something somewhere. Other languages can use a dummy pronoun (e.g. English “there is x in y”).</p>
+
+<pre><code class="language-sdparse">ਘਰ ਵਿੱਚ ਪੈਸੇ ਹਨ \n home in money are
+nsubj(ਪੈਸੇ, ਘਰ)
+nsubj(money, home)
+case(ਘਰ, ਵਿੱਚ)
+case(home, in)
+cop(ਪੈਸੇ, ਹਨ)
+cop(money, are)
+</code></pre>
+
+<h2 id="genitive-subjects">Genitive subjects</h2>
+
+<p>When clauses are the subject of a verb, they generally have their own subject in genitive case.</p>
+
+<pre><code class="language-sdparse">ਉਸਦਾ ਇਹ ਕਹਿਣਾ ਠੀਕ ਨਹੀਂ ਸੀ \n his this saying right not was
+nsubj(ਕਹਿਣਾ, ਉਸਦਾ)
+nsubj(saying, his)
+obj(ਕਹਿਣਾ, ਇਹ)
+obj(saying, this)
+csubj(ਠੀਕ, ਕਹਿਣਾ)
+csubj(right, saying)
+cop(ਠੀਕ, ਸੀ)
+cop(right, was)
 </code></pre>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-ccomp in other languages:
+nsubj in other languages:
 
-[<a href="../../bej/dep/ccomp.html">bej</a>]
+[<a href="../../bej/dep/nsubj.html">bej</a>]
 
-[<a href="../../bg/dep/ccomp.html">bg</a>]
+[<a href="../../bg/dep/nsubj.html">bg</a>]
 
-[<a href="../../bm/dep/ccomp.html">bm</a>]
+[<a href="../../bm/dep/nsubj.html">bm</a>]
 
-[<a href="../../cop/dep/ccomp.html">cop</a>]
+[<a href="../../cop/dep/nsubj.html">cop</a>]
 
-[<a href="../../cs/dep/ccomp.html">cs</a>]
+[<a href="../../cs/dep/nsubj.html">cs</a>]
 
-[<a href="../../de/dep/ccomp.html">de</a>]
+[<a href="../../de/dep/nsubj.html">de</a>]
 
-[<a href="../../el/dep/ccomp.html">el</a>]
+[<a href="../../el/dep/nsubj.html">el</a>]
 
-[<a href="../../en/dep/ccomp.html">en</a>]
+[<a href="../../en/dep/nsubj.html">en</a>]
 
-[<a href="../../es/dep/ccomp.html">es</a>]
+[<a href="../../es/dep/nsubj.html">es</a>]
 
-[<a href="../../et/dep/ccomp.html">et</a>]
+[<a href="../../ess/dep/nsubj.html">ess</a>]
 
-[<a href="../../eu/dep/ccomp.html">eu</a>]
+[<a href="../../et/dep/nsubj.html">et</a>]
 
-[<a href="../../fi/dep/ccomp.html">fi</a>]
+[<a href="../../eu/dep/nsubj.html">eu</a>]
 
-[<a href="../../fr/dep/ccomp.html">fr</a>]
+[<a href="../../fi/dep/nsubj.html">fi</a>]
 
-[<a href="../../fro/dep/ccomp.html">fro</a>]
+[<a href="../../fr/dep/nsubj.html">fr</a>]
 
-[<a href="../../ga/dep/ccomp.html">ga</a>]
+[<a href="../../fro/dep/nsubj.html">fro</a>]
 
-[<a href="../../gsw/dep/ccomp.html">gsw</a>]
+[<a href="../../ga/dep/nsubj.html">ga</a>]
 
-[<a href="../../hy/dep/ccomp.html">hy</a>]
+[<a href="../../gsw/dep/nsubj.html">gsw</a>]
 
-[<a href="../../it/dep/ccomp.html">it</a>]
+[<a href="../../hy/dep/nsubj.html">hy</a>]
 
-[<a href="../../ja/dep/ccomp.html">ja</a>]
+[<a href="../../it/dep/nsubj.html">it</a>]
 
-[<a href="../../kk/dep/ccomp.html">kk</a>]
+[<a href="../../ja/dep/nsubj.html">ja</a>]
 
-[<a href="../../no/dep/ccomp.html">no</a>]
+[<a href="../../kk/dep/nsubj.html">kk</a>]
 
-[<a href="../../pa/dep/ccomp.html">pa</a>]
+[<a href="../../kmr/dep/nsubj.html">kmr</a>]
 
-[<a href="../../pcm/dep/ccomp.html">pcm</a>]
+[<a href="../../mr/dep/nsubj.html">mr</a>]
 
-[<a href="../../pt/dep/ccomp.html">pt</a>]
+[<a href="../../myv/dep/nsubj.html">myv</a>]
 
-[<a href="../../ro/dep/ccomp.html">ro</a>]
+[<a href="../../no/dep/nsubj.html">no</a>]
 
-[<a href="../../ru/dep/ccomp.html">ru</a>]
+[<a href="../../pa/dep/nsubj.html">pa</a>]
 
-[<a href="../../sv/dep/ccomp.html">sv</a>]
+[<a href="../../pcm/dep/nsubj.html">pcm</a>]
 
-[<a href="../../swl/dep/ccomp.html">swl</a>]
+[<a href="../../pt/dep/nsubj.html">pt</a>]
 
-[<a href="../../tr/dep/ccomp.html">tr</a>]
+[<a href="../../ro/dep/nsubj.html">ro</a>]
 
-[<a href="../../u/dep/ccomp.html">u</a>]
+[<a href="../../ru/dep/nsubj.html">ru</a>]
 
-[<a href="../../urj/dep/ccomp.html">urj</a>]
+[<a href="../../sv/dep/nsubj.html">sv</a>]
 
-[<a href="../../vi/dep/ccomp.html">vi</a>]
+[<a href="../../swl/dep/nsubj.html">swl</a>]
 
-[<a href="../../yue/dep/ccomp.html">yue</a>]
+[<a href="../../tr/dep/nsubj.html">tr</a>]
 
-[<a href="../../zh/dep/ccomp.html">zh</a>]
+[<a href="../../u/dep/nsubj.html">u</a>]
+
+[<a href="../../yue/dep/nsubj.html">yue</a>]
+
+[<a href="../../zh/dep/nsubj.html">zh</a>]
 
 
 
