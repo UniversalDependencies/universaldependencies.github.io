@@ -89,6 +89,8 @@ Fixed expressions are annotated in a flat, head-initial structure, in which all 
 
 <p>At present, this relation is used inside the following expressions:</p>
 
+<h3 id="augmentativesubstitutiveconjunctive-expressions">Augmentative/substitutive/conjunctive expressions</h3>
+
 <p><em>as well</em></p>
 
 <pre><code class="language-sdparse">I like dogs as well
@@ -103,115 +105,6 @@ fixed(as-4, well)
 fixed(as-4, as-6)
 cc(cats, as-4)
 conj(dogs, cats)
-</code></pre>
-
-<p><em>such as</em></p>
-
-<pre><code class="language-sdparse">I like fluffy animals , such as dogs
-case(dogs, such)
-fixed(such, as)
-</code></pre>
-
-<p><em>due to</em> (and other forms, such as <em>d t</em> and <em>d/t</em>)</p>
-
-<pre><code class="language-sdparse">He cried due to the fact that you hurt him
-case(fact, due)
-fixed(due, to)
-</code></pre>
-
-<p><em>because of</em> (and other forms, such as <em>b c of</em> and <em>b/c of</em>)</p>
-
-<pre><code class="language-sdparse">He cried because of you
-case(you, because)
-fixed(because, of)
-</code></pre>
-
-<p><em>in case</em></p>
-
-<pre><code class="language-sdparse">I always back up my files in case my computer crashes
-fixed(in, case)
-mark(crashes, in)
-</code></pre>
-
-<pre><code class="language-sdparse">I always back up my files just in case
-fixed(in, case)
-advmod(back, in)
-advmod(in, just)
-</code></pre>
-
-<p><em>in case of</em></p>
-
-<pre><code class="language-sdparse">I always back up my files in case of a crash
-fixed(in, case)
-fixed(in, of)
-case(crash, in)
-</code></pre>
-
-<p><em>of course</em></p>
-
-<pre><code class="language-sdparse">I like dogs , of course
-advmod(like, of)
-fixed(of, course)
-</code></pre>
-
-<p><em>so that</em></p>
-
-<pre><code class="language-sdparse">He cried so that you would feel bad
-mark(feel, so)
-fixed(so, that)
-</code></pre>
-
-<p><em>more than</em> (when used synonymously with “over” in a quantity)</p>
-
-<pre><code class="language-sdparse">More than 90 percent
-advmod(percent, More)
-fixed(More, than)
-</code></pre>
-
-<p><em>less than</em> (when used synonymously with “under” in a quantity)</p>
-
-<pre><code class="language-sdparse">Less than ten percent
-advmod(percent, Less)
-fixed(Less, than)
-</code></pre>
-
-<p><em>up to</em> (when used in quantities)</p>
-
-<pre><code class="language-sdparse">Up to fifty percent
-fixed(Up, to)
-advmod(percent, Up)
-</code></pre>
-
-<p><em>as many/much/few/little as</em> (when used in quantities)  <!-- https://github.com/UniversalDependencies/UD_English-EWT/issues/281 --></p>
-
-<pre><code class="language-sdparse">As much as fifty percent
-fixed(As, much)
-fixed(As, as)
-advmod(percent, As)
-</code></pre>
-
-<p><em>according to</em></p>
-
-<pre><code class="language-sdparse">According to John
-fixed(According, to)
-case(John, According)
-</code></pre>
-
-<p><em>in order</em></p>
-
-<pre><code class="language-sdparse">He cried in order to make you feel bad
-mark(feel, in)
-fixed(in, order)
-</code></pre>
-
-<pre><code class="language-sdparse">He cried in order that you might feel bad
-mark(feel, in)
-fixed(in, order)
-</code></pre>
-
-<pre><code class="language-sdparse">He cried in order for you to have something to feel bad about
-mark(have, in)
-fixed(in, order)
 </code></pre>
 
 <p><em>rather than</em> <!-- https://github.com/UniversalDependencies/UD_English-EWT/issues/182 --></p>
@@ -246,11 +139,172 @@ fixed(instead, of)
 mark(staying, instead)
 </code></pre>
 
-<p><em>at least</em> (when not used for quantities)</p>
+<p><em>let alone</em></p>
 
-<pre><code class="language-sdparse">At least I like dogs
-fixed(At, least)
-advmod(like, At)
+<pre><code class="language-sdparse">He could n't handle being hurt , let alone hurt by you
+fixed(let, alone)
+cc(hurt-10, let)
+conj(hurt-6, hurt-10)
+</code></pre>
+
+<h3 id="causal-connectives">Causal connectives</h3>
+
+<p><em>because of</em> (and other forms, such as <em>b c of</em> and <em>b/c of</em>)</p>
+
+<pre><code class="language-sdparse">He cried because of you
+case(you, because)
+fixed(because, of)
+</code></pre>
+
+<p><em>due to</em> (and other forms, such as <em>d t</em> and <em>d/t</em>)</p>
+
+<pre><code class="language-sdparse">He cried due to the fact that you hurt him
+case(fact, due)
+fixed(due, to)
+</code></pre>
+
+<p><em>how come</em></p>
+
+<pre><code class="language-sdparse">How come John left early ?
+fixed(How, come)
+mark(left, How)
+</code></pre>
+
+<p><em>in order</em></p>
+
+<pre><code class="language-sdparse">He cried in order to make you feel bad
+mark(feel, in)
+fixed(in, order)
+</code></pre>
+
+<pre><code class="language-sdparse">He cried in order that you might feel bad
+mark(feel, in)
+fixed(in, order)
+</code></pre>
+
+<pre><code class="language-sdparse">He cried in order for you to have something to feel bad about
+mark(have, in)
+fixed(in, order)
+</code></pre>
+
+<p><em>so as to</em></p>
+
+<pre><code class="language-sdparse">John left early so as to miss the meeting
+fixed(so, as)
+fixed(so, to)
+mark(miss, so)
+</code></pre>
+
+<p><em>so that</em></p>
+
+<pre><code class="language-sdparse">He cried so that you would feel bad
+mark(feel, so)
+fixed(so, that)
+</code></pre>
+
+<h3 id="spatiotemporal-markers">Spatiotemporal markers</h3>
+
+<p><em>in between</em></p>
+
+<pre><code class="language-sdparse">John left in between meetings
+fixed(in, between)
+case(meetings, in)
+</code></pre>
+
+<p><em>prior to</em></p>
+
+<pre><code class="language-sdparse">John left prior to the meeting
+fixed(prior, to)
+case(meeting, prior)
+</code></pre>
+
+<h3 id="circumstantialconditional-connectives">Circumstantial/conditional connectives</h3>
+
+<p><em>in case</em></p>
+
+<pre><code class="language-sdparse">I always back up my files in case my computer crashes
+fixed(in, case)
+mark(crashes, in)
+</code></pre>
+
+<pre><code class="language-sdparse">I always back up my files just in case
+fixed(in, case)
+advmod(back, in)
+advmod(in, just)
+</code></pre>
+
+<p><em>in case of</em></p>
+
+<pre><code class="language-sdparse">I always back up my files in case of a crash
+fixed(in, case)
+fixed(in, of)
+case(crash, in)
+</code></pre>
+
+<p><em>whether or not</em></p>
+
+<pre><code class="language-sdparse">He 's crying whether or not you feel bad about it
+fixed(whether, or)
+fixed(whether, not)
+mark(feel, whether)
+</code></pre>
+
+<h3 id="approximators-quantity-modifiers">Approximators (quantity modifiers)</h3>
+
+<p><em>more than</em> (when used synonymously with “over” in a quantity)</p>
+
+<pre><code class="language-sdparse">More than 90 percent
+advmod(percent, More)
+fixed(More, than)
+</code></pre>
+
+<p><em>less than</em> (when used synonymously with “under” in a quantity)</p>
+
+<pre><code class="language-sdparse">Less than ten percent
+advmod(percent, Less)
+fixed(Less, than)
+</code></pre>
+
+<p><em>up to</em> (when used in quantities)</p>
+
+<pre><code class="language-sdparse">Up to fifty percent
+fixed(Up, to)
+advmod(percent, Up)
+</code></pre>
+
+<p><em>as many/much/few/little as</em> (when used in quantities)  <!-- https://github.com/UniversalDependencies/UD_English-EWT/issues/281 --></p>
+
+<pre><code class="language-sdparse">As much as fifty percent
+fixed(As, much)
+fixed(As, as)
+advmod(percent, As)
+</code></pre>
+
+<h3 id="attributional-markers">Attributional markers</h3>
+
+<p><em>according to</em></p>
+
+<pre><code class="language-sdparse">According to John
+fixed(According, to)
+case(John, According)
+</code></pre>
+
+<h3 id="exemplification">Exemplification</h3>
+
+<p><em>such as</em></p>
+
+<pre><code class="language-sdparse">I like fluffy animals , such as dogs
+case(dogs, such)
+fixed(such, as)
+</code></pre>
+
+<h3 id="pragmaticmiscellaneous-markers">Pragmatic/miscellaneous markers</h3>
+
+<p><em>all but</em></p>
+
+<pre><code class="language-sdparse">John has all but left
+fixed(all, but)
+advmod(left, all)
 </code></pre>
 
 <p><em>as if</em></p>
@@ -260,11 +314,12 @@ fixed(as, if)
 mark(cried, as)
 </code></pre>
 
-<p><em>prior to</em></p>
+<p><em>as opposed to</em></p>
 
-<pre><code class="language-sdparse">John left prior to the meeting
-fixed(prior, to)
-case(meeting, prior)
+<pre><code class="language-sdparse">John decided to leave early , as opposed to Mary
+fixed(as, opposed)
+fixed(as, to-9)
+case(Mary, as)
 </code></pre>
 
 <p><em>as to</em></p>
@@ -279,19 +334,18 @@ fixed(As, to)
 case(love, As)
 </code></pre>
 
+<p><em>at least</em> (when not used for quantities)</p>
+
+<pre><code class="language-sdparse">At least I like dogs
+fixed(At, least)
+advmod(like, At)
+</code></pre>
+
 <p><em>kind of</em>, <em>sort of</em> (as a hedge)</p>
 
 <pre><code class="language-sdparse">I kind of like dogs
 fixed(kind, of)
 advmod(like, kind)
-</code></pre>
-
-<p><em>whether or not</em></p>
-
-<pre><code class="language-sdparse">He 's crying whether or not you feel bad about it
-fixed(whether, or)
-fixed(whether, not)
-mark(feel, whether)
 </code></pre>
 
 <p><em>not to mention</em></p>
@@ -303,42 +357,11 @@ cc(staff, not)
 conj(food, staff)
 </code></pre>
 
-<p><em>as opposed to</em></p>
+<p><em>of course</em></p>
 
-<pre><code class="language-sdparse">John decided to leave early , as opposed to Mary
-fixed(as, opposed)
-fixed(as, to-9)
-case(Mary, as)
-</code></pre>
-
-<p><em>let alone</em></p>
-
-<pre><code class="language-sdparse">He could n't handle being hurt , let alone hurt by you
-fixed(let, alone)
-cc(hurt-10, let)
-conj(hurt-6, hurt-10)
-</code></pre>
-
-<p><em>so as to</em></p>
-
-<pre><code class="language-sdparse">John left early so as to miss the meeting
-fixed(so, as)
-fixed(so, to)
-mark(miss, so)
-</code></pre>
-
-<p><em>in between</em></p>
-
-<pre><code class="language-sdparse">John left in between meetings
-fixed(in, between)
-case(meetings, in)
-</code></pre>
-
-<p><em>all but</em></p>
-
-<pre><code class="language-sdparse">John has all but left
-fixed(all, but)
-advmod(left, all)
+<pre><code class="language-sdparse">I like dogs , of course
+advmod(like, of)
+fixed(of, course)
 </code></pre>
 
 <p><em>that is</em></p>
@@ -348,19 +371,7 @@ fixed(that, is)
 advmod(trained, that)
 </code></pre>
 
-<p><em>how come</em></p>
-
-<pre><code class="language-sdparse">How come John left early ?
-fixed(How, come)
-mark(left, How)
-</code></pre>
-
-<p><em>had better</em> (and <em>‘d better</em>)</p>
-
-<pre><code class="language-sdparse">You had better apologize
-fixed(had, better)
-aux(apologize, had)
-</code></pre>
+<h3 id="need-discussion">NEED DISCUSSION</h3>
 
 <p><em>one another</em> (as a reciprocal pronoun; however, <code class="language-plaintext highlighter-rouge">fixed</code> is not currently used for <em>each other</em>)</p>
 
@@ -369,8 +380,17 @@ fixed(one, another)
 aux(saw, one)
 </code></pre>
 
-<h3 id="not-fixeds">Not <code class="language-plaintext highlighter-rouge">fixed</code>s</h3>
-<p>The following are <strong>not</strong> annotated as <code class="language-plaintext highlighter-rouge">fixed</code>s, but are instead labeled according to their apparent internal structure.</p>
+<p><em>had better</em> (and <em>‘d better</em>)</p>
+
+<p>** Disputed—see <a href="https://github.com/UniversalDependencies/docs/issues/803">issue #803</a> **</p>
+
+<pre><code class="language-sdparse">You had better apologize
+fixed(had, better)
+aux(apologize, had)
+</code></pre>
+
+<h2 id="not-fixed">Not <code class="language-plaintext highlighter-rouge">fixed</code></h2>
+<p>The following are <strong>not</strong> annotated as <code class="language-plaintext highlighter-rouge">fixed</code>, but are instead labeled according to their apparent internal structure.</p>
 
 <p><em>out of</em>, <em>off of</em> (All double prepositions denoting spatial relations are annotated with two cases on the nominal)</p>
 
