@@ -91,61 +91,82 @@ Fixed expressions are annotated in a flat, head-initial structure, in which all 
 
 <h3 id="augmentativesubstitutiveconjunctive-expressions">Augmentative/substitutive/conjunctive expressions</h3>
 
-<p><em>as well</em></p>
+<details><summary>
+  *as well*
+  </summary>
 
-<pre><code class="language-sdparse">I like dogs as well
+~~~ sdparse
+I like dogs as well
 advmod(like, as)
 fixed(as, well)
-</code></pre>
+~~~
+</details>
 
-<p><em>as well as</em></p>
+<details><summary>
+  *as well as*
+  </summary>
 
-<pre><code class="language-sdparse">I like dogs as well as cats
+~~~ sdparse
+I like dogs as well as cats
 fixed(as-4, well)
 fixed(as-4, as-6)
 cc(cats, as-4)
 conj(dogs, cats)
-</code></pre>
+~~~
+</details>
 
-<p><em>rather than</em> <!-- https://github.com/UniversalDependencies/UD_English-EWT/issues/182 --></p>
+<details><summary>
+  *rather than* <!-- https://github.com/UniversalDependencies/UD_English-EWT/issues/182 -->
+  </summary>
 
-<p>Typically analyzed as a coordinating conjunction:</p>
+Typically analyzed as a coordinating conjunction:
 
-<pre><code class="language-sdparse">I decided to get a dog rather than a cat
+~~~ sdparse
+I decided to get a dog rather than a cat
 fixed(rather, than)
 cc(cat, rather)
 conj(dog, cat)
-</code></pre>
+~~~
 
-<p>However, when fronted, it attaches as <code class="language-plaintext highlighter-rouge">case</code> or <code class="language-plaintext highlighter-rouge">mark</code>:</p>
+However, when fronted, it attaches as `case` or `mark`:
 
-<pre><code class="language-sdparse">Rather than a cat , I decided to get a dog.
+~~~ sdparse
+Rather than a cat , I decided to get a dog.
 fixed(Rather, than)
 case(cat, Rather)
 obl(decided, cat)
-</code></pre>
+~~~
+</details>
 
-<p><em>instead of</em> <!-- https://github.com/UniversalDependencies/UD_English-EWT/issues/182 --></p>
+<details><summary>
+  *instead of* <!-- https://github.com/UniversalDependencies/UD_English-EWT/issues/182 -->
+  </summary>
+Similar in meaning to *rather than*, but never analyzed as a coordinating conjunction, always `case` or `mark`:
 
-<p>Similar in meaning to <em>rather than</em>, but never analyzed as a coordinating conjunction, always <code class="language-plaintext highlighter-rouge">case</code> or <code class="language-plaintext highlighter-rouge">mark</code>:</p>
-
-<pre><code class="language-sdparse">John went instead of Mary
+~~~ sdparse
+John went instead of Mary
 fixed(instead, of)
 case(Mary, instead)
-</code></pre>
+~~~
 
-<pre><code class="language-sdparse">John left early instead of staying for the whole thing
+~~~ sdparse
+John left early instead of staying for the whole thing
 fixed(instead, of)
 mark(staying, instead)
-</code></pre>
+~~~
+</details>
 
-<p><em>let alone</em></p>
-
-<pre><code class="language-sdparse">He could n't handle being hurt , let alone hurt by you
+<details><summary>
+  *let alone*
+  </summary>
+  
+~~~ sdparse
+He could n't handle being hurt , let alone hurt by you
 fixed(let, alone)
 cc(hurt-10, let)
 conj(hurt-6, hurt-10)
-</code></pre>
+~~~
+</details>
 
 <h3 id="causal-connectives">Causal connectives</h3>
 
