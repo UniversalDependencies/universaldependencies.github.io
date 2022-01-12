@@ -307,11 +307,18 @@ case(crown, from)
 nmod:poss(crown, whose)
 </code></pre>
 
+<pre><code class="language-sdparse">the king bequeathed a crown, the jewels of which were stolen
+acl:relcl(crown, stolen)
+nmod(jewels, which)
+case(which, of)
+nsubj:pass(stolen, jewels)
+</code></pre>
+
 <h2 id="free-relatives">Free Relatives</h2>
 
 <p>NOTE: partially adapted from <a href="https://universaldependencies.org/en/specific-syntax.html#free-relatives">https://universaldependencies.org/en/specific-syntax.html#free-relatives</a></p>
 
-<p><strong>Free relatives</strong> are noun phrases containing a relative clause modifying a WH-word head. 
+<p><strong>Free relatives</strong> are noun phrases containing a relative clause modifying a WH-phrase. 
 There is no separate relativizer in the RC; it is “fused” with the head (thus these constructions are also known as <strong>fused relatives</strong>).</p>
 
 <!-- In free relative constructions, the _wh_-clause functions as an argument in the higher clause. In these cases, the _wh_-phrase is deemed the head of the construction, thereby receiving a dependency relation reflective of its function in the higher clause, and the rest of the _wh_-clause is an `acl:relcl` dependent on it. -->
@@ -326,6 +333,17 @@ advmod(go, where)
 acl:relcl(where, want-6)
 obj(eat, what)
 acl:relcl(what, want-11)
+</code></pre>
+
+<pre><code class="language-sdparse">the time when the pizza exploded
+acl:relcl(time, exploded)
+advmod(exploded, when)
+</code></pre>
+
+<pre><code class="language-sdparse">What money we have left will go to charity
+det(money, What)
+acl:relcl(money, have)
+nsubj(go, money)
 </code></pre>
 
 <pre><code class="language-sdparse">I don't like how it looks (CGEL p. 1077)
@@ -351,8 +369,6 @@ advcl(sure, leave)
 </code></pre>
 
 <p>TODO: the above would be <code class="language-plaintext highlighter-rouge">mark</code> not <code class="language-plaintext highlighter-rouge">advmod</code> in EWT</p>
-
-<p>TODO: is plain <code class="language-plaintext highlighter-rouge">acl</code> ever correct for a WH-clause? “the time when”, “the reason why”? <a href="http://match.grew.fr/?corpus=UD_English-EWT@dev&amp;custom=61c1f3622bda6">http://match.grew.fr/?corpus=UD_English-EWT@dev&amp;custom=61c1f3622bda6</a></p>
 
 <p>Free relatives are subtly different from <strong>interrogative clauses</strong>, where the WH-word making it interrogative is inside the clause.
 Verbs such as <em>wonder</em>, <em>know</em>, and <em>tell</em> license interrogative complement clauses (including ones beginning with <em>whether</em>).
@@ -419,6 +435,8 @@ cop(jerk, is)
   </li>
   <li>I noticed how big a car he has. (‘I noticed that he has a remarkably big car.’)</li>
 </ul>
+
+<p>TODO: plain <code class="language-plaintext highlighter-rouge">acl</code> for a WH-clause: is this limited to interrogative and exclamative complements of nouns, and non-RC adjuncts (“press conferences when the US forces were already inside Baghdad”)? <a href="http://match.grew.fr/?corpus=UD_English-EWT@dev&amp;custom=61c1f3622bda6">http://match.grew.fr/?corpus=UD_English-EWT@dev&amp;custom=61c1f3622bda6</a></p>
 
 <h3 id="cyclic-cases">Cyclic cases</h3>
 
