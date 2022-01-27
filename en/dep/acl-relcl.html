@@ -319,6 +319,43 @@ case(which, of)
 nsubj:pass(stolen, jewels)
 </code></pre>
 
+<h2 id="rcs-versus-non-relative-modifier-clauses">RCs Versus Non-relative Modifier Clauses</h2>
+
+<p><em>When</em>, <em>where</em>, <em>why</em>, and <em>how</em> frequently introduce <strong>adverbial clauses</strong> (<a href="">advcl</a>). They can also introduce non-relative <strong>adnominal modifier clauses</strong> (<a href="">acl</a>) similarly providing time/place/manner information:</p>
+
+<pre><code class="language-sdparse">When you leave , be sure to let me know .
+advmod(leave, When)
+advcl(sure, leave)
+</code></pre>
+
+<pre><code class="language-sdparse">The headlines when Nixon resigned were legendary .
+advmod(resigned, when)
+acl(headlines, resigned)
+</code></pre>
+
+<p>TODO: the above would be <code class="language-plaintext highlighter-rouge">mark</code> not <code class="language-plaintext highlighter-rouge">advmod</code> in EWT</p>
+
+<p>However, it should be considered a relative construction if the WH-adverb can be paraphrased by <em>in which</em> or similar, or if the head noun reifies the kind of relation (<em>the time when</em>, <em>the place where</em>, <em>the reason why</em>).</p>
+
+<pre><code class="language-sdparse">the time when the pizza exploded
+acl:relcl(time, exploded)
+advmod(exploded, when)
+</code></pre>
+
+<p>Some phrases are ambiguous. <em>The ceremony where/when we became citizens</em> can be interpreted as an RC if the bestowal of citizenship happened during the ceremony (<em>in which</em> interpretation<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>, thus <code class="language-plaintext highlighter-rouge">acl:relcl</code>). 
+But <em>the ceremony when we became citizens</em> could be used to refer to a particular ceremony held around the time of becoming a citizen, as opposed to some other ceremony held at some other time; the modifier can be fronted as an <code class="language-plaintext highlighter-rouge">advmod</code> within the higher clause: <em>When we became citizens, the ceremony…</em>. This is the <code class="language-plaintext highlighter-rouge">acl</code> interpretation.</p>
+
+<p>Illustrating the contrast with <em>where</em>:</p>
+<ul>
+  <li>The house where Kim grew up is on Elm Street: <code class="language-plaintext highlighter-rouge">acl:relcl</code>. Cf.:
+    <ul>
+      <li>the house <strong>in which</strong> Kim grew up</li>
+      <li>#Where Kim grew up, the house is on Elm Street.</li>
+    </ul>
+  </li>
+  <li>The economy where Kim lives is struggling: probably <code class="language-plaintext highlighter-rouge">acl</code>, interpreted like <em>Where Kim lives, the economy is struggling.</em></li>
+</ul>
+
 <h2 id="free-relatives">Free Relatives</h2>
 
 <p>NOTE: partially adapted from <a href="https://universaldependencies.org/en/specific-syntax.html#free-relatives">https://universaldependencies.org/en/specific-syntax.html#free-relatives</a></p>
@@ -340,11 +377,6 @@ obj(eat, what)
 acl:relcl(what, want-11)
 </code></pre>
 
-<pre><code class="language-sdparse">the time when the pizza exploded
-acl:relcl(time, exploded)
-advmod(exploded, when)
-</code></pre>
-
 <pre><code class="language-sdparse">What money we have left will go to charity
 det(money, What)
 acl:relcl(money, have)
@@ -364,34 +396,7 @@ acl:relcl(well, behaved)
 
 <p>TODO: GKP: exclamative. CGEL p. 919: exclamatives license <em>very</em>: “I love how very well everyone behaved” (*I wonder how very well everyone behaved). cf. “I love how appreciative everyone was” (cyclic example)</p>
 
-<h3 id="versus-other-modifier-clauses">Versus other modifier clauses</h3>
-
-<p><em>When</em>, <em>where</em>, <em>why</em>, and <em>how</em> frequently introduce <strong>adverbial clauses</strong> (<a href="">advcl</a>), or non-relative <strong>adnominal clause modifiers</strong> (<a href="">acl</a>) similarly providing time/place/manner information:</p>
-
-<pre><code class="language-sdparse">When you leave , be sure to let me know .
-advmod(leave, When)
-advcl(sure, leave)
-</code></pre>
-
-<pre><code class="language-sdparse">The headlines when Nixon resigned were legendary .
-advmod(resigned, when)
-acl(headlines, resigned)
-</code></pre>
-
-<p>TODO: the above would be <code class="language-plaintext highlighter-rouge">mark</code> not <code class="language-plaintext highlighter-rouge">advmod</code> in EWT</p>
-
-<p>However, if the WH-adverb can be paraphrased by <em>in which</em> or similar, or if the head noun reifies the kind of relation (<em>the time when</em>, <em>the place where</em>, <em>the reason why</em>), it should be considered a free relative construction.</p>
-
-<p>Some phrases are ambiguous. <em>The ceremony where/when we became citizens</em> can be interpreted as a free relative if the bestowal of citizenship happened during the ceremony (<em>in which</em> or <em>during which</em> interpretation<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup> involving <code class="language-plaintext highlighter-rouge">acl:relcl</code>). 
-But <em>the ceremony when we became citizens</em> could be used to refer to a particular ceremony held around the time of becoming a citizen, as opposed to some other ceremony held at some other time; the modifier can be fronted as an <code class="language-plaintext highlighter-rouge">advmod</code> within the higher clause: <em>When we became citizens, the ceremony…</em>. This is the <code class="language-plaintext highlighter-rouge">acl</code> interpretation.</p>
-
-<p>Illustrating the contrast with <em>where</em>:</p>
-<ul>
-  <li>The house where Kim grew up is on Elm Street: free relative with <code class="language-plaintext highlighter-rouge">acl:relcl</code>. Cf.: the house in which Kim grew up; #Where Kim grew up, the house is on Elm Street.</li>
-  <li>The economy where Kim lives is struggling: probably <code class="language-plaintext highlighter-rouge">acl</code>, interpreted like <em>Where Kim lives, the economy is struggling.</em></li>
-</ul>
-
-<h3 id="versus-interrogativeexclamative-complement-clauses">Versus interrogative/exclamative complement clauses</h3>
+<h3 id="free-relatives-versus-interrogativeexclamative-complement-clauses">Free Relatives Versus Interrogative/Exclamative Complement Clauses</h3>
 
 <p>Free relatives are subtly different from <strong>interrogative clauses</strong>, where the WH-word making it interrogative is inside the clause.
 Verbs such as <em>wonder</em>, <em>know</em>, and <em>tell</em> license interrogative complement clauses (including ones beginning with <em>whether</em>).
