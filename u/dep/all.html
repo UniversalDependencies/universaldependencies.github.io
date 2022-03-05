@@ -432,9 +432,21 @@ acl(fact, cares)
 <p><a id="al-u-dep/acl:relcl" class="al-dest"></a></p>
 <h2><code>acl:relcl</code>: relative clause modifier</h2>
 
-<p>A relative clause modifier of an noun is a relative clause modifying
-the noun.  The relation points from the noun that is modified to the
-head of the relative clause. Relative clauses are finite.</p>
+<p>A relative clause modifier of a nominal is a clause that modifies the nominal,
+whereas the nominal is coreferential with a constituent inside the relative
+clause (here the constituent may be realized as a relative pronoun, another
+relative word, or it may not be overtly realized at all). The <code class="language-plaintext highlighter-rouge">acl:relcl</code>
+relation points from the head of the modified nominal to the head of the
+relative clause.</p>
+
+<p>Depending on language, it may be required that relative clauses are finite.
+For example, English non-finite clauses are traditionally not termed relative;
+therefore, <em>the girl <b>that was born today</b></em> is a relative clause because
+it is finite, while <em>the girl <b>born today</b></em> is non-finite (the participle
+is not accompanied by a finite auxiliary) and it uses the plain <a href="">acl</a>
+relation. In other languages however, the distinction between finite and
+non-finite clauses may not exist or may not be used as a criterion for relative
+clauses.</p>
 
 <pre><code class="language-sdparse">I saw the man you love
 acl:relcl(man, love)
@@ -2485,8 +2497,11 @@ The head is always the first part, the other parts are attached to it with the <
 (for consistency, similarly as in <a href="">flat</a>, <a href="">fixed</a> and <a href="">conj</a>).</p>
 
 <p>The first part of the word is given the part of speech that the word would have been given if written together,
-while the later parts of the word are given the POS <code class="language-plaintext highlighter-rouge">X</code>.
-Note also that only the last word part may be annotated with <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code>.</p>
+while the later parts of the word are given the POS <code class="language-plaintext highlighter-rouge">X</code>. Similarly, only the first part can have a lemma
+and morphological features. And while the annotation of morphological features is optional, if the treebank
+does have features, then <a href="">Typo</a><code class="language-plaintext highlighter-rouge">=Yes</code> must be used with the <code class="language-plaintext highlighter-rouge">goeswith</code> head.</p>
+
+<p>Note also that only the last word part may be annotated with <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code>.</p>
 
 <pre><code class="language-sdparse">They come here with out legal permission
 goeswith(with-4, out-5)
