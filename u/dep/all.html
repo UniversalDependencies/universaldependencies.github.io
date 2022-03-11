@@ -1068,6 +1068,54 @@ sentence to mean that the boss will not be doing any digging, in the second
 sentence it is clear that the subject of <strong>digging</strong> can only be <strong>we</strong>. This is
 what distinguishes <code class="language-plaintext highlighter-rouge">ccomp</code> and <code class="language-plaintext highlighter-rouge">xcomp</code>.</p>
 
+<h3 id="reported-speech">Reported Speech</h3>
+
+<p>With a speech verb like <em>say</em>, the content of reported speech is considered to be part of the verb’s valency. It therefore attaches as <a href="">ccomp</a>—not only when integrated within the clause as an indirect quotation (<em>said that…</em>), but also when set off as a direct quotation, even with inverted order:</p>
+
+<pre><code class="language-sdparse">He said that he knew the muffin man .
+ccomp(said, knew)
+</code></pre>
+
+<pre><code class="language-sdparse">I asked : " Do you know the muffin man ? "
+ccomp(asked, know)
+</code></pre>
+
+<pre><code class="language-sdparse">" Do you know the muffin man ? " I asked .
+ccomp(asked, know)
+</code></pre>
+
+<pre><code class="language-sdparse">" I had hoped to remain anonymous , " said the muffin man , who was tracked down Sunday at his home on Drury Lane .
+ccomp(said, hoped)
+nsubj(said, man)
+</code></pre>
+
+<p>Quoted content is considered to be <a href="">ccomp</a> even if it is a sentence fragment:</p>
+
+<pre><code class="language-sdparse">" Three/NUM muffins/NOUN , " he answered .
+nummod(muffins, Three)
+ccomp(answered, muffins)
+</code></pre>
+
+<p>If the speech verb interrupts the reported speech content, <a href="">parataxis</a> is used instead. The speech verb attaches to the root of the reported speech (<em>all</em> in the following example):</p>
+
+<pre><code class="language-sdparse">" Three muffins , " he answered , " are all that I need today . "
+parataxis(all, answered)
+nsubj(all, muffins)
+</code></pre>
+
+<pre><code class="language-sdparse">Weapons of mass destruction , the report explained , are designed to target civilian populations .
+parataxis(designed, explained)
+nsubj:pass(designed, Weapons)
+</code></pre>
+
+<pre><code class="language-sdparse">the impact that the group 's practices , law enforcement officials say , are having on the most vulnerable within the sect
+acl:relcl(impact, having)
+nsubj(having, practices)
+parataxis(having, say)
+</code></pre>
+
+<h3 id="copular-construction-with-full-clause-as-predicate">Copular Construction with Full Clause as Predicate</h3>
+
 <p>Additionally, <code class="language-plaintext highlighter-rouge">ccomp</code> is used with copulas in equational constructions involving full clauses.</p>
 
 <pre><code class="language-sdparse">The important thing is to keep calm.
@@ -3181,7 +3229,7 @@ det(CIA, the)
 
 <h3 id="treatment-of-reported-speech">Treatment of reported speech</h3>
 
-<p>For this reported speech example:</p>
+<p>When a speech verb interrupts reported speech content, the interruption is treated as a parenthetical parataxis:</p>
 
 <pre><code class="language-sdparse">The guy , John said , left early in the morning
 parataxis(left, said)
@@ -3189,53 +3237,7 @@ punct(said, ,-3)
 punct(said, ,-6)
 </code></pre>
 
-<p>there are paraphrases that convey essentially the same meaning but
-with a different syntactic structure. When the reported speech is embedded in a subordinate clause (with or 
-without an overt complementizer <em>that</em>), the subordinate clause is a <a href="">ccomp</a> of the speech verb. When the
-reported speech follows the speech verb and is separated by a colon, the reported speech forms a main clause
-that attaches to the preceding main clause with a <a href="">parataxis</a> relation, hence with the speech verb as its head.
-However, when the speech verb occurs as a medial or final parenthetical, the relation is reversed and the speech
-verb is treated as a <a href="">parataxis</a> of the reported speech. 
-This analysis is not uncontroversial but follows many authorities, such as Huddleston and Pullum (2002),
-<em>The Cambridge Grammar of the English Language</em> (see chapter 11, section 9).</p>
-
-<pre><code class="language-sdparse">John said that the guy left early in the morning .
-ccomp(said, left)
-</code></pre>
-
-<pre><code class="language-sdparse">John said the guy left early in the morning .
-ccomp(said, left)
-</code></pre>
-
-<pre><code class="language-sdparse">John said : “ The guy left early in the morning . ”
-parataxis(said, left)
-punct(left, :)
-punct(left, “)
-punct(left, ”)
-</code></pre>
-
-<pre><code class="language-sdparse">“ The guy left early in the morning ” , John said .
-parataxis(left, said)
-punct(said, ,)
-punct(left, “)
-punct(left, ”)
-</code></pre>
-
-<pre><code class="language-sdparse">The guy left early in the morning , John said .
-parataxis(left, said)
-punct(said, ,)
-</code></pre>
-
-<pre><code class="language-sdparse">The guy , he said , left early in the morning .
-parataxis(left, said)
-punct(said, ,-3)
-punct(said, ,-6)
-</code></pre>
-
-<p>An argument for this analysis is that in the cases analyzed as embedding, the entire clause
-can be further embedded (<em>I was taken aback when John said the guy left early in the morning.</em>),
-while this is not possible with medial or final placement of the speech verb 
-(<em>*I was taken aback when the guy left early this morning, John said.</em>).</p>
+<p>See further discussion of reported speech at <a href="ccomp.html#reported-speech">ccomp</a>.</p>
 
 <h3 id="news-article-bylines">News article bylines</h3>
 
