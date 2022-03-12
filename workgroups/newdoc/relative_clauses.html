@@ -124,8 +124,9 @@ Specifically:</p>
 <ul>
   <li>Pronominal relativizers (<em>that</em>, <em>which</em>, <em>who</em>, <em>what</em>, etc.) are nominals and fill roles such as subject, object, or oblique.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></li>
   <li>Adverbial relativizers (<em>where</em>, <em>when</em>, <em>why</em>, <em>how</em>, etc.) attach as <a href="">advmod</a> within the RC.</li>
-  <li>The possessive pronominal relativizer <em>(whose)</em> modifies a nominal (subject, object, oblique modifier) within the RC the same way
+  <li>A possessive pronominal relativizer <em>(whose)</em> modifies a nominal (subject, object, oblique modifier) within the RC the same way
 as a normal possessive modifier would, i.e., depending on language, it can be <a href="">nmod:poss</a>, <a href="">det:poss</a>, <a href="">nmod</a> or <a href="">det</a>.</li>
+  <li>A relative determiner <em>(which)</em> may modify another noun within the RC via the <a href="">det</a> relation.</li>
 </ul>
 
 <p>In Enhanced UD (right), the relativizer instead attaches to its antecedent via the <code class="language-plaintext highlighter-rouge">ref</code> relation
@@ -187,7 +188,7 @@ as a normal possessive modifier would, i.e., depending on language, it can be <a
 <tbody><tr><td width="480">
 <div class="conllu-parse">
 # visual-style 4 3 nmod:poss color:orange
- 1 the the DET DT Definite=Def|PronType=Art 2 det _ _
+1 the the DET DT Definite=Def|PronType=Art 2 det _ _
 2 woman woman NOUN NN Number=Sing 0 root _ _
 3 whose whose PRON WP$ Poss=Yes|PronType=Rel 4 nmod:poss _ _
 4 cat cat NOUN NN Number=Sing 5 nsubj _ _
@@ -202,6 +203,42 @@ as a normal possessive modifier would, i.e., depending on language, it can be <a
 3 whose whose PRON WP$ Poss=Yes|PronType=Rel 2 ref _ _
 4 cat cat NOUN NN Number=Sing 5 nsubj _ _
 5 smells smell VERB VBZ Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin 2 acl:relcl _ _
+</div>
+</td></tr></tbody>
+</table>
+
+<!-- https://github.com/UniversalDependencies/docs/commit/b7b62a7f9bafdbd8c3f7be9e4f72da62b3cb0d0d#commitcomment-68550464 -->
+<table> <!--ENA shall pay $38,000, which amount shall be subject to…-->
+<tbody><tr><td width="480">
+<div class="conllu-parse">
+# visual-style 8 7 det color:orange
+1 ENA ENA PROPN _ _ 3 nsubj _ _
+2 shall shall AUX _ _ 3 aux _ _
+3 pay pay VERB _ _ 0 root _ _
+4 $ $ SYM _ _ 3 obj _ _
+5 38,000 38,000 NUM _ _ 4 nummod _ _
+6 , , PUNCT _ _ 11 punct _ _
+7 which which DET _ _ 8 det _ _
+8 amount amount NOUN _ _ 11 nsubj _ _
+9 shall shall AUX _ _ 11 aux _ _
+10 be be AUX _ _ 11 cop _ _
+11 subject… subject NOUN _ _ 4 acl:relcl _ _
+</div>
+</td><td width="480">
+<div class="conllu-parse">
+# visual-style 4 7 ref color:blue
+# visual-style 8 4 nmod color:blue
+1 ENA ENA PROPN _ _ 3 nsubj _ _
+2 shall shall AUX _ _ 3 aux _ _
+3 pay pay VERB _ _ 0 root _ _
+4 $ $ SYM _ _ 3 obj 8:nmod _
+5 38,000 38,000 NUM _ _ 4 nummod _ _
+6 , , PUNCT _ _ 11 punct _ _
+7 which which DET _ _ 4 ref _ _
+8 amount amount NOUN _ _ 11 nsubj _ _
+9 shall shall AUX _ _ 11 aux _ _
+10 be be AUX _ _ 11 cop _ _
+11 subject… subject NOUN _ _ 4 acl:relcl _ _
 </div>
 </td></tr></tbody>
 </table>
@@ -251,22 +288,6 @@ and it should be elaborated.</span></p>
 </table>
 
 <p>A relative clause with no relativizer, like (1), is called a <strong>reduced relative clause</strong>. One with a relativizer, like (3), is called a <strong>nonreduced relative clause</strong>.</p>
-
-<!--
-https://github.com/UniversalDependencies/docs/commit/b7b62a7f9bafdbd8c3f7be9e4f72da62b3cb0d0d#commitcomment-68550464
-
-Nathan: Another case is "ENA shall pay $38,000, which amount shall be subject to…" for which I tentatively put E:det(amount,which), E:ref($, amount)—so "which" retains a dependent in the enhanced graph.
-
-Dan:
-Strictly mechanically applying the enhanced rules, I think we should get the following in the enhanced graph:
-
-<pre>
-ref($, which)
-nmod(amount, $)
-nsubj(subject, amount)
-acl:relcl($, subject)
-</pre>
--->
 
 <h2 id="notable-properties">Notable Properties</h2>
 
