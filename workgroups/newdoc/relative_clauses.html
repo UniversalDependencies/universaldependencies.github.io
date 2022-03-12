@@ -251,12 +251,18 @@ relative pronoun and the subject).</p>
 
 <h2 id="notable-properties">Notable Properties</h2>
 
-<p>☞ TODO: RCs are usually finite (<em>people who live in glass houses</em>), but may also be infinitival (<em>I found a house in which to live</em>, <em>I found a house (for my mother) to live in</em>). Gerund-participial and past-participial clauses (<em>people living in glass houses</em>, <em>students given high marks</em>) are never considered relative clauses.
-<!-- Infinitival RCs are discussed in CGEL pp. 1067-1068 --></p>
+<p>In some languages (such as English), relative clauses are typically expected to be finite <em>(people who live in glass houses),</em>
+although they may also be infinitival <em>(I found a house in which to live; I found a house (for my mother) to live in).</em>
+Participial clauses <em>(people living in glass houses; students given high marks)</em> are not considered relative clauses in English,
+they are ordinary adnominal clauses (<a href="">acl</a>), or even adjectival modifiers (<a href="">amod</a>) if the participle is tagged <a href="">ADJ</a>.
+<!-- Infinitival RCs are discussed in CGEL pp. 1067-1068
+English EWT only has infinitival relative clauses for free relatives.
+_nice people to meet here_ is plain `acl(people, meet)` there.
+Not marking it as a RC means there is no way to find that there is a gap/extracted element (cf. _the idea to meet_). --></p>
 
-<p>☞ TODO: do we want to implement infinitival RCs? EWT only has them for free relatives. “nice people to meet here” is plain <code class="language-plaintext highlighter-rouge">acl(people,meet)</code>. Not marking it as an RC means there is no way to find that there is a gap/extracted element (cf. “the idea to meet”).</p>
+<p>Note that the above distinction is not universal, as some languages do not distinguish finite and non-finite verb forms.</p>
 
-<p>Relativization can create unbounded dependency—an element can be extracted from several levels of embedding:</p>
+<p>An element can be extracted from several levels of embedding:</p>
 
 <pre><code class="language-sdparse">I saw the book which you pretended to think was boring
 acl:relcl(book, pretended)
@@ -265,10 +271,10 @@ xcomp(pretended, think)
 ccomp(think, boring)
 </code></pre>
 
-<p>Semantically, relative clauses may be <strong>specifying/restrictive</strong> (helping to narrow a set of referents), or <strong>ascriptive/nonrestrictive</strong> (adding detail about a referent that has already been identified):</p>
+<p>Semantically, relative clauses may be <strong>restrictive</strong> (helping to narrow a set of referents), or <strong>ascriptive</strong> (adding detail about a referent that has already been identified):</p>
 
 <ul>
-  <li>Specifying
+  <li>Restrictive
     <ul>
       <li>I rented the movie <strong>which you bought</strong> (as opposed to some other one).</li>
     </ul>
@@ -282,7 +288,9 @@ ccomp(think, boring)
   </li>
 </ul>
 
-<p>The specifying/ascriptive distinction does not affect the UD analysis: all RCs are analyzed with the <code class="language-plaintext highlighter-rouge">acl:relcl</code> relation, even if the antecedent is clausal:</p>
+<p>The restrictive/ascriptive distinction does not affect the UD analysis: all RCs are analyzed with the <code class="language-plaintext highlighter-rouge">acl:relcl</code> relation.</p>
+
+<p>???, even if the antecedent is clausal:</p>
 
 <pre><code class="language-sdparse">I tried to explain myself – which was a bad idea
 acl:relcl(tried, idea)
