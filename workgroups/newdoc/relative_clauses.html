@@ -252,8 +252,6 @@ and it should be elaborated.</span></p>
 
 <p>A relative clause with no relativizer, like (1), is called a <strong>reduced relative clause</strong>. One with a relativizer, like (3), is called a <strong>nonreduced relative clause</strong>.</p>
 
-<p>Basic UD is shown for the rest of the examples below.</p>
-
 <h2 id="notable-properties">Notable Properties</h2>
 
 <p>In some languages (such as English), relative clauses are typically expected to be finite <em>(people who live in glass houses),</em>
@@ -276,30 +274,70 @@ xcomp(pretended, think)
 ccomp(think, boring)
 </code></pre>
 
+<table> <!--I saw the book which you pretended to think was boring-->
+<tbody><tr><td width="480">
+<div class="conllu-parse">
+# visual-style 11 5 nsubj color:orange
+1  I         _ PRON  _ _ 2 nsubj _ _
+2  saw       _ VERB  _ _ 0 root _ _
+3  the       _ DET   _ _ 4 det _ _
+4  book      _ NOUN  _ _ 2 obj _ _
+5  which which PRON  WDT PronType=Rel 11 nsubj _ _
+6  you       _ PRON  _ _ 7 nsubj _ _
+7  pretended _ VERB  _ _ 4 acl:relcl _ _
+8  to        _ PART  _ _ 9 mark _ _
+9  think     _ VERB  _ _ 7 xcomp _ _
+10 was       _ AUX   _ _ 11 cop _ _
+11 boring    _ ADJ   _ _ 9 ccomp _ _
+12 .         _ PUNCT _ _ 2 punct _ _
+</div>
+</td><td width="480">
+<div class="conllu-parse">
+# visual-style 4 5 ref color:blue
+# visual-style 11 4 nsubj color:blue
+1  I         _ PRON  _ _ 2 nsubj _ _
+2  saw       _ VERB  _ _ 0 root _ _
+3  the       _ DET   _ _ 4 det _ _
+4  book      _ NOUN  _ _ 2 obj _ _
+5  which which PRON  WDT PronType=Rel 4 ref _ _
+6  you       _ PRON  _ _ 7 nsubj 9:nsubj:xsubj _
+7  pretended _ VERB  _ _ 4 acl:relcl _ _
+8  to        _ PART  _ _ 9 mark _ _
+9  think     _ VERB  _ _ 7 xcomp _ _
+10 was       _ AUX   _ _ 11 cop _ _
+11 boring    _ ADJ   _ _ 9 ccomp _ _
+12 .         _ PUNCT _ _ 2 punct _ _
+</div>
+</td></tr></tbody>
+</table>
+
 <p>Semantically, relative clauses may be <strong>restrictive</strong> (helping to narrow a set of referents), or <strong>ascriptive</strong> (adding detail about a referent that has already been identified):</p>
 
 <ul>
   <li>Restrictive
     <ul>
-      <li>I rented the movie <strong>which you bought</strong> (as opposed to some other one).</li>
+      <li><em>I rented the movie <b>which you bought</b> (as opposed to some other one).</em></li>
     </ul>
   </li>
   <li>Ascriptive
     <ul>
-      <li>I introduced myself to John, <strong>who promptly forgot my name</strong>.</li>
-      <li>I rented the movie, <strong>which you bought</strong> (as opposed to renting).</li>
-      <li>I tried to explain myself – <strong>which was a bad idea</strong>. [antecedent is a clause]</li>
+      <li><em>I introduced myself to John, <b>who promptly forgot my name</b>.</em></li>
+      <li><em>I rented the movie, <b>which you bought</b> (as opposed to renting).</em></li>
     </ul>
   </li>
 </ul>
 
 <p>The restrictive/ascriptive distinction does not affect the UD analysis: all RCs are analyzed with the <code class="language-plaintext highlighter-rouge">acl:relcl</code> relation.</p>
 
+<p>The antecedent of an ascriptive relative clause may be even a clause (rather than a nominal):</p>
+
+<ul>
+  <li><em>I tried to explain myself – <b>which was a bad idea</b>.</em> (antecedent is a clause)</li>
+</ul>
+
 <p><span style="color:red; font-weight:bold">DZ: Did we reach a consensus about clausal antecedents?
 There is the fundamental issue that <code class="language-plaintext highlighter-rouge">acl</code> must depend on a nominal. I would prefer something like
 <code class="language-plaintext highlighter-rouge">parataxis:relcl</code> or <code class="language-plaintext highlighter-rouge">advcl:relcl</code> over <code class="language-plaintext highlighter-rouge">acl:relcl</code> in these cases.</span></p>
-
-<p>???, even if the antecedent is clausal:</p>
 
 <pre><code class="language-sdparse">I tried to explain myself – which was a bad idea
 acl:relcl(tried, idea)
