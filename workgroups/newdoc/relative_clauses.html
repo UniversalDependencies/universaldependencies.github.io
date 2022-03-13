@@ -207,11 +207,26 @@ as a normal possessive modifier would, i.e., depending on language, it can be <a
 </td></tr></tbody>
 </table>
 
-<!-- https://github.com/UniversalDependencies/docs/commit/b7b62a7f9bafdbd8c3f7be9e4f72da62b3cb0d0d#commitcomment-68550464 -->
+<!-- https://github.com/UniversalDependencies/docs/commit/b7b62a7f9bafdbd8c3f7be9e4f72da62b3cb0d0d#commitcomment-68550464
+@nschneid:
+
+CGEL (Huddleston and Pullum) pp. 1043-44:
+
+> - [ii] I said that it might be more efficient to hold the meeting on Saturday morning, [**which suggestion** they all enthusiastically endorsed].
+>
+> Determinative _which_ is not itself a phrase, and cannot be separated from the head on which it is dependent, as evident from [iii]. We take the relativised element in [ii] to be the whole object NP, _which suggestion_: this is the phrase whose interpretation is given by the antecedent (_it might be more efficient to hold the meeting on Saturday morning_), though the presentation of it as a suggestion is of course contributed by the relative clause rather than being inherent in the antecedent itself.
+
+In other words _which_ by itself does not have an antecedent; it is only the phrase _which suggestion_ that has an antecedent. This matches my intuition that `ref` should point to the head of the phrase (_suggestion_).
+
+-->
+<p>Determinative <em>which</em> cannot be separated from the head on which it is dependent. We take the relativized
+element in the following example to be the whole nominal, <em>which amount</em>: this is the phrase whose interpretation
+is given by the antecedent <em>$38,000</em>.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup></p>
+
 <table> <!--ENA shall pay $38,000, which amount shall be subject to…-->
 <tbody><tr><td width="480">
 <div class="conllu-parse">
-# visual-style 8 7 det color:orange
+# visual-style 11 8 nsubj color:orange
 1 ENA ENA PROPN _ _ 3 nsubj _ _
 2 shall shall AUX _ _ 3 aux _ _
 3 pay pay VERB _ _ 0 root _ _
@@ -226,16 +241,16 @@ as a normal possessive modifier would, i.e., depending on language, it can be <a
 </div>
 </td><td width="480">
 <div class="conllu-parse">
-# visual-style 4 7 ref color:blue
-# visual-style 8 4 nmod color:blue
+# visual-style 4 8 ref color:blue
+# visual-style 11 4 nsubj color:blue
 1 ENA ENA PROPN _ _ 3 nsubj _ _
 2 shall shall AUX _ _ 3 aux _ _
 3 pay pay VERB _ _ 0 root _ _
-4 $ $ SYM _ _ 3 obj 8:nmod _
+4 $ $ SYM _ _ 3 obj 11:nsubj _
 5 38,000 38,000 NUM _ _ 4 nummod _ _
 6 , , PUNCT _ _ 11 punct _ _
-7 which which DET _ _ 4 ref _ _
-8 amount amount NOUN _ _ 11 nsubj _ _
+7 which which DET _ _ 8 det _ _
+8 amount amount NOUN _ _ 4 ref _ _
 9 shall shall AUX _ _ 11 aux _ _
 10 be be AUX _ _ 11 cop _ _
 11 subject… subject NOUN _ _ 4 acl:relcl _ _
@@ -621,7 +636,7 @@ in the latter it should be tagged <a href="">SCONJ</a>.</p>
 <ul>
   <li><em>I don’t know <b>when<tt>/ADV</tt></b> he comes.</em>
     <ul>
-      <li>Adnominal: <em>the question <b>when<tt>/ADV</tt></b> does he come</em></li>
+      <li>Adnominal: <em>the question <b>when<tt>/ADV</tt></b> he comes</em></li>
       <li>Adnominal relative: <em>the moment <b>when<tt>/ADV</tt></b> he comes</em></li>
     </ul>
   </li>
@@ -633,7 +648,7 @@ in the latter it should be tagged <a href="">SCONJ</a>.</p>
 <ul>
   <li>[cs] <em>Nevím, <b>kdy<tt>/ADV</tt></b> přijde.</em> “I don’t know when he comes.”
     <ul>
-      <li>Adnominal: [cs] <em>otázka, <b>kdy<tt>/ADV</tt></b> přijde</em> “the question when does he come”</li>
+      <li>Adnominal: [cs] <em>otázka, <b>kdy<tt>/ADV</tt></b> přijde</em> “the question when he comes”</li>
       <li>Adnominal relative: [cs] <em>okamžik, <b>kdy<tt>/ADV</tt></b> přijde</em> “the moment when he comes”</li>
     </ul>
   </li>
@@ -641,7 +656,7 @@ in the latter it should be tagged <a href="">SCONJ</a>.</p>
 </ul>
 
 <p>Some phrases are ambiguous. <em>The ceremony where/when we became citizens</em> can be interpreted as an RC if the bestowal
-of citizenship happened during the ceremony (<em>in which</em> interpretation<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>, thus <code class="language-plaintext highlighter-rouge">acl:relcl</code>).
+of citizenship happened during the ceremony (<em>in which</em> interpretation<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>, thus <code class="language-plaintext highlighter-rouge">acl:relcl</code>).
 But <em>the ceremony when we became citizens</em> could be used to refer to a particular ceremony held around the time
 of becoming a citizen, as opposed to some other ceremony held at some other time; the modifier can be fronted as
 an <code class="language-plaintext highlighter-rouge">advmod</code> within the higher clause: <em>When we became citizens, the ceremony…</em>. This is the <code class="language-plaintext highlighter-rouge">acl</code> interpretation.</p>
@@ -836,7 +851,10 @@ as required by their respective clauses.</p>
       <p><em>The Cambridge Grammar of the English Language</em> (Huddleston and Pullum, 2002) considers <em>that</em> at the beginning of a relative clause to be a subordinator. UD adopts the traditional analysis of <em>that</em> as a relative pronoun roughly interchangeable with <em>which</em> etc. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
     <li id="fn:2" role="doc-endnote">
-      <p>Or, formally, <em>wherein</em>. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p><em>The Cambridge Grammar of the English Language</em> (Huddleston and Pullum, 2002), pp. 1043–44. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>Or, formally, <em>wherein</em>. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
