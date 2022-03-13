@@ -406,75 +406,134 @@ There is the fundamental issue that <code class="language-plaintext highlighter-
 </td></tr></tbody>
 </table>
 
-<h2 id="preposition-stranding">Preposition Stranding</h2>
+<h2 id="case-marked-relativizers">Case-marked Relativizers</h2>
 
-<p>A preposition may be left “stranded” in the relative clause (its object corresponding to the head of the RC):</p>
+<p>If required by the syntactic relations within the RC, the relativizer bears case markers (morphological or
+adpositional), just as if the position were filled with a full nominal.</p>
 
 <ul>
-  <li>The house <strong>(that) you said you wanted to live <em>in</em></strong> is for sale.
+  <li>[cs] <em>nebezpečí, kterého se bojíte</em> “danger which you fear” (lit. danger, which.<code class="language-plaintext highlighter-rouge">Gen</code> yourself you.fear)</li>
+  <li>[cs] <em>nebezpečí, kterému čelíte</em> “danger which you are facing” (lit. danger, which.<code class="language-plaintext highlighter-rouge">Dat</code> you.face)</li>
+  <li>[cs] <em>nebezpečí, které překonáte</em> “danger which you overcome” (lit. danger, which.<code class="language-plaintext highlighter-rouge">Acc</code> you.overcome)</li>
+  <li>[cs] <em>nebezpečí, o kterém nevíte</em> “danger which you do not know about” (lit. danger, about which.<code class="language-plaintext highlighter-rouge">Loc</code> you.not.know)</li>
+  <li>[cs] <em>nebezpečí, se kterým se vyrovnáte</em> “danger which you cope with” (lit. danger, with which.<code class="language-plaintext highlighter-rouge">Ins</code> yourself you.cope)</li>
+</ul>
+
+<p>The enhanced relations include deep syntactic relations. Therefore, in case marking languages the enhanced
+dependencies may link verb dependents that are not in the expected morphological case, required by surface syntax.
+In the following Czech example, the relative modifier phrase <em>v němž</em> “in which” is obligatorily in the locative
+case form (<code class="language-plaintext highlighter-rouge">Case=Loc</code>). If it were a main clause, the referent <em>dům</em> “house” would have to be in locative too:
+<em>v domě</em> “in house”. However, here it is in the nominative (<code class="language-plaintext highlighter-rouge">Case=Nom</code>), and the enhanced dependency <code class="language-plaintext highlighter-rouge">obl</code>
+going to a nominative dependent is something we would not expect to see, given the morpho-syntactic rules of the language.</p>
+
+<table> <!--dům, v němž žijeme = the house we live in (lit. house, in that we-live)-->
+<tbody><tr><td width="480">
+<div class="conllu-parse">
+# visual-style 5 4 obl color:orange
+1 dům house NOUN _ Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing 0 root       _ Gloss=house
+2 , , PUNCT _ _ 5 punct      _ Gloss=,
+3 v in ADP _ _ 4 case       _ Gloss=in
+4 němž that PRON _ Case=Loc|Gender=Masc|Number=Sing|PronType=Rel 5 obl     _ Gloss=which
+5 žijeme live VERB _ Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act 1 acl:relcl _ Gloss=we-live
+</div>
+</td><td width="480">
+<div class="conllu-parse">
+# visual-style 5 1 obl:v:gen color:blue
+# visual-style 1 4 ref color:blue
+1 dům house NOUN _ Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing  0 root 5:obl:v:gen Gloss=house
+2 , , PUNCT _ _ 5 punct      _ Gloss=,
+3 v in ADP _ _ 4 case       _ Gloss=in
+4 němž that PRON _ Case=Loc|Gender=Masc|Number=Sing|PronType=Rel 1 ref     _ Gloss=which
+5 žijeme live VERB _ Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act 1 acl:relcl _ Gloss=we-live
+</div>
+</td></tr></tbody>
+</table>
+
+<h3 id="preposition-stranding">Preposition Stranding</h3>
+
+<p>In English, a preposition may be left “stranded” in the relative clause (its object corresponding to the parent of the RC):</p>
+
+<ul>
+  <li><em>The house (that) you said you wanted to live <b>in</b> is for sale.</em>
     <ul>
-      <li>Non-RC paraphrase: The house is on sale; you said you wanted to live <em>in</em> that house.</li>
+      <li>Non-RC paraphrase: <em>The house is on sale; you said you wanted to live <b>in</b> that house.</em></li>
     </ul>
   </li>
 </ul>
 
-<p>The Basic UD analysis depends on whether it is a reduced or nonreduced RC.
+<p>The basic UD analysis depends on whether it is a reduced or nonreduced RC.
 In a nonreduced RC, the relativizer is available to fill a role in the RC, and thus gets marked with
 the preposition (even if this contributes to the nonprojectivity of the tree):</p>
 
-<pre><code class="language-sdparse">the house that you said you wanted to live in
-acl:relcl(house, said)
-ccomp(said, wanted)
-xcomp(wanted, live)
-obl(live, that)
-case(that, in)
-</code></pre>
+<table> <!--the house that you said you wanted to live in-->
+<tbody><tr><td width="480">
+<div class="conllu-parse">
+# visual-style 9 3 obl color:orange
+1 the    the   DET   _ _ 2 det _ _
+2 house  house NOUN  _ _ 0 root _ _
+3 that   that  PRON  _ _ 9 obl _ _
+4 you    you   PRON  _ _ 5 nsubj _ _
+5 said   say   VERB  _ _ 2 acl:relcl _ _
+6 you    you   PRON  _ _ 7 nsubj _ _
+7 wanted want  VERB  _ _ 5 ccomp _ _
+8 to     to    PART  _ _ 9 mark _ _
+9 live   live  VERB  _ _ 7 xcomp _ _
+10 in    in    ADP   _ _ 3 case _ _
+</div>
+</td><td width="480">
+<div class="conllu-parse">
+# visual-style 2 3 ref color:blue
+# visual-style 9 2 obl:in color:blue
+# visual-style 9 6 nsubj:xsubj color:blue
+1 the    the   DET   _ _ 2 det _ _
+2 house  house NOUN  _ _ 0 root 9:obl:in _
+3 that   that  PRON  _ _ 2 ref _ _
+4 you    you   PRON  _ _ 5 nsubj _ _
+5 said   say   VERB  _ _ 2 acl:relcl _ _
+6 you    you   PRON  _ _ 7 nsubj 9:nsubj:xsubj _
+7 wanted want  VERB  _ _ 5 ccomp _ _
+8 to     to    PART  _ _ 9 mark _ _
+9 live   live  VERB  _ _ 7 xcomp _ _
+10 in    in    ADP   _ _ 3 case _ _
+</div>
+</td></tr></tbody>
+</table>
 
-<p>In a reduced RC, however, there is no nominal to fill the role in the RC,
-so the preposition gets promoted to the head of the phrase (similar to the treatment of <a href="">Ellipsis</a>):</p>
+<p>In a reduced RC, however, the preposition is the only word left from the nominal filling the role in the RC,
+so the preposition gets promoted to the head of the nominal (in accord with the standard UD treatment of
+ellipsis).</p>
 
-<pre><code class="language-sdparse">the house you said you wanted to live in
-acl:relcl(house, said)
-ccomp(said, wanted)
-xcomp(wanted, live)
-obl(live, in)
-</code></pre>
-
-<h2 id="prepositional-relatives">Prepositional Relatives</h2>
-
-<p>As an alternative to stranding, the preposition may occur before the relativizer (for some relativizers, particularly <em>which</em>, <em>whom</em>, and <em>whose</em>):</p>
-
-<pre><code class="language-sdparse">the house in which you live
-acl:relcl(house, live)
-obl(live, which)
-case(which, in)
-</code></pre>
-
-<pre><code class="language-sdparse">the crown from where the jewels were stolen
-acl:relcl(crown, stolen)
-obl(stolen, where)
-case(where, from)
-</code></pre>
-
-<pre><code class="language-sdparse">the king from whom the jewels were stolen
-acl:relcl(king, stolen)
-obl(stolen, whom)
-case(whom, from)
-</code></pre>
-
-<pre><code class="language-sdparse">the king from whose crown we stole the jewels
-acl:relcl(king, stole)
-obl(stole, crown)
-case(crown, from)
-nmod:poss(crown, whose)
-</code></pre>
-
-<pre><code class="language-sdparse">the king bequeathed a crown , the jewels of which were stolen
-acl:relcl(crown, stolen)
-nmod(jewels, which)
-case(which, of)
-nsubj:pass(stolen, jewels)
-</code></pre>
+<table> <!--the house you said you wanted to live in-->
+<tbody><tr><td width="480">
+<div class="conllu-parse">
+# visual-style 8 9 obl color:orange
+1 the    the   DET   _ _ 2 det _ _
+2 house  house NOUN  _ _ 0 root _ _
+3 you    you   PRON  _ _ 4 nsubj _ _
+4 said   say   VERB  _ _ 2 acl:relcl _ _
+5 you    you   PRON  _ _ 6 nsubj _ _
+6 wanted want  VERB  _ _ 4 ccomp _ _
+7 to     to    PART  _ _ 8 mark _ _
+8 live   live  VERB  _ _ 6 xcomp _ _
+9 in     in    ADP   _ _ 8 obl _ _
+</div>
+</td><td width="480">
+<div class="conllu-parse">
+# visual-style 2 9 ref color:blue
+# visual-style 8 2 obl:in color:blue
+# visual-style 8 5 nsubj:xsubj color:blue
+1 the    the   DET   _ _ 2 det _ _
+2 house  house NOUN  _ _ 0 root 8:obl:in _
+3 you    you   PRON  _ _ 4 nsubj _ _
+4 said   say   VERB  _ _ 2 acl:relcl _ _
+5 you    you   PRON  _ _ 6 nsubj 8:nsubj:xsubj _
+6 wanted want  VERB  _ _ 4 ccomp _ _
+7 to     to    PART  _ _ 8 mark _ _
+8 live   live  VERB  _ _ 6 xcomp _ _
+9 in     in    ADP   _ _ 2 ref _ _
+</div>
+</td></tr></tbody>
+</table>
 
 <h2 id="rcs-versus-non-relative-modifier-clauses">RCs Versus Non-relative Modifier Clauses</h2>
 
