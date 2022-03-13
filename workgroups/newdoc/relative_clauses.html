@@ -451,7 +451,7 @@ going to a nominative dependent is something we would not expect to see, given t
 
 <h3 id="preposition-stranding">Preposition Stranding</h3>
 
-<p>In English, a preposition may be left “stranded” in the relative clause (its object corresponding to the parent of the RC):</p>
+<p>In English, a preposition may be left “stranded” in the relative clause (its noun corresponding to the parent of the RC):</p>
 
 <ul>
   <li><em>The house (that) you said you wanted to live <b>in</b> is for sale.</em>
@@ -535,43 +535,122 @@ ellipsis).</p>
 </td></tr></tbody>
 </table>
 
-<h2 id="rcs-versus-non-relative-modifier-clauses">RCs Versus Non-relative Modifier Clauses</h2>
+<h2 id="relative-versus-non-relative-subordinate-clauses">Relative versus Non-relative Subordinate Clauses</h2>
 
-<p><em>When</em>, <em>where</em>, <em>why</em>, and <em>how</em> frequently introduce <strong>adverbial clauses</strong> (<a href="">advcl</a>). They can also introduce non-relative <strong>adnominal modifier clauses</strong> (<a href="">acl</a>) similarly providing time/place/manner information:</p>
+<h3 id="interrogative-clauses">Interrogative Clauses</h3>
 
-<pre><code class="language-sdparse">When you leave , be sure to let me know .
-advmod(leave, When)
-advcl(sure, leave)
-</code></pre>
+<p>In languages where the set of relativizers overlaps with interrogative words (such as the wh-words in English),
+some clauses may superficially look like relative clauses while they are in fact interrogative clauses (indirect
+questions). Such clauses are typically complements of verbs of saying or knowing <em>(I don’t know who paid the bill),</em>
+but they may also depend on a similar nominal <em>(the question who paid the bill).</em> In this
+latter case they are adnominal clauses (<a href="">acl</a>) but not relative clauses. There is no coreference between
+<em>question</em> and <em>who</em> (cf. <em>the person who paid the bill,</em> here <em>person</em> and <em>who</em> are coreferential and it is
+a relative clause).</p>
 
-<pre><code class="language-sdparse">The headlines when Nixon resigned were legendary .
-advmod(resigned, when)
-acl(headlines, resigned)
-</code></pre>
+<p>Language-specific guidelines must specify whether the wh-word is to be disambiguated between <a href="">PronType</a><code class="language-plaintext highlighter-rouge">=Int</code>
+and <code class="language-plaintext highlighter-rouge">Rel</code>, or it can be <code class="language-plaintext highlighter-rouge">PronType=Int,Rel</code> everywhere and the disambiguation is only at the syntactic level
+between <code class="language-plaintext highlighter-rouge">acl</code> and <code class="language-plaintext highlighter-rouge">acl:relcl</code>.</p>
 
-<p>☞ TODO: the above (non-relative WH words) would be SCONJ/<code class="language-plaintext highlighter-rouge">mark</code> not ADV/<code class="language-plaintext highlighter-rouge">advmod</code> in EWT. Also, relativizers are inconsistent in EWT.
-<a href="https://github.com/UniversalDependencies/UD_English-EWT/issues/88">https://github.com/UniversalDependencies/UD_English-EWT/issues/88</a>, <a href="http://match.grew.fr/?corpus=UD_English-EWT@dev&amp;custom=61bfec493c0d3&amp;clustering=W.upos">http://match.grew.fr/?corpus=UD_English-EWT@dev&amp;custom=61bfec493c0d3&amp;clustering=W.upos</a></p>
+<table> <!--the question who paid the bill-->
+<tbody><tr><td>
+<div class="conllu-parse">
+# visual-style 6 4 obl color:orange
+1 the      the      DET   _ _ 2 det _ _
+2 question question NOUN  _ _ 0 root _ _
+3 who      who      PRON  _ _ 4 nsubj _ _
+4 paid     pay      VERB  _ _ 2 acl _ _
+5 the      the      DET   _ _ 6 det _ _
+6 bill     bill     NOUN  _ _ 4 obj _ _
+</div>
+</td></tr></tbody>
+</table>
 
-<p>However, it should be considered a relative construction if the WH-adverb can be paraphrased by <em>in which</em> or similar, or if the head noun reifies the kind of relation (<em>the time when</em>, <em>the place where</em>, <em>the reason why</em>).</p>
+<h3 id="adverbial-clauses">Adverbial Clauses</h3>
 
-<pre><code class="language-sdparse">the time when the pizza exploded
-acl:relcl(time, exploded)
-advmod(exploded, when)
-</code></pre>
+<p>Pronominal adverbs such as <em>where</em>, <em>when</em>, <em>how</em>, <em>why</em> frequently introduce <strong>adverbial clauses</strong> (<a href="">advcl</a>).
+They can also introduce non-relative <strong>adnominal modifier clauses</strong> (<a href="">acl</a>) similarly providing time/place/manner information.
+In the following example, <em>when</em> is an interrogative/relative adverb (<code class="language-plaintext highlighter-rouge">PronType=Int,Rel</code>) but the adnominal clause
+it introduces is not relative because there is no coreference between <em>headlines</em> and <em>when</em> (but cf.
+<em>the times when Nixon resigned</em>, here it would be a relative clause).</p>
 
-<p>Some phrases are ambiguous. <em>The ceremony where/when we became citizens</em> can be interpreted as an RC if the bestowal of citizenship happened during the ceremony (<em>in which</em> interpretation<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>, thus <code class="language-plaintext highlighter-rouge">acl:relcl</code>).
-But <em>the ceremony when we became citizens</em> could be used to refer to a particular ceremony held around the time of becoming a citizen, as opposed to some other ceremony held at some other time; the modifier can be fronted as an <code class="language-plaintext highlighter-rouge">advmod</code> within the higher clause: <em>When we became citizens, the ceremony…</em>. This is the <code class="language-plaintext highlighter-rouge">acl</code> interpretation.</p>
+<table> <!--the question who paid the bill-->
+<tbody><tr><td>
+<div class="conllu-parse">
+1 The       the       DET   _ _ 2 det _ _
+2 headlines headline  NOUN  _ _ 7 nsubj _ _
+3 when      when      ADV   _ _ 5 advmod _ _
+4 Nixon     Nixon     PROPN _ _ 5 nsubj _ _
+5 resigned  resign    VERB  _ _ 2 acl _ _
+6 were      be        AUX   _ _ 7 cop _ _
+7 legendary legendary ADJ   _ _ 0 root _ _
+8 .         .         PUNCT _ _ 7 punct _ _
+</div>
+</td></tr></tbody>
+</table>
 
-<p>Illustrating the contrast with <em>where</em>:</p>
+<p>In general, an adnominal phrase with a wh-adverb is considered a relative clause if the wh-adverb can be paraphrased
+by <em>in which</em> or similar, or if the head noun reifies the kind of relation (<em>the time when</em>, <em>the place where</em>, <em>the reason why</em>).</p>
+
+<table> <!--I remember the time when Nixon resigned.-->
+<tbody><tr><td width="480">
+<div class="conllu-parse">
+# visual-style 7 5 advmod color:orange
+1 I        I        PRON  _ _ 2 nsubj _ _
+2 remember remember VERB  _ _ 0 root _ _
+3 the       the     DET   _ _ 4 det _ _
+4 time      time    NOUN  _ _ 2 obj _ _
+5 when      when    ADV   _ _ 7 advmod _ _
+6 Nixon     Nixon   PROPN _ _ 7 nsubj _ _
+7 resigned  resign  VERB  _ _ 4 acl:relcl _ _
+8 .         .       PUNCT _ _ 2 punct _ _
+</div>
+</td><td width="480">
+<div class="conllu-parse">
+# visual-style 4 5 ref color:blue
+# visual-style 7 4 obl color:blue
+1 I        I        PRON  _ _ 2 nsubj _ _
+2 remember remember VERB  _ _ 0 root _ _
+3 the       the     DET   _ _ 4 det _ _
+4 time      time    NOUN  _ _ 2 obj 7:obl _
+5 when      when    ADV   _ _ 4 ref _ _
+6 Nixon     Nixon   PROPN _ _ 7 nsubj _ _
+7 resigned  resign  VERB  _ _ 4 acl:relcl _ _
+8 .         .       PUNCT _ _ 2 punct _ _
+</div>
+</td></tr></tbody>
+</table>
+
+<p>Note that the English word <em>when</em> is ambiguous between an interrogative/relative adverb, and a subordinating
+conjunction introducing a conditional clause. In the former context it should be tagged <a href="">ADV</a> <code class="language-plaintext highlighter-rouge">PronType=Int,Rel</code>,
+in the latter it should be tagged <a href="">SCONJ</a>.</p>
+
 <ul>
-  <li>The house where Kim grew up is on Elm Street: <code class="language-plaintext highlighter-rouge">acl:relcl</code>. Cf.:
+  <li><em>I don’t know <b>when<tt>/ADV</tt></b> he comes.</em>
     <ul>
-      <li>the house <strong>in which</strong> Kim grew up</li>
-      <li>#Where Kim grew up, the house is on Elm Street.</li>
+      <li>Adnominal: <em>the question <b>when<tt>/ADV</tt></b> does he come</em></li>
+      <li>Adnominal relative: <em>the moment <b>when<tt>/ADV</tt></b> he comes</em></li>
     </ul>
   </li>
-  <li>The economy where Kim lives is struggling: probably <code class="language-plaintext highlighter-rouge">acl</code>, interpreted like <em>Where Kim lives, the economy is struggling.</em></li>
+  <li><em>You cannot swim <b>when<tt>/SCONJ</tt></b> the weather is like this.</em></li>
 </ul>
+
+<p>Other languages do not have this problem, as they use distinct words for the adverb and the subordinating conjunction:</p>
+
+<ul>
+  <li>[cs] <em>Nevím, <b>kdy<tt>/ADV</tt></b> přijde.</em> “I don’t know when he comes.”
+    <ul>
+      <li>Adnominal: [cs] <em>otázka, <b>kdy<tt>/ADV</tt></b> přijde</em> “the question when does he come”</li>
+      <li>Adnominal relative: [cs] <em>okamžik, <b>kdy<tt>/ADV</tt></b> přijde</em> “the moment when he comes”</li>
+    </ul>
+  </li>
+  <li>[cs] <em>Nemůžeš se koupat, <b>když<tt>/SCONJ</tt></b> je takovéhle počasí.</em> “You cannot swim when the weather is like this.”</li>
+</ul>
+
+<p>Some phrases are ambiguous. <em>The ceremony where/when we became citizens</em> can be interpreted as an RC if the bestowal
+of citizenship happened during the ceremony (<em>in which</em> interpretation<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>, thus <code class="language-plaintext highlighter-rouge">acl:relcl</code>).
+But <em>the ceremony when we became citizens</em> could be used to refer to a particular ceremony held around the time
+of becoming a citizen, as opposed to some other ceremony held at some other time; the modifier can be fronted as
+an <code class="language-plaintext highlighter-rouge">advmod</code> within the higher clause: <em>When we became citizens, the ceremony…</em>. This is the <code class="language-plaintext highlighter-rouge">acl</code> interpretation.</p>
 
 <h2 id="free-relatives">Free Relatives</h2>
 
