@@ -101,6 +101,25 @@ Therefore their relation to the quantified noun is not <code class="language-pla
 <pre><code class="language-sdparse">Sam ate many sheep
 det(sheep, many)
 </code></pre>
+
+<p>Furthermor, a number that serves as a label for an entity rather than denoting quantity
+is not <code class="language-plaintext highlighter-rouge">nummod</code>. For example, in <em>The meeting will be in room 4</em>, the number is the name
+of a particular room, it is different from the expression <em>4 rooms</em>. Note that the label
+of the room could also be non-numeric, as in <em>The meeting will be in room A</em>. UD analyzes
+the number as a nominal (even if keeping the UPOS tag <a href="">NUM</a> for it). Hence the number
+is attached as <a href="">nmod</a> to the noun it modifies, unless there is clear morphosyntactic
+evidence in the language for the opposite direction. See also §3.6.3 of
+<a href="https://doi.org/10.1162/coli_a_00402">de Marneffe et al. (2021)</a>.</p>
+
+<pre><code class="language-sdparse">The meeting will be in room 4
+det(meeting, The)
+nsubj(room, meeting)
+aux(room, will)
+cop(room, be)
+case(room, case)
+nmod(room, 4)
+</code></pre>
+
 <!-- Interlanguage links updated St lis 3 20:59:02 CET 2021 -->
 
 
