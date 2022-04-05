@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Pomak-Philotis UD</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script> -->
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-qpm">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_qpm/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="universal-dependencies-for-pomak">Universal Dependencies for Pomak</h1>
+<!--<span class="flagspan"><img class="flag" src="pm.png"/></span>-->
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>In general, words are delimited by whitespace characters and every single token is segmented separately. For example: <em>za da</em> “in order to”, <em>ní kutrí</em> “no one”, <em>zablǽvom so</em> “slow myself”.</li>
+  <li>The numbers are analyzed as one token when used as expression without spaces (20000) or with an internal comma as indicator (10,434).</li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<p>This is an overview only. For a more detailed discussion and examples, see the list of <a href="pos/index.html">Pomak POS tags</a> and <a href="feat/index.html">Pomak features</a>.</p>
+
+<ul>
+  <li>Pomak treebank uses 16 universal POS categories. Currently it does not make use of <a href="../../u/pos/SYM.html">SYM</a>.</li>
+  <li>Affirmative, negative, interrogative, modal particles are analyzed as <a href="pos/PART.html">PART</a>.</li>
+  <li><a href="pos/PRON.html">PRON</a> are distinguished from <a href="pos/DET.html">DET</a> as follows:
+    <ul>
+      <li>Both the strong and the weak types of personal pronouns (<em>ja/mí/mó, ty/tí/tó, toj/mú/go, tja/jí/jé, to/mú/go, nýje/nú/nú, výje/vú/vú, tíje/mí/gi, to/mí/gi</em>) are assigned the PoS tag <a href="pos/PRON.html">PRON</a>.</li>
+      <li>The weak types of possessive pronouns (<em>mi, ti, mu, ji, nu, vu, mi</em>) are assigned the PoS tag <a href="pos/PRON.html">PRON</a>.</li>
+      <li>The reflexive pronouns  <code class="language-plaintext highlighter-rouge">sá/sé/só</code> και <code class="language-plaintext highlighter-rouge">sí</code> are assigned the PoS tag <a href="pos/PRON.html">PRON</a>.</li>
+      <li>Then pronoun types <em>kaná</em> “what”, <em>kanása / kanáta / kanána</em> “whatever here - proximal / whatever there -medial / whatever over there - distal”, <em>ní kaná</em> “nothing” and <em>síčko / síčkoso / síčkoto / síčkono</em> “all / everything” are assigned the PoS tag <a href="pos/PRON.html">PRON</a>.</li>
+      <li>The strong types of possessive pronouns (<em>moj, tvoj, tógav, tójin, naš, vaš, tǽhan</em>) and all other pronouns are assigned the PoS tag [DET] (pos/DET.html).</li>
+      <li>The adjective <em>adín/edín/idín</em> is assigned the PoS tag <a href="pos/DET.html">DET</a> when it is used as an indefinite article.</li>
+    </ul>
+  </li>
+  <li>Pomak has only one auxiliary verb (<a href="pos/AUX_.html">AUX</a>), <em>som</em> (“to be”), but lemmas such as <em>býdom</em> are also possible.</li>
+  <li>Τhe auxiliary verb šom / štom (δυνητικό θα) is assigned the PoS tag <a href="pos/AUX_.html">AUX</a>.</li>
+  <li>Auxiliary particles <em>še / ša</em> (“will, shall”) and <em>da</em> (“to”) are assigned the PoS tag <a href="pos/AUX_.html">AUX</a>.</li>
+  <li>Modal verbs are assigned the PoS tag <a href="pos/VERB.html">VERB</a>.</li>
+  <li>The  PoS tag <a href="pos/ADJ.html">ADJ</a> is assigned to adjectives, ordinal numerals, adjectives derived from family names and ethnonyms.</li>
+  <li>The  PoS tag  <a href="pos/VERB.html">VERB</a> is assigned to personal and impersonal verbs, participles, infinitives and converbs.</li>
+  <li><b><u>Note</u></b>: Pomak has a triple post-positioned definite article which is part of the word that receives no distinct PoS tag.</li>
+</ul>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>Features currently NOT used: <a href="">Typo</a>, <a href="">NounClass</a>, <a href="">Evident</a>, <a href="">Polite</a>, <a href="">Clusivity</a>.</li>
+</ul>
+
+<h4 id="nominal-features">Nominal Features</h4>
+
+<ul>
+  <li>Common nouns (<a href="pos/NOUN.html">NOUN</a>) and proper nouns (<a href="pos/PROPN.html">PROPN</a>) have inherent gender (<a href="feat/Gender.html">Gender</a>) that receives one of the following values: <code class="language-plaintext highlighter-rouge">Masc</code>, <code class="language-plaintext highlighter-rouge">Fem</code> ή <code class="language-plaintext highlighter-rouge">Neut</code>.</li>
+  <li><a href="feat/Animacy.html">Animacy</a> is a grammatical feature of pronouns, adjectives, participles and some of the numerals. The opposition  <code class="language-plaintext highlighter-rouge">Human vs. Non-human</code> is overt with  masculine plural and rarely  with masculine singular.</li>
+  <li><a href="pos/ADJ.html">ADJ</a>, <a href="pos/DET.html">DET</a>, <a href="pos/NUM.html">NUM</a>, the participles that are assigned the PoS tag <a href="pos/VERB.html">VERB</a> και <a href="pos/PRON.html">PRON</a> inflect for <a href="feat/Case.html">Case</a>, gender <a href="feat/Gender.html">Gender</a> and number <a href="feat/Number.html">Number</a> and agree with the nouns that they modify.
+    <ul>
+      <li><b><u>Note</u></b>: Certain adjectives (of turkish origins mainly) do not inflect.</li>
+    </ul>
+  </li>
+  <li>Pomak has four cases: Nominative, Genitive, Accusative and Vocative.</li>
+  <li>Pomak nouns, adjectives, certain numerals, passive participles and the strong types of pronouns may be marked for the feature <a href="feat/Definite.html">Definite</a>.  When an article is attached to them they are assigned the value <code class="language-plaintext highlighter-rouge">Def</code> else the value <code class="language-plaintext highlighter-rouge">Ind</code>.</li>
+  <li>Pomak has a triple enclitic definite artile (-s, -t, -n) that occurs with nouns, adjectives, pronouns and passive participles.  Για τη σήμανση του χρησιμοποιούνται τα features <a href="feat/Deixis.html">Deixis</a> και <a href="feat/DeixisRef.html">DeixisRef</a> ως εξής:
+    <ul>
+      <li>Proximity to the speaker is denoted with the values  <code class="language-plaintext highlighter-rouge">Prox</code> and <code class="language-plaintext highlighter-rouge">1</code> respectively (e.g., <em>čulǽk<u>os</u>, žaná<u>sa</u>, déte<u>so</u></em>).</li>
+      <li>Proximity to the listener is denoted with the values  <code class="language-plaintext highlighter-rouge">Prox</code> and <code class="language-plaintext highlighter-rouge">2</code> respectively (e.g., <em>čulǽk<u>ot</u>, žaná<u>ta</u>, déte<u>to</u></em>).</li>
+      <li>Distance from both the speaker and the listener is denoted with the value <code class="language-plaintext highlighter-rouge">Remt</code> (e.g., <em>čulǽk<u>on</u>, žaná<u>na</u>, déte<u>no</u></em>).</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="degree-and-polarity">Degree and Polarity</h4>
+
+<ul>
+  <li>The comparative and superlative degree of adjectives and adverbs is formed with the adverbs  <em>po</em> and <em>naj</em> respectively: they both are distinct words.   Τhe feature <a href="feat/Degree.html">Degree</a> is used to denote the positive, comparative and superlative degre of adjectives and adverbs and is assigned one of the values  <code class="language-plaintext highlighter-rouge">Pos</code>, <code class="language-plaintext highlighter-rouge">Cmp</code> και <code class="language-plaintext highlighter-rouge">Sup</code> respectively. Only the comparative and the superlative degree have been declared so far while the positive degree is treated as the default.</li>
+  <li><a href="feat/Polarity.html">Polarity</a> has two values, <code class="language-plaintext highlighter-rouge">Pos</code> and <code class="language-plaintext highlighter-rouge">Neg</code>, and applies primarily to negative and affirmative particles <a href="pos/PART.html">PART</a>.  So far, only the value  <code class="language-plaintext highlighter-rouge">Neg</code> has been used.</li>
+</ul>
+
+<h4 id="verbal-features">Verbal Features</h4>
+
+<ul>
+  <li>Similarly to other Slavic languages, Pomak verbs are marked for  <a href="feat/Aspect.html">Aspect</a> as a lexically classifying feature, that takes one of the following four values: <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Perf</code>, <code class="language-plaintext highlighter-rouge">Iter</code>, <code class="language-plaintext highlighter-rouge">Prog</code>.</li>
+  <li>Finite verbs always are marked for one of two values of <a href="feat/Mood.html">Mood</a>: <code class="language-plaintext highlighter-rouge">Ind</code> or <code class="language-plaintext highlighter-rouge">Imp</code>, one of four values of <a href="feat/Number.html">Number</a>: <code class="language-plaintext highlighter-rouge">Sing</code>, <code class="language-plaintext highlighter-rouge">Plur</code>, <code class="language-plaintext highlighter-rouge">Count</code> or <code class="language-plaintext highlighter-rouge">Coll</code> and one of three values of <a href="feat/Person.html">Person</a>: <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> or <code class="language-plaintext highlighter-rouge">3</code>.</li>
+  <li>Verbs in the <code class="language-plaintext highlighter-rouge">Ind</code> mood are always  marked forone of two values of <a href="feat/Tense.html">Tense</a>: <code class="language-plaintext highlighter-rouge">Past</code> or <code class="language-plaintext highlighter-rouge">Pres</code>. <code class="language-plaintext highlighter-rouge">Fut</code> is not used because this tense is always formed with a special particle.</li>
+  <li>Finite verbs of the <code class="language-plaintext highlighter-rouge">Imp</code> mood have only 2nd <a href="feat/Person.html">Person</a>.</li>
+  <li>There are two values of the <a href="feat/Voice.html">Voice</a> feature: <code class="language-plaintext highlighter-rouge">Act</code> and <code class="language-plaintext highlighter-rouge">Pass</code>. Only the passive participle has <code class="language-plaintext highlighter-rouge">Voice=Pass</code>. All other verb forms have <code class="language-plaintext highlighter-rouge">Voice=Act</code>.</li>
+  <li>There are three types of nonfinite verb forms (<a href="feat/VerbForm.html">VerbForm</a>): <code class="language-plaintext highlighter-rouge">Conv</code>, <code class="language-plaintext highlighter-rouge">Inf</code> and <code class="language-plaintext highlighter-rouge">Part</code>.</li>
+</ul>
+
+<h4 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h4>
+
+<ul>
+  <li><a href="feat/PronType.html">PronType</a> is used with pronouns (<a href="pos/PRON.html">PRON</a>), determiners (<a href="pos/DET.html">DET</a>) and adverbs (<a href="pos/ADV.html">ADV</a>).</li>
+  <li><a href="feat/NumType.html">NumType</a> is used with numerals (<a href="pos/NUM.html">NUM</a>), adjectives (<a href="pos/ADJ.html">ADJ</a>).</li>
+  <li>The <a href="feat/Poss.html">Poss</a> feature marks possessive personal determiners (e.g. <em>moj</em> “my”), possessive interrogative (indefinite or negative) determiners (e.g., <em>číjje</em> “whose”), possessive relative determiners (e.g., <em>číjjeso, číjjeto, číjjeno</em> “whose”) and possessive adjectives (e.g., <em>májčin</em> “mother’s”).
+    <ul>
+      <li><b><u>Note</u></b>: Indefinite, negative and universal pronouns  (e.g., <em>ní kutrí</em> “no one”) and indefinite, negative and universal adjectives (e.g., <em>ní kadé</em> “no where”) are formed with the particles <code class="language-plaintext highlighter-rouge">nǽ / nó, ní, sǽ</code> and the corresponding interogative pronoun. The particles precede the pronouns and retain both their word status and the feature <code class="language-plaintext highlighter-rouge">PronType=Int</code>.</li>
+    </ul>
+  </li>
+  <li>The <a href="feat/Reflex.html">Reflex</a> feature is assigned to reflexive pronouns <em><code class="language-plaintext highlighter-rouge">sá, sé, só</code></em> and possesive clitic pronoun <em><code class="language-plaintext highlighter-rouge">sí</code></em>.</li>
+  <li><a href="feat/Person.html">Person</a> is a lexical feature of personal pronouns (<a href="pos/PRON.html">PRON</a>) and personal determiners (<a href="pos/DET.html">DET</a>) and has three values: <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">3</code>.</li>
+  <li>There is one <a href="../../u/overview/feat-layers.html">layered feature</a>, namely <a href="feat/Number-psor.html">Number[psor]</a>.
+It appears with the possesive determiners and encodes the lexical number of the possessor.
+The extra layer is needed to distinguish this lexical feature from the inflectional number that marks agreement with the modified (possessed) noun.</li>
+</ul>
+
+<h3 id="other-features">Other Features</h3>
+
+<ul>
+  <li>
+    <p>Language-specific features of Pomak:</p>
+
+    <ul>
+      <li>
+        <p>Diminutive and augmentative forms of nouns, adjectives, adverbs and certain passive participles are assigned the feature <a href="feat/qpm-DegreeMod.html">qpm-DegreeMod</a> and onee of the values <code class="language-plaintext highlighter-rouge">Dim</code> ή <code class="language-plaintext highlighter-rouge">Mag</code> respectively.</p>
+      </li>
+      <li>
+        <p>Τhe feature <a href="feat/Variant.html">Variant</a> with the value <code class="language-plaintext highlighter-rouge">Short</code> is assigned to the weak types of personal and possessive pronouns to set them apart from their corresponding strong types.</p>
+      </li>
+      <li>
+        <p>Τhe particles <code class="language-plaintext highlighter-rouge">nǽ</code> / <code class="language-plaintext highlighter-rouge">nó</code>, <code class="language-plaintext highlighter-rouge">ní</code>, <code class="language-plaintext highlighter-rouge">sǽ</code>, which are used to form the indefinite, negative and universal pronouns and adverbs, are assigned the PoS tag  <a href="pos/PART.html">PART</a> and the feature <a href="feat/qpm-PartType.html">qpm-PartType</a> with one of the following values <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Neg</code> ή <code class="language-plaintext highlighter-rouge">Tot</code> respectively.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<p>Only the morphological annotation of the treebank has been studied in detail so far. 
+The syntactic annotation was obtained with the Udify tools. An updated version of the treebank with a fully studied syntactic annotation 
+is estimated to be uploaded at the end of 2022.</p>
+
+<!--- This is an overview only. For more detailed discussion and examples, see the list of [Pomak relations](dep/index.html).-->
+
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
+
+<h3 id="other-relations">Other relations:</h3>
+
+<h3 id="no-used-relations">No used relations:—&gt;</h3>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is 1 Pomak UD treebank:</p>
+
+<ul>
+  <li><a href="index.html">Pomak-Philotis</a></li>
+</ul>
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'qpm';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2021
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
