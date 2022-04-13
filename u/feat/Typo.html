@@ -87,13 +87,31 @@
 </tr>
 </table>
 
-<p>Indicates bad spelling, grammatical error etc. This also includes mistakenly interrupted words that are connected using the <a href="">goeswith</a> relation.
-While the annotation of morphological features is optional, if the treebank does have features, then <a href="">Typo</a><code class="language-plaintext highlighter-rouge">=Yes</code> must be used with the <code class="language-plaintext highlighter-rouge">goeswith</code> head.</p>
+<p>Indicates an erroneous or typographically unexpected word form.</p>
+
+<p>Most unexpected spellings are typographical errors (inadvertent on the part of the author). Also unexpected: creatively using special characters or spaces for visual effect; or unusual character encoding.
+For transcribed speech, no distinction is made between the original speaker and the transcriber, so a mispronunciation like <em>shilly</em> for <em>silly</em> is also treated like a typo.
+This feature can also encompass clear errors in word choice, such as learner errors and dysfluencies (e.g. <em>lesser</em> where <em>fewer</em> is appropriate, or <em>eats</em> instead of <em>eat</em>).</p>
+
+<p>Note that “typographically unexpected” is interpreted in the context of the genre. Abbreviations or popular informal spellings are not necessarily unexpected. See <a href="">Abbr</a>.</p>
+
+<p>Superfluous word-internal spaces are addressed using the <a href="">goeswith</a> relation to connect parts of the word.
+<a href="">Typo</a><code class="language-plaintext highlighter-rouge">=Yes</code> should be used with the <code class="language-plaintext highlighter-rouge">goeswith</code> head (and this is enforced by validation for treebanks that use features).</p>
 
 <p>The correct spelling can be indicated in the MISC column with the <code class="language-plaintext highlighter-rouge">CorrectForm</code> feature,
 as discussed in the <a href="https://universaldependencies.org/u/overview/typos.html">page on typos</a>.</p>
 
-<p>Intentionally nonstandard spellings are not considered typos. They should be marked as abbreviations (<a href="">Abbr</a>) or expressive spellings (<a href="">Style</a><code class="language-plaintext highlighter-rouge">=Expr</code>).</p>
+<p><strong>Capitalization, etc.:</strong>
+Cases where an unexpected form of a letter is used within a word—e.g., unexpected capitalization choices—should be handled on a language- and treebank-specific basis. In a social media treebank, for example, it may not be practical to flag all nonstandard capitalization choices as <a href="">Typo</a>=<code class="language-plaintext highlighter-rouge">Yes</code> given the wide variability of capitalization in unedited writing.</p>
+
+<p><strong>Stylistic choices:</strong>
+<a href="">Typo</a>=<code class="language-plaintext highlighter-rouge">Yes</code> is intended for specifically orthographic unexpectedness, not unexpected word variants in general. If the author is taken to be signaling an intentionally modified pronunciation of a word, inventing a new word, or making a pun, that is not Typo if the unexpectedness is reflected phonologically. 
+The optional <a href="">Style</a> feature may be useful in such cases.
+Deliberate, well-established conventions of altering the written forms of words, e.g. censoring profanity with nonalphabetic symbols, should also be considered expressive stylistic choices rather than typographical unexpectedness.</p>
+
+<p><strong>Extra words:</strong>
+For extra or missing words, see the <a href="https://universaldependencies.org/u/overview/typos.html">policy on errors</a>.
+A valid word that is superfluous in the sentence and attached as <a href="">reparandum</a> does not receive <a href="">Typo</a><code class="language-plaintext highlighter-rouge">=Yes</code>.</p>
 
 <h3 id="yes-it-is-typo"><a name="Yes"><code class="language-plaintext highlighter-rouge">Yes</code></a>: it is typo</h3>
 
