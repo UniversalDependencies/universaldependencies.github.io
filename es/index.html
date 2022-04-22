@@ -113,15 +113,21 @@ Examples: <em>convertirse = convertir + se</em> “to become” (lit. “to conv
       <li><em>ser</em> and <em>estar</em> “to be”, used as copulas</li>
       <li><em>ser</em> “to be” for the passive (<em>la sentencia fue publicada</em> “the sentence was published”)</li>
       <li><em>estar</em> “to be” for the progressive (<em>mis hijos están estudiando inglés</em> “my children are studying English”)</li>
-      <li><em>haber</em> “to be” for the perfect tenses (<em>ha venido hoy</em> “he came today”)</li>
+      <li><em>haber</em> “to be/have” for the perfect tenses (<em>ha venido hoy</em> “he came today”)</li>
     </ul>
   </li>
   <li>There are four main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
     <ul>
       <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>, e.g. <em>estudiar</em> “to study”.</li>
       <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>, e.g. <em>estudio</em> “I study”.</li>
-      <li>Participle <code class="language-plaintext highlighter-rouge">Part</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>, e.g. <em>estudiado</em> “studied”.</li>
-      <li>Gerund <code class="language-plaintext highlighter-rouge">Ger</code> (Spanish <em>gerundio</em>) or present participle, e.g. <em>estudiando</em> “studying”.</li>
+      <li>Participle <code class="language-plaintext highlighter-rouge">Part</code>, tagged <a href="">VERB</a>, <a href="">AUX</a> or <a href="">ADJ</a>, e.g. <em>estudiado</em> “studied”.</li>
+      <li>Gerund <code class="language-plaintext highlighter-rouge">Ger</code> (Spanish <em>gerundio</em>) or present participle, e.g. <em>estudiando</em> “studying”.
+The gerund can be used as a present participle together with the auxiliary <em>estar</em>:
+<em>Adidas está ayudando a limpiar los océanos.</em> “Adidas is helping to clean up the oceans.”
+It can also be used with a pseudo-copular verb such as <em>seguir</em>, in which case it is attached to the pseudo-copula as its <a href="">xcomp</a>:
+<em>Este gobierno seguirá teniendo que trabajar con él.</em> “This government will still have to work with him.”
+Finally, it can be used as a converb, in which case it is attached to the main verb as <a href="">advcl</a>:
+<em>Lo obtiene viendo a sus amigos.</em> “She obtains it seeing her friends.”</li>
     </ul>
   </li>
 </ul>
@@ -159,6 +165,7 @@ and <code class="language-plaintext highlighter-rouge">Degree=Cmp</code> is only
 <h3 id="verbal-features">Verbal Features</h3>
 
 <ul>
+  <li>Infinitives have only the <code class="language-plaintext highlighter-rouge">VerbForm=Inf</code> feature.</li>
   <li>Finite verbs always have one of four values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Sub</code> and <code class="language-plaintext highlighter-rouge">Cnd</code>.</li>
   <li>Finite verbs can have one of four values of <a href="">Tense</a>: <code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Pres</code>, <code class="language-plaintext highlighter-rouge">Fut</code>.
     <ul>
@@ -172,6 +179,9 @@ However, it is a mood in Universal Dependencies.)</li>
 It is not needed for the imperfect past tense because UD has the special value <code class="language-plaintext highlighter-rouge">Tense=Imp</code>.
 And it is not needed for the perfect tenses because they are constructed periphrastically.</li>
   <li>The <a href="">Voice</a> feature is not used in Spanish because the passive voice is expressed periphrastically.</li>
+  <li>Gerunds have only the <code class="language-plaintext highlighter-rouge">VerbForm=Ger</code> feature. They do not inflect for gender or number; the suffix is always <em>-ndo</em>.</li>
+  <li>Participles have <code class="language-plaintext highlighter-rouge">VerbForm=Part</code>, <code class="language-plaintext highlighter-rouge">Tense=Past</code>, <a href="">Gender</a> (<code class="language-plaintext highlighter-rouge">Masc</code> or <code class="language-plaintext highlighter-rouge">Fem</code>), and <a href="">Number</a> (<code class="language-plaintext highlighter-rouge">Sing</code> or <code class="language-plaintext highlighter-rouge">Plur</code>).
+The gender and number is annotated also in periphrastic perfect constructions, where the form is obligatorily masculine singular.</li>
 </ul>
 
 <h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
