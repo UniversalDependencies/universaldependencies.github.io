@@ -116,22 +116,9 @@ In general, a canonical form should collapse inflectional and minor orthographic
 (such as casing, accents/diacritics, and typos). In the lemma field, some treebanks may choose 
 to aggressively normalize spelling variation that may reflect dialect or authorial style.</p>
 
-<p>In addition to normalizing spelling in lemmas, treebanks are encouraged to adopt the optional morphological feature 
-<code class="language-plaintext highlighter-rouge">Typo=Yes</code> for clear accidental misspellings of a word (e.g. <em>ltake</em> for <em>take</em> or <em>too</em> for <em>to</em>). 
-Typos of words in closed-class categories can be found in a corpus by inspecting word frequencies in each category.
-Treebank maintainers should take care not to use <code class="language-plaintext highlighter-rouge">Typo=Yes</code> for words that may reflect actual linguistic variation, 
-e.g., dialect, style, or nonnative grammar.</p>
-
 <p>Abbreviated/shortened forms can be mapped to their full spelling as the lemma
 in conjunction with the feature <a href="../feat/Abbr.html"><code class="language-plaintext highlighter-rouge">Abbr=Yes</code></a>, provided that the full spelling 
 is a single word. Abbreviations that would expand to multiple words should be retained in the lemma.</p>
-
-<p>On occasion, a typo or abbreviation will apply to an inflected word (e.g. <em>hadd</em> for <em>had</em>), and thus the lemma 
-should both normalize the spelling and remove the inflection. Treebanks may wish to use the <code class="language-plaintext highlighter-rouge">MISC</code> field 
-to store the normalized but not lemmatized form.</p>
-
-<p>(There is currently no UD-wide policy for lemmas of apparently erroneous extra words, missing words, 
-or incorrectly segmented words.)</p>
 
 <p>The <code class="language-plaintext highlighter-rouge">LEMMA</code> field should not be used to encode features or other similar properties of the word (use <code class="language-plaintext highlighter-rouge">FEATS</code> and <code class="language-plaintext highlighter-rouge">MISC</code> instead; see <a href="../../format.html">format</a>).</p>
 
@@ -139,6 +126,22 @@ or incorrectly segmented words.)</p>
 In UD, such specifiers must not appear in the <code class="language-plaintext highlighter-rouge">LEMMA</code> field because they are not part of the canonical surface form.
 If unique lemma identifiers are available, they can be preserved in the <code class="language-plaintext highlighter-rouge">MISC</code> column in the optional <code class="language-plaintext highlighter-rouge">LId</code> attribute
 (<code class="language-plaintext highlighter-rouge">LId=can-1</code>).</p>
+
+<h3 id="lemmas-of-misspelled-words">Lemmas of misspelled words</h3>
+
+<p><em>Details at: <a href="typos.html">Typos and Other Errors</a></em></p>
+
+<p>In addition to normalizing spelling in lemmas, treebanks are encouraged to adopt the optional morphological feature 
+<a href=""><code class="language-plaintext highlighter-rouge">Typo=Yes</code></a> for clear accidental misspellings of a word (e.g. <em>ltake</em> for <em>take</em> or <em>too</em> for <em>to</em>). 
+Typos of words in closed-class categories can be found in a corpus by inspecting word frequencies in each category.
+Treebank maintainers should take care not to use <code class="language-plaintext highlighter-rouge">Typo=Yes</code> for words that may reflect actual linguistic variation, 
+e.g., dialect, style, or nonnative grammar.</p>
+
+<p>On occasion, a typo or abbreviation will apply to an inflected word (e.g. <em>hadd</em> for <em>had</em>), and thus the lemma 
+should both normalize the spelling and remove the inflection.</p>
+
+<p>For incorrectly split words, the first segment should be treated as morphologically representing the entire word, 
+so it should have the lemma for the entire word, as described at <a href="typos.html">Typos and Other Errors</a>.</p>
 
 <h2 id="part-of-speech-tags">Part-of-Speech Tags</h2>
 
