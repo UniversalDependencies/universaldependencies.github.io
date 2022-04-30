@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Teko UD</title>
+    <title>Tupinambá UD</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
@@ -76,53 +76,409 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h1 id="ud-for-teko-">UD for Teko <span class="flagspan"><img class="flag" src="../../flags/svg/FR.svg" /></span></h1>
+        <h1 id="ud-for-tupinamba-">UD for Tupinamba <span class="flagspan"><img class="flag" src="../../flags/svg/BR.svg" /></span></h1>
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>Words are delimited by whitespace characters</li>
+  <li>According to typographical rules, many punctuation marks are attached to a neighboring word. They are given as separate tokens (words);</li>
+  <li>There are no adjectives in Tupinambá. Modification is made by composition, juxtaposing lexical roots, so when a lexical root is modified by another a new word appears as in <em>kuɲãporaŋ(a)</em> ‘beautiful woman’ (<em>kuɲã</em> ‘woman’ + <em>poraŋ-(a)</em> ‘beauty’). Such words are treated sometimes as <a href="https://universaldependencies.org/format.html#morphological-annotation">multiword tokens</a>, sometimes as a single word.</li>
+  <li>Some compound words from Portuguese are written as one word, e.g. <em>santaCruz</em> ‘holy cross’, <em>espíritoSanto</em> ‘holy spirit’.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<ul>
+  <li>Tupinambá uses 16 of the 17 universal POS categories. <code class="language-plaintext highlighter-rouge">ADJ</code> is not used since there is no separate class of adjectives.
+Stative-verbs and possessed nouns behave alike, in a way that is not possible to distinguish them morphologically
+(I am ugly / I have uglyness; ugly boy / boy with uglyness /(the) boy has uglyness). The fundamental distinction in Tupinambá is that between predicates and arguments (potentially referring expressions), reflected in the <code class="language-plaintext highlighter-rouge">NOUN</code>or <code class="language-plaintext highlighter-rouge">VERB</code> tags. Lexical roots in Tupinambá are predicates, which require function indicating morphology in order to function as arguments (Croft 2021)</li>
+</ul>
+
+<p>Mapping UPOS to XPOS Tupinambá</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">UPOS</th>
+      <th style="text-align: center">XPOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">ADV</td>
+      <td style="text-align: center">adv</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">INTJ</td>
+      <td style="text-align: center">intj</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">NOUN</td>
+      <td style="text-align: center">n</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">PROPN</td>
+      <td style="text-align: center">ppn</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">VERB</td>
+      <td style="text-align: center">v, vi, vt, vd</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ADP</td>
+      <td style="text-align: center">pp</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">AUX</td>
+      <td style="text-align: center">aux</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">CCONJ</td>
+      <td style="text-align: center">cc</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">DET</td>
+      <td style="text-align: center">det</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">NUM</td>
+      <td style="text-align: center">num</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">PART</td>
+      <td style="text-align: center">pcl</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">PRON</td>
+      <td style="text-align: center">pro</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">SCONJ</td>
+      <td style="text-align: center">sc</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">PUNCT</td>
+      <td style="text-align: center">punct</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">SYM</td>
+      <td style="text-align: center">sym</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">x</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="nominal-features">Nominal Features</h3>
+
+<ul>
+  <li>Tupinambá nouns are not marked for gender. Number is optionally marked by the lexical root <em>etá</em> `(be) many’.</li>
+</ul>
+
+<p><em>kunumĩ</em> ‘boy / boys’<br />
+<em>kunumĩ-etá</em> ‘boys’</p>
+
+<ul>
+  <li>Person indexes and pronouns are given below:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Person</th>
+      <th style="text-align: center">Possessor indexes</th>
+      <th style="text-align: center">Argument indexes</th>
+      <th style="text-align: center">Portmanteau indexes</th>
+      <th style="text-align: center">Switch-reference indexes</th>
+      <th style="text-align: center">Inependent pronouns</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1.SG</td>
+      <td style="text-align: center">ʃe=</td>
+      <td style="text-align: center">a-</td>
+      <td style="text-align: center">oro</td>
+      <td style="text-align: center">wi-</td>
+      <td style="text-align: center">iʃé</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2.SG</td>
+      <td style="text-align: center">ne=</td>
+      <td style="text-align: center">ere-</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">e-</td>
+      <td style="text-align: center">ené</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">o-</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">o-</td>
+      <td style="text-align: center">aʔe (demonstrative)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1.PL.IN</td>
+      <td style="text-align: center">jané=</td>
+      <td style="text-align: center">ja-</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">jeré-</td>
+      <td style="text-align: center">jané</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1.PL.EX</td>
+      <td style="text-align: center">oré=</td>
+      <td style="text-align: center">oro-</td>
+      <td style="text-align: center">opo</td>
+      <td style="text-align: center">oro-</td>
+      <td style="text-align: center">oré</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2.PL</td>
+      <td style="text-align: center">pe=</td>
+      <td style="text-align: center">pe-</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">peje´</td>
+      <td style="text-align: center">pe ʔẽ</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Possessor indexes, as the name suggests, only index possessors. They are marked not marked with PronType, but they are marked as <a href="https://universaldependencies.org/u/feat/Poss.html">Poss=Yes</a>. Argument indexes are used with verbal predicates, as also are the portmanteau indexes (see below). Switch-reference indexes are used in dependent clauses with subjects coreferential with the subjects of the main clauses.
+Person indexes distinguish <a href="https://universaldependencies.org/u/feat/Number.html">Number</a>(Singular or Plural). They also distinguish <a href="https://universaldependencies.org/u/feat/Clusivity.html">Clusivity</a> in the 1<sup>st</sup> person plural.</p>
+
+<ul>
+  <li>Nouns can take the following <a href="https://universaldependencies.org/u/feat/Case.html">Cases</a>: <code class="language-plaintext highlighter-rouge">Tra</code>, <code class="language-plaintext highlighter-rouge">Loc</code>, <code class="language-plaintext highlighter-rouge">Per</code>, <code class="language-plaintext highlighter-rouge">Dat</code>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Case</th>
+      <th style="text-align: center">Ending</th>
+      <th style="text-align: center">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><a href="https://universaldependencies.org/u/feat/Case.html#Tra">Translative</a></td>
+      <td style="text-align: center">-(r)amo</td>
+      <td style="text-align: center"><em>t-uβ-amo</em> ‘as his father’</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><a href="https://universaldependencies.org/u/feat/Case.html#Loc">Locative</a></td>
+      <td style="text-align: center">-pe</td>
+      <td style="text-align: center"><em>t-atá-pe</em> ‘in the fire’</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><a href="https://universaldependencies.org/u/feat/Case.html#Per">Perlative</a></td>
+      <td style="text-align: center">-βo</td>
+      <td style="text-align: center"><em>kaʔa-βo</em> ‘through the forest’</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><a href="https://universaldependencies.org/u/feat/Case.html#Dat">Dative</a></td>
+      <td style="text-align: center">-βe / -βo (with pronouns)</td>
+      <td style="text-align: center"><em>iʃé-βo, iʃéβe</em> ‘to me’</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>The relational markers <code class="language-plaintext highlighter-rouge">Rel</code>, which indicate contiguity or non-contiguity between a head and its dependent, take respectively the following features: <code class="language-plaintext highlighter-rouge">Rel=Cont</code> and <code class="language-plaintext highlighter-rouge">Rel=NCont</code>. A third type or relational, <code class="language-plaintext highlighter-rouge">Rel=HUM</code>, indicates that obligatorily possessed noun is given without reference to a possessor at the same time marking the possessor as human. The reflexive/correferential morpheme <em>o</em>. which is often referred to as ‘relational<sub>3</sub>’ is associated with the feature-value <code class="language-plaintext highlighter-rouge">Reflex=Yes</code>. Another relational <code class="language-plaintext highlighter-rouge">Rel=Hum</code>indicates that the possessor is human. These are shown below:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Rel</th>
+      <th style="text-align: center">Form(s)</th>
+      <th style="text-align: center">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Cont</td>
+      <td style="text-align: center">∅ ~ r</td>
+      <td style="text-align: center"><em>ʃe-∅-sɨ</em> ‘I have a mother’</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">NCont</td>
+      <td style="text-align: center">i ~ s ~ t</td>
+      <td style="text-align: center"><em>i-sɨ-∅</em> ‘his/her/its/their mother’</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Abs</td>
+      <td style="text-align: center">t ~ m</td>
+      <td style="text-align: center"><em>t-oʔo</em>  ‘his/her/their (human) flesh’</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Corf</td>
+      <td style="text-align: center">o</td>
+      <td style="text-align: center"><em>o-sɨ-∅</em> ‘his/her/its/their own mother’</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Nouns may also be reduplicated in both ways denoting: plurality, collectivity, superlativity, and other semantic nuances. Numerals may also be reduplicated in order to indicate distribution.</li>
+  <li>Nouns are also marked for tense.</li>
+  <li>As an omnipredicative language, lexical roots in Tupinambá are existential predicates. In order to function as arguments, the referential marker (a  ̴ ∅), is required (marked as <code class="language-plaintext highlighter-rouge">Case=Ref</code>) despite its function being nothing like that of nominal cases.</li>
+</ul>
+
+<h3 id="verbal-features">Verbal Features</h3>
+
+<ul>
+  <li>The lexical root in the <em>gerund</em> <a href="https://universaldependencies.org/u/feat/VerbForm.html">(VerbForm=Ger)</a> is marked as VERB even when combining with a relational.</li>
+  <li>Verbs are marked for <a href="https://github.com/UniversalDependencies/docs/blob/pages-source/_tpn/feat/Aspect.md">aspect</a>: <code class="language-plaintext highlighter-rouge">Compl</code> (completive), <code class="language-plaintext highlighter-rouge">Iter</code> (Iterative), <code class="language-plaintext highlighter-rouge">Suc</code> Successive.</li>
+  <li>Verbs are also marked for <a href="https://github.com/UniversalDependencies/docs/blob/pages-source/_tpn/feat/Mood.md">mood</a>: <code class="language-plaintext highlighter-rouge">Perm</code> (permissive) <code class="language-plaintext highlighter-rouge">Imp</code> (imperative).</li>
+  <li>Lexical roots may be <a href="https://github.com/UniversalDependencies/docs/blob/pages-source/_tpn/feat/Red.md">reduplicated</a> in two differentways: 
+monosylabic reduplication (<code class="language-plaintext highlighter-rouge">Red=Mo</code>), disylabic reduplication (<code class="language-plaintext highlighter-rouge">Red=Di</code>). The modify the aspect of the verb in different ways: disylabic reduplication indicate the repetition or duration of an action; monosylabic reduplication indicates iteration of the action.</li>
+</ul>
+
+<h3 id="nominalizers">Nominalizers</h3>
+
+<p>Tupinambá has many nominalizers with different functions. All but</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Nominalizer</th>
+      <th style="text-align: center">function</th>
+      <th style="text-align: center">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><em>(e)mi</em>-</td>
+      <td style="text-align: center">passive deverbalizer</td>
+      <td style="text-align: center"><em>t-emi-juka</em> ‘what is killed’.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-<em>βaʔe</em></td>
+      <td style="text-align: center">relativizer</td>
+      <td style="text-align: center"><em>o-juká-βaʔe</em> ‘the one who kills’.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-<em>pɨr</em></td>
+      <td style="text-align: center">passive deverbalizer</td>
+      <td style="text-align: center"><em>i-juká-pɨr</em> ‘the one who must be killed’</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-<em>sar</em></td>
+      <td style="text-align: center">agentive nominalizer</td>
+      <td style="text-align: center"><em>juká-sar-a</em> ‘the killer’.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-<em>saβ</em></td>
+      <td style="text-align: center">circunstantial nominalizer</td>
+      <td style="text-align: center"><em>juká-saβ-a</em> ‘occasion/place/mode/instrument of killing’</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-<em>βor</em></td>
+      <td style="text-align: center">habitual agent</td>
+      <td style="text-align: center"><em>juká-βor</em> ‘one who often kills’</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-<em>(a)βo</em></td>
+      <td style="text-align: center">gerund</td>
+      <td style="text-align: center"><em>juká-βo</em> ‘killing’</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-<em>i</em> ~ -<em>w</em></td>
+      <td style="text-align: center">nominalized with fronted focalized adverbials</td>
+      <td style="text-align: center">juká-w</td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
 
-<hr />
+<h3 id="syntax">Syntax</h3>
 
-<h3 id="features">Features</h3>
+<ul>
+  <li>As a head-marking language, core arguments, are indexed on the predicate, in the order SOV as in the example below:</li>
+</ul>
 
-<p>*</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aɲan
+a-ɲan
+1.SG-run
+'I ran/run'
+</code></pre></div></div>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osepjak 
+o-s-epjak
+3.SG(S)-3(O)-see
+He/she/it/they see her/him/it/them
+</code></pre></div></div>
 
-<hr />
+<ul>
+  <li>Nominal phrases (NPs) semantically related to the core-arguments can appear in any order in relation to the predicate (where the core arguments are indexed). This is exemplified below through the sentence <em>John sees Mary</em>:</li>
+</ul>
 
-<h2 id="syntax">Syntax</h2>
+<p><em>John<sub>i</sub> Mary<sub>j</sub> o<sub>i</sub>-s<sub>j</sub>-epjak</em></p>
 
-<p>*</p>
+<p><em>Mary<sub>j</sub> John<sub>i</sub> o<sub>i</sub>-s<sub>j</sub>-epjak</em></p>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<p><em>o<sub>i</sub>-s<sub>j</sub>-epjak John<sub>i</sub> Mary<sub>j</sub></em></p>
+
+<p><em>o<sub>i</sub>-s<sub>j</sub>-epjak Mary<sub>j</sub> John<sub>i</sub></em></p>
+
+<p><em>Mary<sub>j</sub> o<sub>i</sub>-s<sub>j</sub>-epjak John<sub>i</sub></em></p>
+
+<p><em>John<sub>i</sub> o<sub>i</sub>-s<sub>j</sub>-epjak Mary<sub>j</sub></em></p>
+
+<ul>
+  <li>
+    <p>The dependency linking the core arguments with the NPs semantically related to the core-arguments are <code class="language-plaintext highlighter-rouge">obl</code> (<a href="https://universaldependencies.org/u/dep/obl.html">oblique</a>).</p>
+  </li>
+  <li>The object of transitive verbs is always indexed by <code class="language-plaintext highlighter-rouge">Rel=Ncont</code>. Tupinambá has transitive verbs only when objects are third person. In the other cases a predicative possession is used. When the object is third person, the feature <a href="https://universaldependencies.org/u/feat/Person.html">Person</a> takes values combining both arguments (S and O): <code class="language-plaintext highlighter-rouge">Person=13</code>, <code class="language-plaintext highlighter-rouge">Person=23</code>, and <code class="language-plaintext highlighter-rouge">Person=33</code>.</li>
+  <li>Other combinations of person indexes occur in the case of 1 → 2. Two portmanteau pronouns are available: <em>oro</em>- 1 → 2.SG, and <em>opo</em>- 1 → 2.PL:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>orojuká 
+oro-juká
+1.2SG(O)-kill
+'I/We kill(ed) you'
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opojuká 
+opo-juká
+1.2PL(O)-kill
+'I/we kill(ed) you'
+</code></pre></div></div>
+
+<ul>
+  <li>What has been traditionally called circunstantial mood or indicative II in some Tupí-Guaraní languages referes to a nominalization accompanied by the fronting of an adverbial expression: adverbs, adverbial expressions, postpositional phrases (oblique topicalization). The nominalized form in this case is marked by the feature-value <a href="https://github.com/UniversalDependencies/docs/blob/pages-source/_tpn/feat/OblTop.md">OblTop=Yes</a>.</li>
+</ul>
+
+<h3 id="arguments-or-potentially-refering-expressions">Arguments (or potentially refering expressions)</h3>
+
+<p>Since all lexical roots in Tupinambá are predicates, their use as potentially refering expressions or arguments require aditional morphology. Compare both examples below:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nerub
+ne=r-ub
+2.SG=Cont-father
+'I have a father'
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>neruβa
+ne=r-ub-a
+2.SG=Cont-father-Ref
+'My father'
+</code></pre></div></div>
 
 <hr />
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/eme-comparison.html">N</a> Teko UD treebanks:</p>
+<p>There is 1 Tupinamba UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/eme_a/index.html">Teko-A</a></li>
-  <li><a href="../treebanks/eme_b/index.html">Teko-B</a></li>
+  <li><a href="https://github.com/UniversalDependencies/UD_Tupinamba-TuDeT">Tupinamba-A</a></li>
 </ul>
 
 <hr />
@@ -131,6 +487,7 @@ from the data in the latest release. Link to the respective <code class="languag
 and the treebank code in the file name.</p>
 
 <hr />
+
 
       </div>
 
