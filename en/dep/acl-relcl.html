@@ -76,12 +76,14 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>acl:relcl</code>: relative clause modifier</h2>
+        <h2><code>acl:relcl</code>: adnominal relative clause modifier</h2>
 
 <p>** UNDER REVISION **</p>
 
 <p>A relative clause (RC) is a clause modifying some head (typically a noun) that is understood to fulfill some grammatical role in the RC. 
 The head is said to be “extracted” from the RC.</p>
+
+<p>Most RCs are adnominal, hence the relation <code class="language-plaintext highlighter-rouge">acl:relcl</code>. Adverbial RCs attach as <a href="">advcl:relcl</a>, as discussed <a href="#adverbial-relative-clauses">below</a>.</p>
 
 <p>RCs are usually finite (<em>people who live in glass houses</em>), but may also be infinitival (<em>I found a house in which to live</em>, <em>I found a house (for my mother) to live in</em>). Gerund-participial and past-participial clauses (<em>people living in glass houses</em>, <em>students given high marks</em>) are never considered relative clauses.
 <!-- Infinitival RCs are discussed in CGEL pp. 1067-1068 --></p>
@@ -238,12 +240,19 @@ ccomp(think, boring)
   </li>
 </ul>
 
-<p>The specifying/ascriptive distinction does not affect the UD analysis: all RCs are analyzed with the <code class="language-plaintext highlighter-rouge">acl:relcl</code> relation, even if the antecedent is clausal:</p>
+<p>The specifying/ascriptive distinction does not affect the UD analysis.</p>
+
+<h2 id="adverbial-relative-clauses">Adverbial Relative Clauses</h2>
+
+<p>On occasion, a relative clause attaches not as a noun modifier but as a clause modifier, and therefore the appropriate relation is <a href="">advcl:relcl</a>.
+One such case is clausal anaphora, where the antecedent is a clause:</p>
 
 <pre><code class="language-sdparse">I tried to explain myself – which was a bad idea
-acl:relcl(tried, idea)
+advcl:relcl(tried, idea)
 nsubj(idea, which)
 </code></pre>
+
+<p>Another such case occurs in <em>it</em>-clefts: see <a href="#clefts">below</a>.</p>
 
 <h2 id="preposition-stranding">Preposition Stranding</h2>
 
@@ -517,9 +526,7 @@ cop(worthy, be)
 
 <h2 id="clefts">Clefts</h2>
 
-<p>The free relative analysis is also extended to cleft constructions.</p>
-
-<p>☞ TODO: potential problem—”that” cannot normally head free relatives, but it can appear in clefts: “It is [the marrying off of young girls to older men often close relatives] that enfurates me.”</p>
+<p>A free relative can be used within a copular construction to background some material relative to a foregrounded element. <em>John</em> is foregrounded in the following two variants of the <strong>pseudocleft construction</strong>:</p>
 
 <pre><code class="language-sdparse">-ROOT- John is who we want to help .
 root(-ROOT-, who)
@@ -528,22 +535,52 @@ acl:relcl(who, want)
 cop(who, is)
 </code></pre>
 
-<pre><code class="language-sdparse">-ROOT- It 's John who we want to help .
-expl(who, It)
+<pre><code class="language-sdparse">-ROOT- Who we want to help is John.
 root(-ROOT-, who)
 nsubj(who, John)
 acl:relcl(who, want)
-cop(who, 's)
+cop(who, is)
 </code></pre>
 
-<pre><code class="language-sdparse">-ROOT- What the committee hopes to learn is why all these events transpired .
+<p>The following shows the pseudocleft construction combined with an interrogative clause:</p>
+
+<pre><code class="language-sdparse">-ROOT- What the committee asked is whether the plan worked .
 nsubj(why, What)
-acl:relcl(What, hopes)
-cop(why, is)
-acl:relcl(why, transpired)
-nsubj(transpired, events)
-root(-ROOT-, why)
+acl:relcl(What, asked)
+cop(worked, is)
+mark(worked, whether)
+nsubj(worked, plan)
+root(-ROOT-, worked)
 </code></pre>
+
+<p>☞ TODO: nesting of copular clauses: What the committee asked is whether the plan is viable.</p>
+
+<!--
+~~~sdparse
+-ROOT- What the committee asked is why all these events transpired .
+nsubj(why, What)
+acl:relcl(What, asked)
+cop(transpired, is)
+advmod(transpired, why)
+nsubj(transpired, events)
+root(-ROOT-, transpired)
+~~~
+-->
+
+<p>The <strong><em>it</em>-cleft construction</strong> serves a similar purpose—foregrounding one element (with expletive <em>it</em> plus copula). 
+The remainder of the sentence is a standard (not free) relative clause that elaborates on the copular predication. 
+CGEL (p. 416) describes it as a relative clause functioning as a dependent of the main clause (versus the canonical function of a relative clause as dependent within a nominal phrase). 
+In UD terms, the relative clause is <em>adverbial</em>; we therefore use <code class="language-plaintext highlighter-rouge">advcl:relcl</code>:</p>
+
+<pre><code class="language-sdparse">-ROOT- It 's John who we want to help .
+expl(who, It)
+cop(John, 's)
+root(-ROOT-, John)
+advcl:relcl(John, want)
+
+</code></pre>
+
+<p>(Previous versions of the guidelines treated <em>who we want to help</em> in the <em>it</em>-cleft as a free relative. But note that the above can be paraphrased as <em>It’s John <strong>that</strong> we want to help</em> or even <em>It’s John we want to help</em>, whereas free relatives require a WH-word to serve as the head.)</p>
 
 <h2 id="no-matter-and-similar"><em>No matter</em> and similar</h2>
 
