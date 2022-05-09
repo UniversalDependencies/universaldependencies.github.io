@@ -98,8 +98,8 @@ nsubj(California, Bill)
 </code></pre>
 
 <p>When an adjective or adverb is being predicated of a nominal phrase, the
-adjective/adverb is the root, the nominal phrase is the nsubj, and the
-copula is the cop.</p>
+adjective/adverb is the <a href="">root</a>, the nominal phrase is the <a href="">nsubj</a>, and the
+copula is the <code class="language-plaintext highlighter-rouge">cop</code>.</p>
 
 <pre><code class="language-sdparse">Bill is honest
 nsubj(honest, Bill)
@@ -111,7 +111,7 @@ nsubj(yesterday, It)
 cop(yesterday, was)
 </code></pre>
 
-<p>Prepositions may also project a cop dependent.</p>
+<p>Prepositions may also project a <code class="language-plaintext highlighter-rouge">cop</code> dependent.</p>
 
 <pre><code class="language-sdparse">The light is on
 cop(on, is)
@@ -119,44 +119,35 @@ nsubj(on, light)
 det(light, The)
 </code></pre>
 
-<p>In predicative wh-constructions, the fronted wh-word is the head, and the copula is
-another cop.</p>
+<p>In predicative wh-constructions, the fronted wh-word is the head, and the copula follows.</p>
 
 <pre><code class="language-sdparse">What is that ?
 cop(What, is)
 nsubj(What, that)
 </code></pre>
 
-<p>However, whenever the copula has a clausal argument/adjunct, the copula becomes the root, so the cop relation is not used.</p>
+<p>The <code class="language-plaintext highlighter-rouge">cop</code> may mark a <a href="/u/overview/complex-syntax.html#predicate-clauses">predicate clause</a>, i.e., a full clause serving as the predicate within an outer copular clause. 
+In such cases, <a href="">nsubj:outer</a> or <a href="">csubj:outer</a> can be used to distinguish the outer subject:</p>
 
-<pre><code class="language-sdparse">It was because Bill is honest
-nsubj(was, It)
-mark(honest, because)
-ccomp(was, honest)
-nsubj(honest, Bill)
-cop(honest, is)
+<pre><code class="language-sdparse">-ROOT- The problem is that this has never been tried .
+nsubj:outer(tried, problem)
+cop(tried, is)
+mark(tried, that)
+nsubj:pass(tried, this)
+aux(tried, has)
+advmod(tried, never)
+aux:pass(tried, been)
+root(-ROOT-, tried)
 </code></pre>
 
-<pre><code class="language-sdparse">My question is : was that really true ?
-nsubj(is, question)
-ccomp(is, true)
-cop(true, was)
-nsubj(true, that)
-advmod(true, really)
+<pre><code class="language-sdparse">The important thing is to keep calm .
+nsubj:outer(keep, thing)
+cop(keep, is)
+mark(keep, to)
+xcomp(keep, calm)
 </code></pre>
 
-<pre><code class="language-sdparse">This is to inform you of our decision
-nsubj(is, This)
-advcl(is, inform)
-aux(inform, to)
-dobj(inform, you)
-nmod(inform, decision)
-case(decision, of)
-poss(decision, our)
-</code></pre>
-
-<p>Predicative “be” is the only verb recognized as a copula; other copula-like verbs,such as “become”, “get”, and “seem”, are treated as regular raising verbs, and thus take xcomp arguments. Non-predicative uses of “be”–e.g., “be” when used in periphrastic verbal constructions, presentationals, or existentials–is annotated as an aux instead.
-of a cop.</p>
+<p>Predicative “be” is the only verb recognized as a copula; other copula-like verbs, such as “become”, “get”, and “seem”, are treated as regular raising verbs, and thus take <a href="">xcomp</a> arguments. In its non-predicative uses—e.g., when used in periphrastic verbal constructions, presentationals, or existentials—”be” is attached with <a href="">aux</a> or <a href="">aux:pass</a>, or is considered the root of the clause.</p>
 
 <pre><code class="language-sdparse">Bill got rich
 nsubj(got, Bill)
@@ -166,6 +157,11 @@ xcomp(got, rich)
 <pre><code class="language-sdparse">Bill is speaking
 nsubj(speaking, Bill)
 aux(speaking, is)
+</code></pre>
+
+<pre><code class="language-sdparse">I was given a horse
+nsubj:pass(given, I)
+aux:pass(given, was)
 </code></pre>
 
 <pre><code class="language-sdparse">Here are some bags

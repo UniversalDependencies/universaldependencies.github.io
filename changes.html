@@ -106,6 +106,13 @@ But some updates have been necessary to clarify how they should be applied to pa
   </thead>
   <tbody>
     <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">2022-May</td>
+      <td style="text-align: center">2.10</td>
+      <td>AMENDMENT, VALIDATOR</td>
+      <td><a href="#multiple-subjects">Multiple Subjects</a></td>
+    </tr>
+    <tr>
       <td style="text-align: center">4</td>
       <td style="text-align: center">2022-May</td>
       <td style="text-align: center">2.10</td>
@@ -135,6 +142,27 @@ But some updates have been necessary to clarify how they should be applied to pa
     </tr>
   </tbody>
 </table>
+
+<h3 id="multiple-subjects">Multiple Subjects</h3>
+
+<p>In general, UD prohibits multiple subjects (i.e. a word may have at most one <a href="">nsubj</a> or <a href="">csubj</a> dependent), 
+and enforcing this in validation is a useful way to catch errors.
+However, a clause may serve as the predicate in a copular construction (e.g. <em>The problem is that we already paid</em>), posing a problem for this constraint.
+Until now, the guidelines carved out an exception for such cases: the copula of the outer clause
+would be promoted to head its subject and the predicate of the inner clause would attach to it as <a href="">ccomp</a> (as explained in <a href="/docsv1/u/dep/ccomp.html">v1 guidelines</a>).
+But this yielded an odd interpretation of some copulas as transitive and offered no solution for zero copula constructions.
+A <a href="https://github.com/UniversalDependencies/docs/pull/868">change</a> was necessary.</p>
+
+<p>The <a href="/u/overview/complex-syntax.html#predicate-clauses">new policy</a>—a product of extensive deliberation—is that the predicate of the inner clause can have multiple subject dependents. 
+The subject(s) of the non-innermost clause(s) can be subtyped with <code class="language-plaintext highlighter-rouge">:outer</code> to signify nesting: <a href="">nsubj:outer</a>, <a href="">csubj:outer</a>. 
+The <code class="language-plaintext highlighter-rouge">:outer</code> subtype, like all subtypes, is (at least for now) technically optional.
+Therefore, as an alternative, the validator will allow a treebank’s maintainers to manually verify that 
+any instances of multiple subjects are correct.</p>
+
+<p>Note that using <code class="language-plaintext highlighter-rouge">:outer</code> just for subjects does not fully disambiguate the compositional structure: 
+for example, <a href="">cop</a>, <a href="">aux</a>, <a href="">mark</a>, <a href="">advmod</a>, and <a href="">obl</a> dependents of the predicate may belong to either the inner or outer clause. 
+In order to avoid a proliferation of subtyped relations, the trees in the new guidelines do not apply the <code class="language-plaintext highlighter-rouge">:outer</code> label to anything other than subjects.
+Treebanks are, of course, welcome to innovate in their use of subtypes and/or MISC features.</p>
 
 <h3 id="optional-depictives">Optional Depictives</h3>
 

@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>English Dependency Relations</title>
+    <title>nsubj:outer</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-en">home</a></span>
 
-
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_en/dep/nsubj-outer.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,224 +76,82 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h1 id="english-dependency-relations">English Dependency Relations</h1>
+        <h2><code>nsubj:outer</code>: outer clause nominal subject</h2>
 
-<p>The following table lists the 37 universal syntactic relations used in UD v2, but links to English-specific documentation
-(if available).</p>
+<p>This relation specifies a nominal subject of a copular clause whose predicate is itself a clause, 
+to signal that it is not the subject of the nested clause.
+See discussion of <a href="/u/overview/complex-clauses.html#predicate-clauses">Predicate Clauses</a>.</p>
 
-<p><i>Note:</i> The universal relation [clf](/u/dep/clf.html) is not used in English.</p>
+<pre><code class="language-sdparse">-ROOT- The problem is that this has never been tried .
+nsubj:outer(tried, problem)
+cop(tried, is)
+mark(tried, that)
+nsubj:pass(tried, this)
+aux(tried, has)
+advmod(tried, never)
+aux:pass(tried, been)
+root(-ROOT-, tried)
+</code></pre>
 
-<table class="typeindex">
-  <tr>
-    <td>
+<pre><code class="language-sdparse">The title is Some Like It Hot .
+nsubj:outer(Like, title)
+cop(Like, is)
+nsubj(Like, Some)
+obj(Like, It)
+xcomp(Like, Hot)
+</code></pre>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Core dependents of clausal predicates</strong></td></tr>
-	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Predicate dep</i></td>
-	</tr>
-	<tr>
-	  <td><a>nsubj</a></td>
-	  <td><a>csubj</a></td>
-	</tr>
-	<tr>
-	  <td>↳<a>nsubj:pass</a></td>
-	  <td>↳<a>csubj:pass</a></td>
-	</tr>
-	<tr>
-	  <td>↳<a>nsubj:outer</a></td>
-	  <td>↳<a>csubj:outer</a></td>
-	</tr>
-	<tr>
-	  <td><a>obj</a></td>
-	  <td><a>ccomp</a></td>
-	  <td><a>xcomp</a></td>
-	</tr>
-	<tr>
-	  <td><a>iobj</a></td>
-	</tr>
-      </table>
+<pre><code class="language-sdparse">It was because Bill is honest
+nsubj:outer(honest, It)
+mark(honest, because)
+cop(honest, was)
+nsubj(honest, Bill)
+cop(honest, is)
+</code></pre>
 
-    </td>
-    <td>
+<pre><code class="language-sdparse">My question is : was that really true ?
+nsubj:outer(true, question)
+cop(true, is)
+cop(true, was)
+nsubj(true, that)
+advmod(true, really)
+</code></pre>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Non-core dependents of clausal predicates</strong></td></tr>
-	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Predicate dep</i></td>
-	  <td><i>Modifier word</i></td>
-	</tr>
-	<tr>
-	  <td><a>obl</a></td>
-	  <td><a>advcl</a></td>
-	  <td><a>advmod</a></td>
-	</tr>
-	<tr>
-	  <td>↳<a>obl:npmod</a></td>
-	</tr>
-	<tr>
-	  <td>↳<a>obl:tmod</a></td>
-	</tr>
-      </table>
+<p>There may be an outer subject with no inner subject:</p>
 
-    </td>
-    <td>
+<pre><code class="language-sdparse">The important thing is to keep calm .
+nsubj:outer(keep, thing)
+cop(keep, is)
+mark(keep, to)
+xcomp(keep, calm)
+</code></pre>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Special clausal dependents</strong></td></tr>
-	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Auxiliary</i></td>
-	  <td><i>Other</i></td>
-	</tr>
-	<tr>
-	  <td><a>vocative</a></td>
-	  <td><a>aux</a></td>
-	  <td><a>mark</a></td>
-	</tr>
-	<tr>
-	  <td><a>discourse</a></td>
-	  <td>↳<a>aux:pass</a></td>
-	  <td><a>punct</a></td>
-	</tr>
-	<tr>
-	  <td><a>expl</a></td>
-	  <td><a>cop</a></td>
-	</tr>
-      </table>
+<pre><code class="language-sdparse">This is to inform you of our decision
+nsubj:outer(inform, This)
+cop(inform, is)
+mark(inform, to)
+obj(inform, you)
+obl(inform, decision)
+case(decision, of)
+nmod:poss(decision, our)
+</code></pre>
 
-    </td>
-  </tr>
-  <tr>
-    <td>
+<p>The clausal counterpart of this relation is <a href="">csubj:outer</a>.</p>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Noun dependents</strong></td></tr>
-	<tr>
-	  <td><i>Nominal dep</i></td>
-	  <td><i>Predicate dep</i></td>
-	  <td><i>Modifier word</i></td>
-	</tr>
-	<tr>
-	  <td><a>nummod</a></td>
-	  <td><a>acl</a></td>
-	  <td><a>amod</a></td>
-	</tr>
-	<tr>
-	  <td>&nbsp;</td>
-	  <td>↳<a>acl:relcl</a></td>
-	</tr>	
-	<tr>
-	  <td><a>appos</a></td>
-	  <td>&nbsp;</td>
-	  <td><a>det</a></td>
-	</tr>
-	<tr>
-	  <td>&nbsp;</td>
-	  <td>&nbsp;</td>
-	  <td>↳<a>det:predet</a></td>
-	</tr>	
-	<tr>
-	  <td><a>nmod</a></td>
-	  <td>&nbsp;</td>
-	  <td>&nbsp;</td>
-	</tr>
-	<tr>
-	  <td>↳<a>nmod:npmod</a></td>
-	</tr>
-	<tr>
-	  <td>↳<a>nmod:tmod</a></td>
-	</tr>
-	<tr>
-	  <td>↳<a>nmod:poss</a></td>
-	</tr>
-      </table>
+<p>The <code class="language-plaintext highlighter-rouge">:outer</code> subtype is <em>not</em> intended for most nominal subjects of copular clauses—only those where the predicate is itself a clause. 
+Plain <a href="">nsubj</a> (or another subtype) will be appropriate if the copular clause predicate is a nominal, adjective, etc.:</p>
 
-    </td>
-    <td>
+<pre><code class="language-sdparse">That book is very good .
+nsubj(good, book)
+</code></pre>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Compounding and unanalyzed</strong></td></tr>
-	<tr>
-	  <td><a>compound</a></td>
-	  <td><a>flat</a></td>
-	</tr>
-	<tr>
-	  <td>↳<a>compound:prt</a></td>
-	  <td>↳<a>flat:foreign</a></td>
-	</tr>
-	<tr>
-	  <td><a>fixed</a></td>
-	  <td><a>goeswith</a></td>
-	</tr>
-      </table>
+<pre><code class="language-sdparse">The title is Green Eggs and Ham .
+nsubj(Eggs, title)
+</code></pre>
 
-    </td>
-    <td>
 
-      <table class="category">
-	<tr><td colspan="3"><strong>Coordination</strong></td></tr>
-	<tr>
-	  <td><a>conj</a></td>
-	  <td><a>cc</a></td>
-	  <td><a>punct</a></td>
-	</tr>
-	<tr>
-	  <td>&nbsp;</td>
-	  <td>↳<a>cc:preconj</a></td>
-	</tr>
-      </table>
-
-    </td>
-  </tr>
-  <tr>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Case-marking, prepositions, possessive</strong></td></tr>
-	<tr>
-	  <td><a>case</a></td>
-	</tr>
-      </table>
-
-    </td>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Loose joining relations</strong></td></tr>
-	<tr>
-	  <td><a>list</a></td>
-	  <td><a>parataxis</a></td>
-	  <td><a>orphan</a></td>
-	</tr>
-	<tr>
-	  <td><a>dislocated</a></td>
-	  <td></td><td><a>reparandum</a></td>
-	</tr>
-      </table>
-
-    </td>
-    <td>
-
-      <table class="category">
-	<tr><td colspan="3"><strong>Other</strong></td></tr>
-	<tr>
-	  <td><i>Sentence head</i></td>
-	  <td><i>Punctuation</i></td>
-	  <td><i>Unspecified dependency</i></td>
-	</tr>
-	<tr>
-	  <td><a>root</a></td>
-	  <td><a>punct</a></td>
-	  <td><a>dep</a></td>
-	</tr>
-      </table>
-
-    </td>
-  </tr>
-</table>
+<!-- "in other languages" links -->
+<hr/>
 
 
       </div>
