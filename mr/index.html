@@ -85,6 +85,11 @@
   <li>According to typographical rules, some punctuation marks (e.g., comma) are attached to a neighboring word,
 while others (e.g., the sentence-terminating danda) are not.
 We tokenize punctuation as separate tokens (words).</li>
+  <li>Certain suffixes are treated as encliticized postpositions and segmented as separate syntactic words in the tree structure.
+The most prominent type is the possessive morpheme चा / ची / चे / च्या <em>cā / cī / ce / cyā</em>.
+Treating it as a separate word makes it easier to annotate <a href="">Gender</a> and <a href="">Number</a>, which agrees with the possessed entity and is independent of the host word (the possessor).
+It also increases parallelism with other related languages such as Hindi, where the corresponding morpheme is written as an independent orthographic word.
+Also note that a third syntactic word is sometimes attached to the right.</li>
 </ul>
 
 <h2 id="morphology">Morphology</h2>
@@ -93,10 +98,11 @@ We tokenize punctuation as separate tokens (words).</li>
 
 <ul>
   <li>Marathi uses all 17 universal POS categories, including particles (<a href="">PART</a>).
-(But <a href="">SYM</a> and <a href="">X</a> do not occur in the current data.)</li>
+(But <a href="">SYM</a> does not occur in the current data.)</li>
   <li>Marathi has the following auxiliary verbs (<a href="">AUX</a>):
     <ul>
-      <li>असणे <em>asaṇe</em> (“to be”) is used as copula and in periphrastic tenses. The form नाही is treated as a negative form of असणे (they share the lemma).</li>
+      <li>असणे <em>asaṇe</em> (“to be”) is used as copula and in periphrastic tenses. The forms of नाही are treated as negative forms of असणे (they share the lemma).</li>
+      <li>नको <em>nako</em> (“don’t”) is used to create negative imperative (prohibitive).</li>
       <li>येणे <em>yeṇe</em> (“to come”) for the passive (with a non-finite form of the main verb).</li>
       <li>जाणे <em>jāṇe</em> (“to go”) for the passive (with a non-finite form of the main verb).</li>
       <li>Modal auxiliaries:
@@ -114,41 +120,119 @@ Instead the lexically more salient verb is attached as an <a href="">xcomp</a> o
       </li>
     </ul>
   </li>
+  <li>There are five main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>. Two distinct forms are both annotated as infinitive and further distinguished by the language-specific feature <code class="language-plaintext highlighter-rouge">InfForm</code>:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">Dict</code> -णॆ, -आत <em>-ṇe, -āta</em> (the citation/dictionary form is <em>-ṇe</em>)</li>
+          <li><code class="language-plaintext highlighter-rouge">Incp</code> -ऊ <em>-ū</em></li>
+        </ul>
+      </li>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Supine <code class="language-plaintext highlighter-rouge">Sup</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Participle <code class="language-plaintext highlighter-rouge">Part</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Converb <code class="language-plaintext highlighter-rouge">Conv</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+    </ul>
+  </li>
 </ul>
 
-<h3 id="features">Features</h3>
+<h3 id="nominal-features">Nominal Features</h3>
 
-<p>*</p>
+<ul>
+  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with one of three values: <code class="language-plaintext highlighter-rouge">Masc</code>, <code class="language-plaintext highlighter-rouge">Fem</code> or <code class="language-plaintext highlighter-rouge">Neut</code>.
+    <ul>
+      <li>The following parts of speech inflect for <code class="language-plaintext highlighter-rouge">Gender</code> and <code class="language-plaintext highlighter-rouge">Animacy</code> because they must agree with nouns: <a href="">ADJ</a>, <a href="">DET</a>,
+<a href="">VERB</a>, <a href="">AUX</a>.</li>
+    </ul>
+  </li>
+  <li>The two main values of the <a href="">Number</a> feature are <code class="language-plaintext highlighter-rouge">Sing</code> and <code class="language-plaintext highlighter-rouge">Plur</code>. The following parts of speech inflect for number:
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a>, marginally <a href="">ADP</a>.</li>
+  <li><a href="">Case</a> has 10 possible values: <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Acc</code>, <code class="language-plaintext highlighter-rouge">Ins</code>, <code class="language-plaintext highlighter-rouge">Dat</code>, <code class="language-plaintext highlighter-rouge">Abl</code>, <code class="language-plaintext highlighter-rouge">Loc</code>, <code class="language-plaintext highlighter-rouge">Voc</code>, <code class="language-plaintext highlighter-rouge">Com</code>, <code class="language-plaintext highlighter-rouge">Erg</code>, <code class="language-plaintext highlighter-rouge">Abs</code>.
+The first seven values (nominative to vocative) correspond to cases traditionally distinguished and ordered this way in the grammar of Sanskrit and its descendant languages.
+Only the “sixth case” (possessive/genitive) is missing because its morpheme is treated as a separate syntactic word (postposition).
+On the other hand some additional morphological cases are distinguished: the comitative (suffix -शी <em>-śī</em>) and the ergative (suffix -ने <em>-ne</em>).
+Finally, the label <code class="language-plaintext highlighter-rouge">Abs</code> is used for the bare stem that occurs in multiword tokens after cutting off the possessive postposition.
+The <code class="language-plaintext highlighter-rouge">Case</code> feature occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>, also with nominally used <a href="">VERB</a>.</li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<h3 id="verbal-features">Verbal Features</h3>
 
-<hr />
+<ul>
+  <li>Finite verbs always have one of four values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Sub</code>, or <code class="language-plaintext highlighter-rouge">Des</code>.</li>
+  <li>Verbs in the indicative mood always have one of three values of <a href="">Tense</a>: <code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Pres</code> or <code class="language-plaintext highlighter-rouge">Fut</code>.</li>
+  <li><a href="">Aspect</a> has four possible values: <code class="language-plaintext highlighter-rouge">Hab</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Perf</code>, <code class="language-plaintext highlighter-rouge">Prosp</code>.</li>
+  <li><a href="">Voice</a> only occurs with morphological causatives: <code class="language-plaintext highlighter-rouge">Cau</code>.</li>
+  <li><a href="">Polarity</a> has two values, <code class="language-plaintext highlighter-rouge">Pos</code> and <code class="language-plaintext highlighter-rouge">Neg</code>, and applies only to the auxiliaries (<a href="">AUX</a>) असणे <em>asaṇe</em> (“to be”) (both positive and negative forms)
+and नको <em>nako</em> (“don’t”) (only negative forms).</li>
+</ul>
+
+<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>) and adjectives (<a href="">ADJ</a>).</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">3</code>.
+Note however, that the third person pronouns overlap with demonstratives.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
+  <li><a href="">Clusivity</a> distinguishes inclusive and exclusive 1st person plural pronouns.</li>
+  <li><a href="">Deixis</a> distinguishes proximate and remote demonstratives.</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="dep/index.html">Marathi relations</a>.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
-<hr />
+<ul>
+  <li>Like in other Indo-Aryan languages, Marathi shows split ergativity. In present tense, the nominal subject (<a href="">nsubj</a>)
+is a bare noun phrase in the nominative case, without preposition, and the verb cross-references its person and number.
+However, for transitive verbs in the past tense, the subject (actor) is in the ergative case, and the verb cross-references
+the person and number of the object, which is in the nominative form.
+    <ul>
+      <li>For some experiencing predicates, dative noun phrases may be marked as non-canonical subjects.</li>
+      <li>A subordinate clause may serve as the subject and is labeled <code class="language-plaintext highlighter-rouge">csubj</code>.</li>
+    </ul>
+  </li>
+  <li>Direct objects are bare noun phrases in accusative or nominative.</li>
+  <li>Indirect objects are bare noun phrases in dative.</li>
+  <li>In passive clauses, the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.
+    <ul>
+      <li>The auxiliary verb in periphrastic passive is labeled <a href="">aux:pass</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Marathi:
+    <ul>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
+      <li><a href="">aux:pass</a> for passive auxiliaries</li>
+      <li><a href="">cop:own</a> for copulas in possessive-existential clauses</li>
+      <li><a href="">acl:relcl</a> for relative clauses</li>
+      <li><a href="">compound:lvc</a> for light verb constructions</li>
+      <li><a href="">compound:svc</a> for serial verb constructions</li>
+      <li><a href="">compound:redup</a> for reduplications</li>
+      <li><a href="">nmod:poss</a> for possessive/genitive modifiers</li>
+    </ul>
+  </li>
+  <li>The following relation types are not used in Marathi at all:
+<a href="">expl</a>, <a href="">clf</a></li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is <a href="../treebanks/mr-comparison.html">1</a> Marathi UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/mr_ufal/index.html">Marathi-UFAL</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
