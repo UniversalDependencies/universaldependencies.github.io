@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-mr">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_mr/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_mr/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -80,23 +80,41 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>In general, words are delimited by whitespace characters. Description of exceptions follows.</li>
+  <li>According to typographical rules, some punctuation marks (e.g., comma) are attached to a neighboring word,
+while others (e.g., the sentence-terminating danda) are not.
+We tokenize punctuation as separate tokens (words).</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Marathi uses all 17 universal POS categories, including particles (<a href="">PART</a>).
+(But <a href="">SYM</a> and <a href="">X</a> do not occur in the current data.)</li>
+  <li>Marathi has the following auxiliary verbs (<a href="">AUX</a>):
+    <ul>
+      <li>असणे <em>asaṇe</em> (“to be”) is used as copula and in periphrastic tenses. The form नाही is treated as a negative form of असणे (they share the lemma).</li>
+      <li>येणे <em>yeṇe</em> (“to come”) for the passive (with a non-finite form of the main verb).</li>
+      <li>जाणे <em>jāṇe</em> (“to go”) for the passive (with a non-finite form of the main verb).</li>
+      <li>Modal auxiliaries:
+        <ul>
+          <li>शकणे <em>śakaṇe</em> (“be able, can”)</li>
+          <li>पाहिजे <em>pāhije</em> (“needed, should, ought to”)</li>
+        </ul>
+      </li>
+      <li>There are other verbs that are semantically weak and combine with non-finite forms of other verbs but they should not be analyzed as auxiliaries in UD.
+Instead the lexically more salient verb is attached as an <a href="">xcomp</a> of the less salient verb. Phase verbs, such as to begin/end, are an example:
+        <ul>
+          <li>लागणे <em>lāgaṇe</em> (“to start”) combines with a non-finite form of the lexical verb; this should be analyzed as a control verb construction (<a href="">xcomp</a>) rather than an auxiliary</li>
+          <li>देणे <em>deṇe</em> (“to give”) combines with a non-finite form of the lexical verb; has the meaning of “let it (be)”; should be analyzed as a control verb construction (<a href="">xcomp</a>) rather than an auxiliary</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="features">Features</h3>
 
