@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-th">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_th/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_th/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -80,23 +80,20 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>The Thai writing system does not have the concept of orthographic words. Longer text segments are occasionally
+separated by whitespace but most words are not delimited this way. Therefore, in the annotation, <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code>
+is used even between letters. Multiword tokens are not used.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>The Thai treebank currently uses only 15 of the 17 universal POS categories, including particles (<a href="">PART</a>).
+There are no interjections and unknown words.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
@@ -109,28 +106,60 @@
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a bare noun phrase (without adposition).
+    <ul>
+      <li>A subordinate clause may serve as the subject and is labeled <a href="">csubj</a>.</li>
+    </ul>
+  </li>
+  <li>Direct object (<a href="">obj</a>) is a bare noun phrase.
+    <ul>
+      <li>Nominal objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
+    </ul>
+  </li>
+</ul>
 
-<hr />
+<h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
+
+<ul>
+  <li>The default copula is เป็น <em>pĕn</em> “is”.
+At present the annotation uses the <a href="">cop</a> relation for several other word types, which act as pseudo-copulas.
+Examples include ใช่ <em>chì</em> “yes”, ชื่อ <em>chụ̄̀x</em> “name”, คล้าย <em>khl̂āy</em> “resemble”. These should be re-analyzed as heads
+and use the <a href="">xcomp</a> relation to connect the secondary predicate.</li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Thai:
+    <ul>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
+      <li><a href="">aux:pass</a> for passive auxiliaries</li>
+      <li><a href="">acl:relcl</a> for relative clauses</li>
+      <li><a href="">compound:prt</a> for verbal particles</li>
+      <li><a href="">nmod:poss</a> for possessive/genitive modifiers</li>
+      <li><a href="">obl:poss</a> for possessive modifiers when the parent is a verb (nominalized, but still tagged <a href="">VERB</a>)</li>
+      <li><a href="">obl:tmod</a> for temporal modifiers (a nominal modifies a clause)</li>
+      <li><a href="">flat:name</a> to connect parts of a personal name</li>
+      <li><a href="">cc:preconj</a> for the first part of a multi-word coordinating conjunction <em>(both)</em></li>
+    </ul>
+  </li>
+  <li>The following main types are not used alone and must be subtyped:
+<a href="">flat</a></li>
+  <li>The following relation types are not used in Thai at all:
+<a href="">expl</a>, <a href="">orphan</a></li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is 1 Thai UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/th_pud/index.html">Thai-PUD</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
