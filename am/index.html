@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-am">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_am/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_am/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -81,63 +81,103 @@
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
+  <li>In general, surface tokens (orthographic words) are separated by whitespace. Even sentence-terminating punctuation is separated from the last word.</li>
+  <li>Many surface tokens are treated as consisting of multiple syntactic words (multiword tokens).</li>
   <li>The ATT treebank segments subject agreement morphemes from verbs as independent “syntactic words”, although they are not clitics (their position is fixed with respect to the verb stem, they cannot attach to other words, and they are present even when an overt nominal subject occurs in the sentence, hence they are bound agreement morphemes rather than pronoun clitics).</li>
   <li>In contrast, object pronouns are clitics. They are also segmented off the verb.</li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
 <ul>
+  <li>Amharic uses 15 of the 17 universal POS categories, including particles (<a href="">PART</a>).
+The <a href="">SYM</a> and <a href="">X</a> categories do not occur in the present data.</li>
   <li>TODO: Auxiliaries.</li>
+  <li>There are three main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>, tagged <a href="">VERB</a>.</li>
+      <li>Converb <code class="language-plaintext highlighter-rouge">Conv</code>, tagged <a href="">VERB</a>.</li>
+      <li>Verbal noun <code class="language-plaintext highlighter-rouge">Vnoun</code>, tagged <a href="">VERB</a> or <a href="">NOUN</a>.</li>
+    </ul>
+  </li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
-
-<h3 id="features">Features</h3>
+<h3 id="nominal-features">Nominal Features</h3>
 
 <ul>
   <li>The Amharic UD annotation uses language-specific values for <a href="">Case</a> and <a href="">Voice</a>.</li>
+  <li>The three values of the <a href="">Number</a> feature are <code class="language-plaintext highlighter-rouge">Sing</code>, <code class="language-plaintext highlighter-rouge">Dual</code>, and <code class="language-plaintext highlighter-rouge">Plur</code>. For <a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">ADJ</a>, only the <code class="language-plaintext highlighter-rouge">Plur</code> value is used
+if the plural suffix is present; the singular is unmarked and unannotated. Pronouns (<a href="">PRON</a>) have all three values.</li>
+  <li><a href="">Case</a> has 5 possible values: <code class="language-plaintext highlighter-rouge">Ben</code>, <code class="language-plaintext highlighter-rouge">Mal</code>, <code class="language-plaintext highlighter-rouge">Loc</code>, <code class="language-plaintext highlighter-rouge">Abl</code>, <code class="language-plaintext highlighter-rouge">Ins</code>.
+It occurs as a lexical feature of adpositions (<a href="">ADP</a>).</li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<h3 id="verbal-features">Verbal Features</h3>
 
-<hr />
+<ul>
+  <li>Finite verbs always have one of two values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Ind</code> or <code class="language-plaintext highlighter-rouge">Jus</code>.</li>
+  <li>There are four values of the <a href="">Voice</a> feature: <code class="language-plaintext highlighter-rouge">Trans</code>, <code class="language-plaintext highlighter-rouge">Cau</code>, <code class="language-plaintext highlighter-rouge">Pass</code> and <code class="language-plaintext highlighter-rouge">Rcp</code>. The default active voice is not marked, such verbs omit the feature.
+Voice is treated as a lexical feature, that is, derived verbs with different voice have a different lemma.</li>
+</ul>
+
+<h3 id="personal-pronouns">Personal Pronouns</h3>
+
+<p>Independent forms <!-- page 462 of Grover Hudson. 1997. Amharic and Argobba. In: Robert Hetzron (ed.) The Semitic Languages. Routledge, London/New York, ISBN 978-0-415-41266-7. --></p>
+
+<pre>
+እኔ	'əne		(əne)		PRON	Number=Sing|Person=1|PronType=Prs		I
+አንተ	'änətä		(antä)		PRON	Gender=Masc|Number=Sing|Person=2|PronType=Prs	you
+አንቺ	'änəči		(anči)		PRON	Gender=Fem|Number=Sing|Person=2|PronType=Prs	you
+እሱ	'əsu		(əssu)		PRON	Gender=Masc|Number=Sing|Person=3|PronType=Prs	he
+እሷ	'əsă		(əsswa)		PRON	Gender=Fem|Number=Sing|Person=3|PronType=Prs	she
+እኛ	'əňa		(əňňa)		PRON	Number=Plur|Person=1|PronType=Prs		we
+እናንተ	'ənanətä	(ənnantä)	PRON	Number=Plur|Person=2|PronType=Prs		you
+እነሱ	'ənäsu		(ənnässu)	PRON	Number=Plur|Person=3|PronType=Prs		they
+</pre>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a bare noun phrase (without preposition).
+    <ul>
+      <li>The verb morphologically cross-references the person, gender and number of its subject.
+However, the current annotation in the ATT treebank treats the agreement morphemes as if they were independent syntactic words (pronoun clitics).</li>
+      <li>A subordinate clause may serve as the subject and is labeled <code class="language-plaintext highlighter-rouge">csubj</code>.</li>
+    </ul>
+  </li>
+  <li>Nominal object (<a href="">obj</a>) is a bare noun phrase (without preposition).
+    <ul>
+      <li>If the object is pronominalized, it gets encliticized to the verb. Unlike the subject agreement morphemes, these really are clitics and should be treated as pronouns.</li>
+    </ul>
+  </li>
+  <li>In passive clauses, the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.</li>
+</ul>
 
-<hr />
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Amharic:
+    <ul>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
+      <li><a href="">compound:svc</a> for serial verb constructions</li>
+    </ul>
+  </li>
+  <li>The following relation types are not used in the current data at all:
+<a href="">vocative</a>, <a href="">dislocated</a>, <a href="">appos</a>, <a href="">list</a>, <a href="">orphan</a>, <a href="">reparandum</a></li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is <a href="../treebanks/am-comparison.html">1</a> Amharic UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/am_att/index.html">Amharic-ATT</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
