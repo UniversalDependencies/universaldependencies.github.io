@@ -376,6 +376,10 @@ nsubj:pass(stolen, jewels)
 acl:relcl(bagel, eat)
 </code></pre>
 
+<pre><code class="language-sdparse">I have a suggestion to make
+acl:relcl(suggestion, make)
+</code></pre>
+
 <pre><code class="language-sdparse">I found someone to work on Saturdays
 acl:relcl(someone, work)
 </code></pre>
@@ -396,10 +400,25 @@ case(which, in)
 <p>Note that an adnominal infinitival clause is only a relative clause if the head noun is understood to double as a dependent of the subordinate clause. 
 In the above examples, the bagel is the thing eaten (which corresponds to an <code class="language-plaintext highlighter-rouge">obj</code> in enhanced dependencies); <em>someone</em> is the person assigned to work (the enhanced <code class="language-plaintext highlighter-rouge">nsubj</code>); and so on.</p>
 
-<p>By contrast, the following is plain <a href="">acl</a> because <em>suggestion</em> is not understood as playing any role in the infinitival clause:</p>
+<p>By contrast, the following are plain <a href="">acl</a> because <em>suggestion</em> and <em>ability</em> are not understood as playing any role in the infinitival clause:</p>
 
 <pre><code class="language-sdparse">your suggestion to eat early
 acl(suggestion, eat)
+</code></pre>
+
+<pre><code class="language-sdparse">your ability to navigate in the dark
+acl(ability, navigate)
+</code></pre>
+
+<p>Some infinitivals are ambiguous between two plausible readings. <em>A proposal to speed up the meeting</em> can be construed as a proposal <em>of</em> speeding up the meeting, i.e. speeding up is the content of the proposal (<a href="">acl</a>); or the proposal can be understood to consist of some method of saving time, in which case the proposal is construed as speeding up the meeting—a subject relative interpretation (<code class="language-plaintext highlighter-rouge">acl:relcl</code>).</p>
+
+<p>With nouns like <em>proposal</em>, the <em>of</em>-paraphrase test can be used as a diagnostic for the non-relative interpretation.
+Another diagnostic is substituting <em>something</em>, <em>somewhere</em>, <em>some way</em>(?), or similar, which favors the relative clause interpretation:<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">2</a></sup></p>
+
+<p>TODO: Currently <a href="">acl</a> has “a simple way to get my discount”. Is this an adjunct relative or a complement of “way”? It can be paraphrased as “way of getting my discount”. Similarly: “reason to leave”/”reason for leaving”.</p>
+
+<pre><code class="language-sdparse">something to speed up the meeting
+acl:relcl(something, speed)
 </code></pre>
 
 <h2 id="rcs-versus-non-relative-modifier-clauses">RCs Versus Non-relative Modifier Clauses</h2>
@@ -426,7 +445,7 @@ acl:relcl(time, exploded)
 advmod(exploded, when)
 </code></pre>
 
-<p>Some phrases are ambiguous. <em>The ceremony where/when we became citizens</em> can be interpreted as an RC if the bestowal of citizenship happened during the ceremony (<em>in which</em> interpretation<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>, thus <code class="language-plaintext highlighter-rouge">acl:relcl</code>). 
+<p>Some phrases are ambiguous. <em>The ceremony where/when we became citizens</em> can be interpreted as an RC if the bestowal of citizenship happened during the ceremony (<em>in which</em> interpretation<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">3</a></sup>, thus <code class="language-plaintext highlighter-rouge">acl:relcl</code>). 
 But <em>the ceremony when we became citizens</em> could be used to refer to a particular ceremony held around the time of becoming a citizen, as opposed to some other ceremony held at some other time; the modifier can be fronted as an <code class="language-plaintext highlighter-rouge">advmod</code> within the higher clause: <em>When we became citizens, the ceremony…</em>. This is the <code class="language-plaintext highlighter-rouge">acl</code> interpretation.</p>
 
 <p>Illustrating the contrast with <em>where</em>:</p>
@@ -690,6 +709,9 @@ acl:relcl(progress, make)
   <ol>
     <li id="fn:1" role="doc-endnote">
       <p><em>CGEL</em> considers <em>that</em> at the beginning of a relative clause to be a subordinator. UD adopts the traditional analysis of <em>that</em> as a relative pronoun roughly interchangeable with <em>which</em> etc. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>However, this test fails for <em>a suggestion to make</em>: <em>*something to make</em> is not a valid substitution because <em>make a suggestion</em> is a light verb construction. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
     <li id="fn:2" role="doc-endnote">
       <p>Or, formally, <em>wherein</em>. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
