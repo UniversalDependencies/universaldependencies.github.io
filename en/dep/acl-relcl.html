@@ -85,10 +85,7 @@ The head is said to be “extracted” from the RC.</p>
 
 <p>Most RCs are adnominal, hence the relation <code class="language-plaintext highlighter-rouge">acl:relcl</code>. Adverbial RCs attach as <a href="">advcl:relcl</a>, as discussed <a href="#adverbial-relative-clauses">below</a>.</p>
 
-<p>RCs are usually finite (<em>people who live in glass houses</em>), but may also be infinitival (<em>I found a house in which to live</em>, <em>I found a house (for my mother) to live in</em>). Gerund-participial and past-participial clauses (<em>people living in glass houses</em>, <em>students given high marks</em>) are never considered relative clauses.
-<!-- Infinitival RCs are discussed in CGEL pp. 1067-1068 --></p>
-
-<p>☞ TODO: do we want to implement infinitival RCs? EWT only has them for free relatives. “nice people to meet here” is plain <code class="language-plaintext highlighter-rouge">acl(people,meet)</code>. Not marking it as an RC means there is no way to find that there is a gap/extracted element (cf. “the idea to meet”).</p>
+<p>RCs are usually finite (<em>people who live in glass houses</em>), but may also be <a href="#infinitival-relatives">infinitival</a> (<em>I found a house in which to live</em>, <em>I found a house (for my mother) to live in</em>). Gerund-participial and past-participial clauses (<em>people living in glass houses</em>, <em>students given high marks</em>) are never considered relative clauses.</p>
 
 <p>In the Basic Dependencies representation, the main predicate of the RC attaches to the head as <code class="language-plaintext highlighter-rouge">acl:relcl</code>. This is shown in the example on the left.</p>
 
@@ -378,6 +375,42 @@ acl:relcl(crown, stolen)
 nmod(jewels, which)
 case(which, of)
 nsubj:pass(stolen, jewels)
+</code></pre>
+
+<h2 id="infinitival-relatives">Infinitival Relatives</h2>
+
+<!-- Infinitival RCs are discussed in CGEL pp. 1067-1068 -->
+
+<p>Relative clauses may be infinitival, in which case they do not generally have a relativizer.</p>
+
+<pre><code class="language-sdparse">I found a bagel to eat
+acl:relcl(bagel, eat)
+</code></pre>
+
+<pre><code class="language-sdparse">I found someone to work on Saturdays
+acl:relcl(someone, work)
+</code></pre>
+
+<pre><code class="language-sdparse">I found a house (for my mother) to live in
+acl:relcl(house, live)
+obl(live, in)
+</code></pre>
+
+<p>Infinitival <a href="#prepositional-relatives">prepositional relatives</a> with a relativizer are possible as an alternative to stranding:</p>
+
+<pre><code class="language-sdparse">I found a house in which to live
+acl:relcl(house, live)
+obl(live, which)
+case(which, in)
+</code></pre>
+
+<p>Note that an adnominal infinitival clause is only a relative clause if the head noun is understood to double as a dependent of the subordinate clause. 
+In the above examples, the bagel is the thing eaten (which corresponds to an <code class="language-plaintext highlighter-rouge">obj</code> in enhanced dependencies); <em>someone</em> is the person assigned to work (the enhanced <code class="language-plaintext highlighter-rouge">nsubj</code>); and so on.</p>
+
+<p>By contrast, the following is plain <a href="">acl</a> because <em>suggestion</em> is not understood as playing any role in the infinitival clause:</p>
+
+<pre><code class="language-sdparse">your suggestion to eat early
+acl(suggestion, eat)
 </code></pre>
 
 <h2 id="rcs-versus-non-relative-modifier-clauses">RCs Versus Non-relative Modifier Clauses</h2>
