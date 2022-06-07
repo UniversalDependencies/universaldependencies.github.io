@@ -78,20 +78,12 @@
         </script>
         <h2><code>nmod</code>: nominal modifier</h2>
 
-<p>The <code class="language-plaintext highlighter-rouge">nmod</code> relation is used for nominal modifiers of nouns or clausal
-predicates. <code class="language-plaintext highlighter-rouge">nmod</code> is a noun functioning as a non-core (oblique)
-argument or adjunct. In English, <code class="language-plaintext highlighter-rouge">nmod</code> is used</p>
+<p>The <code class="language-plaintext highlighter-rouge">nmod</code> relation is used for nominal dependents of another noun or noun phrase and functionally corresponds to
+an attribute, or genitive complement.</p>
 
-<ul>
-  <li>for prepositional complements (including datives and partitives):</li>
-</ul>
+<p><strong>New from v2:</strong> The <code class="language-plaintext highlighter-rouge">nmod</code> relation was previously used also for nominal dependents of verbs, adjectives, and adverbs. These are now covered by the new <a href="">obl</a> relation.</p>
 
-<pre><code class="language-sdparse">the office of the Chair
-det(office-2, the-1)
-nmod(office-2, Chair-5)
-case(Chair-5, of-3)
-det(Chair-5, the-4)
-</code></pre>
+<p>In English, plain <code class="language-plaintext highlighter-rouge">nmod</code> applies to <strong>prepositionally-marked</strong> dependents of nominals (the preposition itself attaches as <a href="">case</a>):</p>
 
 <pre><code class="language-sdparse">toys for children
 nmod(toys, children)
@@ -104,26 +96,29 @@ case(toys, of)
 det(toys, the)
 </code></pre>
 
-<p>The <code class="language-plaintext highlighter-rouge">nmod</code> relation holds between the noun/predicate modified by the
-prepositional complement and the noun introduced by the preposition.</p>
-
-<ul>
-  <li>for ‘s genitives, use <a href="">nmod:poss</a>:</li>
-</ul>
-
-<pre><code class="language-sdparse">the Chair 's office
-det(Chair-2, the-1)
-nmod:poss(office-4, Chair-2)
-case(Chair-2, 's-3)
-</code></pre>
+<p>The subtype <a href="">nmod:poss</a> applies to nominals with possessive (genitive) marking instead of a preposition:</p>
 
 <pre><code class="language-sdparse">my office
 nmod:poss(office, my)
 </code></pre>
 
-<p>Nominal modifiers not marked by a preposition or ‘s genitive
-are tagged <a href="">nmod:npmod</a>, a subtype of <code class="language-plaintext highlighter-rouge">nmod</code>. Temporal nominal
-modifiers are also marked with a separate relation <a href="">nmod:tmod</a>. See
+<p>The possessive can alternate with the preposition <em>of</em>, in which case only the relation label differs:</p>
+
+<pre><code class="language-sdparse">the president 's office
+det(president, the-1)
+nmod:poss(office-4, president)
+case(president, 's-3)
+</code></pre>
+
+<pre><code class="language-sdparse">the office of the president
+det(office-2, the-1)
+nmod(office-2, president)
+case(president, of-3)
+det(president, the-4)
+</code></pre>
+
+<p>Prepositionless, non-possessive nominals serving as adnominal modifiers
+are tagged with subtypes <a href="">nmod:tmod</a> (temporal) or <a href="">nmod:npmod</a> (other). See
 the definitions of these relations.
 <!-- Interlanguage links updated So kvě 14 19:03:44 CEST 2022 --></p>
 
