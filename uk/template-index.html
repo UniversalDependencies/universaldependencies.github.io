@@ -80,57 +80,241 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>In general, words are delimited by whitespace characters. Description of exceptions follows.</li>
+  <li>According to typographical rules, many punctuation marks are attached to a neighboring word. We always tokenize them as separate tokens (words); that holds even for hyphenated compounds such as <em>українсько-чеський</em> “Ukrainian-Czech” (three tokens) and for abbreviations such as <em>[і] т.i.</em> “and so on”
+(four tokens).</li>
+  <li>A whitespace separating digits in a large number is not treated as a word separator. For example, <em>1 000 000</em> (“1,000,000” by English rules) is one token.</li>
+  <li>There are two closed classes of contractions that are treated as multi-word tokens and segmented to individual syntactic words:
+    <ol>
+      <li>Pronouns like <em>ні́де</em> (<em>немає де</em>) “there is nowhere to”, <em>ні́кому</em> (<em>немає кому</em>) “there is no one to” (not to confuse with <em>ніде́</em> “nowhere”, <em>ніко́му</em> “to no one”; notice the accent).</li>
+      <li>Nouns fused with a numeral <em>пів</em> “half of”: <em>півметра</em> “half a meter”. Such spelling is now deprecated in standart Ukrainian and it is now correct to write <em>пів метра</em>.</li>
+    </ol>
+  </li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="pos/index.html">Ukrainian POS tags</a>
+and <a href="feat/index.html">Ukrainian features</a>.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<ul>
+  <li>Ukrainian uses all 17 universal POS categories, including particles (<a href="">PART</a>).
+At present, more than 100 word types are tagged <a href="">PART</a>.</li>
+  <li>The pronoun (<a href="">PRON</a>) vs. determiner (<a href="">DET</a>) distinction is based on word lists because the traditional grammar does not define determiners.
+In general, words that inflect for gender, to be able to agree with a modified noun, are tagged <a href="">DET</a>, even if they act independently in a given sentence; that includes possessives.
+Pronominal quantifiers (which the traditional grammar includes in numerals) are <a href="">DET</a> as well.</li>
+  <li>Ukrainian has just one auxiliary verb (<a href="">AUX</a>), <em>бути</em> (“to be”) with its derivative <em>бувати</em>.
+&lt;!– The auxiliary verb is used in several types of constructions:
+    <ul>
+      <li>The copula with non-verbal predicates.</li>
+      <li>Periphrastic future tense (future form of <em>бути</em> + infinitive of the main verb).</li>
+      <li>Periphrastic past tense (present form of <em>бути</em> + l-participle of the main verb; the auxiliary is omitted with 3rd-person subjects).</li>
+      <li>Periphrastic conditional (conditional form of <em>бути</em> + l-participle of the main verb).</li>
+      <li>Periphrastic passive (any form of <em>бути</em>, including periphrastic forms, + passive participle of the main verb). –&gt;</li>
+    </ul>
+  </li>
+  <li>In other words, <em>бути</em> and <em>бувати</em> are the only lemmas that occur with the <a href="">AUX</a> tag.
+They may still occur also as normal <a href="">VERB</a> if they are used in purely existential sentences
+(i.e. such that don’t even indicate location because if they do, then <em>бути</em> is treated as copula).
+    <ul>
+      <li>Note that this may be changed in future. Existential sentences could be treated as elliptical versions of locational sentences; then the verb would be the root, but it could still be tagged as <code class="language-plaintext highlighter-rouge">AUX</code> and the <code class="language-plaintext highlighter-rouge">AUX</code>-<code class="language-plaintext highlighter-rouge">VERB</code> distinction could be anchored in the lexicon.</li>
+    </ul>
+  </li>
+  <li>Verbs with modal meaning are not considered auxiliary in Ukrainian.</li>
+  <li>There are five main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Participle <code class="language-plaintext highlighter-rouge">Part</code>, tagged <a href="">VERB</a> or <a href="">AUX</a> (the so-called l-participle) or <a href="">ADJ</a> (all other participle types).</li>
+      <li>Converb <code class="language-plaintext highlighter-rouge">Conv</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.
+<!-- * Verbal noun `Vnoun`, tagged [NOUN](). --></li>
+    </ul>
+  </li>
+</ul>
 
-<hr />
+<h3 id="nominal-features">Nominal Features</h3>
 
-<h3 id="features">Features</h3>
+<ul>
+  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with one of three values: <code class="language-plaintext highlighter-rouge">Masc</code>, <code class="language-plaintext highlighter-rouge">Fem</code> or <code class="language-plaintext highlighter-rouge">Neut</code>.
+In some cases the masculine gender is further subclassified by the <a href="">Animacy</a> values <code class="language-plaintext highlighter-rouge">Anim</code> and <code class="language-plaintext highlighter-rouge">Inan</code>.
+Feminine and neuter nominals do not distinguish animacy grammatically.
+    <ul>
+      <li>The following parts of speech inflect for <code class="language-plaintext highlighter-rouge">Gender</code> and <code class="language-plaintext highlighter-rouge">Animacy</code> because they must agree with nouns: <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>,
+<a href="">VERB</a>, <a href="">AUX</a>. For verbs (including auxiliaries), only participles and converbs inflect for gender. Finite verbs don’t.</li>
+    </ul>
+  </li>
+  <li>The two main values of the <a href="">Number</a> feature are <code class="language-plaintext highlighter-rouge">Sing</code> and <code class="language-plaintext highlighter-rouge">Plur</code>. The following parts of speech inflect for number:
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite, participles and converbs), marginally <a href="">NUM</a>.
+    <ul>
+      <li>Remnants of the <code class="language-plaintext highlighter-rouge">Dual</code> number occur only in the instrumental <a href="">Case</a> of a few nouns and all the agreeing parts of speech.</li>
+      <li>Selected nouns are plurale tantum (<code class="language-plaintext highlighter-rouge">Ptan</code>) or singulare tantum (<code class="language-plaintext highlighter-rouge">Coll</code>). These two values are lexical and cannot be used with
+the agreeing adjectives, determiners or verbs. They also never occur with pronouns.</li>
+    </ul>
+  </li>
+  <li><a href="">Case</a> has 7 possible values: <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Gen</code>, <code class="language-plaintext highlighter-rouge">Dat</code>, <code class="language-plaintext highlighter-rouge">Acc</code>, <code class="language-plaintext highlighter-rouge">Voc</code>, <code class="language-plaintext highlighter-rouge">Loc</code>, <code class="language-plaintext highlighter-rouge">Ins</code>.
+It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>.
+It can occur with participles but only with those tagged as <code class="language-plaintext highlighter-rouge">ADJ</code>. It never occurs with verbs.
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">Case</code> feature also occurs with prepositions (<a href="">ADP</a>). Here it is a lexical feature. Prepositions do not inflect for case
+but they subcategorize for the case of their noun phrase.</li>
+    </ul>
+  </li>
+</ul>
 
-<p>*</p>
+<!-- ### Degree and Polarity
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+* [Degree]() applies to adjectives ([ADJ]()) and adverbs ([ADV]()) and has one of three possible values: `Pos`, `Cmp`, `Sup`.
+* [Polarity]() has two values, `Pos` and `Neg`, and applies primarily to verbs ([VERB](), [AUX]()), adjectives ([ADJ]()) and adverbs ([ADV]()) that can be negated using the bound morpheme _ne-_.
+  * Occasionally _ne_ occurs as an independent negation particle ([PART]()) and is marked with `Polarity=Neg`.
+  * Negating nouns is usually limited to those derived from verbs _(neúspěch, nedůvěra, nevydávání)_ but in principle every noun can be negated.
+  * The `Polarity` feature is not used with pronouns and determiners, although there is a subset of negative pronouns and determiners.
+    The `PronType=Neg` feature is used there instead. -->
 
-<hr />
+<h3 id="verbal-features">Verbal Features</h3>
+
+<ul>
+  <li>Verbs have a lexical <a href="">Aspect</a>, either imperfective (<code class="language-plaintext highlighter-rouge">Imp</code>) or perfective (<code class="language-plaintext highlighter-rouge">Perf</code>). A few verbs are biaspectual and they lack the <code class="language-plaintext highlighter-rouge">Aspect</code> feature. Some imperfective verbs could be further classified as iteratives but they are not marked as such (although UD provides <code class="language-plaintext highlighter-rouge">Aspect=Iter</code>).
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">Aspect</code> feature should be also used with the corresponding derived nouns and adjectives (participles), if they have the
+<code class="language-plaintext highlighter-rouge">VerbForm</code> feature.</li>
+    </ul>
+  </li>
+  <li>Finite verbs always have one of three values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Imp</code> or <code class="language-plaintext highlighter-rouge">Cnd</code>. The conditional mood is only used with conditional auxiliaries <em>(bych, bys, by, bychom, byste)</em>. The l-participle of the main verb, that is needed to form a periphrastic conditional, is not marked with this feature.</li>
+  <li>Verbs in the indicative mood always have one of three values of <a href="">Tense</a>: <code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Pres</code> or <code class="language-plaintext highlighter-rouge">Fut</code>.
+Note that <code class="language-plaintext highlighter-rouge">Tense=Pres</code> is also used with forms of perfective verbs, which are formally present, but semantically future.
+Hence both <em>jdu domů</em> “I am going home” and <em>přijdu domů</em> “I will come home” end up marked as <code class="language-plaintext highlighter-rouge">Tense=Pres</code>.
+On the other hand, a few imperfective verbs can form a genuine future form using prefixes, and they are marked <code class="language-plaintext highlighter-rouge">Tense=Fut</code>:
+<em>půjdu domů</em> “I will go home”.
+    <ul>
+      <li>Imperative and conditional forms do not have the <code class="language-plaintext highlighter-rouge">Tense</code> feature (note that past and present conditionals are distinguished
+analytically).</li>
+      <li>The <code class="language-plaintext highlighter-rouge">Tense</code> feature is also used to distinguish present and past converbs (<em>dělaje</em> “while doing” vs. <em>udělav</em> “having done”),
+and present and past participles (<em>dělající</em> “doing” vs. <em>udělavší</em> “having done”).
+The l-participle (tagged <code class="language-plaintext highlighter-rouge">VERB</code> or <code class="language-plaintext highlighter-rouge">AUX</code>) also has <code class="language-plaintext highlighter-rouge">Tense=Past</code> because its primary function is to form the past tense.
+The passive participle does not have the <code class="language-plaintext highlighter-rouge">Tense</code> feature.</li>
+    </ul>
+  </li>
+  <li>There are two values of the <a href="">Voice</a> feature: <code class="language-plaintext highlighter-rouge">Act</code> and <code class="language-plaintext highlighter-rouge">Pass</code>. Only the passive participle has <code class="language-plaintext highlighter-rouge">Voice=Pass</code>. All other verb forms have
+<code class="language-plaintext highlighter-rouge">Voice=Act</code>.</li>
+</ul>
+
+<!-- ### Pronouns, Determiners, Quantifiers
+
+* [PronType]() is used with pronouns ([PRON]()), determiners ([DET]()) and adverbs ([ADV]()).
+* [NumType]() is used with numerals ([NUM]()), adjectives ([ADJ]()), determiners ([DET]()) and adverbs ([ADV]()).
+* The [Poss]() feature marks possessive personal determiners (e.g. _můj_ “my”),
+  possessive interrogative, indefinite or negative determiners (e.g. _čí_ “whose”),
+  possessive relative determiners (e.g. _jehož_ “whose”)
+  and possessive adjectives (e.g. _otcův_ “father's”).
+* The [Reflex]() feature marks reflexive pronouns _(se, si)_ and determiners _(svůj)_.
+  In Ukrainian it is always used together with `PronType=Prs`.
+* [Person]() is a lexical feature of personal pronouns ([PRON]()) and has three values, `1`, `2` and `3`.
+  With personal possessive determiners ([DET]()), the feature actually encodes the person of the possessor.
+  Person is not marked on other types of pronouns and on nouns, although they can be almost always interpreted as the 3rd person.
+  * As a cross-reference to subject, person is also marked on finite verbs ([VERB](), [AUX]()).
+* There are two [layered features](../../u/overview/feat-layers.html), [Gender[psor]]() and [Number[psor]]().
+  They appear with certain possessive adjectives and determiners and encode the lexical gender/number of the possessor.
+  The extra layer is needed to distinguish these lexical features from the inflectional gender and number that mark agreement with the modified (possessed) noun. -->
+
+<!-- ### Other Features
+
+* Besides the layered features listed above, there are several other language-specific features:
+  * [NameType]()
+  * [AdpType]()
+  * [ConjType]()
+  * [Hyph]()
+  * [Style]()
+  * [PrepCase]()
+  * [Variant]() ... distinguishes short and long forms of adjectives, a Slavic-wide phenomenon
+* The following universal features are not used in Ukrainian: [Definite](), [Evident](), [Polite](). -->
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="dep/index.html">Ukrainian relations</a>.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
-<hr />
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase in the nominative case, without preposition.
+    <ul>
+      <li>If the noun phrase is quantified, it may be in the genitive, which is required by the quantifier.
+If this is the case, then the quantifier is attached using a special relation, either <a href="">nummod:gov</a> or <a href="">det:numgov</a>.</li>
+      <li>An infinitive verb may serve as the subject and is labeled as clausal subject, <a href="">csubj</a>.
+On the other hand, verbal nouns as subjects are just <code class="language-plaintext highlighter-rouge">nsubj</code>.</li>
+      <li>A finite subordinate clause may serve as the subject and is labeled <code class="language-plaintext highlighter-rouge">csubj</code>.</li>
+    </ul>
+  </li>
+  <li>Objects defined in the Ukrainian grammar may be bare noun phrases in accusative, dative, genitive or instrumental, or prepositional phrases in accusative, dative, genitive, locative or instrumental.
+    <ul>
+      <li>Bare accusative, dative, genitive and instrumental objects are considered core.</li>
+      <li>All prepositional objects are considered oblique.</li>
+      <li>Accusative objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
+      <li>If a verb subcategorizes for the infinitive (e.g. modal verbs or verbs of control), the infinitival complement is labeled <a href="">xcomp</a>.</li>
+      <li>If a verb subcategorizes for two core objects, one of them accusative (or <code class="language-plaintext highlighter-rouge">ccomp</code>) and the other non-accusative, then the non-accusative object is labeled <a href="">iobj</a>. Core nominal objects in other situations are labeled just <a href="">obj</a>.</li>
+    </ul>
+  </li>
+  <li>Adjuncts (a.k.a adverbial modifiers realized as noun phrases) are usually prepositional phrases, but they can be bare noun phrases as well. They are labeled <a href="">obl</a>:
+    <ul>
+      <li>Temporal modifiers realized as accusative noun phrases: <em>повернусь днями</em> “I will come back next days.”
+<!-- todo: -->
+<!-- * Dative noun phrases with benefactive or possessive role (i.e. if the verb does not subcategorize for a single dative object and if it is not a verb of giving (or similar), where the dative could be interpreted as the recipient.
+Example: _приготувала йому обід_ “she cooked (for) him a lunch.” --></li>
+      <li>Instrumental noun phrases expressing the way or means with which something was done.
+Example: <em>побив пса палкою</em> “he beat up the dog with a stick.”</li>
+      <li>All prepositional phrases that are not prepositional objects (i.e., their role and form is not defined lexically by the predicate) are adjuncts.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
+
+<ul>
+  <li>The copula verb <em>бути</em> (be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses. Purely existential clauses (without indicating location) use <em>бути</em> as well but it is treated as the head of the clause and tagged <a href="">VERB</a>.</li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Ukrainian:
+    <ul>
+      <li><a href="">acl:adv</a></li>
+      <li><a href="">acl:relcl</a> relative clauses</li>
+      <li><a href="">advcl:sp</a> <code class="language-plaintext highlighter-rouge">advcl</code> with secondary predication</li>
+      <li><a href="">advcl:svc</a></li>
+      <li><a href="">advmod:det</a></li>
+      <li><a href="">compound:svc</a></li>
+      <li><a href="">conj:svc</a></li>
+      <li><a href="">det:numgov</a> pronominal quantifiers that are attached as children of the quantified noun but govern its case</li>
+      <li><a href="">det:nummod</a> pronominal quantifiers in cases in which they do not govern the case of the quantified noun</li>
+      <li><a href="">flat:abs</a></li>
+      <li><a href="">flat:foreign</a> non-first words in foreign phrases</li>
+      <li><a href="">flat:name</a> human names</li>
+      <li><a href="">flat:range</a> numerical and temporal ranges</li>
+      <li><a href="">flat:repeat</a> repetitions</li>
+      <li><a href="">flat:sibl</a></li>
+      <li><a href="">flat:title</a></li>
+      <li><a href="">nummod:gov</a> cardinal numbers that are attached as children of the counted noun but govern its case</li>
+      <li><a href="">parataxis:discourse</a> clausal <code class="language-plaintext highlighter-rouge">discourse</code></li>
+      <li><a href="">parataxis:newsent</a> connects sentences inside of a multi-sentence quote where it’s impossible to split the parent sentence</li>
+      <li><a href="">parataxis:rel</a> clauses relative to the whole parent sentence, that is, to the parent sentence predication itself</li>
+      <li><a href="">vocative:cl</a> clausal <code class="language-plaintext highlighter-rouge">vocative</code></li>
+      <li><a href="">xcomp:sp</a> <code class="language-plaintext highlighter-rouge">xcomp</code> with secondary predication</li>
+    </ul>
+  </li>
+  <li>The following relation types are not used in Ukrainian at all:
+<a href="">clf</a></li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>Currently there is a single Ukrainian UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/uk_iu/index.html">Ukrainian-IU</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
