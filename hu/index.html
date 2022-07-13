@@ -80,18 +80,25 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>In general, words are delimited by whitespace characters. Description of exceptions follows.</li>
+  <li>According to typographical rules, many punctuation marks are attached to a neighboring word. These are normally tokenized as separate tokens (words);
+however, abbreviations are kept together with the period that marks them <em>(dr.)</em> Hyphenated compounds are kept together and the same holds for
+hyphens connecting case suffixes to numbers: <em>1991-ben</em>.</li>
+  <li>There are no words with spaces and no multiword tokens.</li>
+  <li>For more details, see <a href="tokenization.html">tokenization</a>.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
+<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="pos/index.html">Hungarian POS tags</a>
+and <a href="feat/index.html">Hungarian features</a>.</p>
+
 <ul>
+  <li>All 17 universal POS categories are relevant in Hungarian, including particles (<a href="">PART</a>).
+At present, the <a href="">SYM</a> category is not attested in the data.</li>
   <li>Most verbs have two inflected tenses, past and present, and a future form using an auxiliary verb.
 The verb <em>lenni</em> “to be” has three inflected tenses: past (<em>volt</em> “was”), present (<em>van</em> “is”) and future (<em>lesz</em> “will be”).
 However, <em>lesz</em> is kept as a separate lemma in the data, and <code class="language-plaintext highlighter-rouge">Tense=Pres</code> is used with its present/future forms, not <code class="language-plaintext highlighter-rouge">Tense=Fut</code>;
@@ -101,30 +108,114 @@ it also has a past tense, <em>lett</em> “became”.</li>
 Otherwise, potential can also be expressed using the suffix -hat/-het, followed by regular conjugation: <em>Mehetek</em> “I can/may go”.
 <!-- https://en.wikipedia.org/wiki/Hungarian_verbs --></li>
   <li>Other modal verbs than <em>lehet</em> are not analyzed as auxiliaries.</li>
+  <li>There are six main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Participles are tagged <a href="">ADJ</a> and use language-specific <a href="">VerbForm</a> values instead of <a href="">Tense</a>:
+        <ul>
+          <li>Future participle, <code class="language-plaintext highlighter-rouge">VerbForm=PartFut</code>.</li>
+          <li>Present participle, <code class="language-plaintext highlighter-rouge">VerbForm=PartPres</code>.</li>
+          <li>Past participle, <code class="language-plaintext highlighter-rouge">VerbForm=PartPast</code>.</li>
+        </ul>
+      </li>
+      <li>Converb <code class="language-plaintext highlighter-rouge">Conv</code>, tagged <a href="">ADV</a>.</li>
+    </ul>
+  </li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<h3 id="nominal-features">Nominal Features</h3>
 
-<hr />
+<ul>
+  <li>Neither gender nor animacy is grammatically relevant.</li>
+  <li>The two main values of the <a href="">Number</a> feature are <code class="language-plaintext highlighter-rouge">Sing</code> and <code class="language-plaintext highlighter-rouge">Plur</code>. The following parts of speech inflect for number:
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite, participles and converbs), marginally <a href="">NUM</a>.</li>
+  <li><a href="">Case</a> has 22 possible values: <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Gen</code>, <code class="language-plaintext highlighter-rouge">Dat</code>, <code class="language-plaintext highlighter-rouge">Acc</code>, <code class="language-plaintext highlighter-rouge">Ins</code>, <code class="language-plaintext highlighter-rouge">Abl</code>, <code class="language-plaintext highlighter-rouge">Abs</code>, <code class="language-plaintext highlighter-rouge">Ade</code>, <code class="language-plaintext highlighter-rouge">All</code>, <code class="language-plaintext highlighter-rouge">Cau</code>, <code class="language-plaintext highlighter-rouge">Del</code>, <code class="language-plaintext highlighter-rouge">Dis</code>, <code class="language-plaintext highlighter-rouge">Ela</code>, <code class="language-plaintext highlighter-rouge">Ess</code>, <code class="language-plaintext highlighter-rouge">Ill</code>, <code class="language-plaintext highlighter-rouge">Ine</code>, <code class="language-plaintext highlighter-rouge">Loc</code>, <code class="language-plaintext highlighter-rouge">Sbl</code>, <code class="language-plaintext highlighter-rouge">Sup</code>, <code class="language-plaintext highlighter-rouge">Tem</code>, <code class="language-plaintext highlighter-rouge">Ter</code>, <code class="language-plaintext highlighter-rouge">Tra</code>.
+It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>.</li>
+  <li>Layered features <a href="">Number[psor]</a>, <a href="">Person[psor]</a>, and <a href="">Number[psed]</a> are used to cross-reference features of the possessor (or the possessed) on the noun.</li>
+</ul>
 
-<h3 id="features">Features</h3>
+<h3 id="degree-and-polarity">Degree and Polarity</h3>
 
-<p>*</p>
+<ul>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>) and has one of three possible values: <code class="language-plaintext highlighter-rouge">Pos</code>, <code class="language-plaintext highlighter-rouge">Cmp</code>, <code class="language-plaintext highlighter-rouge">Sup</code>.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Polarity</code> feature is currently not used.</li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<h3 id="verbal-features">Verbal Features</h3>
 
-<hr />
+<ul>
+  <li>Finite verbs always have one of four values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Cnd</code> or <code class="language-plaintext highlighter-rouge">Pot</code>.</li>
+  <li>Verbs in the indicative mood always have one of two values of <a href="">Tense</a>: <code class="language-plaintext highlighter-rouge">Past</code> or <code class="language-plaintext highlighter-rouge">Pres</code>.
+The verb <em>lenni</em> “to be” has three inflected tenses: past (<em>volt</em> “was”), present (<em>van</em> “is”) and future (<em>lesz</em> “will be”).
+However, <em>lesz</em> is kept as a separate lemma in the data, and <code class="language-plaintext highlighter-rouge">Tense=Pres</code> is used with its present/future forms, not <code class="language-plaintext highlighter-rouge">Tense=Fut</code>.</li>
+  <li><a href="">Aspect</a> is normally not marked, except for the iterative (frequentative) forms, which are annotated <code class="language-plaintext highlighter-rouge">Aspect=Iter</code>.</li>
+  <li>There are two values of the <a href="">Voice</a> feature: <code class="language-plaintext highlighter-rouge">Act</code> and <code class="language-plaintext highlighter-rouge">Cau</code>.</li>
+</ul>
+
+<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>) and adjectives (<a href="">ADJ</a>).</li>
+  <li>The <a href="">Poss</a> is used with the pronoun <em>saját</em> “own”.</li>
+  <li>The <a href="">Reflex</a> feature marks reflexive pronouns <em>(magát, magukat, magára…)</em>
+In Hungarian it is always used together with <code class="language-plaintext highlighter-rouge">PronType=Prs</code>.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">3</code>.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="dep/index.html">Hungarian relations</a>,
+as well as the overview of <a href="syntax.html">syntax</a> and <a href="specific-syntax.html">specific constructions</a>.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
-<hr />
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase in the nominative case, without preposition.
+    <ul>
+      <li>A finite subordinate clause may serve as the subject and is labeled <code class="language-plaintext highlighter-rouge">csubj</code>.</li>
+    </ul>
+  </li>
+  <li>Direct nominal object (<a href="">obj</a>) is a bare noun phrase in the accusative case.</li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Hungarian:
+    <ul>
+      <li><a href="">advmod:locy</a></li>
+      <li><a href="">advmod:mode</a></li>
+      <li><a href="">advmod:que</a></li>
+      <li><a href="">advmod:tfrom</a></li>
+      <li><a href="">advmod:tlocy</a></li>
+      <li><a href="">advmod:to</a></li>
+      <li><a href="">advmod:tto</a></li>
+      <li><a href="">amod:att</a></li>
+      <li><a href="">amod:attlvc</a></li>
+      <li><a href="">ccomp:obj</a></li>
+      <li><a href="">ccomp:obl</a></li>
+      <li><a href="">ccomp:pred</a></li>
+      <li><a href="">compound:preverb</a></li>
+      <li><a href="">flat:name</a> for non-first words in personal names</li>
+      <li><a href="">nmod:att</a></li>
+      <li><a href="">nmod:attlvc</a></li>
+      <li><a href="">nmod:obl</a></li>
+      <li><a href="">nsubj:lvc</a></li>
+      <li><a href="">obj:lvc</a></li>
+      <li><a href="">obl:lvc</a></li>
+    </ul>
+  </li>
+  <li>The following main types are not used alone and must be subtyped:
+<a href="">amod</a>, <a href="">flat</a></li>
+  <li>The following relation types are not used in Hungarian at all:
+<a href="">expl</a>, <a href="">clf</a></li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
