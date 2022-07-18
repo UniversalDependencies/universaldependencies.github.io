@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>nsubj</title>
+    <title>nsubj:pass</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-gd">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gd/dep/nsubj.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gd/dep/nsubj-pass.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,145 +76,79 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>nsubj</code>: nominal subject</h2>
+        <h2><code>nsubj:pass</code>: passive nominal subject</h2>
 
-<p>A nominal subject is a noun phrase which is the syntactic subject of a clause and which controls the verb contained within the clause.</p>
+<p>In this treatment of Scottish Gaelic, a passive nominal subject is a noun phrase which is the patient in a clause with <em>rach</em> as the auxiliary and which controls the verb contained within the clause.</p>
 
 <h3 id="examples">Examples</h3>
 
-<p><em>Bha <b>Ludovic</b> ‘na chabhaig</em></p>
+<p><em>chaidh <b>e</b> sin a mhilleadh cho luath ‘s a thàinig e</em></p>
 
-<p>‘<b>Ludovic</b> was in a hurry’</p>
+<p>‘That <b>one</b> was destroyed as quickly as it came’</p>
 
-<pre><code class="language-conllu">1	Bha	bi	VERB	V-s	Tense=Past	0	root	_	_
-2	Ludovic	Ludovic	PROPN	Nn-mn	Case=Nom|Gender=Masc	1	nsubj	_	_
-3-4	'na	_	_	_	_	_	_	_	_
-3	an	an	ADP	Sp	_	5	case	_	_
-4	a	a	PRON	Dp3sm	Gender=Masc|Number=Sing|Person=3|Poss=Yes	5	nmod:poss	_	_
-5	chabhaig	cabhaig	NOUN	Ncsfd	Case=Dat|Gender=Fem|Number=Sing	1	xcomp:pred	_	SpaceAfter=No
+<pre><code class="language-conllu">1	chaidh	rach	AUX	V-s	Tense=Past	5	aux:pass	_	_
+2	e	e	PRON	Pp3sm	Gender=Masc|Number=Sing|Person=3	5	nsubj:pass	_	_
+3	sin	sin	DET	Dd	_	2	det	_	_
+4	a	a	PART	Ug	PartType=Inf	5	mark:prt	_	_
+5	mhilleadh	mill	NOUN	Nv	VerbForm=Inf	0	root	_	_
+6	cho	cho	ADV	Rg	_	7	advmod	_	_
+7	luath	luath	ADV	Rg	_	5	advmod	_	_
+8	's	's	CCONJ	Cc	_	10	cc	_	_
+9	a	a	PART	Q-r	PartType=Vb|PronType=Rel	10	mark:prt	_	_
+10	thàinig	thig	VERB	V-s	Tense=Past	7	conj	_	_
+11	e	e	PRON	Pp3sm	Gender=Masc|Number=Sing|Person=3	10	nsubj	_	_
 </code></pre>
 
-<p><em>Thiormaich <b>e</b> e fhéin</em> ‘<b>He</b> dried himself’</p>
-
-<pre><code class="language-conllu">1	Thiormaich	tiormaich	VERB	V-s	Tense=Past	0	root	_	_
-2	e	e	PRON	Pp3sm	Gender=Masc|Number=Sing|Person=3	1	nsubj	_	_
-3	e	e	PRON	Pp3sm	Gender=Masc|Number=Sing|Person=3	1	obj	_	_
-4	fhéin	féin	PRON	Px	Reflex=Yes	3	nmod	_	_
-</code></pre>
-
-<p>In a clefted copular construction, the relative particle takes <code class="language-plaintext highlighter-rouge">nsubj</code>:</p>
-
-<p><em>Am b’ i Mairearad <b>a</b> rinn an dàn seo?</em></p>
-
-<p>‘Was it Mairearad <b>who</b> made this song?’</p>
-
-<pre><code class="language-conllu">1	Am	am	PART	Qq	PartType=Vb|PronType=Int	4	mark:prt	_	_
-2	b'	is	AUX	Ws	Tense=Past	4	cop	_	_
-3	i	i	PRON	Pp3sf	Gender=Fem|Number=Sing|Person=3	2	fixed	_	_
-4	Mairearad	Mairearad	PROPN	Nn-fn	Case=Nom|Gender=Fem	0	root	_	_
-5	a	a	PART	Q-r	PartType=Vb|PronType=Rel	6	nsubj	_	_
-6	rinn	dèan	VERB	V-s	Tense=Past	4	csubj:cleft	_	_
-7	an	an	DET	Tdsm	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	8	det	_	_
-8	dàn	dàn	NOUN	Ncsmn	Case=Nom|Gender=Masc|Number=Sing	6	obj	_	_
-9	seo	seo	DET	Dd	_	8	det	_	SpaceAfter=No
-10	?	?	PUNCT	Fg	_	4	punct	_	_
-</code></pre>
-
-<p>In zero-copula constructions (<em>Sin e</em>, <em>Seo mise</em>) the first word is the root and the second word is the nominal subject:</p>
-
-<p><em>Sin <b>e</b> dìreach mar a thachair do chroitearan Bheàrnaraigh.</em></p>
-
-<p>‘That’s <b>it&lt;/b&lt; just as it happened to the crofters of Berneray.’</b></p>
-
-<pre><code class="language-conllu">1	Sin	sin	PRON	Pd	_	0	root	_	_
-2	e	e	PRON	Pp3sm	Gender=Masc|Number=Sing|Person=3	1	nsubj	_	_
-3	dìreach	dìreach	ADV	Rg	_	1	advmod	_	_
-4	mar	mar	SCONJ	Cs	_	6	mark	_	_
-5	a	a	PART	Q-r	PartType=Vb|PronType=Rel	6	mark:prt	_	_
-6	thachair	tachair	VERB	V-s	Tense=Past	3	xcomp	_	_
-7	do	do	ADP	Sp	_	8	case	_	_
-8	chroitearan	croitear	NOUN	Ncpmd	Case=Dat|Gender=Masc|Number=Plur	6	obl	_	_
-9	Bheàrnaraigh	Beàrnaraigh	PROPN	Nt	_	8	nmod	_	SpaceAfter=No
-10	.	.	PUNCT	Fe	_	1	punct	_	_
-</code></pre>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-nsubj in other languages:
+nsubj:pass in other languages:
 
-[<a href="../../bej/dep/nsubj.html">bej</a>]
+[<a href="../../bg/dep/nsubj-pass.html">bg</a>]
 
-[<a href="../../bg/dep/nsubj.html">bg</a>]
+[<a href="../../cs/dep/nsubj-pass.html">cs</a>]
 
-[<a href="../../bm/dep/nsubj.html">bm</a>]
+[<a href="../../de/dep/nsubj-pass.html">de</a>]
 
-[<a href="../../cop/dep/nsubj.html">cop</a>]
+[<a href="../../el/dep/nsubj-pass.html">el</a>]
 
-[<a href="../../cs/dep/nsubj.html">cs</a>]
+[<a href="../../en/dep/nsubj-pass.html">en</a>]
 
-[<a href="../../de/dep/nsubj.html">de</a>]
+[<a href="../../es/dep/nsubj-pass.html">es</a>]
 
-[<a href="../../el/dep/nsubj.html">el</a>]
+[<a href="../../fr/dep/nsubj-pass.html">fr</a>]
 
-[<a href="../../en/dep/nsubj.html">en</a>]
+[<a href="../../gsw/dep/nsubj-pass.html">gsw</a>]
 
-[<a href="../../es/dep/nsubj.html">es</a>]
+[<a href="../../he/dep/nsubj-pass.html">he</a>]
 
-[<a href="../../ess/dep/nsubj.html">ess</a>]
+[<a href="../../hy/dep/nsubj-pass.html">hy</a>]
 
-[<a href="../../et/dep/nsubj.html">et</a>]
+[<a href="../../id/dep/nsubj-pass.html">id</a>]
 
-[<a href="../../eu/dep/nsubj.html">eu</a>]
+[<a href="../../it/dep/nsubj-pass.html">it</a>]
 
-[<a href="../../fi/dep/nsubj.html">fi</a>]
+[<a href="../../jv/dep/nsubj-pass.html">jv</a>]
 
-[<a href="../../fr/dep/nsubj.html">fr</a>]
+[<a href="../../no/dep/nsubj-pass.html">no</a>]
 
-[<a href="../../fro/dep/nsubj.html">fro</a>]
+[<a href="../../pa/dep/nsubj-pass.html">pa</a>]
 
-[<a href="../../ga/dep/nsubj.html">ga</a>]
+[<a href="../../pt/dep/nsubj-pass.html">pt</a>]
 
-[<a href="../../gsw/dep/nsubj.html">gsw</a>]
+[<a href="../../ro/dep/nsubj-pass.html">ro</a>]
 
-[<a href="../../hy/dep/nsubj.html">hy</a>]
+[<a href="../../ru/dep/nsubj-pass.html">ru</a>]
 
-[<a href="../../it/dep/nsubj.html">it</a>]
+[<a href="../../sv/dep/nsubj-pass.html">sv</a>]
 
-[<a href="../../ja/dep/nsubj.html">ja</a>]
+[<a href="../../u/dep/nsubj-pass.html">u</a>]
 
-[<a href="../../kk/dep/nsubj.html">kk</a>]
+[<a href="../../yue/dep/nsubj-pass.html">yue</a>]
 
-[<a href="../../kmr/dep/nsubj.html">kmr</a>]
-
-[<a href="../../mr/dep/nsubj.html">mr</a>]
-
-[<a href="../../myv/dep/nsubj.html">myv</a>]
-
-[<a href="../../no/dep/nsubj.html">no</a>]
-
-[<a href="../../pa/dep/nsubj.html">pa</a>]
-
-[<a href="../../pcm/dep/nsubj.html">pcm</a>]
-
-[<a href="../../pt/dep/nsubj.html">pt</a>]
-
-[<a href="../../ro/dep/nsubj.html">ro</a>]
-
-[<a href="../../ru/dep/nsubj.html">ru</a>]
-
-[<a href="../../sv/dep/nsubj.html">sv</a>]
-
-[<a href="../../swl/dep/nsubj.html">swl</a>]
-
-[<a href="../../tr/dep/nsubj.html">tr</a>]
-
-[<a href="../../u/dep/nsubj.html">u</a>]
-
-[<a href="../../yue/dep/nsubj.html">yue</a>]
-
-[<a href="../../zh/dep/nsubj.html">zh</a>]
+[<a href="../../zh/dep/nsubj-pass.html">zh</a>]
 
 
 
