@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>xcomp:pred</title>
+    <title>nsubj:pred</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-sme">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-uk">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_sme/dep/xcomp-pred.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_uk/dep/nsubj-pred.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,107 +76,56 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>xcomp:pred</code>: predicate</h2>
+        <h2><code>nsubj:pred</code>: subject of a secondary predicate (enhanced dependency)</h2>
 
-<p>We extend the label <code class="language-plaintext highlighter-rouge">xcomp</code> as a UD Irish subtype <code class="language-plaintext highlighter-rouge">xcomp:pred</code> to mark predicates of the substantive verb <em>bí</em> (to be), which can have predicate arguments in the form of adverbial, adjectival and prepositional phrases and for cases where a secondary predicate occurs.
-Note that this differs from Irish (<a href="">cop</a>) constructions.</p>
+<p><code class="language-plaintext highlighter-rouge">nsubj:pred</code> denotes a subject in a secondary predication and is always headed by either <a href="xcomp-sp.html"><code class="language-plaintext highlighter-rouge">xcomp:pred</code></a> or <a href="advcl-sp.html"><code class="language-plaintext highlighter-rouge">advcl:pred</code></a>. <code class="language-plaintext highlighter-rouge">nsubj:pred</code> is an <a href="http://universaldependencies.org/u/overview/enhanced-syntax.html"><strong>Enhanced</strong></a> dependency. It is not a part of basic syntax tree.</p>
 
-<h3 id="examples">Examples</h3>
+<pre><code class="language-conllu">#	visual-style 6 2 nsubj:pred color:blue
+1	Ці	цей	DET	Pd---npaa	Animacy=Inan|Case=Acc|Number=Plur|PronType=Dem	2	det	_	LTranslit=cej|Translit=Ci
+2	землі	земля	NOUN	Ncfpan	Animacy=Inan|Case=Acc|Gender=Fem|Number=Plur	3	obj	6:nsubj:pred	LTranslit=zemľа|Translit=zemli
+3	вважали	вважати	VERB	Vmpis-p	Aspect=Imp|Mood=Ind|Number=Plur|Tense=Past|VerbForm=Fin	0	root	_	LTranslit=vvažaty|Translit=vvažaly
+4	останнім	останній	ADJ	Afpmsif	Case=Ins|Degree=Pos|Gender=Masc|Number=Sing	6	amod	_	LTranslit=ostannij|Translit=ostannim
+5	нехристиянізованим	нехристиянізований	ADJ	Ap-msif-ep	Aspect=Perf|Case=Ins|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass	6	amod	_	LTranslit=nechrystyjanizovanyj|Translit=nechrystyjanizovanym
+6	закутком	закуток	NOUN	Ncmsin	Animacy=Inan|Case=Ins|Gender=Masc|Number=Sing	3	xcomp:pred	_	LTranslit=zakutok|Translit=zakutkom
+7	Європи	Європа	PROPN	Npfsgn	Animacy=Inan|Case=Gen|Gender=Fem|Number=Sing	6	nmod	_	LTranslit=Ěvropa|SpaceAfter=No|Translit=Ěvropy
+8	.	.	PUNCT	U	_	3	punct	_	LTranslit=.|Translit=.
 
-<p><em>Bhí sé <b>dochreidte</b> go raibh sé fós beo</em> `It was <b>unbelieveable</b> that he was still alive’</p>
+#	visual-style 6 2 nsubj:pred color:blue
+1	These	_	_	_	_	0	root	_	_
+2	lands	_	_	_	_	3	obj	6:nsubj:pred	_
+3	they-considered	_	_	_	_	0	root	_	_
+4	[the]-last	_	_	_	_	0	root	_	_
+5	non-christianized	_	_	_	_	0	root	_	_
+6	part	_	_	_	_	3	xcomp:pred	_	_
+7	of-Europe	_	_	_	_	0	root	_	_
+8	.	_	_	_	_	0	root	_	_
 
-<h4 id="adjectival-predicate">Adjectival Predicate</h4>
-
-<pre><code class="language-sdparse">Bhí sé dochreidte go raibh sé fós beo \n Was it unbelieveable that was he still alive
-xcomp:pred(Bhí, dochreidte)
 </code></pre>
 
-<p><em>Tá aibítir iaraiglifeach na hÉigipte <b>léirithe</b> ar clé.</em> The Egyptian hieroglyphic alphabet is <b>shown</b> to the left.</p>
+<pre><code class="language-conllu"># visual-style 3 1 nsubj:pred color:blue
+1	Я	я	PRON	Pp-1-ysnn	Animacy=Anim|Case=Nom|Number=Sing|Person=1|PronType=Prs	2	nsubj	3:nsubj:pred	LTranslit=ja|Translit=ja
+2	пробудився	пробудитися	VERB	Vmeis-sm	Aspect=Perf|Gender=Masc|Mood=Ind|Number=Sing|Tense=Past|VerbForm=Fin	0	root	_	LTranslit=probudytyśа|Translit=Probudyvśа
+3	голодний	голодний	ADJ	Afpmsnf	Case=Nom|Degree=Pos|Gender=Masc|Number=Sing	2	advcl:pred	_	LTranslit=holodnyj|SpaceAfter=No|Translit=holodnyj
+4	.	.	PUNCT	U	_	2	punct	_	LTranslit=.|Translit=.
 
-<pre><code class="language-sdparse">Tá aibítir iaraiglifeach na hÉigipte léirithe ar clé. \n Is alphabet hieroglyphic of_the Egypt shown on left.
-xcomp:pred(Tá, léirithe)
+# visual-style 3 1 nsubj:pred color:blue
+1	I	_	_	_	_	2	nsubj	3:nsubj:pred	_
+2	woke-up	_	_	_	_	0	root	_	_
+3	hungry	_	_	_	_	2	advcl:pred	_	_
+4	.	_	_	_	_	0	root	_	_
+
 </code></pre>
 
-<h4 id="pp-predicate">PP Predicate</h4>
-
-<p><em>Bhí teas ollmhór <b>ann</b></em> `It was very hot <b>there</b>’</p>
-
-<pre><code class="language-sdparse">Bhí teas ollmhór ann \n Was heat great in_it 
-xcomp:pred(Bhí, ann)
-</code></pre>
-
-<p>a bhí ina dhiaidh sin ina <b>T.D.</b> `who was later a <b>T.D.</b>’</p>
-<pre><code class="language-sdparse">a bhí ina dhiaidh sin ina T.D. \n who was in_its after a T.D. 
-xcomp:pred(bhí, T.D.)
-</code></pre>
-
-<p>Note that the head of the prepositional phrase is the noun.</p>
-
-<p><em>Tá duine eile <b>i_mbun</b> peannaireachta</em> `Someone else is <b>in charge of</b> writing’</p>
-
-<pre><code class="language-sdparse">Tá duine eile i_mbun peannaireachta \n Is someone else in_charge_of writing 
-xcomp:pred(Tá, peannaireachta)
-case(peannaireachta, i_mbun)
-</code></pre>
-
-<h4 id="adverbial-predicate">Adverbial Predicate</h4>
-
-<p><em>Tá Meryl Streep go <b>hiontach</b> sa scannán sin</em> `Meryl Streep is <b>wonderful</b> in that movie’</p>
-
-<pre><code class="language-sdparse">Tá Meryl Streep go hiontach sa scannán sin \n Is Meryl Streep [] wonderful in movie that
-xcomp:pred(Tá, hiontach)
-</code></pre>
-
-<h4 id="secondary-predicate">Secondary Predicate</h4>
-
-<p>This label is also used for secondary predicates, i.e. where two predicates occur within one clause.</p>
-
-<p><em>Shín mé amach díreach romham í agus <b>fuair</b> mé an áit <b>folamh</b></em> `I stretched it out in front of me and <b>found</b> the place <b>empty</b>’</p>
-
-<pre><code class="language-sdparse">Shín mé amach díreach romham í agus fuair mé an áit folamh \n Stretched I out straight in_front_of_me it and found I the place empty 
-xcomp:pred(fuair, folamh)
-</code></pre>
-
-<p>Note that the secondary predicate can also attach either to the verbal noun of verbs other than the substantive verb <em>bí</em> (to be) or to a noun.</p>
-
-<p><em>D’fhéadfadh imreoir nó dhó seal a chaitheamh <b>díomhaoin</b> ón imirt dá bharr.</em> `Some players could spend <b>a while</b> off the pitch because of it’</p>
-
-<pre><code class="language-sdparse">D'fhéadfadh imreoir nó dhó seal a chaitheamh díomhaoin ón imirt dá bharr. \n Could a_player or two a_while to spending idle from playing to_its reason.
-xcomp:pred(chaitheamh, díomhaoin)
-</code></pre>
-
-<p>In the case of an adjectival secondary predicate attaching to a noun, note that the adjective in question does not agree with the noun in terms of gender or number.</p>
-
-<p><em>Bhí Monte Carlo faoi fhurú, an áit <b>beo</b> le Sasanaigh.</em> `Monte Carlo was a hive of activity, the place <b>teeming</b> with English people’</p>
-
-<pre><code class="language-sdparse">Bhí Monte Carlo faoi fhurú, an áit beo le Sasanaigh. \n Was Monte Carlo under activity, the place alive with English_people.
-xcomp:pred( áit, beo)
-</code></pre>
-
-<!-- Interlanguage links updated So kvě 14 19:04:19 CEST 2022 -->
+<p>For clausal cases, there is <a href="csubj-sp.html"><code class="language-plaintext highlighter-rouge">csubj:pred</code></a>. The basic subject is <a href="../../u/dep/nsubj.html"><code class="language-plaintext highlighter-rouge">nsubj</code></a>.
+<!-- Interlanguage links updated So kvě 14 19:03:56 CEST 2022 --></p>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-xcomp:pred in other languages:
+nsubj:pred in other languages:
 
-[<a href="../../ga/dep/xcomp-pred.html">ga</a>]
-
-[<a href="../../gd/dep/xcomp-pred.html">gd</a>]
-
-[<a href="../../gv/dep/xcomp-pred.html">gv</a>]
-
-[<a href="../../la/dep/xcomp-pred.html">la</a>]
-
-[<a href="../../pl/dep/xcomp-pred.html">pl</a>]
-
-[<a href="../../sme/dep/xcomp-pred.html">sme</a>]
-
-
-xcomp:pred in other languages:
-
-[<a href="../../uk/dep/xcomp-pred.html">uk</a>]
+[<a href="../../uk/dep/nsubj-pred.html">uk</a>]
 
 
 
@@ -225,7 +174,7 @@ xcomp:pred in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'sme';
+        Collections.listing['_current'] = 'uk';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
