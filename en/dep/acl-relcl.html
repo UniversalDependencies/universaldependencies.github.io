@@ -419,7 +419,7 @@ Another diagnostic is substituting <em>something</em>, <em>somewhere</em>, <em>s
 acl:relcl(something, speed)
 </code></pre>
 
-<h2 id="rcs-versus-non-relative-modifier-clauses">RCs Versus Non-relative Modifier Clauses</h2>
+<h2 id="rcs-versus-non-relative-modifier-clauses">RCs versus Non-relative Modifier Clauses</h2>
 
 <p><em>When</em>, <em>where</em>, <em>why</em>, and <em>how</em> frequently introduce <strong>adverbial clauses</strong> (<a href="">advcl</a>). They can also introduce non-relative <strong>adnominal modifier clauses</strong> (<a href="">acl</a>) similarly providing time/place/manner information:</p>
 
@@ -492,7 +492,7 @@ acl:relcl(how, looks)
 The WH-adverb typically is used to question a nominal (noun phrase or prepositional phrase), 
 so we use the adnominal clause label to highlight the corresponding structure.</p>
 
-<h3 id="free-relatives-versus-interrogativeexclamative-complement-clauses">Free Relatives Versus Interrogative/Exclamative Complement Clauses</h3>
+<h3 id="free-relatives-versus-interrogativeexclamative-complement-clauses">Free Relatives versus Interrogative/Exclamative Complement Clauses</h3>
 
 <p>Free relatives are subtly different from <strong>interrogative clauses</strong>, where the WH-word making it interrogative is inside the clause.
 Verbs such as <em>wonder</em>, <em>know</em>, and <em>tell</em> license interrogative complement clauses (including ones beginning with <em>whether</em>).
@@ -610,7 +610,11 @@ nsubj(is, this)
 
 <h2 id="clefts">Clefts</h2>
 
-<p>A free relative can be used within a copular construction to background some material relative to a foregrounded element. <em>John</em> is foregrounded in the following two variants of the <strong>pseudocleft construction</strong>:</p>
+<p>A free relative can be used within a copular construction to background some material relative to a foregrounded element.</p>
+
+<h3 id="pseudoclefts">Pseudoclefts</h3>
+
+<p><em>John</em> is foregrounded in the following two variants of the <strong>pseudocleft construction</strong>:</p>
 
 <pre><code class="language-sdparse">-ROOT- John is who we want to help .
 root(-ROOT-, who)
@@ -644,12 +648,6 @@ nsubj(worked, plan)
 root(-ROOT-, worked)
 </code></pre>
 
-<p>☞ TODO: clefts vs. extraposition.</p>
-<ul>
-  <li>CLEFT: “It’s [that he’s so self-satisfied] [that I find offputting].” (CGEL p. 1418).</li>
-  <li>EXTRAPOSITION: “I find it offputting that he’s so self-satisfied.” expl(find, it), nsubj(find, I), ccomp(find, self-satisfied)</li>
-</ul>
-
 <!--
 ~~~sdparse
 -ROOT- What the committee asked is why all these events transpired .
@@ -661,6 +659,8 @@ nsubj(transpired, events)
 root(-ROOT-, transpired)
 ~~~
 -->
+
+<h3 id="it-clefts"><em>It</em>-clefts</h3>
 
 <p>The <strong><em>it</em>-cleft construction</strong> serves a similar purpose—foregrounding one element (with expletive <em>it</em> plus copula). 
 The remainder of the sentence is a standard (not free) relative clause that elaborates on the copular predication. 
@@ -676,7 +676,55 @@ xcomp(want, help)
 obj(help, who)
 </code></pre>
 
+<pre><code class="language-sdparse">-ROOT- It was with John that/PRON I went to the movies .
+expl(John, It)
+cop(John, was)
+root(-ROOT-, John)
+case(John, with)
+advcl:relcl(John, went)
+obl(went, that)
+</code></pre>
+
+<pre><code class="language-sdparse">-ROOT- It 's that/SCONJ he 's so self-satisfied that/PRON I find offputting . (CGEL p. 1418)
+root(-ROOT-, self-satisfied)
+expl:outer(self-satisfied, It)
+mark(self-satisfied, that-4)
+nsubj(self-satisfied, he)
+cop(self-satisfied, 's-6)
+cop(self-satisfied, 's-3)
+advcl:relcl(self-satisfied, find)
+obj(find, that-9)
+xcomp(find, offputting)
+</code></pre>
+
 <p>(Previous versions of the guidelines treated <em>who we want to help</em> in the <em>it</em>-cleft as a free relative. But note that the above can be paraphrased as <em>It’s John <strong>that</strong> we want to help</em> or even <em>It’s John we want to help</em>, whereas free relatives require a WH-word to serve as the head.)</p>
+
+<h3 id="it-clefts-versus-extraposition"><em>It</em>-clefts versus Extraposition</h3>
+
+<p><em>It</em>-clefts may resemble extraposition. <em>It is clear that we should decline</em> is an example of extraposition, discussed at <a href="">expl</a>: the heavy clausal subject <em>that we should decline</em> is postponed to the end of the sentence, with expletive <em>it</em> as placeholder in the usual subject position. By contrast, the <em>it</em>-clefts described above involve a relative clause (which may start with relativizer <em>that</em>, or another relativizer like <em>who</em> or <em>which</em>, or no relativizer at all).</p>
+
+<p>According to <a href="http://icame.uib.no/ij32/ij32_7_34.pdf">Calude (2008, pp. 20-21)</a>, the key test is that, for extraposition, <em>it</em> can be replaced by the delayed clause. 
+For <em>it</em>-clefts, this yields an ungrammatical result:</p>
+
+<ul>
+  <li>EXTRAPOSITION: <em>It is clear that we should decline</em> → <em>That we should decline is clear</em></li>
+  <li>IT-CLEFT: <em>It is John that we want to help</em> → <em>*That we want to help is John</em>
+    <ul>
+      <li>Additionally, the acceptability in this context of replacing <em>that</em> with <em>who(m)</em> shows that it is a relativizer, not a complementizer.</li>
+    </ul>
+  </li>
+  <li>IT-CLEFT: <em>It was with John that I went to the movies</em> → <em>*That I went to the movies was with John</em></li>
+  <li>IT-CLEFT: <em>It is that he’s so self-satisfied that I find offputting</em> → <em>*That I find offputting is that he’s so self-satisfied</em></li>
+  <li>EXTRAPOSITION: <em>I find it offputting that he’s so self-satisfied</em> → <em>I find that he’s so self-satisfied offputting</em>
+    <pre><code class="language-sdparse">I find it offputting that he 's so self-satisfied
+expl(find, it)
+nsubj(find, I)
+xcomp(find, offputting)
+ccomp(find, self-satisfied)
+mark(self-satisfied, that)
+</code></pre>
+  </li>
+</ul>
 
 <h2 id="no-matter-and-similar"><em>No matter</em> and similar</h2>
 
