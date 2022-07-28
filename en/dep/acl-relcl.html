@@ -663,7 +663,7 @@ root(-ROOT-, transpired)
 <h3 id="it-clefts"><em>It</em>-clefts</h3>
 
 <p>The <strong><em>it</em>-cleft construction</strong> serves a similar purpose—foregrounding one element (with expletive <em>it</em> plus copula). 
-The remainder of the sentence is a standard (not free) relative clause that elaborates on the copular predication. 
+The remainder of the sentence is a standard (not free<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote">4</a></sup>) relative clause that elaborates on the copular predication. 
 CGEL (p. 416) describes it as a relative clause functioning as a dependent of the main clause (versus the canonical function of a relative clause as dependent within a nominal phrase). 
 In UD terms, the relative clause is <em>adverbial</em>; we therefore use <code class="language-plaintext highlighter-rouge">advcl:relcl</code>:</p>
 
@@ -685,6 +685,19 @@ advcl:relcl(John, went)
 obl(went, that)
 </code></pre>
 
+<pre><code class="language-sdparse">-ROOT- Was it really that/SCONJ it was raining that/PRON bothered you ?
+root(-ROOT-, raining)
+expl:outer(raining, it-3)
+cop(raining, Was)
+advmod(raining, really)
+mark(raining, that-5)
+expl(raining, it-6)
+aux(raining, was)
+advcl:relcl(raining, bothered)
+csubj(bothered, that-9)
+obj(bothered, you)
+</code></pre>
+
 <pre><code class="language-sdparse">-ROOT- It 's that/SCONJ he 's so self-satisfied that/PRON I find offputting . (CGEL p. 1418)
 root(-ROOT-, self-satisfied)
 expl:outer(self-satisfied, It)
@@ -693,11 +706,12 @@ nsubj(self-satisfied, he)
 cop(self-satisfied, 's-6)
 cop(self-satisfied, 's-3)
 advcl:relcl(self-satisfied, find)
-obj(find, that-9)
+ccomp(find, that-9)
 xcomp(find, offputting)
 </code></pre>
 
-<p>(Previous versions of the guidelines treated <em>who we want to help</em> in the <em>it</em>-cleft as a free relative. But note that the above can be paraphrased as <em>It’s John <strong>that</strong> we want to help</em> or even <em>It’s John we want to help</em>, whereas free relatives require a WH-word to serve as the head.)</p>
+<p>Note that relativizer <em>that</em> receives the <a href="">PRON</a> tag, but its antecedent may be a wide variety of constituent types.
+The relativizer should attach within the relative clause as its antecedent would, which may be <a href="">obl</a> in the case of a prepositional phrase or <a href="">csubj</a>, <a href="">ccomp</a>, etc. in the case of a clausal antecedent, as shown above.</p>
 
 <h3 id="it-clefts-versus-extraposition"><em>It</em>-clefts versus Extraposition</h3>
 
@@ -714,6 +728,18 @@ For <em>it</em>-clefts, this yields an ungrammatical result:</p>
     </ul>
   </li>
   <li>IT-CLEFT: <em>It was with John that I went to the movies</em> → <em>*That I went to the movies was with John</em></li>
+  <li>IT-CLEFT: <em>Was it really that it was raining that bothered you?</em> → <em>*Was that bothered you really that it was raining?</em></li>
+  <li>EXTRAPOSITION: <em>Did it bother you that it was raining?</em> → <em>Did that it was raining bother you?</em>
+    <pre><code class="language-sdparse">Did it bother you that it was raining ?
+aux(bother, Did)
+expl(bother, it-2)
+obj(bother, you)
+csubj(bother, raining)
+mark(raining, that)
+expl(raining, it-6)
+aux(raining, was)
+</code></pre>
+  </li>
   <li>IT-CLEFT: <em>It is that he’s so self-satisfied that I find offputting</em> → <em>*That I find offputting is that he’s so self-satisfied</em></li>
   <li>EXTRAPOSITION: <em>I find it offputting that he’s so self-satisfied</em> → <em>I find that he’s so self-satisfied offputting</em>
     <pre><code class="language-sdparse">I find it offputting that he 's so self-satisfied
@@ -760,6 +786,9 @@ acl:relcl(progress, make)
     </li>
     <li id="fn:2" role="doc-endnote">
       <p>Or, formally, <em>wherein</em>. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p>Previous versions of the <em>it</em>-cleft guidelines specified that for <em>It’s John <strong>who</strong> we want to help</em>, the phrase <em>who we want to help</em> should be treated as a free relative. But note that the sentence can be paraphrased as <em>It’s John <strong>that</strong> we want to help</em> or even <em>It’s John we want to help</em>, whereas free relatives require a WH-word to serve as the head. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
