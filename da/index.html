@@ -80,57 +80,90 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>Words are generally delimited by whitespace or punctuation. Exceptions:
+    <ul>
+      <li>Numerical expressions (including dates) are treated as single words and may contain punctuation or whitespace: <em>1.1.1970</em>, <em>11:00</em>, <em>2 000</em>.</li>
+    </ul>
+  </li>
+  <li>Multiword tokens are not used in Danish.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<ul>
+  <li>Danish uses all 17 universal tags.</li>
+  <li>The only words tagged <a href="">PART</a> are the infinitive marker <em>at</em> and the negation particle <em>ikke</em>.</li>
+  <li>Auxiliaries (<a href="">AUX</a>) are all verbal in Danish and can be grouped into four types:
+    <ul>
+      <li>The copula <em>være</em> (be).</li>
+      <li>The temporal auxiliary <em>have</em> (have), which combines with the participle of the main verb to form perfect tenses.</li>
+      <li>The passive auxiliary <em>blive</em> (get/become), which combines with the past participle of the main verb to form passives.</li>
+      <li>Modal and aspectual verbs that combine with the bare infinitive of the main verb, such as <em>måtte</em> (must) and <em>kunne</em> (could).</li>
+    </ul>
+  </li>
+  <li>The tag <a href="">DET</a> is used for articles and pronominal words used with a determiner function, including possessives. The tag <a href="">PRON</a> is reserved for pronouns occurring as the head of a noun phrase.</li>
+  <li>Participles (both present and past) are mainly used adjectivally in Danish and are generally tagged <a href="">ADJ</a>. The only exception is that past participles used to form periphrastic passives are tagged <a href="">VERB</a>.</li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<p>For more information, see the list of <a href="pos/index.html">Danish POS tags</a>.</p>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Nouns have inherent <a href="">Gender</a> and inflect for <a href="">Number</a> (singular or plural), <a href="">Definite</a> (indefinite or definite) and <a href="">Case</a> (nominative or genitive).</li>
+  <li>Verbs inflect for <a href="">Voice</a> (active or passive). Finite forms in indicative mood in addition inflect for <a href="">Tense</a> (present or paste). There are two types of nonfinite forms: infinitives and participles (present and past).</li>
+  <li>Adjectives agree with nouns (in both attributive and predicate position) with respect to the features <a href="">Gender</a>, <a href="">Number</a> and <a href="">Definite</a>. In addition, many adjectives inflect for <a href="">Degree</a> (positive, comparative, superlative) and for <a href="">Case</a> when used to head noun phrases.</li>
+  <li>Adverbs inflect only for <a href="">Degree</a>.</li>
+  <li>Personal pronouns inflect for <a href="">Case</a> with three values (nominative, accusative, genitive).</li>
+  <li>Determiners agree with nouns in the same way as adjectives.</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Subjects have the following characteristics:
+    <ul>
+      <li>Word order: Subjects immediately follow the finite verb and precede negation in verb-initial main clauses.</li>
+      <li>Case marking: Subjects occur in nominative case without adpositions.</li>
+      <li>Passivization: Subjects are suppressed when verbs (both intransitive and transitive) are passivized.</li>
+      <li>Control: Subjects control the subjects of absolute adverbials.</li>
+      <li>Relativization: Relative pronouns with subject function cannot be omitted.</li>
+    </ul>
+  </li>
+  <li>Objects have the following characteristics:
+    <ul>
+      <li>Word order: Objects immediately follow the main verb unless topicalized.</li>
+      <li>Case marking: Objects occur in nominative case (if nouns) or accusative case (if pronouns) without adpositions.</li>
+      <li>Passivization: Objects become (non-expletive) subjects when verbs are passivized.</li>
+    </ul>
+  </li>
+  <li>The copula verb <em>være</em> (be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses. Existential clauses use the same verb but with different syntax, with the expletive <em>der</em> (there).</li>
+  <li>The following subtypes are used in Danish:
+    <ul>
+      <li><a href="">acl:relcl</a> for relative clauses</li>
+      <li><a href="">advmod:lmod</a> for adverbial modifiers expressing location</li>
+      <li><a href="">aux:pass</a> for passive auxiliaries</li>
+      <li><a href="">compound:prt</a> for verb particles</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
+      <li><a href="">nmod:poss</a> for possessive/genitive modifiers</li>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+      <li><a href="">obl:agent</a> for agents of passive verbs</li>
+      <li><a href="">obl:lmod</a> for oblique modifiers expressing location</li>
+      <li><a href="">obl:tmod</a> for oblique modifiers expressing time</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is 1 Danish UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/da_ddt/index.html">Danish-DDT</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
