@@ -95,7 +95,7 @@ different parts of speech):
 Czech <em>dělals (dělal + jsi</em> … main verb + auxiliary); <em>proň (pro + něj</em> … preposition + pronoun);
 German <em>zum (zu + dem</em> … preposition + article);
 Spanish <em>dámelo (da + me + lo</em> … verb + clitics) etc.
-The only truly general approach to fused words in UD is to exploit the distinction between tokens and (syntactic) words, 
+The only truly general approach to fused words in UD is to exploit the distinction between tokens and (syntactic) words,
 and to apply a language-specific processing step that splits tokens into syntactic words
 where necessary. Every syntactic word then gets its own part-of-speech tag
 and features. See also <a href="tokenization.html">Tokenization</a> and
@@ -104,7 +104,7 @@ and features. See also <a href="tokenization.html">Tokenization</a> and
 <h2 id="lemmas">Lemmas</h2>
 
 <p>The <code class="language-plaintext highlighter-rouge">LEMMA</code> field should contain the canonical or base form of the word, which is the form typically found in dictionaries.
-If a language is agglutinative, this is typically the form with no inflectional affixes; in fusional languages, 
+If a language is agglutinative, this is typically the form with no inflectional affixes; in fusional languages,
 the lemma is usually the result of a language-particular convention.
 If the lemma is not available, an underscore (“<code class="language-plaintext highlighter-rouge">_</code>”) can be used to indicate its absence.</p>
 
@@ -112,12 +112,12 @@ If the lemma is not available, an underscore (“<code class="language-plaintext
 Except perhaps in rare cases of suppletion, one form should be the chosen as the lemma of a verb, noun, determiner, or pronoun paradigm.
 The lemma of adjectives and adverbs should be the positive form (in languages with comparative and superlative forms).
 The lemma does not remove derivational morphology, so the lemma of [en] <em>organizations</em> is <em>organization</em> not <em>organize</em> (nor <em>organ</em>).
-In general, a canonical form should collapse inflectional and minor orthographic/spelling variation 
-(such as casing, accents/diacritics, and typos). In the lemma field, some treebanks may choose 
+In general, a canonical form should collapse inflectional and minor orthographic/spelling variation
+(such as casing, accents/diacritics, and typos). In the lemma field, some treebanks may choose
 to aggressively normalize spelling variation that may reflect dialect or authorial style.</p>
 
 <p>Abbreviated/shortened forms can be mapped to their full spelling as the lemma
-in conjunction with the feature <a href="../feat/Abbr.html"><code class="language-plaintext highlighter-rouge">Abbr=Yes</code></a>, provided that the full spelling 
+in conjunction with the feature <a href="../feat/Abbr.html"><code class="language-plaintext highlighter-rouge">Abbr=Yes</code></a>, provided that the full spelling
 is a single word. Abbreviations that would expand to multiple words should be retained in the lemma.</p>
 
 <p>The <code class="language-plaintext highlighter-rouge">LEMMA</code> field should not be used to encode features or other similar properties of the word (use <code class="language-plaintext highlighter-rouge">FEATS</code> and <code class="language-plaintext highlighter-rouge">MISC</code> instead; see <a href="../../format.html">format</a>).</p>
@@ -131,23 +131,23 @@ If unique lemma identifiers are available, they can be preserved in the <code cl
 
 <p><em>Details at: <a href="typos.html">Typos and Other Errors</a></em></p>
 
-<p>In addition to normalizing spelling in lemmas, treebanks are encouraged to adopt the optional morphological feature 
-<a href="../feat/Typo.html"><code class="language-plaintext highlighter-rouge">Typo=Yes</code></a> for clear accidental misspellings of a word (e.g. <em>ltake</em> for <em>take</em> or <em>too</em> for <em>to</em>). 
+<p>In addition to normalizing spelling in lemmas, treebanks are encouraged to adopt the optional morphological feature
+<a href="../feat/Typo.html"><code class="language-plaintext highlighter-rouge">Typo=Yes</code></a> for clear accidental misspellings of a word (e.g. <em>ltake</em> for <em>take</em> or <em>too</em> for <em>to</em>).
 Typos of words in closed-class categories can be found in a corpus by inspecting word frequencies in each category.
-Treebank maintainers should take care not to use <code class="language-plaintext highlighter-rouge">Typo=Yes</code> for words that may reflect actual linguistic variation, 
+Treebank maintainers should take care not to use <code class="language-plaintext highlighter-rouge">Typo=Yes</code> for words that may reflect actual linguistic variation,
 e.g., dialect, style, or nonnative grammar.</p>
 
-<p>On occasion, a typo or abbreviation will apply to an inflected word (e.g. <em>hadd</em> for <em>had</em>), and thus the lemma 
+<p>On occasion, a typo or abbreviation will apply to an inflected word (e.g. <em>hadd</em> for <em>had</em>), and thus the lemma
 should both normalize the spelling and remove the inflection.</p>
 
-<p>For incorrectly split words, the first segment should be treated as morphologically representing the entire word, 
+<p>For incorrectly split words, the first segment should be treated as morphologically representing the entire word,
 so it should have the lemma for the entire word, as described at <a href="typos.html">Typos and Other Errors</a>.</p>
 
 <h2 id="part-of-speech-tags">Part-of-Speech Tags</h2>
 
 <p>The list of <a href="../../u/pos/index.html">universal POS tags</a> is a fixed list containing 17 tags.
 It is possible that some tags will not be used in some languages. However, the list cannot be extended to cover
-language-specific extensions. Instead, more fine-grained classification of words can be achieved via the use of 
+language-specific extensions. Instead, more fine-grained classification of words can be achieved via the use of
 <a href="../../u/feat/index.html">features</a> (see below).</p>
 
 <p>Also, note that the <a href="../../format.html">CoNLL-U format</a>
@@ -158,6 +158,38 @@ data column and are not mixed with the universal POS tags.</p>
 <p>The universal POS tags consist of uppercase English letters <code class="language-plaintext highlighter-rouge">[A-Z]</code> only.
 Just one tag per word is expected, and it should not be empty. (Use the <code class="language-plaintext highlighter-rouge">X</code> tag
 instead of underscore if no other tag is appropriate.)</p>
+
+<h3 id="tagging-principles">Tagging principles</h3>
+
+<p>A word’s category should be primarily determined by prototypical (expected) syntactic behavior,
+as typically recorded in a dictionary, rather than by the context of a particular sentence.
+Syntax still plays an important role, especially in cross-linguistic mapping of same-named categories.
+However, prototypical (expected) syntactic behavior is of more importance than function performed in exceptional contexts.</p>
+
+<p>Morphological behavior may be a good indicator in some languages.
+If, for example, a language uses distinct inflection patterns for nouns and adjectives, then
+morphology can be used to distinguish these two categories. Exceptions cannot be excluded but they
+should be really exceptional and well grounded; when in doubt, use the category determined by
+morphology (if available).</p>
+
+<p>Ambiguous words (belonging to two or more categories) do exist. Sometimes by pure coincidence
+([en] <em>the can</em> vs. <em>can = to be able to</em>). Sometimes the two words are related but differ
+morphologically ([en] <em>the book(s)</em> vs. <em>to book, booked, booking</em>).</p>
+
+<p>Perhaps the most difficult part are ambiguous function words that do not inflect (i.e. morphology
+does not help us), yet they perform two or more <em>significantly</em> different syntactic functions,
+which we normally associate with different parts of speech. The two functions may not be equally
+frequent but each of them is more frequent than what could be labeled as a mere exception (i.e.,
+the <em>wait for his ‘yes’</em> example is exceptional). Disambiguating such pairs clearly depends on
+the context of the given sentence where the word is used.
+So how do we know that the difference is “significant enough”? One clue is that the word, when
+translated to another language, gets two different translations with different POS tags (e.g.,
+the English <em>no</em> as response interjection, vs. negative determiner). Another clue comes from
+contrasting the UD relations used for the two functions. For example, distinguishing <code class="language-plaintext highlighter-rouge">PRON</code>
+from <code class="language-plaintext highlighter-rouge">SCONJ</code> ([en] <em>that</em>, [es] <em>que</em>, [ru] <em>что</em> / <em>čto</em>) is important because pronouns, unlike
+conjunctions, may become core arguments and fill valency slots of verbs. Distinguishing <code class="language-plaintext highlighter-rouge">SCONJ</code>
+from <code class="language-plaintext highlighter-rouge">ADP</code>, or <code class="language-plaintext highlighter-rouge">CCONJ</code> from <code class="language-plaintext highlighter-rouge">ADV</code> seems less crucial and we can keep just one POS tag
+for each such word, based on prototypical usage.</p>
 
 <h3 id="using-a-word-vs-mentioning-it">Using a word vs. mentioning it</h3>
 
@@ -244,10 +276,10 @@ Universal and language-specific features of a word are listed together in the FE
 occasionally, digits 0-9. The first letter is always uppercase.
 The other letters are generally lowercase, except for positions where new
 internal words are marked for better readability (e.g. <code class="language-plaintext highlighter-rouge">NumType</code>).
-This makes features distinct from the 
-<a href="../../u/pos/index.html">universal POS tags</a> 
-(all uppercase) and from the 
-<a href="../../u/dep/index.html">universal dependency relations</a> 
+This makes features distinct from the
+<a href="../../u/pos/index.html">universal POS tags</a>
+(all uppercase) and from the
+<a href="../../u/dep/index.html">universal dependency relations</a>
 (all lowercase).</li>
   <li>A feature of a word should always be fully specified in the data, i.e. both
 the feature name and the value should be identified: <code class="language-plaintext highlighter-rouge">PronType=Prs</code>.
