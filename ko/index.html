@@ -83,25 +83,42 @@
 <ul>
   <li>The tokenization of the Korean UD treebanks follows the tokenization of the Korean data distributed
 by the <a href="http://www.spmrl.org/category/spmrl2013.html">SPMRL 2013 shared task</a>, which is
-a straightforward whitespace-based tokenization with conventional separation of punctuation.
-Each token can contain one or more morphemes separated by plus (<code class="language-plaintext highlighter-rouge">+</code>) signs.</li>
+a straightforward whitespace-based tokenization with conventional separation of punctuation.</li>
+  <li>There are no words with spaces.</li>
+  <li>There are currently no multi-word tokens. This may change in the future, as some words have no
+space between them, and instead of indicating this by <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> in MISC, multi-word tokens
+may be preferable.</li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
 
 <h2 id="morphology">Morphology</h2>
 
+<h3 id="lemmas">Lemmas</h3>
+
+<ul>
+  <li>At present, the lemma column in the GSD and Kaist treebanks violates the UD guidelines. Instead
+of showing a selected surface form as the citation form for the lexeme, it shows the morphemes
+delimited by the plus <em>(+)</em> character. This should be fixed in future version and a real lemma
+should be provided.</li>
+</ul>
+
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>All 17 universal POS categories are relevant in Korean, including particles (<a href="">PART</a>).
+At present, hundreds of word types are tagged <a href="">PART</a>. This is a legacy of an existing Korean
+morphological analyzer and many of these words should probably belong to another category in UD;
+however, the exact list has yet to be worked out.</li>
+  <li>The following words are treated as auxiliaries (<a href="">AUX</a>):
+    <ul>
+      <li>The affirmative copula 이 <em>i</em> (“to be”) is written as a suffix to the nominal predicate but it
+is treated as a separate auxiliary verb in UD.</li>
+      <li>않 <em>anh</em> (“to not be”) is the negative copula or an auxiliary in a negative clause.</li>
+      <li>있 <em>iss</em> (“to be”) is an auxiliary in affirmative clauses.</li>
+      <li>하 <em>ha</em> (“must, should”) is a necessitative modal auxiliary.</li>
+      <li>싶 <em>sip</em> (“will, to want”) is a desiderative modal auxiliary.</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="features">Features</h3>
 
@@ -114,12 +131,31 @@ Each token can contain one or more morphemes separated by plus (<code class="lan
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>Korean uses a nominative-accusative alignment. Direct objects are marked by the accusative
+morpheme 을 <em>eul</em>.</li>
+</ul>
 
-<hr />
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Korean:
+    <ul>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
+      <li><a href="">nmod:poss</a> for possessive (genitive) modifiers</li>
+      <li><a href="">det:poss</a> for possessive determiners</li>
+      <li><a href="">acl:relcl</a> for relative clauses</li>
+      <li><a href="">obl:tmod</a> for temporal adjuncts</li>
+      <li><a href="">compound:lvc</a> for light verb constructions</li>
+      <li><a href="">flat:name</a> for connection of parts of a flat multi-word named entity</li>
+    </ul>
+  </li>
+  <li>The following relation types are not used in Korean at all:
+<a href="">expl</a>, <a href="">list</a>, <a href="">parataxis</a>, <a href="">reparandum</a></li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
