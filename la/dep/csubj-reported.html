@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>parataxis:rep</title>
+    <title>csubj:reported</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-la">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/parataxis-rep.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/csubj-reported.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,44 +76,38 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>parataxis:rep</code>: reported speech or digression in discursive form</h2>
+        <h2><code>csubj:reported</code>: reported speech from passive verb of saying</h2>
 
-<p>As a subtype of <a href="u-dep/parataxis"><code class="language-plaintext highlighter-rouge">parataxis</code></a>, <code class="language-plaintext highlighter-rouge">rep</code> is principally used to mark direct speech inserted into the sentence.</p>
+<p>As per the <a href="https://universaldependencies.org/changes.html#reported-speech">changes in v2.10</a>, reported speech is now coherently treated as a clausal complement of the (possibly elliptical) predicate of saying, and no longer by means of the relation <a href="la-dep/parataxis"><code class="language-plaintext highlighter-rouge">parataxis</code></a>: specifically, together with <a href="la-dep/ccomp-reported"><code class="language-plaintext highlighter-rouge">ccomp:reported</code></a> it replaces the previous relation <a href="la-dep/parataxis-rep"><code class="language-plaintext highlighter-rouge">parataxis:rep</code></a> and helps better describe this construction.</p>
 
-<p>Direct or reported speech can be syntactically ambivalent, because on the one hand, as a whole, it behaves in a similar manner to a nominal argument (e.g. <a href="la-dep/obj"><code class="language-plaintext highlighter-rouge">obj</code></a> or <a href="la-dep/nsubj"><code class="language-plaintext highlighter-rouge">nsubj</code></a>), but, on the other hand, it constitutes a completely independent uttering with respect to the main sentence.</p>
+<p>We still introduce the subtype <code class="language-plaintext highlighter-rouge">reported</code> to ease the retrieval of this particular case: in fact, while Latin tipically uses either <a href="la-feat/VerbForm">non-finite verbal constructions</a> or connectors such as <a href="la-upos/SCONJ">subordinating conjunctions</a> to introduce an object clause, reported speech can also be conveyed by the simple juxtaposition of an otherwise independent clause with respect to <a href="la-feat/VerbForm">verb form</a>, <a href="la-feat/Mood">mood</a>, <a href="la-feat/Tense">tense</a>, and other.</p>
 
-<p>This relation is no longer used as of UD v2.11: it is replaced by <a href="la-dep/ccomp-reported">ccomp:reported</a> and <a href="la-dep/csubj-reported">csubj:reported</a>.</p>
+<p>Reported speech, as any clause, can also appear as an <a href="la-dep/ccomp-reported">object</a> of a verb of saying. When it is a subject, it is always intended as a <a href="la-dep/csubj-pass">passive</a> one: there is no other logical possibility.</p>
 
-<pre><code class="language-sdparse">Virgilius primo Eneidorum dicit « Arma virumque cano » \n Virgil in-first of-Aeneis says « Arms and-man I-sing »
-parataxis:rep(dicit, cano)
-parataxis:rep(says, I-sing)
+<pre><code class="language-sdparse">Hinc etiam dicebatur de celo peccatori David : Quare tu enarras iustitias meas ? , quasi diceret : Frustra loqueris , cum tu sis alius ab eo quod loqueris
+csubj:reported(dicebatur, enarras)
 </code></pre>
 
-<p>The same logic and subrelation is applied to digressions in the sentence that take the form of independent and complex clauses themselves, factually beginning a new sentence. The two blocks are however still in a (loose) syntactical relation, because the digression is not infrequently introduced by some element in the main clause, in a similar way to <a href="la-feat/conj-expl">explicative co-ordinations</a>. The relation might also be pointed to by dedicated punctuation marks.</p>
+<p>‘Hence a voice from heaven <u>asked</u> the sinner David: “<strong>Why do you tell of my righteousness?</strong>”, as if to say: ‘You speak in vain, since your words are belied by what you are’.’ (<code class="language-plaintext highlighter-rouge">UDante Mon-143</code>, <em>De Monarchia</em> I xiii 5, Dante Alighieri)</p>
 
-<pre><code class="language-sdparse">Sed nunc queritur : Cum illa regio celi circulariter feratur , quare illa elevatio non fuit circularis ? \n But now is-asked : When that region of-sky circularly be-brought , for-which-reason that lifting not was circular ?
-parataxis:rep(queritur, circularis)
-parataxis:rep(is-asked, circular)
+<ul>
+  <li>Here, the first verb of saying, <em>dico</em> ‘to say’, is in the passive <a href="la-feat/Voice">voice</a>, so literally: ‘from the heavens it was being said to the sinner David: …’</li>
+</ul>
+
+<pre><code class="language-sdparse">Sed nunc queritur : Cum illa regio celi circulariter feratur , quare illa elevatio non fuit circularis ?
+csubj:reported(queritur, circularis)
 advcl(circularis, feratur)
-advcl(circular, be-brought)
 </code></pre>
 
-<p>In both cases, the strategy is that of juxtaposition, and any morphosyntactical marks of subordination or co-ordination (e.g. <a href="la-pos/SCONJ">subordinating conjunctions</a>, <a href="la-feat/VerbForm">non-finite verb forms</a>, <a href="la-dep/advcl-abs">constructions in oblique cases</a>, <a href="la-dep/discourse">discourse particles</a>…) are lacking, hence the use of <code class="language-plaintext highlighter-rouge">parataxis</code>; at the same time, the subrelation <code class="language-plaintext highlighter-rouge">rep</code> acknowledges that the two juxtaposed (sometimes even interwoven) blocks are conceptually more connected than with usual parataxis.</p>
+<p>‘But now the question arises: Since that region of heaven is borne round us in a circle, why was not the corresponding elevation circular?’ (<code class="language-plaintext highlighter-rouge">UDante Que-108</code>, <em>aqua et terra</em> 74, Dante Alighieri)</p>
 
-<!-- Interlanguage links updated So kvě 14 19:04:12 CEST 2022 -->
+<ul>
+  <li>The verb of saying is <em>quaero</em> ‘to ask’, so literally: ‘but now it is asked: …’</li>
+</ul>
 
 
 <!-- "in other languages" links -->
 <hr/>
-
-parataxis:rep in other languages:
-
-[<a href="../../ckt/dep/parataxis-rep.html">ckt</a>]
-
-[<a href="../../gun/dep/parataxis-rep.html">gun</a>]
-
-[<a href="../../la/dep/parataxis-rep.html">la</a>]
-
 
 
       </div>
