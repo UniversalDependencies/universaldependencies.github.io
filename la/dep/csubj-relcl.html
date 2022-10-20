@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>obl:cmp</title>
+    <title>csubj:relcl</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-la">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/obl-cmp.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/csubj-relcl.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,52 +76,38 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>obl:cmp</code>: comparative oblique argument</h2>
+        <h2><code>csubj:relcl</code>: double pronoun construction or free relative acting as subject</h2>
 
-<p>The <code class="language-plaintext highlighter-rouge">cmp</code> subtype is of semantic nature and is used to point out the <strong>standards of comparison</strong> in comparative constructions unitarily: <a href="la-dep/advcl-cmp"><code class="language-plaintext highlighter-rouge">advcl:cmp</code></a> for comparative adverbial clauses, <code class="language-plaintext highlighter-rouge">obl:cmp</code> for comparative oblique arguments.</p>
+<p>This syntactic subrelation (also implemented for <a href="la-dep/ccomp-relcl">ccomp</a> and <a href="la-dep/advcl-relcl">advcl</a>) is used to distinguish a so-called free <a href="la-dep/acl-relcl">relative clause</a> from other occurrences of <a href="la-dep/csubj">clauses acting as arguments</a> in another matrix clause, according to its function.</p>
 
-<p>Oblique arguments as standards of comparison in comparative constructions are less used and more limited than comparative clauses in Latin. They always consist of a bare nominal element (including <a href="la-feat/VerbForm">nominal verbal forms</a>) in the <a href="la-feat/Case">ablative case</a>. So, they are seen to be different from comparative clauses in that they are not introduced by a <a href="la-pos/SSCONJ">conjunction</a> and are always inflected in the ablative, thus functioning as arguments in the main clause, directly depending on the term expressing degree or contrast, if any. This use of the ablative is related to, and sometimes difficult to distinguish from other, similar uses of the ablative.</p>
+<p>This is a kind of relative clause that might be interpreted as having an internal head which, in Latin, is always represented by a relative <a href="la-feat/PronType#Rel">relative</a> <a href="la-pos/PRON">pronoun</a> (typically, but not limited to, <em>qui</em>). Such pronoun is said to be “double” because it is seen to have a twofold function: one as argument inside the free relative clause, and one inside the matrix clause, the latter being the same function carried out by the whole clause itself (which is thus subordinate). There appear to be strong constraints for a similar construction, in that the relative pronoun has to assume the same identical forms in both functions, even they are different inside and outside of the free relative clause: e.g., a <em>quod</em> (<a href="la-feat/Gender">neuter</a> <a href="la-feat/Number">singular</a> <a href="la-feat/Case">nominative/accusative</a>) can act indifferently in any combination of <a href="la-dep/nsubj">(passive) subject</a> or <a href="la-dep/obj">object</a> in the relative or the matrix clause; conversely, the occurrence of <em>quibus</em> (any <a href="la-feat/Gender">gender</a> <a href="la-feat/Number">plural</a> <a href="la-feat/Case">dative/ablative</a>) should be ruled out to occur e.g. as <a href="la-dep/obl">oblique</a> argument in the relative clause and at the same time as object in the matrix clause. Sometimes, however, we observe that this happens. In any case, the double pronoun is annotated morphosyntactically according to its function inside the free relative clause. It is also observed that this pronoun extremely regularly appears at the beginning of the free relative clause: this behaviour seems to be typical for relative(/interrogative) pronouns in general, also for “prototypical” relative clauses (i.e. with an external head).</p>
 
-<p>In the following examples, the passages in the translations corresponding to oblique comparative arguments are boldfaced. The element on which it depends is underlined.</p>
+<p>The use of the subtype <code class="language-plaintext highlighter-rouge">relcl</code> can in some cases obscure the fact that the clause acts as a passive subject (which would be signalled by the concurring subtype <a href="la-dep/csubj-pass"><code class="language-plaintext highlighter-rouge">pass</code></a>). This is however in most cases retrievable from the context.</p>
 
-<pre><code class="language-sdparse">Primo demonstrabitur impossibile aquam in aliqua parte sue circumferentie altiorem esse hac terra emergente sive detecta . \n Firstly it-will-be-demonstrated impossible water in any part its-own of-circumference higher to-be this from-earth emerging or uncovered .
-obl:cmp(altiorem,terra)
-det(terra,hac)
-acl(terra,emergente)
-conj(emergente,detecta)
-obl:cmp(higher,from-earth)
-det(from-earth,this)
-acl(from-earth,emerging)
-conj(emerging,uncovered)
+<pre><code class="language-sdparse">Propter quod sciendum primo quod Deus et natura nil otiosum facit sed quicquid prodit in esse est ad aliquam operationem
+nsubj(prodit, quicquid)
+csubj:relcl(operationem, prodit)
 </code></pre>
 
-<p>‘First, the impossibility of the water at any part of its circumference being <u>loftier</u> <strong>than this emergent or uncovered land</strong> will be demonstrated.’ (<em>Questio de aqua et terra</em>, UDante)</p>
-
-<pre><code class="language-sdparse">... nos duo degimus herba Trinacride montis , quo non fecundius alter montibus in Siculis pecudes armenta que pavit . \n ... we two we-dwell on-grass Trinacrian of-mount , from-which not more-fruitful other from-mounts in Sicilian cattles flocks and has-pastured .
-obl:cmp(fecundius,quo)
-advmod(pavit,fecundius)
-acl:relcl(degimus,pavit)
-obl:cmp(more-fruitful,than-which)
-advmod(has-pastured,more-fruitful)
-acl:relcl(we-dwell,has-pastured)
-</code></pre>
-
-<p>‘… we dwell on a mount Trinacrian, <strong>than which</strong> no other hill of Sicily <u>more rich</u> doth pasture flocks and herds.’ (<em>Eclogues</em> IV, UDante)</p>
+<p>‘Consequently the first point to bear in mind is that God and nature do nothing in vain; on the contrary <strong>whatever they bring into being</strong> is designed for a purpose.’ (<code class="language-plaintext highlighter-rouge">UDante Mon-21</code>, <em>De Monarchia</em> I iii 3, Dante Alighieri)</p>
 
 <ul>
-  <li>This oblique comparative argument is itself the relative element introducing a relative clause.</li>
+  <li><em>quicquid</em> is a neuter singular nominative/accusative form of <em>quisquis</em> ‘whoever, whatever’, which is annotated with <code class="language-plaintext highlighter-rouge">Case=Nom</code>, as it is the subject of <em>prodit</em> ‘comes forth’, lit. ‘whatever comes forth into being’.</li>
 </ul>
 
-<!-- Interlanguage links updated So kvě 14 19:04:03 CEST 2022 -->
+<p>####Note on the former annotation style</p>
+
+<p>In previous (pre v2.11) versions of some treebanks, especially UDante, the annotation of this construction followed a different logic. Noticing the constraints on the combination of internal and external functions of the relative pronoun, its position and making a parallelism with other relative construction with explicite double pronouns (i.e. <em>quod</em> ‘what’ = <em>id quod</em> ‘that which’), the double pronoun was promoted as head, marked for its function in the matrix clause, and the rest of the clause made dependent as a relative clause where the relativised position is empty. So, the example above appeared as:</p>
+
+<pre><code class="language-sdparse">Propter quod sciendum primo quod Deus et natura nil otiosum facit sed quicquid prodit in esse est ad aliquam operationem
+nsubj(operationem, quicquid)
+acl:relcl(quicquid, prodit)
+</code></pre>
+
 
 
 <!-- "in other languages" links -->
 <hr/>
-
-obl:cmp in other languages:
-
-[<a href="../../te/dep/obl-cmp.html">te</a>]
-
 
 
       </div>
