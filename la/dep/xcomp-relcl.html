@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>csubj:relcl</title>
+    <title>xcomp:relcl</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-la">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/csubj-relcl.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_la/dep/xcomp-relcl.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,45 +76,32 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>csubj:relcl</code>: double pronoun construction or free relative acting as subject</h2>
+        <h2><code>xcomp:relcl</code>: double pronoun construction or free relative acting as complement clause</h2>
 
-<p>This syntactic subrelation (also implemented for <a href="la-dep/ccomp-relcl">ccomp</a>, <a href="la-dep/advcl-relcl">advcl</a> and <a href="la-dep/xcomp-relcl">xcomp</a>) is used to distinguish a so-called free <a href="la-dep/acl-relcl">relative clause</a> from other occurrences of <a href="la-dep/csubj">clauses acting as arguments</a> in another matrix clause, according to its function.</p>
+<p>This syntactic subrelation (also implemented for <a href="la-dep/ccomp-relcl">csubj</a>, <a href="la-dep/ccomp-relcl">ccomp</a> and <a href="la-dep/advcl-relcl">advcl</a>) is used to distinguish a so-called free <a href="la-dep/acl-relcl">relative clause</a> from other occurrences of <a href="la-dep/ccomp">clauses acting as arguments</a> in another matrix clause, according to its function.</p>
 
 <p>This is a kind of relative clause that might be interpreted as having an internal head which, in Latin, is always represented by a relative <a href="la-feat/PronType#Rel">relative</a> <a href="la-pos/PRON">pronoun</a> (typically, but not limited to, <em>qui</em>). Such pronoun is said to be “double” because it is seen to have a twofold function: one as argument inside the free relative clause, and one inside the matrix clause, the latter being the same function carried out by the whole clause itself (which is thus subordinate). There appear to be strong constraints for a similar construction, in that the relative pronoun has to assume the same identical forms in both functions, even they are different inside and outside of the free relative clause: e.g., a <em>quod</em> (<a href="la-feat/Gender">neuter</a> <a href="la-feat/Number">singular</a> <a href="la-feat/Case">nominative/accusative</a>) can act indifferently in any combination of <a href="la-dep/nsubj">(passive) subject</a> or <a href="la-dep/obj">object</a> in the relative or the matrix clause; conversely, the occurrence of <em>quibus</em> (any <a href="la-feat/Gender">gender</a> <a href="la-feat/Number">plural</a> <a href="la-feat/Case">dative/ablative</a>) should be ruled out to occur e.g. as <a href="la-dep/obl">oblique</a> argument in the relative clause and at the same time as object in the matrix clause. Sometimes, however, we observe that this happens. In any case, the double pronoun is annotated morphosyntactically according to its function inside the free relative clause. It is also observed that this pronoun extremely regularly appears at the beginning of the free relative clause: this behaviour seems to be typical for relative(/interrogative) pronouns in general, also for “prototypical” relative clauses (i.e. with an external head).</p>
 
-<p>The use of the subtype <code class="language-plaintext highlighter-rouge">relcl</code> can in some cases obscure the fact that the clause acts as a passive subject (which would be signalled by the concurring subtype <a href="la-dep/csubj-pass"><code class="language-plaintext highlighter-rouge">pass</code></a>). This is however in most cases retrievable from the context.</p>
-
-<pre><code class="language-sdparse">Propter quod sciendum primo quod Deus et natura nil otiosum facit sed quicquid prodit in esse est ad aliquam operationem
-nsubj(prodit, quicquid)
-csubj:relcl(operationem, prodit)
+<pre><code class="language-sdparse">Nec adimitanda recenseo cum dorsa non vultus ad Sponse vehiculum habeatis et vere dici possetis qui Prophete ostensi sunt male versi ad templum vobis ignem de celo missum despicientibus ubi nunc are ab alieno calescunt vobis columbas in templo vendentibus ubi que pretio mensurari non possunt in detrimentum hinc inde commutantium venalia facta sunt
+xcomp(possetis, dici)
+nsubj:pass(ostensi, qui)
+xcomp:relcl(dici, ostensi)
 </code></pre>
 
-<p>‘Consequently the first point to bear in mind is that God and nature do nothing in vain; on the contrary <strong>whatever they bring into being</strong> is designed for a purpose.’ (<code class="language-plaintext highlighter-rouge">UDante Mon-21</code>, <em>De Monarchia</em> I iii 3, Dante Alighieri)</p>
+<p>‘Nor do I recount examples for your imitation, seeing that you turn your backs, not your faces, to the car of the Spouse, and verily might be likened <strong>to them that were shown to the prophet with their backs turned towards the temple</strong>; you who scorn the fire sent down from heaven upon the altars, which now are alight with strange fire; you who sell doves in the temple where that which cannot be measured by price is made merchandise to the hurt of them that come and go therein.’ (<code class="language-plaintext highlighter-rouge">UDante Epi-185</code>, <em>De Monarchia</em> XI vi, Dante Alighieri)</p>
 
 <ul>
-  <li><em>quicquid</em> is a neuter singular nominative/accusative form of <em>quisquis</em> ‘whoever, whatever’, which is annotated with <code class="language-plaintext highlighter-rouge">Case=Nom</code>, as it is the subject of <em>prodit</em> ‘comes forth’, lit. ‘whatever comes forth into being’.</li>
-</ul>
-
-<pre><code class="language-sdparse">Ad illarum vero significata responsio etsi non erit qualem forsan pusillanimitas appeteret aliquorum ut sub examine vestri consilii ante iudicium ventiletur affectuose deposco
-obj(appeteret,qualem)
-nsubj(appeteret,pusillanimitas)
-cop:outer(appeteret,erit)
-advcl(deposco,appeteret)
-</code></pre>
-
-<p>‘My reply to what you have written, although perchance it be not <strong>of such tenour as certain faint hearts would desire</strong>, I earnestly beg may be carefully examined and considered by you before judgement be passed upon it.’ (<code class="language-plaintext highlighter-rouge">UDante Epi-218</code>, <em>Letters</em> XII 2, Dante Alighieri)</p>
-
-<ul>
-  <li>This is a case where the free relative appears as non verbal predication with the copula <em>erit</em> ‘it will be’, and with the relative determiner <em>qualis</em> ‘of which kind’, literally: ‘even if it will not be of which kind the faintheartedness of some perhaps would strive for’. The <code class="language-plaintext highlighter-rouge">relcl</code> subtype does not show in the annotation because of this embedding (the couplar construction is an adverbial clause on the whole). However, we observe a mismatch: while the non verbal predicate should show the nominative case, the accusative of the internal object prevails.</li>
+  <li><em>qui</em> is the masculine singular nominative form of <em>qui</em> ‘that, who, which’, which is annotated with <code class="language-plaintext highlighter-rouge">Case=Nom</code> acting as passive subject of <em>ostensi</em> ‘shown’, the whole clause acting as the complement of <em>dici</em> ‘being said’ with the subject necessarily intended as coinciding with <em>qui</em> and the same as that of <em>possetis</em> ‘you (pl.) could well’.</li>
 </ul>
 
 <h4 id="note-on-the-former-annotation-style">Note on the former annotation style</h4>
 
-<p>In previous (pre v2.11) versions of some treebanks, especially UDante, the annotation of this construction followed a different logic. Noticing the constraints on the combination of internal and external functions of the relative pronoun, its position and making a parallelism with other relative construction with explicite double pronouns (i.e. <em>quod</em> ‘what’ = <em>id quod</em> ‘that which’), the double pronoun was promoted as head, marked for its function in the matrix clause, and the rest of the clause made dependent as a relative clause where the relativised position is empty. So, the example above appeared as:</p>
+<p>In previous (pre v2.11) versions of some treebanks, especially UDante, the annotation of this construction followed a different logic. Noticing the constraints on the combination of internal and external functions of the relative pronoun, its position and making a parallelism with other relative construction with explicite double pronouns (i.e. <em>quod</em> ‘what’ = <em>id quod</em> ‘that which’), the double pronoun was promoted as head, marked for its function in the matrix clause, and the rest of the clause made dependent as a relative clause where the relativised position is empty. So, the first example above appeared as:</p>
 
-<pre><code class="language-sdparse">Propter quod sciendum primo quod Deus et natura nil otiosum facit sed quicquid prodit in esse est ad aliquam operationem
-nsubj(operationem, quicquid)
-acl:relcl(quicquid, prodit)
+<pre><code class="language-sdparse">et vere dici possetis qui Prophete ostensi sunt male versi ad templum
+xcomp(dici, qui)
+xcomp(possetis,dici)
+acl:relcl(qui,ostensi)
 </code></pre>
 
 
