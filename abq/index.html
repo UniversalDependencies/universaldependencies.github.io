@@ -76,61 +76,65 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h1 id="ud-for-abaza-">UD for Abaza <span class="flagspan"><img class="flag" src="../../flags/svg/RU-ABAZA.svg" /></span></h1>
+        <h1 id="ud-for-abaza-">UD for Abaza <!-- <span class="flagspan"><img class="flag" src="../../flags/svg/RU-ABAZA.svg" /></span> --></h1>
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>All words are converted to lower case.</li>
+  <li>All punctuation marks are removed from the texts.</li>
+  <li>Words are delimited by whitespace characters.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<p>Abaza uses all universal POS tags except PUNCT and SYM.</p>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
+<p>Morphological features are added automatically based on glosses and then manually checked. Not all glosses are converted to morphological features. The selected morphological features available for most nouns and verbs are presented below.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<h4 id="nominal-features">Nominal features</h4>
 
-<hr />
+<ul>
+  <li>Definite: <code class="language-plaintext highlighter-rouge">Def</code>, <code class="language-plaintext highlighter-rouge">Ind</code>.</li>
+  <li>Number: <code class="language-plaintext highlighter-rouge">Sing</code>, <code class="language-plaintext highlighter-rouge">Plur</code>.</li>
+  <li>Gender[psor]: <code class="language-plaintext highlighter-rouge">Fem</code>, <code class="language-plaintext highlighter-rouge">Masc</code>, <code class="language-plaintext highlighter-rouge">Neut</code>.</li>
+  <li>Number[psor]: <code class="language-plaintext highlighter-rouge">Sing</code>, <code class="language-plaintext highlighter-rouge">Plur</code>.</li>
+  <li>Person[psor]: <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code>.</li>
+</ul>
+
+<h4 id="verbal-features">Verbal features</h4>
+
+<ul>
+  <li>Gender[abs], Gender[erg], Gender[io]: <code class="language-plaintext highlighter-rouge">Com</code>, <code class="language-plaintext highlighter-rouge">Fem</code>, <code class="language-plaintext highlighter-rouge">Masc</code>, <code class="language-plaintext highlighter-rouge">Neut</code>.</li>
+  <li>Number[abs], Number[erg], Number[io]: <code class="language-plaintext highlighter-rouge">Sing</code>, <code class="language-plaintext highlighter-rouge">Plur</code>.</li>
+  <li>Person[abs], Person[erg], Person[io]: <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code>.</li>
+  <li>VermForm: <code class="language-plaintext highlighter-rouge">Fin</code>, <code class="language-plaintext highlighter-rouge">NonFin</code>, <code class="language-plaintext highlighter-rouge">Conv</code>.</li>
+  <li>Tense: <code class="language-plaintext highlighter-rouge">Pres</code>, <code class="language-plaintext highlighter-rouge">Aor</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Fut</code>, <code class="language-plaintext highlighter-rouge">Fut2</code>, <code class="language-plaintext highlighter-rouge">Subj</code>, <code class="language-plaintext highlighter-rouge">Subj2</code>.</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h4 id="arguments">Arguments</h4>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<p>Abaza is a morphologically ergative but syntactically nominative-accusative language. Subjects are usually cross-referenced on the verb as absolutive (in intransitive clauses) or ergative (in transitive clauses) arguments, direct objects are usually cross-referenced on the verb as absolutive arguments (in transitive clauses), indirect objects are cross-referenced on the verb as indirect objects, oblique arguments are not marked on the verb.</p>
 
-<hr />
+<h4 id="relations-overview">Relations Overview</h4>
+
+<p>Abaza uses all universal UD relations except <code class="language-plaintext highlighter-rouge">appos</code>, <code class="language-plaintext highlighter-rouge">clf</code>, <code class="language-plaintext highlighter-rouge">compound</code>, <code class="language-plaintext highlighter-rouge">dep</code>, <code class="language-plaintext highlighter-rouge">expl</code>, <code class="language-plaintext highlighter-rouge">goeswith</code>, <code class="language-plaintext highlighter-rouge">list</code>, <code class="language-plaintext highlighter-rouge">orphan</code> and <code class="language-plaintext highlighter-rouge">punct</code>.</p>
+
+<p>One language-specific relation is introduced for the Abaza treebank: <code class="language-plaintext highlighter-rouge">dep:repeat</code>.</p>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/abq-comparison.html">N</a> Abaza UD treebanks:</p>
+<p>There is just one Abaza UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/abq_a/index.html">Abaza-A</a></li>
-  <li><a href="../treebanks/abq_b/index.html">Abaza-B</a></li>
+  <li><a href="../treebanks/abq/index.html">Abaza-ATB</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
