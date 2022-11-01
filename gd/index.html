@@ -136,7 +136,8 @@ Here are the most common families:</p>
 
 <p>Standard UPOS tags are used throughout. Generally we follow the choices made in the Irish UD treebanks.</p>
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">AUX</code> is used for <em>is</em> (the copula) only. <em>bi</em> is tagged as <code class="language-plaintext highlighter-rouge">VERB</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">AUX</code> is used for <em>is</em> (the copula) and <em>rach</em> (the passive copula).
+<em>bi</em> is tagged as <code class="language-plaintext highlighter-rouge">VERB</code>.</li>
   <li>The following words are tagged <code class="language-plaintext highlighter-rouge">PART</code>: the adverbialiser <em>gu</em> (<em>gu math</em> ‘well’), the comparative particle <em>nas</em>, the superlative particle <em>as</em>, the agreement particle <em>a</em> (<em>a dol</em> ‘to go’), the vocative particle <em>a</em> (<em>a Sheumais</em> ‘James’), the patronymic particles <em>Mac</em> and <em>Nic</em>, the numerical particle <em>a</em> (<em>a h-aon) ‘one’), the past tense marker _do</em>, the negative particles <em>cha</em> and <em>nach</em>, the interrogative particles <em>a</em> and <em>an</em> and the relative particle <em>a</em>.</li>
   <li>Verbal nouns are tagged as <code class="language-plaintext highlighter-rouge">NOUN</code> with <code class="language-plaintext highlighter-rouge">VerbType=Vnoun</code>.</li>
   <li>Deverbal adjectives are tagged as <code class="language-plaintext highlighter-rouge">ADJ</code>.</li>
@@ -198,6 +199,7 @@ The expletive particle <em>e</em> or <em>ann</em> is linked to the copula with <
   <li><code class="language-plaintext highlighter-rouge">csubj:cop</code> for copular clausal subjects</li>
   <li><code class="language-plaintext highlighter-rouge">mark:prt</code> for particles not otherwise marked</li>
   <li><code class="language-plaintext highlighter-rouge">nmod:poss</code> for possessive pronouns (but we use <code class="language-plaintext highlighter-rouge">obj</code> where the use of the possessive pronoun indicates an object)</li>
+  <li><code class="language-plaintext highlighter-rouge">nsubj:outer</code> for where there are two subjects for a <em>rach</em>-passive.</li>
   <li><code class="language-plaintext highlighter-rouge">nsubj:pass</code> for the subjects of <em>rach</em>-passives</li>
   <li><code class="language-plaintext highlighter-rouge">obl:smod</code> (not in Irish) for spatial modifiers</li>
   <li><code class="language-plaintext highlighter-rouge">obl:tmod</code> for temporal modifiers</li>
@@ -207,14 +209,19 @@ The expletive particle <em>e</em> or <em>ann</em> is linked to the copula with <
 <h2 id="some-specific-cases">Some specific cases</h2>
 
 <h3 id="the-verbal-noun">The verbal noun</h3>
-<p>Annotate as a <code class="language-plaintext highlighter-rouge">NOUN</code> and an <code class="language-plaintext highlighter-rouge">xcomp:pred</code> of the <code class="language-plaintext highlighter-rouge">VERB</code>.</p>
-
-<p>In inversion structures, the object is <code class="language-plaintext highlighter-rouge">obj</code> of the verbal noun.</p>
+<p>Annotate as a <code class="language-plaintext highlighter-rouge">NOUN</code>.</p>
 
 <h4 id="with-aspect-markers-continuous-tenses-and-depictives">With aspect markers (continuous tenses and depictives)</h4>
-<p><em>ag</em>, <em>air</em>, <em>ri</em> and so forth preceding it have a <code class="language-plaintext highlighter-rouge">case</code> relationship as in Irish.</p>
-<h4 id="inversion-structures">Inversion structures</h4>
-<p>The noun preceding it is an <code class="language-plaintext highlighter-rouge">obj</code> of it.</p>
+
+<p>Here it has <code class="language-plaintext highlighter-rouge">VerbType=VNoun</code>.
+<em>ag</em>, <em>air</em>, <em>ri</em> and so forth preceding it have a <code class="language-plaintext highlighter-rouge">case</code> relationship as in Irish.
+Here it is an <code class="language-plaintext highlighter-rouge">xcomp:pred</code> of the verb <em>bi</em>.</p>
+
+<h4 id="inversion-structures-and-rach-passives">Inversion structures and <em>rach</em>-passives</h4>
+
+<p>Here it has <code class="language-plaintext highlighter-rouge">VerbType=Inf</code>.
+Usually it is preceded by an infinitive particle <em>a</em> but this is elided where it begins with a vowel or <em>fh</em>.
+In inversion structures, the object is <code class="language-plaintext highlighter-rouge">obj</code> of the verbal noun, with the exception of <em>rach</em>-passives where it is <code class="language-plaintext highlighter-rouge">nsubj:pass</code> or exceptionally <code class="language-plaintext highlighter-rouge">nsubj:outer</code>.</p>
 
 <h3 id="agus-is-and-s"><em>agus</em>, <em>is</em> and <em>’s’</em></h3>
 
