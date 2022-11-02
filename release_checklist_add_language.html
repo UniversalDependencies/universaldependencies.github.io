@@ -152,6 +152,10 @@ chmod 666 validation-report.txt
 grep -v -P '^'$oldrepo'\t' evaluation-report.txt &gt; /tmp/newreport.txt
 mv /tmp/newreport.txt evaluation-report.txt
 chmod 666 evaluation-report.txt</pre>
+    <p>Instead of</p>
+    <pre>chmod 666 validation-report.txt</pre>
+    <p>we could do the more precise</p>
+    <pre>setfacl -m u:zeman:rw,u:www-data:rw validation-report.txt</pre>
   </li>
   <li>Call docs-automation/valdan/clone_one.sh UD_Czech-PDT.</li>
   <li>Go to one of the places where you have local clones of all UD repositories. Remove the old clone.
