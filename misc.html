@@ -972,6 +972,119 @@ language-specific string such as the form of the suffix or the auxiliary verb.</
 7	।	।	PUNCT   _   _   5   punct      _   ChunkId=BLK|ChunkType=head|Translit=.
 </code></pre></div></div>
 
+<h3 id="traditionalmood">TraditionalMood</h3>
+
+<p>This feature is used in three Latin treebanks (IT-TB, LLCT, UDante), and together with <a href="#TraditionalTense">TraditionalTense</a> supplies the traditional denominations of verb forms, in particular of “mood”. This is made for convenience, as the typologically-driven decomposition of tenses in UD features can be different from language-specific terminology and sometimes follows different logics.</p>
+
+<p>First and foremost, we note that “mood”, in traditional literature about Latin, does not correspond only to UD’s <a href="u-feat/Mood"><code class="language-plaintext highlighter-rouge">Mood</code></a>, but also covers so-called nonfinite <a href="la-feat/VerbForm"><code class="language-plaintext highlighter-rouge">VerbForm</code></a>s. This is possible because of the complementarity of <code class="language-plaintext highlighter-rouge">Mood</code>’s distribution in Latin: finite forms express it (<code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Sub</code>), while nonfinite forms do not. So, the values for <code class="language-plaintext highlighter-rouge">TraditionalMood</code> are, with their “translations” in UD:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Gerundium</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Aspect=Prosp|Case=Neut|InflClass[nominal]=IndEurO|Number=Sing|VerbForm=Part|Voice=Pass</code> (<code class="language-plaintext highlighter-rouge">VerbForm=Ger</code>)</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Gerundivum</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Aspect=Prosp|VerbForm=Part|Voice=Pass</code> (<code class="language-plaintext highlighter-rouge">VerbForm=Gdv</code>)</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Imperativus</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Mood=Imp</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Indicativus</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Mood=Ind</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Infinitivus</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">VerbForm=VNoun</code> (<code class="language-plaintext highlighter-rouge">VerbForm=Inf</code>)</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Participium</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">VerbForm=Part</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Subiunctivus</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Mood=Sub</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Supinum</code>
+    <ul>
+      <li>“active”: <code class="language-plaintext highlighter-rouge">Aspect=Prosp|VerbForm=Conv|Voice=Act</code></li>
+      <li>“passive”: <code class="language-plaintext highlighter-rouge">NOUN</code> with <code class="language-plaintext highlighter-rouge">Case=Abl|Gender=Masc|InflClass=IndEurU|Number=Sing|VerbForm=VNoun</code>  (<code class="language-plaintext highlighter-rouge">VerbForm=Sup</code>)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>They are marked only on <a href="la-upos/VERB"><code class="language-plaintext highlighter-rouge">VERB</code></a>s and <a href="la-upos/AUX"><code class="language-plaintext highlighter-rouge">AUX</code></a>s, apart from the passive supine (<a href="la-upos/NOUN"><code class="language-plaintext highlighter-rouge">NOUN</code></a>). For further explanations about the correspondences from a morphological and syntactic point of view, see the documentation page about <a href="la-feat/VerbForm"><code class="language-plaintext highlighter-rouge">VerbForm</code></a>.</p>
+
+<p>Traditional moods and tenses are currently annotated only for single forms, and not for periphrastic constructions.</p>
+
+<pre><code class="language-CoNLL-U">9	impressit	imprimo	VERB	_	Aspect=Perf|InflClass=LatX|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	2	acl:relcl	_	TraditionalMood=Indicativus|TraditionalTense=Perfectum
+</code></pre>
+
+<pre><code class="language-CoNLL-U">31	ostensum	ostendo	VERB	_	Aspect=Perf|Case=Nom|Gender=Neut|InflClass=LatX|InflClass[nominal]=IndEurO|Number=Sing|VerbForm=Part|Voice=Pass	26	advcl:cmp	_	TraditionalMood=Participium|TraditionalTense=Perfectum
+32	est	sum	AUX	va5ips3	Aspect=Imp|InflClass=LatAnom|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	31	aux:pass	_	TraditionalMood=Indicativus|TraditionalTense=Praesens
+</code></pre>
+
+<h3 id="traditionaltense">TraditionalTense</h3>
+
+<p>This feature is used in three Latin treebanks (IT-TB, LLCT, UDante), and together with <a href="#TraditionalMood">TraditionalMood</a> supplies the traditional denominations of verb forms, in particular of “tense”. This is made for convenience, as the typologically-driven decomposition of tenses in UD features can be different from language-specific terminology and sometimes follows different logics.</p>
+
+<p>In Latin linguistics, the term “tense” is more general than UD’s <a href="u-feat/Tense"><code class="language-plaintext highlighter-rouge">Tense</code></a>, in that it can mean or encompass also <a href="la-feat/Aspect">Aspect</a>, or be used to refer to a whole periphrastic construction, not just to a single form. The notion of “tense” is extendend with the same terminology also to nonfinite forms, as these do not express <code class="language-plaintext highlighter-rouge">Tense</code>, and so language-internally no ambiguity arises.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Imperfectum</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Aspect=Imp|Tense=Past</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Futurum</code>
+    <ul>
+      <li>finite: <code class="language-plaintext highlighter-rouge">Aspect=Imp|Tense=Fut</code></li>
+      <li>nonfinite: <code class="language-plaintext highlighter-rouge">Aspect=Prosp</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">FuturumExactum</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Aspect=Perf|Tense=Fut</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Perfectum</code>
+    <ul>
+      <li>finite: <code class="language-plaintext highlighter-rouge">Aspect=Perf|Tense=Past</code> (or in some accounts: <code class="language-plaintext highlighter-rouge">Tense=Pres</code>)</li>
+      <li>nonfinite: <code class="language-plaintext highlighter-rouge">Aspect=Perf</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Plusquamperfectum</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Aspect=Perf|Tense=Pqp</code> (or <code class="language-plaintext highlighter-rouge">Aspect=Perf|Tense=Past</code> if Perfectum has <code class="language-plaintext highlighter-rouge">Tense=Pres</code>)</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Praesens</code>
+    <ul>
+      <li>finite: <code class="language-plaintext highlighter-rouge">Aspect=Imp|Tense=Pres</code></li>
+      <li>nonfinite: <code class="language-plaintext highlighter-rouge">Aspect=Imp</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>They are marked only on <a href="la-upos/VERB"><code class="language-plaintext highlighter-rouge">VERB</code></a>s and <a href="la-upos/AUX"><code class="language-plaintext highlighter-rouge">AUX</code></a>s. Gerunds and gerundives are not assigned a tense. For further explanations about the correspondences from a morphological point of view, see the documentation page about <a href="la-feat/Aspect"><code class="language-plaintext highlighter-rouge">Aspect</code></a>.</p>
+
+<p>Traditional moods and tenses are currently annotated only for single forms, and not for periphrastic constructions.</p>
+
+<pre><code class="language-CoNLL-U">20	feci	facio	VERB	_	Aspect=Perf|InflClass=LatI2|Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act	26	advcl:cmp	_	TraditionalMood=Indicativus|TraditionalTense=Perfectum
+</code></pre>
+
+<pre><code class="language-CoNLL-U">22	facturo	facio	VERB	_	Aspect=Prosp|Case=Dat|Gender=Masc|InflClass=LatI2|InflClass[nominal]=IndEurO|Number=Sing|VerbForm=Part|Voice=Act	15	obl:arg	_	TraditionalMood=Participium|TraditionalTense=Futurum
+</code></pre>
+
 <h3 id="translit">Translit</h3>
 
 <p>See also <a href="#ltranslit">LTranslit</a>, <a href="#gloss">Gloss</a> and <a href="#vform">Vform</a>.</p>
