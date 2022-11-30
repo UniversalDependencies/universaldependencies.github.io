@@ -107,12 +107,12 @@ required in UD.
 character, may in Malayalam actually result in a half vowel <em>ŭ</em>, especially at the end of a word. To signal that
 there is really no vowel, some consonants in the Malayalam script have so-called <em>chillu</em> variants, which have
 their own Unicode position. However, there is an older alternative of signalling that the chillu glyph should be
-rendered: using the standard code of the consonant, followed by viram (U+0D4D) and zero width joiner (U+200D).
-For example, കമ്യൂണിക്കേഷന്‍സ് / <em>kamyūṇikkēṣans</em> “communications”, has viram and zero width joiner between ന / <em>na</em> and സ / <em>sa</em>.
+rendered: using the standard code of the consonant, followed by a viram (U+0D4D) and a zero width joiner (U+200D).
+For example, കമ്യൂണിക്കേഷന്‍സ് / <em>kamyūṇikkēṣans</em> “communications”, has a viram and a zero width joiner between ന / <em>na</em> and സ / <em>sa</em>.
 Without these two characters, but using <em>chillu na</em> (U+0D7B) instead of <em>na</em> (U+0D28), the resulting glyphs should
-look the same: കമ്യൂണിക്കേഷൻസ്. On the other hand, with standard <em>na</em>, viram, and without the zero width joiner,
+look the same: കമ്യൂണിക്കേഷൻസ്. On the other hand, with the standard <em>na</em>, viram, and without the zero width joiner,
 the string will look different: കമ്യൂണിക്കേഷന്സ്. When annotating text that originally used the zero width joiner,
-we have two options: 1. Keep the original encoding but annotate it with the <code class="language-plaintext highlighter-rouge">Typo=Yes</code> feature and indicating
+we have two options: 1. Keep the original encoding but annotate it with the <code class="language-plaintext highlighter-rouge">Typo=Yes</code> feature and indicate
 the preferred encoding using a <code class="language-plaintext highlighter-rouge">CorrectForm</code> attribute in MISC. Models could learn the normalization and be able
 to process texts that contain this encoding. 2. Normalize the text to the encoding that uses the <em>chillu</em>
 consonants, just like we apply standard NFC Unicode normalization. Parsers and other tools that process new text
@@ -120,10 +120,10 @@ would have to apply the same normalization before using trained models. It has y
 will choose.</li>
     </ul>
   </li>
-  <li>In addition, zero width non-joiner (U+200C) may be used to signal that two consecutive consonants should not be
+  <li>In addition, a zero width non-joiner (U+200C) may be used to signal that two consecutive consonants should not be
 rendered as a ligature. This is is a rare phenomenon but it is not an obsolete thing, so no normalization is applied.
 For example: സ്‌കോര്‍പിയോ / <em>skōrpiyō</em> has a viram and a zero width non-joiner between the initial സ / <em>sa</em> and ക / <em>ka</em>.
-Without the zero width non-joiner, the word would look like this: സ്കോര്പിയോ (the ligature may or may not be visible
+Without the zero width non-joiner, the word would look like this: സ്കോർപിയോ (the ligature <em>sk</em> may or may not be visible
 depending on the rendering algorithm used by your browser). Note that the first variant of the word also has a zero
 width joiner after ര <em>ra</em>, which is converted in the second variant using ർ / <em>chillu rra</em>, as described above.</li>
 </ul>
