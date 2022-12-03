@@ -112,12 +112,9 @@ For example, കമ്യൂണിക്കേഷന്‍സ് / <em>kamyūṇ
 Without these two characters, but using <em>chillu na</em> (U+0D7B) instead of <em>na</em> (U+0D28), the resulting glyphs should
 look the same: കമ്യൂണിക്കേഷൻസ്. On the other hand, with the standard <em>na</em>, viram, and without the zero width joiner,
 the string will look different: കമ്യൂണിക്കേഷന്സ്. When annotating text that originally used the zero width joiner,
-we have two options: 1. Keep the original encoding but annotate it with the <code class="language-plaintext highlighter-rouge">Typo=Yes</code> feature and indicate
-the preferred encoding using a <code class="language-plaintext highlighter-rouge">CorrectForm</code> attribute in MISC. Models could learn the normalization and be able
-to process texts that contain this encoding. 2. Normalize the text to the encoding that uses the <em>chillu</em>
-consonants, just like we apply standard NFC Unicode normalization. Parsers and other tools that process new text
-would have to apply the same normalization before using trained models. It has yet to be decided which option we
-will choose.</li>
+we normalize the text to the encoding that uses the <em>chillu</em> letters, provided the corresponding <em>chillu</em> letter
+exists. If the viram and zero width joiner follow a consonant that lacks the corresponding <em>chillu</em> letter, the
+string is left as is.</li>
     </ul>
   </li>
   <li>In addition, a zero width non-joiner (U+200C) may be used to signal that two consecutive consonants should not be
