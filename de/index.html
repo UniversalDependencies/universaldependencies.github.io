@@ -76,11 +76,7 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <!-- Inspired by an old proposal for language-specific documentation here: http://universaldependencies.org/v2/minimaldoc.html
-     If we agree on a scheme like this, the old proposal should be updated and made visible in the “How to Contribute” section;
-     right now it is probably not linked from anywhere. -->
-
-<h1 id="ud-for-german-----">UD for German <span class="flagspan"><img class="flag" src="../../flags/svg/DE.svg" /></span> <span class="flagspan" style="padding-left:1em"><img class="flag" src="../../flags/svg/AT.svg" /></span> <span class="flagspan" style="padding-left:1em"><img class="flag" src="../../flags/svg/LI.svg" /></span> <span class="flagspan" style="padding-left:1em"><img class="flag" src="../../flags/svg/CH.svg" /></span> <span class="flagspan" style="padding-left:1em"><img class="flag" src="../../flags/svg/LU.svg" /></span></h1>
+        <h1 id="ud-for-german-----">UD for German <span class="flagspan"><img class="flag" src="../../flags/svg/DE.svg" /></span> <span class="flagspan" style="padding-left:1em"><img class="flag" src="../../flags/svg/AT.svg" /></span> <span class="flagspan" style="padding-left:1em"><img class="flag" src="../../flags/svg/LI.svg" /></span> <span class="flagspan" style="padding-left:1em"><img class="flag" src="../../flags/svg/CH.svg" /></span> <span class="flagspan" style="padding-left:1em"><img class="flag" src="../../flags/svg/LU.svg" /></span></h1>
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
@@ -219,16 +215,13 @@ thus it is labeled <code class="language-plaintext highlighter-rouge">nsubj</cod
   </li>
   <li>Objects defined in the German grammar may be bare noun phrases in accusative, dative or genitive,
 or prepositional phrases in accusative, dative or genitive.
-For the purpose of UD the objects are divided to core objects, labeled <a href="">obj</a> or <a href="">iobj</a>,
+For the purpose of UD the objects are divided to core objects, labeled <a href="">obj</a>,
 and oblique objects, labeled <a href="">obl:arg</a>.
     <ul>
-      <li>Bare accusative, dative and genitive objects are considered core.</li>
-      <li>All prepositional objects are considered oblique.</li>
+      <li>Bare accusative objects are considered core.</li>
+      <li>Bare dative and genitive objects, and all prepositional objects are considered oblique.</li>
       <li>Accusative objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
       <li>If a verb subcategorizes for the infinitive (e.g. phasal verbs or verbs of control), the infinitival complement is labeled <a href="">xcomp</a>.</li>
-      <li>If a verb subcategorizes for two core objects, one of them accusative (or <code class="language-plaintext highlighter-rouge">ccomp</code>) and the other non-accusative,
-then the non-accusative object is labeled <a href="">iobj</a>.
-Core nominal objects in other situations are labeled just <a href="">obj</a>.</li>
     </ul>
   </li>
   <li>Adjuncts (or, following the German grammar, adverbial modifiers realized as noun phrases) are usually
@@ -241,11 +234,11 @@ are adjuncts.</li>
   </li>
   <li>Extra attention has to be paid to the reflexive pronoun <em>sich</em>. It can function as:
     <ul>
-      <li>Core object (<a href="">obj</a> or <a href="">iobj</a>): <em>er sah sich im Spiegel</em> “he sighted himself in the mirror.”</li>
-      <li>Reciprocal core objects (<code class="language-plaintext highlighter-rouge">obj</code> or <code class="language-plaintext highlighter-rouge">iobj</code>): <em>sie küssten sich</em> “they were kissing each other.”</li>
+      <li>Core object (<a href="">obj</a>): <em>er sah sich im Spiegel</em> “he sighted himself in the mirror.”</li>
+      <li>Reciprocal core objects (<code class="language-plaintext highlighter-rouge">obj</code>): <em>sie küssten sich</em> “they were kissing each other.”</li>
       <li>Inherently reflexive verb, cannot exist without the reflexive clitic, and the clitic cannot be substituted by an irreflexive pronoun
 or a noun phrase.
-In accord with the current UD guidelines, we label the relation
+In accord with the UD guidelines, we label the relation
 between the verb and the clitic as <a href="">expl:pv</a>, not <code class="language-plaintext highlighter-rouge">compound</code>. Example: <em>wir müssen uns beeilen</em> “we must hurry.”</li>
     </ul>
   </li>
@@ -281,6 +274,8 @@ between the verb and the clitic as <a href="">expl:pv</a>, not <code class="lang
       <li><a href="">compound:prt</a> for separable verb prefixes</li>
       <li><a href="">det:poss</a> for possessive determiners</li>
       <li><a href="">nmod:poss</a> for possessive modifier phrases</li>
+      <li><a href="">acl:relcl</a> for adnominal relative clauses</li>
+      <li><a href="">advcl:relcl</a> for relative clauses whose antecedent is a clause</li>
     </ul>
   </li>
   <li>The following relation types are not used in German at all:
