@@ -82,11 +82,13 @@
 as objects under the UD guidelines, that is, both must be core arguments. Some types of nominals that are labeled as
 objects by the traditional grammar of German are thus not objects in UD. In particular, the “indirect object” may be
 understood as a dative object outside UD, but the morphological dative is an oblique marking in German, hence a dative
-nominal can be attached as neither <code class="language-plaintext highlighter-rouge">iobj</code> nor <a href="">obj</a>; it must be <a href="">obl</a>.</p>
+nominal can be attached as neither <code class="language-plaintext highlighter-rouge">iobj</code> nor <a href="">obj</a>; it must be <a href="">obl</a> or its subtype, and we use <a href="">obl:arg</a> for it.</p>
 
 <pre><code class="language-sdparse">Die Frau gibt dem Kind einen Apfel . \n The woman gives the child an apple .
 obj(gibt, Apfel)
-obl(gibt, Kind)
+obl:arg(gibt, Kind)
+obj(gives, apple)
+obl:arg(gives, child)
 </code></pre>
 
 <p>In a rare case however, a verb may take two accusative objects:</p>
@@ -94,6 +96,8 @@ obl(gibt, Kind)
 <pre><code class="language-sdparse">Die Nachrichten kosteten den Vorstandsvorsitzenden seinen Job . \n The news cost the CEO his job .
 iobj(kosteten, Vorstandsvorsitzenden)
 obj(kosteten, Job)
+iobj(cost, CEO)
+obj(cost, job)
 </code></pre>
 
 <!-- Interlanguage links updated Po lis 14 15:35:28 CET 2022 -->
