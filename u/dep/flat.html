@@ -88,7 +88,7 @@ endocentric (headed) MWEs (like <em>apple pie</em>).</p>
 first one using the <code class="language-plaintext highlighter-rouge">flat</code> label. The assumption is that in these expressions, the <code class="language-plaintext highlighter-rouge">flat</code> relations
 are not syntactic head-modifier relations, and that the structural annotation is in principle arbitrary. 
 For consistency, UD specifies that the first word of the expression shall be the head of all <code class="language-plaintext highlighter-rouge">flat</code> 
-dependents. These dependents may have other modifiers so long as they are not <code class="language-plaintext highlighter-rouge">flat</code>.</p>
+dependents. These dependents may have other modifiers, including nested <code class="language-plaintext highlighter-rouge">flat</code> structures.</p>
 
 <p>Below we describe some of the most common uses of <a href="">flat</a> across languages. Note that semantically
 equivalent expressions in different languages (or even in the same language) may require a different analysis if sometimes
@@ -259,15 +259,14 @@ nmod(Paulo, Silva)
 case(Silva, da)
 </code></pre>
 
-<p>But a flat structure cannot be nested immediately under another flat structure. For example, 
-the words of an embedded nickname would be treated as top-level parts of the flat expression:</p>
+<p>A flat structure can even be nested under another flat structure. For example, the words of an embedded nickname would be treated as a nested flat expression:</p>
 
 <pre><code class="language-sdparse">Denise " Dee Dee " Bridgewater
 flat(Denise, Dee-3)
-flat(Denise, Dee-4)
+flat(Dee-3, Dee-4)
 flat(Denise, Bridgewater)
 punct(Dee-3, "-2)
-punct(Dee-4, "-5)
+punct(Dee-3, "-5)
 </code></pre>
 
 <h3 id="some-further-notes-on-relations-for-names">Some further notes on relations for names</h3>
