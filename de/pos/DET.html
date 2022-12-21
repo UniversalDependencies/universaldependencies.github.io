@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>DET</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script> -->
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-de">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_de/pos/DET.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v1warning">
+        This page still pertains to UD version 1.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h2><code>DET</code>: determiner</h2>
+
+<h3 id="definition">Definition</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">DET</code> tag is used for the articles <em>ein</em> “a”, <em>der</em> “the”, and for pronominal words that <em>can</em> pre-modify nouns
+(regardless whether they actually do so in the given sentence) and can express agreement in <a href="">Gender</a>, <a href="">Number</a>
+and <a href="">Case</a>. The traditional grammar would label these words as pronouns. In UD, we reserve the <a href="">PRON</a> category
+for pronouns that are always used substantively (as opposed to attributively).</p>
+
+<p>Since the borderline between determiners (<code class="language-plaintext highlighter-rouge">DET</code>) and pronouns (<code class="language-plaintext highlighter-rouge">PRON</code>) is determined by the lexicon and not by the
+sentence context, some determiners may occur in positions that are traditionally not associated with determiners in
+English: they can constitute a nominal (without accompanying a noun) and act as core arguments in a clause. This is
+not a problem, as the syntactic information is encoded in the dependency relations.</p>
+
+<p>So the negative determiner <em>kein</em> “no” acts attributively (i.e., as a syntactic determiner) in the following example
+and is attached to the modified noun via the <a href="">det</a> relation.</p>
+
+<pre><code class="language-sdparse">Der Inhaber würdigt dem Kunden keines Blickes . \n The owner pays the customer no.Masc.Sing.Gen attention.Masc.Sing.Gen .
+det(Blickes, keines)
+det(attention.Masc.Sing.Gen, no.Masc.Sing.Gen)
+</code></pre>
+
+<p>However, in the next example, <em>keiner</em> is directly the nominal occupying the subject position; it is still tagged <code class="language-plaintext highlighter-rouge">DET</code>
+but it is attached via the <a href="">nsubj</a> relation. We note that the same annotation would also result from positing a noun
+phrase <em>kein Mensch</em> “no man”, in which the noun <em>Mensch</em> has been elided.</p>
+
+<pre><code class="language-sdparse">Keiner interessierte sich für das auffällig ratlose Verhalten der Kunden . \n Nobody.Masc.Sing.Nom was-interested REFL in the conspicuously helpless behavior of-the customers .
+nsubj(interessierte, Keiner)
+nsubj(was-interested, Nobody.Masc.Sing.Nom)
+</code></pre>
+
+<p>Finally, in the third example, the accusative <em>keine</em> is the head of the direct object nominal and it has its own
+nominal dependent <em>von beiden Frauen</em> “of the two women”.</p>
+
+<pre><code class="language-sdparse">Er sagt , dass er keine von beiden Frauen heiraten wolle . \n He says , that he none.Fem.Sing.Acc of the-two women marry wants .
+obj(heiraten, keine)
+obj(marry, none.Fem.Sing.Acc)
+nmod(keine, Frauen)
+nmod(none.Fem.Sing.Acc, women)
+case(Frauen, von)
+case(women, of)
+</code></pre>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li>Articles: <em>ein</em> “a”, <em>der</em> “the”</li>
+  <li>Possessive personal determiners: <em>mein</em> “my”, <em>dein</em> “your”, <em>sein</em> “his, its”, <em>ihr</em> “her, their”, <em>unser</em> “our”, <em>euer</em> “your”</li>
+  <li>Demonstratives: <em>dieser</em> “this”, <em>jener</em> “that”</li>
+  <li>Interrogative determiners: <em>welcher</em> “which”</li>
+  <li>Total determiners: <em>jeder</em> “every”, <em>alle</em> “all”</li>
+  <li>Negative determiners: <em>kein</em> “no”</li>
+</ul>
+
+<h3 id="determiners-vs-pronouns">Determiners vs. Pronouns</h3>
+
+<p>What has been said above about <em>kein</em> would apply to most of the other determiners, including the indefinite article
+<em>ein</em>. However, there is the question of the subclass normally encoded by the <a href="">PronType</a> feature: as an article,
+<em>ein</em> would be <code class="language-plaintext highlighter-rouge">PronType=Art</code>, as a self-standing nominal it should get <code class="language-plaintext highlighter-rouge">PronType=Ind</code> (note that <em>kein</em> receives
+<code class="language-plaintext highlighter-rouge">PronType=Neg</code> in both contexts). TODO: Decide what to do here!</p>
+
+<p>The situation is even more complicated with the definite article <em>der</em>. A homonymous word functions as a relative
+pronoun. Not only do we want to use <code class="language-plaintext highlighter-rouge">PronType=Rel</code> to recognize relative pronouns; some of the forms in the paradigm
+are actually not homonymous (the paradigm of the relative pronoun includes forms <em>dessen</em>, <em>deren</em>, <em>denen</em>, which
+cannot be used as definite articles). Therefore, <em>der</em> as a relative pronoun is considered a separate lexeme and its
+UPOS tag is <a href="">PRON</a>.</p>
+
+<h3 id="determiners-vs-numerals">Determiners vs. Numerals</h3>
+
+<p>The word <em>ein</em> can be either translated as the indefinite article “a” or as the numeral “one”. It is always tagged
+<code class="language-plaintext highlighter-rouge">DET</code> and not <a href="">NUM</a>, i.e., we do not attempt to distinguish contexts in which the emphasis is on quantity and not
+on indefiniteness. (The quantity is present in any case, as the indefinite article is never used in plural.) However,
+note that the word form <em>eins</em> “one” is treated as an independent lemma in the <code class="language-plaintext highlighter-rouge">NUM</code> category. It is the self-standing
+numeral that does not accompany a counted noun (e.g. it can be the answer to the question “How many pieces do you
+have?”) and it is different from all forms of the determiner <em>ein</em>.</p>
+
+<h3 id="determiners-vs-adjectives">Determiners vs. Adjectives</h3>
+
+<p>TBA: Is <em>anderer</em> a determiner, or an adjective?</p>
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+DET in other languages:
+
+[<a href="../../bej/pos/DET.html">bej</a>]
+
+[<a href="../../bg/pos/DET.html">bg</a>]
+
+[<a href="../../bm/pos/DET.html">bm</a>]
+
+[<a href="../../cs/pos/DET.html">cs</a>]
+
+[<a href="../../cy/pos/DET.html">cy</a>]
+
+[<a href="../../da/pos/DET.html">da</a>]
+
+[<a href="../../el/pos/DET.html">el</a>]
+
+[<a href="../../en/pos/DET.html">en</a>]
+
+[<a href="../../ess/pos/DET.html">ess</a>]
+
+[<a href="../../et/pos/DET.html">et</a>]
+
+[<a href="../../fi/pos/DET.html">fi</a>]
+
+[<a href="../../fro/pos/DET.html">fro</a>]
+
+[<a href="../../fr/pos/DET.html">fr</a>]
+
+[<a href="../../ga/pos/DET.html">ga</a>]
+
+[<a href="../../grc/pos/DET.html">grc</a>]
+
+[<a href="../../hu/pos/DET.html">hu</a>]
+
+[<a href="../../hy/pos/DET.html">hy</a>]
+
+[<a href="../../it/pos/DET.html">it</a>]
+
+[<a href="../../ja/pos/DET.html">ja</a>]
+
+[<a href="../../kk/pos/DET.html">kk</a>]
+
+[<a href="../../kpv/pos/DET.html">kpv</a>]
+
+[<a href="../../myv/pos/DET.html">myv</a>]
+
+[<a href="../../no/pos/DET.html">no</a>]
+
+[<a href="../../pcm/pos/DET.html">pcm</a>]
+
+[<a href="../../pt/pos/DET.html">pt</a>]
+
+[<a href="../../qpm/pos/DET.html">qpm</a>]
+
+[<a href="../../ru/pos/DET.html">ru</a>]
+
+[<a href="../../sla/pos/DET.html">sla</a>]
+
+[<a href="../../sl/pos/DET.html">sl</a>]
+
+[<a href="../../sv/pos/DET.html">sv</a>]
+
+[<a href="../../tr/pos/DET.html">tr</a>]
+
+[<a href="../../tt/pos/DET.html">tt</a>]
+
+[<a href="../../uk/pos/DET.html">uk</a>]
+
+[<a href="../../u/pos/DET.html">u</a>]
+
+[<a href="../../urj/pos/DET.html">urj</a>]
+
+[<a href="../../yue/pos/DET.html">yue</a>]
+
+[<a href="../../zh/pos/DET.html">zh</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'de';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2022
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
