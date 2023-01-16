@@ -2725,7 +2725,22 @@ punct(For, !)
 <p><a id="al-u-dep/iobj" class="al-dest"></a></p>
 <h2><code>iobj</code>: indirect object</h2>
 
-<p>The indirect object of a verb is any nominal phrase that is a core
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>WARNING</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>⚠️</td>
+      <td>The traditional term “indirect object”, associated with morphosyntactic encoding of certain types of arguments (especially datives/recipients) in a clause, has a wide range of interpretations across languages and linguistic frameworks. In UD, universal-level relations do not distinguish arguments and adjuncts; rather, the distinction is between <a href="/u/overview/syntax.html#core-arguments-vs-oblique-modifiers">core arguments and oblique modifiers</a>. <code class="language-plaintext highlighter-rouge">iobj</code> must only be used for core arguments, never for obliques, as described below. The naming of this relation may be changed in the next major revision of the UD guidelines.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In UD, the indirect object of a verb is any nominal phrase that is a core
 argument of the verb but is not its subject or (direct) <a href="obj">object</a>.
 The prototypical example is the recipient of ditransitive verbs of
 exchange:</p>
@@ -2762,47 +2777,60 @@ obj(teaches, maths.Acc)
 iobj(teaches, daughter.Acc)
 </code></pre>
 
-<p>In general, if there is just one object, it should be labeled
-<a href="">obj</a>, regardless of the morphological case or semantic role.
-For example, in English, <em>teach</em> can take either the subject matter or the recipient as the only object,
-and in both cases it would be analyzed as the <a href="">obj</a>:</p>
+<p>If the language has a prototypical <code class="language-plaintext highlighter-rouge">iobj</code> (occurring in a double object construction with <a href="">obj</a>), 
+then morphosyntactic criteria need to be established for when a sole object is <a href="">obj</a> and when it is <code class="language-plaintext highlighter-rouge">iobj</code>.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>
+Depending on the language, potential reasons to consider a sole object in a clause as an <code class="language-plaintext highlighter-rouge">iobj</code> include:</p>
+<ul>
+  <li>It has case marking distinct from that of a prototypical <a href="">obj</a>, e.g. dative rather than accusative</li>
+  <li>Another, more patient-like object may be inserted into the clause without affecting the morphosyntax of the object in question</li>
+  <li>The verb licenses the object in combination with a <a href="">ccomp</a> (the <a href="">ccomp</a> may be analyzed as taking the place of an <a href="">obj</a>)</li>
+</ul>
+
+<p>For example, in English, the verb <em>teach</em> may occur with <a href="">obj</a>, <a href="">iobj</a>, or both:</p>
+
+<pre><code class="language-sdparse">She teaches the students introductory logic .
+iobj(teaches, students)
+obj(teaches, logic)
+</code></pre>
 
 <pre><code class="language-sdparse">She teaches introductory logic .
 obj(teaches, logic)
 </code></pre>
 
 <pre><code class="language-sdparse">She teaches the first-year students .
-obj(teaches, students)
+iobj(teaches, students)
 </code></pre>
 
-<p>This is consistent with the analysis of Huddleston and Pullum (2002) “The Cambridge Grammar of the English Language”,
-chapter 4 section 4 (p. 251).  As they note, it is no different to the same semantic role being sometimes the subject
-and sometimes the object in intransitive/transitive alternations.</p>
+<pre><code class="language-sdparse">She teaches her students that good writing is important .
+iobj(teaches, students)
+ccomp(teaches, important)
+</code></pre>
 
-<!--The one exception is when there is a clausal complement.
-Then the clausal complement is regarded as a “clausal object” and an object nominal will be an iobj, parallel to
-the simple ditransitive case:
+<pre><code class="language-sdparse">She teaches her students to write well .
+iobj(teaches, students)
+xcomp(teaches, write)
+</code></pre>
 
-~~~ sdparse
-She told the students that they needed to study this evening
-iobj(told, students)
-ccomp(told, needed)
-~~~
+<p>However, not all verbs license two objects (or an object plus <a href="">ccomp</a>), in which case the sole object should be plain <a href="">obj</a> even if it has recipient-like semantics:</p>
 
-~~~ sdparse
-She told the students the plan
-iobj(told, students)
-obj(told, plan)
-~~~
+<pre><code class="language-sdparse">She questions her students about their interests .
+obj(questions, students)
+obl(questions, interests)
+</code></pre>
 
-If there are two or
-more objects, one of them should be [obj]() and the others should be
-`iobj`. In such cases it is necessary to decide what is the
-most directly affected object _(patient)._ If possible,
-language-specific documentation should help identify direct and
-indirect objects.
--->
+<pre><code class="language-sdparse">She helps her students to succeed .
+obj(helps, students)
+xcomp(helps, succeed)
+</code></pre>
+
 <!-- Interlanguage links updated Po lis 14 15:35:28 CET 2022 -->
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>This is an amended policy. An explanation of the change will be posted. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/iobj.md" target="#">edit iobj</a></p>
 
@@ -3185,16 +3213,20 @@ are oblique, regardless of the presence or absence of an adposition.
 Consequently they cannot use the <code class="language-plaintext highlighter-rouge">obj</code> relation and must use <a href="">obl</a>,
 even if the traditional grammar calls such dependents “objects”.</p>
 
-<p>In general, if there is just one (core) object, it should be labeled <code class="language-plaintext highlighter-rouge">obj</code>,
-regardless of the morphological case or semantic role that it bears.
-If there are two or more objects, one of them should be <code class="language-plaintext highlighter-rouge">obj</code> and the
+<p>If there are two or more objects, one of them should be <code class="language-plaintext highlighter-rouge">obj</code> and the
 others should be <a href="">iobj</a>. In such cases it is necessary to decide what
-is the most directly affected object <em>(patient).</em></p>
+is the most directly affected object <em>(patient).</em>
+If there is just one object, it should likely be <code class="language-plaintext highlighter-rouge">obj</code> 
+unless it is morphosyntactically more similar to clear cases 
+of <a href="">iobj</a> in the language than it is to prototypical patient arguments.</p>
+
+<!--In general, if there is just one (core) object, it should be labeled `obj`,
+regardless of the morphological case or semantic role that it bears.-->
 
 <!--The one exception is when there is a clausal complement.
 Then the clausal complement is regarded as a “clausal object” and an object nominal will be an [iobj]().-->
 
-<p>There is more discussion of constructions with multiple objects on the page for <a href="">iobj</a>.
+<p>There is further discussion of the two kinds of object at <a href="">iobj</a>.
 If possible, language-specific documentation should be available to help identify the primary (or direct) object.
 <!-- Interlanguage links updated Po lis 14 15:35:37 CET 2022 --></p>
 
