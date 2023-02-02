@@ -2818,13 +2818,122 @@ punct(given, .-9)
 </code></pre>
 
 <pre><code class="language-sdparse">Liburua/Case=Abs eman nion . \n Book given I-have-her-it .
-obj(eman, liburua)
+obj(eman, Liburua)
 aux(eman, nion)
 punct(eman, .-4)
-obj(given, book)
+obj(given, Book)
 aux(given, I-have-her-it)
 punct(given, .-9)
 </code></pre>
+
+<p>Nevertheless, Basque has also a class of verbs that license only two core arguments, one ergative and
+one dative. Here the ergative has the A function and the dative the P function (Zúñiga and Fernández 2014),
+meaning that the dative is <a href="">obj</a> rather than <code class="language-plaintext highlighter-rouge">iobj</code>, as in “The teacher has looked angrily at the students.”</p>
+
+<pre><code class="language-sdparse">Irakasleak/Case=Erg haserre begiratu die ikasleei/Case=Dat . \n Teacher angrily looked he-has-them to-students .
+nsubj(begiratu, Irakasleak)
+advmod(begiratu, haserre)
+aux(begiratu, die)
+obj(begiratu, ikasleei)
+punct(begiratu, .-6)
+nsubj(looked, Teacher)
+advmod(looked, angrily)
+aux(looked, he-has-them)
+obj(looked, to-students)
+punct(looked, .-13)
+</code></pre>
+
+<p>Another class of transitive verbs in Basque license one dative and one absolutive argument. Here the
+dative has the A function and the absolutive the P function, meaning that the dative is <a href="">nsubj</a> and
+the absolutive is <a href="">obj</a>, as in “The boy likes the soup very much.”</p>
+
+<pre><code class="language-sdparse">Zopa/Case=Abs izugarri gustatzen zaio mutilari/Case=Dat . \n Soup greatly pleasing it-is-him to-boy .
+obj(gustatzen, Zopa)
+advmod(gustatzen, izugarri)
+aux(gustatzen, zaio)
+nsubj(gustatzen, mutilari)
+punct(gustatzen, .-6)
+obj(pleasing, Soup)
+advmod(pleasing, greatly)
+aux(pleasing, it-is-him)
+nsubj(pleasing, to-boy)
+punct(pleasing, .-13)
+</code></pre>
+
+<p>In Tagalog, core arguments are marked by the prepositions <em>ang</em> and <em>ng</em> (or by corresponding inflection
+of personal pronouns), while oblique dependents are typically marked by the preposition <em>sa</em> (sometimes
+glossed as the dative). Giving somebody something is a (mono)transitive predicate.</p>
+
+<ul>
+  <li><em>Nagbigay ang lalaki ng libro sa babae.</em> “The man gave a book to the woman.” (agent voice)</li>
+</ul>
+
+<pre><code class="language-conllu"># text = Nagbigay ang lalaki ng libro sa babae.
+# text_en = The man gave a book to the woman.
+1	Nagbigay	bigay	VERB	_	Aspect=Perf|Mood=Ind|VerbForm=Fin|Voice=Act	0	root	_	Gloss=gave
+2	ang	ang	ADP	_	Case=Nom	3	case	_	Gloss=the
+3	lalaki	lalaki	NOUN	_	_	1	nsubj	_	Gloss=man
+4	ng	ng	ADP	_	Case=Gen	5	case	_	_
+5	libro	libro	NOUN	_	_	1	obj	_	Gloss=book
+6	sa	sa	ADP	_	Case=Dat	7	case	_	Gloss=DIR
+7	babae	babae	NOUN	_	_	1	obl	_	Gloss=woman|SpaceAfter=No
+8	.	.	PUNCT	_	_	1	punct	_	Gloss=.
+
+</code></pre>
+
+<p>However, locative dependents can be topicalized if the verb morphology signals
+the “locative voice”. Then the locative noun phrase switches to nominative,
+it becomes a core argument, while the original two core arguments keep core
+coding, too. Therefore we have a ditransitive clause with three core arguments,
+even for verbs that are not associated with ditransitives in other languages:</p>
+
+<ul>
+  <li><em>Aalisan ng babae ng bigas ang sako para sa bata.</em> “A/the woman will take some rice out of the sack for a/the child.” (locative voice)</li>
+</ul>
+
+<pre><code class="language-conllu"># sent_id = 3.111c/tl
+# text = Aalisan ng babae ng bigas ang sako para sa bata.
+# gloss = FUT-take.out-DP ACT woman OBJ rice PIV sack BEN child
+# text_en = A/the woman will take some rice out of the sack for a/the child.
+# DP = directional pivot; PIV = pivot marker
+1	Aalisan	alis	VERB	_	Aspect=Prog|Mood=Ind|VerbForm=Fin|Voice=Lfoc	0	root	_	Gloss=will-take-out|MSeg=a-alis-an|MGloss=FUT-take.out-DP
+2	ng	ng	ADP	_	Case=Gen	3	case	_	_
+3	babae	babae	NOUN	_	_	1	iobj:agent	_	Gloss=woman
+4	ng	ng	ADP	_	Case=Gen	5	case	_	_
+5	bigas	bigas	NOUN	_	_	1	obj:patient	_	Gloss=rice
+6	ang	ang	ADP	_	Case=Nom	7	case	_	Gloss=the
+7	sako	sako	NOUN	_	_	1	nsubj:loc	_	Gloss=sack
+8	para	para	ADP	_	_	10	case	_	Gloss=for
+9	sa	sa	ADP	_	Case=Dat	10	case	_	Gloss=BEN
+10	bata	bata	NOUN	_	_	1	obl	_	Gloss=child|SpaceAfter=No
+11	.	.	PUNCT	_	_	1	punct	_	Gloss=.
+
+</code></pre>
+
+<p>In Plains Cree (Wolvengrey 2011), transitive verbs cross-reference subjects and animate objects but not
+inanimate objects. With a verb of giving, the theme is typically inanimate while the recipient is
+typically animate. Assuming that <a href="">nsubj</a> and <a href="">obj</a> are reserved for the two core arguments
+cross-referenced by the verb, the theme has to be <code class="language-plaintext highlighter-rouge">iobj</code> (if it is a core argument at all; otherwise
+it would have to be <a href="">obl</a>; but real oblique nominals in Plains Cree take a locative case affix,
+which is not present here).</p>
+
+<ul>
+  <li><em>Nikī-miyāw anima masinahikan.</em> “I gave him that book.”</li>
+</ul>
+
+<pre><code class="language-conllu"># text = Nikī-miyāw anima masinahikan.
+# text_en = I gave him/her that book.
+1	Nikī-miyāw	miy	VERB	_	Animacy=Anim|Mood=Ind|Number[high]=Sing|Number[low]=Sing|Person[high]=1|Person[low]=3|Tense=Past|Voice=Dir	0	root	_	Gloss=I-gave-him/her|MSeg=ni-kī-miy-ā-w|MGloss=1-PAST-give.to-DIR-3SG
+2	anima	anima	DET	_	Animacy=Inan|Number=Sing|PronType=Dem	3	det	_	Gloss=that|MGloss=DEM.0's
+3	masinahikan	masinahikan	NOUN	_	Animacy=Inan|Number=Sing	1	iobj	_	Gloss=book|SpaceAfter=No
+4	.	.	PUNCT	_	_	1	punct	_	Gloss=.
+
+</code></pre>
+
+<p>In the above example, the verb stem used is for animate objects, while
+<em>masinahikan</em> “book” is inanimate. That is a proof that the 3rd person singular
+cross-reference on the verb does not refer to the book but to an animate
+recipient that is not overtly represented in the sentence.</p>
 
 <p>If the language has a prototypical <code class="language-plaintext highlighter-rouge">iobj</code> (occurring in a double object construction with <a href="">obj</a>),
 then morphosyntactic criteria need to be established for when a sole object is <a href="">obj</a> and when it is <code class="language-plaintext highlighter-rouge">iobj</code>.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>
@@ -2872,11 +2981,20 @@ obj(helps, students)
 xcomp(helps, succeed)
 </code></pre>
 
+<h2 id="references">References</h2>
+
+<ul>
+  <li>Fernando Zúñiga, Beatriz Fernández (draft 26.6.2014): <a href="http://basdisyn.net/pdf/Zuniga%20&amp;%20Fernandez%202014%20Basque%20GRs%20270614.pdf">Grammatical relations in Basque</a></li>
+  <li>Arok Elessar Wolvengrey (2011):
+<a href="https://dare.uva.nl/search?identifier=153f3405-f029-4046-8d95-9f2a087b4123">Semantic and pragmatic functions in Plains Cree syntax</a>
+(PhD thesis). Utrecht: LOT. ISBN 978-94-6093-051-5.</li>
+</ul>
+
 <!-- Interlanguage links updated Po lis 14 15:35:28 CET 2022 -->
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1" role="doc-endnote">
-      <p>This is an amended policy. An explanation of the change will be posted. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>This is an amended policy as described <a href="/changes.html#sole-iobj">on the changes page</a>. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -3761,17 +3879,22 @@ These clauses tend to be non-finite in many languages,
 but they can be finite as well. The name <code class="language-plaintext highlighter-rouge">xcomp</code> is
 borrowed from Lexical-Functional Grammar.</p>
 
-<pre><code class="language-sdparse">Sue asked George to respond to her offer
-xcomp(asked, respond)
-obj(asked, George)
+<pre><code class="language-sdparse">We expect them to change their minds
+xcomp(expect, change)
+obj(expect, them)
 </code></pre>
 
-<pre><code class="language-sdparse">You look great
-xcomp(look, great)
+<pre><code class="language-sdparse">Sue asked George to respond to her offer
+xcomp(asked, respond)
+iobj(asked, George)
 </code></pre>
 
 <pre><code class="language-sdparse">I started to work there yesterday
 xcomp(started, work)
+</code></pre>
+
+<pre><code class="language-sdparse">You look great
+xcomp(look, great)
 </code></pre>
 
 <pre><code class="language-sdparse">I consider him a fool
@@ -3784,23 +3907,26 @@ obj(consider, her)
 xcomp(consider, honest)
 </code></pre>
 
-<pre><code class="language-sdparse">We expect them to change their minds
-xcomp(expect, change)
-obj(expect, them)
-</code></pre>
-
 <pre><code class="language-sdparse">Susan is liable to be arrested
 cop(liable, is)
 xcomp(liable, arrested)
 </code></pre>
 
+<p>The clausal complement can be headed by various parts of speech, including a VERB, ADJ, or NOUN. The <code class="language-plaintext highlighter-rouge">xcomp</code>-taking predicate of the higher clause can be a VERB or ADJ.</p>
+
+<p>Contrast with other complement clauses, which use <a href="">ccomp</a>:</p>
+
 <pre><code class="language-sdparse">He says that you like to swim
 ccomp(says, like)
 </code></pre>
 
-<p>The clausal complement can be headed by various parts of speech, including a VERB, ADJ, or NOUN. The xcomp-taking predicate of the higher clause can be a VERB or ADJ.</p>
+<pre><code class="language-sdparse">I suggest eating now before the food gets cold
+ccomp(suggest, eating)
+</code></pre>
 
-<p>In examples like “I consider her honest”, the UD analysis corresponds to traditional grammar and what was termed “raising to object” in early generative grammar: the nominal “her” in these constructions is treated as the <code class="language-plaintext highlighter-rouge">obj</code> of the higher clause (as its accusative morphology and ability to passivize suggests).</p>
+<h3 id="the-inherited-subject-criterion">The Inherited Subject Criterion</h3>
+
+<p>In examples like “I consider her honest”, the UD analysis corresponds to traditional grammar and what was termed “raising to object” in early generative grammar: the nominal “her” in these constructions is treated as the object of the higher clause (as its accusative morphology and ability to passivize suggests).</p>
 
 <p>Note that the above condition “without its own subject” does not mean that a 
 clause is an <code class="language-plaintext highlighter-rouge">xcomp</code> just because its subject is not <em>overt.</em> The subject must be necessarily inherited from a fixed position in the higher clause. That is, there should be no available interpretation where the subject of the lower clause may be distinct
