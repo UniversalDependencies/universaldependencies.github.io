@@ -3,14 +3,14 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Dim</title>
+    <title>NArabizi UD</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
-    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-eme">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-qaf">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_eme/feat/Dim.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_qaf/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -63,7 +63,7 @@
         <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
         <script type="text/javascript">
             console.time('loading libraries');
-            var root = '../../'; // filled in by jekyll
+            var root = '../'; // filled in by jekyll
             head.js(
                 // External libraries
                 // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
@@ -76,55 +76,70 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <style>h3 {display:block;background-color:#dfeffc}</style>
+        <h1 id="ud-for-narabizi">UD for NArabizi</h1>
 
-<h2><code>Dim</code>: diminutive</h2>
-
-<table class="typeindex" border="1">
-<tr>
-  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
-  <td><a href="#Yes">Yes</a></td>
-</tr>
-</table>
-
-<p><code class="language-plaintext highlighter-rouge">Dim</code> indicates the smallness of the object or quality. It is expressed with a suffix <em><code class="language-plaintext highlighter-rouge">-ũwĩ</code></em>/<em><code class="language-plaintext highlighter-rouge">-wĩ</code></em>.</p>
-
-<h3 id="yes-yes"><a name="Yes"><code class="language-plaintext highlighter-rouge">Yes</code></a>: Yes</h3>
-
-<h4 id="examples">Examples</h4>
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
-  <li><em>emõdura<b>wĩ</b> duriam epe</em>  “Give me a bit of rice.”</li>
-  <li><em>takuru<b>ũwĩ</b> otuiomãʔẽrehe owur</em>  “He climbs on a small rock that is there.”</li>
+  <li>
+    <p>Spaces, commas and periods are generally used as word delimiters. Algerian Arabic being a dialect that contains a lot of code-switching, tokenization rules usually follow the target languages, namely Modern Standard Arabic (MSA), Algerian Arabic and French. Exceptions are often due to the specificities of user-generated content.</p>
+  </li>
+  <li>
+    <p>For French, see <a href="https://universaldependencies.org/fr/index.html">the French documentation page</a>. However, contracted prepositions are not considered multiword tokens, which is often the case in French treebanks. Thus, prepositions such as <em>au</em> <strong>are not</strong> split into <em>à</em>+<em>le</em>, but their particular status are specified in the XPOS and MISC fields.</p>
+  </li>
+  <li>
+    <p>For MSA and Algerian Arabic,see <a href="https://universaldependencies.org/ar/index.html">the Arabic documentation page</a>. However, definite articles are considered as tokens, so when they are not delimited by a space,they are split. This often happens with nouns starting with <a href="https://simple.wikipedia.org/wiki/Sun_and_moon_letters">sun letters</a>. For instance, <em>essalam</em> –&gt; <em>e</em>+<em>ssalam</em>.
+The same rule applies for prepositions when they are governed by nouns, proper nouns and adjectives (<em>fdoute</em> –&gt; <em>f</em>+<em>doute</em>), and it also applies recursively (<em>bilaranib</em> –&gt; <em>bi</em>+<em>l</em>+<em>aranib</em>).</p>
+  </li>
+  <li>
+    <p>Non-final punctuation symbols (such as <em>-</em> and <em>/</em> ) are considered as tokens when they are used for football match scores and fractions (i.e. <em>3-0</em>  -&gt; <em>3</em> <em>-</em> <em>0</em>, <em>100/100</em> -&gt; <em>100</em> <em>/</em> <em>100</em> )</p>
+  </li>
 </ul>
 
-<h2 id="diffs">Diffs</h2>
+<hr />
 
-<h3 id="prague-dependency-treebank">Prague Dependency Treebank</h3>
+<h2 id="morphology">Morphology</h2>
 
-<p>The PDT tagset does not distinguish <code class="language-plaintext highlighter-rouge">Ptan</code> from <code class="language-plaintext highlighter-rouge">Plur</code> and <code class="language-plaintext highlighter-rouge">Coll</code> from <code class="language-plaintext highlighter-rouge">Sing</code>,
-therefore this distinction is not being made in the converted data.
-<!-- Interlanguage links updated Po lis 14 15:34:44 CET 2022 --></p>
+<h3 id="tags">Tags</h3>
 
+<ul>
+  <li>All universal POS categories except SYM are used. Arabic Negation particles (both in MSA and Algerian Arabic) such as <em>ma</em> and <em>la</em>, and the restrictive particle <em>ghir</em> are tagged as PART.</li>
+  <li>The following verbs are tagged as AUX when they are used for composed tense and aspect constructions:
+    <ul>
+      <li>the French auxiliairies <em>être</em> et <em>avoir</em></li>
+      <li>The Arabic auxiliary <em>kan</em></li>
+      <li>The Algerian Arabic auxiliary <em>rah</em></li>
+    </ul>
+  </li>
+</ul>
 
-<!-- "in other languages" links -->
-<hr/>
+<hr />
 
-Dim in other languages:
+<h3 id="features">Features</h3>
 
-[<a href="../../eme/feat/Dim.html">eme</a>]
+<ul>
+  <li>Verbs have Gender (values: Masc and Fem), Number (values: Sing and Plur) and Person (values : 1,2 and 3) features. Verbs also have a Mood feature (values: Imp and Sub) for imperatives and for one specific subjunctive construction (<em>vive/tahia/viva</em> + <em>nominal</em>)</li>
+  <li>Pronouns have a PronType feature (values : Dem, Int and Rel).</li>
+  <li>Pronouns have an AdpType feature with the single value Prep.</li>
+  <li>The polarity feature applies to particles and adverbs and verbs with the single value Neg.</li>
+</ul>
 
-[<a href="../../nhi/feat/Dim.html">nhi</a>]
+<hr />
 
-[<a href="../../xav/feat/Dim.html">xav</a>]
+<h2 id="syntax">Syntax</h2>
 
+<ul>
+  <li>For Arabic, see the <a href="https://universaldependencies.org/ar/index.html#syntax">Arabic documentation page</a>. However, the language specific deep relations are not used.</li>
+  <li>For French, see the <a href="https://universaldependencies.org/fr/index.html#syntax">French documentation page</a>. However, the language specific deep relations are not used. Some deep relations are specified in the MISC fields (<em>expl:subj</em>,<em>expl:comp</em> and <em>conj:coord</em>)</li>
+</ul>
 
+<hr />
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = '../../'; // filled in by jekyll
+    var root = '../'; // filled in by jekyll
     head.js(
         // We assume that external libraries such as jquery.min.js have already been loaded outside!
         // (See _layouts/base.html.)
@@ -165,7 +180,7 @@ Dim in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'eme';
+        Collections.listing['_current'] = 'qaf';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
