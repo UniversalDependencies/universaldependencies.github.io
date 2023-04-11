@@ -1013,6 +1013,37 @@ but it is not exactly the same information.</p>
 
 <p><a href="http://tables.grew.fr/?data=ud_feats/MISC&amp;cols=^Stype$"><button>Table for <code>Stype</code> feature</button></a></p>
 
+<h3 id="subject">Subject</h3>
+
+<p>The guidelines normally allow at most one subject attached to the same predicate. However, since
+UD 2.10 (May 2022), <a href="https://universaldependencies.org/changes.html#multiple-subjects">multiple subjects are exceptionally allowed</a>
+when a clause acts as the predicate of an outer clause. It is recommended (and by default expected)
+that the outer subject(s) is (are) then labeled with the relation subtype <a href="">nsubj:outer</a> or
+<a href="">csubj:outer</a>. However, relation subtypes are optional and there may be a good reason to not
+use the subtype (e.g., there would be only one instance of the outer subject in the whole corpus,
+and it would occur in the test data, so no parser would have a chance to learn how to predict it).
+In such cases the treebank maintainer can opt out of using the <code class="language-plaintext highlighter-rouge">:outer</code> subtype. They still need
+to mark each instance as verified and legitimate, otherwise the UD validator would report it as
+an error. This is done by adding <code class="language-plaintext highlighter-rouge">Subject=Outer</code> to the MISC column on the line where <code class="language-plaintext highlighter-rouge">nsubj:outer</code>
+would be if the subtype were used.</p>
+
+<pre><code class="language-CoNLL-U"># sent_id = sahidica_1corinthians-1Cor_03_s0004
+# text_en = For when one says, 'I follow Paul,' and another, 'I follow Apollos,' aren't you fleshly?
+# text = ϩⲟⲧⲁⲛ ⲅⲁⲣ ⲉⲣϣⲁⲛⲟⲩⲁ ϫⲟⲟⲥ ϫⲉⲁⲛⲟⲕ ⲙⲉⲛ ⲁⲛⲅⲡⲁⲡⲁⲩⲗⲟⲥ . ⲕⲉⲟⲩⲁ ⲇⲉ ϫⲉⲁⲛⲅⲡⲁⲁⲡⲟⲗⲗⲱ . ⲙⲏ ⲛⲧⲉⲧⲛ ϩⲉⲛⲣⲱⲙⲉ ⲁⲛ .
+14-15	ⲕⲉⲟⲩⲁ	_	_	_	_	_	_	_	_
+14	ⲕⲉ	ⲕⲉ	DET	ART	PronType=Art	15	det	_	_
+15	ⲟⲩⲁ	ⲟⲩⲁ	NUM	NUM	NumType=Card	20	nsubj	_	Entity=(person)|Subject=Outer
+16	ⲇⲉ	ⲇⲉ	PART	PTC	Foreign=Yes	20	advmod	_	OrigLang=grc
+17-20	ϫⲉⲁⲛⲅⲡⲁⲁⲡⲟⲗⲗⲱ	_	_	_	_	_	_	_	_
+17	ϫⲉ	ϫⲉ	SCONJ	CONJ	_	20	mark	_	_
+18	ⲁⲛⲅ	ⲁⲛⲟⲕ	PRON	PPERI	Definite=Def|Number=Sing|Person=1|PronType=Prs	20	nsubj	_	_
+19	ⲡⲁ	ⲡⲁ	DET	PPOS	Definite=Def|Gender=Masc|Number=Sing|Number[psor]=Sing|Person=1|Poss=Yes|PronType=Prs	20	det	_	Entity=(person
+20	ⲁⲡⲟⲗⲗⲱ	ⲁⲡⲟⲗⲗⲱ	PROPN	NPROP	Foreign=Yes	12	parataxis	_	Entity=(person-Apollos)person)|OrigLang=grc
+21	.	.	PUNCT	PUNCT	_	5	punct	_	_
+</code></pre>
+
+<p><a href="http://tables.grew.fr/?data=ud_feats/MISC&amp;cols=^Subject$"><button>Table for <code>Subject</code> feature</button></a></p>
+
 <h3 id="tam">Tam</h3>
 
 <p>See also <a href="#vib">Vib</a>.</p>
