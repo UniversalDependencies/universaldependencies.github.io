@@ -93,6 +93,9 @@ command assumes you have not modified your local copy of the data without pushin
 back; if this is the case, you will see lists of modified files in the output and you
 will have to resolve it). Also make sure that you are working with the <code class="language-plaintext highlighter-rouge">dev</code> branch:<br />
 <code>for i in UD_* ; do echo $i ; cd $i ; git checkout dev ; git pull --no-edit ; cd .. ; echo ; done</code></li>
+  <li>Make sure there are no untracked files in your local copies of the repositories.
+Otherwise they could be mistakenly picked for the release.<br />
+<code>for i in UD_* ; do echo $i ; cd $i ; git status ; if git status | grep 'Untracked files' &gt; /dev/null ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX EXTRA FILES XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 10 ; fi; cd .. ; echo ; done</code></li>
   <li>Run <code class="language-plaintext highlighter-rouge">tools/check_release.pl --release 2.12 --next-expected 'November 2023' --oldpath /net/data/universal-dependencies-2.11 |&amp; tee release-2.12-report.txt | less</code>.
 The script will visit all repositories and report any missing files, unexpected or unexpectedly named files.
 It will download the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">online validation report</a>
@@ -142,7 +145,7 @@ branch but not in the <code class="language-plaintext highlighter-rouge">dev</co
 <code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev --no-edit ; git push ; git checkout dev ; cd .. ; echo ; done</code>
     <ul>
       <li>Check for conflicts from the previous step. If people misbehaved and pushed commits to <code class="language-plaintext highlighter-rouge">master</code>, even after a revert automatic merging may no longer be possible. We must resolve all conflicts manually before going on! The conflicted repositories are still switched to the <code class="language-plaintext highlighter-rouge">master</code> branch and git will not allow any further operations with them!<br />
-<code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 2 ; else echo OK ; fi ; cd .. ; echo ; done</code>
+<code>for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; if ( git status | grep conflict ) ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONFLICT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 10 ; else echo OK ; fi ; cd .. ; echo ; done</code>
         <ul>
           <li><code>cd UD_...(the-one-with-conflict) ; git status</code> will show what files have a problem. Let’s assume that only <code class="language-plaintext highlighter-rouge">README.md</code> has a problem. This is how we replace it with the version from the <code class="language-plaintext highlighter-rouge">dev</code> branch and conclude the merge:<br />
 <code>git checkout --theirs README.md ; git add README.md ; git commit -m 'Merge branch dev' ; git push ; git checkout dev ; cd ..</code></li>
