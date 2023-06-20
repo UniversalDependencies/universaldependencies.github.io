@@ -106,37 +106,90 @@
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
+<h4 id="nominal-features">Nominal Features</h4>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<ul>
+  <li>Nouns <a href="">NOUN</a> and PROPN]() have an inherent <a href="">Gender</a> feature with one of the three values: <code class="language-plaintext highlighter-rouge">Masc</code>, <code class="language-plaintext highlighter-rouge">Fem</code> or <code class="language-plaintext highlighter-rouge">Neut</code>.</li>
+  <li><a href="">ADJ</a>, <a href="">DET</a>, <a href="">NUM</a>, <a href="">PART</a> inflect for <code class="language-plaintext highlighter-rouge">Gender</code> and <code class="language-plaintext highlighter-rouge">Number</code>, and agree with nouns.</li>
+  <li>Macedonian nominals (nouns, adjectives, ordinal numerals, attributively used participles) make use of the <code class="language-plaintext highlighter-rouge">Definite</code> feature.
+When the form has a definite suffix, it is marked as <code class="language-plaintext highlighter-rouge">Def</code>. When no definite suffix is attached, it is marked as <code class="language-plaintext highlighter-rouge">Ind</code>.</li>
+</ul>
 
-<hr />
+<h4 id="degree-and-polarity">Degree and Polarity</h4>
+
+<ul>
+  <li><a href="">Degree</a> is an inherent feature for adjectives (<a href="">ADJ</a>) and adverbs (<a href="">ADV</a>). It has one of three possible values: <code class="language-plaintext highlighter-rouge">Pos</code>, <code class="language-plaintext highlighter-rouge">Cmp</code>, <code class="language-plaintext highlighter-rouge">Sup</code>.</li>
+  <li><a href="">Polarity</a> has two values, <code class="language-plaintext highlighter-rouge">Pos</code> and <code class="language-plaintext highlighter-rouge">Neg</code>, and applies primarily to negative and affirmative particles <a href="">PART</a>.</li>
+</ul>
+
+<h4 id="verbal-features">Verbal Features</h4>
+
+<ul>
+  <li>Similarly to other Slavic languages, Macedonian verbs have as a lexically classifying feature <a href="">Aspect</a>, either imperfective (<code class="language-plaintext highlighter-rouge">Imp</code>) or perfective (<code class="language-plaintext highlighter-rouge">Perf</code>).</li>
+  <li>Finite verbs always have one of three values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Imp</code> or <code class="language-plaintext highlighter-rouge">Cnd</code>.
+The conditional mood is only used with the special conditional auxiliaries.
+The l-participle of the main verb, which is needed to form the analytic conditional, is not marked with this feature.</li>
+  <li>Verbs in the indicative mood always have one of three values of <a href="">Tense</a>: <code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Imp</code> and <code class="language-plaintext highlighter-rouge">Pres</code>.
+<code class="language-plaintext highlighter-rouge">Fut</code> is not used because this tense is always analytic and formed with a special particle.</li>
+  <li>There are two values of the <a href="">Voice</a> feature: <code class="language-plaintext highlighter-rouge">Act</code> and <code class="language-plaintext highlighter-rouge">Pass</code>. Only the passive participle has <code class="language-plaintext highlighter-rouge">Voice=Pass</code>. All other verb forms have <code class="language-plaintext highlighter-rouge">Voice=Act</code>.</li>
+</ul>
+
+<h4 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h4>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>), adjectives (<a href="">ADJ</a>), determiners (<a href="">DET</a>) and adverbs (<a href="">ADV</a>).</li>
+  <li>The <a href="">Poss</a> feature marks possessive personal determiners (e.g. <em>мој</em> / moj “my”),
+possessive interrogative, indefinite or negative determiners (e.g. <em>чиј</em> / čij “whose”),
+possessive relative determiners (e.g. <em>чијто</em> / čijto “whose”).
+It also marks the clitic personal pronouns <code class="language-plaintext highlighter-rouge">Prs</code> and reflexive pronouns.</li>
+  <li>The <a href="">Reflex</a> feature marks reflexive pronouns <em>(себе си, се, си)</em> / sebe si, se, si and determiners <em>(свој)</em> / svoj “one’s own” and possesive clitic pronoun <em>си</em> / si.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">3</code>.</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase in a nominative case, without a preposition.</li>
+  <li>A finite subordinate clause can serve the role of a subject. In such a case it is labeled as clausal subject, <a href="">csubj</a>.
+There is no infinitive in Macedonian. The inheritant cosnstruction is finite – <em>да дојдам</em> / da dojdam “to come / that I come”.</li>
+  <li>Objects can be bare noun phrases in the position of an accusative pronoun.</li>
+  <li>Bare accusative, dative and prepositinal dative are considered core arguments (with the preposition <em>на</em> / na).</li>
+  <li>All other prepositional objects are considered oblique <a href="">obl</a>.</li>
+  <li>Accusative objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
+  <li>If a verb subcategorizes for modal verbs or verbs of control, the infinitival complement is labeled <a href="">xcomp</a>.</li>
+  <li>Adjuncts are usually prepositional phrases, but they can be bare noun phrases as well. They are labeled <a href="">obl</a>.</li>
+  <li>In Macedonian there is the phenomenon of clitic doubling. Thus, when the short pronoun appears alone,
+it takes the role of <a href="">obj</a> or <a href="">iobj</a>. However, when the full-fledged pronoun or phrase is present,
+the short doubling pronoun is marked <a href="">expl</a>. Expletive <a href="">expl</a> is used also for the reflexive short
+pronouns when they are semantically empty and are part of the lexical verb. For example: <em>се смеам</em> / se smeam “I am laughing”.</li>
+  <li>In Macedonian the copula <a href="">cop</a> is expressed by the auxiliary verb <em>сум</em> / sum “to be” and its synonyms that are semantically vacuous.</li>
+  <li>In passive clauses (both reflexive and periphrastic passive), the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.</li>
+  <li>The auxiliary verb in periphrastic passive is labeled <a href="">aux:pass</a>.</li>
+</ul>
 
-<hr />
+<h3 id="other-relations">Other relations:</h3>
+
+<ul>
+  <li>In Macedonian the yes-no questions are formed with the question particle <em>дали</em> / dali.
+At the moment this particle is annotated with the <a href="">discourse</a> relation.</li>
+</ul>
+
+<h3 id="no-used-relations">No used relations:</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">compound</code>, <code class="language-plaintext highlighter-rouge">dislocated</code>, <code class="language-plaintext highlighter-rouge">clf</code>, <code class="language-plaintext highlighter-rouge">list</code>, <code class="language-plaintext highlighter-rouge">reparandum</code>, <code class="language-plaintext highlighter-rouge">orphan</code>, <code class="language-plaintext highlighter-rouge">dep</code></li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is 1 Macedonian UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/mk_mtb/index.html">Macedonian-MTB</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
