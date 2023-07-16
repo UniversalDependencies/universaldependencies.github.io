@@ -78,12 +78,15 @@
         </script>
         <h1 id="ud-for-akkadian-">UD for Akkadian <span class="flagspan"><img class="flag" src="../../flags/svg/IQ.svg" /></span></h1>
 
+<p>Note that there are multiple treebanks discussed in this documentation. Information specific to a given treebank will be labeled as such. Otherwise it holds for all treebanks.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
   <li>In <a href="../treebanks/akk_RIAO/index.html">RIAO</a>, sentence boundaries were arrived at by syntactically annotating the unsegmented corpus, and identifying words that are head words but are not themselves dependents of other words. The separate trees produced this way were considered to be separate sentences.</li>
-  <li>Words are only exceptionally delimited by whitespace or punctuation in the original cuneiform texts. Thus, <a href="../treebanks/akk_RIAO/index.html">RIAO</a> is based on the bound transcription (normalized text).</li>
-  <li>Enclitic pronouns and clitics are separated during tokenization and marked as multi-word tokens with a syntactic relation.</li>
+  <li>In <a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a>, letters are largely parsed without explicit sentence boundaries (although there are a few exceptions where sentence breaks were introduced manually). For verse texts where line breaks on the cuneiform tablet coincide with sentence breaks, sentence breaking was done automatically. Certain large texts use horizontal rulings that also signal section breaks. Automatic sentence breaks were made at these points as well.</li>
+  <li>Words are only exceptionally delimited by whitespace or punctuation in the original cuneiform texts. Thus, <a href="../treebanks/akk_RIAO/index.html">RIAO</a> and <a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a> are based on the bound transcription (normalized text).</li>
+  <li>For RIAO, enclitic pronouns and clitics are separated during tokenization and marked as multi-word tokens with a syntactic relation. For <a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a>, such pronouns and clitics are regarded as part of the word they attach to and label as morphological features on that word.</li>
 </ul>
 
 <h2 id="morphology">Morphology</h2>
@@ -91,10 +94,10 @@
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>In <a href="../treebanks/akk_RIAO/index.html">RIAO</a>, 13 universal tags have been used.</li>
+  <li>In <a href="../treebanks/akk_RIAO/index.html">RIAO</a> and <a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a>, 13 universal tags have been used.</li>
   <li>The tags AUX, INTJ, PUNCT and SYM were not used.</li>
   <li>The words tagged PART are the emphatic <em>lū</em>, the quotation paricle <em>mā</em>, the clitics <em>ma</em> and <em>ni</em>, and the negation particles <em>lā</em> and <em>ul</em>.</li>
-  <li>The tag DET is used for the personal pronouns <em>šī</em>, <em>šū</em>, <em>šâtu</em>, <em>šuāti/u</em>, <em>šâtunu</em>, <em>šuātunu</em> when they modify the meaning of a noun; for the quantifiers <em>gabbu</em>, <em>kalāma</em> and <em>kalû</em>; for the demonstratives <em>ammiu</em> “that” and <em>annû</em> “this” and for the indefinite pronoun <em>mimma</em> “anything”. The tag PRON is reserved for independent personal pronouns, including oblique forms (<em>yâši</em>, <em>šuāšu</em>) and possessives, as well as pronominal suffixes; for the relative pronoun <em>ša</em> “which, who”; for <em>ammar</em> in its function as a relative pronoun; for the indefinite pronoun <em>mamma(n)</em> “somebody” and the interrogatives <em>mannu</em> “who?” and <em>mīnu</em> “what?”</li>
+  <li>For RIAO and <a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a>, the tag DET is used for the personal pronouns <em>šī</em>, <em>šū</em>, <em>šâtu</em>, <em>šuāti/u</em>, <em>šâtunu</em>, <em>šuātunu</em> when they modify the meaning of a noun; for the quantifiers <em>gabbu</em>, <em>kalāma</em> and <em>kalû</em>; for the demonstratives <em>ammiu</em> “that” and <em>annû</em> “this” and for the indefinite pronoun <em>mimma</em> “anything”. The tag PRON is reserved for independent personal pronouns, including oblique forms (<em>yâši</em>, <em>šuāšu</em>) and possessives, as well as pronominal suffixes; for the relative pronoun <em>ša</em> “which, who”; for <em>ammar</em> in its function as a relative pronoun; for the indefinite pronoun <em>mamma(n)</em> “somebody” and the interrogatives <em>mannu</em> “who?” and <em>mīnu</em> “what?”</li>
 </ul>
 
 <h3 id="nominal-features">Nominal Features</h3>
@@ -103,32 +106,35 @@
   <li>
     <p>Nominal words (NOUN, PROPN and PRON), adjectives (ADJ) and non-finite verbal forms have the subcategories:</p>
   </li>
-  <li><a href="https://universaldependencies.org/u/feat/Case.html">Case</a> with 3 possible values (nominative, accusative, genitive).</li>
-  <li><a href="https://universaldependencies.org/u/feat/Number.html">Number</a> with 2 possible values (singular, plural).</li>
-  <li><a href="https://universaldependencies.org/u/feat/Gender.html">Gender</a> with 2 possible values (masculine, feminine).</li>
+  <li><a href="https://universaldependencies.org/u/feat/Case.html">Case</a> with 5 possible values (nominative, accusative, genitive, locative, and terminative). The locative and terminative cases are used only in [MCONG](<a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a>.</li>
+  <li><a href="https://universaldependencies.org/u/feat/Number.html">Number</a> with 3 possible values (singular, plural, dual). Dual is used only in [MCONG](<a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a>.</li>
+  <li><a href="https://universaldependencies.org/u/feat/Gender.html">Gender</a> with 3 possible values (masculine, feminine, common). The common gender marks only first person pronouns.</li>
   <li>Base, which can have four different values:
     <ul>
-      <li>free (status rectus),</li>
-      <li>bound (status constructus),</li>
-      <li>suffixal (followed by pronominal suffixes) and</li>
-      <li>terminal (status absolutus).</li>
+      <li>free (status rectus), used in both RIAO and [MCONG](<a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a></li>
+      <li>bound (status constructus), used in both RIAO and [MCONG](<a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a></li>
+      <li>suffixal (followed by pronominal suffixes), used only in RIAO</li>
+      <li>terminal (status absolutus), used only in RIAO</li>
     </ul>
   </li>
 </ul>
 
 <h3 id="verbal-features">Verbal Features</h3>
 
-<p>In <a href="../treebanks/akk_RIAO/index.html">RIAO</a>, the following subcategories of verbs are annotated:</p>
+<p>In <a href="../treebanks/akk_RIAO/index.html">RIAO</a> and [MCONG](<a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a>, the following subcategories of verbs are annotated:</p>
 <ul>
   <li>Finiteness (Finite, Infinitive, Stative),</li>
   <li>Stem (G, D, Š, N, etc.),</li>
   <li>Mood (Indicative, Imperative, Precative, Prohibitive),</li>
   <li>Tense (Present, Past, Pgp), person (1, 2, 3),</li>
   <li>Number (Singular, Plural) and</li>
-  <li>Gender (Masculine, Feminine).</li>
+  <li>
+    <p>Gender (Masculine, Feminine).</p>
+  </li>
+  <li>In RIAO, subordinative and ventive are considered as subcategories of their own, which are tagged as boolean values.</li>
+  <li>In [MCONG](<a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a>, the subordinate -u and subordinate -ni markers are treated as separate morphemes. In addition, [MCONG](<a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a> also tags as a feature of the verb the -mā discourse particle and yes/no question (expressed as word-final vowel lengthening).</li>
+  <li>Also note that in [MCONG](<a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a> stative forms based on verbal adjectives are regarded as finite verbs.</li>
 </ul>
-
-<p>We consider subordinative and ventive as subcategories of their own, which we tag as boolean values.</p>
 
 <h2 id="syntax">Syntax</h2>
 
@@ -145,8 +151,9 @@
 <h3 id="relations-overview">Relations Overview</h3>
 
 <ul>
-  <li>The following relation main types are not used in <a href="../treebanks/akk_RIAO/index.html">RIAO</a>: aux, clf, compound, dislocated, expl, flat, orphan, punct, reparandum.</li>
-  <li>The following relation subtypes are used in Akkadian:
+  <li>In <a href="../treebanks/akk_RIAO/index.html">RIAO</a> the following relation main types are not used in: aux, clf, compound, dislocated, expl, flat, orphan, punct, reparandum.</li>
+  <li>In [MCONG](<a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a> the following relation main types are not used: aux, clf, compound, expl, flat, punch, reparandum.</li>
+  <li>The following relation subtypes are used in RIAO:
     <ul>
       <li>acl:relcl for relative clauses</li>
       <li>advmod:emph for the particle <em>lū</em> in its asseverative function</li>
@@ -154,15 +161,17 @@
       <li>nmod:poss for the construct state</li>
     </ul>
   </li>
+  <li>In <a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a>, these relation subtypes are infrequent and not consistently used.</li>
 </ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/akk-comparison.html">2</a> Akkadian UD treebanks:</p>
+<p>There are <a href="../treebanks/akk-comparison.html">3</a> Akkadian UD treebanks:</p>
 
 <ul>
   <li><a href="../treebanks/akk_pisandub/index.html">PISANDUB</a></li>
   <li><a href="../treebanks/akk_riao/index.html">RIAO</a></li>
+  <li><a href="https://github.com/UniversalDependencies/UD_Akkadian-MCONG/tree/dev">MCONG</a></li>
 </ul>
 
       </div>
