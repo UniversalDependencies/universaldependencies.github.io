@@ -76,7 +76,7 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h1 id="ud-for-georgian-">UD for Georgian <span class="flagspan"><img class="flag" src="../../flags/svg/GE.svg" /></span></h1>
+        <h1 id="ud-for-language-">UD for LANGUAGE <span class="flagspan"><img class="flag" src="../../flags/svg/AQ.svg" /></span></h1>
 
 <p>This is a <strong>work-in-progress</strong> overview of the UD annotation for Georgian.</p>
 
@@ -84,9 +84,66 @@
 
 <ul>
   <li>In Modern Georgian, words are delimited regularly by white spaces and punctuation marks. However, in Old Georgian, tokenization was an irregular process, as words were sometimes separated by white spaces and sometimes not. Additionally, depending on the century, words in Old Georgian could also be separated by paragraph separators (჻).</li>
-  <li>Punctuation symbols are not separated from the words; that holds even for hyphenated compounds such as siblings “და-ძმა” ‘sister and brother’ (one token) etc. However, the dash is separated from the surrounding characters. They can consist of a sequence of symbols, such as a question mark followed by an exclamation mark (?!), an exclamation mark followed by two full stops (!..) and ellipsis (…) and appear: a) in abbreviations (a.š. ‘etc.’, e.i. ‘i.e.’, etc.) and b) in numeric expressions (1.2, 0,5, etc.).</li>
-  <li>Due to rich agglutinating type of morphology, clitics can be treated as multi-word tokens and segmented to individual syntactic words in the following cases: a) auxiliary verbs (AUX) attached to the nominal paradigm, which add functional and grammatical meaning to the sentence, expressing tense, aspect, mood, etc.: სახლია = სახლი+ა ‘is a house’, b) postpositions  represented by a suffix attached to an inflected nominal (noun, adjective, numeral and pronoun): სახლში = სახლ+ში ‘in the house’, c) the indirect speech particle represented by a suffix attached to an inflected nominal or verb: სახლიო = სახლი+ო ‘a house as it was said’, წერსო = წერს+ო ‘he writes as it was said’.</li>
+  <li>Punctuation symbols are not separated from the words; that holds even for hyphenated compounds such as siblings “და-ძმა” ‘sister and brother’ (one token) etc. However, the dash is separated from the surrounding characters. They can consist of a sequence of symbols, such as a question mark followed by an exclamation mark (?!), an exclamation mark followed by two full stops (!..) and ellipsis (…) and appear: a) in abbreviations (ა.შ. ‘etc.’, ე.ი. ‘i.e.’, etc.) and b) in numeric expressions (1.2, 0,5, etc.).</li>
+  <li>Due to rich agglutinating type of morphology, clitics can be treated as multi-word tokens and segmented to individual syntactic words in the following cases: 
+a) auxiliary verbs (AUX) attached to the nominal paradigm, which add functional and grammatical meaning to the sentence, expressing tense, aspect, mood, etc.: სახლია = სახლი+ა ‘is a house’;
+b) postpositions  represented by a suffix attached to an inflected nominal (noun, adjective, numeral and pronoun): სახლში = სახლ+ში ‘in the house’;
+c) the indirect speech particle represented by a suffix attached to an inflected nominal or verb: სახლიო = სახლი+ო ‘a house as it was said’, წერსო = წერს+ო ‘he writes as it was said’.</li>
 </ul>
+
+<h2 id="nominal-multiword-expressions-mwes">Nominal Multiword expressions (MWEs)</h2>
+
+<p>The Georgian Multiword expressions (MWEs) are (continuous or discontinuous) sequences of words with the following compulsory properties:</p>
+
+<ul>
+  <li>They show some degree of orthographic, morphological, syntactic or semantic idiosyncrasy with respect to what is considered general grammar rules of a language (e.g. მეცხრე ცა ‘cloud nine’, <em>ბინძური ფული</em> ‘dirty money’ etc.).</li>
+  <li>Their component words include a head word and at least one other syntactically related word. Most often the relation they maintain is a syntactic (direct or indirect) dependence but it can also be e.g. a coordination (<em>ბურთი და მოედანი</em> ‘ball and field, ltr. do what you want’ etc.). Depending on the category of the head word, the whole MWE can be nominal, adjectival, verbal etc.
+Probably the most salient property of MWEs is semantic non-compositionality. In other words, it is often impossible to deduce the meaning of the whole unit from the meanings of its parts and from its syntactic structure. For instance, while it is easy to interpret phrases like to kick the ball or to spill some water from the words that compose them, it is almost impossible to guess, without knowing it beforehand, that _ჩიტის რძე _ means ‘Bird’s milk, ltr. everything smb. wants’.</li>
+</ul>
+
+<pre><code class="language-sdparse">ერთგვარი ჯაჭვური რეაქცია მოხდა. \n A kind of nuclear reaction happened
+nsubj(რეაქცია, მოხდა)
+</code></pre>
+
+<h3 id="modifier-dependents">Modifier Dependents</h3>
+
+<p>A nominal head does not take any core arguments but may be associated with different types of modifiers:</p>
+
+<ol>
+  <li>An <code class="language-plaintext highlighter-rouge">nmod</code> is a nominal phrase modifying the head of another nominal phrase.</li>
+  <li>An <code class="language-plaintext highlighter-rouge">amod</code> is an adjective modifying the head of a nominal phrase.</li>
+  <li>A <code class="language-plaintext highlighter-rouge">nummod</code> is a numeral modifying the head of a nominal phrase.</li>
+</ol>
+
+<pre><code class="language-sdparse">ფაიფურის თიხა
+nmod(თიხა, ფაიფურის)
+</code></pre>
+
+<pre><code class="language-sdparse">არ არსებობს გამოუვალი მდგომარეობა
+amod(მდგომარეობა-4, გამოუვალი-3)
+</code></pre>
+
+<pre><code class="language-sdparse">მეცხრე ცა
+nummod(ცა, მეცხრე)
+</code></pre>
+
+<h3 id="function-word-dependents">Function Word Dependents</h3>
+
+<p>Nominals may also contain the following typical function word dependents:</p>
+
+<ul>
+  <li>Adpositions attach to the head of the nominal with the <code class="language-plaintext highlighter-rouge">case</code> relation.</li>
+</ul>
+
+<pre><code class="language-sdparse">მეცხრე ცაზე
+nummod(ცა-2, მეცხრე-1)
+case(ცა-2, ზე-3)
+</code></pre>
+
+<hr />
+<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
+
+<hr />
 
 <h2 id="morphology">Morphology</h2>
 
@@ -94,31 +151,36 @@
 
 <ul>
   <li>
-    <p>UD_Georgian-GLC treebank uses all UPOS tags except of <a href="https://universaldependencies.org/u/pos/DET.html">DET</a>, [SYM] (https://universaldependencies.org/u/pos/SYM.html) and <a href="https://universaldependencies.org/u/pos/X.html">X</a>.</p>
+    <p>UD_Georgian-GLC treebank uses all UPOS tags except of <a href="https://universaldependencies.org/u/pos/DET.html">DET</a> and [SYM] (https://universaldependencies.org/u/pos/SYM.html).</p>
   </li>
   <li>There are two types of particles (PART) in Georgian. Those acting as separate words subdivided into different lexical classes: არ ‘not’, ვერ ‘not’ etc.) and those belonging to clitics and occupying concrete slots in the nominal or verbal paradigm: −ღა, -ცა etc. Thus, the PART tag is assigned to those particles, which act as separate tokens and the verbal particle denoting evidentiality: -მეთქი ‘As I said’, -ო ‘as he/them said’ etc.</li>
   <li>Auxiliaries (AUX) add functional and grammatical meaning to the sentence, expressing tense, aspect, mood, etc., and can be of two types: (a) those which accompany the nominal paradigm and (b) those which accompany the verbal paradigm. If the auxiliaries are represented as clitics: მთავარია = მთავარი + ა ‘it is important’, სახლია = სახლი + ა ‘it is a house’, they are considered as copula verbs and assigned cop in DEPREL; while if they act as separate words: უნდა ‘it should’, შეუძლია ‘it can’ etc., they are considered as auxiliaries and assigned aux in DEPREL.</li>
   <li>Verbal forms indicating verbal nouns or verbal adjectives are assigned a tag VERB with additional information on the features of verbal forms, especially, participles are assigned: VerbForm=Part, while masdars - VerbForm=Vnoun.</li>
 </ul>
 
+<hr />
+<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+
+<hr />
+
 <h3 id="features">Features</h3>
 
 <h4 id="lexical-features">Lexical Features</h4>
 
 <ul>
-  <li>UD_Georgian-GLC treebank uses all main lexical FEATS tags except <a href="https://universaldependencies.org/u/feat/Reflex.html">Reflex</a></li>
+  <li>UD_Georgian-GLC treebank uses all main lexical FEATS tags except of [REflex] (https://universaldependencies.org/u/feat/Reflex.html)</li>
 </ul>
 
 <h4 id="inflectional-features">Inflectional Features</h4>
 <h5 id="nominal-features">Nominal Features</h5>
 
 <ul>
-  <li>UD_Georgian-GLC treebank uses all main inflectional FEATS tags except [Gender] (https://universaldependencies.org/u/feat/Gender.html), [NounClass] (https://universaldependencies.org/u/feat/NounClass.html) and [Definite] (https://universaldependencies.org/u/feat/Definite.html).
+  <li>UD_Georgian-GLC treebank uses all main inflectional FEATS tags except of [Gender] (https://universaldependencies.org/u/feat/Gender.html), [NounClass] (https://universaldependencies.org/u/feat/NounClass.html) and [Definite] (https://universaldependencies.org/u/feat/Definite.html).
     <ul>
-      <li>Nouns have inherent Animacy and inflect for Number (singular or plural) and Case (nominative, ergative, dative, genitive, instrumental, essive (adverbial), and vocative).</li>
-      <li>Adjectives in the majority of cases agree with nouns (in both attributive and predicative positions) with respect to Case. Many adjectives inflect for Degree (diminutive, positive, comparative, superlative), Case, and Number.</li>
+      <li>Nouns have inherent Animacy and inflect for Number (singular or plural) and Case (nominative, ergative, dative, genetive, instrumental, essive (adverbial) and vocative).</li>
+      <li>Adjectives in the majority of cases agree with nouns (in both attributive and predicative position) with respect to Case. Many adjectives inflect for Degree (diminutive, positive, comparative, superlative), Case and Number.</li>
       <li>Numerals agree with nouns (in both attributive and predicative position) with respect to Case and inflect for Case and very rarely for Number: ორი ‘two in Singular’ -&gt; ორნი ‘two in Plural’.</li>
-      <li>Many pronouns agree with nouns with respect to Case and inflect for Case and Number. Some types of pronouns (personal, demonstrative, and possessive pronouns) reflect Person (1, 2, 3).</li>
+      <li>Many pronouns agree with nouns with respect to Case and inflect for Case and Number. Some types of pronouns (personal, demonstrative and possessive pronouns) reflect Person (1, 2, 3).</li>
     </ul>
   </li>
 </ul>
@@ -126,22 +188,26 @@
 <h5 id="verbal-features">Verbal Features</h5>
 
 <ul>
-  <li>UD_Georgian-GLC treebank uses all main inflectional FEATS tags except [Polarity] (https://universaldependencies.org/u/feat/Polarity.html), [Polite] (https://universaldependencies.org/u/feat/Polite.html) and [Clusivity] (https://universaldependencies.org/u/feat/Clusivity.html).
+  <li>UD_Georgian-GLC treebank uses all main inflectional FEATS tags except of [Polarity] (https://universaldependencies.org/u/feat/Polarity.html), [Polite] (https://universaldependencies.org/u/feat/Polite.html) and [Clusivity] (https://universaldependencies.org/u/feat/Clusivity.html).
     <ul>
-      <li>Verbs inflect for Tense (present, imperfect, future, aorist, perfect, pluperfect), Aspect (imperfective, perfective), and Mood (indicative, subjunctive, conditional, imperative) so-called TAM series, which specifies case-marking and relationships so-called agreement between participants such as agent and patient by means of preverbs, version markers, and thematic suffixes. The category of voice can be subdivided into the active, autoactive, inactive, passive, and mediopassive voices, but the traditional Georgian grammar (Shanidze 1961, 1973) distinguishes only active, middle, and passive voices.</li>
-      <li>The category of personality covers unipersonal, bipersonal, and tripersonal verbs. As a result, verbal morphology includes agreement between the verb and its arguments in terms of Person, Case, and Number. While in Indo-European languages, the verb generally agrees with the subject of the sentence, in Georgian the verb agrees not only with the subject but with its objects as well, both direct and/or indirect. The verb in Georgian has core and peripheral arguments. A core argument agrees morphologically with the verb by means of Person (1, 2, or 3 for Person[subj], Person[obj], Person[iobj]) and Number (singular or plural for Number[subj], Number[obj], Number[io]), while a peripheral argument does not. The number of core arguments affects the conjugation system as a whole, subdividing it into subject and object paradigms.</li>
+      <li>Verbs inflect for Tense (present, imperfect, future, aorist, perfect, pluperfect), Aspect (imperfective, perfective) and Mood (indicative, subjunctive, conditional, imperative) so called TAM series, which specifies case-marking and relationships so called agreement between participants such as agent and patient by means of preverbs, version markers and thematic suffixes. The category of voice can be subdivided into the active, autoactive, inactive, passive and mediopassive voices, but the traditional Georgian grammar (Shanidze 1961, 1973) distinguishes only active, middle and passive voices.</li>
+      <li>The category of personality covers unipersonal, bipersonal and tripersonal verbs. As a result verbal morphology includes agreement between the verb and its arguments in terms of Person, Case and Number. While in Indo-European languages, the verb generally agrees with the subject of the sentence, in Georgian the verb agrees not only with the subject, but with its objects as well, both direct and/or indirect. The verb in Georgian has core and peripheral arguments. A core argument agrees morphologically with the verb by means of Person (1, 2 or 3 for Person[subj], Person[obj], Person[iobj]) and Number (singular or plural for Number[subj], Number[obj], Number[io]), while a peripheral argument does not. The number of core arguments affects the conjugation system as a whole, subdividing it into subject and object paradigms.</li>
       <li>There are two types of nonfinite forms: participles and masdars.</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="syntax">Syntax</h2>
+<hr />
+<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
 
+<hr />
+
+<h2 id="syntax">Syntax</h2>
 <ul>
-  <li>UD_Georgian-GLC treebank uses all main DEPREL tags except [expl] (https://universaldependencies.org/u/dep/expl.html), [dislocated] (https://universaldependencies.org/u/dep/dislocated.html), [clf] (https://universaldependencies.org/u/dep/clf.html) and [reparandum] (https://universaldependencies.org/u/dep/reparandum.html). Word order in the Georgian language has a flexible word order, which sometimes follows Subject-Indirect Object-Object-Verb patterns.</li>
+  <li>UD_Georgian-GLC treebank uses all main DEPREL tags except of [expl] (https://universaldependencies.org/u/dep/expl.html), [dislocated] (https://universaldependencies.org/u/dep/dislocated.html), [clf] (https://universaldependencies.org/u/dep/clf.html) and [reparandum] (https://universaldependencies.org/u/dep/reparandum.html). Georgian language has a flexible word order, which sometimes follows Subject-Indirect Object-Object-Verb patterns.</li>
   <li>Subjects have the following characteristics:
     <ul>
-      <li>Case marking: Subjects occur in nominative, ergative, or dative.</li>
+      <li>Case marking: Subjects occur in nominative, ergative or dative.</li>
       <li>Passivization: Subjects are suppressed when verbs (both intransitive and transitive) are passivized.</li>
       <li>A verb always agrees with first and second-person subjects in number, while third-person inanimate subjects require singular number agreement regardless of their logical number.</li>
     </ul>
@@ -154,62 +220,117 @@
   <li>Indirect objects have the following characteristics:
     <ul>
       <li>Case marking: Indirect objects occur in dative.</li>
-      <li>The following subtypes are used in Georgian:
-        <ul>
-          <li>acl: clausal modifier of noun (adnominal clause)</li>
-          <li>advcl: adverbial clause modifier</li>
-          <li>advmod: adverbial modifier</li>
-          <li>advmod:emph: emphasizing word, intensifier</li>
-          <li>advmod:lmod: locative adverbial modifier</li>
-          <li>amod: adjectival modifier</li>
-          <li>appos: appositional modifier</li>
-          <li>aux: auxiliary</li>
-          <li>case: case marking</li>
-          <li>cc: coordinating conjunction</li>
-          <li>ccomp: clausal complement</li>
-          <li>compound: compound</li>
-          <li>conj: conjunct</li>
-          <li>cop: copula</li>
-          <li>csubj: clausal subject</li>
-          <li>csubj:outer: outer clause clausal subject</li>
-          <li>csubj:pass: clausal passive subject</li>
-          <li>dep: unspecified dependency</li>
-          <li>det: determiner</li>
-          <li>det:nummod: pronominal quantifier agreeing in case with the noun</li>
-          <li>det:poss: possessive determiner</li>
-          <li>discourse: discourse element</li>
-          <li>fixed: fixed multiword expression</li>
-          <li>flat: flat multiword expression</li>
-          <li>flat:foreign: foreign words</li>
-          <li>flat:name: names</li>
-          <li>goeswith: goes with</li>
-          <li>iobj: indirect object</li>
-          <li>list: list</li>
-          <li>mark: marker</li>
-          <li>nmod: nominal modifier</li>
-          <li>nsubj: nominal subject</li>
-          <li>nummod: numeric modifier</li>
-          <li>obj: object</li>
-          <li>obl: oblique nominal</li>
-          <li>orphan: orphan</li>
-          <li>parataxis: parataxis</li>
-          <li>punct: punctuation</li>
-          <li>root: root</li>
-          <li>vocative: vocative</li>
-          <li>xcomp: open clausal complement</li>
-        </ul>
-      </li>
+      <li>The following scheme reflects the correlation between the case of the core arguments and the conjugation system of a verb:</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="treebanks">Treebanks</h2>
-
-<p>There is 1 Georgian UD treebank:</p>
+<table>
+  <thead>
+    <tr>
+      <th><em>v</em>-type</th>
+      <th>——————</th>
+      <th><em>m</em>-type</th>
+      <th>——————</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NOM</td>
+      <td>NOM (<em>v</em>-set)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>NOM</td>
+      <td>NOM (<em>v</em>-set) + DAT</td>
+      <td>DAT (<em>m</em>-set)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>NOM</td>
+      <td>ERG (<em>v</em>-set) + DAT</td>
+      <td>NOM (<em>m</em>-set)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>NOM</td>
+      <td>ERG (<em>v</em>-set) + DAT</td>
+      <td>NOM (<em>m</em>-set) + DAT</td>
+      <td>DAT (<em>∅</em> -<em>a</em>)</td>
+    </tr>
+    <tr>
+      <td>NOM</td>
+      <td>ERG (<em>v</em>-set) + DAT</td>
+      <td>NOM (<em>∅</em>-set) + DAT</td>
+      <td>DAT (<em>m</em>- -<em>a</em>)</td>
+    </tr>
+  </tbody>
+</table>
 
 <ul>
-  <li><a href="../treebanks/ka_glc/index.html">Georgian-GLC</a></li>
+  <li>The following subtypes are used in Georgian:
+    <ul>
+      <li>acl: clausal modifier of noun (adnominal clause)</li>
+      <li>advcl: adverbial clause modifier</li>
+      <li>advmod: adverbial modifier</li>
+      <li>advmod:emph: emphasizing word, intensifier</li>
+      <li>advmod:lmod: locative adverbial modifier</li>
+      <li>amod: adjectival modifier</li>
+      <li>appos: appositional modifier</li>
+      <li>aux: auxiliary</li>
+      <li>case: case marking</li>
+      <li>cc: coordinating conjunction</li>
+      <li>ccomp: clausal complement</li>
+      <li>compound: compound</li>
+      <li>conj: conjunct</li>
+      <li>cop: copula</li>
+      <li>csubj: clausal subject</li>
+      <li>csubj:outer: outer clause clausal subject</li>
+      <li>csubj:pass: clausal passive subject</li>
+      <li>dep: unspecified dependency</li>
+      <li>det: determiner</li>
+      <li>det:nummod: pronominal quantifier agreeing in case with the noun</li>
+      <li>det:poss: possessive determiner</li>
+      <li>discourse: discourse element</li>
+      <li>fixed: fixed multiword expression</li>
+      <li>flat: flat multiword expression</li>
+      <li>flat:foreign: foreign words</li>
+      <li>flat:name: names</li>
+      <li>goeswith: goes with</li>
+      <li>iobj: indirect object</li>
+      <li>list: list</li>
+      <li>mark: marker</li>
+      <li>nmod: nominal modifier</li>
+      <li>nsubj: nominal subject</li>
+      <li>nummod: numeric modifier</li>
+      <li>obj: object</li>
+      <li>obl: oblique nominal</li>
+      <li>orphan: orphan</li>
+      <li>parataxis: parataxis</li>
+      <li>punct: punctuation</li>
+      <li>root: root</li>
+      <li>vocative: vocative</li>
+      <li>xcomp: open clausal complement</li>
+    </ul>
+  </li>
 </ul>
+
+<hr />
+<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+
+<hr />
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There are not UD treebanks of Georgian.</p>
+
+<hr />
+<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
+from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
+and the treebank code in the file name.</p>
+
+<hr />
 
       </div>
 
