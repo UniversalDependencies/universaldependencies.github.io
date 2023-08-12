@@ -82,7 +82,9 @@
 
 <h2 id="tokenisation-and-word-segmentation">Tokenisation and Word Segmentation</h2>
 
-<p>Words are delimited by whitespace or punctuation. There are no multiword tokens.</p>
+<p>Words are delimited by whitespace or punctuation.
+There are no multiword tokens.
+There are however multitoken words.</p>
 
 <h3 id="reconstructing-spacing">Reconstructing spacing</h3>
 <p>Context: ARCOSG does not contain the original texts, so we have to reconstruct them in a consistent way.
@@ -121,6 +123,8 @@ PROPNs have a <code class="language-plaintext highlighter-rouge">flat:name</code
 <h4 id="sam-bith"><em>sam bith</em></h4>
 <p><em>rud sam bith</em>, ‘whatever’ and so forth. Currently both <em>sam</em> and <em>bith</em> are marked as <code class="language-plaintext highlighter-rouge">ADJ</code> but there is clearly internal structure.</p>
 
+<h3 id="multitoken-words">Multitoken words</h3>
+
 <p>Conversely, there are single tokens in ARCOSG that correspond to more than one word in the UD sense.
 Here are the most common families:</p>
 <ul>
@@ -132,7 +136,7 @@ Here are the most common families:</p>
 
 <h2 id="morphology">Morphology</h2>
 
-<h3 id="tags">Tags</h3>
+<h3 id="parts-of-speech">Parts of speech</h3>
 
 <p>Standard UPOS tags are used throughout. Generally we follow the choices made in the Irish UD treebanks.</p>
 <ul>
@@ -235,7 +239,20 @@ In inversion structures, the object is <code class="language-plaintext highlight
 
 <h3 id="air-ais"><em>air ais</em></h3>
 
-<p>While <em>ais</em> is tagged as <code class="language-plaintext highlighter-rouge">Nf</code> in phrases like <em>air ais no air adhart</em> there seems to be no good reason to treat the first half differently from the second half, so <em>air</em> is <code class="language-plaintext highlighter-rouge">case</code> of <em>ais</em> and <em>ais</em> is the head and <code class="language-plaintext highlighter-rouge">obl</code> of whatever it is modifying.</p>
+<p>In ARCOSG, <em>ais</em> is tagged as <code class="language-plaintext highlighter-rouge">Nf</code> (fossilized noun).
+However there are phrases like <em>air ais no air adhart</em> in which there seems to be no good reason to treat the first half differently from the second half, even if <em>ais</em> is no longer productive.</p>
+
+<pre><code class="language-conllu"># sent_id = c04_024a
+# speaker = [3]
+# text = cha do sgrìobh i air ais fhathast
+1	cha	cha	PART	Qn	PartType=Vb|Polarity=Neg	3	mark:prt	_	_
+2	do	do	PART	Q--s	Tense=Past	3	mark:prt	_	_
+3	sgrìobh	sgrìobh	VERB	V-s	Tense=Past	0	root	_	_
+4	i	i	PRON	Pp3sf	Gender=Fem|Number=Sing|Person=3	3	nsubj	_	_
+5	air	air	ADP	Sp	_	6	case	_	_
+6	ais	ais	NOUN	Nf	_	3	obl	_	_
+7	fhathast	fhathast	ADV	Rt	_	3	advmod	_	_
+</code></pre>
 
 <h3 id="bi"><em>bi</em></h3>
 <p>Auxiliary use: we follow the Irish UD treebank and treat <em>bi</em> as a <code class="language-plaintext highlighter-rouge">VERB</code>, and the verbal noun as a <code class="language-plaintext highlighter-rouge">NOUN</code> linked back to <em>bi</em> with an <code class="language-plaintext highlighter-rouge">xcomp:pred</code> deprel.</p>
