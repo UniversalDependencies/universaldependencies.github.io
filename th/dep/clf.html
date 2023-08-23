@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>clf</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script> -->
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-th">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_th/dep/clf.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h2><code>clf</code>: classifier</h2>
+
+<p>https://github.com/UniversalDependencies/docs/issues/878</p>
+
+<!-- Dne 29.07.2023 v 6:39 Siriluck Rattananiyomkul napsal(a): -->
+
+<p>Some examples with classifiers (CLF). Thai words are replaced with English words for readability but the Thai word order is preserved.</p>
+
+<p><em>book <span style="color:red">two</span> CLF <span style="color:green">this</span> <span style="color:blue">that I buy</span> stay on table</em> –&gt; I used <span style="color:red">NUM</span>, <span style="color:green">DET</span> and <span style="color:blue">relative clause</span> to modify CLF. The whole sentence means “these two books that I bought are on a table.” And the Thai words for “book” and “CLF” in this sentence are not the same word.</p>
+
+<p>From this sample, some words can be omitted:</p>
+
+<p><em>book CLF <span style="color:green">this</span> <span style="color:blue">that I buy</span> stay on table</em> –&gt; meaning “this book that I bought is on a table.”</p>
+
+<p><em>book <span style="color:red">two</span> CLF <span style="color:blue">that I buy</span> stay on table</em> –&gt; meaning “two books that I bought are on a table.”</p>
+
+<p><em>book CLF <span style="color:blue">that I buy</span> stay on table</em> –&gt; meaning “the book that I bought is on a table.”</p>
+
+<p><em>book <span style="color:green">this</span> <span style="color:blue">that I buy</span> stay on table</em> –&gt; meaning “this book that I bought is on a table.” This structure (with no CLF) can be used, esp in speaking. However, some CLF cannot be omitted when it is used with some noun.</p>
+
+<p><em>book <span style="color:blue">that I buy</span> stay on table</em> –&gt; meaning “a book that I bought is on a table.”</p>
+
+<p><em>*book <span style="color:red">two</span> <span style="color:green">this</span> <span style="color:blue">that I buy</span> stay on table</em> –&gt; this is ungrammatical because no CLF is used when NUM is used.</p>
+
+<p><em>*book <span style="color:red">two</span> <span style="color:blue">that I buy</span> stay on table</em> –&gt; this is still ungrammatical because of no CLF.</p>
+
+<p><em>*book <span style="color:red">two</span> stay on table</em> –&gt; this is also ungrammatical because no words are modified by “two” in this context. (There are exceptional contexts in which <em>book two</em> would be acceptable and grammatical but we omit them here.)</p>
+
+<p>Sometimes 2 same classifiers can be used in the same sentence. For example,</p>
+
+<p><em>book CLF1 big <span style="color:red">two</span> CLF2 <span style="color:green">this</span> <span style="color:blue">that I buy</span> stay on table</em> –&gt; meaning “these two big books that I bought are on a table.” The classifier CLF 1 is modified by “big”, and the CLF2 is modified by “two”, “this”, and “that I buy”. And the whole NP (two CLF2 this that I buy) modifies the NP (CLF1 big). And the whole NP (CLF1 big two CLF2 this that I buy) modifies “book” which is a head noun.</p>
+
+<p>There are constructions where it is not obvious whether a noun should be considered a classifier. For example,</p>
+
+<p><em>cat CLF1 big <span style="color:red">two</span> CLF2 this cute</em> –&gt; meaning “these two big cats are cute.” CLF1 and CLF2 are the same word with same spelling. They have the same POS which is NOUN, but we are not sure if CLF1 would be a classifier or not. Some native speakers prefer to see it as an ordinary noun. BTW, “cute” is this Thai sentence is a verb, not adjective.</p>
+
+<p>I am not sure if CLF1 should be a classifier or not. This sample is different from the sample above with 2 CLFs. But I am sure that CLF2 is a classifier because “two” is used to modify CLF2. Both CLF1 and CLF2 are NOUN.</p>
+
+<p>However, if “two CLF2 this” is omitted, CLF1 is a classifier.</p>
+
+<p>In the sample above with 2 CLFs, “CLF1 big” could be seen as a noun phrase (if “big” is an adj) modifying “cat”. And the relation will not be <code class="language-plaintext highlighter-rouge">clf</code>. Plus, when we move “CLF1 big” and place it after “this”, it somehow changes the structure and POS, probably also meaning. Changing the order of a nominal with or without CLF in a sentence will change the meaning of the sentence slightly. It is like modifying different things, and UD annotations will be different too.</p>
+
+<!-- Dne 16.08.2023 v 0:30 Siriluck Rattananiyomkul napsal(a): -->
+
+<ol>
+  <li>In Thai, a modifier is always placed after the modified noun, except quantity words and numbers expressing amount.</li>
+  <li>This is why <a href="">NUM</a> modifies the classifier, not the head noun.
+<!-- DZ: Why? I do not see how 2 follows from 1. If anything, then I see the opposite, because the numeral precedes the head noun and the classifier follows it, so the relation from the classifier to the numeral would be non-projective, which is possible but less usual. --></li>
+  <li>Whenever a <a href="">NUM</a> is used to quantify a head noun (a numeral expressing amount, i.e., a cardinal numeral), a classifier is required; without the classifier, the sentence would be ungrammatical. The numeral is placed between the counted noun and the classifier: <em>student three CLF</em>. “A numeral expressing amount is always placed before the noun to be modified” — this statement (presumably taken from the Thai grammar) would entail that the numeral modifies the classifier and not the counted noun. But this would only hold if UD accepts this notion of “modification”. Since the numeral never occurs with the counted noun without the classifier, there are no other examples demonstrating that the numeral precedes its “modified noun”; therefore, it is still possible to say that the numeral modifies the preceding (counted) noun and the classifier depends on either the numeral or the counted noun. <!-- DZ: This is my reasoning. Lek insisted that the numeral modifies the classifier. --> The classifier is selected based on semantic qualities of the counted noun. For example, <em>student</em>, which is a human being, requires the classifier which is used for persons / human beings.</li>
+  <li>If <code class="language-plaintext highlighter-rouge">NUM</code> is not used, CLF is not required. We may or may not use it in the nominal. The reason to use or not use it is if we want to optionally emphasize the semantic qualities of the head noun. Plus, using CLF without NUM indicates some sense of definiteness.</li>
+  <li>A Thai grammar book suggests that classifiers in Thai are used to classify both nouns and verbs. Their purpose is to mark focus. It is not clear whether the grammar book uses the term classifier for the same set of words that we would want here. The “classifiers” of verbs might actually be adverbs.</li>
+  <li>When CLF is the same word (same spelling and meaning) as the head noun, and NUM is used also, the head noun can be deleted. For example,
+    <ul>
+      <li><em>finger two CLF</em> –&gt; (meaning “2 fingers”), and CLF in this NP is the same word as the head noun “finger”.</li>
+      <li>When “finger” is omitted, as in “two CLF”, it is still grammatical and understandable.
+The reason is that the head noun and CLF are the same word, and one of them can be omitted. Using both of them would be to emphasize what is discussed.</li>
+      <li>However, from this, one may ask whether the remaining <em>finger</em> is still a classifier.
+It could be simply the counted noun and we could say that in this case the classifier is omissible, and the numeral exceptionally occurs before the counted noun.</li>
+      <li>But we cannot do the same transformation with e.g. <em>two book</em>. The Thai word “book” requires a classifier which is a different word with different spelling.
+<!-- DZ: Let's use "CLFbook" to denote the classifier that is used with "book". Could you omit "book" and just say "two CLFbook"? --></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="temporary-copy-of-the-chinese-documentation-of-classifiers-serves-for-comparison-and-will-be-removed-once-the-thai-guidelines-stabilize">Temporary copy of the Chinese documentation of classifiers. Serves for comparison and will be removed once the Thai guidelines stabilize</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">clf</code> relation is used in noun phrases where a cardinal numeral (1,3), an ordinal numeral (2), or a determiner (4) modifying the head noun is accompanied by a classifier. The classifier is attached to the numeral if a numeral is present, or else to the determiner. Note that ordinal numerals are tagged <a><code class="language-plaintext highlighter-rouge">ADJ</code></a> and labeled <a><code class="language-plaintext highlighter-rouge">amod</code></a> in relation to the noun; they are the only words tagged <a href=""><code class="language-plaintext highlighter-rouge">ADJ</code></a> that can be accompanied by a classifier.</p>
+
+<pre><code class="language-conllu"># visual-style 1 2 clf	color:blue
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+1	一	_	NUM	_	_	3	nummod	_	one
+2	團	_	NOUN	_	_	1	clf	_	CL:sphere
+3	火	_	NOUN	_	_	0	root	_	fire
+
+1	"a	_	_	_	_	0	_	_	_
+2	ball	_	_	_	_	0	_	_	_
+3	of	_	_	_	_	0	_	_	_
+4	fire"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 1 2 clf	color:blue
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+1	第一	_	ADJ	_	_	3	amod	_	one
+2	位	_	NOUN	_	_	1	clf	_	CL:person
+3	老師	_	NOUN	_	_	0	root	_	teacher
+
+1	"the	_	_	_	_	0	_	_	_
+2	first	_	_	_	_	0	_	_	_
+3	teacher"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 1 2 clf	color:blue
+# visual-style 1	bgColor:blue
+# visual-style 1	fgColor:white
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+1	這	_	DET	_	_	3	det	_	this
+2	本	_	NOUN	_	_	1	clf	_	CL:book
+3	書	_	NOUN	_	_	0	root	_	book
+
+1	"this	_	_	_	_	0	_	_	_
+2	book"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu"># visual-style 2 3 clf	color:blue
+# visual-style 2	bgColor:blue
+# visual-style 2	fgColor:white
+# visual-style 3	bgColor:blue
+# visual-style 3	fgColor:white
+1	這	_	DET	_	_	4	det	_	this
+2	一	_	NUM	_	_	4	nummod	_	one
+3	場	_	NOUN	_	_	2	clf	_	CL:spectator-event
+4	友誼賽	_	NOUN	_	_	0	root	_	goodwill-competition
+
+1	"this	_	_	_	_	0	_	_	_
+2	goodwill	_	_	_	_	0	_	_	_
+3	competition"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<h3 id="non-clf-functions-of-mandarin-classifiers">Non-<code class="language-plaintext highlighter-rouge">clf</code> functions of Mandarin classifiers</h3>
+
+<p>In other constructions involving classifiers, they are annotated with other syntax relations. First, in Mandarin a classifier may also be considered to function as an indefinite determiner when a noun phrase consisting of a bare classifier accompanying a noun is in post-verbal position, as in (4).</p>
+
+<pre><code class="language-conllu">1	切	_	VERB	_	_	0	root	_	cut
+2	個	_	NOUN	_	_	3	det	_	CL:generic
+3	梨子	_	NOUN	_	_	1	obj	_	pear
+
+1	"cut	_	_	_	_	0	_	_	_
+2	a	_	_	_	_	0	_	_	_
+3	pear"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Second, if a noun phrase does not have a regular noun, then the classifier is promoted to head of the noun phrase and any numeral or determiner would depend on the classifier, such as in (5) and (6).</p>
+
+<pre><code class="language-conllu">1	給	_	VERB	_	_	0	root	_	give
+2	我	_	PRON	_	_	1	iobj	_	1SG
+3	三	_	NUM	_	_	4	nummod	_	three
+4	分鐘	_	NOUN	_	_	1	obj	_	minutes
+
+1	"Give	_	_	_	_	0	_	_	_
+2	me	_	_	_	_	0	_	_	_
+3	three	_	_	_	_	0	_	_	_
+4	minutes."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<pre><code class="language-conllu">1	哪	_	DET	_	_	2	det	_	which
+2	位	_	NOUN	_	_	3	nsubj	_	CL:person
+3	找	_	VERB	_	_	0	root	_	look-for
+4	馬	_	PROPN	_	_	5	compound	_	Ma
+5	先生	_	NOUN	_	_	3	obj	_	Mr.
+
+1	"Who	_	_	_	_	0	_	_	_
+2	(which	_	_	_	_	0	_	_	_
+3	person)	_	_	_	_	0	_	_	_
+4	is	_	_	_	_	0	_	_	_
+5	looking	_	_	_	_	0	_	_	_
+6	for	_	_	_	_	0	_	_	_
+7	Mr.	_	_	_	_	0	_	_	_
+8	Ma?"	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>If there is a genitive 的 <em>de</em> between the classifier and the noun, then the classifier is also treated as a head noun for the numeral, and it is labeled as an <a href="">nmod</a> dependent of the noun.</p>
+
+<pre><code class="language-conllu">1	我	_	PRON	_	_	2	nsubj	_	1SG
+2	買	_	VERB	_	_	0	root	_	buy
+3	了	_	AUX	_	_	2	aux	_	PERF
+4	一	_	NUM	_	_	5	nummod	_	one
+5	磅	_	NOUN	_	_	7	nmod	_	CL:pound
+6	的	_	PART	_	_	5	case	_	GEN
+7	肉	_	NOUN	_	_	2	obj	_	meat
+
+1	"I	_	_	_	_	0	_	_	_
+2	bought	_	_	_	_	0	_	_	_
+3	a	_	_	_	_	0	_	_	_
+4	pound	_	_	_	_	0	_	_	_
+5	of	_	_	_	_	0	_	_	_
+6	meat."	_	_	_	_	0	_	_	_
+
+</code></pre>
+
+<p>Note that classifiers are tagged as <a href="">NOUN</a>. The feature <code class="language-plaintext highlighter-rouge">NounType=Clf</code> is recommended for distinguishing classifiers from regular nouns.
+<!-- Interlanguage links updated Út 9. května 2023, 20:04:05 CEST --></p>
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+clf in other languages:
+
+[<a href="../../id/dep/clf.html">id</a>]
+
+[<a href="../../swl/dep/clf.html">swl</a>]
+
+[<a href="../../u/dep/clf.html">u</a>]
+
+[<a href="../../yue/dep/clf.html">yue</a>]
+
+[<a href="../../zh/dep/clf.html">zh</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'th';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2022
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
