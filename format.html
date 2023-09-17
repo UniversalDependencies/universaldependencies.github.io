@@ -101,7 +101,7 @@ Annotations are encoded in plain text files (UTF-8, <a href="http://unicode.org/
   <li>FORM: Word form or punctuation symbol.</li>
   <li>LEMMA: Lemma or stem of word form.</li>
   <li>UPOS: <a href="u/pos/index.html">Universal part-of-speech tag</a>.</li>
-  <li>XPOS: Language-specific part-of-speech tag; underscore if not available.</li>
+  <li>XPOS: Optional language-specific (or treebank-specific) part-of-speech / morphological tag; underscore if not available.</li>
   <li>FEATS: List of morphological features from the <a href="u/feat/index.html">universal feature inventory</a> or from a defined <a href="ext-feat-index.html">language-specific extension</a>; underscore if not available.</li>
   <li>HEAD: Head of the current word, which is either a value of ID or zero (0).</li>
   <li>DEPREL: <a href="u/dep/index.html">Universal dependency relation</a> to the HEAD (<a href="u-dep/root">root</a> iff HEAD = 0) or a defined language-specific subtype of one.</li>
@@ -211,8 +211,12 @@ invalid (and so would be 7 8-9 8.1 8 9).</p>
 
 <h1 id="morphological-annotation">Morphological Annotation</h1>
 
-<p>The UPOS field contains a part-of-speech tag from the <a href="u/pos/index.html">universal POS tag</a> set, while the XPOS optionally contains a language-specific part-of-speech tag, normally from a traditional, more fine-grained tagset. If the XPOS field is used, the treebank-specific documentation should define a mapping from XPOS to UPOS values (which may be context-sensitive
-and refer to other fields as well). If no language-specific tags are available, the XPOS field should contain an underscore for all words.</p>
+<p>The UPOS field contains a part-of-speech tag from the <a href="u/pos/index.html">universal POS tag</a> set,
+while the XPOS optionally contains a language-specific (or even treebank-specific) part-of-speech
+/ morphological tag, normally from a traditional, more fine-grained tagset. If the XPOS field is
+used, the README file of the treebank should define a mapping from XPOS to UPOS values (which may
+be context-sensitive and refer to other fields as well). If no language-specific tags are available,
+the XPOS field should contain an underscore for all words.</p>
 
 <p>The FEATS field contains a list
 of morphological features, with vertical bar (|) as list separator and with underscore to represent the empty list.
