@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-azz">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_azz/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_azz/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -80,57 +80,67 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>Generally, words are delimited by whitespace characters. Exceptions to this rule are documented below.</li>
+  <li>When one or more punctuation characters is used to introduce or end quoted speech (such as “-¿Keni tika?”), the sequence of punctuation characters are typically treated as a single unit, and tokenized (separated from the preceding or following word).</li>
+  <li>There are three words that are often written together with an adjacent word in some Nahuatl texts, and we tokenize them. These are:</li>
+  <li>The determiner/subordinator <code class="language-plaintext highlighter-rouge">in</code> (often written <code class="language-plaintext highlighter-rouge">n</code>), which can attach orthographically to the following NOUN, PRON, or VERB (e.g. nitskuinti =&gt; n itskuinti “the dog”).</li>
+  <li>In addition, given the high frequency of Spanish in Nahuatl data, we recognize the two main classes of multi-word tokens from Spanish:
+    <ul>
+      <li>Contractions of prepositions and definite articles.
+Example: <em>al = a + el</em> “to the”, <em>del = de + el</em> “of the”.</li>
+      <li>Certain verb forms (infinitives, imperatives, present participles) are writen together with
+object clitic pronouns, while with other verb forms the clitics are written as separate words.
+Examples: <em>convertirse = convertir + se</em> “to become” (lit. “to convert itself”), <em>hacerlo</em> “to do it”.</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>
+    <p><em>NOUN</em>: Most nouns take one of a small set of Absolutive endings in the singular, unpossessed form (<code class="language-plaintext highlighter-rouge">-t</code>, <code class="language-plaintext highlighter-rouge">-ti</code>, <code class="language-plaintext highlighter-rouge">-li</code>) and can be inflected for number and diminution. There are generally two distinct plural suffixes depending on whether the noun is possessed (<em>-wan/huan/uan</em> if possessed, <em>-meh/mej</em> otherwise). We also include Relational Nouns in this category. This subclass of NOUN expresses the relation (typically) between a nominal and a predicate. They are typically similar in meaning to prepositions <code class="language-plaintext highlighter-rouge">on', </code>inside of’, <code class="language-plaintext highlighter-rouge">next to', </code>with’, etc. in English. They take the nominal morphology agreeing with Person and Number the possessor.</p>
+  </li>
+  <li>
+    <p><em>VERB</em> : Verbs are easily distinguishable from other word classes due to their inflectional and derivational morphology. They obligatorily inflect for person and number of subject in intransitives, and for subject and object in transitives. Tense and aspect are also marked on the verb. Derivational verbal morphology includes adverbials, reflexive, directionality, compounding and the incorporation of core arguments (typically objects).</p>
+  </li>
+  <li>
+    <p><em>DET</em>: Determiners always precede a noun, and include <em>in</em>, demonstratives <em>nin</em>/<em>ninkeh</em> <code class="language-plaintext highlighter-rouge">this/these' and _non_/_nonkeh_ </code>that/those’.</p>
+  </li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<ul>
+  <li>
+    <p><em>Nominal Features</em>: We mark NOUNs for Number and Number of possessor (Number[psor]). Spanish words that have not undergone much Nahuatl phonological adaptation are given the feature-value <code class="language-plaintext highlighter-rouge">Foreign=Yes</code>. We also use the feature <code class="language-plaintext highlighter-rouge">Dim=Yes</code> when diminutive/reverential morphology is used. The feature NounType is used to distinguish Relational Nouns (NounType=Rel).</p>
+  </li>
+  <li>
+    <p><em>Verbal Features</em>: Since Nahuatl Verbs can and typically do represent all of their arguments with morphology, we used layered features for Number and Person of the subj/obj/iobj. For the indefinite object prefixes, which change depending on whether the object is human, we use Animacy=[Hum, Nhum]. Tense and Aspect features are also used.</p>
+  </li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
-
-<hr />
+<ul>
+  <li>
+    <p><em>Core and non-core arguments</em>: Subjects of intransitive verbs, and both subjects and objects of transitive verbs, are obligatorily marked on the verbal via prefixation, and the phrase that is indexed by the agreement marker is often omitted. In ditransitive verbs, only the subject and indirect object prefixes can appear, unless the direct object has the 3rd person and is plural. Non-core arguments are never marked in the verb. They include relational nouns, or can be introduced by a Spanish preposition.</p>
+  </li>
+  <li>
+    <p><em>Conjunction and parataxis</em>: Throughout the corpus, we frequently observe sentences containing two or more adjacent clauses without an explicit coordinating conjunction. These cases are somewhat ambiguous with respect to their syntactic relationship, as they could be analyzed as conjunction (<code class="language-plaintext highlighter-rouge">conj</code>), which typically requires an explicit conjunction but can appear without one, e.g. in a list of items, or <code class="language-plaintext highlighter-rouge">parataxis</code>. Since the difference between these two relations can be ambiguous, we established a straightforward rule to facilitate ease-of-annotation: When the two clauses share an argument, use <code class="language-plaintext highlighter-rouge">conj</code>; otherwise, use <code class="language-plaintext highlighter-rouge">parataxis</code>.</p>
+  </li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/azz-comparison.html">N</a> Highland Puebla Nahuatl UD treebanks:</p>
+<p>There is 1 Highland Puebla Nahuatl UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/azz_a/index.html">Highland Puebla Nahuatl-A</a></li>
-  <li><a href="../treebanks/azz_b/index.html">Highland Puebla Nahuatl-B</a></li>
+  <li><a href="../treebanks/azz_itml/index.html">Highland Puebla Nahuatl-ITML</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
