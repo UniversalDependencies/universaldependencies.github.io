@@ -78,11 +78,33 @@
         </script>
         <h2><code>flat:redup</code>: reduplication</h2>
 
-<p>This relation is used generally for the reduplicating constructions, which in Latin can be used towards a variety of effects. It is not unknown to the language, though it appears quite infrequently (the two examples presented below are in fact the only occurrences among the IT-TB, LLCT and UDante treebanks).</p>
+<p>This relation is used generally for reduplicating constructions, which in Latin can be used towards a variety of effects. They are not unknown to the language, though they appear quite infrequently (the three examples presented below are in fact the only occurrences among the IT-TB, LLCT and UDante treebanks in the current state of the annotation - see <strong>Note</strong>).</p>
 
-<p>We consider a reduplication only in the case of the same word repeated one or more times in sequence, with no other words intervening, all of them having the same function and head in the clause. This excludes a) casual repetitions in sequence belonging to different phrases (e.g. <em>quod quid <strong>est est</strong> obiectum intellectus</em> ‘for the object of the intellect <strong>is</strong> what a thing <strong>is</strong>’, <code class="language-plaintext highlighter-rouge">train-s16691</code>, IT-TB) b) errors of transcription (<em>hoc autem quod est <strong>per per</strong> se necesse-esse</em>, <code class="language-plaintext highlighter-rouge">dev-s1055</code>, IT-TB) c) other kinds of reprises (<em>per quasdam <strong>relationes</strong>, quia per Papatum et per Imperiatum, que <strong>relationes</strong> sunt…</em> ‘by virtue of certain <strong>relationships</strong>, i.e. by virtue of Papal and Imperial office, which are respectively <strong>relationships</strong> of…’, <code class="language-plaintext highlighter-rouge">Mon-615</code> [<em>De Monarchia</em> III xi 6], UDante). The relation between them is a subtype of <a href="u-dep/flat">flat</a> since there is no hierarchy in such a block, and so formally the linearly first element is the “head” for all the others.</p>
+<p>We consider the case of a reduplication only when the same word is repeated one or more times in sequence, all of the repetitions having the same function and head in the clause, with no other words belonging to other phrases intervening (this condition allows for linearly non-adjacent reduplication, with reduplicated elements possibly governing their own dependents). These condition exclude</p>
 
-<p>The function of the reduplication, in terms of morphological features, is expressed in the <code class="language-plaintext highlighter-rouge">MISC</code> field by the attribute <a href="https://universaldependencies.org/misc.html#reduplication">Reduplication</a> as a temporary solution, on the token receiving the relation <code class="language-plaintext highlighter-rouge">flat:redup</code>.</p>
+<ol>
+  <li>casual sequential repetitions in sequence belonging to different phrases: each element gets its own relation
+    <ul>
+      <li>e.g. <em>quod quid <strong>est est</strong> obiectum intellectus</em> ‘for the object of the intellect <strong>is</strong> what a thing <strong>is</strong>’ (<code class="language-plaintext highlighter-rouge">train-s16691</code>, IT-TB), both depending as <code class="language-plaintext highlighter-rouge">cop</code> respectively on <em>quid</em> and <em>obiectum</em></li>
+    </ul>
+  </li>
+  <li>transcription errors of any kind, which are managed through <a href="la-dep/reparandum"><code class="language-plaintext highlighter-rouge">reparandum</code></a>
+    <ul>
+      <li>e.g. <em>+ Ego Leo <strong>notarius</strong> <strong>notarius</strong> post traditam conplevi et dedi.</em> ‘+ I, <strong>notary</strong> <strong>notary</strong> Leo, have filled out and delivered after the hand-over’ (<code class="language-plaintext highlighter-rouge">train-s6767</code>, LLCT)</li>
+    </ul>
+  </li>
+  <li>other kinds of reprises, often treated by means of <a href="la-dep/conj"><code class="language-plaintext highlighter-rouge">conj</code></a> or similar
+    <ul>
+      <li>e.g. <em>per quasdam <strong>relationes</strong>, quia per Papatum et per Imperiatum, que <strong>relationes</strong> sunt…</em> ‘by virtue of certain <strong>relationships</strong>, i.e. by virtue of Papal and Imperial office, which are respectively <strong>relationships</strong> of…’ (<code class="language-plaintext highlighter-rouge">Mon-615</code> [<em>De Monarchia</em> III xi 6], UDante)</li>
+    </ul>
+  </li>
+</ol>
+
+<p>The relation between the reduplicated elements is a subtype of <a href="u-dep/flat">flat</a> since there is no hierarchy in such a block, and so formally the linearly first element is promoted as “head” for all the others.</p>
+
+<p>The function of the reduplication, in terms of morphological features, is expressed (as a temporary solution) in the <code class="language-plaintext highlighter-rouge">MISC</code> field by the attribute <a href="https://universaldependencies.org/misc.html#reduplication">Reduplication</a>, on the token receiving the relation <code class="language-plaintext highlighter-rouge">flat:redup</code>.</p>
+
+<h4 id="note">Note</h4>
 
 <p>It remains to be seen if cases of reduplication which are as of now traditionally treated as part of the lexicon or even inflectional paradigms will be reanalysed syntactically by means of the present dependency relation. Some examples:</p>
 
@@ -93,7 +115,7 @@
     </ul>
   </li>
   <li><em>tute</em>, <a href="la-feat/Form#Emp">emphatic</a> form of <a href="la-feat/Person">2nd person</a> singular <a href="la-pos/PRON">pronoun</a>, with dissimilation</li>
-  <li><em>quamquam</em> ‘although’ (also, for regular phonotactics, <em>quanquam</em>), reduplication ofthe relative element <em>quam</em> ‘how much’ (also acting as comparative <a href="la-pos/SCONJ"><code class="language-plaintext highlighter-rouge">SCONJ</code></a>) with apparent <a href="la-feat/ProType#Ind">indefinite</a> meaning (‘in whichever manner = however’)</li>
+  <li><em>quamquam</em> ‘although’ (also, for regular phonotactics, <em>quanquam</em>), reduplication of the relative element <em>quam</em> ‘how much’ (also acting as comparative <a href="la-pos/SCONJ"><code class="language-plaintext highlighter-rouge">SCONJ</code></a>) with <a href="la-feat/ProType#Ind">indefinite</a> meaning (‘in whichever manner = however’)</li>
 </ul>
 
 <pre><code class="language-sdparse">Quot quot autem exercitii varietates tendebant ad opus , tot tot ydiomatibus tunc genus humanum disiungitur ; et quanto excellentius exercebant , tanto rudius nunc barbarius que locuntur .
