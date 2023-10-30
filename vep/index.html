@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Veps UD</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script> -->
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-vep">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_vep/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="ud-for-veps-">UD for Veps <span class="flagspan"><img class="flag" src="../../flags/svg/RU-VEPS.svg" /></span></h1>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>The main tokenization is the standard white-space delimited approach with punctuations separated.</li>
+  <li>Punctuation marks are treated as separate tokens; the exceptions include apostrophes, what mark palatalizations; ordinary numbers (23. sügüz’ku) abbreviations (they can be written with and without period).</li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<ul>
+  <li>Veps uses 13 universal POS categories
+    <ul>
+      <li>DET (determiner), INT (interjection), SYM (symbol), X (other) categories are currently not used</li>
+    </ul>
+  </li>
+  <li>Veps has the following auxiliary verbs:
+    <ul>
+      <li>“olda” (to be, also to own etc.)</li>
+      <li>“ei” (negation of verb)</li>
+      <li>modals: “voida”, “sada” (can), “pidada” (must).
+   (list can be extended as the corpora gets larger)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="features">Features</h3>
+
+<h3 id="verbal-features">Verbal Features</h3>
+
+<ul>
+  <li>There are five main verbal forms, distinguished by the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Participle <code class="language-plaintext highlighter-rouge">Part</code>, tagged <a href="">VERB</a> or <a href="">AUX</a> (the so-called l-participle) or <a href="">ADJ</a> (all other participle types).</li>
+      <li>Supine <code class="language-plaintext highlighter-rouge">Sup</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Converb <code class="language-plaintext highlighter-rouge">Conv</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+    </ul>
+  </li>
+  <li><a href="">Mood</a> has two values: <code class="language-plaintext highlighter-rouge">Cnd</code> or <code class="language-plaintext highlighter-rouge">Ind</code>.
+    <ul>
+      <li>values <code class="language-plaintext highlighter-rouge">Imp</code> and <code class="language-plaintext highlighter-rouge">Pot</code> can be added as the corpora gets larger</li>
+    </ul>
+  </li>
+  <li><a href="">Tense</a> has two values: <code class="language-plaintext highlighter-rouge">Past</code> or <code class="language-plaintext highlighter-rouge">Pres</code>.</li>
+  <li><a href="">Voice</a> has two values: <code class="language-plaintext highlighter-rouge">Act</code> and <code class="language-plaintext highlighter-rouge">Pass</code>.</li>
+  <li><a href="">Person</a> has three values, <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">3</code>.</li>
+  <li><a href="">Number</a> has two values <code class="language-plaintext highlighter-rouge">Sing</code> or <code class="language-plaintext highlighter-rouge">Plur</code>.</li>
+</ul>
+
+<h3 id="nominal-features">Nominal Features</h3>
+
+<ul>
+  <li>Veps does not have Gender feature</li>
+  <li><a href="">Number</a> feature has two possible values: <code class="language-plaintext highlighter-rouge">Sing</code> and <code class="language-plaintext highlighter-rouge">Plur</code></li>
+  <li><a href="">Case</a> has 15 possible values: <code class="language-plaintext highlighter-rouge">Abl</code>, <code class="language-plaintext highlighter-rouge">Ade</code>, <code class="language-plaintext highlighter-rouge">All</code>, <code class="language-plaintext highlighter-rouge">Apr</code>, <code class="language-plaintext highlighter-rouge">Com</code>,
+<code class="language-plaintext highlighter-rouge">Ela</code>, <code class="language-plaintext highlighter-rouge">Ess</code>, <code class="language-plaintext highlighter-rouge">Gen</code>, <code class="language-plaintext highlighter-rouge">Ill</code>, <code class="language-plaintext highlighter-rouge">Ine</code>, <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Par</code>, <code class="language-plaintext highlighter-rouge">Pro</code>, <code class="language-plaintext highlighter-rouge">Ter</code>, <code class="language-plaintext highlighter-rouge">Tra</code>
+    <ul>
+      <li>values <code class="language-plaintext highlighter-rouge">Abe</code> and <code class="language-plaintext highlighter-rouge">Egr</code> can be added as the corpora gets larger</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="degree-and-polarity">Degree and Polarity</h3>
+
+<ul>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and has one of two possible values: <code class="language-plaintext highlighter-rouge">Pos</code>, <code class="language-plaintext highlighter-rouge">Cmp</code>
+    <ul>
+      <li>value <code class="language-plaintext highlighter-rouge">Sup</code> can be added as the corpora gets larger</li>
+      <li>value <code class="language-plaintext highlighter-rouge">Dim</code> can be added and applied to nouns as the corpora gets larger</li>
+    </ul>
+  </li>
+  <li><a href="">Polarity</a> has only value <code class="language-plaintext highlighter-rouge">Neg</code>, and applies to auxiliarie ‘ei’</li>
+  <li><a href="">Connegative</a> has only value <code class="language-plaintext highlighter-rouge">Yes</code> and applies to verbs which have been negated by ‘ei’.</li>
+</ul>
+
+<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>) and adjectives (<a href="">ADJ</a>).</li>
+  <li>The <a href="">Reflex</a> feature marks reflexive pronouns <em>(ičeze)</em>.
+In Veps it is always used together with <code class="language-plaintext highlighter-rouge">PronType=Prs</code>.</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">3</code>.</li>
+  <li><a href="">PronType</a> is a list based feature of pronouns and determiners and it has the following values:
+    <ul>
+      <li>“PronType=Dem” for demonstrative pronouns</li>
+      <li>“PronType=Int” for interrogative pronouns</li>
+      <li>“PronType=Prs” for personal pronouns</li>
+      <li>“PronType=Tot” for total (collective) pronouns (<em>kaik</em>)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>### Other Features</p>
+
+<ul>
+  <li>Veps treebank has the following language-specific features:
+    <ul>
+      <li><a href="">NumForm</a> has two values: <code class="language-plaintext highlighter-rouge">Digit</code> or <code class="language-plaintext highlighter-rouge">Letter</code>.</li>
+      <li><a href="">NumType</a> has a value <code class="language-plaintext highlighter-rouge">Card</code> for cardinal numbers and <code class="language-plaintext highlighter-rouge">Ord</code> for ordinal numbers.</li>
+      <li><a href="">AdpType</a> distincts preopositions <code class="language-plaintext highlighter-rouge">AdpType=Prep</code> and postpositions <code class="language-plaintext highlighter-rouge">AdpType=Post</code>.</li>
+      <li><a href="">Clitic</a> marks an indefinite article as a clitic <em>(se)</em></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is typically a nominal in the nominative,
+genitive or partitive case, without preposition.
+    <ul>
+      <li>An infinitive verb may serve as the subject and is labeled as clausal subject, <a href="">csubj</a>.</li>
+    </ul>
+  </li>
+  <li>Objects (<a href="">obj</a>) can be nominals in nominative, genitive or partitive case.
+    <ul>
+      <li>The infinitival complement is labeled as <a href="">xcomp</a> or <a href="">ccomp</a>.</li>
+    </ul>
+  </li>
+  <li>The copula verb <em>olda</em> (be) is used in equational, attributional, locative,
+possessive and benefactory nonverbal clauses.</li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Veps:
+    <ul>
+      <li><a href="">acl:relcl</a> for relative clauses</li>
+      <li><a href="">csubj:cop</a> for clausal or infinitive subject in copula clauses.</li>
+      <li><a href="">nsubj:cop</a> for nominal subject in copula clauses</li>
+      <li><a href="">flat:name</a> for names with two or more components.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is <a href="../treebanks/vep-comparison.html">1</a> Veps UD treebanks:</p>
+
+<ul>
+  <li><a href="../treebanks/vep_vwt/index.html">Veps-VWT</a></li>
+</ul>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'vep';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2022
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
