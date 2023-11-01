@@ -81,7 +81,17 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>Words are delimited by whitespace characters.</p>
+<ul>
+  <li>Words are delimited by whitespace characters.</li>
+  <li>Some sequences of grammatical word are often written in one othographic word:
+    <ul>
+      <li>PRON-AUX: <em>lap</em> = li + ap, <em>yap</em> = yo + ap, <em>kap</em> = ki + ap, <em>nap</em> = nou + ap;</li>
+      <li><em>sakap</em> = sa + ki + ap;</li>
+      <li>ADV-AUX: <em>pat</em> = pa + te, <em>pata</em> = pa + ta, <em>pap</em> = pa + ap;</li>
+      <li>AUX-AUX: <em>tap</em> = t + ap, <em>taka</em> = ta + ka; <em>sete</em> = se + te.</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
@@ -90,17 +100,25 @@
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>PART has not been used.</li>
-  <li>Haïtian has four preverbal particules that have been tagged AUX: <em>te</em>, <em>ap</em>, <em>ta</em>, <em>pral</em>.</li>
-  <li>Haïtian does not really have a copula: some ADJs, NOUNs, ADJs, and ADVs can root a clause. There is one existial verb, <em>se</em>, that we decided to tag VERB.</li>
-  <li>The DET-PRON is unclear and still under studies. We decided to tag DET the pronominal words depending on a NOUN, but their forms are similar to PRONs.</li>
+  <li><code class="language-plaintext highlighter-rouge">PART</code> has not been used.</li>
+  <li>Haïtian has four preverbal particules that have been tagged <code class="language-plaintext highlighter-rouge">AUX</code>: <em>te</em>, <em>ap</em>, <em>ta</em>, <em>pral</em>. Potential <code class="language-plaintext highlighter-rouge">AUX</code> (not tagged <code class="language-plaintext highlighter-rouge">AUX</code>): <em>ka</em> ‘can’, <em>pa</em> ‘not’.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">DET</code>-<code class="language-plaintext highlighter-rouge">PRON</code> is unclear and still under studies. We decided to tag <code class="language-plaintext highlighter-rouge">DET</code> the pronominal words depending on a <code class="language-plaintext highlighter-rouge">NOUN</code>, but their forms are similar to <code class="language-plaintext highlighter-rouge">PRON</code>s.</li>
 </ul>
 
 <h3 id="features">Features</h3>
 
 <ul>
-  <li>PRON have Person and Number features. Pronominal DET also. Some DET have a Definite feature.</li>
-  <li>Other POS have no features.</li>
+  <li><code class="language-plaintext highlighter-rouge">PRON</code> have <code class="language-plaintext highlighter-rouge">Person</code> and <code class="language-plaintext highlighter-rouge">Number</code> features. Pronominal <code class="language-plaintext highlighter-rouge">DET</code> also. Some <code class="language-plaintext highlighter-rouge">DET</code> have a <code class="language-plaintext highlighter-rouge">Definite</code> feature.</li>
+  <li><code class="language-plaintext highlighter-rouge">AUX</code> have a feature:
+    <ul>
+      <li><em>te</em>: <code class="language-plaintext highlighter-rouge">Tense=Past</code>;</li>
+      <li><em>ap</em>: <code class="language-plaintext highlighter-rouge">Aspect=Prog</code>;</li>
+      <li><em>ta</em>: <code class="language-plaintext highlighter-rouge">Mood=Cnd</code>;</li>
+      <li><em>pral</em>: <code class="language-plaintext highlighter-rouge">Tense=Fut</code>;</li>
+      <li><em>se</em>: copula.</li>
+    </ul>
+  </li>
+  <li>Other POS have no morphosyntactic features.</li>
   <li>The treebank is glossed (<code class="language-plaintext highlighter-rouge">Gloss</code> feature) and translated (<code class="language-plaintext highlighter-rouge">text_fr</code>) in French, the lexifier language of this creole.</li>
 </ul>
 
@@ -108,11 +126,15 @@
 
 <ul>
   <li>Haïtian is an SVO language.</li>
-  <li>It has double object construction, with the Recipient before the Theme. The recipient has been tagged <code class="language-plaintext highlighter-rouge">iobj</code> and the Theme <code class="language-plaintext highlighter-rouge">obj</code>. We do not know any property to distinguish them except their resepective order and their semantic roles.</li>
+  <li>It has double object constructions, with the Recipient before the Theme. The recipient has been tagged <code class="language-plaintext highlighter-rouge">iobj</code> and the Theme <code class="language-plaintext highlighter-rouge">obj</code>. We do not know any property to distinguish them except their resepective order and their semantic roles.</li>
+  <li>Some ADJs, NOUNs, ADJs, and ADVs can root a clause. There is a copula, <em>se</em>, which is used in existential constructions.</li>
+  <li>It has <code class="language-plaintext highlighter-rouge">nmod</code>s without markers.</li>
+  <li>It has <code class="language-plaintext highlighter-rouge">DET</code>s before and after the <code class="language-plaintext highlighter-rouge">NOUN</code>. <code class="language-plaintext highlighter-rouge">DET</code>s after the <code class="language-plaintext highlighter-rouge">NOUN</code> could be <code class="language-plaintext highlighter-rouge">nmod</code>. A further study is needed.</li>
+  <li>Some <code class="language-plaintext highlighter-rouge">ADJ</code>s must be before the <code class="language-plaintext highlighter-rouge">NOUN</code>, while others must be after the <code class="language-plaintext highlighter-rouge">NOUN</code>. The repartition is similar to French.</li>
   <li>It has some Serial Verb Constructions, annotated <code class="language-plaintext highlighter-rouge">compound:svc</code>.</li>
-  <li>We have one cleft construction in our corpus, annotated <code class="language-plaintext highlighter-rouge">advcl:cleft</code>.</li>
-  <li>The <code class="language-plaintext highlighter-rouge">parataxis:insert</code> relation is used for parenthetical clauses which could not be considered as independent sentences, since they are not saturated.</li>
-  <li>Oblique modifiers have been distinguished by the <code class="language-plaintext highlighter-rouge">obl:mod</code> sub-relation.</li>
+  <li>We have one cleft construction in our corpus, annotated <a href="advcl-cleft.md">advcl:cleft</a>.</li>
+  <li>The <a href="parataxis-insert.md">parataxis:insert</a> relation is used for parenthetical clauses which could not be considered as independent sentences, since they are not saturated.</li>
+  <li>Oblique modifiers have been distinguished by the <a href="obl-mod.md">obl:mod</a> sub-relation.</li>
 </ul>
 
 <h2 id="treebanks">Treebanks</h2>
@@ -122,13 +144,6 @@
 <ul>
   <li><a href="../treebanks/ht_a/index.html">Haitian Creole Autogramm</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
