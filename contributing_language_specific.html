@@ -279,6 +279,33 @@ punct(a,.)
 ~~~
 </pre>
 
+<h2 id="language-specific-lists-for-the-validator">Language-specific Lists for the Validator</h2>
+
+<p>As mentioned above, certain aspects of the language-specific rules are registered in a database that can be used by
+the validator (but it serves as documentation at the same time). We have said that features and relation subtypes
+must be registered this way (in addition to documenting language-specific features and relations) but there are other
+things that must be registered (and it is likely that more will be required in the future).</p>
+
+<p>Extra care must be taken when these lists are modified for languages that have multiple treebanks maintained by
+different teams! It is considered improper to make other people’s treebank invalid by disabling a feature value
+(relation, auxiliary, anything) that they use, without consulting them first. You may be right that it is an error
+to use the feature value for this part of speech, but there should always be a plan how to fix the data. If you
+disable a feature, it is your responsibility to check the new validity status not only of your treebank but also
+of the other treebanks for the language.</p>
+
+<ul>
+  <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_feature.pl">Features</a>:
+Register allowed combinations of UPOS tags, features and their values in the given language.</li>
+  <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_deprel.pl">Dependency relations</a>:
+Turn on/off relation subtypes in the given language.</li>
+  <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_edeprel.pl">Enhanced dependency relations</a>:
+Register and categorize case-marking subtypes of <code class="language-plaintext highlighter-rouge">obl</code>, <code class="language-plaintext highlighter-rouge">nmod</code>, <code class="language-plaintext highlighter-rouge">advcl</code>, <code class="language-plaintext highlighter-rouge">acl</code>, and coordination subtypes of <code class="language-plaintext highlighter-rouge">conj</code>
+to be used in the enhanced representation.</li>
+  <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_auxiliary.pl">Auxiliaries</a>:
+Register and document lemmas that can be tagged <a href="">AUX</a> in the given language. The lemma of the copula is also
+registered here and must be labeled as copula, otherwise the relation <a href="">cop</a> cannot be used with it.</li>
+</ul>
+
 <h2 id="old-style-documentation">Old-Style Documentation</h2>
 
 <p>If you want a full mirror of the universal documentation of tags, features and relations, you have to create the .md files in your language
