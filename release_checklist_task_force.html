@@ -95,7 +95,7 @@ will have to resolve it). Also make sure that you are working with the <code cla
 <code>for i in UD_* ; do echo $i ; cd $i ; git checkout dev ; git pull --no-edit ; cd .. ; echo ; done</code></li>
   <li>Make sure there are no untracked files in your local copies of the repositories.
 Otherwise they could be mistakenly picked for the release.<br />
-<code>for i in UD_* ; do echo $i ; cd $i ; git status ; if git status | grep 'Untracked files' &gt; /dev/null ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX EXTRA FILES XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 10 ; fi; cd .. ; echo ; done</code></li>
+<code>for i in UD_* ; do echo $i ; cd $i ; git status ; if git status | grep -P '(Untracked files|ahead of)' &gt; /dev/null ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UNCLEAN GIT STATUS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 10 ; fi; cd .. ; echo ; done</code></li>
   <li>Run <code class="language-plaintext highlighter-rouge">tools/check_release.pl --release 2.12 --next-expected 'November 2023' --oldpath /net/data/universal-dependencies-2.11 |&amp; tee release-2.12-report.txt | less</code>.
 The script will visit all repositories and report any missing files, unexpected or unexpectedly named files.
 It will download the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">online validation report</a>
