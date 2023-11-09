@@ -100,34 +100,38 @@ If a head can be found but no substantive dependency relation is appropriate, <a
 (E.g., some treebanks might provide proper grammatical analyses in the presence of code-switching,
 or treat mathematical notation as following linguistic strategies like predication.)</p>
 
+<p>Some languages opt to subcategorize usages of <code class="language-plaintext highlighter-rouge">flat</code> <a href="https://universaldependencies.org/ext-dep-index.html#flat">via subtypes</a>.
+In particular, many treebanks use the <code class="language-plaintext highlighter-rouge">flat:name</code> and <code class="language-plaintext highlighter-rouge">flat:foreign</code> subtypes converted from the v1 relations <code class="language-plaintext highlighter-rouge">name</code> and <code class="language-plaintext highlighter-rouge">foreign</code>.
+The examples on this page simply use plain <code class="language-plaintext highlighter-rouge">flat</code>.</p>
+
 <h2 id="names">Names</h2>
 
-<p>A person’s name (or parts thereof) may lack the hallmarks of general constructions in the language, such that no single word can be identified as the head, in which case a flat structure applies. The subtyped relation <a href="">flat:name</a> is recommended for flat names.</p>
+<p>A person’s name (or parts thereof) may lack the hallmarks of general constructions in the language, such that no single word can be identified as the head, in which case a flat structure applies.</p>
 
 <pre><code class="language-sdparse">Hillary Rodham Clinton
-flat:name(Hillary, Rodham)
-flat:name(Hillary, Clinton)
+flat(Hillary, Rodham)
+flat(Hillary, Clinton)
 </code></pre>
 
 <p>Nesting is possible:</p>
 
 <pre><code class="language-sdparse">Mary Jane Tyler Smith
-flat:name(Mary, Jane)
-flat:name(Tyler, Smith)
-flat:name(Mary, Tyler)
+flat(Mary, Jane)
+flat(Tyler, Smith)
+flat(Mary, Tyler)
 </code></pre>
 
 <p>On occasion, an expression with no clear head at the top level will have internal syntactic modifiers or punctuation:</p>
 
 <pre><code class="language-sdparse">Dwayne " The Rock " Johnson
-flat:name(Dwayne, Rock)
-flat:name(Dwayne, Johnson)
+flat(Dwayne, Rock)
+flat(Dwayne, Johnson)
 det(Rock, The)
 punct(Rock, "-2)
 punct(Rock, "-5)
 </code></pre>
 
-<p>The scope of <a href="">flat:name</a> may extend beyond names of persons to names of other kinds of entities that depart from general headed structure.
+<p>The scope of <code class="language-plaintext highlighter-rouge">flat</code> may extend beyond names of persons to names of other kinds of entities that depart from general headed structure.
 The expressions under this category must be established by language-specific criteria.</p>
 
 <h3 id="flat-vs-non-flat-names">Flat vs. non-flat names</h3>
@@ -235,7 +239,7 @@ nmod(Río-1, Plata-4)
 <!-- REMOVED Júnior -->
 
 <pre><code class="language-sdparse">Roberto Paulo da Silva
-flat:name(Roberto, Paulo)
+flat(Roberto, Paulo)
 nmod(Paulo, Silva)
 case(Silva, da)
 </code></pre>
@@ -246,8 +250,8 @@ or when sufficient grammaticalization has taken place. For example,
 when names like this are annotated in English, the appropriate analysis is as a <code class="language-plaintext highlighter-rouge">flat</code> name:</p>
 
 <pre><code class="language-sdparse">Ludwig van Beethoven was a famous German composer .
-flat:name(Ludwig, van)
-flat:name(Ludwig, Beethoven)
+flat(Ludwig, van)
+flat(Ludwig, Beethoven)
 det(composer, a)
 amod(composer, famous)
 amod(composer, German)
@@ -257,13 +261,13 @@ punct(composer, .)
 </code></pre>
 
 <pre><code class="language-sdparse">Río de la Plata
-flat:name(Río-1, de-2)
-flat:name(Río-1, la-3)
-flat:name(Río-1, Plata-4)
+flat(Río-1, de-2)
+flat(Río-1, la-3)
+flat(Río-1, Plata-4)
 </code></pre>
 
 <pre><code class="language-sdparse">Al Arabiya is a Saudi-owned news organization
-flat:name(Al-1, Arabiya-2)
+flat(Al-1, Arabiya-2)
 nsubj(organization-7, Al-1)
 </code></pre>
 
@@ -271,7 +275,7 @@ nsubj(organization-7, Al-1)
 and regularly appear without the given name. Again, here, the flat analysis seems correct:</p>
 
 <pre><code class="language-sdparse">Von Hohenlohe gewann das Rennen . \n Von Hohenlohe won the race .
-flat:name(Von-1, Hohenlohe-2)
+flat(Von-1, Hohenlohe-2)
 nsubj(gewann-3, Von-1)
 </code></pre>
 
