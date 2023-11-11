@@ -142,7 +142,7 @@ not a tree but a general graph structure, as shown below (enhanced dependencies 
 <ul>
   <li><a href="#the-primacy-of-content-words">The primacy of content words</a></li>
   <li><a href="#the-status-of-function-words">The status of function words</a>, including multiword function words, coordinated function words, modifiers of function words, and promotion of function words</li>
-  <li><a href="#the-taxonomy-of-typed-dependencies">The taxonomy of typed dependencies</a>: core vs. oblique, the combination of structure and function, clausal dependents, coordination, multiword expressions, and special relations</li>
+  <li><a href="#the-taxonomy-of-typed-dependencies">The taxonomy of typed dependencies</a>: core vs. oblique, the combination of structure and function, clausal dependents, coordination, multiword expressions and headless structures, and special relations</li>
 </ul>
 
 <h2 id="the-primacy-of-content-words">The Primacy of Content Words</h2>
@@ -229,7 +229,7 @@ siblings, never in a nested structure, regardless of their interpretation.
 A typical case is that of auxiliary verbs, which never depend on each other.</p>
 
 <div id="s3a" class="sd-parse">
-She could have been injured .
+She/PRON could/AUX have/AUX been/AUX injured/VERB .
 aux(injured, could)
 aux(injured, have)
 aux:pass(injured, been)
@@ -239,7 +239,7 @@ aux:pass(injured, been)
 will therefore often be attached to predicates that are not verbs.</p>
 
 <div id="s3b" class="sd-parse">
-She could have been sick .
+She/PRON could/AUX have/AUX been/AUX sick/ADJ .
 aux(sick, could)
 aux(sick, have)
 cop(sick, been)
@@ -248,7 +248,7 @@ cop(sick, been)
 <p>Similarly, multiple determiners are always attached to the head noun.</p>
 
 <div id="s3c" class="sd-parse">
-All these three books .
+All/DET these/DET three/NUM books/NOUN .
 det(books, All)
 det(books, these)
 nummod(books, three)
@@ -272,19 +272,16 @@ This view makes function words functionally (but not structurally) similar to mo
 
 <h3 id="multiword-function-words">Multiword Function Words</h3>
 
-<p>The word forms that make up a fixed function-word multiword expression (MWE) are connected
-using the special dependency relation <a href="">u-dep/fixed</a> (see below). By convention, the first word is always taken as the head, so when the multiword expression is a functional element,
-the initial word form will then superficially look like a function word with dependents.</p>
+<p>The word forms that make up a fixed multiword expression are connected using the special dependency relation <a href="">u-dep/fixed</a>.
+By convention, the first word is always taken as the head, so when the multiword expression is a functional element, the initial word form will then superficially look like a function word with dependents.</p>
 
-<div id="s6" class="sd-parse">
-We had a nice time in spite of the rain .
-case(rain,in)
-fixed(in,spite)
-fixed(in,of)
-obl(had,rain)
+<div id="fixed1" class="sd-parse">
+They saw each/DET other/ADJ
+fixed(each, other)
+obj(saw, each)
 </div>
 
-<p>Deciding whether an expression in a language should be treated as a fixed multiword expression is something that has to be decided for each language, and in some cases this will require somewhat arbitrary conventions, because it involves choosing a cut point along a path of grammaticalization. Nevertheless, most languages have some very common multiword expressions that effectively behave like other function words as linkers, marks, or case particles, and it would be highly undesirable not to recognize them as a multi-word function word. Examples in English include <em>in spite of</em> (like <em>despite</em>), <em>as well as</em> (like <em>and</em>), and <em>prior to</em> (like <em>before</em>).</p>
+<p>Deciding whether an expression in a language should be treated as a fixed multiword expression is something that has to be decided for each language, and in some cases this will require somewhat arbitrary conventions, because it involves choosing a cut point along a path of grammaticalization. Nevertheless, most languages have some very common multiword expressions that effectively behave like other function words as linkers, marks, or case particles, and it would be highly undesirable not to recognize them as a multi-word function word. Examples <a href="/en/dep/fixed.html">in English</a> include <em><b>as well as</b></em> (as a coordinating connective, like <em>and</em>), <em><b>so that</b></em> (a complex subordinating connective), and <em><b>each other</b></em> (as a reciprocal pronoun). Fixed multiword expressions are contrasted with other headless and/or idiomatic expressions <a href="#multiword-expressions-and-headless-structures">below</a>.</p>
 
 <h3 id="coordinated-function-words">Coordinated Function Words</h3>
 
@@ -400,7 +397,7 @@ ccomp(know, how)
 
 <h2 id="the-taxonomy-of-typed-dependencies">The Taxonomy of Typed Dependencies</h2>
 
-<p>We now review some of the key ideas underlying our taxonomy of typed dependency relations, focusing first on the central
+<p>We now review some of the key ideas underlying our <a href="/u/dep/">taxonomy of typed dependency relations</a>, focusing first on the central
 dependency relations between content words.</p>
 
 <h3 id="core-arguments-vs-oblique-modifiers">Core Arguments vs. Oblique Modifiers</h3>
@@ -511,39 +508,34 @@ punct(took, ,-4)
 cc(went, and)
 </code></pre>
 
-<h3 id="multiword-expressions">Multiword Expressions</h3>
+<h2 id="lexical-relations">Lexical Relations</h2>
 
-<p>Multiword expressions (MWEs) are combinations of words that (in some respect and to different degrees) behave
-as lexical units rather than compositional syntactic phrases. The UD taxonomy contains three special relations
-for analyzing MWEs:</p>
+<p>UD provides the <a href="">compound</a> relation for head-modifier combinations that morphosyntactically resemble single lexemes, e.g. <em><b>apple juice</b></em> and <em><b>work out</b></em>. The criteria for <a href="">compound</a> need to be established on a language-specific basis.</p>
 
-<ul>
-  <li><a href="">u-dep/fixed</a> is used to analyze fixed grammaticized function-word MWEs like <em>in spite of</em> (see above)</li>
-  <li><a href="">u-dep/flat</a> is used to analyze exocentric semi-fixed MWEs like <em>Barack Obama</em> with no clear head</li>
-  <li><a href="">u-dep/compound</a> is used to analyze (headed or endocentric) compounds like <em>noun phrase</em>, with head <em>phrase</em></li>
-</ul>
+<h2 id="multiword-expressions-and-headless-structures">Multiword Expressions and Headless Structures</h2>
 
-<p>Structures analyzed with <a href="">u-dep/fixed</a> and <a href="">u-dep/flat</a> are headless by definition and are consistently
+<p>Multiword expressions are combinations of words that (in some respect and to different degrees) behave as lexical units rather than compositional syntactic phrases, in particular by being semantically non-compositional. Since the UD annotation is concerned with morphosyntactic structure, most multiword expressions are not recognized as such in the UD annotation. The only exception is the class of fixed expressions like connective <em><b>as well as</b></em> and reciprocal pronoun <em><b>each other</b></em>, which are completely frozen and (often) morphosyntactically irregular. As discussed <a href="#multiword-function-words">above</a>, such expressions are annotated using the <a href="">fixed</a> relation to indicate that their internal structure is not regular and productive. Some other relations, such as <a href="">compound</a> and <a href="">flat</a>, are often appropriate for expressions that also happen to be non-compositional, but they are defined by morphosyntactic criteria and not by non-compositionality or other properties characteristic of multiword expressions.</p>
+
+<p>Structures analyzed with <a href="">u-dep/fixed</a> and <a href="">u-dep/flat</a> are <strong>headless</strong> by definition and are consistently
 annotated by attaching all non-first elements to the first and only allowing outgoing dependents from the first element.</p>
 
-<div id="s8a" class="sd-parse">
-We had a nice time in spite of the rain .
-case(rain,in)
-fixed(in,spite)
-fixed(in,of)
-obl(had,rain)
+<div id="mwe1" class="sd-parse">
+I like dogs as/ADV well/ADV as/ADP cats .
+fixed(as-4, well)
+fixed(as-4, as-6)
+cc(cats, as-4)
+conj(dogs, cats)
 </div>
 
-<div id="s8b" class="sd-parse">
-Martin Luther King had a dream .
-nsubj(had,Martin)
-flat(Martin,Luther)
-flat(Martin,King)
+<div id="mwe2" class="sd-parse">
+Barack/PROPN Obama/PROPN won the election .
+nsubj(won,Barack)
+flat(Barack,Obama)
 </div>
 
 <p>By contrast, <a href="compound">compounds</a> are annotated to show their modification structure, including a regular concept of head:</p>
 
-<div id="s9" class="sd-parse">
+<div id="mwe3" class="sd-parse">
 I bought a computer disk drive enclosure .
 nsubj(bought, I)
 det(enclosure, a)
@@ -555,8 +547,8 @@ obj(bought, enclosure)
 
 <h3 id="special-relations">Special Relations</h3>
 
-<p>Besides core dependency relations, functional relations, and relations for analyzing coordination, MWEs and punctuation,
-the UD taxonomy includes a number of special relations for handling things like orthographic errors in text, disfluencies in speech, and list structures without internal syntactic structure.</p>
+<p>Besides core dependency relations, functional relations, and relations for analyzing coordination and headless structures,
+the UD <a href="/u/dep/">taxonomy</a> includes a number of special relations for handling things like punctuation (<a href="">u-dep/punct</a>), orthographic errors in text (<a href="">u-dep/goeswith</a>), disfluencies in speech ((<a href="">u-dep/reparandum</a>), and list structures without internal syntactic structure (<a href="">u-dep/list</a>).</p>
 
 <!--Some of the universal relations do not really encode syntactic dependency relations but are used to represent
 punctuation, various kinds of multiword units, or unanalyzable segments. The use of these relations is subject
