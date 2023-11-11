@@ -83,7 +83,6 @@
 <ul>
   <li><a href="#coordination">Coordination</a></li>
   <li><a href="#ellipsis">Ellipsis</a></li>
-  <li><a href="#lexical-relations-multiword-expressions-headless-structures">Lexical relations, multiword expressions, headless structures</a></li>
   <li><a href="#comparatives">Comparative constructions</a></li>
   <li><a href="#paratactic-constructions">Paratactic constructions</a></li>
   <li><a href="#punctuation">Punctuation</a></li>
@@ -337,41 +336,6 @@ is from Malayalam.</p>
 
 </code></pre>
 
-<h2 id="lexical-relations-multiword-expressions-headless-structures">Lexical Relations, Multiword Expressions, Headless Structures</h2>
-
-<p>UD provides the <a href="">compound</a> relation for head-modifier combinations that morphosyntactically resemble single lexemes. The criteria for <a href="">compound</a> need to be established on a language-specific basis.</p>
-
-<p><strong>Multiword expressions</strong> are combinations of words that (in some respect and to different degrees) behave as lexical units rather than compositional syntactic phrases, in particular by being semantically non-compositional. Since the UD annotation is concerned with morphosyntactic structure, most multiword expressions are not recognized as such in the UD annotation. The only exception is the class of fixed expressions like <em><b>by and large</b></em> and connective <em><b>as well as</b></em>, which are completely frozen and (often) morphosyntactically irregular. Such expressions are annotated using the <a href="">fixed</a> relation to indicate that their internal structure is not regular and productive. Some other relations, such as <a href="">compound</a> and <a href="">flat</a>, are often appropriate for expressions that also happen to be non-compositional, but they are defined by morphosyntactic criteria and not by non-compositionality or other properties characteristic of multiword expressions.</p>
-
-<p>Structures analyzed with <a href="">u-dep/fixed</a> and <a href="">u-dep/flat</a> are <strong>headless</strong> by definition and are consistently
-annotated by attaching all non-first elements to the first and only allowing outgoing dependents from the first element.</p>
-
-<div id="s8a" class="sd-parse">
-I like dogs as/ADV well/ADV as/ADP cats .
-fixed(as-4, well)
-fixed(as-4, as-6)
-cc(cats, as-4)
-conj(dogs, cats)
-</div>
-
-<div id="s8b" class="sd-parse">
-Barack/PROPN Obama/PROPN won the election .
-nsubj(won,Barack)
-flat(Barack,Obama)
-</div>
-
-<p>By contrast, <a href="compound">compounds</a> are annotated to show their modification structure, including a regular concept of head:</p>
-
-<div id="s9" class="sd-parse">
-I bought a computer disk drive enclosure .
-nsubj(bought, I)
-det(enclosure, a)
-compound(drive, computer)
-compound(drive, disk)
-compound(enclosure, drive)
-obj(bought, enclosure)
-</div>
-
 <h2 id="comparatives">Comparatives</h2>
 
 <p>The syntax of comparative constructions poses various challenges for linguistic theory.  For English, many of these are discussed in Bresnan (1973) and Huddleston and Pullum (2002, chapter 13). We give a discussion of equality comparisons (<em>That car is as big as mine</em>) and inequality scalar comparisons (<em>Sue is taller than Jim</em>).</p>
@@ -540,7 +504,7 @@ case(talent, than)
 obl(important, talent)
 </code></pre>
 
-<h3 id="more-than-as-a-multi-word-expression"><em>More than</em> as a multi-word expression</h3>
+<h3 id="more-than-as-a-multiword-expression"><em>More than</em> as a multiword expression</h3>
 
 <p>In certain contexts the comparative complement combines both the action or adjective that is being compared
 and the quantity it is compared to:</p>
@@ -551,7 +515,7 @@ and the quantity it is compared to:</p>
   <li><em>Home prices have more than doubled in the past decade.</em></li>
 </ul>
 
-<p>In these cases we consider <em>more than</em> to be a fixed multi-word expression because the two words are inseparable.
+<p>In these cases we consider <em>more than</em> to be a <a href="syntax.html##multiword-function-words">fixed multiword expression</a> because the two words are inseparable.
 One cannot say <em>*more percent than 90.</em></p>
 
 <pre><code class="language-sdparse">That is more than likely .
