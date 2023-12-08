@@ -80,69 +80,70 @@
 
 <h2><code>Number</code>: number</h2>
 
-<p>In English, <code class="language-plaintext highlighter-rouge">Number</code> is a feature of <a href="en-pos/NOUN">nouns</a> and other parts of speech that mark agreement with nouns, i.e. personal <a href="en-pos/PRON">pronouns</a>, <a href="en-pos/VERB">verbs</a>, and some <a href="en-pos/DET">determiners</a>.</p>
+<p>In English, <code class="language-plaintext highlighter-rouge">Number</code> is a feature of <a href="en-pos/NOUN">nouns</a> and other parts of speech that mark agreement with nouns, i.e. personal <a href="en-pos/PRON">pronouns</a>, <a href="en-pos/VERB">verbs</a> including verbal <a href="en-pos/AUX">auxiliaries</a>, and some <a href="en-pos/DET">determiners</a>.</p>
+
+<p>For nouns, number is determined primarily by agreement (not necessarily form), per Penn Treebank tag guidelines. The values are described below: essentially, <code class="language-plaintext highlighter-rouge">Sing</code> for nouns that take singular agreement, <code class="language-plaintext highlighter-rouge">Plur</code> for most nouns that take plural agreement, and <code class="language-plaintext highlighter-rouge">Ptan</code> for pluralia tantum (nouns exhibiting grammatically plural morphology and agreement that cannot be made singular). (There is no separate value for collective/mass nouns.)</p>
+
+<p>For many word types, the <code class="language-plaintext highlighter-rouge">Number</code> feature is variable—that is, it depends on context and not just form.</p>
 
 <h3 id="sing-singular"><a name="Sing"><code class="language-plaintext highlighter-rouge">Sing</code></a>: singular</h3>
 
-<p>A singular noun denotes one person, animal or thing. Every noun with the PTB tag <code class="language-plaintext highlighter-rouge">NN</code> or <code class="language-plaintext highlighter-rouge">NNP</code> is marked with this feature.</p>
+<p>The grammatical singular vs. plural contrast is defined in terms of agreement.
+A singular noun prototypically denotes one person, animal, or thing, but collective/mass nouns may also be grammatically singular.
+Every noun with the PTB tag <code class="language-plaintext highlighter-rouge">NN</code> or <code class="language-plaintext highlighter-rouge">NNP</code> is marked with this feature.
+In addition, singular pronouns (see <a href="">PRON</a>), singular demonstrative determiners, and verbs with a singular subject receive this feature.</p>
 
 <h4 id="examples">Examples:</h4>
 
 <ul>
-  <li><em>an <b>apple</b>, a <b>train</b></em></li>
-</ul>
-
-<p>Pronouns that refer to a single person, an animal or a thing are also marked with this feature.</p>
-
-<ul>
+  <li><em>an <b>apple</b>, a <b>train</b>, this <b>sheep</b>, this <b>species</b></em></li>
+  <li><em>some <b>information</b>, the <b>news</b></em></li>
+  <li><em>the <b>committee</b> has voted</em></li>
+  <li><em><b>linguistics</b> is my favorite subject</em></li>
   <li><em>I, me, my, myself, he, his, him, himself, she, her, hers, herself, it, its, itself</em></li>
-</ul>
-
-<p>We also mark all verbs with the PTB tag <code class="language-plaintext highlighter-rouge">VBZ</code> with this feature.</p>
-
-<h4 id="examples-1">Examples:</h4>
-
-<ul>
-  <li><em>she <b>does</b></em></li>
-  <li><em>he <b>walks</b></em></li>
-</ul>
-
-<p>Further, we mark inflections of <code class="language-plaintext highlighter-rouge">be</code> that can only have a singular noun or pronoun in subject position with this feature.</p>
-
-<ul>
-  <li><em>am, is, was</em></li>
-</ul>
-
-<p>Demonstrative determiners of singular nouns and demonstrative pronouns that refer to singular nouns are also marked with this feature.</p>
-
-<ul>
   <li><em>this, that</em></li>
+  <li><em>am, is, was</em></li>
+  <li><em>he <b>wanted</b> a cat</em></li>
+  <li><em>she <b>does</b> like cats</em></li>
 </ul>
 
 <h3 id="plur-plural"><a name="Plur"><code class="language-plaintext highlighter-rouge">Plur</code></a>: plural</h3>
 
-<p>A plural noun denotes several persons, animals or things. Every noun with the PTB tag <code class="language-plaintext highlighter-rouge">NNS</code> or <code class="language-plaintext highlighter-rouge">NNPS</code> is marked with this feature.</p>
+<p>Every noun with the PTB tag <code class="language-plaintext highlighter-rouge">NNS</code> or <code class="language-plaintext highlighter-rouge">NNPS</code> (including measure terms like <em>inches</em> or <em>years</em> even though sometimes
+the measurement noun phrase can be construed as singular and take singular agreement) is considered plural.
+This feature applies to such nouns with the exception of pluralia tantum (<code class="language-plaintext highlighter-rouge">Ptan</code>; see below).
+In addition, plural pronouns (see <a href="">PRON</a>), plural demonstrative determiners, and verbs with a plural subject receive this feature.</p>
 
-<h4 id="examples-2">Examples:</h4>
-
-<ul>
-  <li><em>several <b>apples</b>, two <b>trains</b></em></li>
-</ul>
-
-<p>Pronouns that refer to a single person, an animal or a thing are also marked with this feature.</p>
+<h4 id="examples-1">Examples:</h4>
 
 <ul>
+  <li><em>several <b>apples</b>, two <b>trains</b>, these <b>sheep</b>, these <b>species</b></em></li>
+  <li><b>Police</b> are everywhere</li>
+  <li><em>10 <b>minutes</b> is not enough time</em></li>
   <li><em>we, us, our, ours, ourselves, yourselves, they, them, their, theirs, themselves</em></li>
+  <li><em>these, those</em></li>
+  <li><em>are, were</em></li>
+  <li><em>they <b>wanted</b> a cat</em></li>
+  <li><em>we <b>do</b> like cats</em></li>
 </ul>
 
-<p>Demonstrative determiners of plural nouns and demonstrative pronouns that refer to plural nouns are also marked with this feature.</p>
+<h3 id="ptan-plurale-tantum"><a name="Ptan"><code class="language-plaintext highlighter-rouge">Ptan</code></a>: plurale tantum</h3>
+
+<p>Some nouns appear only in the plural form, with a regular plural suffix and plural agreement,
+but lack a singular counterpart (at least when serving as a nominal head).
+(The lemma is therefore the plural form.) These form a relatively closed set.
+Semantically, they often denote a mass-like collection, or a doublet object.</p>
+
+<p>Note that some nouns have endings that look like regular plural endings, but are not:
+<em>linguistics</em> and <em>Xerxes</em> are singular, and <em>species</em> and <em>series</em> may be singular or plural, but none of these are pluralia tantum.</p>
+
+<h4 id="examples-2">Examples</h4>
 
 <ul>
-  <li><em>these, those</em></li>
+  <li><em><b>clothes</b>, <b>scissors</b>, <b>riches</b></em></li>
 </ul>
 
-<p>We currently don’t mark plurale tantum or collective/mass nouns.
-<!-- Interlanguage links updated Po 6. listopadu 2023, 21:41:53 CET --></p>
+<!-- Interlanguage links updated Po 6. listopadu 2023, 21:41:53 CET -->
 
 
 <!-- "in other languages" links -->
