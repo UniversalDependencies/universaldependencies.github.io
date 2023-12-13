@@ -79,18 +79,18 @@
         <h1 id="foreign-expressions-and-code-switching">Foreign Expressions and Code-Switching</h1>
 
 <p>A corpus may contain material from multiple languages. There are a few scenarios for how this is annotated,
-depending on the prevalence of multiple languages in the corpus and the extent to which expressions have been 
+depending on the prevalence of multiple languages in the corpus and the extent to which expressions have been
 sufficiently integrated into a new language that they can be considered borrowings.</p>
 
 <h2 id="inherently-code-switched-corpora">Inherently code-switched corpora</h2>
 
 <p>Every UD corpus is listed under an ISO language code. Most UD corpora have a single primary language.
 A few corpora, however, feature extensive code-switching between multiple (usually two) languages,
-and are listed under a custom code for the code-switched language variety. For example, the Turkish-German 
+and are listed under a custom code for the code-switched language variety. For example, the Turkish-German
 variety bears the <code class="language-plaintext highlighter-rouge">qtd</code> code at the corpus level.</p>
 
 <p>In inherently code-switched corpora, every word must have a <a href="https://universaldependencies.org/misc.html#lang"><code class="language-plaintext highlighter-rouge">Lang</code></a> feature in the MISC column to indicate
-which language it belongs to. Most often, it will be one of the languages comprising the multilingual variety 
+which language it belongs to. Most often, it will be one of the languages comprising the multilingual variety
 (for Turkish-German, either Turkish <code class="language-plaintext highlighter-rouge">Lang=tr</code> or German <code class="language-plaintext highlighter-rouge">Lang=de</code>). Occasionally, a word will be specific to the
 multilingual variety (<code class="language-plaintext highlighter-rouge">Lang=qtd</code>). None of these are considered <em>foreign</em> in the context of the corpus.</p>
 
@@ -99,7 +99,7 @@ These are annotated as cross-lingual content as described below.</p>
 
 <h2 id="cross-lingual-content">Cross-lingual content</h2>
 
-<p>When a corpus contains material from a language other than its declared language(s), 
+<p>When a corpus contains material from a language other than its declared language(s),
 UD offers a few options for annotating such material, which we term <em>cross-lingual content</em>.
 It may be analyzed as either <em>foreign</em> or <em>borrowed</em>.</p>
 
@@ -112,8 +112,8 @@ Cross-lingual and cross-orthography metadata—translations, glosses, transliter
 
 <p>A treebank may opt to fully analyze the cross-lingual content as if it were in a treebank for the source language.
 This simulates a speaker with knowledge of the morphosyntax of both of the intermixed languages.
-The language of any content analyzed in this manner should be specified on individual tokens 
-with the MISC feature <a href="https://universaldependencies.org/misc.html#lang"><code class="language-plaintext highlighter-rouge">Lang</code></a><code class="language-plaintext highlighter-rouge">=CODE</code>, as described <a href="https://universaldependencies.org/format.html#other-miscellaneous-attributes">here</a>: this makes it clear which annotation guidelines 
+The language of any content analyzed in this manner should be specified on individual tokens
+with the MISC feature <a href="https://universaldependencies.org/misc.html#lang"><code class="language-plaintext highlighter-rouge">Lang</code></a><code class="language-plaintext highlighter-rouge">=CODE</code>, as described <a href="https://universaldependencies.org/format.html#other-miscellaneous-attributes">here</a>: this makes it clear which annotation guidelines
 are being followed for the cross-lingual content so that the annotations can be properly validated.
 Unless the language is inherently associated with the corpus-level language code
 (see Inherently code-switched corpora above), the cross-lingual portion is considered <em>foreign</em> material
@@ -147,17 +147,17 @@ such as names of people or places used in the target language.</p>
 
 <h3 id="option-2-borrowed-analysis">Option 2: Borrowed analysis</h3>
 
-<p>Another option is to analyze the cross-lingual content as if it is part of the vocabulary 
-of the main language of the text. Tokenization principles of the main language, 
-not the donor language, would be expected to apply. Borrowed words are <em>not</em> marked 
+<p>Another option is to analyze the cross-lingual content as if it is part of the vocabulary
+of the main language of the text. Tokenization principles of the main language,
+not the donor language, would be expected to apply. Borrowed words are <em>not</em> marked
 with <a href="">Foreign</a><code class="language-plaintext highlighter-rouge">=Yes</code> because they are taken to be incorporated into the target language.
 However, the donor language may be made explicit with the <a href="https://universaldependencies.org/misc.html#origlang"><code class="language-plaintext highlighter-rouge">OrigLang</code></a> feature in MISC.</p>
 
-<p>For multiword expressions, the UPOS and morphological features of the expression as a whole 
+<p>For multiword expressions, the UPOS and morphological features of the expression as a whole
 are copied to all the individual words, which are connected to the first word in a <a href="">flat</a> structure.
 (For names, the subtyped relation <a href="">flat:name</a> may optionally be used.)</p>
 
-<p>Nominals—including concept terms, personal names, and book titles—are frequently borrowed 
+<p>Nominals—including concept terms, personal names, and book titles—are frequently borrowed
 and would typically be analyzed in this way. Other vocabulary may be considered borrowed as well.</p>
 
 <pre><code class="language-sdparse">Yeah , I think that would be kosher/ADJ .
@@ -180,8 +180,19 @@ flat(coup, d'état)
 <p>If a word from another language has target-language inflectional morphology, this should be treated
 as borrowed so the morphology can be properly encoded in features. Take this Czech example:</p>
 
-<pre><code class="language-sdparse">Jeďte po dálnici až k exitu/NOUN 36. \n "Follow the highway until exit 36."
-</code></pre>
+<div class="conllu-parse">
+# text = Jeďte po dálnici až k exitu 36.
+# text_en = Follow the highway until exit 36.
+1 Jeďte   jet     VERB  _ _ 0 root        _ Gloss=go
+2 po      po      ADP   _ _ 3 case        _ Gloss=along
+3 dálnici dálnice NOUN  _ _ 1 obl         _ Gloss=highway
+4 až      až      PART  _ _ 6 advmod:emph _ Gloss=until
+5 k       k       ADP   _ _ 6 case        _ Gloss=to
+6 exitu   exit    NOUN  _ Animacy=Inan|Case=Dat|Gender=Masc|Number=Sing|Polarity=Pos 1 obl _ OrigLang=en|Gloss=exit
+7 36      36      NUM   _ _ 6 nmod        _ Gloss=36|SpaceAfter=No
+8 .       .       PUNCT _ _ 1 punct       _ Gloss=.
+
+</div>
 
 <p>The form <em>exitu</em> does not exist in English and must therefore receive Czech morphological features.
 A borrowed expression may also bear target-language modifiers, for example.</p>
