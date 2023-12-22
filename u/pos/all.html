@@ -495,9 +495,11 @@ is not syntactically related to other accompanying expressions, and
 may include a combination of sounds not otherwise found in the
 language.</p>
 
-<p>Note that words primarily belonging to another part of speech retains
-their original category when used in exclamations. For example, <em>God</em>
-is a <a href="">NOUN</a> even in exclamatory uses.</p>
+<p>In keeping with the general <a href="/u/overview/morphology.html#tagging-principles">tagging principles</a>,
+a word used to signal an exclamation in a particular context does not
+automatically qualify as <code class="language-plaintext highlighter-rouge">INTJ</code>. For example, nouns and adjectives with
+emotionally valenced semantics should only be tagged <code class="language-plaintext highlighter-rouge">INTJ</code> in exclamations
+if such usage is considered to be lexicalized as a separate sense.</p>
 
 <p>As a special case of interjections, we recognize feedback particles
 such as <em>yes</em>, <em>no</em>, <em>uhuh</em>, etc.</p>
@@ -751,6 +753,7 @@ However, if the token consists entirely of digits (like <em>7</em> in <em>Window
   <li><em>Mary</em>, <em>John</em></li>
   <li><em>London</em></li>
   <li><em>NATO</em>, <em>HBO</em></li>
+  <li><em>john.doe@universal.org, http://universaldependencies.org/, 1-800-COMPANY</em></li>
 </ul>
 
 <h3 id="references">References</h3>
@@ -868,8 +871,7 @@ they are punctuation.</p>
 <ul>
   <li><em>$, %, §, ©</em></li>
   <li><em>+, −, ×, ÷, =, &lt;, &gt;</em></li>
-  <li>:), ♥‿♥, 😝</li>
-  <li><em>john.doe@universal.org, http://universaldependencies.org/, 1-800-COMPANY</em>
+  <li>:), ♥‿♥, 😝
 <!-- Interlanguage links updated Po 6. listopadu 2023, 21:41:31 CET --></li>
 </ul>
 
@@ -935,15 +937,30 @@ while participating in a <a href="">case</a> or <a href="">mark</a> relation: se
 <h3 id="definition">Definition</h3>
 
 <p>The tag <code class="language-plaintext highlighter-rouge">X</code> is used for words that for some reason cannot be assigned
-a real part-of-speech category. It should be used very restrictively.</p>
+a real part-of-speech category. It should be used very restrictively.
+Cases include:</p>
 
-<p>A special usage of <code class="language-plaintext highlighter-rouge">X</code> is for cases of code-switching where it is not
-possible (or meaningful) to analyze the intervening language
-grammatically (and where the dependency relation <a href="flat">flat:foreign</a> is
-typically used in the syntactic analysis).  This usage does not extend
-to ordinary loan words which should be assigned a normal
-part-of-speech. For example, in <em>he put on a large sombrero</em>,
-<em>sombrero</em> is an ordinary <a href="">NOUN</a>.</p>
+<ul>
+  <li>
+    <p><strong>Unintelligible material:</strong> For example, gibberish or words that cannot
+be fully transcribed.</p>
+  </li>
+  <li>
+    <p><strong>Word fragments:</strong> This includes non-initial parts of a <a href="">goeswith</a> sequence.
+Depending on a language’s tokenization practices, it may also apply to
+normally bound affixes that have been split off.</p>
+  </li>
+  <li>
+    <p><strong>Unanalyzed foreign words:</strong> Cases of code-switching where it is not possible 
+(or meaningful) to analyze the intervening language grammatically. 
+See the page on <a href="/foreign.html">Foreign Expressions and Code-Switching</a>.
+Note that this usage does not extend to ordinary loan words:
+e.g., in <em>he put on a large sombrero</em>, <em>sombrero</em> is an ordinary <a href="">NOUN</a>.</p>
+  </li>
+</ul>
+
+<p>Note that <a href="">SYM</a> is appropriate for certain miscellaneous forms that are not <em>spelled</em>
+as regular words, but may be <em>pronounced</em> with regular words.</p>
 
 <h3 id="examples">Examples</h3>
 
