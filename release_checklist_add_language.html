@@ -123,7 +123,15 @@ and ${treebank} is an acronym or a short word identifying the treebank (only Eng
 CamelCase, no digits or special characters). Example: “UD_Ancient_Greek-PROIEL”.</li>
   <li>Populate README.md, CONTRIBUTING.md and LICENSE.txt with default values.</li>
   <li>Create two branches, “master” and “dev”. Protect the master branch so that only the core group
-can push to it.</li>
+can push to it. Protect the dev branch, too – not against pushing by ordinary members, but
+simply marking the branch as protected means that people with push access will not be able to
+perform force pushes and alter the history on Github (which would be destructive for our
+validation infrastructure).
+    <ul>
+      <li>(Note that these steps can be automated with a script that uses the Github API.
+It is not ready yet but a prototype exists in <code class="language-plaintext highlighter-rouge">docs-automation/ghapi</code>.)</li>
+    </ul>
+  </li>
   <li>Make the dev branch writable by the Contributors team (by default they cannot push to the repository
 at all).</li>
   <li>Clone the repository to Dan’s local system.</li>
