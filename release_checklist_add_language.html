@@ -124,8 +124,9 @@ CamelCase, no digits or special characters). Example: “UD_Ancient_Greek-PROIEL
 </ul>
 
 <pre><code class="language-Shell"># If you have the gh tool, run:
-gh repo create UniversalDependencies/UD_Ancient_Greek-PROIEL --public --add-readme --team Contributors --clone
-cd UD_Tuwari-Autogramm
+gh repo create UniversalDependencies/UD_Ancient_Greek-PROIEL --public --add-readme --team Contributors
+git clone git@github.com:UniversalDependencies/UD_Ancient_Greek-PROIEL.git
+cd UD_Ancient_Greek-PROIEL
 copy ..\UD_ZZZ-Template\README.md .
 copy ..\UD_ZZZ-Template\CONTRIBUTING.md .
 copy ..\UD_ZZZ-Template\LICENSE.txt .
@@ -144,6 +145,15 @@ validation infrastructure).
 It is not ready yet but a prototype exists in <code class="language-plaintext highlighter-rouge">docs-automation/ghapi</code>.)</li>
     </ul>
   </li>
+</ul>
+
+<pre><code class="language-Shell">git commit -a -m "Initialization and the last commit to the master branch; switching to dev now."
+git checkout -b dev
+git push --all --set-upstream
+perl docs-automation\ghapi\ghapi.pl --protect UD_Ancient_Greek-PROIEL
+</code></pre>
+
+<ul>
   <li>Make the dev branch writable by the Contributors team (by default they cannot push to the repository
 at all).</li>
   <li>Clone the repository to Dan’s local system.</li>
