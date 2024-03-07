@@ -78,34 +78,60 @@
         </script>
         <h1 id="ud-for-bavarian-">UD for Bavarian <span class="flagspan"><img class="flag" src="../../flags/svg/DE-BY.svg" /></span></h1>
 
+<p>We mostly follow the <a href="https://universaldependencies.org/de/">German guidelines</a> but describe differences to those guidelines here.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
+<p>We mostly delimit based on whitespace and punctuation.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
+<h3 id="multi-word-tokens">Multi-word tokens</h3>
 
-<hr />
+<p>We treat fused prepositions and determiners as multi-word tokens (following the German UD annotation guidelines). Since there is both phonetic and orthographic variation in the forms of the determiners, we do <em>not</em> normalize them, and instead simply split the tokens into substrings (even if this occasionally results in slightly awkward tokenizations, see the last example):</p>
+
+<ul>
+  <li><em>zum</em> “to the” -&gt; <em>zu</em> (ADP) + <em>m</em> (DET)</li>
+  <li><em>aus’n</em> “from the” -&gt; <em>aus</em> (ADP) + <em>‘n</em> (DET)</li>
+  <li><em>im</em> “in the” -&gt; <em>i</em> (ADP) + <em>m</em> (DET)</li>
+</ul>
+
+<p>We similarly handle <em>zum (zun, zan, …)</em> when used in infinitive constructions (<em>Ludwig van Beethoven hod de Gwohnheit ghobt, genau 60 Kafääbaunan zum oozöön […]</em> “Ludwig van Beethoven had a habit of counting exactly 60 coffee beans”; sentence via the Wikipedia article <a href="https://bar.wikipedia.org/wiki/Kaf%C3%A4%C3%A4">Kafää</a>):</p>
+
+<ul>
+  <li><em>zum</em> -&gt; <em>zu</em> (PART) + <em>m</em> (DET)</li>
+</ul>
+
+<h3 id="tokens-split-with-spaceafterno">Tokens split with SpaceAfter=No</h3>
+
+<p>We split off shortened determiners and adpositions in noun phrases, but use the <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> MISC attribute:</p>
+
+<ul>
+  <li><em>z’Minga</em> “in Munich” -&gt; <em>z’</em> (ADP) <em>Minga</em> (PROPN)</li>
+  <li><em>d’neie</em> “the new [one]” -&gt; <em>d’</em> (DET) <em>neie</em> (ADJ)</li>
+</ul>
+
+<p>In sentences where a verb or conjunction is immediately followed by one or more pronouns, we use <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> to split them:</p>
+
+<ul>
+  <li><em>gibts</em> “there is” -&gt; <em>gibt</em> (VERB) <em>s</em> (PRON)</li>
+  <li><em>håmas</em> “we have it” -&gt; <em>hå</em> (VERB) <em>ma</em> (PRON) <em>s</em> (PRON)</li>
+</ul>
+
+<p>We do <em>not</em> split off 2nd person morphemes attached to complementizers and instead treat such cases as inflection. E.g., <em>wennsd kimmsd</em> “when.2SG come.2SG.PRES” contains two words and <em>wennsd du kimmsd</em> “when.2SG you.SG come.2SG.PRES” contains three.</p>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<p>We use all tags and follow the German guidelines, with the following exceptions/extensions:</p>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>We tag the relative marker <em>wo (wos, wej, …)</em> as SCONJ.</li>
+  <li>We consider <em>tua (doa, …)</em> “do” an AUXiliary when used accordingly.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<p>We currently do not use features.</p>
 
 <h2 id="syntax">Syntax</h2>
 
@@ -118,19 +144,12 @@
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/bar-comparison.html">N</a> Bavarian UD treebanks:</p>
+<p>There is <a href="../treebanks/bar-comparison.html">one</a> Bavarian UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/bar_a/index.html">Bavarian-A</a></li>
-  <li><a href="../treebanks/bar_b/index.html">Bavarian-B</a></li>
+  <li><a href="../treebanks/bar_maibaam">UD_Bavarian-MaiBaam</a></li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
