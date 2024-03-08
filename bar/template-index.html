@@ -76,7 +76,7 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h1 id="ud-for-bavarian-">UD for Bavarian <span class="flagspan"><img class="flag" src="../../flags/svg/DE-BY.svg" /></span></h1>
+        <h1 id="ud-for-bavarian-img-classflag-srcflagssvgde-bysvg-">UD for Bavarian <span class="flagspan">&lt;img class=”flag” src=”../../flags/svg/DE-BY.svg” /&gt;</span></h1>
 
 <p>We mostly follow the <a href="https://universaldependencies.org/de/">German guidelines</a> but describe differences to those guidelines here.</p>
 
@@ -116,31 +116,175 @@
   <li><em>håmas</em> “we have it” -&gt; <em>hå</em> (VERB) <em>ma</em> (PRON) <em>s</em> (PRON)</li>
 </ul>
 
-<p>We do <em>not</em> split off 2nd person morphemes attached to complementizers and instead treat such cases as inflection. E.g., <em>wennsd kimmsd</em> “when.2SG come.2SG.PRES” contains two words and <em>wennsd du kimmsd</em> “when.2SG you.SG come.2SG.PRES” contains three.</p>
+<h3 id="tokens-not-split-apart">Tokens NOT split apart</h3>
+
+<ul>
+  <li>We do not split off 2nd person morphemes attached to complementizers and instead treat such cases as inflection. That is, <em>wennsd kimmsd</em> “when.2SG come.2SG.PRES” contains two words and <em>wennsd du kimmsd</em> “when.2SG you.SG come.2SG.PRES” contains three.</li>
+  <li>We do not split off the 1PL inflection ending <em>-ma</em>, i.e., both <em>mia genga</em> “we go” and <em>mia gemma</em> “we go” are treated the same and consist of two words each.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>We use all tags and follow the German guidelines, with the following exceptions/extensions:</p>
+<p>Below is a copy of the German guidelines, adjusted for Bavarian:</p>
 
 <ul>
-  <li>We tag the relative marker <em>wo (wos, wej, …)</em> as SCONJ.</li>
-  <li>We consider <em>tua (doa, …)</em> “do” an AUXiliary when used accordingly.</li>
+  <li>Bavarian uses all 17 universal POS categories, including particles (<a href="">PART</a>).</li>
+  <li>The following words are particles in Bavarian: <em>ned (net, niat)</em> “not”, and the infinitive marker <em>z (zu, za)</em> “to”.</li>
+  <li>The pronoun (<a href="">PRON</a>) vs. determiner (<a href="">DET</a>) distinction is based on word lists.
+In general, words that inflect for gender, to be able to agree with a modified noun, are tagged <a href="">DET</a>, even if they
+act independently in a given sentence; that includes possessives. There is more discussion on the German page on <a href="https://universaldependencies.org/de/pos/DET.html">DET</a>.</li>
+  <li>Bavarian auxiliary verbs (<a href="">AUX</a>) are:
+    <ul>
+      <li><em>sei</em> for perfect tenses of some verbs (<em>i bin kemma</em> “I have come”) and as copula (<em>ea is oid</em> “he is old”)</li>
+      <li><em>hom</em> for perfect tenses of the remaining verbs (<em>i hob gessn</em> “I have eaten”)</li>
+      <li><em>wean</em> for future tense (<em>i wead reisn</em> “I will travel”) and for the passive (<em>des is gessn woan</em> “it was eaten”)</li>
+      <li><strong>BAR.</strong> <em>doa</em> for periphrastic structures in the indicative (<em>i dua arwadn</em> “I’m working”) or subjunctive (<em>i daad arwadn</em> “I would work”)</li>
+      <li>modal verbs <em>deaffa</em> “may”, <em>kenna</em> “can”, <em>meeng</em> “want”, <em>miassn</em> “must”, <em>soin</em> “shall”, <em>woin</em> “want”</li>
+      <li>The verbs <em>sei, hom, wean, doa</em> can also occur as normal verbs (<a href="">VERB</a>), meaning “be, have, become, do”.</li>
+    </ul>
+  </li>
+  <li>There are four main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
+    <ul>
+      <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Finite verb <code class="language-plaintext highlighter-rouge">Fin</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Participle <code class="language-plaintext highlighter-rouge">Part</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
+      <li>Verbal noun <code class="language-plaintext highlighter-rouge">Vnoun</code>, tagged <a href="">NOUN</a>, looks like a capitalized infinitive but has an article and may inflect.</li>
+    </ul>
+  </li>
+  <li><strong>BAR.</strong> We tag the relative marker <em>wo (wos, wej, …)</em> as SCONJ.</li>
 </ul>
 
 <h3 id="features">Features</h3>
 
-<p>We currently do not use features.</p>
+<p>There are no feature-related guidelines for Bavarian at the moment.</p>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<p>Below is a copy of the German guidelines, adjusted for Bavarian:</p>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
-<hr />
+<ul>
+  <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase in the nominative case, without preposition.
+    <ul>
+      <li>A finite subordinate clause may serve as the subject and is labeled <code class="language-plaintext highlighter-rouge">csubj</code>.</li>
+      <li>If an infinitive verb is to serve as the subject, it becomes a verbal noun
+(it gets the neuter singular nominative article and it is capitalized in writing),
+thus it is labeled <code class="language-plaintext highlighter-rouge">nsubj</code>.</li>
+    </ul>
+  </li>
+  <li>Objects defined in the Bavarian grammar may be bare noun phrases in accusative/dative,
+or prepositional phrases in accusative/dative.
+For the purpose of UD the objects are divided to core objects, labeled <a href="">obj</a>,
+and oblique objects, labeled <a href="">obl:arg</a>.
+    <ul>
+      <li>Bare accusative objects are considered core.</li>
+      <li>Bare dative objects, and all prepositional objects are considered oblique.
+        <ul>
+          <li>This means that verbs of giving are not ditransitive predicates in Bavarian UD, as they have one oblique dative argument and only one core object.</li>
+          <li>In rare cases a verb may license two accusative objects and then the relation <a href="">iobj</a> will be used for one of them.</li>
+        </ul>
+      </li>
+      <li>Accusative objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
+      <li>If a verb subcategorizes for the infinitive (e.g. phasal verbs or verbs of control), the infinitival complement is labeled <a href="">xcomp</a>.</li>
+    </ul>
+  </li>
+  <li>Adjuncts are usually prepositional phrases, but they can be bare noun phrases as well. They are labeled <a href="">obl</a>:
+    <ul>
+      <li>Temporal modifiers realized as accusative noun phrases: <em>i arwad jedn Dog</em> “I work every day.”</li>
+      <li>All prepositional phrases that are not prepositional objects (i.e., their role and form is not defined lexically by the predicate)
+are adjuncts.</li>
+    </ul>
+  </li>
+  <li>Extra attention has to be paid to the reflexive pronoun <em>si</em>. It can function as:
+    <ul>
+      <li>Core object (<a href="">obj</a>): <em>ea hod si im Spiegl gsehn</em> lit. “he has sighted himself in the mirror.”</li>
+      <li>Reciprocal core objects (<code class="language-plaintext highlighter-rouge">obj</code>): <em>sie hom si kissd</em> “they were kissing each other.”</li>
+      <li>Inherently reflexive verb, cannot exist without the reflexive clitic, and the clitic cannot be substituted by an irreflexive pronoun
+or a noun phrase.
+In accord with the UD guidelines, we label the relation
+between the verb and the clitic as <a href="">expl:pv</a>, not <code class="language-plaintext highlighter-rouge">compound</code>. Example: <em>mia miassn uns schicka</em> “we must hurry.”</li>
+    </ul>
+  </li>
+  <li>In passive clauses, the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.
+    <ul>
+      <li>The auxiliary verb in periphrastic passive is labeled <a href="">aux:pass</a>.</li>
+      <li>If the demoted agent is present, it has the form of a prepositional phrase and its relation is labeled <a href="">obl:agent</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
+
+<ul>
+  <li>The copula verb <em>sei</em> (be) is used in equational, attributional, locative, possessive and benefactory nonverbal clauses.
+    <ul>
+      <li>Existential clauses use a different verb, <em>geem</em> (give) with an accusative object: <em>es gibd Essn</em> “there is food.”</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>The following relation subtypes are used in Bavarian:
+    <ul>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs</li>
+      <li><a href="">obl:agent</a> for agents of passive verbs</li>
+      <li><a href="">obl:arg</a> for dative objects</li>
+      <li><a href="">expl:pv</a> for reflexive clitics of inherently reflexive verbs</li>
+      <li><a href="">aux:pass</a> for passive auxiliaries</li>
+      <li><a href="">compound:prt</a> for separable verb prefixes</li>
+      <li><a href="">det:poss</a> for possessive determiners</li>
+      <li><a href="">nmod:poss</a> for possessive modifier phrases</li>
+      <li><a href="">acl:relcl</a> for adnominal relative clauses</li>
+      <li><a href="">advcl:relcl</a> for relative clauses whose antecedent is a clause</li>
+    </ul>
+  </li>
+  <li>The following relation type is not used in Bavarian at all:
+<a href="">clf</a></li>
+</ul>
+
+<h3 id="specific-annotation-decisions-for-bavarian">Specific annotation decisions for Bavarian</h3>
+
+<h4 id="postponed-adjectives">Postponed adjectives</h4>
+
+<p>When an adjective is postponed for emphasis, we consider it an apposition (e.g., <em>da freche Bua</em> “the cheeky boy” rearranged to <em>da Bua, da freche</em>):</p>
+
+<pre><code class="language-sdparse">da Bua , da freche \n the boy , the cheeky
+appos(Bua, freche)
+det(Bua, da-1)
+det(freche, da-4)
+punct(freche, ,-3)
+appos(boy, cheeky)
+det(boy, the-7)
+det(cheeky, the-10)
+punct(cheeky, ,-9)
+</code></pre>
+
+<h4 id="infinitives-with-zu">Infinitives with <em>z(u)</em></h4>
+
+<p>Many infinitive constructions either use the cliticized infinitive marker <em>z</em> followed by a verbal infinitive or the marker <em>zu (za)</em> combined with a clitized dative determiner <em>m (n)</em> and a nominalized infinitive. We annotate such cases as follows, re-using the example sentence from above: <em>Ludwig van Beethoven hod de Gwohnheit ghobt, genau 60 Kafääbaunan zum oozöön, um si draus a Schalal Mokka zmochn.</em> “Ludwig van Beethoven had a habit of counting exactly 60 coffee beans in order to brew a cup of coffee from them”</p>
+
+<pre><code class="language-sdparse">[...] genau 60 Kafääbaunan zu/PART m/DET oozöön/NOUN , um si draus a Schalal Mokka z/PART mochn/VERB
+mark(oozöön, zu)
+det(oozöön, m)
+mark(mochn, z)
+</code></pre>
+
+<h4 id="relative-markers">Relative markers</h4>
+
+<p>We tag relative pronouns <em>(dea, de, des)</em> as PRON and annotate them as <em>nsubj/obj/…</em>
+For the relative marker <em>wo (wos, wej)</em>, we use SCONJ and <em>mark</em>:</p>
+
+<pre><code class="language-sdparse">da Disch , (dea)/PRON wo/SCONJ hier steht
+nsubj(steht, (dea))
+mark(steht, wo)
+acl:relcl(Disch, steht)
+</code></pre>
 
 <h2 id="treebanks">Treebanks</h2>
 
