@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Tswana UD</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script> -->
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-tn">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_tn/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="ud-for-tswana-">UD for Tswana <span class="flagspan"><img class="flag" src="../../flags/svg/TN.svg" /></span></h1>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>Words are generally delimited by whitespace or punctuation. Exceptions:
+    <ul>
+      <li>None at this stage</li>
+    </ul>
+  </li>
+  <li>Multiword tokens are used for idiomatic expressions like <em>le fa e le</em> “neither…nor, none of them” in Tswana.</li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<ul>
+  <li>Tswana uses 16 universal POS tags of which 11 occur in the current data.</li>
+  <li>The tag <a href="">DET</a> is not used currently as traditional grammars do not define determiners for Tswana.</li>
+  <li>The tags <a href="">ADP</a>, <a href="">INTJ</a>, <a href="">NUM</a>, <a href="">SYM</a> and <a href="">X</a> are not attested in the current data as no instances of them occur, but might be used in newly annotated data if needed.</li>
+  <li><a href="">PRON</a> is used for pronons and also for subject and object concords.</li>
+  <li><a href="">PART</a> is used for words that are called particles in traditional grammars as well as for possessive concords (POSSC* in XPOS) and tense/aspect morphemes (MORPH in XPOS).</li>
+  <li><a href="">ADV</a> is used for adverbs and additionally for negative markers (MNEG in XPOS).</li>
+  <li>Currently, there are 3 auxiliaries (<a href="">AUX</a>) in the Tswana data: <em>ne</em>, <em>be</em> and <em>ka ke</em>.</li>
+</ul>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>Nouns have <a href="">NounClass</a> specifying Bantu classes (inherently indicative of singular or plural).</li>
+  <li>Adjectives agree with Nouns with respect to <a href="">NounClass</a>.</li>
+  <li>Tokens annotated with UPOS <a href="">PRON</a>, but tagged as concords in XPOS (SC<em>, OC</em>) have <a href="">NounClass</a> information.</li>
+  <li>Tokens annotated with UPOS <a href="">PART</a>, but tagged as concords in XPOS (POSSC*) have <a href="">NounClass</a> information.</li>
+  <li><a href="">Polarity</a> is only indicated for negative values as <code class="language-plaintext highlighter-rouge">Neg</code> and applies to morphemes tagged <a href="">ADV</a> in UPOS and MNEG in XPOS.</li>
+  <li>Other features might be added during future annotation efforts.</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<h3 id="root">Root</h3>
+<p>The main verb in a Tswana main clause is the <a href="">root</a>. If an identifying, describing or associative copulative verb is included in a sentence the complement of these verbs is the root.</p>
+
+<h3 id="subjects">Subjects</h3>
+<p>A nominal subject <a href="">nsubj</a> is a nominal which is the syntactic subject and the proto-agent of a clause. That is, it is in the position that passes typical grammatical tests for subjecthood, and this argument is the more agentive, the doer, or the proto-agent of the clause. This nominal in Tswana may be headed by a noun or pronoun or it may also be a possessive particle phrase or a qualificative particle phrase.</p>
+
+<p>In Tswana, the subject concord (aka subject agreement morpheme) is an agreement marker which marks the relation between a subject and a verb. This concord acquires a pronominal function when the overt subject is omitted. The relation <a href="">nsubj</a> is assigned in Tswana to show the relation between the verb and a preceding subject concord when there is no overt subject. For example, in Sentence 13 <em>O lebile eng?</em> “You[SubjConc] see[Perf] what?” a <a href="">nsubj</a> relation is assigned for the relation between <em>lebile</em> “see” and the preceding subject concord <em>o</em> “you”.</p>
+
+<p>The <a href="">nsubj</a> relation is also used for the nominal subject of a passive verb or verb group, even though the subject is then not typically the proto-agent argument due to valency changing operations. The subtype <a href="">nsubj:pass</a> is used in this instance. For example, in Sentence 12 the subtype <a href="">nsubj:pass</a> is assigned between <em>kwadilwe</em> “write[Perf]” and <em>e</em> “it[SubjConc]”.</p>
+
+<h3 id="objects">Objects</h3>
+<ul>
+  <li>Direct objects:  The direct object is the object that denotes the entity acted upon or which undergoes a change of state or motion (the proto-patient). The phrase acting as the direct object in Tswana may be headed by a noun or pronoun or it may also be a possessive particle phrase or a qualificative particle phrase.<br />
+An object in Tswana can be replaced with an object concord (aka object agreement morpheme). This morpheme is included in the morphological structure of the verb. The <a href="">obj</a> relation between the verb and the preceding object concord (direct) indicate the pronominal function of this concord. The subtype <a href="">obj:conc</a> is also included.</li>
+  <li>Indirect objects:  The indirect object is the object that is indirectly affected by the process indicated in the verb. It is usually a benefactor because the process is carried out on its behalf. The phrase acting as the indirect object in Tswana may be headed by a noun or pronoun or it may also be a possessive particle phrase or a qualificative particle phrase.<br />
+An indirect object in Tswana can be replaced with an object concord (aka object agreement morpheme). This morpheme is included in the morphological structure of the verb. The <a href="">obj</a> relation between the verb and the preceding object concord (indirect) indicate the pronominal function of this concord and the subtype <a href="">iobj:conc</a> is included.</li>
+</ul>
+
+<h3 id="auxiliary-verbs-aux">Auxiliary verbs <a href="">aux</a></h3>
+<p>An auxiliary verb enriches the meaning of the complementary main verb, copulative verb or another auxiliary verb phrase and can add semantic information regarding the mood, tense, aspect and/or polarity of a verb. It adds information on the progression or completion of an action. It expresses a certain type of duration of the action or it expresses the logical time at which the action is executed. For example, the auxiliary verb <em>ne</em> indicates an action that is incomplete and continuing at a certain moment in the past.</p>
+
+<p>The <a href="">aux</a> relation is used in Tswana to indicate the relation between a verb and the preceding auxiliary verb but also for the relation between main verbs such as <em>batla</em> “want”, <em>leka</em> “try”, <em>kgona</em> “manage” when they are followed by an infinitive verb as for example in sentences 3, 4, and 11.</p>
+
+<h3 id="copulatives-cop">Copulatives <a href="">cop</a></h3>
+<p>A <a href="">cop</a> (copula) is the relation of a function word used to link a subject to a nonverbal predicate.
+Tswana distinguishes three types of copulatives: identifying copulative, describing copulative and associative copulative verbs. The morphological structure of these verbs may include tense, aspect, mood and polarity information.</p>
+
+<ul>
+  <li>Identifying copulative:  identifies a subject with regards to type, status or profession or to predicate the existence or presence of a thing</li>
+  <li>Describing copulative:  establishes some quality, characteristic or state of a subject, or its situation or locality</li>
+  <li>Associative copulative:  expresses the idea of the English have or be with and indicates possession or association</li>
+</ul>
+
+<p>When the verb in Tswana is an identifying or describing copulative verb, the root of the clause is the complement of the copulative verb. These two types of copulative verbs are POS tagged as [AUX], and the <a href="">cop</a> relation is used between the root and the preceding copulative verb.</p>
+
+<p>In the case of an associative copulative verb, the root of the clause is the copulative verb. The associative copulative verbs in Tswana are POS tagged as [VERB], and the <a href="">obj</a> relation is used between the root and the complement that follows it. This analysis differs from traditional Tswana linguistic descriptions.</p>
+
+<h3 id="clausal-complements-ccomp">Clausal complements <a href="">ccomp</a></h3>
+<p>The clausal complement in Tswana indicates that there exists a relation between a main clause and a subordinate clause in the infinitive, subjunctive, and participial moods.</p>
+
+<ul>
+  <li>Infinitive:  expresses a meaning of purpose, for example: <em>Ba nê ba ile go thusa batsadi ba bôna.</em> “They went to help their parents.”</li>
+  <li>Subjunctive:  expresses an action that indicates a certain goal or a result of another preceding action and the conjunction <em>gore</em> “that, so that” is used as an introductory member to that part of the sentence that includes an action in the subjunctive mood, for example: <em>Ke bula lebati gore baithuti ba tsene.</em> “I open the door so that the students can come in.”</li>
+  <li>Participial:  expresses an action that takes place simultaneously with another action, for example <em>Batho ba tsamaya ba opela.</em> “The people walk singing.”<br />
+It can also state a stipulation or precondition for the execution of another action. Conjunctions such as <em>fa</em> “as, while, when, if”, <em>le fa</em> “even if, although, while” and <em>ka</em> “since” are then included as an introductory member to that part of the sentence that includes a conditional action, for example:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tswana Example</th>
+      <th style="text-align: center">Translation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>Ke tla mmitsa fa a tlilê.</em></td>
+      <td style="text-align: center">“I will call him when I have arrived.”</td>
+    </tr>
+    <tr>
+      <td><em>Re tla ya gae le fa pula e na.</em></td>
+      <td style="text-align: center">“We will go home while it is raining.”</td>
+    </tr>
+    <tr>
+      <td><em>Re tla ya gae ka ba jelê.</em></td>
+      <td style="text-align: center">“We will go home since they have eaten.”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="modifiers">Modifiers</h3>
+<ul>
+  <li><a href="">nmod</a>:  This relation is used between a nominal and a modifier. In Tswana nouns can be modified with pronouns.</li>
+  <li><a href="">amod</a>:  An adjectival modifier of a noun (or pronoun) is any adjectival phrase that serves to modify the noun (or pronoun). This relation is used in Tswana between a nominal and the complement of a qualificative particle. For example in <em>naga e kgolo</em> “big country” the qualificative particle phrase is <em>e kgolo</em>. The <a href="">amod</a> relation is used to indicate the relation between <em>naga</em> “country” and <em>kgolo</em> “big”.</li>
+  <li><a href="">advmod</a>:  An adverbial modifier of a word is a (non-clausal) adverb or adverbial phrase that serves to modify a predicate or a modifier word. In Tswana an adverb is a word which is used to modify the meaning of a verb:
+    <ul>
+      <li>Basic adverbs that refer to manner for example <em>ruri</em> “really, truly”</li>
+      <li>Some manner adverbs include an adverbial prefix <em>ga</em> or <em>se</em> in front of adjectival roots, for example <em>gagolo</em> “greatly, especially, essentially” and <em>sentle</em> “nicely”</li>
+      <li>Basic adverbs that refer to time (temporal) for example <em>jaanong</em> “now”</li>
+      <li>Interrogatives, for example <em>eng?</em> “what?”, <em>mang?</em> “who (singular)”, <em>bomang?</em> “who? (plural)”, <em>leng?</em> “when?”, <em>jang?</em> “how?”, <em>kae?</em> “where?” and <em>gakae?</em> “how many times?”
+  <a href="">advmod</a> is also used for negation: the negative marker is in and <a href="">advmod</a> relation with the verb it modifies (analogue to English).</li>
+    </ul>
+  </li>
+  <li><a href="">appos</a>:  An appositional modifier of a noun is a nominal immediately following the first noun that serves to define, modify, name, or describe that noun. It therefore adds some additional information to the content of the head in case some misunderstanding, or vagueness might occur.</li>
+</ul>
+
+<h3 id="obliques-obl">Obliques <a href="">obl</a>:</h3>
+<p>The <a href="">obl</a> relation is used for a non-core oblique argument or adjunct. The following subtypes are relevant:</p>
+
+<ul>
+  <li><a href="">obl:agent</a>: in passive constructions, e.g. <em>Basimane ba romilwe <strong>ke banna</strong>.</em> “The boys are being sent by the men.”</li>
+  <li><a href="">obl:lmod</a>: specifies the location, e.g. <em>mo lebekeleng</em> “in the shop”</li>
+  <li><a href="">obl:tmod</a>: temporal modifier, e.g. <em>maabane</em> “yesterday”</li>
+</ul>
+
+<h3 id="case-case">Case <a href="">case</a></h3>
+<p>Tswana has a rich verbal morphology, including prefixes indicating noun classes and agreement. Tswana does not show any case marking morphology that is comparable to case systems in other languages.
+The case relation in Tswana is used for the relation between a nominal and a preceding particle (including a possessive particle, the instrumental particle, a locative particle, or the agentative particle).</p>
+
+<h3 id="coordination--cc">Coordination  <a href="">cc</a></h3>
+<p>This relation exists between a conjunct and the preceding coordinating conjunction. Examples of conjunctions that can be included between non-predicative words and word groups are <em>le</em> “and” and <em>kgôtsa</em> “or”. Examples of conjunctions that can be included between predicative words and word groups are <em>mme</em> “and”, <em>e bile</em> “and”, <em>le gôna</em> “also”, <em>kgôtsa</em> “or” and <em>mme</em> “but”.</p>
+
+<h3 id="discourse"><a href="">discourse</a></h3>
+<p>This relation is used for interjections and other discourse particles and elements (which are not clearly linked to the structure of the sentence, except in an expressive way). In Tswana, this relation is also used for the interrogative particle <em>A</em> included at the beginning of a sentence. This particle is used to change an indicative sentence to an interrogative sentence. See for example Sentence 4 <em><strong>A</strong> o batla go tsamaya?</em> “Do you want to go?” where <em>A</em> is the interrogative particle.</p>
+
+<h3 id="fixed"><a href="">fixed</a></h3>
+<p>The fixed relation is used in Tswana for multi-word expressions consisting of two or more words that are considered to behave like a function word. For example <em>le fa e le</em> “neither … nor, none of them” is an idiomatic phrase functioning as a conjunction in Tswana.</p>
+
+<h3 id="compound"><a href="">compound</a></h3>
+<p>The compound relation is used in Tswana for the disjunctively written TAME morphemes in the morphological structure of a verb. These morphemes include the present tense morpheme <em>a</em>, the progressive morpheme <em>sa</em> “still”, the potential morpheme <em>ka</em> “can, may” and the future tense morpheme <em>tla</em> “will, shall”. These morphemes are written disjunctively, but linked to the following verb or auxiliary by the compound relation.
+This relation is also used for go SC15 followed by a verb expressing a gerund.</p>
+
+<h3 id="mark"><a href="">mark</a></h3>
+<p>A marker is used in Tswana for conjunctions that mark a clause as subordinate to another clause. The marker is an introductory member of a clause that includes an action in the subjunctive or participial mood. For the subjunctive, the conjunction <em>gore</em> “that, so that” is used.</p>
+
+<p>For the participial, a conjunction such as <em>fa</em> “as, while, when, if”, <em>le fa</em> “even if, although, while” and <em>ka</em> “since” are used, for example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tswana Example</th>
+      <th style="text-align: center">Translation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>Ke tla mmitsa <strong>fa</strong> a tlilê.</em></td>
+      <td style="text-align: center">“I will call him when I have arrived.”</td>
+    </tr>
+    <tr>
+      <td><em>Re tla ya gae <strong>le fa</strong> pula e na.</em></td>
+      <td style="text-align: center">“We will go home while it is raining.”</td>
+    </tr>
+    <tr>
+      <td><em>Re tla ya gae <strong>ka</strong> ba jelê.</em></td>
+      <td style="text-align: center">“We will go home since they have eaten.”</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="">mark</a> is also used in Tswana in infinitive verbs, for example <em>go tlogela</em> “to stop” where the marker is <em>go</em> “to”.</p>
+
+<p><a href="">mark</a> is also used in a relative clause where the qualificative particle is the marker. The qualificative particle always agrees with a specific noun class in Tswana, for example in <em>e kgolo</em> “” the marker is the qualificative particle <em>e</em> that indicates noun class 9 agreement.</p>
+
+<h3 id="expl"><a href="">expl</a></h3>
+<p>In instances where an overt subject is realised in a sentence, the subject concord is an agreement marker which marks the relation between the overt subject and the verb. In these cases we opted for the <a href="">expl</a> relation for the subject concord. This relation is used in UD for phenomena such as clitic doubling (e.g. in Romance languages) or the doubling of a lexical nominal and a pronominal clitic (e.g. in Greek and Bulgarian). Even though subject concords are not the same as clitics, they behave in a similar fashion in that they are a type of “pronominal” copy without its own semantic role.</p>
+
+<h3 id="vocative-vocative">Vocative <a href="">vocative</a></h3>
+<p>An addressee’s name is linked to the sentence. In Tswana the vocative consists of a personal name or a noun that refers to the second person singular (you) and the second person plural, (you and company or you and those with you). Examples:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tswana Example</th>
+      <th style="text-align: center">Translation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em><strong>Pule</strong>, tlaa kwano!</em></td>
+      <td style="text-align: center">“Pule, come here!”</td>
+    </tr>
+    <tr>
+      <td><em><strong>Bomma</strong>, ba rome!</em></td>
+      <td style="text-align: center">“Ladies, send them!”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is <a href="../treebanks/LCODE-comparison.html">one</a> Tswana UD treebanks:</p>
+
+<ul>
+  <li><a href="../treebanks/tn/index.html">Tswana</a></li>
+</ul>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'tn';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
