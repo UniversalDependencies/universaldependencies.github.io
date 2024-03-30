@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>nmod:appos</title>
+    <title>compound:nn</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-mdf">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-kpv">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_mdf/dep/nmod-appos.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_kpv/dep/compound-nn.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,38 +76,42 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>nmod:appos</code>: nominal modifier apposition</h2>
+        <h2><code>compound:nn</code>: noun compound modifier</h2>
 
-<p>TODO: check this page !!!</p>
-
-<p>The <code class="language-plaintext highlighter-rouge">nmod:appos</code> relation is used for apposition-like support nouns which modify nominal elements.
-The nominal modifier is not introduced by an adposition (otherwise we use the <a href="">nmod</a> relation).
-Contrary to the <a href="">appos</a> relation, the <code class="language-plaintext highlighter-rouge">nmod:appos</code> relation can also go right to left.
-This not the <code class="language-plaintext highlighter-rouge">compound:nn</code> found in the Finnish treebanks.</p>
+<p>The dependency type <code class="language-plaintext highlighter-rouge">compound:nn</code>, which stands for <em>noun compound modifier</em> has one use in the Komi Zyrian UD scheme. It is used for linking non-inflecting proper nouns to their inflecting appellations. Appellations may be titles or even concepts, e.g., ‘professor’, ‘fellow’, ‘town’, ‘river’, ‘event’, etc.
+Contrary to the <a href="">appos</a> relation, the <code class="language-plaintext highlighter-rouge">compound:nn</code> relation goes right to left, and only the second element declines.</p>
 
 <p>Here is the first example:</p>
 
-<pre><code class="language-sdparse">Стирнятне работасть цехса , а Яхим атянь путозь комендантокс . \n The girls worked in the shop, and old-man Yakhim was was appointed foreman.
-cc(путозь-8, а-5)
-obj(путозь-8, атянь-7)
-nmod:appos(атянь-7, Яхим-6)
-xcomp(путозь-8, комендантокс-9)
-
+<pre><code class="language-sdparse">Шонді пуксигӧн Ручпиян сиктсянь шептасьысь нянь йӧръяс костті... ю дорӧ лэччисны ныв-зон чукӧр. \n As the sun set, a group of girls and boys went down to the river between the patches of heading grain from Ruchpiyan village.
+nmod:subj(пуксигӧн-2, Шонді-1)
+advcl:tcl(лэччисны-12, пуксигӧн-2)
+nmod:appos(сиктсянь-4, Ручпиян-3)
+obl:lfrom(лэччисны-12, сиктсянь-4)
 </code></pre>
 
+<pre><code class="language-sdparse">Эжва ю \n The Ezhva River
+nmod:appos(ю, Эжва)
+</code></pre>
+
+<pre><code class="language-sdparse">Йӧзӧдӧма « Войвыв кодзув » журналын . \n Published in «Vojvyv kodzuv» magazine.
+nmod(кодзув, Войвыв)
+nmod:appos(журналын, кодзув)
+obl:lmod(Йӧзӧдӧма, журналын)
+</code></pre>
 <!-- Interlanguage links updated Po 6. listopadu 2023, 21:43:03 CET -->
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-nmod:appos in other languages:
+compound:nn in other languages:
 
-[<a href="../../fr/dep/nmod-appos.html">fr</a>]
+[<a href="../../fi/dep/compound-nn.html">fi</a>]
 
-[<a href="../../kpv/dep/nmod-appos.html">kpv</a>]
+[<a href="../../olo/dep/compound-nn.html">olo</a>]
 
-[<a href="../../mdf/dep/nmod-appos.html">mdf</a>]
+[<a href="../../sme/dep/compound-nn.html">sme</a>]
 
 
 
@@ -156,7 +160,7 @@ nmod:appos in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'mdf';
+        Collections.listing['_current'] = 'kpv';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
