@@ -105,27 +105,43 @@
 
 <h3 id="part-participle"><a name="Part"><code class="language-plaintext highlighter-rouge">Part</code></a>: participle</h3>
 
-<p>Participle is a non-finite verb form that shares properties of verbs and adjectives. It is used to form various periphrastic verb forms such as complex tenses and passives. In English, all words with the PTB tag <code class="language-plaintext highlighter-rouge">VBD</code> have this feature. Further, words with the PTB tag <code class="language-plaintext highlighter-rouge">VBG</code> can also have this feature if they are preceded by an inflection of <em>to be</em>.</p>
+<p>Participle is a non-finite verb form that shares properties of verbs and adjectives. It is used to form various periphrastic verb forms such as complex tenses and passives. In English, all words with the PTB tag <code class="language-plaintext highlighter-rouge">VBD</code> have this feature. Further, words with the PTB tag <code class="language-plaintext highlighter-rouge">VBG</code> can also have this feature (along with <a href="">Tense</a><code class="language-plaintext highlighter-rouge">=Pres</code>) if they are used in the progressive construction (with an <a href="">aux</a>), or otherwise occur in non-noun-like environments.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></p>
 
 <h4 id="examples-2">Examples:</h4>
 
 <ul>
   <li><em>He could have <b>been prepared</b> if he had forseen it</em>.</li>
   <li><em>I will be <b>driving</b> home</em>.</li>
+  <li><em>They are <b>being</b> nasty</em>.</li>
+  <li><em>Rumsfeld initially rejected the proposal, <b>saying</b> there were “no good targets” there.</em></li>
 </ul>
 
 <h3 id="ger-gerund"><a name="Ger"><code class="language-plaintext highlighter-rouge">Ger</code></a>: gerund</h3>
 
-<p>Gerund is a non-finite verb form that shares properties of verbs and nouns. In English, all words with the PTB tag <code class="language-plaintext highlighter-rouge">VBG</code> have this feature if they are not preceded by an inflection of <em>to be</em>.</p>
+<p>Gerund is a non-finite verb form that shares properties of verbs and nouns. In English, the traditional grammar distinction between present participles and gerunds is not made in the Penn Treebank or more modern grammars, which treat <em>-ing</em> forms as a single inflection of the verb (CGEL calls it the “gerund-participial” form). UD approximates the traditional grammar distinction, subdividing words with the PTB tag <code class="language-plaintext highlighter-rouge">VBG</code>: they have this feature (with no <a href="">Tense</a>) if they occur in noun-like environments and lack an <a href="">aux</a> dependent.<sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></p>
+
+<p>Note that some forms derived from <em>-ing</em> verbs are tagged as <a href="">NOUN</a>s; these do not receive verbal features.</p>
 
 <h4 id="examples-3">Examples:</h4>
 
+<!-- These are advcl so might actually be labeled as participles per our rules
+* _I look forward to <b>seeing</b> you._
+* _She turns a blind eye to my <b>being</b> late._
+-->
 <ul>
-  <li><em>I look forward to <b>seeing</b> you.</em></li>
-  <li><em>She turns a blind eye to my <b>being</b> late.</em></li>
+  <li><em>I enjoyed <b>working</b> with you.</em></li>
+  <li><em>Buffett’s usual justification for <b>keeping</b> most of his money</em></li>
+  <li>cf. <em>The opening of the store was delayed.</em>: <em>opening</em> is tagged as a <a href="">NOUN</a>, so it has no <code class="language-plaintext highlighter-rouge">VerbForm</code></li>
 </ul>
 
 <!-- Interlanguage links updated Po 6. listopadu 2023, 21:42:12 CET -->
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>The <code class="language-plaintext highlighter-rouge">VBG</code> policy was refined for the v2.14 release and implemented in GUM and EWT per the rules detailed <a href="https://github.com/UniversalDependencies/UD_English-EWT/issues/305">here</a>. (Coordination adds some complexity to the rules as it needs to be determined whether it is a noun-like coordination.) <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+  </ol>
+</div>
 
 
 <!-- "in other languages" links -->
