@@ -166,7 +166,8 @@ punct(eżaminatur, .-5)
 punct(examiner, .-11)
 </code></pre>
 
-<p>Polish [pl] uses a demonstrative pronoun instead:</p>
+<p>Polish [pl] uses a demonstrative pronoun instead:
+<!-- In fact, as of UD 2.13, the Polish treebanks tag _to_ as `AUX` but I believe that it is a mistake. --></p>
 
 <pre><code class="language-sdparse">Moja/DET miesięczna/ADJ pensja/NOUN to/DET czterysta/NUM peso/NOUN ./PUNCT \n My monthly salary that four-hundred pesos .
 det(pensja, Moja)
@@ -183,7 +184,8 @@ punct(peso, .-7)
 punct(pesos, .-15)
 </code></pre>
 
-<p>Russian [ru] can also use a demonstrative pronoun instead of the zero strategy:</p>
+<p>Russian [ru] can also use a demonstrative pronoun instead of the zero strategy:
+<!-- In fact, as of UD 2.13, the Russian treebanks attach _это_ as `expl` but I believe that it is a mistake. --></p>
 
 <pre><code class="language-sdparse">Отмена/NOUN недействующих/ADJ функций/NOUN –/PUNCT это/DET формальный/ADJ акт/NOUN ./PUNCT \n Otmena nedejstvujuščix funkcij – èto formal'nyj akt . \n Canceling inactive functions – that formal act .
 nmod(Отмена, функций)
@@ -211,9 +213,46 @@ punct(act, .-26)
 
 <h2 id="verbal-copula-strategy">Verbal Copula Strategy</h2>
 
+<p>In many languages the copula has verb-like inflection and behavior (it may be 
+even used as a main verb in other contexts). In UD we treat such copulas as 
+auxiliaries whose function is to provide verbal features (e.g., <a href="">Tense</a>) to 
+the nominal predicate. They are tagged <a href="">AUX</a> and attached to the nominal 
+predicate as <a href="">cop</a>.</p>
+
+<p>English [en]</p>
+
+<pre><code class="language-sdparse">Ivan/PROPN is/AUX a/DET dancer/NOUN ./PUNCT
+nsubj(dancer, Ivan)
+cop(dancer, is)
+det(dancer, a)
+punct(dancer, .)
+</code></pre>
+
+<p>Russian [ru] uses the zero strategy (or a nonverbal copula) in the present 
+indicative, but it uses a verbal copula in other tenses and moods. It also 
+marks the nominal predicate with the instrumental case, while the subject 
+stays in the nominative and the copula agrees with it in <a href="">Number</a> and 
+<a href="">Gender</a>.</p>
+
+<pre><code class="language-sdparse">Иван/PROPN был/AUX танцором/NOUN ./PUNCT \n Ivan byl tancorom . \n Ivan was dancer .
+nsubj(танцором, Иван)
+nsubj(tancorom, Ivan-6)
+nsubj(dancer, Ivan-11)
+cop(танцором, был)
+cop(tancorom, byl)
+cop(dancer, was)
+punct(танцором, .-4)
+punct(tancorom, .-9)
+punct(dancer, .-14)
+</code></pre>
+
 <h2 id="verbal-strategy">Verbal Strategy</h2>
 
 <h1 id="other-remarks-secondary-predication-deficient-paradigms-property-predication-clause-as-a-predicate">Other Remarks: Secondary predication, deficient paradigms, property predication, clause as a predicate…</h1>
+
+<p>Is the Turkish strategy Verbal, or Verbal Copula?
+In languages like Chinese it may be difficult to decide that the copula is verbal because the Chinese verbs do not inflect.</p>
+
 
       </div>
 
