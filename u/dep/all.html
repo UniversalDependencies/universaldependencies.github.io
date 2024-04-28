@@ -2154,15 +2154,34 @@ sentence, except in an expressive way). We generally follow the
 guidelines of what the Penn Treebanks count as an INTJ.  They define
 this to include: interjections (<em>oh</em>, <em>uh-huh</em>, <em>Welcome</em>), fillers
 (<em>um</em>, <em>ah</em>), and non-adverbial discourse markers (<em>well</em>, <em>like</em>, but
-not <em>you know</em> or <em>actually</em>).</p>
+not <em>you know</em> or <em>actually</em>).
+We also use <code class="language-plaintext highlighter-rouge">discourse</code> for list enumerators (e.g. <em>1.</em>, <em>(a)</em> marking an item in a sequence).
+(Bullets, by contrast, are considered <a href="u-pos/PUNCT">punctuation</a> and attach as <a href="">punct</a>.)</p>
 
-<p>These discourse elements are attached to the head of the most relevant nearby clause, 
+<p>These discourse elements are attached to the head of the most relevant nearby unit, often a clause.
+<!--
 which is why they are grouped with non-core clausal dependents even though they are normally
-not dependents of the predicates as such.</p>
+not dependents of the predicates as such.
+--></p>
 
 <pre><code class="language-sdparse">Iguazu is in Argentina :)
 discourse(Argentina-4, :)-5)
 </code></pre>
+
+<pre><code class="language-sdparse">5/NUM . Cool for 10 minutes and serve .
+discourse(Cool, 5)
+punct(5, .-2)
+</code></pre>
+
+<pre><code class="language-sdparse">To enter the stadium , you must not have — ( a ) a weapon ; ( b ) any food ; and ( c ) any drink .
+discourse(weapon, a-12)
+discourse(food, b)
+discourse(drink, c)
+conj(weapon, food)
+conj(weapon, drink)
+cc(drink, and)
+</code></pre>
+
 <!-- Interlanguage links updated Po 6. listopadu 2023, 21:42:51 CET -->
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/discourse.md" target="#">edit discourse</a></p>
@@ -3160,7 +3179,10 @@ punct(Food, ,-9)
 
 <p>However, <code class="language-plaintext highlighter-rouge">list</code> should not be over-used. If a construction can easily be analyzed using the grammatical relations of standard sentences, typically as a coordinated structure, then it should be analyzed with these more standard relations, even if it is laid out as a list typographically.  In particular, when the list is written as a single sentence, with commas and overt coordination, then it should be analyzed as a coordinated structure.</p>
 
-<p>For list items, the de facto decision taken in <a href="https://github.com/UniversalDependencies/docs/issues/156">issue 156</a> is that, for enumerated lists, regardless of whether the items are numbered with arabic, roman, or other numerals, or are given letters, we will regard the item contents as the head, and the item enumerator will be a <code class="language-plaintext highlighter-rouge">nummod</code> of it and given the part of speech <code class="language-plaintext highlighter-rouge">NUM</code>. Any punctuation with the list item will be a <code class="language-plaintext highlighter-rouge">punct</code> dependent of the item enumerator. For itemized lists with bullet, dash or similar markers, the current standard is to give the marker a <code class="language-plaintext highlighter-rouge">PUNCT</code> part of speech and then to give it the dependency relation <code class="language-plaintext highlighter-rouge">punct</code> to the head of the item content.</p>
+<!--
+For list items, the de facto decision taken in [issue 156](https://github.com/UniversalDependencies/docs/issues/156) is that, for enumerated lists, regardless of whether the items are numbered with arabic, roman, or other numerals, or are given letters, we will regard the item contents as the head, and the item enumerator will be a `nummod` of it and given the part of speech `NUM`. Any punctuation with the list item will be a `punct` dependent of the item enumerator. For itemized lists with bullet, dash or similar markers, the current standard is to give the marker a `PUNCT` part of speech and then to give it the dependency relation `punct` to the head of the item content.
+-->
+<p>For list item markers, see <a href="">discourse</a>.</p>
 
 <!-- Interlanguage links updated Po 6. listopadu 2023, 21:43:00 CET -->
 
