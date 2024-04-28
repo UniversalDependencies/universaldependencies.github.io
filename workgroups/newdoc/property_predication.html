@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Construction-Oriented Documentation</title>
+    <title>Property Predication</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/workgroups/newdoc/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/workgroups/newdoc/property_predication.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,95 +76,143 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h1 id="construction-oriented-documentation">Construction-Oriented Documentation</h1>
+        <h1 id="clauses-with-predication-of-property-concepts">Clauses with Predication of Property Concepts</h1>
+
+<p>Property predication uses similar strategies as <a href="object_predication.html">object
+predication</a>. It is recommended to read about object
+predication first, as not all details are repeated here.</p>
+
+<p>Even though the inventory of strategies is similar, a concrete language may
+use different strategies for object and property predication.</p>
+
+<p>Properties are typically expressed with adjectives. Example: <em>John is smart.</em></p>
+
+<p>The exact UD analysis of the construction depends on the strategy used by the
+language to express it. What the analyses have in common is that the property
+(e.g., <em>smart</em>) is the root of the clause, while the entity said to have the
+property is attached to it as the subject.</p>
+
+<h2 id="zero-strategy">Zero Strategy</h2>
+
+<p>The subject and the property are juxtaposed.</p>
+
+<p>Waskia [wsk] (Ross and Natu Paol 1978:10; Stassen 1997:144; Croft 2022:299)</p>
+
+<pre><code class="language-sdparse">Kawam/NOUN mu/DET ititi/ADJ ./PUNCT \n House the new.PL .
+det(Kawam, mu)
+det(House, the)
+nsubj(ititi, Kawam)
+nsubj(new.PL, House)
+punct(ititi, .-4)
+punct(new.PL, .-9)
+</code></pre>
+
+<p>Russian [ru]</p>
+
+<pre><code class="language-sdparse">Иван/PROPN умный/ADJ ./PUNCT \n Ivan umnyj . \n Ivan smart .
+nsubj(умный, Иван)
+nsubj(umnyj, Ivan-5)
+nsubj(smart, Ivan-9)
+punct(умный, .-3)
+punct(umnyj, .-7)
+punct(smart, .-11)
+</code></pre>
+
+<h2 id="nonverbal-copula-strategy">Nonverbal Copula Strategy</h2>
+
+<p>Maltese [mt]</p>
+
+<pre><code class="language-sdparse">Pietru/PROPN huwa/PRON intelliġenti/ADJ ./PUNCT \n Pietru he intelligent .
+nsubj(intelliġenti, Pietru-1)
+nsubj(intelligent, Pietru-7)
+cop(intelliġenti, huwa)
+cop(intelligent, he)
+punct(intelliġenti, .-4)
+punct(intelligent, .-9)
+</code></pre>
+
+<h2 id="verbal-copula-strategy">Verbal Copula Strategy</h2>
+
+<p>German [de]: predicative form <em>klein</em> vs. attributive <em>das kleine Auto, ein kleines Auto</em></p>
+
+<p>English [en]</p>
+
+<pre><code class="language-sdparse">Ivan/PROPN is/AUX a/DET dancer/NOUN ./PUNCT
+nsubj(dancer, Ivan)
+cop(dancer, is)
+det(dancer, a)
+punct(dancer, .)
+</code></pre>
+
+<p>Russian [ru] uses the zero strategy (or a nonverbal copula) in the present
+indicative, but it uses a verbal copula in other tenses and moods. It also
+marks the nominal predicate with the instrumental case, while the subject
+stays in the nominative and the copula agrees with it in <a href="">Number</a> and
+<a href="">Gender</a>.</p>
+
+<pre><code class="language-sdparse">Иван/PROPN был/AUX танцором/NOUN ./PUNCT \n Ivan byl tancorom . \n Ivan was dancer .
+nsubj(танцором, Иван)
+nsubj(tancorom, Ivan-6)
+nsubj(dancer, Ivan-11)
+cop(танцором, был)
+cop(tancorom, byl)
+cop(dancer, was)
+punct(танцором, .-4)
+punct(tancorom, .-9)
+punct(dancer, .-14)
+</code></pre>
+
+<h2 id="verbal-strategy">Verbal Strategy</h2>
+
+<p>Finally, some languages will treat the object predicate as a verb rather than
+a noun, and apply verbal inflection to it. As a consequence, the predicate
+will be analyzed in UD as a <a href="">VERB</a> and the construction will be
+unrecognizable from normal predication of action concepts. (Note that the
+MISC column can optionally carry information about the verb being derived
+from a noun, but this is neither required nor regulated by the UD
+guidelines.)</p>
+
+<p>Classical Nahuatl [nci] “I am a doctor” (Croft 2022:294; compare to <em>Ni-chōca</em> “I am crying”):</p>
+
+<pre><code class="language-sdparse">Ni-tīcitl/VERB ./PUNCT \n 1SG-doctor .
+punct(Ni-tīcitl, .-2)
+punct(1SG-doctor, .-5)
+</code></pre>
+
+<p>Language-specific word segmentation may play a role in distinguishing the
+verbal strategy from verbal copulas. In Turkish [tr], the surface
+representation looks either like the zero strategy (in present tense) or like
+the verbal strategy (when past-tense suffix <em>-DI</em> is attached to the nominal
+predicate). But as of UD v2, the suffix is analyzed as a form of encliticized
+copula <em>i</em> and is treated as a separate syntactic word. Consequently, the
+sentence is analyzed as using the verbal copula strategy.</p>
+
+<pre><code class="language-sdparse">Necla/PROPN öğretmen/NOUN =di/AUX ./PUNCT \n Necla teacher was .
+nsubj(öğretmen, Necla-1)
+nsubj(teacher, Necla-6)
+cop(öğretmen, =di)
+cop(teacher, was)
+punct(öğretmen, .-4)
+punct(teacher, .-9)
+</code></pre>
+
+<h1 id="to-do">TO DO:</h1>
+
+<p>Perhaps each of the following should have its own page in the documentation. Or at least location+existence+possession should be separate.</p>
 
 <ul>
-  <li><a href="simple_verbal_clauses.html">Simple verbal clauses</a> (intransitive, transitive; core vs. oblique arguments)</li>
-  <li><a href="simple_noun_phrases.html">Simple noun phrases</a>
+  <li>Property predication: Not at the same level of detail. Refer to object predication, quickly show examples where property predication works the same.
     <ul>
-      <li><a href="two_nominals.html">Two nominals</a></li>
+      <li>Some languages (Chinese) may use different strategies for property predication (zero) vs. object predication (copula).</li>
+      <li>In Chinese it may be difficult to establish whether the copula is verbal, as there is no verbal morphology.</li>
+      <li>The property can be a numeral.</li>
+      <li>The property can be a case-marked nominal (“for him”, “in shape”).</li>
     </ul>
   </li>
-  <li>Modifiers (obliques and adverbials; adjectives; adverbs modifying nouns; modifiers modifying other modifiers)</li>
-  <li>Coordination (of simple noun phrases or simple clauses; difference from parataxis?)</li>
-  <li>More about simple clauses
-    <ul>
-      <li><a href="intransitive_clauses.html">Intransitive and zero-transitive clauses</a> (intransitive clauses with obligatory oblique arguments, split intransitivity, zero transitivity with a link to expletives, the “dative subject” issue)</li>
-      <li><a href="ditransitive_clauses.html">Ditransitive clauses</a></li>
-      <li><a href="valency_changing_operations.html">Valency-changing operations</a> (passive, antipassive, causative, applicative)</li>
-      <li>Expletives, multiple realizations of arguments</li>
-      <li>Nonprototypical clauses
-        <ul>
-          <li><a href="object_predication.html">Clauses with object predication</a></li>
-          <li><a href="property_predication.html">Clauses with property predication</a></li>
-          <li>Existential clauses</li>
-        </ul>
-      </li>
-      <li>Complex predicates
-        <ul>
-          <li>Auxiliaries</li>
-          <li>Light verbs</li>
-          <li>Serial verbs</li>
-        </ul>
-      </li>
-      <li>Modal verbs</li>
-      <li>Negation</li>
-      <li>Questions (yes/no-questions, wh-questions)</li>
-      <li>Commands, vocative</li>
-      <li>Non-canonical sentences, fragments</li>
-    </ul>
-  </li>
-  <li>Subordinate clauses
-    <ul>
-      <li>Complement clauses
-        <ul>
-          <li>“Complement” clauses of nouns (<code class="language-plaintext highlighter-rouge">acl:comp</code>?)</li>
-        </ul>
-      </li>
-      <li>Subject clauses</li>
-      <li>Adverbial clauses</li>
-      <li><a href="relative_clauses.html">Relative clauses</a>
-        <ul>
-          <li>Free relatives (see also issues and other discussions, e.g. <a href="https://github.com/UniversalDependencies/UD_English-EWT/pull/96#issuecomment-692915672">this comment</a>)</li>
-        </ul>
-      </li>
-      <li>Other adnominal clauses</li>
-      <li>Open complements (and secondary predication)</li>
-      <li>Direct speech, indirect/reported speech, indirect questions</li>
-    </ul>
-  </li>
-  <li>More about noun phrases
-    <ul>
-      <li>Possession</li>
-      <li>Compounds (here nominal and perhaps adjectival and numeral, but with a cross-link to verbal, i.e. light/serial verbs, and phrasal verbs)</li>
-      <li>Flat constituents
-        <ul>
-          <li>Multi-word named entities</li>
-        </ul>
-      </li>
-      <li>Apposition</li>
-      <li>(All of the above should be compared to <code class="language-plaintext highlighter-rouge">nmod</code> and the dividing line should be drawn.)</li>
-    </ul>
-  </li>
-  <li><a href="comparatives.html">Comparative constructions</a></li>
-  <li>Ellipsis</li>
-  <li>Punctuation</li>
-  <li>Other relations not covered by the above
-    <ul>
-      <li>Parataxis, list, fixed, reparandum, goeswith, discourse</li>
-    </ul>
-  </li>
-  <li>Other stuff
-    <ul>
-      <li><a href="word_segmentation.html">Word segmentation</a> (where to segment and where not)</li>
-      <li>Typos and other errors in the underlying text</li>
-      <li>Dates, numbers and measures (and classifiers?)</li>
-      <li>Quoted text in foreign language (e.g. book/movie titles); foreign names; code switching</li>
-      <li>Abbreviations, multi-word abbreviations, acronyms</li>
-    </ul>
-  </li>
+  <li>Object-like predication with a clause instead of the object nominal (<em>the problem is that he is missing</em>).</li>
+  <li>Location + existence.</li>
+  <li>Possession + existence.</li>
 </ul>
-
 
       </div>
 
