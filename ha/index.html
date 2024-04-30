@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-ha">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ha/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ha/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -78,59 +78,64 @@
         </script>
         <h1 id="ud-for-hausa-">UD for Hausa <span class="flagspan"><img class="flag" src="../../flags/svg/NG.svg" /></span></h1>
 
+<p>The Hausa language is represented by two treebanks: Northern Autogramm, for the Ader dialect of Niger Republic (Northern Hausa), and Southern Autogramm, for the Zaria dialect of Nigeria (Southern Hausa). Both are different from the Kano variety, generally accepted as Standard Hausa. The Ader (Northern) Hausa, together with the Sokoto variety, is a more archaic version of Standard Hausa, where some phonological rules have not applied. The Zaria (Southern) Hausa, on the other hand, is a “modern” version of the language where the 3-way opposition (masculine / feminine / plural) has been abandoned in the noun system, and only the plurality feature is maintained, while the feminine gender is kept in the pronominal and TAM system.</p>
+
+<p>In Hausa, the TAM system is marked by pre-verbal Auxiliaries that combine <code class="language-plaintext highlighter-rouge">Tense</code>, <code class="language-plaintext highlighter-rouge">Aspect</code>, <code class="language-plaintext highlighter-rouge">Mood</code>, and subject agreement in <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Number</code> and <code class="language-plaintext highlighter-rouge">Gender</code>. These Auxiliaries can vary noticeably from one dialect to another. For example, the backgrounded progressive aspect in marked by /<strong>kà</strong>/ in Ader and /<strong>kèː</strong>/ in Zaria, while the same /<strong>kà</strong>/ marks the backgrounded perfect in Zaria.</p>
+
+<p>Due to the difficulty of selecting a single lemma to account for these dialectal variation, we have chosen to postpone the lemmatisation of auxiliaries until a solution is found to organise related treebanks of a same language.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>The Southern Hausa treebank is an extension of an oral corpus (https://cortypo.huma-num.fr/index.html) interlinearized and glossed on a morphological basis.</li>
+  <li>Tokenization had to take into account the fact that syntactic information in Zaar can be spread in different ways in words, affixes and clitics. It has been decided to keep as tokens only words (with and without affixes) and clitics while the syntactic information contained in affixes is annotated by morphological features of the affixed words. Clitics are PRON conveying syntactic functions such as complement and modifier. They are preceded by an “=” sign in the transcription. The same conventions have been used for the Northern Hausa treebank, which transcribes audio recordings done in the late 80’s.</li>
+  <li>As we are dealing with oral data, we have chosen the illocutionary unit as the basic transcription unit. Punctuation tokens (e.g. &lt;, &gt;, //, etc.) organise the illocutionary unit into: pre-nucleus &lt; nucleus &gt; post-nucleus //</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
+<p>This is an overview only. For more detailed discussion and examples, see the list of  Hausa POS tags and Hausa features.</p>
+
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>The language specific tagset is the original annotation made from the extended version of the Leipzig Glossing Rules. (Available <a href="https://corpafroas.huma-num.fr/glosses.html">here</a>).</li>
+  <li>The UD tagset is based on a conversion from the previous annotation to UPOS.</li>
+  <li>Zaar uses 16 of the universal tags (with the exception of SYM, which is not relevant for oral data)
+    <ul>
+      <li>As in other African languages (e.g. Wolof, Zaar), the verbal inflections in Hausa are gathered in a single <code class="language-plaintext highlighter-rouge">AUX</code> that precedes the <code class="language-plaintext highlighter-rouge">VERB</code>, and expresses various combinations of <code class="language-plaintext highlighter-rouge">Tense</code> (2 values: Future and Predictive), <code class="language-plaintext highlighter-rouge">Aspect</code> (4 values : Progressive, Perfect, Aorist and Iterative) and <code class="language-plaintext highlighter-rouge">Polarity</code> (Negative).</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<ul>
+  <li>2 language specific values associated with the Zaar <code class="language-plaintext highlighter-rouge">AUX</code> have been added to the scheme:
+    <ul>
+      <li>1 for <code class="language-plaintext highlighter-rouge">Tense</code> (<code class="language-plaintext highlighter-rouge">Pred</code> = Predictive Future),</li>
+      <li>1 for <code class="language-plaintext highlighter-rouge">Aspect</code> feature (<code class="language-plaintext highlighter-rouge">Aor</code> = Aorist)</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
-
-<hr />
+<ul>
+  <li>The dependency analysis is a conversion of the manual annotation to SUD format. For more information, see <a href="https://surfacesyntacticud.github.io/guidelines/u/">SUD guidelines</a>.</li>
+  <li>Hausa is a SVO language.</li>
+  <li>Hausa is a prodrop language with a strong proportion of dislocated subjects and complements. In addition to a possible independent lexical or pronominal subject (tagged <code class="language-plaintext highlighter-rouge">nsubj</code>), the <code class="language-plaintext highlighter-rouge">AUX</code> contains agreement features for <code class="language-plaintext highlighter-rouge">Person</code> and <code class="language-plaintext highlighter-rouge">Number</code>.</li>
+  <li>We have direct object with <code class="language-plaintext highlighter-rouge">obj</code>, indirect object with <code class="language-plaintext highlighter-rouge">iobj</code>.</li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/ha-comparison.html">N</a> Hausa UD treebanks:</p>
+<p>There are <a href="../treebanks/ha-comparison.html">2</a> Hausa UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/ha_a/index.html">Hausa-A</a></li>
-  <li><a href="../treebanks/ha_b/index.html">Hausa-B</a></li>
+  <li><a href="../treebanks/ha_a/index.html">Hausa-SouthernAutogramm</a></li>
+  <li><a href="../treebanks/ha_b/index.html">Hausa-SouthernAutogramm</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
