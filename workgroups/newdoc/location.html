@@ -443,7 +443,8 @@ punct(are.not, .-9)
 
 <p>In contrast, English has different analyses for predicational and
 presentational location on the ground that the latter has specific syntax
-(despite still using the verb <em>to be</em>).</p>
+(despite still using the verb <em>to be</em> — which is tagged <a href="">VERB</a> in
+presentational constructions).</p>
 
 <pre><code class="language-sdparse">There/PRON are/VERB tangerines/NOUN in/ADP the/DET fridge/NOUN ./PUNCT
 expl(are, There)
@@ -454,9 +455,50 @@ det(fridge, the)
 punct(are, .)
 </code></pre>
 
-<h1 id="to-do">TO DO:</h1>
+<h2 id="multiple-adverbial-predicatesmodifiers">Multiple Adverbial Predicates/Modifiers?</h2>
 
-<p>TODO: Multiple adverbial modifiers? Which one is the predicate?</p>
+<p>Besides location, temporal and other circumstances may be predicated in a
+similar fashion. Compare English [en]:</p>
+
+<pre><code class="language-sdparse">The/DET event/NOUN is/AUX here/ADV ./PUNCT
+det(event, The)
+nsubj(here, event)
+cop(here, is)
+punct(here, .)
+</code></pre>
+
+<pre><code class="language-sdparse">The/DET event/NOUN is/AUX today/ADV ./PUNCT
+det(event, The)
+nsubj(today, event)
+cop(today, is)
+punct(today, .)
+</code></pre>
+
+<p>If multiple circumstances are predicated at the same time, one of them has to
+be selected as the main predicate and the others will be analyzed as its
+adverbial / oblique modifiers. Typically, location gets precedence over time:</p>
+
+<pre><code class="language-sdparse">The/DET concert/NOUN will/AUX be/AUX here/ADV on/ADP Sunday/PROPN ./PUNCT
+det(concert, The)
+nsubj(here, concert)
+aux(here, will)
+cop(here, be)
+obl(here, Sunday)
+case(Sunday, on)
+punct(here, .)
+</code></pre>
+
+<p>Another possible strategy is that the two predications are coordinated. The
+UD analysis will then follow the guidelines for coordination:</p>
+
+<pre><code class="language-sdparse">The/DET event/NOUN is/AUX here/ADV and/CCONJ now/ADV ./PUNCT
+det(event, The)
+nsubj(here, event)
+cop(here, is)
+conj(here, now)
+cc(now, and)
+punct(here, .)
+</code></pre>
 
       </div>
 
