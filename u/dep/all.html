@@ -1928,24 +1928,25 @@ xcomp(keep, calm)
 the subject is itself a clause. The governor of this relation might
 not always be a verb: when the verb is a copular verb, the root of the
 clause is the complement of the copular verb. The dependent is the main lexical verb or other 
-predicate of the subject clause. In the following
-examples, <em>what she said</em> (that is, <em>said</em>) is the clausal subject of <em>makes</em> and <em>interesting</em>, respectively.</p>
+predicate of the subject clause.</p>
+
+<pre><code class="language-sdparse">That he lied surprised me .
+csubj(surprised, lied)
+mark(lied, That)
+nsubj(lied, he)
+obj(surprised, me)
+</code></pre>
+
+<pre><code class="language-sdparse">Whether he lied is unknown .
+csubj(unknown, lied)
+mark(lied, Whether)
+nsubj(lied, he)
+cop(unknown, is)
+</code></pre>
 
 <p><strong>New from v2:</strong> The <code class="language-plaintext highlighter-rouge">csubj</code> relation is also used for the clausal subject of a passive verb or verb group. For languages
 that have a grammaticalized passive transformation, it is strongly recommended to use the subtype <a href="">csubj:pass</a> in 
 such cases. If the subject is of a copular clause whose predicate is itself a clause, <a href="">csubj:outer</a> may be used.</p>
-
-<pre><code class="language-sdparse">What she said makes sense
-csubj(makes, said)
-</code></pre>
-
-<pre><code class="language-sdparse">What she said is interesting
-csubj(interesting, said)
-</code></pre>
-
-<pre><code class="language-sdparse">What she said was well received
-csubj:pass(received, said)
-</code></pre>
 
 <p>See also expletive subject examples under <a href="">expl</a> that use <code class="language-plaintext highlighter-rouge">csubj</code>.</p>
 
@@ -1999,6 +2000,10 @@ csubj(important, respect)
 <h2><code>csubj:pass</code>: clausal passive subject</h2>
 
 <p>A clausal passive subject is a clausal syntactic subject of a passive clause.</p>
+
+<pre><code class="language-sdparse">That she lied was suspected by everyone
+csubj:pass(suspected, lied)
+</code></pre>
 
 <pre><code class="language-sdparse">Bylo mi doporučeno , abych to velmi dobře zvážil . \n It-has-been to-me recommended , that-I it very well weigh .
 csubj:pass(doporučeno, zvážil)
@@ -2723,7 +2728,7 @@ flat(quack-4, quack-6)
 
 <h2 id="items-separated-for-readability">Items separated for readability</h2>
 
-<p>Here the units separated by spaces or punctuation cannot really be construed as separate lexemes. A common case is telephone numbers:</p>
+<p>Here the units separated by spaces or punctuation cannot really be construed as separate lexemes. A common case is <strong>telephone numbers</strong>:</p>
 
 <pre><code class="language-sdparse">Call 0118 999 881 999 119 725 3
 obj(Call, 0118)
@@ -2735,10 +2740,25 @@ flat(0118, 725)
 flat(0118, 3)
 </code></pre>
 
-<p>But not all “unnecessary” spaces are flat:</p>
+<p><strong>Filenames</strong> are another such case: they may contain spaces, and the components may or may not be recognizable as natural language strings, but in general filenames are not expected to follow regular syntactic structure. <code class="language-plaintext highlighter-rouge">flat</code> signals filenames are a context where regular syntactic rules do not apply (whether the component tokens are analyzed morphologically like words of an art title, or simply tagged as <a href="">X</a>, or a mixture; the precise tokenization and morphological analysis is left to the discretion of treebanks). <code class="language-plaintext highlighter-rouge">ExtPos=PROPN</code> may be specified in the MISC column to signal that the whole filename functions externally as a proper noun. For example, the filename <code class="language-plaintext highlighter-rouge">Mydoc CHQ2 - Wednesday DRAFT (2).txt</code> might be analyzed as follows:</p>
+
+<pre><code class="language-sdparse">Mydoc/X[ExtPos=PROPN] CHQ2/X -/PUNCT Wednesday/PROPN DRAFT/PROPN (/PUNCT 2/NUM )/PUNCT .txt/X
+flat(Mydoc, CHQ2)
+flat(Mydoc, -)
+flat(Mydoc, Wednesday)
+flat(Mydoc, DRAFT)
+flat(Mydoc, ()
+flat(Mydoc, 2)
+flat(Mydoc, ))
+flat(Mydoc, .txt)
+</code></pre>
+
+<p>It is not expected that a language’s tokenization rules will make special exceptions for spaces in telephone numbers or filenames. That is, if spaces trigger token boundaries in general, they should also do so for telephone numbers and filenames; exceptional token-internal spaces will not be permitted.</p>
+
+<p>Not all “unnecessary” spaces warrant <code class="language-plaintext highlighter-rouge">flat</code>, however:</p>
 <ul>
   <li>improper spacing within a word should be addressed with <a href="">goeswith</a></li>
-  <li>space-separated numerals like <em>1 000 000</em> <a href="/u/overview/tokenization.html">may be treated as single words</a></li>
+  <li>numerals with thousands separator spaces (e.g. <em>1 000 000</em>) <a href="/u/overview/tokenization.html">may be treated as single words</a> in languages where this convention is widespread</li>
 </ul>
 
 <!-- Interlanguage links updated Ne 5. května 2024, 18:21:14 CEST -->
