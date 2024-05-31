@@ -377,7 +377,7 @@ flat(quack-4, quack-6)
 
 <h2 id="items-separated-for-readability">Items separated for readability</h2>
 
-<p>Here the units separated by spaces or punctuation cannot really be construed as separate lexemes. A common case is telephone numbers:</p>
+<p>Here the units separated by spaces or punctuation cannot really be construed as separate lexemes. A common case is <strong>telephone numbers</strong>:</p>
 
 <pre><code class="language-sdparse">Call 0118 999 881 999 119 725 3
 obj(Call, 0118)
@@ -389,10 +389,25 @@ flat(0118, 725)
 flat(0118, 3)
 </code></pre>
 
-<p>But not all “unnecessary” spaces are flat:</p>
+<p><strong>Filenames</strong> are another such case: they may contain spaces, and the components may or may not be recognizable as natural language strings, but in general filenames are not expected to follow regular syntactic structure. <code class="language-plaintext highlighter-rouge">flat</code> signals filenames are a context where regular syntactic rules do not apply (whether the component tokens are analyzed morphologically like words of an art title, or simply tagged as <a href="">X</a>, or a mixture; the precise tokenization and morphological analysis is left to the discretion of treebanks). <code class="language-plaintext highlighter-rouge">ExtPos=PROPN</code> may be specified in the MISC column to signal that the whole filename functions externally as a proper noun. For example, the filename <code class="language-plaintext highlighter-rouge">Mydoc CHQ2 - Wednesday DRAFT (2).txt</code> might be analyzed as follows:</p>
+
+<pre><code class="language-sdparse">Mydoc/X[ExtPos=PROPN] CHQ2/X -/PUNCT Wednesday/PROPN DRAFT/PROPN (/PUNCT 2/NUM )/PUNCT .txt/X
+flat(Mydoc, CHQ2)
+flat(Mydoc, -)
+flat(Mydoc, Wednesday)
+flat(Mydoc, DRAFT)
+flat(Mydoc, ()
+flat(Mydoc, 2)
+flat(Mydoc, ))
+flat(Mydoc, .txt)
+</code></pre>
+
+<p>It is not expected that a language’s tokenization rules will make special exceptions for spaces in telephone numbers or filenames. That is, if spaces trigger token boundaries in general, they should also do so for telephone numbers and filenames; exceptional token-internal spaces will not be permitted.</p>
+
+<p>Not all “unnecessary” spaces warrant <code class="language-plaintext highlighter-rouge">flat</code>, however:</p>
 <ul>
   <li>improper spacing within a word should be addressed with <a href="">goeswith</a></li>
-  <li>space-separated numerals like <em>1 000 000</em> <a href="/u/overview/tokenization.html">may be treated as single words</a></li>
+  <li>numerals with thousands separator spaces (e.g. <em>1 000 000</em>) <a href="/u/overview/tokenization.html">may be treated as single words</a> in languages where this convention is widespread</li>
 </ul>
 
 <!-- Interlanguage links updated Ne 5. května 2024, 18:21:14 CEST -->
