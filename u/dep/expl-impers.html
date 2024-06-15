@@ -78,23 +78,82 @@
         </script>
         <h2><code>expl:impers</code>: impersonal expletive</h2>
 
-<p>The relation <code>expl:impers</code> is a sub-class of <code>expl</code>, specific for the impersonal use of the clitic pronoun <em>si</em>. We can have an impersonal construction for every verb (transitive or intransitive) when the role of subject is played by the clitic itself, as an undefined subject.</p>
+<p>The relation <code>expl:impers</code> is a sub-class of <a href="">expl</a>, specific for the impersonal use of the reflexive clitic pronoun.
+While the default function of a reflexive pronoun is to signal that the subject applies a transitive action to itself (i.e., the
+reflexive pronoun is an object coreferential with the subject), the impersonal construction can be used with any verb, transitive
+or intransitive. The clitic is formally identical with a reflexive object but it does not fill the object slot in these constructions
+and if the verb is transitive, its real object still occurs in the clause and fills the slot. The reflexive clitic is not a subject
+either; in fact there is no subject at all, which is the defining property of impersonal constructions. If the verb must express
+agreement, it will take a default form (this depends on the language, a typical example would be 3rd person singular).</p>
 
-<pre><code class="language-sdparse">Si prevede che viaggerà .
+<p>Impersonal constructions should be distinguished from reflexive passives, in which the reflexive clitic is attached as
+<a href="">expl:pass</a>. They are constructed for transitive verbs: The object is promoted to subject, the verb stays in its active form
+(although agreement morphemes may have to be adjusted to the new subject), and the object slot is filled by the reflexive pronoun.</p>
+
+<p>[it] <em>Si prevede che viaggerà.</em> “He is expected to travel.”</p>
+
+<pre><code class="language-sdparse">Si prevede che viaggerà . \n REFL expects that will-travel .
 expl:impers(prevede, Si)
+expl:impers(expects, REFL)
+punct(prevede, .-5)
+punct(expects, .-11)
+ccomp(prevede, viaggerà)
+ccomp(expects, will-travel)
+mark(viaggerà, che)
+mark(will-travel, that)
 </code></pre>
 
-<p>If there’s a clitic in a construction with a modal or an auxiliary verb, than generally it is an impersonal construction.</p>
+<p>In Italian, if there’s a clitic in a construction with a modal or an auxiliary verb, than generally it is an impersonal construction.</p>
 
-<pre><code class="language-sdparse">Si può procedere a sequestro .
+<p>[it] <em>Si può procedere a sequestro.</em> “Seizure can be carried out.”</p>
+
+<pre><code class="language-sdparse">Si può procedere a sequestro . \n REFL can proceed to seizure .
 expl:impers(procedere, Si)
+expl:impers(proceed, REFL)
+aux(procedere, può)
+aux(proceed, can)
+punct(procedere, .-6)
+punct(proceed, .-13)
+obl(procedere, sequestro)
+obl(proceed, seizure)
+case(sequestro, a)
+case(seizure, to)
 </code></pre>
 
-<p>In the construction with both <em>ci</em> and <em>si</em> (construction of the impersonal <em>ci</em>), the first clitic is marked as <code>expl</code>, while <em>si</em> as <code>expl:impers</code>, as follows.</p>
+<p>In the following Polish example, <em>wystawę archeologiczną</em> “archaeological exhibition” is in the accusative case, hence it is still
+the object and not a subject, hence it is a reflexive impersonal construction and not a reflexive passive.</p>
 
-<pre><code class="language-sdparse">E' stata quello che ci si attendeva .
-expl:impers(attendeva, si)
-expl(attendeva, ci)
+<p>[pl] <em>Przygotowuje się również wystawę archeologiczną.</em> “An archaeological exhibition is also being prepared.”</p>
+
+<pre><code class="language-sdparse">Przygotowuje się również wystawę archeologiczną . \n Prepares REFL also exhibition archaeological .
+punct(Przygotowuje, .-6)
+punct(Prepares, .-13)
+expl:impers(Przygotowuje, się)
+expl:impers(Prepares, REFL)
+advmod(Przygotowuje, również)
+advmod(Prepares, also)
+obj(Przygotowuje, wystawę)
+obj(Prepares, exhibition)
+amod(wystawę, archeologiczną)
+amod(exhibition, archaeological)
+</code></pre>
+
+<p>Compare the Polish example with Czech where the archaeological exhibition switched to the nominative, it became the subject and thus
+we are dealing with the reflexive passive construction instead.</p>
+
+<p>[cs] <em>Rovněž se připravuje archeologická výstava.</em> “An archaeological exhibition is also being prepared.”</p>
+
+<pre><code class="language-sdparse">Rovněž se připravuje archeologická výstava . \n Also REFL prepares archaeological exhibition .
+punct(připravuje, .-6)
+punct(prepares, .-13)
+expl:pass(připravuje, se)
+expl:pass(připravuje, REFL)
+advmod(připravuje, Rovněž)
+advmod(prepares, Also)
+nsubj:pass(připravuje, výstava)
+nsubj:pass(prepares, exhibition)
+amod(výstava, archeologická)
+amod(exhibition, archaeological)
 </code></pre>
 
 <!-- Interlanguage links updated Ne 5. května 2024, 18:21:12 CEST -->
