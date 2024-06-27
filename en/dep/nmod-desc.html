@@ -78,6 +78,132 @@
         </script>
         <h2><code>nmod:desc</code>: descriptor modifier in nominal</h2>
 
+<p>** PROPOSAL DRAFT **</p>
+
+<p>This relation subtype applies to nominal modifiers that we term <strong>descriptors</strong>.
+These are nominals that premodify a name or identifier, adding categorical information
+about the referent. Descriptors are determinerless modifiers, in which respect they are distinguished
+from appositives (the <a href="">appos</a> relation holds between two <em>full</em> nominals).
+They may, however, be pluralized, and typically modify a proper name or identifier rather than a category noun,
+which distinguishes them from typical noun compound modifiers.</p>
+
+<p>One descriptor construction is the premodification of a personal name with a (determinerless) role or title:</p>
+
+<pre><code class="language-sdparse">Professor Charles J. Fillmore
+nmod:desc(Charles, Professor)
+flat(Charles, J.)
+flat(Charles, Fillmore)
+</code></pre>
+
+<pre><code class="language-sdparse">actor and social activist Martin Sheen
+nmod:desc(Martin, actor)
+conj(actor, activist)
+cc(activist, and)
+amod(activist, social)
+flat(Martin, Sheen)
+</code></pre>
+
+<pre><code class="language-sdparse">friend of the pod Ron Klain
+nmod(friend, pod)
+nmod:desc(Ron, friend)
+flat(Ron, Klain)
+</code></pre>
+
+<p>Certain name patterns (for places, textual units, etc.) incorporate a descriptor that clarifies the entity type.</p>
+
+<pre><code class="language-sdparse">Lake Mead
+nmod:desc(Mead, Lake)
+</code></pre>
+
+<h2 id="numbered-entities">Numbered Entities</h2>
+
+<p>When an entity is identified by a number, it commonly follows an entity type that underscores the referring
+(rather than quantifying) function of the number:</p>
+
+<pre><code class="language-sdparse">page 394/NUM[ExtPos=PROPN]
+nmod:desc(394, page)
+</code></pre>
+
+<p>The “number X” construction also serves to clarify that a number is serving as an identifier; the word “number” as a descriptor
+can stack with an entity type descriptor:</p>
+
+<pre><code class="language-sdparse">What is behind door number 3/NUM[ExtPos=PROPN] ?
+nmod:desc(3, door)
+nmod:desc(3, number)
+</code></pre>
+
+<p>With numbered entities, it is recommended to specify <code class="language-plaintext highlighter-rouge">ExtPos=PROPN</code> on the number
+to clarify that it behaves externally as a (locally or globally conventionalized) proper name.</p>
+
+<h2 id="todo-other-kinds-of-entities">TODO: other kinds of entities</h2>
+
+<h2 id="morphosyntactic-properties">Morphosyntactic Properties</h2>
+
+<h3 id="omissibility">Omissibility</h3>
+
+<p>Descriptors are best analyzed as modifiers. Their heads cannot be omitted without adding a determiner:</p>
+
+<ul>
+  <li>an article by Professor Fillmore / *an article by Professor</li>
+  <li>a speech by actor and activist Martin Sheen / *a speech by actor and activist</li>
+  <li>We drove to Lake Mead. / *We drove to Lake.</li>
+  <li>Open your book and turn to page 394. / *Open your book and turn to page.</li>
+</ul>
+
+<p>Personal name descriptors may be freely omitted:</p>
+
+<ul>
+  <li>an article by Fillmore</li>
+  <li>a speech by Martin Sheen</li>
+</ul>
+
+<p>Other kinds of heads may not always identify a unique referent without the descriptor to clarify.
+Still, the descriptor can usually be omitted with sufficently rich context:</p>
+
+<ul>
+  <li>We drove to Mead. (assuming common ground that Mead is a lake)</li>
+  <li>Open your book and turn to 394. (assuming common ground that a location in the book is best identified by a page number)</li>
+</ul>
+
+<h3 id="pluralization">Pluralization</h3>
+
+<p>An important characteristic of descriptors is that they may be pluralized if headed by a coordination:</p>
+
+<pre><code class="language-sdparse">Professors Fillmore and Kay
+nmod:desc(Fillmore, Professors)
+conj(Fillmore, Kay)
+</code></pre>
+
+<pre><code class="language-sdparse">Lakes Michigan and Erie
+nmod:desc(Michigan, Lakes)
+conj(Michigan, Erie)
+</code></pre>
+
+<p>Abbreviated descriptors like “Mr.” may, however, resist such pluralization.</p>
+
+<p>That a descriptor may be pluralized to “agree” with its coordinated head distinguishes this construction
+from nominal compound modifiers (<a href="">compound</a>), which are rarely morphologically plural even where there is semantic multiplicity:
+<em>egg carton</em>, not *<em>eggs carton</em>; <em>egg farmers and distributors</em>, not *<em>eggs farmers and distributors</em>.</p>
+
+<h3 id="ellipsis">Ellipsis</h3>
+
+<ul>
+  <li>John prefers Lake Michigan and Mary, (Lake) Erie.</li>
+  <li>John read Chapter 1, Mary (Chapter) 2, and Kim (Chapter) 3.</li>
+  <li>*John prefers actor Sheen and Mary, activist (Sheen).</li>
+  <li>*John read Chapter 1, Mary Section (1), and Kim page (1).</li>
+</ul>
+
+<p>This shows that descriptors are targets for ellipsis rather than contrast in this construction,
+and should be treated as modifiers, like compound modifier nouns rather than compound heads:</p>
+
+<ul>
+  <li>*Rex prefers vacation food and Rover, home (food).</li>
+  <li>Rex prefers vacation food and Rover, (vacation) activities.</li>
+</ul>
+
+<h1 id="old-draft-below">Old draft below</h1>
+
 <p><em>NOTE: This is a new subtype. Other documentation pages (<a href="">appos</a>, <a href="">flat</a>, <a href="">nmod</a>, <a href="https://universaldependencies.org/en/dep/">/dep/</a>, …) will need to be updated.</em></p>
 
 <p>A descriptor is a nominal modifier that is less than a full nominal phrase (as would be required for <a href="">appos</a>),
