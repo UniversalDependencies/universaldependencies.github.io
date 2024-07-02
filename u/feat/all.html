@@ -2147,6 +2147,114 @@ a language-specific feature (under the name <code class="language-plaintext high
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/Evident.md" target="#">edit Evident</a></p>
 
+<p><a id="al-u-feat/ExtPos" class="al-dest"></a></p>
+<h2><code>ExtPos</code>: external part of speech</h2>
+
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <!--td><a href="#ADJ">ADJ</a></td-->
+  <td><a href="#ADP">ADP</a></td>
+  <td><a href="#ADV">ADV</a></td>
+  <td><a href="#CCONJ">CCONJ</a></td>
+  <td><a href="#DET">DET</a></td>
+  <td><a href="#INTJ">INTJ</a></td>
+  <!--td><a href="#NOUN">NOUN</a></td-->
+  <!--td><a href="#NUM">NUM</a></td-->
+  <td><a href="#PRON">PRON</a></td>
+  <td><a href="#PROPN">PROPN</a></td>
+  <td><a href="#SCONJ">SCONJ</a></td>
+  <!--td><a href="#VERB">VERB</a></td-->
+</tr>
+</table>
+
+<p>This feature differs significantly from all other features: It describes neither the lexical category,
+nor the inflectional paradigm slot of the token it appears on. Rather than to the individual token,
+it pertains to a multiword expression and indicates the part of speech that the expression would get
+if it were analyzed as a single word. <code class="language-plaintext highlighter-rouge">ExtPos</code> is annotated at the head node of the multiword
+expression. The possible values are taken from the defined <a href="/u/pos/index.html">UPOS tags</a> and no other
+values are allowed (not even at the language-specific level). The main motivation for <code class="language-plaintext highlighter-rouge">ExtPos</code> is that
+the multiword expression may behave like a part of speech different from the UPOS of the head node;
+however, <code class="language-plaintext highlighter-rouge">ExtPos</code> is sometimes used even if it is identical to the UPOS of the head node.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ExtPos</code> is strongly recommended for fixed functional multiword expressions (the head node has one
+or more children attached via the <a href="">fixed</a> relation). These should normally lead to <code class="language-plaintext highlighter-rouge">ExtPos</code> values
+<code class="language-plaintext highlighter-rouge">ADP</code>, <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">CCONJ</code>, <code class="language-plaintext highlighter-rouge">DET</code>, <code class="language-plaintext highlighter-rouge">PRON</code>, <code class="language-plaintext highlighter-rouge">SCONJ</code> (the <code class="language-plaintext highlighter-rouge">fixed</code> relation should not be used for compounds
+that work like content words). However, <code class="language-plaintext highlighter-rouge">ExtPos</code> is occasionally useful in other situations, too:
+for example, when a multiword expression acts as a proper noun (although its parts behave like other
+words) or as an interjection.</p>
+
+<h3 id="adp-adposition-like-expression"><a name="ADP"><code class="language-plaintext highlighter-rouge">ADP</code></a>: adposition-like expression</h3>
+
+<p>Multiword adpositions occur in many languages. Often they are grammaticalized prepositional phrases.</p>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li>[cs] <em><b>na rozdíl ode</b> mne</em> “<b>in contrast to</b> me” (here the first node is the technical head and it is a preposition itself, so UPOS = <code class="language-plaintext highlighter-rouge">ExtPos</code>)</li>
+  <li>[cs] <em><b>nehledě na</b> jeho úspěchy</em> “<b>disregarding</b> his achievements” (here the first node is a <a href="">VERB</a>)</li>
+</ul>
+
+<h3 id="adv-adverb-like-expression"><a name="ADV"><code class="language-plaintext highlighter-rouge">ADV</code></a>: adverb-like expression</h3>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li>[en] <em><b>by and large</b></em> (a multiword adverb paraphrasable as “altogether”; the first node is <a href="">ADP</a>)</li>
+</ul>
+
+<h3 id="cconj-coordinating-conjunction-like-expression"><a name="CCONJ"><code class="language-plaintext highlighter-rouge">CCONJ</code></a>: coordinating conjunction-like expression</h3>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li>[fr] <em><b>ainsi que</b></em> “as well as” (<em>ainsi</em> = <a href="">ADV</a>)</li>
+</ul>
+
+<h3 id="det-determiner-like-expression"><a name="DET"><code class="language-plaintext highlighter-rouge">DET</code></a>: determiner-like expression</h3>
+
+<h4 id="examples-3">Examples</h4>
+
+<ul>
+  <li>[fr] <em>le volcan émet <b>de la</b> vapeur</em> “the volcano emits steam” (<em>de</em> = <code class="language-plaintext highlighter-rouge">ADP</code>)</li>
+</ul>
+
+<h3 id="intj-interjection-like-expression"><a name="INTJ"><code class="language-plaintext highlighter-rouge">INTJ</code></a>: interjection-like expression</h3>
+
+<h4 id="examples-4">Examples</h4>
+
+<ul>
+  <li>[es] <em>¡<b>Por Dios</b>!</em> “for God’s sake” (<em>por</em> = <code class="language-plaintext highlighter-rouge">ADP</code>, <em>Dios</em> = <a href="">PROPN</a>)</li>
+</ul>
+
+<h3 id="pron-pronoun-like-expression"><a name="PRON"><code class="language-plaintext highlighter-rouge">PRON</code></a>: pronoun-like expression</h3>
+
+<h4 id="examples-5">Examples</h4>
+
+<ul>
+  <li>[en] <em><b>each other</b></em> (<em>each</em> = <a href="">DET</a>)</li>
+</ul>
+
+<h3 id="propn-proper-noun-like-expression"><a name="PROPN"><code class="language-plaintext highlighter-rouge">PROPN</code></a>: proper noun-like expression</h3>
+
+<h4 id="examples-6">Examples</h4>
+
+<ul>
+  <li>[cs] <em>Jeho kniha <b>Most přes řeku Kwai</b> byla zfilmována.</em> “His book <b>The Bridge over the River Kwai</b> was made into a movie.” (<em>Most</em> = <a href="">NOUN</a>)</li>
+</ul>
+
+<h3 id="sconj-subordinator-like-expression"><a name="SCONJ"><code class="language-plaintext highlighter-rouge">SCONJ</code></a>: subordinator-like expression</h3>
+
+<h4 id="examples-7">Examples</h4>
+
+<ul>
+  <li>[fr] <em><b>bien que</b></em> “although” (<em>bien</em> = <code class="language-plaintext highlighter-rouge">ADV</code>)</li>
+</ul>
+
+<!-- Interlanguage links updated Ne 5. května 2024, 18:19:56 CEST -->
+
+<p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/ExtPos.md" target="#">edit ExtPos</a></p>
+
 <p><a id="al-u-feat/Foreign" class="al-dest"></a></p>
 <h2><code>Foreign</code>: is this a foreign word?</h2>
 

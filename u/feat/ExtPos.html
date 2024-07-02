@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>ExtPos</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script> -->
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-u">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-feat/ExtPos.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <style>h3 {display:block;background-color:#dfeffc}</style>
+
+<h2><code>ExtPos</code>: external part of speech</h2>
+
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <!--td><a href="#ADJ">ADJ</a></td-->
+  <td><a href="#ADP">ADP</a></td>
+  <td><a href="#ADV">ADV</a></td>
+  <td><a href="#CCONJ">CCONJ</a></td>
+  <td><a href="#DET">DET</a></td>
+  <td><a href="#INTJ">INTJ</a></td>
+  <!--td><a href="#NOUN">NOUN</a></td-->
+  <!--td><a href="#NUM">NUM</a></td-->
+  <td><a href="#PRON">PRON</a></td>
+  <td><a href="#PROPN">PROPN</a></td>
+  <td><a href="#SCONJ">SCONJ</a></td>
+  <!--td><a href="#VERB">VERB</a></td-->
+</tr>
+</table>
+
+<p>This feature differs significantly from all other features: It describes neither the lexical category,
+nor the inflectional paradigm slot of the token it appears on. Rather than to the individual token,
+it pertains to a multiword expression and indicates the part of speech that the expression would get
+if it were analyzed as a single word. <code class="language-plaintext highlighter-rouge">ExtPos</code> is annotated at the head node of the multiword
+expression. The possible values are taken from the defined <a href="/u/pos/index.html">UPOS tags</a> and no other
+values are allowed (not even at the language-specific level). The main motivation for <code class="language-plaintext highlighter-rouge">ExtPos</code> is that
+the multiword expression may behave like a part of speech different from the UPOS of the head node;
+however, <code class="language-plaintext highlighter-rouge">ExtPos</code> is sometimes used even if it is identical to the UPOS of the head node.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ExtPos</code> is strongly recommended for fixed functional multiword expressions (the head node has one
+or more children attached via the <a href="">fixed</a> relation). These should normally lead to <code class="language-plaintext highlighter-rouge">ExtPos</code> values
+<code class="language-plaintext highlighter-rouge">ADP</code>, <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">CCONJ</code>, <code class="language-plaintext highlighter-rouge">DET</code>, <code class="language-plaintext highlighter-rouge">PRON</code>, <code class="language-plaintext highlighter-rouge">SCONJ</code> (the <code class="language-plaintext highlighter-rouge">fixed</code> relation should not be used for compounds
+that work like content words). However, <code class="language-plaintext highlighter-rouge">ExtPos</code> is occasionally useful in other situations, too:
+for example, when a multiword expression acts as a proper noun (although its parts behave like other
+words) or as an interjection.</p>
+
+<h3 id="adp-adposition-like-expression"><a name="ADP"><code class="language-plaintext highlighter-rouge">ADP</code></a>: adposition-like expression</h3>
+
+<p>Multiword adpositions occur in many languages. Often they are grammaticalized prepositional phrases.</p>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li>[cs] <em><b>na rozdíl ode</b> mne</em> “<b>in contrast to</b> me” (here the first node is the technical head and it is a preposition itself, so UPOS = <code class="language-plaintext highlighter-rouge">ExtPos</code>)</li>
+  <li>[cs] <em><b>nehledě na</b> jeho úspěchy</em> “<b>disregarding</b> his achievements” (here the first node is a <a href="">VERB</a>)</li>
+</ul>
+
+<h3 id="adv-adverb-like-expression"><a name="ADV"><code class="language-plaintext highlighter-rouge">ADV</code></a>: adverb-like expression</h3>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li>[en] <em><b>by and large</b></em> (a multiword adverb paraphrasable as “altogether”; the first node is <a href="">ADP</a>)</li>
+</ul>
+
+<h3 id="cconj-coordinating-conjunction-like-expression"><a name="CCONJ"><code class="language-plaintext highlighter-rouge">CCONJ</code></a>: coordinating conjunction-like expression</h3>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li>[fr] <em><b>ainsi que</b></em> “as well as” (<em>ainsi</em> = <a href="">ADV</a>)</li>
+</ul>
+
+<h3 id="det-determiner-like-expression"><a name="DET"><code class="language-plaintext highlighter-rouge">DET</code></a>: determiner-like expression</h3>
+
+<h4 id="examples-3">Examples</h4>
+
+<ul>
+  <li>[fr] <em>le volcan émet <b>de la</b> vapeur</em> “the volcano emits steam” (<em>de</em> = <code class="language-plaintext highlighter-rouge">ADP</code>)</li>
+</ul>
+
+<h3 id="intj-interjection-like-expression"><a name="INTJ"><code class="language-plaintext highlighter-rouge">INTJ</code></a>: interjection-like expression</h3>
+
+<h4 id="examples-4">Examples</h4>
+
+<ul>
+  <li>[es] <em>¡<b>Por Dios</b>!</em> “for God’s sake” (<em>por</em> = <code class="language-plaintext highlighter-rouge">ADP</code>, <em>Dios</em> = <a href="">PROPN</a>)</li>
+</ul>
+
+<h3 id="pron-pronoun-like-expression"><a name="PRON"><code class="language-plaintext highlighter-rouge">PRON</code></a>: pronoun-like expression</h3>
+
+<h4 id="examples-5">Examples</h4>
+
+<ul>
+  <li>[en] <em><b>each other</b></em> (<em>each</em> = <a href="">DET</a>)</li>
+</ul>
+
+<h3 id="propn-proper-noun-like-expression"><a name="PROPN"><code class="language-plaintext highlighter-rouge">PROPN</code></a>: proper noun-like expression</h3>
+
+<h4 id="examples-6">Examples</h4>
+
+<ul>
+  <li>[cs] <em>Jeho kniha <b>Most přes řeku Kwai</b> byla zfilmována.</em> “His book <b>The Bridge over the River Kwai</b> was made into a movie.” (<em>Most</em> = <a href="">NOUN</a>)</li>
+</ul>
+
+<h3 id="sconj-subordinator-like-expression"><a name="SCONJ"><code class="language-plaintext highlighter-rouge">SCONJ</code></a>: subordinator-like expression</h3>
+
+<h4 id="examples-7">Examples</h4>
+
+<ul>
+  <li>[fr] <em><b>bien que</b></em> “although” (<em>bien</em> = <code class="language-plaintext highlighter-rouge">ADV</code>)</li>
+</ul>
+
+<!-- Interlanguage links updated Ne 5. května 2024, 18:19:56 CEST -->
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+ExtPos in other languages:
+
+[<a href="../../bej/feat/ExtPos.html">bej</a>]
+
+[<a href="../../en/feat/ExtPos.html">en</a>]
+
+[<a href="../../fr/feat/ExtPos.html">fr</a>]
+
+[<a href="../../ha/feat/ExtPos.html">ha</a>]
+
+[<a href="../../ht/feat/ExtPos.html">ht</a>]
+
+[<a href="../../pcm/feat/ExtPos.html">pcm</a>]
+
+[<a href="../../pt/feat/ExtPos.html">pt</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'u-feat';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
