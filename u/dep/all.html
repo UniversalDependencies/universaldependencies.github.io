@@ -2524,21 +2524,26 @@ a consistent annotation of all fixed MWEs in all languages.</p>
 it should not have any dependents (except perhaps <code class="language-plaintext highlighter-rouge">punct</code>, <code class="language-plaintext highlighter-rouge">goeswith</code>, and <code class="language-plaintext highlighter-rouge">reparandum</code> dependents, 
 as these are not true syntactic relations).</p>
 
-<pre><code class="language-sdparse">I like dogs as well as cats
+<p>The <a href="">ExtPos</a> feature should be specified on the first word of the fixed expression to indicate
+the UPOS that the expression would have were it a single word. This indicates what external
+dependency relations the expression is compatible with.</p>
+
+<pre><code class="language-sdparse">I like dogs as/[ExtPos=CCONJ] well as cats
 fixed(as-4, well-5)
 fixed(as-4, as-6)
 </code></pre>
 
-<pre><code class="language-sdparse">He cried because of you
+<pre><code class="language-sdparse">He cried because/[ExtPos=ADP] of you
 fixed(because, of)
 </code></pre>
 
-<pre><code class="language-sdparse">Je préfère prendre un dessert plutôt qu' une entrée \n I prefer getting a dessert rather than an appetizer
-fixed(plutôt, qu')
+<pre><code class="language-sdparse">Bien/ADV[ExtPos=SCONJ] que/SCONJ malingre quand il était enfant, il devient néanmoins un athlète accompli et un grimpeur de talent. \n Although sickly when he was a child, he nevertheless became an accomplished athlete and a talented climber.
+fixed(Bien, que)
 </code></pre>
 
 <p><strong>New from v2:</strong> The <code class="language-plaintext highlighter-rouge">fixed</code> relation replaces the old <code class="language-plaintext highlighter-rouge">mwe</code> relation to prevent misunderstanding regarding its scope.
-For v2.14, this page has been revised to more clearly articulate the relationship to multiword expressions.</p>
+For v2.14, this page has been revised to more clearly articulate the relationship to multiword expressions.
+For v2.15, the use of <a href="">ExtPos</a> has been added.</p>
 
 <!-- Interlanguage links updated Ne 5. května 2024, 18:21:13 CEST -->
 
