@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>nmod:tmod</title>
+    <title>obl:unmarked</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -35,9 +35,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-he">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-cop">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_he/dep/nmod-tmod.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_cop/dep/obl-unmarked.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,37 +76,55 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>nmod:tmod</code>: temporal modifier</h2>
+        <h2><code>obl:unmarked</code>: noun phrase as adverbial modifier</h2>
 
-<p>A temporal nominal modifier of another nominal is a subtype of the <a href="">nmod</a> relation
-if the modifier is specifying a time, labeled as <code class="language-plaintext highlighter-rouge">tmod</code>; This subtype has been <strong>deprecated</strong> by the UD Core Group and has been superceded by <code class="language-plaintext highlighter-rouge">obl:unmarked</code> since UD v2.15.</p>
+<p>This relation is a subtype of the <a href="">obl</a> relation, replacing the deprecated <code class="language-plaintext highlighter-rouge">:npmod</code> subtype, which captures cases where a noun phrase is used as an adverbial modifier in a sentence, without a preposition indicating its oblique status:</p>
 
-<pre><code class="language-sdparse">ב ספטמבר 1952 נחתם הסכם ה שילומים
-nmod:tmod(ספטמבר, 1952)
+<p>Used for non-reflexive pronouns used adverbially (i.e. regular pronouns):</p>
+
+<pre><code class="language-sdparse">ⲧⲉ/PRON ⲥⲙⲁⲙⲁⲁⲧ/VERB ⲛⲧⲟ/PRON \n you are blessed yourself
+
+nsubj(ⲥⲙⲁⲙⲁⲁⲧ,ⲧⲉ)
+obl:unmarked(ⲥⲙⲁⲙⲁⲁⲧ,ⲛⲧⲟ)
 </code></pre>
 
-<!-- Interlanguage links updated Ne 5. května 2024, 18:21:25 CEST -->
+<p>Inflected modifiers (Scriptorium tag IMOD, cf. Layton 2011: 118-123) are also seen as oblique NPs. For example, ϩⲱⲱ⸗ is used together with an object pronoun to mean ‘also X’ or ‘X for X’s part. Because of its basic modifier semantics, meaning ‘also’, the combination is seen as oblique, so that the function of the phrase is again <code class="language-plaintext highlighter-rouge">obl:unmarked</code>. Note that ϩⲱⲱ is not a preposition, and the analysis treats it similarly to a possessed noun, so that the pronoun is seen as a determiner <code class="language-plaintext highlighter-rouge">det</code> and the entire combination is an oblique NP:</p>
+
+<pre><code class="language-sdparse">ϩⲱⲱ/ADV ⲕ/PRON ⲕ/PRON ⲟⲩⲱϣⲧ/VERB \n you also worship/for your part you worship
+advmod(ⲟⲩⲱϣⲧ, ϩⲱⲱ)
+</code></pre>
+
+<p>The same applies to other IMODs: the inflected modifier ⲧⲏⲣ⸗ ‘all of X’ is also seen as <code class="language-plaintext highlighter-rouge">obl:unmarked</code>, i.e. as syntactically more similar to ‘completely’ than a determiner ‘all’. Like all inflected modifiers, the pronoun is seen as a determiner in this case, similar to a possessive. In the following example, we can think of the meaning as ‘their entirety(-wise)’, or ‘by way of their entirety’.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-sdparse">ⲛ/DET ⲕⲟⲟⲩⲉ/NOUN ⲧⲏⲣ/ADV ⲟⲩ/PRON \n all the others (lit. the others in their entirety)
+obl:unmarked(ⲕⲟⲟⲩⲉ, ⲧⲏⲣ)
+</code></pre>
+
+<p>Distributive numerals are also analyzed as <code class="language-plaintext highlighter-rouge">obl:unmarked</code>:</p>
+
+<pre><code class="language-sdparse">ⲡ/DET ϩⲱⲃ/NOUN ⲙ/ADP ⲡ/DET ⲟⲩⲁ/NUM ⲡ/DET ⲟⲩⲁ/NUM \n the act of one by one
+
+det(ϩⲱⲃ,ⲡ-1)
+nmod(ϩⲱⲃ,ⲟⲩⲁ-5)
+case(ⲟⲩⲁ-5,ⲙ)
+det(ⲟⲩⲁ-5,ⲡ-4)
+obl:unmarked(ⲟⲩⲁ-5,ⲟⲩⲁ-7)
+</code></pre>
+
+<p>NPs used to indicate manner, means, extent etc.:</p>
+
+<pre><code class="language-sdparse">ⲙⲡ/AUX ⲥ/PRON ⲙⲧⲟⲛ/VERB ⲙⲙⲟ/ADP ⲥ/PRON ⲗⲁⲁⲩ/NOUN \n she did not repose (in) anything
+
+obl:unmarked(ⲙⲧⲟⲛ,ⲗⲁⲁⲩ)
+</code></pre>
+
+<!-- Interlanguage links updated Ne 5. května 2024, 18:21:39 CEST -->
 
 
 <!-- "in other languages" links -->
 <hr/>
-
-nmod:tmod in other languages:
-
-[<a href="../../en/dep/nmod-tmod.html">en</a>]
-
-[<a href="../../he/dep/nmod-tmod.html">he</a>]
-
-[<a href="../../id/dep/nmod-tmod.html">id</a>]
-
-[<a href="../../jv/dep/nmod-tmod.html">jv</a>]
-
-[<a href="../../mdf/dep/nmod-tmod.html">mdf</a>]
-
-[<a href="../../qpm/dep/nmod-tmod.html">qpm</a>]
-
-[<a href="../../u/dep/nmod-tmod.html">u</a>]
-
 
 
       </div>
@@ -154,7 +172,7 @@ nmod:tmod in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'he';
+        Collections.listing['_current'] = 'cop';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
