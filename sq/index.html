@@ -82,11 +82,18 @@
 
 <ul>
   <li>Words are delimited based on whitespace and punctuation.</li>
-  <li>No multi-word tokens occur. However, multi-word units exist and have been segmented based on whitespace as well. In the current dataset, they appear in the following forms:
+  <li>No multi-word tokens occur in the TSA corpus. However, multi-word units exist and have been segmented based on whitespace as well. In the current dataset, they appear in the following forms:
     <ul>
       <li>adjectives, i.e. <em>i madh</em> (big)</li>
       <li>pronouns, i.e. <em>i cili</em> (who)</li>
       <li>nouns (nominalized participle), i.e. <em>të vdekurit</em> (the dead)</li>
+    </ul>
+  </li>
+  <li>Multiword tokens occur in the STAF corpus. Most notably, combinations between clitical pronouns, such as:
+    <ul>
+      <li><em>ma</em> -&gt; <em>më+ ‘1sg.dat’ + *e</em> ‘3sg.acc’
+or combinations between particles and clitical pronouns, such as:</li>
+      <li><em>ta</em> -&gt; <em>të</em> ‘part’ + <em>e</em> ‘3sg.acc’</li>
     </ul>
   </li>
 </ul>
@@ -104,6 +111,7 @@
       <li>the particle which functions as an adverbial: <em>madje</em></li>
       <li>the particle <em>të</em> when occuring in front of verbs.</li>
       <li>the particle <em>duke</em> which is used to build the gerund form of verbs.</li>
+      <li>the particle <em>do</em> which is used to build the future form of verbs.</li>
     </ul>
   </li>
   <li>Auxiliaries (<a href="">AUX</a>) can be listed as follows:
@@ -124,12 +132,14 @@
 <ul>
   <li>Nouns have inherent <a href="">Gender</a>, <code class="language-plaintext highlighter-rouge">Masc</code> or<code class="language-plaintext highlighter-rouge">Fem</code>. They inflect for <a href="">Definite</a> (definite or indefinite, marked as suffix), <a href="">Number</a> (singular or plural) and <a href="">Case</a> (nominative, genitive, dative, accusative, vocative and ablative). For those nouns that change gender in plural, the feature <a href="">NounType</a><code class="language-plaintext highlighter-rouge">=Het</code> has been provided additionally.</li>
   <li>Verbs inflect for <a href="">Aspect</a> (imperfect, perfect), <a href="">Mood</a> (indicative, subjunctive, admirative, imperative, conditional, optative) <a href="">Number</a> (singular or plural), <a href="">Person</a> (first, second, third), <a href="">Tense</a> (past or present) and <a href="">Voice</a> (active or passive/mediopassive). There are three types of nonfinite forms: infinitives, past participle/supine (used to form perfect tenses together with the auxiliary to have/to be or other verb constructions, i.e. <em>për të shkruajtur</em> (in order to write). However, in case of non-finite verb forms only the feature <a href="">VerbForm</a> has been provided.</li>
-  <li>Adjectives agree with nouns with respect to the features <a href="">Gender</a>, <a href="">Number</a>, <a href="">Case</a> and <a href="">Definite</a>. In addition, many adjectives inflect for <a href="">Degree</a> (positive, comparative, superlative). In this Treebank, only the features <a href="">Gender</a>, <a href="">Number</a> and <a href="">VerbForm</a> were included in the morphological analysis.</li>
+  <li>The TSA treebank has the following features for verbs: <a href="">Aspect</a>, <a href="">Mood</a>, <a href="">Number</a>, <a href="">Person</a>, <a href="">Tense</a> and <a href="">Voice</a>.</li>
+  <li>The STAF treebank has the following features for verbs: <a href="">Mood</a>, <a href="">Number</a>, <a href="">Person</a>, <a href="">Tense</a> and <a href="">Voice</a>. <a href="">Voice</a> has the <code class="language-plaintext highlighter-rouge">Act</code> (active) and <code class="language-plaintext highlighter-rouge">Mid</code> (mediopassive) features.</li>
+  <li>Adjectives agree with nouns with respect to the features <a href="">Gender</a>, <a href="">Number</a>, <a href="">Case</a> and <a href="">Definite</a>. In addition, many adjectives inflect for <a href="">Degree</a> (positive, comparative, superlative). In the TSA treebank, only the features <a href="">Gender</a>, <a href="">Number</a> and <a href="">VerbForm</a> were included in the morphological analysis. In the STAF treebank, the following features are available for adjectives: <a href="">Case</a>, <a href="">Degree</a>, <a href="">Gender</a> and <a href="">Number</a>.</li>
   <li>Adverbs inflect only for <a href="">Degree</a>.</li>
   <li>Personal pronouns inflect for <a href="">Case</a> with four values (nominative, accusative, dative, ablative), <a href="">Number</a> and <a href="">Gender</a>. Here, the following features were stated: <a href="">Gender</a>, <a href="">Number</a> and <a href="">PronType</a>.</li>
-  <li>For Determiners, only <a href="">Gender</a> has been provided, although number and case apply as well.
+  <li>For Determiners, only <a href="">Gender</a> has been provided in the TSA treebank, although number and case apply as well. In the STAF treebank, Determiners have <a href="">Case</a>, <a href="">Gender</a>, <a href="">Number</a> and <a href="">PronType</a>. There is an exception:
     <ul>
-      <li>Note about DET: Determiners (which only preceed nouns in order to form cases) agree in Gender and Number with the head of the noun phrase and not the noun that is their head (the noun for which they act as case markers). i.e. shkronjat (FEM, PL) e (FEM, PL) librit (MASC, SING) (The letters of the book). This is why, when inflecting nouns for case, one leaves undetermined the gender of the DET in grammar books and provides all options.</li>
+      <li>In the possessive construction, Determiners are used as connective morphemes between the possessed item and the possessor and agree in <a href="">Gender</a> and <a href="">Number</a> with the possessed item, i.e. shkronjat (FEM, PL) e (FEM, PL) librit (MASC, SING) (The letters of the book). In the TSA treebank, the connective morphemes has the <a href="">Gender</a> feature, while in the STAF treebank has the <a href="">Gender</a> and the <a href="">Number</a> features.</li>
     </ul>
   </li>
 </ul>
@@ -148,11 +158,13 @@
   <li>The following subtypes are used in Albanian:
     <ul>
       <li><a href="">acl:relcl</a> for relative clauses</li>
-      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs or impersonal verb constructions (i.e. it is my duty <em>to say</em>…)</li>
-      <li><a href="">nmod:poss</a> for possessive/genitive modifiers</li>
+      <li><a href="">csubj:pass</a> for clausal subjects of passive verbs or impersonal verb constructions (i.e. it is my duty <em>to say</em>…) (Only in the TSA treebank)</li>
       <li><a href="">det:adj</a> for prearticulated adjectives</li>
+      <li><a href="">det:noun</a> for prearticulated nouns (Only in the TSA treebank)</li>
+      <li><a href="">det:poss</a> for possessive pronouns (Only in the STAF treebank)</li>
       <li><a href="">det:pron</a> for prearticulated pronouns</li>
-      <li><a href="">det:noun</a> for prearticulated nouns</li>
+      <li><a href="">obl:tmod</a> for obliques acting as temporal modifiers (Only in the STAF treebank)</li>
+      <li><a href="">nmod:poss</a> for possessive/genitive modifiers</li>
     </ul>
   </li>
 </ul>
