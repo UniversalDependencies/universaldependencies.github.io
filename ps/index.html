@@ -97,10 +97,10 @@
 <h3 id="lemmatization">Lemmatization</h3>
 
 <ul>
-  <li>Direct (nominative) singular form is used as lemma for nominals.</li>
-  <li>Infinitive is used as lemma for verbs, with these exceptions:
+  <li>Direct (nominative) singular masculine (if applicable) form is used as lemma for nominals.</li>
+  <li>Infinitive (in the direct case) is used as lemma for verbs, with these exceptions:
     <ul>
-      <li>The verb “to be”, used as copula and auxiliary verb for perfect tenses, does not have the infitinive, so the form of first person singular of the present tense یم <em>yëm</em> “I am” is used instead.</li>
+      <li>The verb “to be”, used as copula and as auxiliary verb for perfect tenses, does not have the infitinive, so the form of first person singular of the present tense یم <em>yëm</em> “I am” is used instead.</li>
       <li>The existential word شته <em>šta</em> “there is / there are”, tagged as <a href="">VERB</a>, has only one form, so it is used as the lemma.</li>
     </ul>
   </li>
@@ -113,12 +113,11 @@
   <li>Several words are tagged as <a href="">PART</a>:
     <ul>
       <li>Negative particles نه <em>në</em> and مه <em>ma</em> “no/not” and the affirmative particle هو <em>ho</em> “yes”.</li>
-      <li>Modal particles: باید <em>bấyad</em> (necessity “must / have to”), وای wây (past irreality).</li>
-      <li>Separeted verb prefixes: و <em>wë</em>.</li>
+      <li>Modal particles: باید <em>bấyad</em> (necessity “must / have to”).</li>
     </ul>
   </li>
   <li>Only the verb یم <em>yëm</em> “to be” (used as copula and auxiliary verb for perfect tenses) and some uses of the verb کېدل <em>kedë́l</em> “to become” (when used as auxiliary verb for passive voice or potential forms) are tagged as <a href="">AUX</a>. Modal verbs, such as غوښتل <em>ġox̌të́l</em> “to want to”, are tagged as <a href="">VERB</a> (besides that, some modal meanings are expressed using modal particles or using the mentioned potential verb forms). Light verbs are tagged also as VERB, with the nominal part depending on them with <code class="language-plaintext highlighter-rouge">xcomp</code> relation.</li>
-  <li>Pronouns that depend on nouns and behave similarly like their attributes (some of them even agree with the nouns in number, case and gender) are tagged as <a href="">DET</a>; possessive pronouns are mostly treated this way. Pronouns used individually (often as arguments of a verb) are tagged as <a href="">PRON</a>. This includes e.g. relative or non-possessive personal pronouns. Various interrogative, demonstrative or indefinite pronouns can be tagged both ways depending on the situation. Enclitic weak pronouns, used a objects or as alternative possessive pronouns, are always tagged as PRON, even when marking possession, because they do not have the attributive relation to the noun, e.g. they follow the noun, while all other pronouns tagged as <a href="">DET</a> precede it.</li>
+  <li>Pronouns that depend on nouns and behave similarly like their attributes (some of them even agree with the nouns in number, case and gender) are tagged as <a href="">DET</a>; possessive pronouns are mostly treated this way. Pronouns used individually (often as arguments of a verb) are tagged as <a href="">PRON</a>. This includes e.g. relative or non-possessive personal pronouns. Various interrogative, demonstrative or indefinite pronouns can be tagged both ways depending on the situation. Enclitic weak pronouns, used as unstressed core arguments or as alternative possessive pronouns, are always tagged as PRON, even when marking possession, because they do not have the attributive relation to the noun, e.g. they follow the noun, while all other pronouns tagged as DET precede it. Directional pronouns, merged with several prepositions, are separated from them with a PRON tag.</li>
   <li>The deverbal forms like infinitive or participles (sometimes behaving like verbal noun and verbal adjectives) are usually tagged as VERB. Only nouns and adjectives originally derived from infinitives or participles, but now perceived clearly as nouns and adjectives, are tagged as <a href="">NOUN</a> and <a href="">ADJ</a>.</li>
   <li>Adjectives and adverbs derived from adjectives have often the same form. Their tagging as <a href="">ADJ</a> or <a href="">ADV</a> depends on the context.</li>
 </ul>
@@ -128,49 +127,69 @@
 <ul>
   <li>There are three <a href="">VerbForm</a> values used in Pashto: finite <code class="language-plaintext highlighter-rouge">Fin</code>, infinitive <code class="language-plaintext highlighter-rouge">Inf</code> and participle <code class="language-plaintext highlighter-rouge">Part</code>.</li>
   <li>An important feature of Pashto verbs is <a href="">Aspect</a>, which strictly divides verb forms to imperfect <code class="language-plaintext highlighter-rouge">Imp</code> and perfecgt <code class="language-plaintext highlighter-rouge">Perf</code>.</li>
-  <li>The finite verb forms inflect for <a href="">Mood</a> feature with indicative <code class="language-plaintext highlighter-rouge">Ind</code>, imperative <code class="language-plaintext highlighter-rouge">Imp</code> and subjunctive <code class="language-plaintext highlighter-rouge">Sub</code> values.</li>
+  <li>The finite verb forms inflect for <a href="">Mood</a> feature with indicative <code class="language-plaintext highlighter-rouge">Ind</code>, imperative <code class="language-plaintext highlighter-rouge">Imp</code>, subjunctive <code class="language-plaintext highlighter-rouge">Sub</code> and potential <code class="language-plaintext highlighter-rouge">Pot</code> values.</li>
   <li>The finite verb forms conjugate for <a href="">Tense</a> feature taking present <code class="language-plaintext highlighter-rouge">Pres</code>, past <code class="language-plaintext highlighter-rouge">Past</code> or future <code class="language-plaintext highlighter-rouge">Fut</code> mark.</li>
   <li>The finite verb forms inflect also for the <a href="">Person</a> feature with the common three values, which is also an inherent feature of many personal pronouns.</li>
   <li>Generally all inlfectional parts of speech inflect for <a href="">Number</a> taking a singular <code class="language-plaintext highlighter-rouge">Sing</code> or a plural <code class="language-plaintext highlighter-rouge">Plur</code> value. Infinitives always behave like plural, so they do not have the number tagged. Non-past finite verb forms do not have the number feature in the third person, since the forms for both numbers are always identical.</li>
-  <li>Nominals, participles and infinitives inflect for <a href="">Case</a> feature. There are four cases in Pashto: direct (marked as nominative) <code class="language-plaintext highlighter-rouge">Nom</code>, oblique (marked as accusative) <code class="language-plaintext highlighter-rouge">Acc</code>, ablative <code class="language-plaintext highlighter-rouge">Abl</code> and vocative <code class="language-plaintext highlighter-rouge">Voc</code>.</li>
+  <li>Nominals, participles and infinitives inflect for <a href="">Case</a> feature. There are five cases tagged in UD for Pashto: direct (marked as nominative) <code class="language-plaintext highlighter-rouge">Nom</code>, oblique (marked as accusative) <code class="language-plaintext highlighter-rouge">Acc</code>, locative <code class="language-plaintext highlighter-rouge">Loc</code>, ablative <code class="language-plaintext highlighter-rouge">Abl</code> and vocative <code class="language-plaintext highlighter-rouge">Voc</code>.</li>
   <li>Nouns and some pronouns have inherent <a href="">Gender</a> feature with two possible values: masculine <code class="language-plaintext highlighter-rouge">Masc</code> and feminine <code class="language-plaintext highlighter-rouge">Fem</code>. Adjectives, other pronouns and participles inflect for the gender in order to agree with nouns. Finite verb forms inflect for the gender only in the past forms in the third person (both singular and plural).</li>
-  <li>Some forms of the verbs کول <em>kawë́l</em> “to do” and کېدل <em>kedë́l</em> “to become” use <a href="">Variant</a> feature to distinguish <code class="language-plaintext highlighter-rouge">Short</code> and <code class="language-plaintext highlighter-rouge">Long</code> variants.</li>
+  <li>Verbs and pronouns use the feature <a href="">Variant</a> to distinguish between various forms, denoted long <code class="language-plaintext highlighter-rouge">Long</code>, short <code class="language-plaintext highlighter-rouge">Short</code>, weak <code class="language-plaintext highlighter-rouge">Weak</code> and directional <code class="language-plaintext highlighter-rouge">Dir</code>.</li>
 </ul>
 
 <h2 id="syntax">Syntax</h2>
 
 <h3 id="core-arguments">Core Arguments</h3>
 <ul>
-  <li>Core arguments (subjects and objects) in Pashto are mostly nouns, pronouns or infinitives (behaving like verbal nouns) in either bare direct case <code class="language-plaintext highlighter-rouge">Nom</code> or bare oblique case <code class="language-plaintext highlighter-rouge">Acc</code>. The exact use of these cases depends on the inherent transitivity of the verb and the voice and tense used (phenomenon often calld <em>split ergativity</em>)</li>
-  <li>The only arguments (i.e. the subjects) of intransitive verbs or of transitive verbs used in the passive voice are always in the direct case <code class="language-plaintext highlighter-rouge">Nom</code>.</li>
+  <li>Core arguments (subjects and objects) in Pashto are mostly nouns, pronouns or infinitives (behaving like verbal nouns) in either bare direct case <code class="language-plaintext highlighter-rouge">Nom</code> or bare oblique case <code class="language-plaintext highlighter-rouge">Acc</code>. The exact use of these cases depends on the inherent transitivity of the verb and the voice and tense used (language phenomenon called <em>split ergativity</em> occurring also in other Indo-Iranian langages)</li>
+  <li>The only argument (i.e. the subject) of intransitive verbs or of transitive verbs used in the passive voice are always in the direct case <code class="language-plaintext highlighter-rouge">Nom</code>.</li>
   <li>For transitive verbs in the active voice holds:
     <ul>
       <li>The <strong>subject</strong> in <strong>non-past</strong> tenses is always in the <strong>direct</strong> case <code class="language-plaintext highlighter-rouge">Nom</code>.</li>
       <li>The <strong>subject</strong> in <strong>past</strong> tenses is always in the <strong>oblique</strong> case <code class="language-plaintext highlighter-rouge">Acc</code>.</li>
       <li>The <strong>object</strong> in <strong>all</strong> tenses is almost always in the <strong>direct</strong> case <code class="language-plaintext highlighter-rouge">Nom</code>.
         <ul>
-          <li>The only exceptions are pronouns of the first and second person singular in <strong>non-past</strong> tenses, where oblique forms ما <em>mâ</em> “me”, تا <em>tâ</em> “you” are used instead of the direct رۀ <em>zë</em> “I”, تۀ <em>të</em> “you”.</li>
+          <li>The only exceptions are personal pronouns for the first and the second person singular in <strong>non-past</strong> tenses, where oblique forms ما <em>mâ</em> “me”, تا <em>tâ</em> “you” are used instead of the direct رۀ <em>zë</em> “I”, تۀ <em>të</em> “you”.</li>
         </ul>
       </li>
-      <li>The subject usually comes before the object regardless of the case.
-&lt;!–</li>
+      <li>The subject usually comes before the object regardless of the case.</li>
+      <li>The verb agrees in <code class="language-plaintext highlighter-rouge">Person</code> and <code class="language-plaintext highlighter-rouge">Number</code> (and also <code class="language-plaintext highlighter-rouge">Gender</code> in the third person of past tenses) with the subject in non-past tenses and with the object in past tenses.</li>
     </ul>
   </li>
-  <li>Other occurrences of the direct and oblique case are generally accompanied by an adposition, altghough various exceptions of nominals in the bare direct and oblique case, that are not a core argument, may exist:
-    <ul>
-      <li>Temporal range (دوه ساعته خوب کوم <em>dwa <strong>sâáta</strong> xob kawë́m</em> “I sleep for two hours”).</li>
-      <li>Nominal part of a light verb !!!</li>
-      <li>Fixed phrases.
-–&gt;</li>
-    </ul>
-  </li>
+</ul>
+
+<table>
+<tr>
+  <td align="middle" rowspan="2"></td>
+  <td align="middle">intransitive&lt;/b&gt;</td>
+  <td align="middle" colspan="2">transitive</td>
+</tr>
+<tr>
+  <td align="middle">nsubj</td>
+  <td align="middle">nsubj</td>
+  <td align="middle">obj</td>
+</tr>
+<tr>
+  <td align="middle">non-past</td>
+  <td align="middle"><b>direct</b></td>
+  <td align="middle"><b>direct</b></td>
+  <td align="middle"><b>direct *</b></td>
+</tr>
+<tr>
+  <td align="middle">past</td>
+  <td align="middle"><b>direct</b></td>
+  <td align="middle"><b>oblique</b></td>
+  <td align="middle"><b>direct</b></td>
+</tr>
+</table>
+<ul>
+  <li>exceptions: ما <em>mâ</em>, تا <em>tâ</em> (see above)</li>
 </ul>
 
 <h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
 <ul>
   <li>The copula verb یم <em>yëm</em> “be” (or more precisely “I am”) is used in most non-verbal clauses.</li>
   <li>The nominal part of the predicate is usually in the direct case <code class="language-plaintext highlighter-rouge">Nom</code></li>
-  <li>In the existential non-verbal clauses the word شته <em>šta</em> “there is / there are” is used, but it is tagged <a href="">VERB</a></li>
+  <li>In the existential clauses the word شته <em>šta</em> “there is / there are” is used, but it is tagged <a href="">VERB</a></li>
 </ul>
 
 <h3 id="relations-overview">Relations Overview</h3>
