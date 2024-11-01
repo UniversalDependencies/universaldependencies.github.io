@@ -159,10 +159,22 @@ case(ayscʻanē, i)
 <p>For spoken data, we need three relations to be added to the validator:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">discourse</code>, which is very common between two determiners in false starts: “a, uh, a gap”, “my, uh, our friend”</li>
+  <li><a href="">discourse</a>, which is very common between two determiners in false starts: “a, uh, a gap”, “my, uh, our friend”</li>
+</ul>
+
+<p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2452618494">Dan Zeman</a>: Does the interjection have to be attached to one of the determiners? The <a href="https://universaldependencies.org/u/dep/discourse.html">discourse page</a> says that they are attached to the most relevant nearby unit, which is not very helpful, but I thought they would be attached at clause level (yes, it would be non-projective in this case).</p>
+
+<ul>
   <li><code class="language-plaintext highlighter-rouge">parataxis</code> for cases such as “a, I don’t how to call that, a kiosk, …”: here we have a <code class="language-plaintext highlighter-rouge">reparandum</code> link between the two “a”s and we would like to attach the parenthesis to the first “a”. More exactly we use <code class="language-plaintext highlighter-rouge">parataxis:parenth</code> in our spoken French treebanks.</li>
+</ul>
+
+<p>DZ: Is attaching the parenthetical to the first determiner better than attaching it to the noun <em>(kiosk)</em>? Apart from the non-projectivity – I realize that there is similarity between this and the <code class="language-plaintext highlighter-rouge">discourse</code> point above.</p>
+
+<ul>
   <li><code class="language-plaintext highlighter-rouge">dep</code> for false starts such as “the last, the last day”: here “the last” forms a phrase the head of which is missing and we decided to have dep(the, last). I am not against another solution, as long as “the last” is still a phrase.</li>
 </ul>
+
+<p>DZ: I don’t have a strong position for the first two points above but here I do. I really don’t think that <a href="">dep</a> deserves any dedicated rule anywhere in UD, it is a last resort in datasets but its usage should be minimized. I don’t understand what makes this case so different from cases where we use <a href="">reparandum</a>? I always thought we would use it for false starts as well; the only thing that makes them different from true repairs is that the reparandum is identical with the repair, but I still see a strong analogy, when it is uttered for the second time, the first attempt is canceled in a sense. Moreover, here I would not attach the reparandum to the article but to the head of <em>the last day</em>, which would make it unproblematic w.r.t. the rule that determiners do not have children.</p>
 
 <p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2438448236">Laura Rituma</a> added a Latvian example where parataxis may be needed and it is not spoken data. But <a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2440023939">Joakim Nivre</a> thinks that even here we see two determiners that should be attached as siblings to the head noun.</p>
 
