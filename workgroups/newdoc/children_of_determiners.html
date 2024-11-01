@@ -84,11 +84,48 @@
 
 <p>For several years, the <a href="/release_checklist.html#validation">UD validator</a> did not enforce this rule for determiners while it was doing so for other function words. The test was finally <a href="https://github.com/UniversalDependencies/tools/commit/1e4debd">implemented in September 2024</a> under the label <code class="language-plaintext highlighter-rouge">leaf-det-clf</code>, <a href="https://github.com/UniversalDependencies/tools/commit/c5b8cf5ecff55c27affa8ff0eac737cb799883c8">later split</a> to two tests, <code class="language-plaintext highlighter-rouge">leaf-det</code> and <code class="language-plaintext highlighter-rouge">leaf-clf</code>; since this page is about determiners and not about classifiers, we are interested in <code class="language-plaintext highlighter-rouge">leaf-det</code>. Like other similar tests for function words, it allows determiners to have children if the (universal part of the) relation between the determiner and the child is in a predefined subset:</p>
 
-<p>*</p>
+<ul>
+  <li><a href="">goeswith</a> – Like any other word, determiner may be incorrectly split to multiple tokens in writing, then the pieces must be connected via <code class="language-plaintext highlighter-rouge">goeswith</code>.</li>
+  <li><a href="">reparandum</a> – Like any other word in spoken data, determiner may be the correct word after an incorrect fragment has been uttered, then the incorrect fragment must be attached to the determiner via <code class="language-plaintext highlighter-rouge">reparandum</code>.</li>
+  <li><a href="">fixed</a> – This relation is used to connect tokens in fixed multiword expression that act as a function word. Multiword determiners are not common but they do occur e.g. in French <em>lire <b>de la</b> documentation</em> “to read documentation”.</li>
+  <li><a href="">conj</a> and <a href="">cc</a> – Determiners can be coordinated (e.g. <em><b>each and every</b> member</em>).</li>
+  <li><a href="">punct</a> – Punctuation should normally be attached to a content word, but it must be attached to a function word if
+    <ul>
+      <li>the function word is the only word enclosed in paired punctuation such as brackets;</li>
+      <li>or if it is the only way how to avoid non-projectivity;</li>
+      <li>or if it separates coordinate function words.</li>
+    </ul>
+  </li>
+</ul>
 
-<p>//
-Nathan: “such” licenses an adverbial clause: “such a player that he could get away with that”
-Daniel Swanson (Hebrew): demonstrative pronouns have their own determiners. (Petr had the same thing in Classical Armenian.)</p>
+<h2 id="light-adverbials">Light Adverbials</h2>
+
+<p>The <a href="/u/overview/syntax.html#function-word-modifiers">guidelines also acknowledge</a> that “certain types of function words can take a restricted class of modifiers, mainly light adverbials (including negation).” They explicitly give one example that involves a determiner: <em><b>not every</b> linguist</em>. Ideally the validator should have the list of permitted modifiers (light adverbials) for each language; as such lists are currently not available, the validator has additional deprel-level exceptions, although they potentially open the door for other adverbials that should not be allowed:</p>
+
+<ul>
+  <li><a href="">advmod</a> – It is used to attach negative particles such as <em>not</em> in <em>not every linguist</em>.</li>
+  <li><a href="">obl</a> – A modifier could be semantically adverbial but syntactically expressed as a nominal rather than an adverb. In that case, it must be attached as <code class="language-plaintext highlighter-rouge">obl</code> and not as <code class="language-plaintext highlighter-rouge">advmod</code>. This exception was copied from other function words although it is unclear yet whether it is needed with determiners.</li>
+</ul>
+
+<h2 id="problematic-constructions">Problematic Constructions</h2>
+
+<p>After the validation test was introduced, it identified problems in over 200 UD treebanks. For some of them, their maintainers suggested that the guidelines should be extended to allow additional specific constructions. The full discussion is in <a href="https://github.com/UniversalDependencies/docs/issues/1059">Issue #1059</a>; as it is extremely long and messy, we try to summarize the interesting points here.</p>
+
+<h3 id="adverbial-clauses">Adverbial Clauses</h3>
+
+<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issue-2574038827">Nathan Schneider</a>)</p>
+
+<p>In English, <em>such</em> is a demonstrative determiner and it may license an <a href="">advcl</a>, as in <a href="https://universal.grew.fr/?custom=66f9b53a31605">these results</a>. The guidelines on <a href="/u/overview/specific-syntax.html#sufficiency-and-excess">sufficiency and excess</a> for <em>so</em> and similar say the <code class="language-plaintext highlighter-rouge">advcl</code> should attach to the adjective or adverb, not the noun in a case like <em>sufficient flour</em>. Then in <em>such a high price <strong>that nobody could afford it</strong></em>, we may want to attach the <code class="language-plaintext highlighter-rouge">advcl</code> dependent to <em>such</em>.</p>
+
+<p>Ideally, the validator should allow <code class="language-plaintext highlighter-rouge">advcl</code> specifically in English and only if the head is <em>such</em>. If there are similar constructions in other languages, they should be also registered specifically for those languages and not en bloc for the whole UD.</p>
+
+<h3 id="determiners-under-determiners">Determiners under Determiners</h3>
+
+<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2400694043">Daniel Swanson</a>)</p>
+
+<p>In Hebrew (both Ancient and Modern), demonstrative pronouns have their own determiners, as in “the men the these” = “these men”. It is also parallel to how adjectival modification works in Modern Hebrew.</p>
+
+<p>//(Petr had the same thing in Classical Armenian.)</p>
 
       </div>
 
