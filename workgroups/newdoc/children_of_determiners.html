@@ -192,6 +192,27 @@ nummod(books, three)
 
 <p>Can we deactivate this validation rule if the head element has the feature <code class="language-plaintext highlighter-rouge">Person</code>, at least for <code class="language-plaintext highlighter-rouge">acl:relcl</code>?</p>
 
+<h3 id="nominal-possessive-modifier-of-a-determiner">Nominal Possessive Modifier of a Determiner</h3>
+
+<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2424872098">Janine Siewert</a>)</p>
+
+<p>Low Saxon: It is explained in Section 5.1 here: <a href="https://aclanthology.org/2024.lrec-main.1388.pdf">https://aclanthology.org/2024.lrec-main.1388.pdf</a>
+The gloss and translation of the sentence can be found in Section 4.3.</p>
+
+<p><em>Ik sto in der Gemoene iarem Denste</em> “I stand in the service of the parish.” (lit. “I stand in the.DAT parish.DAT her.DAT service.DAT”)</p>
+
+<pre><code class="language-sdparse">Ik sto in der Gemoene iarem Denste
+nsubj(sto, Ik)
+obl(sto, Denste)
+case(Denste, in)
+det(Denste, iarem)
+nmod:poss(iarem, Gemoene)
+det(Gemoene, der)
+</code></pre>
+
+<p>Attaching the possessor in dative case to the possessee instead of the determiner does not represent the way this construction works because 1) the dative possessor cannot be attached to the possessee without the determiner and 2) the possessee can be dropped while the determiner cannot. E.g., in the example in my paper, “In der Gemoene iarem.” (literally “in the parish hers”) is a valid answer to a specification question in whose service the person stands. (A note to German speakers: Masculine and neuter nouns show that this is indeed a dative, not a genitive.)
+The alternative to change the determiners’ tags to PRON in Low Saxon would go against UD’s own definition of determiners. I would therefore join @nschneid in asking you to relax the error to a warning or ask for language-specific exceptions to the rule.</p>
+
 <h3 id="vor-allem">Vor allem</h3>
 
 <p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2405829551">Leonie Weissweiler</a>)</p>
