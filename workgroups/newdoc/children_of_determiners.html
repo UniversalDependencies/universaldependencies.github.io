@@ -152,6 +152,19 @@ case(kʻarancʻ, i)
 case(ayscʻanē, i)
 </code></pre>
 
+<h3 id="pronoun-has-case-both-are-attached-as-det">Pronoun has case, both are attached as det</h3>
+
+<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2435696875">Koichi Yasuoka</a>)</p>
+
+<pre><code class="language-conllu"># text = 她的這本書
+1	她	她	PRON	PRP	Person=3	5	det	_	SpaceAfter=No
+2	的	的	PART	DEC	Case=Gen	1	case	_	SpaceAfter=No
+3	這	這	DET	DT	_	5	det	_	SpaceAfter=No
+4	本	本	NOUN	NNB	_	3	clf	_	SpaceAfter=No
+5	書	書	NOUN	NN	_	0	root	_	SpaceAfter=No
+
+</code></pre>
+
 <h3 id="spoken-data">Spoken Data</h3>
 
 <p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2407036491">Sylvain Kahane</a>)</p>
@@ -198,6 +211,18 @@ case(ayscʻanē, i)
 
 <p>Dan: Why is <a href="">fixed</a> not a good choice? I think it is the right choice here.</p>
 
+<h3 id="semantic-coordination-syntactic-flat">Semantic Coordination, Syntactic Flat?</h3>
+
+<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2433801928">Koichi Yasuoka</a>)</p>
+
+<p>In Classical Chinese 彼此兵 “those and these soldiers” is invalidated by this rule. The English translation has coordinate determiners but there is no coordinating conjunction in the original and 彼此 “that this” are connected via <a href="">flat</a>. Then “that” is attached as <a href="">det</a> to “soldier”.</p>
+
+<h2 id="problems-with-referentiality">Problems with Referentiality</h2>
+
+<p>A large part of the discussion slipped to the related problem of deciding between <a href="">det</a> and <a href="">nmod</a> (or their <code class="language-plaintext highlighter-rouge">:poss</code> subtypes). Joakim believes that the guidelines imply, despite not saying it explicitly, that if the word is referential, it should be attached as <code class="language-plaintext highlighter-rouge">nmod</code> rather than <code class="language-plaintext highlighter-rouge">det</code>. It would be the case of all words referring to possessors, regardless whether they are tagged as <a href="">PRON</a>, <a href="">DET</a>, <a href="">NOUN</a> or <a href="">ADJ</a>. But other people (including Dan) do not understand the guidelines this way.</p>
+
+<p>The referentiality criterion would nevertheless have the advantage that some problems with the <code class="language-plaintext highlighter-rouge">leaf-det</code> test would disappear. The problems belonging to this class are listed in this section. The occasional need to attach an apposition or a relative clause to a determiner are caused by the fact that the determiner is referential (because it is a possessive). If the referentiality criterion gains support and is approved via an amendment of the guidelines, many treebanks will require large changes. But in the current context, the <code class="language-plaintext highlighter-rouge">leaf-det</code> test should be probably relaxed for the special cases below.</p>
+
 <h3 id="relative-clause-modifying-a-referent-hidden-in-a-possessive-determiner">Relative Clause Modifying a Referent Hidden in a Possessive Determiner</h3>
 
 <ol>
@@ -226,12 +251,6 @@ appos(сонзэ, Степан)
 
 <p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2437494587">Koichi Yasuoka</a> provided a Chinese example of apposition.</p>
 
-<h3 id="semantic-coordination-syntactic-flat">Semantic Coordination, Syntactic Flat?</h3>
-
-<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2433801928">Koichi Yasuoka</a>)</p>
-
-<p>In Classical Chinese 彼此兵 “those and these soldiers” is invalidated by this rule. The English translation has coordinate determiners but there is no coordinating conjunction in the original and 彼此 “that this” are connected via <a href="">flat</a>. Then “that” is attached as <a href="">det</a> to “soldier”.</p>
-
 <h3 id="nominal-possessive-modifier-of-a-determiner">Nominal Possessive Modifier of a Determiner</h3>
 
 <p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2424872098">Janine Siewert</a>)</p>
@@ -257,19 +276,6 @@ The alternative to change the determiners’ tags to PRON in Low Saxon would go 
 The cited paper also says: “Among the UD languages, we have found comparable constructions in Afrikaans, Frisian Dutch, and Norwegian, but the annotation has been inconsistent across these languages.” The annotation indeed should be made consistent, but maybe one of those languages uses an analysis that works well under the UD guidelines?</p>
 
 <p>Subsequent comment by <a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2435696875">Flavio</a>.</p>
-
-<h3 id="pronoun-has-case-both-are-attached-as-det">Pronoun has case, both are attached as det</h3>
-
-<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2435696875">Koichi Yasuoka</a>)</p>
-
-<pre><code class="language-conllu"># text = 她的這本書
-1	她	她	PRON	PRP	Person=3	5	det	_	SpaceAfter=No
-2	的	的	PART	DEC	Case=Gen	1	case	_	SpaceAfter=No
-3	這	這	DET	DT	_	5	det	_	SpaceAfter=No
-4	本	本	NOUN	NNB	_	3	clf	_	SpaceAfter=No
-5	書	書	NOUN	NN	_	0	root	_	SpaceAfter=No
-
-</code></pre>
 
 <h2 id="problematic-constructions-that-do-not-deserve-an-exception">Problematic Constructions that Do Not Deserve an Exception</h2>
 
