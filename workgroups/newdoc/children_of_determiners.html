@@ -111,15 +111,17 @@
 
 <p>After the validation test was introduced, it identified problems in over 200 UD treebanks. For some of them, their maintainers suggested that the guidelines should be extended to allow additional specific constructions. The full discussion is in <a href="https://github.com/UniversalDependencies/docs/issues/1059">Issue #1059</a>; as it is extremely long and messy, we try to summarize the interesting points here.</p>
 
-<h3 id="adverbial-clauses">Adverbial Clauses</h3>
+<h3 id="compound-determiners">Compound Determiners</h3>
 
-<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issue-2574038827">Nathan Schneider</a>)</p>
+<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2413484624">Laura Rituma</a>)</p>
 
-<p>In English, <em>such</em> is a demonstrative determiner and it may license an <a href="">advcl</a>, as in <a href="https://universal.grew.fr/?custom=66f9b53a31605">these results</a>. The guidelines on <a href="/u/overview/specific-syntax.html#sufficiency-and-excess">sufficiency and excess</a> for <em>so</em> and similar say the <code class="language-plaintext highlighter-rouge">advcl</code> should attach to the adjective or adverb, not the noun in a case like <em>sufficient flour</em>. Then in <em>such a high price <strong>that nobody could afford it</strong></em>, we may want to attach the <code class="language-plaintext highlighter-rouge">advcl</code> dependent to <em>such</em>.</p>
+<p>In Latvian, we have several expressions considered as compound pronouns in Latvian traditional grammar which consist of one particle and one pronoun. For example, <em>kaut kāds</em> where <em>kaut</em> is a particle and <em>kāds</em> is a pronoun (this expression roughly means ‘some kind of’). Currently, we annotate the particle as <code class="language-plaintext highlighter-rouge">discourse</code> which is dependent of pronoun, and pronoun occasionally becomes <code class="language-plaintext highlighter-rouge">det</code> if the expression describes a noun. This leads to validation error.</p>
 
-<p>Ideally, the validator should allow <code class="language-plaintext highlighter-rouge">advcl</code> specifically in English and only if the head is <em>such</em>. If there are similar constructions in other languages, they should be also registered specifically for those languages and not en bloc for the whole UD.</p>
+<p>The particles in these expressions usually are <em>kaut</em>, <em>diez</em>, <em>diezin</em>, <em>nez</em>, <em>nezin</em>, and they all have very fuzzy, hard to pin down semantics so we feel uncomfortable annotating them as adverbs.</p>
 
-<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2452025700">Joakim Nivre</a>) You have the choice of treating <em>such</em> as <a href="">amod</a>, in which case it is unproblematic to attach an <code class="language-plaintext highlighter-rouge">advcl</code> to it. If you treat <em>such</em> as <code class="language-plaintext highlighter-rouge">det</code>, you instead have to attach the clause to its head (that is, to the whole phrase). This is similar to how we treat some comparative constructions. (Dan Zeman) If <em>such</em> is <code class="language-plaintext highlighter-rouge">amod</code>, then it should probably also have the <a href="">ADJ</a> UPOS tag. Although it looks like the current validator will not complain if it sees a <a href="">DET</a> attached as <code class="language-plaintext highlighter-rouge">amod</code> (it definitely does complain if it sees an <code class="language-plaintext highlighter-rouge">ADJ</code> attached as <code class="language-plaintext highlighter-rouge">det</code>).</p>
+<p>We would like to annotate these expressions as <a href="">compound</a> (instead of <a href="">fixed</a>) because the pronoun is the second element in the phrase and we feel that it is the head of the phrase  because the pronoun inflects together with a noun and bears the most of semantic meaning of the expression.</p>
+
+<p>It seems that the test should not report cases where a determiner has a <code class="language-plaintext highlighter-rouge">compound</code> child. After all, compound is just a signal that two nodes together act almost like one word, but in contrast to fixed, one of them can be considered the head.</p>
 
 <h3 id="determiners-under-determiners-case-under-determiners">Determiners under Determiners, Case under Determiners</h3>
 
@@ -163,18 +165,6 @@ case(ayscʻanē, i)
 </ul>
 
 <p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2438448236">Laura Rituma</a> added a Latvian example where parataxis may be needed and it is not spoken data. But <a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2440023939">Joakim Nivre</a> thinks that even here we see two determiners that should be attached as siblings to the head noun.</p>
-
-<h3 id="compound-determiners">Compound Determiners</h3>
-
-<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2413484624">Laura Rituma</a>)</p>
-
-<p>In Latvian, we have several expressions considered as compound pronouns in Latvian traditional grammar which consist of one particle and one pronoun. For example, <em>kaut kāds</em> where <em>kaut</em> is a particle and <em>kāds</em> is a pronoun (this expression roughly means ‘some kind of’). Currently, we annotate the particle as <code class="language-plaintext highlighter-rouge">discourse</code> which is dependent of pronoun, and pronoun occasionally becomes <code class="language-plaintext highlighter-rouge">det</code> if the expression describes a noun. This leads to validation error.</p>
-
-<p>The particles in these expressions usually are <em>kaut</em>, <em>diez</em>, <em>diezin</em>, <em>nez</em>, <em>nezin</em>, and they all have very fuzzy, hard to pin down semantics so we feel uncomfortable annotating them as adverbs.</p>
-
-<p>We would like to annotate these expressions as <code class="language-plaintext highlighter-rouge">compound</code> (instead of <code class="language-plaintext highlighter-rouge">fixed</code>) because the pronoun is the second element in the phrase and we feel that it is the head of the phrase  because the pronoun inflects together with a noun and bears the most of semantic meaning of the expression.</p>
-
-<p>Would you please consider allowing <code class="language-plaintext highlighter-rouge">compound</code> in this construction or is there any other option appropriate here?</p>
 
 <h3 id="reduplication-flat">Reduplication (flat)</h3>
 
@@ -264,6 +254,18 @@ The cited paper also says: “Among the UD languages, we have found comparable c
 5	書	書	NOUN	NN	_	0	root	_	SpaceAfter=No
 
 </code></pre>
+
+<h2 id="problematic-constructions-that-do-not-deserve-an-exception">Problematic Constructions that Do Not Deserve an Exception</h2>
+
+<h3 id="adverbial-clauses">Adverbial Clauses</h3>
+
+<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issue-2574038827">Nathan Schneider</a>)</p>
+
+<p>In English, <em>such</em> is a demonstrative determiner and it may license an <a href="">advcl</a>, as in <a href="https://universal.grew.fr/?custom=66f9b53a31605">these results</a>. The guidelines on <a href="/u/overview/specific-syntax.html#sufficiency-and-excess">sufficiency and excess</a> for <em>so</em> and similar say the <code class="language-plaintext highlighter-rouge">advcl</code> should attach to the adjective or adverb, not the noun in a case like <em>sufficient flour</em>. Then in <em>such a high price <strong>that nobody could afford it</strong></em>, we may want to attach the <code class="language-plaintext highlighter-rouge">advcl</code> dependent to <em>such</em>.</p>
+
+<p>Ideally, the validator should allow <code class="language-plaintext highlighter-rouge">advcl</code> specifically in English and only if the head is <em>such</em>. If there are similar constructions in other languages, they should be also registered specifically for those languages and not en bloc for the whole UD.</p>
+
+<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2452025700">Joakim Nivre</a>) You have the choice of treating <em>such</em> as <a href="">amod</a>, in which case it is unproblematic to attach an <code class="language-plaintext highlighter-rouge">advcl</code> to it. If you treat <em>such</em> as <code class="language-plaintext highlighter-rouge">det</code>, you instead have to attach the clause to its head (that is, to the whole phrase). This is similar to how we treat some comparative constructions. (Dan Zeman) If <em>such</em> is <code class="language-plaintext highlighter-rouge">amod</code>, then it should probably also have the <a href="">ADJ</a> UPOS tag. Although it looks like the current validator will not complain if it sees a <a href="">DET</a> attached as <code class="language-plaintext highlighter-rouge">amod</code> (it definitely does complain if it sees an <code class="language-plaintext highlighter-rouge">ADJ</code> attached as <code class="language-plaintext highlighter-rouge">det</code>).</p>
 
 <h3 id="vor-allem">Vor allem</h3>
 
