@@ -80,19 +80,26 @@
 
 <p>This is used for <a href="u-pos/INTJ">interjections</a> and other discourse <a href="u-pos/PART">particles</a> and
 elements (which are not clearly linked to the structure of the
-sentence, except in an expressive way). We generally follow the
-guidelines of what the Penn Treebanks count as an INTJ.  They define
-this to include: interjections (<em>oh</em>, <em>uh-huh</em>, <em>Welcome</em>), fillers
-(<em>um</em>, <em>ah</em>), and non-adverbial discourse markers (<em>well</em>, <em>like</em>, but
-not <em>you know</em> or <em>actually</em>).
+sentence, except in an expressive way). In English, for example, this includes:
+interjections (<em>oh</em>, <em>uh-huh</em>, <em>Welcome</em>), fillers (<em>um</em>, <em>ah</em>),
+and non-adverbial discourse markers (<em>well</em>, <em>like</em>, but not <em>you know</em> or <em>actually</em>).
 We also use <code class="language-plaintext highlighter-rouge">discourse</code> for list enumerators (e.g. <em>1.</em>, <em>(a)</em> marking an item in a sequence).
 (Bullets, by contrast, are considered <a href="u-pos/PUNCT">punctuation</a> and attach as <a href="">punct</a>.)</p>
 
-<p>These discourse elements are attached to the head of the most relevant nearby unit, often a clause.
-<!--
-which is why they are grouped with non-core clausal dependents even though they are normally
-not dependents of the predicates as such.
---></p>
+<p>These discourse elements are attached to the head of the most relevant nearby unit, often a clause.</p>
+
+<pre><code class="language-sdparse">I am 21 , well , will be in November .
+nsubj(21, I)
+cop(21, am)
+parataxis(21, be)
+discourse(be, well)
+aux(be, will)
+obl(be, November)
+case(November, in)
+punct(21, .)
+punct(well, ,-4)
+punct(well, ,-6)
+</code></pre>
 
 <pre><code class="language-sdparse">Iguazu is in Argentina :)
 discourse(Argentina-4, :)-5)
