@@ -204,7 +204,7 @@ case(ayscʻanē, y)
 <p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2453469086">Dan</a>: I am not sure I understand. If the <code class="language-plaintext highlighter-rouge">discourse</code> child is attached to a parent that itself is a <code class="language-plaintext highlighter-rouge">reparandum</code>, we do not have a problem at all (regardless whether the UPOS tag of the parent is <code class="language-plaintext highlighter-rouge">DET</code>). We would have a problem only if the determiner parent were attached as <code class="language-plaintext highlighter-rouge">det</code>.</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">parataxis</code> for cases such as “a, I don’t how to call that, a kiosk, …”: here we have a <code class="language-plaintext highlighter-rouge">reparandum</code> link between the two “a”s and we would like to attach the parenthesis to the first “a”. More exactly we use <code class="language-plaintext highlighter-rouge">parataxis:parenth</code> in our spoken French treebanks.</li>
+  <li><a href="">parataxis</a> for cases such as “a, I don’t how to call that, a kiosk, …”: here we have a <code class="language-plaintext highlighter-rouge">reparandum</code> link between the two “a”s and we would like to attach the parenthesis to the first “a”. More exactly we use <code class="language-plaintext highlighter-rouge">parataxis:parenth</code> in our spoken French treebanks.</li>
 </ul>
 
 <p>DZ: Is attaching the parenthetical to the first determiner better than attaching it to the noun <em>(kiosk)</em>? Apart from the non-projectivity – I realize that there is similarity between this and the <code class="language-plaintext highlighter-rouge">discourse</code> point above.</p>
@@ -219,17 +219,22 @@ det(kiosk, a-12)
 parataxis(a-1, know)
 </code></pre>
 
+<p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2438448236">Laura Rituma</a> added a Latvian example where parataxis may be needed and it is not spoken data. But <a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2440023939">Joakim Nivre</a> thinks that even here we see two determiners that should be attached as siblings to the head noun.</p>
+
+<p><em>tādā godīgā iestādē ieperinājušies daži (tikai daži!) zagļi</em> “a <strong>few (only a few!) thieves</strong> have nested in such an honest institution”</p>
+
+<pre><code class="language-sdparse">tādā godīgā iestādē ieperinājušies daži ( tikai daži ! ) zagļi
+det(zagļi, daži-5)
+parataxis(daži-5, daži-8)
+</code></pre>
+
+<p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2452635054">Dan Zeman</a> thinks it may warrant a clarification/amendment of the guidelines, allowing parenthetical parataxis of determiners similar to coordination.</p>
+
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">dep</code> for false starts such as “the last, the last day”: here “the last” forms a phrase the head of which is missing and we decided to have dep(the, last). I am not against another solution, as long as “the last” is still a phrase.</li>
+  <li><a href="">dep</a> for false starts such as “the last, the last day”: here “the last” forms a phrase the head of which is missing and we decided to have dep(the, last). I am not against another solution, as long as “the last” is still a phrase.</li>
 </ul>
 
 <p>DZ: I don’t have a strong position for the first two points above but here I do. I really don’t think that <a href="">dep</a> deserves any dedicated rule anywhere in UD, it is a last resort in datasets but its usage should be minimized. I don’t understand what makes this case so different from cases where we use <a href="">reparandum</a>? I always thought we would use it for false starts as well; the only thing that makes them different from true repairs is that the reparandum is identical with the repair, but I still see a strong analogy, when it is uttered for the second time, the first attempt is canceled in a sense. Moreover, here I would not attach the reparandum to the article but to the head of <em>the last day</em>, which would make it unproblematic w.r.t. the rule that determiners do not have children.</p>
-
-<p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2438448236">Laura Rituma</a> added a Latvian example where parataxis may be needed and it is not spoken data. But <a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2440023939">Joakim Nivre</a> thinks that even here we see two determiners that should be attached as siblings to the head noun.</p>
-
-<p>_.. tādā godīgā iestādē ieperinājušies daži (tikai daži!) zagļi .. _ - “a <strong>few (only a few!) thieves</strong> have nested in such an honest institution”</p>
-
-<p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2452635054">Dan Zeman</a> thinks it may warrant a clarification/amendment of the guidelines, allowing parenthetical parataxis of determiners similar to coordination.</p>
 
 <h3 id="reduplication-flat">Reduplication (flat)</h3>
 
