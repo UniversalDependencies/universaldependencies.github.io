@@ -202,28 +202,6 @@ parataxis(daži-5, daži-8)
 
 <p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2407036491">Sylvain Kahane</a> also had an example of <a href="">parataxis</a> but that one turned out to be unproblematic (see below) because the parent node, although tagged <a href="">DET</a>, is not annotated syntactically as a <a href="">det</a> but <a href="">reparandum</a>.</p>
 
-<h3 id="reduplication-flat">Reduplication (flat)</h3>
-
-<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2419904450">Flavio Cecchini</a>)</p>
-
-<ol>
-  <li>The already mentioned reduplication, which is treated through <code class="language-plaintext highlighter-rouge">flat:redup</code> in Latin treebanks. One example is <em>quot quot</em> from <em>quot</em>: while the latter means ‘as many as’, the reduplication has a distributive sense as in ‘for each possible one…’ (this expression is sometimes even univerbated). I think to annotate them separately, each depending on the head, is not the right way to deal with them: here we do not have two or more different terms, but really the same one “clonating” itself. On the other hand, <code class="language-plaintext highlighter-rouge">flat</code> is really the closest relation we have to <code class="language-plaintext highlighter-rouge">fixed</code>, which would cause no problem, but is not a correct choice (well, in my opinion it is never the correct choice)
-    <ul>
-      <li><strong>Problem:</strong> horizontal relation</li>
-    </ul>
-  </li>
-</ol>
-
-<p>Can we deactivate the validation rule if the child of <code class="language-plaintext highlighter-rouge">det</code> is a <code class="language-plaintext highlighter-rouge">flat</code> relation?</p>
-
-<p>Dan: Why is <a href="">fixed</a> not a good choice? I think it is the right choice here.</p>
-
-<h3 id="semantic-coordination-syntactic-flat">Semantic Coordination, Syntactic Flat?</h3>
-
-<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2433801928">Koichi Yasuoka</a>)</p>
-
-<p>In Classical Chinese 彼此兵 “those and these soldiers” is invalidated by this rule. The English translation has coordinate determiners but there is no coordinating conjunction in the original and 彼此 “that this” are connected via <a href="">flat</a>. Then “that” is attached as <a href="">det</a> to “soldier”.</p>
-
 <h2 id="problems-with-referentiality">Problems with Referentiality</h2>
 
 <p>A large part of the discussion slipped to the related problem of deciding between <a href="">det</a> and <a href="">nmod</a> (or their <code class="language-plaintext highlighter-rouge">:poss</code> subtypes). Joakim believes that the guidelines imply, despite not saying it explicitly, that if the word is referential, it should be attached as <code class="language-plaintext highlighter-rouge">nmod</code> rather than <code class="language-plaintext highlighter-rouge">det</code>. It would be the case of all words referring to possessors, regardless whether they are tagged as <a href="">PRON</a>, <a href="">DET</a>, <a href="">NOUN</a> or <a href="">ADJ</a>. But other people (including Dan) do not understand the guidelines this way.</p>
@@ -391,6 +369,30 @@ nsubj(voit, on-7)
 <p>DZ: Right now I think I prefer the ellipsis solution sketched above, but <code class="language-plaintext highlighter-rouge">flat</code> would probably still be better than <code class="language-plaintext highlighter-rouge">dep</code>. None of the two solutions should trigger the <code class="language-plaintext highlighter-rouge">leaf-det</code> validation test.</p>
 
 <p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2453519235">SK</a>: My mistake! Your validator doesn’t forbid <a href="">discourse</a>, <a href="">parataxis</a>, or <a href="">orphan</a> depending on a <a href="">DET</a> which is <a href="">reparandum</a>. And it is good like this.</p>
+
+<h3 id="reduplication-flat">Reduplication (flat)</h3>
+
+<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2419904450">Flavio Cecchini</a>)</p>
+
+<ol>
+  <li>The already mentioned reduplication, which is treated through <code class="language-plaintext highlighter-rouge">flat:redup</code> in Latin treebanks. One example is <em>quot quot</em> from <em>quot</em>: while the latter means ‘as many as’, the reduplication has a distributive sense as in ‘for each possible one…’ (this expression is sometimes even univerbated). I think to annotate them separately, each depending on the head, is not the right way to deal with them: here we do not have two or more different terms, but really the same one “clonating” itself. On the other hand, <code class="language-plaintext highlighter-rouge">flat</code> is really the closest relation we have to <code class="language-plaintext highlighter-rouge">fixed</code>, which would cause no problem, but is not a correct choice (well, in my opinion it is never the correct choice)
+    <ul>
+      <li><strong>Problem:</strong> horizontal relation</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Can we deactivate the validation rule if the child of <code class="language-plaintext highlighter-rouge">det</code> is a <code class="language-plaintext highlighter-rouge">flat</code> relation?</p>
+
+<p>Dan: Why is <a href="">fixed</a> not a good choice? I think it is the right choice here.</p>
+
+<h3 id="semantic-coordination-syntactic-flat">Semantic Coordination, Syntactic Flat?</h3>
+
+<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2433801928">Koichi Yasuoka</a>)</p>
+
+<p>In Classical Chinese 彼此兵 “those and these soldiers” is invalidated by this rule. The English translation has coordinate determiners but there is no coordinating conjunction in the original and 彼此 “that this” are connected via <a href="">flat</a>. Then “that” is attached as <a href="">det</a> to “soldier”.</p>
+
+<p>Flavio (and Dan): Here the simplest solution would be to use <a href="">conj</a> instead of <a href="">flat</a>.</p>
 
       </div>
 
