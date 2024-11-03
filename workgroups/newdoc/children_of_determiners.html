@@ -230,12 +230,6 @@ parataxis(daži-5, daži-8)
 
 <p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2452635054">Dan Zeman</a> thinks it may warrant a clarification/amendment of the guidelines, allowing parenthetical parataxis of determiners similar to coordination.</p>
 
-<ul>
-  <li><a href="">dep</a> for false starts such as “the last, the last day”: here “the last” forms a phrase the head of which is missing and we decided to have dep(the, last). I am not against another solution, as long as “the last” is still a phrase.</li>
-</ul>
-
-<p>DZ: I don’t have a strong position for the first two points above but here I do. I really don’t think that <a href="">dep</a> deserves any dedicated rule anywhere in UD, it is a last resort in datasets but its usage should be minimized. I don’t understand what makes this case so different from cases where we use <a href="">reparandum</a>? I always thought we would use it for false starts as well; the only thing that makes them different from true repairs is that the reparandum is identical with the repair, but I still see a strong analogy, when it is uttered for the second time, the first attempt is canceled in a sense. Moreover, here I would not attach the reparandum to the article but to the head of <em>the last day</em>, which would make it unproblematic w.r.t. the rule that determiners do not have children.</p>
-
 <h3 id="reduplication-flat">Reduplication (flat)</h3>
 
 <p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2419904450">Flavio Cecchini</a>)</p>
@@ -339,6 +333,40 @@ and <a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomm
 <p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2405829551">Leonie Weissweiler</a>)</p>
 
 <p>German <em>vor allem</em> and <em>unter anderem</em> – resolved in a separate issue?</p>
+
+<h3 id="false-starts-with-the-dep-relation">False Starts with the dep Relation</h3>
+
+<p>(<a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2407036491">Sylvain Kahane</a>)</p>
+
+<p><a href="">dep</a> for false starts such as “the last, the last day”: here “the last” forms a phrase the head of which is missing and we decided to have dep(the, last). I am not against another solution, as long as “the last” is still a phrase.</p>
+
+<p>DZ: I don’t have a strong position for the first two points above but here I do. I really don’t think that <a href="">dep</a> deserves any dedicated rule anywhere in UD, it is a last resort in datasets but its usage should be minimized. I don’t understand what makes this case so different from cases where we use <a href="">reparandum</a>? I always thought we would use it for false starts as well; the only thing that makes them different from true repairs is that the reparandum is identical with the repair, but I still see a strong analogy, when it is uttered for the second time, the first attempt is canceled in a sense. Moreover, here I would not attach the reparandum to the article but to the head of <em>the last day</em>, which would make it unproblematic w.r.t. the rule that determiners do not have children.</p>
+
+<p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2452929579">SK</a>: The problem is not with <em>the last day</em>, the repandum starts from <em>day</em>. The problem is the analysis of <em>the last</em>, the false start itself. I don’t like the idea to analyze it as a correct phrase, for instance with det(last,the). I want to keep the information that it is a false start and not a complete phrase. It is why we chose dep(the, last), but I am ok to use another relation.
+I give you another example of false start, which I would like to analyze similarly:</p>
+
+<blockquote>
+  <p><em>les gens qu’on, qu’on voit pour la première fois</em>
+‘people who we, who we see for the first time’ (In French the relative pronoun cannot be omitted)</p>
+</blockquote>
+
+<p>Here we have two pronouns <em>qu’</em> and <em>on</em>, which form the false start together, and I don’t see what could be the link between them apart from <code class="language-plaintext highlighter-rouge">dep</code>. Maybe a dedicated relation such as <code class="language-plaintext highlighter-rouge">flat:disfluency</code>?</p>
+
+<p><a href="https://github.com/UniversalDependencies/docs/issues/1059#issuecomment-2453496870">DZ</a>: It is not a complete phrase but I would still find it natural to apply the UD rules for ellipsis (=&gt; for incomplete phrases), promote <em>last</em> and draw the relation <code class="language-plaintext highlighter-rouge">det(last, the)</code>. I think the information that it is a false start is already encoded in the incoming <code class="language-plaintext highlighter-rouge">reparandum</code> relation (which could be further subtyped to <code class="language-plaintext highlighter-rouge">reparandum:falsestart</code> if it is needed).</p>
+
+<p>I understand your concern, although I would claim that the UD ellipsis policy provides a possible solution here, too: <code class="language-plaintext highlighter-rouge">orphan(on, qu')</code>.</p>
+
+<pre><code class="language-sdparse">les gens qu' on , qu' on voit pour la première fois
+orphan(on-4, qu'-3)
+punct(on-4, ,)
+reparandum(voit, on-4)
+obj(voit, qu'-6)
+nsubj(voit, on-7)
+</code></pre>
+
+<p>SK: Maybe a dedicated relation such as <code class="language-plaintext highlighter-rouge">flat:disfluency</code>?</p>
+
+<p>DZ: Right now I think I prefer the ellipsis solution sketched above, but <code class="language-plaintext highlighter-rouge">flat</code> would probably still be better than <code class="language-plaintext highlighter-rouge">dep</code>. None of the two solutions should trigger the <code class="language-plaintext highlighter-rouge">leaf-det</code> validation test.</p>
 
       </div>
 
