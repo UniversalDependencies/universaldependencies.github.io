@@ -92,15 +92,18 @@ repositories belonging to the UniversalDependencies organization).</li>
     <p>Make sure you have the most current content of all the repositories (note that this
 command assumes you have not modified your local copy of the data without pushing it
 back; if this is the case, you will see lists of modified files in the output and you
-will have to resolve it). Also make sure that you are working with the <code class="language-plaintext highlighter-rouge">dev</code> branch:<br />
-<code>for i in UD_* ; do echo $i ; cd $i ; git checkout dev ; git pull --no-edit ; cd .. ; echo ; done</code></p>
+will have to resolve it). Also make sure that you are working with the <code class="language-plaintext highlighter-rouge">dev</code> branch:<br /></p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">for </span>i <span class="k">in </span>UD_<span class="k">*</span> <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="nb">cd</span> <span class="nv">$i</span> <span class="p">;</span> git checkout dev <span class="p">;</span> git pull <span class="nt">--no-edit</span> <span class="p">;</span> <span class="nb">cd</span> .. <span class="p">;</span> <span class="nb">echo</span> <span class="p">;</span> <span class="k">done</span>
 </code></pre></div>    </div>
   </li>
-  <li>Make sure there are no untracked files in your local copies of the repositories.
-Otherwise they could be mistakenly picked for the release.<br />
-<code>for i in UD_* ; do echo $i ; cd $i ; git status ; if git status | grep -P '(Untracked files|ahead of)' &gt; /dev/null ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UNCLEAN GIT STATUS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 10 ; fi; cd .. ; echo ; done</code></li>
+  <li>
+    <p>Make sure there are no untracked files in your local copies of the repositories.
+Otherwise they could be mistakenly picked for the release.<br /></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">for </span>i <span class="k">in </span>UD_<span class="k">*</span> <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="nb">cd</span> <span class="nv">$i</span> <span class="p">;</span> git status <span class="p">;</span> <span class="k">if </span>git status | <span class="nb">grep</span> <span class="nt">-P</span> <span class="s1">'(Untracked files|ahead of)'</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span> <span class="k">then </span><span class="nb">echo </span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UNCLEAN GIT STATUS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX <span class="p">;</span> <span class="nb">sleep </span>10 <span class="p">;</span> <span class="k">fi</span><span class="p">;</span> <span class="nb">cd</span> .. <span class="p">;</span> <span class="nb">echo</span> <span class="p">;</span> <span class="k">done</span>
+</code></pre></div>    </div>
+  </li>
   <li>Update version numbers in the commands in this file (<code class="language-plaintext highlighter-rouge">docs/infrastructure/how_to_build_release.md</code>).
 In the example here in this point (intentionally made up so that bulk replacements will not alter them)
 we assume that we are going to build release 1.13 in November 2020.
@@ -109,17 +112,33 @@ occurrences of 1.12 with 1.13), the pre-previous release is occasionally mention
 with 1.12). Furthermore, the next step mentions the month when the next release is expected
 (replace November 2020 with May 2021) and one of the steps below mentions the current release
 date (replace 2020-05-15 with 2020-11-15).</li>
-  <li>Run <code class="language-plaintext highlighter-rouge">tools/check_release.pl --release 2.15 --next-expected 'May 2025' --oldpath /net/data/universal-dependencies-2.14 |&amp; tee release-2.15-report.txt | less</code>.
+  <li>
+    <p>Run <code class="language-plaintext highlighter-rouge">check_release.pl</code>.
 The script will visit all repositories and report any missing files, unexpected or unexpectedly named files.
 It will download the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">online validation report</a>
 and check whether the treebanks are valid (prerequisite: all UD repositories are registered
 on the validation server <code class="language-plaintext highlighter-rouge">quest.ms.mff.cuni.cz</code>).
-It will also collect information such as the list of contributors (we need this metadata for Lindat).</li>
-  <li>In addition, you can get an estimate of what the treebanks do in enhanced graphs by calling this:<br />
-<code>( for i in UD_* ; do echo $i ; ( cat $i/*.conllu | enhanced_graph_properties.pl ) ; echo ; done ) |&amp; tee estats.log</code>
+It will also collect information such as the list of contributors (we need this metadata for Lindat).</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  tools/check_release.pl <span class="nt">--release</span> 2.15 <span class="nt">--next-expected</span> <span class="s1">'May 2025'</span> <span class="nt">--oldpath</span> /net/data/universal-dependencies-2.14 |&amp; <span class="nb">tee </span>release-2.15-report.txt | less
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>In addition, you can get an estimate of what the treebanks do in enhanced graphs by calling this:<br /></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  tools/survey_enhancements.pl <span class="nt">--datapath</span> <span class="nb">.</span> |&amp; <span class="nb">tee </span>estats.log
+</code></pre></div>    </div>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="o">(</span> <span class="k">for </span>i <span class="k">in </span>UD_<span class="k">*</span> <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="o">(</span> <span class="nb">cat</span> <span class="nv">$i</span>/<span class="k">*</span>.conllu | enhanced_graph_properties.pl <span class="o">)</span> <span class="p">;</span> <span class="nb">echo</span> <span class="p">;</span> <span class="k">done</span> <span class="o">)</span> |&amp; <span class="nb">tee </span>estats.log
+</code></pre></div>    </div>
+
     <ul>
-      <li>Or, alternatively, this:<br />
-<code>( for i in UD_* ; do echo $i ; ( cat $i/*.conllu | enhanced_classify_relations.pl &gt; /dev/null ) ; echo ; done ) |&amp; tee estats.log</code></li>
+      <li>
+        <p>Or, alternatively, this:<br /></p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span> <span class="k">for </span>i <span class="k">in </span>UD_<span class="k">*</span> <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="o">(</span> <span class="nb">cat</span> <span class="nv">$i</span>/<span class="k">*</span>.conllu | enhanced_classify_relations.pl <span class="o">&gt;</span> /dev/null <span class="o">)</span> <span class="p">;</span> <span class="nb">echo</span> <span class="p">;</span> <span class="k">done</span> <span class="o">)</span> |&amp; <span class="nb">tee </span>estats.log
+</code></pre></div>        </div>
+      </li>
     </ul>
   </li>
   <li>Freeze the list of treebanks that will be released (i.e., contain valid data).
