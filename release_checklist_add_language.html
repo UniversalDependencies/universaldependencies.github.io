@@ -209,16 +209,13 @@ In the README file, add a line to the Changelog, e.g.:
   * Repository renamed from UD_Czech to UD_Czech-PDT.</pre>
   </li>
   <li>Commit and push the changes. This should also trigger an automatic re-validation of the treebank under the new name.
-There will be a README error because the treebank is not recognized as previously released; see the next step.</li>
-  <li>Go to the <code class="language-plaintext highlighter-rouge">tools</code> repository to the Perl module <code class="language-plaintext highlighter-rouge">udlib.pm</code> and locate the function <code class="language-plaintext highlighter-rouge">check_metadata()</code>.
-There is a back up list of treebanks and their “Data available since” metadata. Replace <code class="language-plaintext highlighter-rouge">UD_Czech</code> with <code class="language-plaintext highlighter-rouge">UD_Czech-PDT</code>,
-keeping it in the list for the release where <code class="language-plaintext highlighter-rouge">UD_Czech</code> appeared for the first time. (We will probably change the way how this is checked in the future.)</li>
+There will be a README error because the treebank is not recognized as previously released
+(in the function <code class="language-plaintext highlighter-rouge">check_metadata()</code> in <code class="language-plaintext highlighter-rouge">tools/udlib.pm</code>); see the next step.</li>
   <li>Go to the <code class="language-plaintext highlighter-rouge">docs-automation</code> repository.
-Open the file <code class="language-plaintext highlighter-rouge">valdan/releases.json</code>. In the line of the release where the new name will appear for the first time,
-we need this at the end of the release record:
-    <pre>, "renamed": [["UD_Czech", "UD_Czech-PDT"]]</pre>
-    <p><strong>The problem is that at the time of renaming the repository, the release process probably has not started and there
-is no line for the next release yet.</strong></p>
+Open the file <code class="language-plaintext highlighter-rouge">valdan/releases.json</code> and go to its end where there is the key <code class="language-plaintext highlighter-rouge">renamed_after_release</code>.
+At the end of the hash denoted by this key, we need a new record in the following form:
+    <pre>"2.1": [["UD_Czech", "UD_Czech-PDT]]</pre>
+    <p>The release number identifying this record should be the last release where the treebank appeared under the old name.</p>
   </li>
   <li>If there are other places where you maintain local clones of UD repositories (e.g., one is your laptop and the other is your
 university network), go to each of them, do a new git clone ; git checkout dev ; rm old clone.</li>
