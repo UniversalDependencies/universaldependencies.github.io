@@ -88,11 +88,16 @@ See <a href="release_checklist.html">here</a> for the checklist for data contrib
   <li>Make sure that you have local clones of all UD_* repositories that should be released.
 This step cannot be automated (unless you write a script that queries Github about all
 repositories belonging to the UniversalDependencies organization).</li>
-  <li>Make sure you have the most current content of all the repositories (note that this
+  <li>
+    <p>Make sure you have the most current content of all the repositories (note that this
 command assumes you have not modified your local copy of the data without pushing it
 back; if this is the case, you will see lists of modified files in the output and you
 will have to resolve it). Also make sure that you are working with the <code class="language-plaintext highlighter-rouge">dev</code> branch:<br />
-<code>for i in UD_* ; do echo $i ; cd $i ; git checkout dev ; git pull --no-edit ; cd .. ; echo ; done</code></li>
+<code>for i in UD_* ; do echo $i ; cd $i ; git checkout dev ; git pull --no-edit ; cd .. ; echo ; done</code></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">for </span>i <span class="k">in </span>UD_<span class="k">*</span> <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="nb">cd</span> <span class="nv">$i</span> <span class="p">;</span> git checkout dev <span class="p">;</span> git pull <span class="nt">--no-edit</span> <span class="p">;</span> <span class="nb">cd</span> .. <span class="p">;</span> <span class="nb">echo</span> <span class="p">;</span> <span class="k">done</span>
+</code></pre></div>    </div>
+  </li>
   <li>Make sure there are no untracked files in your local copies of the repositories.
 Otherwise they could be mistakenly picked for the release.<br />
 <code>for i in UD_* ; do echo $i ; cd $i ; git status ; if git status | grep -P '(Untracked files|ahead of)' &gt; /dev/null ; then echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UNCLEAN GIT STATUS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ; sleep 10 ; fi; cd .. ; echo ; done</code></li>
