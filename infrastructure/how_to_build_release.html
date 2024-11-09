@@ -145,6 +145,17 @@ and prints only those that really have enhancements.</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="o">(</span> <span class="k">for </span>i <span class="k">in </span>UD_<span class="k">*</span> <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="o">(</span> <span class="nb">cat</span> <span class="nv">$i</span>/<span class="k">*</span>.conllu | enhanced_classify_relations.pl <span class="o">&gt;</span> /dev/null <span class="o">)</span> <span class="p">;</span> <span class="nb">echo</span> <span class="p">;</span> <span class="k">done</span> <span class="o">)</span> |&amp; <span class="nb">tee </span>estats.log
 </code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>If a treebank fills the DEPS column by mistake and it has not been caught by the validator
+(for example, only two enhanced edges in the treebank differ from their basic counterparts
+and it does not correspond to any of the defined enhancements), clear DEPS:</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>i <span class="k">in </span>UD_Bad-XXX/<span class="k">*</span>.conllu <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="nb">cp</span> <span class="nv">$i</span> backup.conllu <span class="p">;</span> udapy <span class="nt">-s</span> util.Eval <span class="nv">node</span><span class="o">=</span><span class="s1">'node.deps = {}'</span> &lt; backup.conllu <span class="o">&gt;</span> <span class="nv">$i</span> <span class="p">;</span> <span class="nb">rm </span>backup.conllu <span class="p">;</span> <span class="k">done</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
   <li>Check the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">validation report</a>
 for legacy exceptions that are no longer needed.
