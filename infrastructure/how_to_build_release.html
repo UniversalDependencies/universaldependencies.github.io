@@ -157,15 +157,23 @@ and it does not correspond to any of the defined enhancements), clear DEPS:</p>
       </li>
     </ul>
   </li>
-  <li>Check the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">validation report</a>
-for legacy exceptions that are no longer needed.
+  <li>
+    <p>Check the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">validation report</a> for legacy exceptions that are no longer needed.
 Edit <a href="https://github.com/UniversalDependencies/docs-automation/blob/master/valdan/dispensations.json">valdan/dispensations.json</a>
-and remove those exceptions:<br />
-<code>cd docs-automation/valdan ; git pull --no-edit ; update-dispensations.pl --json dispensations.json ; git commit -a -m 'Updated validation dispensations.' ;  git push ; cd ../..</code></li>
-  <li>Save the list of the released treebanks in <a href="https://github.com/UniversalDependencies/docs-automation/blob/master/valdan/releases.json">valdan/releases.json</a>
-by running<br />
-<code>docs-automation/valdan/save-release-json.pl --json docs-automation/valdan/releases.json --releasenum 2.15 --releasedate 2024-11-15 $(cat released_treebanks.txt) ; cd docs-automation ; git commit -a -m 'Updated release list.' ; git push ; cd ..</code><br />
-Note that if a treebank was renamed between the last two releases, it must be entered manually in a separate structure in <code class="language-plaintext highlighter-rouge">releases.json</code> before running the script!</li>
+and remove those exceptions:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">cd </span>docs-automation/valdan <span class="p">;</span> git pull <span class="nt">--no-edit</span> <span class="p">;</span> update-dispensations.pl <span class="nt">--json</span> dispensations.json <span class="p">;</span> git commit <span class="nt">-a</span> <span class="nt">-m</span> <span class="s1">'Updated validation dispensations.'</span> <span class="p">;</span>  git push <span class="p">;</span> <span class="nb">cd</span> ../..
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Save the list of the released treebanks in <a href="https://github.com/UniversalDependencies/docs-automation/blob/master/valdan/releases.json">valdan/releases.json</a>
+by running</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docs-automation/valdan/save-release-json.pl <span class="nt">--json</span> docs-automation/valdan/releases.json <span class="nt">--releasenum</span> 2.15 <span class="nt">--releasedate</span> 2024-11-15 <span class="si">$(</span><span class="nb">cat </span>released_treebanks.txt<span class="si">)</span> <span class="p">;</span> <span class="nb">cd </span>docs-automation <span class="p">;</span> git commit <span class="nt">-a</span> <span class="nt">-m</span> <span class="s1">'Updated release list.'</span> <span class="p">;</span> git push <span class="p">;</span> <span class="nb">cd</span> ..
+</code></pre></div>    </div>
+
+    <p>Note that if a treebank was renamed between the last two releases, it must be entered manually in a separate structure in <code class="language-plaintext highlighter-rouge">releases.json</code> before running the script!</p>
+  </li>
 </ul>
 
 <h2 id="processing-the-data-before-releasing-them">Processing the data before releasing them</h2>
