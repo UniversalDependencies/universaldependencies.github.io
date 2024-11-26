@@ -78,21 +78,37 @@
         </script>
         <h2><code>nmod:desc</code>: descriptor modifier in nominal</h2>
 
-<p>** PROPOSAL DRAFT **</p>
+<p>** DRAFT v2 **</p>
 
 <p>This relation subtype applies to nominal modifiers that we term <strong>descriptors</strong>.
-These are nominals that premodify a name or identifier, adding categorical information
-about the referent. Descriptors are determinerless modifiers, in which respect they are distinguished
+These are bare nominals that occur in or with a name, and are not prepositional/possessive
+or part of the English compound construction.
+For <a href="#personal-names">personal names</a>, titles and role descriptions are a prime example.
+<a href="#business-names">Business names</a> may include descriptors like <em>Inc.</em>
+Semantically, a descriptor assigns a referent to a class or may disambiguate the referent
+where the main part of a proper name is not a sufficiently unique identifier.
+Crucially, omitting the descriptor does not affect the grammaticality of the expression
+(and does not come across as an abbreviation of the full name).</p>
+
+<p>Descriptors are determinerless modifiers, in which respect they are distinguished
 from appositives (the <a href="">appos</a> relation holds between two <em>full</em> nominals).
-They may, however, be pluralized, and typically modify a proper name or identifier rather than a category noun,
-which distinguishes them from typical noun compound modifiers.</p>
+In principle, they are a special case of <a href="">nmod:unmarked</a>.</p>
+
+<h2 id="personal-names">Personal Names</h2>
 
 <p>One descriptor construction is the premodification of a personal name with a (determinerless) role or title:</p>
 
-<pre><code class="language-sdparse">Professor Charles J. Fillmore
+<p>** NOTE: we need to standardize UPOS. <a href="">SYM</a> says that Dr. and Mr. are NOUN but in English treebanks they are predominantly PROPN. **</p>
+
+<pre><code class="language-sdparse">Mr./NOUN Magoo/PROPN
+nmod:desc(Magoo, Mr.)
+</code></pre>
+
+<pre><code class="language-sdparse">Professor/NOUN Charles/PROPN J./PROPN Fillmore/PROPN , Ph.D./PROPN
 nmod:desc(Charles, Professor)
 flat(Charles, J.)
 flat(Charles, Fillmore)
+nmod:desc(Charles, Ph.D.)
 </code></pre>
 
 <pre><code class="language-sdparse">actor and social activist Martin Sheen
@@ -109,138 +125,112 @@ nmod:desc(Ron, friend)
 flat(Ron, Klain)
 </code></pre>
 
-<p>Certain name patterns (for places, textual units, etc.) incorporate a descriptor that clarifies the entity type.</p>
+<p>A descriptor must be omissible, but not all omissible parts of a name are descriptors:
+if the main part of a name has multiple parts such that there are at least two plausible heads,
+<a href="">flat</a> is the appropriate choice, as is the case with the main parts of a personal name.</p>
 
-<pre><code class="language-sdparse">Lake Mead
+<p>Non-numeric regnal and generational suffixes are also <code class="language-plaintext highlighter-rouge">nmod:desc</code>
+(but see <a href="#numbered-entities">Numbered Entities</a> below):</p>
+
+<pre><code class="language-sdparse">JFK/PROPN Jr./PROPN
+nmod:desc(JFK, Jr.)
+</code></pre>
+
+<h2 id="business-names">Business Names</h2>
+
+<p>Corporate suffixes like <em>Inc.</em>, <em>Corp.</em>, and <em>LLC</em> (as well as their non-abbreviated forms)
+are considered optional descriptors as they are often omitted from the name of the company.
+Regardless of etymology, they are tagged <a href="">PROPN</a>.</p>
+
+<pre><code class="language-sdparse">Apple/PROPN Inc./PROPN
+nmod:desc(Apple, Inc.)
+</code></pre>
+
+<h2 id="complex-dates-and-addresses">Complex Dates and Addresses</h2>
+
+<p>These are considered to have time or place modifiers, and thus fall under <a href="">nmod:unmarked</a>.</p>
+
+<h2 id="idiosyncratic-name-patterns-analyzed-as-flat-expressions">Idiosyncratic Name Patterns Analyzed as Flat Expressions</h2>
+
+<p>In addition to the main parts of a personal name, further name patterns analyzed with <a href="">flat</a>
+rather than a headed construction are given below.
+Note that the morphosyntax of name patterns differs by language, with some exhibiting agreement
+(as a sign of head or modifier status) where it is lacking in English,
+so a flat analysis of an English expression may not hold for its translation into another language.</p>
+
+<h3 id="numbered-entities">Numbered Entities</h3>
+
+<p>When the name of a category combines with a (pseudo)number to form a name,
+and the number is serving as an identifier rather than as a quantifier, we use <a href="">flat</a>:<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></p>
+
+<pre><code class="language-sdparse">page/NOUN 394/NUM
+flat(page, 394)
+</code></pre>
+
+<pre><code class="language-sdparse">Route/PROPN 66/NUM
+flat(Route, 66)
+</code></pre>
+
+<pre><code class="language-sdparse">Room/PROPN B/PROPN
+flat(Room, B)
+</code></pre>
+
+<p>The “number X” construction also serves to clarify that a number is serving as an identifier;
+“number X” forms a flat expression that can be combined within a larger flat expression:</p>
+
+<pre><code class="language-sdparse">What is behind door/NOUN number/NOUN 3/NUM ?
+flat(door, number)
+flat(number, 3)
+</code></pre>
+
+<p>A product name that includes a model or version number is considered a flat expression:</p>
+
+<pre><code class="language-sdparse">Nikon/PROPN D7000/PROPN
+flat(Nikon, D7000)
+</code></pre>
+
+<pre><code class="language-sdparse">Firefox/PROPN 43/NUM
+flat(Firefox, 43)
+</code></pre>
+
+<pre><code class="language-sdparse">World/PROPN War/PROPN II/NUM
+flat(World, War)
+flat(World, II)
+</code></pre>
+
+<p>For simplicity, regnal number suffixes are considered part of flat expressions
+just like version numbers, though they semantically resemble <a href="#personal-names">generational suffixes</a>:</p>
+
+<pre><code class="language-sdparse">Elizabeth/PROPN II/NUM
+flat(Elizabeth, II)
+</code></pre>
+
+<p>according to <a href="https://doi.org/10.1162/coli_a_00402">de Marneffe et al. (2021)</a>, p. 285, 
+the (pseudo)number attaches as <a href="">nmod</a>, though the main point of that passage
+is to articulate why <a href="">nummod</a> is not appropriate (no rationale for headedness is presented).</p>
+
+<h3 id="toponyms">Toponyms</h3>
+
+<p>We also use <a href="">flat</a> for toponyms where the noun representing the entity type comes first.
+This word order is anomalous relative to other English constructions such that
+tests for headedness are inconclusive:</p>
+
+<pre><code class="language-sdparse">Lake/PROPN Mead/PROPN
 nmod:desc(Mead, Lake)
 </code></pre>
 
-<h2 id="numbered-entities">Numbered Entities</h2>
-
-<p>When an entity is identified by a number, it commonly follows an entity type that underscores the referring
-(rather than quantifying) function of the number:</p>
-
-<pre><code class="language-sdparse">page 394/NUM[ExtPos=PROPN]
-nmod:desc(394, page)
+<pre><code class="language-sdparse">Mount/PROPN Everest/PROPN
+nmod:desc(Everest, Mount)
 </code></pre>
 
-<p>The “number X” construction also serves to clarify that a number is serving as an identifier; the word “number” as a descriptor
-can stack with an entity type descriptor:</p>
-
-<pre><code class="language-sdparse">What is behind door number 3/NUM[ExtPos=PROPN] ?
-nmod:desc(3, door)
-nmod:desc(3, number)
-</code></pre>
-
-<p>With numbered entities, it is recommended to specify <code class="language-plaintext highlighter-rouge">ExtPos=PROPN</code> on the number
-to clarify that it behaves externally as a (locally or globally conventionalized) proper name.</p>
-
-<h2 id="todo-other-kinds-of-entities">TODO: other kinds of entities</h2>
-
-<h2 id="morphosyntactic-properties">Morphosyntactic Properties</h2>
-
-<h3 id="omissibility">Omissibility</h3>
-
-<p>Descriptors are best analyzed as modifiers. Their heads cannot be omitted without adding a determiner:</p>
-
-<ul>
-  <li>an article by Professor Fillmore / *an article by Professor</li>
-  <li>a speech by actor and activist Martin Sheen / *a speech by actor and activist</li>
-  <li>We drove to Lake Mead. / *We drove to Lake.</li>
-  <li>Open your book and turn to page 394. / *Open your book and turn to page.</li>
-</ul>
-
-<p>Personal name descriptors may be freely omitted:</p>
-
-<ul>
-  <li>an article by Fillmore</li>
-  <li>a speech by Martin Sheen</li>
-</ul>
-
-<p>Other kinds of heads may not always identify a unique referent without the descriptor to clarify.
-Still, the descriptor can usually be omitted with sufficently rich context:</p>
-
-<ul>
-  <li>We drove to Mead. (assuming common ground that Mead is a lake)</li>
-  <li>Open your book and turn to 394. (assuming common ground that a location in the book is best identified by a page number)</li>
-</ul>
-
-<h3 id="pluralization">Pluralization</h3>
-
-<p>An important characteristic of descriptors is that they may be pluralized if headed by a coordination:</p>
-
-<pre><code class="language-sdparse">Professors Fillmore and Kay
-nmod:desc(Fillmore, Professors)
-conj(Fillmore, Kay)
-</code></pre>
-
-<pre><code class="language-sdparse">Lakes Michigan and Erie
-nmod:desc(Michigan, Lakes)
-conj(Michigan, Erie)
-</code></pre>
-
-<p>Abbreviated descriptors like “Mr.” may, however, resist such pluralization.</p>
-
-<p>That a descriptor may be pluralized to “agree” with its coordinated head distinguishes this construction
-from nominal compound modifiers (<a href="">compound</a>), which are rarely morphologically plural even where there is semantic multiplicity:
-<em>egg carton</em>, not *<em>eggs carton</em>; <em>egg farmers and distributors</em>, not *<em>eggs farmers and distributors</em>.</p>
-
-<h3 id="ellipsis">Ellipsis</h3>
-
-<ul>
-  <li>John prefers Lake Michigan and Mary, (Lake) Erie.</li>
-  <li>John read Chapter 1, Mary (Chapter) 2, and Kim (Chapter) 3.</li>
-  <li>*John prefers actor Sheen and Mary, activist (Sheen).</li>
-  <li>*John read Chapter 1, Mary Section (1), and Kim page (1).</li>
-</ul>
-
-<p>This shows that descriptors are targets for ellipsis rather than contrast in this construction,
-and should be treated as modifiers, like compound modifier nouns rather than compound heads:</p>
-
-<ul>
-  <li>*Rex prefers vacation food and Rover, home (food).</li>
-  <li>Rex prefers vacation food and Rover, (vacation) activities.</li>
-</ul>
-
-<h1 id="old-draft-below">Old draft below</h1>
-
-<p><em>NOTE: This is a new subtype. Other documentation pages (<a href="">appos</a>, <a href="">flat</a>, <a href="">nmod</a>, <a href="https://universaldependencies.org/en/dep/">/dep/</a>, …) will need to be updated.</em></p>
-
-<p>A descriptor is a nominal modifier that is less than a full nominal phrase (as would be required for <a href="">appos</a>),
-and is not forming a complex concept warranting <a href="">compound</a>.</p>
-
-<p>Descriptors are mainly titles and similar phrases modifying a proper name, and generally lack <a href="">case</a> or <a href="">det</a> dependents.</p>
-
-<pre><code class="language-sdparse">Rev. Dr. Martin Luther King
-nmod:desc(Martin, Rev.)
-nmod:desc(Martin, Dr.)
-flat(Martin, Luther)
-flat(Martin, King)
-</code></pre>
-
-<p>In journalistic style we see determinerless modifiers like:</p>
-
-<pre><code class="language-sdparse">prominent journalist Bill Moyers
-amod(journalist, prominent)
-nmod:desc(Bill, journalist)
-flat(Bill, Moyers)
-</code></pre>
-
-<p>Contrast the version with a determiner or possessive, in which the two parts are reversible, warranting <a href="">appos</a>:</p>
-
-<pre><code class="language-sdparse">the prominent journalist Bill Moyers
-det(journalist, the)
-amod(journalist, prominent)
-appos(journalist, Bill)
-flat(Bill, Moyers)
-</code></pre>
-
-<pre><code class="language-sdparse">my friend Bill Moyers
-nmod:poss(friend, my)
-appos(friend, Bill)
-flat(Bill, Moyers)
-</code></pre>
 <!-- Interlanguage links updated Po 11. listopadu 2024, 20:11:03 CET -->
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>This is a departure from a guideline articulated previously: <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
 
 <!-- "in other languages" links -->
