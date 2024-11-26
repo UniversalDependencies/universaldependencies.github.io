@@ -820,6 +820,17 @@ See also <a href="https://github.com/UniversalDependencies/docs/issues/776">issu
 
 <p><a href="http://tables.grew.fr/?data=ud_feats/MISC&amp;cols=^OrigLang$"><button>Table for <code>OrigLang</code> feature</button></a></p>
 
+<h3 id="pdtb">PDTB</h3>
+
+<p>Penn Discourse Treebank (PDTB) style shallow discourse relations. For example, some UD_English corpora (GUM, GUMReddit, GENTLE) include shallow discourse relation annotations, which provides information for Explicit, Implicit, AltLex, AltLexC, EntRel, Hypophora and NoRel annotations following the Penn Discourse Treebank (PDTB) v3 guidelines (see Webber et al. 2019 for definitions). Annotations are placed on the first token of the connective (words like “but”, “because”, “on the other hand”, etc.) or alternative lexicalization (e.g. “this is the reason”) marking the relation for explicit/altlex relations, or on the first token of the second argument span (arg2) for other cases. Token ranges for each argument span, the connective and relation label are provided as well. For example, the following line:</p>
+
+<pre><code class="language-CoNLL-U">21	to	to	PART	TO	_	22	mark	22:mark	Discourse=purpose-goal:105-&gt;104:0:syn-inf-963|PDTB=Implicit:Contingency.Purpose.Arg2-as-goal:in order:_:943-962:963-981
+</code></pre>
+
+<p>indicates an Implicit relation with the label <code class="language-plaintext highlighter-rouge">Contingency.Purpose.Arg2-as-goal</code>, with an implicit connective “in order”. Because the connective is implicit, it has no token indices (<code class="language-plaintext highlighter-rouge">_</code>), but arg1 spans token<code class="language-plaintext highlighter-rouge">943-962</code> of the document (ignoring decimal ellipsis tokens), and arg2 spans tokens <code class="language-plaintext highlighter-rouge">963-981</code>. If multiple PDTB relations apply at the same token position, they are separated by a semicolon.</p>
+
+<p><a href="http://tables.grew.fr/?data=ud_feats/MISC&amp;cols=^PDTB$"><button>Table for <code>PDTB</code> feature</button></a></p>
+
 <h3 id="proper">Proper</h3>
 
 <p>See also <a href="#mwe">MWE</a>, <a href="#mwepos">MWEPOS</a>, <a href="#namedentity">NamedEntity</a> and <a href="#entity">Entity</a>.</p>
