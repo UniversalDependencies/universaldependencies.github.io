@@ -87,7 +87,7 @@ in that they resist internal modification and inflection.
 and <a href="">goeswith</a> for words that contain improper spacing.)</p>
 
 <p>Fixed expressions are annotated in a flat, head-initial structure, in which all words in the expression modify the first one using the
-<code class="language-plaintext highlighter-rouge">fixed</code> label.</p>
+<code class="language-plaintext highlighter-rouge">fixed</code> label. The first word bears the <a href="">ExtPos</a> feature indicating the holistic category of the expression.</p>
 
 <p>At present, this relation is used inside the following expressions, semantically grouped for convenience:</p>
 
@@ -162,14 +162,14 @@ and <a href="">goeswith</a> for words that contain improper spacing.)</p>
 
 <p><em>as well</em></p>
 
-<pre><code class="language-sdparse">I like dogs as/ADV well/ADV
+<pre><code class="language-sdparse">I like dogs as/ADV[ExtPos=ADV] well/ADV
 advmod(like, as)
 fixed(as, well)
 </code></pre>
 
 <p><em>as well as</em></p>
 
-<pre><code class="language-sdparse">I like dogs as/ADV well/ADV as/ADP cats
+<pre><code class="language-sdparse">I like dogs as/ADV[ExtPos=CCONJ] well/ADV as/ADP cats
 fixed(as-4, well)
 fixed(as-4, as-6)
 cc(cats, as-4)
@@ -182,7 +182,7 @@ conj(dogs, cats)
 
 <p>Typically analyzed as a coordinating conjunction:</p>
 
-<pre><code class="language-sdparse">I decided to get a dog rather than a cat
+<pre><code class="language-sdparse">I decided to get a dog rather/[ExtPos=CCONJ] than a cat
 fixed(rather, than)
 cc(cat, rather)
 conj(dog, cat)
@@ -190,7 +190,7 @@ conj(dog, cat)
 
 <p>However, when fronted, it attaches as <code class="language-plaintext highlighter-rouge">case</code> or <code class="language-plaintext highlighter-rouge">mark</code>:</p>
 
-<pre><code class="language-sdparse">Rather than a cat , I decided to get a dog.
+<pre><code class="language-sdparse">Rather/[ExtPos=ADP] than a cat , I decided to get a dog.
 fixed(Rather, than)
 case(cat, Rather)
 obl(decided, cat)
@@ -200,19 +200,19 @@ obl(decided, cat)
 
 <p>Similar in meaning to <em>rather than</em>, but never analyzed as a coordinating conjunction, always <code class="language-plaintext highlighter-rouge">case</code> or <code class="language-plaintext highlighter-rouge">mark</code>:</p>
 
-<pre><code class="language-sdparse">John went instead of Mary
+<pre><code class="language-sdparse">John went instead/[ExtPos=ADP] of Mary
 fixed(instead, of)
 case(Mary, instead)
 </code></pre>
 
-<pre><code class="language-sdparse">John left early instead of staying for the whole thing
+<pre><code class="language-sdparse">John left early instead/[ExtPos=SCONJ] of staying for the whole thing
 fixed(instead, of)
 mark(staying, instead)
 </code></pre>
 
 <p><em>let alone</em></p>
 
-<pre><code class="language-sdparse">He could n't handle being hurt , let/VERB alone/ADJ hurt by you
+<pre><code class="language-sdparse">He could n't handle being hurt , let/VERB[ExtPos=CCONJ] alone/ADJ hurt by you
 fixed(let, alone)
 cc(hurt-10, let)
 conj(hurt-6, hurt-10)
@@ -236,31 +236,31 @@ fixed(due, to)
 
 <p><em>how come</em></p>
 
-<pre><code class="language-sdparse">How come John left early ?
+<pre><code class="language-sdparse">How/[ExtPos=ADV] come John left early ?
 fixed(How, come)
 advmod(left, How)
 </code></pre>
 
 <p><em>in order</em></p>
 
-<pre><code class="language-sdparse">He cried in order to make you feel bad
+<pre><code class="language-sdparse">He cried in/[ExtPos=SCONJ] order to make you feel bad
 mark(feel, in)
 fixed(in, order)
 </code></pre>
 
-<pre><code class="language-sdparse">He cried in order that you might feel bad
+<pre><code class="language-sdparse">He cried in/[ExtPos=SCONJ] order that you might feel bad
 mark(feel, in)
 fixed(in, order)
 </code></pre>
 
-<pre><code class="language-sdparse">He cried in order for you to have something to feel bad about
+<pre><code class="language-sdparse">He cried in/[ExtPos=SCONJ] order for you to have something to feel bad about
 mark(have, in)
 fixed(in, order)
 </code></pre>
 
 <p><em>so as to</em></p>
 
-<pre><code class="language-sdparse">John left early so as to miss the meeting
+<pre><code class="language-sdparse">John left early so/[ExtPos=SCONJ] as to miss the meeting
 fixed(so, as)
 fixed(so, to)
 mark(miss, so)
@@ -268,14 +268,14 @@ mark(miss, so)
 
 <p><em>so that</em></p>
 
-<pre><code class="language-sdparse">He cried so that you would feel bad
+<pre><code class="language-sdparse">He cried so/[ExtPos=SCONJ] that you would feel bad
 mark(feel, so)
 fixed(so, that)
 </code></pre>
 
 <p><em>such that</em></p>
 
-<pre><code class="language-sdparse">Let the rectangle KL be applied to DE such that KL equals BC
+<pre><code class="language-sdparse">Let the rectangle KL be applied to DE such/[ExtPos=SCONJ] that KL equals BC
 mark(equals, such)
 fixed(such, that)
 </code></pre>
@@ -307,12 +307,12 @@ case(ship, on)
 
 <p><em>in case</em></p>
 
-<pre><code class="language-sdparse">I always back up my files in case my computer crashes
+<pre><code class="language-sdparse">I always back up my files in/[ExtPos=SCONJ] case my computer crashes
 fixed(in, case)
 mark(crashes, in)
 </code></pre>
 
-<pre><code class="language-sdparse">I always back up my files just in case
+<pre><code class="language-sdparse">I always back up my files just in/[ExtPos=ADV] case
 fixed(in, case)
 advmod(back, in)
 advmod(in, just)
@@ -320,7 +320,7 @@ advmod(in, just)
 
 <p><em>in case of</em></p>
 
-<pre><code class="language-sdparse">I always back up my files in case of a crash
+<pre><code class="language-sdparse">I always back up my files in/[ExtPos=ADP] case of a crash
 fixed(in, case)
 fixed(in, of)
 case(crash, in)
@@ -328,7 +328,7 @@ case(crash, in)
 
 <p><em>whether or not</em></p>
 
-<pre><code class="language-sdparse">He 's crying whether or not you feel bad about it
+<pre><code class="language-sdparse">He 's crying whether/[ExtPos=SCONJ] or not you feel bad about it
 fixed(whether, or)
 fixed(whether, not)
 mark(feel, whether)
@@ -338,28 +338,28 @@ mark(feel, whether)
 
 <p><em>more than</em> (when used synonymously with “over” in a quantity)</p>
 
-<pre><code class="language-sdparse">More than 90 percent
+<pre><code class="language-sdparse">More/[ExtPos=ADV] than 90 percent
 advmod(percent, More)
 fixed(More, than)
 </code></pre>
 
 <p><em>less than</em> (when used synonymously with “under” in a quantity)</p>
 
-<pre><code class="language-sdparse">Less than ten percent
+<pre><code class="language-sdparse">Less/[ExtPos=ADV] than ten percent
 advmod(percent, Less)
 fixed(Less, than)
 </code></pre>
 
 <p><em>up to</em> (when used in quantities)</p>
 
-<pre><code class="language-sdparse">Up to fifty percent
+<pre><code class="language-sdparse">Up/[ExtPos=ADV] to fifty percent
 fixed(Up, to)
 advmod(percent, Up)
 </code></pre>
 
 <p><em>as many/much/few/little as</em> (when used in quantities)  <!-- https://github.com/UniversalDependencies/UD_English-EWT/issues/281 --></p>
 
-<pre><code class="language-sdparse">As much as fifty percent
+<pre><code class="language-sdparse">As/[ExtPos=ADV] much as fifty percent
 fixed(As, much)
 fixed(As, as)
 advmod(percent, As)
@@ -367,7 +367,7 @@ advmod(percent, As)
 
 <p><em>all of</em> (when used in quantities)</p>
 
-<pre><code class="language-sdparse">All of ten minutes
+<pre><code class="language-sdparse">All/[ExtPos=ADV] of ten minutes
 fixed(All, of)
 advmod(minutes, All)
 </code></pre>
@@ -376,7 +376,7 @@ advmod(minutes, All)
 
 <p><em>according to</em></p>
 
-<pre><code class="language-sdparse">According to John
+<pre><code class="language-sdparse">According/[ExtPos=ADP] to John
 fixed(According, to)
 case(John, According)
 </code></pre>
@@ -385,7 +385,7 @@ case(John, According)
 
 <p><em>such as</em></p>
 
-<pre><code class="language-sdparse">I like fluffy animals , such as dogs
+<pre><code class="language-sdparse">I like fluffy animals , such/[ExtPos=ADP] as dogs
 case(dogs, such)
 fixed(such, as)
 </code></pre>
@@ -396,14 +396,14 @@ fixed(such, as)
 
 <p><em>each other</em></p>
 
-<pre><code class="language-sdparse">They saw each/DET other/ADJ
+<pre><code class="language-sdparse">They saw each/DET[ExtPos=PRON] other/ADJ
 fixed(each, other)
 obj(saw, each)
 </code></pre>
 
 <p><em>one another</em></p>
 
-<pre><code class="language-sdparse">They saw one/PRON another/DET
+<pre><code class="language-sdparse">They saw one/PRON[ExtPos=PRON] another/DET
 fixed(one, another)
 obj(saw, one)
 </code></pre>
@@ -412,14 +412,14 @@ obj(saw, one)
 
 <p><em>all but</em></p>
 
-<pre><code class="language-sdparse">John has all/DET but/ADP left
+<pre><code class="language-sdparse">John has all/DET[ExtPos=ADV] but/ADP left
 fixed(all, but)
 advmod(left, all)
 </code></pre>
 
 <p><em>as for</em></p>
 
-<pre><code class="language-sdparse">As for me , I love dogs!
+<pre><code class="language-sdparse">As/[ExtPos=ADP] for me , I love dogs!
 fixed(As, for)
 case(me, As)
 obl(love, me)
@@ -427,14 +427,14 @@ obl(love, me)
 
 <p><em>as if</em></p>
 
-<pre><code class="language-sdparse">It was as if he cried to make you feel bad
+<pre><code class="language-sdparse">It was as/[ExtPos=SCONJ] if he cried to make you feel bad
 fixed(as, if)
 mark(cried, as)
 </code></pre>
 
 <p><em>as opposed to</em></p>
 
-<pre><code class="language-sdparse">John decided to leave early , as opposed to Mary
+<pre><code class="language-sdparse">John decided to leave early , as/[ExtPos=ADP] opposed to Mary
 fixed(as, opposed)
 fixed(as, to-9)
 case(Mary, as)
@@ -442,33 +442,33 @@ case(Mary, as)
 
 <p><em>as to</em></p>
 
-<pre><code class="language-sdparse">As to whether I love dogs ...
+<pre><code class="language-sdparse">As/[ExtPos=SCONJ] to whether I love dogs ...
 fixed(As, to)
 mark(love, As)
 </code></pre>
 
-<pre><code class="language-sdparse">As to my love of dogs ...
+<pre><code class="language-sdparse">As/[ExtPos=ADP] to my love of dogs ...
 fixed(As, to)
 case(love, As)
 </code></pre>
 
 <p><em>at least</em> (when not used for quantities)</p>
 
-<pre><code class="language-sdparse">At/ADP least/ADJ I like dogs
+<pre><code class="language-sdparse">At/ADP[ExtPos=ADV] least/ADJ I like dogs
 fixed(At, least)
 advmod(like, At)
 </code></pre>
 
 <p><em>kind of</em>, <em>sort of</em> (as a hedge)</p>
 
-<pre><code class="language-sdparse">I kind of like dogs
+<pre><code class="language-sdparse">I kind/[ExtPos=ADV] of like dogs
 fixed(kind, of)
 advmod(like, kind)
 </code></pre>
 
 <p><em>in that</em></p>
 
-<pre><code class="language-sdparse">I agree in that the food is tasty
+<pre><code class="language-sdparse">I agree in/[ExtPos=SCONJ] that the food is tasty
 fixed(in, that)
 mark(tasty, in)
 advcl(agree, tasty)
@@ -476,7 +476,7 @@ advcl(agree, tasty)
 
 <p><em>not to mention</em></p>
 
-<pre><code class="language-sdparse">This restaurant is pretty cheap with good food , not to mention their friendly staff
+<pre><code class="language-sdparse">This restaurant is pretty cheap with good food , not/[ExtPos=CCONJ] to mention their friendly staff
 fixed(not, to)
 fixed(not, mention)
 cc(staff, not)
@@ -485,14 +485,14 @@ conj(food, staff)
 
 <p><em>of course</em></p>
 
-<pre><code class="language-sdparse">I like dogs , of course
+<pre><code class="language-sdparse">I like dogs , of/[ExtPos=ADV] course
 advmod(like, of)
 fixed(of, course)
 </code></pre>
 
 <p><em>that is</em></p>
 
-<pre><code class="language-sdparse">The dogs need to be housebroken -- that is , '' potty - trained ''
+<pre><code class="language-sdparse">The dogs need to be housebroken -- that/[ExtPos=ADV] is , '' potty - trained ''
 fixed(that, is)
 advmod(trained, that)
 </code></pre>
