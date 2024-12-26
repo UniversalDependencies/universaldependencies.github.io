@@ -804,8 +804,8 @@ expresses categories such as tense, mood, aspect, voice or evidentiality. It is 
 (which may have non-auxiliary uses as well) but many languages have nonverbal TAME markers and these
 are also treated as instances of <code class="language-plaintext highlighter-rouge">aux</code>.</p>
 
-<p><strong>New from v2:</strong> Auxiliares used to construct the passive <a href="u-feat/Voice">voice</a> are now also labeled <code class="language-plaintext highlighter-rouge">aux</code>,
-although we strongly encourage the use of the subtype <code class="language-plaintext highlighter-rouge">aux:pass</code> in language that have a grammaticalized (periphrastic)
+<p><strong>New from v2:</strong> Auxiliaries used to construct the passive <a href="u-feat/Voice">voice</a> are now also labeled <code class="language-plaintext highlighter-rouge">aux</code>,
+although we strongly encourage the use of the subtype <a href="">aux:pass</a> in languages that have a grammaticalized (periphrastic)
 passive.</p>
 
 <pre><code class="language-sdparse">Reagan has died
@@ -3749,7 +3749,7 @@ obl(swam, night)
 obl(swam, pool)
 </code></pre>
 
-<p>and for the agent of a passive verb (with the optional subtype obl:agent):</p>
+<p>and for the agent of a passive verb (with the subtype <a href="">obl:agent</a>):</p>
 
 <pre><code class="language-sdparse">the cat was chased by the dog
 nsubj:pass(chased, cat)
@@ -3760,10 +3760,20 @@ obl:agent(chased, dog)
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/obl.md" target="#">edit obl</a></p>
 
 <p><a id="al-u-dep/obl:agent" class="al-dest"></a></p>
-<h2><code>obl:agent</code>: agent modifier</h2>
+<h2><code>obl:agent</code>: oblique agent in passive construction</h2>
 
-<p>The relation <code class="language-plaintext highlighter-rouge">obl:agent</code> is used for agents of passive verbs.
-In Czech, the agent is a nominal in the instrumental <a href="">Case</a>.</p>
+<p>The relation <code class="language-plaintext highlighter-rouge">obl:agent</code> is used for agents of passive verbs. It is a subtype of <a href="">obl</a>, which covers all oblique nominals.
+<code class="language-plaintext highlighter-rouge">obl:agent</code> is a <a href="/u/dep/">semi-mandatory subtype</a>, i.e. it should be used if the language has passives with oblique agents.</p>
+
+<p>In English, the agent is marked by the preposition <em>by</em>:</p>
+
+<pre><code class="language-sdparse">The cat was chased by the dog
+nsubj:pass(chased, cat)
+obl:agent(chased, dog)
+case(dog, by)
+</code></pre>
+
+<p>In Czech, the agent is a nominal in the instrumental <a href="">Case</a>:</p>
 
 <pre><code class="language-sdparse">Cena byla udělena děkanem fakulty . \n Prize was awarded by-dean of-faculty .
 obl:agent(udělena, děkanem)
@@ -3773,7 +3783,7 @@ obl:agent(awarded, by-dean)
 <p>Typical agents are animate but it is not a rule.
 Inanimate agents may be sometimes difficult to distinguish from instruments,
 which are also coded by the instrumental case.
-Instruments are attached using the simple relation <code class="language-plaintext highlighter-rouge">obl</code>.
+Instruments are attached using the simple relation <a href="">obl</a>.
 Consider the following two examples, the first one is active and the second is passive.</p>
 
 <pre><code class="language-sdparse">Praštil psa klackem . \n He-hit dog with-a-stick .

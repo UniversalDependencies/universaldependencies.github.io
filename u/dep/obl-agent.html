@@ -76,10 +76,20 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>obl:agent</code>: agent modifier</h2>
+        <h2><code>obl:agent</code>: oblique agent in passive construction</h2>
 
-<p>The relation <code class="language-plaintext highlighter-rouge">obl:agent</code> is used for agents of passive verbs.
-In Czech, the agent is a nominal in the instrumental <a href="">Case</a>.</p>
+<p>The relation <code class="language-plaintext highlighter-rouge">obl:agent</code> is used for agents of passive verbs. It is a subtype of <a href="">obl</a>, which covers all oblique nominals.
+<code class="language-plaintext highlighter-rouge">obl:agent</code> is a <a href="/u/dep/">semi-mandatory subtype</a>, i.e. it should be used if the language has passives with oblique agents.</p>
+
+<p>In English, the agent is marked by the preposition <em>by</em>:</p>
+
+<pre><code class="language-sdparse">The cat was chased by the dog
+nsubj:pass(chased, cat)
+obl:agent(chased, dog)
+case(dog, by)
+</code></pre>
+
+<p>In Czech, the agent is a nominal in the instrumental <a href="">Case</a>:</p>
 
 <pre><code class="language-sdparse">Cena byla udělena děkanem fakulty . \n Prize was awarded by-dean of-faculty .
 obl:agent(udělena, děkanem)
@@ -89,7 +99,7 @@ obl:agent(awarded, by-dean)
 <p>Typical agents are animate but it is not a rule.
 Inanimate agents may be sometimes difficult to distinguish from instruments,
 which are also coded by the instrumental case.
-Instruments are attached using the simple relation <code class="language-plaintext highlighter-rouge">obl</code>.
+Instruments are attached using the simple relation <a href="">obl</a>.
 Consider the following two examples, the first one is active and the second is passive.</p>
 
 <pre><code class="language-sdparse">Praštil psa klackem . \n He-hit dog with-a-stick .
