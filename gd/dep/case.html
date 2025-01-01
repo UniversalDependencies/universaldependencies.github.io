@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>case:voc</title>
+    <title>case</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-gd">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gd/dep/case-voc.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gd/dep/case.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,37 +76,178 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>case:voc</code>: vocative particle</h2>
+        <h2><code>case</code>: case marking</h2>
 
-<p>The vocative particle <em>a</em> precedes the addressee.
-It has UPOS <code class="language-plaintext highlighter-rouge">PART</code> and <code class="language-plaintext highlighter-rouge">PartType=Voc</code> in FEATS.
-It works together with the <a href="">vocative</a> relation.</p>
-
-<h3 id="example">Example</h3>
-
+<p>The <code class="language-plaintext highlighter-rouge">case</code> relation in Scottish Gaelic is used to attach prepositions to the words they qualify.
+These are in turn related to their heads with:</p>
 <ul>
-  <li><em>Tha latha eile agad a-nis, <strong>a</strong> Dhòmhnaill.</em> “You have another day now, Donald” (f02_041)</li>
+  <li>the <a href="">nmod</a> relation, if their head is a nominal</li>
+  <li><a href="">xcomp:pred</a> if it is the predicate of <em>bi</em></li>
+  <li><a href="">csubj:cleft</a> if it is a cleft</li>
+  <li><a href="">obl</a> if it is another sort of clause or complement.</li>
 </ul>
 
-<pre><code class="language-sdparse">Tha latha eile agad a-nis, a Dhòmhnaill \n is day another at_you now PART Donald
-case:voc(a, Dhòmhnaill)
-vocative(Dhòmhnaill, Tha)
+<p>There is a small set of simple prepositions (English translations very approximate):</p>
+<ul>
+  <li><em>à</em> ‘out of’</li>
+  <li><em>aig</em> ‘at’</li>
+  <li><em>air</em> ‘on’,</li>
+  <li><em>an</em>, ‘in’. Usually in modern Gaelic this is <em>ann an</em> for indefinite nominals or <em>anns an</em> for definite nominals.</li>
+  <li><em>bho</em>/<em>o</em> ‘from’,</li>
+  <li><em>de</em> ‘of’,</li>
+  <li><em>do</em> ‘for’,</li>
+  <li><em>eadar</em> ‘between’</li>
+  <li><em>fo</em> ‘under’,</li>
+  <li><em>gu</em> ‘to’,</li>
+  <li><em>gun</em> ‘without’,</li>
+  <li><em>le</em> ‘with’,</li>
+  <li><em>mu</em> ‘about’</li>
+  <li><em>os</em> ‘above’</li>
+  <li><em>ri</em> ‘to, against’</li>
+  <li><em>ro</em> ‘before’</li>
+  <li><em>tro</em> ‘through’</li>
+</ul>
+
+<p>and the aspectual marker <em>ag</em>.</p>
+
+<p>There is a large class of compound prepositions which consist of a preposition plus a noun.
+The nominal the compound preposition marks is then typically in the genitive.</p>
+
+<ul>
+  <li><em>an dèidh</em> ‘after’</li>
+  <li><em>os cionn</em> ‘above’</li>
+  <li><em>o chionn</em> ‘since’</li>
+  <li><em>ri linn</em> ‘in the time of’, ‘because of’</li>
+</ul>
+
+<p>Some of these are treated as fixed expressions.
+See <a href="">fixed</a> for a full list of those to be found in the ARCOSG corpus.</p>
+
+<p>There is more discussion at https://leacan.gla.ac.uk/leacan/index.php?xx=prepositions/prepositions</p>
+
+<p>See also <a href="">case:voc</a> for the vocative particle <em>a</em>.</p>
+
+<h3 id="examples">Examples</h3>
+
+<h4 id="marking-a-nominal">Marking a nominal</h4>
+
+<p><em>Air an là mu dheireadh</em> ‘on the last day’ (pw10_037, train)</p>
+
+<pre><code class="language-sdparse">Air an là mu dheireadh \n on the day about end
+case(Air,là)
+det(an,là)
+amod(mu,là)
+fixed(dheireadh,mu)
 </code></pre>
-<!-- Interlanguage links updated Po 11. listopadu 2024, 20:10:32 CET -->
+
+<h4 id="marking-a-pronoun">Marking a pronoun</h4>
+
+<p><em>cha tàinig e faisg <b>oirnn</b> is eh</em> ‘he did not come close <b>to</b> us and eh’ (p01_008b, train)</p>
+
+<pre><code class="language-conllu">1	cha	cha	PART	Qn	PartType=Vb|Polarity=Neg	2	mark:prt	_	_
+2	tàinig	thig	VERB	V-s--d	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+3	e	e	PRON	Pp3sm	Gender=Masc|Number=Sing|Person=3|PronType=Prs	2	nsubj	_	_
+4	faisg	faisg	ADJ	Ap	_	2	xcomp:pred	_	_
+5-6	oirnn	_	_	_	_	_	_	_	_
+5	air	air	ADP	Sp	_	6	case	_	_
+6	sinn	sinn	PRON	Pp1p	Number=Plur|Person=1|PronType=Prs	2	obl	_	_
+7	is	is	CCONJ	Cc	_	8	cc	_	_
+8	eh	eh	INTJ	I	_	2	conj	_	_
+</code></pre>
+
+<p><em>chan urrainn <b>dhomh</b> sin a fhreagairt</em> ‘<b>I</b> can’t answer that’ (p07_003, train)</p>
+
+<pre><code class="language-sdparse">chan urrainn dhomh sin a fhreagairt \n NEG-COP possibility to me that PART answer
+cop(chan, urrainn)
+nmod(dhomh, urrainn)
+</code></pre>
+
+<h4 id="marking-a-verbal-noun">Marking a verbal noun</h4>
+
+<p><em>gu bhith a’ riaghladh an dèidh an ath thaghaidh</em> ‘to be governing after the next election’ (pw10_037, train)</p>
+
+<pre><code class="language-sdparse">gu bhith a' riaghladh an dèidh an ath thaghaidh \n to be ASP governing in after the next election
+case(a', riaghladh)
+xcomp:pred(riaghladh, bhith)
+case(gu, bhith)
+</code></pre>
+
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-case:voc in other languages:
+case in other languages:
 
-[<a href="../../ga/dep/case-voc.html">ga</a>]
+[<a href="../../bg/dep/case.html">bg</a>]
 
-[<a href="../../gd/dep/case-voc.html">gd</a>]
+[<a href="../../bm/dep/case.html">bm</a>]
 
-[<a href="../../gv/dep/case-voc.html">gv</a>]
+[<a href="../../cop/dep/case.html">cop</a>]
 
-[<a href="../../sga/dep/case-voc.html">sga</a>]
+[<a href="../../cs/dep/case.html">cs</a>]
+
+[<a href="../../de/dep/case.html">de</a>]
+
+[<a href="../../el/dep/case.html">el</a>]
+
+[<a href="../../en/dep/case.html">en</a>]
+
+[<a href="../../et/dep/case.html">et</a>]
+
+[<a href="../../fi/dep/case.html">fi</a>]
+
+[<a href="../../fr/dep/case.html">fr</a>]
+
+[<a href="../../ga/dep/case.html">ga</a>]
+
+[<a href="../../gsw/dep/case.html">gsw</a>]
+
+[<a href="../../gub/dep/case.html">gub</a>]
+
+[<a href="../../hy/dep/case.html">hy</a>]
+
+[<a href="../../it/dep/case.html">it</a>]
+
+[<a href="../../ja/dep/case.html">ja</a>]
+
+[<a href="../../ka/dep/case.html">ka</a>]
+
+[<a href="../../kk/dep/case.html">kk</a>]
+
+[<a href="../../ky/dep/case.html">ky</a>]
+
+[<a href="../../no/dep/case.html">no</a>]
+
+[<a href="../../pcm/dep/case.html">pcm</a>]
+
+[<a href="../../pt/dep/case.html">pt</a>]
+
+[<a href="../../qpm/dep/case.html">qpm</a>]
+
+[<a href="../../ro/dep/case.html">ro</a>]
+
+[<a href="../../ru/dep/case.html">ru</a>]
+
+[<a href="../../sl/dep/case.html">sl</a>]
+
+[<a href="../../ssp/dep/case.html">ssp</a>]
+
+[<a href="../../sv/dep/case.html">sv</a>]
+
+[<a href="../../swl/dep/case.html">swl</a>]
+
+[<a href="../../tr/dep/case.html">tr</a>]
+
+[<a href="../../u/dep/case.html">u</a>]
+
+[<a href="../../urj/dep/case.html">urj</a>]
+
+[<a href="../../xcl/dep/case.html">xcl</a>]
+
+[<a href="../../yue/dep/case.html">yue</a>]
+
+[<a href="../../zh/dep/case.html">zh</a>]
 
 
 
