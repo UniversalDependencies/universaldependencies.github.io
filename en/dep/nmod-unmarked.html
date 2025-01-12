@@ -124,65 +124,97 @@ det(couple, a)
 nmod:unmarked(cookies, couple)
 </code></pre>
 
+<p>(vi) scientific scale postmodifiers</p>
+
+<pre><code class="language-sdparse">7/NUM degrees/NOUN Fahrenheit/PROPN
+nummod(degrees, 7)
+nmod:unmarked(degrees, Fahrenheit)
+</code></pre>
+
 <h2 id="in-names-and-dates">In names and dates</h2>
 
 <p>** DRAFT - NOT YET IMPLEMENTED **</p>
 
-<p>For naming patterns that incorporate a locational relation
-without a preposition (often punctuated with a comma or dash),
-we treat the locational element as <code class="language-plaintext highlighter-rouge">nmod:unmarked</code>.
-Multiple such elements may nest (but note that <a href="">flat</a> connects composite
-type+number names).
-This includes:</p>
+<p>Identifiers of specific locations are often complex, incorporating multiple levels of granularity.
+For some such descriptions, the locational parts are juxtaposed—perhaps with punctuation like commas or dashes, but without prepositions
+or other clear grammatical indication of headedness.
+Common examples include cities, where the city name is conventionally paired with a state/province/country name (<em>Berkeley, California, USA</em>);
+street addresses, where a house number is related to a street name, and possibly to a subunit;
+and even textual references (<em>Act IV, Scene 1</em> in a play).
+The order of granularity is <a href="https://en.wikipedia.org/wiki/Endianness">big-endian</a> for some of these naming patterns and little-endian for others.</p>
 
-<p>(i) a location-elaboration in an address (such as the state or country given after a city,
-or a numbered unit in relation to a building or street):</p>
+<p>In the absence of morphosyntactic cues, we rely on semantics to determine the dependency relations:
+the most specific locator serves as the head of all the others in the expression, provided that the
+expression is short enough that it would tend to occur as a nominal in a wider sentence.
+Dependents attach as <code class="language-plaintext highlighter-rouge">nmod:unmarked</code>:</p>
 
-<pre><code class="language-sdparse">110/NUM Sproul/PROPN Hall/PROPN , Berkeley/PROPN , California/PROPN , USA/PROPN
+<pre><code class="language-sdparse">Berkeley/PROPN , California/PROPN , USA/PROPN
+nmod:unmarked(Berkeley, California)
+nmod:unmarked(Berkeley, USA)
+</code></pre>
+
+<pre><code class="language-sdparse">110/NUM Sproul/PROPN Hall/PROPN
 nmod:unmarked(110, Hall)
 compound(Hall, Sproul)
-nmod:unmarked(Hall, Berkeley)
-nmod:unmarked(Berkeley, California)
-nmod:unmarked(California, USA)
 </code></pre>
 
 <pre><code class="language-sdparse">221B/PROPN Baker/PROPN St./PROPN , Apt./PROPN E/PROPN
 nmod:unmarked(221B, St.)
 compound(St., Baker)
 flat(Apt., E)
-nmod:unmarked(221B, Apt.)
+nmod:unmarked(Apt., 221B)
 </code></pre>
 
-<p>Note that the apartment is technically located within the building identified by a house number,
-but the apartment is presented as a refinement of the location (possibly separated by a comma),
-so it is considered the modifier.</p>
-
-<p>(ii) an institutional branch or campus</p>
+<p>Where the name of an institutional branch or campus juxtaposes the name of the institution followed by the name of a place, the institution is the head
+(but prepositional phrases are structured as usual):</p>
 
 <pre><code class="language-sdparse">University/PROPN of/ADP Wisconsin/PROPN – Madison/PROPN
 nmod(University, Wisconsin)
 nmod:unmarked(University, Madison)
 </code></pre>
 
-<p>(iii) larger units within a juxtaposition-based temporal expression
-(regardless of word order and cardinal vs. ordinal date)</p>
+<p>If the expression follows an extragrammatical format like a full postal address, the major parts are connected via <a href="">list</a>:</p>
+
+<pre><code class="language-sdparse">110/NUM Sproul/PROPN Hall/PROPN , Berkeley/PROPN , California/PROPN , USA/PROPN 94704/NUM
+list(Hall, Berkeley)
+list(Hall, 94704)
+</code></pre>
+
+<pre><code class="language-sdparse">Harry/PROPN Potter/PROPN , 12/NUM Grimmauld/PROPN Place/PROPN , London/PROPN
+flat(Harry, Potter)
+list(Harry, 12)
+list(12, London)
+</code></pre>
+
+<h3 id="dates">Dates</h3>
+
+<p>The same principles hold for locations in time:</p>
 
 <pre><code class="language-sdparse">8/NUM[NumType=Card] October/PROPN 1963/NUM[NumType=Card]
 nmod:unmarked(8, October)
-nmod:unmarked(October, 1963)
+nmod:unmarked(8, 1963)
 </code></pre>
 
 <pre><code class="language-sdparse">October/PROPN 8/NUM[NumType=Card] , 1963/NUM[NumType=Card]
 nmod:unmarked(8, October)
-nmod:unmarked(October, 1963)
+nmod:unmarked(8, 1963)
 </code></pre>
 
 <pre><code class="language-sdparse">October/PROPN 8th/NUM[NumType=Ord] , 1963/NUM[NumType=Card]
 nmod:unmarked(8th, October)
-nmod:unmarked(October, 1963)
+nmod:unmarked(8th, 1963)
 </code></pre>
 
-<p>** TODO: postal codes, am/pm, time zones (maybe <a href="">list</a>?) **</p>
+<p>Where two labels apply to the same location in time, <a href="">appos</a> may be suitable:</p>
+
+<pre><code class="language-sdparse">It starts at/ADP 8:00/NUM[NumType=Card] a.m./NOUN EST/PROPN on/ADP Monday/PROPN , October/PROPN 8/NUM[NumType=Card] .
+obl(8:00, at)
+nmod:unmarked(8:00, am)
+nmod:unmarked(8:00, EST)
+case(Monday, on)
+appos(Monday, 8)
+nmod:unmarked(8, October)
+</code></pre>
 
 <p><strong>History:</strong> Prior to release 2.15, case (i) (temporal modifiers)
 had a separate subtype called <a href="">nmod:tmod</a>, and <a href="">nmod:npmod</a>
