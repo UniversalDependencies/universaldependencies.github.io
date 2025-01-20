@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>acl:relcl</title>
+    <title>obl:agent</title>
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
@@ -37,7 +37,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-gd">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gd/dep/acl-relcl.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_gd/dep/obl-agent.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -76,105 +76,99 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>acl:relcl</code>: relative clause modifier</h2>
+        <h2><code>obl:agent</code>: passive agent oblique nominal</h2>
 
-<p><code class="language-plaintext highlighter-rouge">acl:relcl</code> connects a clause to a noun phrase.
-Usually the verb is marked by the relative particle <em>a</em> but this may be omitted in speech.</p>
+<p>The <code class="language-plaintext highlighter-rouge">obl:agent</code> relation is used for a nominal (noun, pronoun, noun phrase) that specifies the agent in a passive construction using the irregular verb <em>rach</em> and a verbal noun.
+They are marked by the adposition <em>le</em>.
+It works together with <code class="language-plaintext highlighter-rouge">aux:pass</code>, which relates the irregular verb acting as an auxiliary to the verbal noun and <code class="language-plaintext highlighter-rouge">nsubj:pass</code> which specifies the passive subject.</p>
 
 <h3 id="examples">Examples</h3>
 
-<pre><code class="language-conllu">1	Thàinig	thig	VERB	V-s	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
-2	nighean	nighean	NOUN	Ncsfn	Case=Nom|Gender=Fem|Number=Sing	1	nsubj	_	_
-3	a	a	PART	Q-r	PartType=Vb|PronType=Rel	4	nsubj	_	_
-4	bha	bi	VERB	V-s	Mood=Ind|Tense=Past|VerbForm=Fin	2	acl:relcl	_	_
-5	a'	ag	PART	Sa	_	6	case	_	_
-6	frìthealadh	frìtheal	NOUN	Nv	VerbForm=Vnoun	4	xcomp:pred	_	_
-7	is	is	CCONJ	Cc	_	8	cc	_	_
-8	dh'iarr	iarr	VERB	V-s	Mood=Ind|Tense=Past|VerbForm=Fin	1	conj	_	_
-9	Màiri	Màiri	PROPN	Nn-fn	Case=Nom|Gender=Fem	8	nsubj	_	_
-10	cupa	cupa	NOUN	Ncsmn	Case=Nom|Gender=Masc|Number=Sing	8	obj	_	_
-11	ti	ti	NOUN	Ncsfg	Case=Gen|Gender=Fem|Number=Sing	10	nmod	_	SpaceAfter=No
+<p>‘The programme was made by Hummingbird, an independent company in Ireland.’ (pw07_022, train):</p>
+
+<pre><code class="language-sdparse">1	Chaidh	rach	AUX	V-s	Mood=Ind|Tense=Past|VerbForm=Fin	5	aux:pass	_	_
+2	am	an	DET	Tdsm	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	3	det	_	_
+3	prògram	prògram	NOUN	Ncsmn	Case=Nom|Gender=Masc|Number=Sing	5	nsubj:pass	_	_
+4	a	a	PART	Ug	PartType=Inf	5	mark:prt	_	_
+5	dhèanamh	dèan	NOUN	Nv	VerbForm=Inf	0	root	_	_
+6	le	le	ADP	Sp	_	7	case	_	_
+7	Hummingbird	Hummingbird	PROPN	Nn	_	5	obl:agent	_	SpaceAfter=No
+8	,	,	PUNCT	Fi	_	9	punct	_	_
+9	companaidh	companaidh	NOUN	Ncsmn	Case=Nom|Gender=Masc|Number=Sing	7	appos	_	_
+10	neo-eisimeileach	neo-eisimeileach	ADJ	Aq-smn	Case=Nom|Gender=Masc|Number=Sing	9	amod	_	_
+11	ann	an	ADP	Sp	ExtPos=ADP	13	case	_	_
+12	an	an	ADP	Sp	_	11	fixed	_	_
+13	Éirinn	Éirinn	PROPN	Nt	NounType=Top	9	nmod	_	SpaceAfter=No
+14	.	.	PUNCT	Fe	_	5	punct	_	_
 </code></pre>
 
-<p>‘The girl who was serving came and Màiri ordered a cup of tea.’ (f01_089)</p>
+<p>‘It will be told to Caledonian MacBrayne by representatives of Western Isles Council at a meeting on Barra tonight’ (ns08_003, dev):</p>
 
-<pre><code class="language-conllu">1	facal	facal	NOUN	Ncsmn	Case=Nom|Gender=Masc|Number=Sing	0	root	_	_
-2-3	den	_	_	_	_	_	_	_	_
-2	de	de	ADP	Sp	_	4	case	_	_
-3	an	an	DET	Tds	Definite=Def|Number=Sing|PronType=Art	4	det	_	_
-4	chànain	cànan	NOUN	Ncsfd	Case=Dat|Gender=Fem|Number=Sing	1	nmod	_	_
-5	anns	an	ADP	Sp	_	7	case	_	_
-6	an	an	PART	Qq	PartType=Vb|PronType=Int	7	mark:prt	_	_
-7	robh	bi	VERB	V-s--d	Mood=Ind|Tense=Past|VerbForm=Fin	4	acl:relcl	_	_
-8	ise	i	PRON	Pp3sf-e	Form=Emp|Gender=Fem|Number=Sing|Person=3|PronType=Prs	7	nsubj	_	_
-9	cho	cho	ADV	Rg	AdvType=Man	10	advmod	_	_
-10	fileanta	fileanta	ADJ	Ap	_	7	xcomp:pred	_	SpaceAfter=No
+<pre><code class="language-sdparse">1	Thèid	rach	AUX	V-f	Mood=Ind|Tense=Fut|VerbForm=Fin	2	aux:pass	_	_
+2	innse	inns	NOUN	Nv	VerbForm=Vnoun	0	root	_	_
+3	do	do	ADP	Sp	_	4	case	_	_
+4	Chaledonian	Caledonian	PROPN	Nn	_	2	obl	_	_
+5	Mac	Mac	PART	Up	PartType=Pat	4	flat:name	_	FlatType=Name
+6	a'	an	DET	Tdsmg	_	7	det	_	_
+7	Bhruthainn	Bruthainn	PROPN	Nn	Case=Gen	5	nmod	_	_
+8	le	le	ADP	Sp	_	9	case	_	_
+9	riochdairean	riochdair	NOUN	Ncpmd	Case=Dat|Gender=Masc|Number=Plur	2	obl:agent	_	_
+10	Chomhairle	comhairle	NOUN	Ncsfn	Case=Nom|Gender=Fem|Number=Sing	9	nmod:unmarked	_	_
+11	nan	an	DET	Tdpmg	Case=Gen|Definite=Def|Gender=Masc|Number=Plur|PronType=Art	12	det	_	_
+12	Eilean	eil	NOUN	Ncpmg	Case=Gen|Gender=Masc|Number=Plur	10	nmod	_	_
+13	aig	aig	ADP	Sp	_	14	case	_	_
+14	coinneamh	coinneamh	NOUN	Ncsfd	Case=Dat|Gender=Fem|Number=Sing	2	obl	_	_
+15	am	an	ADP	Sp	_	16	case	_	_
+16	Barraigh	Barraigh	PROPN	Nt	NounType=Top	14	nmod	_	_
+17	a-nochd	a-nochd	ADV	Rt	AdvType=Tim	14	advmod	_	_
 </code></pre>
 
-<p>‘a word of the language in which she was so fluent’ (f01_097)</p>
-
-<h3 id="related-deprels">Related deprels</h3>
-
-<ul>
-  <li><a href="acl.html">acl</a> for “content clauses”. These have no relative particle.</li>
-  <li><a href="advcl-relcl.html">advcl:relcl</a> for the analogous case where the head is an adverb or possibly an adjective or adverb.</li>
-  <li><a href="csubj-cleft.html">csubj:cleft</a> for where a relative clause is part of a cleft sentence.</li>
-  <li><a href="csubj-cop.html">csubj:cop</a> for where a relative clause is part of a different sort of sentence including a copula.</li>
-</ul>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-acl:relcl in other languages:
+obl:agent in other languages:
 
-[<a href="../../ab/dep/acl-relcl.html">ab</a>]
+[<a href="../../cs/dep/obl-agent.html">cs</a>]
 
-[<a href="../../bej/dep/acl-relcl.html">bej</a>]
+[<a href="../../cy/dep/obl-agent.html">cy</a>]
 
-[<a href="../../cop/dep/acl-relcl.html">cop</a>]
+[<a href="../../de/dep/obl-agent.html">de</a>]
 
-[<a href="../../cs/dep/acl-relcl.html">cs</a>]
+[<a href="../../el/dep/obl-agent.html">el</a>]
 
-[<a href="../../de/dep/acl-relcl.html">de</a>]
+[<a href="../../fr/dep/obl-agent.html">fr</a>]
 
-[<a href="../../el/dep/acl-relcl.html">el</a>]
+[<a href="../../hy/dep/obl-agent.html">hy</a>]
 
-[<a href="../../en/dep/acl-relcl.html">en</a>]
+[<a href="../../id/dep/obl-agent.html">id</a>]
 
-[<a href="../../fi/dep/acl-relcl.html">fi</a>]
+[<a href="../../it/dep/obl-agent.html">it</a>]
 
-[<a href="../../fr/dep/acl-relcl.html">fr</a>]
+[<a href="../../kpv/dep/obl-agent.html">kpv</a>]
 
-[<a href="../../ga/dep/acl-relcl.html">ga</a>]
+[<a href="../../pa/dep/obl-agent.html">pa</a>]
 
-[<a href="../../hy/dep/acl-relcl.html">hy</a>]
+[<a href="../../qpm/dep/obl-agent.html">qpm</a>]
 
-[<a href="../../id/dep/acl-relcl.html">id</a>]
+[<a href="../../ru/dep/obl-agent.html">ru</a>]
 
-[<a href="../../it/dep/acl-relcl.html">it</a>]
+[<a href="../../sv/dep/obl-agent.html">sv</a>]
 
-[<a href="../../no/dep/acl-relcl.html">no</a>]
+[<a href="../../tn/dep/obl-agent.html">tn</a>]
 
-[<a href="../../pa/dep/acl-relcl.html">pa</a>]
+[<a href="../../tr/dep/obl-agent.html">tr</a>]
 
-[<a href="../../pcm/dep/acl-relcl.html">pcm</a>]
+[<a href="../../u/dep/obl-agent.html">u</a>]
 
-[<a href="../../pt/dep/acl-relcl.html">pt</a>]
+[<a href="../../vi/dep/obl-agent.html">vi</a>]
 
-[<a href="../../qpm/dep/acl-relcl.html">qpm</a>]
+[<a href="../../xcl/dep/obl-agent.html">xcl</a>]
 
-[<a href="../../ru/dep/acl-relcl.html">ru</a>]
+[<a href="../../yue/dep/obl-agent.html">yue</a>]
 
-[<a href="../../sv/dep/acl-relcl.html">sv</a>]
-
-[<a href="../../swl/dep/acl-relcl.html">swl</a>]
-
-[<a href="../../u/dep/acl-relcl.html">u</a>]
-
-[<a href="../../urj/dep/acl-relcl.html">urj</a>]
-
-[<a href="../../vi/dep/acl-relcl.html">vi</a>]
+[<a href="../../zh/dep/obl-agent.html">zh</a>]
 
 
 
