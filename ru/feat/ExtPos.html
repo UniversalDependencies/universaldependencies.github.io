@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>ExtPos</title>
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script> -->
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-ru">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ru/feat/ExtPos.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <style>h3 {display:block;background-color:#dfeffc}</style>
+
+<h2><code>ExtPos</code>: external part of speech</h2>
+
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#ADJ">ADJ</a></td>
+  <td><a href="#ADP">ADP</a></td>
+  <td><a href="#ADV">ADV</a></td>
+  <td><a href="#CCONJ">CCONJ</a></td>
+  <td><a href="#DET">DET</a></td>
+  <td><a href="#INTJ">INTJ</a></td>
+  <td><a href="#NOUN">NOUN</a></td>
+  <td><a href="#NUM">NUM</a></td>
+  <td><a href="#PART">PART</a></td>
+  <td><a href="#PRON">PRON</a></td>
+  <td><a href="#PROPN">PROPN</a></td>
+  <td><a href="#SCONJ">SCONJ</a></td>
+  <td><a href="#VERB">VERB</a></td>
+</tr>
+</table>
+
+<p>This feature differs significantly from all other features: It describes neither the lexical category,
+nor the inflectional paradigm slot of the token it appears on. Rather than to the individual token,
+it pertains to a multiword expression and indicates the part of speech that the expression would get
+if it were analyzed as a single word. <code class="language-plaintext highlighter-rouge">ExtPos</code> is annotated at the head node of the multiword
+expression. The possible values are taken from the defined <a href="/u/pos/index.html">UPOS tags</a> and no other
+values are allowed (not even at the language-specific level). The main motivation for <code class="language-plaintext highlighter-rouge">ExtPos</code> is that
+the multiword expression may behave like a part of speech different from the UPOS of the head node;
+however, <code class="language-plaintext highlighter-rouge">ExtPos</code> is sometimes used even if it is identical to the UPOS of the head node. Also, it is
+not strictly necessary that the expression is multiword – if one of the words of the expression is
+omitted by mistake, or if a single word has been coerced into a part of speech different from its
+lexical one, <code class="language-plaintext highlighter-rouge">ExtPos</code> may be used to signal it.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ExtPos</code> feature is used in fixed functional multiword expressions (the head node has one
+or more children attached via the <a href="">fixed</a> relation). However, <code class="language-plaintext highlighter-rouge">ExtPos</code> is occasionally useful in other situations, too:
+for example, when a multiword expression acts as a proper noun (although its parts behave like other
+words) or as an interjection.</p>
+
+<h3 id="adj-adjective-like-expression"><a name="ADJ"><code class="language-plaintext highlighter-rouge">ADJ</code></a>: adjective-like expression</h3>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li><em><b>так себе</b></em> (a multiword adjective paraphrasable as “so so”, lit. “so to_oneself”; the first node is <a href="ru-pos/ADV">ADV</a>)</li>
+  <li><em>(я) <b>сам по себе</b></em> (a multiword adjective paraphrasable as “(I am) on my own”, lit. “self on oneself”; the first node is <a href="ru-pos/DET">DET</a>)</li>
+  <li><em>(складки) <b>одна к одной</b></em> (a multiword adjective paraphrasable as “(the folds are) one to one, perfectly fit”, lit. “one to one”; the first node is <a href="ru-pos/NUM">DET</a>)</li>
+  <li><em><b>один-единственный</b> (комар)</em> (a multiword adjective paraphrasable as “one single (mosquito)”; the first node is <a href="ru-pos/NUM">NUM</a>)</li>
+</ul>
+
+<h3 id="adp-adposition-like-expression"><a name="ADP"><code class="language-plaintext highlighter-rouge">ADP</code></a>: adposition-like expression</h3>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li><em><b>в отличие от</b> меня</em> “<b>in contrast to</b> me” (here the first node is a preposition itself, so UPOS = <code class="language-plaintext highlighter-rouge">ExtPos</code>)</li>
+  <li><em><b>несмотря на</b> успехи</em> “<b>disregarding</b> one’s achievements” (here the first node is a <a href="ru-pos/ADV">ADV</a>)</li>
+</ul>
+
+<h3 id="adv-adverb-like-expression"><a name="ADV"><code class="language-plaintext highlighter-rouge">ADV</code></a>: adverb-like expression</h3>
+
+<p>The multiword parentheticals are also considered as adverb-like expressions.</p>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li><em><b>в конце концов</b></em> (a multiword adverb paraphrasable as “eventually, finally”, lit. “in the end of ends”; the first node is <a href="ru-pos/ADP">ADP</a>)</li>
+  <li><em><b>только что</b> (пришел)</em> (a multiword adverb paraphrasable as “just (came)”, lit. “only what”; the first node is <a href="ru-pos/PART">PART</a>)</li>
+  <li><em><b>нет-нет да и</b> (спросит)</em> (a multiword adverb paraphrasable as “from time to time, every now and then (he asks)”, lit. “no-no and and”; the first node is <a href="ru-pos/VERB">VERB</a>)</li>
+  <li><em><b>тем не менее</b></em> (a multiword parenthetical paraphrasable as “nevertheless”, lit. “by-that no less”; the first node is <a href="ru-pos/DET">DET</a>)</li>
+  <li><em><b>между прочим</b></em> (a multiword parenthetical paraphrasable as “by the way”, lit. “between other”; the first node is <a href="ru-pos/ADP">ADP</a>)</li>
+</ul>
+
+<h3 id="cconj-coordinating-conjunction-like-expression"><a name="CCONJ"><code class="language-plaintext highlighter-rouge">CCONJ</code></a>: coordinating conjunction-like expression</h3>
+
+<h4 id="examples-3">Examples</h4>
+
+<ul>
+  <li><em><b>не только</b></em> (a multiword coordinating conjunction paraphrasable as “not only… (but …)”; the first node is <a href="ru-pos/PART">PART</a>)</li>
+  <li><em><b>но и</b></em> (a multiword coordinating conjunction paraphrasable as “but”, lit. “but even”; the first node is <a href="ru-pos/CCONJ">CCCONJ</a>, so UPOS = <code class="language-plaintext highlighter-rouge">ExtPos</code>)</li>
+</ul>
+
+<h3 id="det-determiner-like-expression"><a name="DET"><code class="language-plaintext highlighter-rouge">DET</code></a>: determiner-like expression</h3>
+
+<h4 id="examples-4">Examples</h4>
+
+<ul>
+  <li><em><b>что за</b> красота</em> (a multiword determiner paraphrasable as “what (a beauty)”, lit. “what for”; the first node is <a href="ru-pos/PRON">PRON</a>)</li>
+  <li><em><b>какой бы то ни было </b> формы</em> (a multiword determiner paraphrasable as “any (form) whatsoever”, lit. “which would it not was”; the first node is <a href="ru-pos/DET">DET</a>, so UPOS = <code class="language-plaintext highlighter-rouge">ExtPos</code>)</li>
+</ul>
+
+<h3 id="intj-interjection-like-expression"><a name="INTJ"><code class="language-plaintext highlighter-rouge">INTJ</code></a>: interjection-like expression</h3>
+
+<h4 id="examples-5">Examples</h4>
+
+<ul>
+  <li><em><b>ей Богу</b>!</em> “for God’s sake” (<em>ей</em> = <a href="ru-pos/INTJ">INTJ</a>, <em>Богу</em> = <a href="ru-pos/NOUN">NOUN</a>)</li>
+  <li><em><b>господи боже</b>!</em> “for God’s sake” (<em>господи</em> = <a href="ru-pos/NOUN">NOUN</a>, <em>боже</em> = <a href="ru-pos/NOUN">NOUN</a>)</li>
+  <li><em><b>ну и</b> жарко!</em> “well (it’s hot)”, lit. “well and” (<em>ну</em> = <a href="ru-pos/PART">PART</a>, <em>и</em> = <a href="ru-pos/CCONJ">CCONJ</a>)</li>
+</ul>
+
+<h3 id="noun-noun-like-expression"><a name="NOUN"><code class="language-plaintext highlighter-rouge">NOUN</code></a>: noun-like expression</h3>
+
+<h4 id="examples-6">Examples</h4>
+
+<ul>
+  <li><em><b>прелесть что такое</b>!</em> (<em>прелесть</em> = <a href="ru-pos/NOUN">NOUN</a>, <em>что</em> = <a href="ru-pos/PRON">PRON</a>, <em>такое</em> = <a href="ru-pos/DET">DET</a>)</li>
+</ul>
+
+<h3 id="num-numeral-like-expression"><a name="NUM"><code class="language-plaintext highlighter-rouge">NUM</code></a>: numeral-like expression</h3>
+
+<h4 id="examples-7">Examples</h4>
+
+<ul>
+  <li><em><b>сколько угодно</b> случаев</em> “as many cases as you like“ (<em>сколько</em> = <a href="ru-pos/NUM">NUM</a>)</li>
+</ul>
+
+<h3 id="part-particle-like-expression"><a name="PART"><code class="language-plaintext highlighter-rouge">PART</code></a>: particle-like expression</h3>
+
+<h4 id="examples-8">Examples</h4>
+
+<ul>
+  <li><em><b>того и гляди</b></em> “just wait and see“ (<em>того</em> = <a href="ru-pos/PRON">PRON</a>)</li>
+  <li><em><b>разве что</b></em> “just wait and see“ (<em>разве</em> = <a href="ru-pos/PART">PART</a>)</li>
+  <li><em><b>чуть не</b></em> “almost“ (<em>чуть</em> = <a href="ru-pos/PART">PART</a>)</li>
+  <li><em><b>хоть бы</b> минуту</em> “at least (for a minute)“ (<em>хоть</em> = <a href="ru-pos/PART">PART</a>)</li>
+</ul>
+
+<h3 id="pron-pronoun-like-expression"><a name="PRON"><code class="language-plaintext highlighter-rouge">PRON</code></a>: pronoun-like expression</h3>
+
+<h4 id="examples-9">Examples</h4>
+
+<ul>
+  <li><em><b>друг друга</b></em> (<em>each</em> = <a href="ru-pos/DET">DET</a>)</li>
+</ul>
+
+<h3 id="propn-proper-noun-like-expression"><a name="PROPN"><code class="language-plaintext highlighter-rouge">PROPN</code></a>: proper noun-like expression</h3>
+
+<h4 id="examples-10">Examples</h4>
+
+<ul>
+  <li><em>роман “<b>Война и мир</b>“</em> “novel “War and Peace”” (<em>war</em> = <a href="ru-pos/NOUN">NOUN</a>)</li>
+</ul>
+
+<h3 id="sconj-subordinator-like-expression"><a name="SCONJ"><code class="language-plaintext highlighter-rouge">SCONJ</code></a>: subordinator-like expression</h3>
+
+<h4 id="examples-11">Examples</h4>
+
+<ul>
+  <li><em><b>т. е.</b></em>, <em><b>то есть</b></em> “i. e.” (<em>то</em> = <a href="ru-pos/PRON">PRON</a>)</li>
+</ul>
+
+<h3 id="verb-verb-like-predicative-expression"><a name="VERB"><code class="language-plaintext highlighter-rouge">VERB</code></a>: verb-like (predicative) expression</h3>
+
+<h4 id="examples-12">Examples</h4>
+
+<ul>
+  <li><em>Я <b>не прочь</b> позавтракать</em> “I wouldn’t mind having breakfast“ (<em>не</em> = <a href="ru-pos/PART">PART</a>, <em>прочь</em> = <a href="ru-pos/ADV">ADV</a> &lt; comparative form of <em>прокыи</em>, i.e. “not far from“)</li>
+  <li><em>мне <b>не по себе</b></em> “I feel uneasy“, lit. “not for oneself“ (<em>не</em> = <a href="ru-pos/PART">PART</a>, <em>по</em> = <a href="ru-pos/ADP">ADP</a>, <em>себе</em> = <a href="ru-pos/PRON">PRON</a>)</li>
+  <li><em>мне <b>всё равно</b>, где учиться</em> “(I) don’t care (where to study)“, lit. “all (is) equal“ (<em>всё</em> = <a href="ru-pos/PRON">PRON</a>, <em>равно</em> = <a href="ru-pos/ADJ">ADJ</a>)</li>
+  <li><em>а ему <b>хоть бы хны</b></em> “(he) does not give a damn“, lit. “at-least whould whimper“ (<em>хоть</em>, <em>бы</em> = <a href="ru-pos/PART">PART</a>, <em>хны</em> = <a href="ru-pos/INTJ">INTJ</a>)</li>
+  <li><em>ящик <b>ни туда ни сюда</b></em> “(the box is) neither here nor there“ (<em>ни</em> = <a href="ru-pos/PART">PART</a>, <em>туда</em>, <em>сюда</em> = <a href="ru-pos/ADV">ADV</a>)</li>
+</ul>
+
+<!-- Interlanguage links updated Po 11. listopadu 2024, 20:09:41 CET -->
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+ExtPos in other languages:
+
+[<a href="../../bej/feat/ExtPos.html">bej</a>]
+
+[<a href="../../de/feat/ExtPos.html">de</a>]
+
+[<a href="../../en/feat/ExtPos.html">en</a>]
+
+[<a href="../../fr/feat/ExtPos.html">fr</a>]
+
+[<a href="../../ha/feat/ExtPos.html">ha</a>]
+
+[<a href="../../ht/feat/ExtPos.html">ht</a>]
+
+[<a href="../../pcm/feat/ExtPos.html">pcm</a>]
+
+[<a href="../../pt/feat/ExtPos.html">pt</a>]
+
+[<a href="../../u/feat/ExtPos.html">u</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'ru';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
