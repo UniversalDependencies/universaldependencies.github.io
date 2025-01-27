@@ -98,17 +98,12 @@
 </tr>
 </table>
 
-<p>This feature differs significantly from all other features: It describes neither the lexical category,
-nor the inflectional paradigm slot of the token it appears on. Rather than to the individual token,
-it pertains to a multiword expression and indicates the part of speech that the expression would get
+<p>This feature pertains to a multiword expression and indicates the part of speech that the expression would get
 if it were analyzed as a single word. <code class="language-plaintext highlighter-rouge">ExtPos</code> is annotated at the head node of the multiword
 expression. The possible values are taken from the defined <a href="/u/pos/index.html">UPOS tags</a> and no other
 values are allowed (not even at the language-specific level). The main motivation for <code class="language-plaintext highlighter-rouge">ExtPos</code> is that
 the multiword expression may behave like a part of speech different from the UPOS of the head node;
-however, <code class="language-plaintext highlighter-rouge">ExtPos</code> is sometimes used even if it is identical to the UPOS of the head node. Also, it is
-not strictly necessary that the expression is multiword – if one of the words of the expression is
-omitted by mistake, or if a single word has been coerced into a part of speech different from its
-lexical one, <code class="language-plaintext highlighter-rouge">ExtPos</code> may be used to signal it.</p>
+however, <code class="language-plaintext highlighter-rouge">ExtPos</code> is sometimes used even if it is identical to the UPOS of the head node.</p>
 
 <p><code class="language-plaintext highlighter-rouge">ExtPos</code> is strongly recommended for fixed functional multiword expressions (the head node has one
 or more children attached via the <a href="">fixed</a> relation). These should normally lead to <code class="language-plaintext highlighter-rouge">ExtPos</code> values
@@ -122,7 +117,7 @@ words) or as an interjection.</p>
 <h4 id="examples">Examples</h4>
 
 <ul>
-  <li>[sv] <em><b>före detta</b></em> (a multiword adjective paraphrasable as “former”, lit. “before that”; the first node is <a href="">ADV</a>)</li>
+  <li>[el] <em><b>μη μου άπτου</b></em> (a multiword adjective paraphrasable as “too sensitive”, lit. “not me touch”; the first node is <a href="">PART</a>)</li>
 </ul>
 
 <h3 id="adp-adposition-like-expression"><a name="ADP"><code class="language-plaintext highlighter-rouge">ADP</code></a>: adposition-like expression</h3>
@@ -132,8 +127,8 @@ words) or as an interjection.</p>
 <h4 id="examples-1">Examples</h4>
 
 <ul>
-  <li>[cs] <em><b>na rozdíl ode</b> mne</em> “<b>in contrast to</b> me” (here the first node is the technical head and it is a preposition itself, so UPOS = <code class="language-plaintext highlighter-rouge">ExtPos</code>)</li>
-  <li>[cs] <em><b>nehledě na</b> jeho úspěchy</em> “<b>disregarding</b> his achievements” (here the first node is a <a href="">VERB</a>)</li>
+  <li>[el] _<b>υπό την αιγίδα</b> _ “<b>under the auspices</b> ” (here the first node is the technical head and it is a preposition itself, so UPOS = <code class="language-plaintext highlighter-rouge">ExtPos</code>)
+<!-- * [cs] _<b>nehledě na</b> jeho úspěchy_ “<b>disregarding</b> his achievements” (here the first node is a [VERB]())--></li>
 </ul>
 
 <h3 id="adv-adverb-like-expression"><a name="ADV"><code class="language-plaintext highlighter-rouge">ADV</code></a>: adverb-like expression</h3>
@@ -141,7 +136,7 @@ words) or as an interjection.</p>
 <h4 id="examples-2">Examples</h4>
 
 <ul>
-  <li>[en] <em><b>by and large</b></em> (a multiword adverb paraphrasable as “altogether”; the first node is <a href="">ADP</a>)</li>
+  <li>[el] <em><b>μια ώρα αρχύτερα</b></em> (a multiword adverb paraphrasable as “as early as possible”; the first node is <a href="">NUM</a>)</li>
 </ul>
 
 <h3 id="cconj-coordinating-conjunction-like-expression"><a name="CCONJ"><code class="language-plaintext highlighter-rouge">CCONJ</code></a>: coordinating conjunction-like expression</h3>
@@ -149,7 +144,7 @@ words) or as an interjection.</p>
 <h4 id="examples-3">Examples</h4>
 
 <ul>
-  <li>[fr] <em><b>ainsi que</b></em> “as well as” (<em>ainsi</em> = <a href="">ADV</a>)</li>
+  <li>[el] <em><b>ακόμη και</b></em> “even the” (<em>aκόμη</em> = <a href="">ADV</a>)</li>
 </ul>
 
 <h3 id="det-determiner-like-expression"><a name="DET"><code class="language-plaintext highlighter-rouge">DET</code></a>: determiner-like expression</h3>
@@ -157,40 +152,32 @@ words) or as an interjection.</p>
 <h4 id="examples-4">Examples</h4>
 
 <ul>
-  <li>[fr] <em>le volcan émet <b>de la</b> vapeur</em> “the volcano emits steam” (<em>de</em> = <code class="language-plaintext highlighter-rouge">ADP</code>)</li>
+  <li>[el] <em>πέντε δέκα</em> “five or ten” (<em>five</em> = <code class="language-plaintext highlighter-rouge">NUM</code>)</li>
 </ul>
 
-<h3 id="intj-interjection-like-expression"><a name="INTJ"><code class="language-plaintext highlighter-rouge">INTJ</code></a>: interjection-like expression</h3>
+<!-- ### <a name="INTJ">`INTJ`</a>: interjection-like expression -->
 
-<h4 id="examples-5">Examples</h4>
+<!-- #### Examples -->
 
-<ul>
-  <li>[es] <em>¡<b>Por Dios</b>!</em> “for God’s sake” (<em>por</em> = <code class="language-plaintext highlighter-rouge">ADP</code>, <em>Dios</em> = <a href="">PROPN</a>)</li>
-</ul>
+<!-- * [es] _¡<b>Por Dios</b>!_ “for God’s sake” (_por_ = `ADP`, _Dios_ = [PROPN]()) -->
 
-<h3 id="pron-pronoun-like-expression"><a name="PRON"><code class="language-plaintext highlighter-rouge">PRON</code></a>: pronoun-like expression</h3>
+<!-- ### <a name="PRON">`PRON`</a>: pronoun-like expression -->
 
-<h4 id="examples-6">Examples</h4>
+<!-- #### Examples -->
 
-<ul>
-  <li>[en] <em><b>each other</b></em> (<em>each</em> = <a href="">DET</a>)</li>
-</ul>
+<!-- * [en] _<b>each other</b>_ (_each_ = [DET]()) -->
 
-<h3 id="propn-proper-noun-like-expression"><a name="PROPN"><code class="language-plaintext highlighter-rouge">PROPN</code></a>: proper noun-like expression</h3>
+<!-- ### <a name="PROPN">`PROPN`</a>: proper noun-like expression -->
 
-<h4 id="examples-7">Examples</h4>
+<!-- #### Examples -->
 
-<ul>
-  <li>[cs] <em>Jeho kniha <b>Most přes řeku Kwai</b> byla zfilmována.</em> “His book <b>The Bridge over the River Kwai</b> was made into a movie.” (<em>Most</em> = <a href="">NOUN</a>)</li>
-</ul>
+<!-- * [cs] _Jeho kniha <b>Most přes řeku Kwai</b> byla zfilmována._ “His book <b>The Bridge over the River Kwai</b> was made into a movie.” (_Most_ = [NOUN]()) -->
 
-<h3 id="sconj-subordinator-like-expression"><a name="SCONJ"><code class="language-plaintext highlighter-rouge">SCONJ</code></a>: subordinator-like expression</h3>
+<!-- ### <a name="SCONJ">`SCONJ`</a>: subordinator-like expression -->
 
-<h4 id="examples-8">Examples</h4>
+<!-- #### Examples -->
 
-<ul>
-  <li>[fr] <em><b>bien que</b></em> “although” (<em>bien</em> = <code class="language-plaintext highlighter-rouge">ADV</code>)</li>
-</ul>
+<!-- * [fr] _<b>bien que</b>_ “although” (_bien_ = `ADV`) -->
 
 <!-- Interlanguage links updated Po 11. listopadu 2024, 20:09:41 CET -->
 
