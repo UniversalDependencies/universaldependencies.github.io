@@ -133,7 +133,7 @@ and <a href="">goeswith</a> for words that contain improper spacing.)</p>
     </tr>
     <tr>
       <td><a href="#speaker-commitment-markers">Speaker commitment</a></td>
-      <td><em>all but</em>, <em>at least</em> (non-quantity), <em>kind/sort of</em> (hedge), <em>of course</em></td>
+      <td><em>all but</em>, <em>kind/sort of</em> (hedge), <em>of course</em></td>
     </tr>
     <tr>
       <td><a href="#approximators-quantity-modifiers">Approximators</a></td>
@@ -159,7 +159,7 @@ and <a href="">goeswith</a> for words that contain improper spacing.)</p>
       <td>Double spatial prepositions: <em>out of</em>, <em>off of</em>, etc.</td>
     </tr>
     <tr>
-      <td><em>about to</em>; <em>as soon/long as</em>; <em>at all</em>, <em>at best/worst</em>, <em>by far</em>; <em>at most/least</em> (with quantities); <em>compared to/with</em>; <em>had better</em>; <em>nothing/anything but</em>; <em>so long</em>; <em>what about</em>, <em>what if</em></td>
+      <td><em>about to</em>; <em>as soon/long as</em>; <em>at all</em>, <em>at least/most/best/worst</em>; <em>by far</em>; <em>compared to/with</em>; <em>had better</em>; <em>in general</em>; <em>nothing/anything but</em>; <em>so long</em>; <em>what about</em>, <em>what if</em></td>
     </tr>
   </tbody>
 </table>
@@ -432,13 +432,6 @@ fixed(all, but)
 advmod(left, all)
 </code></pre>
 
-<p><em>at least</em> (when not used for quantities)</p>
-
-<pre><code class="language-sdparse">At/ADP[ExtPos=ADV] least/ADJ I like dogs
-fixed(At, least)
-advmod(like, At)
-</code></pre>
-
 <p><em>kind of</em>, <em>sort of</em> (as a hedge)</p>
 
 <pre><code class="language-sdparse">I kind/[ExtPos=ADV] of like dogs
@@ -547,28 +540,61 @@ nmod(like, all)
 case(all, at)
 </code></pre>
 
-<p><em>at most</em>, <em>at least</em> (when used for quantities. To determine whether <em>at least</em> should be an <code class="language-plaintext highlighter-rouge">fixed</code> or not in borderline cases, substitute it with <em>at most</em>; if the sentence remains grammatical, it should receive its surface analysis)</p>
+<p><em>in general</em></p>
 
-<pre><code class="language-sdparse">at most 50 percent
-nmod(percent, most)
-case(most, at)
+<ul>
+  <li>as a focusing modifier</li>
+</ul>
+
+<pre><code class="language-sdparse">my fear of grizzles , and bears in/ADP general/ADJ
+case(general, in)
+nmod(bears, general)
 </code></pre>
 
-<pre><code class="language-sdparse">at least 50 percent
-nmod(percent, least)
+<ul>
+  <li>as an adverbial in a clause</li>
+</ul>
+
+<pre><code class="language-sdparse">In/ADP general/ADJ , I prefer tea to coffee
+case(general, in)
+obl(prefer, general)
+</code></pre>
+
+<p><em>at least</em>, <em>at most</em>, <em>at best</em>, <em>at worst</em> (policy revised in <a href="https://github.com/UniversalDependencies/UD_English-EWT/issues/553">issue EWT#553</a>)</p>
+
+<p>In the revised approach, <em>at least</em> is treated like other PPs, regardless of its meaning, and should always attach as <a href="">obl</a>
+(note that internal modifications like <em>at the very least</em> cause problems for the prior <code class="language-plaintext highlighter-rouge">fixed</code> analysis):</p>
+
+<ul>
+  <li>quantitative, modifying a <a href="">NUM</a></li>
+</ul>
+
+<pre><code class="language-sdparse">They solved at/ADP least/ADJ 7/NUM of the puzzles
 case(least, at)
+obl(7, least)
 </code></pre>
 
-<p><em>at best</em>, <em>at worst</em></p>
+<ul>
+  <li>quantitative, modifying a <a href="">DET</a></li>
+</ul>
 
-<pre><code class="language-sdparse">At/ADP best/ADV , they were guesses
-nmod(guesses, best)
+<pre><code class="language-sdparse">Have at/ADP least/ADJ some/DET of the food
+case(least, at)
+obl(some, least)
+</code></pre>
+
+<ul>
+  <li>non-quantitative</li>
+</ul>
+
+<pre><code class="language-sdparse">At/ADP least/ADJ I like dogs
+case(least, at)
+obl(like, At)
+</code></pre>
+
+<pre><code class="language-sdparse">At/ADP best/ADJ , they were guesses
+obl(guesses, best)
 case(best, At)
-</code></pre>
-
-<pre><code class="language-sdparse">At/ADP worst/ADV , they were lies
-nmod(lies, worst)
-case(worst, At)
 </code></pre>
 
 <p><em>what if</em></p>
