@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>ExtPos</title>
+    <title>conj</title>
     <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -38,7 +38,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-nmf">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_nmf/feat/ExtPos.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_nmf/dep/conj.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -77,61 +77,119 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <style>h3 {display:block;background-color:#dfeffc}</style>
+        <h2><code>conj</code>: conjunct</h2>
 
-<h2><code>ExtPos</code>: external part of speech</h2>
+<p>A <code class="language-plaintext highlighter-rouge">conjunct</code> is the relation between two elements connected by a coordinating conjunction, such as and, or, or a comma or other punctuation. We treat coordination asymmetrically. The head of the relation is the first conjunct and all the other conjuncts depend on it via the conj relation.</p>
 
-<table class="typeindex" border="1">
-<tr>
-  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
-  <td><a href="#Abl">ADV</a></td>
-  <td><a href="#Agn">VERB</a></td>
-</tr>
-</table>
+<pre><code class="language-sdparse">Peter gali Mary \n Peter and Mary
+cc(Mary-3, gali)
+conj(Peter-1, Mary-3)
+cc(Mary-7, and)
+conj(Peter-5, Mary-7)
+</code></pre>
 
-<p>This feature indicates the effective UPOS of an expression when it differs from the UPOS of the head word.
-In Naga-Suansu, only heads of a <a href="">fixed</a> relation employ the feature.</p>
+<p>Coordinate clauses are treated the same way as coordination of other constituent types:</p>
 
-<h3 id="adv-adverb-like-expression"><a name="ADV"><code class="language-plaintext highlighter-rouge">ADV</code></a>: adverb-like expression</h3>
+<pre><code class="language-sdparse">Lhohn mohn gali churi mathamme . \n Alcohol drink and cigarette smoke
+cc(mathamme, gali)
+conj(mahn, mathamme)
+cc(smoke, and)
+conj(drink, smoke)
+</code></pre>
 
-<h4 id="examples">Examples</h4>
+<p>In Naga-Suansu <code class="language-plaintext highlighter-rouge">conj</code> relation is also used for correlative clauses relations.</p>
 
-<ul>
-  <li><em><b>Ska li</b> phabtama</em> “I don’t Understand even <strong>a bit</strong>” (lit. “one also”)</li>
-</ul>
+<pre><code class="language-sdparse">Re rema nahn . \n come come.NEG you . \n Either you come or not
+conj(Re, rema)
+nsubj(Re, nahn)
+conj(Come, come.NEG)
+nsubj(Come, you)
+</code></pre>
 
-<h3 id="verb-verb-like-expression"><a name="VERB"><code class="language-plaintext highlighter-rouge">VERB</code></a>: verb-like expression</h3>
-
-<h4 id="examples-1">Examples</h4>
-
-<ul>
-  <li><em>Anan <b>ay re</b> gu</em> “If I <strong>accept</strong>” (lit. yes + reportative marker)</li>
-</ul>
+<p>See <a href="u-dep/conj">universal/conj</a> for more details on various coordination-related issues. Note that the present conversion procedure loses some annotations of shared modifiers and nested coordination.</p>
 
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-ExtPos in other languages:
+conj in other languages:
 
-[<a href="../../bej/feat/ExtPos.html">bej</a>]
+[<a href="../../bg/dep/conj.html">bg</a>]
 
-[<a href="../../de/feat/ExtPos.html">de</a>]
+[<a href="../../bm/dep/conj.html">bm</a>]
 
-[<a href="../../en/feat/ExtPos.html">en</a>]
+[<a href="../../cop/dep/conj.html">cop</a>]
 
-[<a href="../../fr/feat/ExtPos.html">fr</a>]
+[<a href="../../cs/dep/conj.html">cs</a>]
 
-[<a href="../../ha/feat/ExtPos.html">ha</a>]
+[<a href="../../de/dep/conj.html">de</a>]
 
-[<a href="../../ht/feat/ExtPos.html">ht</a>]
+[<a href="../../el/dep/conj.html">el</a>]
 
-[<a href="../../pcm/feat/ExtPos.html">pcm</a>]
+[<a href="../../en/dep/conj.html">en</a>]
 
-[<a href="../../pt/feat/ExtPos.html">pt</a>]
+[<a href="../../es/dep/conj.html">es</a>]
 
-[<a href="../../u/feat/ExtPos.html">u</a>]
+[<a href="../../et/dep/conj.html">et</a>]
+
+[<a href="../../eu/dep/conj.html">eu</a>]
+
+[<a href="../../fi/dep/conj.html">fi</a>]
+
+[<a href="../../fo/dep/conj.html">fo</a>]
+
+[<a href="../../fr/dep/conj.html">fr</a>]
+
+[<a href="../../fro/dep/conj.html">fro</a>]
+
+[<a href="../../ga/dep/conj.html">ga</a>]
+
+[<a href="../../gsw/dep/conj.html">gsw</a>]
+
+[<a href="../../hy/dep/conj.html">hy</a>]
+
+[<a href="../../it/dep/conj.html">it</a>]
+
+[<a href="../../ka/dep/conj.html">ka</a>]
+
+[<a href="../../kk/dep/conj.html">kk</a>]
+
+[<a href="../../ky/dep/conj.html">ky</a>]
+
+[<a href="../../nci/dep/conj.html">nci</a>]
+
+[<a href="../../no/dep/conj.html">no</a>]
+
+[<a href="../../pcm/dep/conj.html">pcm</a>]
+
+[<a href="../../pt/dep/conj.html">pt</a>]
+
+[<a href="../../qpm/dep/conj.html">qpm</a>]
+
+[<a href="../../ro/dep/conj.html">ro</a>]
+
+[<a href="../../ru/dep/conj.html">ru</a>]
+
+[<a href="../../sl/dep/conj.html">sl</a>]
+
+[<a href="../../ssp/dep/conj.html">ssp</a>]
+
+[<a href="../../sv/dep/conj.html">sv</a>]
+
+[<a href="../../swl/dep/conj.html">swl</a>]
+
+[<a href="../../tr/dep/conj.html">tr</a>]
+
+[<a href="../../u/dep/conj.html">u</a>]
+
+[<a href="../../vi/dep/conj.html">vi</a>]
+
+[<a href="../../xcl/dep/conj.html">xcl</a>]
+
+[<a href="../../yue/dep/conj.html">yue</a>]
+
+[<a href="../../zh/dep/conj.html">zh</a>]
 
 
 
