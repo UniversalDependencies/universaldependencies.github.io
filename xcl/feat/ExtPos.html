@@ -81,20 +81,50 @@
 
 <h2><code>ExtPos</code>: external POS</h2>
 
-<p>This feature indicates the effective UPOS of an expression when it differs from the UPOS of the head word.</p>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#ADP">ADP</a></td>
+  <td><a href="#ADV">ADV</a></td>
+  <td><a href="#SCONJ">SCONJ</a></td>
+  <!--td><a href="#VERB">VERB</a></td-->
+</tr>
+</table>
 
-<p>In Classical Armenian, it is typical for heads of a <a href="https://universaldependencies.org/en/dep/fixed.html"><code class="language-plaintext highlighter-rouge">fixed</code></a> relation.</p>
+<p>This feature differs significantly from all other features: It describes neither the lexical category,
+nor the inflectional paradigm slot of the token it appears on. Rather than to the individual token,
+it pertains to a multiword expression and indicates the part of speech that the expression would get
+if it were analyzed as a single word. <code class="language-plaintext highlighter-rouge">ExtPos</code> is annotated at the head node of the multiword
+expression. The possible values are taken from the defined <a href="/u/pos/index.html">UPOS tags</a> and no other
+values are allowed (not even at the language-specific level). The main motivation for <code class="language-plaintext highlighter-rouge">ExtPos</code> is that
+the multiword expression may behave like a part of speech different from the UPOS of the head node;
+however, <code class="language-plaintext highlighter-rouge">ExtPos</code> is sometimes used even if it is identical to the UPOS of the head node.</p>
+
+<p>In Classical Armenian, it is typical for heads of a <a href="https://universaldependencies.org/en/dep/fixed.html"><code class="language-plaintext highlighter-rouge">fixed</code></a> relation, and takes the values <code class="language-plaintext highlighter-rouge">ADP</code>, <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">SCONJ</code>.</p>
+
+<h3 id="adp-adposition-like-expression"><a name="ADP"><code class="language-plaintext highlighter-rouge">ADP</code></a>: adposition-like expression</h3>
 
 <h4 id="examples">Examples</h4>
 
 <ul>
-  <li>ի ձեռն / i jeṙn “by means”, lit. “to hand”; the first node is <a href="xcl-pos/PRON">ADP</a>.</li>
+  <li>ի ձեռն / <em>i jeṙn</em> “by means”, lit. “to hand”; the first node is <a href="xcl-pos/ADP">ADP</a>.</li>
 </ul>
 
-<pre><code class="language-sdparse">ասացաւ ի ձեռն Էսայայ \n was spoken by Esaias
-fixed(ի, ձեռն)
-case(Էսայայ, ի)
-</code></pre>
+<h3 id="adv-adverb-like-expression"><a name="ADV"><code class="language-plaintext highlighter-rouge">ADV</code></a>: adverb-like expression</h3>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li>ի միասին / <em>i miasin</em> “together”; <em>i</em> = <a href="">ADP</a></li>
+</ul>
+
+<h3 id="sconj-subordinator-like-expression"><a name="SCONJ"><code class="language-plaintext highlighter-rouge">SCONJ</code></a>: subordinator-like expression</h3>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li>որպէս զի / <em>orpēs zi</em> “so that”; <em>orpēs</em> = <a href="">ADV</a></li>
+</ul>
 
 
 <!-- "in other languages" links -->
