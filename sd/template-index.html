@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title><LanguageName> UD</title>
+    <title>Sindhi UD</title>
     <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -77,59 +77,50 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h1 id="ud-for-language-">UD for LANGUAGE <span class="flagspan"><img class="flag" src="../../flags/svg/AQ.svg" /></span></h1>
+        <h1 id="ud-for-sindhi-">UD for Sindhi <span class="flagspan"><img class="flag" src="../../flags/svg/SD.svg" /></span></h1>
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
+<p>Words in Sindhi are separated with whitespace and punctuation.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<p>Currently there is no MWT analysis.  However, there are verbs (both main and auxiliary) which use pronominal clitics.  Currently those are featurized with <code class="language-plaintext highlighter-rouge">Number[obj]</code>, <code class="language-plaintext highlighter-rouge">Number[subj]</code>, etc features.  Future editions may instead treat them as MWT.</p>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<p>Sindhi uses 15 of the 17 POS tags.  Currently all punctuation is tagged PUNCT, with no SYM, and there are no words tagged X.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<p>PART is used for two general classes of words. Words considered “intensifiers” are tagged PART.  Furthermore, <code class="language-plaintext highlighter-rouge">نه</code> usually represents negation, but can also be an intensifier.  Intensifiers use the <code class="language-plaintext highlighter-rouge">advmod:emph</code> relation.</p>
 
-<hr />
+<p>Demonstrative pronouns can be used as either a determiner, when associated with a nominal, or as a pronoun, when used by themselves.  Following the standard established in other Indic languages, we tag all of them as DET.</p>
+
+<p>Two main classes of AUX are identified, <code class="language-plaintext highlighter-rouge">آهي</code> (to be) and <code class="language-plaintext highlighter-rouge">سگهي</code> (can).  Both verbs come with a wide variety of inflections.</p>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<p>As noted above, VERB (and AUX) can have pronominal clitics.  Those are annotated with <code class="language-plaintext highlighter-rouge">[subj]</code> and <code class="language-plaintext highlighter-rouge">[obj]</code> features.  Furthermore, whereas main verbs are typically tagged <code class="language-plaintext highlighter-rouge">VM</code> and auxiliary <code class="language-plaintext highlighter-rouge">VAUX</code> in the xpos column, verbs with clitics are marked in the xpos with <code class="language-plaintext highlighter-rouge">VMX</code> or <code class="language-plaintext highlighter-rouge">VAUXX</code>.</p>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<p>The auxiliary verb <code class="language-plaintext highlighter-rouge">آهي</code> has both copula and aux relations.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
-
-<hr />
+<ul>
+  <li>The following subtypes are used in Swedish:
+    <ul>
+      <li><a href="">advmod:emph</a> for intensifiers, PART words which put emphasis on the (usually preceding) word they attach to</li>
+      <li><a href="">nsubj:pass</a> for nominal subjects of passive verbs</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/LCODE-comparison.html">N</a> LANGUAGE UD treebanks:</p>
+<p>There is <a href="../treebanks/LCODE-comparison.html">1</a> Sindhi UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/LCODE_a/index.html">LANGUAGE-A</a></li>
-  <li><a href="../treebanks/LCODE_b/index.html">LANGUAGE-B</a></li>
+  <li><a href="../treebanks/sd_isra/index.html">Sindhi-Isra</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
 
 <hr />
 
