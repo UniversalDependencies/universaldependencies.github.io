@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Universal Dependencies</title>
+    <title>Licensing UD data</title>
     <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -38,7 +38,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/newbie.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/licensing.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -77,65 +77,55 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2 id="what-is-ud">What is UD?</h2>
+        <h1 id="licensing-ud-treebanks">Licensing UD treebanks</h1>
 
-<p>Universal Dependencies (UD) is a project aiming to provide data resources so that it is easy to produce
-natural language processing (NLP) tools that give 
-consistent analyses of the grammatical structure of sentences across many human languages.</p>
+<p>This page documents how UD treebanks are licensed. It provides information for UD data providers
+(while the users of the treebanks should refer to the LICENSE files of the individual treebanks).
+<strong>Disclaimer:</strong> This page has not been written by a lawyer and it should not be considered legal advice!</p>
 
-<p>What does that mean? Suppose you’re a regular programmer but you have to deal with some open-domain
-human language text. Maybe you’re mining product descriptions or maybe you’re developing
-features for an ad placement classifier. Either way, you want to identify the
-adjectives that describe a noun. This involves having a tool that will assign word classes
-(“parts of speech”) to words, so you can find the nouns, etc., and it requires recovering
-syntactic relationships, so you know <em>which</em> adjectives describe <em>which</em> nouns.
-For example, <em><strong>fun</strong></em> describes <em>student</em> here:</p>
+<p>UD is distributed with a mixed license where the license terms of individual treebanks vary.
+Most UD treebanks use a variant of a Creative Commons (CC) license. The main difference is that
+some treebanks use the NonCommercial (NC) version of the license, i.e., they cannot be used for
+commercial purposes. This is always the decision of the data providers: New treebank repositories
+are created with CC BY-SA 4.0 by default, but the data provider can change it to CC BY-NC-SA 4.0.</p>
 
-<blockquote>
-  <p><em>a <strong>fun</strong> and intelligent student</em></p>
-</blockquote>
+<p>As a treebank contributor, you are responsible for giving it a suitable license. We will assume
+that you have the right to make the data available under this license in a UD release; do not
+upload data to a UD repository unless the data is copyright-free, or you hold the copyright, or
+you have obtained the permission to use and distribute the data from the copyright holder!</p>
 
-<p>That’s grammatical structure. Over the last thirty years, many data resources have been built
-for many languages to help with this goal. The particular gap that UD seeks to fill is that in general these various resources
-have used different names for word class and grammatical relationships and have often given sentences quite different kinds of 
-structures, variously inspired by different syntactic theories. The goal of UD is that the same word class will be given the
-same name in each language, the syntactic relationships will be the same, the syntactic structures of sentences will be done
-the same way and the same feature names will be used for indicating things like plural or negation.
-In this way, it is easy to recover the information you need from <em>either</em> English or French text, for example:</p>
+<p>There are two places within each treebank repository where the license is indicated; if you change
+one of them, you must make sure to change the other accordingly! First, there is a file named
+<code class="language-plaintext highlighter-rouge">LICENSE.txt</code>. It normally contains only a reference to the website with the full text of the
+license, although it is possible to also copy the text to the file. Second, the machine-readable
+metadata section at the end of the <code class="language-plaintext highlighter-rouge">README.md</code> file contains a <code class="language-plaintext highlighter-rouge">License:</code> line, which must contain
+the string identifying the license.</p>
 
-<div id="n1" class="sd-parse">
-He is a fun and intelligent student
-amod(student, fun)
-</div>
+<p>For historical reasons, some treebanks have older versions of CC licenses. It is also possible
+to have a less restrictive CC license (such as CC BY 4.0). Do not use a more restrictive license;
+specifically, <strong>avoid licenses with the NoDerivatives (ND) restriction.</strong> This is evil because it
+could be taken as freezing the data without a possibility to fix it if the UD guidelines or
+validation change; it is also questionable whether a parsing model can be trained on such data
+and then made available to users.</p>
 
-<div id="n2" class="sd-parse">
-l’ étudiant intelligent et rigolo
-amod(étudiant, rigolo)
-</div>
+<p>A few legacy treebanks have non-CC licenses, including the GNU GPL, which is designed for software
+code (rather than corpora) and should not be used in UD treebanks.</p>
 
-<p>while also being able to notice that <em><strong>fun</strong></em> doesn’t modify the student here:</p>
+<p>A limiting factor is often the underlying text, which may be copyrighted. Some treebanks
+(for example, the GSD treebanks of several languages) explicitly indicate that their license
+pertains to the annotations and the treebank authors do not claim any ownership over the
+underlying texts. This typically applies to sentences crawled from the web; in addition, the
+sentences are shuffled (or randomly sampled) so they do not form a coherent discourse
+(working under the assumption that a single sentence is unlikely to constitute a copyrightable
+work). While this technique may help avoid copyright infringement, it should be the last resort,
+as it makes the data useless for any linguistic research that looks beyond the sentence boundary.
+It is preferable to use text that can be reproduced as a whole (or, if shuffling is inevitable,
+at least shuffle blocks that contain several sentences).</p>
 
-<div id="n3" class="sd-parse">
-The course was fun for an intelligent student
-nsubj(fun, course)
-</div>
-
-<p>The style of syntactic analysis used in UD is <a href="">dependency grammar</a>. This simply means that, for each word,
-you indicate which other word it modifies or is an argument of, and then indicate the type of relationship
-with a grammatical relation label. Here’s a full example of UD analyses of parallel sentences in Russian and English.
-Note how UD gives the same analysis of the same grammatical relationships, while also showing the differences
-between Russian and English.</p>
-
-<h2 id="how-can-i-use-ud">How can I use UD?</h2>
-
-<p>There are basically two possibilities, based on whether you’re someone who wants language data for building processing tools
-or whether you’re a humble user who hopes to use tools that others have built.</p>
-
-<h3 id="getting-set-up-to-use-ud-data">Getting set up to use UD data</h3>
-
-<h3 id="getting-tools-that-take-advantage-of-ud-data">Getting tools that take advantage of UD data</h3>
-
-<h2 id="how-can-i-contribute-to-the-universal-dependencies-project">How can I contribute to the Universal Dependencies project?</h2>
+<p>In extreme cases, a few UD treebanks provide only the UD annotations without the words, which
+have to be obtained from another source (sometimes free of charge, sometimes not). This may
+sometimes make sense for corpora that already have broad user bases, but in general it makes
+the treebank a second-class citizen, which most UD users will just ignore.</p>
 
       </div>
 
