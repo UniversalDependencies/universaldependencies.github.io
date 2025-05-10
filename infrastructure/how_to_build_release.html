@@ -239,6 +239,10 @@ And this is how you remove it from Github: <code class="language-plaintext highl
 and its arguments are names of folders to be released.<br />
 <code>RELEASE=2.16 tools/package_ud_release.sh $(cat released_treebanks.txt)</code>
     <ul>
+      <li>If there are new treebanks that have too large training data that must be split to multiple files on GitHub
+(we know it because we had to add a new exception in the function <code class="language-plaintext highlighter-rouge">check_files()</code> in <code class="language-plaintext highlighter-rouge">udlib.pm</code>),
+we must first edit the script <code class="language-plaintext highlighter-rouge">package_ud_release.sh</code> and make sure that these files are concatenated
+in the release package.</li>
       <li>If we later find out that we need to fix a bug in one (or a few) repository, we can update the release folder without building everything from scratch:<br />
 <code>RELEASE=2.16 tools/package_ud_release.sh --update UD_X UD_Y</code></li>
     </ul>
