@@ -106,112 +106,11 @@ It was created for release v1.2 and applies, unless otherwise noted, to any upco
 
 <h1 id="repository-and-files">Repository and files</h1>
 
-<p>See <a href="/contributing/repository_files.html">Repository and files</a></p>
+<p>See <a href="/contributing/repository_files.html">Repository and files</a>.</p>
 
 <h1 id="validation">Validation</h1>
 
-<p>Up-to-date automatic validation runs of the repositories are available
-<a href="http://quest.ms.mff.cuni.cz/udvalidator/">here</a>. Depending on the size of the treebank, the report
-will be updated within one to twenty minutes after pushing changes to Github. The report is based
-on the <code class="language-plaintext highlighter-rouge">dev</code> branch of the data and combines the output of two scripts: <code class="language-plaintext highlighter-rouge">check_files.pl</code> and
-<code class="language-plaintext highlighter-rouge">validate.py</code>. The former checks whether the treebank repository contains the expected files,
-whether the metadata in <code class="language-plaintext highlighter-rouge">README</code> look good and whether the language-specific documentation exists
-in the <code class="language-plaintext highlighter-rouge">docs</code> repository. The latter checks the actual contents of the CoNLL-U files within the
-treebank. This is the official UD validator, described in more detail below. You may want to
-download <code class="language-plaintext highlighter-rouge">validate.py</code> and check your data locally before uploading them; but even if you do so,
-always check the on-line validation report after uploading any changes to your repository. If you
-run your local validator with wrong configuration (or if you do not have the latest version of the
-validator), you may be led to think that your treebank is in good shape, while the fact is that the
-server will reject it.</p>
-
-<p>See a separate page on <a href="/contributing/validation-rules.html">validation rules</a>, which explains the various
-validation levels, as well as the consequences of your treebank’s not being valid at release time.</p>
-
-<p>The validation script is available in the <a href="https://github.com/UniversalDependencies/tools">tools</a>
-repository and you can use it to test your data locally before you upload them to Github. Make sure
-that you always have the latest update of the tools repository.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone git@github.com:UniversalDependencies/tools.git
-$ cd tools
-$ python validate.py -h
-</code></pre></div></div>
-
-<p>Note that you need Python 3 to run the validator, and you need a third-party
-Python module called <code class="language-plaintext highlighter-rouge">regex</code> installed via pip, so when needed try this before
-invoking the validator:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install python3-pip; python3 -m pip install regex
-</code></pre></div></div>
-
-<p>See also the <a href="https://github.com/UniversalDependencies/tools/blob/master/README.md">README file</a>
-in the tools repository.</p>
-
-<p>In general, you validate the data like so:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python validate.py --lang=xx --max-err=0 [file.conllu]
-</code></pre></div></div>
-
-<p>for example for Finnish:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python validate.py --lang=fi --max-err=0 ../UD_Finnish-TDT/fi_tdt-ud-dev.conllu
-*** PASSED ***
-</code></pre></div></div>
-
-<p>Among other items, the script also validates the language-specific set
-of morphological features and relations and therefore it needs to know about these.
-Until release 2.7, language-specific lists were stored in the <code class="language-plaintext highlighter-rouge">data</code> folder in the <code class="language-plaintext highlighter-rouge">tools</code>
-repository and they could be edited directly by users working on individual languages. This
-practice is now deprecated. The <code class="language-plaintext highlighter-rouge">data</code> folder will contain necessary information in JSON files
-that cannot be edited directly. Instead, language-specific labels will be registered through
-a web interface and the data in the <code class="language-plaintext highlighter-rouge">tools</code> repository will be automatically updated when a change
-is saved in the web interface.</p>
-
-<p>At present, morphological features can be registered
-<a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_feature.pl">here</a>,
-dependency relations for basic trees
-<a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_deprel.pl">here</a> and
-case markers for enhanced relations
-<a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_edeprel.pl">here</a>.</p>
-
-<p>It is possible to register language-specific features and relations only if they
-<a href="/contributing/contributing_language_specific.html">have been properly documented</a>. If a feature or relation does not have
-its own documentation page in the <code class="language-plaintext highlighter-rouge">docs</code> repository (either as part of the universal guidelines
-or in the language-specific folder), or if the page is not in the prescribed (machine-recognizable)
-format, the web interface will not allow to register the feature or relation as valid, and consequently, the
-validator will not accept it in the data.</p>
-
-<p>Since the <code class="language-plaintext highlighter-rouge">v2.0</code> release, whitespace is allowed in the <code class="language-plaintext highlighter-rouge">FORM</code> and <code class="language-plaintext highlighter-rouge">LEMMA</code> fields under conditions
-specified <a href="v2/segmentation.html">here</a>. This is supported in the validator through the UD-wide
-file <code class="language-plaintext highlighter-rouge">data/tokens_w_space.ud</code> and its language-specific variants <code class="language-plaintext highlighter-rouge">data/tokens_w_space.xx</code>. In
-these files, each line is a <a href="https://docs.python.org/3/library/re.html">Python regular expression</a>
-defining the permissible forms and lemmas that can contain a whitespace.</p>
-
-<p>The validator also checks that certain closed classes (currently auxiliaries and copula) appear
-only with documented lemmas. Since release 2.7, auxiliaries can be <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_auxiliary.pl">defined at the on-line validation
-site</a>.
-When adding an auxiliary (or the copula), the user can see some relevant points from the UD
-guidelines, as well as the list of auxiliaries that have been defined in other languages
-(related languages are shown first). This is to improve cross-lingual parallelism and to reduce
-the danger that maintainers of neighboring languages will employ dramatically different interpretations
-of the guidelines and end up with divergent notions of what qualifies as an auxiliary.
-All auxiliaries must be explained and accompanied by an example; in the future, the information
-collected this way could be propagated to the UD documentation. The site initially includes some
-auxiliaries that were previously listed (but not documented) in the source code of the validator.
-The user has to provide the missing information for all existing auxiliaries before they can add
-new ones.</p>
-
-<p>When validating language-specific lists of morphological features, auxiliary verbs etc., the validator
-can temporarily switch to a language different from the main language of the file. This is useful
-in cases of code-switching, i.e., when a foreign language phrase is inserted in the text, and the
-annotators decided to annotate it according to the foreign language guidelines (instead of simply
-tagging everything as <code class="language-plaintext highlighter-rouge">X</code> and connecting it as a <code class="language-plaintext highlighter-rouge">flat</code> structure). The alternative language is
-signaled for individual tokens using the <code class="language-plaintext highlighter-rouge">Lang</code> attribute in the MISC column. Its value is the ISO
-639 language code, as registered for the language in UD (either two letters from ISO 639-1, or
-three letters from ISO 639-3, lowercased!)</p>
-
-<p>Some additional tests are available in the
-<a href="https://github.com/udapi/udapi-python/blob/master/udapi/block/ud/markbugs.py">Udapi</a>
-tool. They may reveal configurations that are not necessarily invalid but are suspicious and should be checked manually.</p>
+<p>See <a href="/contributing/validation.html">Validation</a>.</p>
 
 <h1 id="fixing-errors-in-treebanks">Fixing errors in treebanks</h1>
 
