@@ -79,9 +79,31 @@
         </script>
         <h1 id="validation">Validation</h1>
 
+<p>Contents and quick links:</p>
+<ul>
+  <li><a href="http://quest.ms.mff.cuni.cz/udvalidator/">Online validation report</a></li>
+  <li><a href="/contributing/validation-rules.html">Validation rules</a></li>
+  <li><a href="#language-specific-lists">Language-specific lists</a>
+    <ul>
+      <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_auxiliary.pl">Auxiliaries and copulas</a></li>
+      <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_feature.pl">Feature-value-UPOS combinations</a></li>
+      <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_deprel.pl">Dependency relation subtypes</a></li>
+      <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_edeprel.pl">Enhanced relation subtypes</a></li>
+    </ul>
+  </li>
+  <li><a href="#running-the-validator-locally">Running the validator locally</a></li>
+  <li><a href="#udapi-markbugs">Udapi MarkBugs</a></li>
+</ul>
+
+<p>Both the language-specific documentation and the contents of the treebank repositories are automatically
+checked by several scripts after each change pushed to GitHub. Treebanks that do not successfully pass
+all tests cannot be released. See also a separate page on <a href="/contributing/validation-rules.html">validation rules</a>,
+which explains the various validation levels, as well as the consequences of your treebank’s not being
+valid at release time.</p>
+
 <p>Up-to-date automatic validation runs of the repositories are available
 <a href="http://quest.ms.mff.cuni.cz/udvalidator/">here</a>. Depending on the size of the treebank, the report
-will be updated within one to twenty minutes after pushing changes to Github. The report is based
+will be updated within one to thirty minutes after pushing changes to GitHub. The report is based
 on the <code class="language-plaintext highlighter-rouge">dev</code> branch of the data and combines the output of two scripts: <code class="language-plaintext highlighter-rouge">check_files.pl</code> and
 <code class="language-plaintext highlighter-rouge">validate.py</code>. The former checks whether the treebank repository contains the expected files,
 whether the metadata in <code class="language-plaintext highlighter-rouge">README</code> look good and whether the language-specific documentation exists
@@ -93,49 +115,11 @@ run your local validator with wrong configuration (or if you do not have the lat
 validator), you may be led to think that your treebank is in good shape, while the fact is that the
 server will reject it.</p>
 
-<p>See a separate page on <a href="/contributing/validation-rules.html">validation rules</a>, which explains the various
-validation levels, as well as the consequences of your treebank’s not being valid at release time.</p>
+<h2 id="language-specific-lists">Language-specific lists</h2>
 
-<p>The validation script is available in the <a href="https://github.com/UniversalDependencies/tools">tools</a>
-repository and you can use it to test your data locally before you upload them to Github. Make sure
-that you always have the latest update of the tools repository.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone git@github.com:UniversalDependencies/tools.git
-$ cd tools
-$ python validate.py -h
-</code></pre></div></div>
-
-<p>Note that you need Python 3 to run the validator, and you need a third-party
-Python module called <code class="language-plaintext highlighter-rouge">regex</code> installed via pip, so when needed try this before
-invoking the validator:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install python3-pip; python3 -m pip install regex
-</code></pre></div></div>
-
-<p>See also the <a href="https://github.com/UniversalDependencies/tools/blob/master/README.md">README file</a>
-in the tools repository.</p>
-
-<p>In general, you validate the data like so:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python validate.py --lang=xx --max-err=0 [file.conllu]
-</code></pre></div></div>
-
-<p>for example for Finnish:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python validate.py --lang=fi --max-err=0 ../UD_Finnish-TDT/fi_tdt-ud-dev.conllu
-*** PASSED ***
-</code></pre></div></div>
-
-<p>Among other items, the script also validates the language-specific set
-of morphological features and relations and therefore it needs to know about these.
-Until release 2.7, language-specific lists were stored in the <code class="language-plaintext highlighter-rouge">data</code> folder in the <code class="language-plaintext highlighter-rouge">tools</code>
-repository and they could be edited directly by users working on individual languages. This
-practice is now deprecated. The <code class="language-plaintext highlighter-rouge">data</code> folder will contain necessary information in JSON files
-that cannot be edited directly. Instead, language-specific labels will be registered through
-a web interface and the data in the <code class="language-plaintext highlighter-rouge">tools</code> repository will be automatically updated when a change
-is saved in the web interface.</p>
-
-<p>At present, morphological features can be registered
+<p>Among other items, the validator also validates the language-specific set of morphological features and
+relations and therefore it needs to know about these. They can be registered through a web interface:
+Morphological features
 <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_feature.pl">here</a>,
 dependency relations for basic trees
 <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_deprel.pl">here</a> and
@@ -167,16 +151,63 @@ All auxiliaries must be explained and accompanied by an example; in the future, 
 collected this way could be propagated to the UD documentation. The site initially includes some
 auxiliaries that were previously listed (but not documented) in the source code of the validator.
 The user has to provide the missing information for all existing auxiliaries before they can add
-new ones.</p>
+new ones. (As soon as you edit the first undocumented auxiliary, all other undocumented auxiliaries
+will be removed from the database to make room for the new and proper definitions. You should thus
+not stop after the first auxiliary. You should document all the others so that no existing treebanks
+suddenly become invalid.)</p>
 
 <p>When validating language-specific lists of morphological features, auxiliary verbs etc., the validator
 can temporarily switch to a language different from the main language of the file. This is useful
-in cases of code-switching, i.e., when a foreign language phrase is inserted in the text, and the
+in cases of code-switching, i.e., when a <a href="/foreign.html">foreign language phrase is inserted</a> in the text, and the
 annotators decided to annotate it according to the foreign language guidelines (instead of simply
 tagging everything as <code class="language-plaintext highlighter-rouge">X</code> and connecting it as a <code class="language-plaintext highlighter-rouge">flat</code> structure). The alternative language is
 signaled for individual tokens using the <code class="language-plaintext highlighter-rouge">Lang</code> attribute in the MISC column. Its value is the ISO
 639 language code, as registered for the language in UD (either two letters from ISO 639-1, or
 three letters from ISO 639-3, lowercased!)</p>
+
+<h2 id="running-the-validator-locally">Running the validator locally</h2>
+
+<p><strong>WARNING:</strong> <code class="language-plaintext highlighter-rouge">validate.py</code> is only one of the scripts that are used to verify whether your treebank
+is good for the next release. Even if you run it on your computer and it tells you “PASSED”, you must
+check the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">online validation report</a> after you push changes
+to GitHub. Only if your treebank is reported there as “VALID”, you are all set.</p>
+
+<p>The validation script is available in the <a href="https://github.com/UniversalDependencies/tools">tools</a>
+repository and you can use it to test your data locally before you upload them to Github. Make sure
+that you always have the latest update of the tools repository.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone git@github.com:UniversalDependencies/tools.git
+$ cd tools
+$ python validate.py -h
+</code></pre></div></div>
+
+<p>Note that you need Python 3 to run the validator, and you need a third-party
+Python module called <code class="language-plaintext highlighter-rouge">regex</code> installed via pip, so when needed try this before
+invoking the validator:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install python3-pip; python3 -m pip install regex
+</code></pre></div></div>
+
+<p>See also the <a href="https://github.com/UniversalDependencies/tools/blob/master/README.md">README file</a>
+in the tools repository.</p>
+
+<p>In general, you validate the data like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python validate.py --lang=xx --max-err=0 [file.conllu]
+</code></pre></div></div>
+
+<p>for example for Finnish:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python validate.py --lang=fi --max-err=0 ../UD_Finnish-TDT/fi_tdt-ud-dev.conllu
+*** PASSED ***
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">tools</code> repository also contains a <code class="language-plaintext highlighter-rouge">data</code> folder with JSON files that hold the language-specific
+features, auxiliaries etc. that have been registered online. These JSON files <strong>cannot be edited
+directly!</strong> If you edit your local copy or even if you try to push your changes to GitHub, the files
+will be overwritten at the moment when someone edits anything in the online registration system.</p>
+
+<h2 id="udapi-markbugs">Udapi MarkBugs</h2>
 
 <p>Some additional tests are available in the
 <a href="https://github.com/udapi/udapi-python/blob/master/udapi/block/ud/markbugs.py">Udapi</a>
