@@ -3,15 +3,15 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Contributing to UD</title>
+    <title>Adding new language or treebank</title>
     <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/jquery-ui-redmond.css"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="css/style-vis.css"/>
-    <link rel="stylesheet" type="text/css" href="css/hint.css"/>
-    <script type="text/javascript" src="lib/ext/head.load.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
     <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
@@ -38,7 +38,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/contribute.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/contributing/adding_language_treebank.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -64,7 +64,7 @@
         <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
         <script type="text/javascript">
             console.time('loading libraries');
-            var root = ''; // filled in by jekyll
+            var root = '../'; // filled in by jekyll
             head.js(
                 // External libraries
                 // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
@@ -77,86 +77,65 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h1 id="how-to-contribute-to-ud">How to contribute to UD</h1>
+        <h1 id="adding-new-language-or-treebank-to-ud">Adding New Language or Treebank to UD</h1>
 
-<h3 id="current-data">Current Data</h3>
-
-<ul>
-  <li><strong>Obtaining data:</strong> The latest official version of UD treebanks can be <a href="download.html">downloaded</a> from LINDAT/CLARIN.
-If you prefer to access treebanks via GitHub repositories, make sure you work with the <strong>master</strong> branch, which corresponds to the latest official release.</li>
-</ul>
-
-<h3 id="documentation-and-discussion">Documentation and Discussion</h3>
+<p>These are the steps you need to follow if you want to write UD guidelines and/or provide annotated data
+for a language that is currently not listed on the UD website, or a new treebank of a language that is
+already listed. More details follow below the summary.</p>
 
 <ul>
-  <li>
-    <p><strong>Feedback and discussion:</strong> The <a href="https://github.com/universaldependencies/docs/issues">issue tracker</a> provides a forum for discussion of UD guidelines or treebanks.
-Any issues related to documentation and guidelines, even specific to one language, belong to the issue tracker of the docs repository.
-Issue trackers of individual treebank repositories should be used only to report bugs in those treebanks.
-You can also send an e-mail to the <a href="https://lists.uu.se/sympa/info/lingfil-ud">UD mailing list</a>; however, the list is primarily meant for announcements for data maintainers.</p>
-  </li>
-  <li><strong>Editing documentation</strong>
+  <li>Make sure you have a <a href="https://github.com/">GitHub account</a>.</li>
+  <li>Contact a member of our release task force and ask them to add you to the Contributors team, which will give you write access.
+They will need your GitHub user name, your real name, and your e-mail address.
     <ul>
-      <li><a href="/contributing/editing.html">How to edit documentation</a>
-        <ul>
-          <li><a href="/contributing/visualization.html">Embedded visualization of dependencies</a></li>
-          <li><a href="/contributing/editing.html#things-to-avoid">Things to avoid</a></li>
-        </ul>
-      </li>
-      <li><a href="/contributing/contributing_language_specific.html">Language-specific documentation requirements</a></li>
+      <li>Also tell the task force the preferred name for your treebank repository (see below).</li>
+      <li>If the treebank is maintained by multiple people, you can ask for multiple users to be granted write access.</li>
     </ul>
   </li>
-  <li><strong>Annotation guidelines</strong>
-    <ul>
-      <li><a href="changes.html">Guidelines change history</a></li>
-      <li><a href="guidelines.html">Current guidelines</a> (universal + language-specific)</li>
-    </ul>
-  </li>
+  <li>Subscribe to the <a href="https://lists.uu.se/sympa/info/lingfil-ud">UD mailing list</a>.
+Important announcements for the data providers are circulated through this list.</li>
+  <li>If your language does not yet have language-specific documentation, <a href="/contributing/contributing_language_specific.html">write it</a>.
+Without meeting minimal documentation requirements, treebanks of that language cannot be released.</li>
+  <li>When you get your repository, upload the data to the <code class="language-plaintext highlighter-rouge">dev</code> branch.
+Check the <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/validation-report.pl">online validation report</a>,
+fix any errors reported there and check it again until your treebank is reported as valid. Invalid treebanks cannot be released.</li>
 </ul>
 
-<h3 id="contributing-data">Contributing Data</h3>
+<p>The current contact for the release task force is:
+Dan Zeman (zeman@ufal.mff.cuni.cz).</p>
 
-<ul>
-  <li><strong>New contributions:</strong> If you want to start a treebank or contribute to a release, please see:
-    <ul>
-      <li>Advice on <a href="/contributing/how_to_start.html">how to start</a> a new treebank</li>
-      <li>Technical steps in the <a href="/contributing/release_checklist.html">release checklist</a>
-        <ul>
-          <li><a href="/contributing/adding_language_treebank.html">Adding new language or treebank to UD</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Data corrections:</strong> If you do not want to commit to maintaining a treebank but you want to help fix
-a particular bug in the data, you can submit a pull request against the <strong>dev</strong> branch of its GitHub repository.
-<em>The master branch should not be modified as it is built automatically by the release pipeline.</em>
-Some UD treebanks are converted from a non-UD original and bugs must be fixed upstream in the original
-data or in the conversion procedure. Pull requests in the UD repository cannot be used but you can report
-the bug by creating an issue in the issue tracker of the treebank repository. To learn about the preferred way
-of fixing the treebank, look for “Contributing: here” or “Contributing: elsewhere” in the treebank’s README.</p>
-  </li>
-  <li><strong>Data validation:</strong> Every treebank must comply with general and language-specific validation rules in order to be included in the official release.
-The <a href="http://quest.ms.mff.cuni.cz/udvalidator/">on-line validation report</a> provides a dashboard with treebank statuses.
-The <a href="https://github.com/UniversalDependencies/tools/">tools repository</a> can be cloned and for running validation locally (note that data in this repository
-is automatically updated based on the <a href="/contributing/contributing_language_specific.html#language-specific-lists-for-the-validator">language-specific lists</a>.</li>
-</ul>
+<p>UD treebank repositories have names that follow a uniform scheme. They start with “UD_” followed by the
+language name, a hyphen and a short treebank identifier (normally 2 to 6 letters, although some are longer).
+For example, UD_English-LinES and UD_English-ParTUT are two different English UD treebanks and their
+identifiers are LinES and ParTUT. The identifier can be an acronym of your annotation project (such as XTB,
+where X is the initial of the language name), or your institution, or even your own initials, but preferably
+it should be short. It can contain uppercase and lowercase English letters (the first letter uppercase) but
+it cannot contain additional underscores, hyphens or other special characters. Tell your preferred treebank
+acronym to the release task force when you ask for the repository.</p>
 
-<h1 id="email-list">Email list</h1>
+<p>Think carefully whether the acronym is good enough even considering possible future growth of the treebank.
+Once the repository has been created, renaming is strongly discouraged (although not entirely impossible
+if there are good reasons for it; but it is painful for the maintenance crew because many places in the
+infrastructure have to be carefully checked manually).</p>
 
-<p>Please consider subscribing to the <a href="https://lists.uu.se/sympa/info/lingfil-ud">UD mailing list</a>,
-<strong>especially if you are going to contribute data.</strong>
-Important announcements for the data providers are circulated through this list.</p>
-
-<h1 id="for-the-maintenance-crew">For the Maintenance Crew</h1>
-
-<p>Documentation of the infrastructure is <a href="/infrastructure/index.html">here</a>.</p>
+<p>Even more important it is that the name of the language be stable. For some languages, there may be
+multiple candidates for their name. It deserves some thought before the first treebank repository of
+the language is created, so that other people contributing to the language are hopefully happy with it
+and no renaming is needed.
+We stick with the ISO 639 language codes. If a language does not have its own code, it will be treated
+as a variant of its closest relative, and they will share the language prefix of the repository name
+(it is then possible to use the name of the variant as the treebank identifier).
+Try to imagine how likely it is that somebody will want to cover another variant in the future, and
+whether or not they will like the language name you propose now. In any case, we only use English
+letters in the repository name (which should bear the <em>English</em> name of the language). Various
+special characters, diacritics or apostrophes may be linguistically more appropriate but you have to
+save them for the documentation, and avoid them in the repository name.</p>
 
       </div>
 
 <!-- support for embedded visualizations -->
 <script type="text/javascript">
-    var root = ''; // filled in by jekyll
+    var root = '../'; // filled in by jekyll
     head.js(
         // We assume that external libraries such as jquery.min.js have already been loaded outside!
         // (See _layouts/base.html.)
