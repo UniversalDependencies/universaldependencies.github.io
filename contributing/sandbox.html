@@ -381,73 +381,66 @@ parataxis(hat-2,hat-9)
 
 <h2 id="test-for-lt">Test for LT</h2>
 
-<p>nsubj (nominal subject) – a nominal subject (the main agent), that is, a noun or pronominal phrase (composed of one or more words) which serves as the syntactic subject of a clause. 
-The nominal subject is typically dependent on a verb. 
-It may be a common noun, a proper noun, a personal pronoun, a compound pronoun, or the generic pronoun viskas (“everything”).</p>
+<p>The ‘root’ grammatical relation points to the root of the sentence. A fake node ROOT is used as the governor. There should only be one node with the root dependency relation in every tree.</p>
 
-<pre><code class="language-sdparse">Vaikas eina namo . \n A child goes home .
-nsubj(eina, vaikas)
-nsubj(goes, child)
+<p>The root of a sentence is the predicate of the main clause. The root of a sentence may be a verb, a nominal in a copular construction, a predicate adjective, or a predicate participle.</p>
+
+<pre><code class="language-sdparse">ROOT Mes kalbėjome apie planus . \n ROOT We talked about plans .
+root(ROOT-1, kalbėjome)
+root(ROOT-7, talked)
 </code></pre>
 
-<pre><code class="language-sdparse">Jis eina namo . \n He goes home .
-nsubj(eina, Jis)
-nsubj(goes, He)
+<pre><code class="language-sdparse">ROOT Berlynas yra Vokietijos sostinė . \n ROOT Berlin is the-capital of-Germany .
+root(ROOT-1, sostinė)
+root(ROOT-7, the-capital)
 </code></pre>
 
-<pre><code class="language-sdparse">Kas nors tikrai pamatys laive esančius žmones . \n Someone will definitely see the people on the ship .
-nsubj(pamatys, Kas nors)
-nsubj(will see, Someone)
+<pre><code class="language-sdparse">ROOT Kelionė įdomi . \n ROOT The-journey is-interesting .
+root(ROOT-1, įdomi)
+root(ROOT-7, is-interesting)
 </code></pre>
 
-<pre><code class="language-sdparse">Geroje žemėje viskas auga . \n In good soil, everything grows .
-nsubj(auga, viskas)
-nsubj(grows, everything)
+<pre><code class="language-sdparse">ROOT Visa šeima yra išvykusi . \n ROOT All family is away .
+root(ROOT-1, išvykusi)
+root(ROOT-7, away)
 </code></pre>
 
-<p>The nominal subject can be an interrogative or relative pronoun in attributive subordinate clauses.</p>
+<p>If a verbal predicate consists of a conjugated verb form (typically of the modal verbs galėti (can) and turėti (have to)) together with an infinitive (e.g., galime padaryti (we can make it), turėjo ateiti (had to come)) or with an infinitive and a participle, the root of the predicate is considered to be the modal verb (e.g., norėjo (wanted); gali (can)).</p>
 
-<pre><code class="language-sdparse">Sutikau draugę, kuri neseniai atvyko į Lietuvą . \n I met a friend who recently arrived in Lithuania .
-nsubj(atvyko, kuri)
-nsubj(arrived, who)
+<pre><code class="language-sdparse">ROOT Jis norėjo pasitarti . \n ROOT He wanted to-consult .
+root(ROOT-1, norėjo)
+root(ROOT-7, wanted)
 </code></pre>
 
-<p>Constructions like daugiau nei… (more than…); vienas… (one), involving the genitive case of a superlative degree of an adjective, when they function as the subject of the sentence, are annotated as nsubj.</p>
-
-<pre><code class="language-sdparse">Seminare dalyvavo daugiau nei 100 dalyvių . \n More than 100 participants attended the seminar .
-nsubj(dalyvavo, daugiau)
-nsubj(attended, participants)
+<pre><code class="language-sdparse">ROOT Procedūra gali būti tęsiama . \n ROOT The-procedure can be continued .
+root(ROOT-1, gali)
+root(ROOT-7, can)
 </code></pre>
 
-<pre><code class="language-sdparse">Vienas gražiausių namų stovi Kaune . \n One of the most beautiful houses stands in Kaunas .
-nsubj(stovi, Vienas)
-nsubj(stands, One)
+<p>If a simple sentence contains compound predicates, the root is considered to be the first predicate, i.e., the left most one.</p>
+
+<pre><code class="language-sdparse">ROOT Šuo lojo ir šiepė dantis . \n ROOT The-dog barked and bared its-teeth .
+root(ROOT-1, lojo)
+root(ROOT-7, barked)
 </code></pre>
 
-<p>More rarely, the nominal subject is not dependent on the verb, but on other parts of speech. For example, if a compound verb form is used, the core of the sentence can be an adjective or a noun.</p>
+<p>In a complex sentence with subordination, the root is considered to be the predicate of the main clause.</p>
 
-<pre><code class="language-sdparse">Automobilis yra raudonas . \n A car is red .
-nsubj(raudonas, Automobilis)
-nsubj(red, car)
+<pre><code class="language-sdparse">ROOT Aš supratau , kad nespėsiu . \n ROOT I understood that I-wouldn't-make-it .
+root(ROOT-1, supratau)
+root(ROOT-7, understood)
 </code></pre>
 
-<pre><code class="language-sdparse">Jonas yra studentas . \n John is a student .
-nsubj(studentas, Jonas-1)
-nsubj(student, John)
+<p>In a compound sentence with coordination or asyndeton (no conjunction), the root is considered to be the leftmost predicate.</p>
+
+<pre><code class="language-sdparse">ROOT Dėstytojas kalba , o studentai klauso . \n ROOT The-lecturer speaks , and the-students listen .
+root(ROOT-1, kalba)
+root(ROOT-7, speaks)
 </code></pre>
 
-<p>If the subject is dependent on a necessity participle, it is marked as nsubj.</p>
-
-<pre><code class="language-sdparse">Taisyklės rekomenduotinos visiems darbuotojams . \n The rules are recommended for all employees .
-nsubj(rekomenduotinos, Taisyklės)
-nsubj(recommended, rules)
-</code></pre>
-
-<p>In Lithuanian, the partitive and negative genitive is considered an nsubj if it can be replaced by a nominative.</p>
-
-<pre><code class="language-sdparse">Vakare atėjo svečių . \n Some guests came in the evening .
-nsubj(atėjo, svečių)
-nsubj(came, guests)
+<pre><code class="language-sdparse">ROOT Dėstytojas kalba , studentai klauso . \n ROOT The-lecturer speaks , the-students listen .
+root(ROOT-1, kalba)
+root(ROOT-7, speaks)
 </code></pre>
 
 
