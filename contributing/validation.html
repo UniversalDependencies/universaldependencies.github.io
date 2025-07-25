@@ -89,6 +89,7 @@
       <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_feature.pl">Feature-value-UPOS combinations</a></li>
       <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_deprel.pl">Dependency relation subtypes</a></li>
       <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_edeprel.pl">Enhanced relation subtypes</a></li>
+      <li><a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_token_with_space.pl">Tokens with spaces</a></li>
     </ul>
   </li>
   <li><a href="#running-the-validator-locally">Running the validator locally</a></li>
@@ -118,78 +119,84 @@ server will reject it.</p>
 <h2 id="language-specific-lists">Language-specific lists</h2>
 
 <p>Among other items, the validator also validates the language-specific set of morphological features and
-relations and therefore it needs to know about these. They can be registered through a web interface:
-Morphological features
-<a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_feature.pl">here</a>,
-dependency relations for basic trees
-<a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_deprel.pl">here</a> and
-case markers for enhanced relations
-<a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_edeprel.pl">here</a>.</p>
+relations and therefore it needs to know about these. They can be registered through a web interface:</p>
+
+<ul>
+  <li>Morphological features <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_feature.pl">here</a></li>
+  <li>Dependency relations for basic trees <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_deprel.pl">here</a></li>
+  <li>Case markers for enhanced relations <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_edeprel.pl">here</a></li>
+</ul>
 
 <p>It is possible to register language-specific features and relations only if they
-<a href="/contributing/language_specific.html">have been properly documented</a>. If a feature or relation does not have
-its own documentation page in the <code class="language-plaintext highlighter-rouge">docs</code> repository (either as part of the universal guidelines
-or in the language-specific folder), or if the page is not in the prescribed (machine-recognizable)
-format, the web interface will not allow to register the feature or relation as valid, and consequently, the
-validator will not accept it in the data.</p>
+<a href="/contributing/language_specific.html">have been properly documented</a>. If a feature or relation does not have its own
+documentation page in the <code class="language-plaintext highlighter-rouge">docs</code> repository (either as part of the universal guidelines or in the language-specific
+folder), or if the page is not in the prescribed (machine-recognizable) format, the web interface will not allow to
+register the feature or relation as valid, and consequently, the validator will not accept it in the data.</p>
 
-<p>Since the <code class="language-plaintext highlighter-rouge">v2.0</code> release, whitespace is allowed in the <code class="language-plaintext highlighter-rouge">FORM</code> and <code class="language-plaintext highlighter-rouge">LEMMA</code> fields under conditions
-specified <a href="v2/segmentation.html">here</a>. This is supported in the validator through the UD-wide
-file <code class="language-plaintext highlighter-rouge">data/tokens_w_space.ud</code> and its language-specific variants <code class="language-plaintext highlighter-rouge">data/tokens_w_space.xx</code>. In
-these files, each line is a <a href="https://docs.python.org/3/library/re.html">Python regular expression</a>
-defining the permissible forms and lemmas that can contain a whitespace.</p>
+<p>Since the <code class="language-plaintext highlighter-rouge">v2.0</code> release, whitespace is allowed in the <code class="language-plaintext highlighter-rouge">FORM</code> and <code class="language-plaintext highlighter-rouge">LEMMA</code> fields under conditions specified
+<a href="v2/segmentation.html">here</a>. This is supported in the validator through
+<a href="https://docs.python.org/3/library/re.html">Python regular expressions</a> defining the permissible forms and lemmas that
+can contain a whitespace. These are registered for every language analogously to features and relations:</p>
 
-<p>The validator also checks that certain closed classes (currently auxiliaries and copula) appear
-only with documented lemmas. Since release 2.7, auxiliaries can be <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_auxiliary.pl">defined at the on-line validation
-site</a>.
-When adding an auxiliary (or the copula), the user can see some relevant points from the UD
-guidelines, as well as the list of auxiliaries that have been defined in other languages
-(related languages are shown first). This is to improve cross-lingual parallelism and to reduce
-the danger that maintainers of neighboring languages will employ dramatically different interpretations
-of the guidelines and end up with divergent notions of what qualifies as an auxiliary.
-All auxiliaries must be explained and accompanied by an example; in the future, the information
-collected this way could be propagated to the UD documentation. The site initially includes some
-auxiliaries that were previously listed (but not documented) in the source code of the validator.
-The user has to provide the missing information for all existing auxiliaries before they can add
-new ones. (As soon as you edit the first undocumented auxiliary, all other undocumented auxiliaries
-will be removed from the database to make room for the new and proper definitions. You should thus
-not stop after the first auxiliary. You should document all the others so that no existing treebanks
-suddenly become invalid.)</p>
+<ul>
+  <li>Tokens with spaces <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_token_with_space.pl">here</a></li>
+</ul>
 
-<p>When validating language-specific lists of morphological features, auxiliary verbs etc., the validator
-can temporarily switch to a language different from the main language of the file. This is useful
-in cases of code-switching, i.e., when a <a href="/foreign.html">foreign language phrase is inserted</a> in the text, and the
-annotators decided to annotate it according to the foreign language guidelines (instead of simply
-tagging everything as <code class="language-plaintext highlighter-rouge">X</code> and connecting it as a <code class="language-plaintext highlighter-rouge">flat</code> structure). The alternative language is
-signaled for individual tokens using the <code class="language-plaintext highlighter-rouge">Lang</code> attribute in the MISC column. Its value is the ISO
-639 language code, as registered for the language in UD (either two letters from ISO 639-1, or
+<p>The validator also checks that certain closed classes (currently auxiliaries and copula) appear only with documented
+lemmas. Since release 2.7, auxiliaries can be defined at the on-line validation site:</p>
+
+<ul>
+  <li>Auxiliaries and copulas <a href="https://quest.ms.mff.cuni.cz/udvalidator/cgi-bin/unidep/langspec/specify_auxiliary.pl">here</a></li>
+</ul>
+
+<p>When adding an auxiliary (or the copula), the user can see some relevant points from the UD guidelines, as well as the
+list of auxiliaries that have been defined in other languages (related languages are shown first). This is to improve
+cross-lingual parallelism and to reduce the danger that maintainers of neighboring languages will employ dramatically
+different interpretations of the guidelines and end up with divergent notions of what qualifies as an auxiliary. All
+auxiliaries must be explained and accompanied by an example; in the future, the information collected this way could
+be propagated to the UD documentation. The site initially includes some auxiliaries that were previously listed (but
+not documented) in the source code of the validator. The user has to provide the missing information for all existing
+auxiliaries before they can add new ones. (As soon as you edit the first undocumented auxiliary, all other undocumented
+auxiliaries will be removed from the database to make room for the new and proper definitions. You should thus not stop
+after the first auxiliary. You should document all the others so that no existing treebanks suddenly become invalid.)</p>
+
+<p>When validating language-specific lists of morphological features, auxiliary verbs etc., the validator can temporarily
+switch to a language different from the main language of the file. This is useful in cases of code-switching, i.e.,
+when a <a href="/foreign.html">foreign language phrase is inserted</a> in the text, and the annotators decided to annotate it
+according to the foreign language guidelines (instead of simply tagging everything as <code class="language-plaintext highlighter-rouge">X</code> and connecting it as a <code class="language-plaintext highlighter-rouge">flat</code>
+structure). The alternative language is signaled for individual tokens using the <code class="language-plaintext highlighter-rouge">Lang</code> attribute in the MISC column.
+Its value is the ISO 639 language code, as registered for the language in UD (either two letters from ISO 639-1, or
 three letters from ISO 639-3, lowercased!)</p>
 
 <h2 id="running-the-validator-locally">Running the validator locally</h2>
 
-<p><strong>WARNING:</strong> <code class="language-plaintext highlighter-rouge">validate.py</code> is only one of the scripts that are used to verify whether your treebank
-is good for the next release. Even if you run it on your computer and it tells you “PASSED”, you must
-check the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">online validation report</a> after you push changes
-to GitHub. Only if your treebank is reported there as “VALID”, you are all set.</p>
+<p><strong>WARNING:</strong> <code class="language-plaintext highlighter-rouge">validate.py</code> is only one of the scripts that are used to verify whether your treebank is good for the
+next release. Even if you run it on your computer and it tells you “PASSED”, you must check the <a href="http://quest.ms.mff.cuni.cz/udvalidator/">online validation
+report</a> after you push changes to GitHub. Only if your treebank is reported
+there as “VALID”, you are all set.</p>
 
-<p>The validation script is available in the <a href="https://github.com/UniversalDependencies/tools">tools</a>
-repository and you can use it to test your data locally before you upload them to Github. Make sure
-that you always have the latest update of the tools repository.</p>
+<p>The validation script is available in the <a href="https://github.com/UniversalDependencies/tools">tools</a> repository and you
+can use it to test your data locally before you upload them to GitHub. Make sure that you always have the latest update
+of the tools repository.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone git@github.com:UniversalDependencies/tools.git
 $ cd tools
 $ python validate.py -h
 </code></pre></div></div>
 
-<p>Note that you need Python 3 to run the validator, and you need a third-party
-Python module called <code class="language-plaintext highlighter-rouge">regex</code> installed via pip, so when needed try this before
-invoking the validator:</p>
+<p>Note that you need Python 3 to run the validator, and you need some third-party Python modules. One such module is
+called <code class="language-plaintext highlighter-rouge">regex</code> and you can install it via pip before invoking the validator:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install python3-pip; python3 -m pip install regex
 </code></pre></div></div>
 
-<p>See also the <a href="https://github.com/UniversalDependencies/tools/blob/master/README.md">README file</a>
-in the tools repository.</p>
+<p>Furthermore, you need Python version of <a href="https://udapi.github.io/">Udapi</a>. See its website for instructions how to
+install it. You could install it via pip as well, but it is probably better to clone <code class="language-plaintext highlighter-rouge">udapi-python</code> from GitHub and
+then install its requirements. This way you will be able to get the latest version of Udapi if it changes on GitHub
+but not in pip.</p>
+
+<p>See also the <a href="https://github.com/UniversalDependencies/tools/blob/master/README.md">README file</a> in the tools
+repository.</p>
 
 <p>In general, you validate the data like so:</p>
 
