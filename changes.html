@@ -92,7 +92,7 @@
 
 <h2 id="changes-in-udv2">Changes in UDv2</h2>
 
-<p>Updates to UDv2 will NOT alter the inventory of basic top-level dependency relations, UPOS tags, etc. 
+<p>Updates to UDv2 will NOT alter the inventory of basic top-level dependency relations, UPOS tags, etc.
 But some updates have been necessary to clarify how they should be applied to particular linguistic phenomena, as well as formal constraints to be enforced by validation.</p>
 
 <table>
@@ -106,6 +106,13 @@ But some updates have been necessary to clarify how they should be applied to pa
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td style="text-align: center">16</td>
+      <td style="text-align: center">2025-Aug</td>
+      <td style="text-align: center">2.17</td>
+      <td>VALIDATOR</td>
+      <td><a href="#multiple-objects">Multiple Objects</a></td>
+    </tr>
     <tr>
       <td style="text-align: center">15</td>
       <td style="text-align: center">2024-Nov</td>
@@ -214,6 +221,15 @@ But some updates have been necessary to clarify how they should be applied to pa
   </tbody>
 </table>
 
+<h3 id="multiple-objects">Multiple Objects</h3>
+
+<p>According to the guidelines a predicate can have at most one child node attached as <a href="">obj</a>. If there are multiple
+core arguments that qualify as objects, one of them should be selected as the direct object (<code class="language-plaintext highlighter-rouge">obj</code>) and the others
+should be annotated as indirect objects (<a href="">iobj</a>). The number of indirect objects is not limited.</p>
+
+<p>At present this validation rule does not take into account clausal objects (<a href="">ccomp</a>) because they do not distinguish
+whether they correspond to direct or indirect objects.</p>
+
 <h3 id="extpos-for-fixed-expressions"><code class="language-plaintext highlighter-rouge">ExtPos</code> for Fixed Expressions</h3>
 
 <p>In order to clarify the holistic status of expressions connected by the <a href="">fixed</a> relation, it is strongly recommended to specify <a href="">ExtPos</a> (in the FEATS column) on the first word of the expression. The validator has been updated to trigger a warning if <a href="">ExtPos</a> is missing for a fixed expression. Some checks that previously made exceptions for words in fixed expressions no longer do so; adding <a href="">ExtPos</a> may be necessary to pass these checks.</p>
@@ -254,23 +270,23 @@ See <a href="/u/overview/typos.html#misspelled-multiword-token">discussion of ty
 
 <h3 id="sole-iobj">Sole <code class="language-plaintext highlighter-rouge">iobj</code></h3>
 
-<p>The restriction that <a href="">iobj</a> can only be used if there is also an overt <a href="">obj</a> in the same clause is hereby <a href="https://github.com/UniversalDependencies/docs/issues/916">removed</a>. 
-It is preferable not to have a relation whose label depends on the presence or absence of a sister phrase 
+<p>The restriction that <a href="">iobj</a> can only be used if there is also an overt <a href="">obj</a> in the same clause is hereby <a href="https://github.com/UniversalDependencies/docs/issues/916">removed</a>.
+It is preferable not to have a relation whose label depends on the presence or absence of a sister phrase
 when its interpretation remains the same (like <em>them</em> in <em>tell them</em> vs. <em>tell them a story</em> vs. <em>tell them that the party is canceled</em>).
 See <a href="">iobj</a> for examples (note that specific criteria for identifying indirect objects will vary by language).</p>
 
 <h3 id="nested-flat">Nested <code class="language-plaintext highlighter-rouge">flat</code></h3>
 
-<p>In May 2021, the <a href="">flat</a> guidelines were revised to clarify that nested expressions were allowed under a <code class="language-plaintext highlighter-rouge">flat</code> dependent, 
-so long as the nested expression was not itself a flat expression. 
-This constraint <a href="https://github.com/UniversalDependencies/docs/commit/42023bd">is now lifted</a> (in fact, it was never enforced): 
-if a flat name, for example, has a part which is itself a flat name, it may be indicated with a nested flat expression. 
-The only constraint on <code class="language-plaintext highlighter-rouge">flat</code> edges is that they must point forward in the sentence: 
+<p>In May 2021, the <a href="">flat</a> guidelines were revised to clarify that nested expressions were allowed under a <code class="language-plaintext highlighter-rouge">flat</code> dependent,
+so long as the nested expression was not itself a flat expression.
+This constraint <a href="https://github.com/UniversalDependencies/docs/commit/42023bd">is now lifted</a> (in fact, it was never enforced):
+if a flat name, for example, has a part which is itself a flat name, it may be indicated with a nested flat expression.
+The only constraint on <code class="language-plaintext highlighter-rouge">flat</code> edges is that they must point forward in the sentence:
 the first word of the expression is always the technical head, though linguistically speaking, the expression is considered headless.</p>
 
 <h3 id="multiple-subjects">Multiple Subjects</h3>
 
-<p>In general, UD prohibits multiple subjects (i.e. a word may have at most one <a href="">nsubj</a> or <a href="">csubj</a> dependent), 
+<p>In general, UD prohibits multiple subjects (i.e. a word may have at most one <a href="">nsubj</a> or <a href="">csubj</a> dependent),
 and enforcing this in validation is a useful way to catch errors.
 However, a clause may serve as the predicate in a copular construction (e.g. <em>The problem is that we already paid</em>), posing a problem for this constraint.
 Until now, the guidelines carved out an exception for such cases: the copula of the outer clause
@@ -278,14 +294,14 @@ would be promoted to head its subject and the predicate of the inner clause woul
 But this yielded an odd interpretation of some copulas as transitive and offered no solution for zero copula constructions.
 A <a href="https://github.com/UniversalDependencies/docs/pull/868">change</a> was necessary.</p>
 
-<p>The <a href="/u/overview/complex-syntax.html#predicate-clauses">new policy</a>—a product of extensive deliberation—is that the predicate of the inner clause can have multiple subject dependents. 
-The subject(s) of the non-innermost clause(s) can be subtyped with <code class="language-plaintext highlighter-rouge">:outer</code> to signify nesting: <a href="">nsubj:outer</a>, <a href="">csubj:outer</a>. 
+<p>The <a href="/u/overview/complex-syntax.html#predicate-clauses">new policy</a>—a product of extensive deliberation—is that the predicate of the inner clause can have multiple subject dependents.
+The subject(s) of the non-innermost clause(s) can be subtyped with <code class="language-plaintext highlighter-rouge">:outer</code> to signify nesting: <a href="">nsubj:outer</a>, <a href="">csubj:outer</a>.
 The <code class="language-plaintext highlighter-rouge">:outer</code> subtype, like all subtypes, is (at least for now) technically optional.
-Therefore, as an alternative, the validator will allow a treebank’s maintainers to manually verify that 
+Therefore, as an alternative, the validator will allow a treebank’s maintainers to manually verify that
 any instances of multiple subjects are correct.</p>
 
-<p>Note that using <code class="language-plaintext highlighter-rouge">:outer</code> just for subjects does not fully disambiguate the compositional structure: 
-for example, <a href="">cop</a>, <a href="">aux</a>, <a href="">mark</a>, <a href="">advmod</a>, and <a href="">obl</a> dependents of the predicate may belong to either the inner or outer clause. 
+<p>Note that using <code class="language-plaintext highlighter-rouge">:outer</code> just for subjects does not fully disambiguate the compositional structure:
+for example, <a href="">cop</a>, <a href="">aux</a>, <a href="">mark</a>, <a href="">advmod</a>, and <a href="">obl</a> dependents of the predicate may belong to either the inner or outer clause.
 In order to avoid a proliferation of subtyped relations, the trees in the new guidelines do not apply the <code class="language-plaintext highlighter-rouge">:outer</code> label to anything other than subjects.
 Treebanks are, of course, welcome to innovate in their use of subtypes and/or MISC attributes.</p>
 
