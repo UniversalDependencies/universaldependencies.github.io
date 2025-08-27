@@ -81,11 +81,11 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>This is a copy of the current German documentation <a href="https://universaldependencies.org/de/index.html">UD for German</a>, which we generally follow for Swiss German. This introduction explains the most important differences which influence the annotation.</p>
+<p>We mostly follow the documentation for <a href="https://universaldependencies.org/de/index.html">German</a>. This documentation describes the most important differences between Alemannic dialects and standard German which influence the annotation.</p>
 
-<p>Please check the readme/GitHub repo of the GSW treebank for further/current information.</p>
+<p>As Alemannic is a widely spread dialect group spanning several countries (Switzerland, France’s Alsace region, Germany’s Baden-Württemberg state, and Liechtenstein), there is a high degree of variation between the dialects, which can affect the annotation. Consequently, different treebanks correspond to different dialect varieties.</p>
 
-<h3 id="differences-to-german-ud-guidelines">Differences to German UD Guidelines</h3>
+<h2 id="alemannic-uzh-zurich-swiss-german-">Alemannic-UZH (Zurich Swiss German) <span class="flagspan"><img class="flag" src="../../flags/svg/CH.svg" /></span></h2>
 
 <p>As for German, words are generally delimited by white spaces. However, there is a lot more freedom in merging any words together, which can’t usually be split in an easy way. I.e. we use the German tokenization and introduce a separate tag for merged words (see meta tag <code class="language-plaintext highlighter-rouge">TAG+</code> described further down).</p>
 
@@ -105,6 +105,56 @@
 <ul>
   <li><code class="language-plaintext highlighter-rouge">PTKINF</code> are converted to <code class="language-plaintext highlighter-rouge">PART</code></li>
   <li>the plus sign in <code class="language-plaintext highlighter-rouge">TAG+</code> are disgarded</li>
+</ul>
+
+<p>Please check the readme/GitHub repo of the treebank for further/current information.</p>
+
+<h2 id="alemannic-divital-alsatian-">Alemannic-DIVITAL (Alsatian) <span class="flagspan" style="padding-left:1em"><img class="flag" src="../../flags/svg/FR-ALS.svg" /></span></h2>
+
+<p>Only the main differences are introduced below. Please check the annotation guidelines for more in depth information:</p>
+
+<ul>
+  <li><a href="https://nakala.fr/10.34847/nkl.5b6cs6wu">Syntactic annotation guidelines for Alsatian</a> (en)</li>
+  <li><a href="https://nakala.fr/10.34847/nkl.0eac4288">Guide d’annotation syntaxique pour l’alsacien</a> (fr)</li>
+</ul>
+
+<h3 id="syntax">Syntax</h3>
+
+<ul>
+  <li>The dative case can be reinforced by using the preposition <em>in</em>. In such cases, we still use <code class="language-plaintext highlighter-rouge">obl:arg</code> for dative objects, although a preposition is used, e.g. <em>Ich gib’s <strong>in</strong> de Fräu.</em> “I give it to the woman”.</li>
+  <li>The relative pronoun is not declined and is invariably <em>wo, wu, wü, wi</em>, depending on the variety. This leads to differences with German: when a relative clause is introduced by a pronominal adverb in Standard German (<em>wobei, wofür, womit</em> etc), this construction is split in two in Alsatian (relative marker + pronominal adverb). For example <em>De Stüel, <strong>wo</strong>-n-i <strong>druf</strong> sitz, isch krumm</em> “the stool, that i thereon sit, is bent” instead of standard German <em>Der Stuhl, <strong>auf dem</strong> ich sitze, ist krumm.</em></li>
+  <li>Present and past progressive aspects are used in Alsatian, but only periphrastically. For example, <em>Ich bin e Lied am singe</em> “I am a song at to-sing”, is annotated with <em>bin</em> as <code class="language-plaintext highlighter-rouge">VERB</code> and <code class="language-plaintext highlighter-rouge">root</code>, <em>singe</em> as <code class="language-plaintext highlighter-rouge">VERB</code> and <code class="language-plaintext highlighter-rouge">ccomp</code> of <em>bin</em>, and <em>am</em> as <code class="language-plaintext highlighter-rouge">PART</code> and <code class="language-plaintext highlighter-rouge">mark</code> of <em>singe</em>.</li>
+  <li>Many subordinate conjunctions are built using the following pattern in Alsatian: <em>preposition</em> + <em>(d)àss</em> “that”. For example, German <em>damit</em> is <em>fer</em> <code class="language-plaintext highlighter-rouge">ADP</code> <em>dàss</em> <code class="language-plaintext highlighter-rouge">SCONJ</code> “for that”, both annotated <code class="language-plaintext highlighter-rouge">mark</code> from the subroot.</li>
+  <li>Specific subtypes of dependency relations:
+    <ul>
+      <li><a href="">advmod:tmod</a></li>
+      <li><a href="">det:predet</a></li>
+      <li><a href="">nmod:lmod</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><a href="">feat/Epenthesis</a>: the epenthesis (usually a “n” or “w”) is included in the preceding token that takes this specific feature, as e.g. <em>worre-n-</em></td>
+          <td><em>isch</em> “is become”</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="misc-attributes">MISC attributes</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Foreign=Yes</code> and <code class="language-plaintext highlighter-rouge">Lang</code> for loanwords</li>
+  <li><code class="language-plaintext highlighter-rouge">Lemma[de]</code> for standard German lemma</li>
+  <li><code class="language-plaintext highlighter-rouge">Gloss[fr]</code> for gloss in French</li>
 </ul>
 
 <h2 id="ud-for-german">UD for German</h2>
@@ -231,7 +281,7 @@ that mark agreement with the modified (possessed) noun.</li>
   <li>The following universal features are not used in German: <a href="">Animacy</a>, <a href="">Evident</a>.</li>
 </ul>
 
-<h2 id="syntax">Syntax</h2>
+<h2 id="syntax-1">Syntax</h2>
 
 <h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
@@ -316,10 +366,11 @@ between the verb and the clitic as <a href="">expl:pv</a>, not <code class="lang
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There is 1 Alemannic UD treebank:</p>
+<p>There are 2 Alemannic UD treebanks:</p>
 
 <ul>
   <li><a href="../treebanks/gsw_uzh/index.html">Alemannic-UZH</a></li>
+  <li><a href="../treebanks/gsw_divital/index.html">Alemannic-DIVITAL</a></li>
 </ul>
 
       </div>
