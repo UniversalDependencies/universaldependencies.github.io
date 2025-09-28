@@ -79,16 +79,16 @@
         </script>
         <h2><code>compound</code>: compound</h2>
 
-<p>The <strong>compound</strong> relation is used to analyze compounds, that is, combinations of lexemes that morphosyntactically behave as single words.</p>
+<p>The <code class="language-plaintext highlighter-rouge">compound</code> relation is used to analyze compounds, that is, combinations of lexemes that morphosyntactically behave as single words.</p>
 
 <p>In Lithuanian, only <strong>compound numerals</strong> composed of multiple words <strong>without a clear syntactic head</strong> are annotated with this relation.<br />
 The <strong>rightmost numeral</strong> is taken as the head, and the other numerals are attached to it as its modifiers.</p>
 
-<p>compound (compound) – used for compound numerals consisting of several words where no clear head can be determined. The governor is the rightmost numeral, while the other numerals are dependents attached with the relation <code class="language-plaintext highlighter-rouge">compound</code>.</p>
-
 <pre><code class="language-sdparse">Šimtas penkiasdešimt penki žmonės . \n One-hundred fifty-five people .
 compound(penki, Šimtas)
 compound(penki, penkiasdešimt)
+compound(five, One-hundred)
+compound(five, fifty-five)
 </code></pre>
 
 <pre><code class="language-sdparse">Šimtas šešiasdešimt aštuoni namai . \n One-hundred sixty-eight houses .
@@ -97,19 +97,23 @@ compound(aštuoni, šešiasdešimt)
 </code></pre>
 
 <h3 id="distinction-from-other-relations">Distinction from other relations</h3>
-
-<p>If a clear dependency relation exists between the components, that relation should be used instead of <code class="language-plaintext highlighter-rouge">compound</code>.</p>
+<p><code class="language-plaintext highlighter-rouge">nummod</code>
+If dependency relation between the components is clear, such dependency labels should be used as, for example, šimtas (<code class="language-plaintext highlighter-rouge">nummod:gov</code>) tūkstančių eurų; penki (<code class="language-plaintext highlighter-rouge">nummod</code>) šimtai eurų (hundred (<code class="language-plaintext highlighter-rouge">nummod:gov</code>) thousand euro; five (<code class="language-plaintext highlighter-rouge">nummod</code>) thousand euro).</p>
 
 <p>For example:</p>
 
 <pre><code class="language-sdparse">Šimtas tūkstančių eurų . \n Hundred thousand euros .
 nummod:gov(tūkstančių, Šimtas)
-nmod(eurų, tūkstančių)
+nummod:gov(eurų, tūkstančių)
+nummod:gov(thousand, Hundred)
+nummod:gov(euros, thousand)
 </code></pre>
 
 <pre><code class="language-sdparse">Penki šimtai eurų . \n Five hundred euros .
-nummod(šimtai, Penki)
-nmod(eurų, šimtai)
+nummod:gov(šimtai, penki)
+nummod:gov(eurų, šimtai)
+nummod(hundred, Five)
+nummod(euros, hundred)
 </code></pre>
 
 
