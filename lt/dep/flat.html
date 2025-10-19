@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>flat</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script> -->
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-lt">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_lt/dep/flat.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h2><code>flat</code>: flat</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">flat</code> relation is one of the relations used for multiword expressions. All subsequent words in such expressions are attached to the first one using the flat label. The assumption is that in these expressions, the flat relations are not syntactic head-modifier relations, and that the structural annotation is in principle arbitrary. 
+The prototypes for flat are: personal names, names composed of several words without a clear syntactic relation, onomatopoeias, and foreign expressions.</p>
+
+<p>Personal names:</p>
+<pre><code class="language-sdparse">Jonas Basanavičius
+flat(Jonas, Basanavičius)
+</code></pre>
+
+<pre><code class="language-sdparse">Liudvikas van Bethovenas \n Ludwig van Beethoven
+flat(Liudvikas, van)
+flat(Liudvikas, Bethovenas)
+flat(Ludwig, van)
+flat(Ludwig, Beethoven)
+</code></pre>
+
+<pre><code class="language-sdparse">Carl XVI Gustaf
+flat(Carl-1, Gustaf-3)
+flat(Carl-1, XVI-2)
+</code></pre>
+
+<p>If the surname is mentioned first and then the given name, the <em>flat</em> annotation still attaches to the first word:</p>
+<pre><code class="language-sdparse">Basanavičius Jonas
+flat(Basanavičius, Jonas)
+</code></pre>
+
+<p>Names:</p>
+<pre><code class="language-sdparse">Los Andželas \n Los Angeles
+flat(Los, Andželas)
+flat(Los, Angeles)
+</code></pre>
+
+<pre><code class="language-sdparse">Buenos Airės \n Buenos Aires
+flat(Buenos, Airės)
+flat(Buenos, Aires)
+</code></pre>
+
+<p>The relation is not used to attach adjectives to nouns within multi-word names of places, organizations etc. (e.g. <em>Juodoji jūra (Black Sea)</em>). Names that have a regular syntactic structure, like <em>Žiedų valdovas (The Lord of the Rings)</em> or <em>Kauno marios (Kaunas Sea)</em>, should be annotated with regular syntactic relations rather than flat structures.</p>
+
+<p>Onomatopoeias:</p>
+<pre><code class="language-sdparse">Šuo sulojo au au . \n The-dog barked au au .
+flat(au, au)
+flat( au, au)
+</code></pre>
+
+<p>Two syntactically equivalent adjectives joined by a hyphen (usually with the suffix -inis) express a single complex attribute of an object and are connected with the <em>flat</em> relation from the first component:</p>
+<pre><code class="language-sdparse">Socialinė-ekonominė sistema \n Social-economic system
+flat(Socialinė, ekonominė)
+flat(Social, economic)
+</code></pre>
+
+<p>Also, two nouns joined by a hyphen, which denote the name of a single object or phenomenon, are annotated with the flat relation.</p>
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+flat in other languages:
+
+[<a href="../../bg/dep/flat.html">bg</a>]
+
+[<a href="../../bm/dep/flat.html">bm</a>]
+
+[<a href="../../cop/dep/flat.html">cop</a>]
+
+[<a href="../../cs/dep/flat.html">cs</a>]
+
+[<a href="../../de/dep/flat.html">de</a>]
+
+[<a href="../../el/dep/flat.html">el</a>]
+
+[<a href="../../en/dep/flat.html">en</a>]
+
+[<a href="../../et/dep/flat.html">et</a>]
+
+[<a href="../../eu/dep/flat.html">eu</a>]
+
+[<a href="../../fi/dep/flat.html">fi</a>]
+
+[<a href="../../fr/dep/flat.html">fr</a>]
+
+[<a href="../../ga/dep/flat.html">ga</a>]
+
+[<a href="../../gd/dep/flat.html">gd</a>]
+
+[<a href="../../hy/dep/flat.html">hy</a>]
+
+[<a href="../../it/dep/flat.html">it</a>]
+
+[<a href="../../ka/dep/flat.html">ka</a>]
+
+[<a href="../../kk/dep/flat.html">kk</a>]
+
+[<a href="../../ky/dep/flat.html">ky</a>]
+
+[<a href="../../pcm/dep/flat.html">pcm</a>]
+
+[<a href="../../pt/dep/flat.html">pt</a>]
+
+[<a href="../../ru/dep/flat.html">ru</a>]
+
+[<a href="../../sl/dep/flat.html">sl</a>]
+
+[<a href="../../swl/dep/flat.html">swl</a>]
+
+[<a href="../../tr/dep/flat.html">tr</a>]
+
+[<a href="../../u/dep/flat.html">u</a>]
+
+[<a href="../../vi/dep/flat.html">vi</a>]
+
+[<a href="../../xcl/dep/flat.html">xcl</a>]
+
+[<a href="../../yue/dep/flat.html">yue</a>]
+
+[<a href="../../zh/dep/flat.html">zh</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'lt';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
