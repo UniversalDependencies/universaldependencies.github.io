@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>nummod</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script> -->
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-lt">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_lt/dep/nummod.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h2><code>nummod</code>: numeric modifier</h2>
+
+<p>The morphological and syntactic behavior of Lithuanian numerals is complicated, and depends on the type of numeral. Two different relation labels are used to mark <em>numeric modifiers</em> of a noun or NP, when they function as quantifiers.</p>
+
+<p>Nummod is used to annotate cardinal numerals that agree with the noun in case, number, and gender and modify the meaning of the noun by specifying a quantity (1);
+When a cardinal numeral governs the noun, it is annotated with <code class="language-plaintext highlighter-rouge">nummod:gov</code> (2, 3). The noun is always the head, and the numeral is always attached as its modifier. Note that ordinal numerals should be annotated with amod, except when they are written as digits. Numerals written as digits (i.e., ordinals) are annotated with nummod. Cardinals are annotated as <code class="language-plaintext highlighter-rouge">nummod</code> or <code class="language-plaintext highlighter-rouge">nummod:gov</code>.</p>
+
+<pre><code class="language-sdparse">Turiu tris obuolius . \n I-have three apples .
+nummod(obuolius, tris)
+nummod(apples, three)
+</code></pre>
+
+<pre><code class="language-sdparse">Turiu dešimt obuolių . \n I-have ten apples .
+nummod:gov(obuolių, dešimt)
+nummod:gov(apples, ten)
+</code></pre>
+
+<pre><code class="language-sdparse">Fondas skyrė dešimt milijonų eurų . \n The-fund allocated ten million euros .
+nummod:gov(eurų, milijonų)
+nummod:gov(milijonų, dešimt)
+nummod:gov(euros, million)
+nummod:gov(million, ten)
+</code></pre>
+
+<h3 id="numerals-written-as-digits">Numerals written as digits</h3>
+
+<p>In dates, the head of the construction is a day (d.), the nummeral – <code class="language-plaintext highlighter-rouge">nummod</code>, month and abbreviation of the year – nmod and the numeral marking the year – <code class="language-plaintext highlighter-rouge">nummod</code>.</p>
+
+<p>House number in address is attached as nummod to the name of the street.</p>
+
+<pre><code class="language-sdparse">Gyvenu Donelaičio 5 . \n I live at-Donelaičio 5 .
+nummod(Donelaičio, 5)
+nummod(at-Donelaičio, 5)
+</code></pre>
+
+<h3 id="compound-numerals">Compound numerals</h3>
+
+<p>The tags <code class="language-plaintext highlighter-rouge">nummod</code> and <code class="language-plaintext highlighter-rouge">nummod:gov</code> can be used for compound numerals if a syntactic relation (agreement or government) can be established, for example:</p>
+
+<pre><code class="language-sdparse">Penki milijonai eurų . \n Five million euros .
+nummod(milijonai, penki)
+nummod:gov(eurų, milijonai)
+nummod(million, five)
+nummod:gov(euros, million)
+</code></pre>
+
+<p>If no syntactic relation can be identified, the tag <code class="language-plaintext highlighter-rouge">compound</code> is used (head is the rightmost element), for example:</p>
+
+<pre><code class="language-sdparse">Trys tūkstančiai šimtas eurų . \n Three thousand one hundred euros .
+nummod(tūkstančiai, trys)
+compound(šimtas, tūkstančiai)
+nummod:gov(eurų, šimtas)
+nummod(thousand, three)
+compound(hundred, thousand)
+nummod:gov(euros, hundred)
+</code></pre>
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+nummod in other languages:
+
+[<a href="../../bg/dep/nummod.html">bg</a>]
+
+[<a href="../../bm/dep/nummod.html">bm</a>]
+
+[<a href="../../cop/dep/nummod.html">cop</a>]
+
+[<a href="../../cs/dep/nummod.html">cs</a>]
+
+[<a href="../../de/dep/nummod.html">de</a>]
+
+[<a href="../../el/dep/nummod.html">el</a>]
+
+[<a href="../../en/dep/nummod.html">en</a>]
+
+[<a href="../../es/dep/nummod.html">es</a>]
+
+[<a href="../../eu/dep/nummod.html">eu</a>]
+
+[<a href="../../fi/dep/nummod.html">fi</a>]
+
+[<a href="../../fr/dep/nummod.html">fr</a>]
+
+[<a href="../../fro/dep/nummod.html">fro</a>]
+
+[<a href="../../ga/dep/nummod.html">ga</a>]
+
+[<a href="../../gsw/dep/nummod.html">gsw</a>]
+
+[<a href="../../hbo/dep/nummod.html">hbo</a>]
+
+[<a href="../../hy/dep/nummod.html">hy</a>]
+
+[<a href="../../it/dep/nummod.html">it</a>]
+
+[<a href="../../ja/dep/nummod.html">ja</a>]
+
+[<a href="../../ka/dep/nummod.html">ka</a>]
+
+[<a href="../../kk/dep/nummod.html">kk</a>]
+
+[<a href="../../ky/dep/nummod.html">ky</a>]
+
+[<a href="../../naq/dep/nummod.html">naq</a>]
+
+[<a href="../../no/dep/nummod.html">no</a>]
+
+[<a href="../../pcm/dep/nummod.html">pcm</a>]
+
+[<a href="../../pt/dep/nummod.html">pt</a>]
+
+[<a href="../../qpm/dep/nummod.html">qpm</a>]
+
+[<a href="../../ro/dep/nummod.html">ro</a>]
+
+[<a href="../../ru/dep/nummod.html">ru</a>]
+
+[<a href="../../sl/dep/nummod.html">sl</a>]
+
+[<a href="../../ssp/dep/nummod.html">ssp</a>]
+
+[<a href="../../sv/dep/nummod.html">sv</a>]
+
+[<a href="../../swl/dep/nummod.html">swl</a>]
+
+[<a href="../../tr/dep/nummod.html">tr</a>]
+
+[<a href="../../u/dep/nummod.html">u</a>]
+
+[<a href="../../xcl/dep/nummod.html">xcl</a>]
+
+[<a href="../../yue/dep/nummod.html">yue</a>]
+
+[<a href="../../zh/dep/nummod.html">zh</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'lt';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
