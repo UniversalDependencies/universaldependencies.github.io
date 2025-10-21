@@ -81,7 +81,12 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
+<ul>
+  <li>In general, words are delimited by whitespace characters.</li>
+  <li>Tokens are written in Hebrew script with transliterations provided as metadata.</li>
+  <li>Hyphenated compounds are analyzed as one word – we do not split them.</li>
+  <li>Contracted words are analyzed as two separated tokens. Example(s): <em>tsum</em> = <em>tsu</em> + <em>dem</em>; <em>s’iz</em> = <em>es</em> + <em>iz</em></li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
@@ -92,7 +97,30 @@
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<ul>
+  <li>Yiddish uses all universal POS categories, except SYM.</li>
+  <li>The following words in Yiddish are particles and are tagged PART: <em>halevay</em> ‘if only’; <em>ni(sh)t</em> ‘not’; <em>sakh</em> used only in fixed expressions <em>a sakh</em> ‘many’, <em>aza sakh</em> ‘so many’, and <em>keyn sakh</em> ‘not many’; the question particle <em>tsi</em>; and the infinitive marker <em>tsu</em> ‘to’</li>
+  <li>In general, words that inflect for gender to agree with a modified noun are tagged DET (e.g., <em>der/di/dos</em> ‘the’, <em>yeder</em> ‘each’). The class of possessive adjectives are tagged DET, even though they do not inflect for gender in prenominal position. When used as a noun or in constructions such as <em>mayner a khaver</em> ‘a friend of mine’, they are tagged PRON.</li>
+  <li>The Yiddish auxiliaries are:
+    <ul>
+      <li><em>zayn</em> ‘be’ for past tense of some verbs and as a copula</li>
+      <li><em>hobn</em> ‘have’ for past tense of most verbs</li>
+      <li><em>veln</em> ‘will’ for future tense</li>
+      <li><em>vern</em> ‘become’ for passive voice</li>
+      <li><em>volt</em> for conditional</li>
+      <li>modal verbs: <em>darfn</em> ‘need’, <em>zoln</em> ‘should’, <em>muzn</em> ‘must’, <em>kern</em> ‘ought, might’, <em>torn</em> + <em>nit</em> ‘ought not’, <em>megn</em> ‘may’, <em>kenen</em> ‘can’, <em>veln</em> ‘want’, <em>flegn</em> with zero-inflection in 3SG ‘used to’</li>
+      <li>The verbs <em>hobn</em>, <em>vern</em>, <em>darfn</em>, <em>kenen</em>, <em>veln</em> can occur as normal verbs. <em>zayn</em> in periphrastic verbs is tagged VERB.</li>
+    </ul>
+  </li>
+  <li>The (de)verbal forms and their tags are as follows:
+    <ul>
+      <li>Infinitive, VERB or AUX</li>
+      <li>Finite verb, VERB or AUX</li>
+      <li>Participle, VERB, AUX, or ADJ</li>
+      <li>Verbs used as nonus are tagged VERB, including infinitive forms preceded by a definite article (e.g., <em>dos trinken</em>  ‘drinking’) and verbal stems preceded by an indefinite article in the stem construction (e.g., <em>a kuk ton/gebn</em> ‘to look’)</li>
+    </ul>
+  </li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
@@ -101,7 +129,9 @@
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
+<ul>
+  <li>Morphological features are not provided at this time.</li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
@@ -110,7 +140,29 @@
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h3 id="relations-overview">Relations Overview</h3>
+<ul>
+  <li>The following relation subtypes are used in Yiddish:
+    <ul>
+      <li>acl:relcl for adnominal relative clauses</li>
+      <li>advcl:relcl for relative clauses whose antecedent is a clause</li>
+      <li>aux:pass for passive auxiliaries</li>
+      <li>compound:lvc for periphrastic verbs</li>
+      <li>compound:prt for separable verb prefixes</li>
+      <li>csubj:pass for clausal subjects of passive verbs</li>
+      <li>det:poss for possessive adjectives</li>
+      <li>expl:pv for reflexive clitics of inherently reflexive verbs</li>
+      <li>flat:foreign for foreign expressions</li>
+      <li>flat:name for multi-word proper noun</li>
+      <li>nmod:poss for possessive modifier phrases</li>
+      <li>nsubj:outer for subject of copular clause whose predicate is also a clause</li>
+      <li>nsubj:pass for nominal subjects of passive verbs</li>
+      <li>obl:agent for agents of passive verbs</li>
+      <li>obl:arg for dative objects</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
@@ -119,11 +171,10 @@
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/yi-comparison.html">N</a> Yiddish UD treebanks:</p>
+<p>There is <a href="../treebanks/yi-comparison.html">one</a> Yiddish UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/yi_a/index.html">Yiddish-A</a></li>
-  <li><a href="../treebanks/yi_b/index.html">Yiddish-B</a></li>
+  <li><a href="../treebanks/yi_yitb/index.html">Yiddish-YiTB</a></li>
 </ul>
 
 <hr />
