@@ -38,7 +38,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-wuu">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_wuu/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_wuu/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -79,59 +79,102 @@
         </script>
         <h1 id="ud-for-shanghainese-">UD for Shanghainese <span class="flagspan"><img class="flag" src="../../flags/svg/CN.svg" /></span></h1>
 
+<p>Shanghainese is grammatically very similar to Mandarin Chinese (see <a href="/zh/index.html">Chinese UD</a>), with differences being primarily lexical. Therefore, this documentation is not exhaustive; it only highlights the differences from the Chinese UD guidelines. If a topic is not specifically addressed here, please refer to and apply the rules from the Chinese UD.</p>
+
+<p>Lacking a standardised orthography and with the nature of primarily colloquial usage, a same Shanghainese word may be transcribed in multiple different Chinese characters. This documentation aims to list out as many verions as possible for a decent coverage.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>The principles of the <a href="https://doi.org/10.1017/S135132490400364X">Penn Chinese Trebank</a> are followed.</li>
+  <li>Function words are treated as separate tokens, even when phonologically or morphologically attached to verbs. These include items such as 了 <em>leh</em>, marking the perfective aspect, and 勒 <em>leh</em>, indicating the continuation of an action.</li>
+  <li>Combined use of sentence-final particles are treated as a single token, unless they are syntactically different (e.g., one indicating the end of a sentence and the other one marking a question).</li>
+  <li>Negators include 勿 <em>veh</em> (also 伐, 弗) and 没 <em>meh</em>. They are not separated from the token if:
+    <ul>
+      <li>They are an integrated part of the word, which is very common.</li>
+      <li>It is difficult to find an “original form” of a negated word in Shanghainese (there is not always a corresponding word).</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Shanghainese includes 15 universal POS tags, currently excluding <a href="">SYM</a> and <a href="">X</a>.</li>
+  <li>Particles (<a href="">PART</a>, see also <a href="/zh/pos/PART.html"><code class="language-plaintext highlighter-rouge">PART</code> in Chinese UD</a>):
+    <ul>
+      <li>Mandarin Chinese particles 的 <em>de</em>, 地 <em>de</em>, and 得 <em>de</em> exactly correspond to a same multifunctional Shanghainese particle in 个 <em>eh</em> (also transcribed as 呃, 额) that functions as a genitive, relativiser, nominaliser, or adverbialiser.
+        <ul>
+          <li>The character 个 <em>eh</em> can also be a classifier, which follows the same usage in Mandarin and is thus not a particle in such case.</li>
+        </ul>
+      </li>
+      <li>Shanghainese sentence-final particles include 伐 <em>vah</em>, 了 <em>leh</em> (also 嘞), and 啦 <em>‘la</em>. Combined use is also very common in Shanghainese, especially in rhetorical questions (such as 伐啦 <em>veh ‘la</em>).</li>
+    </ul>
+  </li>
+  <li>Nouns (<a href="">NOUN</a>, see also <a href="/zh/pos/NOUN.html"><code class="language-plaintext highlighter-rouge">NOUN</code> in Chinese UD</a>):
+    <ul>
+      <li>Words tagged as <a href="">NOUN</a> include regular nouns, classifiers, temporal nouns, position words, and localisers.</li>
+      <li>Temporal nouns, despite typically being the adjunct of verbs, are always tagged as a noun.</li>
+    </ul>
+  </li>
+  <li>Pronouns (<a href="">PRON</a>, see also <a href="/zh/pos/PRON.html"><code class="language-plaintext highlighter-rouge">PRON</code> in Chinese UD</a>):
+    <ul>
+      <li>Personal pronouns:
+        <ul>
+          <li>There are no polite forms of personal pronouns in Shanghainese.</li>
+          <li>吾 <em>ngu</em> (first singular)</li>
+          <li>阿拉 <em>ah ‘la</em> (first plural)</li>
+          <li>侬 <em>non</em> (second singular)</li>
+          <li>㑚 (also 拿) <em>na</em> (second plural)</li>
+          <li>渠 (also 伊) <em>yi</em> (third singular)</li>
+          <li>渠拉 (also 伊拉) <em>yi ‘la</em> (third plural)</li>
+          <li>Possessive case of the pronouns are constructed by appending 个 <em>eh</em> (genitive particle).</li>
+        </ul>
+      </li>
+      <li>Demonstrative pronouns:
+        <ul>
+          <li>There are two demonstrative pronouns in Shanghainese:
+            <ul>
+              <li>搿 (also 葛) <em>geh</em> “this/these” or “here”</li>
+              <li>埃 (also 伊) <em>i</em> “that/those” or “there”</li>
+            </ul>
+          </li>
+          <li>They also form derived forms: 搿搭 <em>geh teh</em> “here”, 埃搭 <em>i teh</em> “there”, and 埃面搭 <em>i mie teh</em> “there”.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>All other tagging rules are the same as Mandarin Chinese.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<p>Additional features are currently not included.</p>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Shanghainese syntax is essentially the same as <a href="/zh/index.html#syntax">Chinese syntax</a>.</li>
+  <li>Oblique nominal (<a href="">obl</a>, see also <a href="/zh/dep/obl.html"><code class="language-plaintext highlighter-rouge">obl</code> in Chinese UD</a>)
+    <ul>
+      <li>Shanghainese 被 <em>be</em> corresponds to the same Mandarin word 被 <em>bei</em>. See <a href="/zh/dep/obl-agent.html"><code class="language-plaintext highlighter-rouge">obl:agent</code> in Chinese UD</a>.</li>
+      <li>Mandarin word 把 <em>ba</em> corresponds to Shanghainese 拿 <em>no</em> and 帮 <em>paon</em> . See <a href="/zh/dep/obl-patient.html"><code class="language-plaintext highlighter-rouge">obl:patient</code> in Chinese UD</a>.</li>
+    </ul>
+  </li>
+  <li>Relation subtypes are currently not considered.</li>
+  <li>34 relation types are present, excluding <a href="">expl</a>, <a href="">list</a>, and <a href="">fixed</a>.</li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/wuu-comparison.html">N</a> Shanghainese UD treebanks:</p>
+<p>There is only one Shanghainese UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/wuu_a/index.html">Shanghainese-A</a></li>
-  <li><a href="../treebanks/wuu_b/index.html">Shanghainese-B</a></li>
+  <li><a href="../treebanks/wuu_shud/index.html">Shanghainese-ShUD</a></li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
