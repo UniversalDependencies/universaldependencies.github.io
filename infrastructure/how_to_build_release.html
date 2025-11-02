@@ -120,7 +120,7 @@ and check whether the treebanks are valid (prerequisite: all UD repositories are
 on the validation server <code class="language-plaintext highlighter-rouge">quest.ms.mff.cuni.cz</code>).
 It will also collect information such as the list of contributors (we need this metadata for Lindat).</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  tools/check_release.pl <span class="nt">--release</span> 2.16 <span class="nt">--next-expected</span> <span class="s1">'November 2025'</span> <span class="nt">--oldpath</span> /net/data/universal-dependencies-2.15 |&amp; <span class="nb">tee </span>release-2.16-report.txt | less
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  tools/check_release.pl <span class="nt">--release</span> 2.17 <span class="nt">--next-expected</span> <span class="s1">'May 2026'</span> <span class="nt">--oldpath</span> /net/data/universal-dependencies-2.16 |&amp; <span class="nb">tee </span>release-2.17-report.txt | less
 </code></pre></div>    </div>
   </li>
   <li>Freeze the list of treebanks that will be released (i.e., contain valid data).
@@ -163,7 +163,7 @@ and remove those exceptions:</p>
     <p>Save the list of the released treebanks in <a href="https://github.com/UniversalDependencies/docs-automation/blob/master/valdan/releases.json">valdan/releases.json</a>
 by running</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docs-automation/valdan/save-release-json.pl <span class="nt">--json</span> docs-automation/valdan/releases.json <span class="nt">--releasenum</span> 2.16 <span class="nt">--releasedate</span> 2025-05-15 <span class="si">$(</span><span class="nb">cat </span>released_treebanks.txt<span class="si">)</span> <span class="p">;</span> <span class="nb">cd </span>docs-automation <span class="p">;</span> git commit <span class="nt">-a</span> <span class="nt">-m</span> <span class="s1">'Updated release list.'</span> <span class="p">;</span> git push <span class="p">;</span> <span class="nb">cd</span> ..
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docs-automation/valdan/save-release-json.pl <span class="nt">--json</span> docs-automation/valdan/releases.json <span class="nt">--releasenum</span> 2.17 <span class="nt">--releasedate</span> 2025-11-15 <span class="si">$(</span><span class="nb">cat </span>released_treebanks.txt<span class="si">)</span> <span class="p">;</span> <span class="nb">cd </span>docs-automation <span class="p">;</span> git commit <span class="nt">-a</span> <span class="nt">-m</span> <span class="s1">'Updated release list.'</span> <span class="p">;</span> git push <span class="p">;</span> <span class="nb">cd</span> ..
 </code></pre></div>    </div>
 
     <p>Note that if a treebank was renamed between the last two releases, it must be entered manually in a separate structure in <code class="language-plaintext highlighter-rouge">releases.json</code> before running the script!</p>
@@ -209,7 +209,7 @@ branch but not in the <code class="language-plaintext highlighter-rouge">dev</co
   <li>Run the script that refreshes the title page of Universal Dependencies (list of languages, treebanks and their properties).<br />
 <code>cd docs ; git pull --no-edit ; cd ../docs-automation ; git pull --no-edit ; make all ; cd ../docs ; git commit -a -m 'Updated title page.' ; git push ; cd ..</code></li>
   <li>Run the <code class="language-plaintext highlighter-rouge">conllu-stats.pl</code> script again (but with different settings) and generate the long statistics that are displayed in the docs; note that the script takes the release number as a parameter and puts it in the generated index page:<br />
-<code>cd docs ; git pull --no-edit ; cd .. ; for i in $(cat released_treebanks.txt) ; do echo $i ; tools/conllu-stats.pl --oformat newdetailed --release 2.16 --treebank $i --docs docs ; echo ; done ; cd docs ; git add treebanks/*/*.md ; git commit -m 'Updated statistics.' ; git push ; cd ..</code></li>
+<code>cd docs ; git pull --no-edit ; cd .. ; for i in $(cat released_treebanks.txt) ; do echo $i ; tools/conllu-stats.pl --oformat newdetailed --release 2.17 --treebank $i --docs docs ; echo ; done ; cd docs ; git add treebanks/*/*.md ; git commit -m 'Updated statistics.' ; git push ; cd ..</code></li>
   <li>Generate side-by-side comparison whenever there are multiple treebanks of one language:<br />
 <code>perl tools/generate_comparison_of_treebanks.pl $(cat released_treebanks.txt) ; cd docs ; git add treebanks/*-comparison.md ; git commit -m 'Updated comparison of treebanks.' ; git push ; cd ..</code></li>
   <li>Run two other scripts that generate the lists of language-specific features and dependency
@@ -222,13 +222,13 @@ cd docs ; git pull --no-edit ; git status ; git commit -a -m 'Updated list of fe
   <li>Run the script <code class="language-plaintext highlighter-rouge">makedata.sh</code> in the docs repository. It will regenerate the YAML files in the folder <code class="language-plaintext highlighter-rouge">_data</code>; this is needed
 for cross-lingual links between documentation pages devoted to individual UPOS tags, features and relations.<br />
 <code>cd docs ; ./makedata.sh ; git commit -a -m 'Updated crosslingual links.' ; git push ; cd ..</code><br /></li>
-  <li>Tag the current commit in all repositories including docs with the tag of the current release (<code class="language-plaintext highlighter-rouge">git tag r2.16</code> for UD 2.16).
+  <li>Tag the current commit in all repositories including docs with the tag of the current release (<code class="language-plaintext highlighter-rouge">git tag r2.17</code> for UD 2.17).
 Push the tag to Github: <code class="language-plaintext highlighter-rouge">git push origin --tags</code>.
 You may even tag a particular commit retroactively: <code class="language-plaintext highlighter-rouge">git tag -a r2.1 9fceb02</code>.
 If the repository is updated after you assigned the tag and you need to re-assign the tag to a newer commit,
 this is how you remove the tag from where it is now: <code class="language-plaintext highlighter-rouge">git tag -d r2.1</code>.
 And this is how you remove it from Github: <code class="language-plaintext highlighter-rouge">git push origin :refs/tags/r2.1</code>.<br />
-<code>for i in $(cat released_treebanks.txt) docs tools ; do echo $i ; cd $i ; git tag r2.16 ; git push --tags ; cd .. ; echo ; done</code></li>
+<code>for i in $(cat released_treebanks.txt) docs tools ; do echo $i ; cd $i ; git tag r2.17 ; git push --tags ; cd .. ; echo ; done</code></li>
 </ul>
 
 <h2 id="releasing-the-data">Releasing the data</h2>
@@ -236,14 +236,14 @@ And this is how you remove it from Github: <code class="language-plaintext highl
 <ul>
   <li>Run the script <tt>tools/package_ud_release.sh</tt>, which must find the release number in the environment,
 and its arguments are names of folders to be released.<br />
-<code>RELEASE=2.16 tools/package_ud_release.sh $(cat released_treebanks.txt)</code>
+<code>RELEASE=2.17 tools/package_ud_release.sh $(cat released_treebanks.txt)</code>
     <ul>
       <li>If there are new treebanks that have too large training data that must be split to multiple files on GitHub
 (we know it because we had to add a new exception in the function <code class="language-plaintext highlighter-rouge">check_files()</code> in <code class="language-plaintext highlighter-rouge">udlib.pm</code>),
 we must first edit the script <code class="language-plaintext highlighter-rouge">package_ud_release.sh</code> and make sure that these files are concatenated
 in the release package.</li>
       <li>If we later find out that we need to fix a bug in one (or a few) repository, we can update the release folder without building everything from scratch:<br />
-<code>RELEASE=2.16 tools/package_ud_release.sh --update UD_X UD_Y</code></li>
+<code>RELEASE=2.17 tools/package_ud_release.sh --update UD_X UD_Y</code></li>
     </ul>
   </li>
   <li>Make the release packages temporarily available for download somewhere and ask the treebank providers to check them before we archive them in Lindat.</li>
@@ -253,7 +253,7 @@ Tell Maarten Janssen that he can start importing the data to TEITOK.</li>
 and the README file there.
 (!!! this needs to be updated for the new version of Lindat:
 Licence pak patrej sem - https://github.com/ufal/dspace-angular/tree/clarin-v7/src/static-files postup v zasade stejnej, jen je to jinej gitovej repozitar a uz tam neni to xmlko.
-Ten github je ted malinko pozadu za tim co mame realne nasazeny (tak v tech zdrojacich aktualne treba nevidis ud-2.16 i kdyz je dostupna https://lindat.mff.cuni.cz/repository/static/license-ud-2.16)
+Ten github je ted malinko pozadu za tim co mame realne nasazeny (tak v tech zdrojacich aktualne treba nevidis ud-2.17 i kdyz je dostupna https://lindat.mff.cuni.cz/repository/static/license-ud-2.17)
 !!!)
 The script <tt>generate_license_for_lindat.pl</tt> can be invoked from the parent folder
 and it will create a HTML and a XML file in the LICENSE folder. Add and push the files to the LICENSE repository,
@@ -293,11 +293,11 @@ locate the function <code class="language-plaintext highlighter-rouge">get_timer
 
 # Check that Treex knows all new language codes (the script will say what to do if not).
 # Then copy the new release from Dan's workspace to /net/data/universal-dependencies-2.xx.
-$HAMLEDT/release_ud_ufal.pl --release 2.16
+$HAMLEDT/release_ud_ufal.pl --release 2.17
 
 # Import the data to PML-TQ.
 cd $HAMLEDT
-perl ./populate_ud.pl 2.16
+perl ./populate_ud.pl 2.17
 cd normalize
 make clean
 make qpmltq
