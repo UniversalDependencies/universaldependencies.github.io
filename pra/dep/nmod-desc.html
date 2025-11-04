@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>nmod:desc</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://cse.google.com/cse/business/settings?cx=001145188882102106025:dl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script> -->
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-pra">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pra/dep/nmod-desc.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h2><code>nmod:desc</code>: descriptor modifier in nominal</h2>
+
+<p>** IMPLEMENTATION IN PROGRESS **</p>
+
+<p>This relation subtype applies to nominal modifiers that we term <strong>descriptors</strong>.
+These are bare nominals that occur in or with a name, and are not prepositional/possessive
+or part of the English compound construction.
+For <a href="#personal-names">personal names</a>, titles and role descriptions are a prime example.
+<a href="#business-names">Business names</a> may include descriptors like <em>Inc.</em>
+Semantically, a descriptor assigns a referent to a class or may disambiguate the referent
+where the main part of a proper name is not a sufficiently unique identifier.
+Crucially, omitting the descriptor does not affect the grammaticality of the expression
+(and does not come across as an abbreviation of the full name).</p>
+
+<p>Descriptors are bare modifiers (i.e. the descriptor noun lacks a determiner, possessive, or numeral).
+This distinguishes them from appositives: the <a href="">appos</a> relation holds between two <em>full</em> nominals.
+In principle, descriptors are a special case of <a href="">nmod:unmarked</a>.</p>
+
+<h2 id="personal-names">Personal Names</h2>
+
+<p>One descriptor construction is the pre- or postmodification of a personal name with a (bare nominal) role or title:</p>
+
+<p>** NOTE: we need to standardize UPOS. <a href="">SYM</a> says that Dr. and Mr. are NOUN but in English treebanks they are predominantly PROPN. **</p>
+
+<pre><code class="language-sdparse">Mr./NOUN Magoo/PROPN
+nmod:desc(Magoo, Mr.)
+</code></pre>
+
+<pre><code class="language-sdparse">Professor/NOUN Charles/PROPN J./PROPN Fillmore/PROPN , Ph.D./PROPN
+nmod:desc(Charles, Professor)
+flat(Charles, J.)
+flat(Charles, Fillmore)
+nmod:desc(Charles, Ph.D.)
+</code></pre>
+
+<pre><code class="language-sdparse">actor and social activist Martin Sheen
+nmod:desc(Martin, actor)
+conj(actor, activist)
+cc(activist, and)
+amod(activist, social)
+flat(Martin, Sheen)
+</code></pre>
+
+<pre><code class="language-sdparse">friend of the pod Ron Klain
+nmod(friend, pod)
+nmod:desc(Ron, friend)
+flat(Ron, Klain)
+</code></pre>
+
+<p>A descriptor must be omissible, but not all omissible parts of a name are descriptors:
+if the main part of a name has multiple parts such that there are at least two plausible heads,
+<a href="">flat</a> is the appropriate choice, as is the case with the main parts of a personal name.</p>
+
+<p>Non-numeric generational suffixes are also <code class="language-plaintext highlighter-rouge">nmod:desc</code>
+(but see <a href="#numbered-entities">Numbered Entities</a> below):</p>
+
+<pre><code class="language-sdparse">JFK/PROPN Jr./PROPN
+nmod:desc(JFK, Jr.)
+</code></pre>
+
+<h2 id="business-names">Business Names</h2>
+
+<p>Corporate suffixes like <em>Inc.</em>, <em>Corp.</em>, and <em>LLC</em> (as well as their non-abbreviated forms)
+are considered optional descriptors as they are often omitted from the name of the company.
+Regardless of etymology, they are tagged <a href="">PROPN</a>.</p>
+
+<pre><code class="language-sdparse">Apple/PROPN Inc./PROPN
+nmod:desc(Apple, Inc.)
+</code></pre>
+
+<h2 id="complex-dates-and-addresses">Complex Dates and Addresses</h2>
+
+<p>These are considered to have time or place modifiers, and thus fall under <a href="">nmod:unmarked</a>.</p>
+
+<h2 id="idiosyncratic-name-patterns-analyzed-as-flat-expressions">Idiosyncratic Name Patterns Analyzed as Flat Expressions</h2>
+
+<p>In addition to the main parts of a personal name, further name patterns analyzed with <a href="">flat</a>
+rather than a headed construction are given below.
+Note that the morphosyntax of name patterns differs by language, with some exhibiting agreement
+(as a sign of head or modifier status) where it is lacking in English,
+so a flat analysis of an English expression may not hold for its translation into another language.</p>
+
+<h3 id="numbered-entities">Numbered Entities</h3>
+
+<p>When the name of a category combines with a (pseudo)number to form a name,
+and the number is serving as an identifier rather than as a quantifier, we use <a href="">flat</a>:<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></p>
+
+<pre><code class="language-sdparse">page/NOUN 394/NUM
+flat(page, 394)
+</code></pre>
+
+<pre><code class="language-sdparse">Route/PROPN 66/NUM
+flat(Route, 66)
+</code></pre>
+
+<pre><code class="language-sdparse">Room/PROPN B/PROPN
+flat(Room, B)
+</code></pre>
+
+<p>The “number X” construction also serves to clarify that a number is serving as an identifier;
+“number X” forms a flat expression that can be combined within a larger flat expression:</p>
+
+<pre><code class="language-sdparse">What is behind door/NOUN number/NOUN 3/NUM ?
+flat(door, number)
+flat(number, 3)
+</code></pre>
+
+<p>A product name that includes a model or version number is considered a flat expression:</p>
+
+<pre><code class="language-sdparse">Nikon/PROPN D7000/PROPN
+flat(Nikon, D7000)
+</code></pre>
+
+<pre><code class="language-sdparse">Firefox/PROPN 43/NUM
+flat(Firefox, 43)
+</code></pre>
+
+<pre><code class="language-sdparse">World/PROPN War/PROPN II/NUM
+flat(World, War)
+flat(World, II)
+</code></pre>
+
+<p>For simplicity, regnal/generational number suffixes are considered part of flat expressions
+just like version numbers, though they semantically resemble <a href="#personal-names"><em>Jr.</em> and <em>Sr.</em></a>:</p>
+
+<pre><code class="language-sdparse">Queen/PROPN Elizabeth/PROPN II/NUM
+nmod:desc(Elizabeth, Queen)
+flat(Elizabeth, II)
+</code></pre>
+
+<h3 id="place-names">Place names</h3>
+
+<p>We also use <a href="">flat</a> for toponyms/names of establishments where the noun representing the entity type comes first.
+This word order is anomalous relative to other English constructions such that
+tests for headedness are inconclusive:</p>
+
+<pre><code class="language-sdparse">Lake/PROPN Mead/PROPN
+flat(Lake, Mead)
+</code></pre>
+
+<pre><code class="language-sdparse">Mount/PROPN Everest/PROPN
+flat(Mount, Everest)
+</code></pre>
+
+<pre><code class="language-sdparse">Hotel/PROPN California/PROPN
+flat(Hotel, California)
+</code></pre>
+
+<p>By contrast, if the identificational part of the toponym precedes the entity type,
+this is analyzed as a regular right-headed <a href="">compound</a> dependency:</p>
+
+<pre><code class="language-sdparse">Mirror/PROPN Lake/PROPN
+compound(Lake, Mirror)
+</code></pre>
+
+<!-- Interlanguage links updated So 10. května 2025, 18:15:42 CEST -->
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>This is a departure from a guideline articulated previously: according to <a href="https://doi.org/10.1162/coli_a_00402">de Marneffe et al. (2021)</a>, p. 285, the (pseudo)number attaches as <a href="">nmod</a>, though the main point of that passage is to articulate why <a href="">nummod</a> is not appropriate (no rationale for headedness is presented). <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+nmod:desc in other languages:
+
+[<a href="../../en/dep/nmod-desc.html">en</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'pra';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
