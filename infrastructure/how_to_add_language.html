@@ -172,6 +172,8 @@ at all).</li>
 
 <h1 id="how-to-rename-a-treebank-in-ud">How to rename a treebank in UD</h1>
 
+<p><strong>NOTE: It may be better to require that LEGACY treebanks are fully VALID before they can be renamed (see below).</strong></p>
+
 <p>Normally, the names of the treebank repositories should be stable because the infrastructure depends on them
 (which is also partially illustrated by this section). However, between releases 2.1 and 2.2 we want to rename
 the repositories that were so far named only by language (e.g., UD_Czech) so that all repository names also
@@ -207,6 +209,9 @@ At the end of the hash denoted by this key, we need a new record in the followin
     <p>The release number identifying this record should be the last release where the treebank appeared under the old name.
 Skip this step if the renamed treebank has not been released yet.</p>
   </li>
+  <li>Open the file <code class="language-plaintext highlighter-rouge">valdan/dispensations.json</code>, locate validation dispensations granted to the old treebank name (if any)
+and replace the treebank with the new name. Or force the contributors to fix all errors before they are granted the
+name change.</li>
   <li>Go to one of the places where you have local clones of all UD repositories. Remove the old clone.
 Create a new clone under the new name. Check out the dev branch.</li>
   <li>Rename the data files in the dev branch (e.g. from “cs-ud-test.conllu” to “cs_pdt-ud-test.conllu”).</li>
