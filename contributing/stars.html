@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Contributing to UD</title>
+    <title>Star ranking of treebanks</title>
     <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -38,7 +38,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/contributing/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/contributing/stars.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -77,98 +77,51 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h1 id="how-to-contribute-to-ud">How to contribute to UD</h1>
+        <h1 id="star-ranking-of-treebanks">Star Ranking of Treebanks</h1>
 
-<h3 id="current-data">Current Data</h3>
+<p>Some languages have multiple treebanks in UD. They may differ along multiple dimensions: size, genre, corpus type
+(learner corpora, translations / parallel treebanks), dialect, time period, annotation detail and quality. All these
+factors are potentially important when a user is deciding which treebank(s) to use in their research. As a quick
+(and inevitably imperfect) help, some of the criteria are compiled into a numeric score that is presented for each
+released treebank on the homepage (0 to 5 stars; if you place your mouse over the stars, the numeric score will appear).</p>
 
-<ul>
-  <li><strong>Obtaining data:</strong> The latest official version of UD treebanks can be <a href="../download.html">downloaded</a> from LINDAT/CLARIN.
-If you prefer to access treebanks via GitHub repositories, make sure you work with the <strong>master</strong> branch, which corresponds to the latest official release.</li>
-</ul>
+<p><img src="/img/stars_example.png" alt="image" /></p>
 
-<h3 id="documentation-and-discussion">Documentation and Discussion</h3>
+<p>The score is computed using the script <code class="language-plaintext highlighter-rouge">evaluate_treebank.pl</code> from the
+<a href="https://github.com/UniversalDependencies/tools/blob/master/evaluate_treebank.pl">tools repository</a>.
+If you are wondering how the script arrived at the score of a particular treebank, you can inspect the file <code class="language-plaintext highlighter-rouge">eval.log</code>
+in the master branch of the treebank.</p>
 
-<ul>
-  <li>
-    <p><strong>Feedback and discussion:</strong> The <a href="https://github.com/universaldependencies/docs/issues">issue tracker</a> provides a forum for discussion of UD guidelines or treebanks.
-Any issues related to documentation and guidelines, even specific to one language, belong to the issue tracker of the docs repository.
-Issue trackers of individual treebank repositories should be used only to report bugs in those treebanks.
-You can also send an e-mail to the <a href="https://lists.uu.se/sympa/info/lingfil-ud">UD mailing list</a>; however, the list is primarily meant for announcements for data maintainers.</p>
-  </li>
-  <li><strong>Editing documentation</strong>
-    <ul>
-      <li><a href="/contributing/editing.html">How to edit documentation</a>
-        <ul>
-          <li><a href="/contributing/visualization.html">Embedded visualization of dependencies</a></li>
-          <li><a href="/contributing/editing.html#things-to-avoid">Things to avoid</a></li>
-        </ul>
-      </li>
-      <li><a href="/contributing/language_specific.html">Language-specific documentation requirements</a></li>
-    </ul>
-  </li>
-  <li><strong>Annotation guidelines</strong>
-    <ul>
-      <li><a href="/changes.html">Guidelines change history</a></li>
-      <li><a href="/guidelines.html">Current guidelines</a> (universal + language-specific)</li>
-    </ul>
-  </li>
-</ul>
+<p>The star ranking was implemented in February 2018 around the time when most UD treebanks were renamed to follow the
+naming scheme we keep until today (UD_Language-ACRONYM). Before that, we only used an ACRONYM if we had a second
+(third, fourth…) treebank of a language, but the first treebank still was named just UD_Language. Some users thought
+that this was the default/best treebank to use, which was not necessarily true. Therefore the core group decided that
+every UD treebank will have a short acronym after the language name, even if it is the only treebank of the language.
+But for languages where we had multiple treebanks, some users still asked us which treebank we would recommend. The
+answer obviously depends on what one wants to do with the treebank, so an advice from a human expert would have its
+advantages, but with growing number of languages and treebanks we could not know enough about all of them, so we felt
+we needed a numeric score that could be compiled automatically based on information provided by the treebank
+contributors and by statististics collected directly on the data. Training parsers was still considered an important
+use case for the treebanks in 2018, hence the size plays an important role in the score, but we wanted other criteria,
+in particular those that could at least indirectly reflect quality of the annotation (if we only wanted quantity, we
+could just order the treebanks by the number of tokens; but for example in some languages we knew that one treebank
+had morphological features annotated manually, while in the other treebank they were predicted by a tagging model;
+therefore, the former treebank was considered more trustworthy in that respect). The list of criteria and their weights
+were debated among the release task force for quite a while, and they could certainly be adjusted back and forth, but
+they will never be perfect.</p>
 
-<h3 id="contributing-data">Contributing Data</h3>
+<p>There are a few points that people should not forget if they are taking the rating too seriously:</p>
 
 <ul>
-  <li>
-    <p><strong>New contributions:</strong> If you want to start a treebank or contribute to a release, please see:</p>
-
-    <ul>
-      <li><a href="/contributing/how_to_start.html">Advice on how to start a new treebank</a></li>
-      <li><a href="/contributing/adding_language_treebank.html">Adding new language or treebank to UD</a></li>
-      <li><a href="/contributing/repository_files.html">Treebank repository and files</a></li>
-      <li><a href="/contributing/licensing.html">Licensing the data</a></li>
-      <li><a href="/contributing/validation.html">Validation</a>
-        <ul>
-          <li><a href="/contributing/validation-rules.html">Validation levels</a></li>
-        </ul>
-      </li>
-      <li><a href="/contributing/parallel.html">Parallel treebanks</a></li>
-      <li>More metadata. At present, the suggestions under this bullet are just proposals, not finalized guidelines. They may change any time!
-        <ul>
-          <li><a href="/contributing/genres.html">Better annotation of genres</a></li>
-        </ul>
-      </li>
-      <li><a href="/contributing/stars.html">Star ranking</a> of treebanks on the homepage</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Data corrections:</strong> If you do not want to commit to maintaining a treebank but you want to help fix
-a particular bug in the data, you can submit a pull request against the <strong>dev</strong> branch of its GitHub repository.
-<em>The master branch should not be modified as it is built automatically by the release pipeline.</em>
-Some UD treebanks are converted from a non-UD original and bugs must be fixed upstream in the original
-data or in the conversion procedure. Pull requests in the UD repository cannot be used but you can report
-the bug by creating an issue in the issue tracker of the treebank repository. To learn about the preferred way
-of fixing the treebank, look for “Contributing: here” or “Contributing: elsewhere” in the treebank’s README.</p>
-
-    <ul>
-      <li><a href="/contributing/correcting.html">Correcting errors in treebanks</a></li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Data validation:</strong> Every treebank must comply with general and language-specific validation rules in order to be included in the official release.
-The <a href="http://quest.ms.mff.cuni.cz/udvalidator/">on-line validation report</a> provides a dashboard with treebank statuses.
-The <a href="https://github.com/UniversalDependencies/tools/">tools repository</a> can be cloned for running validation locally (note that data in this repository
-is automatically updated based on the <a href="/contributing/language_specific.html#language-specific-lists-for-the-validator">language-specific lists</a>).</p>
-  </li>
+  <li>Never compare scores of treebanks from different languages.</li>
+  <li>The evaluating criteria try to assess a mix of quantity, quality, and diversity. Training parsers was considered as a use case, but not the only use case.</li>
+  <li>Different use cases may have different priorities. If you know what is important for you, you should study the README of the treebanks in the first place.</li>
+  <li>Each treebank is evaluated separately. Sometimes you might be able to combine a treebank with others
+(if you trust that their annotation is sufficiently similar, which is unfortunately not always granted),
+but the ranking makes no attempt at evaluating that. Evaluating one treebank is difficult enough.</li>
 </ul>
 
-<h1 id="email-list">Email list</h1>
-
-<p>Please consider subscribing to the <a href="https://lists.uu.se/sympa/info/lingfil-ud">UD mailing list</a>,
-<strong>especially if you are going to contribute data.</strong>
-Important announcements for the data providers are circulated through this list.</p>
-
-<h1 id="for-the-maintenance-crew">For the Maintenance Crew</h1>
-
-<p>Documentation of the infrastructure is <a href="/infrastructure/index.html">here</a>.</p>
+<p>For related discussion, see <a href="https://github.com/UniversalDependencies/docs/issues/691">issue #691</a>.</p>
 
       </div>
 
