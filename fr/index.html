@@ -80,6 +80,15 @@
         </script>
         <h1 id="ud-for-french-">UD for French <span class="flagspan"><img class="flag" src="../../flags/svg/FR.svg" /></span></h1>
 
+<p>In version 2.17, the French language is recorded with nine treebanks but two of them don’t contain modern French:</p>
+
+<ul>
+  <li><a href="../treebanks/fr_alts">UD_French-ALTS</a> contains data from the 16th century which is quite different from modern French.</li>
+  <li><a href="../treebanks/fr_poitevindivital">UD_French-PoitevinDIVITAL</a> contains data in Poitevin-Saintongeais (<a href="https://glottolog.org/resource/languoid/id/poit1241">Glottocode: poit1241</a>)</li>
+</ul>
+
+<p>The description below is relative to the seven modern French corpora.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
@@ -99,49 +108,380 @@ Note that <em>du</em> and <em>des</em> are ambiguous and can be split or not dep
 <p>This is an overview only. For more detailed discussion and examples, see the list of <a href="pos/index.html">French POS tags</a>
 and <a href="feat/index.html">French features</a>.</p>
 
+<p>French uses all 17 universal POS categories:</p>
 <ul>
-  <li>French uses all 17 universal POS categories:
+  <li>(<a href="">PART</a>) is used only in <strong>UD_French-ParTUT</strong> for the negation particule <em>ne</em> (which is annotated <code class="language-plaintext highlighter-rouge">ADV</code> in other treebanks) <a href="https://universal.grew.fr/?corpus_list=UD_French-GSD%402.17%2CUD_French-ParisStories%402.17%2CUD_French-ParTUT%402.17%2CUD_French-PUD%402.17%2CUD_French-Rhapsodie%402.17%2CUD_French-Sequoia%402.17%2CUD_French-FQB%402.17&amp;request=pattern { X [form=&quot;ne&quot;] }&amp;clust1_key=X.upos">Grew-match</a></li>
+  <li>All French corpora have just five auxiliary verb (<a href="">AUX</a>) (<a href="https://universal.grew.fr/?corpus_list=UD_French-GSD%402.17%2CUD_French-ParisStories%402.17%2CUD_French-ParTUT%402.17%2CUD_French-PUD%402.17%2CUD_French-Rhapsodie%402.17%2CUD_French-Sequoia%402.17%2CUD_French-FQB%402.17&amp;request=pattern { X [upos=AUX] }&amp;clust1_key=X.lemma">Grew-match</a>)
     <ul>
-      <li>(<a href="">PART</a>) is used only in <strong>UD_French-ParTUT</strong> for the negation particule <em>ne</em> (which is annotated <code class="language-plaintext highlighter-rouge">ADV</code> in other treebanks).</li>
-      <li>All French corpora has just three auxiliary verb (<a href="">AUX</a>)
-        <ul>
-          <li><em>être</em> (to be) is used as a copule, as a tense auxiliary and as a passive auxiliary,</li>
-          <li><em>avoir</em> (to have) is used as a tense auxiliary,</li>
-          <li><em>faire</em> (to make) is used in causative constructions.</li>
-        </ul>
-      </li>
+      <li><em>être</em> (to be) is used as a copule, as a tense auxiliary and as a passive auxiliary</li>
+      <li><em>avoir</em> (to have) is used as a tense auxiliary</li>
+      <li><em>faire</em> (to make) and <em>refaire</em> (to make again) are used in causative constructions</li>
+      <li><em>voir</em> (to see) in the specific construction <em>se voir</em></li>
     </ul>
   </li>
 </ul>
 
-<h3 id="features">Features</h3>
+<h3 id="nominal-features">Nominal Features</h3>
 
 <ul>
-  <li>TODO (see <a href="feat/index.html">French features</a>).</li>
+  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and <a href="">PRON</a>) have an inherent <a href="">Gender</a> feature with one of two values: <code class="language-plaintext highlighter-rouge">Masc</code> or <code class="language-plaintext highlighter-rouge">Fem</code>.</li>
+  <li>The two values of the <a href="">Number</a> feature are <code class="language-plaintext highlighter-rouge">Sing</code> and <code class="language-plaintext highlighter-rouge">Plur</code>. The following parts of speech inflect for number:
+<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">ADJ</a>, <a href="">DET</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite and participles).</li>
+  <li><a href="">Case</a> has 4 possible values: <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Dat</code>, <code class="language-plaintext highlighter-rouge">Acc</code>, <code class="language-plaintext highlighter-rouge">Com</code>.
+It occurs only with personal pronouns (<a href="">PRON</a>).
+The “case” (i.e., role w.r.t. predicates or other phrases) of other nominals is expressed using prepositions, not morphologically.</li>
+  <li><a href="">Definite</a> has 2 values: <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Def</code>. It is used to distinguish the indefinite and definite articles (<a href="">DET</a>).</li>
 </ul>
+
+<h3 id="polarity">Polarity</h3>
+
+<ul>
+  <li><a href="">Polarity</a> is used only the <code class="language-plaintext highlighter-rouge">Neg</code> value to mark the negative adverbs <em>ne</em>, <em>pas</em>, <em>plus</em>, <em>jamais</em>.</li>
+</ul>
+
+<h3 id="verbal-features">Verbal Features</h3>
+
+<ul>
+  <li>Infinitives have only the <code class="language-plaintext highlighter-rouge">VerbForm=Inf</code> feature.</li>
+  <li>Finite verbs always have one of four values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Sub</code> and <code class="language-plaintext highlighter-rouge">Cnd</code>.</li>
+  <li>Finite verbs can have one of four values of <a href="">Tense</a>: <code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Pres</code>, <code class="language-plaintext highlighter-rouge">Fut</code>.</li>
+  <li>Past participles have <code class="language-plaintext highlighter-rouge">VerbForm=Part</code>, <code class="language-plaintext highlighter-rouge">Tense=Past</code>, <a href="">Gender</a> (<code class="language-plaintext highlighter-rouge">Masc</code> or <code class="language-plaintext highlighter-rouge">Fem</code>), and <a href="">Number</a> (<code class="language-plaintext highlighter-rouge">Sing</code> or <code class="language-plaintext highlighter-rouge">Plur</code>).</li>
+</ul>
+
+<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
+
+<ul>
+  <li><a href="">PronType</a> is used with pronouns (<a href="">PRON</a>) and determiners (<a href="">DET</a>).</li>
+  <li><a href="">NumType</a> is used with numerals (<a href="">NUM</a>) and adjectives (<a href="">ADJ</a>).</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Poss=Yes</code> feature marks possessive personal determiners (e.g. <em>mon</em> “my”),</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Reflex=Yes</code> feature is always used on <a href="">PRON</a> together with <code class="language-plaintext highlighter-rouge">PronType=Prs</code> and it marks reflexive pronouns (<em>me</em>, <em>te</em>, <em>se</em>, <em>nous</em>, <em>vous</em>).</li>
+  <li><a href="">Person</a> is a lexical feature of personal pronouns (<a href="">PRON</a>) and has three values, <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code> and <code class="language-plaintext highlighter-rouge">3</code>.
+Person is not marked on other types of pronouns and on nouns, although they can be almost always interpreted as the 3rd person.
+    <ul>
+      <li>As a cross-reference to subject, person is also marked on finite verbs (<a href="">VERB</a>, <a href="">AUX</a>).</li>
+    </ul>
+  </li>
+  <li><a href="../../u/overview/feat-layers.html">layered features</a> <a href="">Number[psor]</a> and <a href="">Person[psor]</a> are used on possessive personal determiners to indicate possessor related features.</li>
+</ul>
+
+<p>Note that since version 2.17, the four treebanks built from SUD (GSD, Sequoia, ParisStories and Rhapsodie) have used a more detailed feature system:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Number[cxtx]</code> and <code class="language-plaintext highlighter-rouge">Gender[cxtx]</code> when the corresponding feature is not morphologically marked but can be inferred from the context.</li>
+  <li><code class="language-plaintext highlighter-rouge">Number[lex]</code> and <code class="language-plaintext highlighter-rouge">Gender[lex]</code> when the corresponding feature is lexical and not morphological , such as the <a href="">Gender</a> of nouns</li>
+  <li><code class="language-plaintext highlighter-rouge">Tense[denom]</code>, which is used for denominative features (associated with <code class="language-plaintext highlighter-rouge">VerbForm=Part</code>).
+See the following paper for more details:
+    <blockquote>
+      <p>Sylvain Kahane, Bruno Guillaume, Léna Brun, and Simeng Song. 2025. <a href="https://aclanthology.org/2025.tlt-1.18/">Status of morphosyntactic features Illustration with written and spoken French UD treebanks</a>. In Proceedings of the 23rd International Workshop on Treebanks and Linguistic Theories (TLT, SyntaxFest 2025), pages 154–159, Ljubljana, Slovenia. Association for Computational Linguistics.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>See <a href="feat/index.html">French features</a>) for links.</p>
 
 <h2 id="syntax">Syntax</h2>
 
+<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="dep/index.html">French relations</a>.</p>
+
+<h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
+
 <ul>
-  <li>TODO (see <a href="dep/index.html">French relations</a>).</li>
+  <li>The dominant word order in French is SVO, but other word orders are also possible.</li>
+  <li>Nominal subject (<a href="">nsubj</a>) is a bare noun phrase without preposition.
+If it is a personal pronoun, it must be in the nominative form
+The morphology of a finite verb (or auxiliary) cross-references the person and number of its subject.</li>
+  <li>Direct nominal object (<a href="">obj</a>) is a bare noun phrase or a pronoun with accusative case.
+The accusative pronoun is a clitic and its position in the word order is fixed, the pronoun is before the verb (exept when <code class="language-plaintext highlighter-rouge">Mood=Imp</code>).</li>
+  <li>The relation <a href="">iobj</a> is used for indirect object when they are pronoun and they come with no preposition.</li>
+  <li>The relation <a href="">obl</a> for oblique argument is given with subtype <code class="language-plaintext highlighter-rouge">arg</code> or <code class="language-plaintext highlighter-rouge">mod</code> in most treebanks (see table below).</li>
 </ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+<p>The following relation subtypes are used in French:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Corpus</th>
+      <th>FQB</th>
+      <th>GSD</th>
+      <th>ParisStories</th>
+      <th>ParTUT</th>
+      <th>PUD</th>
+      <th>Rhapsodie</th>
+      <th>Sequoia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>acl:relcl</td>
+      <td>77</td>
+      <td>3240</td>
+      <td>310</td>
+      <td>301</td>
+      <td>227</td>
+      <td>507</td>
+      <td>520</td>
+    </tr>
+    <tr>
+      <td>advcl:cleft</td>
+      <td>17</td>
+      <td>212</td>
+      <td>40</td>
+      <td> </td>
+      <td> </td>
+      <td>78</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>aux:caus</td>
+      <td>3</td>
+      <td>250</td>
+      <td>16</td>
+      <td>13</td>
+      <td>9</td>
+      <td>27</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <td>aux:pass</td>
+      <td>247</td>
+      <td>3401</td>
+      <td>105</td>
+      <td>241</td>
+      <td>226</td>
+      <td>134</td>
+      <td>759</td>
+    </tr>
+    <tr>
+      <td>aux:tense</td>
+      <td>503</td>
+      <td>3837</td>
+      <td>1012</td>
+      <td> </td>
+      <td>568</td>
+      <td>492</td>
+      <td>948</td>
+    </tr>
+    <tr>
+      <td>csubj:pass</td>
+      <td> </td>
+      <td>26</td>
+      <td> </td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>dep:comp</td>
+      <td> </td>
+      <td>15</td>
+      <td>27</td>
+      <td> </td>
+      <td> </td>
+      <td>40</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>expl:comp</td>
+      <td>176</td>
+      <td>211</td>
+      <td>298</td>
+      <td> </td>
+      <td>28</td>
+      <td>293</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <td>expl:pass</td>
+      <td> </td>
+      <td>687</td>
+      <td>23</td>
+      <td> </td>
+      <td> </td>
+      <td>33</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <td>expl:pv</td>
+      <td> </td>
+      <td>1017</td>
+      <td>49</td>
+      <td> </td>
+      <td>2</td>
+      <td> </td>
+      <td>242</td>
+    </tr>
+    <tr>
+      <td>expl:subj</td>
+      <td>333</td>
+      <td>931</td>
+      <td>314</td>
+      <td> </td>
+      <td>83</td>
+      <td>425</td>
+      <td>237</td>
+    </tr>
+    <tr>
+      <td>flat:foreign</td>
+      <td>131</td>
+      <td>1075</td>
+      <td> </td>
+      <td>3</td>
+      <td>113</td>
+      <td>6</td>
+      <td>136</td>
+    </tr>
+    <tr>
+      <td>flat:name</td>
+      <td>581</td>
+      <td>7005</td>
+      <td>31</td>
+      <td>61</td>
+      <td>252</td>
+      <td>161</td>
+      <td>807</td>
+    </tr>
+    <tr>
+      <td>iobj:agent</td>
+      <td> </td>
+      <td>24</td>
+      <td>1</td>
+      <td>1</td>
+      <td> </td>
+      <td> </td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>nmod:appos</td>
+      <td> </td>
+      <td> </td>
+      <td>4</td>
+      <td> </td>
+      <td> </td>
+      <td>121</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>nsubj:caus</td>
+      <td>1</td>
+      <td>132</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>14</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <td>nsubj:outer</td>
+      <td> </td>
+      <td>23</td>
+      <td>23</td>
+      <td> </td>
+      <td> </td>
+      <td>14</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>nsubj:pass</td>
+      <td>240</td>
+      <td>3666</td>
+      <td>41</td>
+      <td>224</td>
+      <td>200</td>
+      <td>123</td>
+      <td>620</td>
+    </tr>
+    <tr>
+      <td>obj:agent</td>
+      <td> </td>
+      <td>111</td>
+      <td>3</td>
+      <td>9</td>
+      <td>4</td>
+      <td> </td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>obj:lvc</td>
+      <td> </td>
+      <td>554</td>
+      <td>84</td>
+      <td> </td>
+      <td> </td>
+      <td>68</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>obl:agent</td>
+      <td>30</td>
+      <td>1554</td>
+      <td>2</td>
+      <td>69</td>
+      <td>1</td>
+      <td>3</td>
+      <td>281</td>
+    </tr>
+    <tr>
+      <td>obl:arg</td>
+      <td>570</td>
+      <td>8670</td>
+      <td>508</td>
+      <td> </td>
+      <td>80</td>
+      <td>812</td>
+      <td>1608</td>
+    </tr>
+    <tr>
+      <td>obl:mod</td>
+      <td>611</td>
+      <td>15927</td>
+      <td>1057</td>
+      <td> </td>
+      <td>81</td>
+      <td>1118</td>
+      <td>2392</td>
+    </tr>
+    <tr>
+      <td>parataxis:insert</td>
+      <td> </td>
+      <td>183</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>15</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <td>parataxis:parenth</td>
+      <td> </td>
+      <td> </td>
+      <td>27</td>
+      <td> </td>
+      <td> </td>
+      <td>39</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/fr-comparison.html">eight</a> French UD treebanks:</p>
+<p>There are <a href="../treebanks/fr-comparison.html">nine</a> French UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/fr_partut">UD_French-ParTUT</a></li>
-  <li><a href="../treebanks/fr_gsd">UD_French-GSD</a></li>
-  <li><a href="../treebanks/fr_sequoia">UD_French-Sequoia</a></li>
+  <li><a href="../treebanks/fr_alts">UD_French-ALTS</a></li>
   <li><a href="../treebanks/fr_fqb">UD_French-FQB</a></li>
-  <li><a href="../treebanks/fr_rhapsodie">UD_French-Rhapsodie</a> (This treebank was named UD_French-Spoken until version 2.8)</li>
+  <li><a href="../treebanks/fr_gsd">UD_French-GSD</a></li>
   <li><a href="../treebanks/fr_parisstories">UD_French-ParisStories</a></li>
+  <li><a href="../treebanks/fr_partut">UD_French-ParTUT</a></li>
+  <li><a href="../treebanks/fr_poitevindivital">UD_French-PoitevinDIVITAL</a></li>
   <li><a href="../treebanks/fr_pud">UD_French-PUD</a></li>
-  <li><a href="../treebanks/fr_ftb">UD_French-FTB</a></li>
+  <li><a href="../treebanks/fr_rhapsodie">UD_French-Rhapsodie</a></li>
+  <li><a href="../treebanks/fr_sequoia">UD_French-Sequoia</a></li>
 </ul>
 
-<p>Note that the corpus UD_French-FTB was not updated since 2018 and may not follow the more rencent description given in these guidelines.</p>
+<p>Note that the <a href="../treebanks/fr_ftb">UD_French-FTB</a> was now retired because it was not updated to the latest validation contraints.</p>
 
       </div>
 
