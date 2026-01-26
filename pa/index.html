@@ -83,39 +83,196 @@
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
-  <li>Tokenize with whitespace and punctuation basically.</li>
-  <li>Compounds with hyphens should be split.</li>
-  <li>Some clitics have apostrophes at the beginning and could be written merged with the previous word (e.g. ‘ਚ “in”). These should be tokenized separately.</li>
+  <li>Compounds with hyphens are split.</li>
+  <li>Form and lemma of each token is mentioned. In many cases, form and the lemma are same (including punctuations).</li>
+  <li>Some clitics have apostrophes at the beginning and could be written merged with the previous word (e.g. ‘ਚ “in”). These should be tokenized separately. However, no instance noted in this specific treebank.</li>
+  <li>Parentheses and brackets are tokenized as punctuation and attached with punct to the nearest relevant head, often the predicate of the main clause.</li>
 </ul>
 
 <h2 id="morphology">Morphology</h2>
 
-<h3 id="tags">Tags</h3>
+<h3 id="universal-parts-of-speech-upos">Universal Parts of Speech (UPOS)</h3>
 
 <ul>
-  <li>Use the full range of UPOS tags.</li>
-  <li>Aspectual light verbs should be tagged <a href="">VERB</a> since they take full inflectional paradigms.
+  <li>The following 15 UPOS tags are used:
     <ul>
-      <li>Pay special attention to ਜਾਣਾ “to go”,  which is usually <a href="">VERB</a> (including as a light verb) but <a href="">AUX</a> if it is passivising a verb.</li>
+      <li><code class="language-plaintext highlighter-rouge">ADJ, ADP, ADV, AUX, CCONJ, DET, INTJ, NOUN, NUM, PART, PRON, PROPN, PUNCT, SCONJ, VERB</code></li>
     </ul>
   </li>
 </ul>
 
-<h3 id="features">Features</h3>
+<h3 id="tags">Tags</h3>
 
 <ul>
-  <li>TBD</li>
+  <li>Aspectual light verbs are tagged <a href="">VERB</a> since they take full inflectional paradigms.
+    <ul>
+      <li>Pay special attention to ਜਾਣਾ “to go”,  which is usually <a href="">VERB</a> (including as a light verb) but <a href="">AUX</a> if it is passivising a verb.</li>
+    </ul>
+  </li>
+  <li>Copular ‘ਹੈ’ is tagged AUX and used as COP with nominal or adjectival predicates, where the predicate is the root. For example ‘ਇਹ ਸੀ ਅਜਗਰ ਦਾ ਬਾਹਰਲਾ ਚਿੱਤਰ।’ (lemma: ਸੀ -&gt; ਹੈ), where ‘ਚਿੱਤਰ’ is the root and ‘ਸੀ’ is COP.</li>
+  <li>The same lemma ‘ਹੈ’ is tagged AUX when the main predicate is verbal.</li>
+  <li>Negation like ‘ਨਾ / ਨਹੀਂ’ is tagged PART and often attaches as advmod to the predicate.</li>
 </ul>
+
+<h3 id="features">Features</h3>
+
+<p>Nominal and Verbal inflections are listed in the table below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Universal Feature</th>
+      <th>Feature</th>
+      <th>Observed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nominal</td>
+      <td>Case</td>
+      <td>Abl, Acc, Nom</td>
+    </tr>
+    <tr>
+      <td>Nominal</td>
+      <td>Degree</td>
+      <td>Pos</td>
+    </tr>
+    <tr>
+      <td>Nominal</td>
+      <td>Gender</td>
+      <td>Fem, Masc</td>
+    </tr>
+    <tr>
+      <td>Nominal</td>
+      <td>Number</td>
+      <td>Plur, Sing</td>
+    </tr>
+    <tr>
+      <td>Nominal</td>
+      <td>Person</td>
+      <td>1, 2, 3</td>
+    </tr>
+    <tr>
+      <td>Nominal</td>
+      <td>Poss</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Nominal</td>
+      <td>PronType</td>
+      <td>Dem, Ind, Prs, Rel</td>
+    </tr>
+    <tr>
+      <td>Nominal</td>
+      <td>Reflex</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Verbal</td>
+      <td>Aspect</td>
+      <td>Imp, Perf</td>
+    </tr>
+    <tr>
+      <td>Verbal</td>
+      <td>Mood</td>
+      <td>Imp, Ind</td>
+    </tr>
+    <tr>
+      <td>Verbal</td>
+      <td>Polite</td>
+      <td>Form</td>
+    </tr>
+    <tr>
+      <td>Verbal</td>
+      <td>Tense</td>
+      <td>Fut, Past, Pres</td>
+    </tr>
+    <tr>
+      <td>Verbal</td>
+      <td>VerbForm</td>
+      <td>Fin, Inf, Part</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="syntax">Syntax</h2>
 
+<h3 id="dependency-relations">Dependency Relations</h3>
+
+<p>The treebank uses the following dependency relations:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Relation type</th>
+      <th>Observed relations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Core clausal</td>
+      <td>root, nsub, obj, iobj, cop, aux, ccomp, xcomp</td>
+    </tr>
+    <tr>
+      <td>Adverbial</td>
+      <td>advcl, advmod, mark</td>
+    </tr>
+    <tr>
+      <td>Oblique</td>
+      <td>obl</td>
+    </tr>
+    <tr>
+      <td>Nominal modifiers</td>
+      <td>appos, amod, acl, nmod, nmod:poss, nummod, case, det</td>
+    </tr>
+    <tr>
+      <td>Coordination and punctuation</td>
+      <td>cc, conj, discourse, punct</td>
+    </tr>
+    <tr>
+      <td>compound</td>
+      <td>compound:lvc, compound:svc, fixed</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Core arguments and obliques:</p>
+
 <ul>
+  <li>nsubj, obj, and iobj are used for core arguments.</li>
+</ul>
+
+<p>Nominal modification:</p>
+
+<ul>
+  <li>amod, nmod, nmod:poss, det, nummod,</li>
+  <li>acl relation is used for clausal modifiers.</li>
+</ul>
+
+<p>Adverbials and subordination:</p>
+
+<ul>
+  <li>Word-level adverbials are related using advmod.</li>
+</ul>
+
+<p>Complementation:</p>
+
+<ul>
+  <li>For finite clausal complements ccomp is used and for open complements xcomp is used.</li>
+</ul>
+
+<p>Light and serial verbs:</p>
+
+<ul>
+  <li>Light-verb constructions are used to relate NOUN or ADJ or VERB + light verb → compound:lvc using the lexical term as head.</li>
+  <li>
+    <p>Serial-verb constructions are represented using the relationship compound:svc.</p>
+  </li>
   <li>Special relations:
     <ul>
       <li><a href="">acl:relcl</a> for relative adnominal clauses. These have to have a relative pronoun in them (otherwise just <a href="">acl</a>).</li>
-      <li><a href="">aux:pass</a> for passive auxiliary ਜਾਣਾ.</li>
+      <li><a href="">aux:pass</a> for passive auxiliary ਜਾਣਾ (marked advcl here).</li>
       <li><a href="">compound:lvc</a> for noun/adjective + verb constructions.</li>
-      <li><a href="">compound:redup</a> for reduplication.</li>
       <li><a href="">compound:svc</a> for aspectual light verbs.</li>
       <li><a href="">nsubj:pass</a> for passivized subjects.</li>
     </ul>
@@ -124,10 +281,12 @@
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/pa-comparison.html">1</a> Punjabi UD treebanks:</p>
+<p>There are <a href="../treebanks/pa-comparison.html">3</a> Punjabi UD treebanks:</p>
 
 <ul>
   <li><a href="../treebanks/pa_puntb/index.html">Punjabi-PunTB</a></li>
+  <li><a href="../treebanks/pa_cs/index.html">Punjabi-CS</a></li>
+  <li><a href="../treebanks/pa_rang/index.html">Punjabi-Rang</a></li>
 </ul>
 
       </div>
