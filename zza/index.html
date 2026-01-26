@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Zazaki UD</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-zza">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_zza/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="ud-for-zazaki-">UD for Zazaki <span class="flagspan"><img class="flag" src="../../flags/svg/IQ-KRD.svg" /></span></h1>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<p>The current Zazaki-ZSD treebank (200 sentences, 1440 syntactic words) contains 70 multiword tokens that are split into multiple syntactic words. Typical patterns are:</p>
+
+<ul>
+  <li>Noun + Ezafe, e.g. <strong>çarê</strong> → <em>çar</em> <code class="language-plaintext highlighter-rouge">NOUN</code> + <em>ê</em> <code class="language-plaintext highlighter-rouge">ADP</code>, <strong>dewa</strong> → <em>dew</em> <code class="language-plaintext highlighter-rouge">NOUN</code> + <em>a</em> <code class="language-plaintext highlighter-rouge">ADP</code> with a following possessor (<em>dewa ma</em> “our village”), adjective (<em>miletê kanî</em> “the old people”), or <code class="language-plaintext highlighter-rouge">MARK</code> in relative constructions.</li>
+  <li>Pronoun + directional particle in preverbs, e.g. <strong>pi-ro</strong> → <em>pi</em> <code class="language-plaintext highlighter-rouge">PRON</code> + <em>ro</em> <code class="language-plaintext highlighter-rouge">ADP</code>, with <em>ro</em> annotated as a verbal particle (<code class="language-plaintext highlighter-rouge">compound:prt</code>).</li>
+</ul>
+
+<p>Clitics are segmented as separate tokens and marked with full morphological features (Person, Number, Gender). Morphological affixes for case remain attached to their hosts.</p>
+
+<p>Adpositions remain host-attached but are written seperately.</p>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<p>Out of the 17 universal POS tags, all except <code class="language-plaintext highlighter-rouge">SYM</code> occur in the Zazaki-ZSD treebank. The following tags are attested:</p>
+
+<p><code class="language-plaintext highlighter-rouge">ADJ</code>, <code class="language-plaintext highlighter-rouge">ADP</code>, <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">AUX</code>, <code class="language-plaintext highlighter-rouge">CCONJ</code>, <code class="language-plaintext highlighter-rouge">DET</code>, <code class="language-plaintext highlighter-rouge">INTJ</code>, <code class="language-plaintext highlighter-rouge">NOUN</code>, <code class="language-plaintext highlighter-rouge">NUM</code>, <code class="language-plaintext highlighter-rouge">PART</code>, <code class="language-plaintext highlighter-rouge">PRON</code>, <code class="language-plaintext highlighter-rouge">PROPN</code>, <code class="language-plaintext highlighter-rouge">PUNCT</code>, <code class="language-plaintext highlighter-rouge">SCONJ</code>, <code class="language-plaintext highlighter-rouge">VERB</code>, <code class="language-plaintext highlighter-rouge">X</code>.</p>
+
+<p>The most frequent categories are <code class="language-plaintext highlighter-rouge">PUNCT</code> (312), <code class="language-plaintext highlighter-rouge">VERB</code> (241), <code class="language-plaintext highlighter-rouge">NOUN</code> (216), <code class="language-plaintext highlighter-rouge">PRON</code> (196), and <code class="language-plaintext highlighter-rouge">ADP</code> (186), reflecting the spoken, narrative nature of the corpus.</p>
+
+<p><strong>AUX vs. VERB</strong></p>
+
+<p>The tag <code class="language-plaintext highlighter-rouge">AUX</code> (40) is used exclusively for forms of the copular and auxiliary verb <em>bîyene</em> “to be”, both in copular clauses and in periphrastic constructions expressing existence (e.g., <em>est o</em>). All other verbal lexemes, including light verbs (<em>kerdene</em>, <em>vatene</em>, <em>kutene</em> etc.), are tagged as <code class="language-plaintext highlighter-rouge">VERB</code> (241).</p>
+
+<p><strong>ADP</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">ADP</code> may refer to proper pre-, post- and circumpositions like <em>de</em>, <em>ra</em>, <em>bi</em> (adposition type is not distinguished in the data), or to Ezafe particles in possessive constructions that are attached to the head noun with the relation <code class="language-plaintext highlighter-rouge">Case</code>. In the latter case, there is a distinction of <code class="language-plaintext highlighter-rouge">Gender</code>, <code class="language-plaintext highlighter-rouge">Number</code>, and <code class="language-plaintext highlighter-rouge">Case</code>.</p>
+
+<p><strong>PART</strong></p>
+
+<p>The tag <code class="language-plaintext highlighter-rouge">PART</code> (49 instances) is used mainly for discourse and pragmatic particles typical of spoken data, including fillers, attention markers, and pragmatic modifiers such as <em>yanî</em>, <em>îşte</em>, <em>ya</em>, and <em>hanî</em>. These particles are normally attached via <code class="language-plaintext highlighter-rouge">discourse</code>.</p>
+
+<p>Other uses include semantically devoid preverbal elements of complex verbs, such as <em>arê</em>  and <em>hes</em> (3 instances each). These particles are  attached via <code class="language-plaintext highlighter-rouge">compound:prt</code>.</p>
+
+<p><strong>INTJ</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">INTJ</code> (27 instances) is used for independent interjections, often occurring at clause boundaries or in repairs.</p>
+
+<p><strong>X and foreign material</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">X</code> is used in only 2 instances. It is restricted to clearly foreign lexical items. Foreign material is indicated by the feature <code class="language-plaintext highlighter-rouge">Foreign=Yes</code>. Foreign sequences are occasionally structured using <code class="language-plaintext highlighter-rouge">flat:foreign</code>.</p>
+
+<h3 id="features">Features</h3>
+
+<p>The following universal morphological features are attested in the Zazaki-ZSD treebank:</p>
+
+<p><strong>Nominal domain</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Gender</code>: <code class="language-plaintext highlighter-rouge">Masc</code>, <code class="language-plaintext highlighter-rouge">Fem</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Number</code>: <code class="language-plaintext highlighter-rouge">Sing</code>, <code class="language-plaintext highlighter-rouge">Plur</code></li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Case</code>: <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Acc</code><br />
+Since Zazakî has a bicasual system, <code class="language-plaintext highlighter-rouge">Nom</code> (24) stands for the direct case, whereas <code class="language-plaintext highlighter-rouge">Acc</code> (77) describes the oblique case. Case is only annotated if it is morphologically marked.</p>
+
+    <p>Case marking is mostly restricted to pronouns and a small number of nouns, determiners, and proper names.</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Definite</code>: <code class="language-plaintext highlighter-rouge">Ind</code></li>
+</ul>
+
+<p><strong>Pronominal features</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Person</code>: <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Number</code>: <code class="language-plaintext highlighter-rouge">Sing</code>, <code class="language-plaintext highlighter-rouge">Plur</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Gender</code>: <code class="language-plaintext highlighter-rouge">Masc</code>, <code class="language-plaintext highlighter-rouge">Fem</code></li>
+  <li><code class="language-plaintext highlighter-rouge">PronType</code>: <code class="language-plaintext highlighter-rouge">Prs</code>, <code class="language-plaintext highlighter-rouge">Dem</code>, <code class="language-plaintext highlighter-rouge">Int</code>, <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Rcp</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Reflex</code>: <code class="language-plaintext highlighter-rouge">Yes</code> (for the reflexive pronouns <em>xo</em>)</li>
+  <li><code class="language-plaintext highlighter-rouge">Animacy</code>: <code class="language-plaintext highlighter-rouge">Anim</code> 
+<code class="language-plaintext highlighter-rouge">Anim</code> (2 instances) is restricted to the d-form pronouns of Northern Zazakî.</li>
+</ul>
+
+<p><strong>Verbal domain</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Tense</code>: <code class="language-plaintext highlighter-rouge">Pres</code>, <code class="language-plaintext highlighter-rouge">Past</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Mood</code>: <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Sub</code>, <code class="language-plaintext highlighter-rouge">Imp</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Aspect</code>: <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Perf</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Polarity</code>: <code class="language-plaintext highlighter-rouge">Neg</code></li>
+  <li><code class="language-plaintext highlighter-rouge">VerbForm</code>: <code class="language-plaintext highlighter-rouge">Fin</code>, <code class="language-plaintext highlighter-rouge">Part</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Voice</code>: <code class="language-plaintext highlighter-rouge">Pass</code> (only in one instance)</li>
+</ul>
+
+<p><strong>Other features</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">NumType</code>: <code class="language-plaintext highlighter-rouge">Card</code> (for numerals)</li>
+  <li><code class="language-plaintext highlighter-rouge">Foreign</code>: <code class="language-plaintext highlighter-rouge">Yes</code> (for foreign or code-switched material)</li>
+</ul>
+
+<p>No language-specific features are introduced. Several features occur only marginally and should not be interpreted as fully systematic morphological categories in this version of the treebank.</p>
+
+<h2 id="syntax">Syntax</h2>
+
+<h3 id="core-arguments">Core arguments</h3>
+
+<p>Subjects of finite clauses are annotated with <code class="language-plaintext highlighter-rouge">nsubj</code>, regardless of morphological case marking. Zazakî exhibits predominantly SOV word order. However, as is expected, goals and recipients typically appear post-verbally. In addition, the spoken data shows some instances of afterthought or discourse particles that appear after the verb.</p>
+
+<p>Direct objects are annotated with <code class="language-plaintext highlighter-rouge">obj</code>, while indirect objects (<code class="language-plaintext highlighter-rouge">iobj</code>) occur only rarely with recipients. Oblique arguments and adjuncts are annotated with <code class="language-plaintext highlighter-rouge">obl</code>, often accompanied by an adposition marked with the relation <code class="language-plaintext highlighter-rouge">case</code>.</p>
+
+<h3 id="nominal-modification-and-possession">Nominal modification and possession</h3>
+
+<p>Possessive constructions are annotated with the relation <code class="language-plaintext highlighter-rouge">nmod:poss</code>. These constructions commonly correspond to Ezafe structures, where the Ezafe marker is annotated as <code class="language-plaintext highlighter-rouge">ADP</code> with the relation <code class="language-plaintext highlighter-rouge">case</code> attaching it to the head noun.</p>
+
+<p>Other nominal dependents are annotated using standard relations such as <code class="language-plaintext highlighter-rouge">amod</code>, <code class="language-plaintext highlighter-rouge">det</code>, <code class="language-plaintext highlighter-rouge">nummod</code>, <code class="language-plaintext highlighter-rouge">nmod</code>, and <code class="language-plaintext highlighter-rouge">appos</code>.</p>
+
+<p>Reduplicated forms are annotated with <code class="language-plaintext highlighter-rouge">compound:redup</code>.</p>
+
+<h3 id="light-verb-and-particle-constructions">Light verb and particle constructions</h3>
+
+<p>Light verb constructions are a productive syntactic pattern and are annotated using <code class="language-plaintext highlighter-rouge">compound:lvc</code>, linking a nominal element to a verbal head.</p>
+
+<p>Verbal particles and preverbs (e.g. <em>pi-ro</em>) are annotated with <code class="language-plaintext highlighter-rouge">compound:prt</code>.</p>
+
+<p>Asyndetic forms are annoted with <code class="language-plaintext highlighter-rouge">conj</code>.</p>
+
+<h3 id="clause-structure">Clause structure</h3>
+
+<p>Copular clauses use the relation <code class="language-plaintext highlighter-rouge">cop</code>, with the non-verbal predicate as the clause head and the copular auxiliary (<em>bîyene</em>) attached as a dependent.</p>
+
+<p>Finite clausal complements are annotated with <code class="language-plaintext highlighter-rouge">ccomp</code>, while non-finite or subject-controlled complements are annotated with <code class="language-plaintext highlighter-rouge">xcomp</code>.</p>
+
+<p>Adverbial clauses are annotated with <code class="language-plaintext highlighter-rouge">advcl</code> and are typically introduced by subordinators (<em>ke</em>) marked with the relation <code class="language-plaintext highlighter-rouge">mark</code>.</p>
+
+<p>Relative clauses are annotated with <code class="language-plaintext highlighter-rouge">acl:relcl</code>.</p>
+
+<h3 id="discourse-and-spoken-language-phenomena">Discourse and spoken-language phenomena</h3>
+
+<p>Given the conversational nature of the data, the treebank contains a rich set of discourse-related constructions. Discourse particles and fillers are attached with the relation <code class="language-plaintext highlighter-rouge">discourse</code> (74 instances).</p>
+
+<p>Repairs and false starts are annotated using <code class="language-plaintext highlighter-rouge">reparandum</code> (4 instances). Independent or loosely connected clauses are linked via <code class="language-plaintext highlighter-rouge">parataxis</code> (7).</p>
+
+<p>Left- and right-dislocated constituents are annotated with <code class="language-plaintext highlighter-rouge">dislocated</code> (6 instnaces), and direct forms of address use the relation <code class="language-plaintext highlighter-rouge">vocative</code> (5).</p>
+
+<h3 id="coordination">Coordination</h3>
+
+<p>Coordination is annotated using <code class="language-plaintext highlighter-rouge">conj</code> for conjuncts and asyndetic verbs, and <code class="language-plaintext highlighter-rouge">cc</code> for coordinating conjunctions. Punctuation is attached using <code class="language-plaintext highlighter-rouge">punct</code> to the most relevant syntactic head.</p>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is 1 Zazaki UD treebank:</p>
+
+<ul>
+  <li><a href="../treebanks/zza_zsd/index.html">Zazaki-ZSD</a></li>
+</ul>
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'zza';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
