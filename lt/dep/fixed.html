@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>case</title>
+    <title>fixed</title>
     <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -39,7 +39,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-lt">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_lt/dep/case.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_lt/dep/fixed.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -78,137 +78,138 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>case</code>: case marking</h2>
+        <h2><code>fixed</code>: multi-word expression</h2>
 
-<p>The <code class="language-plaintext highlighter-rouge">case</code> relation is used for any case-marking element which is treated as a separate syntactic word (prepositions and postpositions). Case-marking elements are treated as dependents of the noun they attach to or introduce.</p>
+<p>The <code class="language-plaintext highlighter-rouge">fixed</code> relation is used for certain fixed grammaticized expressions. It is an internal relation annotated between the words of a multiword expression. Such expressions tend to behave like function words.</p>
 
-<pre><code class="language-sdparse">Aš einu į universitetą . \n I go to the-university .
-case(universitetą, į)
-case(the-university, to)
+<p>Fixed expressions typically do not allow intervening words. The assumption is that these expressions do not have any internal syntactic structure and that the structural annotation is in principle arbitrary. Therefore, if a word attaches as <code class="language-plaintext highlighter-rouge">fixed</code>, it should not have any dependents (except perhaps <a href="">punct</a>, <a href="">goeswith</a>, and (reparandum]() dependents, as these are not true syntactic relations).</p>
+
+<p>The label <code class="language-plaintext highlighter-rouge">fixed</code> in Lithuanian is used for fossilized expressions (pronouns, adverbs, particles, conjunctions, or other phrases) in which there is a very tight internal connection between the words, the phrase is relatively stable, but it is not considered a morphological compound.</p>
+
+<p>Multiword expressions annotated with <code class="language-plaintext highlighter-rouge">fixed</code> are represented in a flat structure, where all subsequent words in the expression are attached to the first one using the label <code class="language-plaintext highlighter-rouge">fixed</code>.</p>
+
+<p>Pronouns: <em>visa tai (“all this”), vienas kitą (-am, -u) (“each other”), mažai kas (“few people /
+little that”), daug kas (“many things / many people”), kažkoks tai (“some kind of”),</em> ect.</p>
+
+<pre><code class="language-sdparse">Jie yra vienas kitam ištikimi . \n They are faithful-to each other .
+fixed(vienas, kitam)
+fixed(each, other)
 </code></pre>
 
-<pre><code class="language-sdparse">Aš ateisiu po vidurnakčio . \n I will-come after midnight .
-case(vidurnakčio, po)
-case(midnight, after)
+<p>Paired conjunctions: <em>ne tik… bet ir (“not only… but also”), ne tik… tačiau ir (“not only…
+however also”), nors ir… bet (“although… but”)</em>, ect.</p>
+
+<pre><code class="language-sdparse">Ne tik mes , bet ir jie nusprendė vykti į kelionę . \n Not only we , but and they decided to-go on a-trip .
+fixed(Ne, tik)
+fixed(bet, ir)
+fixed(Not, only)
+fixed(but, and)
 </code></pre>
 
-<pre><code class="language-sdparse">Aš einu namų link . \n I am-going toward home .
-case(namų, link)
-case(home, toward)
+<p>Particles: <em>kad ir “even if / no matter”, kaip ir “as if / more or less / kind of”, net ir “even”, kaip
+tik “exactly / just”, bent jau “at least”, vis dar “still”, dar tik “only just / still only”, kur tau “as
+if”</em>, ect.</p>
+
+<pre><code class="language-sdparse">Kad ir sunku , reikia tai padaryti . \n Even if it-is-difficult , it has to-be-done .
+fixed(Kad, ir)
+fixed(Even, if)
 </code></pre>
 
-<pre><code class="language-sdparse">Tavo dėka aš išsigelbėjau . \n Thanks to-you , I was-saved .
-case(tavo, dėka)
-case(to-you, Thanks)
+<p>Adverbs: <em>daug kur “in many places”, šiaip ar taip “one way or another / anyhow”, kaip reikiant
+“as needed”, tai yra “that is”</em>, ect.</p>
+
+<pre><code class="language-sdparse">Susirinko šimtas žmonių , tai yra visi užsiregistravę . \n A-hundred people gathered , that is , all-of-them registered .
+fixed(tai, yra)
+fixed(that, is)
 </code></pre>
 
-<p>In some cases, oblique markers can also be nouns, when in a word sequence the first word is in the genitive case.</p>
+<p>Multiword expressions: <em>kas sau “each for oneself”, ne ką “not much”, maža to “on top of
+that”, negana to “in addition”, kaip sykis “just right”</em>, ect.</p>
 
-<pre><code class="language-sdparse">Nieko blogo vaiko atžvilgiu nepadariau . \n I-didn’t-do anything bad toward the-child .
-case(vaiko, atžvilgiu)
-case(the-child, toward)
+<pre><code class="language-sdparse">Negana to , jie gali pasiklysti . \n On-top-of that , they may get-lost .
+fixed(Negana, to)
+fixed(On-top-of, that)
 </code></pre>
 
-<p>In order to decide which nouns are obliques – <a href="">obl</a> and which should be marked with <code class="language-plaintext highlighter-rouge">case</code>, it is important to consider the following aspects:</p>
-
-<ol>
-  <li>
-    <p>If a noun is part of a word sequence whose first word is adjectival (agreeing), then it is not considered an oblique and <code class="language-plaintext highlighter-rouge">case</code> is not marked; for example, rankiniu būdu “in a manual way” → būdu <em>“way”</em>  is annotated as <a href="">obl</a> as it is an adjective.</p>
-  </li>
-  <li>
-    <p>If a noun can be replaced by preposition then it is annotated with <code class="language-plaintext highlighter-rouge">case</code>.</p>
-  </li>
-</ol>
-
-<p>For example:</p>
-
-<pre><code class="language-sdparse">Gaisro atveju skambinkite telefonu . \n In case of fire , call by phone .
-case(gaisro, atveju) 
-case(fire, in-case)
+<pre><code class="language-sdparse">Jie nuėjo kas sau . \n They went each for-themselves .
+fixed(kas, sau)
+fixed(each, for-themselves)
 </code></pre>
 
-<p>(The word gaisro <em>fire</em> is not adjectival; it can be replaced by a prepositional phrase – e.g., per gaisrą <em>during the fire.</em> The noun atveju <em>in case</em> is annotated as <code class="language-plaintext highlighter-rouge">case</code>, while gaisro <em>fire</em> is annotated as <a href="">obl</a> .)</p>
+<p>Fixed expressions : <em>ačiū Dievui “thank God”, sveiki atvykę “welcome”, kokį nori “whatever you
+want”, Jėzau Marija “Jesus Mary”, lyg niekur nieko “as if nothing happened”, akis į akį “face
+to face”, visi iki vieno “every single one”</em>, ect.</p>
 
+<pre><code class="language-sdparse">Ačiū Dievui , jie atvyko . \n Thank God , they arrived .
+fixed(Ačiū, Dievui)
+fixed(Thank, God)
+</code></pre>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-case in other languages:
+fixed in other languages:
 
-[<a href="../../bg/dep/case.html">bg</a>]
+[<a href="../../bg/dep/fixed.html">bg</a>]
 
-[<a href="../../bm/dep/case.html">bm</a>]
+[<a href="../../bm/dep/fixed.html">bm</a>]
 
-[<a href="../../cop/dep/case.html">cop</a>]
+[<a href="../../cop/dep/fixed.html">cop</a>]
 
-[<a href="../../cs/dep/case.html">cs</a>]
+[<a href="../../cs/dep/fixed.html">cs</a>]
 
-[<a href="../../de/dep/case.html">de</a>]
+[<a href="../../de/dep/fixed.html">de</a>]
 
-[<a href="../../el/dep/case.html">el</a>]
+[<a href="../../el/dep/fixed.html">el</a>]
 
-[<a href="../../en/dep/case.html">en</a>]
+[<a href="../../en/dep/fixed.html">en</a>]
 
-[<a href="../../et/dep/case.html">et</a>]
+[<a href="../../eu/dep/fixed.html">eu</a>]
 
-[<a href="../../fi/dep/case.html">fi</a>]
+[<a href="../../fi/dep/fixed.html">fi</a>]
 
-[<a href="../../fr/dep/case.html">fr</a>]
+[<a href="../../fr/dep/fixed.html">fr</a>]
 
-[<a href="../../ga/dep/case.html">ga</a>]
+[<a href="../../ga/dep/fixed.html">ga</a>]
 
-[<a href="../../gd/dep/case.html">gd</a>]
+[<a href="../../gd/dep/fixed.html">gd</a>]
 
-[<a href="../../gsw/dep/case.html">gsw</a>]
+[<a href="../../gsw/dep/fixed.html">gsw</a>]
 
-[<a href="../../gub/dep/case.html">gub</a>]
+[<a href="../../hbo/dep/fixed.html">hbo</a>]
 
-[<a href="../../hy/dep/case.html">hy</a>]
+[<a href="../../hy/dep/fixed.html">hy</a>]
 
-[<a href="../../it/dep/case.html">it</a>]
+[<a href="../../id/dep/fixed.html">id</a>]
 
-[<a href="../../ja/dep/case.html">ja</a>]
+[<a href="../../it/dep/fixed.html">it</a>]
 
-[<a href="../../ka/dep/case.html">ka</a>]
+[<a href="../../ja/dep/fixed.html">ja</a>]
 
-[<a href="../../kk/dep/case.html">kk</a>]
+[<a href="../../ka/dep/fixed.html">ka</a>]
 
-[<a href="../../ky/dep/case.html">ky</a>]
+[<a href="../../ky/dep/fixed.html">ky</a>]
 
-[<a href="../../naq/dep/case.html">naq</a>]
+[<a href="../../naq/dep/fixed.html">naq</a>]
 
-[<a href="../../no/dep/case.html">no</a>]
+[<a href="../../pcm/dep/fixed.html">pcm</a>]
 
-[<a href="../../pcm/dep/case.html">pcm</a>]
+[<a href="../../pt/dep/fixed.html">pt</a>]
 
-[<a href="../../pt/dep/case.html">pt</a>]
+[<a href="../../qpm/dep/fixed.html">qpm</a>]
 
-[<a href="../../qpm/dep/case.html">qpm</a>]
+[<a href="../../ru/dep/fixed.html">ru</a>]
 
-[<a href="../../ro/dep/case.html">ro</a>]
+[<a href="../../sl/dep/fixed.html">sl</a>]
 
-[<a href="../../ru/dep/case.html">ru</a>]
+[<a href="../../sv/dep/fixed.html">sv</a>]
 
-[<a href="../../sl/dep/case.html">sl</a>]
+[<a href="../../tr/dep/fixed.html">tr</a>]
 
-[<a href="../../ssp/dep/case.html">ssp</a>]
+[<a href="../../u/dep/fixed.html">u</a>]
 
-[<a href="../../sv/dep/case.html">sv</a>]
-
-[<a href="../../swl/dep/case.html">swl</a>]
-
-[<a href="../../tr/dep/case.html">tr</a>]
-
-[<a href="../../u/dep/case.html">u</a>]
-
-[<a href="../../urj/dep/case.html">urj</a>]
-
-[<a href="../../xcl/dep/case.html">xcl</a>]
-
-[<a href="../../yue/dep/case.html">yue</a>]
-
-[<a href="../../zh/dep/case.html">zh</a>]
+[<a href="../../xcl/dep/fixed.html">xcl</a>]
 
 
 
