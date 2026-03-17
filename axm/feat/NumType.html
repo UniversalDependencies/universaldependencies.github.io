@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>NUM</title>
+    <title>NumType</title>
     <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -39,7 +39,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-axm">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_axm/pos/NUM.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_axm/feat/NumType.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -78,135 +78,167 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>NUM</code>: numeral</h2>
+        <style>h3 {display:block;background-color:#dfeffc}</style>
 
-<h3 id="definition">Definition</h3>
+<h2><code>NumType</code>: numeral type</h2>
 
-<p>A numeral is a word, functioning most typically as a determiner, adjective or pronoun, that expresses a number and a relation to the number, such as quantity, sequence, frequency or fraction.</p>
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Card">Card</a></td>
+  <td><a href="#Dist">Dist</a></td>
+  <td><a href="#Frac">Frac</a></td>
+  <td><a href="#Ord">Ord</a></td>
+  <td><a href="#Range">Range</a></td>
+</tr>
+</table>
 
-<p>Note that cardinal numerals are covered by <code class="language-plaintext highlighter-rouge">NUM</code> whether they are used as determiners or not and whether they are expressed as words <em>(չորս)</em>, digits <em>(4)</em>, or Armenian letters <em>(Դ)</em>. Other words functioning as determiners (including pronominal quantifiers: demonstrative (<em>հանչաք, հէնչափ/hančak’, hēnčap’</em> “that much”); indefinite (<em>մէկ մի/mēk mi</em> “some”); definite (<em>ամէն/amēn</em> “every”) are tagged <a href="">DET</a>.</p>
+<p>Armenian has a complex system of <a href="NUM">numerals</a>. In the school grammar of Armenian, the part of speech “numeral” includes only words where a precise counting or quantity is involved.</p>
 
-<p>Note that some words that may be traditionally called numerals, are not tagged <code class="language-plaintext highlighter-rouge">NUM</code>, based on their syntactic and morphological behavior. <em>Adverbial (multiplicative)</em> numerals are taged as adverbs <a href="">ADV</a> , <em>ordinal</em> numerals are taged as adjectives <a href="">ADJ</a>.</p>
-
-<p>If the numerals inflect as nouns, they are tagged <a href="">NOUN</a>.</p>
-
-<h3 id="examples">Examples</h3>
+<p>From the syntactic point of view, some numtypes behave like adjectives and some behave like adverbs. We tag them <a href="">ADJ</a> and <a href="">ADV</a> respectively. Thus the <code class="language-plaintext highlighter-rouge">NumType</code> feature applies to several different parts of speech:</p>
 
 <ul>
-  <li><em>0, 1, 2, 3, 4, 5, 2014, 1000000, 3.14159265359</em></li>
-  <li><em>մէկ (մեկ)/mēk (mek), երկու/erkow, իրեք (երեք)/irek’ (erek’), չորս/čors, հինգ (հինկ)/hing (hink), տասնու(վ)իրեք/tasnow(v)irek’, քսանուչորս/k’sanowčors, քառսուն/k’aṙsown, երկու հարոյր/erkow haroyr;</em> “one, two, three, four, five, thirteen, twenty two, fourty, two hundred”</li>
-  <li><em>Ա, Ժ, Է, ԺԱ, Ն, Ռ</em> “1, 10, 7, 11, 400, 1000”</li>
-  <li><em>կէս/kēs, չարէկ/čarēk</em> “one-half, quarter”: denominators of fractions constitute a separate class of cardinal numerals.</li>
+  <li><a href="">NUM</a>: cardinal numerals</li>
+  <li><a href="">ADJ</a>: adjectival ordinal numerals</li>
+  <li><a href="">ADV</a>: adverbial distributive numerals</li>
 </ul>
 
-<h3 id="counterexamples">Counterexamples</h3>
+<p>Note that there are no <em>adverbial ordinal</em> and <em>multiplicative numerals</em> in Armenian.</p>
+
+<h3 id="card-cardinal-number"><a name="Card"><code class="language-plaintext highlighter-rouge">Card</code></a>: cardinal number</h3>
+
+<p>Note that in some Indo-European languages there is a fuzzy borderline
+between numerals and nouns for <em>thousand, million</em> and <em>billion.</em></p>
+
+<h4 id="examples">Examples</h4>
 
 <ul>
-  <li><em>առջի/aṙǰi, երկուսում/erkowsowm, իրեքում/irek’owm</em> “first, second, third”: adjectival ordinal numerals. They are tagged <a href="">ADJ</a>, and the <a href="">NumType</a> feature reveals their semantic relation to numbers.</li>
-  <li><em>մէկ-մէկ/mēk-mēk, երկու-երկու/erkow-erkow, իրեք-իրեք/irek’-irek’</em> “one at a time, two at a time, three at a time”: adverbial distibutive numerals. They are tagged <a href="">ADV</a>, and the <a href="">NumType</a> feature reveals their semantic relation to numbers.</li>
+  <li><em>1, 2, 3</em></li>
+  <li><em>մեկ</em> “one”, <em>երկու</em> “two”, <em>երեք</em> “three”</li>
 </ul>
 
-<h3 id="border-cases">Border cases</h3>
+<h3 id="ord-ordinal-number"><a name="Ord"><code class="language-plaintext highlighter-rouge">Ord</code></a>: ordinal number</h3>
+
+<p>This is a subtype of adjective.</p>
+
+<h4 id="examples-1">Examples</h4>
 
 <ul>
-  <li><em>միատակ/miatak, չորստակ/čorstak, հինգ պատիկ (հինգպատիկ)/ hing patik (hingpatik), երեք տարպայ/erek’ tarpay</em> “once, four-time(s), five time(s), three times” are not considered numerals in the Armenian grammar. They are tagged either <a href="">ADJ</a> or <a href="">ADV</a>.</li>
-  <li><em>հարոյր/հարուր/հարիր/հարիւր/haroyr/harowr/harir/hariwr, հազար/hazar;</em> “hundred, thousand”: words for large quantities are ambiguous between cardinal numerals (tagged <code class="language-plaintext highlighter-rouge">NUM</code>) and nouns. 
-<!-- Interlanguage links updated St 12. listopadu 2025, 09:19:51 CET --></li>
+  <li><em>1-ին, 2-րդ, 3-րդ</em></li>
+  <li><em>առաջին</em> “first”, <em>երկրորդ</em> “second”, <em>երրորդ</em> “third”</li>
+</ul>
+
+<h3 id="frac-fraction"><a name="Frac"><code class="language-plaintext highlighter-rouge">Frac</code></a>: fraction</h3>
+
+<p>This is a subtype of cardinal numbers. It may denote a fraction or just the denominator of the fraction.</p>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li><em>3/4 (երեք քառորդ)</em> “three-quarters”</li>
+  <li><em>կես</em> “half”, <em>քառորդ</em> “quarter”, <em><b>1/3 (մեկ երրորդ)</b></em> մասը “one <b>third</b> part”</li>
+</ul>
+
+<h3 id="dist-distributive-numeral"><a name="Dist"><code class="language-plaintext highlighter-rouge">Dist</code></a>: distributive numeral</h3>
+
+<p>Used to express that the same quantity is distributed to each member in a set of targets.</p>
+
+<p>Note that <em><b>20-ական, 30-ական</b> թվականներին</em>.<code class="language-plaintext highlighter-rouge">Plur</code> “by twenty, thirthies” are not considered distributive numerals, we mark them either <code class="language-plaintext highlighter-rouge">ADJ</code> or <code class="language-plaintext highlighter-rouge">NOUN</code>.</p>
+
+<h4 id="examples-3">Examples</h4>
+
+<ul>
+  <li><em><b>երեքական (երեք-երեք)</b> խնձոր յուրաքանչյուրին</em> “three apples per / for each one”</li>
+  <li><em><b>3-ական</b> խնձոր յուրաքանչյուրին</em> “three apples per / for each one”</li>
+</ul>
+
+<h3 id="range-range-of-values"><a name="Range"><code class="language-plaintext highlighter-rouge">Range</code></a>: range of values</h3>
+
+<p>This could be considered a subtype of cardinal numbers (provided tokenization leaves it as one token).</p>
+
+<h4 id="examples-4">Examples</h4>
+
+<ul>
+  <li><em>4-5 (չորս-հինգ)</em> “four-five” (“either four or five”)</li>
+  <li><em>10-15 (տասից տասնհինգ)</em> “ten fifteen” (“from ten to fifteen”)
+<!-- Interlanguage links updated St 12. listopadu 2025, 09:20:33 CET --></li>
 </ul>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-NUM in other languages:
+NumType in other languages:
 
-[<a href="../../bej/pos/NUM.html">bej</a>]
+[<a href="../../bej/feat/NumType.html">bej</a>]
 
-[<a href="../../bg/pos/NUM.html">bg</a>]
+[<a href="../../bg/feat/NumType.html">bg</a>]
 
-[<a href="../../bm/pos/NUM.html">bm</a>]
+[<a href="../../bm/feat/NumType.html">bm</a>]
 
-[<a href="../../cs/pos/NUM.html">cs</a>]
+[<a href="../../cs/feat/NumType.html">cs</a>]
 
-[<a href="../../cy/pos/NUM.html">cy</a>]
+[<a href="../../el/feat/NumType.html">el</a>]
 
-[<a href="../../da/pos/NUM.html">da</a>]
+[<a href="../../en/feat/NumType.html">en</a>]
 
-[<a href="../../el/pos/NUM.html">el</a>]
+[<a href="../../es/feat/NumType.html">es</a>]
 
-[<a href="../../en/pos/NUM.html">en</a>]
+[<a href="../../fi/feat/NumType.html">fi</a>]
 
-[<a href="../../es/pos/NUM.html">es</a>]
+[<a href="../../fr/feat/NumType.html">fr</a>]
 
-[<a href="../../ess/pos/NUM.html">ess</a>]
+[<a href="../../ga/feat/NumType.html">ga</a>]
 
-[<a href="../../et/pos/NUM.html">et</a>]
+[<a href="../../hu/feat/NumType.html">hu</a>]
 
-[<a href="../../fi/pos/NUM.html">fi</a>]
+[<a href="../../hy/feat/NumType.html">hy</a>]
 
-[<a href="../../fro/pos/NUM.html">fro</a>]
+[<a href="../../it/feat/NumType.html">it</a>]
 
-[<a href="../../fr/pos/NUM.html">fr</a>]
+[<a href="../../ka/feat/NumType.html">ka</a>]
 
-[<a href="../../ga/pos/NUM.html">ga</a>]
+[<a href="../../kk/feat/NumType.html">kk</a>]
 
-[<a href="../../grc/pos/NUM.html">grc</a>]
+[<a href="../../koi/feat/NumType.html">koi</a>]
 
-[<a href="../../hbo/pos/NUM.html">hbo</a>]
+[<a href="../../kpv/feat/NumType.html">kpv</a>]
 
-[<a href="../../hu/pos/NUM.html">hu</a>]
+[<a href="../../ky/feat/NumType.html">ky</a>]
 
-[<a href="../../hy/pos/NUM.html">hy</a>]
+[<a href="../../mdf/feat/NumType.html">mdf</a>]
 
-[<a href="../../it/pos/NUM.html">it</a>]
+[<a href="../../myv/feat/NumType.html">myv</a>]
 
-[<a href="../../ja/pos/NUM.html">ja</a>]
+[<a href="../../naq/feat/NumType.html">naq</a>]
 
-[<a href="../../ka/pos/NUM.html">ka</a>]
+[<a href="../../pcm/feat/NumType.html">pcm</a>]
 
-[<a href="../../kk/pos/NUM.html">kk</a>]
+[<a href="../../qpm/feat/NumType.html">qpm</a>]
 
-[<a href="../../kpv/pos/NUM.html">kpv</a>]
+[<a href="../../sl/feat/NumType.html">sl</a>]
 
-[<a href="../../ky/pos/NUM.html">ky</a>]
+[<a href="../../sme/feat/NumType.html">sme</a>]
 
-[<a href="../../myv/pos/NUM.html">myv</a>]
+[<a href="../../sv/feat/NumType.html">sv</a>]
 
-[<a href="../../naq/pos/NUM.html">naq</a>]
+[<a href="../../tr/feat/NumType.html">tr</a>]
 
-[<a href="../../no/pos/NUM.html">no</a>]
+[<a href="../../tt/feat/NumType.html">tt</a>]
 
-[<a href="../../oge/pos/NUM.html">oge</a>]
+[<a href="../../u/feat/NumType.html">u</a>]
 
-[<a href="../../pcm/pos/NUM.html">pcm</a>]
+[<a href="../../uk/feat/NumType.html">uk</a>]
 
-[<a href="../../pt/pos/NUM.html">pt</a>]
+[<a href="../../urj/feat/NumType.html">urj</a>]
 
-[<a href="../../qpm/pos/NUM.html">qpm</a>]
+[<a href="../../uz/feat/NumType.html">uz</a>]
 
-[<a href="../../ru/pos/NUM.html">ru</a>]
+[<a href="../../xav/feat/NumType.html">xav</a>]
 
-[<a href="../../sl/pos/NUM.html">sl</a>]
+[<a href="../../xcl/feat/NumType.html">xcl</a>]
 
-[<a href="../../sv/pos/NUM.html">sv</a>]
-
-[<a href="../../tr/pos/NUM.html">tr</a>]
-
-[<a href="../../tt/pos/NUM.html">tt</a>]
-
-[<a href="../../uk/pos/NUM.html">uk</a>]
-
-[<a href="../../u/pos/NUM.html">u</a>]
-
-[<a href="../../urj/pos/NUM.html">urj</a>]
-
-[<a href="../../xcl/pos/NUM.html">xcl</a>]
-
-[<a href="../../xmf/pos/NUM.html">xmf</a>]
-
-[<a href="../../yue/pos/NUM.html">yue</a>]
-
-[<a href="../../zh/pos/NUM.html">zh</a>]
+[<a href="../../xmf/feat/NumType.html">xmf</a>]
 
 
 
