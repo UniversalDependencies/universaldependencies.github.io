@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>orphan</title>
+    <title>dep</title>
     <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -37,9 +37,9 @@
 
       <div id="hp-header">
         <table width="100%"><tr><td width="50%">
-          <span class="header-text"><a href="http://universaldependencies.org/#language-it">home</a></span>
+          <span class="header-text"><a href="http://universaldependencies.org/#language-lt">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_it/dep/orphan.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_lt/dep/dep.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -78,133 +78,56 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>orphan</code>: connecting orphaned arguments of elided predicate</h2>
+        <h2><code>dep</code>: unspecified dependency</h2>
 
-<p>Ellipsis is a missing part of a sentence (such as a predicate or a nominal). This relation is used in
-cases of head ellipsis where simple promotion would result in an unnatural and misleading
-dependency relation.</p>
+<p><code class="language-plaintext highlighter-rouge">dep</code> – unspecified dependency.</p>
 
-<p>If an ellipsis does not change the structure, it is not annotated.</p>
+<p>The <code class="language-plaintext highlighter-rouge">dep</code> relation is used in cases where it is impossible to determine a specific
+dependency relation between words. This may occur because of an unusual or non-standard
+grammatical construction, or limitations arising from automatic conversion or annotation software.
+A word annotated with <code class="language-plaintext highlighter-rouge">dep</code> is attached to the nearest syntactic head in the sentence.</p>
 
-<p>If an ellipsis changes the structure, i.e., a word is omitted on which other words would depend, then
-those dependent words inherit the syntactic function of the missing word.</p>
-
-<p>If the omitted word is a nominal, its function is inherited by other words in the following priority
-order: <em>amod &gt; nummod &gt; det &gt; nmod &gt; case</em>. Remaining words attach according to their usual
-dependency relations.</p>
-
-<pre><code class="language-sdparse">Aš norėčiau oranžinių . \n I would-like some-orange-ones .
-obj(norėčiau, oranžinių)
-obj(would-like, some-orange-ones)
+<pre><code class="language-sdparse">Obligacijų savininkų susirinkimas šaukiamas , kai : \n The-bondholders ’ meeting is-convened when :
+dep(šaukiamas, kai)
+dep(is-convened, when)
 </code></pre>
 
-<pre><code class="language-sdparse">Mama slepiasi už stalo , sūnus slepiasi po . \n Mom is-hiding behind the-table , the-son is-hiding underneath .
-obl(slepiasi, po)
-obl(is-hiding, underneath)
-</code></pre>
-
-<p>If the main predicate is elided, we use simple promotion only if there is an <a href="">aux</a>,
-<a href="">aux:pass</a> or <a href="">cop</a>.</p>
-
-<pre><code class="language-sdparse">Jis buvo jaunas , o ji nebuvo . \n He was young , and she was-not .
-conj(jaunas, nebuvo)
-nsubj(nebuvo, ji)
-conj(young, was-not)
-nsubj(was-not, she)
-</code></pre>
-
-<p>When the predicate is omitted but the sentence does not contain <a href="">aux</a>, <a href="">aux:pass</a> or <a href="">cop</a>, transferring the syntactic function of the predicate to
-other words without using the <code class="language-plaintext highlighter-rouge">orphan</code> relation can appear unnatural. To show
-syntactically that the dependency structure of the sentence is incomplete, the relation <code class="language-plaintext highlighter-rouge">orphan</code> is used. This indicates that a predicate was omitted in the sentence.
-Words inherit the syntactic function of an omitted predicate according to the following priority
-order: <em>nsubj / nsubj:pass &gt; obj &gt; iobj &gt; obl / obl:arg &gt; advmod &gt; csubj / csubj:pass &gt; xcomp &gt;
-ccomp &gt; advcl &gt; dislocated &gt; vocative</em>. The relation <code class="language-plaintext highlighter-rouge">orphan</code> is used for words that
-would normally be attached to the missing predicate.</p>
-
-<pre><code class="language-sdparse">Aš mėgstu šunis , o tu kates . \n I like dogs , and you cats .
-conj(mėgstu, tu)
-orphan(tu, kates)
-conj(like, you)
-orphan(you, cats)
-</code></pre>
-
-<pre><code class="language-sdparse">Tomas nori dainuoti , o Ona šokti . \n Tom wants to-sing , and Ann to-dance .
-conj(dainuoti, Ona)
-orphan(Ona, šokti)
-conj(to-sing, Ann)
-orphan(Ann, to-dance)
-</code></pre>
-
-<pre><code class="language-sdparse">Vieni moka brangiai , nes kiti pigiai . \n Some pay dearly , because others cheaply .
-advcl(moka, kiti)
-orphan(kiti, pigiai)
-advcl(pay, others)
-orphan(others, cheaply)
+<pre><code class="language-sdparse">Darbotvarkėje buvo iš 23 klausimai . \n There-were 23 items from the-agenda .
+dep(iš, darbotvarkėje)
+dep(from, the-agenda)
 </code></pre>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-orphan in other languages:
+dep in other languages:
 
-[<a href="../../bm/dep/orphan.html">bm</a>]
+[<a href="../../cop/dep/dep.html">cop</a>]
 
-[<a href="../../cop/dep/orphan.html">cop</a>]
+[<a href="../../cs/dep/dep.html">cs</a>]
 
-[<a href="../../cs/dep/orphan.html">cs</a>]
+[<a href="../../en/dep/dep.html">en</a>]
 
-[<a href="../../de/dep/orphan.html">de</a>]
+[<a href="../../fr/dep/dep.html">fr</a>]
 
-[<a href="../../el/dep/orphan.html">el</a>]
+[<a href="../../hy/dep/dep.html">hy</a>]
 
-[<a href="../../en/dep/orphan.html">en</a>]
+[<a href="../../it/dep/dep.html">it</a>]
 
-[<a href="../../fi/dep/orphan.html">fi</a>]
+[<a href="../../pt/dep/dep.html">pt</a>]
 
-[<a href="../../fr/dep/orphan.html">fr</a>]
+[<a href="../../ru/dep/dep.html">ru</a>]
 
-[<a href="../../fro/dep/orphan.html">fro</a>]
+[<a href="../../sl/dep/dep.html">sl</a>]
 
-[<a href="../../ga/dep/orphan.html">ga</a>]
+[<a href="../../ssp/dep/dep.html">ssp</a>]
 
-[<a href="../../gsw/dep/orphan.html">gsw</a>]
+[<a href="../../swl/dep/dep.html">swl</a>]
 
-[<a href="../../hy/dep/orphan.html">hy</a>]
+[<a href="../../tr/dep/dep.html">tr</a>]
 
-[<a href="../../it/dep/orphan.html">it</a>]
-
-[<a href="../../kk/dep/orphan.html">kk</a>]
-
-[<a href="../../no/dep/orphan.html">no</a>]
-
-[<a href="../../pcm/dep/orphan.html">pcm</a>]
-
-[<a href="../../pt/dep/orphan.html">pt</a>]
-
-[<a href="../../qpm/dep/orphan.html">qpm</a>]
-
-[<a href="../../ro/dep/orphan.html">ro</a>]
-
-[<a href="../../ru/dep/orphan.html">ru</a>]
-
-[<a href="../../sl/dep/orphan.html">sl</a>]
-
-[<a href="../../sv/dep/orphan.html">sv</a>]
-
-[<a href="../../swl/dep/orphan.html">swl</a>]
-
-[<a href="../../tr/dep/orphan.html">tr</a>]
-
-[<a href="../../u/dep/orphan.html">u</a>]
-
-[<a href="../../vi/dep/orphan.html">vi</a>]
-
-[<a href="../../xcl/dep/orphan.html">xcl</a>]
-
-[<a href="../../yue/dep/orphan.html">yue</a>]
-
-[<a href="../../zh/dep/orphan.html">zh</a>]
+[<a href="../../u/dep/dep.html">u</a>]
 
 
 
@@ -253,7 +176,7 @@ orphan in other languages:
         setupTimeago();
 
         // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = 'it';
+        Collections.listing['_current'] = 'lt';
 
 	// perform all embedding and support functions
 	Annodoc.activate(Config.bratCollData, Collections.listing);
