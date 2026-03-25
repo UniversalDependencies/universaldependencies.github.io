@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Tense</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-axm">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_axm/feat/Tense.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <style>h3 {display:block;background-color:#dfeffc}</style>
+
+<h2><code>Tense</code>: tense</h2>
+
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Imp">Imp</a></td>
+  <td><a href="#Past">Past</a></td>
+  <td><a href="#Pres">Pres</a></td>
+  
+</tr>
+</table>
+
+<p>Tense is a feature that specifies the time when the action took / takes / will take place, in relation to a reference point.
+The reference is often the moment of producing the sentence, but it can be also another event in the context.</p>
+
+<p>Middle Armenian has a complex tense/aspect/mood system.</p>
+
+<p>Note, that we are defining features that apply to a single word. If a tense is constructed periphrastically (two words, e.g. auxiliary verb indicative + participle of the main verb), and none of the participating words are specific to this tense, then the features will probably not directly reveal the tense.</p>
+
+<p>Actions that happened before, during, and after a past or present event are constructed in Armenian by using perfect, resultative, imperfective and future participles.</p>
+
+<p>Note, that actions that happen before or during a future event are expressed using an auxiliary. Imperfect or present finite form of auxilariy in periphrastic future (accompanied by future participle of main verb) is tagged <code class="language-plaintext highlighter-rouge">Tense=Imp</code> or <code class="language-plaintext highlighter-rouge">Tense=Pres</code> accordingly, not <code class="language-plaintext highlighter-rouge">Tense=Fut</code>, while there will be an <a href="Aspect">aspect</a> (<code class="language-plaintext highlighter-rouge">Aspect=Prosp</code>) information at the participle (e.g. <em>վազելու <b>էի</b> տուն </em> “I <b>should</b> run home” or <em>վազելու <b>եմ</b> տուն </em> “I <b>shall</b> run home”).</p>
+
+<p>Note also, that there is an elaborate system of parallel tense/aspect/mood forms (traditionally called “secondary compound tenses”) formed periphrastically by forms of the auxiliary <em>լինեմ </em> and the resultative, processual and future-I participles of the main verb. They express actions that happened before, during, and after past or present reference. For these periphrastical forms we use <code class="language-plaintext highlighter-rouge">Tense=Imp</code> or <code class="language-plaintext highlighter-rouge">Tense=Pres</code> with perfect (<code class="language-plaintext highlighter-rouge">Perf</code>), progressive (<code class="language-plaintext highlighter-rouge">Prog</code>) or prospective (<code class="language-plaintext highlighter-rouge">Prosp</code>) aspect.</p>
+
+<h3 id="past-past-tense--aorist"><a name="Past"><code class="language-plaintext highlighter-rouge">Past</code></a>: past tense / aorist</h3>
+
+<p>The past tense denotes actions that happened before a reference point. The reference point is the moment of producing
+the sentence and the (completed) past event happened before the speaker speaks about
+it. In Armenian this is aorist.</p>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li><em>նա <b>գնաց</b> տուն </em> “he <b>went</b>.<code class="language-plaintext highlighter-rouge">Ind</code> home”,</li>
+  <li><em>եղա </em> “I was.<code class="language-plaintext highlighter-rouge">Ind</code>”</li>
+</ul>
+
+<h3 id="imp-imperfect"><a name="Imp"><code class="language-plaintext highlighter-rouge">Imp</code></a>: imperfect</h3>
+
+<p>Imperfect is a special case of the past tense. It denotes actions that are happening during some past moment. These actions might continue after the moment of speaking, but also might not, i.e. the evidence is not in the form itself, but it is in the context.</p>
+
+<p>Note, that a limited set of verbs (<em>գիտեմ, ունեմ, արժեմ</em>) form imperfect and present morphologically with unmarked vs. marked stems (traditionally called “Defective Verbs with Secondary Expanded Stems”). The difference between them are related also to <a href="">Mood</a> and <code class="language-plaintext highlighter-rouge">Aspect</code> rather than <code class="language-plaintext highlighter-rouge">Tense</code>. The verbs with unmarked (“non-expanded”) stems will have <code class="language-plaintext highlighter-rouge">Tense=Imp</code> and <code class="language-plaintext highlighter-rouge">Tense=Pres</code> in indicative mood.</p>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li><em>էի </em> “I was.<code class="language-plaintext highlighter-rouge">Ind</code>”,</li>
+  <li><em>կայի </em> “I was / existed.<code class="language-plaintext highlighter-rouge">Ind</code>”,</li>
+  <li><em><b>գնայի</b> տուն </em> “<b>I wish I went</b>.<code class="language-plaintext highlighter-rouge">Sub</code> home”,</li>
+  <li><em><b>վազեի</b> տուն </em> “<b>I wish I ran</b>.<code class="language-plaintext highlighter-rouge">Sub</code> home”,</li>
+  <li><em><b>պիտի գնայի</b> տուն </em> “<b>I should go</b>.<code class="language-plaintext highlighter-rouge">Nec</code> home”,</li>
+  <li><em>ունեի </em> “I had”.<code class="language-plaintext highlighter-rouge">Ind</code>,</li>
+  <li><em>գիտեի </em> “I knew”.<code class="language-plaintext highlighter-rouge">Ind</code>,</li>
+  <li><em>արժեի </em> “I was worth.<code class="language-plaintext highlighter-rouge">Ind</code>”,</li>
+  <li><em>ունենայի </em> “I wish I had.<code class="language-plaintext highlighter-rouge">Sub</code>”,</li>
+  <li><em>գիտենայի </em> “I wish I knew.<code class="language-plaintext highlighter-rouge">Sub</code>”,</li>
+  <li><em>արժենայի </em> “I wish I were worth.<code class="language-plaintext highlighter-rouge">Sub</code>”</li>
+  <li><em>լինեի </em> “I wish I were.<code class="language-plaintext highlighter-rouge">Sub</code>”,</li>
+</ul>
+
+<h3 id="pres-present-tense"><a name="Pres"><code class="language-plaintext highlighter-rouge">Pres</code></a>: present tense</h3>
+
+<p>The present tense denotes actions that are in progress (or states that
+are valid) in a reference point; it may also describe events that usually
+happen. In the prototypical case, the reference point is the moment of producing
+the sentence.</p>
+
+<p>Present forms of verbs in subjunctive, conditional and necessitative moods have future meaning. These forms are tagged <code class="language-plaintext highlighter-rouge">Tense=Pres</code> not <code class="language-plaintext highlighter-rouge">Tense=Fut</code> as in traditional grammars.</p>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li><em>եմ </em> “I am.<code class="language-plaintext highlighter-rouge">Ind</code>”,</li>
+  <li><em>կամ </em> “I am / exist.<code class="language-plaintext highlighter-rouge">Ind</code>”,</li>
+  <li><em><b>գնամ</b> տուն </em> “I’d better <b>go</b>.<code class="language-plaintext highlighter-rouge">Sub</code> home”,</li>
+  <li><em><b>կգնամ</b> տուն </em> “<b>I shall go</b>.<code class="language-plaintext highlighter-rouge">Cnd</code> home”,</li>
+  <li><em><b>պիտի գնամ</b> տուն </em> “<b>I must go</b>.<code class="language-plaintext highlighter-rouge">Nec</code> home”,</li>
+  <li><em>ունեմ </em> “I have.<code class="language-plaintext highlighter-rouge">Ind</code>”,</li>
+  <li><em>գիտեմ </em> “I know.<code class="language-plaintext highlighter-rouge">Ind</code>”,</li>
+  <li><em>արժեմ </em> “I am worth.<code class="language-plaintext highlighter-rouge">Ind</code>”,</li>
+  <li><em>ունենամ </em> “(if) I have.<code class="language-plaintext highlighter-rouge">Sub</code>”,</li>
+  <li><em>գիտենամ </em> “(if) I know.<code class="language-plaintext highlighter-rouge">Sub</code>”,</li>
+  <li><em>արժենամ </em> “(if) I am worth.<code class="language-plaintext highlighter-rouge">Sub</code>”</li>
+  <li><em>լինեմ </em> “I am / I will be.<code class="language-plaintext highlighter-rouge">Sub</code>”,
+<!-- Interlanguage links updated St 12. listopadu 2025, 09:20:50 CET --></li>
+</ul>
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+Tense in other languages:
+
+[<a href="../../ab/feat/Tense.html">ab</a>]
+
+[<a href="../../abq/feat/Tense.html">abq</a>]
+
+[<a href="../../aqz/feat/Tense.html">aqz</a>]
+
+[<a href="../../arr/feat/Tense.html">arr</a>]
+
+[<a href="../../bej/feat/Tense.html">bej</a>]
+
+[<a href="../../bg/feat/Tense.html">bg</a>]
+
+[<a href="../../bm/feat/Tense.html">bm</a>]
+
+[<a href="../../cs/feat/Tense.html">cs</a>]
+
+[<a href="../../cy/feat/Tense.html">cy</a>]
+
+[<a href="../../el/feat/Tense.html">el</a>]
+
+[<a href="../../en/feat/Tense.html">en</a>]
+
+[<a href="../../es/feat/Tense.html">es</a>]
+
+[<a href="../../fi/feat/Tense.html">fi</a>]
+
+[<a href="../../fr/feat/Tense.html">fr</a>]
+
+[<a href="../../ga/feat/Tense.html">ga</a>]
+
+[<a href="../../gn/feat/Tense.html">gn</a>]
+
+[<a href="../../gub/feat/Tense.html">gub</a>]
+
+[<a href="../../ha/feat/Tense.html">ha</a>]
+
+[<a href="../../hu/feat/Tense.html">hu</a>]
+
+[<a href="../../hy/feat/Tense.html">hy</a>]
+
+[<a href="../../it/feat/Tense.html">it</a>]
+
+[<a href="../../jaa/feat/Tense.html">jaa</a>]
+
+[<a href="../../ka/feat/Tense.html">ka</a>]
+
+[<a href="../../ky/feat/Tense.html">ky</a>]
+
+[<a href="../../naq/feat/Tense.html">naq</a>]
+
+[<a href="../../nmf/feat/Tense.html">nmf</a>]
+
+[<a href="../../pcm/feat/Tense.html">pcm</a>]
+
+[<a href="../../ps/feat/Tense.html">ps</a>]
+
+[<a href="../../qpm/feat/Tense.html">qpm</a>]
+
+[<a href="../../ru/feat/Tense.html">ru</a>]
+
+[<a href="../../sah/feat/Tense.html">sah</a>]
+
+[<a href="../../say/feat/Tense.html">say</a>]
+
+[<a href="../../sl/feat/Tense.html">sl</a>]
+
+[<a href="../../sv/feat/Tense.html">sv</a>]
+
+[<a href="../../tr/feat/Tense.html">tr</a>]
+
+[<a href="../../tt/feat/Tense.html">tt</a>]
+
+[<a href="../../u/feat/Tense.html">u</a>]
+
+[<a href="../../uk/feat/Tense.html">uk</a>]
+
+[<a href="../../urb/feat/Tense.html">urb</a>]
+
+[<a href="../../urj/feat/Tense.html">urj</a>]
+
+[<a href="../../xcl/feat/Tense.html">xcl</a>]
+
+[<a href="../../xmf/feat/Tense.html">xmf</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'axm';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
