@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>orphan</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-lt">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_lt/dep/orphan.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h2><code>orphan</code>: connecting orphaned arguments of elided predicate</h2>
+
+<p>Ellipsis is a missing part of a sentence (such as a predicate or a nominal). This relation is used in
+cases of head ellipsis where simple promotion would result in an unnatural and misleading
+dependency relation.</p>
+
+<p>If an ellipsis does not change the structure, it is not annotated.</p>
+
+<p>If an ellipsis changes the structure, i.e., a word is omitted on which other words would depend, then
+those dependent words inherit the syntactic function of the missing word.</p>
+
+<p>If the omitted word is a nominal, its function is inherited by other words in the following priority
+order: amod &gt; nummod &gt; det &gt; nmod &gt; case. Remaining words attach according to their usual
+dependency relations.</p>
+
+<pre><code class="language-sdparse">Aš norėčiau oranžinių . \n I would-like some-orange-ones .
+obj(norėčiau, oranžinių)
+obj(would-like, some-orange-ones)
+</code></pre>
+
+<pre><code class="language-sdparse">Mama slepiasi už stalo , sūnus slepiasi po . \n Mom is-hiding behind the-table , the-son is-hiding underneath .
+obl(slepiasi, po)
+obl(is-hiding, underneath)
+</code></pre>
+
+<p>If the main predicate is elided, we use simple promotion only if there is an <a href="">aux</a>,
+<a href="">aux:pass</a> or <a href="">cop</a>.</p>
+
+<pre><code class="language-sdparse">Jis buvo jaunas , o ji nebuvo . \n He was young , and she was-not .
+conj(jaunas, nebuvo)
+nsubj(nebuvo, ji)
+conj(young, was-not)
+nsubj(was-not, she)
+</code></pre>
+
+<p>When the predicate is omitted but the sentence does not contain <a href="">aux</a>, <a href="">aux:pass</a> or <a href="">cop</a>, transferring the syntactic function of the predicate to
+other words without using the <code class="language-plaintext highlighter-rouge">orphan</code>  relation can appear unnatural. To show
+syntactically that the dependency structure of the sentence is incomplete, the relation <code class="language-plaintext highlighter-rouge">orphan</code>  is used. This indicates that a predicate was omitted in the sentence.
+Words inherit the syntactic function of an omitted predicate according to the following priority
+order: nsubj / nsubj:pass &gt; obj &gt; iobj &gt; obl / obl:arg &gt; advmod &gt; csubj / csubj:pass &gt; xcomp &gt;
+ccomp &gt; advcl &gt; dislocated &gt; vocative. The relation <code class="language-plaintext highlighter-rouge">orphan</code> is used for words that
+would normally be attached to the missing predicate.</p>
+
+<pre><code class="language-sdparse">Aš mėgstu šunis , o tu kates . \n I like dogs , and you cats .
+conj(mėgstu, tu)
+orphan(tu, kates)
+conj(like, you)
+orphan(you, cats)
+</code></pre>
+
+<pre><code class="language-sdparse">Tomas nori dainuoti , o Ona šokti . \n Tom wants to-sing , and Ann to-dance .
+conj(dainuoti, Ona)
+orphan(Ona, šokti)
+conj(to-sing, Ann)
+orphan(Ann, to-dance)
+</code></pre>
+
+<pre><code class="language-sdparse">Vieni moka brangiai , nes kiti pigiai . \n Some pay dearly , because others cheaply .
+advcl(moka, kiti)
+orphan(kiti, pigiai)
+advcl(pay, others)
+orphan(others, cheaply)
+</code></pre>
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+orphan in other languages:
+
+[<a href="../../bm/dep/orphan.html">bm</a>]
+
+[<a href="../../cop/dep/orphan.html">cop</a>]
+
+[<a href="../../cs/dep/orphan.html">cs</a>]
+
+[<a href="../../de/dep/orphan.html">de</a>]
+
+[<a href="../../el/dep/orphan.html">el</a>]
+
+[<a href="../../en/dep/orphan.html">en</a>]
+
+[<a href="../../fi/dep/orphan.html">fi</a>]
+
+[<a href="../../fr/dep/orphan.html">fr</a>]
+
+[<a href="../../fro/dep/orphan.html">fro</a>]
+
+[<a href="../../ga/dep/orphan.html">ga</a>]
+
+[<a href="../../gsw/dep/orphan.html">gsw</a>]
+
+[<a href="../../hy/dep/orphan.html">hy</a>]
+
+[<a href="../../it/dep/orphan.html">it</a>]
+
+[<a href="../../kk/dep/orphan.html">kk</a>]
+
+[<a href="../../no/dep/orphan.html">no</a>]
+
+[<a href="../../pcm/dep/orphan.html">pcm</a>]
+
+[<a href="../../pt/dep/orphan.html">pt</a>]
+
+[<a href="../../qpm/dep/orphan.html">qpm</a>]
+
+[<a href="../../ro/dep/orphan.html">ro</a>]
+
+[<a href="../../ru/dep/orphan.html">ru</a>]
+
+[<a href="../../sl/dep/orphan.html">sl</a>]
+
+[<a href="../../sv/dep/orphan.html">sv</a>]
+
+[<a href="../../swl/dep/orphan.html">swl</a>]
+
+[<a href="../../tr/dep/orphan.html">tr</a>]
+
+[<a href="../../u/dep/orphan.html">u</a>]
+
+[<a href="../../vi/dep/orphan.html">vi</a>]
+
+[<a href="../../xcl/dep/orphan.html">xcl</a>]
+
+[<a href="../../yue/dep/orphan.html">yue</a>]
+
+[<a href="../../zh/dep/orphan.html">zh</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'lt';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
