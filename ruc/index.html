@@ -82,57 +82,275 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
+<ul>
+  <li>
+    <p>Words are generally delimited by whitespace. Exceptions are described below.</p>
+  </li>
+  <li>
+    <p>Ruuli has several types of multiword tokens (clitics):</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+    <ul>
+      <li>Locative enclitics =<em>wo</em> (16.LOC), =<em>ku</em> (17.LOC), =<em>mu</em> (18.LOC), =<em>yo</em> (23.LOC)</li>
+      <li>Comitative <em>n’=</em> (reduced form of <em>na</em>)</li>
+      <li>Subordinate conjunction marker <em>n’=</em> (reduced form of <em>ni</em>)</li>
+      <li>Focus clitics <em>=mbe</em>, <em>=te</em>, <em>=na</em>, <em>n’=</em></li>
+      <li>Relative pronouns, e.g., <em>ky’</em> (reduced form of <em>kye</em>)</li>
+    </ul>
+  </li>
+  <li>
+    <p>According to typographical conventions, punctuation marks are attached to neighboring words. In annotation, they are tokenized as separate tokens, except for single quotation marks marking the end of proclitics (e.g., <em>n’abaizukulu</em> “and the grandchildren”).</p>
+  </li>
+  <li>
+    <p>There are no multiword tokens written with whitespace.</p>
+  </li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<ul>
+  <li>
+    <p>Ruuli uses 16 universal POS tags. The <code class="language-plaintext highlighter-rouge">SYM</code> category is not attested.</p>
+  </li>
+  <li>
+    <p>Three types of words are tagged as <a href="">PART</a>:</p>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+    <ul>
+      <li>Genitive markers, e.g., <em>wa</em></li>
+      <li>Focus clitics <em>mbe</em>, <em>na</em>, <em>te</em></li>
+      <li>Hortative <em>ka</em></li>
+    </ul>
 
-<hr />
+    <p>These items are invariant function words that do not fit other major POS categories.</p>
+  </li>
+  <li>
+    <p>The <a href="">DET</a> tag applies to determiners, including:</p>
+
+    <ul>
+      <li>Demonstratives: <em>ni</em> (PROX), <em>o</em> (MED), <em>di</em> (DIST)</li>
+      <li>Indefinites: <em>ndi</em> “other”, <em>mwe</em> “some”</li>
+      <li>Total: <em>buli</em> “all”, <em>ona</em> “all”</li>
+      <li>Interrogatives: <em>ingai</em>, <em>mekai</em> “how much/many”</li>
+    </ul>
+
+    <p>Determiners agree with the noun in noun class. Forms are tagged as <a href="">DET</a> when modifying a noun and as <a href="">PRON</a> when functioning as the head of a nominal phrase. Additionally, the following are tagged as <a href="">PRON</a>:</p>
+
+    <ul>
+      <li>Possessive pronouns (e.g., <em>wange</em> “my”), as they do not take an augment</li>
+      <li>Interrogatives: <em>naani</em> “who”, <em>(ki)ki</em> “what”</li>
+      <li>Relative pronoun <em>e</em> “which”</li>
+    </ul>
+  </li>
+  <li>
+    <!--TODO @Anna: Describe how the AUX-VERB distinction  is drawn. List of AUX: *aba, bba (not as copulas), iza*; copulas *li, ni, ta*. -->
+  </li>
+  <li>
+    <p>Ruuli distinguishes three main verbal forms:</p>
+
+    <ul>
+      <li>Finite (<code class="language-plaintext highlighter-rouge">VerbForm=Fin</code>), tagged <a href="">VERB</a>/<a href="">AUX</a></li>
+      <li>Infinitive (<code class="language-plaintext highlighter-rouge">VerbForm=Inf</code>), tagged <a href="">VERB</a>/<a href="">AUX</a></li>
+      <li>Verbal noun (<code class="language-plaintext highlighter-rouge">VerbForm=Vnoun</code>), tagged <a href="">NOUN</a></li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
+<h4 id="nominal-features">Nominal Features</h4>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<ul>
+  <li>Nominals (<a href="">NOUN</a>, <a href="">PROPN</a>) carry <a href="">NounClass</a> and may carry <a href="">Referent</a>=<code class="language-plaintext highlighter-rouge">Yes</code> for augment prefix.</li>
+  <li>Agreeing parts of speech (<a href="">ADJ</a>, <a href="">DET</a>, some <a href="">ADV</a>, <a href="">NUM</a>, genitive [PART], <a href="">AUX</a>, <a href="">VERB</a>) also carry nominal features.</li>
+  <li>Locative <a href="">ADP</a> may carry locative noun classes (<code class="language-plaintext highlighter-rouge">Bantu16</code>, <code class="language-plaintext highlighter-rouge">Bantu17</code>, <code class="language-plaintext highlighter-rouge">Bantu18</code>, <code class="language-plaintext highlighter-rouge">Bantu23</code>).</li>
+  <li>Verbal nouns ([VerbForm]=<code class="language-plaintext highlighter-rouge">Vnoun</code>) belong to <code class="language-plaintext highlighter-rouge">Bantu15</code>.</li>
+</ul>
 
-<hr />
+<h4 id="pronouns-determiners-and-adverbs">Pronouns, Determiners, and Adverbs</h4>
+
+<ul>
+  <li><a href="">PronType</a> (<code class="language-plaintext highlighter-rouge">Dem</code>, <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Int</code>, <code class="language-plaintext highlighter-rouge">Prs</code>, <code class="language-plaintext highlighter-rouge">Rel</code>, <code class="language-plaintext highlighter-rouge">Tot</code>) is used with <a href="">PRON</a>, <a href="">DET</a>, and <a href="">ADV</a>.</li>
+  <li>Personal pronouns inflect for <a href="">Person</a> and either <a href="">Number</a> (1/2 person) or <a href="">NounClass</a> (3rd person).</li>
+  <li>Possessive pronouns use layered features: <a href="">Person[psor]</a>, <a href="">Person[psed]</a>, or <a href="">NounClass[psor]</a>, <a href="">NounClass[psed]</a>.</li>
+  <li>Demonstratives have <a href="">Deixis</a> (<code class="language-plaintext highlighter-rouge">Prox</code>, <code class="language-plaintext highlighter-rouge">Med</code>, <code class="language-plaintext highlighter-rouge">Remt</code>) and noun class agreement.</li>
+  <li>The interrogative adverb <em>tyai</em> “how” agrees with the subject.</li>
+</ul>
+
+<h4 id="verbal-features">Verbal Features</h4>
+
+<ul>
+  <li><a href="">VERB</a> may have:
+    <ul>
+      <li><a href="">Aspect</a> (<code class="language-plaintext highlighter-rouge">Hab</code>, <code class="language-plaintext highlighter-rouge">Perf</code>, <code class="language-plaintext highlighter-rouge">Pers</code>, <code class="language-plaintext highlighter-rouge">Prog</code>)</li>
+      <li><a href="">Mood</a> (<code class="language-plaintext highlighter-rouge">Cf</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Pot</code>, <code class="language-plaintext highlighter-rouge">Sub</code>)</li>
+      <li><a href="">Tense</a> (<code class="language-plaintext highlighter-rouge">Fut</code>, <code class="language-plaintext highlighter-rouge">Nar</code>, <code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Pres</code>)</li>
+      <li><a href="">Voice</a> (<code class="language-plaintext highlighter-rouge">Appl</code>, <code class="language-plaintext highlighter-rouge">Cau</code>, <code class="language-plaintext highlighter-rouge">Pass</code>, <code class="language-plaintext highlighter-rouge">Rcp</code>, <code class="language-plaintext highlighter-rouge">Rfl</code>)</li>
+      <li><a href="">VerbForm</a> (<code class="language-plaintext highlighter-rouge">Fin</code>, <code class="language-plaintext highlighter-rouge">Inf</code>)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Multiple aspect or voice values are represented using layered features (e.g., <a href="">Aspect[add]</a>, <a href="">Voice[add]</a>).</p>
+  </li>
+  <li>Verbs agree with arguments using layered features:
+    <ul>
+      <li>Subject: <a href="">Person</a>, <a href="">Number</a>/<a href="">NounClass</a></li>
+      <li>Object: <a href="">Person[obj]</a>, <a href="">Number[obj]</a>/<a href="">NounClass[obj]</a></li>
+      <li>Indirect object: <a href="">Person[iobj]</a>, <a href="">Number[iobj]</a>/<a href="">NounClass[iobj]</a></li>
+    </ul>
+  </li>
+  <li>Auxiliary verbs (<em>aba</em>, <em>bba</em>, <em>iza</em>) and copulas (<em>li</em>, <em>ni</em>, <em>ta</em>) are tagged [AUX] and carry tense/aspect and agreement.</li>
+</ul>
+
+<h4 id="other-features">Other Features</h4>
+
+<ul>
+  <li><a href="">Abbr</a>=<code class="language-plaintext highlighter-rouge">Yes</code> for abbreviated <a href="">PROPN</a></li>
+  <li><a href="">ExtPos</a>=<code class="language-plaintext highlighter-rouge">CCONJ</code> for fixed expressions like <em>ate era</em> “and”</li>
+  <li><a href="">Foreign</a>=<code class="language-plaintext highlighter-rouge">Yes</code> for <a href="">X</a></li>
+  <li><a href="">Hort</a>=<code class="language-plaintext highlighter-rouge">Yes</code> for hortative <em>ka</em></li>
+  <li><a href="">InfStruct</a>=<code class="language-plaintext highlighter-rouge">Foc</code> for focus particles and <em>ni</em></li>
+  <li><a href="">NumForm</a> and <a href="">NumType</a> for <a href="">NUM</a></li>
+  <li><a href="">Polarity</a> for negation (<em>ti</em>, <em>ndoo</em>, <em>ti-</em>)</li>
+  <li>
+    <p><a href="">Red</a>=<code class="language-plaintext highlighter-rouge">Yes</code> for reduplication</p>
+  </li>
+  <li>Not used: <a href="">Animacy</a>, <a href="">Case</a>, <a href="">Clusivity</a>, <a href="">Definite</a>, <a href="">Degree</a>, <a href="">Evident</a>, <a href="">Gender</a>, <a href="">Polite</a>, <a href="">Reflex</a>, <a href="">Typo</a></li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h3 id="core-arguments-and-adjuncts">Core Arguments and Adjuncts</h3>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>Subjects (<a href="">nsubj</a>):
+    <ul>
+      <li>trigger agreement</li>
+      <li>typically do not take adpositions</li>
+      <li>typically clause-initial</li>
+    </ul>
+  </li>
+  <li>Direct objects (<a href="">obj</a>, <a href="">obj:appl</a>, <a href="">obj:caus</a>):
+    <ul>
+      <li>may trigger agreement</li>
+      <li>typically do not take adpositions</li>
+      <li>follow the verb</li>
+    </ul>
+  </li>
+  <li>Indirect objects (<a href="">iobj</a>, <a href="">iobj:appl</a>):
+    <ul>
+      <li>may trigger agreement</li>
+      <li>typically do not take adpositions</li>
+      <li>follow the verb</li>
+    </ul>
+  </li>
+  <li>Adjuncts (<a href="">obl</a>):
+    <ul>
+      <li>typically adpositional phrases</li>
+    </ul>
+  </li>
+  <li>Locative enclitics attach via <a href="">advmod:loc</a>.</li>
+</ul>
 
-<hr />
+<h3 id="non-verbal-clauses">Non-verbal Clauses</h3>
+
+<ul>
+  <li>Ruuli uses:
+    <ul>
+      <li>zero copula</li>
+      <li>copulas <em>li</em>, <em>ta</em>, <em>ni</em> (tagged <a href="">AUX</a>)</li>
+      <li>negative elements <em>ti</em>, <em>ndoo</em> (tagged <a href="">ADV</a>)</li>
+      <li>semi-copular verb <em>bba</em> (tagged <a href="">VERB</a>)</li>
+    </ul>
+  </li>
+  <li>Clauses of proper inclusion, equation, and attribution may use copulas <em>li</em>, <em>ta</em>, <em>ni</em>, or zero copula (the latter only in the present tense with a non-pronominal subject).
+    <ul>
+      <li><em>Omukali musomesya.</em> “The woman is a teacher.”</li>
+      <li><em>Omukali ali/ati/niye musomesya.</em> “The woman is a teacher.”</li>
+    </ul>
+  </li>
+  <li>Locative and possessive predication may use copulas <em>li</em>, <em>ta</em>, <em>ni</em> or the semi-copular verb <em>bba</em>.
+    <ul>
+      <li><em>Omukali ali/ati/niye mu Kampala.</em> “The woman is in Kampala.”</li>
+      <li><em>Omukali abba mu Kampala.</em> “The woman stays in Kampala.”</li>
+    </ul>
+  </li>
+  <li>
+    <!--TODO @Anna: Benefaction: "the book is for her" -->
+  </li>
+  <li>Existential predication is expressed by a construction with the copula <em>li</em> and a locative enclitic.
+    <ul>
+      <li><em>Waliwo omuzumu.</em> “There is a devil.”</li>
+    </ul>
+  </li>
+  <li>In negative non-verbal clauses:
+    <ul>
+      <li>Negative prefix <em>ti-</em> is added.
+        <ul>
+          <li><em>Omukali tali musomesya.</em> “The woman is not a teacher.”</li>
+        </ul>
+      </li>
+      <li><em>ti</em> can be used in present-tense clauses of proper inclusion, equation, and attribution with non-pronominal subjects.
+        <ul>
+          <li><em>Omukali ti musomesya.</em> “The woman is not a teacher.”</li>
+        </ul>
+      </li>
+      <li><em>ndoo</em> can be used in existential negation.
+        <ul>
+          <li><em>Ndoowo mugaso.</em> “There is no importance.”</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Annotation:
+    <ul>
+      <li>copulas <em>li</em>, <em>ta</em>, <em>ni</em> in non-existential clauses → <a href="">cop</a></li>
+      <li><em>li</em> and <em>ndoo</em> in existential clauses → root</li>
+      <li><em>ti</em> → <a href="">advmod:cop</a></li>
+      <li><em>bba</em> → root</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="relations-overview">Relations Overview</h3>
+
+<ul>
+  <li>
+    <p>Subtypes used:</p>
+
+    <ul>
+      <li><a href="">acl:relcl</a></li>
+      <li><a href="">advcl:relcl</a></li>
+      <li><a href="">advmod:cop</a></li>
+      <li><a href="">advmod:emph</a></li>
+      <li><a href="">advmod:loc</a></li>
+      <li><a href="">csubj:outer</a></li>
+      <li><a href="">flat:foreign</a></li>
+      <li><a href="">flat:name</a></li>
+      <li><a href="">flat:num</a></li>
+      <li><a href="">flat:redup</a></li>
+      <li><a href="">iobj:appl</a></li>
+      <li><a href="">nmod:desc</a></li>
+      <li><a href="">nmod:poss</a></li>
+      <li><a href="">nsubj:outer</a></li>
+      <li><a href="">obj:appl</a></li>
+      <li><a href="">obj:caus</a></li>
+      <li><a href="">obl:agent</a></li>
+    </ul>
+  </li>
+  <li>
+    <p>Not used: <a href="">clf</a>, <a href="">compound</a>, <a href="">dep</a>, <a href="">expl</a>, <a href="">goeswith</a>, <a href="">list</a>, <a href="">orphan</a></p>
+  </li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/ruc-comparison.html">N</a> Ruuli UD treebanks:</p>
+<p>There is one Ruuli UD treebanks:</p>
 
 <ul>
-  <li><a href="../treebanks/ruc_a/index.html">Ruuli-A</a></li>
-  <li><a href="../treebanks/ruc_b/index.html">Ruuli-B</a></li>
+  <li><a href="../treebanks/ruc_rdt/index.html">Ruuli-RDT</a></li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
