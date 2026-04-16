@@ -81,42 +81,91 @@
         <h2><code>PROPN</code>: proper_noun</h2>
 
 <h3 id="definition">Definition</h3>
-<p>Proper nouns specifically represent the names of unique entities, such as individuals, organizations, or geographic locations. Proper nouns are denoted by the PROPN tag, distinguishing them from <a href="">NOUN</a> and <a href="">PRON</a>.</p>
 
-<p>Similar to common nouns, Spanish proper nouns also have grammatical features such as gender and number. However, their gender and number are often inherent to the named entity and do not always follow the typical masculine and feminine patterns seen in common nouns. Proper nouns do not usually require articles, but when they do, the articles must agree with the proper noun’s gender and number.</p>
+<p>Proper nouns specifically represent the names of unique entities, such as individuals, organizations, or geographic
+locations. Similar to common nouns, Spanish proper nouns also have grammatical features such as gender and number.
+However, their gender and number are often inherent to the named entity and do not always follow the typical
+masculine and feminine patterns seen in common nouns. Proper nouns do not usually require articles, but when they
+do, the articles must agree with the proper noun’s gender and number.</p>
+
+<h3 id="compound-and-simple-proper-nouns">Compound and simple proper nouns</h3>
+
+<p>Names of entities often consist of multiple words. It is important to note that the UPOS tag <code class="language-plaintext highlighter-rouge">PROPN</code> always pertains
+to a single word and is not automatically used for all words in a multiword name. A word may occur in a multiword
+name while being a common <a href="">NOUN</a>, an <a href="">ADJ</a>, <a href="">DET</a>, <a href="">ADP</a> etc. The status of a multiword named entity can
+be optionally indicated on a separate annotation layer but it is not the focus of morphosyntax. Therefore, we need
+to formulate rules when we classify a word as <code class="language-plaintext highlighter-rouge">PROPN</code> by itself.</p>
+
+<h4 id="persons">Persons</h4>
+
+<ul>
+  <li>Given name of a person is <code class="language-plaintext highlighter-rouge">PROPN</code> (<em><b>Juan</b>, <b>María</b>, <b>William</b></em>).</li>
+  <li>Surname of a person is <code class="language-plaintext highlighter-rouge">PROPN</code> (<em><b>Sánchez</b>, <b>Clinton</b></em>), even if it is derived from a common noun or an adjective (<em><b>Bueno</b></em>).</li>
+  <li>Spanish function words in Spanish personal names keep their original UPOS: in <em><b>Miguel</b> de <b>Cervantes</b> y <b>Saavedra</b></em>, <em>de</em> is <a href="">ADP</a> and <em>y</em> is <a href="">CCONJ</a>.
+    <ul>
+      <li>Annotation of foreign function words in foreign personal names depends on how the corpus generally approaches annotation of <a href="/foreign.html">foreign material</a>.</li>
+    </ul>
+  </li>
+  <li>Similar approach applies to names of individual animals (not species), non-human characters in literature etc.</li>
+</ul>
+
+<h4 id="locations">Locations</h4>
+
+<ul>
+  <li>Single-word names of cities, countries, mountains, rivers and other geographical features are <code class="language-plaintext highlighter-rouge">PROPN</code> regardless
+whether they are Spanish or foreign and whether they look like a Spanish common noun or adjective (_<b>Madrid</b>,
+<b>India</b>, <b>Huascarán</b>, <b>Cuenca</b>).</li>
+  <li>Spanish function words keep their original UPOS just like in personal names; for foreign function words it depends
+on the overall approach to foreign material. So, in <em>Los Ángeles</em>, the first word is <a href="">DET</a> (the name is Spanish,
+although the city now belongs to USA and is spelled without the accent in English); on the other hand, <em>de</em> in
+<em>Rio de Janeiro</em> does not have to be <a href="">ADP</a>, as the name is Portuguese.</li>
+  <li>A combination of a Spanish adjective and common noun such as <em>Buenos Aires</em> is annotated <code class="language-plaintext highlighter-rouge">ADJ NOUN</code>.</li>
+  <li>If a multiword name of a natural feature contains a common noun that denotes the type of the feature, that common
+name is not <code class="language-plaintext highlighter-rouge">PROPN</code>. For example, in <em>Pico de <b>Teide</b></em>, the UPOS tags are <code class="language-plaintext highlighter-rouge">NOUN</code> for <em>Pico</em>, <code class="language-plaintext highlighter-rouge">ADP</code> for <em>de</em>,
+and <code class="language-plaintext highlighter-rouge">PROPN</code> for <em>Teide</em>. Spanish adjectives keep the <code class="language-plaintext highlighter-rouge">ADJ</code> tag (as <em>Negro</em> in <em>Río Negro</em>). On the other hand,
+similar words in foreign names will typically end up as <code class="language-plaintext highlighter-rouge">PROPN</code> in Spanish, especially if their meaning is not
+obvious to average Spanish speaker (for example, in <em>río <b>Sông Hương</b></em>, the word <b>Sông</b> is actually
+Vietnamese for “river”, but it is probably perceived just as a foreign name by most Spanish speakers).</li>
+</ul>
+
+<h4 id="organizations-products-bookmoviesong-titles-etc">Organizations, products, book/movie/song titles etc.</h4>
+
+<ul>
+  <li>Common Spanish words used as or in names of organizations and products keep their original (non-<code class="language-plaintext highlighter-rouge">PROPN</code>) UPOS tag.
+Treatment of non-Spanish words depends on the overall approach to foreign material in the corpus.</li>
+  <li>Words created to name an organization or product are <code class="language-plaintext highlighter-rouge">PROPN</code> (e.g., _<b>Samsung</b>).</li>
+  <li>Multiword organization names may contain names of people or locations, then the above rules apply to such parts.</li>
+</ul>
+
+<h4 id="abbreviations">Abbreviations</h4>
+
+<ul>
+  <li>An abbreviation of a multiword name becomes <code class="language-plaintext highlighter-rouge">PROPN</code> (assuming it is a single token) even if the individual words
+would not be <code class="language-plaintext highlighter-rouge">PROPN</code> when the name is spelled out. For example, <em><b>ONU</b></em> is <code class="language-plaintext highlighter-rouge">PROPN</code> but <em>Organización de las
+Naciones Unidas</em> is <code class="language-plaintext highlighter-rouge">NOUN ADP DET NOUN ADJ</code>.</li>
+</ul>
 
 <h3 id="examples">Examples</h3>
 
 <ul>
   <li><em><b>Madrid</b></em> “Madrid”</li>
   <li><em><b>Antonio</b></em> “Antonio”</li>
-  <li><em><b>Los Ángeles</b></em> “Los Angeles”</li>
 </ul>
 
 <h3 id="capitalization">Capitalization</h3>
 
-<p>In Spanish, proper nouns are generally capitalized. This includes the first letter of the proper noun, as well as any other words within a multi-word proper noun, such as place or organization names, with some exceptions like prepositions or articles:</p>
+<p>In Spanish, proper nouns are generally capitalized. This includes the first letter of the proper noun, as well as
+any other words within a multi-word proper noun, such as place or organization names, with some exceptions like prepositions or articles:</p>
 
 <ul>
-  <li><em><b>Río de la Plata</b></em> “River Plate”</li>
+  <li><em><b>Río de la Plata</b></em> “La Plata River”</li>
   <li><em><b>Universidad de Salamanca</b></em> “University of Salamanca”</li>
 </ul>
 
-<p>Note that when proper nouns are used in an adjectival form, they may lose their capitalization and be tagged as <a href="">ADJ</a> as in <em>vino <b>francés</b></em> “French wine” (instead of “vino Francés”)</p>
+<p>Note that when proper nouns are used in an adjectival form, they may lose their capitalization and be tagged as <a href="">ADJ</a>
+as in <em>vino <b>francés</b></em> “French wine” (instead of “vino Francés”)</p>
 
-<h3 id="compound-proper-nouns">Compound proper nouns</h3>
-
-<p>When proper nouns consist of multiple words, they form compound proper nouns. In Universal Dependencies, these expressions are treated as single units using the MWE tag in the MISC column. While the primary words within the compound proper noun receive the PROPN tag, other words such as determiners or prepositions retain their original POS tags. The head of the MWE is determined based on its syntactic structure. When annotating, it is essential to maintain consistency in the choice of head for similar constructions as in the following examples:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1    San    San     PROPN    _    Gender=Masc|Number=Sing    0     root     _    MWE=San_Francisco|MWEPOS=PROPN
-2    Francisco    Francisco    PROPN    _    Gender=Masc|Number=Sing    1    flat     _    _
-
-
-1    Río    Río    NOUN   _    Gender=Masc|Number=Sing    0    root     _    MWE=Río_de_la_Plata|MWEPOS=PROPN
-2    de    de    ADP    _   _    4    case     _    _
-3    la    la    DET    _   Gender=Fem|Number=Sing    4    det      _	  _
-4    Plata    Plata    NOUN    _    Gender=Masc|Number=Sing    1    nmod     _ &lt;!-- Interlanguage links updated St 12. listopadu 2025, 09:19:53 CET --&gt;
-</code></pre></div></div>
+<!-- Interlanguage links updated St 12. listopadu 2025, 09:19:53 CET -->
 
 
 <!-- "in other languages" links -->
