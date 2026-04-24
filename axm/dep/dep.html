@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>csubj:outer</title>
+    <title>dep</title>
     <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -39,7 +39,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-axm">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_axm/dep/csubj-outer.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_axm/dep/dep.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -78,45 +78,68 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>csubj:outer</code>: outer clause clausal subject</h2>
+        <h2><code>dep</code>: unspecified dependency</h2>
 
-<p>This relation specifies a clausal subject of a copular clause whose predicate is itself a clause, 
-to signal that it is not the subject of the nested clause.
-See discussion of <a href="../overview/complex-syntax.html#predicate-clauses">Predicate Clauses</a>.</p>
+<p>A dependency is labeled as <code class="language-plaintext highlighter-rouge">dep</code> when a more precise dependency relation between two words cannot be determined. This may be because of a weird grammatical construction, 
+a limitation in software, a parser error, or because of an unresolved long distance dependency.</p>
 
-<pre><code class="language-conllu"># visual-style 11 6 csubj:outer color:blue
+<p>Note that we also use this relation to link the inflectional bound morphemes that are separated due to tokenization to the <em>main</em> part of the word (usually the last
+word of phrases or sentences used as names or after abbreviations).</p>
+
+<pre><code class="language-sdparse">«/PUNCT Երկիր/NOUN[Animacy=Nhum|Case=Nom|Definite=Ind|Number=Sing] Նաիրի/PROPN[Animacy=Nhum|Case=Nom|Definite=Ind|NameType=Geo|Number=Sing] »/PUNCT —/PUNCT ից/NOUN[Animacy=Nhum|Case=Abl|Definite=Ind|Hyph=Yes|Number=Sing] \n “ Yerkir Nairi ” - from
+punct(Նաիրի, «)
+punct(Նաիրի, »)
+nmod(Նաիրի, Երկիր)
+punct(ից, —)
+dep(Նաիրի, ից)
+punct(from, -)
+dep(Nairi, from)
+</code></pre>
+
+<pre><code class="language-sdparse">1937/NUM[NumForm=Digit|NumType=Card] թ/NOUN[Abbr=Yes|Animacy=Nhum|Case=Nom|Definite=Ind|Hyph=Yes|Number=Sing] ./PUNCT —/PUNCT ին/NOUN[Animacy=Nhum|Case=Dat|Definite=Ind|Hyph=Yes|Number=Sing] \n 1937 year - in
+nummod(թ, 1937)
+punct(թ, .)
+punct(ին, —)
+dep(թ, ին)
+punct(in, -)
+dep(year, in)
 
 </code></pre>
 
-<p>The nominal counterpart of this relation is <a href="">nsubj:outer</a>.</p>
-
-<p>The <code class="language-plaintext highlighter-rouge">:outer</code> subtype is <em>not</em> intended for most clausal subjects of copular clauses—only those where the predicate is itself a clause. 
-Plain <a href="">csubj</a> (or another subtype) will be appropriate if the copular clause predicate is a nominal, adjective, etc.:</p>
-
-<pre><code class="language-conllu"># visual-style 1 3 csubj color:blue
-
-</code></pre>
-<!-- Interlanguage links updated St 12. listopadu 2025, 09:21:40 CET -->
+<p>For more details see the <a href="http://universaldependencies.org/hy/tokenization.html">tokenization page</a>.
+<!-- Interlanguage links updated St 12. listopadu 2025, 09:21:42 CET --></p>
 
 
 <!-- "in other languages" links -->
 <hr/>
 
-csubj:outer in other languages:
+dep in other languages:
 
-[<a href="../../en/dep/csubj-outer.html">en</a>]
+[<a href="../../cop/dep/dep.html">cop</a>]
 
-[<a href="../../gd/dep/csubj-outer.html">gd</a>]
+[<a href="../../cs/dep/dep.html">cs</a>]
 
-[<a href="../../hy/dep/csubj-outer.html">hy</a>]
+[<a href="../../en/dep/dep.html">en</a>]
 
-[<a href="../../naq/dep/csubj-outer.html">naq</a>]
+[<a href="../../fr/dep/dep.html">fr</a>]
 
-[<a href="../../ru/dep/csubj-outer.html">ru</a>]
+[<a href="../../hy/dep/dep.html">hy</a>]
 
-[<a href="../../sv/dep/csubj-outer.html">sv</a>]
+[<a href="../../it/dep/dep.html">it</a>]
 
-[<a href="../../u/dep/csubj-outer.html">u</a>]
+[<a href="../../pt/dep/dep.html">pt</a>]
+
+[<a href="../../ru/dep/dep.html">ru</a>]
+
+[<a href="../../sl/dep/dep.html">sl</a>]
+
+[<a href="../../ssp/dep/dep.html">ssp</a>]
+
+[<a href="../../swl/dep/dep.html">swl</a>]
+
+[<a href="../../tr/dep/dep.html">tr</a>]
+
+[<a href="../../u/dep/dep.html">u</a>]
 
 
 
