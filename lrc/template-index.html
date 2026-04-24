@@ -79,49 +79,94 @@
             );
         </script>
         <h1 id="ud-for-northern-luri-">UD for Northern Luri <span class="flagspan"><img class="flag" src="../../flags/svg/IR.svg" /></span></h1>
-
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
+<ul>
+  <li>Words are delimited by whitespace. Punctuation marks (periods, question marks) are segmented as separate tokens.</li>
+  <li>There are no multiword tokens in this treebank.</li>
+  <li>There are no empty nodes used.</li>
+  <li>Clitic pronouns and enclitic copulas are written attached to their host with <code class="language-plaintext highlighter-rouge">=</code> or <code class="language-plaintext highlighter-rouge">-</code> (e.g., <code class="language-plaintext highlighter-rouge">=mo</code>, <code class="language-plaintext highlighter-rouge">=ēm</code>, <code class="language-plaintext highlighter-rouge">-é</code>), but are tokenized as separate tokens in the treebank. Each such clitic receives its own line with the appropriate UPOS tag (PRON or AUX) and morphological features.</li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
 
 <hr />
-
 <h2 id="morphology">Morphology</h2>
-
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<ul>
+  <li>The following UPOS tags are used in this treebank: ADJ, ADP, ADV, AUX, CCONJ, DET, NOUN, NUM, PART, PROPN, PRON, PUNCT, SCONJ, VERB.</li>
+  <li>The following UPOS tags are <strong>not</strong> used: INTJ, SYM, X.</li>
+  <li><strong>PART</strong> is used for clitics and particles that function as case markers or discourse particles. These include the negation/object marker <em>né</em>, enclitic definiteness/specificity markers (e.g., <code class="language-plaintext highlighter-rouge">=ê</code>, <code class="language-plaintext highlighter-rouge">=ē</code>, <code class="language-plaintext highlighter-rouge">=é</code>, <code class="language-plaintext highlighter-rouge">-é</code>), and the discourse particle <em>Na</em>. Many PART tokens carry <code class="language-plaintext highlighter-rouge">ExtPos=ADP</code> when functioning as postpositions or case markers.</li>
+  <li><strong>AUX</strong> covers the copula <em>būdan</em> (to be) and its enclitic present-tense forms (e.g., <code class="language-plaintext highlighter-rouge">=ēm</code>, <code class="language-plaintext highlighter-rouge">=a</code>), the progressive auxiliary <em>dāštan</em>, and the prospective/future auxiliary <em>xāstan</em>. The clitic copula forms (e.g., <code class="language-plaintext highlighter-rouge">=a</code>, <code class="language-plaintext highlighter-rouge">=ēm</code>) can appear as the sole root of a clause and are tagged AUX even in that position.</li>
+  <li><strong>DET</strong> is used for demonstratives (e.g., <em>i</em>, <em>ū</em>, <em>ya</em>) and quantifiers (e.g., <em>gérd</em> <code class="language-plaintext highlighter-rouge">PronType=Tot</code>, <em>hama</em> <code class="language-plaintext highlighter-rouge">PronType=Tot</code>, <em>yé</em> <code class="language-plaintext highlighter-rouge">Definite=Ind</code>). These are distinguished from PRON by their attributive (prenominal) function. Pronouns that stand alone as nominal heads are tagged PRON.</li>
+  <li><strong>PRON</strong> includes personal pronouns (free and enclitic possessive forms such as <code class="language-plaintext highlighter-rouge">=mo</code>, <code class="language-plaintext highlighter-rouge">=m</code>, <code class="language-plaintext highlighter-rouge">=ēš</code>), reflexive pronouns (<em>xot</em>), and indefinite pronouns (<em>hiška</em>). Possessive clitics carry <code class="language-plaintext highlighter-rouge">Poss=Yes</code>.</li>
+  <li>Adjectives (ADJ) appear as both prenominal modifiers (<code class="language-plaintext highlighter-rouge">amod</code>) and as predicative complements (<code class="language-plaintext highlighter-rouge">xcomp</code>). Comparative adjectives carry <code class="language-plaintext highlighter-rouge">Degree=Cmp</code>; base forms carry <code class="language-plaintext highlighter-rouge">Degree=Pos</code>.</li>
+  <li>There are no verbal forms tagged as ADV or NOUN. Verbal nouns and infinitival forms are tagged VERB with <code class="language-plaintext highlighter-rouge">VerbForm=Inf</code>.</li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
 
 <hr />
-
 <h3 id="features">Features</h3>
 
-<p>*</p>
+<ul>
+  <li><strong>NOUN</strong>: inflects for <code class="language-plaintext highlighter-rouge">Number</code> (Sing, Plur) and <code class="language-plaintext highlighter-rouge">Definite</code> (Def, Spec). Definiteness is typically marked by enclitic suffixes rather than free-standing articles.</li>
+  <li><strong>VERB</strong>: carries a rich set of inflectional features. The following are attested:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Aspect</code>: Imp (imperfective), Perf (perfect), Prog (progressive), Prosp (prospective)</li>
+      <li><code class="language-plaintext highlighter-rouge">Mood</code>: Ind (indicative), Imp (imperative), Sub (subjunctive), Opt (optative)</li>
+      <li><code class="language-plaintext highlighter-rouge">Tense</code>: Pres, Past, Fut</li>
+      <li><code class="language-plaintext highlighter-rouge">Person</code>: 1, 2, 3</li>
+      <li><code class="language-plaintext highlighter-rouge">Number</code>: Sing, Plur</li>
+      <li><code class="language-plaintext highlighter-rouge">VerbForm</code>: Fin, Inf</li>
+      <li><code class="language-plaintext highlighter-rouge">Voice</code>: Act (active), Pass (passive)</li>
+      <li><code class="language-plaintext highlighter-rouge">Polarity</code>: Pos, Neg (negation encoded on the verb itself)</li>
+    </ul>
+  </li>
+  <li><strong>PRON</strong>: encodes <code class="language-plaintext highlighter-rouge">PronType</code> (Prs, Ind), <code class="language-plaintext highlighter-rouge">Person</code> (1–3), <code class="language-plaintext highlighter-rouge">Number</code> (Sing, Plur), <code class="language-plaintext highlighter-rouge">Poss</code> (Yes), <code class="language-plaintext highlighter-rouge">Reflex</code> (Yes), and <code class="language-plaintext highlighter-rouge">Case</code> (Acc) for reflexive forms.</li>
+  <li><strong>ADJ</strong>: attests <code class="language-plaintext highlighter-rouge">Degree</code> (Pos, Cmp).</li>
+  <li><strong>DET</strong>: encodes <code class="language-plaintext highlighter-rouge">PronType</code> (Dem, Tot, Art) and <code class="language-plaintext highlighter-rouge">Definite</code> (Ind) for the indefinite article <em>yé</em>.</li>
+  <li><strong>ADP</strong>: carries <code class="language-plaintext highlighter-rouge">ExtPos=ADP</code> on PART tokens that function as postpositions in a larger phrase.</li>
+  <li><strong>NUM</strong>: no features beyond POS are annotated in the current release.</li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
 
 <hr />
-
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<ul>
+  <li>The primary word order is SOV. The root of a sentence is almost always a finite VERB or a clitic copula (AUX).</li>
+  <li><strong>Subjects</strong> are tagged <code class="language-plaintext highlighter-rouge">nsubj</code> (for active clauses) and <code class="language-plaintext highlighter-rouge">nsubj:pass</code> (for passive clauses). Subjects are predominantly NOUN, PRON, or PROPN.</li>
+  <li><strong>Objects</strong> are tagged <code class="language-plaintext highlighter-rouge">obj</code> (direct object) and <code class="language-plaintext highlighter-rouge">iobj</code> (indirect object). The object marker <em>né</em> (PART) is used to mark specific/definite direct objects, attached via the <code class="language-plaintext highlighter-rouge">case</code> relation.</li>
+  <li><strong>Oblique arguments</strong> use <code class="language-plaintext highlighter-rouge">obl</code>, with the subtype <code class="language-plaintext highlighter-rouge">obl:tmod</code> for temporal modifiers.</li>
+  <li><strong>Copula constructions</strong>: non-verbal predication is handled via the copula <em>būdan</em> and its clitic forms, tagged AUX with the relation <code class="language-plaintext highlighter-rouge">cop</code>. Predicate nominals and predicate adjectives are the head of the clause, with the copula attached as a dependent. Clitic copulas (e.g., <code class="language-plaintext highlighter-rouge">=ēm</code>, <code class="language-plaintext highlighter-rouge">=a</code>) can also appear as the root of the clause directly.</li>
+  <li><strong>Light verb constructions</strong>: complex predicates consisting of a nominal or adjectival element plus a light verb are annotated using <code class="language-plaintext highlighter-rouge">compound:lvc</code> (e.g., <em>némâz mēka</em> ‘prays’). The nominal element is the <code class="language-plaintext highlighter-rouge">compound:lvc</code> dependent of the light verb.</li>
+  <li><strong>xcomp</strong> is used for predicative complements — both nominal (NOUN) and adjectival (ADJ) — in secondary predication constructions.</li>
+  <li><strong>Possessive clitics</strong> (e.g., <code class="language-plaintext highlighter-rouge">=mo</code>, <code class="language-plaintext highlighter-rouge">=m</code>, <code class="language-plaintext highlighter-rouge">=ēš</code>) attach to their nominal host and are annotated as <code class="language-plaintext highlighter-rouge">nmod:poss</code>.</li>
+  <li>The following relation subtypes are used:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">nsubj:pass</code> — passive subject</li>
+      <li><code class="language-plaintext highlighter-rouge">nmod:poss</code> — possessive nominal modifier</li>
+      <li><code class="language-plaintext highlighter-rouge">compound:lvc</code> — light verb construction</li>
+      <li><code class="language-plaintext highlighter-rouge">acl:relcl</code> — relative clause modifier</li>
+      <li><code class="language-plaintext highlighter-rouge">acl:lvc</code> — adjectival light verb construction</li>
+      <li><code class="language-plaintext highlighter-rouge">obl:tmod</code> — temporal oblique modifier</li>
+    </ul>
+  </li>
+</ul>
 
 <hr />
 <p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
 
 <hr />
-
 <h2 id="treebanks">Treebanks</h2>
 
 <p>There are <a href="../treebanks/lrc-comparison.html">N</a> Northern Luri UD treebanks:</p>
-
 <ul>
   <li><a href="../treebanks/lrc_a/index.html">Northern Luri-A</a></li>
   <li><a href="../treebanks/lrc_b/index.html">Northern Luri-B</a></li>
