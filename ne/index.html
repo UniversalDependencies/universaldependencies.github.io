@@ -1,0 +1,653 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Nepali UD</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-ne">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ne/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="ud-for-nepali-">UD for Nepali <span class="flagspan"><img class="flag" src="../../flags/svg/NP.svg" /></span></h1>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>Nepali words are generally delimited by whitespace. Each orthographic word written in Devanagari is normally treated as one token.</li>
+  <li>Punctuation marks such as <code class="language-plaintext highlighter-rouge">।</code>, <code class="language-plaintext highlighter-rouge">,</code>, <code class="language-plaintext highlighter-rouge">?</code>, <code class="language-plaintext highlighter-rouge">!</code>, quotation marks, ellipses and dashes are tokenized separately and annotated as <code class="language-plaintext highlighter-rouge">PUNCT</code>.
+    <ul>
+      <li>Example: <code class="language-plaintext highlighter-rouge">जंगलमा जाने , चराउने ।</code></li>
+    </ul>
+  </li>
+  <li>Quotation marks and paired punctuation are treated as separate tokens on each side of the quoted span.
+    <ul>
+      <li>Example: <code class="language-plaintext highlighter-rouge">" मलाई एकदम थकाई ला छ , जिउ दुखि रहेछ । "</code></li>
+    </ul>
+  </li>
+  <li>Reduplicated or hyphenated forms written as one orthographic unit are kept as one token.
+    <ul>
+      <li>Example: <code class="language-plaintext highlighter-rouge">ह्वार-ह्वार</code> in <code class="language-plaintext highlighter-rouge">अनि ह्वार-ह्वार बलेछ रे ।</code></li>
+    </ul>
+  </li>
+  <li>Case and postpositional morphology may be written in two ways in the current data:
+    <ul>
+      <li>When case/postpositional material is fused with the nominal stem, it is kept inside the same token and represented with morphological features such as <code class="language-plaintext highlighter-rouge">Case=Loc</code>, <code class="language-plaintext highlighter-rouge">Case=Gen</code>, <code class="language-plaintext highlighter-rouge">Case=Abl</code>, <code class="language-plaintext highlighter-rouge">Case=Ins</code>, or <code class="language-plaintext highlighter-rouge">Case=Erg</code>.
+        <ul>
+          <li>Examples: <code class="language-plaintext highlighter-rouge">जंगलमा</code>, <code class="language-plaintext highlighter-rouge">कर्तव्यको</code>, <code class="language-plaintext highlighter-rouge">धनबाट</code>, <code class="language-plaintext highlighter-rouge">विचारले</code>, <code class="language-plaintext highlighter-rouge">मान्छेले</code>.</li>
+        </ul>
+      </li>
+      <li>When postposition-like elements are written as separate orthographic tokens, they are tokenized separately and annotated as <code class="language-plaintext highlighter-rouge">ADP</code>, normally with the relation <code class="language-plaintext highlighter-rouge">case</code>.
+        <ul>
+          <li>Examples: <code class="language-plaintext highlighter-rouge">ले</code>, <code class="language-plaintext highlighter-rouge">लाई</code>/<code class="language-plaintext highlighter-rouge">लाइ</code>, <code class="language-plaintext highlighter-rouge">सम्म</code>.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Discourse and focus particles such as <code class="language-plaintext highlighter-rouge">रे</code>, <code class="language-plaintext highlighter-rouge">त</code>, <code class="language-plaintext highlighter-rouge">नै</code>, <code class="language-plaintext highlighter-rouge">पनि</code>, <code class="language-plaintext highlighter-rouge">केरे</code>, and <code class="language-plaintext highlighter-rouge">चाहिँ</code> appear as independent tokens. They are normally tagged as <code class="language-plaintext highlighter-rouge">PART</code> and attached with <code class="language-plaintext highlighter-rouge">discourse</code>.</li>
+  <li>Foreign or Sanskrit quotation material written in Devanagari is segmented word by word. Such tokens are tagged as <code class="language-plaintext highlighter-rouge">X</code> and receive <code class="language-plaintext highlighter-rouge">Foreign=Yes</code> when appropriate.
+    <ul>
+      <li>Example: <code class="language-plaintext highlighter-rouge">न्याययतेन द्रव्यम् कर्तव्यम् पारलौकिकम् ।</code></li>
+    </ul>
+  </li>
+  <li>There are no multiword-token ranges in the current treebank data.</li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<p>The Nepali UD treebank uses the following universal POS tags:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ADJ</code>, <code class="language-plaintext highlighter-rouge">ADP</code>, <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">AUX</code>, <code class="language-plaintext highlighter-rouge">CCONJ</code>, <code class="language-plaintext highlighter-rouge">DET</code>, <code class="language-plaintext highlighter-rouge">INTJ</code>, <code class="language-plaintext highlighter-rouge">NOUN</code>, <code class="language-plaintext highlighter-rouge">NUM</code>, <code class="language-plaintext highlighter-rouge">PART</code>, <code class="language-plaintext highlighter-rouge">PRON</code>, <code class="language-plaintext highlighter-rouge">PROPN</code>, <code class="language-plaintext highlighter-rouge">PUNCT</code>, <code class="language-plaintext highlighter-rouge">VERB</code>, <code class="language-plaintext highlighter-rouge">X</code></li>
+</ul>
+
+<p>The tags <code class="language-plaintext highlighter-rouge">SCONJ</code> and <code class="language-plaintext highlighter-rouge">SYM</code> do not occur in the current data.</p>
+
+<h4 id="tag-usage">Tag usage</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ADJ</code> is used for adjectives that modify nouns or occur as nonverbal predicates.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">महान्</code>, <code class="language-plaintext highlighter-rouge">पूर्वीय</code>, <code class="language-plaintext highlighter-rouge">गहन</code>, <code class="language-plaintext highlighter-rouge">प्राकृतिक</code>, <code class="language-plaintext highlighter-rouge">न्यायपूर्ण</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">ADP</code> is used for separate postposition-like tokens.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">ले</code>, <code class="language-plaintext highlighter-rouge">लाई</code>, <code class="language-plaintext highlighter-rouge">लाइ</code>, <code class="language-plaintext highlighter-rouge">सम्म</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">ADV</code> is used for lexical adverbs expressing manner, degree, time, or discourse connection.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">समेत</code>, <code class="language-plaintext highlighter-rouge">सधैं</code>, <code class="language-plaintext highlighter-rouge">एकदम</code>, <code class="language-plaintext highlighter-rouge">त्यसपछि</code>, <code class="language-plaintext highlighter-rouge">अर्थात</code>, <code class="language-plaintext highlighter-rouge">यसर्थ</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">AUX</code> is used for auxiliaries and copular forms when they have a grammatical function.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">छ</code>, <code class="language-plaintext highlighter-rouge">छन्</code>, <code class="language-plaintext highlighter-rouge">हो</code>, <code class="language-plaintext highlighter-rouge">रहेछ</code>, <code class="language-plaintext highlighter-rouge">भएका</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">CCONJ</code> is used for coordinating conjunctions.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">र</code>, <code class="language-plaintext highlighter-rouge">वा</code>, <code class="language-plaintext highlighter-rouge">अनि</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">DET</code> is used for determiners modifying a following noun.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">त्यो गोठ</code>, <code class="language-plaintext highlighter-rouge">एउटा मान्छे</code>, <code class="language-plaintext highlighter-rouge">यस कुरा</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">INTJ</code> is used for interjections, especially in the spoken narrative data.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">ए</code>, <code class="language-plaintext highlighter-rouge">ल</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">NOUN</code> is used for common nouns, including nouns with fused case/postpositional morphology.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">कर्तव्य</code>, <code class="language-plaintext highlighter-rouge">अधिकारभन्दा</code>, <code class="language-plaintext highlighter-rouge">ग्रन्थमा</code>, <code class="language-plaintext highlighter-rouge">कुरालाई</code>, <code class="language-plaintext highlighter-rouge">जंगलमा</code>, <code class="language-plaintext highlighter-rouge">मान्छेले</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">NUM</code> is used for cardinal numerals.
+    <ul>
+      <li>Example: <code class="language-plaintext highlighter-rouge">एक</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">PART</code> is used for discourse, focus, emphasis, evidential, and reportative particles.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">रे</code>, <code class="language-plaintext highlighter-rouge">त</code>, <code class="language-plaintext highlighter-rouge">नै</code>, <code class="language-plaintext highlighter-rouge">पनि</code>, <code class="language-plaintext highlighter-rouge">केरे</code>, <code class="language-plaintext highlighter-rouge">चाहिँ</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">PRON</code> is used for independent pronouns and pronominal forms.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">मलाई</code>, <code class="language-plaintext highlighter-rouge">हाम्रो</code>, <code class="language-plaintext highlighter-rouge">जुन</code>, <code class="language-plaintext highlighter-rouge">त्यसलाई</code>, <code class="language-plaintext highlighter-rouge">के</code>, <code class="language-plaintext highlighter-rouge">आफ्ना</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">PROPN</code> is used for proper names.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">खड्केरिरहा</code>, <code class="language-plaintext highlighter-rouge">विवेकान्नंद</code>, <code class="language-plaintext highlighter-rouge">जर्ज</code>, <code class="language-plaintext highlighter-rouge">इलियट</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">PUNCT</code> is used for punctuation, including Nepali danda <code class="language-plaintext highlighter-rouge">।</code>, commas, quotation marks, ellipses and dashes.</li>
+  <li><code class="language-plaintext highlighter-rouge">VERB</code> is used for lexical verbs, participles, converbs, infinitives, and verbal predicates.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">गर्छन्</code>, <code class="language-plaintext highlighter-rouge">भनिएको</code>, <code class="language-plaintext highlighter-rouge">गर्नुपर्छ</code>, <code class="language-plaintext highlighter-rouge">फर्केर</code>, <code class="language-plaintext highlighter-rouge">आएको</code>, <code class="language-plaintext highlighter-rouge">घस्दिएछ</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">X</code> is used for foreign or Sanskrit quotation material that is not analyzed internally.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">न्याययतेन</code>, <code class="language-plaintext highlighter-rouge">द्रव्यम्</code>, <code class="language-plaintext highlighter-rouge">कर्तव्यम्</code>, <code class="language-plaintext highlighter-rouge">पारलौकिकम्</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="aux-vs-verb">AUX vs. VERB</h4>
+
+<p>The distinction between <code class="language-plaintext highlighter-rouge">AUX</code> and <code class="language-plaintext highlighter-rouge">VERB</code> is based on grammatical function.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">AUX</code> is used when a form of <code class="language-plaintext highlighter-rouge">हुनु</code> or another auxiliary-like form contributes tense, aspect, mood, evidentiality, or copular meaning rather than introducing the main lexical predicate.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">छ</code>, <code class="language-plaintext highlighter-rouge">छन्</code>, <code class="language-plaintext highlighter-rouge">हो</code>, <code class="language-plaintext highlighter-rouge">रहेछ</code>, <code class="language-plaintext highlighter-rouge">भएका</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">VERB</code> is used for the lexical predicate that carries the main event or state meaning.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">गर्छन्</code>, <code class="language-plaintext highlighter-rouge">भनिएको</code>, <code class="language-plaintext highlighter-rouge">आएको</code>, <code class="language-plaintext highlighter-rouge">गर्नुपर्छ</code>, <code class="language-plaintext highlighter-rouge">घस्दिएछ</code>.</li>
+    </ul>
+  </li>
+  <li>In verbal complexes, the lexical verb is the head and the auxiliary attaches with <code class="language-plaintext highlighter-rouge">aux</code>.
+    <ul>
+      <li>Example: in <code class="language-plaintext highlighter-rouge">भनिएको छ</code>, <code class="language-plaintext highlighter-rouge">भनिएको</code> is <code class="language-plaintext highlighter-rouge">VERB</code> and <code class="language-plaintext highlighter-rouge">छ</code> is <code class="language-plaintext highlighter-rouge">AUX</code>.</li>
+    </ul>
+  </li>
+  <li>In nonverbal clauses, copular forms such as <code class="language-plaintext highlighter-rouge">छ</code> and <code class="language-plaintext highlighter-rouge">हो</code> are tagged <code class="language-plaintext highlighter-rouge">AUX</code> and attached with <code class="language-plaintext highlighter-rouge">cop</code> to the nominal or adjectival predicate.
+    <ul>
+      <li>Example: in <code class="language-plaintext highlighter-rouge">कर्तव्य अधिकारभन्दा महान् छ ।</code>, <code class="language-plaintext highlighter-rouge">महान्</code> is the predicate and <code class="language-plaintext highlighter-rouge">छ</code> is <code class="language-plaintext highlighter-rouge">cop</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="det-vs-pron">DET vs. PRON</h4>
+
+<p>The distinction between <code class="language-plaintext highlighter-rouge">DET</code> and <code class="language-plaintext highlighter-rouge">PRON</code> is syntactic.</p>
+
+<ul>
+  <li>A form is tagged <code class="language-plaintext highlighter-rouge">DET</code> when it modifies a noun.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">त्यो गोठ</code>, <code class="language-plaintext highlighter-rouge">एउटा मान्छे</code>, <code class="language-plaintext highlighter-rouge">यस कुरा</code>.</li>
+    </ul>
+  </li>
+  <li>The same or similar form is tagged <code class="language-plaintext highlighter-rouge">PRON</code> when it functions independently as a nominal argument.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">त्यसलाई</code>, <code class="language-plaintext highlighter-rouge">जुन</code>, <code class="language-plaintext highlighter-rouge">मलाई</code>, <code class="language-plaintext highlighter-rouge">के</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="deverbal-forms">Deverbal forms</h4>
+
+<p>Participial and converbal forms are normally tagged as <code class="language-plaintext highlighter-rouge">VERB</code> when they preserve verbal syntax.</p>
+
+<ul>
+  <li>Participial modifiers are tagged <code class="language-plaintext highlighter-rouge">VERB</code> and attached with <code class="language-plaintext highlighter-rouge">acl</code> .
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">भनिएको</code>, <code class="language-plaintext highlighter-rouge">गरिएको</code>, <code class="language-plaintext highlighter-rouge">गर्ने</code>.</li>
+    </ul>
+  </li>
+  <li>Converbs are tagged <code class="language-plaintext highlighter-rouge">VERB</code> and attached with <code class="language-plaintext highlighter-rouge">advcl</code>.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">फर्केर</code>, <code class="language-plaintext highlighter-rouge">आएर</code>, <code class="language-plaintext highlighter-rouge">खर्चेर</code>.</li>
+    </ul>
+  </li>
+  <li>Deverbal lexicalized nominal or adjectival forms may be tagged according to their syntactic distribution when they behave like ordinary nouns or adjectives.</li>
+</ul>
+
+<h3 id="features">Features</h3>
+
+<p>The current Nepali treebank uses the following morphological features:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Aspect</code>, <code class="language-plaintext highlighter-rouge">Case</code>, <code class="language-plaintext highlighter-rouge">Evident</code>, <code class="language-plaintext highlighter-rouge">Foreign</code>, <code class="language-plaintext highlighter-rouge">Gender</code>, <code class="language-plaintext highlighter-rouge">Mood</code>, <code class="language-plaintext highlighter-rouge">NumType</code>, <code class="language-plaintext highlighter-rouge">Number</code>, <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Polarity</code>, <code class="language-plaintext highlighter-rouge">PronType</code>, <code class="language-plaintext highlighter-rouge">Reflex</code>, <code class="language-plaintext highlighter-rouge">Tense</code>, <code class="language-plaintext highlighter-rouge">VerbForm</code>, <code class="language-plaintext highlighter-rouge">Voice</code>.</li>
+</ul>
+
+<p>Only features attested in the current data are listed here.</p>
+
+<h4 id="nominal-and-pronominal-features">Nominal and pronominal features</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Case</code> is one of the central features in the Nepali data. It is used both for unmarked nominative forms and for forms with fused case/postpositional morphology.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Meaning</th>
+      <th>Examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Nom</code></td>
+      <td>nominative</td>
+      <td><code class="language-plaintext highlighter-rouge">कर्तव्य</code>, <code class="language-plaintext highlighter-rouge">खुशी</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Acc</code></td>
+      <td>accusative/direct object, often morphologically unmarked</td>
+      <td><code class="language-plaintext highlighter-rouge">काम</code>, <code class="language-plaintext highlighter-rouge">घ्यू</code>, <code class="language-plaintext highlighter-rouge">कर्तव्य</code>, <code class="language-plaintext highlighter-rouge">कर्म</code>, <code class="language-plaintext highlighter-rouge">सोच</code> (could be marked with <code class="language-plaintext highlighter-rouge">लाई</code> in certain situations)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Dat</code></td>
+      <td>dative</td>
+      <td><code class="language-plaintext highlighter-rouge">मानिसलाई</code>, <code class="language-plaintext highlighter-rouge">कसैलाई</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Gen</code></td>
+      <td>genitive</td>
+      <td><code class="language-plaintext highlighter-rouge">कर्तव्यको</code>, <code class="language-plaintext highlighter-rouge">हाम्रो</code>, <code class="language-plaintext highlighter-rouge">उसको</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Loc</code></td>
+      <td>locative</td>
+      <td><code class="language-plaintext highlighter-rouge">ग्रन्थमा</code>, <code class="language-plaintext highlighter-rouge">जंगलमा</code>, <code class="language-plaintext highlighter-rouge">गोठमा</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Abl</code></td>
+      <td>ablative/source/comparative</td>
+      <td><code class="language-plaintext highlighter-rouge">अधिकारभन्दा</code>, <code class="language-plaintext highlighter-rouge">धनबाट</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Ins</code></td>
+      <td>instrumental</td>
+      <td><code class="language-plaintext highlighter-rouge">विचारले</code>, <code class="language-plaintext highlighter-rouge">तरिकाले</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Erg</code></td>
+      <td>ergative/instrumental subject marking</td>
+      <td><code class="language-plaintext highlighter-rouge">मान्छेले</code>, <code class="language-plaintext highlighter-rouge">चिन्तकले</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Number</code> is used for singular and plural nominal and verbal forms.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Number=Sing</code>: <code class="language-plaintext highlighter-rouge">कर्म</code>, <code class="language-plaintext highlighter-rouge">पैसा</code>, <code class="language-plaintext highlighter-rouge">कथा</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">Number=Plur</code>: <code class="language-plaintext highlighter-rouge">विचारहरू</code>, <code class="language-plaintext highlighter-rouge">उपनिषद्हरू</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Gender</code> occurs only where it is morphologically or lexically relevant.
+    <ul>
+      <li>Attested values include <code class="language-plaintext highlighter-rouge">Masc</code>, <code class="language-plaintext highlighter-rouge">Fem</code>, and <code class="language-plaintext highlighter-rouge">Neut</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">PronType</code> is used for pronouns and determiners.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">PronType=Dem</code>: demonstratives such as <code class="language-plaintext highlighter-rouge">यो</code>, <code class="language-plaintext highlighter-rouge">त्यो</code>, <code class="language-plaintext highlighter-rouge">यस</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">PronType=Prs</code>: personal pronouns and possessive pronouns such as <code class="language-plaintext highlighter-rouge">हाम्रो</code>, <code class="language-plaintext highlighter-rouge">उसको</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">PronType=Int</code>: interrogative forms such as <code class="language-plaintext highlighter-rouge">के</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">PronType=Rel</code>: relative forms such as <code class="language-plaintext highlighter-rouge">जुन</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Reflex=Yes</code> is used for reflexive forms such as <code class="language-plaintext highlighter-rouge">आआफ्नो</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">NumType=Card</code> is used for cardinal numerals such as <code class="language-plaintext highlighter-rouge">एक</code>.</li>
+</ul>
+
+<h4 id="verbal-features">Verbal features</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">VerbForm</code> is used to distinguish finite, participial, converbal and infinitival forms.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Meaning</th>
+      <th>Examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Fin</code></td>
+      <td>finite verb</td>
+      <td><code class="language-plaintext highlighter-rouge">गर्छन्</code>, <code class="language-plaintext highlighter-rouge">हुन्छ</code>, <code class="language-plaintext highlighter-rouge">छ</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Part</code></td>
+      <td>participle</td>
+      <td><code class="language-plaintext highlighter-rouge">गरेको</code>, <code class="language-plaintext highlighter-rouge">गरिएको</code>, <code class="language-plaintext highlighter-rouge">भएको</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Conv</code></td>
+      <td>converb</td>
+      <td><code class="language-plaintext highlighter-rouge">फर्केर</code>, <code class="language-plaintext highlighter-rouge">आएर</code>, <code class="language-plaintext highlighter-rouge">खर्चेर</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Inf</code></td>
+      <td>infinitive</td>
+      <td><code class="language-plaintext highlighter-rouge">गर्न</code>, <code class="language-plaintext highlighter-rouge">चराउन</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Tense</code> is used for present, past and future forms.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Tense=Pres</code>: <code class="language-plaintext highlighter-rouge">छ</code>, <code class="language-plaintext highlighter-rouge">गर्छन्</code>, <code class="language-plaintext highlighter-rouge">हुन्छ</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">Tense=Past</code>: <code class="language-plaintext highlighter-rouge">भएको</code>, <code class="language-plaintext highlighter-rouge">गरिएको</code>, <code class="language-plaintext highlighter-rouge">रहेछ</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">Tense=Fut</code>: future forms attested in the narrative data.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Aspect</code> is used for imperfective, perfective and progressive meanings.
+    <ul>
+      <li>Attested values: <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Perf</code>, <code class="language-plaintext highlighter-rouge">Prog</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Mood</code> is used for indicative, imperative and necessity forms.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Mood=Ind</code>: ordinary statements.</li>
+      <li><code class="language-plaintext highlighter-rouge">Mood=Imp</code>: imperatives such as <code class="language-plaintext highlighter-rouge">हेर्नुहोस्</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">Mood=Nec</code>: necessity forms such as <code class="language-plaintext highlighter-rouge">गर्नुपर्छ</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Person</code> and <code class="language-plaintext highlighter-rouge">Number</code> are used mainly on finite verbs and auxiliaries.
+    <ul>
+      <li>Example: <code class="language-plaintext highlighter-rouge">गर्छन्</code> has third person plural agreement.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Polarity=Neg</code> is used for negative forms such as <code class="language-plaintext highlighter-rouge">हुदैन</code> and <code class="language-plaintext highlighter-rouge">नहुने</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Voice=Pass</code> is used where passive morphology is present.</li>
+  <li><code class="language-plaintext highlighter-rouge">Evident=Nfh</code> occurs in the narrative data, especially with reportative or non-firsthand forms.</li>
+</ul>
+
+<h4 id="other-features">Other features</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Foreign=Yes</code> is used for foreign or Sanskrit material in quotations.</li>
+  <li>Nepali has honorific and politeness distinctions in the language, especially in pronouns and verb agreement. These distinctions are visible linguistically, but no separate <code class="language-plaintext highlighter-rouge">Polite</code> feature is used in the current data.</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<h3 id="basic-clause-structure">Basic clause structure</h3>
+
+<p>Nepali is a head-final language. The normal constituent order is SOV, and the finite verbal predicate or verbal complex normally occurs at the end of the clause.</p>
+
+<ul>
+  <li>Example: <code class="language-plaintext highlighter-rouge">यस्तो पस्चात्य चिन्तकले पनि कर्तव्यको महानतालाई उदघाटित गरेका छन् ।</code></li>
+</ul>
+
+<h3 id="core-arguments">Core arguments</h3>
+
+<h4 id="subjects-nsubj">Subjects (<code class="language-plaintext highlighter-rouge">nsubj</code>)</h4>
+
+<p>Canonical subjects are annotated as <code class="language-plaintext highlighter-rouge">nsubj</code>. They may be unmarked nominative NPs or case-marked NPs.</p>
+
+<ul>
+  <li>Example: <code class="language-plaintext highlighter-rouge">कर्तव्य अधिकारभन्दा महान् छ ।</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">कर्तव्य</code> is <code class="language-plaintext highlighter-rouge">nsubj</code>.</li>
+    </ul>
+  </li>
+  <li>Nepali also shows ergative/instrumental subject marking with <code class="language-plaintext highlighter-rouge">-ले</code>, especially with perfective or agentive predicates. Such subjects are still annotated as <code class="language-plaintext highlighter-rouge">nsubj</code>.
+    <ul>
+      <li>Examples: <code class="language-plaintext highlighter-rouge">मान्छेले</code>, <code class="language-plaintext highlighter-rouge">चिन्तकले</code>, <code class="language-plaintext highlighter-rouge">विचारले</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="direct-objects-obj">Direct objects (<code class="language-plaintext highlighter-rouge">obj</code>)</h4>
+
+<p>Direct objects are annotated as <code class="language-plaintext highlighter-rouge">obj</code> when they are the core patient/theme argument of a lexical verb.</p>
+
+<ul>
+  <li>Example: in <code class="language-plaintext highlighter-rouge">त्यो घ्यू घस्दिएछ</code>, <code class="language-plaintext highlighter-rouge">घ्यू</code> is <code class="language-plaintext highlighter-rouge">obj</code>.</li>
+  <li>Bare objects and case-marked object-like nominals are treated according to their syntactic role in the clause.</li>
+</ul>
+
+<h4 id="indirect-objects-iobj">Indirect objects (<code class="language-plaintext highlighter-rouge">iobj</code>)</h4>
+
+<p>Dative or recipient-like arguments are annotated as <code class="language-plaintext highlighter-rouge">iobj</code> when they are core arguments of the predicate.</p>
+
+<ul>
+  <li>Example: <code class="language-plaintext highlighter-rouge">कसैलाई पनि धारा पानीको भुत लाग्दैन ।</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">कसैलाई</code> is <code class="language-plaintext highlighter-rouge">iobj</code>.</li>
+    </ul>
+  </li>
+  <li>Dative-marked or <code class="language-plaintext highlighter-rouge">लाई</code>-marked arguments that behave like recipients, experiencers, or affected participants are often annotated as <code class="language-plaintext highlighter-rouge">iobj</code>.</li>
+</ul>
+
+<h4 id="obliques-obl">Obliques (<code class="language-plaintext highlighter-rouge">obl</code>)</h4>
+
+<p>Non-core arguments are annotated as <code class="language-plaintext highlighter-rouge">obl</code>. These include locative, ablative, instrumental, temporal, source, manner and other adverbial nominals.</p>
+
+<ul>
+  <li>Examples: <code class="language-plaintext highlighter-rouge">जंगलमा</code>, <code class="language-plaintext highlighter-rouge">गोठमा</code>, <code class="language-plaintext highlighter-rouge">धनबाट</code>, <code class="language-plaintext highlighter-rouge">अधिकारभन्दा</code>, <code class="language-plaintext highlighter-rouge">रूपमा</code>, <code class="language-plaintext highlighter-rouge">तरिकाले</code>.</li>
+  <li>The current data uses plain <code class="language-plaintext highlighter-rouge">obl</code> rather than language-specific oblique subtypes such as <code class="language-plaintext highlighter-rouge">obl:loc</code> or <code class="language-plaintext highlighter-rouge">obl:tmod</code>.</li>
+</ul>
+
+<h3 id="copula-and-nonverbal-clauses">Copula and nonverbal clauses</h3>
+
+<p>In nonverbal clauses with nominal or adjectival predicates, the lexical predicate is the syntactic head and the copular auxiliary is attached with <code class="language-plaintext highlighter-rouge">cop</code>.</p>
+
+<ul>
+  <li>Example: <code class="language-plaintext highlighter-rouge">कर्तव्य अधिकारभन्दा महान् छ ।</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">महान्</code> is the root predicate.</li>
+      <li><code class="language-plaintext highlighter-rouge">छ</code> is attached as <code class="language-plaintext highlighter-rouge">cop</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">कर्तव्य</code> is <code class="language-plaintext highlighter-rouge">nsubj</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">अधिकारभन्दा</code> is <code class="language-plaintext highlighter-rouge">obl</code>.</li>
+    </ul>
+  </li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">कर्तव्यप्रतीको निष्ठा वा भक्ति उपासनाको सर्वोच्च रूप हो ...</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">रूप</code> is the nominal predicate.</li>
+      <li><code class="language-plaintext highlighter-rouge">हो</code> is attached as <code class="language-plaintext highlighter-rouge">cop</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>In verbal predicates, auxiliary forms such as <code class="language-plaintext highlighter-rouge">छ</code> and <code class="language-plaintext highlighter-rouge">छन्</code> attach to the lexical verb with <code class="language-plaintext highlighter-rouge">aux</code>.</p>
+
+<ul>
+  <li>Example: in <code class="language-plaintext highlighter-rouge">भनिएको छ</code>, <code class="language-plaintext highlighter-rouge">भनिएको</code> is the verbal head and <code class="language-plaintext highlighter-rouge">छ</code> is <code class="language-plaintext highlighter-rouge">aux</code>.</li>
+</ul>
+
+<h3 id="relational-constructions">Relational constructions</h3>
+
+<h4 id="participial-and-relative-clause-modifiers">Participial and relative clause modifiers</h4>
+
+<p>Participial clauses modifying a noun are attached with <code class="language-plaintext highlighter-rouge">acl</code>.</p>
+
+<ul>
+  <li>Examples: <code class="language-plaintext highlighter-rouge">भनिएको</code>, <code class="language-plaintext highlighter-rouge">गरिएको</code>, <code class="language-plaintext highlighter-rouge">गर्ने</code>.</li>
+</ul>
+
+<h4 id="converbs-and-clause-chaining">Converbs and clause chaining</h4>
+
+<p>Converb forms are annotated as adverbial clauses with <code class="language-plaintext highlighter-rouge">advcl</code>.</p>
+
+<ul>
+  <li>Examples: <code class="language-plaintext highlighter-rouge">फर्केर</code>, <code class="language-plaintext highlighter-rouge">आएर</code>, <code class="language-plaintext highlighter-rouge">लागेर</code>, <code class="language-plaintext highlighter-rouge">खर्चेर</code>.</li>
+</ul>
+
+<h4 id="coordination-and-parataxis">Coordination and parataxis</h4>
+
+<p>Coordinating conjunctions such as <code class="language-plaintext highlighter-rouge">र</code>, <code class="language-plaintext highlighter-rouge">वा</code>, and <code class="language-plaintext highlighter-rouge">अनि</code> are annotated as <code class="language-plaintext highlighter-rouge">cc</code>, and the non-initial conjunct is attached with <code class="language-plaintext highlighter-rouge">conj</code>.</p>
+
+<p>Loosely sequenced main clauses, especially in narrative passages, may be connected with <code class="language-plaintext highlighter-rouge">parataxis</code> when they are not clear cases of coordination or subordination.</p>
+
+<h3 id="discourse-and-special-relations">Discourse and special relations</h3>
+
+<p>Discourse particles such as <code class="language-plaintext highlighter-rouge">त</code>, <code class="language-plaintext highlighter-rouge">नै</code>, <code class="language-plaintext highlighter-rouge">रे</code>, <code class="language-plaintext highlighter-rouge">केरे</code>, <code class="language-plaintext highlighter-rouge">चाहिँ</code>, and <code class="language-plaintext highlighter-rouge">पनि</code> are attached with <code class="language-plaintext highlighter-rouge">discourse</code>.</p>
+
+<ul>
+  <li>Example: in <code class="language-plaintext highlighter-rouge">भन्छ रे</code>, <code class="language-plaintext highlighter-rouge">रे</code> is attached with <code class="language-plaintext highlighter-rouge">discourse</code>.</li>
+</ul>
+
+<p>The following subtyped relations occur in the current Nepali data:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">acl:relcl</code> – relative clauses.</li>
+  <li><code class="language-plaintext highlighter-rouge">compound:redup</code> – reduplicated compounds, e.g. repeated or echo-like expressions.</li>
+  <li><code class="language-plaintext highlighter-rouge">flat:name</code> – multi-token proper names.</li>
+  <li><code class="language-plaintext highlighter-rouge">nmod:poss</code> – possessive nominal modifiers.</li>
+</ul>
+
+<p>Other important relations used in the data include <code class="language-plaintext highlighter-rouge">advcl</code>, <code class="language-plaintext highlighter-rouge">advmod</code>, <code class="language-plaintext highlighter-rouge">amod</code>, <code class="language-plaintext highlighter-rouge">appos</code>, <code class="language-plaintext highlighter-rouge">aux</code>, <code class="language-plaintext highlighter-rouge">case</code>, <code class="language-plaintext highlighter-rouge">cc</code>, <code class="language-plaintext highlighter-rouge">ccomp</code>, <code class="language-plaintext highlighter-rouge">compound</code>, <code class="language-plaintext highlighter-rouge">conj</code>, <code class="language-plaintext highlighter-rouge">cop</code>, <code class="language-plaintext highlighter-rouge">dep</code>, <code class="language-plaintext highlighter-rouge">det</code>, <code class="language-plaintext highlighter-rouge">discourse</code>, <code class="language-plaintext highlighter-rouge">dislocated</code>, <code class="language-plaintext highlighter-rouge">iobj</code>, <code class="language-plaintext highlighter-rouge">nmod</code>, <code class="language-plaintext highlighter-rouge">nsubj</code>, <code class="language-plaintext highlighter-rouge">nummod</code>, <code class="language-plaintext highlighter-rouge">obj</code>, <code class="language-plaintext highlighter-rouge">obl</code>, <code class="language-plaintext highlighter-rouge">parataxis</code>, <code class="language-plaintext highlighter-rouge">punct</code>, <code class="language-plaintext highlighter-rouge">reparandum</code>, <code class="language-plaintext highlighter-rouge">root</code>, and <code class="language-plaintext highlighter-rouge">xcomp</code>.</p>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is <a href="../treebanks/ne-comparison.html">1</a> Nepali UD treebank:</p>
+
+<ul>
+  <li><a href="../treebanks/ne_bk/index.html">Nepali-BK</a></li>
+</ul>
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'ne';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
