@@ -80,43 +80,89 @@
         </script>
         <h1 id="ud-for-old-turkish-">UD for Old Turkish <span class="flagspan"><img class="flag" src="../../flags/svg/TURKIC.svg" /></span></h1>
 
-<p>UD Old Turkish is an effort to digitize and annotate (or annotate from existing digitization) existing, or structurally constructed to be coherent and fit, Old Turkic, Old Uyghur, and Arabic script texts. Having all corpus in the respective script of a given script as-is is a precondition for this language. This document intends to be rough than precise because the approach of annotation can change drastically over time.</p>
+<p>On this page, <em>Old Turkish</em> refers to the historical Turkic language identified by the ISO 639-3 code <code class="language-plaintext highlighter-rouge">otk</code>; <em>Old Turkic</em> refers to one of the scripts in which Old Turkish was written. The currently released UD treebank is based on Old Turkic script texts, but the language documentation is intentionally written so that it can also accommodate future Old Uyghur and Karakhanid material written in other scripts. Old Turkish should therefore not be annotated by simply projecting the habits of present-day Turkish or of another modern Turkic treebank onto an older corpus.</p>
+
+<p>The key language-specific point is that the data are script-faithful and syntactically fine-grained: many elements that look like bound morphology from a modern blankspace-based perspective are separate syntactic tokens in the current UD analysis.</p>
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
-  <li>The only guarantee is that colon punctuation (which roughly functions like whitespace) delimits letters before it, but that does not guarantee that letters ranged by two colons constitute a one-word unit.</li>
-  <li>For the subtleties, with respect to word segmentation, everything is an exact match to the reference work “Ahmet Bican Ercilasun, Türk Kağanlığı ve Türk Bengü Taşları, Dergâh Yayınları.”</li>
-  <li>Treebanks should treat whitespace as an individual character and not implicitly have it by resorting to <code class="language-plaintext highlighter-rouge">SpaceAfter=Yes</code> (or by not specifying <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code>).</li>
+  <li>Old Turkic script texts do not provide regular blankspace-based tokenization. Blankspace and line breaks must not be treated as ordinary word boundaries; in inscriptions, line breaks may even split a base morpheme.</li>
+  <li>The colon, and occasionally a dot used in the same function, is the only reliable first-pass delimiter. It separates the material before and after it, but the letters between two such signs are not automatically one UD word. They may correspond to one word, to a word plus an adposition, or to a phrase containing several syntactic words.</li>
+  <li>After punctuation-based delimitation, further segmentation is grammatical. Primarily inflectional or clause-linking material may be tokenized separately: possessive and person markers, case markers, auxiliaries, converbs, tense-aspect-modality-evidentiality markers, and particles such as question, negation, or intensifier particles when they behave as independent syntactic units.</li>
+  <li>Bound morphemes are not split mechanically. If a morpheme functions as a nominalizer and the result is analyzed as a <code class="language-plaintext highlighter-rouge">NOUN</code> or <code class="language-plaintext highlighter-rouge">PRON</code>, the resulting nominal is kept as one token. Likewise, verbalizing or voice-changing material that creates a lexical verb is not automatically promoted to a separate token.</li>
+  <li>The current treebank has no multiword tokens in the CoNLL-U sense. Its fine-grained segmentation is represented by ordinary syntactic tokens rather than by surface-token ranges.</li>
+  <li>Because ordinary spaces are not present as token separators in the current script material, <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> is important. It should not be silently replaced by implicit blankspace or by an assumption that <code class="language-plaintext highlighter-rouge">SpaceAfter=Yes</code> is the default.</li>
+  <li>Sentence segmentation is also interpretive. It is based on clauses, conjunctions, and sentence roots rather than on line layout. The annotation should avoid gratuitous <code class="language-plaintext highlighter-rouge">parataxis</code>; where a sequence can be analyzed as coordinated material, coordination is preferred. Reported speech and genuine parenthetical material may require <code class="language-plaintext highlighter-rouge">parataxis</code> in future material.</li>
+  <li>Tokenization is subject to refinement based on data extension with other scripts of Old Turkish corpora. Since other scripts have more regularized use of blankspace and overlap with initial segmentation rules of this language, their incorporation will increase data-based exemplification of the principles.</li>
 </ul>
 
 <h2 id="orthography">Orthography</h2>
 
+<ul>
+  <li>The current released data keep Old Turkic script material in script-faithful form. Transliteration is useful for explanation, search, and tooling, but it is secondary to the script text and should be reversible where possible.</li>
+  <li>Old Turkic is predominantly written right-to-left. Its punctuation is sparse, and vowels are represented only partially. Open unrounded vowels may be omitted except word-finally, and several consonant signs encode vowel backness through synharmonic variants. Annotation should therefore not normalize the text to a modern Turkish spelling system.</li>
+  <li>Digital normalization should be conservative and explicit. Normalizing graphic variants, reducing script-specific variants, or decomposing syllabic signs is acceptable only when it is part of the documented encoding pipeline. Such normalization must not erase philologically relevant spellings or convert the corpus into a later standard orthography.</li>
+  <li>Future trees in Old Uyghur, Arabic, or other scripts should follow the same principle: keep the relevant historical script in the data, and document script-specific Unicode normalization.</li>
+</ul>
+
 <h2 id="morphology">Morphology</h2>
+
+<p>The current released treebank provides UPOS tags and basic dependency relations, but it does not provide lemmas, XPOS tags, or morphological features. For that reason, this page documents the current segmentation, UPOS, and syntactic decisions rather than a full Old Turkish feature inventory.</p>
 
 <h3 id="tags">Tags</h3>
 
-<p>Current corpora make use of only 13 tags. The plan is to use 16 except for X.</p>
+<p>The current treebank uses 13 UPOS tags: <code class="language-plaintext highlighter-rouge">ADJ</code>, <code class="language-plaintext highlighter-rouge">ADP</code>, <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">AUX</code>, <code class="language-plaintext highlighter-rouge">CCONJ</code>, <code class="language-plaintext highlighter-rouge">DET</code>, <code class="language-plaintext highlighter-rouge">NOUN</code>, <code class="language-plaintext highlighter-rouge">NUM</code>, <code class="language-plaintext highlighter-rouge">PRON</code>, <code class="language-plaintext highlighter-rouge">PROPN</code>, <code class="language-plaintext highlighter-rouge">PUNCT</code>, <code class="language-plaintext highlighter-rouge">SCONJ</code>, and <code class="language-plaintext highlighter-rouge">VERB</code>. The tags <code class="language-plaintext highlighter-rouge">PART</code>, <code class="language-plaintext highlighter-rouge">INTJ</code>, <code class="language-plaintext highlighter-rouge">SYM</code>, and <code class="language-plaintext highlighter-rouge">X</code> are currently unused in the released data.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ADP</code> is used for case markers once they are segmented as independent tokens.</li>
+  <li><code class="language-plaintext highlighter-rouge">DET</code> is used for possessive or person markers when they are attached to a nominal head. A similar pronominal form may be <code class="language-plaintext highlighter-rouge">PRON</code> when it is the only pronominal component of a phrase in head-final position. Pronominal copular material at the end of a clause is also tagged <code class="language-plaintext highlighter-rouge">DET</code> when it is treated as a determiner-like pronominal copula.</li>
+  <li><code class="language-plaintext highlighter-rouge">SCONJ</code> and <code class="language-plaintext highlighter-rouge">CCONJ</code> are used for verbal endings or converbs when their function is clause-linking: subordinating material is <code class="language-plaintext highlighter-rouge">SCONJ</code>, coordinating material is <code class="language-plaintext highlighter-rouge">CCONJ</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">AUX</code> is used for person-marker derivatives, TAME markers, converbs that function together with an auxiliary, the fully conjugated copula <em>er</em> “to be”, and other auxiliary-like verbal material when it is not the lexical head of the clause. These auxiliaries are kept as separate tokens rather than joined into one word.</li>
+  <li><code class="language-plaintext highlighter-rouge">VERB</code> is reserved for lexical predicates. A verb is not tagged <code class="language-plaintext highlighter-rouge">AUX</code> merely because it is semantically light. In particular, verbs corresponding roughly to “become” or “have” remain lexical predicates when they function as the clause head.</li>
+  <li><code class="language-plaintext highlighter-rouge">NUM</code> is used for numerals, including the components of complex numeral expressions. Complex numerals may involve both <code class="language-plaintext highlighter-rouge">compound</code> and <code class="language-plaintext highlighter-rouge">nummod</code>, depending on the internal structure of the expression.</li>
+  <li><code class="language-plaintext highlighter-rouge">PART</code> is currently not used. Items that traditional descriptions may call particles are assigned the major UPOS category required by their syntactic behavior, typically <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">SCONJ</code>, or <code class="language-plaintext highlighter-rouge">CCONJ</code>.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<ul>
-  <li>TODO</li>
-</ul>
+<p>No morphological feature inventory is released for Old Turkish at present, and all FEATS values in the current treebank are empty. This is not a documentation omission. It reflects the current state of the treebank, where distinctions that might later become features are represented mainly through tokenization, UPOS tags, and dependencies.</p>
+
+<p>When features are introduced, they should follow the universal UD feature inventory wherever possible. Language-specific features or values should be added only when they are necessary for Old Turkish and can be documented across the relevant corpora and scripts. Future feature work must also be coordinated with the tokenization policy above: categories currently represented as independent syntactic tokens should not automatically be duplicated as features on the lexical host.</p>
 
 <h2 id="syntax">Syntax</h2>
 
+<p>Old Turkish is predominantly head-final and suffixing. Embedded clauses normally precede the main clause, but rich morphology allows pragmatic or translated material to show non-canonical order. The released treebank uses only universal dependency relations and no language-specific relation subtypes.</p>
+
+<p>The current treebank uses the following relations: <code class="language-plaintext highlighter-rouge">advcl</code>, <code class="language-plaintext highlighter-rouge">advmod</code>, <code class="language-plaintext highlighter-rouge">amod</code>, <code class="language-plaintext highlighter-rouge">aux</code>, <code class="language-plaintext highlighter-rouge">case</code>, <code class="language-plaintext highlighter-rouge">cc</code>, <code class="language-plaintext highlighter-rouge">ccomp</code>, <code class="language-plaintext highlighter-rouge">compound</code>, <code class="language-plaintext highlighter-rouge">conj</code>, <code class="language-plaintext highlighter-rouge">cop</code>, <code class="language-plaintext highlighter-rouge">det</code>, <code class="language-plaintext highlighter-rouge">mark</code>, <code class="language-plaintext highlighter-rouge">nmod</code>, <code class="language-plaintext highlighter-rouge">nsubj</code>, <code class="language-plaintext highlighter-rouge">nummod</code>, <code class="language-plaintext highlighter-rouge">obj</code>, <code class="language-plaintext highlighter-rouge">obl</code>, <code class="language-plaintext highlighter-rouge">punct</code>, and <code class="language-plaintext highlighter-rouge">root</code>.</p>
+
 <ul>
-  <li>TODO</li>
+  <li>Segmented case markers attach to the nominal with <code class="language-plaintext highlighter-rouge">case</code>. The relation of the nominal itself is determined by its syntactic function, not mechanically by the presence of a case marker.</li>
+  <li>Dative and similar non-core arguments are generally analyzed as <code class="language-plaintext highlighter-rouge">obl</code>, not <code class="language-plaintext highlighter-rouge">iobj</code>, because the overt case marker is part of the Old Turkish analysis. The current treebank does not use <code class="language-plaintext highlighter-rouge">iobj</code>.</li>
+  <li>A direct object may still be <code class="language-plaintext highlighter-rouge">obj</code> even when it has an overt case marker. Overt case alone does not turn a core object into <code class="language-plaintext highlighter-rouge">obl</code>.</li>
+  <li>Segmented possessive and person markers on nouns attach with <code class="language-plaintext highlighter-rouge">det</code>. This is one of the main consequences of the Old Turkish segmentation policy and should not be normalized away in order to imitate modern blankspace-based Turkic words.</li>
+  <li>Auxiliary-like tokens attach with <code class="language-plaintext highlighter-rouge">aux</code>. The relation <code class="language-plaintext highlighter-rouge">cop</code> is reserved for fully conjugated and pronominal copular material. Lexical verbs such as “become” or “have” should not be analyzed as <code class="language-plaintext highlighter-rouge">cop</code> when they remain the clause predicate.</li>
+  <li>Conditional, converbial, and other subordinate clause-linking material is normally attached with <code class="language-plaintext highlighter-rouge">mark</code> to the dependent clause, and the clause itself is typically <code class="language-plaintext highlighter-rouge">advcl</code> or <code class="language-plaintext highlighter-rouge">ccomp</code> according to its function.</li>
+  <li>If a clausal complement has a null subject, the current guideline is to use <code class="language-plaintext highlighter-rouge">ccomp</code> rather than <code class="language-plaintext highlighter-rouge">xcomp</code>. The released treebank currently does not use <code class="language-plaintext highlighter-rouge">xcomp</code>.</li>
+  <li>Coordinating conjunctions attach with <code class="language-plaintext highlighter-rouge">cc</code>. When a coordinating element appears at the end of a coordinated sequence, it attaches to the preceding element, following the Old Turkish-specific analysis described for the treebank.</li>
+  <li>Multi-word proper names should be analyzed with <code class="language-plaintext highlighter-rouge">flat</code> when they occur, although the current small release has no <code class="language-plaintext highlighter-rouge">flat</code> instances.</li>
+  <li>Question or intensifier particles, when tokenized separately, are analyzed as <code class="language-plaintext highlighter-rouge">advmod</code>. Interjections, when they occur in future data, should be analyzed with <code class="language-plaintext highlighter-rouge">discourse</code>.</li>
+  <li>The current treebank has no <code class="language-plaintext highlighter-rouge">acl</code> or <code class="language-plaintext highlighter-rouge">csubj</code> instances. Future treatment of adnominal and clausal-subject constructions will require special care because Old Turkish head-final syntax can make the boundary between nominalized clause and modifier structurally delicate.</li>
 </ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There is 1 Old Turkish UD treebank:</p>
-
 <ul>
-  <li><a href="../treebanks/otk_clausal/index.html">Old Turkish-Clausal</a></li>
+  <li><a href="../treebanks/otk_clausal/index.html">Old Turkish-Clausal</a> — a manually annotated treebank of Old Turkic script texts. The current release provides manual UPOS and manual basic dependency annotation, but no lemmas, XPOS tags, or morphological features.</li>
 </ul>
+
+<p>For the initial annotation rationale and tooling, see <a href="https://aclanthology.org/2021.udw-1.11/">Universal Dependencies for Old Turkish</a>.</p>
+
+<h2 id="diffs">Diffs</h2>
+
+<h3 id="old-turkish-clausal">Old Turkish-Clausal</h3>
+
+<p>The released treebank is intentionally small, synthetic, and conservative. Compared with broader plans described in early project documentation, the current release uses 13 UPOS tags rather than a larger projected tag inventory, has no lemmas, has no XPOS tags, has no morphological features, and uses no relation subtypes.</p>
 
       </div>
 
