@@ -81,12 +81,19 @@
         <h2><code>iobj:instrument</code>: patient object of a non-actor/patient-voice verb</h2>
 
 <p>A nominal core argument of a clause which is in a non-pivot syntactic role and with a 
-patient semantic role. Universal Dependencies only allows one core argument to have the 
+patient semantic role.</p>
+
+<p>When there are multiple arguments in the post-verbal non-pivot position, instrument arguments have
+lowest priority to take the <code class="language-plaintext highlighter-rouge">obj</code> label, after agents and patients. If an agent or a patient is in 
+the non-pivot position, the patient must take the <code class="language-plaintext highlighter-rouge">iobj</code> label as <code class="language-plaintext highlighter-rouge">iobj:instrument</code>.</p>
+
+<p>Universal Dependencies only allows one core argument to have the 
 <code class="language-plaintext highlighter-rouge">obj</code> label, while others are expected to have the <code class="language-plaintext highlighter-rouge">iboj</code> label. If both an agent and a 
 patient appear as non-pivot arguments, we allow the agent to take the <code class="language-plaintext highlighter-rouge">obj:agent</code> label, 
 while the patient takes <code class="language-plaintext highlighter-rouge">iobj:patient</code>. This is arbitrary, but we do not currently have 
 a solid linguistic argument for which is more direct or indirect, and in the absence of 
-this we use a hierarchy of <em>agent &gt; patient &gt; instrument</em>.</p>
+this we use a hierarchy of <em>agent &gt; patient &gt; instrument</em>. This is partly motivated by 
+the agent usually being closer to the verb.</p>
 
 <pre><code class="language-sdparse">Uponula tilubu li Dewi lo bulonggo \n fish &lt;PV&gt;-cook NPIV.FEM Dewi NPIV pan
 iobj:instrument(tilubu, bulonggo)

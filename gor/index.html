@@ -82,14 +82,14 @@
 
 <h2 id="orthography">Orthography</h2>
 
-<p>Gorontalo is written in the Latin alphabet.</p>
+<p>Gorontalo is written in the Latin alphabet, with all characters (including punctuation) in the ASCII set.</p>
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
   <li>Tokens in Gorontalo are separated by whitespace, except for punctuation such as full-stops and question marks, which are separate tokens despite following a word without space.</li>
   <li>In practice, orthographic styles in Gorontalo can vary depending on the language user. For example, voice-marking adpositions or clitics may be separated by whitespace, or joined by concatenation or hyphenation. At present the data is of a consistent style, but this variance is worth bearing in mind for Gorontalo language data in natural settings.</li>
-  <li>We provide morphological segmentation in the <code class="language-plaintext highlighter-rouge">mseg</code> field of the misc column.</li>
+  <li>We provide morphological segmentation in the <code class="language-plaintext highlighter-rouge">MSeg</code> field of the misc column.</li>
 </ul>
 
 <hr />
@@ -120,14 +120,18 @@
     <ul>
       <li>Voice = {Act, Pat, Ivoc} (Actor, Patient, Instrument Voice)</li>
       <li>Mood = {Ind, Irr} (Indicative, usually referred to as Realis; Irrealis)</li>
-      <li>Aspect = {Prog}</li>
+      <li>Aspect = {Prog} (Progressive)</li>
     </ul>
   </li>
+  <li>Some ADJ may also be inflected for Mood, e.g. “mo’opotala” (IRR-dangerous): <code class="language-plaintext highlighter-rouge">Mood=Irr</code></li>
   <li>Tokens tagged as NOUN generally do not take any morphological features, with the following exceptions:
-*The plural prefix “mongo-“ is often attached to nouns to indicate plurality. For example: “lolai” (boy); “mongololai” (boys). This is currently analysed as a plural inflection, and so the feature-value pair <code class="language-plaintext highlighter-rouge">Number=Plur</code> is used.</li>
-  <li>Pivot markers, tagged as ADP, have the following features:
     <ul>
-      <li>Voice = {Nom, Gen} (obligatory)</li>
+      <li>The plural prefix “mongo-“ is often attached to nouns to indicate plurality. For example: “lolai” (boy); “mongololai” (boys). This is currently analysed as a plural inflection, and so the feature-value pair <code class="language-plaintext highlighter-rouge">Number=Plur</code> is used.</li>
+    </ul>
+  </li>
+  <li>Pivot/non-pivot markers, tagged as ADP, have the following features:
+    <ul>
+      <li>Case = {Piv, Npiv, Gen} (obligatory)</li>
       <li>Gender = {Masc, Fem}</li>
     </ul>
   </li>
@@ -142,29 +146,38 @@
   <li>The basic order of a Gorontalo transitive sentence is pivot-verb-nonpivot (likened to SVO by the above logic).</li>
   <li>Sub-labels are used for subject and object relations in all instances of voice-marked verb phrases to indicate the semantic role, e.g.:
     <ul>
-      <li>nsubj:actor, nsubj:patient, nsubj:instrument</li>
-      <li>obj:actor, obj:patient</li>
+      <li><code class="language-plaintext highlighter-rouge">nsubj:actor</code>, <code class="language-plaintext highlighter-rouge">nsubj:patient</code>, <code class="language-plaintext highlighter-rouge">nsubj:instrument</code></li>
+      <li><code class="language-plaintext highlighter-rouge">obj:actor</code>, <code class="language-plaintext highlighter-rouge">obj:patient</code>, <code class="language-plaintext highlighter-rouge">obj:instrument</code></li>
+      <li><code class="language-plaintext highlighter-rouge">iobj:patient</code>, <code class="language-plaintext highlighter-rouge">iobj:instrument</code></li>
     </ul>
   </li>
+  <li>Universal Dependencies only allows one core argument to have the <code class="language-plaintext highlighter-rouge">obj</code> label, while others are expected to have the <code class="language-plaintext highlighter-rouge">iboj</code> label. In the case of multiple non-pivot arguments, we follow a hierarchy of <em>agent &gt; patient &gt; instrument</em>. The topmost non-pivot argument in this hierarchy takes the bare <code class="language-plaintext highlighter-rouge">obj</code> label, while any others take the <code class="language-plaintext highlighter-rouge">iobj</code> label. This is arbitrary as we lack a strong linguistic argument for which is more direct, but partly motivated by the agent usually being closer to the verb.</li>
+  <li>A bare <code class="language-plaintext highlighter-rouge">nsubj</code> label is used for subjects of nominal predicates. In theory, there should be no instances of a bare <code class="language-plaintext highlighter-rouge">obj</code> label.</li>
   <li>There are no copula in Gorontalo.</li>
 </ul>
 
 <h2 id="aliases">Aliases</h2>
 
-<p>The annotation for Gorontalo introduces some new terminology which is intended to be more transparent for users and more reflective of symmetrical voice languages, as an improvement over pre-existing terminology that is more suited to nominative-accusative languages. All these new labels can be directly mapped back to a pre-existing equivalent. We provide a mapping here:</p>
+<p>The annotation for Gorontalo introduces some new terminology which is intended to be more transparent for users and more reflective of symmetrical voice languages, as an improvement over pre-existing terminology that is more suited to nominative-accusative languages. All these new labels can be mapped back to a pre-existing equivalent. We provide a mapping here:</p>
 
 <ul>
   <li>Dependency relations – sublabels:
     <ul>
-      <li>_:actor → _agent</li>
-      <li>_:patient → pass</li>
-      <li>_:instrument → ivoc</li>
+      <li><code class="language-plaintext highlighter-rouge">nsubj:agent</code>  → <code class="language-plaintext highlighter-rouge">nsubj:pass</code></li>
+      <li><code class="language-plaintext highlighter-rouge">nsubj:patient</code> → <code class="language-plaintext highlighter-rouge">nsubj:pass</code></li>
+      <li><code class="language-plaintext highlighter-rouge">_:instrument</code> → <code class="language-plaintext highlighter-rouge">_:ivoc</code></li>
     </ul>
   </li>
   <li>Morphological features – Voice:
     <ul>
-      <li>Pat → Pass</li>
-      <li>Ivoc → Ifoc</li>
+      <li><code class="language-plaintext highlighter-rouge">Pat</code> → <code class="language-plaintext highlighter-rouge">Pass</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Ivoc</code> → <code class="language-plaintext highlighter-rouge">Ifoc</code></li>
+    </ul>
+  </li>
+  <li>Morphological features – Case:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Piv</code> → <code class="language-plaintext highlighter-rouge">Nom</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Npiv</code> → <code class="language-plaintext highlighter-rouge">Gen</code> (note: this removes the distinction between non-pivots and true genitives in Gorontalo)</li>
     </ul>
   </li>
 </ul>
