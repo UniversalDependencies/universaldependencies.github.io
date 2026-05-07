@@ -3,7 +3,7 @@
 <html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>compound:redup</title>
+    <title>flat:redup</title>
     <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
     <link rel="root" href=""/> <!-- for JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -39,7 +39,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-axm">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_axm/dep/compound-redup.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_axm/dep/flat-redup.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -78,17 +78,17 @@
                 root + 'lib/ext/jquery.address.min.js'
             );
         </script>
-        <h2><code>compound:redup</code>: reduplicated compounds</h2>
+        <h2><code>flat:redup</code>: reduplication</h2>
 
-<p>This subtype of <a href="">compound</a> covers a range of reduplicated forms in Middle Armenian.
+<p>This relation is used generally for reduplicating constructions in Middle Armenian. We consider the case of a reduplication only when the same word is repeated one or more times in sequence, all of the repetitions having the same function and head in the clause, with no other words belonging to other phrases intervening (this condition allows for linearly non-adjacent reduplication, with reduplicated elements possibly governing their own dependents).
 Reduplication is a common process especially for <a href="ADV">adverbs</a> and <a href="ADJ">adjectives</a>, but it is also used for reduplicated <a href="NOUN">noun</a> and <a href="VERB">verb</a> forms. They can have additional feature of <a href="">Echo</a>.</p>
 
-<pre><code class="language-conllu"># visual-style 5 4 compound:redup color:blue
+<pre><code class="language-conllu"># visual-style 5 4 flat:redup color:blue
 1	Ով	ով	PRON	_	Case=Nom|Number=Sing|PronType=Rel	5	nsubj	_	_
 2-3	զմեզ	_	_	_	_	_	_	_	_
 2	զ	զ	ADP	_	AdpType=Prep	3	case	_	_
 3	մեզ	մենք	PRON	_	Case=Acc|Number=Plur|Person=1|PronType=Prs	5	obj	_	_
-4	աժնեց	աժնել	VERB	_	Aspect=Perf|Echo=Ech|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Subcat=Tran|Tense=Past|VerbForm=Fin|Voice=Act	5	compound:redup	_	_
+4	աժնեց	աժնել	VERB	_	Aspect=Perf|Echo=Ech|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Subcat=Tran|Tense=Past|VerbForm=Fin|Voice=Act	5	flat:redup	_	_
 5	բաժնեց	բաժնել	VERB	_	Aspect=Perf|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Subcat=Tran|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	_
 6	կամ	կամ	CCONJ	_	_	10	cc	_	_
 7	ի	ի	ADP	_	AdpType=Prep|ExtPos=ADV	8	case	_	_
@@ -98,16 +98,27 @@ Reduplication is a common process especially for <a href="ADV">adverbs</a> and <
 11	։	։	PUNCT	_	_	5	punct	_	_
 </code></pre>
 
-<pre><code class="language-sdparse">Բուռն բուռն ձգէ, որ ուտէ ։ \n Throw it handful by-handful, so that he/she/it may eat.
-compound:redup(Բուռն, բուռն)
-compound:redup(handful, by-handful)
+<pre><code class="language-conllu"># visual-style 1 2 flat:redup color:blue
+1	Բուռն	բուռ	NOUN	_	Animacy=Nhum|Case=Nom|Definite=Def|Number=Sing	3	obl	_	_
+2	բուռն	բուռն	NOUN	_	Animacy=Nhum|Case=Nom|Definite=Ind|Number=Sing	1	flat:redup	_	_
+3	ձգէ	ձգել	VERB	_	Aspect=Prosp|Mood=Imp|Number=Sing|Person=2|Subcat=Tran|VerbForm=Fin|Voice=Act	0	root	_	SpaceAfter=No
+4	,	,	PUNCT	_	_	6	punct	_	_
+5	որ	որ	SCONJ	_	_	6	mark	_	_
+6	ուտէ	ուտել	VERB	_	Aspect=Prosp|Mood=Sub|Number=Sing|Person=3|Polarity=Pos|Subcat=Tran|Tense=Pres|VerbForm=Fin|Voice=Act	3	advcl	_	SpaceAfter=No
+7	։	։	PUNCT	_	_	3	punct	_	_
 </code></pre>
 
-<pre><code class="language-sdparse">Մէջ ընդ մէջ և ժամ ժամ դեղին դառնայ ։ \n From-time to time and hour by-hour it turns yellow .
-compound:redup(Մէջ, մէջ)
-compound:redup(From-time, time)
-compound:redup(ժամ, ժամ)
-compound:redup(hour, by-hour)
+<pre><code class="language-conllu"># visual-style 1 3 flat:redup color:blue
+# visual-style 5 6 flat:redup color:blue
+1	Մէջ	մէջ	ADP	_	AdpType=Post|ExtPos=ADV	8	advmod	_	_
+2	ընդ	ընդ	ADP	_	AdpType=Prep	1	flat	_	_
+3	մէջ	մէջ	ADP	_	AdpType=Post	1	flat:redup	_	_
+4	և	և	NUM	_	NumForm=Digit|NumType=Card	5	cc	_	
+5	ժամ	ժամ	NOUN	_	Animacy=Nhum|Case=Nom|Definite=Ind|Number=Sing	1	conj	_	_
+6	ժամ	ժամ	NOUN	_	Animacy=Nhum|Case=Nom|Definite=Ind|Number=Sing	5	flat:redup	_	_
+7	դեղին	դեղին	ADJ	_	Degree=Pos	8	xcomp	_	_
+8	դառնայ	դառնալ	VERB	_	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Style=Arch|Subcat=Intr|Tense=Pres|VerbForm=Fin|Voice=Mid	0	root	_	SpaceAfter=No
+9	։	։	PUNCT	_	_	8	punct	_	_
 </code></pre>
 <!-- Interlanguage links updated St 6. května 2026, 20:46:06 CEST -->
 
@@ -115,33 +126,13 @@ compound:redup(hour, by-hour)
 <!-- "in other languages" links -->
 <hr/>
 
-compound:redup in other languages:
+flat:redup in other languages:
 
-[<a href="../../axm/dep/compound-redup.html">axm</a>]
+[<a href="../../it/dep/flat-redup.html">it</a>]
 
-[<a href="../../bm/dep/compound-redup.html">bm</a>]
+[<a href="../../la/dep/flat-redup.html">la</a>]
 
-[<a href="../../el/dep/compound-redup.html">el</a>]
-
-[<a href="../../hy/dep/compound-redup.html">hy</a>]
-
-[<a href="../../pa/dep/compound-redup.html">pa</a>]
-
-[<a href="../../pcm/dep/compound-redup.html">pcm</a>]
-
-[<a href="../../qpm/dep/compound-redup.html">qpm</a>]
-
-[<a href="../../sd/dep/compound-redup.html">sd</a>]
-
-[<a href="../../ssp/dep/compound-redup.html">ssp</a>]
-
-[<a href="../../tr/dep/compound-redup.html">tr</a>]
-
-[<a href="../../u/dep/compound-redup.html">u</a>]
-
-[<a href="../../vi/dep/compound-redup.html">vi</a>]
-
-[<a href="../../xcl/dep/compound-redup.html">xcl</a>]
+[<a href="../../vi/dep/flat-redup.html">vi</a>]
 
 
 
