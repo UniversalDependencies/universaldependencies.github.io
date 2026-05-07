@@ -39,7 +39,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-mjl">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_mjl/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_mjl/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -82,57 +82,83 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
+<p>In Mandyali, words are generally separated by whitespace.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>All punctuation marks (such as commas, question marks, and the danda “।”) are treated as independent tokens.</li>
+  <li>Particles and discourse markers (e.g., bhala) are tokenized separately.</li>
+  <li>Subordinators (e.g., je) are also treated as independent tokens.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
+<p>• Mandyali uses the full set of Universal POS tags, including:
+  NOUN, VERB, PRON, ADJ, ADV, AUX, ADP, CCONJ, SCONJ, PART, INTJ, etc.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<ul>
+  <li>Observations from the data:</li>
+  <li>भला → PART (discourse marker)</li>
+  <li>जे → SCONJ</li>
+  <li>देखुं, जाउंआ, पाईरी → VERB</li>
+</ul>
 
-<hr />
+<p>Auxiliary Verbs (AUX)</p>
 
-<h3 id="features">Features</h3>
+<ul>
+  <li>Mandyali employs auxiliary verbs to express tense, aspect, and voice:</li>
+  <li>• है / था → copula and tense marking</li>
+  <li>रह → progressive aspect</li>
+  <li>कर → habitual constructions</li>
+  <li>जा → passive constructions</li>
+</ul>
 
-<p>*</p>
+<p>Note:</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<p>The example sentence does not contain an auxiliary verb, indicating that bare verb constructions are also common in Mandyali
+Modal Auxiliaries</p>
 
-<hr />
+<ul>
+  <li>• सक → ability</li>
+  <li>पौणा → manage</li>
+  <li>चाहिदा → necessity / obligation</li>
+  <li>हो → obligation</li>
+  <li>पड़ → strong necessity
+Phase Verbs</li>
+  <li>• लग → beginning of an action</li>
+  <li>चुक → completion of an action</li>
+</ul>
+
+<p>In the current Mandyali data, certain verbs are treated as auxiliaries, including those that frequently occur in compound verb constructions as semantically less prominent elements. However, since compound verbs in Mandyali do not represent periphrastic tense, aspect, or voice formations in the strict UD sense, such verbs do not fully conform to the standard UD definition of auxiliaries. Therefore, these verbs are better analyzed as light verbs rather than true auxiliaries, and their treatment may be revised in future versions of the annotation scheme.
+The following verbs are commonly used as semantic/light verbs in compound constructions in Mandyali:</p>
+
+<ul>
+  <li>जा (jā) “to go” (also functions as a true auxiliary in passive constructions)</li>
+  <li>ले (le) “to take”</li>
+  <li>दे (de) “to give”</li>
+  <li>सुट (suṭ) “to throw”</li>
+  <li>बैठ (baiṭh) “to sit”</li>
+  <li>उठ (uṭh) “to rise”</li>
+  <li>रख (rakh) “to keep”</li>
+  <li>आ (ā) “to come”</li>
+</ul>
+
+<p>In such constructions, these verbs typically contribute aspectual, completive, or pragmatic nuances rather than carrying the primary lexical meaning. Accordingly, they are often annotated as VERB with relations such as compound or conj, rather than as AUX, in UD analysis.</p>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
-
-<hr />
+<ul>
+  <li>The canonical word order in Mandyali is Subject–Object–Verb (SOV); however, variation is observed in complex sentence constructions. For example, in the sentence “देखुं भला जाउंआ जे मेरी लाड़ीए क्या नाटी पाईरी।”, the structure consists of a main clause (देखुं भला जाउंआ) and a subordinate clause (जे मेरी लाड़ीए … पाईरी), demonstrating the presence of clausal embedding. Mandyali sentences can broadly be categorized into two types: kernel sentences, which represent basic structural forms, and derived sentences, which are formed through transformations such as expansion or reduction. From a Universal Dependencies (UD) perspective, grammatical relations in Mandyali follow standard patterns. The nominal subject (nsubj) is typically realized as a noun or pronoun, as in मेरी लाड़ीए. The direct object (obj) is represented by elements such as नाटी. Clausal complements (ccomp) are used to encode subordinate clauses, as seen in constructions like “देखुं … जे … पाईरी”, where जे functions as a subordinator and is annotated with the relation mark. Additionally, discourse particles play a significant role in Mandyali, contributing pragmatic and emphatic meaning. Words such as भला, फेरि, and हां function as discourse elements and are annotated in UD with the part-of-speech tag PART and the relation discourse.</li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/mjl-comparison.html">N</a> Mandyali UD treebanks:</p>
+<p>There is 1 Mandyali UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/mjl_a/index.html">Mandyali-A</a></li>
-  <li><a href="../treebanks/mjl_b/index.html">Mandyali-B</a></li>
+  <li><a href="../treebanks/mjl_mdtb/index.html">Mandyali-MDTB</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
