@@ -82,41 +82,102 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>Words are generally delimited by whitespace but with exceptions:</li>
+  <li>Compound words and full reduplications that are separated by a hyphen are tokenized as multi-word tokens if each word can be taken as a separate semantic expression forming a whole.
+    <ul>
+      <li>Contractions are tokenized independently whenever possible (e.g. <em>ke’d</em> into <em>ke</em> + <em>‘d</em>)</li>
+      <li>Words with spaces do not regularly occur in Tagabawa.</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
+<ul>
+  <li>Tagabawa uses 16 of the UPOS tags. Auxiliary (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/AUX">AUX</a>) is excluded.</li>
+  <li>Several word types are classified as particles (<a href="https://universaldependencies.org/u/pos/PART.html">PART</a>). These fall under two categories:
+    <ul>
+      <li>Grammatical particles (linkers <em>na</em> and <em>ka</em>)</li>
+      <li>Lexical particles (such as the question marker <em>baʔ</em>, negation marker <em>direʔ</em>, <em>ʔándaʔ</em>)</li>
+    </ul>
+  </li>
+  <li>Quantifiers (including the plural marker <em>mga</em> and indefinite quantifiers such as <em>madita</em> “many”) are classified as determiners (<a href="https://universaldependencies.org/u/pos/DET.html">DET</a>).</li>
+  <li>Similar to other Philippine-type languages, Tagabawa has nominal markers that function both as prepositions and articles. Calling these as markers is probably the safest classification instead of prepositions, articles or determiners, as the markers can function all of them. To parallel other Philippine language treebanks, they are labeled as (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/ADP">ADP</a>). These markers are:
+    <ul>
+      <li>The topic nominative/absolutive marker <em>ang</em> or <em>toʔ</em></li>
+      <li>The non-topic genitive/ergative marker <em>ni</em> or <em>ka</em></li>
+      <li>The non-core oblique/dative marker that is also <em>kay</em> or <em>ka</em></li>
+    </ul>
+  </li>
+</ul>
 
-<h3 id="tags">Tags</h3>
+<h3 id="nominal-features">Nominal Features</h3>
 
-<p>*</p>
+<ul>
+  <li>Plurality is signaled, if explicitly stated, by the function word <em>mga</em>, hence <em>mga</em> expresses the <code class="language-plaintext highlighter-rouge">Number=Plur</code> feature and does not need for nouns (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/NOUN">NOUN</a>) and proper nouns (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/PROPN">PROPN</a>) to have <code class="language-plaintext highlighter-rouge">Number=Plur</code>. However, some affixations on nouns show number, and are not preceded with a <em>mga</em> marker anymore. In such occurences, the noun then has a <code class="language-plaintext highlighter-rouge">Number=Plur</code>.</li>
+  <li>Pronouns (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/PRON">PRON</a>) are marked for number with 2 possible values: <code class="language-plaintext highlighter-rouge">Sing</code>, <code class="language-plaintext highlighter-rouge">Plur</code></li>
+  <li>Some nouns (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/NOUN">NOUN</a>) and adjectives (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/ADJ">ADJ</a>) have <a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Gender">Gender</a> with 2 possible values: <code class="language-plaintext highlighter-rouge">Masc</code>, <code class="language-plaintext highlighter-rouge">Fem</code>. These are usually loanwords from Spanish. Other nouns or adjectives do not have this feature.</li>
+  <li>There is a debate about the names of the case markers, depending to which morphosyntactic alignment is subscribed to when analyzing Tagabawa. Some linguists would argue Philippine-type languages are ergative-absolutive, some would say nominative-accusative, and some would reject both and say there is an Austronesian alignment. To adopt the similarities of other Philippine-type languages, Tagabawa has <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Gen</code>, <code class="language-plaintext highlighter-rouge">Dat</code> as the 3 possible values for <a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/ADP">ADP</a>.</li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+<p>Degree and Polarity</p>
 
-<hr />
+<ul>
+  <li><a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Degree">Degree</a> applies to adjectives (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/ADJ">ADJ</a>) and has 2 possible values: <code class="language-plaintext highlighter-rouge">Pos</code>, <code class="language-plaintext highlighter-rouge">Sup</code>. <code class="language-plaintext highlighter-rouge">Cmp</code> (comparative form) is not formed morphologically.</li>
+  <li><a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Polarity">Polarity</a> is used to some existential verbs (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/VERB">VERBS</a>), negation particles like <em>di</em>, <em>dire</em>, <em>ʔándaʔ</em> and response to interjection like <em>oʔoʔ</em> and <em>dire</em>. It has 2 possible values: <code class="language-plaintext highlighter-rouge">Pos</code>, <code class="language-plaintext highlighter-rouge">Neg</code>.</li>
+</ul>
 
-<h3 id="features">Features</h3>
+<h3 id="verbal-features">Verbal Features</h3>
 
-<p>*</p>
+<ul>
+  <li>Verbs (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/VERB">VERBS</a>) inflect according to <a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Mood">Mood</a>, <a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Aspect">Aspect</a> (instead of <a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Tense">Tense</a>), and <a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Voice">Voice</a>.</li>
+  <li>Verbs (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/VERB">VERBS</a>) in the current data contains 3 possible mood values: <code class="language-plaintext highlighter-rouge">Ind</code> (indicative), <code class="language-plaintext highlighter-rouge">Imp</code> (imperative), <code class="language-plaintext highlighter-rouge">Pot</code> (potential).</li>
+  <li><a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Aspect">Aspect</a> has 3 possible values: <code class="language-plaintext highlighter-rouge">Perf</code> (perfective), <code class="language-plaintext highlighter-rouge">Imp</code> (imperfective), <code class="language-plaintext highlighter-rouge">Prosp</code> (prospective).</li>
+  <li><a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Voice">Voice</a> is different in many Austronesian languages such as Tagabawa as it does not follow the active-passive voice difference. <a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/VERB">Verbs</a> “focus” on one specific argument, making it as the subject, but it does not transform the patient-like argument from a transitive clause to intransitive, and retains the agent-like argument, if present, is still a core argument. This feature is similar to Tagalog or Cebuano, and other Philippine-type languages. There are 4 possible values for <code class="language-plaintext highlighter-rouge">Voice</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Act</code> (actor-focused voice) where the actor is the topic of the sentence.</li>
+      <li><code class="language-plaintext highlighter-rouge">Pass</code> (patient-focused voice) where the patient is the topic of the sentence.</li>
+      <li><code class="language-plaintext highlighter-rouge">Lfoc</code> (locative-focused voice) where the location is the topic of the sentence.</li>
+      <li><code class="language-plaintext highlighter-rouge">Ifoc</code> (instrumental-focused voice) where the instrument is the topic of the sentence.</li>
+    </ul>
+  </li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<h3 id="pronouns-determiners-quantifiers">Pronouns, Determiners, Quantifiers</h3>
 
-<hr />
+<ul>
+  <li><a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/PronType">PronType</a> is used with pronouns (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/PRON">PRON</a>), determiners (<a href="https://universaldependencies.org/u/pos/DET.html">DET</a>), and adverbs (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/ADV">ADV</a>).</li>
+  <li><a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/NumType">NumType</a> is used with cardinal numerals (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/NUM">NUM</a>).</li>
+  <li><a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Person">Person</a> is a feature for personal pronouns (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/PRON">PRON</a>) and has 3 possible values: <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code>. Person is not marked on other types of pronouns or nouns, but they can be interpreted as they are in 3rd person.</li>
+  <li><a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Clusivity">Clusivity</a> is a feature in 1st personal plural pronouns. It has 2 possible values: <code class="language-plaintext highlighter-rouge">In</code> (inclusive), <code class="language-plaintext highlighter-rouge">Ex</code> (exclusive).</li>
+  <li><a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Deixis">Deixis</a> is a lexical feature of demonstratives (PRON, ADV) and has 3 possible values: <code class="language-plaintext highlighter-rouge">Prox</code> (proximate), <code class="language-plaintext highlighter-rouge">Med</code> (medial), <code class="language-plaintext highlighter-rouge">Remt</code> (remote or distal).</li>
+</ul>
+
+<h3 id="other-features">Other Features</h3>
+
+<ul>
+  <li><a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/PartType">PartType</a> is used to distinguish the particles used in Tagabawa. This excludes linkers even though they are considered as particles.</li>
+  <li><a href="https://universaldependencies.org/u/feat/all.html#al-u-feat/Foreign">Foreign</a><code class="language-plaintext highlighter-rouge">=Yes</code> feature is used for words that are not natively Tagabawa, usually English or Spanish words that are used a substitute for Tagabawa words. If a loaned word is already part of the common lexicon in Tagabawa regardless if they have foreign spelling (e.g. <em>passport</em> is in English but considered a Tagabawa word) then it is not labeled as <code class="language-plaintext highlighter-rouge">Foreign=Yes</code>.</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
+<h3 id="core-arguments-and-adjuncts">Core Arguments and Adjuncts</h3>
+<ul>
+  <li>Like many Philippine-type languages, Tagabawa uses the Austronesian voice system. In Tagabawa, there are two core arguments, which are the topic argument and the non-topic argument. These are marked by prepositions (<a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/ADP">ADP</a>), and affixation on the verb determines their semantic roles.
+    <ul>
+      <li>The core topic nominative/absolutive argument (usually marked by the <a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/ADP">ADP</a> <em>toʔ</em> for common nouns or <em>si</em> for personal nouns) attaches to the predicate using <a href="https://universaldependencies.org/u/dep/all.html#al-u-dep/nsubj">nsubj</a> relation.</li>
+      <li>The core non-topic genitive/ergative argument (usually marked by the <a href="https://universaldependencies.org/u/pos/all.html#al-u-pos/ADP">ADP</a> for common nouns <em>ka</em> or for personal common nouns <em>ni</em>) attached to the predicate using the <a href="https://universaldependencies.org/u/dep/all.html#al-u-dep/obj">obj</a> relation.</li>
+      <li>Non-core nominals are attached to the predicate using the <a href="https://universaldependencies.org/u/dep/all.html#al-u-dep/obl">obl</a> relation (for common nouns <em>ka</em> or for personal common nouns <em>kay</em>).</li>
+    </ul>
+  </li>
+</ul>
 
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<h3 id="non-verbal-predicates">Non-Verbal Predicates</h3>
 
-<hr />
+<ul>
+  <li>In cases of non-verbal clauses (such as noun, adverb, or adjective phrases), these may be used as predicates in Tagabawa. The highest node of the clause is labeled as <a href="https://universaldependencies.org/u/dep/all.html#al-u-dep/root">root</a>, and all other nodes are connected to this node, similar to nodes connected to a verb. There is no copula.</li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
@@ -127,12 +188,6 @@
   <li><a href="../treebanks/bgs_b/index.html">Tagabawa-B</a></li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
