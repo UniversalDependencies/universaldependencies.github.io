@@ -2471,15 +2471,20 @@ amod(exhibition, archaeological)
 <p><a id="al-u-dep/expl:pass" class="al-dest"></a></p>
 <h2><code>expl:pass</code>: reflexive pronoun used in reflexive passive</h2>
 
-<p>Reflexive pronouns (see the feature <a href="">cs-feat/Reflex</a>) are used in various constructions in Czech,
-including so-called <em>reflexive passive.</em>
-In PDT, their relation to the verb is labeled <code class="language-plaintext highlighter-rouge">AuxR</code>.
-The corresponding label in Czech UD is called <code class="language-plaintext highlighter-rouge">expl:pass</code>
-(since UD 2.0; in previous versions it was labeled <code class="language-plaintext highlighter-rouge">auxpass:reflex</code>).</p>
+<p>Reflexive pronouns (see the feature <a href="">Reflex</a>) are used in various constructions in Slavic, Romance and Germanic languages,
+including so-called <em>reflexive passive,</em> which in UD uses the relation subtype <code class="language-plaintext highlighter-rouge">expl:pass</code>.</p>
+
+<p>For example, in Czech:</p>
 
 <pre><code class="language-sdparse">To se řekne snadno . \n It is said easily .
 expl:pass(řekne, se)
 expl:pass(said, is)
+nsubj:pass(řekne, To)
+nsubj:pass(said, It)
+advmod(řekne, snadno)
+advmod(said, easily)
+punct(řekne, .-5)
+punct(said, .-11)
 </code></pre>
 
 <p>In the following Czech example, <em>archeologická výstava</em> “archaeological exhibition” has switched to the nominative,
@@ -2526,20 +2531,26 @@ amod(exhibition, archaeological)
 <p><a id="al-u-dep/expl:pv" class="al-dest"></a></p>
 <h2><code>expl:pv</code>: reflexive clitic with an inherently reflexive verb</h2>
 
-<p>Reflexive pronouns (see the feature <a href="">cs-feat/Reflex</a>) usually replace objects of verbs.
-However, some verbs are inherently reflexive, i.e. the verb always occurs with a reflexive
-prounoun, and the pronoun cannot be replaced by a non-reflexive pronoun.</p>
+<p>Reflexive pronouns (see the feature <a href="">Reflex</a>) usually replace objects of verbs.
+However, some verbs are inherently reflexive (also called pronominal verbs in some grammatical traditions),
+i.e. the verb always occurs with a reflexive prounoun, and the pronoun cannot be replaced
+by a non-reflexive pronoun.</p>
 
-<p>With these verbs, the reflexive pronoun is attached as <code class="language-plaintext highlighter-rouge">expl:pv</code> instead of <a href="">obj</a>.
-(Note that the <code class="language-plaintext highlighter-rouge">expl</code> relation is first used for this purpose in the UD release 1.2,
-and it is further subtyped as <code class="language-plaintext highlighter-rouge">expl:pv</code> since UD 2.0,
-to increase parallelism with other languages. In the previous releases this usage of
-reflexive <em>se/si</em> was labeled <code class="language-plaintext highlighter-rouge">compound:reflex</code>.)</p>
+<p>With these verbs, the reflexive pronoun is attached as <code class="language-plaintext highlighter-rouge">expl:pv</code> instead of <a href="">obj</a>.</p>
+
+<p>For example, in Czech:</p>
 
 <pre><code class="language-sdparse">Martin se bojí zvířat . \n Martin REFLEX fears animals .
 expl:pv(bojí, se)
 expl:pv(fears, REFLEX)
+nsubj(bojí, Martin-1)
+nsubj(fears, Martin-7)
+obl:arg(bojí, zvířat)
+obl:arg(fears, animals)
+punct(bojí, .-5)
+punct(fears, .-11)
 </code></pre>
+
 <!-- Interlanguage links updated St 6. května 2026, 20:46:52 CEST -->
 
 <p><a href="https://github.com/universaldependencies/docs/edit/pages-source/_u-dep/expl-pv.md" target="#">edit expl:pv</a></p>
