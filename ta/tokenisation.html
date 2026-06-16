@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Tamil UD</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-ta">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ta/tokenisation.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h2 id="multiword-tokenisation">Multiword Tokenisation</h2>
+
+<p>UD annotation is based on syntactic words rather than purely orthographic words. Therefore, a single written Tamil form may sometimes need to be split into more than one syntactic word. This is especially relevant for forms involving clitics, auxiliaries, and certain postpositional elements.</p>
+
+<p>Multiword tokenisation should be applied only when the separated elements are syntactically relevant. It should not be used to split every morphologically complex word. Annotators should follow the general UD principles on tokenisation and word segmentation before applying the Tamil-specific rules: https://universaldependencies.org/u/overview/tokenization.html</p>
+
+<p>The example sentences used in this document are taken from the grammar books <em>A Grammar of Modern Tamil</em> by Thomas Lehmann and <em>Adippadai Tamil Ilakkanam</em> by M. A. Nuhman.</p>
+
+<h2 id="tokenisation-workflow">Tokenisation Workflow</h2>
+
+<p>The input to the annotation process is a document or text file. As a first step, the text is divided into individual sentences through sentence tokenisation. Each sentence is then processed separately for word tokenisation.</p>
+
+<p>In the initial stage of word tokenisation, tokens are usually identified by splitting the sentence at whitespace boundaries. Punctuation marks are also treated as separate tokens. Therefore, a space should be introduced before and after punctuation symbols such as:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>! ( ) - [ ] { } ; : ' " \ , &lt; &gt; . / ? @ # $ % ^ &amp; * _ ~
+
+For example:
+
+```text
+அவன் வந்தான்.
+</code></pre></div></div>
+
+<p>is tokenised as:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவன் வந்தான் .
+</code></pre></div></div>
+
+<p>However, this tokenisation is used only for annotation purposes. The original sentence form, without tokenisation changes or corrections, must be preserved and included in the sentence text (# text). Further, if there is no space between a token and the following punctuation mark in the original sentence, the feature <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> must be added to the preceding token. This marks that there is no space between the token and the following punctuation in the original text.</p>
+
+<p>After this basic tokenisation, multiword tokens must be identified and split where necessary. This is a critical stage in Tamil UD annotation, because a single written form may contain more than one syntactic word. Such cases cannot be handled by simple whitespace- or punctuation-based tokenisation alone.</p>
+
+<p>Multiword tokenisation requires careful linguistic analysis. Annotators should decide whether a surface form should be split by considering its syntactic function, morphological structure, and the UD guidelines. Some common cases include forms involving clitics, auxiliaries, postpositions, and particles.</p>
+
+<h2 id="multiword-tokens">Multiword Tokens</h2>
+
+<p>In Tamil, spaces are normally used to separate tokens in a sentence. If two words are separated by a space, they are usually treated as different tokens. However, Tamil also has many surface forms where more than one linguistic unit is written together as a single orthographic word.</p>
+
+<p>These forms may include noun-noun compounds, verb-verb compounds, verb-noun forms, and words with clitics. For example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Example</th>
+      <th>Possible segmentation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Noun-noun compound</td>
+      <td>விசைப்படகு</td>
+      <td>விசை + படகு</td>
+    </tr>
+    <tr>
+      <td>Verb-verb compound</td>
+      <td>வந்துகொண்டிருக்கிறான்</td>
+      <td>வந்து + கொண்டு + இருக்கிறான்</td>
+    </tr>
+    <tr>
+      <td>Verb-noun form</td>
+      <td>செய்தவன்</td>
+      <td>செய்த + அவன்</td>
+    </tr>
+    <tr>
+      <td>Clitic attachment</td>
+      <td>அவனும்</td>
+      <td>அவன் + உம்</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Such forms may need to be split into multiple syntactic tokens depending on the context and the UD annotation principles. The purpose is not to split every compound word mechanically, but to identify cases where the parts function as separate syntactic units.</p>
+
+<p>Multiword tokenisation is important because a single written Tamil word may contain information that corresponds to more than one syntactic word. If these forms are not split, it becomes difficult to assign accurate UPOS tags, morphological features, and dependency relations. It also affects cross-lingual comparison, because the same syntactic structure may be represented as separate words in another language. Therefore, careful multiword tokenisation helps make Tamil annotation more consistent, transparent, and comparable with other UD treebanks.</p>
+
+<h3 id="mwe-01-participial-nouns--வினையாலணையும்-பெயர்">MWE-01: Participial Nouns / வினையாலணையும் பெயர்</h3>
+
+<p>Participial nouns are forms that combine verbal and nominal properties. For example, <strong>வந்தவன்</strong> means “the one who came” or “the man who came”. It contains a verbal element, <strong>வந்த</strong> “came / who came”, and a nominal or pronominal element, <strong>அவன்</strong> “he / man”.</p>
+
+<p>In UD annotation, these forms are treated as multiword tokens because they cannot be assigned a single UPOS category in a satisfactory way. The first part shows verbal behaviour, including tense information, while the second part shows nominal behaviour, such as reference to person, gender, number, and case-marking potential. Therefore, these forms should be tokenised into separate syntactic words.</p>
+
+<p>This treatment is motivated by the mixed-category nature of such forms (https://kops.uni-konstanz.de/server/api/core/bitstreams/72c0aa32-7778-4f88-be85-79dcb3d4a0ba/content) : they show both verbal and nominal properties. For this reason, participial nouns should be split during multiword tokenisation.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Surface form</th>
+      <th>Tokenisation</th>
+      <th>Gloss</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>வந்தவன்</td>
+      <td>வந்த + அவன்</td>
+      <td>come-PST.RP + he/man</td>
+      <td>the man who came</td>
+    </tr>
+    <tr>
+      <td>வந்தவள்</td>
+      <td>வந்த + அவள்</td>
+      <td>come-PST.RP + she/woman</td>
+      <td>the woman who came</td>
+    </tr>
+    <tr>
+      <td>வந்தவர்கள்</td>
+      <td>வந்த + அவர்கள்</td>
+      <td>come-PST.RP + they/people</td>
+      <td>the people who came</td>
+    </tr>
+    <tr>
+      <td>வருகிறவர்கள்</td>
+      <td>வருகிற + அவர்கள்</td>
+      <td>come-PRS.RP + they/people</td>
+      <td>the people who come / are coming</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="example">Example</h4>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>வருகிறவர்கள் மாணவர்கள்.
+வருகிற அவர்கள் மாணவர்கள் .
+வருகிற       அவர்கள்       மாணவர்கள்
+come-PRS.RP  they/people   students
+The people who are coming are students.
+</code></pre></div></div>
+
+<p>Participial nouns such as <strong>வந்தவன்</strong>, <strong>வந்தவள்</strong>, <strong>வந்தவர்கள்</strong>, <strong>செய்தவன்</strong>, and <strong>படித்தவன்</strong> should be tokenised as multiword tokens when the form contains both a relative participial/verbal element and a nominal or pronominal element. This tokenisation allows the verbal element to receive a verbal analysis and the nominal element to receive a nominal or pronominal analysis.</p>
+
+<h3 id="multiword-tokenisatoin-of-clitics">Multiword tokenisatoin of Clitics</h3>
+
+<h4 id="-um---உம்-clitic-documentation"><a href="mwe-um-clitic.md">-um / -உம் clitic documentation</a></h4>
+
+<h4 id="other-clitics-documentation"><a href="mwe-clitics.md">other clitics documentation</a></h4>
+
+<h3 id="multiword-tokenisation-of-nv-and-vv-compounds">Multiword tokenisation of N+V and V+V compounds</h3>
+
+<h4 id="nv-and-vv-documentation"><a href="mwe-nv-vv.md">N+V and V+V documentation</a></h4>
+
+<h3 id="multiword-tokenisation-of-nadp">Multiword Tokenisation of N+ADP</h3>
+
+<h4 id="multiword-tokenisation-of-nadp-1"><a href="mwe-adp.md">Multiword Tokenisation of N+ADP</a></h4>
+
+<h3 id="cases-that-should-not-be-tokenised">Cases That Should Not Be Tokenised</h3>
+
+<h4 id="cases-that-should-not-be-tokenised-1"><a href="non-mwe.md">Cases That Should Not Be Tokenised</a></h4>
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'ta';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Tamil UD</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-ta">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ta/mwe/mwe-clitics.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h2 id="clitic-segmentation-overview">Clitic Segmentation: Overview</h2>
+
+<p>Tamil has several clitic-like elements that attach to a host word. In UD tokenisation, these should be segmented only when they function as independent syntactic, discourse, focus, interrogative, coordinative, or emphatic elements.</p>
+
+<p>However, clitic segmentation should not be applied mechanically, and the decision should be based on syntactic behaviour, and the intended annotation policy.</p>
+
+<p>This section discusses clitics other than <strong>உம் / -um</strong>, which is documented separately.</p>
+
+<hr />
+
+<h2 id="candidate-clitics-for-segmentation">Candidate Clitics for Segmentation</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Clitic</th>
+      <th>Transliteration</th>
+      <th>Main functions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>தான்</td>
+      <td>tāṉ</td>
+      <td>focus, emphasis</td>
+    </tr>
+    <tr>
+      <td>ஏ</td>
+      <td>ē</td>
+      <td>emphasis, self-performance</td>
+    </tr>
+    <tr>
+      <td>ஆ</td>
+      <td>ā</td>
+      <td>yes/no question</td>
+    </tr>
+    <tr>
+      <td>ஓ</td>
+      <td>ō</td>
+      <td>doubt, indefiniteness, or-coordination</td>
+    </tr>
+    <tr>
+      <td>ஆவது</td>
+      <td>āvatu</td>
+      <td>minimum, or-coordination, indefiniteness, order, impossibility</td>
+    </tr>
+    <tr>
+      <td>ஆம்</td>
+      <td>ām</td>
+      <td>reportive/suppositional marker (except for V + ām cases where ām marks modal)</td>
+    </tr>
+    <tr>
+      <td>கூட</td>
+      <td>kūṭa</td>
+      <td>even, also, with</td>
+    </tr>
+    <tr>
+      <td>மட்டும்</td>
+      <td>maṭṭum</td>
+      <td>only, restrictive focus s</td>
+    </tr>
+    <tr>
+      <td>எல்லாம்</td>
+      <td>ellām</td>
+      <td>inclusive/distributive</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="தான்--tāṉ-emphatic-or-focus-clitic">தான் / tāṉ: Emphatic or Focus Clitic</h2>
+
+<p>The clitic <strong>தான்</strong> marks emphasis or focus. It may attach to different constituents.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>குமார்தான்     நேற்று       வந்தான்
+குமார்  தான்   நேற்று       வந்தான்
+Kumar FOC   yesterday   come-PST-3SG.M
+It was Kumar who came yesterday.
+
+குமார்   நேற்றுதான்         வந்தான்
+குமார்   நேற்று தான்        வந்தான்
+Kumar  yesterday FOC    come-PST-3SG.M
+It was yesterday that Kumar came.
+</code></pre></div></div>
+<p>The form <strong>தான்</strong> should not always be treated as a clitic. In some contexts it functions as a pronoun/reflexive-like pronoun - usally in such cases tāṉ is written separately.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>குமார்    தானும்      வருவதாகச்                        சொன்னான்
+குமார்    தான் உம்    வருவ            அது ஆகச்        சொன்னான்.
+Kumar   self also  come-பிரஸ்-NMLZ  it  COMP        say-PST-3MSG
+Kumar   said that he also will come
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="ஏ--ē-emphatic-clitic">ஏ / ē: Emphatic Clitic</h2>
+
+<p>The clitic <strong>ஏ</strong> marks emphasis, exclusiveness, or strong assertion.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவர்கள் என்னையே கூப்பிடுகிறார்கள்.
+அவர்கள் என்னை    ஏ             கூப்பிடுகிறார்கள் .
+they   me-ACC   EMPH/DOUBT    call-PRS-3PL
+They are calling me specifically.
+
+குமார்   வரவே             வரமாட்டான்
+குமார்   வர        ஏ      வரமாட்டான்
+Kumar  come-INF  EMPH   come-INF-will.not-3SG.M
+Kumar will not come at all
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="ஆ--ā-interrogative-clitic">ஆ / ā: Interrogative Clitic</h2>
+
+<p>The clitic <strong>ஆ</strong> marks yes/no questions.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>குமார்    வந்தானா ?
+குமார்    வந்தான்            ஆ
+Kumar   come-PST-3SG.M    Q
+Did Kumar come?
+
+
+குமார்   ஊருக்கா       போகிறான்?
+குமார்   ஊருக்கு   ஆ   போகிறான் ?
+Kumar  town-DAT Q    go-PRS-3SG.M
+Is Kumar going to town?
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="ஓ--ō-doubt-indefiniteness-topiccontrast-or-coordination">ஓ / ō: Doubt, Indefiniteness, Topic/Contrast, or Coordination</h2>
+
+<p>The clitic <strong>ஓ</strong> has several functions. It may mark doubt, indefiniteness, topic/contrast, or disjunctive coordination. In case of disjunctive coordination, the clitic should be labled CCONJ, and in other cases it should be labelled PART.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>### Doubt / Dubitative
+
+குமார்   மறுபடியும் வெற்றி     பெறுவானோ?
+குமார்   மறுபடியும் வெற்றி     பெறுவான்         ஓ ?
+Kumar  again   victory  get-FUT-3SG.M   DUB
+Whether Kumar will win again?
+
+### Indefiniteness
+
+நேற்று        யாரோ       உன்னைக்   கூப்பிட்டார்கள்
+நேற்று        யார்   ஓ     உன்னைக்   கூப்பிட்டார்கள்
+yesterday   who   INDEF you-ACC   call-PST-3PL
+Someone called you yesterday.
+
+### Or-coordination
+
+குமாரோ      ராஜாவோ     வருவார்கள்.
+குமார்   ஓ    ராஜா   ஓ    வருவார்கள் .
+Kumar  or   Raja   or    come-FUT-3PL
+Kumar or Raja will come.
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="ஆவது--āvatu">ஆவது / āvatu</h2>
+
+<p>The form <strong>ஆவது</strong> has several functions. It can mark minimum, disjunction, indefiniteness, ordinal formation, or impossibility.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>நீங்களாவது             நாளை       வரவேண்டும்.
+நீங்கள்     ஆவது       நாளை       வரவேண்டும் .
+you-PL    at.least   tomorrow   come-INF-must
+At least you must come tomorrow.
+
+### Or-coordination
+
+காபியாவது       தேநீராவது       போடு
+காபி    ஆவது   தேநீர் ஆவது     போடு
+coffee or     tea   or       prepare.IMP
+Prepare coffee or tea.
+</code></pre></div></div>
+
+<h4 id="ordinal-use-āvatu-should-not-be-segmented">Ordinal use āvatu should not be segmented</h4>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>முதலாவது    இடம்
+first      place
+</code></pre></div></div>
+<hr />
+
+<h2 id="ஆம்--ām">ஆம் / ām</h2>
+
+<p>The form <strong>ஆம்</strong> has at least two different uses that must be distinguished.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>### Reportive marker
+
+குமார்     நாளைக்கு       வருகிறானாம்
+குமார்     நாளைக்கு       வருகிறான்         ஆம்
+Kumar    tomorrow-DAT  come-PRS-3SG.M   REP
+Kumar is said to be coming tomorrow.
+</code></pre></div></div>
+<p>In this use (reportive) ām should be marked PART.</p>
+
+<p>In case of modal/permission forms such as போகலாம் may-go, it should not be tokenised, because, the resulting parts do not function as independent syntactic words in the sentence.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>நீங்கள்    போகலாம்
+you-PL   may.go
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="கூட--kūṭa">கூட / kūṭa</h2>
+
+<p>The form <strong>கூட</strong> may function as “even”, “also”, or “with”.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவன்கூட     வரவில்லை.
+அவன்  கூட   வரவில்லை .
+he    even  come-NEG.PST
+Even he did not come.
+
+
+அவன்கூட     வந்தேன்.
+அவன் கூட    வந்தேன் .
+he   with   come-PST-1SG
+I came with him.
+
+</code></pre></div></div>
+
+<p>In the second case, <strong>கூட</strong> has a comitative/postpositional function, therefore, UPOS should be ADP, not PART.</p>
+
+<hr />
+
+<h2 id="மட்டும்--maṭṭum">மட்டும் / maṭṭum</h2>
+
+<p>The form <strong>மட்டும்</strong> marks restriction, meaning “only”.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவன்மட்டும்    வந்தான்
+அவன் மட்டும்   வந்தான்
+he   only   came-3SG.M
+Only he came.
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="எல்லாம்--ellām">எல்லாம் / ellām</h2>
+
+<p>The form <strong>எல்லாம்</strong> can function as an inclusive element.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவனெல்லாம் வந்தான்.
+அவன்    எல்லாம்          வந்தான் .
+he      all came-3SG.M
+He and others came
+</code></pre></div></div>
+
+<p>This should be marked DET only when it functions as a clitic-like marker.
+If <strong>எல்லாம்</strong> functions as an pronoun, it should be marked differently.</p>
+
+<hr />
+
+<h2 id="cases-where-clitic-like-forms-should-not-be-segmented">Cases Where Clitic-like Forms Should Not Be Segmented</h2>
+
+<p>Some clitic-like forms should remain inside the word because they form lexicalised, derived, modal, or indefinite expressions.</p>
+
+<p>In short…</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Do not segment clitics mechanically.
+A clitic should be segmented only when it functions as an independent syntactic or discourse unit.
+</code></pre></div></div>
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'ta';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

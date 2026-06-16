@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Tamil UD</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-ta">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ta/backup/old-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="ud-for-tamil--">UD for Tamil <span class="flagspan"><img class="flag" src="../../flags/svg/IN.svg" /></span> <span class="flagspan" style="padding-left:1em"><img class="flag" src="../../flags/svg/LK.svg" /></span></h1>
+
+<h2 id="preprocessing">Preprocessing</h2>
+
+<p>Before UD annotation, all texts should be normalised and checked for ambiguous characters. The aim is not to correct the language, but to ensure consistent text representation.</p>
+
+<h3 id="unicode-normalisation">Unicode Normalisation</h3>
+
+<ul>
+  <li>Apply Unicode normalisation before tokenisation and annotation.</li>
+  <li>Tamil vowel modifiers may be encoded inconsistently, especially the <strong>e-series</strong>, <strong>o-series</strong>, and <strong>au</strong> forms.</li>
+  <li>Use one consistent Unicode form throughout the corpus, preferably <strong>NFC</strong>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vowel modifier/issue</th>
+      <th>Example</th>
+      <th>Normalised form</th>
+      <th>Possible non-normalised form</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ொ / <em>o</em></td>
+      <td>கொ</td>
+      <td>க + ொ</td>
+      <td>க + ெ + ா</td>
+    </tr>
+    <tr>
+      <td>ோ / <em>ō</em></td>
+      <td>கோ</td>
+      <td>க + ோ</td>
+      <td>க + ே + ா</td>
+    </tr>
+    <tr>
+      <td>ௌ / <em>au</em></td>
+      <td>கௌ</td>
+      <td>க + ௌ</td>
+      <td>க + ெ + ௗ</td>
+    </tr>
+    <tr>
+      <td>Independent vowel <em>au</em></td>
+      <td>ஔ</td>
+      <td>ஔ</td>
+      <td>ஒள</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="ambiguous-characters">Ambiguous Characters</h3>
+
+<ul>
+  <li>Replace visually similar or wrongly encoded characters with the intended Tamil character.</li>
+  <li>This is especially important in OCR text and old digitally converted texts.</li>
+  <li>All replacements should be documented.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ambiguous character/Tamil numeral</th>
+      <th>Correct character</th>
+      <th>Example correction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>௨</td>
+      <td>உ</td>
+      <td>௨லகம் → உலகம்</td>
+    </tr>
+    <tr>
+      <td>௭</td>
+      <td>எ</td>
+      <td>௭ன்று → என்று</td>
+    </tr>
+    <tr>
+      <td>௮</td>
+      <td>அ</td>
+      <td>௮வன் → அவன்</td>
+    </tr>
+    <tr>
+      <td>௧</td>
+      <td>க</td>
+      <td>௧லம் → கலம்</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="general-rules">General Rules</h3>
+
+<ul>
+  <li>Do not change the linguistic content.</li>
+  <li>Do not modernise spelling unless the project requires it.</li>
+</ul>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>Following most tokenization patterns, words are delimited by whitespace or punctuation.</li>
+  <li>Multiword tokens are relatively common in Tamil. For example, the coordinating clitic -உம் / <em>-um</em> is analyzed as a separate syntactic word.</li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<ul>
+  <li>Tamil uses 14 universal tags (<a href="">SCONJ</a>, <a href="">INTJ</a>, and <a href="">SYM</a> do not occur in the corpus at present).</li>
+  <li>Auxiliary verbs (<a href="">AUX</a>) include:
+    <ul>
+      <li>போ / <em>po</em> “go” for future tense, follows the infinitive of the main verb</li>
+      <li>மாட்டேன் / <em>māṭṭen</em> “will not” (lemma மாட்டு <em>māṭṭu</em>) for negative future tense with human subject</li>
+      <li>படு / <em>paṭu</em> “experience” for the passive voice</li>
+      <li>வை / <em>vai</em> “put” for the causative voice</li>
+      <li>இல் / <em>il</em> (இல்லை / <em>illai</em>) “not be” for negation</li>
+      <li>உள் / <em>uḷ</em> “within”, இரு / <em>iru</em> “be”, வரு / <em>varu</em> “come”, கொள் / <em>kòḷ</em> “take”, செய் / <em>cèy</em> “do”, விடு / <em>viṭu</em> “let”, வா / <em>vā</em> “come”</li>
+      <li>வேண்டு / <em>veṇṭu</em> “must”</li>
+      <li>முடியும் / <em>muṭiyum</em> “can” (lemma முடி <em>muṭi</em>): modal auxiliary, follows the infinitive of the main verb</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>7 cases are annotated as morphological features of nouns: nominative, genitive, dative, accusative, instrumental, comitative, locative. Tamil is an agglutinating language and other spatiotemporal and/or case-like morphemes may be analyzed as postpositions.</li>
+  <li>Verbs occur as finite forms, participles, infinitives, and gerunds.</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<ul>
+  <li>Tamil is a verb-final language; both SOV and OSV orders are possible.</li>
+  <li>Core arguments are marked by the morphological cases nominative (subject) and accusative (object).
+Core arguments are bare noun phrases without postpositions.</li>
+  <li>Subjects have the following characteristics:
+    <ul>
+      <li>Case marking: Subjects occur in nominative case without adpositions.</li>
+      <li>Passivization: Subjects are suppressed when verbs are passivized.</li>
+    </ul>
+  </li>
+  <li>Objects have the following characteristics:
+    <ul>
+      <li>Case marking: Objects occur in accusative case without adpositions.</li>
+      <li>Passivization: Objects become (non-expletive) subjects when verbs are passivized.</li>
+    </ul>
+  </li>
+  <li>Bare nominal arguments (i.e., verb-licensed dependents) in the dative case are not considered core arguments. They are attached as <code class="language-plaintext highlighter-rouge">obl:arg</code>.</li>
+  <li>Prepositional arguments (i.e., verb-licensed dependents) are not considered core arguments. They are attached as <code class="language-plaintext highlighter-rouge">obl:arg</code>.</li>
+</ul>
+
+<p>Tamil uses 4 relation subtypes:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">advmod:emph</code> for adverbials emphasizing noun phrases</li>
+  <li><code class="language-plaintext highlighter-rouge">compound:prt</code> to attach verbal particles to verbs</li>
+  <li><code class="language-plaintext highlighter-rouge">nsubj:pass</code> for nominal subjects in passive clauses</li>
+  <li><code class="language-plaintext highlighter-rouge">obl:arg</code> for oblique arguments (to distinguish them from other oblique dependents, i.e., adjuncts)</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li>See also <a href="">http://www.southasia.sas.upenn.edu/tamil/grammar/tamilgrammar12.html</a></li>
+  <li><a href="http://www.languagesgulper.com/eng/Tamil.html">Tamil at the Language Gulper</a></li>
+</ul>
+
+<hr />
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There are two Tamil UD treebanks at present:</p>
+
+<ul>
+  <li><a href="../treebanks/ta_ttb/index.html">Tamil-TTB</a></li>
+  <li><a href="../treebanks/ta_mwtt/index.html">Tamil-MWTT</a></li>
+</ul>
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'ta';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

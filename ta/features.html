@@ -1,0 +1,1454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Tamil Morphological Features</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-ta">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ta/features.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="morphological-feature-annotation-for-tamil">Morphological Feature Annotation for Tamil</h1>
+
+<p>Annotators should add all relevant features that are morphologically visible and useful for UD annotation, although the examples in the documentation provide only the feature being discussed in each respective example.</p>
+
+<hr />
+
+<h1 id="1-prontype">1. PronType</h1>
+
+<p><code class="language-plaintext highlighter-rouge">PronType</code> is used for pronouns, determiners, pronominal adverbs, and related forms.</p>
+
+<h2 id="feature-values-used-in-tamil">Feature values used in Tamil</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PronType=Prs   personal pronoun
+PronType=Dem   demonstrative
+PronType=Int   interrogative
+PronType=Ind   indefinite
+PronType=Neg   negative indefinite
+PronType=Rcp   reciprocal
+PronType=Rel   relative
+PronType=Tot   total / universal
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவன் யார் ?
+avaṉ yār ?
+he   who
+Who is he?
+
+யார்    PRON    PronType=Int
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tamil form</th>
+      <th>Transliteration</th>
+      <th>Meaning</th>
+      <th>UPOS</th>
+      <th>Suggested features</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>நான்</td>
+      <td>nāṉ</td>
+      <td>I</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Person=1|Number=Sing</code></td>
+    </tr>
+    <tr>
+      <td>நாம்</td>
+      <td>nām</td>
+      <td>we, inclusive</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Person=1|Number=Plur|Clusivity=In</code></td>
+    </tr>
+    <tr>
+      <td>நாங்கள்</td>
+      <td>nāṅkaḷ</td>
+      <td>we, exclusive</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Person=1|Number=Plur|Clusivity=Ex</code></td>
+    </tr>
+    <tr>
+      <td>நீ</td>
+      <td>nī</td>
+      <td>you, singular/informal</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Person=2|Number=Sing|Polite=Infm</code></td>
+    </tr>
+    <tr>
+      <td>நீங்கள்</td>
+      <td>nīṅkaḷ</td>
+      <td>you, plural/formal</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Person=2|Number=Plur|Polite=Form</code></td>
+    </tr>
+    <tr>
+      <td>அவன்</td>
+      <td>avaṉ</td>
+      <td>he</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs/Dem|Person=3|Number=Sing|Gender=Masc|Deixis=Remt</code></td>
+    </tr>
+    <tr>
+      <td>அவள்</td>
+      <td>avaḷ</td>
+      <td>she</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs/Dem|Person=3|Number=Sing|Gender=Fem|Deixis=Remt</code></td>
+    </tr>
+    <tr>
+      <td>அவர்</td>
+      <td>avar</td>
+      <td>he/she, honorific</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Person=3|Number=Sing|Polite=Form</code></td>
+    </tr>
+    <tr>
+      <td>அவர்கள்</td>
+      <td>avarkaḷ</td>
+      <td>they / he/she honorific</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Person=3|Number=Plur</code></td>
+    </tr>
+    <tr>
+      <td>அது</td>
+      <td>atu</td>
+      <td>it / that</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs/Dem|Person=3|Number=Sing|Gender=Neut|Deixis=Remt</code></td>
+    </tr>
+    <tr>
+      <td>அவை</td>
+      <td>avai</td>
+      <td>they, non-human</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs/Dem|Person=3|Number=Plur|Gender=Neut|Deixis=Remt</code></td>
+    </tr>
+    <tr>
+      <td>இவன்</td>
+      <td>ivaṉ</td>
+      <td>this man/person</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Dem|Person=3|Number=Sing|Gender=Masc|Deixis=Prox</code></td>
+    </tr>
+    <tr>
+      <td>இவள்</td>
+      <td>ivaḷ</td>
+      <td>this woman/person</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Dem|Person=3|Number=Sing|Gender=Fem|Deixis=Prox</code></td>
+    </tr>
+    <tr>
+      <td>இவர்</td>
+      <td>ivar</td>
+      <td>this person, honorific</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Dem|Person=3|Number=Sing|Polite=Form|Deixis=Prox</code></td>
+    </tr>
+    <tr>
+      <td>இவர்கள்</td>
+      <td>ivarkaḷ</td>
+      <td>these people</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Dem|Person=3|Number=Plur|Deixis=Prox</code></td>
+    </tr>
+    <tr>
+      <td>இது</td>
+      <td>itu</td>
+      <td>this / this thing</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Dem|Person=3|Number=Sing|Gender=Neut|Deixis=Prox</code></td>
+    </tr>
+    <tr>
+      <td>இவை</td>
+      <td>ivai</td>
+      <td>these things</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Dem|Person=3|Number=Plur|Gender=Neut|Deixis=Prox</code></td>
+    </tr>
+    <tr>
+      <td>உவன்</td>
+      <td>uvaṉ</td>
+      <td>that person, medial</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Dem|Person=3|Number=Sing|Gender=Masc|Deixis=Med</code></td>
+    </tr>
+    <tr>
+      <td>உவள்</td>
+      <td>uvaḷ</td>
+      <td>that woman/person, medial</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Dem|Person=3|Number=Sing|Gender=Fem|Deixis=Med</code></td>
+    </tr>
+    <tr>
+      <td>உவர்</td>
+      <td>uvar</td>
+      <td>that person, medial honorific</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Dem|Person=3|Number=Sing|Polite=Form|Deixis=Med</code></td>
+    </tr>
+    <tr>
+      <td>உது</td>
+      <td>utu</td>
+      <td>that thing, medial</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Dem|Person=3|Number=Sing|Gender=Neut|Deixis=Med</code></td>
+    </tr>
+    <tr>
+      <td>யான்</td>
+      <td>yāṉ</td>
+      <td>I, literary</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Person=1|Number=Sing</code></td>
+    </tr>
+    <tr>
+      <td>யாம்</td>
+      <td>yām</td>
+      <td>we, literary</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Person=1|Number=Plur</code></td>
+    </tr>
+    <tr>
+      <td>தாம்</td>
+      <td>tām</td>
+      <td>self / honorific self</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Reflex=Yes|Polite=Form</code></td>
+    </tr>
+    <tr>
+      <td>தான்</td>
+      <td>tāṉ</td>
+      <td>self / emphatic pronoun</td>
+      <td>PRON/PART</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Reflex=Yes</code> if reflexive; <code class="language-plaintext highlighter-rouge">PART</code> if focus clitic</td>
+    </tr>
+    <tr>
+      <td>தன்</td>
+      <td>taṉ</td>
+      <td>one’s own</td>
+      <td>PRON/DET</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Reflex=Yes|Poss=Yes</code></td>
+    </tr>
+    <tr>
+      <td>தனது</td>
+      <td>taṉatu</td>
+      <td>one’s own</td>
+      <td>PRON/DET</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Reflex=Yes|Poss=Yes</code></td>
+    </tr>
+    <tr>
+      <td>என்</td>
+      <td>eṉ</td>
+      <td>my</td>
+      <td>PRON/DET</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Person=1|Number=Sing|Poss=Yes</code></td>
+    </tr>
+    <tr>
+      <td>உன்</td>
+      <td>uṉ</td>
+      <td>your</td>
+      <td>PRON/DET</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Prs|Person=2|Number=Sing|Poss=Yes</code></td>
+    </tr>
+    <tr>
+      <td>யார்</td>
+      <td>yār</td>
+      <td>who</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Int</code></td>
+    </tr>
+    <tr>
+      <td>எவன்</td>
+      <td>evaṉ</td>
+      <td>who, masculine</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Int|Gender=Masc</code></td>
+    </tr>
+    <tr>
+      <td>எவள்</td>
+      <td>evaḷ</td>
+      <td>who, feminine</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Int|Gender=Fem</code></td>
+    </tr>
+    <tr>
+      <td>எவர்</td>
+      <td>evar</td>
+      <td>who, honorific</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Int|Polite=Form</code></td>
+    </tr>
+    <tr>
+      <td>எது</td>
+      <td>etu</td>
+      <td>what / which thing</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Int|Gender=Neut</code></td>
+    </tr>
+    <tr>
+      <td>எவை</td>
+      <td>evai</td>
+      <td>which things</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Int|Number=Plur|Gender=Neut</code></td>
+    </tr>
+    <tr>
+      <td>யாராவது</td>
+      <td>yārāvatu</td>
+      <td>someone / anyone</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Ind</code></td>
+    </tr>
+    <tr>
+      <td>எதாவது</td>
+      <td>etāvatu</td>
+      <td>something / anything</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Ind</code></td>
+    </tr>
+    <tr>
+      <td>சிலர்</td>
+      <td>cilar</td>
+      <td>some people</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Ind|Animacy=Hum|Number=Plur</code></td>
+    </tr>
+    <tr>
+      <td>சில</td>
+      <td>cila</td>
+      <td>some</td>
+      <td>DET/PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Ind</code></td>
+    </tr>
+    <tr>
+      <td>பலர்</td>
+      <td>palar</td>
+      <td>many people</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Ind|Animacy=Hum|Number=Plur</code></td>
+    </tr>
+    <tr>
+      <td>பல</td>
+      <td>pala</td>
+      <td>many</td>
+      <td>DET/PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Ind</code></td>
+    </tr>
+    <tr>
+      <td>ஏதேனும்</td>
+      <td>ētēṉum</td>
+      <td>something / any</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Ind</code></td>
+    </tr>
+    <tr>
+      <td>ஒருவருக்கொருவர்</td>
+      <td>oruvarukku-oruvar</td>
+      <td>each other</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Rcp|Case=Dat</code></td>
+    </tr>
+    <tr>
+      <td>அனைவரும்</td>
+      <td>aṉaivarum</td>
+      <td>everyone</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Tot|Animacy=Hum|Number=Plur</code></td>
+    </tr>
+    <tr>
+      <td>எல்லோரும்</td>
+      <td>ellōrum</td>
+      <td>everyone</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Tot|Animacy=Hum|Number=Plur</code></td>
+    </tr>
+    <tr>
+      <td>எல்லாம்</td>
+      <td>ellām</td>
+      <td>everything / all</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Tot</code></td>
+    </tr>
+    <tr>
+      <td>அனைத்தும்</td>
+      <td>aṉaittum</td>
+      <td>everything</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Tot|Gender=Neut</code></td>
+    </tr>
+    <tr>
+      <td>ஒவ்வொருவரும்</td>
+      <td>ovvoruvarum</td>
+      <td>each person</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Tot|Animacy=Hum</code></td>
+    </tr>
+    <tr>
+      <td>ஒவ்வொன்றும்</td>
+      <td>ovvoṉṟum</td>
+      <td>each thing</td>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType=Tot|Gender=Neut</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="2-deixis">2. Deixis</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Deixis</code> marks the relative location encoded in demonstratives. Tamil has a three-way deictic distinction:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>இ-  proximate / near speaker
+உ-  medial / near hearer or intermediate
+அ-  distal / remote
+</code></pre></div></div>
+
+<h2 id="feature-values-used-in-tamil-1">Feature values used in Tamil</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deixis=Prox   proximate
+Deixis=Med    medial
+Deixis=Remt   remote / distal
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>உவன் வந்தான் .
+uvaṉ vantāṉ
+that.person.MED came
+“That person came.”
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>உவன்    PRON    PronType=Dem|Deixis=Med|Gender=Masc|Number=Sing|Person=3
+</code></pre></div></div>
+
+<p>Possible Tamil mapping:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Form</th>
+      <th>Meaning</th>
+      <th>Feature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>இவன்</td>
+      <td>this man / this person here</td>
+      <td><code class="language-plaintext highlighter-rouge">Deixis=Prox</code></td>
+    </tr>
+    <tr>
+      <td>உவன்</td>
+      <td>that person near you / medial person</td>
+      <td><code class="language-plaintext highlighter-rouge">Deixis=Med</code></td>
+    </tr>
+    <tr>
+      <td>அவன்</td>
+      <td>that man / that person there</td>
+      <td><code class="language-plaintext highlighter-rouge">Deixis=Remt</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="3-numtype">3. NumType</h1>
+
+<p><code class="language-plaintext highlighter-rouge">NumType</code> marks the type of numeral.</p>
+
+<h2 id="feature-values-used-in-tamil-2">Feature values used in Tamil</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NumType=Card   cardinal number
+NumType=Ord    ordinal number
+NumType=Dist   distributive
+NumType=Frac   fraction
+NumType=Mult   multiplicative
+NumType=Range  numerical range
+NumType=Sets   set/group numeral
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>இரண்டு  நாய்கள் வந்தன .
+iraṇṭu nāykaḷ vantaṉa
+two    dogs   came
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>இரண்டு    NUM    NumType=Card|NumForm=Word
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="4-numform">4. NumForm</h1>
+
+<p><code class="language-plaintext highlighter-rouge">NumForm</code> marks how the number is written.</p>
+
+<h2 id="feature-values-used-in-tamil-3">Feature values used in Tamil</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NumForm=Word    written as a word
+NumForm=Digit   written as digits
+NumForm=Roman   written as Roman numerals
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2 நாய்கள்  வந்தன
+2 nāykaḷ vantaṉa
+Two dogs came
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2    NUM    NumType=Card|NumForm=Digit
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="5-poss">5. Poss</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Poss=Yes</code> is used for possessive forms.</p>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவனுடைய புத்தகம் உள்ளது .
+avaṉuṭaiya puttakam uḷḷatu
+his book exists
+“His book is there.”
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவனுடைய    PRON    PronType=Prs|Poss=Yes|Gender=Masc|Number=Sing|Person=3
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="6-reflex">6. Reflex</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Reflex=Yes</code> is used when a pronoun refers back to the subject of the clause.</p>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவன் தன்னை        பார்த்தான்
+avaṉ taṉṉai       pārttāṉ
+he   himself-ACC  saw
+He saw himself
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>தன்னை    PRON    PronType=Prs|Reflex=Yes|Case=Acc|Number=Sing|Person=3
+</code></pre></div></div>
+
+<p>Do not mark every occurrence of <strong>தான்</strong> as reflexive. It may also function as an emphatic clitic.</p>
+
+<hr />
+
+<h1 id="7-gender">7. Gender</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Gender</code> marks gender where it is morphologically or semantically relevant.</p>
+
+<h2 id="feature-values-used-in-tamil-4">Feature values used in Tamil</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Gender=Masc   masculine
+Gender=Fem    feminine
+Gender=Neut   neuter / non-rational
+Gender=Com    common / honorific-human
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவள் வந்தாள் .
+avaḷ vantāḷ
+she came
+“She came.”
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவள்       PRON       PronType=Prs|Gender=Fem|Number=Sing|Person=3
+வந்தாள்      VERB      Tense=Past|VerbForm=Fin|Gender=Fem|Number=Sing|Person=3
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="8-animacy">8. Animacy</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Animacy</code> can be used to capture Tamil rational/non-rational distinctions.</p>
+
+<h2 id="recommended-tamil-values">Recommended Tamil values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Animacy=Anim   animate
+Animacy=Inan   inanimate
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>பையன் வந்தான் .
+paiyaṉ vantāṉ
+boy came
+“The boy came.”
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>பையன்    NOUN    Animacy=Anim
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="9-number">9. Number</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Number</code> marks singular or plural.</p>
+
+<h2 id="main-tamil-values">Main Tamil values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number=Sing
+Number=Plur
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>பையன்கள்   வந்தார்கள் .
+paiyaṉkaḷ vantārkaḷ
+boys came
+“The boys came.”
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>பையன்கள்    NOUN    Number=Plur
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="10-case">10. Case</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Case</code> marks case on nouns, pronouns, proper nouns, and some nominalised forms.</p>
+
+<h2 id="common-tamil-values">Common Tamil values</h2>
+
+<p>The following table lists common Tamil case values, possible suffixes, and examples. The exact surface form may vary because of sandhi, phonological changes, and stem alternations.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Case</th>
+      <th>Function</th>
+      <th>Common suffixes / forms</th>
+      <th>Example</th>
+      <th>Gloss</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Case=Nom</code></td>
+      <td>subject / citation form</td>
+      <td>zero marking</td>
+      <td>குமார்</td>
+      <td>Kumar-NOM</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Case=Acc</code></td>
+      <td>direct object</td>
+      <td>-ஐ, -ை</td>
+      <td>ராமனை</td>
+      <td>Raman-ACC</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Case=Dat</code></td>
+      <td>recipient, goal, experiencer</td>
+      <td>-க்கு, -க்கு, -இற்கு, -உக்கு</td>
+      <td>குமாருக்கு</td>
+      <td>Kumar-DAT</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Case=Gen</code></td>
+      <td>possession / relation</td>
+      <td>-இன், -உடைய, -அது, -து</td>
+      <td>அவனுடைய</td>
+      <td>he-GEN</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Case=Loc</code></td>
+      <td>location</td>
+      <td>-இல், -ல், -இடம்</td>
+      <td>வீட்டில்</td>
+      <td>house-LOC</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Case=Ins</code></td>
+      <td>instrument / agent in passive-like clauses</td>
+      <td>-ஆல்</td>
+      <td>கத்தியால்</td>
+      <td>knife-INS</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Case=Com</code></td>
+      <td>comitative / accompaniment</td>
+      <td>-உடன், -ஓடு, -ஒடு, -கூட</td>
+      <td>அவனுடன்</td>
+      <td>he-COM</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Case=Abl</code></td>
+      <td>source / from</td>
+      <td>-இலிருந்து, -இருந்து, -கிடமிருந்து, -இடமிருந்து</td>
+      <td>வீட்டிலிருந்து</td>
+      <td>house-ABL</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Case=Ben</code></td>
+      <td>benefactive / for</td>
+      <td>-க்காக, -ஆக</td>
+      <td>பையனுக்காக</td>
+      <td>boy-BEN</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Case=Voc</code></td>
+      <td>address</td>
+      <td>vocative form, often zero or lengthened</td>
+      <td>அம்மா</td>
+      <td>mother-VOC</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>குமார் ராமனை பார்த்தான் .
+kumār rāmaṉai pārttāṉ
+Kumar Raman-ACC saw
+“Kumar saw Raman.”
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ராமனை    PROPN    Case=Acc|Animacy=Hum|Gender=Masc|Number=Sing
+</code></pre></div></div>
+
+<p>Note: Tamil case suffixes are normally not tokenised separately. They are represented as morphological features on the nominal token.</p>
+
+<p>Nowadays, case markers are also sometimes written separately as tokens. In such cases, they should be carefully analysed and annotated.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Case</th>
+      <th>Independent case marker</th>
+      <th>Transliteration</th>
+      <th>Gloss</th>
+      <th>Possible UPOS</th>
+      <th>Feature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dative</td>
+      <td>இற்கு</td>
+      <td>iṟku</td>
+      <td>DAT</td>
+      <td>PART</td>
+      <td><code class="language-plaintext highlighter-rouge">Case=Dat</code></td>
+    </tr>
+    <tr>
+      <td>Genitive</td>
+      <td>இன்</td>
+      <td>iṉ</td>
+      <td>GEN</td>
+      <td>PART</td>
+      <td><code class="language-plaintext highlighter-rouge">Case=Gen</code></td>
+    </tr>
+    <tr>
+      <td>Genitive</td>
+      <td>உடைய</td>
+      <td>uṭaiya</td>
+      <td>GEN</td>
+      <td>PART</td>
+      <td><code class="language-plaintext highlighter-rouge">Case=Gen</code></td>
+    </tr>
+    <tr>
+      <td>Locative</td>
+      <td>இடம்</td>
+      <td>iṭam</td>
+      <td>LOC / at</td>
+      <td>PART</td>
+      <td><code class="language-plaintext highlighter-rouge">Case=Loc</code></td>
+    </tr>
+    <tr>
+      <td>Instrumental</td>
+      <td>ஆல்</td>
+      <td>āl</td>
+      <td>INS / by</td>
+      <td>PART</td>
+      <td><code class="language-plaintext highlighter-rouge">Case=Ins</code></td>
+    </tr>
+    <tr>
+      <td>Instrumental</td>
+      <td>மூலம்</td>
+      <td>moolam</td>
+      <td>INS / by</td>
+      <td>PART</td>
+      <td><code class="language-plaintext highlighter-rouge">Case=Ins</code></td>
+    </tr>
+    <tr>
+      <td>Comitative</td>
+      <td>உடன்</td>
+      <td>uṭaṉ</td>
+      <td>COM / with</td>
+      <td>PART</td>
+      <td><code class="language-plaintext highlighter-rouge">Case=Com</code></td>
+    </tr>
+    <tr>
+      <td>Ablative</td>
+      <td>இலிருந்து</td>
+      <td>iliruntu</td>
+      <td>ABL / from</td>
+      <td>PART</td>
+      <td><code class="language-plaintext highlighter-rouge">Case=Abl</code></td>
+    </tr>
+    <tr>
+      <td>Ablative</td>
+      <td>இடமிருந்து</td>
+      <td>iṭamiruntu</td>
+      <td>ABL / from</td>
+      <td>PART</td>
+      <td><code class="language-plaintext highlighter-rouge">Case=Abl</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>சாவி மூலம் கதவைத் திறந்தான்
+cāvi moolam katavait tiṟantāṉ
+key using   door-ACC open-PST-3SG.M
+He opened the door with a key
+</code></pre></div></div>
+
+<p>Possible annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ூலம்     ADP       Case=Ins
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="11-definite">11. Definite</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Definite</code> may be used when indefiniteness or specificity is overtly marked.</p>
+
+<h2 id="possible-values">Possible values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Definite=Ind    indefinite
+Definite=Spec   specific
+Definite=Def    definite, if clearly marked
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ஒரு குச்சியைக்   கொண்டு வா
+oru kucciyai  koṇṭu  vā
+one stick-ACC bring  come
+Bring a stick
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ஒரு    NUM/DET    NumType=Card|Definite=Ind
+</code></pre></div></div>
+
+<p>Note: Tamil does not have articles like English. Use <code class="language-plaintext highlighter-rouge">Definite</code> cautiously, mainly where forms such as <strong>ஒரு</strong>, <strong>ஏதேனும்</strong>, or <strong>குறிப்பிட்ட</strong> clearly mark indefiniteness or specificity.</p>
+
+<hr />
+
+<h1 id="12-degree">12. Degree</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Degree</code> is used for adjectives or adverbs when comparison or superlative meaning is encoded.</p>
+
+<h2 id="possible-values-1">Possible values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Degree=Pos
+Degree=Cmp
+Degree=Sup
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ரோஜா மல்லிகையைவிட     அழகு
+rōjā mallikaiyaiviṭa  aḻaku
+rose jasmine-ACC than beautiful
+Rose is more beautiful than jasmine
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அழகு    ADJ    Degree=Cmp
+</code></pre></div></div>
+
+<p>Note: Tamil comparison is often expressed syntactically using <strong>விட</strong> “than”. Therefore, <code class="language-plaintext highlighter-rouge">Degree=Cmp</code> should be used only if the treebank policy treats the adjective as comparative in that construction.</p>
+
+<hr />
+
+<h1 id="13-adptype">13. AdpType</h1>
+
+<p><code class="language-plaintext highlighter-rouge">AdpType</code> marks the type of adposition.</p>
+
+<h2 id="tamil-value">Tamil value</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AdpType=Post
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவன்போல    பேசினான்
+அவன்  போல  பேசினான்
+avaṉ  pōla  pēciṉāṉ
+he    like  spoke
+He spoke like him
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>போல    ADP    AdpType=Post
+</code></pre></div></div>
+
+<p>Note: Many Tamil ADP-like forms may also function as nouns, adverbs, verbs, or subordinators. Assign <code class="language-plaintext highlighter-rouge">ADP</code> only after checking the context.</p>
+
+<hr />
+
+<h1 id="14-verbform">14. VerbForm</h1>
+
+<p><code class="language-plaintext highlighter-rouge">VerbForm</code> marks the form of a verb.</p>
+
+<h2 id="values-used-in-tamil">Values used in Tamil</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VerbForm=Fin    finite verb - முற்றுவினை
+VerbForm=Inf    infinitive - செய்ய எச்சம்
+VerbForm=Conv   converb - verbal participle / செய்து எச்சம்
+VerbForm=Vnoun  verbal noun - தொழிற்பெயர்
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>குமார்  வேலை முடிக்கவேண்டும்
+குமார்  வேலை முடிக்க     வேண்டும்
+kumār vēlai muṭikka   vēṇṭum
+Kumar work  finish-INF must
+“Kumar must finish the work.”
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>முடிக்க    VERB    VerbForm=Inf
+</code></pre></div></div>
+
+<p>Note: Traditional Tamil <strong>வினையெச்சம்</strong> forms such as <strong>செய்து</strong>, <strong>வந்து</strong>, <strong>பார்த்து</strong> may be annotated in UD as <code class="language-plaintext highlighter-rouge">VerbForm=Conv</code>. In glosses for Tamil annotators, these can be labelled as <code class="language-plaintext highlighter-rouge">VRP</code>.</p>
+
+<hr />
+
+<h1 id="15-mood">15. Mood</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Mood</code> marks verbal mood or modality.</p>
+
+<h2 id="common-values-for-tamil">Common values for Tamil</h2>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>இந்த புத்தகத்தைக்     கொடுங்கள் .
+inta puttakattaik koṭuṅkaḷ
+this book-ACC     give-IMP.2PL
+Give this book
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>கொடுங்கள்    VERB    Mood=Imp|VerbForm=Fin|Person=2|Polite=Form
+</code></pre></div></div>
+
+<p>Note: Tamil modality is often expressed through auxiliaries or modal predicates such as <strong>வேண்டும்</strong>, <strong>முடியும்</strong>, <strong>மாட்டேன்</strong>, and <strong>-லாம்</strong>. Do not assign mood mechanically without checking the construction.</p>
+
+<hr />
+
+<h1 id="16-tense">16. Tense</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Tense</code> marks tense on finite verbs and auxiliaries.</p>
+
+<h2 id="tamil-values">Tamil values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tense=Past
+Tense=Pres
+Tense=Fut
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>குமார்  இட்லியைச் சாப்பிட்டான்
+kumār iṭliyaic cāppiṭṭāṉ
+Kumar idli-ACC ate
+Kumar ate idli
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>சாப்பிட்டான்    VERB    Tense=Past|VerbForm=Fin|Person=3|Number=Sing|Gender=Masc
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="17-aspect">17. Aspect</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Aspect</code> may be used when aspectual meaning is morphologically or constructionally visible.</p>
+
+<h2 id="possible-tamil-relevant-values">Possible Tamil-relevant values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Aspect=Prog   progressive
+Aspect=Perf   perfect / completive
+Aspect=Hab    habitual, if clearly marked
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவன் படித்துக்கொண்டிருந்தான்
+அவன் படித்து     கொண்டு   இருந்தான்
+avaṉ paṭittuk koṇṭ      iruntāṉ
+he   study     keep.VRB be-PST.3SG.M
+He was studying
+</code></pre></div></div>
+
+<p>Possible annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>கொண்டு      AUX    Aspect=Prog|VerbForm=Conv
+இருந்தான்    AUX     Tense=Past|VerbForm=Fin|Person=3|Number=Sing|Gender=Masc
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="18-voice">18. Voice</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Voice</code> marks voice distinctions.</p>
+
+<h2 id="tamil-values-1">Tamil values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Voice=Act
+Voice=Pass
+Voice=Cau
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>குமார்  அப்பாவால்    அடிக்கப்பட்டான்
+குமார்  அப்பாவால்    அடிக்கப்    பட்டான்
+kumār appāvāl    aṭikkap   paṭṭāṉ
+Kumar father-INS beat-INF  undergo-PST-3SG.M
+Kumar was beaten by his father
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>பட்டான்    AUX    Voice=Pass|Tense=Past|VerbForm=Fin|Person=3|Number=Sing|Gender=Masc
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="19-polarity">19. Polarity</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Polarity</code> marks positive or negative polarity.</p>
+
+<h2 id="values">Values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Polarity=Neg
+Polarity=Pos
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>நான் விடமாட்டேன்
+நான் விட     மாட்டேன்
+nāṉ viṭa    māṭṭēṉ
+I leave-INF will.not
+I will not leave
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>மாட்டேன்    AUX    Polarity=Neg|Person=1|Number=Sing|VerbForm=Fin
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="20-person">20. Person</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Person</code> marks first, second, or third person.</p>
+
+<h2 id="values-1">Values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Person=1
+Person=2
+Person=3
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>நான்   வருகிறேன்
+nāṉ   varukiṟēṉ
+I     come-PRS-1SG
+I am coming
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>நான்         PRON    PronType=Prs|Person=1|Number=Sing
+வருகிறேன்     VERB    Tense=Pres|VerbForm=Fin|Person=1|Number=Sing
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="21-polite">21. Polite</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Polite</code> marks politeness, respect, or honorific status.</p>
+
+<h2 id="possible-tamil-values">Possible Tamil values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Polite=Form   formal / honorific
+Polite=Infm   informal
+Polite=Elev   elevated honorific title
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>மேதகு      தமிழக      முதலமைச்சர்       கொடி ஏற்றினார்.
+mētaku     tamiḻaka  mutalamaiccar   koṭi ēṟṟiṉār
+honourable Tamil.Nadu chief.minister flag hoist-PST.3SG.COM
+‘The Honourable Chief Minister of Tamil Nadu hoisted the flag.
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>மேதகு          ADJ    Polite=Elev
+</code></pre></div></div>
+
+<p>Note: Tamil honorific marking can override ordinary number/gender agreement. The annotation policy should define how to handle honorific plural forms used for a single person. Because, in the example above, it can also be written as ஏற்றினார்கள், where -கள் is a plural marker, but it also gives an additional honorific meaning.</p>
+
+<hr />
+
+<h1 id="22-clusivity">22. Clusivity</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Clusivity</code> distinguishes inclusive and exclusive first-person plural pronouns.</p>
+
+<h2 id="tamil-values-2">Tamil values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Clusivity=In   inclusive we
+Clusivity=Ex   exclusive we
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>நாம்     செல்வோம் .
+nām     celvōm
+we.INCL go-FUT-1PL
+“We will go.”
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>நாம்    PRON    PronType=Prs|Person=1|Number=Plur|Clusivity=In
+</code></pre></div></div>
+
+<p>Suggested Tamil policy:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Form</th>
+      <th>Feature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>நாம்</td>
+      <td><code class="language-plaintext highlighter-rouge">Clusivity=In</code></td>
+    </tr>
+    <tr>
+      <td>நாங்கள்</td>
+      <td><code class="language-plaintext highlighter-rouge">Clusivity=Ex</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note: This distinction should be verified in the corpus because actual usage may vary by dialect and register.</p>
+
+<hr />
+
+<h1 id="23-foreign">23. Foreign</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Foreign=Yes</code> is used for foreign words that are not integrated into Tamil.</p>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>குமார்   பாஸ்ட்டாக ஓடினான் .
+kumār  pāsṭṭāka ōṭiṉāṉ
+Kumar  fast-ADV ran
+“Kumar ran fast.”
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>பாஸ்ட்டாக    ADV    Foreign=Yes
+</code></pre></div></div>
+
+<p>Note: Some loanwords such as <strong>கார்</strong> “Car”, <strong>பஸ்</strong> “Bus”, <strong>டிவி</strong> “TV”, <strong>சினிமா</strong> “Cinema” and <strong>மொபைல்</strong> “Mobile” are now well integrated in Tamil usage. Thereore, it is upto the project to decide whether to mark them foreign or not.</p>
+
+<hr />
+
+<h1 id="24-abbr">24. Abbr</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Abbr=Yes</code> is used for abbreviations.</p>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>தி.மு.க.   ஆட்சியில்   உள்ளது
+ti.mu.ka. āṭciyil   uḷḷatu
+DMK       power-LOC exist
+“DMK exists in power.”
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>தி.மு.க.    PROPN    Abbr=Yes
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="25-typo">25. Typo</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Typo=Yes</code> is used when a token contains an error that is preserved in the corpus.</p>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவ்ன் வந்தான் .
+avṉ vantāṉ
+“He came.”
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவ்ன்    PRON    Typo=Yes
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="26-puncttype">26. PunctType</h1>
+
+<p><code class="language-plaintext highlighter-rouge">PunctType</code> marks the type of punctuation.</p>
+
+<h2 id="common-values">Common values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PunctType=Peri   full stop
+PunctType=Qest   question mark
+PunctType=Excl   exclamation mark
+PunctType=Comm   comma
+PunctType=Quot   quotation mark
+PunctType=Brck   bracket
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>அவன் வந்தானா ?
+avaṉ vantāṉā ?
+Did he come ?
+</code></pre></div></div>
+
+<p>Annotation:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>?    PUNCT    PunctType=Qest
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="27-sandhi">27. Sandhi</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Sandhi</code> is proposed as a Tamil-specific feature to record surface changes.</p>
+
+<h2 id="proposed-values">Proposed values</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sandhi=k  க்
+Sandhi=c  ச்
+Sandhi=t  த்
+Sandhi=p  ப்
+</code></pre></div></div>
+
+<p>Tamil morphological analysis and syntactic annotation are often affected by sandhi, as sandhi may introduce restrictions on how words are segmented and interpreted. In some cases, sandhi markers may also indicate genitive-like relations, as in கதிரைக் கால் compared with கதிரை கால்.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>கதிரைக்           கால்
+katirai-k        kāl
+chair-GEN.SANDHI leg
+‘the leg of the chair’
+
+கதிரை   கால்
+katirai kāl
+chair   leg
+
+</code></pre></div></div>
+
+<p>Marking sandhi is also useful because, in contemporary writing, some writers do not consistently represent sandhi. Therefore, sandhi marking can provide valuable features for studying variation in Tamil texts, including changes across time, generations, genres and writing styles.</p>
+
+<p>Note: Since <code class="language-plaintext highlighter-rouge">Sandhi</code> is not a core universal UD feature, the treebank should define it clearly as a Tamil-specific extension.</p>
+
+<hr />
+
+<p>Morphological annotation should be rich enough to support syntactic analysis. Annotators should not stop after identifying only UPOS or one obvious feature. Add all relevant features that are visible in the form and justified by the context.</p>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'ta';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55233688-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
