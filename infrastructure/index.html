@@ -81,13 +81,34 @@
         <h1 id="ud-infrastructure">UD Infrastructure</h1>
 
 <ul>
-  <li>TBA: Building the UD website. (docs repo has webhook leading to the epsilon server in Turku, there is a custom installation of Jekyll which can take care of UD tree visualizations with Brat AnnoDoc. Sometimes it crashes and the only person who can heal it is Filip Ginter. But often it helps to simply revert the commit that brought in something Jekyll cannot digest. Here the <a href="http://epsilon-it.utu.fi/ud-docs-build-log.txt">logs</a> can be of some help.)</li>
-  <li><a href="online_validation_configuration.html">On-line validation</a> is currently installed on a virtual machine accessible through quest.ms.mff.cuni.cz (there is a GitHub webhook that pings quest every time somebody pushes to a treebank or to one of the other important repos). The validation server is maintained by Dan Zeman and relies on scripts in the docs-automation repository.</li>
+  <li>Building the UD website occurs on a virtual machine hosted by Filip Ginter in Turku (ud-docs.turkunlp.org). After
+each push to the <code class="language-plaintext highlighter-rouge">docs</code> repository, a GitHub <a href="https://github.com/organizations/UniversalDependencies/settings/hooks">webhook</a>
+informs the ud-docs server that a new build is needed. The server has a custom installation of Jekyll which can take
+care of UD tree visualizations with Brat AnnoDoc. Rebuilding the website results in a push to a
+<a href="https://github.com/UniversalDependencies/universaldependencies.github.io">separate repository</a>, after which GitHub
+runs its own processing, and only then the changes are visible at the <a href="https://universaldependencies.org/">UD website</a>.
+The whole process normally takes only a few minutes. If the website is still unchanged after half an hour, there
+is likely a problem.
+    <ul>
+      <li><a href="http://ud-docs.turkunlp.org/health">http://ud-docs.turkunlp.org/health</a> shows the list of most recent builds and their logs.</li>
+      <li>It often helps to simply revert the commit that brought in something Jekyll cannot digest.</li>
+      <li>More complex issues may be resolved by admins of the ud-docs server (currently Filip and Dan).</li>
+      <li>The most serious cases (such as hardware failure) can be only solved by Filip.</li>
+      <li>Nevertheless, the system is now <a href="https://github.com/UniversalDependencies/docs-rebuild-bot/tree/master/docs-rebuild-hook">documented</a>
+and it should be possible to set up a new incarnation anywhere by anyone.</li>
+    </ul>
+  </li>
+  <li><a href="online_validation_configuration.html">On-line validation</a> is currently installed on a virtual machine accessible
+through quest.ms.mff.cuni.cz (there is a GitHub webhook that pings quest every time somebody pushes to a treebank
+or to one of the other important repos). The validation server is maintained by Dan Zeman and relies on scripts in
+the docs-automation repository.</li>
   <li><a href="how_to_add_language.html">How to add language, add or rename treebank</a></li>
   <li><a href="how_to_build_release.html">How to build a new UD release</a></li>
 </ul>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
+
+<p><em>(Very old notes about building the UD website.)</em></p>
 
 <p>Issue: when running locally, the system gives the error message
 <em>cannot load such file – <code class="language-plaintext highlighter-rouge">jekyll-redirect-from</code></em>.</p>
