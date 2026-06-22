@@ -269,13 +269,14 @@ relation subtypes for the docs repository.</p>
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># This script scans a final UD release folder. We may want to modify it to also accept the list of treebanks to be released. Other survey scripts accept such input.</span>
   tools/survey_language_families.pl <span class="nt">--input</span> release <span class="nt">--udpath</span> /net/data/universal-dependencies-2.18 <span class="nt">--langyaml</span> docs-automation/codes_and_flags.yaml <span class="nt">--output</span> tbkstats <span class="o">&gt;</span> tbkstats.2.18.txt
   tools/survey_language_families.pl <span class="nt">--input</span> tbkstats <span class="nt">--langyaml</span> docs-automation/codes_and_flags.yaml <span class="nt">--output</span> fampie <span class="nt">--languages</span> <span class="nt">--families</span> <span class="nt">--complatex</span> &lt; tbkstats.2.18.txt | pdflatex
-  pdftoppm <span class="nt">-png</span> <span class="nt">-r</span> 600 texput.pdf <span class="o">&gt;</span> lang_per_fam.png
+  pdftoppm <span class="nt">-png</span> <span class="nt">-r</span> 600 texput.pdf <span class="o">&gt;</span> docs/img/lang_per_fam.png
   tools/survey_language_families.pl <span class="nt">--input</span> tbkstats <span class="nt">--langyaml</span> docs-automation/codes_and_flags.yaml <span class="nt">--output</span> fampie <span class="nt">--words</span> <span class="nt">--families</span> <span class="nt">--complatex</span> &lt; tbkstats.2.18.txt | pdflatex
-  pdftoppm <span class="nt">-png</span> <span class="nt">-r</span> 600 texput.pdf <span class="o">&gt;</span> word_per_fam.png
+  pdftoppm <span class="nt">-png</span> <span class="nt">-r</span> 600 texput.pdf <span class="o">&gt;</span> docs/img/word_per_fam.png
   tools/survey_language_families.pl <span class="nt">--input</span> tbkstats <span class="nt">--langyaml</span> docs-automation/codes_and_flags.yaml <span class="nt">--output</span> fampie <span class="nt">--languages</span> <span class="nt">--genera</span> IE <span class="nt">--complatex</span> &lt; tbkstats.2.18.txt | pdflatex
-  pdftoppm <span class="nt">-png</span> <span class="nt">-r</span> 600 texput.pdf <span class="o">&gt;</span> lang_per_gen_ie.png
+  pdftoppm <span class="nt">-png</span> <span class="nt">-r</span> 600 texput.pdf <span class="o">&gt;</span> docs/img/lang_per_gen_ie.png
   tools/survey_language_families.pl <span class="nt">--input</span> tbkstats <span class="nt">--langyaml</span> docs-automation/codes_and_flags.yaml <span class="nt">--output</span> fampie <span class="nt">--words</span> <span class="nt">--genera</span> IE <span class="nt">--complatex</span> &lt; tbkstats.2.18.txt | pdflatex
-  pdftoppm <span class="nt">-png</span> <span class="nt">-r</span> 600 texput.pdf <span class="o">&gt;</span> word_per_gen_ie.png
+  pdftoppm <span class="nt">-png</span> <span class="nt">-r</span> 600 texput.pdf <span class="o">&gt;</span> docs/img/word_per_gen_ie.png
+  <span class="nb">cd </span>docs <span class="p">;</span> git pull <span class="nt">--no-edit</span> <span class="p">;</span> git commit <span class="nt">-a</span> <span class="nt">-m</span> <span class="s1">'Updated diversity pie charts.'</span> <span class="p">;</span> git push <span class="p">;</span> <span class="nb">cd</span> ..
 </code></pre></div>    </div>
   </li>
   <li>
