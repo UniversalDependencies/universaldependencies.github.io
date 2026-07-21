@@ -88,7 +88,7 @@
   <td><a href="#ADJ">ADJ</a></td>
   <td><a href="#ADP">ADP</a></td>
   <td><a href="#ADV">ADV</a></td>
-  <td><a href="#AUX">AUX</a></td>
+  <!--td><a href="#AUX">AUX</a></td-->
   <td><a href="#CCONJ">CCONJ</a></td>
   <td><a href="#DET">DET</a></td>
   <td><a href="#INTJ">INTJ</a></td>
@@ -102,31 +102,16 @@
 </tr>
 </table>
 
-<p>This feature differs significantly from all other features: It describes neither the lexical category,
-nor the inflectional paradigm slot of the token it appears on. Rather than to the individual token,
-it pertains to a multiword expression and indicates the part of speech that the expression would get
-if it were analyzed as a single word. <code class="language-plaintext highlighter-rouge">ExtPos</code> is annotated at the head node of the multiword
-expression. The possible values are taken from the defined <a href="/u/pos/index.html">UPOS tags</a> and no other
-values are allowed (not even at the language-specific level). The main motivation for <code class="language-plaintext highlighter-rouge">ExtPos</code> is that
-the multiword expression may behave like a part of speech different from the UPOS of the head node;
-however, <code class="language-plaintext highlighter-rouge">ExtPos</code> is sometimes used even if it is identical to the UPOS of the head node. Also, it is
-not strictly necessary that the expression is multiword – if one of the words of the expression is
-omitted by mistake, or if a single word has been coerced into a part of speech different from its
-lexical one, <code class="language-plaintext highlighter-rouge">ExtPos</code> may be used to signal it.</p>
+<p>This feature differs significantly from all other features: it describes neither the lexical category, nor the inflectional paradigm slot of the token it appears on. Rather than to the individual token, it pertains to a multiword expression and indicates the part of speech that the expression would get if it were analyzed as a single word. <code class="language-plaintext highlighter-rouge">ExtPos</code> is annotated at the head node of the multiword expression. The possible values are taken from the defined <a href="/u/pos/index.html">UPOS tags</a> and no other values are allowed (not even at the language-specific level). The main motivation for <code class="language-plaintext highlighter-rouge">ExtPos</code> is that the multiword expression may behave like a part of speech different from the UPOS of the head node; however, <code class="language-plaintext highlighter-rouge">ExtPos</code> is sometimes used even if it is identical to the UPOS of the head node. Also, it is not strictly necessary that the expression is multiword – if one of the words of the expression is omitted by mistake, or if a single word has been coerced into a part of speech different from its lexical one, <code class="language-plaintext highlighter-rouge">ExtPos</code> may be used to signal it.</p>
 
-<p><code class="language-plaintext highlighter-rouge">ExtPos</code> is strongly recommended for fixed functional multiword expressions (the head node has one
-or more children attached via the <a href="">fixed</a> relation). These should normally lead to <code class="language-plaintext highlighter-rouge">ExtPos</code> values
-<code class="language-plaintext highlighter-rouge">ADP</code>, <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">AUX</code>, <code class="language-plaintext highlighter-rouge">CCONJ</code>, <code class="language-plaintext highlighter-rouge">DET</code>, <code class="language-plaintext highlighter-rouge">PRON</code>, <code class="language-plaintext highlighter-rouge">SCONJ</code> (the <code class="language-plaintext highlighter-rouge">fixed</code> relation should not be used for compounds
-that work like content words). However, <code class="language-plaintext highlighter-rouge">ExtPos</code> is occasionally useful in other situations, too:
-for example, when a multiword expression acts as a proper noun (although its parts behave like other
-words) or as an interjection.</p>
+<p><code class="language-plaintext highlighter-rouge">ExtPos</code> is strongly recommended for fixed functional multiword expressions (the head node has one or more children attached via the <a href="">fixed</a> relation). These should normally lead to <code class="language-plaintext highlighter-rouge">ExtPos</code> values <code class="language-plaintext highlighter-rouge">ADP</code>, <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">AUX</code>, <code class="language-plaintext highlighter-rouge">CCONJ</code>, <code class="language-plaintext highlighter-rouge">DET</code>, <code class="language-plaintext highlighter-rouge">PRON</code>, <code class="language-plaintext highlighter-rouge">SCONJ</code> (the <code class="language-plaintext highlighter-rouge">fixed</code> relation should not be used for compounds that work like content words). However, <code class="language-plaintext highlighter-rouge">ExtPos</code> is occasionally useful in other situations, too: for example, when a multiword expression acts as a proper noun (although its parts behave like other words) or as an interjection.</p>
 
 <h3 id="adj-adjective-like-expression"><a name="ADJ"><code class="language-plaintext highlighter-rouge">ADJ</code></a>: adjective-like expression</h3>
 
 <h4 id="examples">Examples</h4>
 
 <ul>
-  <li><em><b>շատ մը</b></em> (a multiword adjective paraphrasable as “a lot of”, lit. “many some”; here the first node is the technical head and it is an adjective itself, so UPOS = <code class="language-plaintext highlighter-rouge">ExtPos</code>)</li>
+  <li><em><b>շատ մը</b></em>/<em><b>šat më</b></em> (a multiword adjective paraphrasable as “a lot of”, lit. “many some”; here the first node is the technical head and it is an adjective itself, so UPOS = <code class="language-plaintext highlighter-rouge">ExtPos</code>)</li>
 </ul>
 
 <h3 id="adp-adposition-like-expression"><a name="ADP"><code class="language-plaintext highlighter-rouge">ADP</code></a>: adposition-like expression</h3>
@@ -136,8 +121,8 @@ words) or as an interjection.</p>
 <h4 id="examples-1">Examples</h4>
 
 <ul>
-  <li><em><b>ի տարբերութիւն</b></em> “<b>as opposed to</b>” (here the first node is the technical head and it is a preposition itself, so UPOS = <code class="language-plaintext highlighter-rouge">ExtPos</code>)</li>
-  <li><em><b>նախ քան</b></em> “before” (<em>նախ</em> = <a href="">ADV</a>)</li>
+  <li><em><b>ի տարբերութիւն</b></em>/<em><b>i tarberowtʼiwn</b></em> “<b>as opposed to</b>” (here the first node is the technical head and it is a preposition itself, so UPOS = <code class="language-plaintext highlighter-rouge">ExtPos</code>)</li>
+  <li><em><b>նախ քան</b></em>/<em><b>nax kʼan</b></em> “before” (<em>նախ</em>/<em>nax</em> = <a href="">ADV</a>)</li>
 </ul>
 
 <h3 id="adv-adverb-like-expression"><a name="ADV"><code class="language-plaintext highlighter-rouge">ADV</code></a>: adverb-like expression</h3>
@@ -145,7 +130,7 @@ words) or as an interjection.</p>
 <h4 id="examples-2">Examples</h4>
 
 <ul>
-  <li><em><b>առ նուազն</b></em> (a multiword adverb paraphrasable as “at least”; the first node is <a href="">ADP</a>)</li>
+  <li><em><b>առ նուազն</b></em>/<em><b>aṙ nowazn</b></em> (a multiword adverb paraphrasable as “at least”; the first node <em>առ</em>/<em>aṙ</em> is <a href="">ADP</a>)</li>
 </ul>
 
 <h3 id="cconj-coordinating-conjunction-like-expression"><a name="CCONJ"><code class="language-plaintext highlighter-rouge">CCONJ</code></a>: coordinating conjunction-like expression</h3>
@@ -153,7 +138,7 @@ words) or as an interjection.</p>
 <h4 id="examples-3">Examples</h4>
 
 <ul>
-  <li><em><b>ինչպէս նաեւ</b></em> “not only” (<em>ինչպէս</em> = <a href="">ADV</a>)</li>
+  <li><em><b>ինչպէս նաեւ</b></em>/<em><b>inčpēs naew</b> “as well” (_ինչպէս</em>/<em>inčpēs</em> = <a href="">ADV</a>)</li>
 </ul>
 
 <h3 id="det-determiner-like-expression"><a name="DET"><code class="language-plaintext highlighter-rouge">DET</code></a>: determiner-like expression</h3>
@@ -161,7 +146,7 @@ words) or as an interjection.</p>
 <h4 id="examples-4">Examples</h4>
 
 <ul>
-  <li><em><b>ոչ մի</b></em> “not any” (<em>ոչ</em> = <a href="">PART</a>)</li>
+  <li><em><b>ոչ մի</b></em>/<em><b>oč mi</b></em> “not any” (<em>ոչ</em> = <a href="">PART</a>)</li>
 </ul>
 
 <h3 id="pron-pronoun-like-expression"><a name="PRON"><code class="language-plaintext highlighter-rouge">PRON</code></a>: pronoun-like expression</h3>
@@ -169,7 +154,7 @@ words) or as an interjection.</p>
 <h4 id="examples-5">Examples</h4>
 
 <ul>
-  <li><em><b>ամէն ինչ</b></em> (a multiword determiner paraphrasable as <em>everything</em>, <em>ամէն</em>= <a href="">DET</a>)</li>
+  <li><em><b>ամէն ինչ</b></em>/<em><b>amēn inč</b></em> (a multiword determiner paraphrasable as “everything”, <em>ամէն</em>/<em>amēn</em> = <a href="">DET</a>)</li>
 </ul>
 
 <h3 id="propn-proper-noun-like-expression"><a name="PROPN"><code class="language-plaintext highlighter-rouge">PROPN</code></a>: proper noun-like expression</h3>
@@ -177,7 +162,7 @@ words) or as an interjection.</p>
 <h4 id="examples-6">Examples</h4>
 
 <ul>
-  <li><em><b>Camilla՚s Garden</b></em> (_<b>Camilla_ = <a href="">X</a>)</b></li>
+  <li><em><b>Camilla՚s Garden</b></em> (<em>Camilla</em> = <a href="">X</a>)</li>
 </ul>
 
 <h3 id="sconj-subordinator-like-expression"><a name="SCONJ"><code class="language-plaintext highlighter-rouge">SCONJ</code></a>: subordinator-like expression</h3>
@@ -185,7 +170,7 @@ words) or as an interjection.</p>
 <h4 id="examples-7">Examples</h4>
 
 <ul>
-  <li><em><b>այնպէս որ</b></em> “so, therefore” (<em>այնպէս</em> = <a href="">ADV</a>)</li>
+  <li><em><b>այնպէս որ</b></em>/<em><b>aynpēs or</b></em> “so, so that” (<em>այնպէս</em>/<em>aynpēs</em> = <a href="">ADV</a>)</li>
 </ul>
 
 <h3 id="part-particle-like-expression"><a name="PART"><code class="language-plaintext highlighter-rouge">PART</code></a>: particle-like expression</h3>
@@ -193,7 +178,7 @@ words) or as an interjection.</p>
 <h4 id="examples-8">Examples</h4>
 
 <ul>
-  <li><em><b>դժուար թէ</b></em> (a multiword particle paraphrasable as “hardly”; the first node is <a href="">ADJ</a>)</li>
+  <li><em><b>դժուար թէ</b></em>/<em><b>džowar tʼē</b></em> (a multiword particle paraphrasable as “hardly”; <em>դժուար</em>/<em>džowar</em> = <a href="">ADJ</a>)</li>
 </ul>
 
 <h3 id="intj-interjection-like-expression"><a name="INTJ"><code class="language-plaintext highlighter-rouge">INTJ</code></a>: interjection-like expression</h3>
@@ -201,10 +186,9 @@ words) or as an interjection.</p>
 <h4 id="examples-9">Examples</h4>
 
 <ul>
-  <li><em><b>ափսոս որ</b></em> (a multiword interjection paraphrasable as “…”; the first node is <a href="">INTJ</a>)</li>
+  <li><em><b>ափսոս որ</b></em>/<em>apʼsos vor</em> (a multiword interjection paraphrasable as “it’s a pity that”; <em>ափսոս</em>/<em>apʼsos</em> = <a href="">INTJ</a>)
+<!-- Interlanguage links updated Út 30. června 2026, 10:58:52 CEST --></li>
 </ul>
-
-<!-- Interlanguage links updated Út 30. června 2026, 10:58:52 CEST -->
 
 
 <!-- "in other languages" links -->
