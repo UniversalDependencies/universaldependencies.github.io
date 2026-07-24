@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>NumType</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-hyw">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hyw/feat/NumType.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <style>h3 {display:block;background-color:#dfeffc}</style>
+
+<h2><code>NumType</code>: numeral type</h2>
+
+<table class="typeindex" border="1">
+<tr>
+  <td style="background-color:cornflowerblue;color:white"><strong>Values:</strong> </td>
+  <td><a href="#Card">Card</a></td>
+  <td><a href="#Dist">Dist</a></td>
+  <td><a href="#Frac">Frac</a></td>
+  <td><a href="#Ord">Ord</a></td>
+  <td><a href="#Range">Range</a></td>
+</tr>
+</table>
+
+<p>Armenian has a complex system of <a href="NUM">numerals</a>. In the school grammar of Armenian, the part of speech “numeral” includes only words where a precise counting or quantity is involved.</p>
+
+<p>From the syntactic point of view, some numtypes behave like adjectives and some behave like adverbs. We tag them <a href="">ADJ</a> and <a href="">ADV</a> respectively. Thus the <code class="language-plaintext highlighter-rouge">NumType</code> feature applies to several different parts of speech:</p>
+
+<ul>
+  <li><a href="">NUM</a>: cardinal numerals</li>
+  <li><a href="">ADJ</a>: adjectival ordinal numerals</li>
+  <li><a href="">ADV</a>: adverbial distributive numerals</li>
+</ul>
+
+<p>Note that there are no <em>adverbial ordinal</em> and <em>multiplicative numerals</em> in Armenian.</p>
+
+<h3 id="card-cardinal-number"><a name="Card"><code class="language-plaintext highlighter-rouge">Card</code></a>: cardinal number</h3>
+
+<p>Note that in some Indo-European languages there is a fuzzy borderline between numerals and nouns for <em>thousand</em>, <em>million</em> and <em>billion.</em></p>
+
+<h4 id="examples">Examples</h4>
+
+<ul>
+  <li><em>1, 2, 3</em></li>
+  <li><em>մէկ</em>/<em>mēk</em> “one”, <em>երկու</em>/<em>erkow</em> “two”, <em>երեք</em>/<em>erekʼ</em> “three”</li>
+</ul>
+
+<h3 id="ord-ordinal-number"><a name="Ord"><code class="language-plaintext highlighter-rouge">Ord</code></a>: ordinal number</h3>
+
+<p>This is a subtype of adjective.</p>
+
+<h4 id="examples-1">Examples</h4>
+
+<ul>
+  <li><em>1-ին</em>/<em>1-in</em> “1st”, <em>2-րդ</em>/<em>2-rd</em> “2nd”, <em>3-րդ</em>/<em>3-rd</em> “3rd”</li>
+  <li><em>առաջին</em>/<em>aṙaǰin</em> “first”, <em>երկրորդ</em>/<em>erkrord</em> “second”, <em>երրորդ</em>/<em>errord</em> “third”</li>
+</ul>
+
+<h3 id="frac-fraction"><a name="Frac"><code class="language-plaintext highlighter-rouge">Frac</code></a>: fraction</h3>
+
+<p>This is a subtype of cardinal numbers. It may denote a fraction or just the denominator of the fraction.</p>
+
+<h4 id="examples-2">Examples</h4>
+
+<ul>
+  <li><em>3/4</em>, <em>երեք քառորդ</em>/<em>erekʼ kʼaṙord</em> “three quarters”</li>
+  <li><em>կէս</em>/<em>kēs</em> “half”, <em>քառորդ</em>/<em>kʼaṙord</em> “quarter”, <em><b>1/3 (մէկ երրորդ)</b> մասը</em>/<em>1/3 (mēk errord) masë</em> “one <b>third</b> part”</li>
+</ul>
+
+<h3 id="dist-distributive-numeral"><a name="Dist"><code class="language-plaintext highlighter-rouge">Dist</code></a>: distributive numeral</h3>
+
+<p>Used to express that the same quantity is distributed to each member in a set of targets.</p>
+
+<p>Note that <em><b>20-ական, 30-ական</b> թուականներուն</em>/<em><b>20-akan, 30-akan</b> tʼowakannerown</em> <code class="language-plaintext highlighter-rouge">Plur</code> “by twentieth, thirties” are not considered distributive numerals, we mark them either <code class="language-plaintext highlighter-rouge">ADJ</code> or <code class="language-plaintext highlighter-rouge">NOUN</code>.</p>
+
+<h4 id="examples-3">Examples</h4>
+
+<ul>
+  <li><em><b>երեքական (երեք-երեք)</b> խնձոր իւրաքանչիւրին</em>/<em>erekʼakan (erekʼ-erekʼ) xnjor iwrakʼančiwrin</em> “three apples per / for each one”</li>
+  <li><em><b>3-ական</b> խնձոր իւրաքանչիւրին</em>/<em>3-akan xnjor iwrakʼančiwrin</em> “three apples per / for each one”</li>
+</ul>
+
+<h3 id="range-range-of-values"><a name="Range"><code class="language-plaintext highlighter-rouge">Range</code></a>: range of values</h3>
+
+<p>This could be considered a subtype of cardinal numbers (provided tokenization leaves it as one token).</p>
+
+<h4 id="examples-4">Examples</h4>
+
+<ul>
+  <li><em>4-5 (չորս-հինգ)</em>/<em>4-5 (čors-hing)</em> “four or five”</li>
+  <li><em>10-15 (տասից տասնհինգ)</em>/<em>10-15 (tasicʼ tasnhing)</em> “from ten to fifteen”
+<!-- Interlanguage links updated Út 30. června 2026, 10:59:03 CEST --></li>
+</ul>
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+NumType in other languages:
+
+[<a href="../../axm/feat/NumType.html">axm</a>]
+
+[<a href="../../bej/feat/NumType.html">bej</a>]
+
+[<a href="../../bg/feat/NumType.html">bg</a>]
+
+[<a href="../../bm/feat/NumType.html">bm</a>]
+
+[<a href="../../cs/feat/NumType.html">cs</a>]
+
+[<a href="../../el/feat/NumType.html">el</a>]
+
+[<a href="../../en/feat/NumType.html">en</a>]
+
+[<a href="../../es/feat/NumType.html">es</a>]
+
+[<a href="../../fi/feat/NumType.html">fi</a>]
+
+[<a href="../../fr/feat/NumType.html">fr</a>]
+
+[<a href="../../ga/feat/NumType.html">ga</a>]
+
+[<a href="../../hu/feat/NumType.html">hu</a>]
+
+[<a href="../../hy/feat/NumType.html">hy</a>]
+
+[<a href="../../it/feat/NumType.html">it</a>]
+
+[<a href="../../ka/feat/NumType.html">ka</a>]
+
+[<a href="../../kk/feat/NumType.html">kk</a>]
+
+[<a href="../../koi/feat/NumType.html">koi</a>]
+
+[<a href="../../kpv/feat/NumType.html">kpv</a>]
+
+[<a href="../../ky/feat/NumType.html">ky</a>]
+
+[<a href="../../mdf/feat/NumType.html">mdf</a>]
+
+[<a href="../../myv/feat/NumType.html">myv</a>]
+
+[<a href="../../naq/feat/NumType.html">naq</a>]
+
+[<a href="../../oge/feat/NumType.html">oge</a>]
+
+[<a href="../../pal/feat/NumType.html">pal</a>]
+
+[<a href="../../pcm/feat/NumType.html">pcm</a>]
+
+[<a href="../../qpm/feat/NumType.html">qpm</a>]
+
+[<a href="../../sl/feat/NumType.html">sl</a>]
+
+[<a href="../../sme/feat/NumType.html">sme</a>]
+
+[<a href="../../sv/feat/NumType.html">sv</a>]
+
+[<a href="../../tr/feat/NumType.html">tr</a>]
+
+[<a href="../../tt/feat/NumType.html">tt</a>]
+
+[<a href="../../u/feat/NumType.html">u</a>]
+
+[<a href="../../uk/feat/NumType.html">uk</a>]
+
+[<a href="../../urj/feat/NumType.html">urj</a>]
+
+[<a href="../../uz/feat/NumType.html">uz</a>]
+
+[<a href="../../xav/feat/NumType.html">xav</a>]
+
+[<a href="../../xcl/feat/NumType.html">xcl</a>]
+
+[<a href="../../xmf/feat/NumType.html">xmf</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'hyw';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
