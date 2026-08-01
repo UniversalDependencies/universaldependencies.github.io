@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Pali UD</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-pi">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pi/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="ud-for-pali-">UD for Pali <span class="flagspan"><img class="flag" src="../../flags/svg/IN.svg" /></span></h1>
+
+<p>Pāli is an Indo-Aryan language, widely studied as the liturgical language of Theravāda Buddhism.</p>
+
+<h2 id="orthography">Orthography</h2>
+
+<ul>
+  <li>While Pāli can traditionally be written with a variety of scripts, for UD we use <a href="https://en.wikipedia.org/wiki/International_Alphabet_of_Sanskrit_Transliteration">the IAST Romanization standard</a>.</li>
+  <li>If your corpus or text is in another script or alternate Romanization, you can use a tool like <a href="https://aksharamukha.com/python">aksharamukha</a> to automatically convert it to IAST.</li>
+  <li>As different scripts use different, and sometimes no, punctuation, we further standardize our orthography by <strong>removing all punctuation</strong> from our texts.</li>
+  <li>IAST is case insensitive. Here, we use lowercase, with the first letter of each sentence capitalized by convention.</li>
+</ul>
+
+<h2 id="sentence-segmentation">Sentence Segmentation</h2>
+
+<p>While we strip out punctuation in our <code class="language-plaintext highlighter-rouge"># text</code> rows, we do recommend using any punctuation in your source to help segment into sentences.  In the Pāli Text Society and Mahāsaṅgīti editions, you should generally use both semicolons (<code class="language-plaintext highlighter-rouge">;</code>) and periods (<code class="language-plaintext highlighter-rouge">.</code>) to split sentences.  However, be aware that Pāli verses may sometimes use semicolons to mark <em>pāda</em> “line” boundaries which are not semantic.  Always segment sentences by syntax.</p>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>Words are generally delimited by spaces.</li>
+  <li>Compounds are split and sandhi undone as it is the custom in Sanskritic linguistics.</li>
+  <li>Compounds receive token ranges (e.g. <code class="language-plaintext highlighter-rouge">10-12</code>) and should get the appropriate <a href="">compound</a> relation subtype.</li>
+  <li>Sandhi should be marked with a <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> in the earlier token’s <code class="language-plaintext highlighter-rouge">MISC</code> and should not get a range id.</li>
+  <li>Multi-word tokens are generally not used. Parts of a multi-word name (e.g. “Saccaka Nigaṇṭhāputta”) should get the <a href="">flat:name</a> dependency relation.</li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="lemmatization">Lemmatization</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">LEMMA</code> for all verb forms is the 3rd-person singular present indicative of the underlying verb.
+For example, the past participle <em>gata</em> “gone” gets the <code class="language-plaintext highlighter-rouge">LEMMA</code> <em>gacchati</em>.</p>
+
+<h4 id="noun-lemmas">Noun Lemmas</h4>
+
+<p>Lemmas are always lowercase, even for proper nouns.</p>
+
+<p>For personal pronouns, collapse the cases down to the nominative. For example, <em>amhākaṃ</em> gets <em>mayaṃ</em> and <em>te</em> gets <em>tvaṃ</em>. Keep first and second, singular and plural separate.</p>
+
+<p>For demonstrative pronouns, collapse the cases, gender, and number to the nominative, singular, neuter form:</p>
+
+<ul>
+  <li>Use <em>tad</em> for all <em>ta-</em> forms: <em>sā</em>, <em>sa</em>, <em>taṃ</em>, <em>tena</em>, etc.</li>
+  <li>Use <em>yad</em> for all <em>ya-</em> forms: <em>yo</em>, <em>yā</em>, <em>yaṃ</em>, <em>yamhi</em>, etc.</li>
+  <li>Use <em>idaṃ</em> for its various forms: <em>ayaṃ</em>, <em>imaṃ</em>, <em>imāni</em>, <em>imehi</em>, <em>anena</em>, etc.</li>
+</ul>
+
+<p>Substantives and adjectives should get the stem form as their lemma. For example, <em>itthiyo</em> has the lemma <code class="language-plaintext highlighter-rouge">itthi</code>, <em>bhikkhave</em> gets the lemma <code class="language-plaintext highlighter-rouge">bhikkhu</code>, <em>rasso</em> the lemma <code class="language-plaintext highlighter-rouge">rassa</code>, <em>rāja</em> the lemma <code class="language-plaintext highlighter-rouge">rājan</code>, <em>bhagavato</em> <code class="language-plaintext highlighter-rouge">bhagavant</code>, etc.</p>
+
+<h3 id="part-of-speech-tags">Part of Speech Tags</h3>
+
+<p>Participles are tagged as <code class="language-plaintext highlighter-rouge">VERB</code>s and not <code class="language-plaintext highlighter-rouge">ADJ</code>s or <code class="language-plaintext highlighter-rouge">ADV</code>s.
+This means that they cannot get the <code class="language-plaintext highlighter-rouge">amod</code> dependency relation when used to modify a noun, so we use <code class="language-plaintext highlighter-rouge">acl</code> instead to attach it to its target noun.</p>
+
+<p>Because Pāli is originally an oral language, we are stripping out symbols and punctuation, meaning we do not use the <code class="language-plaintext highlighter-rouge">SYM</code> or <code class="language-plaintext highlighter-rouge">PUNCT</code> tags.</p>
+
+<h4 id="determiners">Determiners</h4>
+
+<p>If a pronoun such as <em>imaṃ</em> is used as a determiner (i.e. it gets deprel <code class="language-plaintext highlighter-rouge">det</code> pointing to a substantive) then it should get the UPOS <code class="language-plaintext highlighter-rouge">DET</code> instead of <code class="language-plaintext highlighter-rouge">PRON</code>.</p>
+
+<h4 id="particles">Particles</h4>
+
+<p>The following particles get the <code class="language-plaintext highlighter-rouge">PART</code> <code class="language-plaintext highlighter-rouge">UPOS</code>:</p>
+
+<ul>
+  <li>The quote-ending particle <em>ti</em>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">LEMMA</code>: <em>iti</em></li>
+      <li><code class="language-plaintext highlighter-rouge">DEPREL</code>: <code class="language-plaintext highlighter-rouge">mark</code> to the head of the quoted clause</li>
+      <li>The preceding token should usually get <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> (as appropriate)</li>
+    </ul>
+  </li>
+  <li>The negation particle <em>na</em> / <em>n’</em>
+    <ul>
+      <li>The lemma is <em>na</em></li>
+      <li>Mark it as <code class="language-plaintext highlighter-rouge">Polarity=Neg</code> in <code class="language-plaintext highlighter-rouge">FEATS</code></li>
+      <li>Give it the <a href="">advmod</a> relation to the negated head.</li>
+    </ul>
+  </li>
+  <li><em>api</em> / <em>pi</em>
+    <ul>
+      <li>The lemma is <em>api</em></li>
+      <li>It should normally get the <a href="">discourse</a> dependency relation when used rhetorically, but can get <code class="language-plaintext highlighter-rouge">advmod</code> if used conjunctively.</li>
+    </ul>
+  </li>
+  <li><em>eva</em> and <em>kho</em>
+    <ul>
+      <li>Normally get the <code class="language-plaintext highlighter-rouge">discourse</code> dependency, except in <code class="language-plaintext highlighter-rouge">fixed</code> phrases</li>
+    </ul>
+  </li>
+  <li><em>kira</em>
+    <ul>
+      <li>When used as “apparently” it should also get the <code class="language-plaintext highlighter-rouge">discourse</code> relation.</li>
+      <li>Note that “<em>kira</em>” is not a particle but a <code class="language-plaintext highlighter-rouge">VERB</code> if it is the imperative 2nd sg or the reflexive aorist 1st sg of <em>kirati</em>.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
+
+<hr />
+
+<h3 id="features">Features</h3>
+
+<p>Some forms in Pāli are ambiguous. For example, a feminine noun of the <code class="language-plaintext highlighter-rouge">-ā</code> class with a <code class="language-plaintext highlighter-rouge">-āya</code> suffix might be Singular Instrumental, Ablative, Genitive, Dative, or Locative! When <code class="language-plaintext highlighter-rouge">Case</code> can be inferred from context, feel free to mark just the semantically correct case.  If multiple parses are reasonable in a given context, list all the semantically plausible values in alphabetical order, separated by commas (e.g. if you have an <em>-āya</em> noun, and all but instrumental are reasonable parses, mark it <code class="language-plaintext highlighter-rouge">Case=Abl,Dat,Gen,Loc|Gender=Fem|Number=Sing</code>).</p>
+
+<h4 id="verbs">Verbs</h4>
+
+<p>All verb forms in Pāli should get the <code class="language-plaintext highlighter-rouge">VERB</code> <code class="language-plaintext highlighter-rouge">UPOS</code>.</p>
+
+<h5 id="finite-verbs">Finite Verbs</h5>
+
+<p>Should have the <code class="language-plaintext highlighter-rouge">VerbForm=Fin</code> along with <code class="language-plaintext highlighter-rouge">Mood</code>, <code class="language-plaintext highlighter-rouge">Tense</code>, <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Number</code>, and <code class="language-plaintext highlighter-rouge">Voice</code>.</p>
+
+<h5 id="absolutives">Absolutives</h5>
+
+<p>Absolutives (sometimes called “gerunds”) formed in Pāli with <em>-tvā</em> / <em>-ya</em> get the <code class="language-plaintext highlighter-rouge">VerbForm=Conv</code> feature and are attached to the main verb via <code class="language-plaintext highlighter-rouge">advcl</code>.</p>
+
+<h5 id="infinitives">Infinitives</h5>
+
+<p>Infinitives in Pāli end in <em>-tuṃ</em>, have the <code class="language-plaintext highlighter-rouge">VerbForm=Inf</code> and are typically <code class="language-plaintext highlighter-rouge">xcomp</code>.</p>
+
+<h5 id="participles">Participles</h5>
+
+<p>Participles have the following <code class="language-plaintext highlighter-rouge">FEATS</code>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">VerbForm=Part</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Voice=Act</code> or <code class="language-plaintext highlighter-rouge">Voice=Pass</code></li>
+  <li>Full nominal agreement features (Case, Gender, Number)</li>
+</ul>
+
+<hr />
+<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+
+<hr />
+
+<h2 id="syntax">Syntax</h2>
+
+<p>Since all the participles have VERB in UPOS, they cannot be used as amod. They are either <code class="language-plaintext highlighter-rouge">acl</code> if they modify a noun or <code class="language-plaintext highlighter-rouge">advcl</code> if they modify a verb or a clause.</p>
+
+<hr />
+<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+
+<hr />
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is one Pāli UD treebank:</p>
+
+<ul>
+  <li><a href="https://github.com/UniversalDependencies/UD_Pali-PaliCanon">Pali-PaliCanon</a></li>
+</ul>
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'pi';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

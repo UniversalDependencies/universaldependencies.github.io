@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>compound</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-pi">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_pi/dep/compound.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h2><code>compound</code>: compound</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">compound</code> relation subtypes are used for Pāli compounds to show how the compound’s parts relate to each other.</p>
+
+<p>A Pāli compound is identified through the fact that only the final member of the compound is grammatically inflected, and the earlier part(s) of the compound are in their uninflected form(s).
+For example, <em>rukkhapatito</em> “tree-fallen” has <em>rukkha</em> “tree” in its stem form and only “fallen” <em>patito</em> declined.</p>
+
+<p>Because the last part of the compound is inflected, we treat that part as the root of the compound which relates to the rest of the sentence and the earlier part(s) of the compound receive dependency relations (directly or indirectly) to that final part. The dependency relation to be used for this purpose is <code class="language-plaintext highlighter-rouge">compound</code> with the specific subtype for the kind of compound it is according to traditional (Pāṇinian) Sanskritic analysis:</p>
+
+<ul>
+  <li><a href="">compound:dg</a> — <em>dvigu</em> (a numerical relation)</li>
+  <li><a href="">compound:dv</a> — <em>dvandva</em> (a coordinative relation)</li>
+  <li><a href="">compound:kd</a> — <em>karmadhāraya</em> (an adjectival relation)</li>
+  <li><a href="">compound:tp</a> — <em>tatpuruṣa</em> (a case relation)</li>
+  <li><a href="">compound:na</a> - <em>nañtatpuruṣa</em> (a negative relation)</li>
+  <li><a href="">compound:bv</a> - <em>bahuvrīhi</em> (a compound used adjectively, e.g. <em>sa-</em>)</li>
+  <li><a href="">compound:av</a> — <em>avyayībhāva</em> (a compound used adverbially, e.g. <em>anu-</em>)</li>
+</ul>
+
+<p>Compounds should always be annotated with a token range (e.g. <code class="language-plaintext highlighter-rouge">10-12</code>). The <code class="language-plaintext highlighter-rouge">compound</code> relations should only be used for such tokens. Sandhi should not be treated as a token range but should be treated instead as two separate tokens with the first token getting <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> to mark the lack of a space after it. Pāli UD expresses the difference between sandhi and compounds in this way.</p>
+
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+compound in other languages:
+
+[<a href="../../bej/dep/compound.html">bej</a>]
+
+[<a href="../../cop/dep/compound.html">cop</a>]
+
+[<a href="../../cs/dep/compound.html">cs</a>]
+
+[<a href="../../de/dep/compound.html">de</a>]
+
+[<a href="../../el/dep/compound.html">el</a>]
+
+[<a href="../../en/dep/compound.html">en</a>]
+
+[<a href="../../et/dep/compound.html">et</a>]
+
+[<a href="../../eu/dep/compound.html">eu</a>]
+
+[<a href="../../fi/dep/compound.html">fi</a>]
+
+[<a href="../../fr/dep/compound.html">fr</a>]
+
+[<a href="../../ga/dep/compound.html">ga</a>]
+
+[<a href="../../gd/dep/compound.html">gd</a>]
+
+[<a href="../../gsw/dep/compound.html">gsw</a>]
+
+[<a href="../../hu/dep/compound.html">hu</a>]
+
+[<a href="../../hy/dep/compound.html">hy</a>]
+
+[<a href="../../it/dep/compound.html">it</a>]
+
+[<a href="../../ja/dep/compound.html">ja</a>]
+
+[<a href="../../kk/dep/compound.html">kk</a>]
+
+[<a href="../../ky/dep/compound.html">ky</a>]
+
+[<a href="../../lt/dep/compound.html">lt</a>]
+
+[<a href="../../no/dep/compound.html">no</a>]
+
+[<a href="../../pal/dep/compound.html">pal</a>]
+
+[<a href="../../pcm/dep/compound.html">pcm</a>]
+
+[<a href="../../pt/dep/compound.html">pt</a>]
+
+[<a href="../../qpm/dep/compound.html">qpm</a>]
+
+[<a href="../../ro/dep/compound.html">ro</a>]
+
+[<a href="../../ru/dep/compound.html">ru</a>]
+
+[<a href="../../sv/dep/compound.html">sv</a>]
+
+[<a href="../../swl/dep/compound.html">swl</a>]
+
+[<a href="../../tr/dep/compound.html">tr</a>]
+
+[<a href="../../u/dep/compound.html">u</a>]
+
+[<a href="../../urj/dep/compound.html">urj</a>]
+
+[<a href="../../xcl/dep/compound.html">xcl</a>]
+
+[<a href="../../yue/dep/compound.html">yue</a>]
+
+[<a href="../../zh/dep/compound.html">zh</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'pi';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
