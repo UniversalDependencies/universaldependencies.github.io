@@ -80,17 +80,9 @@
         </script>
         <h2><code>flat</code>: flat</h2>
 
-<p>The <code class="language-plaintext highlighter-rouge">flat</code> relation is used to combine the elements of an expression where none of the immediate components can be identified as the sole head using standard substitution tests.
+<p>The <code class="language-plaintext highlighter-rouge">flat</code> relation is used to combine the elements of an expression in which none of the immediate components can be identified as the sole head using standard substitution tests.
 This includes both cases where more than one component passes the head test, and cases where no component does.
 Note also that the <code class="language-plaintext highlighter-rouge">flat</code> relation is appropriate in such cases only when no more specific relation applies. For example, in coordination structures annotated with the <a href="">conj</a> relation, any of the conjuncts can usually replace the whole.</p>
-
-<p>Flat expressions are annotated with a flat structure, where all subsequent components in the expression are attached to the first one using the <code class="language-plaintext highlighter-rouge">flat</code> label. The assumption is that in these expressions, the <code class="language-plaintext highlighter-rouge">flat</code> relations
-are not syntactic head-modifier relations, and that the structural annotation is in principle arbitrary.
-The components of a flat expression may have their own dependents, including nested flat structures.</p>
-
-<h2 id="names">Names</h2>
-
-<p>In Armenian (Eastern, Western) the <a href="">flat:name</a> relation as a specialization of <code class="language-plaintext highlighter-rouge">flat</code> is used to join the first (or middle) and the last name of a person. In general, names are annotated in a <code class="language-plaintext highlighter-rouge">flat:name</code>, head-initial structure, in which all words in the name modify the head using the <code class="language-plaintext highlighter-rouge">flat:name</code> label.</p>
 
 <p>For phrasal or clausal names the usual relations are used (e.g. multi-word names of places, organizations etc. <em>Երևանի պետական համալսարան, Պարսից ծով, Խաղաղ օվկիանոս, Ալանաց դշխուհի</em>).</p>
 
@@ -112,17 +104,12 @@ flat:name(Նյու, Յորք)
 flat:name(New, York)
 </code></pre>
 
-<pre><code class="language-sdparse">Վանա/ADJ[NameType=Geo|Poss=Yes] լիճ/NOUN \n Lake Van
-amod(լիճ, Վանա)
-amod(Lake, Van)
-</code></pre>
-
 <pre><code class="language-sdparse">Պարսից/ADJ[Poss=Yes] ծոց/NOUN \n Persian Gulf
 amod(ծոց, Պարսից)
 amod(Gulf, Persian)
 </code></pre>
 
-<p>Note, that the titles/honorifics, when immediately following the first noun, are analyzed using the <code class="language-plaintext highlighter-rouge">flat:name</code> relation. They are treated as a part of the names: (see also <a href="">nmod</a> and <a href="appos">apposition</a>):</p>
+<p>In Eastern Armenian, personal names are annotated using a head-initial structure, in which the first name is the head and all subsequent components of the name, such as middle and last names, are attached to it with the flat:name relation. Note that the titles/honorifics, when immediately following the first noun, are also analyzed using the <code class="language-plaintext highlighter-rouge">flat:name</code> relation. They are treated as a part of the names: (see also <a href="">nmod</a> and <a href="appos">apposition</a>):</p>
 
 <pre><code class="language-sdparse">Խոսրով Գ Կոտակ \n Khosrov III the-Small
 flat:name(Խոսրով, Կոտակ)
@@ -151,11 +138,18 @@ flat:name(Մարկոս, աղան)
 flat:name(Markos, Agha)
 </code></pre>
 
-<h2 id="dates-and-complex-numerals">Dates and Complex Numerals</h2>
+<p>Flat expressions are annotated with a flat structure, where all subsequent components in the expression are attached to the first one using the <code class="language-plaintext highlighter-rouge">flat</code> label. The assumption is that in these expressions, the <code class="language-plaintext highlighter-rouge">flat</code> relations are not syntactic head-modifier relations, and that the structural annotation is in principle arbitrary.
+The components of a flat expression may have their own dependents, including nested flat structures.</p>
 
-<p>The <code class="language-plaintext highlighter-rouge">flat</code> relation is also used for numerals and numerical expressions that lack phrasal structure. The most left numeral is the head, the other numerals are attached as its modifiers. Note, that for numerical (spacial and time) distributions and ranges the <a href="">flat:dist</a> and <a href="">flat:range</a> relations are used.</p>
+<pre><code class="language-sdparse">375009, Երևան 9, ԱՎ. ԻՍԱՀԱԿՅԱՆ ՓՈՂՈՑ № 28։
+flat(375009, Երևան)
+flat(Երևան, 9)
+flat(375009, №)
 
-<pre><code class="language-sdparse">Սա առավելագույնը հարյուր հիսունհինգ հազար դրամ կարժենա ։ \n It will cost at-most hundred fifty-five thousand drams .
+The `flat` relation is also used for numerals, and for numerical and mathematical expressions that lack an internal syntactic structure. The leftmost numeral is the head, and the other numerals are attached to it as modifiers. Note that for numerical (spatial and temporal) distributions and ranges the [flat:dist]() and [flat:range]() relations are used.
+
+~~~ sdparse
+Սա առավելագույնը հարյուր հիսունհինգ հազար դրամ կարժենա ։ \n It will cost at-most hundred fifty-five thousand drams .
 nummod(դրամ, հարյուր)
 nummod(drams, hundred)
 flat(հարյուր, հիսունհինգ-4)
@@ -164,7 +158,7 @@ flat(հարյուր, հազար-5)
 flat(hundred, thousand)
 </code></pre>
 
-<p>Date expressions which have a very clear syntactic structure, as in <em>the 21th of September of 1991 year</em>, should be annotated with regular dependency relations. In other cases, they have a flat structure with no clearly discernible head, as in <em>18 December 2015</em>, in which case the <code class="language-plaintext highlighter-rouge">flat</code> relation should be used.</p>
+<p>Date expressions which have a clear syntactic structure should be annotated with regular dependency relations. In other cases, when they have a flat structure with no clearly discernible head, the <code class="language-plaintext highlighter-rouge">flat</code> relation should be used.</p>
 
 <pre><code class="language-sdparse">1991 թ . սեպտեմբերի 21-ին \n on-the-21th of-September of-year 1991
 nmod:poss(21-ին, սեպտեմբերի)
@@ -194,16 +188,6 @@ flat(18-11, December)
 flat(18-11, 2015-13)
 </code></pre>
 
-<p>The <code class="language-plaintext highlighter-rouge">flat</code> relation is used also for synonymic or antonymic coordinative compounds. These are analytical constructions where two distinct words combine to form a single semantic unit with a collective or intensified meaning.</p>
-
-<pre><code class="language-conllu"># visual-style 2 4 flat:redup color:blue
-1	առանց	առանց	ADP	_	AdpType=Prep	5	case	_	Translit=aṙanc’|LTranslit=aṙanc’
-2	երկար	երկար	ADV	_	Degree=Pos	5	advmod	_	Translit=erkar|LTranslit=erkar|SpaceAfter=No
-3	-	-	PUNCT	_	_	4	punct	_	Translit=-|LTranslit=-|SpaceAfter=No
-4	բարակ	բարակ	ADV	_	Degree=Pos	2	flat:redup	_	Translit=barak|LTranslit=barak
-5	մտածելու	մտածել	VERB	_	Case=Dat|Definite=Ind|Polarity=Pos|Subcat=Tran|VerbForm=Inf|Voice=Act	6	obl	_	Translit=mtaçelow|LTranslit=mtaçel
-6	առա	առնել	VERB	_	Aspect=Perf|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Subcat=Tran|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	Translit=aṙa|LTranslit=aṙnel|SpaceAfter=No
-</code></pre>
 <!-- Interlanguage links updated Út 30. června 2026, 11:00:09 CEST -->
 
 
