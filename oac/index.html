@@ -80,13 +80,15 @@
         </script>
         <h1 id="ud-for-oroch-">UD for Oroch <span class="flagspan"><img class="flag" src="../../flags/svg/RU.svg" /></span></h1>
 
+<p>Oroch is a Southern Tungusic language of the Amur-Sakhalin subgroup, spoken by the Oroch people in the Khabarovsk Krai of the Russian Far East. It is closely related to Udihe and, more distantly, to Nanai and Ulch. Oroch is severely endangered, with only a small number of speakers remaining, most of them elderly.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
   <li>Words are delimited by whitespace.</li>
   <li>Punctuation is separated from adjacent words as separate tokens.</li>
   <li>There are no multiword tokens and no words with spaces in the current treebank.</li>
-  <li>Bound morphemes (case, possessive, and person suffixes) are written together with their host, following the phonemic Latin transcription used in the reference grammar.</li>
+  <li>Bound morphemes (case, possessive, and person suffixes) are written together with their host, following the phonemic Latin transcription used in the reference grammar. Following the analytical practice of Tungusic descriptive grammar, no morpheme boundaries are introduced inside inflected word forms during tokenization.</li>
 </ul>
 
 <hr />
@@ -97,6 +99,7 @@
 
 <ul>
   <li>Tags actually attested in the treebank include ADJ, ADP, ADV, AUX, CCONJ, DET, INTJ, NOUN, NUM, PART, PRON, PROPN, PUNCT, SCONJ, VERB, and X.</li>
+  <li><code class="language-plaintext highlighter-rouge">NOUN</code> is used for common nouns; <code class="language-plaintext highlighter-rouge">PROPN</code> is reserved for proper names (personal names, place names).</li>
   <li><code class="language-plaintext highlighter-rouge">PART</code> is used for discourse particles and the negation particle.</li>
   <li>The <code class="language-plaintext highlighter-rouge">DET</code>/<code class="language-plaintext highlighter-rouge">PRON</code> distinction follows the general UD principle: forms that modify a nominal head are tagged <code class="language-plaintext highlighter-rouge">DET</code>, forms that head their own phrase are tagged <code class="language-plaintext highlighter-rouge">PRON</code>.</li>
 </ul>
@@ -104,9 +107,10 @@
 <h3 id="features">Features</h3>
 
 <ul>
-  <li>Nominal features: <code class="language-plaintext highlighter-rouge">Case</code> (Nom, Gen, Dat, Acc, Ins, Loc), <code class="language-plaintext highlighter-rouge">Number</code> (Sing, Plur), <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Poss</code>, <code class="language-plaintext highlighter-rouge">PronType</code> (Int, Prs, Rcp), <code class="language-plaintext highlighter-rouge">Reflex</code>.</li>
-  <li>Verbal features: <code class="language-plaintext highlighter-rouge">VerbForm</code> (Inf, Part, Conv, Vnoun), <code class="language-plaintext highlighter-rouge">Mood</code> (Ind, Imp, Int), <code class="language-plaintext highlighter-rouge">Tense</code> (Past, Pres, Fut), <code class="language-plaintext highlighter-rouge">Aspect</code> (Hab, Prog), <code class="language-plaintext highlighter-rouge">Voice</code> (Rcp), <code class="language-plaintext highlighter-rouge">Polarity</code>.</li>
-  <li>Adjectival features: <code class="language-plaintext highlighter-rouge">Degree</code> (Pos, Cmp).</li>
+  <li>Nominal features attested in the treebank: <code class="language-plaintext highlighter-rouge">Case</code> (Nom, Gen, Dat, Acc, Ins, Loc), <code class="language-plaintext highlighter-rouge">Number</code> (Sing, Plur), <code class="language-plaintext highlighter-rouge">Person</code> (1, 2, 3), <code class="language-plaintext highlighter-rouge">Poss</code>, <code class="language-plaintext highlighter-rouge">PronType</code> (Int, Prs, Rcp), <code class="language-plaintext highlighter-rouge">Reflex</code>.</li>
+  <li>Verbal features attested in the treebank: <code class="language-plaintext highlighter-rouge">VerbForm</code> (Inf, Part, Conv, Vnoun), <code class="language-plaintext highlighter-rouge">Mood</code> (Ind, Imp, Int), <code class="language-plaintext highlighter-rouge">Tense</code> (Past, Pres, Fut), <code class="language-plaintext highlighter-rouge">Aspect</code> (Hab, Prog), <code class="language-plaintext highlighter-rouge">Voice</code> (Rcp), <code class="language-plaintext highlighter-rouge">Polarity</code>.</li>
+  <li>Adjectival features attested in the treebank: <code class="language-plaintext highlighter-rouge">Degree</code> (Pos, Cmp).</li>
+  <li>Oroch-specific morphological information that does not correspond to any value in the universal feature inventory is encoded in the MISC column rather than FEATS, in accordance with UD conventions.</li>
 </ul>
 
 <hr />
@@ -114,9 +118,11 @@
 <h2 id="syntax">Syntax</h2>
 
 <ul>
-  <li>Oroch is a head-final language with SOV constituent order.</li>
+  <li>Oroch is a head-final language with SOV constituent order. The subject (<code class="language-plaintext highlighter-rouge">nsubj</code>) precedes the object (<code class="language-plaintext highlighter-rouge">obj</code>); both precede the verb.</li>
   <li>Core arguments are identified morphosyntactically: <code class="language-plaintext highlighter-rouge">nsubj</code> is typically in the nominative (unmarked), <code class="language-plaintext highlighter-rouge">obj</code> is typically accusative, and <code class="language-plaintext highlighter-rouge">iobj</code> is typically dative.</li>
   <li>Oblique arguments and adjuncts are tagged <code class="language-plaintext highlighter-rouge">obl</code>; case marking is realized as suffixes on the nominal head.</li>
+  <li>Attributive modifiers precede their nominal head. Genitive and other adnominal modifiers use <code class="language-plaintext highlighter-rouge">nmod</code>; adjectives use <code class="language-plaintext highlighter-rouge">amod</code>.</li>
+  <li>Copular constructions attach a nonverbal predicate as the head, with the copula (when overt) attached via <code class="language-plaintext highlighter-rouge">cop</code>.</li>
   <li>No language-specific dependency subtypes are introduced in the current release.</li>
 </ul>
 
