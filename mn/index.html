@@ -80,13 +80,15 @@
         </script>
         <h1 id="ud-for-mongolian-">UD for Mongolian <span class="flagspan"><img class="flag" src="../../flags/svg/MN.svg" /></span></h1>
 
+<p>Mongolian is the best-known and most widely spoken member of the Mongolic language family. The data in this treebank represent Khalkha Mongolian, the standard variety spoken primarily in Mongolia, where it serves as the national language and is written in a Cyrillic-based script (with the traditional Mongolian script also in official use). Khalkha is closely related to other Mongolic varieties spoken across Mongolia, the Chinese autonomous regions of Inner Mongolia and Xinjiang, and the Russian Federation.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
   <li>Words are delimited by whitespace.</li>
   <li>Punctuation is separated from adjacent words as separate tokens.</li>
   <li>There are no multiword tokens and no words with spaces in the current treebank.</li>
-  <li>Bound morphemes (case, possessive, tense/aspect suffixes) are written together with their host in the Latin transliteration used in the reference grammar.</li>
+  <li>Bound morphemes (case, possessive, tense/aspect suffixes) are written together with their host in the Latin transliteration used in the reference grammar. Following the analytical practice of Mongolic descriptive grammar, no morpheme boundaries are introduced inside inflected word forms during tokenization.</li>
 </ul>
 
 <hr />
@@ -97,6 +99,7 @@
 
 <ul>
   <li>Tags actually attested in the treebank include ADJ, ADP, ADV, AUX, CCONJ, DET, INTJ, NOUN, NUM, PART, PRON, PROPN, PUNCT, SCONJ, VERB, and X.</li>
+  <li><code class="language-plaintext highlighter-rouge">NOUN</code> is used for common nouns; <code class="language-plaintext highlighter-rouge">PROPN</code> is reserved for proper names (personal names, place names).</li>
   <li><code class="language-plaintext highlighter-rouge">PART</code> is used for discourse particles, the interrogative particle, and the negation particle.</li>
   <li><code class="language-plaintext highlighter-rouge">AUX</code> is used for the auxiliaries <code class="language-plaintext highlighter-rouge">baj</code> (progressive/existential) and <code class="language-plaintext highlighter-rouge">bol</code> (change of state), both registered as language-specific auxiliaries.</li>
   <li>Postpositions are tagged <code class="language-plaintext highlighter-rouge">ADP</code>.</li>
@@ -106,10 +109,10 @@
 <h3 id="features">Features</h3>
 
 <ul>
-  <li>Nominal features: <code class="language-plaintext highlighter-rouge">Case</code> (Nom, Gen, Dat, Acc, Abl, Ins, Com, Ter), <code class="language-plaintext highlighter-rouge">Number</code> (Sing, Plur), <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Poss</code>, <code class="language-plaintext highlighter-rouge">PronType</code> (Dem, Int, Prs, Tot), <code class="language-plaintext highlighter-rouge">Reflex</code>, <code class="language-plaintext highlighter-rouge">NumType</code> (Card, Ord).</li>
-  <li>Verbal features: <code class="language-plaintext highlighter-rouge">VerbForm</code> (Fin, Inf, Part, Conv), <code class="language-plaintext highlighter-rouge">Mood</code> (Ind, Int, Cnd), <code class="language-plaintext highlighter-rouge">Tense</code> (Past, Pres, Fut), <code class="language-plaintext highlighter-rouge">Aspect</code> (Hab, Imp, Perf, Prog), <code class="language-plaintext highlighter-rouge">Voice</code> (Cau, Pass), <code class="language-plaintext highlighter-rouge">Polarity</code>, <code class="language-plaintext highlighter-rouge">Evident</code> (Fh, Nfh).</li>
-  <li>Adjectival features: <code class="language-plaintext highlighter-rouge">Degree</code> (Pos, Sup).</li>
-  <li>Language-specific: <code class="language-plaintext highlighter-rouge">PartType=Int</code> on the interrogative particle.</li>
+  <li>Nominal features attested in the treebank: <code class="language-plaintext highlighter-rouge">Case</code> (Nom, Gen, Dat, Acc, Abl, Ins, Com, Ter), <code class="language-plaintext highlighter-rouge">Number</code> (Sing, Plur), <code class="language-plaintext highlighter-rouge">Person</code> (1, 2, 3), <code class="language-plaintext highlighter-rouge">Poss</code>, <code class="language-plaintext highlighter-rouge">PronType</code> (Dem, Int, Prs, Tot), <code class="language-plaintext highlighter-rouge">Reflex</code>, <code class="language-plaintext highlighter-rouge">NumType</code> (Card, Ord).</li>
+  <li>Verbal features attested in the treebank: <code class="language-plaintext highlighter-rouge">VerbForm</code> (Fin, Inf, Part, Conv), <code class="language-plaintext highlighter-rouge">Mood</code> (Ind, Int, Cnd), <code class="language-plaintext highlighter-rouge">Tense</code> (Past, Pres, Fut), <code class="language-plaintext highlighter-rouge">Aspect</code> (Hab, Imp, Perf, Prog), <code class="language-plaintext highlighter-rouge">Voice</code> (Cau, Pass), <code class="language-plaintext highlighter-rouge">Polarity</code>, <code class="language-plaintext highlighter-rouge">Evident</code> (Fh, Nfh).</li>
+  <li>Adjectival features attested in the treebank: <code class="language-plaintext highlighter-rouge">Degree</code> (Pos, Sup).</li>
+  <li>Language-specific: <code class="language-plaintext highlighter-rouge">PartType=Int</code> is used on the interrogative particle.</li>
   <li>Mongolian-specific morphological distinctions that do not correspond to any value in the universal feature inventory (successive aspect, quotative particle type, and modal marking on certain finite verb forms) are encoded in the MISC column rather than FEATS, in accordance with UD conventions.</li>
 </ul>
 
@@ -118,9 +121,10 @@
 <h2 id="syntax">Syntax</h2>
 
 <ul>
-  <li>Khalkha Mongolian is a head-final language with SOV constituent order.</li>
-  <li>Core arguments are identified morphosyntactically: <code class="language-plaintext highlighter-rouge">nsubj</code> is typically nominative (unmarked), <code class="language-plaintext highlighter-rouge">obj</code> is typically accusative, and <code class="language-plaintext highlighter-rouge">iobj</code> is typically dative.</li>
+  <li>Khalkha Mongolian is a head-final language with SOV constituent order. The subject (<code class="language-plaintext highlighter-rouge">nsubj</code>) precedes the object (<code class="language-plaintext highlighter-rouge">obj</code>); both precede the verb.</li>
+  <li>Core arguments are identified morphosyntactically: <code class="language-plaintext highlighter-rouge">nsubj</code> is typically in the nominative (unmarked), <code class="language-plaintext highlighter-rouge">obj</code> is typically accusative, and <code class="language-plaintext highlighter-rouge">iobj</code> is typically dative.</li>
   <li>Oblique arguments and adjuncts are tagged <code class="language-plaintext highlighter-rouge">obl</code>; case marking is realized as suffixes on the nominal head or, less commonly, as separate postpositions attached with the <code class="language-plaintext highlighter-rouge">case</code> relation.</li>
+  <li>Attributive modifiers precede their nominal head. Genitive and other adnominal modifiers use <code class="language-plaintext highlighter-rouge">nmod</code>; adjectives use <code class="language-plaintext highlighter-rouge">amod</code>.</li>
   <li>Copular constructions use <code class="language-plaintext highlighter-rouge">baj</code> or <code class="language-plaintext highlighter-rouge">bol</code> as <code class="language-plaintext highlighter-rouge">cop</code>, attached to the nonverbal predicate.</li>
   <li>The following language-specific dependency subtypes are used:
     <ul>
