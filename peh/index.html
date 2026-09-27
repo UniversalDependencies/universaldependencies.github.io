@@ -39,7 +39,7 @@
         <table width="100%"><tr><td width="50%">
           <span class="header-text"><a href="http://universaldependencies.org/#language-peh">home</a></span>
 
-          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_peh/template-index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_peh/index.md" target="#">edit page</a></span>
           <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
         </td><td>
           <gcse:search></gcse:search>
@@ -82,10 +82,12 @@
 
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
+<ul>
+  <li>Words are delimited by whitespace.</li>
+  <li>Punctuation is separated from adjacent words as separate tokens.</li>
+  <li>There are no multiword tokens and no words with spaces in the current treebank.</li>
+  <li>Clitics that are written attached to their host in the source grammar (e.g., certain case and possessive suffixes) are treated as part of the host word, following the analytical practice of the reference grammar.</li>
+</ul>
 
 <hr />
 
@@ -93,46 +95,44 @@
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>All 17 universal POS tags are potentially available. Tags actually attested in the treebank include ADJ, ADP, ADV, AUX, CCONJ, DET, INTJ, NOUN, NUM, PART, PRON, PROPN, PUNCT, SCONJ, VERB, and X.</li>
+  <li><code class="language-plaintext highlighter-rouge">PART</code> is used for discourse particles, focus particles, and the negation particle.</li>
+  <li><code class="language-plaintext highlighter-rouge">AUX</code> is used for a small closed set of auxiliary and copular verbs (registered as language-specific auxiliaries).</li>
+  <li>The <code class="language-plaintext highlighter-rouge">DET</code>/<code class="language-plaintext highlighter-rouge">PRON</code> distinction follows the general UD principle: forms that modify a nominal head are tagged <code class="language-plaintext highlighter-rouge">DET</code>, forms that head their own phrase are tagged <code class="language-plaintext highlighter-rouge">PRON</code>.</li>
+  <li>Postpositions are tagged <code class="language-plaintext highlighter-rouge">ADP</code> and carry the language-specific feature <code class="language-plaintext highlighter-rouge">AdpType=Post</code>.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
+<ul>
+  <li>Nominal features: <code class="language-plaintext highlighter-rouge">Case</code> (Nom, Gen, Dat, Acc, Abl, Ins, Loc, Com, Ter), <code class="language-plaintext highlighter-rouge">Number</code> (Sing, Dual, Pauc, Plur), <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Poss</code>, <code class="language-plaintext highlighter-rouge">PronType</code>, <code class="language-plaintext highlighter-rouge">Definite</code>, <code class="language-plaintext highlighter-rouge">Gender</code>, <code class="language-plaintext highlighter-rouge">Clusivity</code> (Ex, In), and possessor agreement features <code class="language-plaintext highlighter-rouge">Number[psor]</code>, <code class="language-plaintext highlighter-rouge">Person[psor]</code>.</li>
+  <li>Verbal features: <code class="language-plaintext highlighter-rouge">VerbForm</code> (Fin, Inf, Part, Conv, Ger, Vnoun), <code class="language-plaintext highlighter-rouge">Mood</code> (Ind, Imp, Cnd, Int, Irr, Jus, Nec, Opt, Sub), <code class="language-plaintext highlighter-rouge">Tense</code> (Past, Pres, Fut), <code class="language-plaintext highlighter-rouge">Aspect</code> (Hab, Imp, Perf, Prog), <code class="language-plaintext highlighter-rouge">Voice</code> (Act, Cau, Mid, Pass, Rcp), <code class="language-plaintext highlighter-rouge">Polarity</code>, <code class="language-plaintext highlighter-rouge">Evident</code>.</li>
+  <li>Adjectival features: <code class="language-plaintext highlighter-rouge">Degree</code> (Pos, Cmp, Sup, Dim).</li>
+  <li>Language-specific: <code class="language-plaintext highlighter-rouge">AdpType=Post</code> on postpositions.</li>
+</ul>
 
 <hr />
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
+<ul>
+  <li>Bonan follows an SOV constituent order. The subject (<code class="language-plaintext highlighter-rouge">nsubj</code>) precedes the object (<code class="language-plaintext highlighter-rouge">obj</code>); both precede the verb.</li>
+  <li>Core arguments are identified morphosyntactically: <code class="language-plaintext highlighter-rouge">nsubj</code> is typically nominative (unmarked), <code class="language-plaintext highlighter-rouge">obj</code> is typically accusative or unmarked, and <code class="language-plaintext highlighter-rouge">iobj</code> is typically dative.</li>
+  <li>Oblique arguments and adjuncts are tagged <code class="language-plaintext highlighter-rouge">obl</code>, with case marking realized as suffixes on the nominal head or as separate postpositions attached with the <code class="language-plaintext highlighter-rouge">case</code> relation.</li>
+  <li>Copular constructions use a small set of auxiliary/copular verbs, attached to the nonverbal predicate via <code class="language-plaintext highlighter-rouge">cop</code>.</li>
+  <li>No language-specific dependency subtypes are introduced in the current release.</li>
+</ul>
 
 <hr />
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/peh-comparison.html">N</a> Bonan UD treebanks:</p>
+<p>There is 1 Bonan UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/peh_a/index.html">Bonan-A</a></li>
-  <li><a href="../treebanks/peh_b/index.html">Bonan-B</a></li>
+  <li><a href="../treebanks/peh_gdud/index.html">Bonan-GDUD</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
