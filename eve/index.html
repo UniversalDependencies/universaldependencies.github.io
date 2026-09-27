@@ -80,13 +80,15 @@
         </script>
         <h1 id="ud-for-even-">UD for Even <span class="flagspan"><img class="flag" src="../../flags/svg/RU.svg" /></span></h1>
 
+<p>Even (also called Lamut in older literature) is a Northern Tungusic language spoken by the Even people in eastern Siberia, primarily in the Sakha Republic (Yakutia), the Magadan Oblast, Kamchatka Krai, and the Chukotka Autonomous Okrug of the Russian Federation. Together with Evenki and Negidal, it belongs to the Northern branch of the Tungusic family. Even is severely endangered, with the number of active speakers declining rapidly, especially among younger generations.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
   <li>Words are delimited by whitespace.</li>
   <li>Punctuation is separated from adjacent words as separate tokens.</li>
   <li>There are no multiword tokens and no words with spaces in the current treebank.</li>
-  <li>Bound morphemes (case, possessive, and person suffixes) are written together with their host, following the phonemic Latin transcription used in the reference grammar.</li>
+  <li>Bound morphemes (case, possessive, and person suffixes) are written together with their host, following the phonemic Latin transcription used in the reference grammar. Following the analytical practice of Tungusic descriptive grammar, no morpheme boundaries are introduced inside inflected word forms during tokenization.</li>
 </ul>
 
 <hr />
@@ -97,18 +99,19 @@
 
 <ul>
   <li>Tags actually attested in the treebank include ADJ, ADP, ADV, AUX, CCONJ, DET, INTJ, NOUN, NUM, PART, PRON, PROPN, PUNCT, SCONJ, VERB, and X.</li>
+  <li><code class="language-plaintext highlighter-rouge">NOUN</code> is used for common nouns; <code class="language-plaintext highlighter-rouge">PROPN</code> is reserved for proper names (personal names, place names).</li>
   <li><code class="language-plaintext highlighter-rouge">PART</code> is used for discourse particles and the negation particle.</li>
-  <li>The copula <code class="language-plaintext highlighter-rouge">bi</code> (‘to be’) is analyzed as <code class="language-plaintext highlighter-rouge">AUX</code> and registered as a language-specific auxiliary.</li>
+  <li><code class="language-plaintext highlighter-rouge">AUX</code> is used for the copula <code class="language-plaintext highlighter-rouge">bi</code> (‘to be’), which is registered as a language-specific auxiliary.</li>
   <li>The <code class="language-plaintext highlighter-rouge">DET</code>/<code class="language-plaintext highlighter-rouge">PRON</code> distinction follows the general UD principle: forms that modify a nominal head are tagged <code class="language-plaintext highlighter-rouge">DET</code>, forms that head their own phrase are tagged <code class="language-plaintext highlighter-rouge">PRON</code>.</li>
 </ul>
 
 <h3 id="features">Features</h3>
 
 <ul>
-  <li>Nominal features: <code class="language-plaintext highlighter-rouge">Case</code> (Abl, Acc, Dat, Ins, Loc), <code class="language-plaintext highlighter-rouge">Number</code> (Sing, Plur), <code class="language-plaintext highlighter-rouge">Person</code> (1, 2, 3), <code class="language-plaintext highlighter-rouge">Poss</code>, <code class="language-plaintext highlighter-rouge">PronType</code> (Dem, Ind, Int, Prs), <code class="language-plaintext highlighter-rouge">Definite</code> (Def, Ind), <code class="language-plaintext highlighter-rouge">Reflex</code>, and possessor agreement features <code class="language-plaintext highlighter-rouge">Number[psor]</code>, <code class="language-plaintext highlighter-rouge">Person[psor]</code>.</li>
-  <li>Verbal features: <code class="language-plaintext highlighter-rouge">VerbForm</code> (Fin, Conv, Part), <code class="language-plaintext highlighter-rouge">Mood</code> (Ind, Imp, Cnd), <code class="language-plaintext highlighter-rouge">Tense</code> (Past, Fut), <code class="language-plaintext highlighter-rouge">Aspect</code> (Hab, Imp, Perf, Prog), <code class="language-plaintext highlighter-rouge">Voice</code> (Act, Mid), <code class="language-plaintext highlighter-rouge">Polarity</code>.</li>
-  <li>Language-specific: <code class="language-plaintext highlighter-rouge">Deixis</code> (Prox, Remt) is used on demonstrative determiners and one deictic adverb, following the analysis of the reference grammar.</li>
-  <li>Even-specific morphological information that does not correspond to any UD feature value (such as certain derivational categories, particle types, and specialized converb, voice, and mood distinctions) is encoded in the MISC column rather than FEATS, in accordance with UD conventions.</li>
+  <li>Nominal features attested in the treebank: <code class="language-plaintext highlighter-rouge">Case</code> (Abl, Acc, Dat, Ins, Loc), <code class="language-plaintext highlighter-rouge">Number</code> (Sing, Plur), <code class="language-plaintext highlighter-rouge">Person</code> (1, 2, 3), <code class="language-plaintext highlighter-rouge">Poss</code>, <code class="language-plaintext highlighter-rouge">PronType</code> (Dem, Ind, Int, Prs), <code class="language-plaintext highlighter-rouge">Reflex</code>, <code class="language-plaintext highlighter-rouge">Definite</code> (Def, Ind), and possessor agreement features <code class="language-plaintext highlighter-rouge">Number[psor]</code>, <code class="language-plaintext highlighter-rouge">Person[psor]</code>.</li>
+  <li>Verbal features attested in the treebank: <code class="language-plaintext highlighter-rouge">VerbForm</code> (Fin, Conv, Part), <code class="language-plaintext highlighter-rouge">Mood</code> (Ind, Imp, Cnd), <code class="language-plaintext highlighter-rouge">Tense</code> (Past, Fut), <code class="language-plaintext highlighter-rouge">Aspect</code> (Hab, Imp, Perf, Prog), <code class="language-plaintext highlighter-rouge">Voice</code> (Act, Mid), <code class="language-plaintext highlighter-rouge">Polarity</code>.</li>
+  <li>Language-specific: <code class="language-plaintext highlighter-rouge">Deixis</code> (Prox, Remt) is used on demonstrative determiners and one deictic adverb, following the analysis of the reference grammar. Even demonstratives make a systematic proximal/remote deictic distinction that is not fully captured by the universal <code class="language-plaintext highlighter-rouge">PronType=Dem</code> value alone.</li>
+  <li>Even-specific morphological information that does not correspond to any value in the universal feature inventory (such as certain derivational categories, particle types, and specialized converb, voice, and mood distinctions) is encoded in the MISC column rather than FEATS, in accordance with UD conventions.</li>
 </ul>
 
 <hr />
@@ -116,9 +119,10 @@
 <h2 id="syntax">Syntax</h2>
 
 <ul>
-  <li>Even is a head-final language with SOV constituent order.</li>
+  <li>Even is a head-final language with SOV constituent order. The subject (<code class="language-plaintext highlighter-rouge">nsubj</code>) precedes the object (<code class="language-plaintext highlighter-rouge">obj</code>); both precede the verb.</li>
   <li>Core arguments are identified morphosyntactically: <code class="language-plaintext highlighter-rouge">nsubj</code> is typically in the nominative (unmarked), <code class="language-plaintext highlighter-rouge">obj</code> is typically accusative, and <code class="language-plaintext highlighter-rouge">iobj</code> is typically dative.</li>
   <li>Oblique arguments and adjuncts are tagged <code class="language-plaintext highlighter-rouge">obl</code>; case marking is realized as suffixes on the nominal head.</li>
+  <li>Attributive modifiers precede their nominal head. Genitive and other adnominal modifiers use <code class="language-plaintext highlighter-rouge">nmod</code>; adjectives use <code class="language-plaintext highlighter-rouge">amod</code>.</li>
   <li>Copular constructions use <code class="language-plaintext highlighter-rouge">bi</code> as <code class="language-plaintext highlighter-rouge">cop</code>, attached to the nonverbal predicate.</li>
   <li>The subtype <code class="language-plaintext highlighter-rouge">nsubj:outer</code> is used in one construction where a clause serves as the predicate of another clause.</li>
 </ul>
