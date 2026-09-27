@@ -80,13 +80,15 @@
         </script>
         <h1 id="ud-for-bonan-">UD for Bonan <span class="flagspan"><img class="flag" src="../../flags/svg/CN.svg" /></span></h1>
 
+<p>Bonan (also spelled Bao’an) is a Mongolic language spoken by the Bonan people primarily in Gansu and Qinghai provinces of China. It belongs to the Gansu-Qinghai Sprachbund of the Mongolic family, together with Tu (Monguor), Dongxiang, Eastern Yugur, and Kangjia. Bonan has been in prolonged contact with Chinese, Tibetan, and other neighboring languages, and shows extensive typological convergence with them, particularly in phonology and morphosyntax. The language is severely endangered, with a small and shrinking speaker community.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
 <ul>
   <li>Words are delimited by whitespace.</li>
   <li>Punctuation is separated from adjacent words as separate tokens.</li>
   <li>There are no multiword tokens and no words with spaces in the current treebank.</li>
-  <li>Clitics that are written attached to their host in the source grammar (e.g., certain case and possessive suffixes) are treated as part of the host word, following the analytical practice of the reference grammar.</li>
+  <li>Clitics that are written attached to their host in the source grammar (e.g., certain case and possessive suffixes) are treated as part of the host word, following the analytical practice of the reference grammar. Following the general practice of Mongolic descriptive grammar, no morpheme boundaries are introduced inside inflected word forms during tokenization.</li>
 </ul>
 
 <hr />
@@ -97,6 +99,7 @@
 
 <ul>
   <li>All 17 universal POS tags are potentially available. Tags actually attested in the treebank include ADJ, ADP, ADV, AUX, CCONJ, DET, INTJ, NOUN, NUM, PART, PRON, PROPN, PUNCT, SCONJ, VERB, and X.</li>
+  <li><code class="language-plaintext highlighter-rouge">NOUN</code> is used for common nouns; <code class="language-plaintext highlighter-rouge">PROPN</code> is reserved for proper names (personal names, place names).</li>
   <li><code class="language-plaintext highlighter-rouge">PART</code> is used for discourse particles, focus particles, and the negation particle.</li>
   <li><code class="language-plaintext highlighter-rouge">AUX</code> is used for a small closed set of auxiliary and copular verbs (registered as language-specific auxiliaries).</li>
   <li>The <code class="language-plaintext highlighter-rouge">DET</code>/<code class="language-plaintext highlighter-rouge">PRON</code> distinction follows the general UD principle: forms that modify a nominal head are tagged <code class="language-plaintext highlighter-rouge">DET</code>, forms that head their own phrase are tagged <code class="language-plaintext highlighter-rouge">PRON</code>.</li>
@@ -106,10 +109,11 @@
 <h3 id="features">Features</h3>
 
 <ul>
-  <li>Nominal features: <code class="language-plaintext highlighter-rouge">Case</code> (Nom, Gen, Dat, Acc, Abl, Ins, Loc, Com, Ter), <code class="language-plaintext highlighter-rouge">Number</code> (Sing, Dual, Pauc, Plur), <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Poss</code>, <code class="language-plaintext highlighter-rouge">PronType</code>, <code class="language-plaintext highlighter-rouge">Definite</code>, <code class="language-plaintext highlighter-rouge">Gender</code>, <code class="language-plaintext highlighter-rouge">Clusivity</code> (Ex, In), and possessor agreement features <code class="language-plaintext highlighter-rouge">Number[psor]</code>, <code class="language-plaintext highlighter-rouge">Person[psor]</code>.</li>
-  <li>Verbal features: <code class="language-plaintext highlighter-rouge">VerbForm</code> (Fin, Inf, Part, Conv, Ger, Vnoun), <code class="language-plaintext highlighter-rouge">Mood</code> (Ind, Imp, Cnd, Int, Irr, Jus, Nec, Opt, Sub), <code class="language-plaintext highlighter-rouge">Tense</code> (Past, Pres, Fut), <code class="language-plaintext highlighter-rouge">Aspect</code> (Hab, Imp, Perf, Prog), <code class="language-plaintext highlighter-rouge">Voice</code> (Act, Cau, Mid, Pass, Rcp), <code class="language-plaintext highlighter-rouge">Polarity</code>, <code class="language-plaintext highlighter-rouge">Evident</code>.</li>
+  <li>Nominal features: <code class="language-plaintext highlighter-rouge">Case</code> (Nom, Gen, Dat, Acc, Abl, Ins, Loc, Com, Ter), <code class="language-plaintext highlighter-rouge">Number</code> (Sing, Dual, Pauc, Plur), <code class="language-plaintext highlighter-rouge">Person</code> (1, 2, 3), <code class="language-plaintext highlighter-rouge">Poss</code>, <code class="language-plaintext highlighter-rouge">PronType</code> (Dem, Ind, Int, Prs, Tot), <code class="language-plaintext highlighter-rouge">Definite</code> (Ind), <code class="language-plaintext highlighter-rouge">Gender</code> (Fem), <code class="language-plaintext highlighter-rouge">Clusivity</code> (Ex, In), and possessor agreement features <code class="language-plaintext highlighter-rouge">Number[psor]</code>, <code class="language-plaintext highlighter-rouge">Person[psor]</code>.</li>
+  <li>Verbal features: <code class="language-plaintext highlighter-rouge">VerbForm</code> (Fin, Inf, Part, Conv, Ger, Vnoun), <code class="language-plaintext highlighter-rouge">Mood</code> (Ind, Imp, Cnd, Int, Irr, Jus, Nec, Opt, Sub), <code class="language-plaintext highlighter-rouge">Tense</code> (Past, Pres, Fut), <code class="language-plaintext highlighter-rouge">Aspect</code> (Hab, Imp, Perf, Prog), <code class="language-plaintext highlighter-rouge">Voice</code> (Act, Cau, Mid, Pass, Rcp), <code class="language-plaintext highlighter-rouge">Polarity</code>.</li>
   <li>Adjectival features: <code class="language-plaintext highlighter-rouge">Degree</code> (Pos, Cmp, Sup, Dim).</li>
   <li>Language-specific: <code class="language-plaintext highlighter-rouge">AdpType=Post</code> on postpositions.</li>
+  <li>Bonan-specific morphological information that does not correspond to any value in the universal feature inventory is encoded in the MISC column rather than FEATS, in accordance with UD conventions.</li>
 </ul>
 
 <hr />
@@ -117,9 +121,10 @@
 <h2 id="syntax">Syntax</h2>
 
 <ul>
-  <li>Bonan follows an SOV constituent order. The subject (<code class="language-plaintext highlighter-rouge">nsubj</code>) precedes the object (<code class="language-plaintext highlighter-rouge">obj</code>); both precede the verb.</li>
-  <li>Core arguments are identified morphosyntactically: <code class="language-plaintext highlighter-rouge">nsubj</code> is typically nominative (unmarked), <code class="language-plaintext highlighter-rouge">obj</code> is typically accusative or unmarked, and <code class="language-plaintext highlighter-rouge">iobj</code> is typically dative.</li>
+  <li>Bonan is a head-final language with SOV constituent order. The subject (<code class="language-plaintext highlighter-rouge">nsubj</code>) precedes the object (<code class="language-plaintext highlighter-rouge">obj</code>); both precede the verb.</li>
+  <li>Core arguments are identified morphosyntactically: <code class="language-plaintext highlighter-rouge">nsubj</code> is typically in the nominative (unmarked), <code class="language-plaintext highlighter-rouge">obj</code> is typically accusative or unmarked, and <code class="language-plaintext highlighter-rouge">iobj</code> is typically dative.</li>
   <li>Oblique arguments and adjuncts are tagged <code class="language-plaintext highlighter-rouge">obl</code>, with case marking realized as suffixes on the nominal head or as separate postpositions attached with the <code class="language-plaintext highlighter-rouge">case</code> relation.</li>
+  <li>Attributive modifiers precede their nominal head. Genitive and other adnominal modifiers use <code class="language-plaintext highlighter-rouge">nmod</code>; adjectives use <code class="language-plaintext highlighter-rouge">amod</code>.</li>
   <li>Copular constructions use a small set of auxiliary/copular verbs, attached to the nonverbal predicate via <code class="language-plaintext highlighter-rouge">cop</code>.</li>
   <li>No language-specific dependency subtypes are introduced in the current release.</li>
 </ul>
