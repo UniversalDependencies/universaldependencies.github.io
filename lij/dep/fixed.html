@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>fixed</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/hint.css"/>
+    <script type="text/javascript" src="../../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-lij">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_lij/dep/fixed.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h2><code>fixed</code>: fixed multiword expression</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">fixed</code> relation is used for grammaticalised multiword expressions with no productive internal syntax. The expression’s external dependency relation and <a href="">ExtPos</a> feature are assigned to its first syntactic word; all remaining words attach directly to it with <code class="language-plaintext highlighter-rouge">fixed</code>. <code class="language-plaintext highlighter-rouge">ExtPos</code> records the category of the whole expression; individual words retain their own part-of-speech tags.</p>
+
+<p>In <em>se veddemmo in sciâ terrassa</em> “we (will) see each other on the terrace”, <em>in sce</em> is a fixed prepositional expression. The article <em>a</em> belongs to <em>terrassa</em>, although it forms the multiword token <em>sciâ</em> with <em>sce</em>.</p>
+
+<pre><code class="language-conllu">1	se	se	PRON	_	_	2	obj	_	Gloss=each-other
+2	veddemmo	vedde	VERB	_	_	0	root	_	Gloss=we-see
+3	in	in	ADP	_	ExtPos=ADP	6	case	_	Gloss=on
+4-5	sciâ	_	_	_	_	_	_	_	_
+4	sce	sce	ADP	_	_	3	fixed	_	_
+5	a	o	DET	_	_	6	det	_	Gloss=the
+6	terrassa	terrassa	NOUN	_	_	2	obl	_	Gloss=terrace
+
+</code></pre>
+
+<p>In <em>ne veuggio a-o manco træ</em> “I want least three of them”, both the article <em>o</em> and the noun <em>manco</em> belong to the fixed expression and attach directly to <em>à</em>.</p>
+
+<pre><code class="language-conllu">1	ne	ne	PRON	_	_	2	obl	_	Gloss=of-them
+2	veuggio	voei	VERB	_	_	0	root	_	Gloss=I-want
+3-4	a-o	_	_	_	_	_	_	_	_
+3	à	à	ADP	_	ExtPos=ADV	6	advmod	_	Gloss=at
+4	o	o	DET	_	_	3	fixed	_	_
+5	manco	manco	NOUN	_	_	3	fixed	_	Gloss=least
+6	træ	trei	NUM	_	_	2	obj	_	Gloss=three
+
+</code></pre>
+
+<h2 id="examples">Examples</h2>
+
+<p>The following list is non-exhaustive:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">ExtPos</code></th>
+      <th>Expressions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ADP</code></td>
+      <td><em>in sce</em>, <em>fin à</em>, <em>apreuvo à</em>, <em>davanti à</em>, <em>insemme à</em>, <em>derê à</em>, <em>vexin à</em>, <em>in mezo à</em>, <em>fin da</em>, <em>in ponto</em>, <em>contra de</em>, <em>in cangio de</em>, <em>pe mezo de</em>, <em>à peto de</em></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ADV</code></td>
+      <td><em>a-o manco</em>, <em>in gio</em>, <em>e passa</em>, <em>ben ben</em>, <em>de ciù</em>, <em>de seguo</em>, <em>pe contra</em>, <em>de botto</em>, <em>pe de ciù</em>, <em>pe-o ciù</em>, <em>in de ciù</em>, <em>tutt’assemme</em></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">AUX</code></td>
+      <td><em>apreuvo à</em>, <em>derê à</em> (progressive); <em>in scî pissi de</em> (“to be about to”)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CCONJ</code></td>
+      <td><em>ò sæ</em>, <em>ciufito che</em>, <em>ciutòsto che</em></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PRON</code></td>
+      <td><em>ben ben</em> (“much, many”)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SCONJ</code></td>
+      <td><em>tanto che</em>, <em>dæto che</em>, <em>dòppo che</em>, <em>intanto che</em>, <em>sciben che</em>, <em>comme se</em>, <em>con tutto che</em>, <em>avanti de</em>, <em>za che</em>, <em>primma che</em>, <em>avanti che</em>, <em>sensa che</em>, <em>primma de</em>, <em>tòsto che</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The category depends on the expression’s use. <em>Apreuvo à</em> and <em>derê à</em> take <code class="language-plaintext highlighter-rouge">ExtPos=AUX</code> in progressive constructions and <code class="language-plaintext highlighter-rouge">ExtPos=ADP</code> before nominal complements. In <em>ean apreuvo à coxinâ</em> “they were cooking”, both <em>ean</em> and <em>apreuvo à</em> attach to the infinitive with <a href="">aux</a>:</p>
+
+<pre><code class="language-conllu">1	ean	ëse	AUX	_	_	4	aux	_	Gloss=they-were
+2	apreuvo	apreuvo	ADV	_	ExtPos=AUX	4	aux	_	Gloss=after
+3	à	à	ADP	_	_	2	fixed	_	Gloss=to
+4	coxinâ	coxinâ	VERB	_	_	0	root	_	Gloss=cook
+
+</code></pre>
+
+<p>The prospective <em>in scî pissi de</em> “about to” has the same external relation. In <em>eimo in scî pissi de partî</em> “we were about to leave”, <em>sce</em>, <em>i</em>, <em>pissi</em> and <em>de</em> all attach to <em>in</em> with <code class="language-plaintext highlighter-rouge">fixed</code>, including the article inside <em>scî</em>:</p>
+
+<pre><code class="language-conllu">1	eimo	ëse	AUX	_	_	7	aux	_	Gloss=we-were
+2	in	in	ADP	_	ExtPos=AUX	7	aux	_	Gloss=in
+3-4	scî	_	_	_	_	_	_	_	_
+3	sce	sce	ADP	_	_	2	fixed	_	Gloss=on
+4	i	o	DET	_	_	2	fixed	_	Gloss=the
+5	pissi	pisso	NOUN	_	_	2	fixed	_	Gloss=edges
+6	de	de	ADP	_	_	2	fixed	_	Gloss=of
+7	partî	partî	VERB	_	_	0	root	_	Gloss=leave
+
+</code></pre>
+
+<p><em>Ben ben</em> takes <code class="language-plaintext highlighter-rouge">ExtPos=PRON</code> when it heads a nominal expression, independently or with a <em>de</em> complement: in <em>ben ben de çexe</em> “many cherries”, <em>çexe</em> attaches to the first <em>ben</em> with <a href="">nmod</a>. By contrast, <em>ben ben</em> takes <code class="language-plaintext highlighter-rouge">ExtPos=ADV</code> when it modifies a verb, adjective or adverb.</p>
+
+<h2 id="compositional-uses">Compositional uses</h2>
+
+<p>The same word sequence can be fixed in one context and compositional in another. In compositional uses, its words have separate syntactic roles and take ordinary dependency relations.</p>
+
+<p>For instance, <em>tanto che</em> is fixed when it means “while”, as in <em>mangio tanto che lezo</em> “I eat while I read”:</p>
+
+<pre><code class="language-conllu">1	mangio	mangiâ	VERB	_	_	0	root	_	Gloss=I-eat
+2	tanto	tanto	ADV	_	ExtPos=SCONJ	4	mark	_	Gloss=while
+3	che	che	SCONJ	_	_	2	fixed	_	_
+4	lezo	leze	VERB	_	_	1	advcl	_	Gloss=I-read
+
+</code></pre>
+
+<p>In <em>mangio mai tanto che vëgno grasso</em> “I eat so much that I get fat”, by contrast, <em>tanto</em> expresses quantity and modifies <em>mangio</em> with <a href="">advmod</a>. The result clause introduced by <em>che</em> attaches to <em>tanto</em> with <a href="">advcl</a>.</p>
+
+<pre><code class="language-conllu">1	mangio	mangiâ	VERB	_	_	0	root	_	Gloss=I-eat
+2	mai	mäi	ADV	_	_	3	advmod	_	Gloss=so
+3	tanto	tanto	ADV	_	_	1	advmod	_	Gloss=much
+4	che	che	SCONJ	_	_	5	mark	_	Gloss=that
+5	vëgno	vegnî	VERB	_	_	3	advcl	_	Gloss=I-get
+6	grasso	grasso	ADJ	_	_	5	xcomp	_	Gloss=fat
+
+</code></pre>
+
+<p>In <em>ti viviæ de ciù</em> “you will live longer”, <em>de ciù</em> forms a fixed adverbial:</p>
+
+<pre><code class="language-conllu">1	Ti	ti	PRON	_	_	2	nsubj	_	Gloss=you
+2	viviæ	vive	VERB	_	_	0	root	_	Gloss=will-live
+3	de	de	ADP	_	ExtPos=ADV	2	advmod	_	_
+4	ciù	ciù	ADV	_	_	3	fixed	_	Gloss=longer
+
+</code></pre>
+
+<p>By contrast, in <em>e critiche de ciù governi</em> “criticism from several governments”, <em>de</em> introduces the noun phrase and <em>ciù</em> “several” is a <a href="">DET</a> modifying <em>governi</em> with <a href="">det</a>:</p>
+
+<pre><code class="language-conllu">1	e	o	DET	_	_	2	det	_	Gloss=the
+2	critiche	critica	NOUN	_	_	0	root	_	Gloss=criticism
+3	de	de	ADP	_	_	5	case	_	Gloss=from
+4	ciù	ciù	DET	_	_	5	det	_	Gloss=several
+5	governi	governo	NOUN	_	_	2	nmod	_	Gloss=governments
+
+</code></pre>
+
+
+<!-- "in other languages" links -->
+<hr/>
+
+fixed in other languages:
+
+[<a href="../../axm/dep/fixed.html">axm</a>]
+
+[<a href="../../bg/dep/fixed.html">bg</a>]
+
+[<a href="../../bm/dep/fixed.html">bm</a>]
+
+[<a href="../../cop/dep/fixed.html">cop</a>]
+
+[<a href="../../cs/dep/fixed.html">cs</a>]
+
+[<a href="../../de/dep/fixed.html">de</a>]
+
+[<a href="../../el/dep/fixed.html">el</a>]
+
+[<a href="../../en/dep/fixed.html">en</a>]
+
+[<a href="../../eu/dep/fixed.html">eu</a>]
+
+[<a href="../../fi/dep/fixed.html">fi</a>]
+
+[<a href="../../fr/dep/fixed.html">fr</a>]
+
+[<a href="../../ga/dep/fixed.html">ga</a>]
+
+[<a href="../../gd/dep/fixed.html">gd</a>]
+
+[<a href="../../gsw/dep/fixed.html">gsw</a>]
+
+[<a href="../../hbo/dep/fixed.html">hbo</a>]
+
+[<a href="../../hy/dep/fixed.html">hy</a>]
+
+[<a href="../../id/dep/fixed.html">id</a>]
+
+[<a href="../../it/dep/fixed.html">it</a>]
+
+[<a href="../../ja/dep/fixed.html">ja</a>]
+
+[<a href="../../ka/dep/fixed.html">ka</a>]
+
+[<a href="../../ky/dep/fixed.html">ky</a>]
+
+[<a href="../../lt/dep/fixed.html">lt</a>]
+
+[<a href="../../naq/dep/fixed.html">naq</a>]
+
+[<a href="../../oge/dep/fixed.html">oge</a>]
+
+[<a href="../../pal/dep/fixed.html">pal</a>]
+
+[<a href="../../pcm/dep/fixed.html">pcm</a>]
+
+[<a href="../../pt/dep/fixed.html">pt</a>]
+
+[<a href="../../qpm/dep/fixed.html">qpm</a>]
+
+[<a href="../../ru/dep/fixed.html">ru</a>]
+
+[<a href="../../ruc/dep/fixed.html">ruc</a>]
+
+[<a href="../../sl/dep/fixed.html">sl</a>]
+
+[<a href="../../sv/dep/fixed.html">sv</a>]
+
+[<a href="../../tr/dep/fixed.html">tr</a>]
+
+[<a href="../../u/dep/fixed.html">u</a>]
+
+[<a href="../../xcl/dep/fixed.html">xcl</a>]
+
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'lij';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>

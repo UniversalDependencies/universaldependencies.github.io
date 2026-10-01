@@ -80,23 +80,13 @@
         </script>
         <h1 id="ud-for-ligurian-">UD for Ligurian <span class="flagspan"><img class="flag" src="../../flags/svg/IT-LIG.svg" /></span></h1>
 
-<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+<h2 id="tokenisation-and-word-segmentation">Tokenisation and Word Segmentation</h2>
 
 <ul>
-  <li>In general, words are delimited by whitespace.</li>
-  <li>Punctuation marks are treated as separate tokens, with few expections:
-    <ul>
-      <li>Apostrophes indicate elision, and are attached to the neighbouring word that underwent elision. Most commonly, this occurs with determiners: <em>l’erboo</em> = <em>l’ erboo</em>, <em>‘n’atra = ‘n’ atra</em>.</li>
-      <li>Numerical expressions are treated as single words, e.g. <em>12:45</em>, <em>2.5%</em>.</li>
-      <li>Abbreviations are treated as single words and may include punctuation, e.g. <em>ecc.</em>, <em>s.r.l.</em></li>
-    </ul>
-  </li>
-  <li>Multi-word tokens occur for the following two cases:
-    <ul>
-      <li>Contractions of prepositions and definite articles: <em>inta</em> = <em>inte a</em>, <em>in scê</em> = <em>in sce e</em>, <em>pe-o</em> = <em>pe o</em>, <em>do = de o</em>.</li>
-      <li>Contractions of verbs with clitics: <em>veddilo</em> = <em>vedde lo</em>, <em>dâghela</em> = <em>dâ ghe la</em>, <em>aveine</em> = <em>avei ne</em>.</li>
-    </ul>
-  </li>
+  <li>Whitespace normally delimits tokens, and punctuation is separated from neighbouring words.</li>
+  <li>Ordinary apostrophe elisions are split, with the apostrophe kept on the elided form: <em>l’erbo</em> “the tree” is <em>l’</em> + <em>erbo</em>, and <em>unn’atra</em> “another” is <em>unn’</em> + <em>atra</em>. Abbreviations and lexical hyphenated compounds remain single tokens.</li>
+  <li>Multiword tokens are used for contractions of prepositions and definite articles: <em>inta</em> = <em>inte</em> + <em>a</em> “in the”, <em>pe-o</em> = <em>pe</em> + <em>o</em> “for the”, and <em>scê</em> = <em>sce</em> + <em>e</em> “on the” (note that in <em>in scê</em>, the preceding <em>in</em> is a separate word and only <em>scê</em> is a multiword token).</li>
+  <li>Verbs with one or more enclitics are also multiword tokens: <em>fâlo</em> = <em>fâ</em> + <em>lo</em> “to do it” and <em>anâsene</em> = <em>anâ</em> + <em>se</em> + <em>ne</em> “to go away”.</li>
 </ul>
 
 <h2 id="morphology">Morphology</h2>
@@ -104,49 +94,37 @@
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>Ligurian uses all 17 universal POS tags.</li>
-  <li>The only word tagged as <a href="">PART</a> is the euphonic particle <em>l’</em>, used in the case of clitic doubling when the verb starts with a vowel: <em>a l’ammia</em>, <em>o l’existe</em>.</li>
-  <li>Ligurian auxiliary verbs, tagged <a href="">AUX</a>, are as follows:
-    <ul>
-      <li><em>Ëse</em> and <em>stâ</em>, functioning as copulas: <em>stanni ben!</em>, <em>Zena a l’é unna çittæ</em>.</li>
-      <li><em>Stâ</em> and <em>vegnî</em>, the passive auxiliaries: <em>i libbri en stæti traduti</em>, <em>a vegnià castigâ</em>.</li>
-      <li><em>Ëse</em> and <em>avei</em>, the tense auxiliaries: <em>l’ò scrito</em>, <em>emmo cantou</em>.</li>
-      <li>The modals <em>dovei</em> (necessitative), <em>poei</em> and <em>savei</em> (potential), <em>voei</em> (desiderative).</li>
-    </ul>
-  </li>
-  <li>The tag <a href="">DET</a> is used for articles (<em>un amigo</em>, <em>unn’amiga</em>, <em>i amixi</em>, <em>tutti i amixi</em>) as well as for adjectives playing the role of a determiner: demonstrative (<em>sto libbro</em>), exclamatives (<em>che mâ de pê!</em>), indefinites (<em>un atro pâ de maneghe</em>), interrogative (<em>che tipo de persoña a l’é?</em>), negatives (<em>nisciun aggiutto</em>), possessives (<em>mæ moæ</em>), total (<em>tutto o mondo</em>).</li>
+  <li>Common auxiliaries (<a href="">AUX</a>) are <em>ëse</em> “to be”, <em>avei</em> “to have”, <em>dovei</em> “must”, <em>poei</em> “can”, <em>savei</em> “to know”, and <em>voei</em> “to want”. <em>Vegnî</em> and <em>an(d)â</em> are also <code class="language-plaintext highlighter-rouge">AUX</code> when they form part of a passive. Independent lexical uses of these verbs are <a href="">VERB</a>.</li>
+  <li>The euphonic <em>l’</em> before a vowel-initial finite verb form is <a href="">PART</a>, as in <em>a l’ammia</em> “she looks”. Article <em>l’</em> is <a href="">DET</a>, while object-pronoun <em>l’</em> is <a href="">PRON</a>.</li>
+  <li><a href="">DET</a> includes articles, demonstratives, possessives and quantifiers used with nouns. Ligurian partitive articles are single determiners rather than preposition-article multiword tokens; see the <a href="">DET</a> for more details.</li>
 </ul>
 
 <h3 id="features">Features</h3>
 
 <ul>
-  <li><a href="">NOUN</a>s inflect for <a href="">Gender</a> (<code class="language-plaintext highlighter-rouge">Masc</code> or <code class="language-plaintext highlighter-rouge">Fem</code>) and <a href="">Number</a> (<code class="language-plaintext highlighter-rouge">Sing</code> or <code class="language-plaintext highlighter-rouge">Plur</code>).</li>
-  <li><a href="">VERB</a>s can inflect for <a href="">Mood</a>, <a href="">Tense</a>, <a href="">Person</a> and <a href="">Gender</a>:
-    <ul>
-      <li>Finite verbs always inflect for <a href="">Mood</a> (<code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Sub</code> and <code class="language-plaintext highlighter-rouge">Cnd</code>).</li>
-      <li>Verbs in the indicative and subjunctive moods, as well as participles, specify a value for <a href="">Tense</a> (<code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Pres</code>, <code class="language-plaintext highlighter-rouge">Fut</code>).</li>
-    </ul>
-  </li>
+  <li>Nouns have <a href="">Gender</a> (<code class="language-plaintext highlighter-rouge">Masc</code> or <code class="language-plaintext highlighter-rouge">Fem</code>) and <a href="">Number</a> (<code class="language-plaintext highlighter-rouge">Sing</code> or <code class="language-plaintext highlighter-rouge">Plur</code>). Adjectives, articles, and many pronouns show the same agreement features.</li>
+  <li>Finite verbs bear <code class="language-plaintext highlighter-rouge">VerbForm=Fin</code>, <a href="">Mood</a>, <a href="">Person</a>, and <a href="">Number</a>. Indicative and subjunctive forms also bear <a href="">Tense</a>; conditionals (<code class="language-plaintext highlighter-rouge">Mood=Cnd</code>) and imperatives (<code class="language-plaintext highlighter-rouge">Mood=Imp</code>) do not.</li>
+  <li>Infinitives carry <code class="language-plaintext highlighter-rouge">Tense=Pres|VerbForm=Inf</code>; gerunds carry <code class="language-plaintext highlighter-rouge">Tense=Pres|VerbForm=Ger</code>; and verbal past participles carry <code class="language-plaintext highlighter-rouge">Tense=Past|VerbForm=Part</code>.</li>
+  <li>Positive degree is unmarked; see <a href="">Degree</a> for the other values.</li>
+  <li><a href="">Style</a> marks expressive spellings (<code class="language-plaintext highlighter-rouge">Expr</code>) and vernacular forms (<code class="language-plaintext highlighter-rouge">Vrnc</code>).</li>
 </ul>
 
 <h2 id="syntax">Syntax</h2>
 
+<p>Ligurian is pro-drop and has relatively flexible word order, although subjects commonly precede the predicate and objects follow it.</p>
+
 <ul>
-  <li>Ligurian is an SVO language, meaning that subjects (<a href="">nsubj</a>) are typically pre-verbal, while objects (<a href="">obj</a>) are usually post-verbal.</li>
-  <li>Nominal subjects (<a href="">nsubj</a>) and direct nominal objects (<a href="">obj</a>) are bare noun phrases without adpositions.</li>
-  <li>The <a href="">iobj</a> relation is only used for dative pronominal clitic complements: <em>o ghe dixe</em>, <em>o me piaxe</em>, etc. When the indirect object is realized as a prepositional phrase, it is labeled as <a href="">obl</a>.</li>
-  <li>The following subtype relations are used:
-    <ul>
-      <li><a href="">expl:pv</a>, for expletive or pleonastic nominals used in pronominal verb: <em>anâsene</em>, <em>ësighe</em>, etc.</li>
-      <li><a href="">expl:impers</a>, for impersonal verbs: <em>se capisce</em>, <em>se sente unna voxe</em>.</li>
-      <li><a href="">acl:relcl</a>, for relative clauses.</li>
-    </ul>
-  </li>
+  <li>Nominal subjects (<a href="">nsubj</a>) and direct objects (<a href="">obj</a>) normally occur without an adposition. <a href="">iobj</a> is reserved for dative clitics.</li>
+  <li>The agent of a passive takes <a href="">obl:agent</a>. Other prepositional arguments selected by a verb or adjective take <a href="">obl:arg</a>.</li>
+  <li>Subject-clitic doubling and other clitics with no separate syntactic role are described under <a href="">expl</a> and its subtypes.</li>
+  <li>With copular <em>ëse</em> “to be”, including in locative clauses, the predicate is the clause head and <em>ëse</em> is <a href="">cop</a>. In existential constructions such as <em>gh’é</em> “there is”, <em>ëse</em> is the verbal head, the entity introduced is <a href="">nsubj</a>, and <em>ghe</em> takes <a href="">expl</a>.</li>
 </ul>
 
-<h2 id="treebanks">Treebanks</h2>
+<h3 id="relations-overview">Relations Overview</h3>
 
-<p>There is <a href="../treebanks/lij-comparison.html">1</a> Ligurian UD treebank:</p>
+<p>The following relation subtypes are used: <a href="">acl:relcl</a>, <a href="">advcl:relcl</a>, <a href="">aux:pass</a>, <a href="">csubj:pass</a>, <a href="">expl:impers</a>, <a href="">expl:pass</a>, <a href="">expl:pv</a>, <a href="">nsubj:outer</a>, <a href="">nsubj:pass</a>, <a href="">obl:agent</a>, and <a href="">obl:arg</a>.</p>
+
+<h2 id="treebanks">Treebanks</h2>
 
 <ul>
   <li><a href="../treebanks/lij_glt/index.html">Ligurian-GLT</a></li>
