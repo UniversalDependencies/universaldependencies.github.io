@@ -100,9 +100,9 @@
 <ul>
   <li>Words are generally delimited by spaces.</li>
   <li>Compounds are split and sandhi undone as it is the custom in Sanskritic linguistics.</li>
-  <li>Compounds receive token ranges (e.g. <code class="language-plaintext highlighter-rouge">10-12</code>) and should get the appropriate <a href="">compound</a> relation subtype.</li>
-  <li>Sandhi should be marked with a <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> in the earlier token’s <code class="language-plaintext highlighter-rouge">MISC</code> and should not get a range id.</li>
-  <li>Multi-word tokens are generally not used. Parts of a multi-word name (e.g. “Saccaka Nigaṇṭhāputta”) should get the <a href="">flat:name</a> dependency relation.</li>
+  <li>Compounds receive multiword token ranges (e.g. <code class="language-plaintext highlighter-rouge">10-12</code>) and should get the appropriate <a href="">compound</a> relation subtype. Only proper Pāli compounds get MWTs. We treat attached particles (like “-ti” and “-pi”) as sandhi and not as a MWT.</li>
+  <li>Sandhi should be marked with a <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> in the earlier token’s <code class="language-plaintext highlighter-rouge">MISC</code> and do not get a range id.</li>
+  <li>Multitoken words (e.g. words with spaces inside them) are generally not used. Parts of a multitoken name (e.g. “Saccaka Nigaṇṭhāputta”) should get the <a href="">flat:name</a> dependency relation.</li>
 </ul>
 
 <h2 id="morphology">Morphology</h2>
@@ -179,7 +179,7 @@ This means that they cannot get the <code class="language-plaintext highlighter-
 
 <h3 id="features">Features</h3>
 
-<p>Some forms in Pāli are ambiguous. For example, a feminine noun of the <code class="language-plaintext highlighter-rouge">-ā</code> class with a <code class="language-plaintext highlighter-rouge">-āya</code> suffix might be Singular Instrumental, Ablative, Genitive, Dative, or Locative! When <code class="language-plaintext highlighter-rouge">Case</code> can be inferred from context, feel free to mark only the semantically correct case.  If multiple parses are reasonable in a given context, list all the plausible values in alphabetical order, separated by commas (e.g. if you have an <em>-āya</em> noun, and all but instrumental are reasonable parses, mark it <code class="language-plaintext highlighter-rouge">Case=Abl,Dat,Gen,Loc|Gender=Fem|Number=Sing</code>).</p>
+<p>Some forms in Pāli are ambiguous. For example, a feminine noun of the <code class="language-plaintext highlighter-rouge">-ā</code> class with a <code class="language-plaintext highlighter-rouge">-āya</code> suffix might be Singular Instrumental, Ablative, Genitive, Dative, or Locative! When <code class="language-plaintext highlighter-rouge">Case</code> can be inferred from context, feel free to mark only the semantically correct case.  If multiple parses are reasonable in a given context, list the plausible values in alphabetical order, separated by commas (e.g. if you have an <em>-āya</em> noun, and all but instrumental are reasonable parses, mark it <code class="language-plaintext highlighter-rouge">Case=Abl,Dat,Gen,Loc|Gender=Fem|Number=Sing</code>, though such cases should be exceedingly rare).</p>
 
 <h4 id="nouns">Nouns</h4>
 
@@ -221,6 +221,8 @@ This means that they cannot get the <code class="language-plaintext highlighter-
   <li><a href="">obl:agent</a></li>
   <li><a href="">obl:goal</a></li>
 </ul>
+
+<p>We do not (at the moment) use enhanced dependency graphs, so DEPS should always be <code class="language-plaintext highlighter-rouge">_</code>.</p>
 
 <p>We have a number of unique deprels for our compound subtypes.
 See the <a href="">compound</a> doc pages for details on those.</p>
