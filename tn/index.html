@@ -96,13 +96,13 @@
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>Tswana uses 16 universal POS tags of which 11 occur in the current data.</li>
+  <li>Tswana uses 16 universal POS tags of which 12 occur in the current data.</li>
   <li>The tag <a href="">DET</a> is not used currently as traditional grammars do not define determiners for Tswana.</li>
-  <li>The tags <a href="">ADP</a>, <a href="">INTJ</a>, <a href="">NUM</a>, <a href="">SYM</a> and <a href="">X</a> are not attested in the current data as no instances of them occur, but might be used in newly annotated data if needed.</li>
+  <li>The tags <a href="">ADP</a>, <a href="">NUM</a>, <a href="">SYM</a> and <a href=""> X</a> are not attested in the current data as no instances of them occur, but might be used in newly annotated data if needed.</li>
   <li><a href="">PRON</a> is used for pronons and also for subject and object concords.</li>
-  <li><a href="">PART</a> is used for words that are called particles in traditional grammars as well as for possessive concords (POSSC* in XPOS) and tense/aspect morphemes (MORPH in XPOS).</li>
+  <li><a href="">PART</a> is used for words that are called particles in traditional grammars, for possessive concords (POSSC* in XPOS) and tense/aspect morphemes (MORPH in XPOS).</li>
   <li><a href="">ADV</a> is used for adverbs and additionally for negative markers (MNEG in XPOS).</li>
-  <li>Currently, there are 3 auxiliaries (<a href="">AUX</a>) in the Tswana data: <em>ne</em>, <em>be</em> and <em>ka ke</em>.</li>
+  <li>Currently, there are 13 auxiliaries (<a href="">AUX</a>) (including 5 copulas) in the Tswana data: <em>be</em>, <em>bo</em>, <em>bolo</em>, <em>ise</em>, <em>ka ke</em>, <em>ke</em>, <em>le</em>, <em>ne</em>, <em>nna</em>, <em>o</em>, <em>se</em>, <em>tloga</em>, <em>tshwanetse</em>.</li>
 </ul>
 
 <h3 id="features">Features</h3>
@@ -113,33 +113,35 @@
   <li>Tokens annotated with UPOS <a href="">PRON</a>, but tagged as concords in XPOS (SC<em>, OC</em>) have <a href="">NounClass</a> information.</li>
   <li>Tokens annotated with UPOS <a href="">PART</a>, but tagged as concords in XPOS (POSSC*) have <a href="">NounClass</a> information.</li>
   <li><a href="">Polarity</a> is only indicated for negative values as <code class="language-plaintext highlighter-rouge">Neg</code> and applies to morphemes tagged <a href="">ADV</a> in UPOS and MNEG in XPOS.</li>
+  <li><a href="">PronType</a> has been added to various pronouns.</li>
+  <li><a href="">Poss</a> is a Boolean feature of words tagged as <a href="">pronouns</a> that indicates whether the word is possessive or not.</li>
   <li>Other features might be added during future annotation efforts.</li>
 </ul>
 
 <h2 id="syntax">Syntax</h2>
 
 <h3 id="root">Root</h3>
-<p>The main verb in a Tswana main clause is the <a href="">root</a>. If an identifying, describing or associative copulative verb is included in a sentence the complement of these verbs is the root.</p>
+<p>The main verb in a Tswana main clause is the <a href="">root</a>. If an identifying or describing copulative verb is included in a sentence, the complement of these verbs is the root. In the case of an associative copulative verb, the verb itself is tagged as the root. (See also <strong>Copulatives</strong> below.)</p>
 
 <h3 id="subjects">Subjects</h3>
 <p>A nominal subject <a href="">nsubj</a> is a nominal which is the syntactic subject and the proto-agent of a clause. That is, it is in the position that passes typical grammatical tests for subjecthood, and this argument is the more agentive, the doer, or the proto-agent of the clause. This nominal in Tswana may be headed by a noun or pronoun or it may also be a possessive particle phrase or a qualificative particle phrase.</p>
 
-<p>In Tswana, the subject concord (aka subject agreement morpheme) is an agreement marker which marks the relation between a subject and a verb. This concord acquires a pronominal function when the overt subject is omitted. The relation <a href="">nsubj</a> is assigned in Tswana to show the relation between the verb and a preceding subject concord when there is no overt subject. For example, in Sentence 13 <em>O lebile eng?</em> “You[SubjConc] see[Perf] what?” a <a href="">nsubj</a> relation is assigned for the relation between <em>lebile</em> “see” and the preceding subject concord <em>o</em> “you”.</p>
+<p>In Tswana, the subject concord (aka subject agreement morpheme) is an agreement marker which marks the relation between a subject and a verb. This concord acquires a pronominal function when the overt subject is omitted. The relation <a href="">nsubj</a> is assigned in Tswana to show the relation between the verb and a preceding subject concord when there is no overt subject. For example, in the sentence <em>O lebile eng?</em> “You[SubjConc] see[Perf] what?” a <a href="">nsubj</a> relation is assigned for the relation between <em>lebile</em> “see” and the preceding subject concord <em>o</em> “you”.</p>
 
-<p>The <a href="">nsubj</a> relation is also used for the nominal subject of a passive verb or verb group, even though the subject is then not typically the proto-agent argument due to valency changing operations. The subtype <a href="">nsubj:pass</a> is used in this instance. For example, in Sentence 12 the subtype <a href="">nsubj:pass</a> is assigned between <em>kwadilwe</em> “write[Perf]” and <em>e</em> “it[SubjConc]”.</p>
+<p>The <a href="">nsubj</a> relation is also used for the nominal subject of a passive verb or verb group, even though the subject is then not typically the proto-agent argument due to valency changing operations. The subtype <a href="">nsubj:pass</a> is used in this instance. For example, in the sentence <em>Ga ba na kakanyo epe gore e kwadilwe ke mang.</em> “They have no idea who wrote it.” the subtype <a href="">nsubj:pass</a> is assigned between <em>kwadilwe</em> “write[Perf]” and <em>e</em> “it[SubjConc]”.</p>
 
 <h3 id="objects">Objects</h3>
 <ul>
   <li>Direct objects:  The direct object is the object that denotes the entity acted upon or which undergoes a change of state or motion (the proto-patient). The phrase acting as the direct object in Tswana may be headed by a noun or pronoun or it may also be a possessive particle phrase or a qualificative particle phrase.<br />
-An object in Tswana can be replaced with an object concord (aka object agreement morpheme). This morpheme is included in the morphological structure of the verb. The <a href="">obj</a> relation between the verb and the preceding object concord (direct) indicate the pronominal function of this concord. The subtype <a href="">obj:conc</a> is also included.</li>
+An object in Tswana can be replaced with an object concord (aka object agreement morpheme). This morpheme is included in the morphological structure of the verb. The <a href="">obj</a> relation between the verb and the preceding (direct) object concord indicates the pronominal function of this concord. The subtype <a href="">obj:conc</a> is also included.</li>
   <li>Indirect objects:  The indirect object is the object that is indirectly affected by the process indicated in the verb. It is usually a benefactor because the process is carried out on its behalf. The phrase acting as the indirect object in Tswana may be headed by a noun or pronoun or it may also be a possessive particle phrase or a qualificative particle phrase.<br />
-An indirect object in Tswana can be replaced with an object concord (aka object agreement morpheme). This morpheme is included in the morphological structure of the verb. The <a href="">obj</a> relation between the verb and the preceding object concord (indirect) indicate the pronominal function of this concord and the subtype <a href="">iobj:conc</a> is included.</li>
+An indirect object in Tswana can be replaced with an object concord (aka object agreement morpheme). This morpheme is included in the morphological structure of the verb. The <a href="">obj</a> relation between the verb and the preceding (indirect) object concord indicate the pronominal function of this concord and the subtype <a href="">iobj:conc</a> is included.</li>
 </ul>
 
 <h3 id="auxiliary-verbs-aux">Auxiliary verbs <a href="">aux</a></h3>
 <p>An auxiliary verb enriches the meaning of the complementary main verb, copulative verb or another auxiliary verb phrase and can add semantic information regarding the mood, tense, aspect and/or polarity of a verb. It adds information on the progression or completion of an action. It expresses a certain type of duration of the action or it expresses the logical time at which the action is executed. For example, the auxiliary verb <em>ne</em> indicates an action that is incomplete and continuing at a certain moment in the past.</p>
 
-<p>The <a href="">aux</a> relation is used in Tswana to indicate the relation between a verb and the preceding auxiliary verb but also for the relation between main verbs such as <em>batla</em> “want”, <em>leka</em> “try”, <em>kgona</em> “manage” when they are followed by an infinitive verb as for example in sentences 3, 4, and 11.</p>
+<p>The <a href="">aux</a> relation is used in Tswana to indicate the relation between a verb and the preceding auxiliary verb but also for the relation between main verbs such as <em>batla</em> “want”, <em>leka</em> “try”, <em>kgona</em> “manage” when they are followed by an infinitive verb as for example in sentences <em>O ne a leka <strong>go tlogela</strong> go goga le go nwa.</em> “He tried to stop smoking and drinking.” or <em>A o batla <strong>go tsamaya</strong>?</em> “Do you want to go?”.</p>
 
 <h3 id="copulatives-cop">Copulatives <a href="">cop</a></h3>
 <p>A <a href="">cop</a> (copula) is the relation of a function word used to link a subject to a nonverbal predicate.
@@ -155,13 +157,13 @@ Tswana distinguishes three types of copulatives: identifying copulative, describ
 
 <p>In the case of an associative copulative verb, the root of the clause is the copulative verb. The associative copulative verbs in Tswana are POS tagged as [VERB], and the <a href="">obj</a> relation is used between the root and the complement that follows it. This analysis differs from traditional Tswana linguistic descriptions.</p>
 
-<h3 id="clausal-complements-ccomp">Clausal complements <a href="">ccomp</a></h3>
+<h3 id="clausal-complements-ccomp-and-xcomp">Clausal complements <a href="">ccomp</a> and <a href="">xcomp</a></h3>
 <p>The clausal complement in Tswana indicates that there exists a relation between a main clause and a subordinate clause in the infinitive, subjunctive, and participial moods.</p>
 
 <ul>
-  <li>Infinitive:  expresses a meaning of purpose, for example: <em>Ba nê ba ile go thusa batsadi ba bôna.</em> “They went to help their parents.”</li>
-  <li>Subjunctive:  expresses an action that indicates a certain goal or a result of another preceding action and the conjunction <em>gore</em> “that, so that” is used as an introductory member to that part of the sentence that includes an action in the subjunctive mood, for example: <em>Ke bula lebati gore baithuti ba tsene.</em> “I open the door so that the students can come in.”</li>
-  <li>Participial:  expresses an action that takes place simultaneously with another action, for example <em>Batho ba tsamaya ba opela.</em> “The people walk singing.”<br />
+  <li>Infinitive:  expresses a meaning of purpose, for example: <em>Ba nê ba ile go thusa batsadi ba bôna.</em> “They went to help their parents.” Usually the infitive clause is an <a href="">xcomp</a> (clause without an subject of its own).</li>
+  <li>Subjunctive:  expresses an action that indicates a certain goal or a result of another preceding action and the conjunction <em>gore</em> “that, so that” is used as an introductory member to that part of the sentence that includes an action in the subjunctive mood, for example: <em>Ke bula lebati gore baithuti ba tsene.</em> “I open the door so that the students can come in.” (<a href="">ccomp</a>)</li>
+  <li>Participial:  expresses an action that takes place simultaneously with another action, for example <em>Batho ba tsamaya ba opela.</em> “The people walk singing.”  (tagged as <a href="">ccomp</a>).
 It can also state a stipulation or precondition for the execution of another action. Conjunctions such as <em>fa</em> “as, while, when, if”, <em>le fa</em> “even if, although, while” and <em>ka</em> “since” are then included as an introductory member to that part of the sentence that includes a conditional action, for example:</li>
 </ul>
 
@@ -221,7 +223,7 @@ The case relation in Tswana is used for the relation between a nominal and a pre
 <p>This relation exists between a conjunct and the preceding coordinating conjunction. Examples of conjunctions that can be included between non-predicative words and word groups are <em>le</em> “and” and <em>kgôtsa</em> “or”. Examples of conjunctions that can be included between predicative words and word groups are <em>mme</em> “and”, <em>e bile</em> “and”, <em>le gôna</em> “also”, <em>kgôtsa</em> “or” and <em>mme</em> “but”.</p>
 
 <h3 id="discourse"><a href="">discourse</a></h3>
-<p>This relation is used for interjections and other discourse particles and elements (which are not clearly linked to the structure of the sentence, except in an expressive way). In Tswana, this relation is also used for the interrogative particle <em>A</em> included at the beginning of a sentence. This particle is used to change an indicative sentence to an interrogative sentence. See for example Sentence 4 <em><strong>A</strong> o batla go tsamaya?</em> “Do you want to go?” where <em>A</em> is the interrogative particle.</p>
+<p>This relation is used for interjections and other discourse particles and elements (which are not clearly linked to the structure of the sentence, except in an expressive way). In Tswana, this relation is also used for the interrogative particle <em>A</em> included at the beginning of a sentence. This particle is used to change an indicative sentence to an interrogative sentence. See for example the sentence <em><strong>A</strong> o batla go tsamaya?</em> “Do you want to go?” where <em>A</em> is the interrogative particle.</p>
 
 <h3 id="fixed"><a href="">fixed</a></h3>
 <p>The fixed relation is used in Tswana for multi-word expressions consisting of two or more words that are considered to behave like a function word. For example <em>le fa e le</em> “neither … nor, none of them” is an idiomatic phrase functioning as a conjunction in Tswana.</p>
@@ -289,7 +291,7 @@ This relation is also used for go SC15 followed by a verb expressing a gerund.</
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There is <a href="../treebanks/LCODE-comparison.html">one</a> Tswana UD treebanks:</p>
+<p>There are <a href="../treebanks/LCODE-comparison.html">two</a> Tswana UD treebanks:</p>
 
 <ul>
   <li><a href="../treebanks/tn/index.html">Tswana</a></li>
