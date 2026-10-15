@@ -80,59 +80,110 @@
         </script>
         <h1 id="ud-for-huave-">UD for Huave <span class="flagspan"><img class="flag" src="../../flags/svg/MX.svg" /></span></h1>
 
-<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+<!--
+DRAFT written from the annotation files diccionario-huv.*.conllu (13 files, 7 annotators, 696 distinct sentences, 249 marked finished)
+and from Herrera Castro (2016), the thesis on the noun phrase of San Mateo del Mar Huave ("Herrera 2016" below).
+Comments like this one, "CHECK:", mark decisions where the annotators disagree or where the thesis analyses something differently.
+Remove all comments before submitting. Counts are from the most complete version of each sentence unless stated otherwise.
+-->
 
-<p>*</p>
+<p>The variety documented here is the Huave of San Mateo del Mar. The first treebank consists of Huave sentences (and
+their Spanish translations) from the SIL-produced <em>Diccionario Huave de San Mateo del Mar</em>, compiled by Glenn Albert Stairs Kreger and Emily Florence Scharfe de Stairs. The text is written in the newer orthography typical of younger speakers (k, kw, g; see the note on spelling below). The original SIL spelling of the source text is kept in the <code class="language-plaintext highlighter-rouge">text[orig]</code> comment.</p>
 
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
+<h2 id="tokenisation-and-word-segmentation">Tokenisation and Word Segmentation</h2>
 
-<hr />
+<ul>
+  <li>Words are delimited by whitespace. Punctuation marks, including the inverted question and exclamation marks (¿ ¡), are separate tokens
+and are marked <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code> when no space follows.</li>
+  <li>Several short function words are written together with the following/preceding word. These are split into multiword tokens
+(the surface form is kept on the range line, and the parts are numbered separately). These include:
+    <ul>
+      <li><strong>The preposition <em>tiül</em> + a noun</strong>, written as one word with the preposition reduced to <em>ti-</em>:
+<em>tikambaj</em> = <em>ti</em> (lemma <em>tiül</em>, ADP) + <em>kambaj</em> (NOUN) “in the town”; also <em>tikorrül</em>, <em>timanchiük</em>, <em>timüx</em>, <em>tixiül</em>, <em>titiiüd</em>, <em>tindek</em>.</li>
+      <li><strong>The locative copula <em>al</em> + <em>tiül</em></strong>: <em>altiül</em> = <em>al</em> (AUX) + <em>tiül</em> (ADP), “there is / has”; also <em>altikambaj</em> = <em>al</em> + <em>ti</em> + <em>kambaj</em>.</li>
+      <li><strong>The aspectual proclitic <em>la</em></strong> (punctual, “already”) + the next word: <em>landoj</em> = <em>la</em> + <em>ndoj</em>, <em>lango</em> = <em>la</em> + <em>ngo</em>.</li>
+      <li><strong>Final clitics <em>-e</em> and <em>-a</em></strong>, tagged PART: <em>ngome</em> = <em>ngom</em> + <em>e</em>, <em>ngana</em> = <em>ngan</em> + <em>a</em>, <em>leawa</em> = <em>leaw</em> + <em>a</em>.</li>
+    </ul>
+  </li>
+  <li>
+    <!-- CHECK: -->
+    <p>The annotation files also carry <code class="language-plaintext highlighter-rouge">Error=TokenLevel</code> in MISC on many of these tokens.</p>
+  </li>
+  <li>Spanish loanwords are tokenised like native words. See the note on spelling below.</li>
+</ul>
+
+<p><strong>Spelling.</strong> The texts use the orthography of the recent Huave materials (k and kw instead of c, qu and cu; g instead of gu before e and i). Unadapted Spanish words may keep Spanish spelling (e.g., <em>pomada</em> and <em>calle</em>).</p>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li><strong>Unused tag:</strong> SYM. All other universal tags occur. X and INTJ are relatively rare.</li>
+  <li><strong>NOUN, PROPN.</strong> Possessed nouns are tagged NOUN and lemmatised as the bare root (<em>xekit</em> → <em>kit</em>, <em>xemüm</em> → <em>müm</em>).
+Deverbal nouns such as <em>nendok</em> “fisherman” are NOUN with <code class="language-plaintext highlighter-rouge">VerbForm=Vnoun</code>. Personal names are PROPN (with <code class="language-plaintext highlighter-rouge">Gender</code>).</li>
+  <li><strong>VERB.</strong> Verbs inflect by prefixes and suffixes for person, number, tense, aspect and mood. The lemma is the bare root without those
+(<em>ajlüy</em> → <em>jlüy</em>, <em>akwiür</em> → <em>kwiür</em>).</li>
+  <li><strong>AUX.</strong> The locative copula <em>al</em> (“be located, there is”; Herrera 2016 glosses it COP.LOC) is AUX, as is the aspectual proclitic <em>la</em>.
+<!-- CHECK: _ndom_ ("can, know how to") is tagged PART, AUX and VERB by different annotators; _ngo_ "not" is ADV in 142 cases but AUX in 6. No decision yet. --></li>
+  <li><strong>PART.</strong> Interrogative clitics <em>-e</em> and <em>-a</em> (<em>ngome</em>, <em>ngana</em>), with <code class="language-plaintext highlighter-rouge">PronType=Int</code>, and the evidential <em>chük</em> (<code class="language-plaintext highlighter-rouge">Evident=Nfh</code>, one token in these data;
+it is very frequent in the story collections). <!-- CHECK: the story corpus has not been annotated yet. --></li>
+  <li><strong>DET and PRON.</strong> The definite article <em>a</em> (variants <em>aaga</em>, <em>aag</em>) is DET and precedes the noun. Herrera 2016 analyses it as the base of the demonstratives
+(pronoun, adnominal, locative adverb and manner adverb are all built on it plus a deictic element). When <em>aag</em> stands alone it is PRON.
+Personal pronouns (<em>nej</em> 3rd person, <em>xik</em> 1st person singular, <em>ik</em> 2nd person singular, <em>xikon</em> / <em>xikona</em> 1st person plural exclusive) are PRON with <code class="language-plaintext highlighter-rouge">PronType=Prs</code>.
+Possessive pronouns (<em>saneay</em> “mine”, <em>okweaj</em>) are PRON.</li>
+  <li><strong>NUM.</strong> The numeral <em>no-</em> “one” with a classifier suffix (<em>nop</em>, <em>noik</em>) is NUM with <code class="language-plaintext highlighter-rouge">NumType=Clf</code>, and depends on the noun as <code class="language-plaintext highlighter-rouge">nummod</code>.
+Herrera 2016 (ch. 6) argues that it also works as an indefinite article, but it seems not to have been tagged as DET.</li>
+  <li><strong>ADP.</strong> <em>tiül</em> “in, to, with” and similar words are ADP. They precede their noun and depend on it as <code class="language-plaintext highlighter-rouge">case</code>.
+<!-- CHECK: _wüx_ is ADV (61), SCONJ (53) and ADP (22). The relations are mark (56), case (18), advmod (13). _kos_ "because" is SCONJ (58) or CCONJ (19). --></li>
+  <li><strong>SCONJ and CCONJ.</strong> <em>pero</em> / <em>pere</em> is CCONJ. Subordinators are SCONJ (<em>wüx</em> “when”, <em>kos</em> “because”, <em>sitiül</em> “if”).</li>
+  <li><strong>ADJ and ADV.</strong> Words that modify nouns are ADJ and precede them (<em>nine nench</em> “the small child”). Manner and degree words are ADV.
+<!-- CHECK: _xowüy_ "very, much" is ADV (40) or ADJ (13), _xeyay_ ADJ (20) or ADV (11), _nine_ ADJ (36) or NOUN (15). --></li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<ul>
+  <li><strong>Nouns.</strong> Possession is marked by a prefix on the noun. Person and number of the possessor are <code class="language-plaintext highlighter-rouge">Person[psor]</code> and <code class="language-plaintext highlighter-rouge">Number[psor]</code>
+(<em>xe-</em> and <em>xi-</em> for first person singular; <em>ow-</em> and <em>ap-</em> for third person). The prefix <em>mi-</em> occurs on nouns whose possessor is a separate
+noun or pronoun (<em>mikwal nej</em> “his/her child”); it carries no feature. <!-- CHECK: the meaning of _mi-_ is not settled. -->
+Plural is rarely marked on nouns in the data (3 tokens). <code class="language-plaintext highlighter-rouge">Number</code> (mostly <code class="language-plaintext highlighter-rouge">Sing</code>, also <code class="language-plaintext highlighter-rouge">Plur</code> and <code class="language-plaintext highlighter-rouge">Dual</code>) is used on verbs and pronouns.</li>
+  <li><strong>Verbs.</strong> Subject person and number: <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Number</code> (also <code class="language-plaintext highlighter-rouge">Number=Dual</code>, and <code class="language-plaintext highlighter-rouge">Clusivity=Ex|In</code> for first person plural and dual).
+<code class="language-plaintext highlighter-rouge">Tense=Pres|Past</code>, <code class="language-plaintext highlighter-rouge">Aspect=Prog</code> (the progressive <em>te(a)-</em>) and <code class="language-plaintext highlighter-rouge">Aspect=Punt</code> (<em>la</em> “already”), <code class="language-plaintext highlighter-rouge">Mood=Sub</code> and <code class="language-plaintext highlighter-rouge">Mood=Irr</code>.
+<code class="language-plaintext highlighter-rouge">VerbForm=Fin|Vnoun</code>. <code class="language-plaintext highlighter-rouge">Voice=Caus</code> for causatives (3 tokens). <code class="language-plaintext highlighter-rouge">Subcat=Tran|Intr</code> marks transitivity.
+<!-- CHECK: Subcat is not a standard UD feature; consider Valency or the lexicon. Reflexive and possessive are written Reflexive=Yes and Possessive=Yes in MISC; the UD features are Reflex=Yes and Poss=Yes in FEATS. --></li>
+  <li><strong>Pronouns.</strong> <code class="language-plaintext highlighter-rouge">PronType=Prs|Dem|Int</code>, <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Number</code>, <code class="language-plaintext highlighter-rouge">Clusivity</code>.</li>
+  <li><strong>Numerals.</strong> <code class="language-plaintext highlighter-rouge">NumType=Clf</code> for classifier numerals.</li>
+  <li><strong>Definiteness.</strong> The feature <code class="language-plaintext highlighter-rouge">Definite</code> is not used. Indefinite and free-choice pronouns (the <em>al-</em> series: <em>aleaik</em>, <em>aljane</em>; the <em>nej</em> series: <em>jangantanej</em>, <em>kwajantanej</em>) are marked <code class="language-plaintext highlighter-rouge">PronType=Ind</code>, and negative pronouns (the <em>ni…ind</em> series: <em>nikwajind</em>) <code class="language-plaintext highlighter-rouge">PronType=Neg</code> (Herrera 2016, ch. 6).
+<!-- CHECK: verbs in _-aran_ / _-eran_ (e.g. _manguiayaran_, _alaran_) have an unspecified subject but no UD feature fits; currently unmarked. --></li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
-
-<hr />
+<ul>
+  <li><strong>Core arguments.</strong> <code class="language-plaintext highlighter-rouge">nsubj</code>, <code class="language-plaintext highlighter-rouge">obj</code> and <code class="language-plaintext highlighter-rouge">iobj</code> are used. Word order is relatively free (Herrera 2016: ch. 1). In the annotated clauses that have both a subject and an object,
+SVO is the most common order, VOS the next. Objects follow the verb in most clauses; subjects are about equally often before and after it.</li>
+  <li><strong>Within the noun phrase.</strong> Determiners, numerals, adjectives, prepositions and subordinators precede their head (<code class="language-plaintext highlighter-rouge">det</code>, <code class="language-plaintext highlighter-rouge">nummod</code>, <code class="language-plaintext highlighter-rouge">amod</code>, <code class="language-plaintext highlighter-rouge">case</code>, <code class="language-plaintext highlighter-rouge">mark</code>).
+Possessors and noun modifiers follow it (<code class="language-plaintext highlighter-rouge">nmod</code>, 101 of 105). A pronominal possessor after a possessed noun (<em>mikwal nej</em>) is <code class="language-plaintext highlighter-rouge">nmod</code>.
+<!-- CHECK: `nmod:poss` (10 tokens) is used inconsistently with nmod for the same construction. --></li>
+  <li><strong>Predicates.</strong> Most roots are verbs. Nonverbal predicates (nouns, adjectives, pronouns, adverbs) are roots with no copula,
+as in <em>Aag agüy saneay</em> “this is mine”. The locative copula <em>al</em> is <code class="language-plaintext highlighter-rouge">cop</code> when it takes a nominal complement (<em>altiül</em> “have, there is”). <!-- CHECK: `cop` occurs only 4 times, all with _al_. --></li>
+  <li><strong>Subordinate and complement clauses.</strong> Clauses introduced by <em>wüx</em> and <em>kos</em> are <code class="language-plaintext highlighter-rouge">advcl</code> with a <code class="language-plaintext highlighter-rouge">mark</code> dependent. The modal <em>ndom</em> “can” and the negator <em>ngo</em> are <code class="language-plaintext highlighter-rouge">aux</code> of the following verb when they are tagged AUX
+(21 <code class="language-plaintext highlighter-rouge">aux</code> relations, mostly <em>ndom</em>, <em>ngo</em> and <em>ombas</em>); that verb is then often an <code class="language-plaintext highlighter-rouge">xcomp</code> of the main verb. Other verbs also take an <code class="language-plaintext highlighter-rouge">xcomp</code>. Clausal arguments are <code class="language-plaintext highlighter-rouge">ccomp</code> and <code class="language-plaintext highlighter-rouge">csubj</code>. A clause modifying a noun is <code class="language-plaintext highlighter-rouge">acl</code>.</li>
+  <li><strong>Parataxis.</strong> Juxtaposed clauses are <code class="language-plaintext highlighter-rouge">parataxis</code>, including clauses with a subjunctive verb (<code class="language-plaintext highlighter-rouge">Mood=Sub</code>) after a comma.</li>
+  <li><strong>Other relations.</strong> <code class="language-plaintext highlighter-rouge">dislocated</code> (a topicalised noun before the clause), <code class="language-plaintext highlighter-rouge">compound</code> (mostly noun + noun, e.g. <em>vida</em> + <em>müm</em>; also reduplicated numerals: <em>nop nop</em> “one by one”), <code class="language-plaintext highlighter-rouge">fixed</code>, <code class="language-plaintext highlighter-rouge">flat</code>, <code class="language-plaintext highlighter-rouge">goeswith</code> and <code class="language-plaintext highlighter-rouge">discourse</code> are rare.</li>
+  <li><strong>Subtype relations.</strong> <code class="language-plaintext highlighter-rouge">nmod:poss</code> is the only subtype used.</li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/huv-comparison.html">N</a> Huave UD treebanks:</p>
+<p>There is <a href="../treebanks/huv-comparison.html">1</a> Huave UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/huv_a/index.html">Huave-A</a></li>
-  <li><a href="../treebanks/huv_b/index.html">Huave-B</a></li>
+  <li><a href="../treebanks/huv_mesotree/index.html">Huave-Mesotree</a></li>
 </ul>
 
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
+<!-- TODO: replace with the real treebank names. -->
 
       </div>
 
