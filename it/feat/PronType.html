@@ -106,7 +106,7 @@
 <h3 id="prs-personal-or-possessive-personal-pronoun-or-determiner"><a name="Prs"><code class="language-plaintext highlighter-rouge">Prs</code></a>: personal or possessive personal pronoun or determiner</h3>
 
 <p>See also the <a href="">Poss</a> feature that distinguishes normal personal
-pronouns from possessives and the <a href="">Clitic</a> feature that tells 
+pronouns from possessives and the <a href="">Clitic</a> feature that tells
 whether the pronoun is a clitic. Note that <code class="language-plaintext highlighter-rouge">Prs</code> also includes reflexive
 personal/possessive pronouns (see the <a href="">Reflex</a> feature).</p>
 
@@ -171,7 +171,40 @@ distinguished by the <a href="">Poss</a> feature.</p>
 
 <h4 id="examples-5">Examples</h4>
 
-<p>We are not using <code class="language-plaintext highlighter-rouge">PronType=Tot</code>.</p>
+<p><code class="language-plaintext highlighter-rouge">PronType=Tot</code> is used for universal quantifiers, mainly <em>tutto</em> (<em>tutti, tutta, tutte</em>) and also <em>entrambi</em> and <em>ambedue</em> (“both”). In practice it is a determiner (<code class="language-plaintext highlighter-rouge">DET</code>) that precedes the definite article or demonstrative, and it is attached as <code class="language-plaintext highlighter-rouge">det:predet</code>.</p>
+
+<pre><code class="language-conllu"># sent_id = isst_tanl-3590
+# text = Ecco tutti i retroscena.
+1	Ecco	ecco	ADV	B	_	4	advmod	4:advmod	_
+2	tutti	tutto	DET	T	Gender=Masc|Number=Plur|PronType=Tot	4	det:predet	4:det:predet	_
+3	i	il	DET	RD	Definite=Def|Gender=Masc|Number=Plur|PronType=Art	4	det	4:det	_
+4	retroscena	retroscena	NOUN	S	Gender=Masc|Number=Plur	0	root	0:root	SpaceAfter=No
+5	.	.	PUNCT	FS	_	4	punct	4:punct	_
+</code></pre>
+
+<pre><code class="language-conllu"># sent_id = 5_WIKIBalzac-11
+# text = fallì in tutti questi tentativi.
+1	fallì	fallire	VERB	V	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	0	root	0:root	_
+2	in	in	ADP	E	_	5	case	5:case	_
+3	tutti	tutto	DET	T	Gender=Masc|Number=Plur|PronType=Tot	5	det:predet	5:det:predet	_
+4	questi	questo	DET	DD	Gender=Masc|Number=Plur|PronType=Dem	5	det	5:det	_
+5	tentativi	tentativo	NOUN	S	Gender=Masc|Number=Plur	1	obl	1:obl:in	SpaceAfter=No
+6	.	.	PUNCT	FS	_	1	punct	1:punct	_
+</code></pre>
+
+<pre><code class="language-conllu"># sent_id = tut-11
+# text = Entrambe le categorie di limiti presentano dei requisiti comuni:
+1	Entrambe	entrambi	DET	T	Gender=Fem|Number=Plur|PronType=Tot	3	det:predet	3:det:predet	_
+2	le	il	DET	RD	Definite=Def|Gender=Fem|Number=Plur|PronType=Art	3	det	3:det	_
+3	categorie	categoria	NOUN	S	Gender=Fem|Number=Plur	6	nsubj	6:nsubj	_
+4	di	di	ADP	E	_	5	case	5:case	_
+5	limiti	limite	NOUN	S	Gender=Masc|Number=Plur	3	nmod	3:nmod:di	_
+6	presentano	presentare	VERB	V	Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin	0	root	0:root	_
+7	dei	dei	DET	RI	Definite=Ind|Gender=Masc|Number=Plur|PronType=Art	8	det	8:det	_
+8	requisiti	requisito	NOUN	S	Gender=Masc|Number=Plur	6	obj	6:obj	_
+9	comuni	comune	ADJ	A	Number=Plur	8	amod	8:amod	SpaceAfter=No
+10	:	:	PUNCT	FC	_	6	punct	6:punct	_
+</code></pre>
 
 <h3 id="neg-negative-pronoun-determiner-or-adverb"><a name="Neg"><code class="language-plaintext highlighter-rouge">Neg</code></a>: negative pronoun, determiner or adverb</h3>
 
@@ -196,23 +229,11 @@ distinguished by the <a href="">Poss</a> feature.</p>
   <li><em>che</em> disastro “what a disaster”, <em>che</em> catastrofe “what a catastrophe”</li>
 </ul>
 
-<h3 id="predet-predeterminer-this-value-is-language-specific"><a name="Predet"><code class="language-plaintext highlighter-rouge">Predet</code></a>: predeterminer. This value is language specific.</h3>
-
-<p>It is always used along with <em>det:predet</em> dependency relations.</p>
-
-<h4 id="examples-9">Examples</h4>
-
-<ul>
-  <li><em>tutta</em> la giornata “all day”</li>
-  <li><em>tutti</em> gli esseri umani “all human beings”</li>
-  <li><em>entrambi</em> i prigionieri “both prisoners”</li>
-</ul>
-
 <h3 id="ord-ordinal-pronouns-this-value-is-language-specific"><a name="Ord"><code class="language-plaintext highlighter-rouge">Ord</code></a>: ordinal pronouns. This value is language specific.</h3>
 
 <p>It is used to mark ordinal pronouns. Part of speech is PRON/NO. When ordinals are used as noun modifiers they are marked as [ADJ].</p>
 
-<h4 id="examples-10">Examples</h4>
+<h4 id="examples-9">Examples</h4>
 
 <ul>
   <li>Il <em>primo</em> sostiene che …  “the first asserts that …</li>
