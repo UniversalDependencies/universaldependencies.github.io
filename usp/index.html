@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Uspanteko UD</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-usp">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_usp/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="ud-for-uspanteko-">UD for Uspanteko <span class="flagspan"><img class="flag" src="../../flags/svg/MX.svg" /></span></h1>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>Generally, words are delimited by whitespace characters. Exceptions to this rule are documented below.</li>
+  <li>Uspanteko adpositions are frequently formed with a multi-word token consisting of a preposition and relational noun, either with or without the relational noun bearing ergative agreement.<br />
+Examples: <em>chij = ch + ij</em> “to back”, <em>chwij = ch + w +</em> ij_ “to 1ERG back”</li>
+  <li>Demonstratives frequently fuse with the plural clitic <em>taq</em>.
+Example: <em>tra = taq + ra</em> “PL this”</li>
+  <li>In addition, given the high frequency of Spanish in Uspanteko data, especially in speech, we recognize the two main classes of multi-word tokens from Spanish:
+    <ul>
+      <li>Contractions of prepositions and definite articles.
+Example: <em>al = a + el</em> “to the”, <em>del = de + el</em> “of the”.</li>
+      <li>Certain verb forms (infinitives, imperatives, present participles) are writen together with object clitic pronouns, while with other verb forms the clitics are written as separate words.
+Examples: <em>convertirse = convertir + se</em> “to become” (lit. “to convert itself”), <em>hacerlo</em> “to do it”.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<ul>
+  <li>
+    <p><em>NOUN</em>: Nouns in Uspanteko are poor in inflection, only productively inflecting for possessors via ergative agreement prefixes. A small number of nouns, mostly for humans and high animacy animals take plural suffixes <code class="language-plaintext highlighter-rouge">-iib'</code>, <code class="language-plaintext highlighter-rouge">-aab'</code>, <code class="language-plaintext highlighter-rouge">-b'</code>. We also include Relational Nouns in this category. This subclass of NOUN expresses the relation (typically) between a nominal and a predicate. They are typically similar in meaning to prepositions <code class="language-plaintext highlighter-rouge">on', </code>inside of’, <code class="language-plaintext highlighter-rouge">next to', </code>with’, etc. in English. They take the nominal morphology agreeing with Person and Number of the possessor, the former via ergative prefixes and the latter via the plural suffix <code class="language-plaintext highlighter-rouge">-aq</code>.</p>
+  </li>
+  <li>
+    <p><em>VERB</em> : Verbs are easily distinguishable from other word classes due to their inflectional and derivational morphology. They obligatorily inflect for person and number of subject in intransitives, and for subject and object in transitives. Tense, aspect, and mood are also marked on the verb. Derivational verbal morphology includes directionals, compounding, intensification, in addition to argument structure changing operations like passive and antipassive.</p>
+  </li>
+  <li>
+    <p><em>DET</em>: Determiners usually precede a noun, and often come with singular / plural pairs, for example <em>yaj / yaq</em>, <em>man / maq</em>. Demonstratives include <em>ri</em>, <em>ra</em>, <em>li</em>. There is a pure plural demonstrative <em>taq</em> which often co-occurs with other demonstratives lik <em>taq ra</em>, or even contracted as in <em>tra</em>. Other common determiners are quantifiers such as <em>juntir</em> <code class="language-plaintext highlighter-rouge">all' and _jun_ </code>some’.</p>
+  </li>
+  <li>
+    <p><em>AUX</em>: Uspanteko does not have a rich system of auxiliaries or copular verbs, and so the category is restricted to a progressive auxiliary <em>tijin</em>.</p>
+  </li>
+  <li>
+    <p><em>ADV</em>: In addition to obvious adverbial words, we also tag as ADV the reportative evidential <em>cha’</em> ``it’s said”.</p>
+  </li>
+</ul>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>
+    <p><em>Nominal Features</em>: We mark NOUNs for Number and Number of possessor (Number[psor]). The feature NounType is used to distinguish Relational Nouns (NounType=Rel).</p>
+  </li>
+  <li>
+    <p><em>Verbal Features</em>: Since Uspanteko Verbs can and typically do represent all of their arguments with morphology, we used layered features for Number and Person of the subj/obj/iobj. Tense and Aspect features are also used.</p>
+  </li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<ul>
+  <li>
+    <p><em>Core and non-core arguments</em>: Subjects of intransitive verbs, and both subjects and objects of transitive verbs, are obligatorily marked on the verb via prefixation, and the phrase that is indexed by the agreement marker is often omitted. Plural subjects are additionally indexed by a verbal enclitic <em>taq</em> which otherwise appears as a plural determiner. This is true clitic doubling, and so we take <em>taq</em> to bear the <em>expl</em> relation while the nominal argument, when present, bears the usual grammatical role. There are no lexically ditransitive verbs and so no non-core arguments, including indirect objects, are marked in the verb. They are generally marked as possessors of relational nouns or via adpositions.</p>
+  </li>
+  <li>
+    <p><em>Focalization</em>: Both core and non-core arguments, as well as adverbials, can be focalized. In Uspanteko this is marked by a focus particle <em>ri’</em> which can appear before or after the focused element. In order to more closely match the K’iche’ (quc) UD corpus we similarly give <em>ri’</em> the <code class="language-plaintext highlighter-rouge">discourse</code> relation when it occurs with focused nominals. In cases where there is no focused nominal or adverbial, <em>ri’</em> receives the relation <code class="language-plaintext highlighter-rouge">mark</code> because such clauses are always subordinate and receive a temporal or purpose-clause interpretation.</p>
+  </li>
+  <li>
+    <p><em>Conjunction and parataxis</em>: Throughout the corpus, we frequently observe sentences containing two or more adjacent clauses without an explicit coordinating conjunction. These cases are somewhat ambiguous with respect to their syntactic relationship, as they could be analyzed as conjunction (<code class="language-plaintext highlighter-rouge">conj</code>), which typically requires an explicit conjunction but can appear without one, e.g. in a list of items, or <code class="language-plaintext highlighter-rouge">parataxis</code>. Since the difference between these two relations can be ambiguous, we established a straightforward rule to facilitate ease-of-annotation: When the two clauses share an argument, use <code class="language-plaintext highlighter-rouge">conj</code>; otherwise, use <code class="language-plaintext highlighter-rouge">parataxis</code>.</p>
+  </li>
+</ul>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is 1 Uspanteko UD treebank:</p>
+
+<ul>
+  <li><a href="../treebanks//usp_mesotree/index.html">Uspanteko</a></li>
+</ul>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'usp';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
