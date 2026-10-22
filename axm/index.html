@@ -97,7 +97,7 @@
 <ul>
   <li>Middle Armenian uses the 17 universal part-of-speech tags.</li>
   <li><a href="">PRON</a> is used for pronouns functioning as nominal heads, while pronominal modifiers of nouns are generally tagged <a href="">DET</a>. Traditional grammatical classifications do not always make this distinction.</li>
-  <li>Middle Armenian has prepositions, postpositions, and ambipositional adpositions (<a href="">ADP</a>).</li>
+  <li>Middle Armenian has prepositions, postpositions, and ambipositional adpositions (<a href="">ADP</a>). Some multiword expressions have an external syntactic category represented by <code class="language-plaintext highlighter-rouge">ExtPos</code>, while their component words retain their own UPOS tags.</li>
   <li>Middle Armenian has several auxiliary verbs (<a href="">AUX</a>) (<em>եմ</em>/<em>em</em>, <em>լինիմ</em>/<em>linim</em> “be”, <em>ունիմ</em>/<em>ownim</em> “have”, <em>կամ</em>/<em>kam</em> “exist”) and mood auxiliaries (<em>կու</em>/<em>kow</em> “will”, <em>պիտի</em>/<em>piti</em> “must/will”, <em>կամել</em>/<em>kamel</em> “intend, should be”).
 The auxiliary <em>եմ</em>/<em>em</em> is used in the following constructions:
     <ul>
@@ -111,12 +111,11 @@ The auxiliary <em>եմ</em>/<em>em</em> is used in the following constructions:
           <li>periphrastic negated present and imperfect tenses of indicative and conditional moods (share the same form) (negated present or imperfect form of <em>եմ</em> + connegative form of the main verb),</li>
         </ul>
       </li>
-      <li>Periphrastic “secondary compound tenses” (any form of <em>լինիմ</em>/<em>linim</em> + resultative and perfect participles of the main verb). Note, that the aorist and the present and imperfect indicative (subjunctive) forms of the verb <em>լինիլ</em>/<em>linil</em> (<em>լինալ</em>/<em>linal</em>) are analyzed as lexical verbs whenever they occur with nominal predicates (nouns, adjectives, etc.), and as auxiliaries only when they combine with participles.</li>
-      <li>Periphrastic causative (any form of <em>տալ</em>/<em>tal</em> + infinitive of the main verb).</li>
     </ul>
   </li>
-  <li>In other words, <em>եմ, լինիմ</em> and <em>տալ</em> are the only lemmas that occur with the <a href="">AUX</a> tag (Exception: finite existentials <em>կամ</em> and <em>ունեմ</em> in combination with resultative participle).</li>
-  <li>Verbs with modal meaning are not considered to be auxiliaries in Middle Armenian.</li>
+  <li>Periphrastic “secondary compound tenses” are formed with any form of <em>լինիմ</em>/<em>linim</em> + resultative and perfect participles of the main verb). Note, that the aorist and the present and imperfect indicative (subjunctive) forms of the verb <em>լինիլ</em>/<em>linil</em> (<em>լինալ</em>/<em>linal</em>) are analyzed as lexical verbs whenever they occur with nominal predicates (nouns, adjectives, etc.), and as auxiliaries only when they combine with participles.</li>
+  <li>Periphrastic causative is formed with any form of <em>տալ</em>/<em>tal</em> + infinitive of the main verb).</li>
+  <li>Durative aspect is expressed with the finite forms of the existentials <em>ունիմ</em>/<em>ownim</em> “have”, <em>կամ</em>/<em>kam</em> “exist”  in combination with resultative, perfect and past participles of the lexical verb.</li>
   <li>There are three main (de)verbal forms, distinguished by the UPOS tag and the value of the <a href="">VerbForm</a> feature:
     <ul>
       <li>Infinitive <code class="language-plaintext highlighter-rouge">Inf</code>, tagged <a href="">VERB</a> or <a href="">AUX</a>.</li>
@@ -129,53 +128,43 @@ The auxiliary <em>եմ</em>/<em>em</em> is used in the following constructions:
 <h3 id="nominal-features">Nominal Features</h3>
 
 <ul>
-  <li>Nominal words (<a href="">NOUN</a>, <a href="">PROPN</a> and some of <a href="">PRON</a>) have an inherent <a href="">Animacy</a> feature with one of three values: <code class="language-plaintext highlighter-rouge">Hum</code>, <code class="language-plaintext highlighter-rouge">Nhum</code>. Note that this may be changed in future. Nominal words could be treated as having inherent <code class="language-plaintext highlighter-rouge">Hum</code>, <code class="language-plaintext highlighter-rouge">Nhum</code> and further would be subclassified by the layered <code class="language-plaintext highlighter-rouge">Animacy[gram]</code> values <code class="language-plaintext highlighter-rouge">Anim</code> vs. <code class="language-plaintext highlighter-rouge">Inan</code>.</li>
-  <li>The two main values of the <a href="">Number</a> feature are <code class="language-plaintext highlighter-rouge">Sing</code> and <code class="language-plaintext highlighter-rouge">Plur</code>. The following parts of speech inflect for number:
-<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite).
+  <li>The main <a href="">Number</a> values are <code class="language-plaintext highlighter-rouge">Sing</code> and <code class="language-plaintext highlighter-rouge">Plur</code>. The following parts of speech inflect for number: <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">VERB</a>, <a href="">AUX</a> (finite).
     <ul>
-      <li>Selected nouns are plurale tantum (<code class="language-plaintext highlighter-rouge">Ptan</code>) or singulare tantum (<code class="language-plaintext highlighter-rouge">Coll</code>). These two values are lexical, and cannot be used with
-the agreeing verbs. They also never occur with pronouns. <code class="language-plaintext highlighter-rouge">Coll</code> occurs with gerundives.</li>
-      <li>There is a language-specific value <code class="language-plaintext highlighter-rouge">Assoc</code> (associative plural). This is also lexical and occurs with <code class="language-plaintext highlighter-rouge">NOUN</code> and <code class="language-plaintext highlighter-rouge">PROPN</code>. Some of pronouns (<em>մերոնք, ձերոնք, իմոնք, քոնոնք</em>) are also associative.</li>
+      <li>Selected nouns are plurale tantum (<code class="language-plaintext highlighter-rouge">Ptan</code>): they have a morphologically plural form but refer to a single entity or a natural set of entities, such as paired body parts and similar items.</li>
     </ul>
   </li>
-  <li><a href="">Case</a> has 6 possible values: <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Gen</code>, <code class="language-plaintext highlighter-rouge">Dat</code>, <code class="language-plaintext highlighter-rouge">Abl</code>, <code class="language-plaintext highlighter-rouge">Ins</code>, <code class="language-plaintext highlighter-rouge">Loc</code>.
-It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">DET</a>, and gerundives. Note, that <code class="language-plaintext highlighter-rouge">Gen</code> occurs only with pronouns and determiners.
-    <ul>
-      <li>The <code class="language-plaintext highlighter-rouge">Case</code> feature also occurs with some of adpositions, subclassified as “localizers” (<a href="">ADP</a>). It is an inflectional feature here.</li>
-    </ul>
-  </li>
-  <li>The two main values of the <a href="">Definite</a> feature are <code class="language-plaintext highlighter-rouge">Def</code> and <code class="language-plaintext highlighter-rouge">Ind</code>. The following parts of speech inflect for definitness:
-<a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>. With gerundives, resultative and subject participles the feature sometimes encodes the lexical person of the possessor, although they can be almost interpreted as the 3rd person. We mark them as <code class="language-plaintext highlighter-rouge">Def</code> (see the layered features below).</li>
-  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and some adverbs (<a href="">ADV</a>) and has one of four possible values: <code class="language-plaintext highlighter-rouge">Pos</code>, <code class="language-plaintext highlighter-rouge">Cmp</code>, <code class="language-plaintext highlighter-rouge">Sup</code>, <code class="language-plaintext highlighter-rouge">Abs</code>.</li>
+  <li><a href="">Case</a> has 6 possible values: <code class="language-plaintext highlighter-rouge">Nom</code>, <code class="language-plaintext highlighter-rouge">Acc</code>, <code class="language-plaintext highlighter-rouge">Gen</code>, <code class="language-plaintext highlighter-rouge">Dat</code>, <code class="language-plaintext highlighter-rouge">Abl</code>, <code class="language-plaintext highlighter-rouge">Ins</code>. It occurs with the nominal words, i.e., <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>, <a href="">DET</a>, and inflected infinitives. Note, that <code class="language-plaintext highlighter-rouge">Gen</code> occurs only with pronouns and determiners.</li>
+  <li>The two main values of the <a href="">Definite</a> feature are <code class="language-plaintext highlighter-rouge">Def</code> and <code class="language-plaintext highlighter-rouge">Ind</code>. The following parts of speech inflect for definitness: <a href="">NOUN</a>, <a href="">PROPN</a>, <a href="">PRON</a>. Infinitives also receive the definiteness feature.</li>
+  <li><a href="">Degree</a> applies to adjectives (<a href="">ADJ</a>) and some adverbs (<a href="">ADV</a>) and has one of three possible values: <code class="language-plaintext highlighter-rouge">Pos</code>, <code class="language-plaintext highlighter-rouge">Cmp</code>, <code class="language-plaintext highlighter-rouge">Sup</code>.</li>
+  <li><a href="">NameType</a> is used to distinguish types of named entities.</li>
 </ul>
 
 <h3 id="verbal-features">Verbal Features</h3>
 
 <ul>
-  <li>Verbs have a lexical <a href="">Subcat</a>, either intransitive (<code class="language-plaintext highlighter-rouge">Intr</code>) or transitive (<code class="language-plaintext highlighter-rouge">Tran</code>).</li>
+  <li><a href="">VerbForm</a> distinguishes the major finite and non-finite verbal forms; <a href="">Mood</a>, <a href="">Tense</a>, <a href="">Aspect</a>, and <a href="">Voice</a> describe their relevant grammatical categories.</li>
+  <li><a href="">Subcat</a> distinguishes transitive (<code class="language-plaintext highlighter-rouge">Tran</code>) and intransitive (<code class="language-plaintext highlighter-rouge">Intr</code>) verbal lexemes.</li>
   <li>Verbs have one of six values of <a href="">Aspect</a>: <code class="language-plaintext highlighter-rouge">Dur</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Iter</code>, <code class="language-plaintext highlighter-rouge">Perf</code>, <code class="language-plaintext highlighter-rouge">Prog</code> or <code class="language-plaintext highlighter-rouge">Prosp</code>.
     <ul>
-      <li>Note, that in Armenian iterative is considered as a lexical feature of verbs, thus they have morphologically related not iterative counterparts, but it is not a regular system and the two verbs are represented by different lemmas. We mark them as biaspectual.</li>
-      <li>The <code class="language-plaintext highlighter-rouge">Aspect</code> feature should be also used with the corresponding deverbatives, if they have the <code class="language-plaintext highlighter-rouge">VerbForm</code> feature.</li>
+      <li>Note, that in Middle Armenian iterative is considered as a lexical feature of verbs, thus they have morphologically related not iterative counterparts, but it is not a regular system and the two verbs are represented by different lemmas. We mark them as biaspectual.</li>
     </ul>
   </li>
-  <li>Finite verbs always have one of five values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Cnd</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Nec</code> of <code class="language-plaintext highlighter-rouge">Sub</code>.
+  <li>Finite verbs always have one of five values of <a href="">Mood</a>: <code class="language-plaintext highlighter-rouge">Cnd</code>, <code class="language-plaintext highlighter-rouge">Imp</code>, <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Nec</code> or <code class="language-plaintext highlighter-rouge">Sub</code>.
     <ul>
-      <li>The necessitative mood is only used with necessitative particle <em>պիտի</em> or the impersonal predicative <em>պետք է</em>. The subjuncitve finite form of the main verb, that is needed to form a periphrastic necessitative, is not marked with this feature.</li>
-      <li>The negated conditional mood is only used with indicative auxiliaries <em>(եմ, էի)</em>. The connegative of the main verb, that is needed to form a periphrastic negated conditional, is also marked with this feature.</li>
+      <li>The necessitative mood is used only with the necessitative particle <em>պիտի</em> or the impersonal predicative <em>պետք է</em>. The subjunctive finite form of the main verb, that is needed to form a periphrastic necessitative, is not marked with this feature.</li>
     </ul>
   </li>
+  <li>The present and imperfect tenses of the indicative mood that are formed with the auxiliary <em>կու (կ, կոյ)</em>/<em>kow (k, koy)</em> have the same forms as the present and imperfect tenses of the conditional mood. They cannot be distinguished without context. The negative forms of the present and imperfect tenses of the indicative (as well as the conditional) mood exhibit variation in their formation. Besides the bound negative morpheme չ-/č-, the negation of indicative and conditional moods is formed periphrastically using the special form of main verb (traditionally called <em>negative participle</em>) and negated auxiliary <em>չեմ</em> “not to be”. The main verb is marked as <a href="">Connegative</a>.</li>
   <li>Verbs in indicative mood always have one of three values of <a href="">Tense</a>: mainly <code class="language-plaintext highlighter-rouge">Past</code> and for auxilaries and some content verbs <code class="language-plaintext highlighter-rouge">Pres</code> or <code class="language-plaintext highlighter-rouge">Imp</code>.
     <ul>
-      <li>Imperative and necessitative forms do not have the <code class="language-plaintext highlighter-rouge">Tense</code> feature (note that imperfect and present necessitatives are distinguished
-analytically).</li>
+      <li>Imperative and necessitative forms do not have the <code class="language-plaintext highlighter-rouge">Tense</code> feature (note that imperfect and present necessitatives are distinguished analytically).</li>
       <li>Subjunctve and conditional forms have one of the <code class="language-plaintext highlighter-rouge">Tense=Imp</code> or <code class="language-plaintext highlighter-rouge">Tense=Pres</code> features, which are formally imperfect or present, but semantically future.</li>
       <li>There are five values of the <a href="">Voice</a> feature: <code class="language-plaintext highlighter-rouge">Act</code>, <code class="language-plaintext highlighter-rouge">Cau</code>, <code class="language-plaintext highlighter-rouge">Mid</code>, <code class="language-plaintext highlighter-rouge">Pass</code>, <code class="language-plaintext highlighter-rouge">Rcp</code>. Active and causative verbs have <code class="language-plaintext highlighter-rouge">Subcate=Tran</code>, the other three <code class="language-plaintext highlighter-rouge">Subcate=Intr</code>.</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="polarity">Polarity</h3>
+<h3 id="polarity-">Polarity …</h3>
 
 <ul>
   <li><a href="">Polarity</a> has two values, <code class="language-plaintext highlighter-rouge">Pos</code> and <code class="language-plaintext highlighter-rouge">Neg</code>, and applies primarily to verbs (<a href="">VERB</a>, <a href="">AUX</a>) that can be negated using the bound morpheme <em>չ-</em>.
