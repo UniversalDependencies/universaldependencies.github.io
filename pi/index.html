@@ -107,43 +107,14 @@
 
 <h2 id="morphology">Morphology</h2>
 
-<h3 id="lemmatization">Lemmatization</h3>
-
-<p>We generally follow the lemmatization found in the Pāli Text Society’s dictionaries: The <em>Pali-English Dictionary</em> and <em>A Dictionary of Pāli</em>.</p>
-
-<h4 id="verb-lemmas">Verb Lemmas</h4>
-
-<p>The <code class="language-plaintext highlighter-rouge">LEMMA</code> for all verb forms is the 3rd-person singular present indicative of the underlying verb.
-For example, the past participle <em>gata</em> “gone” gets the <code class="language-plaintext highlighter-rouge">LEMMA</code> <em>gacchati</em>.</p>
-
-<p>For passive and causative voiced verbs, we give the passive and causative lemma and do not collapse the lemmas down to the simplex.
-For example, for the passive verb <em>nirujjhanti</em>, the lemma should be <code class="language-plaintext highlighter-rouge">nirujjhati</code> and for the causative verb <em>desemi</em>, the causative lemma <code class="language-plaintext highlighter-rouge">deseti</code> should be given.
-Similarly, for a double causative verb like <em>yojāpetvā</em>, the lemma should be <code class="language-plaintext highlighter-rouge">yojāpeti</code>.</p>
-
-<p>Forms of the verb <em>hoti</em> (<em>honti</em>, <em>ahosi</em>, etc) always get the lemma <code class="language-plaintext highlighter-rouge">bhavati</code>.
-Forms of the verb <em>atthi</em> (<em>amhi</em>, <em>atthu</em>, <em>santi</em>, etc), get the lemma <code class="language-plaintext highlighter-rouge">atthi</code>.</p>
-
-<h4 id="noun-lemmas">Noun Lemmas</h4>
-
-<p>Lemmas are always lowercase, even for proper nouns.</p>
-
-<p>For personal pronouns, collapse the cases down to the nominative. For example, <em>amhākaṃ</em> gets <em>mayaṃ</em> and <em>te</em> gets <em>tvaṃ</em>. Keep first and second, singular and plural separate.</p>
-
-<p>For demonstrative pronouns, collapse the cases, gender, and number to the nominative, singular, neuter form:</p>
-
-<ul>
-  <li>Use <em>tad</em> for all <em>ta-</em> forms: <em>sā</em>, <em>sa</em>, <em>taṃ</em>, <em>tena</em>, etc.</li>
-  <li>Use <em>etad</em> for all <em>eta-</em> forms: <em>eso</em>, <em>etassa</em>, <em>esā</em>, etc.</li>
-  <li>Use <em>yad</em> for all <em>ya-</em> forms: <em>yo</em>, <em>yā</em>, <em>yaṃ</em>, <em>yamhi</em>, etc.</li>
-  <li>Use <em>idaṃ</em> for its various forms: <em>ayaṃ</em>, <em>imaṃ</em>, <em>imāni</em>, <em>imehi</em>, <em>anena</em>, etc.</li>
-</ul>
-
-<p>Substantives and adjectives should get the stem form as their lemma. For example, <em>itthiyo</em> has the lemma <code class="language-plaintext highlighter-rouge">itthi</code>, <em>bhikkhave</em> gets the lemma <code class="language-plaintext highlighter-rouge">bhikkhu</code>, <em>rasso</em> the lemma <code class="language-plaintext highlighter-rouge">rassa</code>, <em>rāja</em> the lemma <code class="language-plaintext highlighter-rouge">rājan</code>, <em>bhagavato</em> <code class="language-plaintext highlighter-rouge">bhagavant</code>, etc.</p>
-
 <h3 id="part-of-speech-tags">Part of Speech Tags</h3>
 
-<p>Participles are tagged as <code class="language-plaintext highlighter-rouge">VERB</code>s and not <code class="language-plaintext highlighter-rouge">ADJ</code>s or <code class="language-plaintext highlighter-rouge">ADV</code>s.
+<p>Participles are tagged as <code class="language-plaintext highlighter-rouge">VERB</code>s.
 This means that they cannot get the <code class="language-plaintext highlighter-rouge">amod</code> dependency relation when used to modify a noun, so we use <code class="language-plaintext highlighter-rouge">acl</code> instead to attach it to its target noun.</p>
+
+<p>Sometimes in Pāli, a word derived from a participle has taken on a new meaning beyond its root verb.
+Nouns like <em>buddha</em> (“the Buddha”, from <em>bujjhati</em>, “knows”), <em>carita</em> (“behavior”, from <em>carati</em>, “walks”), <em>khādanīya</em> (“non-staple food”, from <em>khādati</em>, “chews”), etc or adjectives like <em>anāgata</em> (“future”, from <em>āgacchati</em>, “comes”), etc should be tagged as <code class="language-plaintext highlighter-rouge">NOUN</code> or <code class="language-plaintext highlighter-rouge">ADJ</code> as appropriate and not as <code class="language-plaintext highlighter-rouge">VERB</code> despite the etymological connection.
+Participles that are used in the same sense as their underlying verb, are just <code class="language-plaintext highlighter-rouge">VERB</code>s, even if they are syntactically close to being used as adjectives or nouns.</p>
 
 <p>Because Pāli is originally an oral language, we are stripping out symbols and punctuation, meaning we do not use the <code class="language-plaintext highlighter-rouge">SYM</code> or <code class="language-plaintext highlighter-rouge">PUNCT</code> tags.</p>
 
@@ -188,6 +159,39 @@ This means that they cannot get the <code class="language-plaintext highlighter-
     </ul>
   </li>
 </ul>
+
+<h3 id="lemmatization">Lemmatization</h3>
+
+<p>We generally follow the lemmatization found in the Pāli Text Society’s dictionaries: The <em>Pali-English Dictionary</em> and <em>A Dictionary of Pāli</em>.</p>
+
+<h4 id="verb-lemmas">Verb Lemmas</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">LEMMA</code> for all verb forms is the 3rd-person singular present indicative of the underlying verb.
+For example, the past participle <em>gata</em> “gone” gets the <code class="language-plaintext highlighter-rouge">LEMMA</code> <em>gacchati</em>.</p>
+
+<p>For passive and causative voiced verbs, we give the passive and causative lemma and do not collapse the lemmas down to the simplex.
+For example, for the passive verb <em>nirujjhanti</em>, the lemma should be <code class="language-plaintext highlighter-rouge">nirujjhati</code> and for the causative verb <em>desemi</em>, the causative lemma <code class="language-plaintext highlighter-rouge">deseti</code> should be given.
+Similarly, for a double causative verb like <em>yojāpetvā</em>, the lemma should be <code class="language-plaintext highlighter-rouge">yojāpeti</code>.</p>
+
+<p>Forms of the verb <em>hoti</em> (<em>honti</em>, <em>ahosi</em>, etc) always get the lemma <code class="language-plaintext highlighter-rouge">bhavati</code>.
+Forms of the verb <em>atthi</em> (<em>amhi</em>, <em>atthu</em>, <em>santi</em>, etc), get the lemma <code class="language-plaintext highlighter-rouge">atthi</code>.</p>
+
+<h4 id="noun-lemmas">Noun Lemmas</h4>
+
+<p>Lemmas are always lowercase, even for proper nouns.</p>
+
+<p>For personal pronouns, collapse the cases down to the nominative. For example, <em>amhākaṃ</em> gets <em>mayaṃ</em> and <em>te</em> gets <em>tvaṃ</em>. Keep first and second, singular and plural separate.</p>
+
+<p>For demonstrative pronouns, collapse the cases, gender, and number to the nominative, singular, neuter form:</p>
+
+<ul>
+  <li>Use <em>tad</em> for all <em>ta-</em> forms: <em>sā</em>, <em>sa</em>, <em>taṃ</em>, <em>tena</em>, etc.</li>
+  <li>Use <em>etad</em> for all <em>eta-</em> forms: <em>eso</em>, <em>etassa</em>, <em>esā</em>, etc.</li>
+  <li>Use <em>yad</em> for all <em>ya-</em> forms: <em>yo</em>, <em>yā</em>, <em>yaṃ</em>, <em>yamhi</em>, etc.</li>
+  <li>Use <em>idaṃ</em> for its various forms: <em>ayaṃ</em>, <em>imaṃ</em>, <em>imāni</em>, <em>imehi</em>, <em>anena</em>, etc.</li>
+</ul>
+
+<p>Substantives and adjectives should get the stem form as their lemma. For example, <em>itthiyo</em> has the lemma <code class="language-plaintext highlighter-rouge">itthi</code>, <em>bhikkhave</em> gets the lemma <code class="language-plaintext highlighter-rouge">bhikkhu</code>, <em>rasso</em> the lemma <code class="language-plaintext highlighter-rouge">rassa</code>, <em>rāja</em> the lemma <code class="language-plaintext highlighter-rouge">rājan</code>, <em>bhagavato</em> <code class="language-plaintext highlighter-rouge">bhagavant</code>, etc.</p>
 
 <h3 id="features">Features</h3>
 
