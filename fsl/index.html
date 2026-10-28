@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>French Sign Language UD</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-fsl">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_fsl/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="ud-for-french-sign-language-">UD for French Sign Language <span class="flagspan"><img class="flag" src="../../flags/svg/FR.svg" /></span></h1>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<p>Sign languages contain both lexical signs, which are quite easy to isolate, and non-lexicalized sequences, which can be more delicate to segment. Moreover, additionnal information is regularly present with the sign, realized simultaneously, so our segmentation allows us is to gather in one token all the elements articulated together. Lexical signs are transcribed by a gloss in French corresponding to the closest translation in French. For non lexical signs, the gloss is more as a description of the sign. Theses glosses are presented in square brackets, with uppercase for lexical signs and lowercase for non lexical signs. The additional and simultaneous information is described in the features.</p>
+<ul>
+  <li>The English transcription, similar to the French transcription, presented in the <code class="language-plaintext highlighter-rouge">Gloss</code> feature. The treebank can be easily converted into a English-based transcribed corpus. Following examples are given in English.</li>
+  <li>Most tokens are composed of one sign between square brackets <code class="language-plaintext highlighter-rouge">[]</code>. If more than one word in written French is used to describe the token, a dash <code class="language-plaintext highlighter-rouge">-</code> is used inbetween the words (ex: <em>[stop-suddently]</em>, <em>[fence-between-stakes]</em>).</li>
+  <li>Some token include the pattern <em>[]-[]</em>, which indicates morphological compound, generally incorporating numeral signs (ex: <em>[DURING-HOUR]-[EIGHT]</em> ‘during eight hours’, realized by a move with two hands where the number of visible fingers indicates the number of hours)</li>
+  <li>The use of dactylology (signing each letter) is represented with the following pattern <em>[A]-[B]-[C]-[D]</em>, with single letters in brackets, giving one token.</li>
+  <li>Double brackets are used when the token has been anonymized, the gloss is thus a more vague description of the token (ex: if a specific city has to be anonymized, such as <em>[PARIS]</em>, it appears as <em>[[CITY]]</em>).</li>
+  <li>Some elements that can be found outside the brackets, indicating that the sign is part of a larger class of sign:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">POSS[]</code> - a standardized possessive hand configuration with can vary in person depending on its movement and direction;</li>
+      <li><code class="language-plaintext highlighter-rouge">PNT[]</code> - a pointing sign, with the configuration of the pointing index, allowing the signer to interact with the signing space, which can be used to create/activate different discourse referent or for spatial descriptions</li>
+      <li><code class="language-plaintext highlighter-rouge">PNT-SURFACE[]</code> - also a pointing sign, with the configuration of the pointing palm</li>
+      <li><code class="language-plaintext highlighter-rouge">PRF[]</code> - signals the use of a proform, close to the concept of classifiers in the broader SL linguistic field, which is the use of one hand configuration (standardized or not) to refer to/incarnate into an element of the current discourse
+        <ul>
+          <li>This type can appear with an additional information, as <code class="language-plaintext highlighter-rouge">PRF(DH)[]</code> or <code class="language-plaintext highlighter-rouge">PRF(NDH)[]</code> specifying if the proform is realized with the dominant of non-dominant hand, if nothing is specified, it is realized with two hands.</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">SST[]</code> - signals the use of a Shape and Size Transfert, describing iconically some physical characteristics of an element of discourse</li>
+      <li><code class="language-plaintext highlighter-rouge">SignedName[]</code> - signals the use of any sign used as a name (ex: in another context the sign might mean ‘long hair’ or ‘umbrella’ or not be interpretable, but in this case it refers to a specific person)</li>
+      <li>These elements are thus the lemma of the concerned signs.</li>
+    </ul>
+  </li>
+  <li>Multiword tokens are not used.</li>
+  <li>Lemmas are used to group inflected signs belonging to a unique paradigm (ex: <em>[CUT]</em> and <em>[CUT-in-pieces]</em> have both the lemma <em>[CUT]</em>).
+    <ul>
+      <li>all tokens belonging to one of the classes described before have a common lemma (ex: <em>POSS[…]</em> are grouped under the lemma <em>POSS</em>)</li>
+      <li>if tokens present with a mix of standardized and non-standardized element, the lemma is only the standardized form</li>
+      <li>all tokens including fingerspelling are grouped under the lemma <em>FingerSpelling</em></li>
+    </ul>
+  </li>
+  <li>the lexicon of French and LSF obviously don’t always share a one to one correspondance for each lemma
+    <ul>
+      <li>if the sign correspond to several words in French, we tried to always select the same word in French (ex: <em>‘too’</em> and <em>‘same’</em> always described as <em>[TOO]</em>)</li>
+      <li>if one word in French can be encoded by two different signs, two strategies were employed
+        <ul>
+          <li>if the 2 signs give more semantic specification, multiple words were used to encode the sign (ex: <em>[DURING-HOUR]</em>, since the word <em>‘hour’</em> in French, as in English, can be use as a punctual reference, or as a duration, LSF uses different signs, similar to the German distinction <em>Uhr-Stunde</em>)</li>
+          <li>if the 2 signs have the same semantic content, the second sign encountered was encoded with a number <em>[NAME2]</em> (as <em>[ADORE]</em> and <em>[ADORE2]</em> that can be observed in the corpus)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Some signs present with the additional description <em>PI_</em> inside the brackets (ex: <em>[PI_TYPICAL]</em>, <em>[PI_THIS-ONE]</em>). This description is characteristic of the French Deaf community. Different signs are called “<em>PI</em>”, this name comes from the mouthing realized simultaneously with these signs. They have different meanings and forms, which are also described, however the mention of this specific denomination was important for us to not erase as it is part of the Deaf culture itself. It is thus an example of the limitation when it comes to describing LSF with written French, and one solution we suggest so far.</li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+<ul>
+  <li>LSF uses the universal tags: <code class="language-plaintext highlighter-rouge">ADJ</code>, <code class="language-plaintext highlighter-rouge">ADP</code>, <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">CCONJ</code>, <code class="language-plaintext highlighter-rouge">INTJ</code>, <code class="language-plaintext highlighter-rouge">NOUN</code>, <code class="language-plaintext highlighter-rouge">NUM</code>, <code class="language-plaintext highlighter-rouge">PRON</code>, <code class="language-plaintext highlighter-rouge">PROPN</code>, <code class="language-plaintext highlighter-rouge">PUNCT</code>, <code class="language-plaintext highlighter-rouge">SCONJ</code>, <code class="language-plaintext highlighter-rouge">VERB</code>, <code class="language-plaintext highlighter-rouge">X</code></li>
+  <li>The following tags are not used: <code class="language-plaintext highlighter-rouge">AUX</code>, <code class="language-plaintext highlighter-rouge">DET</code>, <code class="language-plaintext highlighter-rouge">PART</code>, <code class="language-plaintext highlighter-rouge">SYM</code></li>
+  <li>Using the upos categories for the tokens in LSF is not trivial. Some tests were used to distinguish between different upos.
+    <ul>
+      <li>To distinguish between <code class="language-plaintext highlighter-rouge">NOUN</code> and <code class="language-plaintext highlighter-rouge">VERB</code>, we tested what negation would be used on the given token. This test originated from the observation that <code class="language-plaintext highlighter-rouge">VERB</code> are negated by the sign <em>[NO]</em>, while the <code class="language-plaintext highlighter-rouge">NOUN</code> are negated by the sign <em>[THERE-IS-NOT]</em>.
+        <h3 id="features">Features</h3>
+      </li>
+    </ul>
+  </li>
+  <li>Universal features used: <code class="language-plaintext highlighter-rouge">Number</code>, <code class="language-plaintext highlighter-rouge">Voice</code>, <code class="language-plaintext highlighter-rouge">PronType</code></li>
+  <li>Many language-/modality-specific feature were added:
+    <ul>
+      <li>for a better description of the manual modality: <code class="language-plaintext highlighter-rouge">NDH</code> (non-dominant hand), <code class="language-plaintext highlighter-rouge">NDHHeld</code> (held sign from the non-dominant hand), <code class="language-plaintext highlighter-rouge">DHHeld</code> (held sign from the dominant hand), <code class="language-plaintext highlighter-rouge">TwoH</code> (sign realized with two hands, only in the case of <code class="language-plaintext highlighter-rouge">PNT</code>, <code class="language-plaintext highlighter-rouge">SST</code> or signs more commonly realized with one hand), <code class="language-plaintext highlighter-rouge">Rep</code> (identical repetition)</li>
+      <li>related to non-manual modality: <code class="language-plaintext highlighter-rouge">Exp</code> (facial expression), <code class="language-plaintext highlighter-rouge">Exp[lex]</code> (lexicalized facial expression, it is part of the sign itself), <code class="language-plaintext highlighter-rouge">Trs</code> (torso movement, usually for role shift/change of personal transfer), <code class="language-plaintext highlighter-rouge">Gaze</code>, <code class="language-plaintext highlighter-rouge">GazeHeld</code>, <code class="language-plaintext highlighter-rouge">NMM</code> (non-manual modality)</li>
+      <li>for the use of space: <code class="language-plaintext highlighter-rouge">Loc</code> (locus), <code class="language-plaintext highlighter-rouge">Src</code> (source), <code class="language-plaintext highlighter-rouge">Tgt</code> (target)</li>
+      <li>for the iconicity: <code class="language-plaintext highlighter-rouge">PT</code> (personal transfer, similar to a role shift in the broader sign language literature), <code class="language-plaintext highlighter-rouge">PTReal</code> (personal transfer realization), <code class="language-plaintext highlighter-rouge">ST</code> (situational transfer, when different proforms are used to represent the situation from an external point of view), <code class="language-plaintext highlighter-rouge">STReal</code> (situational transfer realization)</li>
+      <li>for reported speech: <code class="language-plaintext highlighter-rouge">Reported</code>, which is only marked on the head of the reported segment</li>
+      <li>for the grammatical roles incorporated in the sign: <code class="language-plaintext highlighter-rouge">Subj</code>, <code class="language-plaintext highlighter-rouge">Obj</code>, <code class="language-plaintext highlighter-rouge">Agent</code> (in case of passive construction), <code class="language-plaintext highlighter-rouge">Instr</code>, <code class="language-plaintext highlighter-rouge">Manner</code></li>
+    </ul>
+  </li>
+  <li>If more than one element has to be described for a specific feature, it is added with a <code class="language-plaintext highlighter-rouge">+</code> sign (ex: <em>PRF(DH)[ANIMÉ]+PRF(NDH)[tram]</em>)</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<ul>
+  <li>French Sign Language uses 16 relation types: <code class="language-plaintext highlighter-rouge">cc</code>, <code class="language-plaintext highlighter-rouge">comp</code>, <code class="language-plaintext highlighter-rouge">compound</code>, <code class="language-plaintext highlighter-rouge">conj</code>, <code class="language-plaintext highlighter-rouge">discourse</code>, <code class="language-plaintext highlighter-rouge">dislocated</code>, <code class="language-plaintext highlighter-rouge">flat</code>, <code class="language-plaintext highlighter-rouge">mod</code>, <code class="language-plaintext highlighter-rouge">parataxis</code>, <code class="language-plaintext highlighter-rouge">punct</code>, <code class="language-plaintext highlighter-rouge">reparandum</code>, <code class="language-plaintext highlighter-rouge">root</code>, <code class="language-plaintext highlighter-rouge">subj</code>, <code class="language-plaintext highlighter-rouge">uped</code>, <code class="language-plaintext highlighter-rouge">unk</code>, <code class="language-plaintext highlighter-rouge">vocative</code></li>
+  <li>Nonverbal predicates do not make use of copula constructions.</li>
+  <li>The following subtypes are used for French Sign Language:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">compound:svc</code> for serial verb constructions</li>
+      <li><code class="language-plaintext highlighter-rouge">conj:appos</code> for a second denomination of a previous element</li>
+      <li><code class="language-plaintext highlighter-rouge">conj:chaining</code> for the articulation of different event with the use of different iconic processes as a coherent chain, such as proforms, PTs or STs</li>
+      <li><code class="language-plaintext highlighter-rouge">conj:contr</code> for a contrastive construction in which an element is mentioned just a contrasting point to insist on a second one</li>
+      <li><code class="language-plaintext highlighter-rouge">conj:dbl</code> for doubling of syntactic element across the sentence</li>
+      <li><code class="language-plaintext highlighter-rouge">conj:illustrate</code> for the use of two tokens for the same referent or event, with an standardized and iconic sign, the latter one as an illustration of the first</li>
+      <li><code class="language-plaintext highlighter-rouge">conj:reform</code> for a reformulation of a previous constituent</li>
+      <li><code class="language-plaintext highlighter-rouge">conj:zoom</code> for a addition of an element more specific then the previous one</li>
+      <li><code class="language-plaintext highlighter-rouge">discourse:participant</code> for an introduction of the speaker before reported speech</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is one French Sign Language UD treebank:</p>
+<ul>
+  <li><a href="../treebanks/fsl_stkautogramm/index.html">French Sign Language-STKAutogramm</a></li>
+</ul>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'fsl';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
