@@ -203,61 +203,56 @@ They appear with nouns, infinitives, certain pronouns and adpositions and encode
       <li><a href="">NameType</a></li>
       <li><a href="">Style</a></li>
       <li><a href="">Typo</a></li>
+      <li>The value <code class="language-plaintext highlighter-rouge">Style=Arch</code> is used for archaic forms that belong to an older grammatical pattern but occur in Middle Armenian texts.</li>
+      <li>The following universal features are not used in Middle Armenian: <a href="">Gender</a>, <a href="">Evident</a>.</li>
     </ul>
   </li>
-  <li>The following universal features are not used in Armenian: <a href="">Gender</a>, <a href="">Evident</a>.</li>
 </ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="dep/index.html">Armenian relations</a>,
-as well as Armenian-specific examples scattered across the documentation of constructions.</p>
+<p>This is an overview only. For more detailed discussion and examples, see the list of <a href="dep/index.html">Middle Armenian relations</a>, as well as Middle Armenian-specific examples scattered across the documentation of constructions.</p>
 
 <h3 id="core-arguments-oblique-arguments-and-adjuncts">Core Arguments, Oblique Arguments and Adjuncts</h3>
 
 <ul>
   <li>Nominal subject (<a href="">nsubj</a>) is a noun phrase in the nominative case, without preposition.
     <ul>
-      <li>If the noun is quantified in partitive meaning, it may be in the ablative: <em>Հնչեցին Կոմիտասի երգերից</em> “Sounded from songs of Komitas.”</li>
-      <li>An infinitive verb may serve as the subject and is labeled as clausal subject, <a href="">csubj</a>.
-On the other hand, verbal nouns or gerundives as subjects are just <code class="language-plaintext highlighter-rouge">nsubj</code>.</li>
+      <li>An infinitival clause functioning as the subject is labeled <a href="">csubj</a>. A case-marked infinitive functioning as a nominal is analyzed according to its syntactic function.</li>
       <li>A finite subordinate clause may serve as the subject and is labeled <code class="language-plaintext highlighter-rouge">csubj</code>.</li>
     </ul>
   </li>
-  <li>Objects defined in the Armenain grammar may be bare noun phrases in nominative or dative (as direct objects or “voice objects”) and in dative, ablative, instrumental or locative, or adpositional phrases mainly in dative (as indirect / “objects of nature” or adpositional objects).
-For the purpose of UD the objects are divided to core objects, labeled <a href="">obj</a> or <a href="">iobj</a>.
-Oblique objects are labeled <a href="">obl</a>.
+  <li>Subjects of passive clauses are labeled <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>.
     <ul>
-      <li>Bare nominative and dative objects are considered core. Verbs that subcategorize for a single dative object are also considered core. Example: <em>մոտենում էր քաղաքին</em> “He was approaching the city.”</li>
-      <li>All adpositional objects are considered oblique.</li>
-      <li>Nominative objects of some verbs alternate with finite clausal complements, which are labeled <a href="">ccomp</a>.</li>
-      <li>If a verb subcategorizes for the infinitive (e.g. modal verbs or verbs of control), the infinitival complement is labeled <a href="">xcomp</a>.</li>
-      <li>If a verb subcategorizes for two core objects, one of them nominative (or <code class="language-plaintext highlighter-rouge">ccomp</code>) and the other non-nominative (mainly dative),
-then the non-nominative object is labeled <a href="">iobj</a>.
-Core nominal objects in other situations are labeled just <a href="">obj</a>.</li>
+      <li>The causer in a periphrastic causative construction is labeled <a href="">nsubj:caus</a>.</li>
+      <li>A nominal subject of a copular clause whose predicate is itself a clause is labeled <a href="">nsubj:outer</a>.</li>
+      <li>A clausal subject of a copular clause whose predicate is itself a clause is labeled <a href="">csubj:outer</a>.</li>
     </ul>
   </li>
-  <li>Adjuncts are usually adpositional phrases, but they can be bare noun phrases as well (following the Armenian grammar, adverbial modifiers are realized as noun phrases). They are labeled <a href="">obl</a>:
+  <li>Core nominal objects are labeled <a href="">obj</a> or <a href="">iobj</a>.
     <ul>
-      <li>Temporal or locational modifiers realized as noun phrases: <em>կեսգիշերին եկավ</em> “He came at midnight.”</li>
-      <li>Dative noun phrases with benefactive or possessive role (i.e. if the verb does not subcategorize for a single dative object
-and if it is not a verb of giving (or similar), where the dative could be interpreted as the recipient.
-Example: <em>նրան սուրճ եփեց</em> “he made (for) him coffee.”</li>
-      <li>Instrumental or directional noun phrases expressing the way or means with which something was done or direction from some point.
-Example: <em>հաճույքով լսում էր</em> “He was listening with pleasure.”</li>
-      <li>All adpositional phrases (i.e., their role and form is not defined lexically by the predicate) are adjuncts.</li>
+      <li>A direct object is normally a bare noun phrase in the nominative form.</li>
+      <li>A single dative argument selected by the verb may also be a core object.</li>
+      <li>If a verb takes two core objects, the non-nominative object, usually a dative recipient or experiencer, is labeled <a href="">iobj</a>.</li>
+      <li>Infinitival complements of modal and control predicates are normally labeled <a href="">xcomp</a>; finite complements are labeled <a href="">ccomp</a>.</li>
     </ul>
   </li>
-  <li>In passive clauses (both reflexive and reciprocal), the subject is labeled with <a href="">nsubj:pass</a> or <a href="">csubj:pass</a>, respectively.
+  <li>Non-core dependents are labeled <a href="">obl</a>. They include temporal and locative noun phrases, adpositional phrases, and case-marked nominals expressing such roles as means, manner, direction, source, beneficiary, or location.</li>
+  <li>
+    <ul>
+      <li>Adpositions attach to their nominal complement with <a href="">case</a>. Inflected postpositional localizers attach with <a href="">case:loc</a>; when a localizer occurs independently, it attaches to the predicate as <a href="">obl</a> while retaining the <a href="">ADP</a> tag.</li>
+    </ul>
+  </li>
+  <li>In passive clauses, an overt demoted agent is labeled <a href="">obl:agent</a>.
     <ul>
       <li>The auxiliary verb in periphrastic passive is labeled <a href="">aux</a>.</li>
-      <li>If the demoted agent is present, it has the form of a bare instrumental or adpositional phrase and its relation is labeled <a href="">obl:agent</a>.</li>
     </ul>
   </li>
-  <li>In causative clauses (both bare and periphrastic causative), the subject is labeled with <a href="">nsubj:caus</a>.
+  <li>In periphrastic causatives:
     <ul>
-      <li>The auxiliary verb in periphrastic causative is labeled <a href="">aux:caus</a>.</li>
-      <li>The demoted agent of the action (if present) has the form of a bare dative and is labeled [iobj:agent].</li>
+      <li><em>տալ</em>/<em>tal</em> is attached to the infinitive with <a href="">aux:caus</a>;</li>
+      <li>a dative demoted agent is labeled <a href="">iobj:agent</a>;</li>
+      <li>a nominative-form agent realized as the syntactic object of the causative construction is labeled <a href="">obj:agent</a>.</li>
     </ul>
   </li>
 </ul>
