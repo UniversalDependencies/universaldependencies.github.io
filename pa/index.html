@@ -85,7 +85,7 @@
 <ul>
   <li>Compounds with hyphens are split.</li>
   <li>Form and lemma of each token is mentioned. In many cases, form and the lemma are same (including punctuations).</li>
-  <li>Some clitics have apostrophes at the beginning and could be written merged with the previous word (e.g. ‘ਚ “in”). These should be tokenized separately. However, no instance noted in this specific treebank.</li>
+  <li>Some clitic postpositions have an apostrophe at the beginning and may be written merged with the previous word (e.g. ‘ਚ “in”, ‘ਤੇ “on”, ‘ਚੋਂ “from in”). They are tokenized separately and tagged <a href="">ADP</a>.</li>
   <li>Parentheses and brackets are tokenized as punctuation and attached with punct to the nearest relevant head, often the predicate of the main clause.</li>
 </ul>
 
@@ -104,14 +104,90 @@
 <h3 id="tags">Tags</h3>
 
 <ul>
-  <li>Aspectual light verbs are tagged <a href="">VERB</a> since they take full inflectional paradigms.
+  <li>Aspectual light (vector) verbs are tagged <a href="">VERB</a> since they take full inflectional paradigms. They attach to the main verb as <a href="">compound:svc</a>, e.g. ਕਰ ਦਿੱਤਾ, ਲੈ ਲਿਆ, ਹੋ ਚੁੱਕੀਆਂ, ਹੱਸਣ ਲੱਗ ਪਏ.
     <ul>
-      <li>Pay special attention to ਜਾਣਾ “to go”,  which is usually <a href="">VERB</a> (including as a light verb) but <a href="">AUX</a> if it is passivising a verb.</li>
+      <li>Pay special attention to ਜਾਣਾ “to go”, which is usually <a href="">VERB</a> (including as the completive light verb, e.g. ਹੋ ਗਈ “happened”, ਬੈਠ ਗਿਆ “sat down”) but <a href="">AUX</a> if it is passivising a verb, i.e. after a perfective participle (ਕੀਤਾ ਗਿਆ “was done”, ਮੰਨੀ ਜਾਂਦੀ “is considered”).</li>
     </ul>
   </li>
-  <li>Copular ‘ਹੈ’ is tagged AUX and used as COP with nominal or adjectival predicates, where the predicate is the root. For example ‘ਇਹ ਸੀ ਅਜਗਰ ਦਾ ਬਾਹਰਲਾ ਚਿੱਤਰ।’ (lemma: ਸੀ -&gt; ਹੈ), where ‘ਚਿੱਤਰ’ is the root and ‘ਸੀ’ is COP.</li>
-  <li>The same lemma ‘ਹੈ’ is tagged AUX when the main predicate is verbal.</li>
+  <li>The following lemmas are used as <a href="">AUX</a>:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lemma</th>
+      <th>Function</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ਹੈ</td>
+      <td>copula; present tense</td>
+      <td>ਉਹ ਖਾਣਾ ਖਾ ਰਿਹਾ [ਹੈ]</td>
+    </tr>
+    <tr>
+      <td>ਸੀ</td>
+      <td>copula; past tense</td>
+      <td>ਆਤਸ਼ਬਾਜ਼ੀਆਂ ਚੱਲ ਰਹੀਆਂ [ਸਨ]</td>
+    </tr>
+    <tr>
+      <td>ਹੋਣਾ</td>
+      <td>perfect / resultative and subjunctive</td>
+      <td>ਮੈਂ ਨੁੱਕਰ ਵਿਚ ਬੈਠਾ [ਹੋਇਆ] ਸਾਂ; ਕੋਈ ਅਜਨਬੀ ਪਹੁੰਚਿਆ [ਹੋਵੇ]</td>
+    </tr>
+    <tr>
+      <td>ਰਹਿਣਾ</td>
+      <td>progressive</td>
+      <td>ਉਹ ਖਾਣਾ ਖਾ [ਰਿਹਾ] ਹੈ</td>
+    </tr>
+    <tr>
+      <td>ਜਾਣਾ</td>
+      <td>passive</td>
+      <td>ਚਿੱਠੀ ਲਿਖੀ [ਗਈ]</td>
+    </tr>
+    <tr>
+      <td>ਕਰਨਾ</td>
+      <td>habitual (after the invariant perfective participle in -ਆ)</td>
+      <td>ਉਹ ਹਰ ਰੋਜ਼ ਆਇਆ [ਕਰਦਾ] ਸੀ</td>
+    </tr>
+    <tr>
+      <td>ਸਕਣਾ</td>
+      <td>potential</td>
+      <td>ਦੇਖ [ਸਕਦੇ] ਸੀ</td>
+    </tr>
+    <tr>
+      <td>ਪੈਣਾ</td>
+      <td>necessitative</td>
+      <td>ਬੈਠਣਾ [ਪਵੇਗਾ]</td>
+    </tr>
+    <tr>
+      <td>ਚਾਹੀਦਾ</td>
+      <td>necessitative</td>
+      <td>ਮਦਦ ਕਰਨੀ [ਚਾਹੀਦੀ] ਹੈ</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>The same lemmas are tagged <a href="">VERB</a> in their lexical meaning, e.g. ਮੈਂ ਪਿੰਡ ਵਿੱਚ ਰਹਿੰਦਾ ਹਾਂ “I live in the village”, ਉਹ ਘਰ ਗਿਆ “he went home”, ਉਹ ਕੰਮ ਕਰਦਾ ਹੈ “he does work”.</li>
+  <li>This inventory follows the closely related Hindi and Urdu UD treebanks, which treat the same constructions as auxiliaries: है/था and ہے/تھا for the copula and tense, होना/ہونا, रहना/رہنا for the progressive, जाना/جانا for the passive, करना/کرنا for the habitual, and सकना/سکنا, पड़ना/پڑنا, चाहिए/چاہیے for modality. As in those treebanks, vector verbs such as देना, लेना (ਦੇਣਾ, ਲੈਣਾ) and completive जाना (ਜਾਣਾ) are not auxiliaries but <a href="">VERB</a>.</li>
+  <li>Copular ‘ਹੈ’ is tagged AUX and used as COP with nominal or adjectival predicates, where the predicate is the root. For example ‘ਇਹ ਸੀ ਅਜਗਰ ਦਾ ਬਾਹਰਲਾ ਚਿੱਤਰ।’ (lemma: ਸੀ), where ‘ਚਿੱਤਰ’ is the root and ‘ਸੀ’ is COP. Only forms of “to be” are copulas; ਹੋਣਾ “to become” (e.g. ਪੈਦਾ ਹੋਈ “came into being”) is the main verb.</li>
+  <li>The same lemmas ‘ਹੈ’ and ‘ਸੀ’ are tagged AUX when the main predicate is verbal.</li>
   <li>Negation like ‘ਨਾ / ਨਹੀਂ’ is tagged PART and often attaches as advmod to the predicate.</li>
+  <li>Postpositions (ਨੂੰ, ਨੇ, ਦਾ, ਵਿੱਚ, ਨਾਲ, ਤੋਂ, ਦੁਆਲੇ, ਅੰਦਰ, ਵਿੱਚੋਂ, …) are tagged <a href="">ADP</a>, including the ergative marker ਨੇ.</li>
+  <li>The nominal part of a light-verb construction keeps its own category: <a href="">NOUN</a> (ਨਾਚ ਕੀਤਾ “danced”, ਨਜ਼ਰ ਆਉਣਾ “to appear”) or <a href="">ADJ</a> (ਦਾਖਲ ਹੋਇਆ “entered”, ਬੰਦ ਸਨ “were closed”).</li>
+  <li>The oblique infinitive (ਕਰਨ, ਦੇਖਣ, ਖਾਣ) is tagged <a href="">VERB</a>, also when it modifies a noun (ਖਾਣ ਦਾ ਕਮਰਾ “dining room”).</li>
+  <li>Interrogative words (ਕੌਣ / ਕਿਸ, ਕੀ, ਕਿਹੜਾ, ਕਿੰਨਾ, ਕਾਹਦਾ, ਕਿਹੋ) are tagged <a href="">PRON</a> or <a href="">DET</a> with PronType=Int.</li>
+</ul>
+
+<h3 id="lemmas">Lemmas</h3>
+
+<ul>
+  <li>Verbs (including auxiliaries other than ‘ਹੈ’ and ‘ਸੀ’) are lemmatized to the infinitive in -ਣਾ / -ਨਾ, e.g. ਗਿਆ → ਜਾਣਾ, ਰਿਹਾ → ਰਹਿਣਾ, ਸਕਦਾ → ਸਕਣਾ.</li>
+  <li>Forms of “to be”: present tense ਹੈ, ਹਨ, ਹਾਂ, ਹੋ, ਏ, ਐ (and colloquial ਨੇ) → ਹੈ; past tense ਸੀ, ਸਨ, ਸਾਂ → ਸੀ; all other forms (ਹੋਇਆ, ਹੁੰਦਾ, ਹੋਵੇ, ਹੋਵੇਗਾ, ਹੋਣ) → ਹੋਣਾ.</li>
+  <li>Nouns and adjectives are lemmatized to the direct singular; inflecting adjectives to the masculine form (ਤਿੱਖੀ → ਤਿੱਖਾ).</li>
+  <li>Each token has exactly one lemma.</li>
 </ul>
 
 <h3 id="features">Features</h3>
@@ -149,6 +225,11 @@
     </tr>
     <tr>
       <td>Nominal</td>
+      <td>NumType</td>
+      <td>Card</td>
+    </tr>
+    <tr>
+      <td>Nominal</td>
       <td>Person</td>
       <td>1, 2, 3</td>
     </tr>
@@ -160,7 +241,7 @@
     <tr>
       <td>Nominal</td>
       <td>PronType</td>
-      <td>Dem, Ind, Prs, Rel</td>
+      <td>Dem, Ind, Int, Prs, Rel</td>
     </tr>
     <tr>
       <td>Nominal</td>
@@ -179,21 +260,63 @@
     </tr>
     <tr>
       <td>Verbal</td>
-      <td>Polite</td>
-      <td>Form</td>
-    </tr>
-    <tr>
-      <td>Verbal</td>
       <td>Tense</td>
       <td>Fut, Past, Pres</td>
     </tr>
     <tr>
       <td>Verbal</td>
       <td>VerbForm</td>
-      <td>Fin, Inf, Part</td>
+      <td>Conv, Fin, Inf, Part</td>
+    </tr>
+    <tr>
+      <td>Other</td>
+      <td>ExtPos</td>
+      <td>ADV, PRON, SCONJ</td>
     </tr>
   </tbody>
 </table>
+
+<ul>
+  <li>Case: Nom marks the direct form; Acc marks the oblique form, i.e. a noun followed by a postposition (ਘਰ ਦੇ, ਹੱਥਾਂ ਵਾਲੇ); Abl marks the synthetic ablative in -ੋਂ (ਘਰੋਂ, ਬਾਹੋਂ). The ergative is expressed by the postposition ਨੇ, which carries no Case feature; the noun before it is Case=Acc.</li>
+  <li>Gender has two values only (Masc, Fem); Punjabi has no neuter.</li>
+  <li>Nouns, proper nouns and inflecting adjectives carry Case, Gender and Number. Attributive adjectives agree with their noun; invariant predicative adjectives (ਬੰਦ, ਸ਼ਾਂਤ, ਮੌਜੂਦ) carry Degree=Pos.</li>
+  <li>Pronouns carry Case, Number, Person and PronType; possessive pronouns (ਉਸਦਾ, ਮੇਰਾ, ਸਾਡਾ) add Poss=Yes, reflexive ਆਪਣਾ adds Reflex=Yes. Determiners carry PronType only.</li>
+  <li>Verbs:
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>imperfective participles in -ਦਾ: Aspect=Imp</td>
+              <td>Gender</td>
+              <td>Number</td>
+              <td>VerbForm=Part (ਬੋਲਦੀ);</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>perfective participles in -ਿਆ: Aspect=Perf</td>
+              <td>Gender</td>
+              <td>Number</td>
+              <td>VerbForm=Part (ਕੀਤਾ, ਗਈਆਂ);</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>infinitives: VerbForm=Inf; the oblique infinitive before a postposition also carries Case=Acc (ਕਰਨ ਲਈ);</li>
+      <li>converbs with ਕੇ: VerbForm=Conv (ਦੇਖ ਕੇ);</li>
+      <li>future and imperative forms: Mood, Number, Person, Tense, VerbForm=Fin (ਕਰਾਂਗੀ, ਰੁਕੋ);</li>
+      <li>subjunctive forms carry Number and Person only (ਕਰੇ, ਦੇਵੇ), since Mood=Sub is not used;</li>
+      <li>bare verb stems in compound verbs (ਕਰ in ਕਰ ਦਿੱਤਾ) carry no features.</li>
+    </ul>
+  </li>
+  <li>ExtPos is given on the head of fixed expressions: ਇਸ ਲਈ “therefore” (ExtPos=ADV), ਏਥੋਂ ਤੱਕ “even” (ExtPos=ADV), ਬਾਵਜੂਦ ਇਸਦੇ ਕਿ “despite the fact that” (ExtPos=SCONJ).</li>
+  <li>The features AdpType, Polarity, Voice and Foreign are not used.</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
@@ -211,27 +334,31 @@
   <tbody>
     <tr>
       <td>Core clausal</td>
-      <td>root, nsub, obj, iobj, cop, aux, ccomp, xcomp</td>
+      <td>root, nsubj, nsubj:pass, obj, iobj, cop, aux, aux:pass, ccomp, xcomp</td>
     </tr>
     <tr>
       <td>Adverbial</td>
-      <td>advcl, advmod, mark</td>
+      <td>advcl, advmod, advmod:emph, mark</td>
     </tr>
     <tr>
       <td>Oblique</td>
-      <td>obl</td>
+      <td>obl, obl:agent, obl:arg, obl:tmod</td>
     </tr>
     <tr>
       <td>Nominal modifiers</td>
-      <td>appos, amod, acl, nmod, nmod:poss, nummod, case, det</td>
+      <td>appos, amod, acl, acl:relcl, nmod, nmod:poss, nmod:tmod, nummod, case, det, det:poss</td>
     </tr>
     <tr>
       <td>Coordination and punctuation</td>
-      <td>cc, conj, discourse, punct</td>
+      <td>cc, conj, punct</td>
     </tr>
     <tr>
-      <td>compound</td>
-      <td>compound:lvc, compound:svc, fixed</td>
+      <td>Compounds and multiword expressions</td>
+      <td>compound, compound:lvc, compound:redup, compound:svc, fixed, flat</td>
+    </tr>
+    <tr>
+      <td>Other</td>
+      <td>discourse, dislocated, orphan, parataxis, vocative</td>
     </tr>
   </tbody>
 </table>
@@ -240,6 +367,9 @@
 
 <ul>
   <li>nsubj, obj, and iobj are used for core arguments.</li>
+  <li>A verb has at most one nsubj and one obj. A subject resumed by a pronoun (ਮਾਲਕ … ਉਸ ਨੇ) is attached as dislocated.</li>
+  <li>Oblique dependents of a verb are obl; dependents of a noun with a postposition are nmod (ਦਿਆਨਤਦਾਰੀ ਤੇ ਯਕੀਨ “trust in honesty”).</li>
+  <li>The agent of a passive with ਦੁਆਰਾ “by” is obl:agent.</li>
 </ul>
 
 <p>Nominal modification:</p>
@@ -247,12 +377,14 @@
 <ul>
   <li>amod, nmod, nmod:poss, det, nummod,</li>
   <li>acl relation is used for clausal modifiers.</li>
+  <li>The indefinite ਇੱਕ / ਇਕ “a, one” is tagged DET with det; as a numeral it is NUM with nummod.</li>
 </ul>
 
 <p>Adverbials and subordination:</p>
 
 <ul>
   <li>Word-level adverbials are related using advmod.</li>
+  <li>ਜਦੋਂ “when” and ਜਿਵੇਂ “as” used as clause-level adverbs are tagged ADV with advmod.</li>
 </ul>
 
 <p>Complementation:</p>
@@ -264,26 +396,40 @@
 <p>Light and serial verbs:</p>
 
 <ul>
-  <li>Light-verb constructions are used to relate NOUN or ADJ or VERB + light verb → compound:lvc using the lexical term as head.</li>
+  <li>Light-verb constructions: the NOUN or ADJ part attaches to the light verb (ਕਰਨਾ, ਹੋਣਾ, ਦੇਣਾ, ਆਉਣਾ, …) as compound:lvc, and the light verb is the head of the clause, e.g. ਨਾਚ ਕੀਤਾ “danced”, ਦਾਖਲ ਹੋਇਆ “entered”, ਜੁਆਬ ਦਿੱਤਾ “replied”.</li>
+  <li>Serial-verb and vector-verb constructions are represented using the relationship compound:svc, with the first (main) verb as head.</li>
+</ul>
+
+<p>Coordination, names and fixed expressions:</p>
+
+<ul>
+  <li>The first conjunct is the head of a coordination; the other conjuncts attach to it as conj, and cc and commas attach to the conjunct that follows them.</li>
+  <li>In gapping, the first remnant is promoted to head and the remaining arguments attach as orphan (ਆਂਟ ਹੈਲੇਨ ਇੱਕ ਅੜਾਉਣੀ, ਆਂਟ ਸਟੈਫਨੀ ਇੱਕ ਬਰੋਚ … ਲੈ ਕੇ ਆਈ).</li>
+  <li>Multiword names are flat, with the first word as head; case markers attach to that head.</li>
+  <li>Reduplication is compound:redup with the first word as head (ਵੱਡੇ ਵੱਡੇ, ਸਮੇਂ ਸਮੇਂ, ਡੌਰ ਭੌਰ).</li>
   <li>
-    <p>Serial-verb constructions are represented using the relationship compound:svc.</p>
+    <p>Fixed expressions (ਇਸ ਲਈ, ਏਥੋਂ ਤੱਕ, ਬਾਵਜੂਦ ਇਸਦੇ ਕਿ) use fixed with the first word as head.</p>
   </li>
   <li>Special relations:
     <ul>
       <li><a href="">acl:relcl</a> for relative adnominal clauses. These have to have a relative pronoun in them (otherwise just <a href="">acl</a>).</li>
-      <li><a href="">aux:pass</a> for passive auxiliary ਜਾਣਾ (marked advcl here).</li>
-      <li><a href="">compound:lvc</a> for noun/adjective + verb constructions.</li>
-      <li><a href="">compound:svc</a> for aspectual light verbs.</li>
+      <li><a href="">aux:pass</a> for the passive auxiliary ਜਾਣਾ.</li>
+      <li><a href="">compound:lvc</a> for noun/adjective + light verb constructions.</li>
+      <li><a href="">compound:svc</a> for aspectual light (vector) verbs.</li>
+      <li><a href="">compound:redup</a> for reduplicated words.</li>
       <li><a href="">nsubj:pass</a> for passivized subjects.</li>
+      <li><a href="">obl:agent</a> for the agent of a passive (ਦੁਆਰਾ “by”).</li>
+      <li><a href="">dislocated</a> for a fronted nominal resumed by a pronoun.</li>
     </ul>
   </li>
 </ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/pa-comparison.html">3</a> Punjabi UD treebanks:</p>
+<p>There are <a href="../treebanks/pa-comparison.html">4</a> Punjabi UD treebanks:</p>
 
 <ul>
+  <li><a href="../treebanks/pa_dyz/index.html">Punjabi-DYZ</a></li>
   <li><a href="../treebanks/pa_puntb/index.html">Punjabi-PunTB</a></li>
   <li><a href="../treebanks/pa_cs/index.html">Punjabi-CS</a></li>
   <li><a href="../treebanks/pa_rang/index.html">Punjabi-Rang</a></li>
