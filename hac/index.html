@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Gorani UD</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-hac">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_hac/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="ud-for-gorani-">UD for Gorani <span class="flagspan"><img class="flag" src="../../flags/svg/IQ-KRD.svg" /></span></h1>
+
+<p>Gorani (ISO 639-3: <code class="language-plaintext highlighter-rouge">hac</code>) is a Northwestern Iranian language. In Universal Dependencies the first treebank documents the Hawrami (Hewramî) variety. The description below records the annotation decisions used for that treebank. They follow the published interlinear analysis of the source text and the universal guidelines. Where a Hewramî category does not yet have a settled UD analysis, the treebank keeps the universal label that the guidelines already define instead of inventing a language-specific one.</p>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<p>Tokens are orthographic words as printed in the source transcription. Punctuation is split off as a separate <code class="language-plaintext highlighter-rouge">PUNCT</code> token. There are no multiword tokens and no words with internal spaces. Clitics and other bound elements that the published interlinear gloss writes with <code class="language-plaintext highlighter-rouge">=</code> or <code class="language-plaintext highlighter-rouge">-</code> are still kept inside the orthographic word. The source gloss is preserved in <code class="language-plaintext highlighter-rouge">MISC</code> as <code class="language-plaintext highlighter-rouge">Gloss</code>. A later revision may split some of these clitics into syntactic words; until that review, person indexes, possessive clitics, additive particles, and copular material can remain attached to the host.</p>
+
+<p>Sentence boundaries follow the numbered annotation units of the source recording. Those units are intonation units, so one UD sentence may contain more than one clause. The original unit id is kept in <code class="language-plaintext highlighter-rouge">MISC</code> as <code class="language-plaintext highlighter-rouge">SourceUnit</code> and in the sentence id (<code class="language-plaintext highlighter-rouge">hwr-rec-zb-001</code> corresponds to ZB.1). If a token is not followed by a space in the sentence text, its <code class="language-plaintext highlighter-rouge">MISC</code> contains <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code>.</p>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<p>The treebank uses universal POS tags only. There is no language-specific XPOS tagset (<code class="language-plaintext highlighter-rouge">XPOS</code> is <code class="language-plaintext highlighter-rouge">_</code>).</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">NOUN</code>, <code class="language-plaintext highlighter-rouge">PROPN</code>, <code class="language-plaintext highlighter-rouge">ADJ</code>, <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">NUM</code>, <code class="language-plaintext highlighter-rouge">PRON</code>, <code class="language-plaintext highlighter-rouge">DET</code>, <code class="language-plaintext highlighter-rouge">ADP</code>, <code class="language-plaintext highlighter-rouge">CCONJ</code>, <code class="language-plaintext highlighter-rouge">PART</code>, <code class="language-plaintext highlighter-rouge">INTJ</code>, <code class="language-plaintext highlighter-rouge">VERB</code>, <code class="language-plaintext highlighter-rouge">AUX</code>, <code class="language-plaintext highlighter-rouge">PUNCT</code>, and <code class="language-plaintext highlighter-rouge">X</code> occur in the data.</li>
+  <li><code class="language-plaintext highlighter-rouge">AUX</code> is reserved for forms of the verb “to be” (lemmas <code class="language-plaintext highlighter-rouge">bî</code> and <code class="language-plaintext highlighter-rouge">bîyê</code>). Other verbs, including lexical “come” and “take”, are <code class="language-plaintext highlighter-rouge">VERB</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">DET</code> is used for demonstratives and for <code class="language-plaintext highlighter-rouge">herçê</code> “whatever” when it determines a nominal or a clause. Independent personal pronouns are <code class="language-plaintext highlighter-rouge">PRON</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">PART</code> is used for the emphatic particle <code class="language-plaintext highlighter-rouge">her</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">X</code> is used only when the conversion cannot assign a defensible universal tag. It should not be resolved by analogy with another Iranian language.</li>
+  <li><code class="language-plaintext highlighter-rouge">ADP</code> covers both prepositions and elements that the source treats as postpositions when they are written as separate words.</li>
+</ul>
+
+<h3 id="features">Features</h3>
+
+<p>Only universal features are used. Every value below is the UD value, not the label of the source gloss.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Gender</code> is <code class="language-plaintext highlighter-rouge">Masc</code> or <code class="language-plaintext highlighter-rouge">Fem</code>. It is marked on nouns, adjectives, pronouns, and on verbs or auxiliaries when the source glosses a gender agreement marker.</li>
+  <li><code class="language-plaintext highlighter-rouge">Number</code> is <code class="language-plaintext highlighter-rouge">Sing</code> or <code class="language-plaintext highlighter-rouge">Plur</code>. <code class="language-plaintext highlighter-rouge">Person</code> is <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, or <code class="language-plaintext highlighter-rouge">3</code> on finite verbs and on auxiliaries that index a person.</li>
+  <li><code class="language-plaintext highlighter-rouge">Case</code> has two values. The Hewramî direct case is <code class="language-plaintext highlighter-rouge">Case=Nom</code> and the oblique case is <code class="language-plaintext highlighter-rouge">Case=Acc</code>, which is the universal mapping for a two-case direct/oblique system. These values occur on nouns, pronouns, proper names, and on some adverbs and adpositions whose source form is an oblique pronoun or noun.</li>
+  <li><code class="language-plaintext highlighter-rouge">Definite</code> is <code class="language-plaintext highlighter-rouge">Def</code> or <code class="language-plaintext highlighter-rouge">Ind</code> on nouns, and <code class="language-plaintext highlighter-rouge">Ind</code> also occurs on a few adjectives and adverbs whose source gloss marks an indefinite ending.</li>
+  <li><code class="language-plaintext highlighter-rouge">Degree=Cmp</code> marks the comparative.</li>
+  <li><code class="language-plaintext highlighter-rouge">PronType</code> is <code class="language-plaintext highlighter-rouge">Dem</code> for demonstratives and <code class="language-plaintext highlighter-rouge">Int</code> for interrogative or “whatever” forms.</li>
+  <li>Verbal features are <code class="language-plaintext highlighter-rouge">VerbForm=Fin</code> or <code class="language-plaintext highlighter-rouge">VerbForm=Part</code>, <code class="language-plaintext highlighter-rouge">Mood=Ind</code> or <code class="language-plaintext highlighter-rouge">Mood=Sub</code>, <code class="language-plaintext highlighter-rouge">Tense=Pres</code> or <code class="language-plaintext highlighter-rouge">Tense=Past</code>, <code class="language-plaintext highlighter-rouge">Voice=Pass</code>, and <code class="language-plaintext highlighter-rouge">Polarity=Neg</code>. A participle that also contains an unsplit present auxiliary keeps a single <code class="language-plaintext highlighter-rouge">Tense</code> value, <code class="language-plaintext highlighter-rouge">Past</code>, because a token cannot carry two tenses. The present piece remains visible in <code class="language-plaintext highlighter-rouge">Gloss</code>.</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<p>The dependency trees are a first conversion and are not yet a full manual review. Core arguments use <code class="language-plaintext highlighter-rouge">nsubj</code> and <code class="language-plaintext highlighter-rouge">obj</code>. Other nominal dependents of a predicate use <code class="language-plaintext highlighter-rouge">obl</code>, with the adposition attached by <code class="language-plaintext highlighter-rouge">case</code>. Coordination uses <code class="language-plaintext highlighter-rouge">conj</code> and <code class="language-plaintext highlighter-rouge">cc</code>. Discourse particles use <code class="language-plaintext highlighter-rouge">discourse</code>. Punctuation is attached with <code class="language-plaintext highlighter-rouge">punct</code>.</p>
+
+<p>The verb “to be” is tagged <code class="language-plaintext highlighter-rouge">AUX</code> and, in this first conversion, is usually attached with <code class="language-plaintext highlighter-rouge">aux</code>. Where the source unit is a nonverbal clause and no lexical verb is present, the auxiliary may be the root and the nonverbal predicate may be attached with <code class="language-plaintext highlighter-rouge">dep</code>. The relation <code class="language-plaintext highlighter-rouge">dep</code> is also used where the automatic conversion did not yet choose a more specific label, especially for ezafe or linker constructions, complex predicates, and reported speech. Those <code class="language-plaintext highlighter-rouge">dep</code> edges are placeholders for later review, not a proposed Hawrami relation subtype. No language-specific relation subtypes are used.</p>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is one Gorani UD treebank:</p>
+
+<ul>
+  <li><a href="../treebanks/hac_hawrami/index.html">Gorani-Hawrami</a></li>
+</ul>
+
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'hac';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
