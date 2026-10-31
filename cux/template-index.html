@@ -80,59 +80,120 @@
         </script>
         <h1 id="ud-for-cuicatec-">UD for Cuicatec <span class="flagspan"><img class="flag" src="../../flags/svg/MX.svg" /></span></h1>
 
+<p>Cuicatec (ISO 639-3 <code class="language-plaintext highlighter-rouge">cux</code>) is an Oto-Manguean language of the Mixtecan branch, spoken in the Cañada
+region of Oaxaca, Mexico. The UD data is focused on Tepeuxila Cuicatec (<em>dbaku</em>), spoken around San Juan
+Tepeuxila.</p>
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>Words are delimited by whitespace. There are no multiword tokens and no words with spaces.</li>
+  <li>Punctuation is split off as separate tokens, including the Spanish-style opening marks <em>¿</em> and <em>¡</em>
+(e.g. <em>¿ A ichad ?</em> “¿Tienes frío?”).</li>
+  <li>Possessive, person and other affixes and enclitics are written together with their host and are not
+split off (e.g. <em>bakud</em> “tu casa”, <em>kuchis</em> “vino (él)”).</li>
+  <li>A small number of compound words are written with a hyphen in the source and are kept as one
+token (e.g. <em>naíd-yádi</em>).</li>
+  <li>The glottal stop is written with the modifier letter apostrophe <em>ʼ</em> (U+02BC). The original text, which
+often uses the ASCII apostrophe, is kept in the <code class="language-plaintext highlighter-rouge">text[orig]</code> sentence attribute, and a Spanish
+translation in <code class="language-plaintext highlighter-rouge">text[spa]</code>.</li>
+  <li>Spelling follows each author’s own orthographic choices, so the same word can appear with different
+diacritics. Non-standard spellings of a word are marked <code class="language-plaintext highlighter-rouge">Typo=Yes</code>, with the standard form given in
+MISC as <code class="language-plaintext highlighter-rouge">Normal</code> (e.g. <em>Un</em> → <code class="language-plaintext highlighter-rouge">Normal=ú</code> “yo”).</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li><em>SYM</em> is not used.</li>
+  <li><em>NOUN</em>: Nouns take possessive suffixes agreeing with the possessor (e.g. <em>baʼa</em> “casa”, <em>bakud</em> “tu casa”).
+<a href="feat/NounType.html#Relat">Relational nouns</a> (<code class="language-plaintext highlighter-rouge">NounType=Relat</code>) are tagged NOUN, including the
+possessive base <em>ñeʼe</em> “de (él)”, which is inflected for its possessor (<em>ñeʼë</em> “de mí”, <em>ñeʼed</em> “de ti”).
+Nominal <a href="feat/NounType.html#Clf">classifiers</a> such as <em>ta</em> “señora”, used before women’s names, are
+also NOUN, with <code class="language-plaintext highlighter-rouge">NounType=Clf</code>.</li>
+  <li><em>VERB</em>: Verbs inflect for the person of the subject by suffixes, and in the third person
+distinguish masculine, feminine, human and animal referents (e.g. <em>kuchis</em> “vino (él)”,
+<em>jeakuta</em> “llora (ella)”). Aspect and mood are marked by prefixes, such as completive, potential and
+progressive <em>ji-</em> (e.g. <em>jiyadu</em> “duermo”).</li>
+  <li><em>ADJ</em>: Property words such as <em>cheatea</em> “grande”, <em>lï</em> “pequeño” and <em>kuä</em> “negro” are tagged ADJ.
+They are frequently used as predicates without a copula, and are then marked
+<a href="feat/VerbForm.html#Stat">VerbForm=Stat</a>.</li>
+  <li><em>AUX</em>: The verb <em>kane</em>/<em>kanu</em> “estar” is tagged AUX when it is the copula of a locative predicate
+(see Syntax). The modal <em>jikadi</em> “poder” (<em>chikadi</em> “pude”) is tagged AUX when it is followed by
+the main verb (e.g. <em>Gua jikadi jika dime.</em> “No puedo caminar solo.”).</li>
+  <li><em>DET</em> and <em>PRON</em>: Demonstratives that modify a noun are tagged DET and attached as <code class="language-plaintext highlighter-rouge">det</code>. They
+usually follow the noun: <em>kon</em>/<em>ko</em>/<em>kó</em> “ese”, <em>kun</em>/<em>ku</em> “este”, <em>mi</em>/<em>min</em> “esa/esta”
+(e.g. <em>Baʼa kun cheatea.</em> “Esta casa es grande.”). Demonstratives used on their own, personal pronouns
+and interrogatives are tagged PRON. The personal pronouns are <em>ú</em> “yo”, <em>dí</em> “tú”, <em>sakó</em> “él”,
+<em>takó</em> “ella”, <em>insú</em> “nosotros”, <em>insë</em> “ustedes” and <em>iñsé</em> “ellos”; the interrogatives include
+<em>duʼu</em> “quién”, <em>dae</em> “qué” and <em>tabea</em> “cuánto”.</li>
+  <li><em>PART</em>: The polar question particle <em>a</em> is tagged PART and attached as <code class="language-plaintext highlighter-rouge">discourse</code>
+(e.g. <em>¿A ichad?</em> “¿Tienes frío?”). The emphatic particle <em>ne</em> is also PART
+(e.g. <em>Úu ne chidi.</em> “Yo estornudé.”).</li>
+  <li><em>ADV</em>: Besides manner, time and place adverbs (<em>iku</em> “ayer”, <em>muʼu</em> “aquí”, <em>yeabean</em> “muy”), the
+negation <em>gua</em> “no” is tagged ADV and attached as <code class="language-plaintext highlighter-rouge">advmod</code>.</li>
+  <li><em>ADP</em>: Prepositions such as <em>no</em> “en” and <em>nuku</em> “con” are tagged ADP and attached as <code class="language-plaintext highlighter-rouge">case</code>
+(e.g. <em>No camión kuchi.</em> “Vine en camión.”).</li>
+  <li><em>SCONJ</em>: The complementizer <em>chi</em> “que”, and <em>tochi</em> “cuando”, <em>kat</em> “porque” and <em>tumin</em> “para que”.</li>
+  <li><em>CCONJ</em>: Coordinating conjunctions are rare. They include <em>o</em> “o” and the Spanish loan <em>per</em> “pero”.</li>
+  <li><em>NUM</em>: Cardinal numerals (<code class="language-plaintext highlighter-rouge">NumType=Card</code>) such as <em>ama</em> “uno”, <em>obe</em> “dos” and <em>inu</em> “tres” precede the noun.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<ul>
+  <li><em>Nominal features</em>: <a href="feat/NounType.html">NounType</a> distinguishes relational nouns (<code class="language-plaintext highlighter-rouge">Relat</code>) and
+classifiers (<code class="language-plaintext highlighter-rouge">Clf</code>). Possession is marked by suffixes on the possessed noun, but it is not yet
+annotated with features.</li>
+  <li><em>Verbal features</em>: Finite verbs are marked <code class="language-plaintext highlighter-rouge">VerbForm=Fin</code>. Where agreement is annotated, verbs carry
+<code class="language-plaintext highlighter-rouge">Person</code> and <code class="language-plaintext highlighter-rouge">Number</code>, and third-person forms carry <code class="language-plaintext highlighter-rouge">Gender=Masc</code>/<code class="language-plaintext highlighter-rouge">Fem</code> or
+<code class="language-plaintext highlighter-rouge">Animacy=Hum</code>/<code class="language-plaintext highlighter-rouge">Aml</code>, following the masculine, feminine, human and animal categories of third-person
+agreement. Aspect (<code class="language-plaintext highlighter-rouge">Aspect=Perf</code> completive, <code class="language-plaintext highlighter-rouge">Aspect=Prog</code> progressive) and mood (<code class="language-plaintext highlighter-rouge">Mood=Pot</code>
+potential) are also marked, as is transitivity (<code class="language-plaintext highlighter-rouge">Subcat=Tran</code>/<code class="language-plaintext highlighter-rouge">Intr</code>).</li>
+  <li><em>Stative</em>: Predicative property words are marked <a href="feat/VerbForm.html#Stat">VerbForm=Stat</a>.</li>
+  <li><em>Pronouns and determiners</em>: <code class="language-plaintext highlighter-rouge">PronType=Prs</code> (personal), <code class="language-plaintext highlighter-rouge">Dem</code> (demonstrative) and <code class="language-plaintext highlighter-rouge">Int</code> (interrogative).</li>
+  <li><em>Spelling</em>: <code class="language-plaintext highlighter-rouge">Typo=Yes</code> marks non-standard spellings (see Tokenization).</li>
+  <li>Morphological feature annotation is not yet complete. Only some finite verbs are annotated for
+person, number, aspect and mood, and lemmas are given for only part of the corpus.</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
-
-<hr />
+<ul>
+  <li><em>Core arguments</em>: The subject is indexed on the verb by person suffixes, and an overt subject is
+often omitted (e.g. <em>Gua deanu.</em> “No sé.”). Overt subjects (<code class="language-plaintext highlighter-rouge">nsubj</code>) may precede or follow the verb.
+Objects (<code class="language-plaintext highlighter-rouge">obj</code>) are unmarked and usually follow the verb. When both are present, the most frequent
+order is subject–verb–object (e.g. <em>Takó chikueta ú.</em> “Ella me enseñó.”). In ditransitives, the
+recipient or addressee is <code class="language-plaintext highlighter-rouge">iobj</code> (e.g. <em>Kakued ú yuni.</em> “¡Enséñame el camino!”).</li>
+  <li><em>Nonverbal clauses</em>: Adjectival, nominal and pronominal predicates take no copula. The predicate is
+the <code class="language-plaintext highlighter-rouge">root</code> and the subject is its <code class="language-plaintext highlighter-rouge">nsubj</code> (e.g. <em>Ú yaku.</em> “Yo soy alto.”, <em>Ta Marian ndatata.</em> “María es
+mujer.”, <em>¿Duʼu noʼöm?</em> “¿Quién es el maestro?”). Locative predicates take the copula <em>kane</em>/<em>kanu</em>
+“estar”, tagged AUX and attached as <code class="language-plaintext highlighter-rouge">cop</code> to the locative expression (e.g. <em>Chida kaneñ no nʼiba.</em>
+“Mi papá está en el mercado.”). When <em>kane</em> is used without a locative complement, it is a VERB.</li>
+  <li><em>Existence and possession</em>: The existential verb <em>bea</em> “hay” is the <code class="language-plaintext highlighter-rouge">root</code>, and the existing entity
+is its <code class="language-plaintext highlighter-rouge">nsubj</code> (e.g. <em>Muʼu bea nuni.</em> “Aquí hay agua.”). Predicative possession uses the same
+construction, with the possessor expressed by the possessive base <em>ñeʼe</em>
+(e.g. <em>Bea ntiñu ñeʼë.</em> “Tengo trabajo.”) or by a fronted noun phrase, attached as <code class="language-plaintext highlighter-rouge">dislocated</code>
+(e.g. <em>Uu bea yuchmee.</em> “Yo tengo cerebro.”).</li>
+  <li><em>Adnominal possession</em>: The possessive base <em>ñeʼe</em>, inflected for the possessor, follows the possessed
+noun and is attached to it as <code class="language-plaintext highlighter-rouge">nmod:poss</code> (e.g. <em>Gua yana ñeʼë.</em> “No tengo perro.”).</li>
+  <li><em>Questions and negation</em>: Polar questions are marked by the particle <em>a</em> (<code class="language-plaintext highlighter-rouge">discourse</code>), and negation
+by <em>gua</em> (<code class="language-plaintext highlighter-rouge">advmod</code>).</li>
+  <li><em>Complex predicates</em>: A verb followed by a second inflected verb sharing its subject (motion verbs,
+<em>neʼe</em> “querer”) takes the second verb as <code class="language-plaintext highlighter-rouge">xcomp</code> (e.g. <em>Kued kamad.</em> “Ve a leer.”).
+Complement clauses introduced by <em>chi</em> “que” are <code class="language-plaintext highlighter-rouge">ccomp</code> (e.g. <em>Gua deanu chi kuchid.</em> “No sabía que
+venías.”), and adverbial clauses introduced by <em>tochi</em> “cuando” are <code class="language-plaintext highlighter-rouge">advcl</code>.</li>
+  <li><em>Relation subtypes</em>: The only subtype used is <code class="language-plaintext highlighter-rouge">nmod:poss</code>, for possessors.</li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/cux-comparison.html">N</a> Cuicatec UD treebanks:</p>
+<p>There is 1 Cuicatec UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/cux_a/index.html">Cuicatec-A</a></li>
-  <li><a href="../treebanks/cux_b/index.html">Cuicatec-B</a></li>
+  <li><a href="../treebanks/cux_mesotree/index.html">Cuicatec-MesoTree</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
