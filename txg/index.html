@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Tangut UD</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-txg">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_txg/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="ud-for-tangut">UD for Tangut</h1>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<p>There are no punctuation marks between words and generally no spaces between sentences in original Tangut manuscripts. Most words consist of a single character, except for some transcribed foreign words. Word boundaries are determined according to grammatical criteria.</p>
+
+<p>For UD annotation, punctuation marks are added for convenience, and sentence boundaries are determined primarily by syntactic structure, while translations serve as a reference. Stanzas consisting of four five- or seven-character lines are treated as single sentences.</p>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<p>Tangut is a predominantly head-final language, with nominal modifiers preceding their heads and grammatical particles occurring in both preverbal and postverbal positions. The distinction between lexical words and grammatical markers is determined by their syntactic function.</p>
+
+<p>For POS-tagging of Tangut texts in UD, we use <code class="language-plaintext highlighter-rouge">VERB</code>, <code class="language-plaintext highlighter-rouge">AUX</code>, <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">ADJ</code>, <code class="language-plaintext highlighter-rouge">ADP</code>, and <code class="language-plaintext highlighter-rouge">SCONJ</code> for lexical predicates and their grammatical modifiers. We use <code class="language-plaintext highlighter-rouge">NOUN</code>, <code class="language-plaintext highlighter-rouge">PROPN</code>, <code class="language-plaintext highlighter-rouge">PRON</code>, <code class="language-plaintext highlighter-rouge">DET</code>, and <code class="language-plaintext highlighter-rouge">NUM</code> for nominal and pronominal expressions. We use <code class="language-plaintext highlighter-rouge">PART</code>, <code class="language-plaintext highlighter-rouge">CCONJ</code>, and <code class="language-plaintext highlighter-rouge">INTJ</code> for particles, conjunctions, and interjections, following the guidelines of UD v2. We also use <code class="language-plaintext highlighter-rouge">PUNCT</code>, but do not use <code class="language-plaintext highlighter-rouge">SYM</code> or <code class="language-plaintext highlighter-rouge">X</code>.</p>
+
+<p>Auxiliary verbs and grammaticalized preverbs are distinguished from lexical verbs. Postverbal person markers are treated as auxiliaries when functioning as agreement clitics, while independent personal pronouns are annotated as <code class="language-plaintext highlighter-rouge">PRON</code>. Sentence-final particles are annotated as <code class="language-plaintext highlighter-rouge">PART</code>.</p>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">PronType=Prs</code></td>
+          <td><code class="language-plaintext highlighter-rouge">Dem</code></td>
+          <td><code class="language-plaintext highlighter-rouge">Ind</code></td>
+          <td><code class="language-plaintext highlighter-rouge">Tot</code> for <code class="language-plaintext highlighter-rouge">PRON</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">PronType=Dem</code></td>
+          <td><code class="language-plaintext highlighter-rouge">Ind</code></td>
+          <td><code class="language-plaintext highlighter-rouge">Int</code></td>
+          <td><code class="language-plaintext highlighter-rouge">Neg</code></td>
+          <td><code class="language-plaintext highlighter-rouge">Tot</code> for <code class="language-plaintext highlighter-rouge">DET</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">PronType=Dem</code></td>
+          <td><code class="language-plaintext highlighter-rouge">Ind</code></td>
+          <td><code class="language-plaintext highlighter-rouge">Tot</code> for <code class="language-plaintext highlighter-rouge">ADV</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">Person=1</code></td>
+          <td><code class="language-plaintext highlighter-rouge">2</code> or <code class="language-plaintext highlighter-rouge">Number=Plur</code> for agreement markers tagged <code class="language-plaintext highlighter-rouge">AUX</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Polarity=Neg</code> for <code class="language-plaintext highlighter-rouge">ADV</code>, <code class="language-plaintext highlighter-rouge">AUX</code>, <code class="language-plaintext highlighter-rouge">PART</code>, and <code class="language-plaintext highlighter-rouge">VERB</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Mood=Pot</code> for potential <code class="language-plaintext highlighter-rouge">AUX</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Reflex=Yes</code> for reflexive <code class="language-plaintext highlighter-rouge">PRON</code>.</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">ExtPos=ADP</code></td>
+          <td><code class="language-plaintext highlighter-rouge">ADV</code></td>
+          <td><code class="language-plaintext highlighter-rouge">CCONJ</code></td>
+          <td><code class="language-plaintext highlighter-rouge">DET</code></td>
+          <td><code class="language-plaintext highlighter-rouge">PRON</code></td>
+          <td><code class="language-plaintext highlighter-rouge">SCONJ</code> for multiword expressions.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Typo=Yes</code> for confirmed errors in the original manuscripts, with the corrected form recorded in <code class="language-plaintext highlighter-rouge">MISC</code>.</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<ul>
+  <li><a href="dep/discourse-sp.html"><code class="language-plaintext highlighter-rouge">discourse:sp</code></a> to annotate sentence-final and clause-final particles.</li>
+  <li><a href="dep/nsubj-pass.html"><code class="language-plaintext highlighter-rouge">nsubj:pass</code></a> to annotate passive nominal subjects.</li>
+</ul>
+
+<h2 id="treebanks">Treebanks</h2>
+
+<p>There is one Tangut UD treebank:</p>
+
+<ul>
+  <li><a href="https://github.com/UniversalDependencies/UD_Tangut-MiCA">UD_Tangut-MiCA</a>, containing annotated chapters from the Tangut Lotus Sutra and Avataṃsaka Sūtra.</li>
+</ul>
+
+<h2 id="source-data">Source data</h2>
+
+<h3 id="lotus-sutra-法華經">Lotus Sutra (法華經)</h3>
+
+<ul>
+  <li>Transcription: We manually transcribed the images of the original manuscripts published by Chen Bingying (1985).</li>
+  <li>Philological reference: Chen Bingying. 1985. 图解本西夏文《观音经》译释. 敦煌研究.</li>
+  <li>Original <a href="https://twwspes.github.io/annodoc/saddharmapundarika_sutra/24_tangut">Universal Dependencies annotations</a>: Used with permission from the original annotator, Tak Wai Wong (spes@connect.hku.hk).</li>
+  <li>Chinese translation: Publicly circulating edition.</li>
+  <li>English translation: <a href="https://www.500yojanas.org/lotus-sutra/chapter25/">500 Yojanas, Chapter 25</a>, identified by the project as licensed under CC BY.</li>
+</ul>
+
+<h3 id="avataṃsaka-sūtra-華嚴經">Avataṃsaka Sūtra (華嚴經)</h3>
+
+<ul>
+  <li>Transcription: We manually transcribed the images of the original manuscripts published by Arakawa Shintarō (2011).</li>
+  <li>Philological reference: 荒川慎太郎. 2011. 「プリンストン大学所蔵西夏文華厳経巻七十七訳注」『アジア・アフリカ言語文化研究』81:147–305.</li>
+  <li>Chinese translation: Publicly circulating edition.</li>
+  <li>English translation: Bhikshu Dharmamitra. <em>The Flower Adornment Sutra</em>. Kalavinka Press, 2022. Copyright © 2022 Bhikshu Dharmamitra. Partial use authorized by Kalavinka Press.</li>
+</ul>
+
+<h3 id="pronunciation">Pronunciation</h3>
+
+<p>Reconstructions referenced derive from the <a href="https://github.com/semakosa/tangut-pronunciation-db">Tangut Pronunciation Database</a> by Xun Gong, with its own Limited Public Use License.</p>
+
+<h3 id="glossary">Glossary</h3>
+
+<p>Dictionary data is used as a reference for glosses in <code class="language-plaintext highlighter-rouge">MISC</code>. Dictionary files themselves are not redistributed as part of this treebank.</p>
+
+<ul>
+  <li>Main dictionary: <a href="https://github.com/C27Ezx/TangutTranslator/blob/main/tangut_learning_data.json">TangutTranslator</a>, based on Alan Downes and <a href="https://tangut.info/">Tangut.info</a>.</li>
+  <li>Minor corrections based on Xun Gong, <em>Tangut: An Introductory Reader</em> (Reichert Verlag, forthcoming), used with permission from Xun Gong.</li>
+</ul>
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'txg';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
