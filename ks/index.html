@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-GB" xml:lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Kashmiri UD</title>
+    <link rel="icon" href="https://universaldependencies.org/logos/logo-ud.png" type="image/png">
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style-vis.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hint.css"/>
+    <script type="text/javascript" src="../lib/ext/head.load.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function(event) {anchors.add();});</script>
+    <!-- Set up this custom Google search at https://programmablesearchengine.google.com/controlpanel/overview?cx=001145188882102106025%3Adl1mehhcgbo
+         or try it at https://cse.google.com/cse?cx=001145188882102106025%3Adl1mehhcgbo -->
+    <!-- DZ 2021-01-22: I am temporarily hiding the search field to find out whether it slows down loading of the title page.
+         DZ 2025-11-18: Turning it on again (the homepage is slow anyway, because of other factors). -->
+    <script>
+      (function() {
+        var cx = '001145188882102106025:dl1mehhcgbo';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+
+  </head>
+  <body>
+    <div id="main" class="center">
+
+      <div id="hp-header">
+        <table width="100%"><tr><td width="50%">
+          <span class="header-text"><a href="http://universaldependencies.org/#language-ks">home</a></span>
+
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/edit/pages-source/_ks/index.md" target="#">edit page</a></span>
+          <span class="header-text"><a href="https://github.com/universaldependencies/docs/issues">issue tracker</a></span>
+        </td><td>
+          <gcse:search></gcse:search>
+        </td></tr></table>
+      </div>
+
+      <hr/>
+
+      
+      <div class="v2complete">
+        This page pertains to UD version 2.
+      </div>
+      
+
+      <div id="content">
+        <noscript>
+          <div id="noscript">
+            It appears that you have Javascript disabled.
+            Please consider enabling Javascript for this page to see the visualizations.
+          </div>
+        </noscript>
+
+        <!-- The content may include scripts and styles, hence we must load the shared libraries before the content. -->
+        <script type="text/javascript">
+            console.time('loading libraries');
+            var root = '../'; // filled in by jekyll
+            head.js(
+                // External libraries
+                // DZ: Copied from embedding.html. I don't know which one is needed for what, so I'm currently keeping them all.
+                root + 'lib/ext/jquery.min.js',
+                root + 'lib/ext/jquery.svg.min.js',
+                root + 'lib/ext/jquery.svgdom.min.js',
+                root + 'lib/ext/jquery.timeago.js',
+                root + 'lib/ext/jquery-ui.min.js',
+                root + 'lib/ext/waypoints.min.js',
+                root + 'lib/ext/jquery.address.min.js'
+            );
+        </script>
+        <h1 id="ud-for-kashmiri">UD for Kashmiri</h1>
+
+<p>The Kashmiri data is written in Perso-Arabic script, right to left; every sentence has <code class="language-plaintext highlighter-rouge"># rtl = yes</code>.
+The treebank has two parts: <code class="language-plaintext highlighter-rouge">ks_nehru_*</code> (Kashmiri Wikipedia) and <code class="language-plaintext highlighter-rouge">ks_grammar_*</code> (example sentences from Koul, <em>Kashmiri: A Grammatical Sketch</em>).</p>
+
+<h2 id="sentence-level-comments">Sentence-level comments</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>Part</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge"># text</code></td>
+      <td>both</td>
+      <td>The real text. A token not followed by a space has <code class="language-plaintext highlighter-rouge">SpaceAfter=No</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge"># original_text</code></td>
+      <td>Nehru</td>
+      <td>The sentence exactly as written in the Wikipedia article.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge"># translit</code></td>
+      <td>both</td>
+      <td>Transliteration of <code class="language-plaintext highlighter-rouge"># text</code> (see below).</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge"># gloss</code></td>
+      <td>grammar</td>
+      <td>English word-by-word gloss.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge"># translation</code></td>
+      <td>both</td>
+      <td>English translation.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="transliteration">Transliteration</h3>
+
+<p><code class="language-plaintext highlighter-rouge"># translit</code> is generated from the Perso-Arabic text with the same rules for both parts, so it follows the spelling, not a separate phonetic transcription. Words with a missing space in the source are transliterated with the corrected spacing. Punctuation is written as <code class="language-plaintext highlighter-rouge">,</code> <code class="language-plaintext highlighter-rouge">;</code> <code class="language-plaintext highlighter-rouge">?</code> <code class="language-plaintext highlighter-rouge">.</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Perso-Arabic</th>
+      <th>Latin</th>
+      <th>Perso-Arabic</th>
+      <th>Latin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">َ</code> <code class="language-plaintext highlighter-rouge">ِ</code> <code class="language-plaintext highlighter-rouge">ُ</code></td>
+      <td>a i u</td>
+      <td><code class="language-plaintext highlighter-rouge">ٕ</code></td>
+      <td>ụ</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ٔ</code> / <code class="language-plaintext highlighter-rouge">أ</code></td>
+      <td>ạ</td>
+      <td><code class="language-plaintext highlighter-rouge">ٲ</code></td>
+      <td>ạ̄</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ا</code> <code class="language-plaintext highlighter-rouge">آ</code> (after a consonant)</td>
+      <td>ā</td>
+      <td><code class="language-plaintext highlighter-rouge">ٟ</code></td>
+      <td>ụ̄</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">یٖ</code></td>
+      <td>ī</td>
+      <td><code class="language-plaintext highlighter-rouge">وٗ</code></td>
+      <td>ū</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ی</code> inside a word / at the end</td>
+      <td>e / ī</td>
+      <td><code class="language-plaintext highlighter-rouge">و</code> after a consonant / elsewhere</td>
+      <td>ō / v</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ۆ</code></td>
+      <td>o</td>
+      <td><code class="language-plaintext highlighter-rouge">ۄ</code></td>
+      <td>ọ</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ے</code></td>
+      <td>e (after a, ā: y)</td>
+      <td><code class="language-plaintext highlighter-rouge">ؠ</code></td>
+      <td>ʲ</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ٹ</code> <code class="language-plaintext highlighter-rouge">ڈ</code> <code class="language-plaintext highlighter-rouge">ڑ</code></td>
+      <td>ṭ ḍ ṛ</td>
+      <td><code class="language-plaintext highlighter-rouge">ژ</code></td>
+      <td>ts</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">چ</code> / <code class="language-plaintext highlighter-rouge">چھ</code></td>
+      <td>ch / chh</td>
+      <td><code class="language-plaintext highlighter-rouge">ش</code></td>
+      <td>sh</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ق</code> <code class="language-plaintext highlighter-rouge">خ</code> <code class="language-plaintext highlighter-rouge">غ</code></td>
+      <td>q kh gh</td>
+      <td>consonant + <code class="language-plaintext highlighter-rouge">ھ</code></td>
+      <td>aspirated (kh, th, ṭh, bh …)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
+
+<ul>
+  <li>Tokens are separated by whitespace. Punctuation is always a separate token: <code class="language-plaintext highlighter-rouge">۔</code> (80), <code class="language-plaintext highlighter-rouge">،</code> (54), <code class="language-plaintext highlighter-rouge">"</code> (30), <code class="language-plaintext highlighter-rouge">:</code> (9), <code class="language-plaintext highlighter-rouge">(</code> and <code class="language-plaintext highlighter-rouge">)</code> (6 each), <code class="language-plaintext highlighter-rouge">؛</code> (4), <code class="language-plaintext highlighter-rouge">'</code> (2), <code class="language-plaintext highlighter-rouge">...</code> (2).</li>
+  <li>Every sentence of the Nehru part ends with <code class="language-plaintext highlighter-rouge">۔</code>, as in the source. Sentence-final punctuation is left out in the grammar part.</li>
+  <li>Digits are written as in the source: the Nehru part uses <code class="language-plaintext highlighter-rouge">1912</code> …, except <code class="language-plaintext highlighter-rouge">ks_nehru_043</code> and <code class="language-plaintext highlighter-rouge">ks_nehru_057</code>, which have <code class="language-plaintext highlighter-rouge">۱۹۱۲</code> and <code class="language-plaintext highlighter-rouge">۱۹۱۵</code> in the source. The lemma always uses Western digits (<code class="language-plaintext highlighter-rouge">1912</code>, <code class="language-plaintext highlighter-rouge">1915</code>).</li>
+  <li><strong>Misspellings in the source</strong> are kept in FORM and corrected in MISC with <code class="language-plaintext highlighter-rouge">CorrectForm</code>; the lemma uses the correct spelling: <code class="language-plaintext highlighter-rouge">اَكھ</code> → <code class="language-plaintext highlighter-rouge">اَکھ</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_001</code>), <code class="language-plaintext highlighter-rouge">کێنٛہہ</code> → <code class="language-plaintext highlighter-rouge">کیٚنٛہہ</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_036</code>), <code class="language-plaintext highlighter-rouge">مظهرُل</code> → <code class="language-plaintext highlighter-rouge">مظہرُل</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_055</code>), <code class="language-plaintext highlighter-rouge">تٔحذیٖب</code> → <code class="language-plaintext highlighter-rouge">تٔہذیٖب</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_056</code>), <code class="language-plaintext highlighter-rouge">ہیٛێنٛدؠن</code> → <code class="language-plaintext highlighter-rouge">ہیٛیٚنٛدؠن</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_063</code>), <code class="language-plaintext highlighter-rouge">یێلہِ</code> → <code class="language-plaintext highlighter-rouge">ییٚلہِ</code> and <code class="language-plaintext highlighter-rouge">تێلہِ</code> → <code class="language-plaintext highlighter-rouge">تیٚلہِ</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_066</code>).</li>
+  <li><strong>A missing space in the source</strong> between two words is marked with <code class="language-plaintext highlighter-rouge">SpaceAfter=No|CorrectSpaceAfter=Yes</code>: <code class="language-plaintext highlighter-rouge">مَنٛزآزٲدی</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_010</code>), <code class="language-plaintext highlighter-rouge">گوکھَلےموٗد</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_057</code>).</li>
+  <li><strong>Case endings written as separate words</strong> are separate tokens, tagged ADP with <code class="language-plaintext highlighter-rouge">case</code> on the preceding word: <code class="language-plaintext highlighter-rouge">اَس</code> (16), <code class="language-plaintext highlighter-rouge">یَس</code> (8), <code class="language-plaintext highlighter-rouge">وَن</code> (3), <code class="language-plaintext highlighter-rouge">یَن</code> (2), <code class="language-plaintext highlighter-rouge">ہَس</code>, <code class="language-plaintext highlighter-rouge">اُک</code>, <code class="language-plaintext highlighter-rouge">وَس</code>, <code class="language-plaintext highlighter-rouge">یُک</code>, <code class="language-plaintext highlighter-rouge">یُن</code> (1 each), for example <code class="language-plaintext highlighter-rouge">1947 اَس مَنٛز</code>, <code class="language-plaintext highlighter-rouge">شا ہَس</code>, <code class="language-plaintext highlighter-rouge">گانٛدھی یُن</code> “Gandhi’s”.</li>
+  <li><strong>Genitive postpositions</strong> <code class="language-plaintext highlighter-rouge">سُنٛد</code>, <code class="language-plaintext highlighter-rouge">ہُنٛد</code>, <code class="language-plaintext highlighter-rouge">سٕنٛز</code>, <code class="language-plaintext highlighter-rouge">سٕنٛدِ</code> … are separate words (ADP, <code class="language-plaintext highlighter-rouge">case</code>). <code class="language-plaintext highlighter-rouge">کِس</code> (8) is also written as a separate word and is treated in the same way. A pronoun with a genitive postposition is two words: <code class="language-plaintext highlighter-rouge">تٔمؠ سُنٛد</code> “his” (in the grammar part also <code class="language-plaintext highlighter-rouge">تٔمؠ سٕنٛز</code>, <code class="language-plaintext highlighter-rouge">تٔمؠ سٕنٛدِ</code>, <code class="language-plaintext highlighter-rouge">اَکؠ سُنٛد</code>).</li>
+  <li>The possessive pronouns <code class="language-plaintext highlighter-rouge">تِہُنٛد</code> “his/her/their (respectful)” and <code class="language-plaintext highlighter-rouge">تُہُنٛد</code> “your”, with their inflected forms, are single words (PRON, <code class="language-plaintext highlighter-rouge">Poss=Yes</code>).</li>
+  <li><strong>Multiword token:</strong> <code class="language-plaintext highlighter-rouge">کانٛگرٛیسکِس</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_004</code>) is written as one word in the source and split into <code class="language-plaintext highlighter-rouge">کانٛگرٛیس</code> + <code class="language-plaintext highlighter-rouge">کِس</code>.</li>
+  <li>The izafat compound <code class="language-plaintext highlighter-rouge">جَنٛگہِآزٲدی</code> “freedom struggle” (<code class="language-plaintext highlighter-rouge">ks_nehru_003</code>) is written as one word in the source and kept as one token. This is different from <code class="language-plaintext highlighter-rouge">مَنٛزآزٲدی</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_010</code>), which is two independent words (a postposition and a noun) with a missing space.</li>
+</ul>
+
+<h2 id="morphology">Morphology</h2>
+
+<h3 id="tags">Tags</h3>
+
+<ul>
+  <li>The data uses 14 UPOS tags. XPOS is not used.</li>
+  <li><strong>AUX</strong> has two lemmas:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">آسُن</code> “be”, with the forms <code class="language-plaintext highlighter-rouge">چھُ</code>, <code class="language-plaintext highlighter-rouge">چھَ</code>, <code class="language-plaintext highlighter-rouge">چھِ</code>, <code class="language-plaintext highlighter-rouge">چھُس</code>, <code class="language-plaintext highlighter-rouge">چھُسَتھ</code>, <code class="language-plaintext highlighter-rouge">چھَے</code>, <code class="language-plaintext highlighter-rouge">چھُم</code>, <code class="language-plaintext highlighter-rouge">چھُنہٕ</code>, <code class="language-plaintext highlighter-rouge">چھَنہٕ</code>, <code class="language-plaintext highlighter-rouge">اوس</code>, <code class="language-plaintext highlighter-rouge">اوسُس</code>, <code class="language-plaintext highlighter-rouge">أس</code>, <code class="language-plaintext highlighter-rouge">أسؠ</code>, <code class="language-plaintext highlighter-rouge">ٲسؠ</code>, <code class="language-plaintext highlighter-rouge">آس</code>, <code class="language-plaintext highlighter-rouge">آسہِ</code>, <code class="language-plaintext highlighter-rouge">آسان</code>, <code class="language-plaintext highlighter-rouge">آسِوہِ</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">یُن</code> “come”, the passive auxiliary, with the forms <code class="language-plaintext highlighter-rouge">آیہِ</code>, <code class="language-plaintext highlighter-rouge">آو</code>, <code class="language-plaintext highlighter-rouge">آمَژٕ</code>, <code class="language-plaintext highlighter-rouge">یِوان</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">ہیکُن</code> “can”, <code class="language-plaintext highlighter-rouge">گَژُن</code> “go”, <code class="language-plaintext highlighter-rouge">بَنُن</code> “become” and <code class="language-plaintext highlighter-rouge">لَگُن</code> are VERB.</li>
+  <li><strong>PART</strong> is used for the negation <code class="language-plaintext highlighter-rouge">نہٕ</code>, <code class="language-plaintext highlighter-rouge">نَہ</code>, the question particle <code class="language-plaintext highlighter-rouge">ما</code>, the focus particle <code class="language-plaintext highlighter-rouge">تہِ</code> “also”, and for <code class="language-plaintext highlighter-rouge">وول</code> after a verb (see below).</li>
+  <li><strong>DET</strong> and <strong>PRON</strong>: the demonstratives <code class="language-plaintext highlighter-rouge">سُہ</code>, <code class="language-plaintext highlighter-rouge">سۄ</code>, <code class="language-plaintext highlighter-rouge">یہِ</code>, <code class="language-plaintext highlighter-rouge">یِم</code>, <code class="language-plaintext highlighter-rouge">ہُ</code>, <code class="language-plaintext highlighter-rouge">یَتھ</code>, <code class="language-plaintext highlighter-rouge">تَتھ</code> are DET before a noun and PRON when they stand alone. The quantifiers <code class="language-plaintext highlighter-rouge">سٲری</code>, <code class="language-plaintext highlighter-rouge">سارِوٕے</code> and <code class="language-plaintext highlighter-rouge">دۄشوؠن</code> “all, both” are PRON with <code class="language-plaintext highlighter-rouge">PronType=Tot</code> when they stand alone (<code class="language-plaintext highlighter-rouge">ks_nehru_046</code>, <code class="language-plaintext highlighter-rouge">ks_nehru_065</code>, <code class="language-plaintext highlighter-rouge">ks_grammar_056</code>). Other DET lemmas: <code class="language-plaintext highlighter-rouge">اَکھ</code>, <code class="language-plaintext highlighter-rouge">کیٚنٛہہ</code>, <code class="language-plaintext highlighter-rouge">آل</code>, <code class="language-plaintext highlighter-rouge">دَ</code> (English “the” in a book title).</li>
+  <li>The relatives <code class="language-plaintext highlighter-rouge">یُس</code>, <code class="language-plaintext highlighter-rouge">یۄس</code>, <code class="language-plaintext highlighter-rouge">یٚمہِ</code> are DET with <code class="language-plaintext highlighter-rouge">det</code> before a noun (<code class="language-plaintext highlighter-rouge">ks_grammar_001</code>, <code class="language-plaintext highlighter-rouge">002</code>, <code class="language-plaintext highlighter-rouge">036</code>, <code class="language-plaintext highlighter-rouge">038</code>, <code class="language-plaintext highlighter-rouge">045</code>) and PRON otherwise.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">وول</code></strong> after an infinitive or participle forms an agent or relative participle and is PART with <code class="language-plaintext highlighter-rouge">mark</code> (<code class="language-plaintext highlighter-rouge">دِلہِ روزَن وٲلؠ کٲشِرؠ خاندانٕچ</code> “of a Kashmiri family living in Delhi”, <code class="language-plaintext highlighter-rouge">ks_nehru_060</code>). After a noun it forms a noun “person of X” and is NOUN: <code class="language-plaintext highlighter-rouge">کانٛگرٛیس والؠن</code> “the Congress people” (<code class="language-plaintext highlighter-rouge">ks_nehru_067</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">کِژھ</code> / <code class="language-plaintext highlighter-rouge">کِژھِ</code> “for” is ADP with <code class="language-plaintext highlighter-rouge">case</code> (<code class="language-plaintext highlighter-rouge">"ہوم روٗل" اَس کِژھ</code>, <code class="language-plaintext highlighter-rouge">ks_nehru_058</code>; <code class="language-plaintext highlighter-rouge">پانَس کِژھ</code> “for himself”, <code class="language-plaintext highlighter-rouge">ks_grammar_092</code>).</li>
+  <li>Numbers are NUM with <code class="language-plaintext highlighter-rouge">NumType=Card</code>, also number words: <code class="language-plaintext highlighter-rouge">زٕ</code> “two”, <code class="language-plaintext highlighter-rouge">ژۄداہ</code> “fourteen”, <code class="language-plaintext highlighter-rouge">کاہ</code> “eleven” (<code class="language-plaintext highlighter-rouge">ks_nehru_026</code>), <code class="language-plaintext highlighter-rouge">ترُٛواہ</code> “thirteen”, <code class="language-plaintext highlighter-rouge">اَرٕترٕٛہ</code> “thirty-eight”, <code class="language-plaintext highlighter-rouge">ڈایَن ساسَن</code> “two and a half thousand” (<code class="language-plaintext highlighter-rouge">ks_nehru_050</code>).</li>
+</ul>
+
+<h3 id="features">Features</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>UPOS</th>
+      <th>Features</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PRON</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType</code> (<code class="language-plaintext highlighter-rouge">Prs</code>, <code class="language-plaintext highlighter-rouge">Dem</code>, <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Int</code>, <code class="language-plaintext highlighter-rouge">Rel</code>, <code class="language-plaintext highlighter-rouge">Tot</code>), <code class="language-plaintext highlighter-rouge">Person</code> (<code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code>), <code class="language-plaintext highlighter-rouge">Number</code> (<code class="language-plaintext highlighter-rouge">Sing</code>, <code class="language-plaintext highlighter-rouge">Plur</code>), <code class="language-plaintext highlighter-rouge">Gender</code> (<code class="language-plaintext highlighter-rouge">Masc</code>, <code class="language-plaintext highlighter-rouge">Fem</code>), <code class="language-plaintext highlighter-rouge">Poss=Yes</code>, <code class="language-plaintext highlighter-rouge">Reflex=Yes</code></td>
+    </tr>
+    <tr>
+      <td>DET</td>
+      <td><code class="language-plaintext highlighter-rouge">PronType</code> (<code class="language-plaintext highlighter-rouge">Dem</code>, <code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Tot</code>, <code class="language-plaintext highlighter-rouge">Art</code>, <code class="language-plaintext highlighter-rouge">Rel</code>), <code class="language-plaintext highlighter-rouge">Number=Plur</code></td>
+    </tr>
+    <tr>
+      <td>NUM</td>
+      <td><code class="language-plaintext highlighter-rouge">NumType=Card</code></td>
+    </tr>
+    <tr>
+      <td>VERB</td>
+      <td><code class="language-plaintext highlighter-rouge">VerbForm</code> (<code class="language-plaintext highlighter-rouge">Fin</code>, <code class="language-plaintext highlighter-rouge">Inf</code>, <code class="language-plaintext highlighter-rouge">Part</code>, <code class="language-plaintext highlighter-rouge">Conv</code>), and on finite forms <code class="language-plaintext highlighter-rouge">Mood</code> (<code class="language-plaintext highlighter-rouge">Ind</code>, <code class="language-plaintext highlighter-rouge">Imp</code>) and <code class="language-plaintext highlighter-rouge">Tense</code> (<code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Fut</code>)</td>
+    </tr>
+    <tr>
+      <td>AUX</td>
+      <td><code class="language-plaintext highlighter-rouge">VerbForm</code> (<code class="language-plaintext highlighter-rouge">Fin</code>, <code class="language-plaintext highlighter-rouge">Part</code>), <code class="language-plaintext highlighter-rouge">Mood=Ind</code>, <code class="language-plaintext highlighter-rouge">Tense</code> (<code class="language-plaintext highlighter-rouge">Pres</code>, <code class="language-plaintext highlighter-rouge">Past</code>, <code class="language-plaintext highlighter-rouge">Fut</code>), <code class="language-plaintext highlighter-rouge">Polarity=Neg</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Every VERB and AUX has at least <code class="language-plaintext highlighter-rouge">VerbForm</code>. Finite indicative forms have <code class="language-plaintext highlighter-rouge">Mood=Ind</code> and <code class="language-plaintext highlighter-rouge">Tense</code> where the form shows it.</li>
+  <li>Future forms have <code class="language-plaintext highlighter-rouge">Tense=Fut</code>: <code class="language-plaintext highlighter-rouge">گَژھہِ</code> “will go”, <code class="language-plaintext highlighter-rouge">یِیہِ</code> “will come”, <code class="language-plaintext highlighter-rouge">آسہِ</code> “will be” (<code class="language-plaintext highlighter-rouge">ks_nehru_004</code>), <code class="language-plaintext highlighter-rouge">میلَن</code> “will get” (<code class="language-plaintext highlighter-rouge">ks_nehru_069b</code>).</li>
+  <li>Commands have <code class="language-plaintext highlighter-rouge">Mood=Imp</code>: <code class="language-plaintext highlighter-rouge">کَر</code> “do!” (<code class="language-plaintext highlighter-rouge">ks_grammar_048</code>), <code class="language-plaintext highlighter-rouge">یِزہِ</code> “come!” (<code class="language-plaintext highlighter-rouge">ks_grammar_058</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">Reflex=Yes</code> is used on <code class="language-plaintext highlighter-rouge">پان</code>, <code class="language-plaintext highlighter-rouge">پَنُن</code> and <code class="language-plaintext highlighter-rouge">پانہِوانؠ</code>. <code class="language-plaintext highlighter-rouge">Polarity=Neg</code> is used on <code class="language-plaintext highlighter-rouge">چھُنہٕ</code> and <code class="language-plaintext highlighter-rouge">چھَنہٕ</code>; the particles <code class="language-plaintext highlighter-rouge">نہٕ</code>, <code class="language-plaintext highlighter-rouge">نَہ</code> have no features.</li>
+  <li>Nouns, adjectives and proper nouns have no features. Case is not annotated.</li>
+</ul>
+
+<h2 id="syntax">Syntax</h2>
+
+<h3 id="core-arguments">Core arguments</h3>
+
+<ul>
+  <li>Ergative subjects such as <code class="language-plaintext highlighter-rouge">تٔمؠ</code>, <code class="language-plaintext highlighter-rouge">نِہروٗ وَن</code> are <code class="language-plaintext highlighter-rouge">nsubj</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">iobj</code> is used for the recipient beside a direct object: <code class="language-plaintext highlighter-rouge">لیٖچھ نِہروٗوَن شا ہَس چِٹھؠ</code> “Nehru wrote a letter to Shaw” (<code class="language-plaintext highlighter-rouge">ks_nehru_034</code>).</li>
+  <li>A dative experiencer is <code class="language-plaintext highlighter-rouge">obl</code>: <code class="language-plaintext highlighter-rouge">تٔمؠ سُنٛد نَژُن چھُ مےٚ پَسَنٛد</code> “I like his dance” (<code class="language-plaintext highlighter-rouge">ks_grammar_049</code>).</li>
+  <li>A postposition is <code class="language-plaintext highlighter-rouge">case</code> on its noun.</li>
+</ul>
+
+<h3 id="copula-and-auxiliaries">Copula and auxiliaries</h3>
+
+<ul>
+  <li>With a nominal or adjectival predicate, the predicate is the head and <code class="language-plaintext highlighter-rouge">آسُن</code> is <code class="language-plaintext highlighter-rouge">cop</code>: <code class="language-plaintext highlighter-rouge">یہِ چھُ سؠٹھا بۆڈ کُل</code> “this is a very big tree” (<code class="language-plaintext highlighter-rouge">ks_grammar_003</code>). With an infinitive clause as predicate, <code class="language-plaintext highlighter-rouge">cop</code> attaches to the infinitive (<code class="language-plaintext highlighter-rouge">ییٚمیُٛک مَقصَد اوس … ژھانٛڈُن</code> “whose aim was to find …”, <code class="language-plaintext highlighter-rouge">ks_nehru_068</code>).</li>
+  <li>With a verb, <code class="language-plaintext highlighter-rouge">آسُن</code> is <code class="language-plaintext highlighter-rouge">aux</code>: <code class="language-plaintext highlighter-rouge">شُر چھُ تێز دوران</code> “the child runs fast” (<code class="language-plaintext highlighter-rouge">ks_grammar_004</code>).</li>
+  <li>In passives, <code class="language-plaintext highlighter-rouge">یُن</code> with an infinitive is <code class="language-plaintext highlighter-rouge">aux:pass</code>, the subject is <code class="language-plaintext highlighter-rouge">nsubj:pass</code> and the “by” phrase is <code class="language-plaintext highlighter-rouge">obl:agent</code>: <code class="language-plaintext highlighter-rouge">پَلَو آیہِ نہٕ مینِنہِ ذَرِیہِ چھَلنہِ</code> “the clothes were not washed by Meena” (<code class="language-plaintext highlighter-rouge">ks_grammar_016</code>). See also <code class="language-plaintext highlighter-rouge">ks_nehru_007</code>, <code class="language-plaintext highlighter-rouge">ks_grammar_076</code>, <code class="language-plaintext highlighter-rouge">ks_grammar_077</code>.</li>
+  <li>The tag question <code class="language-plaintext highlighter-rouge">چھَ نَہ</code> “isn’t it?” is <code class="language-plaintext highlighter-rouge">parataxis</code> of the main predicate (<code class="language-plaintext highlighter-rouge">ks_grammar_023</code>).</li>
+</ul>
+
+<h3 id="light-verbs-compounds-and-reduplication">Light verbs, compounds and reduplication</h3>
+
+<ul>
+  <li>A noun combined with a light verb is <code class="language-plaintext highlighter-rouge">compound</code> of the verb:
+    <ul>
+      <li>with <code class="language-plaintext highlighter-rouge">کَرُن</code> “do”: <code class="language-plaintext highlighter-rouge">کَتھ</code>, <code class="language-plaintext highlighter-rouge">کٲم</code>, <code class="language-plaintext highlighter-rouge">اعلان</code>, <code class="language-plaintext highlighter-rouge">تٔحریٖک</code>, <code class="language-plaintext highlighter-rouge">مُخٲلَفتھ</code>, <code class="language-plaintext highlighter-rouge">شۆروٗ</code>, <code class="language-plaintext highlighter-rouge">مَدَتھ</code>, <code class="language-plaintext highlighter-rouge">ٹیلیٖفون</code>, <code class="language-plaintext highlighter-rouge">تَرقی</code>, <code class="language-plaintext highlighter-rouge">تَشکیٖل</code>, <code class="language-plaintext highlighter-rouge">یِزَتھ</code>, <code class="language-plaintext highlighter-rouge">حَملہٕ</code>, <code class="language-plaintext highlighter-rouge">یۆد</code>, <code class="language-plaintext highlighter-rouge">کوٗشِش</code>, <code class="language-plaintext highlighter-rouge">کھانٛدَر</code>, <code class="language-plaintext highlighter-rouge">بٔرتی</code>, <code class="language-plaintext highlighter-rouge">گِرَفتار</code>, <code class="language-plaintext highlighter-rouge">بُنؠیاد</code>, <code class="language-plaintext highlighter-rouge">شران</code>, <code class="language-plaintext highlighter-rouge">زار</code></li>
+      <li>with <code class="language-plaintext highlighter-rouge">دِیُن</code> “give”: <code class="language-plaintext highlighter-rouge">دیٛان</code>; with <code class="language-plaintext highlighter-rouge">کَڈُن</code>: <code class="language-plaintext highlighter-rouge">کٕٹھ</code>; with <code class="language-plaintext highlighter-rouge">گَژُن</code>: <code class="language-plaintext highlighter-rouge">شۆروٗ</code></li>
+    </ul>
+  </li>
+  <li>A noun or proper noun that modifies a following noun is <code class="language-plaintext highlighter-rouge">compound</code> of it: <code class="language-plaintext highlighter-rouge">نِہروٗ خاندان</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_017</code>).</li>
+  <li>In reduplication, the second copy is <code class="language-plaintext highlighter-rouge">compound:redup</code> of the first: <code class="language-plaintext highlighter-rouge">زورہِ زورہِ</code> (<code class="language-plaintext highlighter-rouge">ks_grammar_005</code>), <code class="language-plaintext highlighter-rouge">کُس کُس</code> (<code class="language-plaintext highlighter-rouge">ks_grammar_029</code>), <code class="language-plaintext highlighter-rouge">کؠا کؠا</code> (<code class="language-plaintext highlighter-rouge">ks_grammar_030</code>), <code class="language-plaintext highlighter-rouge">پَکان پَکان</code> (<code class="language-plaintext highlighter-rouge">ks_grammar_054</code>), <code class="language-plaintext highlighter-rouge">پانہٕ پانہٕ</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_064</code>).</li>
+</ul>
+
+<h3 id="names">Names</h3>
+
+<ul>
+  <li>Names of persons and places are PROPN; the first word is the head and the following words are <code class="language-plaintext highlighter-rouge">flat</code>: <code class="language-plaintext highlighter-rouge">جَواہَر لال نِہروٗ</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_001</code>), <code class="language-plaintext highlighter-rouge">اِللّٰه اَباد</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_024</code>, <code class="language-plaintext highlighter-rouge">ks_nehru_040</code>).</li>
+  <li>Names of organizations and titles that have a regular internal structure are annotated with regular relations, following the UD guidelines for <code class="language-plaintext highlighter-rouge">flat</code>: <code class="language-plaintext highlighter-rouge">اِنڈیَن اِنسٹیٖچیٛوٗٹ آف ٹیکنالَجی</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_013</code>), <em>The Discovery of India</em> <code class="language-plaintext highlighter-rouge">دَ ڈِسکَوَری آف اِنڈیا</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_009</code>), <code class="language-plaintext highlighter-rouge">اِنَر ٹیمپلَس</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_038</code>), <code class="language-plaintext highlighter-rouge">مُسلِم لیٖگ</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_055</code>, <code class="language-plaintext highlighter-rouge">ks_nehru_063</code>).</li>
+</ul>
+
+<h3 id="nominal-modifiers">Nominal modifiers</h3>
+
+<ul>
+  <li>A genitive is <code class="language-plaintext highlighter-rouge">nmod</code>, with the genitive postposition as <code class="language-plaintext highlighter-rouge">case</code>.</li>
+  <li>An izafat phrase is <code class="language-plaintext highlighter-rouge">nmod</code> of its head: <code class="language-plaintext highlighter-rouge">تٔحریٖکہِ آزٲدی</code> “freedom movement” (<code class="language-plaintext highlighter-rouge">ks_nehru_002</code>, <code class="language-plaintext highlighter-rouge">ks_nehru_005</code>).</li>
+  <li>A participle with <code class="language-plaintext highlighter-rouge">وول</code> is <code class="language-plaintext highlighter-rouge">acl</code> of the noun that follows it: <code class="language-plaintext highlighter-rouge">بَننہٕ وول ہِندوستٲنؠ قومَس</code> “the Indian nation that was to be formed” (<code class="language-plaintext highlighter-rouge">ks_nehru_006</code>).</li>
+  <li>Clauses with the relatives <code class="language-plaintext highlighter-rouge">یُس</code>, <code class="language-plaintext highlighter-rouge">یۄس</code>, <code class="language-plaintext highlighter-rouge">یَتھ</code>, <code class="language-plaintext highlighter-rouge">ییٚمؠ</code>, <code class="language-plaintext highlighter-rouge">ییٚمیُٛک</code>, <code class="language-plaintext highlighter-rouge">یٚمہِ</code> are <code class="language-plaintext highlighter-rouge">acl:relcl</code>. In <code class="language-plaintext highlighter-rouge">یُس … سُہ</code> correlatives, the relative clause is attached to the correlative word: <code class="language-plaintext highlighter-rouge">یُس کوٹھ ژٚ ہؠۆتُتھ سُہ</code> (<code class="language-plaintext highlighter-rouge">ks_grammar_001</code>).</li>
+  <li>An apposition follows its head and is <code class="language-plaintext highlighter-rouge">appos</code>. A bracket that comes before the word it explains is <code class="language-plaintext highlighter-rouge">parataxis</code>, because <code class="language-plaintext highlighter-rouge">appos</code> cannot precede its head (<code class="language-plaintext highlighter-rouge">ks_nehru_058</code>).</li>
+</ul>
+
+<h3 id="clauses">Clauses</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ccomp</code> clauses are introduced by <code class="language-plaintext highlighter-rouge">زِ</code>, <code class="language-plaintext highlighter-rouge">کہِ</code> or <code class="language-plaintext highlighter-rouge">اَگَر</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">csubj</code> is used for a clause that is the subject: with <code class="language-plaintext highlighter-rouge">لَگُن</code> (<code class="language-plaintext highlighter-rouge">ks_nehru_041</code>, <code class="language-plaintext highlighter-rouge">044</code>, <code class="language-plaintext highlighter-rouge">049</code>) and with the predicates <code class="language-plaintext highlighter-rouge">مَژَر</code>, <code class="language-plaintext highlighter-rouge">مُمکِن</code> and <code class="language-plaintext highlighter-rouge">پَسَنٛد</code>.</li>
+  <li><strong>Infinitives</strong> are annotated by their function:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">xcomp</code> when the infinitive is a complement required by the verb: “want to see” (<code class="language-plaintext highlighter-rouge">ks_grammar_033</code>), “forget to give” (<code class="language-plaintext highlighter-rouge">ks_grammar_035</code>), “let me eat” (<code class="language-plaintext highlighter-rouge">ks_grammar_074</code>), “told him to read” (<code class="language-plaintext highlighter-rouge">ks_grammar_051</code>, <code class="language-plaintext highlighter-rouge">ks_grammar_092</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">advcl</code> for purpose, time and cause: “went to see a play” (<code class="language-plaintext highlighter-rouge">ks_grammar_050</code>), “will go to pluck flowers” (<code class="language-plaintext highlighter-rouge">ks_grammar_073</code>), “marched … to do satyagraha” (<code class="language-plaintext highlighter-rouge">ks_nehru_050</code>), “before he comes” (<code class="language-plaintext highlighter-rouge">ks_grammar_046</code>), “after his departure” (<code class="language-plaintext highlighter-rouge">ks_grammar_047</code>), “because of the arrival” (<code class="language-plaintext highlighter-rouge">ks_grammar_056</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">csubj</code> as subject, <code class="language-plaintext highlighter-rouge">acl</code> as noun modifier (<code class="language-plaintext highlighter-rouge">ks_nehru_051</code>, <code class="language-plaintext highlighter-rouge">ks_nehru_058</code>).</li>
+    </ul>
+  </li>
+  <li>A postposition after an infinitive is <code class="language-plaintext highlighter-rouge">mark</code>: <code class="language-plaintext highlighter-rouge">خاطرہِ</code>, <code class="language-plaintext highlighter-rouge">پؠٹھ</code>, <code class="language-plaintext highlighter-rouge">وَرٲے</code>, <code class="language-plaintext highlighter-rouge">بروہ</code>, <code class="language-plaintext highlighter-rouge">پَتہٕ</code>, <code class="language-plaintext highlighter-rouge">سٟتؠ</code>, <code class="language-plaintext highlighter-rouge">کہِ</code>. After a noun it is <code class="language-plaintext highlighter-rouge">case</code>.</li>
+  <li>Other adverbial clauses are <code class="language-plaintext highlighter-rouge">advcl</code>, for example those with <code class="language-plaintext highlighter-rouge">ییٚلہِ</code>, <code class="language-plaintext highlighter-rouge">تِکیٛازِ</code>, <code class="language-plaintext highlighter-rouge">اَگَر</code>, <code class="language-plaintext highlighter-rouge">اَگَرچہِ</code>, and converbs in <code class="language-plaintext highlighter-rouge">-ِتھ</code>.</li>
+  <li>Coordination: the coordinators <code class="language-plaintext highlighter-rouge">تہٕ</code>, <code class="language-plaintext highlighter-rouge">مَگَر</code>, <code class="language-plaintext highlighter-rouge">یا</code>, <code class="language-plaintext highlighter-rouge">کِنہِ</code> and <code class="language-plaintext highlighter-rouge">نَتہِ</code> are <code class="language-plaintext highlighter-rouge">cc</code> on the following conjunct; every later conjunct is <code class="language-plaintext highlighter-rouge">conj</code> of the first.</li>
+  <li><code class="language-plaintext highlighter-rouge">parataxis</code> is used in <code class="language-plaintext highlighter-rouge">ks_nehru_035</code>, <code class="language-plaintext highlighter-rouge">ks_nehru_051</code>, <code class="language-plaintext highlighter-rouge">ks_nehru_058</code>, <code class="language-plaintext highlighter-rouge">ks_nehru_066</code> and <code class="language-plaintext highlighter-rouge">ks_grammar_023</code>.</li>
+</ul>
+
+      </div>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = '../'; // filled in by jekyll
+    head.js(
+        // We assume that external libraries such as jquery.min.js have already been loaded outside!
+        // (See _layouts/base.html.)
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // Annodoc
+        root + 'lib/annodoc/annodoc.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupTimeago = function() {
+        jQuery("time.timeago").timeago();
+    };
+
+    head.ready(function() {
+        setupTimeago();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = 'ks';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+
+      <div id="footer">
+          <p class="footer-text">&copy; 2014–2024
+            <a href="http://universaldependencies.org/introduction.html#contributors" style="color:gray">Universal Dependencies contributors</a>.
+            Site powered by <a href="http://spyysalo.github.io/annodoc" style="color:gray">Annodoc</a> and <a href="http://brat.nlplab.org/" style="color:gray">brat</a></p>.
+      </div>
+    </div>
+  </body>
+</html>
