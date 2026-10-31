@@ -89,8 +89,10 @@ Computational Linguistics community is still in its infancy. Earlier literature 
 
 <ul>
   <li>In general, words are delimited by whitespace characters. Description of exceptions follows.</li>
-  <li>According to typographical rules, some punctuation marks (e.g., comma) are attached to a neighboring word,
-while others are not. We tokenize punctuation as separate tokens (words).</li>
+  <li>Punctuation marks are tokenized as separate tokens (words), even when typographically attached to a neighboring word.</li>
+  <li>Postpositions and case markers that are written fused to their host are split off as separate syntactic words using multiword tokens (MWT), e.g. સભ્યતાથી → સભ્યતા (NOUN) + થી (ADP), મારાથી → મારા (PRON) + થી (ADP), and દેશને → દેશ + ને.</li>
+  <li>Compounds written as one orthographic word may also be split into multiple words, e.g. વૈવિધ્યપૂર્ણ → વૈવિધ્ય + પૂર્ણ.</li>
+  <li>Postpositions written separately (e.g. સાથે, પ્રત્યે, વિષે, હેઠળ) are separate tokens from the start.</li>
 </ul>
 
 <h2 id="morphology">Morphology</h2>
@@ -102,6 +104,9 @@ has a complex system of verb conjugation, noun declension, and postpositions.</p
 
 <ul>
   <li>Gujarati uses all 17 universal POS categories, including particles (<a href="">PART</a>).</li>
+  <li><a href="">PART</a> is used for emphatic and discourse particles such as જ, પણ (“also”), ભલે (concessive), and the negators ન and નહિ.</li>
+  <li><a href="">CCONJ</a> covers coordinators such as અને, અથવા, પણ (“but”), and છતાંપણ.</li>
+  <li><a href="">SCONJ</a> covers subordinators and complementizers such as કે, કારણકે, and the correlative તો in conditionals.</li>
   <li>Gujarati has the following auxiliary verbs (<a href="">AUX</a>):
     <ul>
       <li>છે <em>che</em> and થવું <em>thavuṁ</em> are present and past equivalents of “to be”.</li>
@@ -113,22 +118,99 @@ has a complex system of verb conjugation, noun declension, and postpositions.</p
       <li>હતું <em>hatuṁ</em> expresses past tense.</li>
       <li>જોઈતું <em>joītuṁ</em> “to want” expresses modality (wish or necessity).</li>
       <li>પડવું <em>paḍavuṁ</em> “to fall” expresses necessity.</li>
-      <li>હોવું <em>hovuṁ</em> “to be” expresses necessity.</li>
+      <li>હોવું <em>hovuṁ</em> “to be” expresses necessity; its conditional forms (e.g. હોત) are also analysed with this lemma.</li>
       <li>શકવું <em>śakavuṁ</em> “can” expresses possibility, ability.</li>
       <li>શું <em>śuṁ</em> is used in interrogative clauses.</li>
     </ul>
   </li>
+  <li>Vector verbs in compound verbs (e.g. નાખવું in કચડી નાખું) that are not on the auxiliary list are tagged <a href="">VERB</a> and attached with <code class="language-plaintext highlighter-rouge">compound:svc</code>.</li>
 </ul>
 
 <h3 id="features">Features</h3>
 
+<p>The treebank annotates the following morphological features, all of which are enabled for Gujarati in the UD validator.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Values</th>
+      <th>Used on</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="">Case</a></td>
+      <td>Nom, Acc, Dat, Erg, Gen, Ins, Loc, Voc</td>
+      <td>NOUN, PROPN, PRON</td>
+    </tr>
+    <tr>
+      <td><a href="">Gender</a></td>
+      <td>Masc, Fem, Neut</td>
+      <td>NOUN, PRON, DET, VERB, AUX</td>
+    </tr>
+    <tr>
+      <td><a href="">Number</a></td>
+      <td>Sing, Plur</td>
+      <td>NOUN, PRON, DET, VERB</td>
+    </tr>
+    <tr>
+      <td><a href="">Person</a></td>
+      <td>1, 2, 3</td>
+      <td>PRON, VERB</td>
+    </tr>
+    <tr>
+      <td><a href="">PronType</a></td>
+      <td>Prs, Dem, Rel, Int, Ind, Tot</td>
+      <td>PRON, DET</td>
+    </tr>
+    <tr>
+      <td><a href="">Poss</a></td>
+      <td>Yes</td>
+      <td>possessive PRON</td>
+    </tr>
+    <tr>
+      <td><a href="">Tense</a></td>
+      <td>Past, Pres, Fut</td>
+      <td>VERB</td>
+    </tr>
+    <tr>
+      <td><a href="">Mood</a></td>
+      <td>Ind, Imp, Sub</td>
+      <td>VERB, AUX</td>
+    </tr>
+    <tr>
+      <td><a href="">Aspect</a></td>
+      <td>Perf, Hab</td>
+      <td>VERB</td>
+    </tr>
+    <tr>
+      <td><a href="">VerbForm</a></td>
+      <td>Fin, Inf, Part, Conv</td>
+      <td>VERB</td>
+    </tr>
+    <tr>
+      <td><a href="">ExtPos</a></td>
+      <td>ADP</td>
+      <td>fixed multiword expressions</td>
+    </tr>
+    <tr>
+      <td><a href="">Typo</a></td>
+      <td>Yes</td>
+      <td>heads of <a href="">goeswith</a> relations</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Notes on feature use:</p>
+
 <ul>
-  <li>The current Gujarati treebank does not include morphological features except for two rather technical ones:
-    <ul>
-      <li><a href="">ExtPos</a> indicates the part of speech of fixed multiword expressions.</li>
-      <li><a href="">Typo</a> is used at heads of <a href="">goeswith</a> relations (mistakenly split words in the underlying text).</li>
-    </ul>
-  </li>
+  <li>Conditional (counterfactual) forms such as કરત, થાત, and હોત are annotated as <code class="language-plaintext highlighter-rouge">Mood=Sub</code>.</li>
+  <li>Conjunctive participles (ઈને forms) are <code class="language-plaintext highlighter-rouge">VerbForm=Conv</code> and carry no Mood.</li>
+  <li>Infinitives, including ablative infinitives such as જોવાથી, are <code class="language-plaintext highlighter-rouge">VerbForm=Inf</code>.</li>
+  <li>Postpositions (<a href="">ADP</a>) carry no features; case is marked on the host noun or pronoun.</li>
+  <li><a href="">AUX</a> tokens carry no VerbForm; <a href="">PROPN</a> tokens carry only Case and Gender is not annotated.</li>
+  <li>Perfective transitive verbs take an ergative subject (<code class="language-plaintext highlighter-rouge">Case=Erg</code>) and agree in Gender and Number with the object.</li>
 </ul>
 
 <h2 id="syntax">Syntax</h2>
@@ -139,14 +221,30 @@ has a complex system of verb conjugation, noun declension, and postpositions.</p
   <li>Gujarati is a head-final, or left-branching language.</li>
   <li>Adjectives precede nouns, direct objects come before verbs, and there are postpositions.</li>
   <li>The word order of Gujarati is SOV, and there are three genders and two numbers.</li>
+  <li>Subjects are frequently dropped (pro-drop) and no empty node is added for them.</li>
+</ul>
+
+<h3 id="constructions">Constructions</h3>
+
+<ul>
+  <li><strong>Postpositional phrases</strong>: the postposition is a <code class="language-plaintext highlighter-rouge">case</code> dependent of its noun; the noun is <code class="language-plaintext highlighter-rouge">obl</code> of a verb or <code class="language-plaintext highlighter-rouge">nmod</code> of a noun.</li>
+  <li><strong>Conjunctive participles</strong> (ઈને forms) are <code class="language-plaintext highlighter-rouge">advcl</code> of the main verb.</li>
+  <li><strong>Ablative infinitives</strong> (e.g. જોવાથી, હોવાથી) express cause and are <code class="language-plaintext highlighter-rouge">advcl</code>.</li>
+  <li><strong>Conditionals</strong> (e.g. તું આવ્યો હોત, તો …): the protasis is <code class="language-plaintext highlighter-rouge">advcl</code> of the apodosis, and તો is a <code class="language-plaintext highlighter-rouge">mark</code> on the protasis.</li>
+  <li><strong>Correlative and relative clauses</strong> (જે…તે, જ્યાં…ત્યાં, જ્યારે…ત્યારે): relative clauses are <code class="language-plaintext highlighter-rouge">acl:relcl</code> (or <code class="language-plaintext highlighter-rouge">advcl</code> for adverbial correlatives), and the correlative word is a <code class="language-plaintext highlighter-rouge">det</code>, <code class="language-plaintext highlighter-rouge">advmod</code>, or pronoun in the main clause.</li>
+  <li><strong>Light verb and compound verb constructions</strong> (e.g. પ્રયત્ન કરવું, સહન થવું): the nominal is <code class="language-plaintext highlighter-rouge">obj</code> or <code class="language-plaintext highlighter-rouge">compound</code> of the verb; vector verbs are <code class="language-plaintext highlighter-rouge">aux</code> or <code class="language-plaintext highlighter-rouge">compound:svc</code>.</li>
+  <li><strong>Direct speech</strong> introduced by a verb of saying is attached with <code class="language-plaintext highlighter-rouge">parataxis</code>.</li>
+  <li><strong>Vocatives</strong> (e.g. ભાઈ) are <code class="language-plaintext highlighter-rouge">vocative</code>; discourse particles such as કેમ are <code class="language-plaintext highlighter-rouge">discourse</code>.</li>
+  <li><strong>Genitives</strong> (મારો, તેની, વારસાનો) are <code class="language-plaintext highlighter-rouge">nmod:poss</code> and agree in Gender and Number with the possessed noun.</li>
 </ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There is 1 Gujarati UD treebank:</p>
+<p>There are 2 Gujarati UD treebanks:</p>
 
 <ul>
   <li><a href="../treebanks/gu_gujtb/index.html">GujTB</a></li>
+  <li><a href="../treebanks/gu_shabdasetu/index.html">ShabdaSetu</a></li>
 </ul>
 
       </div>
