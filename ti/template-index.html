@@ -80,59 +80,69 @@
         </script>
         <h1 id="ud-for-tigrinya-">UD for Tigrinya <span class="flagspan"><img class="flag" src="../../flags/svg/ER.svg" /></span></h1>
 
+<p>Tigrinya (ትግርኛ) is an Ethio-Semitic language spoken in Eritrea and northern Ethiopia, written in the Ge’ez script (called Ethiopic in Unicode). In the examples below, Tigrinya words are followed by a transliteration in italics and an English translation.</p>
+
 <h2 id="tokenization-and-word-segmentation">Tokenization and Word Segmentation</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe the general rules for delimiting words (for example, based on whitespace and punctuation) and exceptions to these rules. Specify whether words with spaces and/or multiword tokens occur. Include links to further language-specific documentation if available.</p>
-
-<hr />
+<ul>
+  <li>Words are delimited by whitespace. Punctuation marks (፡ ። ፣ ፤ ፧ !), which are often attached to a neighbouring word, are separate tokens. Questions end with the Ge’ez question mark ፧. Abbreviations written with a slash, such as ወ/ሮ / <em>w/ro</em> for ወይዘሮ / <em>wəyzəro</em> “Mrs.”, are single tokens.</li>
+  <li>There are no words with spaces.</li>
+  <li>Multiword tokens are frequent. The following elements are written together with their host but are segmented as separate syntactic words:
+    <ul>
+      <li>prepositions written as prefixes (ን- <em>n-</em>, ብ- <em>b-</em>, and ናይ / <em>nay</em> in ናይቲ / <em>nayti</em>), e.g. ነቲ / <em>nəti</em> = ን + እቲ “OBJ the”;</li>
+      <li>possessive suffixes on nouns, adjectives and verbal nouns, e.g. ኣቦይ / <em>ʔaboy</em> = ኣቦ + -ይ “my father”;</li>
+      <li>subordinating prefixes of verbs (ዝ- <em>z-</em>, ክ- <em>k-</em>, እንተ- <em>ʔntə-</em>, ከም <em>kəm</em>, ስለ <em>slə</em>, እንክ- <em>ʔnk-</em>);</li>
+      <li>the negation affixes ኣይ-…-ን <em>ʔay-…-n</em> and ዘይ- <em>zəy-</em>;</li>
+      <li>the coordinating suffix -ን <em>-n</em>, and enclitics such as -ስ <em>-s</em> “as for” and ‘ውን <em>‘wn</em> “also”.</li>
+    </ul>
+  </li>
+  <li>Other verb morphology (subject and object agreement, aspect, mood and voice) is not segmented.</li>
+  <li>Exceptions: the negative copula ኣይኮነን / <em>ʔaykonən</em> “is not” is one token; in the negative existential (የለን / <em>yələn</em> “there is not”) only the suffix -ን is segmented, since the prefix is fused with the stem; case-marked personal pronouns (ንዓኣ / <em>nʕaʔa</em> “her”, ከምኡ / <em>kəmʔu</em> “like him”, ናብኡ / <em>nabʔu</em> “to him”) and possessive pronouns (ናታ / <em>nata</em> “hers”) are not segmented; lexicalised adverbs such as ብጣዕሚ / <em>bt’aʕmi</em> “very” are not segmented.</li>
+</ul>
 
 <h2 id="morphology">Morphology</h2>
 
 <h3 id="tags">Tags</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Specify any unused tags. Explain what words are tagged as PART. Describe how the AUX-VERB and DET-PRON distinctions are drawn, and specify whether there are (de)verbal forms tagged as ADJ, ADV or NOUN. Include links to language-specific tag definitions if any.</p>
-
-<hr />
+<ul>
+  <li>All UPOS tags are used except <code class="language-plaintext highlighter-rouge">SYM</code> and <code class="language-plaintext highlighter-rouge">X</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">PART</code> is used for discourse and question particles (እንዶ / <em>ʔndo</em>, ዶ / <em>do</em>, -ስ / <em>-s</em>) and for the particles of light verb compounds (ጽን / <em>s’n</em>, ደስ / <em>dəs</em>, ድንን / <em>dnn</em>, …).</li>
+  <li>The negation affixes ኣይ-, -ን and ዘይ- are tagged <code class="language-plaintext highlighter-rouge">ADV</code> with <code class="language-plaintext highlighter-rouge">Polarity=Neg</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">AUX</code> is used for the copula እዩ / <em>ʔyu</em> (including the negative ኣይኮነን), for ነበረ / <em>nəbərə</em> as past copula and past auxiliary, for ኣለ / <em>ʔalə</em> when it follows another verb and agrees with its subject (progressive, perfect), and for forms of ኮነ / <em>konə</em> when they follow a verb in subordinate clauses. Elsewhere, ኣለ is <code class="language-plaintext highlighter-rouge">VERB</code> (existence, possession, obligation), and ኮነ is <code class="language-plaintext highlighter-rouge">VERB</code> in the sense “become”.</li>
+  <li>Determiners (the article እቲ / <em>ʔti</em> and demonstratives such as እዚ / <em>ʔzi</em>) are <code class="language-plaintext highlighter-rouge">DET</code> before a noun, adjective or relative clause, and <code class="language-plaintext highlighter-rouge">PRON</code> when used alone. Possessive suffixes are <code class="language-plaintext highlighter-rouge">DET</code>; separate possessive words are <code class="language-plaintext highlighter-rouge">DET</code> before a noun and <code class="language-plaintext highlighter-rouge">PRON</code> when used alone.</li>
+  <li>Verbal nouns (ምኻድ / <em>mxad</em> “going”) are <code class="language-plaintext highlighter-rouge">NOUN</code> with <code class="language-plaintext highlighter-rouge">VerbForm=Vnoun</code>. Converbs are <code class="language-plaintext highlighter-rouge">VERB</code> with <code class="language-plaintext highlighter-rouge">VerbForm=Conv</code>. Ordinal numerals are <code class="language-plaintext highlighter-rouge">ADJ</code> with <code class="language-plaintext highlighter-rouge">NumType=Ord</code>.</li>
+</ul>
 
 <h3 id="features">Features</h3>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Describe inherent and inflectional features for major word classes (at least NOUN and VERB). Describe other noteworthy features. Include links to language-specific feature definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Nouns: <code class="language-plaintext highlighter-rouge">Gender</code>, <code class="language-plaintext highlighter-rouge">Number</code>; <code class="language-plaintext highlighter-rouge">VerbForm=Vnoun</code> on verbal nouns; <code class="language-plaintext highlighter-rouge">Abbr=Yes</code> on abbreviations.</li>
+  <li>Verbs: <code class="language-plaintext highlighter-rouge">Gender</code>, <code class="language-plaintext highlighter-rouge">Number</code>, <code class="language-plaintext highlighter-rouge">Person</code> (subject agreement); <code class="language-plaintext highlighter-rouge">Gender[obj]</code>, <code class="language-plaintext highlighter-rouge">Number[obj]</code>, <code class="language-plaintext highlighter-rouge">Person[obj]</code> (object and applicative suffixes); <code class="language-plaintext highlighter-rouge">Aspect=Imp,Perf</code>; <code class="language-plaintext highlighter-rouge">Mood=Imp,Jus</code>; <code class="language-plaintext highlighter-rouge">VerbForm=Conv</code>; <code class="language-plaintext highlighter-rouge">Voice=Pass,Cau</code> (<code class="language-plaintext highlighter-rouge">Voice=Pass</code> marks the ተ- stem, whether the clause is passive, reflexive or middle); <code class="language-plaintext highlighter-rouge">Polarity=Neg</code> on forms with a fused negative prefix.</li>
+  <li>Copula and auxiliaries: <code class="language-plaintext highlighter-rouge">Tense=Pres</code> (non-past) on እዩ and ኣለ, <code class="language-plaintext highlighter-rouge">Tense=Past</code> on ነበረ; <code class="language-plaintext highlighter-rouge">Polarity=Neg</code> on ኣይኮነን.</li>
+  <li>Pronouns and determiners: <code class="language-plaintext highlighter-rouge">PronType=Art,Dem,Prs,Int</code>; <code class="language-plaintext highlighter-rouge">Poss=Yes</code>; <code class="language-plaintext highlighter-rouge">Reflex=Yes</code>; <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Gender</code>, <code class="language-plaintext highlighter-rouge">Number</code>; <code class="language-plaintext highlighter-rouge">Case=Acc,Equ,All</code> on case-marked personal pronouns.</li>
+  <li>Adjectives: <code class="language-plaintext highlighter-rouge">Gender</code>, <code class="language-plaintext highlighter-rouge">Number</code>; <code class="language-plaintext highlighter-rouge">NumType=Ord</code> on ordinals.</li>
+  <li>Passive and causative verbs are lemmatised by their derived stem (ተፈሊጡ / <em>təfəlit’u</em> → ተፈልጠ “be known”).</li>
+</ul>
 
 <h2 id="syntax">Syntax</h2>
 
-<p>*</p>
-
-<hr />
-<p><strong>Instruction</strong>: Give criteria for identifying core arguments (subjects and objects), and describe the range of copula constructions in nonverbal clauses. List all subtype relations used. Include links to language-specific relations definitions if any.</p>
-
-<hr />
+<ul>
+  <li>Subjects (<code class="language-plaintext highlighter-rouge">nsubj</code>) agree with the subject marking of the verb and are not case-marked. In the obligation construction with ኣለ, the obliged person is the subject (nominative) but is indexed by an object suffix on ኣለ.</li>
+  <li>Objects (<code class="language-plaintext highlighter-rouge">obj</code>) are cross-referenced by an object suffix on the verb and take the objective prefix ን- when definite. <code class="language-plaintext highlighter-rouge">iobj</code> is used for arguments marked with ን- and cross-referenced by an object or applicative suffix (recipients, causees, benefactives, malefactives, instruments). Arguments with other prepositions are <code class="language-plaintext highlighter-rouge">obl</code>.</li>
+  <li>Experiencers of experience verbs and possessors of ኣለ, cross-referenced by the object suffix, are <code class="language-plaintext highlighter-rouge">obj:exp</code> and <code class="language-plaintext highlighter-rouge">obj:poss</code>.</li>
+  <li>Copula: the present copula is እዩ (negative ኣይኮነን), the past copula is ነበረ; the copula is attached to the nonverbal predicate as <code class="language-plaintext highlighter-rouge">cop</code>. When both the subject and the predicate are nominals or headless relative clauses, the constituent preceding the copula is the predicate. The existential verb ኣለ is not a copula. In clefts, the clefted element is the predicate and the relative clause is <code class="language-plaintext highlighter-rouge">csubj:cleft</code>.</li>
+  <li>Converbs and subordinate verbs form adverbial clauses (<code class="language-plaintext highlighter-rouge">advcl</code>); relative clauses with ዝ- are <code class="language-plaintext highlighter-rouge">acl</code>; headless relative clauses are annotated according to their function (<code class="language-plaintext highlighter-rouge">csubj</code>, <code class="language-plaintext highlighter-rouge">ccomp</code>).</li>
+  <li>Universal subtypes used: <code class="language-plaintext highlighter-rouge">nsubj:pass</code>, <code class="language-plaintext highlighter-rouge">csubj:pass</code>, <code class="language-plaintext highlighter-rouge">nsubj:outer</code>, <code class="language-plaintext highlighter-rouge">csubj:outer</code>, <code class="language-plaintext highlighter-rouge">det:poss</code>, <code class="language-plaintext highlighter-rouge">compound:lvc</code>, <code class="language-plaintext highlighter-rouge">compound:redup</code>.</li>
+  <li>Language-specific subtypes: <a href="">ti-dep/xcomp-pred</a>, <a href="">ti-dep/csubj-cleft</a>, <a href="">ti-dep/obj-exp</a>, <a href="">ti-dep/obj-poss</a>, <a href="">ti-dep/advmod-aff</a>, <a href="">ti-dep/case-pre</a>.</li>
+</ul>
 
 <h2 id="treebanks">Treebanks</h2>
 
-<p>There are <a href="../treebanks/ti-comparison.html">N</a> Tigrinya UD treebanks:</p>
+<p>There is 1 Tigrinya UD treebank:</p>
 
 <ul>
-  <li><a href="../treebanks/ti_a/index.html">Tigrinya-A</a></li>
-  <li><a href="../treebanks/ti_b/index.html">Tigrinya-B</a></li>
+  <li><a href="../treebanks/ti_titb/index.html">Tigrinya-TiTB</a></li>
 </ul>
-
-<hr />
-<p><strong>Instruction</strong>: Treebank-specific pages are generated automatically from the README file in the treebank repository and
-from the data in the latest release. Link to the respective <code class="language-plaintext highlighter-rouge">*-index.html</code> page in the <code class="language-plaintext highlighter-rouge">treebanks</code> folder, using the language code
-and the treebank code in the file name.</p>
-
-<hr />
 
       </div>
 
