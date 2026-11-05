@@ -109,11 +109,12 @@
 
 <h3 id="part-of-speech-tags">Part of Speech Tags</h3>
 
-<p>Participles are tagged as <code class="language-plaintext highlighter-rouge">VERB</code>s.</p>
+<p>Participles are generally tagged as <code class="language-plaintext highlighter-rouge">VERB</code>s.</p>
 
 <p>Sometimes in Pāli, a word derived from a participle has taken on a new meaning beyond its root verb.
 Nouns like <em>buddha</em> (“the Buddha”, from <em>bujjhati</em>, “knows”), <em>carita</em> (“behavior”, from <em>carati</em>, “walks”), <em>khādanīya</em> (“non-staple food”, from <em>khādati</em>, “chews”), etc or adjectives like <em>anāgata</em> (“future”, from <em>āgacchati</em>, “comes”), etc should be tagged as <code class="language-plaintext highlighter-rouge">NOUN</code> or <code class="language-plaintext highlighter-rouge">ADJ</code> as appropriate and not as <code class="language-plaintext highlighter-rouge">VERB</code> despite the etymological connection.
-Participles that are used in the same sense as their underlying verb, are just <code class="language-plaintext highlighter-rouge">VERB</code>s, even if they are syntactically close to being used as adjectives or nouns.</p>
+The same goes for participles that have no attested finite form, such as <em>abbhussakkamāna</em> (“ascending”) or <em>ajjhopanna</em> (“enthralled by”). These are marked <code class="language-plaintext highlighter-rouge">ADJ</code> because their verb is entirely theoretical.
+Participles that have an underlying finite verb and are used in that same sense, however, are just <code class="language-plaintext highlighter-rouge">VERB</code>s, even if they are syntactically close to being used as adjectives or nouns.</p>
 
 <p>When a form of <em>bhavati</em> or <em>atthi</em> is used in a copula, it should get the <code class="language-plaintext highlighter-rouge">AUX</code> UPOS. When they are used in the intransitive sense of “exists,” they are <code class="language-plaintext highlighter-rouge">VERB</code>s.</p>
 
@@ -169,12 +170,14 @@ If it’s used as a pronoun in the sentence, then it should get the <code class=
 <h4 id="verb-lemmas">Verb Lemmas</h4>
 
 <p>The <code class="language-plaintext highlighter-rouge">LEMMA</code> for all verb forms is the 3rd-person singular present indicative of the underlying verb.
-For example, the past participle <em>gata</em> “gone” gets the <code class="language-plaintext highlighter-rouge">LEMMA</code> <em>gacchati</em>.</p>
+For example, the past participle <em>gata</em> “gone” gets the <code class="language-plaintext highlighter-rouge">LEMMA</code> <em>gacchati</em>.
+For participles without such a finite verbal form (such as <em>anujāto</em>, “taking after”), they should be labeled as adjectives and given the neutral, stem form (e.g. <code class="language-plaintext highlighter-rouge">anujāta</code>) as their lemma.</p>
 
 <p>For passive and causative voiced finite verbs, we give the passive and causative lemma and do not collapse the lemmas down to the simplex.
 For example, for the passive verb <em>nirujjhanti</em>, the lemma should be <code class="language-plaintext highlighter-rouge">nirujjhati</code> and for the causative verb <em>desemi</em>, the causative lemma <code class="language-plaintext highlighter-rouge">deseti</code> should be given.
 Similarly, for a double causative verb like <em>yojāpetvā</em>, the lemma should be <code class="language-plaintext highlighter-rouge">yojāpeti</code>.
-Note that passive participles get the active verb as their lemma, for example <em>karaṇīya</em> gets the lemma <code class="language-plaintext highlighter-rouge">karoti</code>.</p>
+Note that causative participles also get the causative lamma, but passive participles get the active verb as their lemma.
+For example, <em>kāritā</em> (“built”) gets the lemma <code class="language-plaintext highlighter-rouge">kāreti</code> (“cause-to-do”), while <em>karaṇīyo</em> (“should be done”) would get simply <code class="language-plaintext highlighter-rouge">karoti</code> (“to do”).</p>
 
 <p>Forms of the verb <em>hoti</em> (<em>honti</em>, <em>ahosi</em>, etc) always get the lemma <code class="language-plaintext highlighter-rouge">bhavati</code>.
 Forms of the verb <em>atthi</em> (<em>amhi</em>, <em>atthu</em>, <em>santi</em>, etc), get the lemma <code class="language-plaintext highlighter-rouge">atthi</code>.</p>
@@ -182,6 +185,8 @@ Forms of the verb <em>atthi</em> (<em>amhi</em>, <em>atthu</em>, <em>santi</em>,
 <h4 id="noun-lemmas">Noun Lemmas</h4>
 
 <p>Lemmas are always lowercase, even for proper nouns.</p>
+
+<p>Substantives and adjectives should get the stem (“in comps”) form as their lemma. For example, <em>itthiyo</em> has the lemma <code class="language-plaintext highlighter-rouge">itthi</code>, <em>bhikkhave</em> gets the lemma <code class="language-plaintext highlighter-rouge">bhikkhu</code>, <em>rasso</em> the lemma <code class="language-plaintext highlighter-rouge">rassa</code>, <em>rāja</em> the lemma <code class="language-plaintext highlighter-rouge">rājan</code>, <em>bhagavato</em> <code class="language-plaintext highlighter-rouge">bhagavant</code>, <em>agārisu</em> <code class="language-plaintext highlighter-rouge">agārin</code>, etc.</p>
 
 <p>For personal pronouns, collapse the cases down to the nominative. For example, <em>amhākaṃ</em> gets <em>mayaṃ</em> and <em>te</em> gets <em>tvaṃ</em>. Keep first and second, singular and plural separate.</p>
 
@@ -195,8 +200,6 @@ Forms of the verb <em>atthi</em> (<em>amhi</em>, <em>atthu</em>, <em>santi</em>,
 </ul>
 
 <p>Similarly, use <em>kiñci</em> for forms of the indefinite pronoun: <em>koci</em>, <em>kāci</em>, <em>kenaci</em>, <em>kesuci</em>, etc.</p>
-
-<p>Substantives and adjectives should get the stem form as their lemma. For example, <em>itthiyo</em> has the lemma <code class="language-plaintext highlighter-rouge">itthi</code>, <em>bhikkhave</em> gets the lemma <code class="language-plaintext highlighter-rouge">bhikkhu</code>, <em>rasso</em> the lemma <code class="language-plaintext highlighter-rouge">rassa</code>, <em>rāja</em> the lemma <code class="language-plaintext highlighter-rouge">rājan</code>, <em>bhagavato</em> <code class="language-plaintext highlighter-rouge">bhagavant</code>, etc.</p>
 
 <h3 id="features">Features</h3>
 
