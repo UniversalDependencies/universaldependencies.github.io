@@ -94,22 +94,25 @@ repositories belonging to the UniversalDependencies organization).</li>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl tools/update_repositories.pl
 </code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Make sure you have the most current content of all the repositories (note that this
+
+    <ul>
+      <li>
+        <p>Make sure you have the most current content of all the repositories (note that this
 command assumes you have not modified your local copy of the data without pushing it
 back; if this is the case, you will see lists of modified files in the output and you
 will have to resolve it). Also make sure that you are working with the <code class="language-plaintext highlighter-rouge">dev</code> branch:<br /></p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">for </span>i <span class="k">in </span>UD_<span class="k">*</span> <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="nb">cd</span> <span class="nv">$i</span> <span class="p">;</span> git checkout dev <span class="p">;</span> git pull <span class="nt">--no-edit</span> <span class="p">;</span> <span class="nb">cd</span> .. <span class="p">;</span> <span class="nb">echo</span> <span class="p">;</span> <span class="k">done</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Make sure there are no untracked files in your local copies of the repositories.
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>i <span class="k">in </span>UD_<span class="k">*</span> <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="nb">cd</span> <span class="nv">$i</span> <span class="p">;</span> git checkout dev <span class="p">;</span> git pull <span class="nt">--no-edit</span> <span class="p">;</span> <span class="nb">cd</span> .. <span class="p">;</span> <span class="nb">echo</span> <span class="p">;</span> <span class="k">done</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Make sure there are no untracked files in your local copies of the repositories.
 Otherwise they could be mistakenly picked for the release.<br /></p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">for </span>i <span class="k">in </span>UD_<span class="k">*</span> <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="nb">cd</span> <span class="nv">$i</span> <span class="p">;</span> git status <span class="p">;</span> <span class="k">if </span>git status | <span class="nb">grep</span> <span class="nt">-P</span> <span class="s1">'(Untracked files|ahead of)'</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span> <span class="k">then </span><span class="nb">echo </span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UNCLEAN GIT STATUS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX <span class="p">;</span> <span class="nb">sleep </span>10 <span class="p">;</span> <span class="k">fi</span><span class="p">;</span> <span class="nb">cd</span> .. <span class="p">;</span> <span class="nb">echo</span> <span class="p">;</span> <span class="k">done</span>
-</code></pre></div>    </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>i <span class="k">in </span>UD_<span class="k">*</span> <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="nb">cd</span> <span class="nv">$i</span> <span class="p">;</span> git status <span class="p">;</span> <span class="k">if </span>git status | <span class="nb">grep</span> <span class="nt">-P</span> <span class="s1">'(Untracked files|ahead of)'</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span> <span class="k">then </span><span class="nb">echo </span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX UNCLEAN GIT STATUS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX <span class="p">;</span> <span class="nb">sleep </span>10 <span class="p">;</span> <span class="k">fi</span><span class="p">;</span> <span class="nb">cd</span> .. <span class="p">;</span> <span class="nb">echo</span> <span class="p">;</span> <span class="k">done</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
   <li>Update version numbers in the commands in this file (<code class="language-plaintext highlighter-rouge">docs/infrastructure/how_to_build_release.md</code>).
 In the example here in this point (intentionally made up so that bulk replacements will not alter them)
