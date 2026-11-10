@@ -211,7 +211,8 @@ On the other hand, below we generate treebank evaluation log that appears only i
 branch but not in the <code class="language-plaintext highlighter-rouge">dev</code> branch nor in the released package.)
 <br /></p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">for </span>i <span class="k">in</span> <span class="si">$(</span><span class="nb">cat </span>released_treebanks.txt<span class="si">)</span> <span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">;</span> <span class="nb">cd</span> <span class="nv">$i</span> <span class="p">;</span> git checkout master <span class="p">;</span> git pull <span class="nt">--no-edit</span> <span class="p">;</span> git merge dev <span class="nt">--no-edit</span> <span class="p">;</span> git push <span class="p">;</span> git checkout dev <span class="p">;</span> <span class="nb">cd</span> .. <span class="p">;</span> <span class="nb">echo</span> <span class="p">;</span> <span class="k">done</span>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl tools/update_repositories.pl <span class="nt">--merge</span> <span class="nt">--datapath</span> <span class="nb">.</span> <span class="nt">--tbklist</span> released_treebanks.txt
+  <span class="c"># for i in $(cat released_treebanks.txt) ; do echo $i ; cd $i ; git checkout master ; git pull --no-edit ; git merge dev --no-edit ; git push ; git checkout dev ; cd .. ; echo ; done</span>
 </code></pre></div>    </div>
 
     <ul>
