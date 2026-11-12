@@ -82,7 +82,8 @@
 
 <!--
 DRAFT written from the annotation files diccionario-huv.*.conllu (13 files, 7 annotators, 696 distinct sentences, 249 marked finished)
-and from Herrera Castro (2016), the thesis on the noun phrase of San Mateo del Mar Huave ("Herrera 2016" below).
+and from Herrera Castro (2016), the thesis on the noun phrase of San Mateo del Mar Huave ("Herrera 2016" below),
+and Herrera Castro (2010), the thesis on alignment and the verb phrase (verbal prefixes for person and tense-aspect-mood).
 Comments like this one, "CHECK:", mark decisions where the annotators disagree or where the thesis analyses something differently.
 Remove all comments before submitting. Counts are from the most complete version of each sentence unless stated otherwise.
 -->
@@ -101,7 +102,10 @@ and are marked <code class="language-plaintext highlighter-rouge">SpaceAfter=No<
       <li><strong>The preposition <em>tiül</em> + a noun</strong>, written as one word with the preposition reduced to <em>ti-</em>:
 <em>tikambaj</em> = <em>ti</em> (lemma <em>tiül</em>, ADP) + <em>kambaj</em> (NOUN) “in the town”; also <em>tikorrül</em>, <em>timanchiük</em>, <em>timüx</em>, <em>tixiül</em>, <em>titiiüd</em>, <em>tindek</em>.</li>
       <li><strong>The locative copula <em>al</em> + <em>tiül</em></strong>: <em>altiül</em> = <em>al</em> (AUX) + <em>tiül</em> (ADP), “there is / has”; also <em>altikambaj</em> = <em>al</em> + <em>ti</em> + <em>kambaj</em>.</li>
-      <li><strong>The aspectual proclitic <em>la</em></strong> (punctual, “already”) + the next word: <em>landoj</em> = <em>la</em> + <em>ndoj</em>, <em>lango</em> = <em>la</em> + <em>ngo</em>.</li>
+      <li><strong>The punctual aspect marker <em>la</em></strong> (“already”) + a following word that is not a verb: <em>landoj</em> = <em>la</em> + <em>ndoj</em>, <em>lango</em> = <em>la</em> + <em>ngo</em>.
+On verbs, <em>la-</em> is an inflectional prefix (Herrera Castro 2010) and is not split: <em>lajntsop</em> “it already sprouted”.
+<!-- CHECK: the analyser treats _ndoj_ as an adverb, but some annotators tagged it VERB. -->
+The progressive <em>te(a)-</em> is always a verbal prefix and is never split.</li>
       <li><strong>Final clitics <em>-e</em> and <em>-a</em></strong>, tagged PART: <em>ngome</em> = <em>ngom</em> + <em>e</em>, <em>ngana</em> = <em>ngan</em> + <em>a</em>, <em>leawa</em> = <em>leaw</em> + <em>a</em>.</li>
     </ul>
   </li>
@@ -124,7 +128,7 @@ and are marked <code class="language-plaintext highlighter-rouge">SpaceAfter=No<
 Deverbal nouns such as <em>nendok</em> “fisherman” are NOUN with <code class="language-plaintext highlighter-rouge">VerbForm=Vnoun</code>. Personal names are PROPN (with <code class="language-plaintext highlighter-rouge">Gender</code>).</li>
   <li><strong>VERB.</strong> Verbs inflect by prefixes and suffixes for person, number, tense, aspect and mood. The lemma is the bare root without those
 (<em>ajlüy</em> → <em>jlüy</em>, <em>akwiür</em> → <em>kwiür</em>).</li>
-  <li><strong>AUX.</strong> The locative copula <em>al</em> (“be located, there is”; Herrera 2016 glosses it COP.LOC) is AUX, as is the aspectual proclitic <em>la</em>.
+  <li><strong>AUX.</strong> The locative copula <em>al</em> (“be located, there is”; Herrera 2016 glosses it COP.LOC) is AUX, as is the punctual marker <em>la</em> when it is split off from a following non-verb (see above).
 <!-- CHECK: _ndom_ ("can, know how to") is tagged PART, AUX and VERB by different annotators; _ngo_ "not" is ADV in 142 cases but AUX in 6. No decision yet. --></li>
   <li><strong>PART.</strong> Interrogative clitics <em>-e</em> and <em>-a</em> (<em>ngome</em>, <em>ngana</em>), with <code class="language-plaintext highlighter-rouge">PronType=Int</code>, and the evidential <em>chük</em> (<code class="language-plaintext highlighter-rouge">Evident=Nfh</code>, one token in these data;
 it is very frequent in the story collections). <!-- CHECK: the story corpus has not been annotated yet. --></li>
@@ -149,7 +153,8 @@ Herrera 2016 (ch. 6) argues that it also works as an indefinite article, but it 
 noun or pronoun (<em>mikwal nej</em> “his/her child”); it carries no feature. <!-- CHECK: the meaning of _mi-_ is not settled. -->
 Plural is rarely marked on nouns in the data (3 tokens). <code class="language-plaintext highlighter-rouge">Number</code> (mostly <code class="language-plaintext highlighter-rouge">Sing</code>, also <code class="language-plaintext highlighter-rouge">Plur</code> and <code class="language-plaintext highlighter-rouge">Dual</code>) is used on verbs and pronouns.</li>
   <li><strong>Verbs.</strong> Subject person and number: <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Number</code> (also <code class="language-plaintext highlighter-rouge">Number=Dual</code>, and <code class="language-plaintext highlighter-rouge">Clusivity=Ex|In</code> for first person plural and dual).
-<code class="language-plaintext highlighter-rouge">Tense=Pres|Past</code>, <code class="language-plaintext highlighter-rouge">Aspect=Prog</code> (the progressive <em>te(a)-</em>) and <code class="language-plaintext highlighter-rouge">Aspect=Punt</code> (<em>la</em> “already”), <code class="language-plaintext highlighter-rouge">Mood=Sub</code> and <code class="language-plaintext highlighter-rouge">Mood=Irr</code>.
+<code class="language-plaintext highlighter-rouge">Tense=Pres|Past</code>, <code class="language-plaintext highlighter-rouge">Aspect=Prog</code> (the progressive prefix <em>te-</em> / <em>tea-</em> / <em>t-</em>) and <code class="language-plaintext highlighter-rouge">Aspect=Punt</code> (the punctual prefix <em>la-</em> / <em>l-</em> “already”),
+following Herrera Castro (2010); see <a href="huv-feat/Aspect">Aspect</a>. <code class="language-plaintext highlighter-rouge">Mood=Sub</code> and <code class="language-plaintext highlighter-rouge">Mood=Irr</code>.
 <code class="language-plaintext highlighter-rouge">VerbForm=Fin|Vnoun</code>. <code class="language-plaintext highlighter-rouge">Voice=Caus</code> for causatives (3 tokens). <code class="language-plaintext highlighter-rouge">Subcat=Tran|Intr</code> marks transitivity.
 <!-- CHECK: Subcat is not a standard UD feature; consider Valency or the lexicon. Reflexive and possessive are written Reflexive=Yes and Possessive=Yes in MISC; the UD features are Reflex=Yes and Poss=Yes in FEATS. --></li>
   <li><strong>Pronouns.</strong> <code class="language-plaintext highlighter-rouge">PronType=Prs|Dem|Int</code>, <code class="language-plaintext highlighter-rouge">Person</code>, <code class="language-plaintext highlighter-rouge">Number</code>, <code class="language-plaintext highlighter-rouge">Clusivity</code>.</li>
