@@ -108,6 +108,34 @@ the docs-automation repository.</li>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 
+<h3 id="automatic-links-to-pages-in-collections">Automatic Links to Pages in Collections</h3>
+
+<p>The standard way of adding hypertext links in MarkDown is square brackets with text to be displayed, immediately
+followed by round parentheses with the URL. This gets translated to the <code class="language-plaintext highlighter-rouge">a href</code> element in HTML. An extra feature
+of the UD website is that pages in collections describing UPOS categories, morphological features and dependency
+relations can be referenced without providing the URL, as described <a href="https://universaldependencies.org/contributing/editing.html#links-to-documentation">here</a>.
+This should work both for hyperlinks in MarkDown and the <code class="language-plaintext highlighter-rouge">a</code> elements given without URL directly in HTML.
+The problem is that sometimes this mechanism fails to pick up newly created pages in language-specific documentation
+(for example, <a href="https://github.com/UniversalDependencies/docs/issues/1327">Issue 1327</a>).</p>
+
+<p>The link resolution happens client-side in
+<a href="https://github.com/UniversalDependencies/universaldependencies.github.io/blob/master/lib/annodoc/annodoc.js#L1268"><code class="language-plaintext highlighter-rouge">lib/annodoc/annodoc.js</code></a>
+using a listing in <code class="language-plaintext highlighter-rouge">lib/local/collections.js</code>. In the pages source <code class="language-plaintext highlighter-rouge">collections.js</code> contains no real listing; just
+instructions for Jekyll how to build the listing from <code class="language-plaintext highlighter-rouge">site.collections</code> (which contains a collection of pages for each
+UD language in <code class="language-plaintext highlighter-rouge">_config.yml</code>, and some extra collections for universal documentation). When Jekyll builds the site from
+scratch, it will prepare the <a href="https://github.com/UniversalDependencies/universaldependencies.github.io/blob/master/lib/local/collections.js">target
+<code class="language-plaintext highlighter-rouge">collections.js</code></a>,
+which contains the real listing. But Jekyll does not always rebuild everything from scratch. It often works
+incrementally, focusing on pages that have been modified. When the building system detects a new file in pages source,
+it should rebuild the whole site, including <code class="language-plaintext highlighter-rouge">collections.js</code>. At least in theory. Sometimes it does not. The cheapest
+way to fix it is to touch the source <code class="language-plaintext highlighter-rouge">collections.js</code> by adding a deleting a character in a comment.</p>
+
+<p>Another relevant point is that the listing pairs the URL with the <code class="language-plaintext highlighter-rouge">title</code> of each collection page (in the front matter
+/ header of the MarkDown file). If the page does not have a correct title, auto-linking will not work. So, for example,
+<code class="language-plaintext highlighter-rouge">Gender-spkr.md</code> has to carry <code class="language-plaintext highlighter-rouge">title: 'Gender[spkr]'</code>.</p>
+
+<h3 id="when-running-locally">When Running Locally</h3>
+
 <p><em>(Very old notes about building the UD website.)</em></p>
 
 <p>Issue: when running locally, the system gives the error message
