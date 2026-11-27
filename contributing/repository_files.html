@@ -367,8 +367,10 @@ Treebank maintainers should never touch the <code class="language-plaintext high
 (Ordinary contributors are not even able to push to <code class="language-plaintext highlighter-rouge">master</code>, the branch is protected.)
 At release time, the release task force will take care of merging the contents of the <code class="language-plaintext highlighter-rouge">dev</code> branch into <code class="language-plaintext highlighter-rouge">master</code>.
 <strong>Please do not submit pull requests from the dev branch (or from anywhere else) to the master branch.</strong>
-This is not needed for the release merge to take place, and if someone overlooks the destination branch and accepts the pull request,
-it will again result in a commit to the master branch at wrong time.</p>
+This is not needed for the release merge to take place, and if someone overlooks the destination branch and accepts the
+pull request, it will again result in a commit to the master branch at wrong time. Also, <strong>do not merge <code class="language-plaintext highlighter-rouge">master</code>
+back into <code class="language-plaintext highlighter-rouge">dev</code>!</strong> Extra files are generated in <code class="language-plaintext highlighter-rouge">master</code> at release time. These files are not expected in <code class="language-plaintext highlighter-rouge">dev</code>
+and they will trigger validation errors if you bring them in.</p>
 
 <p>(To make things a bit more confusing, this policy of data repositories does not apply to some other repositories that
 we use. In the <code class="language-plaintext highlighter-rouge">docs</code> repository you must work with the <code class="language-plaintext highlighter-rouge">pages-source</code> branch. That is done automatically if you edit
